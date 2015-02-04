@@ -38,26 +38,25 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 		if (keyStore == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Custom keyStore has not been initialized, falling back " +
-						"to system's defaults.");
+					"Use system defaults because there is no custom key store");
 			}
 
 			return SSLSocketFactory.getSystemSocketFactory();
 		}
 
-		KeyStore trustStore = null;
+		KeyStore trustKeyStore = null;
 
 		TrustStrategy trustStrategy = null;
 
 		if (_verifyServerCertificate) {
-			trustStore = _keyStoreLoader.load(
+			trustKeyStore = _keyStoreLoader.load(
 				_trustStoreType, _trustStorePath, _trustStorePassword);
 
-			if (trustStore == null) {
+			if (trustKeyStore == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Custom trustStore has not been initialized, falling " +
-							"back to system's defaults.");
+						"Use system defaults because there is no custom " +
+							"trust key store");
 				}
 
 				return SSLSocketFactory.getSystemSocketFactory();
@@ -67,23 +66,24 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 			trustStrategy = new TrustSelfSignedStrategy();
 		}
 
-		X509HostnameVerifier hostnameVerifier =
+		X509HostnameVerifier x509HostnameVerifier =
 			SSLSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER;
 
 		if (!_verifyServerHostname) {
-			hostnameVerifier = SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
+			x509HostnameVerifier = SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
 		}
 
 		try {
 			return new SSLSocketFactory(
 				_DEFAULT_ALGORITHM, keyStore, String.valueOf(_keyStorePassword),
-				trustStore, null, trustStrategy, hostnameVerifier);
+				trustKeyStore, null, trustStrategy, x509HostnameVerifier);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Custom SSLSocketFactory initialization has failed; " +
-						"falling back to system's default.", e);
+					"Use system defaults because the custom SSL socket " +
+						"factory was not able to initialize",
+					e);
 			}
 
 			return SSLSocketFactory.getSystemSocketFactory();
