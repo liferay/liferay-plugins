@@ -29,20 +29,21 @@ public class BasicAuthPoolingDelegatingHttpClientFactory
 		PoolingClientConnectionManager poolingClientConnectionManager =
 			new PoolingClientConnectionManager();
 
-		BasicAuthPoolingHttpClientFactory httpClientFactory =
+		BasicAuthPoolingHttpClientFactory basicAuthPoolingHttpClientFactory =
 			new BasicAuthPoolingHttpClientFactory(
 				poolingClientConnectionManager);
 
-		httpClientFactory.setAuthScope(_authScope);
-		httpClientFactory.setDefaultMaxConnectionsPerRoute(
+		basicAuthPoolingHttpClientFactory.setAuthScope(_authScope);
+		basicAuthPoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
 			getDefaultMaxConnectionsPerRoute());
-		httpClientFactory.setHttpRequestInterceptors(
+		basicAuthPoolingHttpClientFactory.setHttpRequestInterceptors(
 			getHttpRequestInterceptors());
-		httpClientFactory.setMaxTotalConnections(getMaxTotalConnections());
-		httpClientFactory.setPassword(_password);
-		httpClientFactory.setUsername(_username);
+		basicAuthPoolingHttpClientFactory.setMaxTotalConnections(
+			getMaxTotalConnections());
+		basicAuthPoolingHttpClientFactory.setPassword(_password);
+		basicAuthPoolingHttpClientFactory.setUsername(_username);
 
-		setHttpClientFactory(httpClientFactory);
+		setHttpClientFactory(basicAuthPoolingHttpClientFactory);
 	}
 
 	public void setAuthScope(AuthScope authScope) {

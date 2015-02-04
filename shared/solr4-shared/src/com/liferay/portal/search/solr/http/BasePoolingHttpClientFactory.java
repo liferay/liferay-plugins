@@ -41,7 +41,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 	@Override
 	public DefaultHttpClient createInstance() {
 		if (_log.isDebugEnabled()) {
-			_log.debug("createInstance()");
+			_log.debug("Create instance");
 		}
 
 		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
@@ -84,7 +84,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 	@Override
 	public void shutdown() {
 		if (_log.isDebugEnabled()) {
-			_log.debug("shutdown()");
+			_log.debug("Shut down");
 		}
 
 		int retry = 0;
@@ -101,7 +101,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					toString() + " waiting on " + availableConnections +
+					toString() + " is waiting on " + availableConnections +
 						" connections");
 			}
 
@@ -120,7 +120,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 		_poolingClientConnectionManager.shutdown();
 
 		if (_log.isDebugEnabled()) {
-			_log.debug(toString() + " is shutdown");
+			_log.debug(toString() + " was shut down");
 		}
 	}
 
