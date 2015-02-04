@@ -76,8 +76,8 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 		try {
 			return new SSLSocketFactory(
 				SSLSocketFactory.TLS, keyStore,
-				String.valueOf(_keyStorePassword),
-				trustKeyStore, null, trustStrategy, x509HostnameVerifier);
+				String.valueOf(_keyStorePassword), trustKeyStore, null,
+				trustStrategy, x509HostnameVerifier);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
