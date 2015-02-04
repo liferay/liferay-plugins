@@ -106,7 +106,7 @@ public class KeyStoreLoaderImpl implements KeyStoreLoader {
 		throws FileNotFoundException {
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Loading file: " + fileName);
+			_log.debug("Loading file " + fileName);
 		}
 
 		InputStream inputStream = null;
@@ -125,8 +125,8 @@ public class KeyStoreLoaderImpl implements KeyStoreLoader {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				fileName + " not found on classpath. Attempting to load from " +
-					"filesystem");
+				"Attempting to laod from the file system because " + fileName +
+					" is not in the class path");
 		}
 
 		return new FileInputStream(fileName);
