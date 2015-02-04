@@ -56,7 +56,7 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Use system defaults because there is no custom " +
-							"trust key store");
+							"trust store");
 				}
 
 				return SSLSocketFactory.getSystemSocketFactory();
@@ -75,7 +75,8 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 
 		try {
 			return new SSLSocketFactory(
-				_DEFAULT_ALGORITHM, keyStore, String.valueOf(_keyStorePassword),
+				SSLSocketFactory.TLS, keyStore,
+				String.valueOf(_keyStorePassword),
 				trustKeyStore, null, trustStrategy, x509HostnameVerifier);
 		}
 		catch (Exception e) {
@@ -134,21 +135,16 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 		_verifyServerHostname = verifyServerHostname;
 	}
 
-	private static final String _DEFAULT_ALGORITHM = SSLSocketFactory.TLS;
-
-	private static final String _DEFAULT_KEYSTORE_TYPE =
-		KeyStore.getDefaultType();
-
 	private static Log _log = LogFactoryUtil.getLog(
 		SSLSocketFactoryBuilderImpl.class);
 
 	private KeyStoreLoader _keyStoreLoader;
 	private char[] _keyStorePassword;
 	private String _keyStorePath;
-	private String _keyStoreType = _DEFAULT_KEYSTORE_TYPE;
+	private String _keyStoreType = KeyStore.getDefaultType();
 	private char[] _trustStorePassword;
 	private String _trustStorePath;
-	private String _trustStoreType = _DEFAULT_KEYSTORE_TYPE;
+	private String _trustStoreType = KeyStore.getDefaultType();
 	private boolean _verifyServerCertificate = true;
 	private boolean _verifyServerHostname = true;
 
