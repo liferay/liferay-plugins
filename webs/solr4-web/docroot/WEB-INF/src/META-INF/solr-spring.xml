@@ -7,21 +7,12 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-		http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.springframework.org/schema/util
-		http://www.springframework.org/schema/util/spring-util-3.0.xsd
-		"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
 >
-
 	<context:property-placeholder
 		ignore-resource-not-found="true" ignore-unresolvable="true"
 		location="/WEB-INF/classes/solr.properties,/WEB-INF/classes/solr-ext.properties"
 	/>
-
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 
 	<!-- Solr document -->
@@ -55,9 +46,6 @@
 		<property name="password" value="${basic.auth.password}" />
 		<property name="username" value="${basic.auth.username}" />
 	</bean>
-
-	<!-- Solr search engine client with 2-way SSL authentication -->
-
 	<!--<bean id="com.liferay.portal.search.solr.http.HttpClientFactory" class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" init-method="afterPropertiesSet">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
@@ -81,9 +69,7 @@
 		<property name="trustStoreType" value="${digital.signature.trust.store.type}" />
 		<property name="verifyServerCertificate" value="true" />
 		<property name="verifyServerHostname" value="true" />
-	</bean>
-	-->
-
+	</bean>-->
 	<bean id="com.liferay.portal.search.solr.server.HttpSolrServer" class="com.liferay.portal.search.solr.server.HttpSolrServer">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
 		<property name="url" value="${server.http.url}" />
