@@ -43,30 +43,6 @@
 		<property name="password" value="${basic.auth.password}" />
 		<property name="username" value="${basic.auth.username}" />
 	</bean>
-	<!--<bean class="com.liferay.portal.search.solr.http.CertAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.2WAYHttpClientFactory" init-method="afterPropertiesSet">
-		<property name="defaultMaxConnectionsPerRoute" value="20" />
-		<property name="httpRequestInterceptors">
-			<list>
-				<bean class="com.liferay.portal.search.solr.interceptor.PreemptiveAuthInterceptor" />
-			</list>
-		</property>
-		<property name="sslSocketFactoryBuilder">
-			<bean class="com.liferay.portal.search.solr.http.SSLSocketFactoryBuilderImpl">
-				<property name="keyStoreLoader">
-					<bean class="com.liferay.portal.search.solr.http.KeyStoreLoaderImpl" />
-				</property>
-			</bean>
-		</property>
-		<property name="keyStorePassword" value="${digital.signature.key.store.password}" />
-		<property name="keyStorePath" value="${digital.signature.key.store.path}" />
-		<property name="keyStoreType" value="${digital.signature.key.store.type}" />
-		<property name="maxTotalConnections" value="20" />
-		<property name="trustStorePassword" value="${digital.signature.trust.store.password}" />
-		<property name="trustStorePath" value="${digital.signature.trust.store.path}" />
-		<property name="trustStoreType" value="${digital.signature.trust.store.type}" />
-		<property name="verifyServerCertificate" value="true" />
-		<property name="verifyServerHostname" value="true" />
-	</bean>-->
 	<bean class="com.liferay.portal.search.solr.server.HttpSolrServer" id="com.liferay.portal.search.solr.server.HttpSolrServer" init-method="afterPropertiesSet">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
 		<property name="url" value="${server.http.url}" />
