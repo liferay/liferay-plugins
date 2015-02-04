@@ -101,6 +101,18 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 		reindexModels(companyId);
 	}
 
+	@Override
+	protected Document getBaseModelDocument(
+		String portletId, BaseModel<?> baseModel) {
+
+		Document document = super.getBaseModelDocument(portletId, baseModel);
+
+		document.remove(Field.USER_ID);
+		document.remove(Field.USER_NAME);
+
+		return document;
+	}
+
 	protected void reindexModels(long companyId) throws Exception {
 		int count = (int)alloyServiceInvoker.executeDynamicQueryCount(
 			new Object[] {"companyId", companyId});
