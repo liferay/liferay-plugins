@@ -44,6 +44,7 @@ public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 		return _basePoolingHttpClientFactory.createInstance();
 	}
 
+	@Override
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
@@ -51,6 +52,7 @@ public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 			defaultMaxConnectionsPerRoute);
 	}
 
+	@Override
 	public void setHttpRequestInterceptors(
 		List<HttpRequestInterceptor> httpRequestInterceptors) {
 
@@ -58,6 +60,7 @@ public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 			httpRequestInterceptors);
 	}
 
+	@Override
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
 		_basePoolingHttpClientFactory.setMaxTotalConnections(
 			maxTotalConnections);

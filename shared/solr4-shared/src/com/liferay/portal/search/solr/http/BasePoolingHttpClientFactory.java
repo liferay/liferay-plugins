@@ -38,6 +38,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 		_poolingClientConnectionManager = poolingClientConnectionManager;
 	}
 
+	@Override
 	public DefaultHttpClient createInstance() {
 		if (_log.isDebugEnabled()) {
 			_log.debug("createInstance()");
@@ -55,6 +56,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 		return defaultHttpClient;
 	}
 
+	@Override
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
@@ -64,12 +66,14 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 		}
 	}
 
+	@Override
 	public void setHttpRequestInterceptors(
 		List<HttpRequestInterceptor> httpRequestInterceptors) {
 
 		_httpRequestInterceptors = httpRequestInterceptors;
 	}
 
+	@Override
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
 		if (maxTotalConnections != null) {
 			_poolingClientConnectionManager.setMaxTotal(
@@ -77,6 +81,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 		}
 	}
 
+	@Override
 	public void shutdown() {
 		if (_log.isDebugEnabled()) {
 			_log.debug("shutdown()");
