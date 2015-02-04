@@ -43,18 +43,21 @@ public class DelegatingHttpClientFactory implements HttpClientFactory {
 		return _maxTotalConnections;
 	}
 
+	@Override
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
 		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
 	}
 
+	@Override
 	public void setHttpRequestInterceptors(
 		List<HttpRequestInterceptor> httpRequestInterceptors) {
 
 		_httpRequestInterceptors = httpRequestInterceptors;
 	}
 
+	@Override
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
 		_maxTotalConnections = maxTotalConnections;
 	}
