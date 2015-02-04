@@ -85,10 +85,6 @@ public class KeyStoreLoaderImpl implements KeyStoreLoader {
 
 			sb.append("alias=");
 			sb.append(alias);
-			sb.append(",isKeyEntry=");
-			sb.append(keyStore.isKeyEntry(alias));
-			sb.append(",isCertificateEntry=");
-			sb.append(certificateEntry);
 
 			if (certificateEntry) {
 				Certificate certificate = keyStore.getCertificate(alias);
@@ -96,6 +92,11 @@ public class KeyStoreLoaderImpl implements KeyStoreLoader {
 				sb.append(",certificate=");
 				sb.append(certificate.toString());
 			}
+
+			sb.append(",certificateEntry=");
+			sb.append(certificateEntry);
+			sb.append(",keyEntry=");
+			sb.append(keyStore.isKeyEntry(alias));
 
 			log.debug(sb.toString());
 		}
