@@ -35,15 +35,6 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 	<aui:input name="resourcePrimKeys" type="hidden" />
 
-	<liferay-ui:error exception="<%= KBArticleImportException.class %>">
-
-		<%
-		KBArticleImportException kbaie = (KBArticleImportException)errorException;
-		%>
-
-		<%= LanguageUtil.format(locale, "an-unexpected-error-occurred-while-importing-articles-x", kbaie.getLocalizedMessage()) %>
-	</liferay-ui:error>
-
 	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
 	<c:if test='<%= SessionMessages.contains(renderRequest, "importedKBArticlesCount") %>'>
