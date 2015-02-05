@@ -207,7 +207,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 	<macrodef name="gradle-execute">
 		<attribute name="task" />
- 
+
 		<sequential>
 			<if>
 				<os family="unix" />
@@ -220,7 +220,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					<property name="gradlew.suffix" value=".bat" />
 				</else>
 			</if>
- 
+
 			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="true">
 				<arg value="-PpluginsExcludes=${plugins.excludes}" />
 				<arg value="-PpluginsIncludes=${plugins.includes}" />
@@ -1304,9 +1304,9 @@ Please find a solution that does not require portal-impl.jar.
 							<if>
 								<available file="${plugin.wsdd.file}" />
 								<then>
-									<copy 
-										file="${plugin.wsdd.file}" 
-										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.jar" 
+									<copy
+										file="${plugin.wsdd.file}"
+										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.jar"
 									/>
 								</then>
 							</if>
