@@ -107,7 +107,11 @@ public class KBArticleImporter {
 			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
 				groupId, parentKBFolderId, urlTitle);
 
-		boolean newKBArticle = kbArticle == null;
+		boolean newKBArticle = false;
+		
+		if (kbArticle == null) {
+			newKBArticle = true;
+		}
 
 		try {
 			if (kbArticle == null) {
