@@ -2002,120 +2002,6 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="setup-osgi-jmx">
-		<sequential>
-			<ivy:resolve>
-				<dependency name="org.apache.aries.jmx" org="org.apache.aries.jmx" rev="1.1.1" />
-				<dependency name="org.apache.aries.util" org="org.apache.aries" rev="1.1.0" />
-				<exclude org="org.eclipse" />
-				<exclude org="org.osgi" />
-			</ivy:resolve>
-
-			<ivy:retrieve pattern="${module.framework.base.dir}/test/[artifact]-[revision].[ext]" type="bundle,jar" />
-		</sequential>
-	</macrodef>
-
-	<macrodef name="setup-tomcat-jmx">
-		<sequential>
-			<if>
-				<os family="unix" />
-				<then>
-					<echo file="${app.server.tomcat.dir}/bin/setenv.sh" append="true">
-						<![CDATA[
-							JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=${jmx.remote.authenticate} -Dcom.sun.management.jmxremote.port=${jmx.remote.port} -Dcom.sun.management.jmxremote.ssl=${jmx.remote.ssl}"
-
-							CATALINA_OPTS="${CATALINA_OPTS} ${JMX_OPTS}"
-						]]>
-					</echo>
-				</then>
-				<else>
-					<echo file="${app.server.tomcat.dir}/bin/setenv.bat" append="true">
-						<![CDATA[
-							set JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=${jmx.remote.authenticate} -Dcom.sun.management.jmxremote.port=${jmx.remote.port} -Dcom.sun.management.jmxremote.ssl=${jmx.remote.ssl}"
-
-							set CATALINA_OPTS="%CATALINA_OPTS% %JMX_OPTS%"
-						]]>
-					</echo>
-				</else>
-			</if>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="setup-tomcat-manager">
-		<sequential>
-			<if>
-				<not>
-					<available file="${app.server.tomcat.dir}/webapps/manager" type="dir" />
-				</not>
-				<then>
-					<antelope:stringutil string="${app.server.tomcat.dir}" property="tomcat.version.beginindex">
-						<antelope:indexof string="tomcat-" fromindex="0" />
-					</antelope:stringutil>
-
-					<antelope:math
-						datatype="int"
-						operand1="${tomcat.version.beginindex}"
-						operand2="7"
-						operation="+"
-						result="tomcat.version.beginindex"
-					/>
-
-					<antelope:stringutil string="${app.server.tomcat.dir}" property="tomcat.version">
-						<antelope:substring beginindex="${tomcat.version.beginindex}" />
-					</antelope:stringutil>
-
-					<antelope:stringutil string="${tomcat.version}" property="tomcat.major.version.endindex">
-						<antelope:indexof string="." fromindex="0" />
-					</antelope:stringutil>
-
-					<antelope:stringutil string="${tomcat.version}" property="tomcat.major.version">
-						<antelope:substring beginindex="0" endindex="${tomcat.major.version.endindex}" />
-					</antelope:stringutil>
-
-					<get
-						dest="tomcat.zip"
-						src="http://archive.apache.org/dist/tomcat/tomcat-${tomcat.major.version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip"
-					/>
-
-					<unzip
-						dest="${app.server.tomcat.dir}/webapps"
-						src="tomcat.zip"
-					>
-						<patternset
-							includes="apache-tomcat-${tomcat.version}/webapps/manager/**/*"
-						/>
-						<mapper>
-							<globmapper from="apache-tomcat-${tomcat.version}/webapps/*" to="*" />
-						</mapper>
-					</unzip>
-
-					<delete file="tomcat.zip" />
-
-					<copy
-						file="${app.server.tomcat.dir}/conf/tomcat-users.xml"
-						overwrite="true"
-						tofile="${app.server.tomcat.dir}/conf/tomcat-users.xml.orig"
-					/>
-
-					<echo file="${app.server.tomcat.dir}/conf/tomcat-users.xml"><![CDATA[<?xml version="1.0"?>
-
-<tomcat-users>
-	<role rolename="tomcat" />
-	<role rolename="manager-gui" />
-	<role rolename="manager-script" />
-	<role rolename="manager-jmx" />
-	<role rolename="manager-status" />
-	<user
-		password="${app.server.tomcat.manager.password}"
-		roles="tomcat,manager-gui,manager-script,manager-jmx,manager-status"
-		username="${app.server.tomcat.manager.user}"
-	/>
-</tomcat-users>]]></echo>
-				</then>
-			</if>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="test">
 		<attribute name="module.dir" />
 
@@ -2809,14 +2695,6 @@ for (String path : paths) {
 				</replace>
 			</then>
 		</if>
-	</target>
-
-	<target name="setup-testable-tomcat">
-		<setup-osgi-jmx />
-
-		<setup-tomcat-jmx />
-
-		<setup-tomcat-manager />
 	</target>
 
 	<target name="sort-xml-attributes">
