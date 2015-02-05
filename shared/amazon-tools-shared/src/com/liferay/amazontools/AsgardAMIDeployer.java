@@ -71,7 +71,11 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			e.printStackTrace();
 
 			System.exit(-1);
+
+			return;
 		}
+
+		System.exit(0);
 	}
 
 	public AsgardAMIDeployer(
