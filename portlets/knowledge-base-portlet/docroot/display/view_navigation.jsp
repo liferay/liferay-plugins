@@ -27,8 +27,6 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 
 long rootResourcePrimKey = kbNavigationDisplayContext.getRootResourcePrimKey();
 
-String currentKBFolderURLTitle = kbNavigationDisplayContext.getCurrentKBFolderURLTitle();
-
 String pageTitle = kbNavigationDisplayContext.getPageTitle();
 
 if (Validator.isNotNull(pageTitle)) {
