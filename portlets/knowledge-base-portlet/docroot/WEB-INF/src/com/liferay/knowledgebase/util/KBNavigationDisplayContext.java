@@ -143,6 +143,16 @@ public class KBNavigationDisplayContext {
 	public boolean isLeftNavigationVisible()
 		throws PortalException, SystemException {
 
+		if (_leftNavigationVisible == null) {
+			_leftNavigationVisible = hasMultipleDescendantKBArticles();
+		}
+
+		return _leftNavigationVisible;
+	}
+
+	protected boolean hasMultipleDescendantKBArticles()
+		throws PortalException, SystemException {
+
 		long scopeGroupId = PortalUtil.getScopeGroupId(_portletRequest);
 
 		long kbFolderClassNameId = PortalUtil.getClassNameId(
@@ -239,6 +249,7 @@ public class KBNavigationDisplayContext {
 	}
 
 	private final KBArticle _kbArticle;
+	private Boolean _leftNavigationVisible;
 	private final PortalPreferences _portalPreferences;
 	private final PortletPreferences _portletPreferences;
 	private final PortletRequest _portletRequest;
