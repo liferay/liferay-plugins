@@ -10,11 +10,11 @@ def loadProperties = {
 
 Properties antProperties = new Properties();
 
-loadProperties(antProperties, "$lfrSdkDir/build.properties");
-loadProperties(antProperties, "$lfrSdkDir/build." + System.properties["user.name"] + ".properties");
-loadProperties(antProperties, "$lfrSdkDir/build." + System.properties["COMPUTERNAME"] + ".properties");
-loadProperties(antProperties, "$lfrSdkDir/build." + System.properties["HOST"] + ".properties");
-loadProperties(antProperties, "$lfrSdkDir/build." + System.properties["HOSTNAME"] + ".properties");
+loadProperties(antProperties, file("build.properties").getAbsolutePath());
+loadProperties(antProperties, file("build." + System.properties["user.name"] + ".properties").getAbsolutePath());
+loadProperties(antProperties, file("build." + System.properties["COMPUTERNAME"] + ".properties").getAbsolutePath());
+loadProperties(antProperties, file("build." + System.properties["HOST"] + ".properties").getAbsolutePath());
+loadProperties(antProperties, file("build." + System.properties["HOSTNAME"] + ".properties").getAbsolutePath());
 
 if (!hasProperty("lfrPluginsExcludes")) {
 	ext.lfrPluginsExcludes = antProperties["plugins.excludes"];
