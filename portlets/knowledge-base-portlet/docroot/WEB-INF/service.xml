@@ -149,6 +149,11 @@
 			<finder-column name="kbFolderId" />
 			<finder-column name="urlTitle" />
 		</finder>
+		<finder name="G_KBFI_S" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="kbFolderId" />
+			<finder-column name="status" />
+		</finder>
 		<finder name="G_P_S_L" return-type="Collection" db-index="false">
 			<finder-column name="groupId" />
 			<finder-column name="parentResourcePrimKey" />

@@ -146,7 +146,24 @@ public class KBNavigationDisplayContext {
 					getResourcePrimKey());
 
 			if (kbFolders.size() > 1) {
-				return true;
+				int maxKBArticleCount = 0;
+
+				for (KBFolder kbFolder : kbFolders) {
+					int kbArticleCount =
+						KBArticleLocalServiceUtil.getKBFolderKBArticlesCount(
+							scopeGroupId, kbFolder.getKbFolderId(),
+							WorkflowConstants.STATUS_APPROVED);
+
+					if (kbArticleCount > maxKBArticleCount) {
+						maxKBArticleCount = kbArticleCount;
+					}
+				}
+
+				if (maxKBArticleCount > 1) {
+					return true;
+				}
+
+				return false;
 			}
 		}
 
