@@ -40,53 +40,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 
 <div class="kbarticle-navigation">
 	<c:if test="<%= resourceClassNameId == kbFolderClassNameId %>">
-
-		<%
-		List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(scopeGroupId, resourcePrimKey);
-		%>
-
-		<c:if test="<%= kbFolders.size() > 1 %>">
-			<liferay-portlet:actionURL name="updateRootKBFolderId" var="updateRootKBFolderIdURL">
-				<c:if test="<%= kbArticle != null %>">
-					<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
-				</c:if>
-			</liferay-portlet:actionURL>
-
-			<div class="kb-field-wrapper kbarticle-root-selector">
-				<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
-					<aui:select label="" name="rootKBFolderId">
-
-						<%
-						for (KBFolder kbFolder : kbFolders) {
-						%>
-
-							<aui:option
-								selected="<%= currentKBFolderURLTitle.equals(kbFolder.getUrlTitle()) %>"
-								value="<%= kbFolder.getKbFolderId() %>"
-							>
-								<%= contentRootPrefix + " " + kbFolder.getName() %>
-							</aui:option>
-
-						<%
-						}
-						%>
-
-					</aui:select>
-				</aui:form>
-			</div>
-
-			<aui:script use="aui-base">
-				var updateRootKBFolderIdFm = A.one('#<portlet:namespace />updateRootKBFolderIdFm');
-				var rootKBFolderIdSelect = A.one('#<portlet:namespace />rootKBFolderId');
-
-				rootKBFolderIdSelect.on(
-					'change',
-					function() {
-						updateRootKBFolderIdFm.submit();
-					}
-				);
-			</aui:script>
-		</c:if>
+		<liferay-util:include page="/display/content_root_selector.jsp" servletContext="<%= application %>" />
 	</c:if>
 
 	<%
