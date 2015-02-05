@@ -28,6 +28,15 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 	<aui:input name="parentKBFolderId" type="hidden" value="<%= String.valueOf(parentKBFolderId) %>" />
 
 	<aui:fieldset class="kb-block-labels">
+		<aui:field-wrapper>
+			<div class="alert alert-info">
+				<liferay-ui:message
+					arguments="<%= StringUtil.merge(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS, StringPool.COMMA_AND_SPACE) %>"
+					key="upload-your-zip-file-help"
+				/>
+			</div>
+		</aui:field-wrapper>
+
 		<aui:input id="file" label="upload-your-zip-file" name="file" type="file" />
 	</aui:fieldset>
 
