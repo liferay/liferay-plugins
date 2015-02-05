@@ -736,8 +736,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public int getKBFolderKBArticlesCount(
-			long groupId, long kbFolderId, int status)
-		throws SystemException {
+		long groupId, long kbFolderId, int status) {
 
 		return kbArticlePersistence.countByG_KBFI_S(
 			groupId, kbFolderId, status);
