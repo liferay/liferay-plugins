@@ -208,6 +208,12 @@ public class KBNavigationDisplayContext {
 		return showNavigation;
 	}
 
+	public boolean isTopNavigationVisible()
+		throws PortalException, SystemException {
+
+		return !isLeftNavigationVisible();
+	}
+
 	protected String getContentRootPrefix() {
 		return GetterUtil.getString(
 			_portletPreferences.getValue("contentRootPrefix", null));
