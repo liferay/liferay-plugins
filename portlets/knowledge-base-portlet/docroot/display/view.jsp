@@ -39,7 +39,7 @@ request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT, kbNav
 				long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 				%>
 
-				<c:if test="<%= resourceClassNameId == kbFolderClassNameId && kbNavigationDisplayContext.isTopNavigationVisible() %>">
+				<c:if test="<%= kbNavigationDisplayContext.isTopNavigationVisible() %>">
 					<div class="kbarticle-navigation">
 						<liferay-util:include page="/display/content_root_selector.jsp" servletContext="<%= application %>" />
 					</div>

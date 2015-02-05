@@ -146,7 +146,16 @@ public class KBNavigationDisplayContext {
 	public boolean isTopNavigationVisible()
 		throws PortalException, SystemException {
 
-		return !isLeftNavigationVisible();
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
+			KBFolderConstants.getClassName());
+
+		if ((getResourceClassNameId() == kbFolderClassNameId) &&
+			!isLeftNavigationVisible()) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	protected String getContentRootPrefix() {
