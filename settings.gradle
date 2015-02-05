@@ -1,9 +1,7 @@
 def loadProperties = {
 	Properties properties, String fileName ->
 
-	File file = new File(fileName);
-
-	file = new File(file.getAbsolutePath());
+	File file = file(fileName);
 
 	if (file.exists()) {
 		properties.load(new FileInputStream(file));
