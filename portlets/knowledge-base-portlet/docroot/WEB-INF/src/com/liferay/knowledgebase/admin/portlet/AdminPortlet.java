@@ -143,7 +143,6 @@ public class AdminPortlet extends BaseKBPortlet {
 
 		boolean prioritizeUpdatedKBArticles = ParamUtil.getBoolean(
 			uploadPortletRequest, "prioritizeUpdatedKBArticles");
-
 		boolean prioritizeByNumericalPrefix = ParamUtil.getBoolean(
 			uploadPortletRequest, "prioritizeByNumericalPrefix");
 
