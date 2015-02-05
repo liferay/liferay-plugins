@@ -20,7 +20,6 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -40,13 +39,11 @@ import java.util.Map;
 public class PrioritizationStrategy {
 
 	public static PrioritizationStrategy create(
-			long groupId, long parentKBFolderId,
-			boolean prioritizeUpdatedKBArticles,
-			boolean prioritizeByNumericalPrefix)
-		throws SystemException {
+		long groupId, long parentKBFolderId,
+		boolean prioritizeUpdatedKBArticles,
+		boolean prioritizeByNumericalPrefix) {
 
-		Map<String, List<KBArticle>> existingKBArticlesMap =
-			new HashMap<String, List<KBArticle>>();
+		Map<String, List<KBArticle>> existingKBArticlesMap = new HashMap<>();
 
 		List<KBArticle> existingParentKBArticles =
 			KBArticleServiceUtil.getKBArticles(
@@ -73,7 +70,7 @@ public class PrioritizationStrategy {
 	}
 
 	public void addKBArticle(KBArticle kbArticle, String fileName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		updateKBArticle(kbArticle, fileName);
 
@@ -88,7 +85,7 @@ public class PrioritizationStrategy {
 		}
 	}
 
-	public void prioritizeKBArticles() throws PortalException, SystemException {
+	public void prioritizeKBArticles() throws PortalException {
 		if (_prioritizeUpdatedKBArticles) {
 			initializeNonImportedKBArticles();
 		}
@@ -126,7 +123,7 @@ public class PrioritizationStrategy {
 	}
 
 	public void updateKBArticle(KBArticle kbArticle, String fileName)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
 
@@ -164,20 +161,18 @@ public class PrioritizationStrategy {
 
 		_existingKBArticlesMap = existingKBArticlesMap;
 
-		_importedKBArticlesMap = new HashMap<String, List<KBArticle>>();
-		_importedKBArticleUrlTitlesMap = new HashMap<String, List<String>>();
+		_importedKBArticlesMap = new HashMap<>();
+		_importedKBArticleUrlTitlesMap = new HashMap<>();
 
-		_importedKBArticleUrlTitlesPrioritiesMap =
-			new HashMap<String, Double>();
+		_importedKBArticleUrlTitlesPrioritiesMap = new HashMap<>();
 
-		_newKBArticlesMap = new HashMap<String, List<KBArticle>>();
+		_newKBArticlesMap = new HashMap<>();
 	}
 
 	protected Map<String, Double> computeMaxKBArticlePriorityMap(
 		Map<String, List<KBArticle>> kbArticlesMap) {
 
-		Map<String, Double> maxKBArticlePriorityMap =
-			new HashMap<String, Double>();
+		Map<String, Double> maxKBArticlePriorityMap = new HashMap<>();
 
 		for (Map.Entry<String, List<KBArticle>> entry :
 				kbArticlesMap.entrySet()) {
@@ -208,7 +203,7 @@ public class PrioritizationStrategy {
 		List<T> list = map.get(key);
 
 		if (list == null) {
-			list = new ArrayList<T>();
+			list = new ArrayList<>();
 			map.put(key, list);
 		}
 
@@ -234,7 +229,7 @@ public class PrioritizationStrategy {
 	}
 
 	protected String getParentKBArticleUrlTitle(KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
 
@@ -246,7 +241,7 @@ public class PrioritizationStrategy {
 	}
 
 	protected void initializeNonImportedKBArticles() {
-		_nonImportedKBArticlesMap = new HashMap<String, List<KBArticle>>();
+		_nonImportedKBArticlesMap = new HashMap<>();
 
 		for (Map.Entry<String, List<KBArticle>> entry :
 				_existingKBArticlesMap.entrySet()) {
@@ -254,7 +249,7 @@ public class PrioritizationStrategy {
 			List<String> importedKBArticleUrlTitles = getList(
 				_importedKBArticleUrlTitlesMap, entry.getKey());
 
-			List<KBArticle> nonImportedKBArticles = new ArrayList<KBArticle>();
+			List<KBArticle> nonImportedKBArticles = new ArrayList<>();
 
 			for (KBArticle kbArticle : entry.getValue()) {
 				String urlTitle = kbArticle.getUrlTitle();
@@ -270,9 +265,8 @@ public class PrioritizationStrategy {
 	}
 
 	protected void prioritizeKBArticles(
-			Map<String, List<KBArticle>> kbArticlesMap,
-			Map<String, Double> maxKBArticlePriorityMap)
-		throws SystemException {
+		Map<String, List<KBArticle>> kbArticlesMap,
+		Map<String, Double> maxKBArticlePriorityMap) {
 
 		for (Map.Entry<String, List<KBArticle>> entry :
 				kbArticlesMap.entrySet()) {
