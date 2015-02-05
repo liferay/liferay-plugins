@@ -59,6 +59,12 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 	<aui:button-row>
 		<aui:button name="submit" type="submit" />
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<portlet:renderURL var="cancelURL">
+			<portlet:param name="mvcPath" value="/admin/view.jsp" />
+			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentKBFolderId) %>" />
+		</portlet:renderURL>
+
+		<aui:button href="<%= cancelURL %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
