@@ -39,10 +39,7 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				(
-					([$SHARED_TO_CLASS_PKS_MAP]) OR
-					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
-				)
+				([$SHARED_TO_CLASS_PKS_MAP])
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_CCPK_ATN">
@@ -72,10 +69,7 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				(
-					([$SHARED_TO_CLASS_PKS_MAP]) OR
-					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
-				)
+				([$SHARED_TO_CLASS_PKS_MAP])
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findBySharedToClassPKsMap">
@@ -109,10 +103,7 @@
 					(AssetEntrySet.parentAssetEntrySetId = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				(
-					([$SHARED_TO_CLASS_PKS_MAP]) OR
-					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
-				)
+				([$SHARED_TO_CLASS_PKS_MAP])
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
@@ -141,10 +132,7 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				(
-					([$SHARED_TO_CLASS_PKS_MAP]) OR
-					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
-				)
+				([$SHARED_TO_CLASS_PKS_MAP])
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
@@ -176,10 +164,8 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				(
-					([$SHARED_TO_CLASS_PKS_MAP]) OR
-					(AssetEntrySet.privateAssetEntrySet = [$FALSE$])
-				)
+				([$SHARED_TO_CLASS_PKS_MAP])
+
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
