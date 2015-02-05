@@ -24,7 +24,7 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.notifications.model.impl.UserNotificationEventImpl" name="UserNotificationEvent">
-		<table name="Notifications_UserNotificationEvent" />
+		<table name="Ntfctns_UserNotificationEvent" />
 		<attributes />
 	</entity>
 </entity-mappings>

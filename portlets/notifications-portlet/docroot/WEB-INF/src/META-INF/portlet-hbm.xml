@@ -3,7 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.notifications.model.UserNotificationEvent" />
-	<class name="com.liferay.notifications.model.impl.UserNotificationEventImpl" table="Notifications_UserNotificationEvent">
+	<class name="com.liferay.notifications.model.impl.UserNotificationEventImpl" table="Ntfctns_UserNotificationEvent">
 		<cache usage="read-write" />
 		<id name="notificationEventId" type="long">
 			<generator class="assigned" />

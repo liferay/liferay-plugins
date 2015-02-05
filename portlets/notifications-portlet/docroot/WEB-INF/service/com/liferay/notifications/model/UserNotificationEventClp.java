@@ -556,6 +556,10 @@ public class UserNotificationEventClp extends BaseModelImpl<UserNotificationEven
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -642,4 +646,5 @@ public class UserNotificationEventClp extends BaseModelImpl<UserNotificationEven
 	private boolean _actionRequired;
 	private boolean _archived;
 	private BaseModel<?> _userNotificationEventRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.notifications.service.ClpSerializer.class;
 }
