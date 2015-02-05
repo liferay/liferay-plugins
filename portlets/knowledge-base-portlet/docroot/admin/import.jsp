@@ -27,10 +27,8 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 <aui:form action="<%= importFileURL %>" class="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
 	<aui:input name="parentKBFolderId" type="hidden" value="<%= String.valueOf(parentKBFolderId) %>" />
 
-	<liferay-ui:message key="upload-your-zip-file" />
-
 	<aui:fieldset class="kb-block-labels">
-		<aui:input id="file" name="file" type="file" />
+		<aui:input id="file" label="upload-your-zip-file" name="file" type="file" />
 	</aui:fieldset>
 
 	<aui:field-wrapper label="prioritization-strategy">
