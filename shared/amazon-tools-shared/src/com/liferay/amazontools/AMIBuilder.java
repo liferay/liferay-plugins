@@ -115,7 +115,11 @@ public class AMIBuilder extends BaseAMITool {
 			amiBuilder.destroy();
 
 			System.exit(-1);
+
+			return;
 		}
+
+		System.exit(0);
 	}
 
 	public AMIBuilder(
