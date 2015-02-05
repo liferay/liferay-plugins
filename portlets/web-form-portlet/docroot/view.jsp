@@ -67,14 +67,14 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 
 				<c:if test="<%= Validator.isNotNull(fieldValidationScript) %>">
 					<div class="hide" id="<portlet:namespace />validationError<%= fieldName %>">
-						<span class="alert alert-error"><%= fieldValidationErrorMessage %></span>
+						<span class="alert alert-danger"><%= fieldValidationErrorMessage %></span>
 					</div>
 				</c:if>
 			</c:if>
 
 			<c:if test="<%= !fieldOptional %>">
 				<div class="hide" id="<portlet:namespace />fieldOptionalError<%= fieldName %>">
-					<span class="alert alert-error"><liferay-ui:message key="this-field-is-mandatory" /></span>
+					<span class="alert alert-danger"><liferay-ui:message key="this-field-is-mandatory" /></span>
 				</div>
 			</c:if>
 
