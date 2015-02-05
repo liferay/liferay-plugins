@@ -3,6 +3,8 @@ def loadProperties = {
 
 	File file = new File(fileName);
 
+	file = new File(file.getAbsolutePath());
+
 	if (file.exists()) {
 		properties.load(new FileInputStream(file));
 	}
@@ -10,11 +12,11 @@ def loadProperties = {
 
 Properties antProperties = new Properties();
 
-loadProperties(antProperties, file("build.properties").getAbsolutePath());
-loadProperties(antProperties, file("build." + System.properties["user.name"] + ".properties").getAbsolutePath());
-loadProperties(antProperties, file("build." + System.properties["COMPUTERNAME"] + ".properties").getAbsolutePath());
-loadProperties(antProperties, file("build." + System.properties["HOST"] + ".properties").getAbsolutePath());
-loadProperties(antProperties, file("build." + System.properties["HOSTNAME"] + ".properties").getAbsolutePath());
+loadProperties(antProperties, "build.properties");
+loadProperties(antProperties, "build." + System.properties["user.name"] + ".properties");
+loadProperties(antProperties, "build." + System.properties["COMPUTERNAME"] + ".properties");
+loadProperties(antProperties, "build." + System.properties["HOST"] + ".properties");
+loadProperties(antProperties, "build." + System.properties["HOSTNAME"] + ".properties");
 
 if (!hasProperty("lfrPluginsExcludes")) {
 	ext.lfrPluginsExcludes = antProperties["plugins.excludes"];
