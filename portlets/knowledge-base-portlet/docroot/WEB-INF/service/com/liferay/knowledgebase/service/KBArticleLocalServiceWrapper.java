@@ -97,11 +97,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	@Override
 	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+		boolean prioritizeUpdatedKBArticles,
+		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.addKBArticlesMarkdown(userId, groupId,
-			parentKbFolderId, fileName, inputStream, serviceContext);
+			parentKbFolderId, fileName, prioritizeUpdatedKBArticles,
+			prioritizeByNumericalPrefix, inputStream, serviceContext);
 	}
 
 	@Override

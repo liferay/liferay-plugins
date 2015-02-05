@@ -65,7 +65,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KBTemplatePersistence
- * @see KBTemplateUtil
+ * @see com.liferay.knowledgebase.service.persistence.KBTemplateUtil
  * @generated
  */
 @ProviderType

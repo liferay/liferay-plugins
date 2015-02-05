@@ -57,11 +57,13 @@ public class KBArticleServiceUtil {
 
 	public static int addKBArticlesMarkdown(long groupId,
 		long parentKBFolderId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+		boolean prioritizeUpdatedKBArticles,
+		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBArticlesMarkdown(groupId, parentKBFolderId, fileName,
+			prioritizeUpdatedKBArticles, prioritizeByNumericalPrefix,
 			inputStream, serviceContext);
 	}
 

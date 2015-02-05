@@ -28,7 +28,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KBCommentPersistenceImpl
+ * @see com.liferay.knowledgebase.service.persistence.impl.KBCommentPersistenceImpl
  * @see KBCommentUtil
  * @generated
  */
