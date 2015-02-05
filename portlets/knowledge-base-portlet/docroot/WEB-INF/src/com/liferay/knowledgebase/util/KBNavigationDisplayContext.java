@@ -200,8 +200,7 @@ public class KBNavigationDisplayContext {
 		if (getResourceClassNameId() == kbFolderClassNameId) {
 			List<KBFolder> kbFolders =
 				KnowledgeBaseUtil.getAlternateRootKBFolders(
-					PortalUtil.getScopeGroupId(_portletRequest),
-					getResourcePrimKey());
+					scopeGroupId, getResourcePrimKey());
 
 			if (kbFolders.size() > 1) {
 				int maxKBArticleCount = 0;
