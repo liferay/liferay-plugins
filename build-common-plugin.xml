@@ -837,7 +837,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			</then>
 		</if>
 
-		<property file="${env.WORKSPACE}/test.class.file.names.properties" />
+		<property file="${portal.source.root}/test.class.file.names.properties" />
 
 		<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
