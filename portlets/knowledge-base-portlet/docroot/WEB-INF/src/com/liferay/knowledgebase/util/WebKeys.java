@@ -24,6 +24,10 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 		"KNOWLEDGE_BASE_KB_ARTICLE";
 
 	public static final String
+		KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT =
+			"KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT";
+
+	public static final String
 		KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT =
 			"KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT";
 
