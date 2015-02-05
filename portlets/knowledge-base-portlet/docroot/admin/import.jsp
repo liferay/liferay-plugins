@@ -28,6 +28,15 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 	<aui:input name="mvcPath" type="hidden" value="/admin/import.jsp" />
 	<aui:input name="parentKBFolderId" type="hidden" value="<%= String.valueOf(parentKBFolderId) %>" />
 
+	<liferay-ui:error exception="<%= KBArticleImportException.class %>">
+
+		<%
+		KBArticleImportException kbaie = (KBArticleImportException)errorException;
+		%>
+
+		<%= LanguageUtil.format(locale, "an-unexpected-error-occurred-while-importing-articles-x", kbaie.getLocalizedMessage()) %>
+	</liferay-ui:error>
+
 	<aui:fieldset class="kb-block-labels">
 		<aui:field-wrapper>
 			<div class="alert alert-info">
