@@ -155,18 +155,9 @@ public class PrioritizationStrategy {
 
 		_groupId = groupId;
 		_parentKBFolderId = parentKBFolderId;
-
 		_prioritizeUpdatedKBArticles = prioritizeUpdatedKBArticles;
 		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
-
 		_existingKBArticlesMap = existingKBArticlesMap;
-
-		_importedKBArticlesMap = new HashMap<>();
-		_importedKBArticleUrlTitlesMap = new HashMap<>();
-
-		_importedKBArticleUrlTitlesPrioritiesMap = new HashMap<>();
-
-		_newKBArticlesMap = new HashMap<>();
 	}
 
 	protected Map<String, Double> computeMaxKBArticlePriorityMap(
@@ -330,10 +321,14 @@ public class PrioritizationStrategy {
 
 	private final Map<String, List<KBArticle>> _existingKBArticlesMap;
 	private final long _groupId;
-	private final Map<String, List<KBArticle>> _importedKBArticlesMap;
-	private final Map<String, List<String>> _importedKBArticleUrlTitlesMap;
-	private final Map<String, Double> _importedKBArticleUrlTitlesPrioritiesMap;
-	private final Map<String, List<KBArticle>> _newKBArticlesMap;
+	private final Map<String, List<KBArticle>> _importedKBArticlesMap =
+		new HashMap<>();
+	private final Map<String, List<String>> _importedKBArticleUrlTitlesMap =
+		new HashMap<>();
+	private final Map<String, Double> _importedKBArticleUrlTitlesPrioritiesMap =
+		new HashMap<>();
+	private final Map<String, List<KBArticle>> _newKBArticlesMap =
+		new HashMap<>();
 	private Map<String, List<KBArticle>> _nonImportedKBArticlesMap;
 	private final long _parentKBFolderId;
 	private final boolean _prioritizeByNumericalPrefix;
