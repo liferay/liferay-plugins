@@ -109,7 +109,7 @@ public class PrioritizationStrategy {
 
 		if (_prioritizeUpdatedKBArticles) {
 			Map<String, Double> maxKBArticlePriorityMap =
-				computeMaxKBArticlePriorityMap(_nonImportedKBArticlesMap);
+				computeMaxKBArticlePriorityMap(_nonimportedKBArticlesMap);
 
 			prioritizeKBArticles(
 				_importedKBArticlesMap, maxKBArticlePriorityMap);
@@ -232,7 +232,7 @@ public class PrioritizationStrategy {
 	}
 
 	protected void initializeNonImportedKBArticles() {
-		_nonImportedKBArticlesMap = new HashMap<>();
+		_nonimportedKBArticlesMap = new HashMap<>();
 
 		for (Map.Entry<String, List<KBArticle>> entry :
 				_existingKBArticlesMap.entrySet()) {
@@ -240,18 +240,18 @@ public class PrioritizationStrategy {
 			List<String> importedKBArticleUrlTitles = getList(
 				_importedKBArticleUrlTitlesMap, entry.getKey());
 
-			List<KBArticle> nonImportedKBArticles = new ArrayList<>();
+			List<KBArticle> nonimportedKBArticles = new ArrayList<>();
 
 			for (KBArticle kbArticle : entry.getValue()) {
 				String urlTitle = kbArticle.getUrlTitle();
 
 				if (!importedKBArticleUrlTitles.contains(urlTitle)) {
-					nonImportedKBArticles.add(kbArticle);
+					nonimportedKBArticles.add(kbArticle);
 				}
 			}
 
-			_nonImportedKBArticlesMap.put(
-				entry.getKey(), nonImportedKBArticles);
+			_nonimportedKBArticlesMap.put(
+				entry.getKey(), nonimportedKBArticles);
 		}
 	}
 
@@ -329,7 +329,7 @@ public class PrioritizationStrategy {
 		new HashMap<>();
 	private final Map<String, List<KBArticle>> _newKBArticlesMap =
 		new HashMap<>();
-	private Map<String, List<KBArticle>> _nonImportedKBArticlesMap;
+	private Map<String, List<KBArticle>> _nonimportedKBArticlesMap;
 	private final long _parentKBFolderId;
 	private final boolean _prioritizeByNumericalPrefix;
 	private final boolean _prioritizeUpdatedKBArticles;
