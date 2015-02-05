@@ -143,6 +143,36 @@ public class KBNavigationDisplayContext {
 		return _leftNavigationVisible;
 	}
 
+	public boolean isTopNavigationVisible()
+		throws PortalException, SystemException {
+
+		return !isLeftNavigationVisible();
+	}
+
+	protected String getContentRootPrefix() {
+		return GetterUtil.getString(
+			_portletPreferences.getValue("contentRootPrefix", null));
+	}
+
+	protected long getResourceClassNameId() {
+		if (_resourceClassNameId == null) {
+			_resourceClassNameId = GetterUtil.getLong(
+				_portletPreferences.getValue("resourceClassNameId", null),
+				PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
+		}
+
+		return _resourceClassNameId;
+	}
+
+	protected long getResourcePrimKey() {
+		if (_resourcePrimKey == null) {
+			_resourcePrimKey = GetterUtil.getLong(
+				_portletPreferences.getValue("resourcePrimKey", null));
+		}
+
+		return _resourcePrimKey;
+	}
+
 	protected boolean hasMultipleDescendantKBArticles()
 		throws PortalException, SystemException {
 
@@ -209,36 +239,6 @@ public class KBNavigationDisplayContext {
 		}
 
 		return showNavigation;
-	}
-
-	public boolean isTopNavigationVisible()
-		throws PortalException, SystemException {
-
-		return !isLeftNavigationVisible();
-	}
-
-	protected String getContentRootPrefix() {
-		return GetterUtil.getString(
-			_portletPreferences.getValue("contentRootPrefix", null));
-	}
-
-	protected long getResourceClassNameId() {
-		if (_resourceClassNameId == null) {
-			_resourceClassNameId = GetterUtil.getLong(
-				_portletPreferences.getValue("resourceClassNameId", null),
-				PortalUtil.getClassNameId(KBFolderConstants.getClassName()));
-		}
-
-		return _resourceClassNameId;
-	}
-
-	protected long getResourcePrimKey() {
-		if (_resourcePrimKey == null) {
-			_resourcePrimKey = GetterUtil.getLong(
-				_portletPreferences.getValue("resourcePrimKey", null));
-		}
-
-		return _resourcePrimKey;
 	}
 
 	private final KBArticle _kbArticle;
