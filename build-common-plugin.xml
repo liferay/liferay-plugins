@@ -825,6 +825,8 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			module.dir="${basedir}"
 			test.class="${test.class}"
 		/>
+
+		<stop-testing-app-server />
 	</target>
 
 	<target name="test-class-group" depends="compile,compile-test">
@@ -847,6 +849,8 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			test.class="${test.classes}"
 			test.type="integration"
 		/>
+
+		<stop-testing-app-server />
 
 		<test-cmd
 			module.dir="${basedir}"

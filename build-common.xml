@@ -2002,6 +2002,59 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="start-testing-app-server">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<if>
+				<and>
+					<isset property="lp.portal.project.dir" />
+					<available file="@{module.dir}/test-classes/integration" type="dir" />
+				</and>
+				<then>
+					<resourcecount property="test.integration.count">
+						<fileset dir="@{module.dir}/test-classes/integration" includes="**/*Test.class">
+							<filename regex="${junit.test.excludes}" negate="true" />
+						</fileset>
+					</resourcecount>
+
+					<if>
+						<not>
+							<equals arg1="${test.integration.count}" arg2="0" />
+						</not>
+						<then>
+							<ant antfile="${lp.portal.project.dir}/build-test.xml" target="setup-testable-tomcat" inheritAll="false">
+								<property name="project.dir" value="${lp.portal.project.dir}" />
+							</ant>
+
+							<ant antfile="${lp.portal.project.dir}/build-test.xml" target="start-app-server" inheritAll="false">
+								<property name="project.dir" value="${lp.portal.project.dir}" />
+							</ant>
+
+							<property name="portal.started" value="true" />
+						</then>
+					</if>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="stop-testing-app-server">
+		<sequential>
+			<if>
+				<and>
+					<isset property="lp.portal.project.dir" />
+					<isset property="portal.started" />
+				</and>
+				<then>
+					<ant antfile="${lp.portal.project.dir}/build-test.xml" target="stop-app-server" inheritAll="false">
+						<property name="project.dir" value="${lp.portal.project.dir}" />
+					</ant>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="test">
 		<attribute name="module.dir" />
 
@@ -2105,6 +2158,10 @@ Please find a solution that does not require portal-impl.jar.
 					<compile-test-cmd
 						module.dir="@{module.dir}"
 						test.type="@{test.type}"
+					/>
+
+					<start-testing-app-server
+						module.dir="@{module.dir}"
 					/>
 
 					<if>
@@ -2715,6 +2772,8 @@ for (String path : paths) {
 			module.dirs="${plugins.includes.path}"
 			target.name="test"
 		/>
+
+		<stop-testing-app-server />
 	</target>
 
 	<target name="test-integration">
@@ -2722,6 +2781,8 @@ for (String path : paths) {
 			module.dirs="${plugins.includes.path}"
 			target.name="test-integration"
 		/>
+
+		<stop-testing-app-server />
 	</target>
 
 	<target name="test-unit">
