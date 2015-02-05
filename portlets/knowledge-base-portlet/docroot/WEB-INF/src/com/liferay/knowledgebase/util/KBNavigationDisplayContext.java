@@ -133,7 +133,9 @@ public class KBNavigationDisplayContext {
 		return _rootResourcePrimKey;
 	}
 
-	public boolean isShowNavigation() throws PortalException {
+	public boolean isLeftNavigationVisible()
+		throws PortalException {
+
 		long scopeGroupId = PortalUtil.getScopeGroupId(_portletRequest);
 
 		long kbFolderClassNameId = PortalUtil.getClassNameId(

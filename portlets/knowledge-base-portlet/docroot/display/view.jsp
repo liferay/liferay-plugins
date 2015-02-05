@@ -25,13 +25,13 @@ KBNavigationDisplayContext kbNavigationDisplayContext = new KBNavigationDisplayC
 <c:choose>
 	<c:when test="<%= kbArticle != null %>">
 		<div class="row">
-			<c:if test="<%= kbNavigationDisplayContext.isShowNavigation() %>">
+			<c:if test="<%= kbNavigationDisplayContext.isLeftNavigationVisible() %>">
 				<div class="col-md-3">
 					<liferay-util:include page="/display/view_navigation.jsp" servletContext="<%= application %>" />
 				</div>
 			</c:if>
 
-			<div class='<%= kbNavigationDisplayContext.isShowNavigation() ? "col-md-9" : "col-md-12" %>'>
+			<div class='<%= kbNavigationDisplayContext.isLeftNavigationVisible() ? "col-md-9" : "col-md-12" %>'>
 				<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
 			</div>
 		</div>
