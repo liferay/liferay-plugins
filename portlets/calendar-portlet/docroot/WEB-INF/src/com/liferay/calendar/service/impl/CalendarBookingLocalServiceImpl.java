@@ -60,6 +60,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.ResourceConstants;
@@ -159,11 +160,13 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking = calendarBookingPersistence.create(
 			calendarBookingId);
 
+		calendarBooking.setUuid(serviceContext.getUuid());
+
 		if (vEventUid != null) {
 			calendarBooking.setVEventUid(vEventUid);
 		}
 		else {
-			calendarBooking.setUuid(serviceContext.getUuid());
+			calendarBooking.setVEventUid(PortalUUIDUtil.generate());
 		}
 
 		calendarBooking.setGroupId(calendar.getGroupId());
