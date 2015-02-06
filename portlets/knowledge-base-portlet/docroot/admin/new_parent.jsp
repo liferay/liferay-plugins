@@ -61,8 +61,8 @@ else {
 		<portlet:param name="mvcPath" value='<%= templatePath + "select_parent.jsp" %>' />
 		<portlet:param name="resourceClassNameId" value="<%= String.valueOf(resourceClassNameId) %>" />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-		<portlet:param name="oldParentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
-		<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
+		<portlet:param name="originalParentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
+		<portlet:param name="originalParentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 		<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
 		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
 		<portlet:param name="status" value="<%= String.valueOf(status) %>" />

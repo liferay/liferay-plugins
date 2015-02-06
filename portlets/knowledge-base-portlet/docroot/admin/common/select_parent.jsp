@@ -25,8 +25,8 @@ long resourceClassNameId = ParamUtil.getLong(request, "resourceClassNameId");
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", kbFolderClassNameId);
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-long oldParentResourceClassNameId = ParamUtil.getLong(request, "oldParentResourceClassNameId");
-long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey");
+long originalParentResourceClassNameId = ParamUtil.getLong(request, "originalParentResourceClassNameId");
+long originalParentResourcePrimKey = ParamUtil.getLong(request, "originalParentResourcePrimKey");
 
 String orderByCol = ParamUtil.getString(request, "orderByCol", "priority");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
@@ -34,19 +34,19 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 <aui:form method="post" name="fm">
 	<aui:fieldset>
-		<c:if test="<%= oldParentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
+		<c:if test="<%= originalParentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
 			<aui:button-row cssClass="input-append">
 				<c:choose>
-					<c:when test="<%= oldParentResourceClassNameId == kbFolderClassNameId %>">
+					<c:when test="<%= originalParentResourceClassNameId == kbFolderClassNameId %>">
 
 						<%
-						KBFolder oldParentKBFolder = KBFolderServiceUtil.getKBFolder(oldParentResourcePrimKey);
+						KBFolder oldParentKBFolder = KBFolderServiceUtil.getKBFolder(originalParentResourcePrimKey);
 						%>
 
 						<liferay-ui:input-resource url="<%= oldParentKBFolder.getName() %>" />
 					</c:when>
 					<c:otherwise>
-						<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(oldParentResourcePrimKey, status), "title") %>' />
+						<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(originalParentResourcePrimKey, status), "title") %>' />
 					</c:otherwise>
 				</c:choose>
 
@@ -66,7 +66,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		</c:if>
 
 		<%
-		KnowledgeBaseUtil.addPortletBreadcrumbEntries(oldParentResourceClassNameId, oldParentResourcePrimKey, parentResourceClassNameId, parentResourcePrimKey, "/admin/common/select_parent.jsp", request, renderResponse);
+		KnowledgeBaseUtil.addPortletBreadcrumbEntries(originalParentResourceClassNameId, originalParentResourcePrimKey, parentResourceClassNameId, parentResourcePrimKey, "/admin/common/select_parent.jsp", request, renderResponse);
 		%>
 
 		<liferay-ui:breadcrumb
@@ -82,8 +82,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
 			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
-			<portlet:param name="oldParentResourceClassNameId" value="<%= String.valueOf(oldParentResourceClassNameId) %>" />
-			<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
+			<portlet:param name="originalParentResourceClassNameId" value="<%= String.valueOf(originalParentResourceClassNameId) %>" />
+			<portlet:param name="originalParentResourcePrimKey" value="<%= String.valueOf(originalParentResourcePrimKey) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 		</liferay-portlet:renderURL>
 
@@ -111,8 +111,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 						<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolder.getClassNameId()) %>" />
 						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
-						<portlet:param name="oldParentResourceClassNameId" value="<%= String.valueOf(oldParentResourceClassNameId) %>" />
-						<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
+						<portlet:param name="originalParentResourceClassNameId" value="<%= String.valueOf(originalParentResourceClassNameId) %>" />
+						<portlet:param name="originalParentResourcePrimKey" value="<%= String.valueOf(originalParentResourcePrimKey) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>
 
@@ -158,7 +158,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						<aui:button
 							cssClass="selector-button"
 							data="<%= data %>"
-							disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) || (kbFolder.getKbFolderId() == oldParentResourcePrimKey) %>"
+							disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) || (kbFolder.getKbFolderId() == originalParentResourcePrimKey) %>"
 							value="choose"
 						/>
 					</liferay-ui:search-container-column-text>
@@ -194,8 +194,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(curKBArticle.getClassNameId()) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(curKBArticle.getResourcePrimKey()) %>" />
-					<portlet:param name="oldParentResourceClassNameId" value="<%= String.valueOf(oldParentResourceClassNameId) %>" />
-					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
+					<portlet:param name="originalParentResourceClassNameId" value="<%= String.valueOf(originalParentResourceClassNameId) %>" />
+					<portlet:param name="originalParentResourcePrimKey" value="<%= String.valueOf(originalParentResourcePrimKey) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 				</liferay-portlet:renderURL>
 
@@ -243,7 +243,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<aui:button
 						cssClass="selector-button"
 						data="<%= data %>"
-						disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>"
+						disabled="<%= (resourceClassNameId == kbFolderClassNameId) || (curKBArticle.getResourcePrimKey() == resourcePrimKey) || (curKBArticle.getResourcePrimKey() == originalParentResourcePrimKey) %>"
 						value="choose"
 					/>
 				</liferay-ui:search-container-column-text>
