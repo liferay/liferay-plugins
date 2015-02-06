@@ -1683,13 +1683,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String uniqueUrlTitle = urlTitle;
 
 		if (kbFolderId == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			int kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
+			int kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
 				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 
-			for (int i = 1; kbArticleCount > 0; i++) {
+			for (int i = 1; kbArticlesCount > 0; i++) {
 				uniqueUrlTitle = urlTitle + StringPool.DASH + i;
 
-				kbArticleCount = kbArticlePersistence.countByG_KBFI_UT_ST(
+				kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
 					groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 			}
 
@@ -1698,13 +1698,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		KBFolder kbFolder = kbFolderPersistence.findByPrimaryKey(kbFolderId);
 
-		int kbArticleCount = kbArticleFinder.countByUrlTitle(
+		int kbArticlesCount = kbArticleFinder.countByUrlTitle(
 			groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 
-		for (int i = 1; kbArticleCount > 0; i++) {
+		for (int i = 1; kbArticlesCount > 0; i++) {
 			uniqueUrlTitle = urlTitle + StringPool.DASH + i;
 
-			kbArticleCount = kbArticleFinder.countByUrlTitle(
+			kbArticlesCount = kbArticleFinder.countByUrlTitle(
 				groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 		}
 

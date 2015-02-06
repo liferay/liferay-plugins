@@ -190,20 +190,20 @@ public class KBNavigationDisplayContext {
 					scopeGroupId, getResourcePrimKey());
 
 			if (kbFolders.size() > 1) {
-				int maxKBArticleCount = 0;
+				int maxKBArticlesCount = 0;
 
 				for (KBFolder kbFolder : kbFolders) {
-					int kbArticleCount =
+					int kbArticlesCount =
 						KBArticleLocalServiceUtil.getKBFolderKBArticlesCount(
 							scopeGroupId, kbFolder.getKbFolderId(),
 							WorkflowConstants.STATUS_APPROVED);
 
-					if (kbArticleCount > maxKBArticleCount) {
-						maxKBArticleCount = kbArticleCount;
+					if (kbArticlesCount > maxKBArticlesCount) {
+						maxKBArticlesCount = kbArticlesCount;
 					}
 				}
 
-				if (maxKBArticleCount > 1) {
+				if (maxKBArticlesCount > 1) {
 					return true;
 				}
 
@@ -215,14 +215,14 @@ public class KBNavigationDisplayContext {
 
 		long rootResourcePrimKey = getRootResourcePrimKey();
 
-		int kbArticleCount = KBArticleLocalServiceUtil.getKBArticlesCount(
+		int kbArticlesCount = KBArticleLocalServiceUtil.getKBArticlesCount(
 			scopeGroupId, rootResourcePrimKey,
 			WorkflowConstants.STATUS_APPROVED);
 
-		if (kbArticleCount == 0) {
+		if (kbArticlesCount == 0) {
 			showNavigation = false;
 		}
-		else if (kbArticleCount == 1) {
+		else if (kbArticlesCount == 1) {
 			List<KBArticle> kbArticles =
 				KBArticleLocalServiceUtil.getKBArticles(
 					scopeGroupId, rootResourcePrimKey,
