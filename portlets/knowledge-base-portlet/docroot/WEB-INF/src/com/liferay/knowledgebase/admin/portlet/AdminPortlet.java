@@ -155,8 +155,7 @@ public class AdminPortlet extends BaseKBPortlet {
 				ServiceContextFactory.getInstance(
 					AdminPortlet.class.getName(), actionRequest);
 
-			serviceContext.setGuestPermissions(
-				new String[] {ActionKeys.VIEW});
+			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 
 			int kbArticleCount = KBArticleServiceUtil.addKBArticlesMarkdown(
 				themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
