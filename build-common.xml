@@ -2024,6 +2024,8 @@ Please find a solution that does not require portal-impl.jar.
 							<equals arg1="${test.integration.count}" arg2="0" />
 						</not>
 						<then>
+							<delete file="${lp.portal.project.dir}/.portal.started" failonerror="false" />
+
 							<ant antfile="${lp.portal.project.dir}/build-test.xml" target="setup-testable-tomcat" inheritAll="false">
 								<property name="project.dir" value="${lp.portal.project.dir}" />
 							</ant>
@@ -2032,7 +2034,7 @@ Please find a solution that does not require portal-impl.jar.
 								<property name="project.dir" value="${lp.portal.project.dir}" />
 							</ant>
 
-							<property name="portal.started" value="true" />
+							<echo file="${lp.portal.project.dir}/.portal.started" message="portal.started" />
 						</then>
 					</if>
 				</then>
@@ -2044,8 +2046,8 @@ Please find a solution that does not require portal-impl.jar.
 		<sequential>
 			<if>
 				<and>
+					<available file="${lp.portal.project.dir}/.portal.started" />
 					<isset property="lp.portal.project.dir" />
-					<isset property="portal.started" />
 				</and>
 				<then>
 					<ant antfile="${lp.portal.project.dir}/build-test.xml" target="stop-app-server" inheritAll="false">
