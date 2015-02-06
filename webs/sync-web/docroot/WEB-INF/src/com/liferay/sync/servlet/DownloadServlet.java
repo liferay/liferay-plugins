@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
@@ -60,6 +61,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -113,6 +116,21 @@ public class DownloadServlet extends HttpServlet {
 
 				sendZipFile(response, user, zipFileIdsJSONArray);
 			}
+			else if (pathArray[0].equals("zipfolder")) {
+				long repositoryId = ParamUtil.getLong(request, "repositoryId");
+				long folderId = ParamUtil.getLong(request, "folderId");
+
+				if (repositoryId == 0) {
+					throw new IllegalArgumentException(
+						"Missing parameter repositoryId");
+				}
+				else if (folderId == 0) {
+					throw new IllegalArgumentException(
+						"Missing parameter folderId");
+				}
+
+				sendZipFolder(response, repositoryId, folderId);
+			}
 			else {
 				long groupId = GetterUtil.getLong(pathArray[0]);
 				String uuid = pathArray[1];
@@ -145,6 +163,36 @@ public class DownloadServlet extends HttpServlet {
 		}
 		catch (Exception e) {
 			PortalUtil.sendError(e, request, response);
+		}
+	}
+
+	protected void addZipFolderEntry(
+			long repositoryId, long folderId, String folderPath,
+			ZipWriter zipWriter)
+		throws Exception {
+
+		List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
+			repositoryId, folderId);
+
+		for (FileEntry fileEntry : fileEntries) {
+			FileVersion fileVersion = fileEntry.getLatestFileVersion();
+
+			InputStream inputStream = fileVersion.getContentStream(false);
+
+			String filePath = folderPath + fileEntry.getTitle();
+
+			zipWriter.addEntry(filePath, inputStream);
+		}
+
+		List<Folder> folders = DLAppServiceUtil.getFolders(
+			repositoryId, folderId);
+
+		for (Folder folder : folders) {
+			String subFolderPath =
+				folderPath + folder.getName() + StringPool.FORWARD_SLASH;
+
+			addZipFolderEntry(
+				repositoryId, folder.getFolderId(), subFolderPath, zipWriter);
 		}
 	}
 
@@ -388,6 +436,20 @@ public class DownloadServlet extends HttpServlet {
 		}
 
 		zipWriter.addEntry("errors.json", errorsJSONArray.toString());
+
+		File file = zipWriter.getFile();
+
+		ServletResponseUtil.write(
+			response, new FileInputStream(file), file.length());
+	}
+
+	protected void sendZipFolder(
+			HttpServletResponse response, long repositoryId, long folderId)
+		throws Exception {
+
+		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
+
+		addZipFolderEntry(repositoryId, folderId, StringPool.BLANK, zipWriter);
 
 		File file = zipWriter.getFile();
 
