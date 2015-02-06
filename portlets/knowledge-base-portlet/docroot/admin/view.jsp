@@ -337,8 +337,9 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					href="<%= rowURL %>"
 					name="status"
 					orderable="<%= true %>"
-					value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
-				/>
+				>
+					<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= kbArticle.getStatus() %>" />
+				</liferay-ui:search-container-column-text>
 
 				<liferay-ui:search-container-column-text
 					cssClass="kb-column-no-wrap"
