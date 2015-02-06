@@ -124,6 +124,8 @@ public class AdminPortlet extends BaseKBPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		InputStream inputStream = null;
+
 		try {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
@@ -146,34 +148,30 @@ public class AdminPortlet extends BaseKBPortlet {
 			boolean prioritizeByNumericalPrefix = ParamUtil.getBoolean(
 				uploadPortletRequest, "prioritizeByNumericalPrefix");
 
-			InputStream inputStream = null;
+			inputStream = uploadPortletRequest.getFileAsStream("file");
 
-			try {
-				inputStream = uploadPortletRequest.getFileAsStream("file");
+			ServiceContext serviceContext =
+				ServiceContextFactory.getInstance(
+					AdminPortlet.class.getName(), actionRequest);
 
-				ServiceContext serviceContext =
-					ServiceContextFactory.getInstance(
-						AdminPortlet.class.getName(), actionRequest);
+			serviceContext.setGuestPermissions(
+				new String[] {ActionKeys.VIEW});
 
-				serviceContext.setGuestPermissions(
-					new String[] {ActionKeys.VIEW});
+			int importedKBArticlesCount =
+				KBArticleServiceUtil.addKBArticlesMarkdown(
+					themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
+					prioritizeUpdatedKBArticles, prioritizeByNumericalPrefix,
+					inputStream, serviceContext);
 
-				int importedKBArticlesCount =
-					KBArticleServiceUtil.addKBArticlesMarkdown(
-						themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
-						prioritizeUpdatedKBArticles, prioritizeByNumericalPrefix,
-						inputStream, serviceContext);
-
-				SessionMessages.add(
-					actionRequest, "importedKBArticlesCount",
-					importedKBArticlesCount);
-			}
-			finally {
-				StreamUtil.cleanUp(inputStream);
-			}
+			SessionMessages.add(
+				actionRequest, "importedKBArticlesCount",
+				importedKBArticlesCount);
 		}
 		catch (KBArticleImportException kbaie) {
 			SessionErrors.add(actionRequest, kbaie.getClass(), kbaie);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
 		}
 	}
 
