@@ -918,10 +918,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				parentResourceClassNameId);
 			curKBArticle.setParentResourcePrimKey(parentResourcePrimKey);
 
-			if (parentResourceClassNameId == kbFolderClassNameId) {
-				curKBArticle.setKbFolderId(kbFolderId);
-			}
-
+			curKBArticle.setKbFolderId(kbFolderId);
 			curKBArticle.setPriority(priority);
 
 			kbArticlePersistence.update(curKBArticle);
