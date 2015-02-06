@@ -25,6 +25,10 @@ public class DocumentImpl
 	extends com.liferay.portal.kernel.search.DocumentImpl {
 
 	public static String getSortFieldName(Sort sort, String scoreFieldName) {
+		if (sort.getType() == Sort.SCORE_TYPE) {
+			return scoreFieldName;
+		}
+
 		String fieldName = sort.getFieldName();
 
 		if (fieldName.endsWith(_SORTABLE_FIELD_SUFFIX)) {
