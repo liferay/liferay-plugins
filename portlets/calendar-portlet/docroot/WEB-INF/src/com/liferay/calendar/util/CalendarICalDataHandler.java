@@ -591,14 +591,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// UID
 
-		Uid uid = null;
-
-		if (Validator.isNotNull(calendarBooking.getVEventUid())) {
-			uid = new Uid(calendarBooking.getVEventUid());
-		}
-		else {
-			uid = new Uid(calendarBooking.getUuid());
-		}
+		Uid uid = new Uid(calendarBooking.getVEventUid());
 
 		propertyList.add(uid);
 
