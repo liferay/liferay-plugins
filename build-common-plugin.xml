@@ -858,8 +858,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			test.type="integration"
 		/>
 
-		<stop-test-app-server />
-
 		<test-cmd
 			module.dir="${basedir}"
 			junit.forkmode="perTest"

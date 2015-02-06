@@ -90,6 +90,8 @@
 		<antcall target="loop-modules">
 			<param name="loop.modules.cmd" value="test-class-group-module" />
 		</antcall>
+
+		<stop-test-app-server />
 	</target>
 
 	<target name="test-class-group-module">
