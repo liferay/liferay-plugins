@@ -109,7 +109,7 @@ public class KBArticleImporter {
 				groupId, parentKBFolderId, urlTitle);
 
 		boolean newKBArticle = false;
-		
+
 		if (kbArticle == null) {
 			newKBArticle = true;
 		}
