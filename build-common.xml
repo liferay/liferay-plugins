@@ -2053,6 +2053,8 @@ Please find a solution that does not require portal-impl.jar.
 					<ant antfile="${lp.portal.project.dir}/build-test.xml" target="stop-app-server" inheritAll="false">
 						<property name="project.dir" value="${lp.portal.project.dir}" />
 					</ant>
+
+					<delete file="${lp.portal.project.dir}/.testable.portal.started" failonerror="false" />
 				</then>
 			</if>
 		</sequential>
