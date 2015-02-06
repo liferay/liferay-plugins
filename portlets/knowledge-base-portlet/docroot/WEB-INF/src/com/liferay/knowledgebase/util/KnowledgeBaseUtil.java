@@ -92,7 +92,7 @@ import javax.servlet.http.HttpServletRequest;
 public class KnowledgeBaseUtil {
 
 	public static void addPortletBreadcrumbEntries(
-			long oldParentResourceClassNameId, long oldParentResourcePrimKey,
+			long originalParentResourceClassNameId, long originalParentResourcePrimKey,
 			long parentResourceClassNameId, long parentResourcePrimKey,
 			String mvcPath, HttpServletRequest request,
 			RenderResponse renderResponse)
@@ -101,8 +101,8 @@ public class KnowledgeBaseUtil {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put(
-			"oldParentResourceClassNameId", oldParentResourceClassNameId);
-		parameters.put("oldParentResourcePrimKey", oldParentResourcePrimKey);
+			"originalParentResourceClassNameId", originalParentResourceClassNameId);
+		parameters.put("originalParentResourcePrimKey", originalParentResourcePrimKey);
 		parameters.put("parentResourceClassNameId", parentResourceClassNameId);
 		parameters.put("parentResourcePrimKey", parentResourcePrimKey);
 		parameters.put("mvcPath", mvcPath);
