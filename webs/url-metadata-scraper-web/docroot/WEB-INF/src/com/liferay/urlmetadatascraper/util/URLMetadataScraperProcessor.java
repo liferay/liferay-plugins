@@ -14,6 +14,15 @@
 
 package com.liferay.urlmetadatascraper.util;
 
+import java.awt.image.BufferedImage;
+
+import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
 import org.json.JSONObject;
 
 import org.jsoup.Connection;
@@ -57,7 +66,7 @@ public class URLMetadataScraperProcessor {
 		}
 
 		jsonObject.put("description", getDescription(document));
-		jsonObject.put("imageURL", getImageURL(document, url));
+		jsonObject.put("imageURLs", getValidImageURLs(document));
 
 		String domain = "";
 
@@ -92,27 +101,30 @@ public class URLMetadataScraperProcessor {
 		return StringUtil.shorten(description, 200);
 	}
 
-	protected String getImageURL(Document document, String baseURL) {
-		String imageURL = "";
+	protected List<String> getImageURLs(Document document) throws Exception {
+		List<String> imageURLs = new ArrayList<String>();
 
 		Elements imageElements = document.select("meta[property=og:image]");
 
-		if (imageElements.isEmpty()) {
-			imageElements = document.select("img");
+		if (!imageElements.isEmpty()) {
+			String imageURL = imageElements.attr("content");
 
-			Element imageElement = imageElements.get(0);
-
-			imageURL = imageElement.attr("src");
-		}
-		else {
-			imageURL = imageElements.attr("content");
+			imageURLs.add(imageURL);
 		}
 
-		if (!HttpUtil.hasDomain(imageURL)) {
-			imageURL = baseURL + imageURL;
+		imageElements = document.select("img");
+
+		if (!imageElements.isEmpty()) {
+			for (Element imageElement : imageElements) {
+				String imageURL = imageElement.absUrl("src");
+
+				if (Validator.isNotNull(imageURL)) {
+					imageURLs.add(imageURL);
+				}
+			}
 		}
 
-		return imageURL;
+		return imageURLs;
 	}
 
 	protected String getTitle(Document document) {
@@ -140,5 +152,39 @@ public class URLMetadataScraperProcessor {
 
 		return StringUtil.shorten(title, 200);
 	}
+
+	protected List<String> getValidImageURLs(Document document)
+		throws Exception {
+
+		List<String> validImageURLs = new ArrayList<String>();
+
+		for (String imageURL : getImageURLs(document)) {
+			URL url = new URL(imageURL);
+
+			if (url == null) {
+				continue;
+			}
+
+			BufferedImage bufferedImage = ImageIO.read(url);
+
+			if (bufferedImage == null) {
+				continue;
+			}
+
+			if ((bufferedImage.getWidth() >= _MINIMUM_IMAGE_SIZE) &&
+				(bufferedImage.getHeight() >= _MINIMUM_IMAGE_SIZE)) {
+
+				validImageURLs.add(imageURL);
+			}
+
+			if (validImageURLs.size() >= 10) {
+				break;
+			}
+		}
+
+		return validImageURLs;
+	}
+
+	private static int _MINIMUM_IMAGE_SIZE = 120;
 
 }
