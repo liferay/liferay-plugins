@@ -2004,6 +2004,7 @@ Please find a solution that does not require portal-impl.jar.
 
 	<macrodef name="start-test-app-server">
 		<attribute name="module.dir" />
+		<attribute name="test.class" />
 
 		<sequential>
 			<if>
@@ -2013,7 +2014,7 @@ Please find a solution that does not require portal-impl.jar.
 				</and>
 				<then>
 					<resourcecount property="test.integration.count">
-						<fileset dir="@{module.dir}/test-classes/integration" includes="**/*Test.class">
+						<fileset dir="@{module.dir}/test-classes/integration" includes="@{test.class}">
 							<filename regex="${junit.test.excludes}" negate="true" />
 						</fileset>
 					</resourcecount>
@@ -2162,6 +2163,7 @@ Please find a solution that does not require portal-impl.jar.
 
 					<start-test-app-server
 						module.dir="@{module.dir}"
+						test.class="@{test.class}"
 					/>
 
 					<if>
