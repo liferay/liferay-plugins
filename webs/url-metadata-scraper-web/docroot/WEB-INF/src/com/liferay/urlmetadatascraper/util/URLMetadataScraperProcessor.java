@@ -123,7 +123,7 @@ public class URLMetadataScraperProcessor {
 				if (isValidImageURL(imageURL)) {
 					imageURLs.add(imageURL);
 
-					if (imageURLs.size() >= 10) {
+					if (imageURLs.size() >= _MAXIMUM_IMAGE_URLS) {
 						break;
 					}
 				}
@@ -160,11 +160,11 @@ public class URLMetadataScraperProcessor {
 	}
 
 	protected boolean isValidImageURL(String imageURL) throws Exception {
-		URL url = new URL(imageURL);
-
-		if (url == null) {
+		if (Validator.isNull(imageURL)) {
 			return false;
 		}
+
+		URL url = new URL(imageURL);
 
 		BufferedImage bufferedImage = ImageIO.read(url);
 
@@ -180,6 +180,8 @@ public class URLMetadataScraperProcessor {
 
 		return true;
 	}
+
+	private static int _MAXIMUM_IMAGE_URLS = 10;
 
 	private static int _MINIMUM_IMAGE_SIZE = 120;
 
