@@ -66,7 +66,7 @@ public class URLMetadataScraperProcessor {
 		}
 
 		jsonObject.put("description", getDescription(document));
-		jsonObject.put("imageURLs", getValidImageURLs(document));
+		jsonObject.put("imageURLs", getImageURLs(document));
 
 		String domain = "";
 
@@ -109,7 +109,9 @@ public class URLMetadataScraperProcessor {
 		if (!imageElements.isEmpty()) {
 			String imageURL = imageElements.attr("content");
 
-			imageURLs.add(imageURL);
+			if (isValidImageURL(imageURL)) {
+				imageURLs.add(imageURL);
+			}
 		}
 
 		imageElements = document.select("img");
@@ -118,8 +120,12 @@ public class URLMetadataScraperProcessor {
 			for (Element imageElement : imageElements) {
 				String imageURL = imageElement.absUrl("src");
 
-				if (Validator.isNotNull(imageURL)) {
+				if (isValidImageURL(imageURL)) {
 					imageURLs.add(imageURL);
+
+					if (imageURLs.size() >= 10) {
+						break;
+					}
 				}
 			}
 		}
@@ -153,36 +159,26 @@ public class URLMetadataScraperProcessor {
 		return StringUtil.shorten(title, 200);
 	}
 
-	protected List<String> getValidImageURLs(Document document)
-		throws Exception {
+	protected boolean isValidImageURL(String imageURL) throws Exception {
+		URL url = new URL(imageURL);
 
-		List<String> validImageURLs = new ArrayList<String>();
-
-		for (String imageURL : getImageURLs(document)) {
-			URL url = new URL(imageURL);
-
-			if (url == null) {
-				continue;
-			}
-
-			BufferedImage bufferedImage = ImageIO.read(url);
-
-			if (bufferedImage == null) {
-				continue;
-			}
-
-			if ((bufferedImage.getWidth() >= _MINIMUM_IMAGE_SIZE) &&
-				(bufferedImage.getHeight() >= _MINIMUM_IMAGE_SIZE)) {
-
-				validImageURLs.add(imageURL);
-			}
-
-			if (validImageURLs.size() >= 10) {
-				break;
-			}
+		if (url == null) {
+			return false;
 		}
 
-		return validImageURLs;
+		BufferedImage bufferedImage = ImageIO.read(url);
+
+		if (bufferedImage == null) {
+			return false;
+		}
+
+		if ((bufferedImage.getWidth() < _MINIMUM_IMAGE_SIZE) ||
+			(bufferedImage.getHeight() < _MINIMUM_IMAGE_SIZE)) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	private static int _MINIMUM_IMAGE_SIZE = 120;
