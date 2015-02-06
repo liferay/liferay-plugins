@@ -2037,9 +2037,8 @@ Please find a solution that does not require portal-impl.jar.
 
 							<ant antfile="${lp.portal.project.dir}/build-test.xml" target="start-app-server" inheritAll="false">
 								<property name="project.dir" value="${lp.portal.project.dir}" />
+								<property name="testable.portal.started.marker.file" value="${lp.portal.project.dir}/.testable.portal.started" />
 							</ant>
-
-							<echo file="${lp.portal.project.dir}/.testable.portal.started" message="1" />
 						</then>
 					</if>
 				</then>
