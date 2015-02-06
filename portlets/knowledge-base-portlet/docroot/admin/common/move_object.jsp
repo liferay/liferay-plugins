@@ -17,8 +17,6 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
-
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 long kbArticleClassNameId = PortalUtil.getClassNameId(KBArticleConstants.getClassName());
@@ -28,21 +26,12 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId");
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey");
 
-if (kbArticle != null) {
-	resourceClassNameId = kbArticle.getClassNameId();
-	resourcePrimKey = kbArticle.getResourcePrimKey();
-	parentResourceClassNameId = kbArticle.getParentResourceClassNameId();
-	parentResourcePrimKey = kbArticle.getParentResourcePrimKey();
-}
-
 String title = null;
 String parentTitle = null;
 double priority = KBArticleConstants.DEFAULT_PRIORITY;
 
 if (resourceClassNameId == kbArticleClassNameId) {
-	if (kbArticle == null) {
-		kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey, status);
-	}
+	KBArticle kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey, status);
 
 	title = kbArticle.getTitle();
 	parentTitle = kbArticle.getParentTitle(locale, status);
