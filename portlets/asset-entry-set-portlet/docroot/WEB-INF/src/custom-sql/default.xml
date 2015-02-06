@@ -165,7 +165,6 @@
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
 				([$SHARED_TO_CLASS_PKS_MAP])
-
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
