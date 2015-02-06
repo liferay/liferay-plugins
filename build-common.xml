@@ -2020,9 +2020,14 @@ Please find a solution that does not require portal-impl.jar.
 					</resourcecount>
 
 					<if>
-						<not>
-							<equals arg1="${test.integration.count}" arg2="0" />
-						</not>
+						<and>
+							<not>
+								<equals arg1="${test.integration.count}" arg2="0" />
+							</not>
+							<not>
+								<available file="@{module.dir}/test/integration/arquillian.xml" type="file" />
+							</not>
+						</and>
 						<then>
 							<delete file="${lp.portal.project.dir}/.testable.portal.started" failonerror="false" />
 
