@@ -82,6 +82,7 @@
 		<column name="calendarId" type="long" />
 		<column name="calendarResourceId" type="long" />
 		<column name="parentCalendarBookingId" type="long" />
+		<column name="vEventUid" type="String" />
 		<column name="title" type="String" localized="true" />
 		<column name="description" type="String" localized="true" />
 		<column name="location" type="String" />
@@ -97,7 +98,6 @@
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
 		<column name="statusDate" type="Date" />
-		<column name="vEventUid" type="String" />
 
 		<!-- Order -->
 
