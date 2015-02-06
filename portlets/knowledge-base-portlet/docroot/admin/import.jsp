@@ -25,6 +25,7 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 </portlet:actionURL>
 
 <aui:form action="<%= importFileURL %>" class="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
+	<aui:input name="mvcPath" type="hidden" value="/admin/import.jsp" />
 	<aui:input name="parentKBFolderId" type="hidden" value="<%= String.valueOf(parentKBFolderId) %>" />
 
 	<aui:fieldset class="kb-block-labels">
