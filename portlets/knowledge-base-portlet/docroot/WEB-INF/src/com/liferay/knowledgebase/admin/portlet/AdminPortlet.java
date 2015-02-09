@@ -150,9 +150,8 @@ public class AdminPortlet extends BaseKBPortlet {
 
 			inputStream = uploadPortletRequest.getFileAsStream("file");
 
-			ServiceContext serviceContext =
-				ServiceContextFactory.getInstance(
-					AdminPortlet.class.getName(), actionRequest);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				AdminPortlet.class.getName(), actionRequest);
 
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 
