@@ -2025,7 +2025,7 @@ Please find a solution that does not require portal-impl.jar.
 								<equals arg1="${test.integration.count}" arg2="0" />
 							</not>
 							<not>
-								<available file="@{module.dir}/test/integration/arquillian.xml" type="file" />
+								<available file="@{module.dir}/test/integration/skip.managed.appserver" type="file" />
 							</not>
 						</and>
 						<then>
