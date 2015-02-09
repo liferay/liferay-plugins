@@ -145,8 +145,8 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		String firstName = userinfo.getGivenName();
 		String middleName = StringPool.BLANK;
 		String lastName = userinfo.getFamilyName();
-		int prefixId = 0;
-		int suffixId = 0;
+		long prefixId = 0;
+		long suffixId = 0;
 		boolean male = Validator.equals(userinfo.getGender(), "male");
 		int birthdayMonth = Calendar.JANUARY;
 		int birthdayDay = 1;
