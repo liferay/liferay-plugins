@@ -616,8 +616,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		long socialRequestId = ParamUtil.getLong(
 			actionRequest, "socialRequestId");
 		int status = ParamUtil.getInteger(actionRequest, "status");
-		long userNotificationEventId = ParamUtil.getLong(
-			actionRequest, "userNotificationEventId");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
