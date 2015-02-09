@@ -732,7 +732,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				>
 					<mapper
 						type="glob"
-						from="src/java/*"
+						from="${patch.original.lib.source.dir}/*"
 						to="*"
 					/>
 					<patternset includes="${patch.destination}" />
