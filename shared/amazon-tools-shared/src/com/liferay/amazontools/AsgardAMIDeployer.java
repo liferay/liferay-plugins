@@ -166,7 +166,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		boolean deployed = false;
 		JSONObject loadBalancerJSONObject = null;
 
-		for (int i = 1; i < 30; i++) {
+		for (int i = 1; i < 50; i++) {
 			String json = _jsonWebServiceClient.doGet(
 				"/" + availabilityZone + "/loadBalancer/show/" +
 					asgardClusterName + ".json",
