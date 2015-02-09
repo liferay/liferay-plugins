@@ -260,9 +260,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 								kaleoTaskAssignment.getAssigneeClassPK());
 
 					for (UserGroupRole userGroupRole : userGroupRoles) {
+						User user = userGroupRole.getUser();
+
 						pooledActorsMap.put(
-							userGroupRole.getUser().getFullName(),
-							userGroupRole.getUserId());
+							user.getFullName(), user.getUserId());
 					}
 
 					List<UserGroupGroupRole> userGroupGroupRoles =
@@ -301,8 +302,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			int count = 0;
 
-			for (Object actor : pooledActorsMap.values()) {
-				pooledActors[count++] = (Long)actor;
+			for (Long actor : pooledActorsMap.values()) {
+				pooledActors[count++] = actor;
 			}
 
 			return pooledActors;
