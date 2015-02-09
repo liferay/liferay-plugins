@@ -844,8 +844,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				params.put(
 					"userGroupRole",
 					new Long[] {
-						new Long(group.getGroupId()),
-						new Long(siteAdministratorRole.getRoleId())
+						group.getGroupId(), siteAdministratorRole.getRoleId()
 					});
 
 				Set<User> users = new HashSet<>();
@@ -863,8 +862,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				params.put(
 					"userGroupRole",
 					new Long[] {
-						new Long(group.getGroupId()),
-						new Long(siteOwnerRole.getRoleId())
+						group.getGroupId(), siteOwnerRole.getRoleId()
 					});
 
 				users.addAll(
