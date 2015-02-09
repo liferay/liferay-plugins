@@ -44,12 +44,12 @@ User selUser = (User)request.getAttribute("user.selUser");
 		StringBundler sb = new StringBundler();
 
 		if (selUser.getComments() != null) {
-			sb.append(selUser.getComments()); 
+			sb.append(selUser.getComments());
 		}
 
 		if (selUser.getJobTitle() != null) {
 			sb.append(StringPool.SPACE);
-			sb.append(selUser.getJobTitle()); 
+			sb.append(selUser.getJobTitle());
 		}
 		%>
 
