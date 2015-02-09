@@ -36,14 +36,85 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortlet extends MVCPortlet {
 
-	@Override
-	public void processAction(
+	public void configurePermissions(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException {
+
+		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
+
+		String permissions = ParamUtil.getString(actionRequest, "permissions");
+
+		for (long groupId : groupIds) {
+			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+			UnicodeProperties typeSettingsProperties =
+				group.getTypeSettingsProperties();
+
+			typeSettingsProperties.setProperty("permissions", permissions);
+
+			group.setTypeSettingsProperties(typeSettingsProperties);
+
+			GroupLocalServiceUtil.updateGroup(group);
+		}
+
+		sendRedirect(actionRequest, actionResponse);
+	}
+
+	public void configureSite(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException {
+
+		String enableSyncSites = ParamUtil.getString(
+			actionRequest, "enableSyncSites");
+
+		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
+
+		for (long groupId : groupIds) {
+			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+			UnicodeProperties typeSettingsProperties =
+				group.getTypeSettingsProperties();
+
+			typeSettingsProperties.setProperty("syncEnabled", enableSyncSites);
+
+			group.setTypeSettingsProperties(typeSettingsProperties);
+
+			GroupLocalServiceUtil.updateGroup(group);
+		}
+
+		sendRedirect(actionRequest, actionResponse);
+	}
+
+	public void updatePreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		try {
-			updatePreferences(actionRequest, actionResponse);
-			updateTypeSettingsProperties(actionRequest, actionResponse);
+			PortletPreferences portletPreferences =
+				PrefsPropsUtil.getPreferences(
+					CompanyThreadLocal.getCompanyId());
+
+			int maxConnections = ParamUtil.getInteger(
+				actionRequest, "maxConnections");
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
+				String.valueOf(maxConnections));
+
+			int pollInterval = ParamUtil.getInteger(
+				actionRequest, "pollInterval");
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
+				String.valueOf(pollInterval));
+
+			boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_SERVICES_ENABLED,
+				String.valueOf(enabled));
+
+			portletPreferences.store();
 
 			addSuccessMessage(actionRequest, actionResponse);
 
@@ -51,66 +122,6 @@ public class AdminPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
-		}
-	}
-
-	protected void updateGroup(long groupId, boolean syncEnabled) {
-		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
-
-		UnicodeProperties typeSettingsProperties =
-			group.getTypeSettingsProperties();
-
-		typeSettingsProperties.setProperty(
-			"syncEnabled", String.valueOf(syncEnabled));
-
-		group.setTypeSettingsProperties(typeSettingsProperties);
-
-		GroupLocalServiceUtil.updateGroup(group);
-	}
-
-	protected void updatePreferences(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
-			CompanyThreadLocal.getCompanyId());
-
-		int maxConnections = ParamUtil.getInteger(
-			actionRequest, "maxConnections");
-
-		portletPreferences.setValue(
-			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
-			String.valueOf(maxConnections));
-
-		int pollInterval = ParamUtil.getInteger(actionRequest, "pollInterval");
-
-		portletPreferences.setValue(
-			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
-			String.valueOf(pollInterval));
-
-		boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
-
-		portletPreferences.setValue(
-			PortletPropsKeys.SYNC_SERVICES_ENABLED, String.valueOf(enabled));
-
-		portletPreferences.store();
-	}
-
-	protected void updateTypeSettingsProperties(
-		ActionRequest actionRequest, ActionResponse actionResponse) {
-
-		String disabledGroupIds = ParamUtil.getString(
-			actionRequest, "disabledGroupIds");
-
-		for (long groupId : StringUtil.split(disabledGroupIds, 0L)) {
-			updateGroup(groupId, false);
-		}
-
-		String enabledGroupIds = ParamUtil.getString(
-			actionRequest, "enabledGroupIds");
-
-		for (long groupId : StringUtil.split(enabledGroupIds, 0L)) {
-			updateGroup(groupId, true);
 		}
 	}
 
