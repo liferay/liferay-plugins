@@ -531,7 +531,7 @@
 											<ivy:retrieve
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
-												type="bundle,eclipse-plugin,jar,orbit"
+												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
 											/>
 
 											<ivy:retrieve
@@ -544,7 +544,7 @@
 											<ivy:retrieve
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
-												type="bundle,eclipse-plugin,jar,orbit"
+												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
 											/>
 
 											<ivy:retrieve
