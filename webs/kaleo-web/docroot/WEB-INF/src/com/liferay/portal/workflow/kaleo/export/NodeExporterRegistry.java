@@ -33,6 +33,6 @@ public class NodeExporterRegistry {
 	}
 
 	private static NodeTypeDependentObjectRegistry<NodeExporter>
-		_nodeExporters = new NodeTypeDependentObjectRegistry<NodeExporter>();
+		_nodeExporters = new NodeTypeDependentObjectRegistry<>();
 
 }

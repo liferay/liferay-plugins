@@ -58,7 +58,8 @@ import java.util.concurrent.Callable;
  */
 @Transactional(
 	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRED,
-	rollbackFor = {Exception.class})
+	rollbackFor = {Exception.class}
+)
 public class DefaultWorkflowEngineImpl
 	extends BaseKaleoBean implements WorkflowEngine {
 
