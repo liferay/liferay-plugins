@@ -82,8 +82,14 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 		KBFolder kbFolder = _rootKBFolder;
 
 		if (Validator.isNotNull(kbFolderUrlTitle)) {
-			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
-				groupId, ancestorKBFolder.getKbFolderId(), kbFolderUrlTitle);
+			if (kbFolderUrlTitle.equals(ancestorKBFolder.getUrlTitle())) {
+				kbFolder = ancestorKBFolder;
+			}
+			else {
+				kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
+					groupId, ancestorKBFolder.getKbFolderId(),
+					kbFolderUrlTitle);
+			}
 		}
 
 		KBArticle kbArticle =
