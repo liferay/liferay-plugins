@@ -242,7 +242,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 					kaleoTask.getKaleoTaskId(), Role.class.getName());
 
-			Map<String, Long> pooledActorsMap = new TreeMap<>(
+			Map<String, Long> pooledActors = new TreeMap<>(
 				new NaturalOrderStringComparator());
 
 			for (KaleoTaskAssignment kaleoTaskAssignment :
@@ -263,8 +263,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					for (UserGroupRole userGroupRole : userGroupRoles) {
 						User user = userGroupRole.getUser();
 
-						pooledActorsMap.put(
-							user.getFullName(), user.getUserId());
+						pooledActors.put(user.getFullName(), user.getUserId());
 					}
 
 					List<UserGroupGroupRole> userGroupGroupRoles =
@@ -281,7 +280,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 								userGroupGroupRole.getUserGroupId());
 
 						for (User user : userGroupUsers) {
-							pooledActorsMap.put(
+							pooledActors.put(
 								user.getFullName(), user.getUserId());
 						}
 					}
@@ -293,13 +292,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 							QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 					for (User user : inheritedRoleUsers) {
-						pooledActorsMap.put(
-							user.getFullName(), user.getUserId());
+						pooledActors.put(user.getFullName(), user.getUserId());
 					}
 				}
 			}
 
-			return ArrayUtil.toLongArray(pooledActorsMap.values());
+			return ArrayUtil.toLongArray(pooledActors.values());
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
