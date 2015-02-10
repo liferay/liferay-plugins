@@ -91,6 +91,13 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	}
 
 	@Override
+	public AssetEntrySet deleteAssetEntrySet(long assetEntrySetId)
+		throws PortalException, SystemException{
+
+		return assetEntrySetLocalService.deleteAssetEntrySet(assetEntrySetId);
+	}
+
+	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long createTime, long parentAssetEntrySetId,
 			int childAssetEntrySetsLimit, int start, int end)
