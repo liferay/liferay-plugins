@@ -2686,8 +2686,28 @@ for (String path : paths) {
 	</target>
 
 	<target name="reset-gradle">
+		<path id="reset.gradle.path">
+			<dirset dir="${basedir}" includes="**/docroot" />
+			<dirset dir="${basedir}" includes="**/src" excludes="**/docroot/WEB-INF/src" />
+		</path>
+
+		<pathconvert
+			pathsep=","
+			property="reset.gradle.path"
+			refid="reset.gradle.path"
+			targetos="unix"
+		/>
+
+		<propertyregex
+			input="${reset.gradle.path}"
+			override="true"
+			property="reset.gradle.path"
+			regexp="[\\/](?:docroot|src)(,|$)"
+			replace="\1"
+		/>
+
 		<loop-macrodef-or-target
-			module.dirs="${plugins.includes.path}"
+			module.dirs="${reset.gradle.path}"
 			target.name="reset-gradle"
 		/>
 	</target>
