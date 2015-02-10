@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo;
 
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.DuplicateLockException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -298,15 +299,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				}
 			}
 
-			long[] pooledActors = new long[pooledActorsMap.size()];
-
-			int count = 0;
-
-			for (Long actor : pooledActorsMap.values()) {
-				pooledActors[count++] = actor;
-			}
-
-			return pooledActors;
+			return ArrayUtil.toLongArray(pooledActorsMap.values());
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
