@@ -3,8 +3,6 @@
 
 <display>
 	<category name="category.hidden">
-		<category name="category.hidden">
-			<portlet id="1" />
-		</category>
+		<portlet id="1" />
 	</category>
 </display>
