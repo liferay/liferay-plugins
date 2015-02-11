@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency org="org.codehaus.sonar-plugins" name="sonar-ant-task" rev="2.2"/>
+		<dependency name="sonar-ant-task" org="org.codehaus.sonar-plugins" rev="2.2"/>
 	</dependencies>
 </ivy-module>
