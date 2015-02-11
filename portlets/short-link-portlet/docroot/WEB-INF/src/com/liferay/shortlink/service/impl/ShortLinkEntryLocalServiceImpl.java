@@ -197,16 +197,6 @@ public class ShortLinkEntryLocalServiceImpl
 	}
 
 	/**
-	 * Factory method for a new ShortLinkEntry object.
-	 *
-	 * @return new object
-	 */
-	@Override
-	public ShortLinkEntry shortLinkEntryFactory() {
-		return super.createShortLinkEntry(0);
-	}
-
-	/**
 	 * Method checks if the short link is already taken if it was modified. If
 	 * the link is free it updates the entry. Also notifies the appropriate
 	 * model listeners.
