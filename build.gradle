@@ -1,6 +1,6 @@
 subprojects {
 
-	task hello {
+	task initGradle {
 	}
 
 }

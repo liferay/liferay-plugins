@@ -2666,8 +2666,8 @@ for (String path : paths) {
 		<delete file="ServiceBuilder.temp" />
 	</target>
 
-	<target name="hello">
-		<gradle-execute task="hello" />
+	<target name="init-gradle">
+		<gradle-execute task="initGradle" />
 	</target>
 
 	<target name="jar">
