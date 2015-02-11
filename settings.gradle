@@ -129,4 +129,4 @@ fileTree.each(
 	}
 );
 
-include(":shared:portal-compat-shared");
+gradle.ext.sdkDir = file(".");
