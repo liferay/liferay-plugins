@@ -1,9 +1,9 @@
-apply from: "$gradle.sdkDir/versions.gradle"
+apply from: "$gradle.lfrSdkDir/versions.gradle"
 
 allprojects {
 	apply plugin: "war"
 
-	ant.loadproperties(srcFile: "$gradle.sdkDir/build.properties")
+	ant.loadproperties(srcFile: "$gradle.lfrSdkDir/build.properties")
 
 	File pluginSrcDir
 
