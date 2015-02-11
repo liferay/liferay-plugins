@@ -5,288 +5,153 @@ allprojects {
 
 	ant.loadproperties(srcFile: "$gradle.lfrSdkDir/build.properties")
 
-	File pluginSrcDir
+	File pluginSrcDir = file("$projectDir/docroot")
 
-	if (file("$projectDir/docroot").exists()) {
-		pluginSrcDir = file("$projectDir/docroot")
-	}
-
-	if (file("$projectDir/src").exists()) {
+	if (!pluginSrcDir.exists()) {
 		pluginSrcDir = file("$projectDir/src")
-	}
 
-	task testdep << {
-		gradle.compileDeps.each {
-			if (project.path == it.projectPath) {
-				it.compile.each {
-					println it
-				}
-			}
+		if (!pluginSrcDir.exists()) {
+			pluginSrcDir = null
 		}
 	}
 
-	if (pluginSrcDir != null) {
-		task initGradle << {
-			def parser = new XmlParser()
+	if (pluginSrcDir == null) {
+		return
+	}
 
-			parser.setFeature(
-				"http://apache.org/xml/features/disallow-doctype-decl", false)
+	task initGradle {
+		def getBuildGradleDependencies
+		def getBuildGradleDependenciesCompile
+		def getBuildGradleDependenciesProvidedCompile
+		def writeBuildGradleFile
 
-			File buildXMLFile = new File("$projectDir/build.xml")
+		getBuildGradleDependencies = {
+			Node ivyXmlNode, Properties pluginPackageProperties ->
 
-			def buildXMLData = parser.parse(buildXMLFile)
+			List contents = []
 
-			def getBuildXMLProp = { propName, defaultValue ->
-				def propValue = defaultValue
+			contents << "dependencies {"
 
-				buildXMLData.property.each {
-					if (it.@name == propName) {
-						propValue = it.@value
-					}
+			contents.addAll(getBuildGradleDependenciesCompile(ivyXmlNode))
+			contents.addAll(getBuildGradleDependenciesProvidedCompile(pluginPackageProperties))
+
+			contents << "}"
+
+			return contents
+		}
+
+		getBuildGradleDependenciesCompile = {
+			Node ivyXmlNode ->
+
+			List contents = []
+
+			contents << "\tcompile("
+
+			if (ivyXmlNode) {
+				ivyXmlNode.dependencies.dependency.each {
+					contents << "\t\t[group: \"${it.@org}\", name:\"${it.@name}\", version: \"${it.@rev}\"],"
+				}
+			}
+
+			contents << "\t)"
+
+			return contents
+		}
+
+		getBuildGradleDependenciesProvidedCompile = {
+			Properties pluginPackageProperties ->
+
+			List contents = []
+
+			contents << "\tprovidedCompile("
+
+			String portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
+
+			if (portalDependencyJars != null) {
+				portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
+				portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
+					it[1].toUpperCase()
 				}
 
-				return propValue
-			}
+				String[] portalDependencyJarsArray = portalDependencyJars.split(",");
 
-			File ivyXMLFile = new File("$projectDir/ivy.xml")
+				portalDependencyJarsArray.each {
+					portalDependencyJar ->
 
-			def ivyXMLFileData
+					Map portalDependencyJarsMap = portalDependencies.get(portalDependencyJar)
 
-			if (ivyXMLFile.exists()) {
-				ivyXMLFileData = parser.parse(ivyXMLFile)
-			}
-
-			String importShared = getBuildXMLProp("import.shared", "")
-
-			String themeParent = getBuildXMLProp("theme.parent", "")
-
-			Boolean customTargets = false
-
-			buildXMLData.target.each {
-				customTargets = true
-			}
-
-			String moduleIncrementalVersion
-
-			String portalDependencyJars
-
-			String portalDependencyTlds
-
-			String requiredDeploymentContexts
-
-			def serviceJarText = []
-
-			File pluginPackageProperties =
-				new File("$projectDir/docroot/WEB-INF/liferay-plugin-package.properties")
-
-			if (pluginPackageProperties.exists()) {
-				Properties moduleProps = new Properties()
-
-				moduleProps.load(new FileInputStream(pluginPackageProperties))
-
-				moduleIncrementalVersion =
-					moduleProps["module-incremental-version"]
-
-				portalDependencyJars = moduleProps["portal-dependency-jars"]
-
-				if (portalDependencyJars != null) {
-					portalDependencyJars =
-						portalDependencyJars.replaceAll("\\.jar", "")
-
-					portalDependencyJars =
-						portalDependencyJars.replaceAll("-\\w") {
-							it[1].toUpperCase()
-						}
-				}
-
-				portalDependencyTlds = moduleProps["portal-dependency-tlds"]
-
-				requiredDeploymentContexts =
-					moduleProps["required-deployment-contexts"]
-
-				if (requiredDeploymentContexts) {
-					requiredDeploymentContexts.split(",").each {
-						String serviceJarType = it.replaceFirst(".+-", "")
-
-						serviceJarType = serviceJarType + "s"
-
-						File serviceJar = new File("$projectDir/../../$serviceJarType/$it/docroot/WEB-INF/lib/$it-service.jar")
-
-						if (serviceJar.exists()) {
-							serviceJarText << "\t\tfiles(\"../../$serviceJarType/$it/docroot/WEB-INF/lib/$it-service.jar\"),"
-						}
+					if (portalDependencyJarsMap == null) {
+						println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
+					}
+					else {
+						contents << "\t\t[group: \"${portalDependencyJarsMap."group"}\", name: \"${portalDependencyJarsMap."name"}\", version: \"${portalDependencyJarsMap."version"}\"],"
 					}
 				}
-
-			}
-			else {
-				moduleIncrementalVersion =
-					getBuildXMLProp("plugin.version", "1")
-
 			}
 
-			String pluginFullVersion = getBuildXMLProp("plugin.full.version",
-				ant.properties["lp.version"] + "." + moduleIncrementalVersion)
+			contents << "\t)"
 
-			Boolean osgiPlugin = false
+			return contents
+		}
 
-			String ignoreOsgiPortalClasspath
+		writeBuildGradleFile = {
+			Node ivyXmlNode, Properties pluginPackageProperties ->
 
-			String osgiIdeDependencies
+			List contents = []
 
-			String osgiRuntimeDependencies
+			contents.addAll(getBuildGradleDependencies(ivyXmlNode, pluginPackageProperties))
 
-			if (file("bnd.bnd").exists()) {
-				osgiPlugin = true
+			File buildGradleFile = new File("$projectDir/build.gradle")
 
-				ignoreOsgiPortalClasspath =
-					getBuildXMLProp("ignore.osgi.portal.classpath", "")
-
-				osgiIdeDependencies =
-					getBuildXMLProp("osgi.ide.dependencies", "")
-
-				osgiRuntimeDependencies =
-					getBuildXMLProp("osgi.runtime.dependencies", "")
-			}
-
-			String pluginPackaging
-
-			if (project.parent.name == "shared" || osgiPlugin == true) {
-
-				pluginPackaging = "jar"
-			}
-			else {
-				pluginPackaging = "war"
-			}
-
-			File pluginScript = new File("$projectDir/build.gradle")
-
-			def pluginScriptText = []
-
-			File pluginDependencySettings =
-				new File("$projectDir/dependency-settings.gradle")
-
-			def pluginDependencySettingsText = []
-
-			if (importShared || ivyXMLFileData || portalDependencyJars ||
-				serviceJarText != []) {
-
-				pluginScriptText << "dependencies {"
-
-				if (importShared || ivyXMLFileData || serviceJarText != []) {
-					pluginScriptText << "\tcompile("
-
-					if (ivyXMLFileData) {
-						ivyXMLFileData.dependencies.dependency.each {
-							pluginScriptText << "\t\t[group: \"${it.@org}\", " +
-							"name:\"${it.@name}\", version: \"${it.@rev}\"],"
-						}
-					}
-
-					if (importShared) {
-						importShared.split(",").each {
-							pluginDependencySettingsText << "includeTransitive \":shared:$it\""
-						}
-					}
-
-					if (requiredDeploymentContexts) {
-						requiredDeploymentContexts.split(",").each {
-							String serviceJarType = it.replaceFirst(".+-", "")
-
-							serviceJarType = serviceJarType + "s"
-
-							File serviceJar = new File(
-								"$projectDir/../../$serviceJarType/$it/docroot/WEB-INF/lib/$it-service.jar")
-
-							serviceJarText.each {
-								pluginScriptText << it
-							}
-						}
-					}
-
-					pluginScriptText << "\t)"
-				}
-
-				if (portalDependencyJars) {
-					pluginScriptText << "\tprovidedCompile("
-
-					portalDependencyJars.split(",").each { jarName ->
-						def jarMap = portalDependencies.findAll {
-							it.key == jarName
-						}
-
-						jarMap = jarMap[jarName]
-
-						if (jarMap == null) {
-							println("Missing dependency definition for: " +
-								jarName)
-						}
-						else {
-							pluginScriptText << "\t\t[group: \"${jarMap."group"}\", name: \"${jarMap."name"}\", version: \"${jarMap."version"}\"],"
-						}
-					}
-
-					pluginScriptText << "\t)"
-				}
-
-				pluginScriptText << "}"
-			}
-
-			pluginScriptText << "ext {"
-
-			if (ignoreOsgiPortalClasspath != null &&
-				ignoreOsgiPortalClasspath != "") {
-
-				pluginScriptText <<
-					"\tignoreOsgiPortalClasspath = $ignoreOsgiPortalClasspath"
-			}
-
-			pluginScriptText <<
-				"\tmoduleIncrementalVersion = $moduleIncrementalVersion"
-
-			if ((osgiIdeDependencies != null) && (osgiIdeDependencies != "")) {
-				pluginScriptText << 
-					"\tosgiIdeDependencies = \"$osgiIdeDependencies\""
-			}
-
-			pluginScriptText << "\tosgiPlugin = \"$osgiPlugin\""
-
-			pluginScriptText << "\tpluginFullVersion = \"$pluginFullVersion\""
-
-			pluginScriptText << "\tpluginPackaging = \"$pluginPackaging\""
-
-			if ((portalDependencyTlds != null) &&
-				(portalDependencyTlds != "")) {
-
-				pluginScriptText <<
-					"\tportalDependencyTlds = \"$portalDependencyTlds\""
-			}
-
-			if ((themeParent != null) && (themeParent != "")) {
-				pluginScriptText << "\tthemeParent = $themeParent"
-			}
-
-			pluginScriptText << "}"
-
-			File buildExtScript = new File("$projectDir/build-ext.gradle")
-
-			if (customTargets && !buildExtScript.exists()) {
-				pluginScriptText << ""
-				pluginScriptText << "// Custom targets were detected in this project's Ant build.xml, but no "
-				pluginScriptText << "// build-ext.gradle is located in the same directory.  Please add a"
-				pluginScriptText << "// build-ext.gradle file that reproduces the same functionality, then uncomment"
-				pluginScriptText << "// the following line:"
-				pluginScriptText << ""
-				pluginScriptText << "// apply from: \"build-ext.gradle\""
-			}
-
-			pluginScriptText.each {
-				pluginScript << it + "\n"
-			}
-
-			pluginDependencySettingsText.each {
-				pluginDependencySettings << it + "\n"
+			contents.each {
+				buildGradleFile << it + "\n"
 			}
 		}
+
+		// build.xml
+
+		XmlParser xmlParser = new XmlParser()
+
+		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+
+		File buildXmlFile = new File("$projectDir/build.xml")
+
+		Node buildXmlNode = xmlParser.parse(buildXmlFile)
+
+		def getBuildXmlProperty = {
+			key, defaultValue ->
+
+			buildXmlData.property.each {
+				if (it.@name == propName) {
+					return it.@value
+				}
+			}
+
+			return defaultValue
+		}
+
+		// ivy.xml
+
+		Node ivyXmlNode = null
+
+		File ivyXmlFile = new File("$projectDir/ivy.xml")
+
+		if (ivyXmlFile.exists()) {
+			ivyXmlNode = xmlParser.parse(ivyXmlFile)
+		}
+
+		// liferay-plugin-package.properties
+
+		Properties pluginPackageProperties = new Properties()
+
+		File pluginPackagePropertiesFile = new File("$projectDir/docroot/WEB-INF/liferay-plugin-package.properties")
+
+		if (pluginPackagePropertiesFile.exists()) {
+			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
+		}
+
+		// build.gradle
+
+		writeBuildGradleFile(ivyXmlNode, pluginPackageProperties)
 	}
 }
