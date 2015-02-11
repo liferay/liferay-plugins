@@ -27,8 +27,18 @@ public interface AssetEntrySetPermission {
 			String actionId)
 		throws PortalException;
 
+	public void check(
+			PermissionChecker permissionChecker, long assetEntrySetId,
+			String actionId)
+		throws PortalException;
+
 	public boolean contains(
 		PermissionChecker permissionChecker, long classNameId, long classPK,
 		String actionId);
+
+	public boolean contains(
+			PermissionChecker permissionChecker, long assetEntrySetId,
+			String actionId)
+		throws PortalException;
 
 }

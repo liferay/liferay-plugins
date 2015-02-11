@@ -32,12 +32,30 @@ public class AssetEntrySetPermissionUtil {
 			permissionChecker, classNameId, classPK, actionId);
 	}
 
+	public static void check(
+			PermissionChecker permissionChecker, long assetEntrySetId,
+			String actionId)
+		throws PortalException {
+
+		getAssetEntrySetPermission().check(
+			permissionChecker, assetEntrySetId, actionId);
+	}
+
 	public static boolean contains(
 		PermissionChecker permissionChecker, long classNameId, long classPK,
 		String actionId) {
 
 		return getAssetEntrySetPermission().contains(
 			permissionChecker, classNameId, classPK, actionId);
+	}
+
+	public static boolean contains(
+			PermissionChecker permissionChecker, long assetEntrySetId,
+			String actionId)
+		throws PortalException {
+
+		return getAssetEntrySetPermission().contains(
+			permissionChecker, assetEntrySetId, actionId);
 	}
 
 	public static AssetEntrySetPermission getAssetEntrySetPermission() {

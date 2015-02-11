@@ -33,9 +33,27 @@ public class AssetEntrySetPermissionImpl implements AssetEntrySetPermission {
 		}
 	}
 
+	public void check(
+			PermissionChecker permissionChecker, long assetEntrySetId,
+			String actionId)
+		throws PortalException {
+
+		if (!contains(permissionChecker, assetEntrySetId, actionId)) {
+			throw new PrincipalException();
+		}
+	}
+
 	public boolean contains(
 		PermissionChecker permissionChecker, long classNameId, long classPK,
 		String actionId) {
+
+		return true;
+	}
+
+	public boolean contains(
+			PermissionChecker permissionChecker, long assetEntrySetId,
+			String actionId)
+		throws PortalException {
 
 		return true;
 	}

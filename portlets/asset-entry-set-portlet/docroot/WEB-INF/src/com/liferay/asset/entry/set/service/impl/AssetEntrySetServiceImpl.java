@@ -92,7 +92,10 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public AssetEntrySet deleteAssetEntrySet(long assetEntrySetId)
-		throws PortalException, SystemException{
+		throws PortalException, SystemException {
+
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), assetEntrySetId, ActionKeys.DELETE);
 
 		return assetEntrySetLocalService.deleteAssetEntrySet(assetEntrySetId);
 	}
