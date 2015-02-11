@@ -92,6 +92,13 @@ public class AssetEntrySetServiceUtil {
 		return getService().addAssetEntrySet(payload, file, privateAssetEntrySet);
 	}
 
+	public static com.liferay.asset.entry.set.model.AssetEntrySet deleteAssetEntrySet(
+		long assetEntrySetId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteAssetEntrySet(assetEntrySetId);
+	}
+
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId,
 		int childAssetEntrySetsLimit, int start, int end)

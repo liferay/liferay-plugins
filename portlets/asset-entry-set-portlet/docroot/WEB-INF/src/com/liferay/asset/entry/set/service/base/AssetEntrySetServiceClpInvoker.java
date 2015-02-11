@@ -51,25 +51,29 @@ public class AssetEntrySetServiceClpInvoker {
 				"java.lang.String", "java.io.File", "boolean"
 			};
 
-		_methodName57 = "getNewAssetEntrySets";
+		_methodName57 = "deleteAssetEntrySet";
 
-		_methodParameterTypes57 = new String[] {
-				"long", "long", "int", "int", "int"
-			};
+		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName58 = "getOldAssetEntrySets";
+		_methodName58 = "getNewAssetEntrySets";
 
 		_methodParameterTypes58 = new String[] {
 				"long", "long", "int", "int", "int"
 			};
 
-		_methodName59 = "likeAssetEntrySet";
+		_methodName59 = "getOldAssetEntrySets";
 
-		_methodParameterTypes59 = new String[] { "long" };
+		_methodParameterTypes59 = new String[] {
+				"long", "long", "int", "int", "int"
+			};
 
-		_methodName60 = "unlikeAssetEntrySet";
+		_methodName60 = "likeAssetEntrySet";
 
 		_methodParameterTypes60 = new String[] { "long" };
+
+		_methodName61 = "unlikeAssetEntrySet";
+
+		_methodParameterTypes61 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -111,16 +115,12 @@ public class AssetEntrySetServiceClpInvoker {
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return AssetEntrySetServiceUtil.getNewAssetEntrySets(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+			return AssetEntrySetServiceUtil.deleteAssetEntrySet(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return AssetEntrySetServiceUtil.getOldAssetEntrySets(((Long)arguments[0]).longValue(),
+			return AssetEntrySetServiceUtil.getNewAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue(),
@@ -129,11 +129,20 @@ public class AssetEntrySetServiceClpInvoker {
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue());
+			return AssetEntrySetServiceUtil.getOldAssetEntrySets(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue());
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return AssetEntrySetServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue());
 		}
 
@@ -158,4 +167,6 @@ public class AssetEntrySetServiceClpInvoker {
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
+	private String _methodName61;
+	private String[] _methodParameterTypes61;
 }

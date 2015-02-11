@@ -62,6 +62,20 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class AssetEntrySetServiceSoap {
+	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap deleteAssetEntrySet(
+		long assetEntrySetId) throws RemoteException {
+		try {
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.deleteAssetEntrySet(assetEntrySetId);
+
+			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap[] getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId,
 		int childAssetEntrySetsLimit, int start, int end)
