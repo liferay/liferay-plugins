@@ -1,132 +1,132 @@
 def loadProperties = {
 	Properties properties, String fileName ->
 
-	File file = file(fileName);
+	File file = file(fileName)
 
 	if (file.exists()) {
-		properties.load(new FileInputStream(file));
+		properties.load(new FileInputStream(file))
 	}
-};
+}
 
-Properties antProperties = new Properties();
+Properties antProperties = new Properties()
 
-loadProperties(antProperties, "build.properties");
-loadProperties(antProperties, "build." + System.properties["user.name"] + ".properties");
-loadProperties(antProperties, "build." + System.properties["COMPUTERNAME"] + ".properties");
-loadProperties(antProperties, "build." + System.properties["HOST"] + ".properties");
-loadProperties(antProperties, "build." + System.properties["HOSTNAME"] + ".properties");
+loadProperties(antProperties, "build.properties")
+loadProperties(antProperties, "build." + System.properties["user.name"] + ".properties")
+loadProperties(antProperties, "build." + System.properties["COMPUTERNAME"] + ".properties")
+loadProperties(antProperties, "build." + System.properties["HOST"] + ".properties")
+loadProperties(antProperties, "build." + System.properties["HOSTNAME"] + ".properties")
 
 if (!hasProperty("lfrPluginsExcludes")) {
-	ext.lfrPluginsExcludes = antProperties["plugins.excludes"];
+	ext.lfrPluginsExcludes = antProperties["plugins.excludes"]
 }
 
 if (!hasProperty("lfrPluginsIncludes")) {
-	ext.lfrPluginsIncludes = antProperties["plugins.includes"];
+	ext.lfrPluginsIncludes = antProperties["plugins.includes"]
 }
 
-gradle.ext.compileDeps = [];
+gradle.ext.compileDeps = []
 
 ext.includeTransitive = {
 	String[] projectPaths ->
 
-	include projectPaths;
+	include projectPaths
 
 	for (String projectPath : projectPaths) {
-		String projectDirName = projectPath.replaceAll(":", "/");
+		String projectDirName = projectPath.replaceAll(":", "/")
 
-		projectDirName = projectPath.replaceFirst("^/", "");
+		projectDirName = projectPath.replaceFirst("^/", "")
 
-		File dependencySettingsFile = new File(rootDir.toString() + "/" + projectDirName, "dependency-settings.gradle");
+		File dependencySettingsFile = new File(rootDir.toString() + "/" + projectDirName, "dependency-settings.gradle")
 
 		if (!dependencySettingsFile.exists() || dependencySettingsFile.length() == 0) {
-			continue;
+			continue
 		}
 
-		apply from: dependencySettingsFile;
+		apply from: dependencySettingsFile
 
-		String dependencySettingsContent = dependencySettingsFile.text;
+		String dependencySettingsContent = dependencySettingsFile.text
 
-		dependencySettingsContent = dependencySettingsContent.replaceAll("includeTransitive", "");
-		dependencySettingsContent = dependencySettingsContent.replaceAll(" ", "");
-		dependencySettingsContent = dependencySettingsContent.replaceAll("\"", "");
-		dependencySettingsContent = dependencySettingsContent.replaceAll("\\s\$", "");
+		dependencySettingsContent = dependencySettingsContent.replaceAll("includeTransitive", "")
+		dependencySettingsContent = dependencySettingsContent.replaceAll(" ", "")
+		dependencySettingsContent = dependencySettingsContent.replaceAll("\"", "")
+		dependencySettingsContent = dependencySettingsContent.replaceAll("\\s\$", "")
 
-		String[] dependencySettingsArray = dependencySettingsContent.split("\\n");
+		String[] dependencySettingsArray = dependencySettingsContent.split("\\n")
 
 		gradle.compileDeps << [
 			compile: dependencySettingsArray,
 			projectPath: projectPath
-		];
+		]
 	}
-};
+}
 
-String userDirName = System.getProperty("user.dir");
+String userDirName = System.getProperty("user.dir")
 
 FileTree fileTree = fileTree(userDirName) {
 	if ((lfrPluginsIncludes != "") && (lfrPluginsIncludes != "*")) {
-		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(" ", "");
-		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(",+", ",");
+		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(" ", "")
+		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(",+", ",")
 
-		def lfrPluginsIncludesArray = lfrPluginsIncludes.split(",");
+		def lfrPluginsIncludesArray = lfrPluginsIncludes.split(",")
 
 		lfrPluginsIncludesArray = lfrPluginsIncludesArray.collect(
 			{
 				"**/" + it + "/build.gradle"
 			}
-		);
+		)
  
 		lfrPluginsIncludesArray.each(
 			{
-				include(it);
+				include(it)
 			}
-		);
+		)
 	}
 	else {
-		include("**/build.gradle");
+		include("**/build.gradle")
 	}
  
 	if ((lfrPluginsExcludes != "") && (lfrPluginsExcludes != "*")) {
-		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(" ", "");
-		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(",+", ",");
+		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(" ", "")
+		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(",+", ",")
 
-		String[] lfrPluginsExcludesArray = lfrPluginsExcludes.split(",");
+		String[] lfrPluginsExcludesArray = lfrPluginsExcludes.split(",")
 
 		lfrPluginsExcludesArray = lfrPluginsExcludesArray.collect(
 			{
 				"**/" + it + "/build.gradle"
 			}
-		);
+		)
  
 		lfrPluginsExcludesArray.each(
 			{
-				exclude(it);
+				exclude(it)
 			}
-		);
+		)
 	}
 	else {
-		exclude("**/build.gradle");
+		exclude("**/build.gradle")
 	}
 
 	if (userDirName.equals(rootDir.toString())) {
-		exclude("build.gradle");
-		exclude("tools/gradle/build.gradle");
+		exclude("build.gradle")
+		exclude("tools/gradle/build.gradle")
 	}
-};
+}
 
 fileTree.each(
 	{
-		URI rootURI = rootDir.toURI();
+		URI rootURI = rootDir.toURI()
 
-		URI pluginURI = it.toURI();
+		URI pluginURI = it.toURI()
 
-		pluginURI = rootURI.relativize(pluginURI);
+		pluginURI = rootURI.relativize(pluginURI)
 
-		String pluginDir = pluginURI.toString();
+		String pluginDir = pluginURI.toString()
 
-		pluginDir = pluginDir.replaceFirst("/build.gradle", "");
+		pluginDir = pluginDir.replaceFirst("/build.gradle", "")
 
-		includeTransitive(":" + pluginDir.replaceAll("[\\/]", ":"));
+		includeTransitive(":" + pluginDir.replaceAll("[\\/]", ":"))
 	}
-);
+)
 
-gradle.ext.lfrSdkDir = file(".");
+gradle.ext.lfrSdkDir = file(".")
