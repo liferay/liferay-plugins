@@ -40,5 +40,6 @@
 	</entity>
 	<exceptions>
 		<exception>ShortURLTaken</exception>
+		<exception>ShortLinkEntryInvalidInput</exception>
 	</exceptions>
 </service-builder>
