@@ -129,4 +129,4 @@ fileTree.each(
 	}
 );
 
-gradle.ext.sdkDir = file(".");
+gradle.ext.lfrSdkDir = file(".");
