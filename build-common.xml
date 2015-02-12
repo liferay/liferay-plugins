@@ -2338,20 +2338,28 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<equals arg1="${junit.code.coverage}" arg2="true" />
 				<then>
-					<cobertura-merge datafile="@{module.dir}/test-coverage/cobertura.ser">
-						<fileset dir="@{module.dir}/test-coverage/integration" erroronmissingdir="false">
-							<include name="cobertura.ser" />
-						</fileset>
-						<fileset dir="@{module.dir}/test-coverage/unit" erroronmissingdir="false">
-							<include name="cobertura.ser" />
-						</fileset>
-					</cobertura-merge>
+					<if>
+						<or>
+							<available file="@{module.dir}/test-coverage/integration/cobertura.ser" />
+							<available file="@{module.dir}/test-coverage/unit/cobertura.ser" />
+						</or>
+						<then>
+							<cobertura-merge datafile="@{module.dir}/test-coverage/cobertura.ser">
+								<fileset dir="@{module.dir}/test-coverage/integration" erroronmissingdir="false">
+									<include name="cobertura.ser" />
+								</fileset>
+								<fileset dir="@{module.dir}/test-coverage/unit" erroronmissingdir="false">
+									<include name="cobertura.ser" />
+								</fileset>
+							</cobertura-merge>
 
-					<cobertura-report datafile="@{module.dir}/test-coverage/cobertura.ser" format="html" destdir="@{module.dir}/coverage-reports">
-						<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
-						<fileset dir="@{module.dir}/service" erroronmissingdir="false" />
-						<fileset dir="@{module.dir}/src" erroronmissingdir="false" />
-					</cobertura-report>
+							<cobertura-report datafile="@{module.dir}/test-coverage/cobertura.ser" format="html" destdir="@{module.dir}/coverage-reports">
+								<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
+								<fileset dir="@{module.dir}/service" erroronmissingdir="false" />
+								<fileset dir="@{module.dir}/src" erroronmissingdir="false" />
+							</cobertura-report>
+						</then>
+					</if>
 				</then>
 			</if>
 		</sequential>
