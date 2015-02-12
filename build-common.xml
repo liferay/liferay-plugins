@@ -2158,6 +2158,33 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="instrument-code">
+		<attribute name="module.dir" />
+		<attribute name="test.type" />
+
+		<sequential>
+			<if>
+				<equals arg1="${junit.code.coverage}" arg2="true" />
+				<then>
+					<delete file="@{module.dir}/test-coverage/cobertura.ser" />
+
+					<cobertura-instrument datafile="@{module.dir}/test-coverage/@{test.type}/cobertura.ser" todir="@{module.dir}/test-coverage/@{test.type}">
+						<ignore regex="org.apache.log4j.*" />
+
+						<fileset dir="@{module.dir}/classes" erroronmissingdir="false">
+							<include name="**/*.class" />
+							<exclude name="**/*Test.class" />
+							<exclude name="**/*TestCase.class" />
+						</fileset>
+						<fileset dir="@{module.dir}/docroot/WEB-INF/classes" erroronmissingdir="false">
+							<include name="**/*.class" />
+						</fileset>
+					</cobertura-instrument>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="javadoc-macro">
 		<attribute name="module.dir" />
 
