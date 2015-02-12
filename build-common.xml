@@ -2472,6 +2472,24 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="report-coverage">
+		<attribute name="module.dir" />
+		<attribute name="test.type" />
+
+		<sequential>
+			<if>
+				<equals arg1="${junit.code.coverage}" arg2="true" />
+				<then>
+					<cobertura-report datafile="@{module.dir}/test-coverage/@{test.type}/cobertura.ser" format="html" destdir="@{module.dir}/coverage-reports/@{test.type}">
+						<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
+						<fileset dir="@{module.dir}/service" erroronmissingdir="false" />
+						<fileset dir="@{module.dir}/src" erroronmissingdir="false" />
+					</cobertura-report>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="reset-gradle">
 		<attribute name="module.dir" />
 
