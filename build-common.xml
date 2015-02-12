@@ -513,9 +513,11 @@ Error-Prone was automatically installed. Please rerun your task.
 				</then>
 			</if>
 
+			<delete dir="@{module.dir}/coverage-reports" />
 			<delete dir="@{module.dir}/javadoc" />
 			<delete dir="@{module.dir}/pmd-reports" />
 			<delete dir="@{module.dir}/test-classes" />
+			<delete dir="@{module.dir}/test-coverage" />
 			<delete dir="@{module.dir}/test-results" />
 			<delete dir="@{module.dir}/tmp" />
 
@@ -1188,7 +1190,9 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<available file="@{module.dir}/test/@{test.type}" type="dir" />
 				<then>
+					<mkdir dir="@{module.dir}/coverage-reports/@{test.type}" />
 					<mkdir dir="@{module.dir}/test-classes/@{test.type}" />
+					<mkdir dir="@{module.dir}/test-coverage/@{test.type}" />
 					<mkdir dir="@{module.dir}/test-results/@{test.type}" />
 
 					<copy todir="@{module.dir}/test-classes/@{test.type}">
@@ -2691,7 +2695,9 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<available file="@{module.dir}/test/@{test.type}" />
 				<then>
+					<delete dir="@{module.dir}/coverage-reports/@{test.type}" />
 					<delete dir="@{module.dir}/test-classes/@{test.type}" />
+					<delete dir="@{module.dir}/test-coverage/@{test.type}" />
 					<delete dir="@{module.dir}/test-results/@{test.type}" />
 
 					<compile
