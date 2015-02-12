@@ -15,6 +15,7 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.compat.portal.kernel.search.BaseIndexer;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
@@ -102,6 +103,19 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexModels(companyId);
+	}
+
+	@Override
+	protected Document getBaseModelDocument(
+			String portletId, BaseModel<?> baseModel)
+		throws SystemException {
+
+		Document document = super.getBaseModelDocument(portletId, baseModel);
+
+		document.remove(Field.USER_ID);
+		document.remove(Field.USER_NAME);
+
+		return document;
 	}
 
 	@Override
