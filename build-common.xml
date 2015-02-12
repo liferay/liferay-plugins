@@ -2179,6 +2179,12 @@ Please find a solution that does not require portal-impl.jar.
 						<fileset dir="@{module.dir}/docroot/WEB-INF/classes" erroronmissingdir="false">
 							<include name="**/*.class" />
 						</fileset>
+
+						<auxClasspath refid="classpath.cobertura" />
+						<auxClasspath refid="classpath.com.liferay.ant.bnd" />
+						<auxClasspath refid="plugin.classpath" />
+						<auxClasspath refid="portal.classpath" />
+						<auxClasspath refid="test.classpath" />
 					</cobertura-instrument>
 				</then>
 			</if>
