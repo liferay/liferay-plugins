@@ -2331,6 +2331,32 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="merge-coverage">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<if>
+				<equals arg1="${junit.code.coverage}" arg2="true" />
+				<then>
+					<cobertura-merge datafile="@{module.dir}/test-coverage/cobertura.ser">
+						<fileset dir="@{module.dir}/test-coverage/integration" erroronmissingdir="false">
+							<include name="cobertura.ser" />
+						</fileset>
+						<fileset dir="@{module.dir}/test-coverage/unit" erroronmissingdir="false">
+							<include name="cobertura.ser" />
+						</fileset>
+					</cobertura-merge>
+
+					<cobertura-report datafile="@{module.dir}/test-coverage/cobertura.ser" format="html" destdir="@{module.dir}/coverage-reports">
+						<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
+						<fileset dir="@{module.dir}/service" erroronmissingdir="false" />
+						<fileset dir="@{module.dir}/src" erroronmissingdir="false" />
+					</cobertura-report>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="merge-unzip">
 		<attribute name="module.dir" />
 
@@ -2662,6 +2688,10 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<test-unit
+				module.dir="@{module.dir}"
+			/>
+
+			<merge-coverage
 				module.dir="@{module.dir}"
 			/>
 		</sequential>
