@@ -68,7 +68,7 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 
 		if (isUpdated()) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("SyncDLObject table already updated");
+				_log.warn("SyncDLObject table was already updated");
 
 				return;
 			}
