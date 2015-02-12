@@ -66,6 +66,14 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 			return;
 		}
 
+		if (!containsObjectIdColumn()) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("SyncDLObject table already updated");
+
+				return;
+			}
+		}
+
 		String createSQL = upgradeTable.getCreateSQL();
 
 		createSQL = StringUtil.replace(
@@ -74,6 +82,29 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 		upgradeTable.setCreateSQL(createSQL);
 
 		_syncDLObjectIds = getSyncDLObjectIds();
+	}
+
+	protected boolean containsObjectIdColumn() {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select * from SyncDLObject where objectId = 0");
+
+			rs = ps.executeQuery();
+		}
+		catch (Exception e) {
+			return false;
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+
+		return true;
 	}
 
 	protected Map<Long, Long> getSyncDLObjectIds() {
