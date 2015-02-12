@@ -14,22 +14,22 @@
 
 package com.liferay.calendar.hook.upgrade;
 
-import com.liferay.calendar.hook.upgrade.v1_0_0.UpgradeCalendarBooking;
+import com.liferay.calendar.hook.upgrade.v1_0_2.UpgradePortletPreferences;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
- * @author Jenny Chen
+ * @author Bryan Engler
  */
-public class UpgradeProcess_1_0_0 extends UpgradeProcess {
+public class UpgradeProcess_1_0_2 extends UpgradeProcess {
 
 	@Override
 	public int getThreshold() {
-		return 100;
+		return 102;
 	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeCalendarBooking.class);
+		upgrade(UpgradePortletPreferences.class);
 	}
 
 }
