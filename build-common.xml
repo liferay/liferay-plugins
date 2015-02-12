@@ -2807,6 +2807,7 @@ Please find a solution that does not require portal-impl.jar.
 								<sysproperty key="whip.agent" file="${whip.agent}" />
 								<sysproperty key="whip.datafile" file="@{module.dir}/test-coverage/whip.dat" />
 								<sysproperty key="whip.instrument.dump" value="${whip.instrument.dump}" />
+								<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/@{test.type}/cobertura.ser" />
 								<jvmarg line="${junit.debug.jpda}" />
 								<jvmarg line="${junit.java.gc}" />
 								<jvmarg line="${whip.agent}" />
@@ -2818,7 +2819,7 @@ Please find a solution that does not require portal-impl.jar.
 								<jvmarg value="-Dtest.class.group.index=${test.class.group.index}" />
 								<jvmarg value="-Dtest.class.groups=${TEST_CLASS_GROUPS}" />
 								<jvmarg value="-Duser.timezone=GMT" />
-								<classpath location="@{module.dir}/test-coverage" />
+								<classpath location="@{module.dir}/test-coverage/@{test.type}" />
 								<classpath refid="test.classpath" />
 								<formatter type="brief" usefile="false" />
 								<formatter type="xml" />
