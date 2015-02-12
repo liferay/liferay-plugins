@@ -87,6 +87,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 			int nextStatus = KnowledgeBaseUtil.getNextStatus(suggestionStatus);
 			%>
 
+			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
 			<div class="kb-suggestion-actions">
 				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
 					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
@@ -114,6 +115,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					<aui:button cssClass="kb-suggestion-delete" data-href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(deleteURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="delete" />
 				</c:if>
 			</div>
+			</c:if>
 		</td>
 	</tr>
 	</table>
