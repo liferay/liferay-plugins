@@ -2353,7 +2353,7 @@ Please find a solution that does not require portal-impl.jar.
 								</fileset>
 							</cobertura-merge>
 
-							<cobertura-report datafile="@{module.dir}/test-coverage/cobertura.ser" format="html" destdir="@{module.dir}/coverage-reports">
+							<cobertura-report datafile="@{module.dir}/test-coverage/cobertura.ser" format="xml" destdir="@{module.dir}/coverage-reports">
 								<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
 								<fileset dir="@{module.dir}/service" erroronmissingdir="false" />
 								<fileset dir="@{module.dir}/src" erroronmissingdir="false" />
@@ -2514,7 +2514,7 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<equals arg1="${junit.code.coverage}" arg2="true" />
 				<then>
-					<cobertura-report datafile="@{module.dir}/test-coverage/@{test.type}/cobertura.ser" format="html" destdir="@{module.dir}/coverage-reports/@{test.type}">
+					<cobertura-report datafile="@{module.dir}/test-coverage/@{test.type}/cobertura.ser" format="xml" destdir="@{module.dir}/coverage-reports/@{test.type}">
 						<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
 						<fileset dir="@{module.dir}/service" erroronmissingdir="false" />
 						<fileset dir="@{module.dir}/src" erroronmissingdir="false" />
