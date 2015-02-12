@@ -400,7 +400,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			include(includePath);
 		}
 
-		_touch();
+		touch();
 	}
 
 	protected void executeResource(Method method) throws Exception {
@@ -1240,6 +1240,30 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			"Unable to convert " + object + " to a JSON object");
 	}
 
+	protected void touch() throws Exception {
+		Boolean touch = (Boolean)portletContext.getAttribute(
+			TOUCH + portlet.getRootPortletId());
+
+		if (touch != null) {
+			return;
+		}
+
+		String touchPath =
+			"/WEB-INF/jsp/" + portlet.getFriendlyURLMapping() +
+				"/views/touch.jsp";
+
+		if (log.isDebugEnabled()) {
+			log.debug(
+				"Touch " + portlet.getRootPortletId() + " by including " +
+					touchPath);
+		}
+
+		portletContext.setAttribute(
+			TOUCH + portlet.getRootPortletId(), Boolean.FALSE);
+
+		include(touchPath);
+	}
+
 	protected String translate(String pattern, Object... arguments) {
 		return LanguageUtil.format(locale, pattern, arguments);
 	}
@@ -1318,30 +1342,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ThemeDisplay themeDisplay;
 	protected User user;
 	protected String viewPath;
-
-	private void _touch() throws Exception {
-		Boolean touch = (Boolean)portletContext.getAttribute(
-			TOUCH + portlet.getRootPortletId());
-
-		if (touch != null) {
-			return;
-		}
-
-		String touchPath =
-			"/WEB-INF/jsp/" + portlet.getFriendlyURLMapping() +
-				"/views/touch.jsp";
-
-		if (log.isDebugEnabled()) {
-			log.debug(
-				"Touch " + portlet.getRootPortletId() + " by including " +
-					touchPath);
-		}
-
-		portletContext.setAttribute(
-			TOUCH + portlet.getRootPortletId(), Boolean.FALSE);
-
-		include(touchPath);
-	}
 
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
 
