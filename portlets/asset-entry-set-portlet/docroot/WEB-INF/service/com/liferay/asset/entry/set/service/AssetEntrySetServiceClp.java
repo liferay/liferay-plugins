@@ -35,45 +35,46 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		_methodName3 = "addAssetEntrySet";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "long", "long", "java.lang.String", "java.io.File",
-				"boolean"
+				"long", "long", "long", "java.lang.String", "boolean"
 			};
 
 		_methodName4 = "addAssetEntrySet";
 
 		_methodParameterTypes4 = new String[] {
-				"long", "java.lang.String", "java.io.File", "boolean"
+				"long", "java.lang.String", "boolean"
 			};
 
 		_methodName5 = "addAssetEntrySet";
 
-		_methodParameterTypes5 = new String[] {
-				"java.lang.String", "java.io.File", "boolean"
-			};
+		_methodParameterTypes5 = new String[] { "java.lang.String", "boolean" };
 
-		_methodName6 = "deleteAssetEntrySet";
+		_methodName6 = "addFileAttachment";
 
-		_methodParameterTypes6 = new String[] { "long" };
+		_methodParameterTypes6 = new String[] { "java.io.File" };
 
-		_methodName7 = "getNewAssetEntrySets";
+		_methodName7 = "deleteAssetEntrySet";
 
-		_methodParameterTypes7 = new String[] {
-				"long", "long", "int", "int", "int"
-			};
+		_methodParameterTypes7 = new String[] { "long" };
 
-		_methodName8 = "getOldAssetEntrySets";
+		_methodName8 = "getNewAssetEntrySets";
 
 		_methodParameterTypes8 = new String[] {
 				"long", "long", "int", "int", "int"
 			};
 
-		_methodName9 = "likeAssetEntrySet";
+		_methodName9 = "getOldAssetEntrySets";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"long", "long", "int", "int", "int"
+			};
 
-		_methodName10 = "unlikeAssetEntrySet";
+		_methodName10 = "likeAssetEntrySet";
 
 		_methodParameterTypes10 = new String[] { "long" };
+
+		_methodName11 = "unlikeAssetEntrySet";
+
+		_methodParameterTypes11 = new String[] { "long" };
 	}
 
 	@Override
@@ -129,7 +130,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, long creatorClassNameId,
-		long creatorClassPK, java.lang.String payload, java.io.File file,
+		long creatorClassPK, java.lang.String payload,
 		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -146,8 +147,6 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					creatorClassPK,
 						
 					ClpSerializer.translateInput(payload),
-						
-					ClpSerializer.translateInput(file),
 						
 					privateAssetEntrySet
 					});
@@ -178,7 +177,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload,
-		java.io.File file, boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -190,8 +189,6 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 						parentAssetEntrySetId,
 						
 					ClpSerializer.translateInput(payload),
-						
-					ClpSerializer.translateInput(file),
 						
 					privateAssetEntrySet
 					});
@@ -221,8 +218,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload, java.io.File file,
-		boolean privateAssetEntrySet)
+		java.lang.String payload, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -232,8 +228,6 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					_methodParameterTypes5,
 					new Object[] {
 						ClpSerializer.translateInput(payload),
-						
-					ClpSerializer.translateInput(file),
 						
 					privateAssetEntrySet
 					});
@@ -262,6 +256,41 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	}
 
 	@Override
+	public com.liferay.portal.kernel.json.JSONObject addFileAttachment(
+		java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
+					new Object[] { ClpSerializer.translateInput(file) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.json.JSONObject)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet deleteAssetEntrySet(
 		long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -269,8 +298,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6, new Object[] { assetEntrySetId });
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7, new Object[] { assetEntrySetId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -297,52 +326,6 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long createTime, long parentAssetEntrySetId,
-		int childAssetEntrySetsLimit, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
-					new Object[] {
-						createTime,
-						
-					parentAssetEntrySetId,
-						
-					childAssetEntrySetsLimit,
-						
-					start,
-						
-					end
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long createTime, long parentAssetEntrySetId,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -388,6 +371,52 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
+		long createTime, long parentAssetEntrySetId,
+		int childAssetEntrySetsLimit, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
+					new Object[] {
+						createTime,
+						
+					parentAssetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
 		long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -395,8 +424,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { assetEntrySetId });
+			returnObj = _invokableService.invokeMethod(_methodName10,
+					_methodParameterTypes10, new Object[] { assetEntrySetId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -429,8 +458,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { assetEntrySetId });
+			returnObj = _invokableService.invokeMethod(_methodName11,
+					_methodParameterTypes11, new Object[] { assetEntrySetId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -476,4 +505,6 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	private String[] _methodParameterTypes9;
 	private String _methodName10;
 	private String[] _methodParameterTypes10;
+	private String _methodName11;
+	private String[] _methodParameterTypes11;
 }

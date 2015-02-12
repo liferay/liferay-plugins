@@ -62,6 +62,56 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class AssetEntrySetServiceSoap {
+	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
+		long parentAssetEntrySetId, long creatorClassNameId,
+		long creatorClassPK, java.lang.String payload,
+		boolean privateAssetEntrySet) throws RemoteException {
+		try {
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(parentAssetEntrySetId,
+					creatorClassNameId, creatorClassPK, payload,
+					privateAssetEntrySet);
+
+			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
+		long parentAssetEntrySetId, java.lang.String payload,
+		boolean privateAssetEntrySet) throws RemoteException {
+		try {
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(parentAssetEntrySetId,
+					payload, privateAssetEntrySet);
+
+			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
+		java.lang.String payload, boolean privateAssetEntrySet)
+		throws RemoteException {
+		try {
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(payload,
+					privateAssetEntrySet);
+
+			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap deleteAssetEntrySet(
 		long assetEntrySetId) throws RemoteException {
 		try {

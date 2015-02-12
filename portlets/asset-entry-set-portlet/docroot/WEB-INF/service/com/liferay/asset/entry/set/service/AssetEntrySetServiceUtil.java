@@ -65,31 +65,37 @@ public class AssetEntrySetServiceUtil {
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, long creatorClassNameId,
-		long creatorClassPK, java.lang.String payload, java.io.File file,
+		long creatorClassPK, java.lang.String payload,
 		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addAssetEntrySet(parentAssetEntrySetId, creatorClassNameId,
-			creatorClassPK, payload, file, privateAssetEntrySet);
+			creatorClassPK, payload, privateAssetEntrySet);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload,
-		java.io.File file, boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addAssetEntrySet(parentAssetEntrySetId, payload, file,
+				   .addAssetEntrySet(parentAssetEntrySetId, payload,
 			privateAssetEntrySet);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload, java.io.File file,
-		boolean privateAssetEntrySet)
+		java.lang.String payload, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addAssetEntrySet(payload, file, privateAssetEntrySet);
+		return getService().addAssetEntrySet(payload, privateAssetEntrySet);
+	}
+
+	public static com.liferay.portal.kernel.json.JSONObject addFileAttachment(
+		java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().addFileAttachment(file);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet deleteAssetEntrySet(

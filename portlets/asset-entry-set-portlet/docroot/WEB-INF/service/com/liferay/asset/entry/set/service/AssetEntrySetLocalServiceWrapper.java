@@ -294,22 +294,22 @@ public class AssetEntrySetLocalServiceWrapper
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long userId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		java.io.File file, boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.addAssetEntrySet(userId,
-			payloadJSONObject, file, privateAssetEntrySet);
+			payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long userId, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		java.io.File file, boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.addAssetEntrySet(userId,
-			parentAssetEntrySetId, payloadJSONObject, file, privateAssetEntrySet);
+			parentAssetEntrySetId, payloadJSONObject, privateAssetEntrySet);
 	}
 
 	@Override
@@ -317,12 +317,20 @@ public class AssetEntrySetLocalServiceWrapper
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		java.io.File file, boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.addAssetEntrySet(userId,
 			parentAssetEntrySetId, creatorClassNameId, creatorClassPK,
-			payloadJSONObject, file, privateAssetEntrySet);
+			payloadJSONObject, privateAssetEntrySet);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject addFileAttachment(
+		long userId, java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.addFileAttachment(userId, file);
 	}
 
 	@Override
@@ -445,11 +453,11 @@ public class AssetEntrySetLocalServiceWrapper
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		java.io.File file, boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.updateAssetEntrySet(assetEntrySetId,
-			payloadJSONObject, file, privateAssetEntrySet);
+			payloadJSONObject, privateAssetEntrySet);
 	}
 
 	/**

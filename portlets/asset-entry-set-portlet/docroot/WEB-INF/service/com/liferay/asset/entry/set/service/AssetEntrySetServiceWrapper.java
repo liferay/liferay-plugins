@@ -61,33 +61,39 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, long creatorClassNameId,
-		long creatorClassPK, java.lang.String payload, java.io.File file,
+		long creatorClassPK, java.lang.String payload,
 		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.addAssetEntrySet(parentAssetEntrySetId,
-			creatorClassNameId, creatorClassPK, payload, file,
-			privateAssetEntrySet);
+			creatorClassNameId, creatorClassPK, payload, privateAssetEntrySet);
 	}
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long parentAssetEntrySetId, java.lang.String payload,
-		java.io.File file, boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.addAssetEntrySet(parentAssetEntrySetId,
-			payload, file, privateAssetEntrySet);
+			payload, privateAssetEntrySet);
 	}
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload, java.io.File file,
-		boolean privateAssetEntrySet)
+		java.lang.String payload, boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetService.addAssetEntrySet(payload, file,
+		return _assetEntrySetService.addAssetEntrySet(payload,
 			privateAssetEntrySet);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.json.JSONObject addFileAttachment(
+		java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.addFileAttachment(file);
 	}
 
 	@Override
