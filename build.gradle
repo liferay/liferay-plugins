@@ -23,6 +23,9 @@ allprojects {
 		def getBuildGradleDependencies
 		def getBuildGradleDependenciesCompile
 		def getBuildGradleDependenciesProvidedCompile
+		def getBuildGradleExt
+		def getBuildGradleExtPluginFullVersion
+		def getBuildXmlProperty
 		def writeBuildGradleFile
 
 		getBuildGradleDependencies = {
@@ -94,18 +97,87 @@ allprojects {
 			return contents
 		}
 
+		getBuildGradleExt = {
+			Properties bndProperties, Node buildXmlNode, Properties pluginPackageProperties ->
+
+			List contents = []
+
+			contents << "ext {"
+			contents.addAll(getBuildGradleExtPluginFullVersion(bndProperties, buildXmlNode, pluginPackageProperties))
+			contents << "}"
+
+			return contents
+		}
+
+		getBuildGradleExtPluginFullVersion = {
+			Properties bndProperties, Node buildXmlNode, Properties pluginPackageProperties ->
+
+			String pluginFullVersion = null;
+
+			String moduleFullVersion = pluginPackageProperties["module-full-version"]
+
+			if (moduleFullVersion != null) {
+				pluginFullVersion = moduleFullVersion
+			}
+			else {
+				String bundleVersion = bndProperties["Bundle-Version"]
+
+				if (bundleVersion != null) {
+					pluginFullVersion = bundleVersion
+				}
+				else {
+					String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
+
+					if (moduleIncrementalVersion == null) {
+						moduleIncrementalVersion = getBuildXmlProperty(buildXmlNode, "plugin.version", "1")
+					}
+
+					pluginFullVersion = getBuildXmlProperty(buildXmlNode, "plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
+				}
+			}
+
+			return "\tpluginFullVersion = \"${pluginFullVersion}\""
+		}
+
+		getBuildXmlProperty = {
+			Node buildXmlNode, String key, String defaultValue ->
+
+			String value = defaultValue
+
+			buildXmlNode.property.each {
+				println it.@name + " " + key + " " + (it.@name == key)
+
+				if (it.@name == key) {
+					value = it.@value
+				}
+			}
+
+			return value
+		}
+
 		writeBuildGradleFile = {
-			Node ivyXmlNode, Properties pluginPackageProperties ->
+			Properties bndProperties, Node buildXmlNode, Node ivyXmlNode, Properties pluginPackageProperties ->
 
 			List contents = []
 
 			contents.addAll(getBuildGradleDependencies(ivyXmlNode, pluginPackageProperties))
+			contents.addAll(getBuildGradleExt(bndProperties, buildXmlNode, pluginPackageProperties))
 
 			File buildGradleFile = new File("$projectDir/build.gradle")
 
 			contents.each {
 				buildGradleFile << it + "\n"
 			}
+		}
+
+		// bnd.bnd
+
+		Properties bndProperties = new Properties()
+
+		File bndPropertiesFile = new File("$projectDir/bnd.bnd")
+
+		if (bndPropertiesFile.exists()) {
+			bndProperties.load(new FileInputStream(bndPropertiesFile))
 		}
 
 		// build.xml
@@ -117,18 +189,6 @@ allprojects {
 		File buildXmlFile = new File("$projectDir/build.xml")
 
 		Node buildXmlNode = xmlParser.parse(buildXmlFile)
-
-		def getBuildXmlProperty = {
-			key, defaultValue ->
-
-			buildXmlData.property.each {
-				if (it.@name == propName) {
-					return it.@value
-				}
-			}
-
-			return defaultValue
-		}
 
 		// ivy.xml
 
@@ -152,6 +212,6 @@ allprojects {
 
 		// build.gradle
 
-		writeBuildGradleFile(ivyXmlNode, pluginPackageProperties)
+		writeBuildGradleFile(bndProperties, buildXmlNode, ivyXmlNode, pluginPackageProperties)
 	}
 }
