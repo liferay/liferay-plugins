@@ -12,7 +12,6 @@
 	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
-	<classpathentry kind="lib" path="/portal-master/lib/portal/freemarker.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />

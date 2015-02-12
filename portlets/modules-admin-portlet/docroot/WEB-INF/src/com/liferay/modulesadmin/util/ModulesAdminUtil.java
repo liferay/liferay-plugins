@@ -20,12 +20,8 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
-import freemarker.ext.beans.BeansWrapper;
-
-import freemarker.template.TemplateModel;
-import freemarker.template.TemplateModelException;
-
 import java.util.Arrays;
+import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -160,14 +156,10 @@ public class ModulesAdminUtil {
 		return bundle.adapt(BundleWiring.class);
 	}
 
-	public TemplateModel getHeaders(Bundle bundle, String languageId)
-		throws TemplateModelException {
+	public Dictionary<String, String> getHeaders(
+		Bundle bundle, String languageId) {
 
-		BeansWrapper beansWrapper = new BeansWrapper();
-
-		beansWrapper.setSimpleMapWrapper(true);
-
-		return beansWrapper.wrap(bundle.getHeaders(languageId));
+		return bundle.getHeaders(languageId);
 	}
 
 	public List<ServiceReference<?>> getInUseServiceReferences(Bundle bundle) {
