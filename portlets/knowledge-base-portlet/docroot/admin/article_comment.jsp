@@ -88,33 +88,33 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 			%>
 
 			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
-			<div class="kb-suggestion-actions">
-				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
-					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
-						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="kbCommentStatus" value="<%= String.valueOf(previousStatus) %>" />
-					</liferay-portlet:actionURL>
+				<div class="kb-suggestion-actions">
+					<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
+						<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
+							<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
+							<portlet:param name="kbCommentStatus" value="<%= String.valueOf(previousStatus) %>" />
+						</liferay-portlet:actionURL>
 
-					<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(previousStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
-				</c:if>
+						<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(previousStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
+					</c:if>
 
-				<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
-					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="nextStatusURL">
-						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="kbCommentStatus" value="<%= String.valueOf(nextStatus) %>" />
-					</liferay-portlet:actionURL>
+					<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
+						<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="nextStatusURL">
+							<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
+							<portlet:param name="kbCommentStatus" value="<%= String.valueOf(nextStatus) %>" />
+						</liferay-portlet:actionURL>
 
-					<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(nextStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
-				</c:if>
+						<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(nextStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
+					</c:if>
 
-				<c:if test="<%= (suggestionStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
-					<liferay-portlet:actionURL name="deleteKBComment" varImpl="deleteURL">
-						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-					</liferay-portlet:actionURL>
+					<c:if test="<%= (suggestionStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
+						<liferay-portlet:actionURL name="deleteKBComment" varImpl="deleteURL">
+							<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
+						</liferay-portlet:actionURL>
 
-					<aui:button cssClass="kb-suggestion-delete" data-href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(deleteURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="delete" />
-				</c:if>
-			</div>
+						<aui:button cssClass="kb-suggestion-delete" data-href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(deleteURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="delete" />
+					</c:if>
+				</div>
 			</c:if>
 		</td>
 	</tr>
