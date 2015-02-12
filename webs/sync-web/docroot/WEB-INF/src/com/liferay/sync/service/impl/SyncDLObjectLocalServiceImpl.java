@@ -131,8 +131,13 @@ public class SyncDLObjectLocalServiceImpl
 			 event.equals(SyncConstants.EVENT_TRASH)) &&
 			!type.equals(SyncConstants.TYPE_FOLDER)) {
 
-			syncDLFileVersionDiffLocalService.deleteSyncDLFileVersionDiffs(
-				typePK);
+			try {
+				syncDLFileVersionDiffLocalService.deleteSyncDLFileVersionDiffs(
+					typePK);
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
 		}
 
 		return syncDLObject;
@@ -182,5 +187,8 @@ public class SyncDLObjectLocalServiceImpl
 
 		return folder.isDefaultRepository();
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		SyncDLObjectLocalServiceImpl.class);
 
 }
