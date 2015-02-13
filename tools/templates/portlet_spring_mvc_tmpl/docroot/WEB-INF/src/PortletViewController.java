@@ -20,9 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
-/**
- * This class is base controller for VIEW mode.
- */
 @Controller
 @RequestMapping("VIEW")
 public class @portlet.java.class.name@PortletViewController {

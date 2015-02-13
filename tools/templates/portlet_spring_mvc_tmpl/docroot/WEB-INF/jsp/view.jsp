@@ -18,6 +18,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-This is the <b>@portlet.display.name@</b> portlet.
-<br/>
+This is the <b>@portlet.display.name@</b> portlet.<br />
+
 <c:out escapeXml="true" value="${releaseInfo}" />.
