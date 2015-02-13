@@ -166,19 +166,23 @@ public class URLMetadataScraperProcessor {
 
 		URL url = new URL(imageURL);
 
-		BufferedImage bufferedImage = ImageIO.read(url);
+		try {
+			BufferedImage bufferedImage = ImageIO.read(url);
 
-		if (bufferedImage == null) {
-			return false;
+			if (bufferedImage == null) {
+				return false;
+			}
+
+			if ((bufferedImage.getWidth() >= _MINIMUM_IMAGE_SIZE) &&
+				(bufferedImage.getHeight() >= _MINIMUM_IMAGE_SIZE)) {
+
+				return true;
+			}
+		}
+		catch (Exception e) {
 		}
 
-		if ((bufferedImage.getWidth() < _MINIMUM_IMAGE_SIZE) ||
-			(bufferedImage.getHeight() < _MINIMUM_IMAGE_SIZE)) {
-
-			return false;
-		}
-
-		return true;
+		return false;
 	}
 
 	private static int _MAXIMUM_IMAGE_URLS = 10;
