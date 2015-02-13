@@ -185,56 +185,6 @@ portal-dependency-jars=scala-library.jar</echo>
 		</if>
 
 		<if>
-			<equals arg1="${portlet.framework}" arg2="vaadin" />
-			<then>
-				<move
-					file="${portlet.dir}/docroot/WEB-INF/src/Application.java"
-					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}Application.java"
-				/>
-
-				<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
-
-portal-dependency-jars=vaadin.jar</echo>
-
-				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-					<replacetoken><![CDATA[<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
-					<replacevalue><![CDATA[<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>]]></replacevalue>
-				</replace>
-
-				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-					<replacetoken><![CDATA[<name>view-template</name>]]></replacetoken>
-					<replacevalue><![CDATA[<name>application</name>]]></replacevalue>
-				</replace>
-
-				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-					<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
-					<replacevalue><![CDATA[<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>]]></replacevalue>
-				</replace>
-
-				<replaceregexp match="&lt;/icon&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/icon&gt;" flags="s">
-					<fileset
-						dir="${portlet.dir}/docroot/WEB-INF"
-						includes="liferay-portlet.xml"
-					/>
-				</replaceregexp>
-
-				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
-					<replacetoken><![CDATA[</icon>]]></replacetoken>
-					<replacevalue><![CDATA[</icon>
-		<requires-namespaced-parameters>false</requires-namespaced-parameters>
-		<ajaxable>false</ajaxable>]]></replacevalue>
-				</replace>
-
-				<delete includeemptydirs="true">
-					<fileset
-						dir="${portlet.dir}/docroot"
-						includes="css/**,js/**,view.jsp"
-					/>
-				</delete>
-			</then>
-		</if>
-
-		<if>
 			<equals arg1="${portlet.framework}" arg2="spring_mvc" />
 			<then>
 				<move
@@ -282,6 +232,56 @@ portal-dependency-jars=aopalliance.jar,commons-logging.jar,jstl-api.jar,jstl-imp
 					<fileset
 						dir="${portlet.dir}/docroot"
 						includes="view.jsp"
+					/>
+				</delete>
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${portlet.framework}" arg2="vaadin" />
+			<then>
+				<move
+					file="${portlet.dir}/docroot/WEB-INF/src/Application.java"
+					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}Application.java"
+				/>
+
+				<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+
+portal-dependency-jars=vaadin.jar</echo>
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+					<replacetoken><![CDATA[<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+					<replacevalue><![CDATA[<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>]]></replacevalue>
+				</replace>
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+					<replacetoken><![CDATA[<name>view-template</name>]]></replacetoken>
+					<replacevalue><![CDATA[<name>application</name>]]></replacevalue>
+				</replace>
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+					<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
+					<replacevalue><![CDATA[<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>]]></replacevalue>
+				</replace>
+
+				<replaceregexp match="&lt;/icon&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/icon&gt;" flags="s">
+					<fileset
+						dir="${portlet.dir}/docroot/WEB-INF"
+						includes="liferay-portlet.xml"
+					/>
+				</replaceregexp>
+
+				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
+					<replacetoken><![CDATA[</icon>]]></replacetoken>
+					<replacevalue><![CDATA[</icon>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<ajaxable>false</ajaxable>]]></replacevalue>
+				</replace>
+
+				<delete includeemptydirs="true">
+					<fileset
+						dir="${portlet.dir}/docroot"
+						includes="css/**,js/**,view.jsp"
 					/>
 				</delete>
 			</then>
