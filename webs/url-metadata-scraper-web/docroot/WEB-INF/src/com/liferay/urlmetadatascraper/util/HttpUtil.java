@@ -59,14 +59,6 @@ public class HttpUtil {
 		return HTTP;
 	}
 
-	public static boolean hasDomain(String url) {
-		if (Validator.isNull(url)) {
-			return false;
-		}
-
-		return Validator.isNotNull(getDomain(url));
-	}
-
 	public static String removeProtocol(String url) {
 		if (Validator.isNull(url)) {
 			return url;
