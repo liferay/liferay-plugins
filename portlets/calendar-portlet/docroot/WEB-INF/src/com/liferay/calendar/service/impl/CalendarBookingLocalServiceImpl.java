@@ -1117,12 +1117,8 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		try {
-			long senderId = serviceContext.getUserId();
-			User sender = null;
-
-			if (senderId != 0) {
-				sender = userLocalService.fetchUser(senderId);
-			}
+			User sender = userLocalService.fetchUser(
+				serviceContext.getUserId());
 
 			NotificationType notificationType = NotificationType.parse(
 				PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
