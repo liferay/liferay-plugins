@@ -129,11 +129,9 @@ public class CalendarBookingApprovalWorkflowImpl
 			return true;
 		}
 
-		if (userId != calendarBooking.getUserId()) {
-			return false;
-		}
+		if ((userId != calendarBooking.getUserId()) ||
+			(userId != calendarResource.getUserId())) {
 
-		if (userId != calendarResource.getUserId()) {
 			return false;
 		}
 
