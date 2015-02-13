@@ -188,11 +188,6 @@ portal-dependency-jars=scala-library.jar</echo>
 			<equals arg1="${portlet.framework}" arg2="spring_mvc" />
 			<then>
 				<move
-					file="${portlet.dir}/docroot/WEB-INF/src/PortletViewController.java"
-					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}PortletViewController.java"
-				/>
-
-				<move
 					file="${portlet.dir}/docroot/WEB-INF/jsp/view.jsp"
 					tofile="${portlet.dir}/docroot/WEB-INF/jsp/${portlet.name}/view.jsp"
 				/>
@@ -200,6 +195,11 @@ portal-dependency-jars=scala-library.jar</echo>
 				<move
 					file="${portlet.dir}/docroot/WEB-INF/spring-context/portlet-context.xml"
 					tofile="${portlet.dir}/docroot/WEB-INF/spring-context/portlet/${portlet.name}-portlet.xml"
+				/>
+
+				<move
+					file="${portlet.dir}/docroot/WEB-INF/src/PortletViewController.java"
+					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}PortletViewController.java"
 				/>
 
 				<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
