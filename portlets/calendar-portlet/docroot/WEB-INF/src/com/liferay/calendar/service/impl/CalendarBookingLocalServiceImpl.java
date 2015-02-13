@@ -198,15 +198,15 @@ public class CalendarBookingLocalServiceImpl
 			CalendarActivityKeys.ADD_CALENDAR_BOOKING,
 			getExtraDataJSON(calendarBooking), 0);
 
-		// Workflow
-
-		calendarBookingApprovalWorkflow.startWorkflow(
-			userId, calendarBooking, serviceContext);
-
 		// Notifications
 
 		sendNotification(
 			calendarBooking, NotificationTemplateType.INVITE, serviceContext);
+
+		// Workflow
+
+		calendarBookingApprovalWorkflow.startWorkflow(
+			userId, calendarBooking, serviceContext);
 
 		return calendarBooking;
 	}
