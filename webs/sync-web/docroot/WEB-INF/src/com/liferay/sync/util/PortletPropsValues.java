@@ -50,6 +50,16 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME));
 
+	public static final String[] SYNC_MAC_PACKAGE_FOLDER_EXTENSIONS =
+		GetterUtil.getStringValues(
+			PortletProps.getArray(
+				PortletPropsKeys.SYNC_MAC_PACKAGE_FOLDER_EXTENSIONS));
+
+	public static final String[] SYNC_MAC_PACKAGE_METADATA_FILE_NAMES =
+		GetterUtil.getStringValues(
+			PortletProps.getArray(
+				PortletPropsKeys.SYNC_MAC_PACKAGE_METADATA_FILE_NAMES));
+
 	public static final boolean SYNC_SERVICES_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SYNC_SERVICES_ENABLED));
 

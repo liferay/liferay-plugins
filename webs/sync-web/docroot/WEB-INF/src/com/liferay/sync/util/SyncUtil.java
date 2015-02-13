@@ -394,7 +394,7 @@ public class SyncUtil {
 		syncDLObject.setMimeType(dlFileVersion.getMimeType());
 		syncDLObject.setDescription(dlFileVersion.getDescription());
 		syncDLObject.setChangeLog(dlFileVersion.getChangeLog());
-		syncDLObject.setExtraSettings(dlFileVersion.getExtraSettings());
+		syncDLObject.setExtraSettings(StringPool.BLANK);
 		syncDLObject.setVersion(dlFileVersion.getVersion());
 		syncDLObject.setSize(dlFileVersion.getSize());
 

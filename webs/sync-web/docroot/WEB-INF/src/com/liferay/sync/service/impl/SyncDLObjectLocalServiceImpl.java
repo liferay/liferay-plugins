@@ -19,14 +19,19 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.base.SyncDLObjectLocalServiceBaseImpl;
+import com.liferay.sync.util.PortletPropsValues;
 
 import java.util.Date;
 import java.util.List;
@@ -117,7 +122,6 @@ public class SyncDLObjectLocalServiceImpl
 		syncDLObject.setMimeType(mimeType);
 		syncDLObject.setDescription(description);
 		syncDLObject.setChangeLog(changeLog);
-		syncDLObject.setExtraSettings(extraSettings);
 		syncDLObject.setVersion(version);
 		syncDLObject.setSize(size);
 		syncDLObject.setChecksum(checksum);
@@ -127,6 +131,36 @@ public class SyncDLObjectLocalServiceImpl
 		syncDLObject.setLockUserName(lockUserName);
 
 		syncDLObject = syncDLObjectPersistence.update(syncDLObject);
+
+		if (type.equals(SyncConstants.TYPE_FILE) &&
+			ArrayUtil.contains(
+				PortletPropsValues.SYNC_MAC_PACKAGE_METADATA_FILE_NAMES,
+				syncDLObject.getName())) {
+
+			SyncDLObject parentFolderSyncDLObject =
+				syncDLObjectPersistence.fetchByT_T(
+					SyncConstants.TYPE_FOLDER,
+					syncDLObject.getParentFolderId());
+
+			String parentFolderExtension = FileUtil.getExtension(
+				parentFolderSyncDLObject.getName());
+
+			if (ArrayUtil.contains(
+					PortletPropsValues.SYNC_MAC_PACKAGE_FOLDER_EXTENSIONS,
+				parentFolderExtension)) {
+
+				JSONObject extraSettingsJSONObject =
+					JSONFactoryUtil.createJSONObject(
+						parentFolderSyncDLObject.getExtraSettings());
+
+				extraSettingsJSONObject.put("macPackage", true);
+
+				parentFolderSyncDLObject.setExtraSettings(
+					extraSettingsJSONObject.toString());
+
+				syncDLObjectPersistence.update(parentFolderSyncDLObject);
+			}
+		}
 
 		if ((event.equals(SyncConstants.EVENT_DELETE) ||
 			 event.equals(SyncConstants.EVENT_TRASH)) &&
