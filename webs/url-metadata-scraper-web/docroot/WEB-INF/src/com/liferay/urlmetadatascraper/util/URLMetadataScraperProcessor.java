@@ -120,7 +120,9 @@ public class URLMetadataScraperProcessor {
 			for (Element imageElement : imageElements) {
 				String imageURL = imageElement.absUrl("src");
 
-				if (isValidImageURL(imageURL)) {
+				if (isValidImageURL(imageURL) &&
+					!imageURLs.contains(imageURL)) {
+
 					imageURLs.add(imageURL);
 
 					if (imageURLs.size() >= _MAXIMUM_IMAGE_URLS) {
