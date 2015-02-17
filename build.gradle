@@ -20,23 +20,40 @@ allprojects {
 	}
 
 	task initGradle {
-		def getBuildGradleDependencies
-		def getBuildGradleDependenciesCompile
-		def getBuildGradleDependenciesProvidedCompile
-		def getBuildGradleExt
-		def getBuildGradleExtPluginFullVersion
-		def getBuildXmlProperty
-		def writeBuildGradleFile
+		Closure getBuildGradleDependencies
+		Closure getBuildGradleDependenciesCompile
+		Closure getBuildGradleDependenciesProvidedCompile
+		Closure getBuildGradleExt
+		Closure getBuildGradleExtPluginFullVersion
+		Closure getBuildGradleImportShared
+		Closure getBuildXmlProperty
+		Closure writeBuildGradleFile
+		Closure writeDependencySettingsFile
+
+		File bndPropertiesFile
+		File buildXmlFile
+		File ivyXmlFile
+		File pluginPackagePropertiesFile
+
+		Node buildXmlNode
+		Node ivyXmlNode
+
+		Properties bndProperties
+		Properties pluginPackageProperties
+
+		String importShared
+		String portalDependencyJars
+		String requiredDeploymentContexts
+
+		XmlParser xmlParser
 
 		getBuildGradleDependencies = {
-			Node ivyXmlNode, Properties pluginPackageProperties ->
-
 			List contents = []
 
 			contents << "dependencies {"
 
-			contents.addAll(getBuildGradleDependenciesCompile(ivyXmlNode))
-			contents.addAll(getBuildGradleDependenciesProvidedCompile(pluginPackageProperties))
+			contents.addAll(getBuildGradleDependenciesCompile())
+			contents.addAll(getBuildGradleDependenciesProvidedCompile())
 
 			contents << "}"
 
@@ -44,8 +61,6 @@ allprojects {
 		}
 
 		getBuildGradleDependenciesCompile = {
-			Node ivyXmlNode ->
-
 			List contents = []
 
 			contents << "\tcompile("
@@ -62,13 +77,9 @@ allprojects {
 		}
 
 		getBuildGradleDependenciesProvidedCompile = {
-			Properties pluginPackageProperties ->
-
 			List contents = []
 
 			contents << "\tprovidedCompile("
-
-			String portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
 
 			if (portalDependencyJars != null) {
 				portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
@@ -98,20 +109,16 @@ allprojects {
 		}
 
 		getBuildGradleExt = {
-			Properties bndProperties, Node buildXmlNode, Properties pluginPackageProperties ->
-
 			List contents = []
 
 			contents << "ext {"
-			contents.addAll(getBuildGradleExtPluginFullVersion(bndProperties, buildXmlNode, pluginPackageProperties))
+			contents.addAll(getBuildGradleExtPluginFullVersion())
 			contents << "}"
 
 			return contents
 		}
 
 		getBuildGradleExtPluginFullVersion = {
-			Properties bndProperties, Node buildXmlNode, Properties pluginPackageProperties ->
-
 			String pluginFullVersion = null;
 
 			String moduleFullVersion = pluginPackageProperties["module-full-version"]
@@ -129,39 +136,37 @@ allprojects {
 					String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
 
 					if (moduleIncrementalVersion == null) {
-						moduleIncrementalVersion = getBuildXmlProperty(buildXmlNode, "plugin.version", "1")
+						moduleIncrementalVersion = getBuildXmlProperty("plugin.version", "1")
 					}
 
-					pluginFullVersion = getBuildXmlProperty(buildXmlNode, "plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
+					pluginFullVersion = getBuildXmlProperty("plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
 				}
 			}
 
-			return "\tpluginFullVersion = \"${pluginFullVersion}\""
+			return "\tpluginFullVersion = \"$pluginFullVersion\""
 		}
 
 		getBuildXmlProperty = {
-			Node buildXmlNode, String key, String defaultValue ->
+			key, defaultValue ->
 
 			String value = defaultValue
 
-			buildXmlNode.property.each {
-				println it.@name + " " + key + " " + (it.@name == key)
+			Node buildXmlPropertyNode = buildXmlNode.property.find {
+				it.@name == key
+			}
 
-				if (it.@name == key) {
-					value = it.@value
-				}
+			if (buildXmlPropertyNode) {
+				value = buildXmlPropertyNode.@value
 			}
 
 			return value
 		}
 
 		writeBuildGradleFile = {
-			Properties bndProperties, Node buildXmlNode, Node ivyXmlNode, Properties pluginPackageProperties ->
-
 			List contents = []
 
-			contents.addAll(getBuildGradleDependencies(ivyXmlNode, pluginPackageProperties))
-			contents.addAll(getBuildGradleExt(bndProperties, buildXmlNode, pluginPackageProperties))
+			contents.addAll(getBuildGradleDependencies())
+			contents.addAll(getBuildGradleExt())
 
 			File buildGradleFile = new File("$projectDir/build.gradle")
 
@@ -172,9 +177,9 @@ allprojects {
 
 		// bnd.bnd
 
-		Properties bndProperties = new Properties()
+		bndProperties = new Properties()
 
-		File bndPropertiesFile = new File("$projectDir/bnd.bnd")
+		bndPropertiesFile = new File("$projectDir/bnd.bnd")
 
 		if (bndPropertiesFile.exists()) {
 			bndProperties.load(new FileInputStream(bndPropertiesFile))
@@ -182,19 +187,19 @@ allprojects {
 
 		// build.xml
 
-		XmlParser xmlParser = new XmlParser()
+		xmlParser = new XmlParser()
 
 		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
 
-		File buildXmlFile = new File("$projectDir/build.xml")
+		buildXmlFile = new File("$projectDir/build.xml")
 
-		Node buildXmlNode = xmlParser.parse(buildXmlFile)
+		buildXmlNode = xmlParser.parse(buildXmlFile)
 
 		// ivy.xml
 
-		Node ivyXmlNode = null
+		ivyXmlNode = null
 
-		File ivyXmlFile = new File("$projectDir/ivy.xml")
+		ivyXmlFile = new File("$projectDir/ivy.xml")
 
 		if (ivyXmlFile.exists()) {
 			ivyXmlNode = xmlParser.parse(ivyXmlFile)
@@ -202,16 +207,24 @@ allprojects {
 
 		// liferay-plugin-package.properties
 
-		Properties pluginPackageProperties = new Properties()
+		pluginPackageProperties = new Properties()
 
-		File pluginPackagePropertiesFile = new File("$projectDir/docroot/WEB-INF/liferay-plugin-package.properties")
+		pluginPackagePropertiesFile = new File("$projectDir/docroot/WEB-INF/liferay-plugin-package.properties")
 
 		if (pluginPackagePropertiesFile.exists()) {
 			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
 		}
 
+		// Set properties
+
+		importShared = getBuildXmlProperty("import.shared", "")
+
+		portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
+
+		requiredDeploymentContexts = pluginPackageProperties["required-deployment-contexts"]
+
 		// build.gradle
 
-		writeBuildGradleFile(bndProperties, buildXmlNode, ivyXmlNode, pluginPackageProperties)
+		writeBuildGradleFile()
 	}
 }
