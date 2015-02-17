@@ -52,8 +52,13 @@ allprojects {
 
 			contents << "dependencies {"
 
-			contents.addAll(getBuildGradleDependenciesCompile())
-			contents.addAll(getBuildGradleDependenciesProvidedCompile())
+			if (ivyXmlNode || requiredDeploymentContexts) {
+				contents.addAll(getBuildGradleDependenciesCompile())
+			}
+
+			if (portalDependencyJars) {
+				contents.addAll(getBuildGradleDependenciesProvidedCompile())
+			}
 
 			contents << "}"
 
@@ -71,6 +76,20 @@ allprojects {
 				}
 			}
 
+			if (requiredDeploymentContexts) {
+				requiredDeploymentContexts.split(",").each {
+					String serviceJarType = it.replaceFirst(".+-", "")
+
+					serviceJarType = serviceJarType + "s"
+
+					File serviceJar = new File("$projectDir/../../$serviceJarType/$it/docroot/WEB-INF/lib/$it-service.jar")
+
+					if (serviceJar.exists()) {
+						contents << "\t\tfiles(\"../../$serviceJarType/$it/docroot/WEB-INF/lib/$it-service.jar\"),"
+					}
+				}
+			}
+
 			contents << "\t)"
 
 			return contents
@@ -81,25 +100,23 @@ allprojects {
 
 			contents << "\tprovidedCompile("
 
-			if (portalDependencyJars != null) {
-				portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
-				portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
-					it[1].toUpperCase()
+			portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
+			portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
+				it[1].toUpperCase()
+			}
+
+			String[] portalDependencyJarsArray = portalDependencyJars.split(",");
+
+			portalDependencyJarsArray.each {
+				portalDependencyJar ->
+
+				Map portalDependencyJarsMap = portalDependencies.get(portalDependencyJar)
+
+				if (portalDependencyJarsMap == null) {
+					println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
 				}
-
-				String[] portalDependencyJarsArray = portalDependencyJars.split(",");
-
-				portalDependencyJarsArray.each {
-					portalDependencyJar ->
-
-					Map portalDependencyJarsMap = portalDependencies.get(portalDependencyJar)
-
-					if (portalDependencyJarsMap == null) {
-						println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
-					}
-					else {
-						contents << "\t\t[group: \"${portalDependencyJarsMap."group"}\", name: \"${portalDependencyJarsMap."name"}\", version: \"${portalDependencyJarsMap."version"}\"],"
-					}
+				else {
+					contents << "\t\t[group: \"${portalDependencyJarsMap."group"}\", name: \"${portalDependencyJarsMap."name"}\", version: \"${portalDependencyJarsMap."version"}\"],"
 				}
 			}
 
@@ -165,7 +182,10 @@ allprojects {
 		writeBuildGradleFile = {
 			List contents = []
 
-			contents.addAll(getBuildGradleDependencies())
+			if (ivyXmlNode || portalDependencyJars || requiredDeploymentContexts) {
+				contents.addAll(getBuildGradleDependencies())
+			}
+
 			contents.addAll(getBuildGradleExt())
 
 			File buildGradleFile = new File("$projectDir/build.gradle")
