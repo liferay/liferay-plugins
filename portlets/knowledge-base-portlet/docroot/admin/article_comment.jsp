@@ -46,7 +46,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 				<h4><a href="<%= viewKBArticleURL.toString() %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
 			</c:if>
 
-			<div>
+			<div class="kb-article-comment-body">
 				<%= HtmlUtil.replaceNewLine(HtmlUtil.escape(kbComment.getContent())) %>
 			</div>
 

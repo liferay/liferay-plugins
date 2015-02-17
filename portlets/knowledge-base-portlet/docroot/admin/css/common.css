@@ -119,6 +119,10 @@
 			vertical-align: top;
 			width: 100%;
 
+			.kb-article-comment-body {
+				word-break: normal;
+			}
+
 			.kb-article-comment-user {
 				text-align: center;
 				width: 30%;
