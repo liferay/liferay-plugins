@@ -166,7 +166,7 @@
 	.kb-article-suggestion-actions {
 		clear: both;
 		display: inline-block;
-		padding-left: 20px;
+		padding: 10px 20px;
 	}
 
 	.kb-article-siblings {
