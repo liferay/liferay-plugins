@@ -36,6 +36,8 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.Group;
@@ -882,7 +884,15 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 							jsonWebServiceActionParametersMap));
 				}
 				catch (Exception e) {
-					String json = "{\"exception\": \"" + e.getMessage() + "\"}";
+					String message = e.getMessage();
+
+					if (!message.startsWith(StringPool.QUOTE) &&
+						!message.endsWith(StringPool.QUOTE)) {
+
+						message = StringUtil.quote(message, StringPool.QUOTE);
+					}
+
+					String json = "{\"exception\": " + message + "}";
 
 					responseMap.put(zipFileId, json);
 				}
