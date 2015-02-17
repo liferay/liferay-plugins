@@ -340,13 +340,14 @@ public class KBArticleImporter {
 	private List<String> _getEntries(ZipReader zipReader)
 		throws KBArticleImportException {
 
-		try {
-			return zipReader.getEntries();
-		}
-		catch (NullPointerException npe) {
+		List<String> entries = zipReader.getEntries();
+
+		if (entries == null) {
 			throw new KBArticleImportException(
 				"The uploaded file is not a ZIP archive or it is corrupted");
 		}
+
+		return entries;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);
