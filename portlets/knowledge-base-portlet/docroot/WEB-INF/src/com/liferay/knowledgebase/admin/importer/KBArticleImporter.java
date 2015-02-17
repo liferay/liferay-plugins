@@ -177,12 +177,13 @@ public class KBArticleImporter {
 	}
 
 	protected Map<String, List<String>> getFolderNameFileEntryNamesMap(
-		ZipReader zipReader) {
+			ZipReader zipReader)
+		throws KBArticleImportException {
 
 		Map<String, List<String>> folderNameFileEntryNamesMap =
 			new TreeMap<String, List<String>>();
 
-		for (String zipEntry : zipReader.getEntries()) {
+		for (String zipEntry : _getEntries(zipReader)) {
 			String extension = FileUtil.getExtension(zipEntry);
 
 			if (!ArrayUtil.contains(
@@ -337,6 +338,18 @@ public class KBArticleImporter {
 		prioritizationStrategy.prioritizeKBArticles();
 
 		return importedKBArticleCount;
+	}
+
+	private List<String> _getEntries(ZipReader zipReader)
+		throws KBArticleImportException {
+
+		try {
+			return zipReader.getEntries();
+		}
+		catch (NullPointerException npe) {
+			throw new KBArticleImportException(
+				"The uploaded file is not a ZIP archive or it is corrupted");
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(KBArticleImporter.class);
