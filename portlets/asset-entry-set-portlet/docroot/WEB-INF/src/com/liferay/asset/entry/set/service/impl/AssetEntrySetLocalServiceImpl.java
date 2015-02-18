@@ -346,12 +346,15 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet)
+			long assetEntrySetId, long creatorClassNameId, long creatorClassPK,
+			JSONObject payloadJSONObject, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
 			assetEntrySetId);
+
+		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
+		assetEntrySet.setCreatorClassPK(creatorClassPK);
 
 		Date now = new Date();
 
