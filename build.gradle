@@ -23,9 +23,9 @@ allprojects {
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
+		Closure getBuildGradleDependencySettings
 		Closure getBuildGradleExt
 		Closure getBuildGradleExtPluginFullVersion
-		Closure getBuildGradleDependencySettings
 		Closure getBuildXmlProperty
 		Closure writeBuildGradleFile
 		Closure writeDependencySettingsFile
