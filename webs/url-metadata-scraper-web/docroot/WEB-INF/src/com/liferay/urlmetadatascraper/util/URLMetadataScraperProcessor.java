@@ -116,18 +116,14 @@ public class URLMetadataScraperProcessor {
 
 		imageElements = document.select("img");
 
-		if (!imageElements.isEmpty()) {
-			for (Element imageElement : imageElements) {
-				String imageURL = imageElement.absUrl("src");
+		for (Element imageElement : imageElements) {
+			String imageURL = imageElement.absUrl("src");
 
-				if (isValidImageURL(imageURL) &&
-					!imageURLs.contains(imageURL)) {
+			if (isValidImageURL(imageURL) && !imageURLs.contains(imageURL)) {
+				imageURLs.add(imageURL);
 
-					imageURLs.add(imageURL);
-
-					if (imageURLs.size() >= _MAXIMUM_IMAGE_URLS) {
-						break;
-					}
+				if (imageURLs.size() >= _MAXIMUM_IMAGE_URLS) {
+					break;
 				}
 			}
 		}
