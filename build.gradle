@@ -50,16 +50,14 @@ allprojects {
 		getBuildGradleDependencies = {
 			List contents = []
 
-			contents << "dependencies {"
+			contents.addAll(getBuildGradleDependenciesCompile())
+			contents.addAll(getBuildGradleDependenciesProvidedCompile())
 
-			if (ivyXmlNode || requiredDeploymentContexts) {
-				contents.addAll(getBuildGradleDependenciesCompile())
+			if (contents.isEmpty()) {
+				return contents;
 			}
 
-			if (portalDependencyJars) {
-				contents.addAll(getBuildGradleDependenciesProvidedCompile())
-			}
-
+			contents.add(0, "dependencies {")
 			contents << "}"
 
 			return contents
@@ -67,8 +65,6 @@ allprojects {
 
 		getBuildGradleDependenciesCompile = {
 			List contents = []
-
-			contents << "\tcompile("
 
 			if (ivyXmlNode) {
 				ivyXmlNode.dependencies.dependency.each {
@@ -90,6 +86,11 @@ allprojects {
 				}
 			}
 
+			if (contents.isEmpty()) {
+				return contents;
+			}
+
+			contents.add(0, "\tcompile(")
 			contents << "\t)"
 
 			return contents
@@ -97,8 +98,6 @@ allprojects {
 
 		getBuildGradleDependenciesProvidedCompile = {
 			List contents = []
-
-			contents << "\tprovidedCompile("
 
 			portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
 			portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
@@ -120,6 +119,11 @@ allprojects {
 				}
 			}
 
+			if (contents.isEmpty()) {
+				return contents;
+			}
+
+			contents.add(0, "\tprovidedCompile(")
 			contents << "\t)"
 
 			return contents
@@ -194,10 +198,7 @@ allprojects {
 		writeBuildGradleFile = {
 			List contents = []
 
-			if (ivyXmlNode || portalDependencyJars || requiredDeploymentContexts) {
-				contents.addAll(getBuildGradleDependencies())
-			}
-
+			contents.addAll(getBuildGradleDependencies())
 			contents.addAll(getBuildGradleExt())
 
 			File buildGradleFile = new File("$projectDir/build.gradle")
