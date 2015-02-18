@@ -133,29 +133,6 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 	}
 
-	protected PoolingHttpClientConnectionManager
-		getPoolingHttpClientConnectionManager() {
-
-		PoolingHttpClientConnectionManager poolingHttpClientConnectionManager =
-			null;
-
-		if (_keyStore != null) {
-			poolingHttpClientConnectionManager =
-				new PoolingHttpClientConnectionManager(
-					getSocketFactoryRegistry(), null, null, null, 60000,
-					TimeUnit.MILLISECONDS);
-		}
-		else {
-			poolingHttpClientConnectionManager =
-				new PoolingHttpClientConnectionManager(
-					60000, TimeUnit.MILLISECONDS);
-		}
-
-		poolingHttpClientConnectionManager.setMaxTotal(20);
-
-		return poolingHttpClientConnectionManager;
-	}
-
 	public void destroy() {
 		try {
 			_closeableHttpClient.close();
@@ -365,7 +342,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 				throw new JSONWebServiceTransportException.
 					AuthenticationFailure(
-					"Not authorized to access JSON web service");
+						"Not authorized to access JSON web service");
 			}
 			else if (statusLine.getStatusCode() >= 400) {
 				throw new JSONWebServiceTransportException.CommunicationFailure(
@@ -381,6 +358,29 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		finally {
 			httpRequestBase.releaseConnection();
 		}
+	}
+
+	protected PoolingHttpClientConnectionManager
+		getPoolingHttpClientConnectionManager() {
+
+		PoolingHttpClientConnectionManager poolingHttpClientConnectionManager =
+			null;
+
+		if (_keyStore != null) {
+			poolingHttpClientConnectionManager =
+				new PoolingHttpClientConnectionManager(
+					getSocketFactoryRegistry(), null, null, null, 60000,
+					TimeUnit.MILLISECONDS);
+		}
+		else {
+			poolingHttpClientConnectionManager =
+				new PoolingHttpClientConnectionManager(
+					60000, TimeUnit.MILLISECONDS);
+		}
+
+		poolingHttpClientConnectionManager.setMaxTotal(20);
+
+		return poolingHttpClientConnectionManager;
 	}
 
 	protected Registry<ConnectionSocketFactory> getSocketFactoryRegistry() {
