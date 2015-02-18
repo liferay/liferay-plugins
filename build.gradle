@@ -27,6 +27,7 @@ allprojects {
 		Closure getBuildGradleExt
 		Closure getBuildGradleExtPluginFullVersion
 		Closure getBuildXmlProperty
+		Closure wrapContents
 		Closure writeBuildGradleFile
 		Closure writeDependencySettingsFile
 
@@ -53,14 +54,7 @@ allprojects {
 			contents.addAll(getBuildGradleDependenciesCompile())
 			contents.addAll(getBuildGradleDependenciesProvidedCompile())
 
-			if (contents.isEmpty()) {
-				return contents;
-			}
-
-			contents.add(0, "dependencies {")
-			contents << "}"
-
-			return contents
+			return wrapContents(contents, "", " {", "dependencies", "}")
 		}
 
 		getBuildGradleDependenciesCompile = {
@@ -86,14 +80,7 @@ allprojects {
 				}
 			}
 
-			if (contents.isEmpty()) {
-				return contents;
-			}
-
-			contents.add(0, "\tcompile(")
-			contents << "\t)"
-
-			return contents
+			return wrapContents(contents, "\t", "(", "compile", ")")
 		}
 
 		getBuildGradleDependenciesProvidedCompile = {
@@ -119,24 +106,15 @@ allprojects {
 				}
 			}
 
-			if (contents.isEmpty()) {
-				return contents;
-			}
-
-			contents.add(0, "\tprovidedCompile(")
-			contents << "\t)"
-
-			return contents
+			return wrapContents(contents, "\t", "(", "providedCompile", ")")
 		}
 
 		getBuildGradleExt = {
 			List contents = []
 
-			contents << "ext {"
 			contents.addAll(getBuildGradleExtPluginFullVersion())
-			contents << "}"
 
-			return contents
+			return wrapContents(contents, "", " {", "ext", "}")
 		}
 
 		getBuildGradleExtPluginFullVersion = {
@@ -193,6 +171,19 @@ allprojects {
 			}
 
 			return value
+		}
+
+		wrapContents = {
+			List contents, String indent, String leftClose, String name, String rightClose ->
+
+			if (contents.isEmpty()) {
+				return contents;
+			}
+
+			contents.add(0, indent + name + leftClose)
+			contents << indent + rightClose
+
+			return contents
 		}
 
 		writeBuildGradleFile = {
