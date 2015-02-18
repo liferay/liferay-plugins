@@ -67,15 +67,15 @@ allprojects {
 			}
 
 			if (requiredDeploymentContexts) {
-				requiredDeploymentContexts.split(",").each {
-					String serviceJarType = it.replaceFirst(".+-", "")
+				String[] requiredDeploymentContextsArray = requiredDeploymentContexts.split(",")
 
-					serviceJarType = serviceJarType + "s"
+				requiredDeploymentContextsArray.each {
+					String serviceJarFileName = "../../" + it.replaceFirst(".+-", "") + "s/${it}/docroot/WEB-INF/lib/${it}-service.jar"
 
-					File serviceJar = new File("$projectDir/../../$serviceJarType/$it/docroot/WEB-INF/lib/$it-service.jar")
+					File serviceJarFile = new File("$projectDir", serviceJarFileName)
 
-					if (serviceJar.exists()) {
-						contents << "\t\tfiles(\"../../$serviceJarType/$it/docroot/WEB-INF/lib/$it-service.jar\"),"
+					if (serviceJarFile.exists()) {
+						contents << "\t\tfiles(\"${serviceJarFileName}\"),"
 					}
 				}
 			}
@@ -149,7 +149,9 @@ allprojects {
 			List contents = []
 
 			if (importShared) {
-				importShared.split(",").each {
+				String[] importSharedArray = importShared.split(",")
+
+				importSharedArray.each {
 					contents << "includeTransitive \":shared:$it\""
 				}
 			}
