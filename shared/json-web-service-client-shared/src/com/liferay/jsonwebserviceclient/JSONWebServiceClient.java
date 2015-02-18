@@ -27,10 +27,24 @@ public interface JSONWebServiceClient {
 	public String doGet(String url, Map<String, String> parameters)
 		throws JSONWebServiceTransportException;
 
+	public String doGet(
+			String url, Map<String, String> parameters,
+			Map<String, String> headers)
+		throws JSONWebServiceTransportException;
+
 	public String doPost(String url, Map<String, String> parameters)
 		throws JSONWebServiceTransportException;
 
+	public String doPost(
+			String url, Map<String, String> parameters,
+			Map<String, String> headers)
+		throws JSONWebServiceTransportException;
+
 	public String doPostAsJSON(String url, String json)
+		throws JSONWebServiceTransportException;
+
+	public String doPostAsJSON(
+			String url, String json, Map<String, String> headers)
 		throws JSONWebServiceTransportException;
 
 	public String getHostName();

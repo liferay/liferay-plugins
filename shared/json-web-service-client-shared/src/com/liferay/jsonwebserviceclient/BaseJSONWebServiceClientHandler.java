@@ -101,6 +101,13 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 	}
 
+	protected String doPost(
+		String url, Map<String, String> parameters,
+		Map<String, String> headers) {
+
+		return getJSONWebServiceClient().doPost(url, parameters, headers);
+	}
+
 	protected String doPost(String url, String... parametersArray) {
 		Map<String, String> parameters = new HashMap<>();
 

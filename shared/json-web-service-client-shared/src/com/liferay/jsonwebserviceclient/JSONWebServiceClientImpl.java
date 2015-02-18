@@ -150,6 +150,15 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	public String doGet(String url, Map<String, String> parameters)
 		throws JSONWebServiceTransportException {
 
+		return doGet(url, parameters, Collections.<String, String>emptyMap());
+	}
+
+	@Override
+	public String doGet(
+			String url, Map<String, String> parameters,
+			Map<String, String> headers)
+		throws JSONWebServiceTransportException {
+
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
@@ -165,6 +174,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		HttpGet httpGet = new HttpGet(url);
 
+		for (String key : headers.keySet()) {
+			httpGet.addHeader(key, headers.get(key));
+		}
+
 		for (String key : _headers.keySet()) {
 			httpGet.addHeader(key, _headers.get(key));
 		}
@@ -174,6 +187,15 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 	@Override
 	public String doPost(String url, Map<String, String> parameters)
+		throws JSONWebServiceTransportException {
+
+		return doPost(url, parameters, Collections.<String, String>emptyMap());
+	}
+
+	@Override
+	public String doPost(
+			String url, Map<String, String> parameters,
+			Map<String, String> headers)
 		throws JSONWebServiceTransportException {
 
 		if (_logger.isDebugEnabled()) {
@@ -188,6 +210,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			HttpEntity httpEntity = new UrlEncodedFormEntity(
 				nameValuePairs, "utf8");
+
+			for (String key : headers.keySet()) {
+				httpPost.addHeader(key, headers.get(key));
+			}
 
 			for (String key : _headers.keySet()) {
 				httpPost.addHeader(key, _headers.get(key));
@@ -207,7 +233,19 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	public String doPostAsJSON(String url, String json)
 		throws JSONWebServiceTransportException {
 
+		return doPostAsJSON(url, json, Collections.<String, String>emptyMap());
+	}
+
+	@Override
+	public String doPostAsJSON(
+			String url, String json, Map<String, String> headers)
+		throws JSONWebServiceTransportException {
+
 		HttpPost httpPost = new HttpPost(url);
+
+		for (String key : headers.keySet()) {
+			httpPost.addHeader(key, headers.get(key));
+		}
 
 		for (String key : _headers.keySet()) {
 			httpPost.addHeader(key, _headers.get(key));
