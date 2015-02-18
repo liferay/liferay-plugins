@@ -34,7 +34,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 	public abstract JSONWebServiceClient getJSONWebServiceClient();
 
 	protected BaseJSONWebServiceClientHandler() {
-		_objectMapper.configure(
+		objectMapper.configure(
 			DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
@@ -68,12 +68,12 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 
 		try {
-			TypeFactory typeFactory = _objectMapper.getTypeFactory();
+			TypeFactory typeFactory = objectMapper.getTypeFactory();
 
 			JavaType javaType = typeFactory.constructCollectionType(
 				List.class, clazz);
 
-			return _objectMapper.readValue(json, javaType);
+			return objectMapper.readValue(json, javaType);
 		}
 		catch (IOException ie) {
 			throw new JSONWebServiceInvocationException(ie);
@@ -96,7 +96,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 
 		try {
-			return _objectMapper.readValue(json, clazz);
+			return objectMapper.readValue(json, clazz);
 		}
 		catch (IOException ie) {
 			throw new JSONWebServiceInvocationException(ie);
@@ -131,7 +131,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 			JSONWebServiceClient jsonWebServiceClient =
 				getJSONWebServiceClient();
 
-			String json = _objectMapper.writeValueAsString(object);
+			String json = objectMapper.writeValueAsString(object);
 
 			return jsonWebServiceClient.doPostAsJSON(url, json);
 		}
@@ -148,6 +148,6 @@ public abstract class BaseJSONWebServiceClientHandler {
 		return json.substring(exceptionMessageStart, exceptionMessageEnd);
 	}
 
-	private ObjectMapper _objectMapper = new ObjectMapper();
+	protected ObjectMapper objectMapper = new ObjectMapper();
 
 }
