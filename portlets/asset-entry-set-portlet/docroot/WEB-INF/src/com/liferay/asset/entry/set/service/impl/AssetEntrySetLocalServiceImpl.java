@@ -76,27 +76,6 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet addAssetEntrySet(
-			long userId, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet)
-		throws PortalException, SystemException {
-
-		return addAssetEntrySet(
-			userId, 0, payloadJSONObject, privateAssetEntrySet);
-	}
-
-	@Override
-	public AssetEntrySet addAssetEntrySet(
-			long userId, long parentAssetEntrySetId,
-			JSONObject payloadJSONObject, boolean privateAssetEntrySet)
-		throws PortalException, SystemException {
-
-		return addAssetEntrySet(
-			userId, parentAssetEntrySetId, _USER_CLASS_NAME_ID, userId,
-			payloadJSONObject, privateAssetEntrySet);
-	}
-
-	@Override
-	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
 			long creatorClassPK, JSONObject payloadJSONObject,
 			boolean privateAssetEntrySet)

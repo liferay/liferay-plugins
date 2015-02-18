@@ -56,40 +56,6 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	}
 
 	@Override
-	public AssetEntrySet addAssetEntrySet(
-			long parentAssetEntrySetId, String payload,
-			boolean privateAssetEntrySet)
-		throws PortalException, SystemException {
-
-		AssetEntrySetPermissionUtil.check(
-			getPermissionChecker(), _CLASS_NAME_ID_USER, getUserId(),
-			ActionKeys.ADD_ASSET_ENTRY_SET);
-
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-			payload);
-
-		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), parentAssetEntrySetId, payloadJSONObject,
-			privateAssetEntrySet);
-	}
-
-	@Override
-	public AssetEntrySet addAssetEntrySet(
-			String payload, boolean privateAssetEntrySet)
-		throws PortalException, SystemException {
-
-		AssetEntrySetPermissionUtil.check(
-			getPermissionChecker(), _CLASS_NAME_ID_USER, getUserId(),
-			ActionKeys.ADD_ASSET_ENTRY_SET);
-
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-			payload);
-
-		return assetEntrySetLocalService.addAssetEntrySet(
-			getUserId(), payloadJSONObject, privateAssetEntrySet);
-	}
-
-	@Override
 	public JSONObject addFileAttachment(File file)
 		throws PortalException, SystemException {
 
