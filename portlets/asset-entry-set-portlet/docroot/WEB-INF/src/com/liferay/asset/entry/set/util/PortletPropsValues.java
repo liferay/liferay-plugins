@@ -21,6 +21,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String[] ASSET_ENTRY_SET_IMAGE_EXTENSIONS =
+		PortletProps.getArray(
+			PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_EXTENSIONS);
+
 	public static final String[] ASSET_ENTRY_SET_IMAGE_TYPES =
 		PortletProps.getArray(PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPES);
 

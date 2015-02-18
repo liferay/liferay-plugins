@@ -15,23 +15,10 @@
 package com.liferay.asset.entry.set.util;
 
 /**
- * @author Matthew Kong
+ * @author Wesley Gong
  */
-public class AssetEntrySetConstants {
+public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
-	public static final String ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME =
-		"participantFullName";
-
-	public static final String ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL =
-		"participantPortraitURL";
-
-	public static final String ASSET_ENTRY_KEY_PARTICIPANT_URL =
-		"participantURL";
-
-	public static final String PAYLOAD_KEY_ASSET_TAG_NAMES = "assetTagNames";
-
-	public static final String PAYLOAD_KEY_CREATOR = "creator";
-
-	public static final String PAYLOAD_KEY_SHARED_TO = "sharedTo";
+	public static final String ASSET_ENTRY_SET = "1_WAR_assetentrysetportlet";
 
 }

@@ -44,14 +44,13 @@ public class AnnouncementsAssetEntrySetHandler
 	}
 
 	@Override
-	public JSONObject interpret(JSONObject payloadJSONObject)
+	public JSONObject interpret(JSONObject payloadJSONObject, long classPK)
 		throws PortalException, SystemException {
 
-		JSONObject jsonObject = super.interpret(payloadJSONObject);
+		JSONObject jsonObject = super.interpret(payloadJSONObject, classPK);
 
 		long userId = payloadJSONObject.getLong("userId");
 		long classNameId = payloadJSONObject.getLong("classNameId");
-		long classPK = payloadJSONObject.getLong("classPK");
 		String title = payloadJSONObject.getString("title");
 		String content = payloadJSONObject.getString("content");
 		String url = payloadJSONObject.getString("url");

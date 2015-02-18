@@ -16,24 +16,20 @@ package com.liferay.asset.entry.set.handler;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
-import com.liferay.compat.portal.kernel.util.ArrayUtil;
-import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 
-import java.util.LinkedHashSet;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Matthew Kong
@@ -45,24 +41,16 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 	}
 
 	@Override
-	public JSONObject interpret(JSONObject payloadJSONObject)
+	public JSONObject interpret(JSONObject payloadJSONObject, long classPK)
 		throws PortalException, SystemException {
 
-		ServiceContext serviceContext = new ServiceContext();
+		JSONObject jsonObject = super.interpret(payloadJSONObject, classPK);
 
-		serviceContext.setAssetTagNames(
-			StringUtil.split(
-				payloadJSONObject.getString(
-					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
+		Set<Long> assetEntryIds = new HashSet<Long>();
 
-		JSONObject jsonObject = super.interpret(payloadJSONObject);
-
-		LinkedHashSet<Long> assetEntryIds = new LinkedHashSet<Long>();
-
-		assetEntryIds.addAll(
-			ListUtil.toList(
-				StringUtil.split(
-					payloadJSONObject.getString("assetEntryIds"), 0L)));
+		String[] assetTagNames = StringUtil.split(
+			payloadJSONObject.getString(
+				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
 
 		JSONArray jsonArray = payloadJSONObject.getJSONArray("imageData");
 
@@ -75,38 +63,37 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					StringUtil.split(
 						imageJSONObject.getString("fileEntryIds"), 0L)) {
 
-				DLFileEntry fileEntry =
+				DLFileEntry dlFileEntry =
 					DLFileEntryLocalServiceUtil.getFileEntry(fileEntryId);
 
-				fileEntry.setClassNameId(
-					PortalUtil.getClassNameId(AssetEntrySet.class));
+				dlFileEntry.setClassPK(classPK);
 
-				fileEntry.setClassPK(
-					imageJSONObject.getLong("assetEntrySetId"));
+				dlFileEntry = DLFileEntryLocalServiceUtil.updateDLFileEntry(
+					dlFileEntry);
 
-				fileEntry = DLFileEntryLocalServiceUtil.updateDLFileEntry(
-					fileEntry);
-
-				AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
-					DLFileEntry.class.getName(),
-					GetterUtil.getLong(fileEntryId));
+				AssetEntry assetEntry = updateAssetEntry(
+					dlFileEntry, assetTagNames);
 
 				assetEntryIds.add(assetEntry.getEntryId());
-
-				DLAppLocalServiceUtil.updateFileEntry(
-					fileEntry.getUserId(), fileEntryId, fileEntry.getTitle(),
-					fileEntry.getMimeType(), fileEntry.getTitle(),
-					fileEntry.getDescription(), StringPool.BLANK, false,
-					fileEntry.getContentStream(), fileEntry.getSize(),
-					serviceContext);
 			}
-
-			jsonObject.put(
-				"payloadJSONObject",
-				ArrayUtil.toString(assetEntryIds.toArray(), StringPool.BLANK));
 		}
 
+		jsonObject.put("assetEntryIds", StringUtil.merge(assetEntryIds));
+
 		return jsonObject;
+	}
+
+	protected AssetEntry updateAssetEntry(
+			DLFileEntry dlFileEntry, String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		Group group = GroupLocalServiceUtil.getCompanyGroup(
+			dlFileEntry.getCompanyId());
+
+		return AssetEntryLocalServiceUtil.updateEntry(
+			dlFileEntry.getUserId(), group.getGroupId(),
+			AssetEntrySet.class.getName(), dlFileEntry.getFileEntryId(), null,
+			assetTagNames);
 	}
 
 }
