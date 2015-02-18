@@ -23,7 +23,6 @@ allprojects {
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
-		Closure getBuildGradleDependencySettings
 		Closure getBuildGradleExt
 		Closure getBuildGradleExtPluginFullVersion
 		Closure getBuildXmlProperty
@@ -145,20 +144,6 @@ allprojects {
 			return "\tpluginFullVersion = \"${pluginFullVersion}\""
 		}
 
-		getBuildGradleDependencySettings = {
-			List contents = []
-
-			if (importShared) {
-				String[] importSharedArray = importShared.split(",")
-
-				importSharedArray.each {
-					contents << "includeTransitive \":shared:${it}\""
-				}
-			}
-
-			return contents
-		}
-
 		getBuildXmlProperty = {
 			String key, String defaultValue ->
 
@@ -202,14 +187,23 @@ allprojects {
 		}
 
 		writeDependencySettingsFile = {
-			List contents = []
-
-			contents.addAll(getBuildGradleDependencySettings())
-
 			File dependencySettingsFile = new File("${projectDir}/dependency-settings.gradle")
 
-			contents.each {
-				dependencySettingsFile << it + "\n"
+			if (importShared) {
+				List contents = []
+
+				String[] importSharedArray = importShared.split(",")
+
+				importSharedArray.each {
+					contents << "includeTransitive \":shared:${it}\""
+				}
+
+				contents.each {
+					dependencySettingsFile << it + "\n"
+				}
+			}
+			else {
+				dependencySettingsFile.delete()
 			}
 		}
 
