@@ -139,8 +139,8 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
 			payloadJSONObject);
 
-		addUserToSharedToClassPKsMap(
-			sharedToClassPKsMap, assetEntrySet.getUserId());
+		addCreatorToSharedToClassPKsMap(
+			sharedToClassPKsMap, creatorClassNameId, creatorClassPK);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -380,8 +380,8 @@ public class AssetEntrySetLocalServiceImpl
 		Map<Long, long[]> sharedToClassPKsMap = getSharedToClassPKsMap(
 			payloadJSONObject);
 
-		addUserToSharedToClassPKsMap(
-			sharedToClassPKsMap, assetEntrySet.getUserId());
+		addCreatorToSharedToClassPKsMap(
+			sharedToClassPKsMap, creatorClassNameId, creatorClassPK);
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
@@ -390,6 +390,24 @@ public class AssetEntrySetLocalServiceImpl
 		setParticipants(assetEntrySet);
 
 		return assetEntrySet;
+	}
+
+	protected void addCreatorToSharedToClassPKsMap(
+		Map<Long, long[]> sharedToClassPKsMap, long creatorClassNameId,
+		long creatorClassPK) {
+
+		long[] sharedToParticipantIds = sharedToClassPKsMap.get(
+			creatorClassNameId);
+
+		if (sharedToParticipantIds == null) {
+			sharedToClassPKsMap.put(
+				creatorClassNameId, new long[] {creatorClassPK});
+		}
+		else if (!ArrayUtil.contains(sharedToParticipantIds, creatorClassPK)) {
+			sharedToClassPKsMap.put(
+				creatorClassNameId,
+				ArrayUtil.append(sharedToParticipantIds, creatorClassPK));
+		}
 	}
 
 	protected FileEntry addFileEntry(long userId, File file, String type)
@@ -486,20 +504,6 @@ public class AssetEntrySetLocalServiceImpl
 		}
 		finally {
 			FileUtil.delete(scaledFile);
-		}
-	}
-
-	protected void addUserToSharedToClassPKsMap(
-		Map<Long, long[]> sharedToClassPKsMap, long userId) {
-
-		long[] sharedToUserIds = sharedToClassPKsMap.get(_USER_CLASS_NAME_ID);
-
-		if (sharedToUserIds == null) {
-			sharedToClassPKsMap.put(_USER_CLASS_NAME_ID, new long[] {userId});
-		}
-		else if (!ArrayUtil.contains(sharedToUserIds, userId)) {
-			sharedToClassPKsMap.put(
-				_USER_CLASS_NAME_ID, ArrayUtil.append(sharedToUserIds, userId));
 		}
 	}
 
