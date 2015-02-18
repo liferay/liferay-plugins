@@ -41,12 +41,6 @@ allprojects {
 		Properties bndProperties
 		Properties pluginPackageProperties
 
-		String importShared
-		String portalDependencyJars
-		String requiredDeploymentContexts
-
-		XmlParser xmlParser
-
 		getBuildGradleDependencies = {
 			List contents = []
 
@@ -64,6 +58,8 @@ allprojects {
 					contents << "\t\t[group: \"${it.@org}\", name:\"${it.@name}\", version: \"${it.@rev}\"],"
 				}
 			}
+
+			String requiredDeploymentContexts = pluginPackageProperties["required-deployment-contexts"]
 
 			if (requiredDeploymentContexts) {
 				String[] requiredDeploymentContextsArray = requiredDeploymentContexts.split(",")
@@ -84,6 +80,8 @@ allprojects {
 
 		getBuildGradleDependenciesProvidedCompile = {
 			List contents = []
+
+			String portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
 
 			portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
 			portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
@@ -189,6 +187,8 @@ allprojects {
 		writeDependencySettingsFile = {
 			File dependencySettingsFile = new File("${projectDir}/dependency-settings.gradle")
 
+			String importShared = getBuildXmlProperty("import.shared", "")
+
 			if (importShared) {
 				List contents = []
 
@@ -219,7 +219,7 @@ allprojects {
 
 		// build.xml
 
-		xmlParser = new XmlParser()
+		XmlParser xmlParser = new XmlParser()
 
 		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
 
@@ -246,14 +246,6 @@ allprojects {
 		if (pluginPackagePropertiesFile.exists()) {
 			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
 		}
-
-		// Set properties
-
-		importShared = getBuildXmlProperty("import.shared", "")
-
-		portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
-
-		requiredDeploymentContexts = pluginPackageProperties["required-deployment-contexts"]
 
 		// build.gradle
 
