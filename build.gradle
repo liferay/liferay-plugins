@@ -166,6 +166,15 @@ allprojects {
 			}
 
 			contents.add(0, indent + name + leftClose)
+
+			String content = contents.last()
+
+			if (content.endsWith(",")) {
+				contents.pop()
+
+				contents << content.substring(0, content.length() - 1)
+			}
+
 			contents << indent + rightClose
 
 			return contents
