@@ -144,6 +144,21 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			getUserId(), assetEntrySetId);
 	}
 
+	@Override
+	public AssetEntrySet updateAssetEntrySet(
+			long assetEntrySetId, long creatorClassNameId, long creatorClassPK,
+			JSONObject payloadJSONObject, File file,
+			boolean privateAssetEntrySet)
+		throws PortalException, SystemException {
+
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), assetEntrySetId, ActionKeys.UPDATE);
+
+		return assetEntrySetLocalService.updateAssetEntrySet(
+			assetEntrySetId, creatorClassNameId, creatorClassPK,
+			payloadJSONObject, file, privateAssetEntrySet);
+	}
+
 	private static final long _CLASS_NAME_ID_USER =
 		ClassNameLocalServiceUtil.getClassNameId(User.class);
 
