@@ -163,6 +163,18 @@ allprojects {
 			return "\tpluginFullVersion = \"$pluginFullVersion\""
 		}
 
+		getBuildGradleDependencySettings = {
+			List contents = []
+
+			if (importShared) {
+				importShared.split(",").each {
+					contents << "includeTransitive \":shared:$it\""
+				}
+			}
+
+			return contents
+		}
+
 		getBuildXmlProperty = {
 			key, defaultValue ->
 
@@ -192,6 +204,18 @@ allprojects {
 
 			contents.each {
 				buildGradleFile << it + "\n"
+			}
+		}
+
+		writeDependencySettingsFile = {
+			List contents = []
+
+			contents.addAll(getBuildGradleImportShared())
+
+			File dependencySettingsFile = new File("$projectDir/dependency-settings.gradle")
+
+			contents.each {
+				dependencySettingsFile << it + "\n"
 			}
 		}
 
@@ -246,5 +270,9 @@ allprojects {
 		// build.gradle
 
 		writeBuildGradleFile()
+
+		// dependency-settings.gradle
+
+		writeDependencySettingsFile()
 	}
 }
