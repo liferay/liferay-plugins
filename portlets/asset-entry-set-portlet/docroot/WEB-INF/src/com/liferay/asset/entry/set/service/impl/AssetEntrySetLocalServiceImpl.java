@@ -332,13 +332,12 @@ public class AssetEntrySetLocalServiceImpl
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
 			assetEntrySetId);
 
-		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
-		assetEntrySet.setCreatorClassPK(creatorClassPK);
-
 		Date now = new Date();
 
 		assetEntrySet.setModifiedTime(now.getTime());
 
+		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
+		assetEntrySet.setCreatorClassPK(creatorClassPK);
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
