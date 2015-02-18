@@ -108,7 +108,7 @@ allprojects {
 			String[] portalDependencyJarsArray = portalDependencyJars.split(",");
 
 			portalDependencyJarsArray.each {
-				portalDependencyJar ->
+				String portalDependencyJar ->
 
 				Map portalDependencyJarsMap = portalDependencies.get(portalDependencyJar)
 
@@ -176,7 +176,7 @@ allprojects {
 		}
 
 		getBuildXmlProperty = {
-			key, defaultValue ->
+			String key, String defaultValue ->
 
 			String value = defaultValue
 
