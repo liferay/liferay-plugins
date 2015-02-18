@@ -368,6 +368,10 @@
 	margin-right: 3px;
 }
 
+.scheduler-base-hd .scheduler-base-controls .scheduler-base-today {
+	margin-right: 0;
+}
+
 .scheduler-event-past {
 	@include opacity(0.4);
 }

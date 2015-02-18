@@ -34,6 +34,7 @@
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/js/components.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/javascript.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/mobile.js</header-portlet-javascript>
 		<css-class-wrapper>calendar-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
