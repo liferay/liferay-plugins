@@ -1,14 +1,14 @@
-apply from: "$gradle.lfrSdkDir/versions.gradle"
+apply from: "${gradle.lfrSdkDir}/versions.gradle"
 
 allprojects {
 	apply plugin: "war"
 
-	ant.loadproperties(srcFile: "$gradle.lfrSdkDir/build.properties")
+	ant.loadproperties(srcFile: "${gradle.lfrSdkDir}/build.properties")
 
-	File pluginSrcDir = file("$projectDir/docroot")
+	File pluginSrcDir = file("${projectDir}/docroot")
 
 	if (!pluginSrcDir.exists()) {
-		pluginSrcDir = file("$projectDir/src")
+		pluginSrcDir = file("${projectDir}/src")
 
 		if (!pluginSrcDir.exists()) {
 			pluginSrcDir = null
@@ -72,7 +72,7 @@ allprojects {
 				requiredDeploymentContextsArray.each {
 					String serviceJarFileName = "../../" + it.replaceFirst(".+-", "") + "s/${it}/docroot/WEB-INF/lib/${it}-service.jar"
 
-					File serviceJarFile = new File("$projectDir", serviceJarFileName)
+					File serviceJarFile = new File("${projectDir}", serviceJarFileName)
 
 					if (serviceJarFile.exists()) {
 						contents << "\t\tfiles(\"${serviceJarFileName}\"),"
@@ -142,7 +142,7 @@ allprojects {
 				}
 			}
 
-			return "\tpluginFullVersion = \"$pluginFullVersion\""
+			return "\tpluginFullVersion = \"${pluginFullVersion}\""
 		}
 
 		getBuildGradleDependencySettings = {
@@ -152,7 +152,7 @@ allprojects {
 				String[] importSharedArray = importShared.split(",")
 
 				importSharedArray.each {
-					contents << "includeTransitive \":shared:$it\""
+					contents << "includeTransitive \":shared:${it}\""
 				}
 			}
 
@@ -194,7 +194,7 @@ allprojects {
 			contents.addAll(getBuildGradleDependencies())
 			contents.addAll(getBuildGradleExt())
 
-			File buildGradleFile = new File("$projectDir/build.gradle")
+			File buildGradleFile = new File("${projectDir}/build.gradle")
 
 			contents.each {
 				buildGradleFile << it + "\n"
@@ -206,7 +206,7 @@ allprojects {
 
 			contents.addAll(getBuildGradleDependencySettings())
 
-			File dependencySettingsFile = new File("$projectDir/dependency-settings.gradle")
+			File dependencySettingsFile = new File("${projectDir}/dependency-settings.gradle")
 
 			contents.each {
 				dependencySettingsFile << it + "\n"
@@ -217,7 +217,7 @@ allprojects {
 
 		bndProperties = new Properties()
 
-		bndPropertiesFile = new File("$projectDir/bnd.bnd")
+		bndPropertiesFile = new File("${projectDir}/bnd.bnd")
 
 		if (bndPropertiesFile.exists()) {
 			bndProperties.load(new FileInputStream(bndPropertiesFile))
@@ -229,7 +229,7 @@ allprojects {
 
 		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
 
-		buildXmlFile = new File("$projectDir/build.xml")
+		buildXmlFile = new File("${projectDir}/build.xml")
 
 		buildXmlNode = xmlParser.parse(buildXmlFile)
 
@@ -237,7 +237,7 @@ allprojects {
 
 		ivyXmlNode = null
 
-		ivyXmlFile = new File("$projectDir/ivy.xml")
+		ivyXmlFile = new File("${projectDir}/ivy.xml")
 
 		if (ivyXmlFile.exists()) {
 			ivyXmlNode = xmlParser.parse(ivyXmlFile)
@@ -247,7 +247,7 @@ allprojects {
 
 		pluginPackageProperties = new Properties()
 
-		pluginPackagePropertiesFile = new File("$projectDir/docroot/WEB-INF/liferay-plugin-package.properties")
+		pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
 
 		if (pluginPackagePropertiesFile.exists()) {
 			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
