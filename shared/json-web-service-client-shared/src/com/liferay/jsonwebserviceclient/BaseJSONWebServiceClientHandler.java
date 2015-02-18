@@ -39,13 +39,15 @@ public abstract class BaseJSONWebServiceClientHandler {
 	}
 
 	protected String doGet(String url, String... parametersArray) {
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
 		Map<String, String> parameters = new HashMap<>();
 
 		for (int i = 0; i < parametersArray.length; i += 2) {
 			parameters.put(parametersArray[i], parametersArray[i + 1]);
 		}
 
-		return getJSONWebServiceClient().doGet(url, parameters);
+		return jsonWebServiceClient.doGet(url, parameters);
 	}
 
 	protected <T> List<T> doGetToList(
@@ -105,26 +107,33 @@ public abstract class BaseJSONWebServiceClientHandler {
 		String url, Map<String, String> parameters,
 		Map<String, String> headers) {
 
-		return getJSONWebServiceClient().doPost(url, parameters, headers);
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
+		return jsonWebServiceClient.doPost(url, parameters, headers);
 	}
 
 	protected String doPost(String url, String... parametersArray) {
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
 		Map<String, String> parameters = new HashMap<>();
 
 		for (int i = 0; i < parametersArray.length; i += 2) {
 			parameters.put(parametersArray[i], parametersArray[i + 1]);
 		}
 
-		return getJSONWebServiceClient().doPost(url, parameters);
+		return jsonWebServiceClient.doPost(url, parameters);
 	}
 
 	protected String doPostAsJSON(String url, Object object)
 		throws JSONWebServiceInvocationException {
 
 		try {
+			JSONWebServiceClient jsonWebServiceClient =
+				getJSONWebServiceClient();
+
 			String json = _objectMapper.writeValueAsString(object);
 
-			return getJSONWebServiceClient().doPostAsJSON(url, json);
+			return jsonWebServiceClient.doPostAsJSON(url, json);
 		}
 		catch (IOException ie) {
 			throw new JSONWebServiceInvocationException(ie);
