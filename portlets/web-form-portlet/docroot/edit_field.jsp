@@ -124,7 +124,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
 			<aui:field-wrapper cssClass='<%= "paragraph" + (Validator.isNull(fieldType) || !fieldType.equals("paragraph") ? " hide" : StringPool.BLANK) %>' label="paragraph">
-				<liferay-ui:input-localized type="textarea" ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldParagraph" + index %>' xml="<%= fieldParagraphXml %>" />
+				<liferay-ui:input-localized cssClass="lfr-editor-textarea" ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldParagraph" + index %>' type="textarea" xml="<%= fieldParagraphXml %>" />
 			</aui:field-wrapper>
 		</c:when>
 		<c:when test="<%= Validator.isNotNull(fieldParagraph) %>">
