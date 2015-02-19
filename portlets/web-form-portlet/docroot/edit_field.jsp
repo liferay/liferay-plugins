@@ -26,6 +26,8 @@ String fieldType = PrefsParamUtil.getString(portletPreferences, renderRequest, "
 boolean fieldOptional = PrefsParamUtil.getBoolean(portletPreferences, renderRequest, "fieldOptional" + formFieldsIndex);
 String fieldOptionsXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldOptions" + formFieldsIndex), StringPool.BLANK);
 String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
+String fieldParagraphXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldParagraph" + formFieldsIndex), StringPool.BLANK);
+String fieldParagraph = LocalizationUtil.getLocalization(fieldParagraphXml, themeDisplay.getLanguageId());
 String fieldValidationScript = PrefsParamUtil.getString(portletPreferences, request, "fieldValidationScript" + formFieldsIndex);
 String fieldValidationErrorMessage = PrefsParamUtil.getString(portletPreferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
 
@@ -115,6 +117,22 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 				</dt>
 				<dd>
 					<%= fieldOptions %>
+				</dd>
+		</c:when>
+	</c:choose>
+	
+	<c:choose>
+		<c:when test="<%= !fieldsEditingDisabled %>">
+			<aui:field-wrapper cssClass='<%= "paragraph" + (Validator.isNull(fieldType) || !fieldType.equals("paragraph") ? " hide" : StringPool.BLANK) %>' label="paragraph">
+				<liferay-ui:input-localized type="textarea" ignoreRequestValue="<%= ignoreRequestValue %>" name='<%= "fieldParagraph" + index %>' xml="<%= fieldParagraphXml %>" />
+			</aui:field-wrapper>
+		</c:when>
+		<c:when test="<%= Validator.isNotNull(fieldParagraph) %>">
+				<dt>
+					<liferay-ui:message key="paragraph" />
+				</dt>
+				<dd>
+					<%= fieldParagraph %>
 				</dd>
 		</c:when>
 	</c:choose>
