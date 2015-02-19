@@ -173,12 +173,12 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 					String fieldValidationErrorMessage = portletPreferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 				%>
 
-					var key = '<%= fieldName %>';
+					var fieldKey = '<%= fieldName %>';
 
-					keys[<%= i %>] = key;
+					keys[<%= i %>] = fieldKey;
 
-					fieldLabels[key] = '<%= HtmlUtil.escape(fieldLabel) %>';
-					fieldValidationErrorMessages[key] = '<%= fieldValidationErrorMessage %>';
+					fieldLabels[fieldKey] = '<%= HtmlUtil.escape(fieldLabel) %>';
+					fieldValidationErrorMessages[fieldKey] = '<%= fieldValidationErrorMessage %>';
 
 					function fieldValidationFunction<%= i %>(currentFieldValue, fieldsMap) {
 						<c:choose>
@@ -189,25 +189,25 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 								return true;
 							</c:otherwise>
 						</c:choose>
-					};
+					}
 
-					fieldOptional[key] = <%= fieldOptional %>;
-					fieldValidationFunctions[key] = fieldValidationFunction<%= i %>;
+					fieldOptional[fieldKey] = <%= fieldOptional %>;
+					fieldValidationFunctions[fieldKey] = fieldValidationFunction<%= i %>;
 
 					<c:choose>
 						<c:when test='<%= fieldType.equals("checkbox") || fieldType.equals("radio") %>'>
 							var checkedField = A.one('input[name=<portlet:namespace />field<%= i %>]:checked');
 
-							fieldsMap[key] = '';
+							fieldsMap[fieldKey] = '';
 
 							if (checkedField) {
-								fieldsMap[key] = checkedField.val();
+								fieldsMap[fieldKey] = checkedField.val();
 							}
 						</c:when>
 						<c:otherwise>
 							var inputField = A.one('#<portlet:namespace />field<%= i %>');
 
-							fieldsMap[key] = (inputField && inputField.val()) || '';
+							fieldsMap[fieldKey] = (inputField && inputField.val()) || '';
 						</c:otherwise>
 					</c:choose>
 
@@ -222,7 +222,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 				var validationErrors = false;
 
 				for (var i = 1; i < keys.length; i++) {
-					var key = keys [i];
+					var key = keys[i];
 
 					var currentFieldValue = fieldsMap[key];
 
