@@ -28,7 +28,9 @@ allprojects {
 		Closure getBuildGradleExt
 		Closure getBuildGradleExtPluginFullVersion
 		Closure getBuildXmlProperty
+		Closure getIndent
 		Closure wrapContents
+		Closure wrapDependency
 		Closure wrapProperty
 		Closure writeBuildGradleFile
 		Closure writeDependencySettingsFile
@@ -96,13 +98,13 @@ allprojects {
 			portalDependencyJarsArray.each {
 				String portalDependencyJar ->
 
-				Map portalDependencyJarsMap = portalDependencies.get(portalDependencyJar)
+				Map portalDependencyJarMap = portalDependencies.get(portalDependencyJar)
 
-				if (portalDependencyJarsMap == null) {
+				if (portalDependencyJarMap == null) {
 					println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
 				}
 				else {
-					contents << "\t\t[group: \"${portalDependencyJarsMap."group"}\", name: \"${portalDependencyJarsMap."name"}\", version: \"${portalDependencyJarsMap."version"}\"],"
+					contents.addAll(wrapDependency(2, portalDependencyJarMap["group"], portalDependencyJarMap["name"], portalDependencyJarMap["version"]))
 				}
 			}
 
@@ -174,6 +176,17 @@ allprojects {
 			return value
 		}
 
+		getIndent = {
+			String indent = ""
+
+			it.times(
+			{
+				indent = indent + "\t"
+			})
+
+			return indent
+		}
+
 		wrapContents = {
 			List contents, int indentCount, String leftClose, String name, String rightClose ->
 
@@ -181,12 +194,7 @@ allprojects {
 				return contents;
 			}
 
-			String indent = ""
-
-			indentCount.times(
-				{
-					indent = indent + "\t"
-				})
+			String indent = getIndent(indentCount)
 
 			contents.add(0, indent + name + leftClose)
 
@@ -203,15 +211,18 @@ allprojects {
 			return contents
 		}
 
+		wrapDependency = {
+			int indentCount, String group, String name, String version ->
+
+			String indent = getIndent(indentCount)
+
+			return "${indent}[group: \"${group}\", name: \"${name}\", version: \"${version}\"],"
+		}
+
 		wrapProperty = {
 			int indentCount, String name, String value = "" ->
 
-			String indent = ""
-
-			indentCount.times(
-				{
-					indent = indent + "\t"
-				})
+			String indent = getIndent(indentCount)
 
 			if (value) {
 				return "${indent}${name} = \"${value}\""
