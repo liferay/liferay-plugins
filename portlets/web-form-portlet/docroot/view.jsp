@@ -58,6 +58,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 		while ((i == 1) || Validator.isNotNull(fieldLabel)) {
 			String fieldType = portletPreferences.getValue("fieldType" + i, "text");
 			String fieldOptions = LocalizationUtil.getPreferencesValue(portletPreferences, "fieldOptions" + i, themeDisplay.getLanguageId());
+			String fieldParagraph = LocalizationUtil.getPreferencesValue(portletPreferences, "fieldParagraph" + i, themeDisplay.getLanguageId());
 			String fieldValidationScript = portletPreferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
 			String fieldValidationErrorMessage = portletPreferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 		%>
@@ -80,7 +81,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 
 			<c:choose>
 				<c:when test='<%= fieldType.equals("paragraph") %>'>
-					<p class="lfr-webform" id="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldOptions) %></p>
+					<p class="format-paragraph" id="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldParagraph) %></p>
 				</c:when>
 				<c:when test='<%= fieldType.equals("text") %>'>
 					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" value="<%= HtmlUtil.escape(fieldValue) %>" />
