@@ -22,7 +22,6 @@ allprojects {
 	task initGradle {
 		Boolean osgiPlugin
 
-		Closure addExtProperty
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
@@ -30,6 +29,7 @@ allprojects {
 		Closure getBuildGradleExtPluginFullVersion
 		Closure getBuildXmlProperty
 		Closure wrapContents
+		Closure wrapProperty
 		Closure writeBuildGradleFile
 		Closure writeDependencySettingsFile
 
@@ -109,40 +109,23 @@ allprojects {
 			return wrapContents(contents, "\t", "(", "providedCompile", ")")
 		}
 
-		addExtProperty = {
-			String name, String value ->
-
-			if (value) {
-				return "\t${name} = \"${value}\""
-			}
-			else {
-				return []
-			}
-		}
-
 		getBuildGradleExt = {
 			List contents = []
 
-			String ignoreOsgiPortalClasspath = getBuildXmlProperty("ignore.osgi.portal.classpath")
-			String osgiIdeDependencies = getBuildXmlProperty("osgi.ide.dependencies")
-			String osgiRuntimeDependencies = getBuildXmlProperty("osgi.runtime.dependencies")
+			contents.addAll(wrapProperty("\t", "osgiIdeDependencies", getBuildXmlProperty("osgi.ide.dependencies")))
+			contents.addAll(wrapProperty("\t", "osgiRuntimeDependencies", getBuildXmlProperty("osgi.runtime.dependencies")))
+			contents.addAll(wrapProperty("\t", "pluginFullVersion", getBuildGradleExtPluginFullVersion()))
+
 			String pluginPackaging = "war"
-			String portalDependencyTlds = pluginPackageProperties["portal-dependency-tlds"]
-			String themeParent = getBuildXmlProperty("theme.parent")
 
-			if (project.parent.name == "shared" || osgiPlugin == true) {
-
+			if ((project.parent.name == "shared") || osgiPlugin) {
 				pluginPackaging = "jar"
 			}
 
-			contents.addAll(addExtProperty("ignoreOsgiPortalClasspath", ignoreOsgiPortalClasspath))
-			contents.addAll(addExtProperty("osgiIdeDependencies", osgiIdeDependencies))
-			contents.addAll(addExtProperty("osgiRuntimeDependencies", osgiRuntimeDependencies))
-			contents.addAll(addExtProperty("pluginPackaging", pluginPackaging))
-			contents.addAll(addExtProperty("portalDependencyTlds", portalDependencyTlds))
-			contents.addAll(addExtProperty("themeParent", themeParent))
+			contents.addAll(wrapProperty("\t", "pluginPackaging", pluginPackaging))
 
-			contents.addAll(getBuildGradleExtPluginFullVersion())
+			contents.addAll(wrapProperty("\t", "portalDependencyTlds", pluginPackageProperties["portal-dependency-tlds"]))
+			contents.addAll(wrapProperty("\t", "themeParent", getBuildXmlProperty("theme.parent")))
 
 			return wrapContents(contents, "", " {", "ext", "}")
 		}
@@ -172,7 +155,7 @@ allprojects {
 				}
 			}
 
-			return "\tpluginFullVersion = \"${pluginFullVersion}\""
+			return pluginFullVersion
 		}
 
 		getBuildXmlProperty = {
@@ -211,6 +194,16 @@ allprojects {
 			contents << indent + rightClose
 
 			return contents
+		}
+
+		wrapProperty = {
+			String indent, String name, String value = "" ->
+
+			if (value) {
+				return "${indent}${name} = \"${value}\""
+			}
+
+			return []
 		}
 
 		writeBuildGradleFile = {
