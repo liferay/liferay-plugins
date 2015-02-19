@@ -1686,6 +1686,19 @@ AUI.add(
 						);
 
 						SchedulerMonthView.superclass._uiSetDate.apply(this, arguments);
+					},
+
+
+					_syncCellDimensions: function() {
+						var instance = this;
+
+						var scheduler = instance.get('scheduler');
+						var viewDate = scheduler.get('viewDate');
+						var weeks = DateMath.getWeeksInMonth(viewDate);
+
+						SchedulerMonthView.superclass._syncCellDimensions.apply(this, arguments);
+
+						instance.gridCellHeight = instance.rowsContainerNode.get('offsetHeight') / weeks;
 					}
 				}
 			}
