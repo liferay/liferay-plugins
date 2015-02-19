@@ -54,8 +54,6 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 
 		JSONArray jsonArray = payloadJSONObject.getJSONArray("imageData");
 
-		jsonObject.put("imageData", jsonArray);
-
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject imageJSONObject = jsonArray.getJSONObject(i);
 
@@ -79,6 +77,8 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 		}
 
 		jsonObject.put("assetEntryIds", StringUtil.merge(assetEntryIds));
+
+		jsonObject.put("imageData", jsonArray);
 
 		return jsonObject;
 	}

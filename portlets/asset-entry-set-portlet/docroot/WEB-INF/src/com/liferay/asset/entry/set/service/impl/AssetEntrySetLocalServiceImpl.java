@@ -413,12 +413,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		fileEntryIds.add(rawFileEntry.getFileEntryId());
 
-		imageJSONObject.put(
-			"imageURL_raw",
-			DLUtil.getPreviewURL(
-				rawFileEntry, rawFileEntry.getFileVersion(), null,
-				StringPool.BLANK, false, true));
-
 		for (String imageType :
 				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
 
@@ -435,6 +429,11 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		imageJSONObject.put("fileEntryIds", StringUtil.merge(fileEntryIds));
+		imageJSONObject.put(
+			"imageURL_raw",
+			DLUtil.getPreviewURL(
+				rawFileEntry, rawFileEntry.getFileVersion(), null,
+				StringPool.BLANK, false, true));
 		imageJSONObject.put("name", rawFileEntry.getTitle());
 
 		return imageJSONObject;
