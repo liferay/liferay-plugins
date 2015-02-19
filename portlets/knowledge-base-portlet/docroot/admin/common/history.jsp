@@ -215,12 +215,13 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 			var A = AUI();
 
 			var rowIds = A.all('input[name=<portlet:namespace />rowIds]:checked');
+
 			var sourceVersion = A.one('input[name="<portlet:namespace />sourceVersion"]');
 			var targetVersion = A.one('input[name="<portlet:namespace />targetVersion"]');
 
 			var rowIdsSize = rowIds.size();
 
-			if (rowIdsSize == 1) {
+			if (rowIdsSize === 1) {
 				if (sourceVersion) {
 					sourceVersion.val(rowIds.item(0).val());
 				}
@@ -251,7 +252,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 			rowIds.each(
 				function(item, index, collection) {
 					if (index >= 2) {
-						item.set('checked', false);
+						item.attr('checked', false);
 					}
 				}
 			);
@@ -274,7 +275,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					index = 1;
 				}
 
-				rowsChecked.item(index).set('checked', false);
+				rowsChecked.item(index).attr('checked', false);
 			}
 		},
 		['aui-base', 'selector-css3']
