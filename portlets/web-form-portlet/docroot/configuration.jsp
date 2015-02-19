@@ -202,16 +202,17 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				optionsDiv.all('label').show();
 				optionsDiv.show();
 			}
-			else if (value == 'paragraph') {
-
-				// Show just the text field and not the labels since there
-				// are multiple choice inputs
-
-				optionsDiv.all('label').hide();
-				optionsDiv.show();
-			}
 			else {
 				optionsDiv.hide();
+			}
+
+			var paragraphDiv = formRow.one('.paragraph');
+
+			if (value == 'paragraph') {
+				paragraphDiv.show();
+			}
+			else {
+				paragraphDiv.hide();
 			}
 
 			var optionalControl = formRow.one('.optional-control').ancestor();
