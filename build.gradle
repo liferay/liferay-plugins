@@ -50,7 +50,7 @@ allprojects {
 			contents.addAll(getBuildGradleDependenciesCompile())
 			contents.addAll(getBuildGradleDependenciesProvidedCompile())
 
-			return wrapContents(contents, "", " {", "dependencies", "}")
+			return wrapContents(contents, 0, " {", "dependencies", "}")
 		}
 
 		getBuildGradleDependenciesCompile = {
@@ -78,7 +78,7 @@ allprojects {
 				}
 			}
 
-			return wrapContents(contents, "\t", "(", "compile", ")")
+			return wrapContents(contents, 1, "(", "compile", ")")
 		}
 
 		getBuildGradleDependenciesProvidedCompile = {
@@ -106,15 +106,15 @@ allprojects {
 				}
 			}
 
-			return wrapContents(contents, "\t", "(", "providedCompile", ")")
+			return wrapContents(contents, 1, "(", "providedCompile", ")")
 		}
 
 		getBuildGradleExt = {
 			List contents = []
 
-			contents.addAll(wrapProperty("\t", "osgiIdeDependencies", getBuildXmlProperty("osgi.ide.dependencies")))
-			contents.addAll(wrapProperty("\t", "osgiRuntimeDependencies", getBuildXmlProperty("osgi.runtime.dependencies")))
-			contents.addAll(wrapProperty("\t", "pluginFullVersion", getBuildGradleExtPluginFullVersion()))
+			contents.addAll(wrapProperty(1, "osgiIdeDependencies", getBuildXmlProperty("osgi.ide.dependencies")))
+			contents.addAll(wrapProperty(1, "osgiRuntimeDependencies", getBuildXmlProperty("osgi.runtime.dependencies")))
+			contents.addAll(wrapProperty(1, "pluginFullVersion", getBuildGradleExtPluginFullVersion()))
 
 			String pluginPackaging = "war"
 
@@ -122,12 +122,12 @@ allprojects {
 				pluginPackaging = "jar"
 			}
 
-			contents.addAll(wrapProperty("\t", "pluginPackaging", pluginPackaging))
+			contents.addAll(wrapProperty(1, "pluginPackaging", pluginPackaging))
 
-			contents.addAll(wrapProperty("\t", "portalDependencyTlds", pluginPackageProperties["portal-dependency-tlds"]))
-			contents.addAll(wrapProperty("\t", "themeParent", getBuildXmlProperty("theme.parent")))
+			contents.addAll(wrapProperty(1, "portalDependencyTlds", pluginPackageProperties["portal-dependency-tlds"]))
+			contents.addAll(wrapProperty(1, "themeParent", getBuildXmlProperty("theme.parent")))
 
-			return wrapContents(contents, "", " {", "ext", "}")
+			return wrapContents(contents, 0, " {", "ext", "}")
 		}
 
 		getBuildGradleExtPluginFullVersion = {
@@ -175,11 +175,18 @@ allprojects {
 		}
 
 		wrapContents = {
-			List contents, String indent, String leftClose, String name, String rightClose ->
+			List contents, int indentCount, String leftClose, String name, String rightClose ->
 
 			if (contents.isEmpty()) {
 				return contents;
 			}
+
+			String indent = ""
+
+			indentCount.times(
+				{
+					indent = indent + "\t"
+				})
 
 			contents.add(0, indent + name + leftClose)
 
@@ -197,7 +204,14 @@ allprojects {
 		}
 
 		wrapProperty = {
-			String indent, String name, String value = "" ->
+			int indentCount, String name, String value = "" ->
+
+			String indent = ""
+
+			indentCount.times(
+				{
+					indent = indent + "\t"
+				})
 
 			if (value) {
 				return "${indent}${name} = \"${value}\""
