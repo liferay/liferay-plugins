@@ -984,7 +984,7 @@ Please find a solution that does not require portal-impl.jar.
 
 					<copy todir="@{module.dir}/test-classes/@{test.type}">
 						<fileset dir="@{module.dir}/test" includes="*.properties" />
-						<fileset dir="@{module.dir}/test/@{test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
+						<fileset dir="@{module.dir}/test/@{test.type}" includes="**/*.bnd,**/*.png,**/*.policy,**/*.properties,**/*.xml,**/dependencies/**" />
 					</copy>
 
 					<ivy:settings file="${ivy.custom.settings.file}" />
