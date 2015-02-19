@@ -24,10 +24,15 @@ String fieldLabelXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlF
 String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId());
 String fieldType = PrefsParamUtil.getString(portletPreferences, renderRequest, "fieldType" + formFieldsIndex);
 boolean fieldOptional = PrefsParamUtil.getBoolean(portletPreferences, renderRequest, "fieldOptional" + formFieldsIndex);
+
 String fieldOptionsXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldOptions" + formFieldsIndex), StringPool.BLANK);
+
 String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
+
 String fieldParagraphXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldParagraph" + formFieldsIndex), StringPool.BLANK);
+
 String fieldParagraph = LocalizationUtil.getLocalization(fieldParagraphXml, themeDisplay.getLanguageId());
+
 String fieldValidationScript = PrefsParamUtil.getString(portletPreferences, request, "fieldValidationScript" + formFieldsIndex);
 String fieldValidationErrorMessage = PrefsParamUtil.getString(portletPreferences, request, "fieldValidationErrorMessage" + formFieldsIndex);
 
@@ -160,26 +165,26 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 				</div>
 			</c:when>
 			<c:when test="<%= Validator.isNotNull(fieldValidationScript) %>">
-					<dt class="optional">
-						<liferay-ui:message key="validation" />
-					</dt>
-					<dd>
-						<pre><%= fieldValidationScript %></pre>
-					</dd>
-					<dt class="optional">
-						<liferay-ui:message key="validation-error-message" />
-					</dt>
-					<dd>
-						<%= fieldValidationErrorMessage %>
-					</dd>
+				<dt class="optional">
+					<liferay-ui:message key="validation" />
+				</dt>
+				<dd>
+					<pre><%= fieldValidationScript %></pre>
+				</dd>
+				<dt class="optional">
+					<liferay-ui:message key="validation-error-message" />
+				</dt>
+				<dd>
+					<%= fieldValidationErrorMessage %>
+				</dd>
 			</c:when>
 			<c:otherwise>
-					<dt class="optional">
-						<liferay-ui:message key="validation" />
-					</dt>
-					<dd>
-						<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
-					</dd>
+				<dt class="optional">
+					<liferay-ui:message key="validation" />
+				</dt>
+				<dd>
+					<liferay-ui:message key="this-field-does-not-have-any-specific-validation" />
+				</dd>
 			</c:otherwise>
 		</c:choose>
 	</c:if>

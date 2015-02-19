@@ -104,8 +104,8 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 					LocalizationUtil.getLocalizationMap(
 						actionRequest, "fieldOptions" + formFieldsIndex);
 				Map<Locale, String> fieldParagraphMap =
-						LocalizationUtil.getLocalizationMap(
-							actionRequest, "fieldParagraph" + formFieldsIndex);
+					LocalizationUtil.getLocalizationMap(
+						actionRequest, "fieldParagraph" + formFieldsIndex);
 				String fieldValidationScript = ParamUtil.getString(
 					actionRequest, "fieldValidationScript" + formFieldsIndex);
 				String fieldValidationErrorMessage = ParamUtil.getString(
@@ -162,11 +162,9 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 					LocalizationUtil.setPreferencesValue(
 						preferences, "fieldLabel" + i, languageId,
 						StringPool.BLANK);
-
 					LocalizationUtil.setPreferencesValue(
 						preferences, "fieldOptions" + i, languageId,
 						StringPool.BLANK);
-
 					LocalizationUtil.setPreferencesValue(
 						preferences, "fieldParagraph" + i, languageId,
 						StringPool.BLANK);
