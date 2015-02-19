@@ -349,10 +349,6 @@
 	}
 }
 
-.calendar-subscribe-link {
-	background: url(@theme_image_path@/common/rss.png) 8px center no-repeat;
-}
-
 .dialog-iframe-popup .calendar-portlet .fieldset {
 	margin-bottom: 2em;
 }
