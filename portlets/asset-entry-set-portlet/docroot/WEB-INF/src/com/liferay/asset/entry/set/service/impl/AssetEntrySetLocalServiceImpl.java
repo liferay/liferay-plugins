@@ -413,8 +413,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		fileEntryIds.add(rawFileEntry.getFileEntryId());
 
-		imageJSONObject.put("name", rawFileEntry.getTitle());
-
 		imageJSONObject.put(
 			"imageURL_raw",
 			DLUtil.getPreviewURL(
@@ -437,6 +435,7 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		imageJSONObject.put("fileEntryIds", StringUtil.merge(fileEntryIds));
+		imageJSONObject.put("name", rawFileEntry.getTitle());
 
 		return imageJSONObject;
 	}
