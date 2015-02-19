@@ -123,12 +123,12 @@ allprojects {
 		getBuildGradleExt = {
 			List contents = []
 
-			String ignoreOsgiPortalClasspath = getBuildXmlProperty("ignore.osgi.portal.classpath", "")
-			String osgiIdeDependencies = getBuildXmlProperty("osgi.ide.dependencies", "")
-			String osgiRuntimeDependencies = getBuildXmlProperty("osgi.runtime.dependencies", "")
+			String ignoreOsgiPortalClasspath = getBuildXmlProperty("ignore.osgi.portal.classpath")
+			String osgiIdeDependencies = getBuildXmlProperty("osgi.ide.dependencies")
+			String osgiRuntimeDependencies = getBuildXmlProperty("osgi.runtime.dependencies")
 			String pluginPackaging = "war"
 			String portalDependencyTlds = pluginPackageProperties["portal-dependency-tlds"]
-			String themeParent = getBuildXmlProperty("theme.parent", "")
+			String themeParent = getBuildXmlProperty("theme.parent")
 
 			if (project.parent.name == "shared" || osgiPlugin == true) {
 
@@ -165,7 +165,7 @@ allprojects {
 					String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
 
 					if (moduleIncrementalVersion == null) {
-						moduleIncrementalVersion = getBuildXmlProperty("plugin.version", "1")
+						moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
 					}
 
 					pluginFullVersion = getBuildXmlProperty("plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
@@ -176,7 +176,7 @@ allprojects {
 		}
 
 		getBuildXmlProperty = {
-			String key, String defaultValue ->
+			String key, String defaultValue = "" ->
 
 			String value = defaultValue
 
@@ -229,7 +229,7 @@ allprojects {
 		writeDependencySettingsFile = {
 			File dependencySettingsFile = new File("${projectDir}/dependency-settings.gradle")
 
-			String importShared = getBuildXmlProperty("import.shared", "")
+			String importShared = getBuildXmlProperty("import.shared")
 
 			if (importShared) {
 				List contents = []
