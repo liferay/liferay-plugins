@@ -120,7 +120,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 				</dd>
 		</c:when>
 	</c:choose>
-	
+
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
 			<aui:field-wrapper cssClass='<%= "paragraph" + (Validator.isNull(fieldType) || !fieldType.equals("paragraph") ? " hide" : StringPool.BLANK) %>' label="paragraph">
