@@ -247,7 +247,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 			interval: <%= recurrence.getInterval() %>,
 			untilDate: untilDate,
 			weekdays: <%= jsonSerializer.serialize(weekdays) %>
-		}
+		};
 
 		var recurrenceSummary = Liferay.RecurrenceUtil.getSummary(recurrence);
 
