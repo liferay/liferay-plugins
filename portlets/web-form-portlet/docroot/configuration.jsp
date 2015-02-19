@@ -191,14 +191,14 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 <c:if test="<%= !fieldsEditingDisabled %>">
 	<aui:script use="aui-base,liferay-auto-fields">
 		var toggleOptions = function(event) {
-			var select = this;
+			var instance = this;
 
-			var formRow = select.ancestor('.lfr-form-row');
-			var value = select.val();
+			var formRow = instance.ancestor('.lfr-form-row');
+			var value = instance.val();
 
 			var optionsDiv = formRow.one('.options');
 
-			if ((value == 'options') || (value == 'radio')) {
+			if ((value === 'options') || (value === 'radio')) {
 				optionsDiv.all('label').show();
 				optionsDiv.show();
 			}
@@ -206,35 +206,29 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				optionsDiv.hide();
 			}
 
+			var labelName = formRow.one('.label-name');
+			var optionalControl = formRow.one('.optional-control').ancestor();
 			var paragraphDiv = formRow.one('.paragraph');
 
-			if (value == 'paragraph') {
-				paragraphDiv.show();
-			}
-			else {
-				paragraphDiv.hide();
-			}
-
-			var optionalControl = formRow.one('.optional-control').ancestor();
-			var labelName = formRow.one('.label-name');
-
-			if (value == 'paragraph') {
+			if (value === 'paragraph') {
 				var inputName = labelName.one('input.field');
 
-				var formFieldsIndex = select.attr('id').match(/\d+$/);
+				var formFieldsIndex = instance.attr('id').match(/\d+$/);
 
 				inputName.val('<liferay-ui:message key="paragraph" />' + formFieldsIndex);
 				inputName.fire('change');
 
 				labelName.hide();
 				optionalControl.hide();
+				paragraphDiv.show();
 
 				optionalControl.all('input[type="checkbox"]').attr('checked', 'true');
 				optionalControl.all('input[type="hidden"]').attr('value', 'true');
 			}
 			else {
-				optionalControl.show();
 				labelName.show();
+				optionalControl.show();
+				paragraphDiv.hide();
 			}
 		};
 
