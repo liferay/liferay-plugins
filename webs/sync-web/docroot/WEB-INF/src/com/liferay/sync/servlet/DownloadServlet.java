@@ -184,15 +184,16 @@ public class DownloadServlet extends HttpServlet {
 			zipWriter.addEntry(filePath, inputStream);
 		}
 
-		List<Folder> folders = DLAppServiceUtil.getFolders(
+		List<Folder> childFolders = DLAppServiceUtil.getFolders(
 			repositoryId, folderId);
 
-		for (Folder folder : folders) {
-			String subFolderPath =
-				folderPath + folder.getName() + StringPool.FORWARD_SLASH;
+		for (Folder childFolder : childFolders) {
+			String childFolderPath =
+				folderPath + childFolder.getName() + StringPool.FORWARD_SLASH;
 
 			addZipFolderEntry(
-				repositoryId, folder.getFolderId(), subFolderPath, zipWriter);
+				repositoryId, childFolder.getFolderId(), childFolderPath,
+				zipWriter);
 		}
 	}
 
