@@ -48,9 +48,8 @@
 	.label-name input, .options input {
 		width: 200px;
 	}
-	
+
 	.paragraph textarea {
-		width: 200px;
 		height: 100px;
 		resize: none;
 	}
