@@ -86,6 +86,21 @@ AUI.add(
 							viewName = target.get('options').item(index).attr('data-view-name');
 
 						instance.set('activeView', instance.getViewByName(viewName));
+					},
+
+					_uiSetActiveView: function(val) {
+						var instance = this;
+
+						SchedulerMobile.superclass._uiSetActiveView.apply(this, arguments);
+
+						if (val) {
+							var activeView = val.get('name'),
+								activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
+
+							if (activeNav) {
+								instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
+							}							
+						}
 					}
 				}
 			}
