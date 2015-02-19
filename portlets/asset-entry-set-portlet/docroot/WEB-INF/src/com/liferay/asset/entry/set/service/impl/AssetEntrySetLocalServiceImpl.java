@@ -152,7 +152,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	public JSONObject addFileAttachment(long userId, File file)
-		throws IOException, PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		String extension =
 			StringPool.PERIOD + FileUtil.getExtension(file.getName());
@@ -403,7 +403,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected JSONObject addImageFile(long userId, File file)
-		throws IOException, PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -442,9 +442,16 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected FileEntry addImageFileEntry(
 			long userId, File file, FileEntry rawFileEntry, String imageType)
-		throws IOException, PortalException, SystemException {
+		throws PortalException, SystemException {
 
-		ImageBag imageBag = ImageToolUtil.read(file);
+		ImageBag imageBag = null;
+
+		try {
+			imageBag = ImageToolUtil.read(file);
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
 
 		RenderedImage rawRenderedImage = imageBag.getRenderedImage();
 
@@ -471,6 +478,9 @@ public class AssetEntrySetLocalServiceImpl
 					scaledRenderedImage, imageBag.getType()));
 
 			return addFileEntry(userId, scaledFile, imageType);
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
 		}
 		finally {
 			FileUtil.delete(scaledFile);

@@ -28,7 +28,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.List;
 
@@ -92,7 +91,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public JSONObject addFileAttachment(File file)
-		throws IOException, PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.addFileAttachment(getUserId(), file);
 	}
