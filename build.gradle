@@ -20,6 +20,9 @@ allprojects {
 	}
 
 	task initGradle {
+		Boolean osgiPlugin
+
+		Closure addExtProperty
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
@@ -106,8 +109,38 @@ allprojects {
 			return wrapContents(contents, "\t", "(", "providedCompile", ")")
 		}
 
+		addExtProperty = {
+			String name, String value ->
+
+			if (value) {
+				return "\t${name} = \"${value}\""
+			}
+			else {
+				return []
+			}
+		}
+
 		getBuildGradleExt = {
 			List contents = []
+
+			String ignoreOsgiPortalClasspath = getBuildXmlProperty("ignore.osgi.portal.classpath", "")
+			String osgiIdeDependencies = getBuildXmlProperty("osgi.ide.dependencies", "")
+			String osgiRuntimeDependencies = getBuildXmlProperty("osgi.runtime.dependencies", "")
+			String pluginPackaging = "war"
+			String portalDependencyTlds = pluginPackageProperties["portal-dependency-tlds"]
+			String themeParent = getBuildXmlProperty("theme.parent", "")
+
+			if (project.parent.name == "shared" || osgiPlugin == true) {
+
+				pluginPackaging = "jar"
+			}
+
+			contents.addAll(addExtProperty("ignoreOsgiPortalClasspath", ignoreOsgiPortalClasspath))
+			contents.addAll(addExtProperty("osgiIdeDependencies", osgiIdeDependencies))
+			contents.addAll(addExtProperty("osgiRuntimeDependencies", osgiRuntimeDependencies))
+			contents.addAll(addExtProperty("pluginPackaging", pluginPackaging))
+			contents.addAll(addExtProperty("portalDependencyTlds", portalDependencyTlds))
+			contents.addAll(addExtProperty("themeParent", themeParent))
 
 			contents.addAll(getBuildGradleExtPluginFullVersion())
 
@@ -224,6 +257,8 @@ allprojects {
 
 		if (bndPropertiesFile.exists()) {
 			bndProperties.load(new FileInputStream(bndPropertiesFile))
+
+			osgiPlugin = true
 		}
 
 		// build.xml
