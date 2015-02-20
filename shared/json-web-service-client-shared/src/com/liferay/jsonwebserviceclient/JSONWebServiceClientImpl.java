@@ -345,8 +345,16 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 						"Not authorized to access JSON web service");
 			}
 			else if (statusLine.getStatusCode() >= 400) {
+				String message = null;
+
+				if (httpResponse.getEntity() != null) {
+					HttpEntity httpEntity = httpResponse.getEntity();
+
+					message = EntityUtils.toString(httpEntity, "utf8");
+				}
+
 				throw new JSONWebServiceTransportException.CommunicationFailure(
-					statusLine.getStatusCode());
+					message, statusLine.getStatusCode());
 			}
 
 			return EntityUtils.toString(httpResponse.getEntity(), "utf8");
