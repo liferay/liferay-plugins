@@ -133,6 +133,15 @@ AUI.add(
 				setter: A.one
 			}
 		}, A.SchedulerView.ATTRS);
+
+		A.SchedulerAgendaView.ATTRS = A.mix({
+			navigationDateFormatter: {
+				value: function() {
+					return '';
+				},
+				validator: A.Lang.isFunction
+			}
+		}, A.SchedulerAgendaView.ATTRS);
 	},
 	'',
 	{
