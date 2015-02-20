@@ -49,6 +49,16 @@ AUI.add(
 						instance.viewsSelectNode.on('change', A.bind(instance._onSelectionChange, instance));
 					},
 
+					renderView: function(view) {
+						var instance = this;
+
+						SchedulerMobile.superclass.renderView.apply(this, arguments);
+
+						if (view) {
+							instance.bodyNode.prepend(instance.viewDateNode);
+						}
+					},
+
 					syncStdContent: function() {
 						var instance = this,
 							views = instance.get('views');

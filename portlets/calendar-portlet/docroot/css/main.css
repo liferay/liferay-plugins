@@ -364,6 +364,21 @@
 	margin-top: -1em;
 }
 
+.scheduler-base-content > .yui3-widget-bd {
+	border: 1px solid #ddd;
+
+	.scheduler-base-view-date {
+		display: block;
+		font-size: 18px;
+		margin-top: 13px;
+		text-align: center;
+	}
+
+	.scheduler-view {
+		border: 0;
+	}
+}
+
 .scheduler-base-controls .calendar-add-event-btn {
 	margin-right: 3px;
 }
