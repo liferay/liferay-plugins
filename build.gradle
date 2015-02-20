@@ -194,7 +194,9 @@ allprojects {
 				return contents;
 			}
 
-			contents.add(0, getIndent(indentCount) + name + leftClose)
+			String indent = getIndent(indentCount)
+
+			contents.add(0, indent + name + leftClose)
 
 			String content = contents.last()
 
