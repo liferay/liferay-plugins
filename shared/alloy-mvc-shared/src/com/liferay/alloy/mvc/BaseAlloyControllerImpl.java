@@ -393,7 +393,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		if (Validator.isNull(responseContent)) {
-			viewPath = actionPath;
+			if (Validator.isNull(viewPath)) {
+				viewPath = actionPath;
+			}
 
 			String includePath = buildIncludePath(viewPath);
 
