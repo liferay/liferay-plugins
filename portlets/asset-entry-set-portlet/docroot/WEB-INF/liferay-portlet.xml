@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.asset.entry.set.messaging.CleanDLFileEntriesMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.asset.entry.set.messaging.CleanDLFileEntryMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<cron>
 					<cron-trigger-value>0 0 22 * * ?</cron-trigger-value>

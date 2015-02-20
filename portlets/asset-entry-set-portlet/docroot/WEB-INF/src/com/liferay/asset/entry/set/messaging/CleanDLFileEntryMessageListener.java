@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * @author Calvin Keum
  */
-public class CleanDLFileEntriesMessageListener extends BaseMessageListener {
+public class CleanDLFileEntryMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
