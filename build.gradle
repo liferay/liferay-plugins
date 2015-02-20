@@ -194,9 +194,7 @@ allprojects {
 				return contents;
 			}
 
-			String indent = getIndent(indentCount)
-
-			contents.add(0, indent + name + leftClose)
+			contents.add(0, getIndent(indentCount) + name + leftClose)
 
 			String content = contents.last()
 
@@ -214,18 +212,14 @@ allprojects {
 		wrapDependency = {
 			int indentCount, String group, String name, String version ->
 
-			String indent = getIndent(indentCount)
-
-			return "${indent}[group: \"${group}\", name: \"${name}\", version: \"${version}\"],"
+			return "${getIndent(indentCount)}[group: \"${group}\", name: \"${name}\", version: \"${version}\"],"
 		}
 
 		wrapProperty = {
 			int indentCount, String name, String value = "" ->
 
-			String indent = getIndent(indentCount)
-
 			if (value) {
-				return "${indent}${name} = \"${value}\""
+				return "${getIndent(indentCount)}${name} = \"${value}\""
 			}
 
 			return []
