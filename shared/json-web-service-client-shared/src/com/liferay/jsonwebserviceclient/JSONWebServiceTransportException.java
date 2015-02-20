@@ -47,12 +47,12 @@ public class JSONWebServiceTransportException extends RuntimeException {
 	public static class AuthenticationFailure
 		extends JSONWebServiceTransportException {
 
-		public AuthenticationFailure(String msg) {
-			super(msg);
+		public AuthenticationFailure(String message) {
+			super(message);
 		}
 
-		public AuthenticationFailure(String msg, Throwable cause) {
-			super(msg, cause);
+		public AuthenticationFailure(String message, Throwable cause) {
+			super(message, cause);
 		}
 
 		public AuthenticationFailure(Throwable cause) {
@@ -68,8 +68,8 @@ public class JSONWebServiceTransportException extends RuntimeException {
 			super(message, status);
 		}
 
-		public CommunicationFailure(String msg, Throwable cause) {
-			super(msg, cause);
+		public CommunicationFailure(String message, Throwable cause) {
+			super(message, cause);
 		}
 
 		public CommunicationFailure(Throwable cause) {
