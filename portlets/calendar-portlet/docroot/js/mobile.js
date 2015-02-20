@@ -31,6 +31,18 @@ AUI.add(
 						instance.viewsSelectNode = instance.get('viewsSelectNode');
 					},
 
+					getViewTriggerNode: function(view) {
+						var instance = this,
+							name = view.get('name'),
+							viewportWidth = A.DOM.winWidth() + A.DOM.getScrollbarWidth();
+
+						if (viewportWidth >= 768) {
+							return instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+						}
+
+						return instance.viewsSelectNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+					},
+
 					renderDropdownList: function() {
 						var instance = this;
 
@@ -66,17 +78,12 @@ AUI.add(
 							name = view.get('name'),
 							tpl = tpl ? tpl : TPL_SCHEDULER_VIEW_BUTTON;
 
-						view.set(
-							'triggerNode',
-							A.Node.create(
+						return A.Node.create(
 								A.Lang.sub(tpl, {
 									name: name,
 									label: (instance.getString(name) || name)
 								})
-							)
-						);
-
-						return view.get('triggerNode');
+								);
 					},
 
 					_onSelectionChange: function(event) {
@@ -99,7 +106,7 @@ AUI.add(
 
 							if (activeNav) {
 								instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
-							}							
+							}
 						}
 					}
 				}
@@ -107,6 +114,15 @@ AUI.add(
 		);
 
 		A.Scheduler = A.mix(SchedulerMobile, A.Scheduler);
+
+		A.SchedulerView.ATTRS = A.mix({
+			triggerNode: {
+				getter: function() {
+					return this.get('scheduler').getViewTriggerNode(this);
+				},
+				setter: A.one
+			}
+		}, A.SchedulerView.ATTRS);
 	},
 	'',
 	{
