@@ -22,12 +22,14 @@ public class JSONWebServiceTransportException extends RuntimeException {
 	public JSONWebServiceTransportException() {
 	}
 
-	public JSONWebServiceTransportException(int status) {
-		_status = status;
-	}
-
 	public JSONWebServiceTransportException(String message) {
 		super(message);
+	}
+
+	public JSONWebServiceTransportException(String message, int status) {
+		super(message);
+
+		_status = status;
 	}
 
 	public JSONWebServiceTransportException(String message, Throwable cause) {
@@ -62,8 +64,8 @@ public class JSONWebServiceTransportException extends RuntimeException {
 	public static class CommunicationFailure
 		extends JSONWebServiceTransportException {
 
-		public CommunicationFailure(int status) {
-			super(status);
+		public CommunicationFailure(String message, int status) {
+			super(message, status);
 		}
 
 		public CommunicationFailure(String msg, Throwable cause) {
