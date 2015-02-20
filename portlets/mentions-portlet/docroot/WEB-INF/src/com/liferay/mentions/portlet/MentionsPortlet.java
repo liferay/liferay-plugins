@@ -113,21 +113,21 @@ public class MentionsPortlet extends MVCPortlet {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			jsonObject.put("fullName", user.getFullName());
-			jsonObject.put("portraitURL", user.getPortraitURL(themeDisplay));
 
-			String screenName = user.getScreenName();
-
-			String mention = "@".concat(screenName);
+			String mention = "@" + user.getScreenName();
 
 			String profileURL = user.getDisplayURL(themeDisplay);
 
 			if (Validator.isNotNull(profileURL)) {
 				mention =
-					"<a href=\"" + profileURL + "\">@" + screenName + "</a>";
+					"<a href=\"" + profileURL + "\">@" + user.getScreenName() +
+						"</a>";
 			}
 
 			jsonObject.put("mention", mention);
-			jsonObject.put("screenName", screenName);
+
+			jsonObject.put("portraitURL", user.getPortraitURL(themeDisplay));
+			jsonObject.put("screenName", user.getScreenName());
 
 			jsonArray.put(jsonObject);
 		}
