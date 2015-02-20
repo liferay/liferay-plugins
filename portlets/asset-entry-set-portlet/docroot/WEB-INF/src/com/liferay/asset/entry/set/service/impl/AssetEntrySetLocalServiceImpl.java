@@ -325,8 +325,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, long creatorClassNameId, long creatorClassPK,
-			JSONObject payloadJSONObject, boolean privateAssetEntrySet)
+			long assetEntrySetId, JSONObject payloadJSONObject,
+			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -336,8 +336,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setModifiedTime(now.getTime());
 
-		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
-		assetEntrySet.setCreatorClassPK(creatorClassPK);
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
@@ -359,7 +357,8 @@ public class AssetEntrySetLocalServiceImpl
 			payloadJSONObject);
 
 		addCreatorToSharedToClassPKsMap(
-			sharedToClassPKsMap, creatorClassNameId, creatorClassPK);
+			sharedToClassPKsMap, assetEntrySet.getCreatorClassNameId(),
+			assetEntrySet.getCreatorClassPK());
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,

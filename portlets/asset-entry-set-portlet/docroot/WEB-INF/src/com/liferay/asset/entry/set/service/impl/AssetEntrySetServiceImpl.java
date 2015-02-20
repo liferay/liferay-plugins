@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.ClassNameLocalServiceUtil;
 
 import java.io.File;
 
@@ -112,8 +110,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, long creatorClassNameId, long creatorClassPK,
-			JSONObject payloadJSONObject, File file,
+			long assetEntrySetId, JSONObject payloadJSONObject,
 			boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
@@ -121,11 +118,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			getPermissionChecker(), assetEntrySetId, ActionKeys.UPDATE);
 
 		return assetEntrySetLocalService.updateAssetEntrySet(
-			assetEntrySetId, creatorClassNameId, creatorClassPK,
-			payloadJSONObject, file, privateAssetEntrySet);
+			assetEntrySetId, payloadJSONObject, privateAssetEntrySet);
 	}
-
-	private static final long _CLASS_NAME_ID_USER =
-		ClassNameLocalServiceUtil.getClassNameId(User.class);
 
 }
