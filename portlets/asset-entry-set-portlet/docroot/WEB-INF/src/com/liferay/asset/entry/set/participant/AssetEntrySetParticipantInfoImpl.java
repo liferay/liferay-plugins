@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.entry.set.service.participant;
+package com.liferay.asset.entry.set.participant;
 
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.portal.kernel.exception.PortalException;

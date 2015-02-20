@@ -15,8 +15,8 @@
 package com.liferay.asset.entry.set.service.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
+import com.liferay.asset.entry.set.participant.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
-import com.liferay.asset.entry.set.service.participant.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.PortletKeys;
