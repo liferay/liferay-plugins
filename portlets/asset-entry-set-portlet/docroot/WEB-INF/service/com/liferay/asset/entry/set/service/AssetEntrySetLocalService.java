@@ -257,20 +257,6 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long userId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long userId, long parentAssetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,

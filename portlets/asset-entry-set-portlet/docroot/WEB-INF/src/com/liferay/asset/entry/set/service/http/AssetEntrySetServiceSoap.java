@@ -80,38 +80,6 @@ public class AssetEntrySetServiceSoap {
 		}
 	}
 
-	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
-		long parentAssetEntrySetId, java.lang.String payload,
-		boolean privateAssetEntrySet) throws RemoteException {
-		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(parentAssetEntrySetId,
-					payload, privateAssetEntrySet);
-
-			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap addAssetEntrySet(
-		java.lang.String payload, boolean privateAssetEntrySet)
-		throws RemoteException {
-		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.addAssetEntrySet(payload,
-					privateAssetEntrySet);
-
-			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap deleteAssetEntrySet(
 		long assetEntrySetId) throws RemoteException {
 		try {
@@ -180,6 +148,23 @@ public class AssetEntrySetServiceSoap {
 		long assetEntrySetId) throws RemoteException {
 		try {
 			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.unlikeAssetEntrySet(assetEntrySetId);
+
+			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap updateAssetEntrySet(
+		long assetEntrySetId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet) throws RemoteException {
+		try {
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.updateAssetEntrySet(assetEntrySetId,
+					payloadJSONObject, privateAssetEntrySet);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}

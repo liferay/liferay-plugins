@@ -38,43 +38,39 @@ public class AssetEntrySetServiceClpInvoker {
 				"long", "long", "long", "java.lang.String", "boolean"
 			};
 
-		_methodName55 = "addAssetEntrySet";
+		_methodName55 = "addFileAttachment";
 
-		_methodParameterTypes55 = new String[] {
-				"long", "java.lang.String", "boolean"
-			};
+		_methodParameterTypes55 = new String[] { "java.io.File" };
 
-		_methodName56 = "addAssetEntrySet";
+		_methodName56 = "deleteAssetEntrySet";
 
-		_methodParameterTypes56 = new String[] { "java.lang.String", "boolean" };
+		_methodParameterTypes56 = new String[] { "long" };
 
-		_methodName57 = "addFileAttachment";
+		_methodName57 = "getNewAssetEntrySets";
 
-		_methodParameterTypes57 = new String[] { "java.io.File" };
-
-		_methodName58 = "deleteAssetEntrySet";
-
-		_methodParameterTypes58 = new String[] { "long" };
-
-		_methodName59 = "getNewAssetEntrySets";
-
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes57 = new String[] {
 				"long", "long", "int", "int", "int"
 			};
 
-		_methodName60 = "getOldAssetEntrySets";
+		_methodName58 = "getOldAssetEntrySets";
 
-		_methodParameterTypes60 = new String[] {
+		_methodParameterTypes58 = new String[] {
 				"long", "long", "int", "int", "int"
 			};
 
-		_methodName61 = "likeAssetEntrySet";
+		_methodName59 = "likeAssetEntrySet";
 
-		_methodParameterTypes61 = new String[] { "long" };
+		_methodParameterTypes59 = new String[] { "long" };
 
-		_methodName62 = "unlikeAssetEntrySet";
+		_methodName60 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes62 = new String[] { "long" };
+		_methodParameterTypes60 = new String[] { "long" };
+
+		_methodName61 = "updateAssetEntrySet";
+
+		_methodParameterTypes61 = new String[] {
+				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -102,29 +98,16 @@ public class AssetEntrySetServiceClpInvoker {
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return AssetEntrySetServiceUtil.addAssetEntrySet(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1],
-				((Boolean)arguments[2]).booleanValue());
+			return AssetEntrySetServiceUtil.addFileAttachment((java.io.File)arguments[0]);
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return AssetEntrySetServiceUtil.addAssetEntrySet((java.lang.String)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+			return AssetEntrySetServiceUtil.deleteAssetEntrySet(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return AssetEntrySetServiceUtil.addFileAttachment((java.io.File)arguments[0]);
-		}
-
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return AssetEntrySetServiceUtil.deleteAssetEntrySet(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return AssetEntrySetServiceUtil.getNewAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -132,8 +115,8 @@ public class AssetEntrySetServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return AssetEntrySetServiceUtil.getOldAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -141,14 +124,21 @@ public class AssetEntrySetServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return AssetEntrySetServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+			return AssetEntrySetServiceUtil.updateAssetEntrySet(((Long)arguments[0]).longValue(),
+				(com.liferay.portal.kernel.json.JSONObject)arguments[1],
+				((Boolean)arguments[2]).booleanValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -174,6 +164,4 @@ public class AssetEntrySetServiceClpInvoker {
 	private String[] _methodParameterTypes60;
 	private String _methodName61;
 	private String[] _methodParameterTypes61;
-	private String _methodName62;
-	private String[] _methodParameterTypes62;
 }

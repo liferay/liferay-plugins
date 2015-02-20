@@ -70,25 +70,6 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 	}
 
 	@Override
-	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long parentAssetEntrySetId, java.lang.String payload,
-		boolean privateAssetEntrySet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetService.addAssetEntrySet(parentAssetEntrySetId,
-			payload, privateAssetEntrySet);
-	}
-
-	@Override
-	public com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload, boolean privateAssetEntrySet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetService.addAssetEntrySet(payload,
-			privateAssetEntrySet);
-	}
-
-	@Override
 	public com.liferay.portal.kernel.json.JSONObject addFileAttachment(
 		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -138,6 +119,17 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.unlikeAssetEntrySet(assetEntrySetId);
+	}
+
+	@Override
+	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
+		long assetEntrySetId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.updateAssetEntrySet(assetEntrySetId,
+			payloadJSONObject, privateAssetEntrySet);
 	}
 
 	/**

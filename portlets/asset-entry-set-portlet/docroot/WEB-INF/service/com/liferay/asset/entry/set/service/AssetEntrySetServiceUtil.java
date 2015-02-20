@@ -74,23 +74,6 @@ public class AssetEntrySetServiceUtil {
 			creatorClassPK, payload, privateAssetEntrySet);
 	}
 
-	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		long parentAssetEntrySetId, java.lang.String payload,
-		boolean privateAssetEntrySet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .addAssetEntrySet(parentAssetEntrySetId, payload,
-			privateAssetEntrySet);
-	}
-
-	public static com.liferay.asset.entry.set.model.AssetEntrySet addAssetEntrySet(
-		java.lang.String payload, boolean privateAssetEntrySet)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addAssetEntrySet(payload, privateAssetEntrySet);
-	}
-
 	public static com.liferay.portal.kernel.json.JSONObject addFileAttachment(
 		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -137,6 +120,17 @@ public class AssetEntrySetServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().unlikeAssetEntrySet(assetEntrySetId);
+	}
+
+	public static com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
+		long assetEntrySetId,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		boolean privateAssetEntrySet)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateAssetEntrySet(assetEntrySetId, payloadJSONObject,
+			privateAssetEntrySet);
 	}
 
 	public static void clearService() {
