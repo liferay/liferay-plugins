@@ -14,11 +14,13 @@
 
 package com.liferay.calendar.hook.upgrade;
 
+import com.liferay.calendar.hook.upgrade.v1_0_1.UpgradeCalendar;
 import com.liferay.calendar.hook.upgrade.v1_0_1.UpgradeCalendarBooking;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Bryan Engler
+ * @author Adam Brandizzi
  */
 public class UpgradeProcess_1_0_1 extends UpgradeProcess {
 
@@ -29,6 +31,7 @@ public class UpgradeProcess_1_0_1 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeCalendar.class);
 		upgrade(UpgradeCalendarBooking.class);
 	}
 
