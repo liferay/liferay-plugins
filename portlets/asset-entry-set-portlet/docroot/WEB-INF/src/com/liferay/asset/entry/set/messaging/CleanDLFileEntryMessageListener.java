@@ -37,22 +37,21 @@ public class CleanDLFileEntryMessageListener extends BaseMessageListener {
 	protected void doReceive(Message message) throws Exception {
 		Date date = new Date(System.currentTimeMillis() - Time.DAY);
 
-		DynamicQuery dlFileEntryDynamicQuery =
-			DLFileEntryLocalServiceUtil.dynamicQuery();
+		DynamicQuery dynamicQuery = DLFileEntryLocalServiceUtil.dynamicQuery();
 
 		Property classNameIdProperty = PropertyFactoryUtil.forName(
 			"classNameId");
 
-		dlFileEntryDynamicQuery.add(
+		dynamicQuery.add(
 			classNameIdProperty.eq(
 				AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID));
 
 		Property classPKProperty = PropertyFactoryUtil.forName("classPK");
 
-		dlFileEntryDynamicQuery.add(classPKProperty.eq(0L));
+		dynamicQuery.add(classPKProperty.eq(0L));
 
 		List<DLFileEntry> dlFileEntries =
-			DLFileEntryLocalServiceUtil.dynamicQuery(dlFileEntryDynamicQuery);
+			DLFileEntryLocalServiceUtil.dynamicQuery(dynamicQuery);
 
 		for (DLFileEntry fileEntry : dlFileEntries) {
 			if (DateUtil.compareTo(date, fileEntry.getCreateDate()) > 0) {
