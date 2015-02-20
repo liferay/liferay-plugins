@@ -90,6 +90,7 @@ AUI.add(
 				getWeeksInMonth: function(date) {
 					var daysInMonth = DateMath.getDaysInMonth(date.getFullYear(), date.getMonth());
 					var firstWeekDay = DateMath.getDate(date.getFullYear(), date.getMonth(), 1).getDay();
+
 					var daysInFirstWeek = DateMath.WEEK_LENGTH - firstWeekDay;
 
 					return Math.ceil((daysInMonth - daysInFirstWeek) / DateMath.WEEK_LENGTH) + 1;
@@ -1674,7 +1675,9 @@ AUI.add(
 						var instance = this;
 
 						var scheduler = instance.get('scheduler');
+
 						var viewDate = scheduler.get('viewDate');
+
 						var weeks = DateMath.getWeeksInMonth(viewDate);
 
 						SchedulerMonthView.superclass._syncCellDimensions.apply(this, arguments);
