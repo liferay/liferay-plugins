@@ -31,7 +31,7 @@
 						resultTextLocator: 'screenName',
 						source: '<%= autoCompleteUserURL.toString() + "&" + PortalUtil.getPortletNamespace("1_WAR_mentionsportlet") %>',
 						term: '@',
-						tplReplace: '<a href="{profileURL}">@{screenName}</a>',
+						tplReplace: '{mention}',
 						tplResults: '<div class="display-style-3 taglib-user-display" style="padding:5px;"><span><span class="user-profile-image" style="background-image: url(\'{portraitURL}\'); background-size: 32px 32px; height: 32px; margin-right:5px; width: 32px;"></span><span class="user-name">{fullName}</span><span class="user-details"> (@{screenName})</span></span></div>'
 					}
 				]
