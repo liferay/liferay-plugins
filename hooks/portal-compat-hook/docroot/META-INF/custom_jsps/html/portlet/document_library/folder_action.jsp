@@ -69,7 +69,7 @@ else {
 
 int status = WorkflowConstants.STATUS_APPROVED;
 
-if (permissionChecker.isContentReviewer(user.getCompanyId(), scopeGroupId)) {
+if (permissionChecker.isCompanyAdmin() || permissionChecker.isGroupAdmin(scopeGroupId)) {
 	status = WorkflowConstants.STATUS_ANY;
 }
 
