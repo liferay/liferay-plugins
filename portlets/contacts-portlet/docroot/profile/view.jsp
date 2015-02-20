@@ -38,7 +38,7 @@ Group group = themeDisplay.getScopeGroup();
 	</c:when>
 	<c:otherwise>
 		<div class="lfr-message-info">
-			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-page" />
+			<liferay-ui:message key="this-application-only-functions-when-placed-on-a-user-page" />
 		</div>
 	</c:otherwise>
 </c:choose>

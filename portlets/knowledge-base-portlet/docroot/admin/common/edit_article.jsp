@@ -78,7 +78,7 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 	<c:choose>
 		<c:when test="<%= (kbArticle != null) && kbArticle.isApproved() %>">
 			<div class="alert alert-info">
-				<liferay-ui:message key="a-new-version-will-be-created-automatically-if-this-content-is-modified" />
+				<liferay-ui:message key="a-new-version-is-created-automatically-if-this-content-is-modified" />
 			</div>
 		</c:when>
 		<c:when test="<%= (kbArticle != null) && kbArticle.isPending() %>">
