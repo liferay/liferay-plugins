@@ -16,6 +16,7 @@ package com.liferay.asset.entry.set.service.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
+import com.liferay.asset.entry.set.service.participant.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.PortletKeys;
@@ -37,19 +38,12 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.AssetEntry;
-import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.ratings.model.RatingsStats;
 import com.liferay.util.portlet.PortletProps;
@@ -507,65 +501,9 @@ public class AssetEntrySetLocalServiceImpl
 			long creatorClassNameId, long creatorClassPK)
 		throws PortalException, SystemException {
 
-		return getParticipantJSONObject(
+		return AssetEntrySetParticipantInfoUtil.getParticipantJSONObject(
 			JSONFactoryUtil.createJSONObject(), creatorClassNameId,
 			creatorClassPK, true);
-	}
-
-	protected JSONObject getParticipantJSONObject(
-			JSONObject participantJSONObject, long classNameId, long classPK,
-			boolean includePortraitURL)
-		throws PortalException, SystemException {
-
-		String participantFullName = StringPool.BLANK;
-		String participantPortraitURL = StringPool.BLANK;
-		String participantURL = StringPool.BLANK;
-
-		if (classNameId == _USER_CLASS_NAME_ID) {
-			User user = UserLocalServiceUtil.getUser(classPK);
-
-			participantFullName = user.getFullName();
-
-			participantPortraitURL = UserConstants.getPortraitURL(
-				PortalUtil.getPathImage(), user.isMale(), user.getPortraitId());
-
-			Group group = user.getGroup();
-
-			participantURL =
-				_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
-					group.getFriendlyURL();
-		}
-		else {
-			AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
-				PortalUtil.getClassName(classNameId), classPK);
-
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-				assetEntry.getDescription());
-
-			participantFullName = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME);
-			participantPortraitURL = jsonObject.getString(
-				AssetEntrySetConstants.
-					ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL);
-			participantURL = jsonObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL);
-		}
-
-		participantJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
-			participantFullName);
-
-		if (includePortraitURL) {
-			participantJSONObject.put(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL,
-				participantPortraitURL);
-		}
-
-		participantJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL,
-			participantURL);
-
-		return participantJSONObject;
 	}
 
 	protected Map<Long, long[]> getSharedToClassPKsMap(
@@ -622,7 +560,7 @@ public class AssetEntrySetLocalServiceImpl
 			long classPK = participantJSONObject.getLong("classPK");
 
 			returnedSharedToJSONArray.put(
-				getParticipantJSONObject(
+				AssetEntrySetParticipantInfoUtil.getParticipantJSONObject(
 					participantJSONObject, classNameId, classPK, false));
 		}
 
@@ -727,9 +665,6 @@ public class AssetEntrySetLocalServiceImpl
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
-
-	private static final String _LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING =
-		PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
 
 	private static final long _USER_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(User.class);
