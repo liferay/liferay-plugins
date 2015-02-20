@@ -47,7 +47,6 @@ public class AssetEntrySetParticipantInfoImpl
 		participantJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
 			user.getFullName());
-
 		participantJSONObject.put(
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL,
 			UserConstants.getPortraitURL(
