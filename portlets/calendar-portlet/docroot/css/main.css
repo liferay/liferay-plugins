@@ -431,6 +431,10 @@
 	}
 }
 
+.scheduler-view-day:not(.scheduler-view-week) .scheduler-view-day-header-day span {
+	display: none;
+}
+
 .scheduler-view-table-header-table .scheduler-view-table-header-col .scheduler-view-table-header-day div {
 	font-size: 14px;
 	padding: 6px 0 2px 0;
