@@ -421,8 +421,19 @@
 	padding-top: 4px;
 }
 
-.scheduler-view-day-header-day a {
-	padding: 2px;
+.scheduler-view-day-header-col .scheduler-view-day-header-day {
+	a, span {
+		font-size: 14px;
+
+		@include respond-to(phone) {
+			display: block;
+		}
+	}
+}
+
+.scheduler-view-table-header-table .scheduler-view-table-header-col .scheduler-view-table-header-day div {
+	font-size: 14px;
+	padding: 6px 0 2px 0;
 }
 
 .scheduler-view-table-data-event {

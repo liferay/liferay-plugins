@@ -116,7 +116,7 @@ AUI.add(
 
 							if (activeNav) {
 								instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
-							}
+							}							
 						}
 					}
 				}
@@ -142,6 +142,40 @@ AUI.add(
 				validator: A.Lang.isFunction
 			}
 		}, A.SchedulerAgendaView.ATTRS);
+
+		A.SchedulerDayView.ATTRS = A.mix({
+			headerDateFormatter: {
+				value: function(date) {
+					var instance = this;
+					var scheduler = instance.get('scheduler');
+
+					return A.DataType.Date.format(
+						date, {
+							format: '<span>%a</span> <span>%d</span>',
+							locale: scheduler.get('locale')
+						}
+					);
+				},
+				validator: A.Lang.isString
+			}
+		}, A.SchedulerDayView.ATTRS);
+
+		A.SchedulerTableView.ATTRS = A.mix({
+			headerDateFormatter: {
+				value: function(date) {
+					var instance = this;
+					var scheduler = instance.get('scheduler');
+
+					return A.DataType.Date.format(
+						date, {
+							format: '%a',
+							locale: scheduler.get('locale')
+						}
+					);
+				},
+				validator: A.Lang.isString
+			}
+		}, A.SchedulerTableView.ATTRS);
 	},
 	'',
 	{
