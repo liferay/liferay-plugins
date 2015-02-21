@@ -25,6 +25,7 @@ allprojects {
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
+		Closure getBuildGradleDependenciesTestCompile
 		Closure getBuildGradleExt
 		Closure getBuildGradleExtPluginFullVersion
 		Closure getBuildXmlProperty
@@ -32,6 +33,7 @@ allprojects {
 		Closure wrapContents
 		Closure wrapDependency
 		Closure wrapProperty
+		Closure wrapServiceJar
 		Closure writeBuildGradleFile
 		Closure writeDependencySettingsFile
 
@@ -51,6 +53,7 @@ allprojects {
 
 			contents.addAll(getBuildGradleDependenciesCompile())
 			contents.addAll(getBuildGradleDependenciesProvidedCompile())
+			contents.addAll(getBuildGradleDependenciesTestCompile())
 
 			return wrapContents(contents, 0, " {", "dependencies", "}")
 		}
@@ -60,7 +63,9 @@ allprojects {
 
 			if (ivyXmlNode) {
 				ivyXmlNode.dependencies.dependency.each {
-					contents << "\t\t[group: \"${it.@org}\", name:\"${it.@name}\", version: \"${it.@rev}\"],"
+					if ((it.@conf == null) || (it.@conf == "default")) {
+						contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
+					}
 				}
 			}
 
@@ -75,12 +80,26 @@ allprojects {
 					File serviceJarFile = new File("${projectDir}", serviceJarFileName)
 
 					if (serviceJarFile.exists()) {
-						contents << "\t\tfiles(\"${serviceJarFileName}\"),"
+						wrapServiceJar(2, serviceJarFileName)
 					}
 				}
 			}
 
 			return wrapContents(contents, 1, "(", "compile", ")")
+		}
+
+		getBuildGradleDependenciesTestCompile = {
+			List contents = []
+
+			if (ivyXmlNode) {
+				ivyXmlNode.dependencies.dependency.each {
+					if (it.@conf =~ "test") {
+						contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
+					}
+				}
+			}
+
+			return wrapContents(contents, 1, "(", "testCompile", ")")
 		}
 
 		getBuildGradleDependenciesProvidedCompile = {
@@ -225,6 +244,12 @@ allprojects {
 			}
 
 			return []
+		}
+
+		wrapServiceJar = {
+			int indentCount, String name, String value = "" ->
+
+			return "${params[0]}files(\"${params[1]}\"),"
 		}
 
 		writeBuildGradleFile = {
