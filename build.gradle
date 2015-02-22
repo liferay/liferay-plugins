@@ -247,9 +247,9 @@ allprojects {
 		}
 
 		wrapServiceJar = {
-			int indentCount, String name, String value = "" ->
+			int indentCount, String serviceJarFileName ->
 
-			return "${params[0]}files(\"${params[1]}\"),"
+			return "${getIndent(indentCount)}files(\"${serviceJarFileName}\"),"
 		}
 
 		writeBuildGradleFile = {
