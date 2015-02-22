@@ -2170,10 +2170,15 @@ Please find a solution that does not require portal-impl.jar.
 						test.type="@{test.type}"
 					/>
 
-					<start-test-app-server
-						module.dir="@{module.dir}"
-						test.class="@{test.class}"
-					/>
+					<if>
+						<equals arg1="@{test.type}" arg2="integration" />
+						<then>
+							<start-test-app-server
+								module.dir="@{module.dir}"
+								test.class="@{test.class}"
+							/>
+						</then>
+					</if>
 
 					<if>
 						<available file="@{module.dir}/test/@{test.type}" type="dir" />
