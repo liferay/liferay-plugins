@@ -53,4 +53,27 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		}
 	}
 
+	@Override
+	public void onAfterUpdate(Group group) throws ModelListenerException {
+		try {
+			long classNameId = PortalUtil.getClassNameId(Group.class);
+
+			CalendarResource calendarResource =
+				CalendarResourceLocalServiceUtil.fetchCalendarResource(
+					classNameId, group.getGroupId());
+
+			if (calendarResource == null) {
+				return;
+			}
+
+			calendarResource.setNameMap(group.getNameMap());
+
+			CalendarResourceLocalServiceUtil.updateCalendarResource(
+				calendarResource);
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
 }
