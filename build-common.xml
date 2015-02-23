@@ -1699,6 +1699,29 @@ Please find a solution that does not require portal-impl.jar.
 							</uptodate>
 						</not>
 						<then>
+							<if>
+								<and>
+									<available file="@{module.dir}/src/META-INF/resources" />
+								</and>
+								<then>
+									<resourcecount property="module.css.count">
+										<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.css" />
+									</resourcecount>
+
+									<if>
+										<not>
+											<equals arg1="${module.css.count}" arg2="0" />
+										</not>
+										<then>
+											<build-css
+												module.dir="@{module.dir"
+												sass.docroot.dir="src/META-INF/resources"
+											/>
+										</then>
+									</if>
+								</then>
+							</if>
+
 							<set-build-xml-var
 								build.xml.var.name="original.lib.name"
 								module.dir="@{module.dir}"
