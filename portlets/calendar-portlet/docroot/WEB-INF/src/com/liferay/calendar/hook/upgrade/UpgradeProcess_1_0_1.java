@@ -14,7 +14,7 @@
 
 package com.liferay.calendar.hook.upgrade;
 
-import com.liferay.calendar.hook.upgrade.v1_0_1.UpgradeCalendarVEvent;
+import com.liferay.calendar.hook.upgrade.v1_0_1.UpgradeCalendarBooking;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
@@ -29,7 +29,7 @@ public class UpgradeProcess_1_0_1 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeCalendarVEvent.class);
+		upgrade(UpgradeCalendarBooking.class);
 	}
 
 }
