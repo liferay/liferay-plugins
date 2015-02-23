@@ -413,6 +413,41 @@
 	margin-top: 5px;
 }
 
+.scheduler-view .scheduler-view-agenda-info-container,
+.scheduler-view .scheduler-view-agenda-container {
+	border: 0;
+	border-bottom: 1px solid #E4E4E4;
+	font-size: 1em;
+	margin: 0;
+
+	@include border-radius(0);
+
+	.scheduler-view-agenda-info {
+		.scheduler-view-agenda-info-biggie {
+			background: #FFF;
+			padding: 5px 8px;
+			width: 65px;
+		}
+
+		.scheduler-view-agenda-info-label {
+			padding: 10px 0 10px 8px;
+		}
+	}
+
+	.scheduler-view-agenda-no-events {
+		background: #F6F6F6;
+		text-align: center;
+	}
+}
+
+.scheduler-view-agenda {
+	margin-top: -13px;
+}
+
+.scheduler-view-content .scheduler-view-scrollable {
+	overflow-y: auto;
+}
+
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col {
 	padding-top: 5px;
 }
