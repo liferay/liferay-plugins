@@ -179,7 +179,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 	<macrodef name="build-css">
 		<attribute name="module.dir" />
-		<attribute default="${module.dir.unix}/docroot" name="saas.docroot.dir" />
+		<attribute default="${module.dir.unix}/docroot" name="sass.docroot.dir" />
 
 		<sequential>
 			<java
@@ -191,7 +191,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			>
 				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
 				<arg value="sass.dir=/" />
-				<arg value="sass.docroot.dir=@{saas.docroot.dir}" />
+				<arg value="sass.docroot.dir=@{sass.docroot.dir}" />
 				<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
 			</java>
 
