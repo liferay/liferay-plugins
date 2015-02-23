@@ -88,20 +88,6 @@ allprojects {
 			return wrapContents(contents, 1, "(", "compile", ")")
 		}
 
-		getBuildGradleDependenciesTestCompile = {
-			List contents = []
-
-			if (ivyXmlNode) {
-				ivyXmlNode.dependencies.dependency.each {
-					if (it.@conf =~ "test") {
-						contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
-					}
-				}
-			}
-
-			return wrapContents(contents, 1, "(", "testCompile", ")")
-		}
-
 		getBuildGradleDependenciesProvidedCompile = {
 			List contents = []
 
@@ -131,6 +117,20 @@ allprojects {
 			}
 
 			return wrapContents(contents, 1, "(", "providedCompile", ")")
+		}
+
+		getBuildGradleDependenciesTestCompile = {
+			List contents = []
+
+			if (ivyXmlNode) {
+				ivyXmlNode.dependencies.dependency.each {
+					if (it.@conf =~ "test") {
+						contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
+					}
+				}
+			}
+
+			return wrapContents(contents, 1, "(", "testCompile", ")")
 		}
 
 		getBuildGradleExt = {
