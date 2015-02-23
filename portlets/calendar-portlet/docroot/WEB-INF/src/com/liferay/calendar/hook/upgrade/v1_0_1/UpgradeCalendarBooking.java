@@ -24,8 +24,8 @@ public class UpgradeCalendarBooking extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		runSQL(
-			"update CalendarBooking set vEventUid = uuid_ " +
-				"where vEventUid is NULL or vEventUid = ''");
+			"update CalendarBooking set vEventUid = uuid_ where vEventUid is " +
+				"NULL or vEventUid = ''");
 	}
 
 }
