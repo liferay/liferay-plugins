@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.calendar.model.Calendar;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -38,6 +39,30 @@ import java.util.Date;
  */
 @ProviderType
 public class CalendarCacheModel implements CacheModel<Calendar>, Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CalendarCacheModel)) {
+			return false;
+		}
+
+		CalendarCacheModel calendarCacheModel = (CalendarCacheModel)obj;
+
+		if (calendarId == calendarCacheModel.calendarId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, calendarId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(35);

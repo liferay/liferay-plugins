@@ -58,8 +58,7 @@ public class CalendarImporterLocalServiceWrapper
 	}
 
 	@Override
-	public void importRolePermissions()
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public void importRolePermissions() {
 		_calendarImporterLocalService.importRolePermissions();
 	}
 

@@ -60,8 +60,7 @@ public interface CalendarImporterLocalService extends BaseLocalService,
 	public void importCalEvents()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public void importRolePermissions()
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void importRolePermissions();
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

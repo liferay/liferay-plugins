@@ -27,7 +27,7 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * The persistence utility for the calendar booking service. This utility wraps {@link CalendarBookingPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the calendar booking service. This utility wraps {@link com.liferay.calendar.service.persistence.impl.CalendarBookingPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -35,7 +35,7 @@ import java.util.List;
  *
  * @author Eduardo Lundgren
  * @see CalendarBookingPersistence
- * @see CalendarBookingPersistenceImpl
+ * @see com.liferay.calendar.service.persistence.impl.CalendarBookingPersistenceImpl
  * @generated
  */
 @ProviderType
@@ -1133,6 +1133,70 @@ public class CalendarBookingUtil {
 	*/
 	public static int countByC_P(long calendarId, long parentCalendarBookingId) {
 		return getPersistence().countByC_P(calendarId, parentCalendarBookingId);
+	}
+
+	/**
+	* Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
+	*/
+	public static com.liferay.calendar.model.CalendarBooking findByC_V(
+		long calendarId, java.lang.String vEventUid)
+		throws com.liferay.calendar.NoSuchBookingException {
+		return getPersistence().findByC_V(calendarId, vEventUid);
+	}
+
+	/**
+	* Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	*/
+	public static com.liferay.calendar.model.CalendarBooking fetchByC_V(
+		long calendarId, java.lang.String vEventUid) {
+		return getPersistence().fetchByC_V(calendarId, vEventUid);
+	}
+
+	/**
+	* Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	*/
+	public static com.liferay.calendar.model.CalendarBooking fetchByC_V(
+		long calendarId, java.lang.String vEventUid, boolean retrieveFromCache) {
+		return getPersistence()
+				   .fetchByC_V(calendarId, vEventUid, retrieveFromCache);
+	}
+
+	/**
+	* Removes the calendar booking where calendarId = &#63; and vEventUid = &#63; from the database.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the calendar booking that was removed
+	*/
+	public static com.liferay.calendar.model.CalendarBooking removeByC_V(
+		long calendarId, java.lang.String vEventUid)
+		throws com.liferay.calendar.NoSuchBookingException {
+		return getPersistence().removeByC_V(calendarId, vEventUid);
+	}
+
+	/**
+	* Returns the number of calendar bookings where calendarId = &#63; and vEventUid = &#63;.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the number of matching calendar bookings
+	*/
+	public static int countByC_V(long calendarId, java.lang.String vEventUid) {
+		return getPersistence().countByC_V(calendarId, vEventUid);
 	}
 
 	/**

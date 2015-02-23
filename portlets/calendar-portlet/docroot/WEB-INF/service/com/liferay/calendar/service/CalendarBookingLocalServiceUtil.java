@@ -244,6 +244,11 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	public static com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
+		long calendarId, java.lang.String vEventUid) {
+		return getService().fetchCalendarBooking(calendarId, vEventUid);
+	}
+
+	public static com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
 		java.lang.String uuid, long groupId) {
 		return getService().fetchCalendarBooking(uuid, groupId);
 	}

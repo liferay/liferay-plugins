@@ -5,6 +5,7 @@ create unique index IX_3AE311A on Calendar (uuid_, groupId);
 
 create unique index IX_113A264E on CalendarBooking (calendarId, parentCalendarBookingId);
 create index IX_470170B4 on CalendarBooking (calendarId, status);
+create unique index IX_8B23DA0E on CalendarBooking (calendarId, vEventUid);
 create index IX_B198FFC on CalendarBooking (calendarResourceId);
 create index IX_F7B8A941 on CalendarBooking (parentCalendarBookingId, status);
 create index IX_22DFDB49 on CalendarBooking (resourceBlockId);

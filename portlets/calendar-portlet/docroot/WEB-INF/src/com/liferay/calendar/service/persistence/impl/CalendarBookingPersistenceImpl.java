@@ -65,7 +65,7 @@ import java.util.Set;
  *
  * @author Eduardo Lundgren
  * @see CalendarBookingPersistence
- * @see CalendarBookingUtil
+ * @see com.liferay.calendar.service.persistence.CalendarBookingUtil
  * @generated
  */
 @ProviderType
@@ -3645,6 +3645,262 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 	private static final String _FINDER_COLUMN_C_P_CALENDARID_2 = "calendarBooking.calendarId = ? AND ";
 	private static final String _FINDER_COLUMN_C_P_PARENTCALENDARBOOKINGID_2 = "calendarBooking.parentCalendarBookingId = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_C_V = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarBookingModelImpl.FINDER_CACHE_ENABLED,
+			CalendarBookingImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByC_V",
+			new String[] { Long.class.getName(), String.class.getName() },
+			CalendarBookingModelImpl.CALENDARID_COLUMN_BITMASK |
+			CalendarBookingModelImpl.VEVENTUID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_V = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
+			CalendarBookingModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_V",
+			new String[] { Long.class.getName(), String.class.getName() });
+
+	/**
+	 * Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param vEventUid the v event uid
+	 * @return the matching calendar booking
+	 * @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
+	 */
+	@Override
+	public CalendarBooking findByC_V(long calendarId, String vEventUid)
+		throws NoSuchBookingException {
+		CalendarBooking calendarBooking = fetchByC_V(calendarId, vEventUid);
+
+		if (calendarBooking == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("calendarId=");
+			msg.append(calendarId);
+
+			msg.append(", vEventUid=");
+			msg.append(vEventUid);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchBookingException(msg.toString());
+		}
+
+		return calendarBooking;
+	}
+
+	/**
+	 * Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param vEventUid the v event uid
+	 * @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	 */
+	@Override
+	public CalendarBooking fetchByC_V(long calendarId, String vEventUid) {
+		return fetchByC_V(calendarId, vEventUid, true);
+	}
+
+	/**
+	 * Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param vEventUid the v event uid
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	 */
+	@Override
+	public CalendarBooking fetchByC_V(long calendarId, String vEventUid,
+		boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { calendarId, vEventUid };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_V,
+					finderArgs, this);
+		}
+
+		if (result instanceof CalendarBooking) {
+			CalendarBooking calendarBooking = (CalendarBooking)result;
+
+			if ((calendarId != calendarBooking.getCalendarId()) ||
+					!Validator.equals(vEventUid, calendarBooking.getVEventUid())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_CALENDARBOOKING_WHERE);
+
+			query.append(_FINDER_COLUMN_C_V_CALENDARID_2);
+
+			boolean bindVEventUid = false;
+
+			if (vEventUid == null) {
+				query.append(_FINDER_COLUMN_C_V_VEVENTUID_1);
+			}
+			else if (vEventUid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_V_VEVENTUID_3);
+			}
+			else {
+				bindVEventUid = true;
+
+				query.append(_FINDER_COLUMN_C_V_VEVENTUID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(calendarId);
+
+				if (bindVEventUid) {
+					qPos.add(vEventUid);
+				}
+
+				List<CalendarBooking> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_V,
+						finderArgs, list);
+				}
+				else {
+					CalendarBooking calendarBooking = list.get(0);
+
+					result = calendarBooking;
+
+					cacheResult(calendarBooking);
+
+					if ((calendarBooking.getCalendarId() != calendarId) ||
+							(calendarBooking.getVEventUid() == null) ||
+							!calendarBooking.getVEventUid().equals(vEventUid)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_V,
+							finderArgs, calendarBooking);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_V,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (CalendarBooking)result;
+		}
+	}
+
+	/**
+	 * Removes the calendar booking where calendarId = &#63; and vEventUid = &#63; from the database.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param vEventUid the v event uid
+	 * @return the calendar booking that was removed
+	 */
+	@Override
+	public CalendarBooking removeByC_V(long calendarId, String vEventUid)
+		throws NoSuchBookingException {
+		CalendarBooking calendarBooking = findByC_V(calendarId, vEventUid);
+
+		return remove(calendarBooking);
+	}
+
+	/**
+	 * Returns the number of calendar bookings where calendarId = &#63; and vEventUid = &#63;.
+	 *
+	 * @param calendarId the calendar ID
+	 * @param vEventUid the v event uid
+	 * @return the number of matching calendar bookings
+	 */
+	@Override
+	public int countByC_V(long calendarId, String vEventUid) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_V;
+
+		Object[] finderArgs = new Object[] { calendarId, vEventUid };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_CALENDARBOOKING_WHERE);
+
+			query.append(_FINDER_COLUMN_C_V_CALENDARID_2);
+
+			boolean bindVEventUid = false;
+
+			if (vEventUid == null) {
+				query.append(_FINDER_COLUMN_C_V_VEVENTUID_1);
+			}
+			else if (vEventUid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_V_VEVENTUID_3);
+			}
+			else {
+				bindVEventUid = true;
+
+				query.append(_FINDER_COLUMN_C_V_VEVENTUID_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(calendarId);
+
+				if (bindVEventUid) {
+					qPos.add(vEventUid);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_C_V_CALENDARID_2 = "calendarBooking.calendarId = ? AND ";
+	private static final String _FINDER_COLUMN_C_V_VEVENTUID_1 = "calendarBooking.vEventUid IS NULL";
+	private static final String _FINDER_COLUMN_C_V_VEVENTUID_2 = "calendarBooking.vEventUid = ?";
+	private static final String _FINDER_COLUMN_C_V_VEVENTUID_3 = "(calendarBooking.vEventUid IS NULL OR calendarBooking.vEventUid = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_S = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED,
 			CalendarBookingImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -4967,6 +5223,11 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				calendarBooking.getParentCalendarBookingId()
 			}, calendarBooking);
 
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_V,
+			new Object[] {
+				calendarBooking.getCalendarId(), calendarBooking.getVEventUid()
+			}, calendarBooking);
+
 		calendarBooking.resetOriginalValues();
 	}
 
@@ -5061,6 +5322,16 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_P, args,
 				calendarBooking);
+
+			args = new Object[] {
+					calendarBooking.getCalendarId(),
+					calendarBooking.getVEventUid()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_V, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_V, args,
+				calendarBooking);
 		}
 		else {
 			CalendarBookingModelImpl calendarBookingModelImpl = (CalendarBookingModelImpl)calendarBooking;
@@ -5087,6 +5358,19 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_P, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_P, args,
+					calendarBooking);
+			}
+
+			if ((calendarBookingModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_C_V.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						calendarBooking.getCalendarId(),
+						calendarBooking.getVEventUid()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_V, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_V, args,
 					calendarBooking);
 			}
 		}
@@ -5130,6 +5414,24 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_P, args);
+		}
+
+		args = new Object[] {
+				calendarBooking.getCalendarId(), calendarBooking.getVEventUid()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_V, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_V, args);
+
+		if ((calendarBookingModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_C_V.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					calendarBookingModelImpl.getOriginalCalendarId(),
+					calendarBookingModelImpl.getOriginalVEventUid()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_V, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_V, args);
 		}
 	}
 
@@ -5478,6 +5780,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		calendarBookingImpl.setCalendarId(calendarBooking.getCalendarId());
 		calendarBookingImpl.setCalendarResourceId(calendarBooking.getCalendarResourceId());
 		calendarBookingImpl.setParentCalendarBookingId(calendarBooking.getParentCalendarBookingId());
+		calendarBookingImpl.setVEventUid(calendarBooking.getVEventUid());
 		calendarBookingImpl.setTitle(calendarBooking.getTitle());
 		calendarBookingImpl.setDescription(calendarBooking.getDescription());
 		calendarBookingImpl.setLocation(calendarBooking.getLocation());

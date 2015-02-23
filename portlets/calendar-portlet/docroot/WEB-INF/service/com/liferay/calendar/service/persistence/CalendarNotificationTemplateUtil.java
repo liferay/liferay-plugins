@@ -27,7 +27,7 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * The persistence utility for the calendar notification template service. This utility wraps {@link CalendarNotificationTemplatePersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the calendar notification template service. This utility wraps {@link com.liferay.calendar.service.persistence.impl.CalendarNotificationTemplatePersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -35,7 +35,7 @@ import java.util.List;
  *
  * @author Eduardo Lundgren
  * @see CalendarNotificationTemplatePersistence
- * @see CalendarNotificationTemplatePersistenceImpl
+ * @see com.liferay.calendar.service.persistence.impl.CalendarNotificationTemplatePersistenceImpl
  * @generated
  */
 @ProviderType
