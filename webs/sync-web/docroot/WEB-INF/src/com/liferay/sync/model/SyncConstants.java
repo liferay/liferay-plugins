@@ -21,6 +21,14 @@ import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
  */
 public class SyncConstants extends DLSyncConstants {
 
+	public static final String FULL_ACCESS_PERMISSION =
+		"full-access-permission";
+
 	public static final String TYPE_PRIVATE_WORKING_COPY = "privateWorkingCopy";
+
+	public static final String VIEW_PERMISSION = "view-permission";
+
+	public static final String VIEW_AND_ADD_DISCUSSION_PERMISSION =
+		"view-and-add-discussion-permission";
 
 }

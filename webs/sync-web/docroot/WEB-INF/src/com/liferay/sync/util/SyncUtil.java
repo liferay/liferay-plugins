@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Lock;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
@@ -136,6 +137,22 @@ public class SyncUtil {
 
 		if ((group == null) || !isSyncEnabled(group)) {
 			throw new SyncSiteUnavailableException();
+		}
+	}
+
+	public static void checkDefaultPermissions(
+		Group group, ServiceContext serviceContext) {
+
+		String permissions = group.getTypeSettingsProperty("permissions");
+
+		if (SyncConstants.VIEW_PERMISSION.equals(permissions)) {
+			serviceContext.setGroupPermissions(new String[] {"VIEW"});
+		}
+		else if (SyncConstants.VIEW_AND_ADD_DISCUSSION_PERMISSION.equals(
+			permissions)) {
+
+			serviceContext.setGroupPermissions(
+				new String[] {"VIEW", "ADD_DISCUSSION"});
 		}
 	}
 
