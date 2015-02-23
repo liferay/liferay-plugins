@@ -39,6 +39,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<liferay-ui:icon
 					iconCssClass="icon-edit"
 					label="<%= true %>"
+					message="edit"
 					method="get"
 					url="<%= editURL %>"
 				/>
