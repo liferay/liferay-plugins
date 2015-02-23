@@ -3,6 +3,12 @@ apply from: "${gradle.lfrSdkDir}/versions.gradle"
 allprojects {
 	apply plugin: "war"
 
+	repositories {
+		maven {
+			url 'http://cdn.repository.liferay.com/nexus/content/groups/public'
+		}
+	}
+
 	ant.loadproperties(srcFile: "${gradle.lfrSdkDir}/build.properties")
 
 	File pluginSrcDir = file("${projectDir}/docroot")
