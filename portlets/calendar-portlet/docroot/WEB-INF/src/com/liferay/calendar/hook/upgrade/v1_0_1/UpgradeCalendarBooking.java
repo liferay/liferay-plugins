@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Bryan Engler
  */
-public class UpgradeCalendarVEvent extends UpgradeProcess {
+public class UpgradeCalendarBooking extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
