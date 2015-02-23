@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.util.List;
@@ -76,7 +76,7 @@ public class CalendarResourceImpl extends CalendarResourceBaseImpl {
 	@Override
 	public TimeZone getTimeZone() throws PortalException {
 		if (isUser()) {
-			User user = UserServiceUtil.getUserById(getClassPK());
+			User user = UserLocalServiceUtil.getUser(getClassPK());
 
 			return user.getTimeZone();
 		}
