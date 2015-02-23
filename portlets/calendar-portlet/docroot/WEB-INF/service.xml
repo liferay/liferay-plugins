@@ -121,13 +121,13 @@
 			<finder-column name="calendarId" />
 			<finder-column name="parentCalendarBookingId" />
 		</finder>
-		<finder name="C_S" return-type="Collection">
-			<finder-column name="calendarId" />
-			<finder-column name="status" arrayable-operator="OR" />
-		</finder>
 		<finder name="C_V" return-type="CalendarBooking" unique="true">
 			<finder-column name="calendarId" />
 			<finder-column name="vEventUid" />
+		</finder>
+		<finder name="C_S" return-type="Collection">
+			<finder-column name="calendarId" />
+			<finder-column name="status" arrayable-operator="OR" />
 		</finder>
 		<finder name="P_S" return-type="Collection">
 			<finder-column name="parentCalendarBookingId" />
