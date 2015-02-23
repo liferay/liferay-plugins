@@ -102,7 +102,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			SyncUtil.checkSyncEnabled(repositoryId);
+			Group group = groupLocalService.getGroup(repositoryId);
+
+			SyncUtil.isSyncEnabled(group);
+
+			SyncUtil.checkDefaultPermissions(group, serviceContext);
 
 			FileEntry fileEntry = dlAppService.addFileEntry(
 				repositoryId, folderId, sourceFileName, mimeType, title,
