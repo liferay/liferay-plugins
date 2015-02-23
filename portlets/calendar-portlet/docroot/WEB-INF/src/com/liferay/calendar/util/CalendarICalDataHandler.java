@@ -406,6 +406,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setAttribute("sendNotification", Boolean.FALSE);
+		serviceContext.setAttribute("vEventUid", vEventUidValue);
 		serviceContext.setScopeGroupId(calendar.getGroupId());
 
 		if (calendarBooking == null) {
@@ -415,7 +416,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 				titleMap, descriptionMap, locationString, startDate.getTime(),
 				endDate.getTime(), allDay, recurrence, firstReminder,
 				firstReminderType, secondReminder, secondReminderType,
-				vEventUidValue, serviceContext);
+				serviceContext);
 		}
 		else {
 			CalendarBookingServiceUtil.updateCalendarBooking(

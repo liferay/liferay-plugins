@@ -99,24 +99,6 @@ public class CalendarBookingLocalServiceImpl
 			String secondReminderType, ServiceContext serviceContext)
 		throws PortalException {
 
-		return addCalendarBooking(
-			userId, calendarId, childCalendarIds, parentCalendarBookingId,
-			titleMap, descriptionMap, location, startTime, endTime, allDay,
-			recurrence, firstReminder, firstReminderType, secondReminder,
-			secondReminderType, null, serviceContext);
-	}
-
-	@Override
-	public CalendarBooking addCalendarBooking(
-			long userId, long calendarId, long[] childCalendarIds,
-			long parentCalendarBookingId, Map<Locale, String> titleMap,
-			Map<Locale, String> descriptionMap, String location, long startTime,
-			long endTime, boolean allDay, String recurrence, long firstReminder,
-			String firstReminderType, long secondReminder,
-			String secondReminderType, String vEventUid,
-			ServiceContext serviceContext)
-		throws PortalException {
-
 		// Calendar booking
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -160,15 +142,6 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking = calendarBookingPersistence.create(
 			calendarBookingId);
 
-		calendarBooking.setUuid(serviceContext.getUuid());
-
-		if (vEventUid != null) {
-			calendarBooking.setVEventUid(vEventUid);
-		}
-		else {
-			calendarBooking.setVEventUid(PortalUUIDUtil.generate());
-		}
-
 		calendarBooking.setGroupId(calendar.getGroupId());
 		calendarBooking.setCompanyId(user.getCompanyId());
 		calendarBooking.setUserId(user.getUserId());
@@ -185,6 +158,13 @@ public class CalendarBookingLocalServiceImpl
 			calendarBooking.setParentCalendarBookingId(calendarBookingId);
 		}
 
+		String vEventUid = (String)serviceContext.getAttribute("vEventUid");
+
+		if (vEventUid == null) {
+			vEventUid = PortalUUIDUtil.generate();
+		}
+
+		calendarBooking.setVEventUid(vEventUid);
 		calendarBooking.setTitleMap(titleMap);
 		calendarBooking.setDescriptionMap(descriptionMap);
 		calendarBooking.setLocation(location);
