@@ -107,24 +107,27 @@ allprojects {
 
 			String portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
 
-			portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
-			portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
-				it[1].toUpperCase()
-			}
-
-			String[] portalDependencyJarsArray = portalDependencyJars.split(",");
-
-			portalDependencyJarsArray.each {
-				String portalDependencyJar ->
-
-				Map portalDependencyJarMap = portalDependencies.get(portalDependencyJar)
-
-				if (portalDependencyJarMap == null) {
-					println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
+			if (portalDependencyJars) {
+				portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
+				portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
+					it[1].toUpperCase()
 				}
-				else {
-					contents.addAll(wrapDependency(2, portalDependencyJarMap["group"], portalDependencyJarMap["name"], portalDependencyJarMap["version"]))
+
+				String[] portalDependencyJarsArray = portalDependencyJars.split(",");
+
+				portalDependencyJarsArray.each {
+					String portalDependencyJar ->
+
+					Map portalDependencyJarMap = portalDependencies.get(portalDependencyJar)
+
+					if (portalDependencyJarMap == null) {
+						println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
+					}
+					else {
+						contents.addAll(wrapDependency(2, portalDependencyJarMap["group"], portalDependencyJarMap["name"], portalDependencyJarMap["version"]))
+					}
 				}
+
 			}
 
 			return wrapContents(contents, 1, "(", "providedCompile", ")")
