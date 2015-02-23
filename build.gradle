@@ -25,7 +25,7 @@ allprojects {
 		return
 	}
 
-	task initGradle {
+	task initGradle << {
 		Boolean osgiPlugin
 
 		Closure getBuildGradleDependencies
