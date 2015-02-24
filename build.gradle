@@ -9,6 +9,18 @@ allprojects {
 		}
 	}
 
+	dependencies {
+		Map projectCompileDependencies = gradle.compileDependencies.find {
+			project.path == it.projectPath
+		}
+
+		if (projectCompileDependencies) {
+			projectCompileDependencies["compile"].each {
+				compile project(it)
+			}
+		}
+	}
+
 	ant.loadproperties(srcFile: "${gradle.lfrSdkDir}/build.properties")
 
 	File pluginSrcDir = file("${projectDir}/docroot")
