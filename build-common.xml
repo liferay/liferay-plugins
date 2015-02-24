@@ -2756,9 +2756,11 @@ for (String path : paths) {
 			</then>
 		</if>
 
+		<mkdir dir="pmd-reports" />
+
 		<pmd shortFilenames="true" threads="${pmd.threads}">
 			<fileset dir="${pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
-			<formatter toConsole="true" type="${pmd.output.type}" />
+			<formatter toFile="pmd-reports/pmd-report.${pmd.output.type}" toConsole="true" type="${pmd.output.type}" />
 			<ruleset>${pmd.java.ruleset}</ruleset>
 			<sourceLanguage name="java" version="${ant.build.javac.source}" />
 		</pmd>
