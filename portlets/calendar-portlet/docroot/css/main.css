@@ -365,7 +365,7 @@
 }
 
 .scheduler-base-content > .yui3-widget-bd {
-	border: 1px solid #ddd;
+	border: 1px solid #DDD;
 
 	.scheduler-base-view-date {
 		display: block;
@@ -375,7 +375,7 @@
 	}
 
 	.scheduler-view {
-		border: 0;
+		border-width: 0;
 	}
 }
 
@@ -413,14 +413,11 @@
 	margin-top: 5px;
 }
 
-.scheduler-view .scheduler-view-agenda-info-container,
-.scheduler-view .scheduler-view-agenda-container {
-	border: 0;
+.scheduler-view .scheduler-view-agenda-container, .scheduler-view .scheduler-view-agenda-info-container {
 	border-bottom: 1px solid #E4E4E4;
+	border-width: 0;
 	font-size: 1em;
 	margin: 0;
-
-	@include border-radius(0);
 
 	.scheduler-view-agenda-info {
 		.scheduler-view-agenda-info-biggie {
@@ -612,6 +609,10 @@
 }
 
 /* ---------- Extras ---------- */
+
+.scheduler-view .scheduler-view-agenda-container, .scheduler-view .scheduler-view-agenda-info-container {
+	@include border-radius(0);
+}
 
 .scheduler-event-recorder-content {
 	@include background-image(linear-gradient(top, #F7F7F7, #FFF));

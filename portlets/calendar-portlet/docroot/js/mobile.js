@@ -1,15 +1,28 @@
 AUI.add(
 	'scheduler-mobile',
 	function(A) {
-		var CSS_SCHEDULER_VIEW = A.getClassName('scheduler-base', 'view'),
-			CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
-			
-			TPL_SCHEDULER_VIEW_BUTTON = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') +
-				'{name}" data-view-name="{name}">{label}</button>',
-			TPL_SCHEDULER_VIEW_LIST = '<option class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') +
-				'{name}" data-view-name="{name}">{label}</option>',
-			TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control visible-phone"></select>';
-		
+		var Lang = A.Lang;
+
+		var CSS_SCHEDULER_VIEW = A.getClassName('scheduler-base', 'view');
+
+		var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', '');
+
+		var STR_LOCALE = 'locale';
+
+		var STR_NAME = 'name';
+
+		var STR_SCHEDULER = 'scheduler';
+
+		var STR_SPACE = ' ';
+
+		var TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control visible-phone"></select>';
+
+		var TPL_SCHEDULER_VIEW_BUTTON = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(STR_SPACE) +
+				'{name}" data-view-name="{name}">{label}</button>';
+
+		var TPL_SCHEDULER_VIEW_LIST = '<option class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(STR_SPACE) +
+				'{name}" data-view-name="{name}">{label}</option>';
+
 		var SchedulerMobile = A.Component.create(
 			{
 				ATTRS: {
@@ -17,11 +30,11 @@ AUI.add(
 						valueFn: function() {
 							return A.Node.create(TPL_SCHEDULER_VIEWS_SELECT);
 						}
-					},
+					}
 				},
 
 				EXTENDS: A.Scheduler,
-				
+
 				NAME: 'scheduler-mobile',
 
 				prototype: {
@@ -32,21 +45,30 @@ AUI.add(
 					},
 
 					getViewTriggerNode: function(view) {
-						var instance = this,
-							name = view.get('name'),
-							viewportWidth = A.DOM.winWidth() + A.DOM.getScrollbarWidth();
+						var instance = this;
+
+						var name = view.get(STR_NAME);
+
+						var viewportWidth = A.DOM.winWidth() + A.DOM.getScrollbarWidth();
+
+						var nodeSelector = '.' + CSS_SCHEDULER_VIEW_ + name;
+
+						var viewNode = instance.viewsSelectNode.one(nodeSelector);
 
 						if (viewportWidth >= 768) {
-							return instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+							viewNode = instance.viewsNode.one(nodeSelector);
 						}
 
-						return instance.viewsSelectNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+						return viewNode;
 					},
 
 					renderDropdownList: function() {
 						var instance = this;
 
-						instance.viewsSelectNode.on('change', A.bind(instance._onSelectionChange, instance));
+						instance.viewsSelectNode.on(
+							'change',
+							A.bind(instance._onSelectionChange, instance)
+						);
 					},
 
 					renderView: function(view) {
@@ -60,18 +82,23 @@ AUI.add(
 					},
 
 					syncStdContent: function() {
-						var instance = this,
-							views = instance.get('views');
+						var instance = this;
+
+						var views = instance.get('views');
 
 						SchedulerMobile.superclass.syncStdContent.apply(this, arguments);
 
 						instance.iconPrevNode.insert(instance.todayNode, 'after');
 
-						A.Array.each(views, function(view) {
-							instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
-						});
+						A.Array.each(
+							views,
+							function(view) {
+								instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+							}
+						);
 
 						instance.viewsNode.all('button').addClass('hidden-phone');
+
 						instance.viewsNode.append(instance.viewsSelectNode);
 					},
 
@@ -84,25 +111,37 @@ AUI.add(
 					},
 
 					_createViewTriggerNode: function(view, tpl) {
-						var instance = this,
-							name = view.get('name'),
-							tpl = tpl ? tpl : TPL_SCHEDULER_VIEW_BUTTON;
+						var instance = this;
+
+						var name = view.get(STR_NAME);
+
+						var template = tpl || TPL_SCHEDULER_VIEW_BUTTON;
 
 						return A.Node.create(
-								A.Lang.sub(tpl, {
-									name: name,
-									label: (instance.getString(name) || name)
-								})
-								);
+							Lang.sub(
+								template,
+								{
+									label: (instance.getString(name) || name),
+									name: name
+								}
+							)
+						);
 					},
 
 					_onSelectionChange: function(event) {
-						var instance = this,
-							target = event.target,
-							index = target.get('selectedIndex'),
-							viewName = target.get('options').item(index).attr('data-view-name');
+						var instance = this;
 
-						instance.set('activeView', instance.getViewByName(viewName));
+						var target = event.target;
+
+						var index = target.get('selectedIndex');
+						var options = target.get('options');
+
+						var viewName = options.item(index).attr('data-view-name');
+
+						instance.set(
+							'activeView',
+							instance.getViewByName(viewName)
+						);
 					},
 
 					_uiSetActiveView: function(val) {
@@ -111,12 +150,15 @@ AUI.add(
 						SchedulerMobile.superclass._uiSetActiveView.apply(this, arguments);
 
 						if (val) {
-							var activeView = val.get('name'),
-								activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
+							var activeView = val.get(STR_NAME);
+
+							var activeNav = instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + activeView);
 
 							if (activeNav) {
-								instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
-							}							
+								var viewSelectNode = instance.viewsSelectNode.one('[data-view-name=' + activeView + ']');
+
+								viewSelectNode.set('selected', true);
+							}
 						}
 					}
 				}
@@ -125,60 +167,76 @@ AUI.add(
 
 		A.Scheduler = A.mix(SchedulerMobile, A.Scheduler);
 
-		A.SchedulerView.ATTRS = A.mix({
-			triggerNode: {
-				getter: function() {
-					return this.get('scheduler').getViewTriggerNode(this);
-				},
-				setter: A.one
-			}
-		}, A.SchedulerView.ATTRS);
+		A.SchedulerView.ATTRS = A.mix(
+			{
+				triggerNode: {
+					getter: function() {
+						return this.get(STR_SCHEDULER).getViewTriggerNode(this);
+					},
+					setter: A.one
+				}
+			},
+			A.SchedulerView.ATTRS
+		);
 
-		A.SchedulerAgendaView.ATTRS = A.mix({
-			navigationDateFormatter: {
-				value: function() {
-					return '';
-				},
-				validator: A.Lang.isFunction
-			}
-		}, A.SchedulerAgendaView.ATTRS);
+		A.SchedulerAgendaView.ATTRS = A.mix(
+			{
+				navigationDateFormatter: {
+					validator: Lang.isFunction,
+					value: function() {
+						return '';
+					}
+				}
+			},
+			A.SchedulerAgendaView.ATTRS
+		);
 
-		A.SchedulerDayView.ATTRS = A.mix({
-			headerDateFormatter: {
-				value: function(date) {
-					var instance = this;
-					var scheduler = instance.get('scheduler');
+		A.SchedulerDayView.ATTRS = A.mix(
+			{
+				headerDateFormatter: {
+					validator: Lang.isString,
+					value: function(date) {
+						var instance = this;
 
-					return A.DataType.Date.format(
-						date, {
-							format: '<span>%a</span> <span>%d</span>',
-							locale: scheduler.get('locale')
-						}
-					);
-				},
-				validator: A.Lang.isString
-			}
-		}, A.SchedulerDayView.ATTRS);
+						var scheduler = instance.get(STR_SCHEDULER);
 
-		A.SchedulerTableView.ATTRS = A.mix({
-			headerDateFormatter: {
-				value: function(date) {
-					var instance = this;
-					var scheduler = instance.get('scheduler');
+						return A.DataType.Date.format(
+							date,
+							{
+								format: '<span>%a</span> <span>%d</span>',
+								locale: scheduler.get(STR_LOCALE)
+							}
+						);
+					}
+				}
+			},
+			A.SchedulerDayView.ATTRS
+		);
 
-					return A.DataType.Date.format(
-						date, {
-							format: '%a',
-							locale: scheduler.get('locale')
-						}
-					);
-				},
-				validator: A.Lang.isString
-			}
-		}, A.SchedulerTableView.ATTRS);
+		A.SchedulerTableView.ATTRS = A.mix(
+			{
+				headerDateFormatter: {
+					value: function(date) {
+						var instance = this;
+
+						var scheduler = instance.get(STR_SCHEDULER);
+
+						return A.DataType.Date.format(
+							date,
+							{
+								format: '%a',
+								locale: scheduler.get(STR_LOCALE)
+							}
+						);
+					},
+					validator: A.Lang.isString
+				}
+			},
+			A.SchedulerTableView.ATTRS
+		);
 	},
 	'',
 	{
-		requires: []
+		requires: ['aui-scheduler']
 	}
 );
