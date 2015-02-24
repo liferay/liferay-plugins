@@ -2009,11 +2009,11 @@ Please find a solution that does not require portal-impl.jar.
 				</else>
 			</if>
 
-			<mkdir dir="@{module.dir}/pmd-reports" />
+			<mkdir dir="${module.pmd.basedir}/pmd-reports" />
 
 			<pmd shortFilenames="true" threads="${pmd.threads}">
 				<fileset dir="${module.pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
-				<formatter toConsole="${pmd.output.console}" toFile="@{module.dir}/pmd-reports/pmd-report.${pmd.output.type}" type="${pmd.output.type}" />
+				<formatter toConsole="${pmd.output.console}" toFile="${module.pmd.basedir}/pmd-reports/pmd-report.${pmd.output.type}" type="${pmd.output.type}" />
 				<ruleset>${pmd.java.ruleset}</ruleset>
 				<sourceLanguage name="java" version="${ant.build.javac.source}" />
 			</pmd>
@@ -2775,6 +2775,15 @@ for (String path : paths) {
 	</target>
 
 	<target name="run-pmd">
+		<if>
+			<not>
+				<isset property="plugins.includes.path" />
+			</not>
+			<then>
+				<property name="plugins.includes.path" value="${basedir}" />
+			</then>
+		</if>
+
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="run-pmd"
