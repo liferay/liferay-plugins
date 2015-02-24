@@ -96,7 +96,7 @@ boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX,
 							message: message
 						}
 					),
-					toUserId: 0
+					toUserIds: []
 				},
 				<portlet:namespace />onSendPushNotification
 			);
