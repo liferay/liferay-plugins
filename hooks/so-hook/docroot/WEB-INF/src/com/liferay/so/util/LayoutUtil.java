@@ -17,6 +17,7 @@
 
 package com.liferay.so.util;
 
+import com.liferay.breadcrumb.web.constants.BreadcrumbPortletKeys;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -156,7 +157,7 @@ public class LayoutUtil {
 				configureBlogsAggregator(layout);
 				updatePortletTitle(layout, portletId, "recent-blogs");
 			}
-			else if (portletId.startsWith(PortletKeys.BREADCRUMB)) {
+			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
 				removePortletBorder(layout, portletId);
 			}
 			else if (portletId.startsWith(PortletKeys.MESSAGE_BOARDS)) {
