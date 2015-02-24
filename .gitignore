@@ -21,6 +21,7 @@ _sass_cache_*.css
 /*/*/classes
 /*/*/javadoc
 /*/*/temp
+/*/*/pmd-reports
 /*/*/test-classes
 /*/*/test-results
 /*/*/tmp
