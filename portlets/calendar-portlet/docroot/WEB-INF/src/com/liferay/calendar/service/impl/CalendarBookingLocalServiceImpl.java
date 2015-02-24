@@ -1083,6 +1083,8 @@ public class CalendarBookingLocalServiceImpl
 				continue;
 			}
 
+			serviceContext.setAttribute("sendNotification", false);
+
 			CalendarBooking childCalendarBooking = addCalendarBooking(
 				calendarBooking.getUserId(), calendarId, new long[0],
 				calendarBooking.getCalendarBookingId(),
@@ -1095,6 +1097,8 @@ public class CalendarBookingLocalServiceImpl
 				calendarBooking.getFirstReminderType(),
 				calendarBooking.getSecondReminder(),
 				calendarBooking.getSecondReminderType(), serviceContext);
+
+			serviceContext.setAttribute("sendNotification", true);
 
 			NotificationTemplateType notificationTemplateType =
 				NotificationTemplateType.INVITE;
