@@ -44,7 +44,7 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodName4 = "sendPushNotification";
 
-		_methodParameterTypes4 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes4 = new String[] { "long[][]", "java.lang.String" };
 
 		_methodName5 = "setBeanIdentifier";
 
@@ -146,12 +146,16 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(long toUserId, java.lang.String payload)
+	public void sendPushNotification(long[] toUserIds, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableService.invokeMethod(_methodName4,
 				_methodParameterTypes4,
-				new Object[] { toUserId, ClpSerializer.translateInput(payload) });
+				new Object[] {
+					ClpSerializer.translateInput(toUserIds),
+					
+				ClpSerializer.translateInput(payload)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

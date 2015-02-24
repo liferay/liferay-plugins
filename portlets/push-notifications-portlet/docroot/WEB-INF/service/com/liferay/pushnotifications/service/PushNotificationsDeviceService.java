@@ -70,7 +70,7 @@ public interface PushNotificationsDeviceService extends BaseService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void sendPushNotification(long toUserId, java.lang.String payload)
+	public void sendPushNotification(long[] toUserIds, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**

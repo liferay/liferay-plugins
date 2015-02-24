@@ -136,22 +136,16 @@ public class PushNotificationsDeviceLocalServiceClp
 		_methodName22 = "sendPushNotification";
 
 		_methodParameterTypes22 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject"
+				"long[][]", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName23 = "sendPushNotification";
+		_methodName23 = "setBeanIdentifier";
 
-		_methodParameterTypes23 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject"
-			};
+		_methodParameterTypes23 = new String[] { "java.lang.String" };
 
-		_methodName24 = "setBeanIdentifier";
+		_methodName24 = "updatePushNotificationsDevice";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String" };
-
-		_methodName25 = "updatePushNotificationsDevice";
-
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"com.liferay.pushnotifications.model.PushNotificationsDevice"
 			};
 	}
@@ -731,40 +725,17 @@ public class PushNotificationsDeviceLocalServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(
+	public void sendPushNotification(long[] toUserIds,
 		com.liferay.portal.kernel.json.JSONObject jsonObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
-				new Object[] { ClpSerializer.translateInput(jsonObject) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void sendPushNotification(long toUserId,
-		com.liferay.portal.kernel.json.JSONObject jsonObject)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23,
-				new Object[] { toUserId, ClpSerializer.translateInput(
-						jsonObject) });
+				new Object[] {
+					ClpSerializer.translateInput(toUserIds),
+					
+				ClpSerializer.translateInput(jsonObject)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -786,8 +757,8 @@ public class PushNotificationsDeviceLocalServiceClp
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -809,8 +780,8 @@ public class PushNotificationsDeviceLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						ClpSerializer.translateInput(pushNotificationsDevice)
 					});
@@ -879,6 +850,4 @@ public class PushNotificationsDeviceLocalServiceClp
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }
