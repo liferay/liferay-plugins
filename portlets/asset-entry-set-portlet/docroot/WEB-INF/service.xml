@@ -24,7 +24,7 @@
 		<column name="creatorClassPK" type="long" />
 		<column name="payload" type="String" />
 		<column name="childAssetEntrySetsCount" type="int" />
-		<column name="ratingsStatsTotalScore" type="int" />
+		<column name="assetEntrySetLikesCount" type="int" />
 		<column name="privateAssetEntrySet" type="boolean" />
 
 		<!-- Order -->
@@ -56,7 +56,19 @@
 
 		<reference package-path="com.liferay.portal" entity="Group" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
-		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
-		<reference package-path="com.liferay.portlet.ratings" entity="RatingsStats" />
+	</entity>
+	<entity name="AssetEntrySetLike" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="assetEntrySetId" type="long" primary="true" />
+		<column name="classNameId" type="long" primary="true" />
+		<column name="classPK" type="long" primary="true" />
+
+		<!-- Finder methods -->
+
+		<finder name="AssetEntrySetId" return-type="Collection">
+			<finder-column name="assetEntrySetId" />
+		</finder>
 	</entity>
 </service-builder>
