@@ -22,14 +22,11 @@
 
 		<!-- Finder methods -->
 
-		<finder name="Platform" return-type="Collection">
-			<finder-column name="platform" />
-		</finder>
 		<finder name="Token" return-type="Device" unique="true">
 			<finder-column name="token" />
 		</finder>
 		<finder name="U_P" return-type="Collection">
-			<finder-column name="userId" />
+			<finder-column name="userId" arrayable-operator="OR" />
 			<finder-column name="platform" />
 		</finder>
 	</entity>

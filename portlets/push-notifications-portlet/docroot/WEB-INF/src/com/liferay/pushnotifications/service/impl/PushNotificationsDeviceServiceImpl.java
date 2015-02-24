@@ -102,7 +102,7 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(long toUserId, String payload)
+	public void sendPushNotification(long[] toUserIds, String payload)
 		throws PortalException, SystemException {
 
 		PushNotificationsPermission.check(
@@ -111,7 +111,7 @@ public class PushNotificationsDeviceServiceImpl
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(payload);
 
 		pushNotificationsDeviceLocalService.sendPushNotification(
-			toUserId, jsonObject);
+			toUserIds, jsonObject);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
