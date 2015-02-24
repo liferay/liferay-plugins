@@ -40,7 +40,7 @@ public class PushNotificationsMessageListener implements MessageListener {
 
 		try {
 			PushNotificationsDeviceLocalServiceUtil.sendPushNotification(
-				toUserId, jsonObject);
+				new long[] {toUserId}, jsonObject);
 		}
 		catch (Exception e) {
 			_log.error("Unable to send notification", e);
