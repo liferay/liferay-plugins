@@ -2758,7 +2758,7 @@ for (String path : paths) {
 
 		<pmd shortFilenames="true" threads="${pmd.threads}">
 			<fileset dir="${pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
-			<formatter toConsole="true" type="text" />
+			<formatter toConsole="true" type="${pmd.output.type}" />
 			<ruleset>${pmd.java.ruleset}</ruleset>
 			<sourceLanguage name="java" version="${ant.build.javac.source}" />
 		</pmd>
