@@ -149,6 +149,9 @@ public class LayoutUtil {
 				configureProfile(layout, portletId);
 				removePortletBorder(layout, portletId);
 			}
+			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
+				removePortletBorder(layout, portletId);
+			}
 			else if (portletId.startsWith(PortletKeys.ASSET_PUBLISHER)) {
 				configureAssetPublisher(layout);
 				updatePortletTitle(layout, portletId, "related-content");
@@ -156,9 +159,6 @@ public class LayoutUtil {
 			else if (portletId.startsWith(PortletKeys.BLOGS_AGGREGATOR)) {
 				configureBlogsAggregator(layout);
 				updatePortletTitle(layout, portletId, "recent-blogs");
-			}
-			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
-				removePortletBorder(layout, portletId);
 			}
 			else if (portletId.startsWith(PortletKeys.MESSAGE_BOARDS)) {
 				configureMessageBoards(layout);
