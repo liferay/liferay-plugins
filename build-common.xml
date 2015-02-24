@@ -1989,6 +1989,36 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="run-pmd">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<path id="classpath.net.sourceforge.pmd">
+				<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
+			</path>
+
+			<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
+
+			<if>
+				<not>
+					<isset property="pmd.basedir" />
+				</not>
+				<then>
+					<property name="pmd.basedir" value="${basedir}" />
+				</then>
+			</if>
+
+			<mkdir dir="pmd-reports" />
+
+			<pmd shortFilenames="true" threads="${pmd.threads}">
+				<fileset dir="${pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
+				<formatter toFile="@{module.dir}/pmd-reports/pmd-report.${pmd.output.type}" toConsole="${pmd.output.console}" type="${pmd.output.type}" />
+				<ruleset>${pmd.java.ruleset}</ruleset>
+				<sourceLanguage name="java" version="${ant.build.javac.source}" />
+			</pmd>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="setup-arquillian">
 		<attribute name="module.dir" />
 
@@ -2742,29 +2772,10 @@ for (String path : paths) {
 	</target>
 
 	<target name="run-pmd">
-		<path id="classpath.net.sourceforge.pmd">
-			<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
-		</path>
-
-		<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
-
-		<if>
-			<not>
-				<isset property="pmd.basedir" />
-			</not>
-			<then>
-				<property name="pmd.basedir" value="${basedir}" />
-			</then>
-		</if>
-
-		<mkdir dir="pmd-reports" />
-
-		<pmd shortFilenames="true" threads="${pmd.threads}">
-			<fileset dir="${pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
-			<formatter toFile="pmd-reports/pmd-report.${pmd.output.type}" toConsole="${pmd.output.console}" type="${pmd.output.type}" />
-			<ruleset>${pmd.java.ruleset}</ruleset>
-			<sourceLanguage name="java" version="${ant.build.javac.source}" />
-		</pmd>
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="run-pmd"
+			/>
 	</target>
 
 	<target name="setup-arquillian">
