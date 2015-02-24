@@ -98,7 +98,7 @@ allprojects {
 					File serviceJarFile = new File("${projectDir}", serviceJarFileName)
 
 					if (serviceJarFile.exists()) {
-						wrapServiceJar(2, serviceJarFileName)
+						contents.addAll(wrapServiceJar(2, serviceJarFileName))
 					}
 				}
 			}
