@@ -133,13 +133,7 @@ public class PushNotificationsDeviceLocalServiceClp
 		_methodName22 = "sendPushNotification";
 
 		_methodParameterTypes22 = new String[] {
-				"com.liferay.portal.kernel.json.JSONObject"
-			};
-
-		_methodName23 = "sendPushNotification";
-
-		_methodParameterTypes23 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject"
+				"long[][]", "com.liferay.portal.kernel.json.JSONObject"
 			};
 	}
 
@@ -794,46 +788,18 @@ public class PushNotificationsDeviceLocalServiceClp
 	}
 
 	@Override
-	public void sendPushNotification(
+	public void sendPushNotification(long[] toUserIds,
 		com.liferay.portal.kernel.json.JSONObject jsonObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
-				new Object[] { ClpSerializer.translateInput(jsonObject) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void sendPushNotification(long toUserId,
-		com.liferay.portal.kernel.json.JSONObject jsonObject)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23,
-				new Object[] { toUserId, ClpSerializer.translateInput(
-						jsonObject) });
+				new Object[] {
+					ClpSerializer.translateInput(toUserIds),
+					
+				ClpSerializer.translateInput(jsonObject)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -901,6 +867,4 @@ public class PushNotificationsDeviceLocalServiceClp
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
 }
