@@ -103,9 +103,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		try {
 			Group group = groupLocalService.getGroup(repositoryId);
 
-			SyncUtil.isSyncEnabled(group);
+			SyncUtil.checkSyncEnabled(group.getGroupId());
 
-			SyncUtil.checkDefaultPermissions(group, serviceContext);
+			if (serviceContext.getGroupPermissions() == null) {
+				SyncUtil.setFilePermissions(group, false, serviceContext);
+			}
 
 			FileEntry fileEntry = dlAppService.addFileEntry(
 				repositoryId, folderId, sourceFileName, mimeType, title,
@@ -142,7 +144,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			SyncUtil.checkSyncEnabled(repositoryId);
+			Group group = groupLocalService.getGroup(repositoryId);
+
+			SyncUtil.checkSyncEnabled(group.getGroupId());
+
+			if (serviceContext.getGroupPermissions() == null) {
+				SyncUtil.setFilePermissions(group, true, serviceContext);
+			}
 
 			Folder folder = dlAppService.addFolder(
 				repositoryId, parentFolderId, name, description,
