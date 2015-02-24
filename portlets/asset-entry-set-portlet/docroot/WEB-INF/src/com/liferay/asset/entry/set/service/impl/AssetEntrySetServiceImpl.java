@@ -22,6 +22,7 @@ import com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUti
 import com.liferay.asset.entry.set.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 
@@ -72,23 +73,23 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long createTime, long parentAssetEntrySetId,
+			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.getNewAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId,
+			getUserId(), createTime, parentAssetEntrySetId, sharedTo,
 			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long createTime, long parentAssetEntrySetId,
+			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.getOldAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId,
+			getUserId(), createTime, parentAssetEntrySetId, sharedTo,
 			childAssetEntrySetsLimit, start, end);
 	}
 

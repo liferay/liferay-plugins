@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countBySharedToClassPKsMap">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countBySharedTo">
 		<![CDATA[
 			SELECT
 				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
@@ -12,7 +12,7 @@
 					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
 				(AssetSharingEntry.classNameId = ?) AND
-				[$SHARED_TO_CLASS_PKS_MAP]
+				[$SHARED_TO$]
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_ATN">
@@ -39,7 +39,7 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO_CLASS_PKS_MAP])
+				([$SHARED_TO$])
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_CCPK_ATN">
@@ -69,10 +69,10 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO_CLASS_PKS_MAP])
+				([$SHARED_TO$])
 		]]>
 	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findBySharedToClassPKsMap">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findBySharedTo">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}
@@ -83,7 +83,7 @@
 					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
 			WHERE
 				(AssetSharingEntry.classNameId = ?) AND
-				[$SHARED_TO_CLASS_PKS_MAP]
+				[$SHARED_TO$]
 			ORDER BY
 				AssetEntrySet.modifiedTime DESC
 		]]>
@@ -103,7 +103,7 @@
 					(AssetEntrySet.parentAssetEntrySetId = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO_CLASS_PKS_MAP])
+				([$SHARED_TO$])
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
@@ -132,7 +132,7 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO_CLASS_PKS_MAP])
+				([$SHARED_TO$])
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
@@ -164,7 +164,7 @@
 					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO_CLASS_PKS_MAP])
+				([$SHARED_TO$])
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>

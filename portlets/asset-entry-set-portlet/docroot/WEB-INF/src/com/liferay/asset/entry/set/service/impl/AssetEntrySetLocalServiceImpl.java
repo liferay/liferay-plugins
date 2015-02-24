@@ -23,7 +23,6 @@ import com.liferay.asset.entry.set.util.PortletKeys;
 import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
-import com.liferay.asset.sharing.util.AssetSharingUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -167,15 +166,12 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, int childAssetEntrySetsLimit, int start, int end)
+			JSONArray sharedTo, int childAssetEntrySetsLimit, int start,
+			int end)
 		throws PortalException, SystemException {
 
-		Map<Long, long[]> sharedToClassPKsMap =
-			AssetSharingUtil.getSharedToClassPKsMap(userId);
-
-		List<AssetEntrySet> assetEntrySets =
-			assetEntrySetFinder.findBySharedToClassPKsMap(
-				sharedToClassPKsMap, start, end);
+		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findBySharedTo(
+			sharedTo, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
@@ -184,18 +180,15 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, long creatorClassNameId, long creatorClassPK,
-			String assetTagName, boolean andOperator,
+			long creatorClassNameId, long creatorClassPK, String assetTagName,
+			JSONArray sharedTo, boolean andOperator,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
-
-		Map<Long, long[]> sharedToClassPKsMap =
-			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetFinder.findByCCNI_CCPK_ATN(
-				creatorClassNameId, creatorClassPK, assetTagName,
-				sharedToClassPKsMap, andOperator, start, end);
+				creatorClassNameId, creatorClassPK, assetTagName, sharedTo,
+				andOperator, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
@@ -204,15 +197,12 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long userId, long creatorClassNameId, String assetTagName,
+			long creatorClassNameId, String assetTagName, JSONArray sharedTo,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
-		Map<Long, long[]> sharedToClassPKsMap =
-			AssetSharingUtil.getSharedToClassPKsMap(userId);
-
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
-			creatorClassNameId, assetTagName, sharedToClassPKsMap, start, end);
+			creatorClassNameId, assetTagName, sharedTo, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
@@ -220,40 +210,30 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public int getAssetEntrySetsCount(long userId)
+	public int getAssetEntrySetsCount(JSONArray sharedTo)
 		throws PortalException, SystemException {
 
-		Map<Long, long[]> sharedToClassPKsMap =
-			AssetSharingUtil.getSharedToClassPKsMap(userId);
-
-		return assetEntrySetFinder.countBySharedToClassPKsMap(
-			sharedToClassPKsMap);
+		return assetEntrySetFinder.countBySharedTo(sharedTo);
 	}
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long userId, long creatorClassNameId, long creatorClassPK,
-			String assetTagName, boolean andOperator)
+			long creatorClassNameId, long creatorClassPK, String assetTagName,
+			JSONArray sharedTo, boolean andOperator)
 		throws PortalException, SystemException {
-
-		Map<Long, long[]> sharedToClassPKsMap =
-			AssetSharingUtil.getSharedToClassPKsMap(userId);
 
 		return assetEntrySetFinder.countByCCNI_CCPK_ATN(
-			creatorClassNameId, creatorClassPK, assetTagName,
-			sharedToClassPKsMap, andOperator);
+			creatorClassNameId, creatorClassPK, assetTagName, sharedTo,
+			andOperator);
 	}
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long userId, long creatorClassNameId, String assetTagName)
+			long creatorClassNameId, String assetTagName, JSONArray sharedTo)
 		throws PortalException, SystemException {
 
-		Map<Long, long[]> sharedToClassPKsMap =
-			AssetSharingUtil.getSharedToClassPKsMap(userId);
-
 		return assetEntrySetFinder.countByCCNI_ATN(
-			creatorClassNameId, assetTagName, sharedToClassPKsMap);
+			creatorClassNameId, assetTagName, sharedTo);
 	}
 
 	@Override
@@ -273,23 +253,23 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId,
+			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, true, parentAssetEntrySetId,
+			createTime, true, parentAssetEntrySetId, sharedTo,
 			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId,
+			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, false, parentAssetEntrySetId,
+			createTime, false, parentAssetEntrySetId, sharedTo,
 			childAssetEntrySetsLimit, start, end);
 	}
 
@@ -479,18 +459,15 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected List<AssetEntrySet> getAssetEntrySets(
-			long userId, long createTime, boolean gtCreateTime,
-			long parentAssetEntrySetId, int childAssetEntrySetsLimit, int start,
+			long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
+			JSONArray sharedTo, int childAssetEntrySetsLimit, int start,
 			int end)
 		throws PortalException, SystemException {
 
-		Map<Long, long[]> sharedToClassPKsMap =
-			AssetSharingUtil.getSharedToClassPKsMap(userId);
-
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetFinder.findByCT_PASEI(
-				createTime, gtCreateTime, parentAssetEntrySetId,
-				sharedToClassPKsMap, start, end);
+				createTime, gtCreateTime, parentAssetEntrySetId, sharedTo,
+				start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
