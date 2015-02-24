@@ -13,6 +13,9 @@
 .sass_cache_*.css
 _sass_cache_*.css
 
+**/.sonar
+**/pmd-reports
+
 /.bnd
 /.gradle
 /.ivy
@@ -21,7 +24,6 @@ _sass_cache_*.css
 /*/*/classes
 /*/*/javadoc
 /*/*/temp
-/*/*/pmd-reports
 /*/*/test-classes
 /*/*/test-results
 /*/*/tmp
