@@ -5,7 +5,7 @@ allprojects {
 
 	repositories {
 		maven {
-			url 'http://cdn.repository.liferay.com/nexus/content/groups/public'
+			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
 		}
 	}
 
