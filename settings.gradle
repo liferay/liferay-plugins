@@ -24,7 +24,7 @@ if (!hasProperty("lfrPluginsIncludes")) {
 	ext.lfrPluginsIncludes = antProperties["plugins.includes"]
 }
 
-gradle.ext.compileDeps = []
+gradle.ext.compileDependencies = []
 
 ext.includeTransitive = {
 	String[] projectPaths ->
@@ -34,7 +34,7 @@ ext.includeTransitive = {
 	for (String projectPath : projectPaths) {
 		String projectDirName = projectPath.replaceAll(":", "/")
 
-		projectDirName = projectPath.replaceFirst("^/", "")
+		projectDirName = projectDirName.replaceFirst("^/", "")
 
 		File dependencySettingsFile = new File(rootDir.toString() + "/" + projectDirName, "dependency-settings.gradle")
 
@@ -53,7 +53,7 @@ ext.includeTransitive = {
 
 		String[] dependencySettingsArray = dependencySettingsContent.split("\\n")
 
-		gradle.compileDeps << [
+		gradle.compileDependencies << [
 			compile: dependencySettingsArray,
 			projectPath: projectPath
 		]
