@@ -2775,7 +2775,7 @@ for (String path : paths) {
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="run-pmd"
-			/>
+		/>
 	</target>
 
 	<target name="setup-arquillian">
