@@ -44,7 +44,6 @@ import java.util.Locale;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 /**
  * @author Scott Lee
@@ -158,7 +157,7 @@ public class MessageIndexer extends BaseIndexer {
 
 	@Override
 	protected Summary doGetSummary(
-		Document doc, Locale locale, String snippet, PortletURL portletURL,
+		Document doc, Locale locale, String snippet,
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		return null;

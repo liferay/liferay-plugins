@@ -40,7 +40,6 @@ import java.util.Locale;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 /**
  * @author Adam Victor Brandizzi
@@ -140,19 +139,15 @@ public class CalendarBookingIndexer extends BaseIndexer {
 
 	@Override
 	protected Summary doGetSummary(
-		Document document, Locale locale, String snippet, PortletURL portletURL,
+		Document document, Locale locale, String snippet,
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		String calendarBookingId = document.get(Field.ENTRY_CLASS_PK);
-
-		portletURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
-		portletURL.setParameter("calendarBookingId", calendarBookingId);
 
 		Summary summary = createSummary(
 			document, Field.TITLE, Field.DESCRIPTION);
 
 		summary.setMaxContentLength(200);
-		summary.setPortletURL(portletURL);
 
 		return summary;
 	}

@@ -48,7 +48,6 @@ import java.util.Locale;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 /**
  * @author Peter Shin
@@ -135,7 +134,7 @@ public class AdminIndexer extends BaseIndexer {
 
 	@Override
 	protected Summary doGetSummary(
-		Document document, Locale locale, String snippet, PortletURL portletURL,
+		Document document, Locale locale, String snippet,
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		String title = document.get(Field.TITLE);
@@ -152,10 +151,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		String resourcePrimKey = document.get(Field.ENTRY_CLASS_PK);
 
-		portletURL.setParameter("mvcPath", "/admin/view_article.jsp");
-		portletURL.setParameter("resourcePrimKey", resourcePrimKey);
-
-		return new Summary(title, content, portletURL);
+		return new Summary(title, content);
 	}
 
 	@Override
