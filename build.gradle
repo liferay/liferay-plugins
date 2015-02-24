@@ -3,12 +3,6 @@ apply from: "${gradle.lfrSdkDir}/versions.gradle"
 allprojects {
 	apply plugin: "war"
 
-	repositories {
-		maven {
-			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
-		}
-	}
-
 	dependencies {
 		Map projectCompileDependencies = gradle.compileDependencies.find {
 			project.path == it.projectPath
@@ -18,6 +12,12 @@ allprojects {
 			projectCompileDependencies["compile"].each {
 				compile project(it)
 			}
+		}
+	}
+
+	repositories {
+		maven {
+			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
 		}
 	}
 
