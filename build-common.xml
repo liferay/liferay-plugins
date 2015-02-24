@@ -1715,7 +1715,7 @@ Please find a solution that does not require portal-impl.jar.
 										</not>
 										<then>
 											<build-css
-												module.dir="@{module.dir"
+												module.dir="@{module.dir}"
 												sass.docroot.dir="src/META-INF/resources"
 											/>
 										</then>
