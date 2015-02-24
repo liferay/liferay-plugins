@@ -320,6 +320,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
 
 			<delete dir="@{module.dir}/javadoc" />
+			<delete dir="@{module.dir}/pmd-reports" />
 			<delete dir="@{module.dir}/test-classes" />
 			<delete dir="@{module.dir}/test-results" />
 			<delete dir="@{module.dir}/tmp" />
