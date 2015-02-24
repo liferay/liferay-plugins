@@ -2008,7 +2008,7 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 			</if>
 
-			<mkdir dir="pmd-reports" />
+			<mkdir dir="@{module.dir}/pmd-reports" />
 
 			<pmd shortFilenames="true" threads="${pmd.threads}">
 				<fileset dir="${pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
