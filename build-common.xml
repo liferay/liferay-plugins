@@ -2000,22 +2000,25 @@ Please find a solution that does not require portal-impl.jar.
 			<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
 
 			<if>
-				<not>
-					<isset property="pmd.basedir" />
-				</not>
+				<isset property="pmd.basedir" />
 				<then>
-					<property name="pmd.basedir" value="${basedir}" />
+					<var name="module.pmd.basedir" value="${pmd.basedir}" />
 				</then>
+				<else>
+					<var name="module.pmd.basedir" value="@{module.dir}" />
+				</else>
 			</if>
 
 			<mkdir dir="@{module.dir}/pmd-reports" />
 
 			<pmd shortFilenames="true" threads="${pmd.threads}">
-				<fileset dir="${pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
+				<fileset dir="${module.pmd.basedir}" excludes="${pmd.java.excludes}" includes="${pmd.java.includes}" />
 				<formatter toConsole="${pmd.output.console}" toFile="@{module.dir}/pmd-reports/pmd-report.${pmd.output.type}" type="${pmd.output.type}" />
 				<ruleset>${pmd.java.ruleset}</ruleset>
 				<sourceLanguage name="java" version="${ant.build.javac.source}" />
 			</pmd>
+
+			<var name="module.pmd.basedir" unset="true" />
 		</sequential>
 	</macrodef>
 
