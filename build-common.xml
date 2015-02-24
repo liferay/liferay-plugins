@@ -2358,7 +2358,7 @@ Please find a solution that does not require portal-impl.jar.
 
 							<cobertura-report
 								datafile="@{module.dir}/test-coverage/cobertura.ser"
-								format="xml"
+								format="${junit.code.coverage.report.format}"
 								destdir="@{module.dir}/coverage-reports"
 							>
 								<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
@@ -2524,7 +2524,7 @@ Please find a solution that does not require portal-impl.jar.
 					<cobertura-report
 						datafile="@{module.dir}/test-coverage/@{test.type}/cobertura.ser"
 						destdir="@{module.dir}/coverage-reports/@{test.type}"
-						format="xml"
+						format="${junit.code.coverage.report.format}"
 					>
 						<fileset dir="@{module.dir}/docroot/WEB-INF/src" erroronmissingdir="false" />
 						<fileset dir="@{module.dir}/service" erroronmissingdir="false" />
