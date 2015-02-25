@@ -83,7 +83,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	@Override
-	public void sendPushNotification(long[] toUserIds, JSONObject jsonObject)
+	public void sendPushNotification(long[] toUserIds, JSONObject payload)
 		throws PortalException, SystemException {
 
 		for (Map.Entry<String, PushNotificationsSender> entry :
@@ -109,7 +109,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 			PushNotificationsSender pushNotificationsSender = entry.getValue();
 
 			try {
-				pushNotificationsSender.send(tokens, jsonObject);
+				pushNotificationsSender.send(tokens, payload);
 			}
 			catch (PushNotificationsException pne) {
 				if (_log.isWarnEnabled()) {
@@ -122,6 +122,30 @@ public class PushNotificationsDeviceLocalServiceImpl
 			catch (Exception e) {
 				throw new PortalException(e);
 			}
+		}
+	}
+
+	@Override
+	public void sendPushNotification(
+			String platform, List<String> tokens, JSONObject payload)
+		throws PortalException {
+
+		PushNotificationsSender pushNotificationsSender =
+			_pushNotificationsSenders.get(platform);
+
+		try {
+			pushNotificationsSender.send(tokens, payload);
+		}
+		catch (PushNotificationsException pne) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(pne.getMessage());
+			}
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
 		}
 	}
 
