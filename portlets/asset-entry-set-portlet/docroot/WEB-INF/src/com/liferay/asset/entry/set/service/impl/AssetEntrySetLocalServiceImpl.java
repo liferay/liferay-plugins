@@ -569,8 +569,7 @@ public class AssetEntrySetLocalServiceImpl
 					childAssetEntrySet.getPayload());
 
 			childAssetEntrySetPayload.put(
-				"assetEntryId", childAssetEntrySet.getAssetEntryId());
-
+				"assetEntrySetId", childAssetEntrySet.getAssetEntrySetId());
 			childAssetEntrySetPayload.put(
 				"modifiedTime", childAssetEntrySet.getModifiedTime());
 
