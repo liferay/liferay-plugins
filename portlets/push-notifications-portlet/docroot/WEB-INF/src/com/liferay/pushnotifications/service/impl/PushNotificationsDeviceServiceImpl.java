@@ -109,10 +109,11 @@ public class PushNotificationsDeviceServiceImpl
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.SEND_PUSH_NOTIFICATION);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(payload);
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
 
 		pushNotificationsDeviceLocalService.sendPushNotification(
-			toUserIds, jsonObject);
+			toUserIds, payloadJSONObject);
 	}
 
 	@Override
@@ -123,10 +124,11 @@ public class PushNotificationsDeviceServiceImpl
 		PushNotificationsPermission.check(
 			getPermissionChecker(), ActionKeys.SEND_PUSH_NOTIFICATION);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(payload);
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
 
 		pushNotificationsDeviceLocalService.sendPushNotification(
-			platform, tokens, jsonObject);
+			platform, tokens, payloadJSONObject);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

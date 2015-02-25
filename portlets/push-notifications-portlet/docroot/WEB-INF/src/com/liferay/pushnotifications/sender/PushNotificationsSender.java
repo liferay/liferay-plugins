@@ -25,7 +25,7 @@ public interface PushNotificationsSender {
 
 	public void reset();
 
-	public void send(List<String> tokens, JSONObject jsonObject)
+	public void send(List<String> tokens, JSONObject payloadJSONObject)
 		throws Exception;
 
 }
