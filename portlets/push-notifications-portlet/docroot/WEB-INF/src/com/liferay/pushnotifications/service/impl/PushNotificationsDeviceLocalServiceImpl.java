@@ -104,22 +104,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 				continue;
 			}
 
-			PushNotificationsSender pushNotificationsSender = entry.getValue();
-
-			try {
-				pushNotificationsSender.send(tokens, payload);
-			}
-			catch (PushNotificationsException pne) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(pne.getMessage());
-				}
-			}
-			catch (PortalException pe) {
-				throw pe;
-			}
-			catch (Exception e) {
-				throw new PortalException(e);
-			}
+			doSendPushNotification(entry.getValue(), tokens, payload);
 		}
 	}
 
@@ -130,6 +115,18 @@ public class PushNotificationsDeviceLocalServiceImpl
 
 		PushNotificationsSender pushNotificationsSender =
 			_pushNotificationsSenders.get(platform);
+
+		doSendPushNotification(pushNotificationsSender, tokens, payload);
+	}
+
+	protected void doSendPushNotification(
+			PushNotificationsSender pushNotificationsSender,
+			List<String> tokens, JSONObject payload)
+		throws PortalException {
+
+		if (pushNotificationsSender == null) {
+			return;
+		}
 
 		try {
 			pushNotificationsSender.send(tokens, payload);
