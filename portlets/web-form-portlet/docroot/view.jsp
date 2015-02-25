@@ -196,13 +196,13 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 					fieldValidationFunctions[key] = fieldValidationFunction<%= i %>;
 
 					<c:choose>
-						<c:when test='<%= fieldType.equals("radio") %>'>
-							var radioButton = A.one('input[name=<portlet:namespace />field<%= i %>]:checked');
+						<c:when test='<%= fieldType.equals("checkbox") || fieldType.equals("radio") %>'>
+							var checkedField = A.one('input[name=<portlet:namespace />field<%= i %>]:checked');
 
 							fieldsMap[key] = '';
 
-							if (radioButton) {
-								fieldsMap[key] = radioButton.val();
+							if (checkedField) {
+								fieldsMap[key] = checkedField.val();
 							}
 						</c:when>
 						<c:otherwise>
