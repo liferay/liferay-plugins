@@ -1702,6 +1702,29 @@ Please find a solution that does not require portal-impl.jar.
 						<then>
 							<if>
 								<and>
+									<available file="@{module.dir}/docroot" />
+								</and>
+								<then>
+									<resourcecount property="module.css.count">
+										<fileset dir="@{module.dir}/docroot" includes="**/*.css" />
+									</resourcecount>
+
+									<if>
+										<not>
+											<equals arg1="${module.css.count}" arg2="0" />
+										</not>
+										<then>
+											<build-css
+												module.dir="@{module.dir}"
+												sass.docroot.dir="docroot"
+											/>
+										</then>
+									</if>
+								</then>
+							</if>
+
+							<if>
+								<and>
 									<available file="@{module.dir}/src/META-INF/resources" />
 								</and>
 								<then>
