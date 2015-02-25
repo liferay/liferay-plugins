@@ -133,9 +133,9 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				"long", "long", "long", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"long", "java.lang.String", "java.lang.String", "java.util.Date",
-				"long", "java.lang.String", "java.lang.String", "long",
-				"java.lang.String"
+				"long", "long", "java.lang.String", "java.lang.String",
+				"java.util.Date", "long", "java.lang.String", "java.lang.String",
+				"long", "java.lang.String"
 			};
 
 		_methodName90 = "deleteSyncDLObjects";
@@ -275,13 +275,14 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				(java.lang.String)arguments[8], (java.lang.String)arguments[9],
 				(java.lang.String)arguments[10],
 				((Long)arguments[11]).longValue(),
-				(java.lang.String)arguments[12],
-				(java.lang.String)arguments[13], (java.util.Date)arguments[14],
-				((Long)arguments[15]).longValue(),
-				(java.lang.String)arguments[16],
+				((Long)arguments[12]).longValue(),
+				(java.lang.String)arguments[13],
+				(java.lang.String)arguments[14], (java.util.Date)arguments[15],
+				((Long)arguments[16]).longValue(),
 				(java.lang.String)arguments[17],
-				((Long)arguments[18]).longValue(),
-				(java.lang.String)arguments[19]);
+				(java.lang.String)arguments[18],
+				((Long)arguments[19]).longValue(),
+				(java.lang.String)arguments[20]);
 		}
 
 		if (_methodName90.equals(name) &&

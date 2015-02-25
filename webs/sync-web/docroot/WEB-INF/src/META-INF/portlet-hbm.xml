@@ -33,6 +33,7 @@
 		<property name="changeLog" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="extraSettings" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="versionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
 		<property name="checksum" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="event" type="com.liferay.portal.dao.orm.hibernate.StringType" />

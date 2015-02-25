@@ -66,7 +66,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(45);
+		StringBundler sb = new StringBundler(47);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(syncDLObjectId);
@@ -94,6 +94,8 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		sb.append(extraSettings);
 		sb.append(", version=");
 		sb.append(version);
+		sb.append(", versionId=");
+		sb.append(versionId);
 		sb.append(", size=");
 		sb.append(size);
 		sb.append(", checksum=");
@@ -177,6 +179,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 			syncDLObjectImpl.setVersion(version);
 		}
 
+		syncDLObjectImpl.setVersionId(versionId);
 		syncDLObjectImpl.setSize(size);
 
 		if (checksum == null) {
@@ -245,6 +248,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		changeLog = objectInput.readUTF();
 		extraSettings = objectInput.readUTF();
 		version = objectInput.readUTF();
+		versionId = objectInput.readLong();
 		size = objectInput.readLong();
 		checksum = objectInput.readUTF();
 		event = objectInput.readUTF();
@@ -315,6 +319,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 			objectOutput.writeUTF(version);
 		}
 
+		objectOutput.writeLong(versionId);
 		objectOutput.writeLong(size);
 
 		if (checksum == null) {
@@ -371,6 +376,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	public String changeLog;
 	public String extraSettings;
 	public String version;
+	public long versionId;
 	public long size;
 	public String checksum;
 	public String event;
