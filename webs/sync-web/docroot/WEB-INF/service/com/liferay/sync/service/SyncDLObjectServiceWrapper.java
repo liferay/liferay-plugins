@@ -283,7 +283,7 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 
 	@Override
 	public com.liferay.sync.model.SyncDLObject patchFileEntry(
-		long fileEntryId, java.lang.String sourceVersion,
+		long fileEntryId, long sourceVersionId,
 		java.lang.String sourceFileName, java.lang.String mimeType,
 		java.lang.String title, java.lang.String description,
 		java.lang.String changeLog, boolean majorVersion,
@@ -291,9 +291,9 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _syncDLObjectService.patchFileEntry(fileEntryId, sourceVersion,
-			sourceFileName, mimeType, title, description, changeLog,
-			majorVersion, deltaFile, checksum, serviceContext);
+		return _syncDLObjectService.patchFileEntry(fileEntryId,
+			sourceVersionId, sourceFileName, mimeType, title, description,
+			changeLog, majorVersion, deltaFile, checksum, serviceContext);
 	}
 
 	@Override

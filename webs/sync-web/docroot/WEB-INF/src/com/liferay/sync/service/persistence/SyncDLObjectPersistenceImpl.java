@@ -1853,6 +1853,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		syncDLObjectImpl.setChangeLog(syncDLObject.getChangeLog());
 		syncDLObjectImpl.setExtraSettings(syncDLObject.getExtraSettings());
 		syncDLObjectImpl.setVersion(syncDLObject.getVersion());
+		syncDLObjectImpl.setVersionId(syncDLObject.getVersionId());
 		syncDLObjectImpl.setSize(syncDLObject.getSize());
 		syncDLObjectImpl.setChecksum(syncDLObject.getChecksum());
 		syncDLObjectImpl.setEvent(syncDLObject.getEvent());

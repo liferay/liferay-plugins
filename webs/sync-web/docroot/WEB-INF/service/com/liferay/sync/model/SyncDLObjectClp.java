@@ -88,6 +88,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		attributes.put("changeLog", getChangeLog());
 		attributes.put("extraSettings", getExtraSettings());
 		attributes.put("version", getVersion());
+		attributes.put("versionId", getVersionId());
 		attributes.put("size", getSize());
 		attributes.put("checksum", getChecksum());
 		attributes.put("event", getEvent());
@@ -179,6 +180,12 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 		if (version != null) {
 			setVersion(version);
+		}
+
+		Long versionId = (Long)attributes.get("versionId");
+
+		if (versionId != null) {
+			setVersionId(versionId);
 		}
 
 		Long size = (Long)attributes.get("size");
@@ -536,6 +543,29 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
+	public long getVersionId() {
+		return _versionId;
+	}
+
+	@Override
+	public void setVersionId(long versionId) {
+		_versionId = versionId;
+
+		if (_syncDLObjectRemoteModel != null) {
+			try {
+				Class<?> clazz = _syncDLObjectRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setVersionId", long.class);
+
+				method.invoke(_syncDLObjectRemoteModel, versionId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public long getSize() {
 		return _size;
 	}
@@ -867,6 +897,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		clone.setChangeLog(getChangeLog());
 		clone.setExtraSettings(getExtraSettings());
 		clone.setVersion(getVersion());
+		clone.setVersionId(getVersionId());
 		clone.setSize(getSize());
 		clone.setChecksum(getChecksum());
 		clone.setEvent(getEvent());
@@ -962,7 +993,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(45);
+		StringBundler sb = new StringBundler(47);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(getSyncDLObjectId());
@@ -990,6 +1021,8 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		sb.append(getExtraSettings());
 		sb.append(", version=");
 		sb.append(getVersion());
+		sb.append(", versionId=");
+		sb.append(getVersionId());
 		sb.append(", size=");
 		sb.append(getSize());
 		sb.append(", checksum=");
@@ -1015,7 +1048,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(70);
+		StringBundler sb = new StringBundler(73);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sync.model.SyncDLObject");
@@ -1074,6 +1107,10 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		sb.append(getVersion());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>versionId</column-name><column-value><![CDATA[");
+		sb.append(getVersionId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>size</column-name><column-value><![CDATA[");
 		sb.append(getSize());
 		sb.append("]]></column-value></column>");
@@ -1128,6 +1165,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	private String _changeLog;
 	private String _extraSettings;
 	private String _version;
+	private long _versionId;
 	private long _size;
 	private String _checksum;
 	private String _event;

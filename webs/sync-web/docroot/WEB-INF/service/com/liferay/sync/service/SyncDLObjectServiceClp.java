@@ -159,10 +159,10 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		_methodName28 = "patchFileEntry";
 
 		_methodParameterTypes28 = new String[] {
-				"long", "java.lang.String", "java.lang.String",
+				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "boolean", "java.io.File",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"boolean", "java.io.File", "java.lang.String",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName29 = "restoreFileEntryFromTrash";
@@ -1194,7 +1194,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 
 	@Override
 	public com.liferay.sync.model.SyncDLObject patchFileEntry(
-		long fileEntryId, java.lang.String sourceVersion,
+		long fileEntryId, long sourceVersionId,
 		java.lang.String sourceFileName, java.lang.String mimeType,
 		java.lang.String title, java.lang.String description,
 		java.lang.String changeLog, boolean majorVersion,
@@ -1210,7 +1210,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 					new Object[] {
 						fileEntryId,
 						
-					ClpSerializer.translateInput(sourceVersion),
+					sourceVersionId,
 						
 					ClpSerializer.translateInput(sourceFileName),
 						

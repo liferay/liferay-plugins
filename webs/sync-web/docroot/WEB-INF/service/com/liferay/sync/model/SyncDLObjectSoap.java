@@ -44,6 +44,7 @@ public class SyncDLObjectSoap implements Serializable {
 		soapModel.setChangeLog(model.getChangeLog());
 		soapModel.setExtraSettings(model.getExtraSettings());
 		soapModel.setVersion(model.getVersion());
+		soapModel.setVersionId(model.getVersionId());
 		soapModel.setSize(model.getSize());
 		soapModel.setChecksum(model.getChecksum());
 		soapModel.setEvent(model.getEvent());
@@ -209,6 +210,14 @@ public class SyncDLObjectSoap implements Serializable {
 		_version = version;
 	}
 
+	public long getVersionId() {
+		return _versionId;
+	}
+
+	public void setVersionId(long versionId) {
+		_versionId = versionId;
+	}
+
 	public long getSize() {
 		return _size;
 	}
@@ -294,6 +303,7 @@ public class SyncDLObjectSoap implements Serializable {
 	private String _changeLog;
 	private String _extraSettings;
 	private String _version;
+	private long _versionId;
 	private long _size;
 	private String _checksum;
 	private String _event;

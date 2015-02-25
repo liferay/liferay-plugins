@@ -40,6 +40,7 @@
 			<basic name="changeLog" />
 			<basic name="extraSettings" />
 			<basic name="version" />
+			<basic name="versionId" />
 			<basic name="size">
 				<column name="SIZE_" />
 			</basic>

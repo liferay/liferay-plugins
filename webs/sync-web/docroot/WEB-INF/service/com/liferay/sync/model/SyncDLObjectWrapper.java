@@ -63,6 +63,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 		attributes.put("changeLog", getChangeLog());
 		attributes.put("extraSettings", getExtraSettings());
 		attributes.put("version", getVersion());
+		attributes.put("versionId", getVersionId());
 		attributes.put("size", getSize());
 		attributes.put("checksum", getChecksum());
 		attributes.put("event", getEvent());
@@ -154,6 +155,12 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 
 		if (version != null) {
 			setVersion(version);
+		}
+
+		Long versionId = (Long)attributes.get("versionId");
+
+		if (versionId != null) {
+			setVersionId(versionId);
 		}
 
 		Long size = (Long)attributes.get("size");
@@ -489,6 +496,26 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public void setVersion(java.lang.String version) {
 		_syncDLObject.setVersion(version);
+	}
+
+	/**
+	* Returns the version ID of this sync d l object.
+	*
+	* @return the version ID of this sync d l object
+	*/
+	@Override
+	public long getVersionId() {
+		return _syncDLObject.getVersionId();
+	}
+
+	/**
+	* Sets the version ID of this sync d l object.
+	*
+	* @param versionId the version ID of this sync d l object
+	*/
+	@Override
+	public void setVersionId(long versionId) {
+		_syncDLObject.setVersionId(versionId);
 	}
 
 	/**

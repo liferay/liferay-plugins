@@ -30,6 +30,7 @@
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="version" type="String" />
+		<field name="versionId" type="long" />
 		<field name="size" type="long" />
 		<field name="checksum" type="String" />
 		<field name="event" type="String" />
