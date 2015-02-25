@@ -20,14 +20,12 @@ import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,17 +109,10 @@ public class PrioritizationStrategy {
 		}
 
 		if (_prioritizeUpdatedKBArticles) {
-			Map<String, Double> maxKBArticlePriorityMap =
-				computeMaxKBArticlePriorityMap(_nonimportedKBArticlesMap);
-
-			prioritizeKBArticles(
-				_importedKBArticlesMap, maxKBArticlePriorityMap);
+			prioritizeKBArticles(_importedKBArticlesMap);
 		}
 		else {
-			Map<String, Double> maxKBArticlePriorityMap =
-				computeMaxKBArticlePriorityMap(_existingKBArticlesMap);
-
-			prioritizeKBArticles(_newKBArticlesMap, maxKBArticlePriorityMap);
+			prioritizeKBArticles(_newKBArticlesMap);
 		}
 	}
 
@@ -177,36 +168,6 @@ public class PrioritizationStrategy {
 		_prioritizeUpdatedKBArticles = prioritizeUpdatedKBArticles;
 		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
 		_existingKBArticlesMap = existingKBArticlesMap;
-	}
-
-	protected Map<String, Double> computeMaxKBArticlePriorityMap(
-		Map<String, List<KBArticle>> kbArticlesMap) {
-
-		Map<String, Double> maxKBArticlePriorityMap = new HashMap<>();
-
-		for (Map.Entry<String, List<KBArticle>> entry :
-				kbArticlesMap.entrySet()) {
-
-			double maxKBArticlePriority = 0.0;
-
-			List<KBArticle> kbArticles = entry.getValue();
-
-			if (kbArticles == null) {
-				continue;
-			}
-
-			for (KBArticle kbArticle : kbArticles) {
-				double kbArticlePriority = kbArticle.getPriority();
-
-				if (kbArticlePriority > maxKBArticlePriority) {
-					maxKBArticlePriority = kbArticlePriority;
-				}
-			}
-
-			maxKBArticlePriorityMap.put(entry.getKey(), maxKBArticlePriority);
-		}
-
-		return maxKBArticlePriorityMap;
 	}
 
 	protected <S, T> List<T> getList(Map<S, List<T>> map, S key) {
@@ -314,8 +275,8 @@ public class PrioritizationStrategy {
 	}
 
 	protected void prioritizeKBArticles(
-		Map<String, List<KBArticle>> kbArticlesMap,
-		Map<String, Double> maxKBArticlePriorityMap) {
+			Map<String, List<KBArticle>> kbArticlesMap)
+		throws PortalException {
 
 		for (Map.Entry<String, List<KBArticle>> entry :
 				kbArticlesMap.entrySet()) {
@@ -326,38 +287,47 @@ public class PrioritizationStrategy {
 				continue;
 			}
 
-			ListUtil.sort(kbArticles, new Comparator<KBArticle>() {
+			List<KBArticle> siblingKBArticles = null;
 
-				@Override
-				public int compare(KBArticle kbArticle1, KBArticle kbArticle2) {
-					String urlTitle1 = kbArticle1.getUrlTitle();
-					String urlTitle2 = kbArticle2.getUrlTitle();
+			if (Validator.isNull(entry.getKey())) {
 
-					return urlTitle1.compareTo(urlTitle2);
+				// Handle lead articles
+
+				siblingKBArticles = KBArticleLocalServiceUtil.getKBArticles(
+					_groupId, _parentKBFolderId, WorkflowConstants.STATUS_ANY,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			}
+			else {
+				KBArticle parentKBArticle =
+					KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+						_groupId, _parentKBFolderId, entry.getKey());
+
+				siblingKBArticles = KBArticleServiceUtil.getKBArticles(
+					_groupId, parentKBArticle.getResourcePrimKey(),
+					WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null);
+			}
+
+			double maxPriority = 0.0;
+
+			for (KBArticle sibling : siblingKBArticles) {
+				double priority = sibling.getPriority();
+
+				if (priority > maxPriority) {
+					maxPriority = priority;
 				}
-
-			});
-
-			String parentKBArticleUrlTitle = entry.getKey();
+			}
 
 			int size = kbArticles.size();
 
 			for (int i = 0; i < size; i++) {
 				KBArticle kbArticle = kbArticles.get(i);
 
-				double maxPriority = 0.0;
-
-				if (maxKBArticlePriorityMap.containsKey(
-						parentKBArticleUrlTitle)) {
-
-					maxPriority = maxKBArticlePriorityMap.get(
-						parentKBArticleUrlTitle);
+				if (kbArticle.getPriority() >= 1.0) {
+					continue;
 				}
 
 				maxPriority++;
-
-				maxKBArticlePriorityMap.put(
-					parentKBArticleUrlTitle, maxPriority);
 
 				KBArticleLocalServiceUtil.updatePriority(
 					kbArticle.getResourcePrimKey(), maxPriority);
