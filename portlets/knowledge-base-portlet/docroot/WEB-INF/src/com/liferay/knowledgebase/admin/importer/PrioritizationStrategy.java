@@ -93,6 +93,10 @@ public class PrioritizationStrategy {
 			for (Map.Entry<String, Double> entry :
 					_importedKBArticleUrlTitlesPrioritiesMap.entrySet()) {
 
+				if (entry.getValue() < 1.0) {
+					continue;
+				}
+
 				KBArticle kbArticle =
 					KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
 						_groupId, _parentKBFolderId, entry.getKey());
@@ -146,7 +150,16 @@ public class PrioritizationStrategy {
 			double sectionFileEntryNamePrefix = getNumericalPrefix(
 				filePath, isChildArticle);
 
-			if (sectionFileEntryNamePrefix > 0) {
+			if (sectionFileEntryNamePrefix < 0.0) {
+				kbArticle.setPriority(0.0);
+			}
+			else if (sectionFileEntryNamePrefix < 1.0) {
+				kbArticle.setPriority(1.0);
+
+				_importedKBArticleUrlTitlesPrioritiesMap.put(
+					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
+			}
+			else {
 				_importedKBArticleUrlTitlesPrioritiesMap.put(
 					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
 			}
