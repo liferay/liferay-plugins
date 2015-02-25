@@ -20,7 +20,7 @@
 				complete list.
 				-->
 
-				<get
+				<mirrors-get
 					dest="docroot/WEB-INF/classes/sanitizer-configuration.xml"
 					src="http://owaspantisamy.googlecode.com/files/antisamy-ebay-1.3.xml"
 				/>

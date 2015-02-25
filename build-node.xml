@@ -90,7 +90,7 @@ ${nodejs.url[osx64]}.
 					<antelope:substring beginindex="${nodejs.file.beginindex}" />
 				</antelope:stringutil>
 
-				<get dest="${nodejs.file}" src="${nodejs.url}" />
+				<mirrors-get dest="${nodejs.file}" src="${nodejs.url}" />
 
 				<if>
 					<contains string="${nodejs.file}" substring=".tar.gz" />
@@ -123,7 +123,7 @@ ${nodejs.url[osx64]}.
 				<if>
 					<os family="windows" />
 					<then>
-						<get
+						<mirrors-get
 							dest="npm.zip"
 							src="${nodejs.npm.url}"
 						/>
