@@ -91,6 +91,10 @@
 		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.bnd/lib" includes="*.jar" />
 	</path>
 
+	<path id="classpath.net.sourceforge.pmd">
+		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
+	</path>
+
 	<taskdef classname="com.liferay.ant.bnd.BaselineJarTask" classpathref="classpath.com.liferay.ant.bnd" name="baseline-jar" />
 
 	<path id="classpath.org.codehaus.groovy">
@@ -2019,10 +2023,6 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<path id="classpath.net.sourceforge.pmd">
-				<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
-			</path>
-
 			<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.cpd.CPDTask" name="cpd" />
 
 			<if>
@@ -2049,10 +2049,6 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<path id="classpath.net.sourceforge.pmd">
-				<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
-			</path>
-
 			<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.ant.PMDTask" name="pmd" />
 
 			<if>
