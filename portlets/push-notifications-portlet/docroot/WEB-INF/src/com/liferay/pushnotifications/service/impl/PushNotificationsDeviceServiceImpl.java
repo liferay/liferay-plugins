@@ -25,6 +25,8 @@ import com.liferay.pushnotifications.service.base.PushNotificationsDeviceService
 import com.liferay.pushnotifications.service.permission.PushNotificationsPermission;
 import com.liferay.pushnotifications.util.ActionKeys;
 
+import java.util.List;
+
 /**
  * @author Silvio Santos
  * @author Bruno Farache
@@ -111,6 +113,20 @@ public class PushNotificationsDeviceServiceImpl
 
 		pushNotificationsDeviceLocalService.sendPushNotification(
 			toUserIds, jsonObject);
+	}
+
+	@Override
+	public void sendPushNotification(
+			String platform, List<String> tokens, String payload)
+		throws PortalException {
+
+		PushNotificationsPermission.check(
+			getPermissionChecker(), ActionKeys.SEND_PUSH_NOTIFICATION);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(payload);
+
+		pushNotificationsDeviceLocalService.sendPushNotification(
+			platform, tokens, jsonObject);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
