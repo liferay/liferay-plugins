@@ -166,12 +166,12 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			JSONArray sharedTo, int childAssetEntrySetsLimit, int start,
-			int end)
+			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
+			int start, int end)
 		throws PortalException, SystemException {
 
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findBySharedTo(
-			sharedTo, start, end);
+			sharedToJSONArray, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
@@ -181,14 +181,14 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
-			JSONArray sharedTo, boolean andOperator,
+			JSONArray sharedToJSONArray, boolean andOperator,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetFinder.findByCCNI_CCPK_ATN(
-				creatorClassNameId, creatorClassPK, assetTagName, sharedTo,
-				andOperator, start, end);
+				creatorClassNameId, creatorClassPK, assetTagName,
+				sharedToJSONArray, andOperator, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
@@ -197,12 +197,13 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			long creatorClassNameId, String assetTagName, JSONArray sharedTo,
-			int childAssetEntrySetsLimit, int start, int end)
+			long creatorClassNameId, String assetTagName,
+			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
+			int start, int end)
 		throws PortalException, SystemException {
 
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
-			creatorClassNameId, assetTagName, sharedTo, start, end);
+			creatorClassNameId, assetTagName, sharedToJSONArray, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
@@ -210,30 +211,31 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public int getAssetEntrySetsCount(JSONArray sharedTo)
+	public int getAssetEntrySetsCount(JSONArray sharedToJSONArray)
 		throws PortalException, SystemException {
 
-		return assetEntrySetFinder.countBySharedTo(sharedTo);
+		return assetEntrySetFinder.countBySharedTo(sharedToJSONArray);
 	}
 
 	@Override
 	public int getAssetEntrySetsCount(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
-			JSONArray sharedTo, boolean andOperator)
+			JSONArray sharedToJSONArray, boolean andOperator)
 		throws PortalException, SystemException {
 
 		return assetEntrySetFinder.countByCCNI_CCPK_ATN(
-			creatorClassNameId, creatorClassPK, assetTagName, sharedTo,
+			creatorClassNameId, creatorClassPK, assetTagName, sharedToJSONArray,
 			andOperator);
 	}
 
 	@Override
 	public int getAssetEntrySetsCount(
-			long creatorClassNameId, String assetTagName, JSONArray sharedTo)
+			long creatorClassNameId, String assetTagName,
+			JSONArray sharedToJSONArray)
 		throws PortalException, SystemException {
 
 		return assetEntrySetFinder.countByCCNI_ATN(
-			creatorClassNameId, assetTagName, sharedTo);
+			creatorClassNameId, assetTagName, sharedToJSONArray);
 	}
 
 	@Override
@@ -253,23 +255,25 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
-			int childAssetEntrySetsLimit, int start, int end)
+			long createTime, long parentAssetEntrySetId,
+			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
+			int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			createTime, true, parentAssetEntrySetId, sharedTo,
+			createTime, true, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
-			int childAssetEntrySetsLimit, int start, int end)
+			long createTime, long parentAssetEntrySetId,
+			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
+			int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			createTime, false, parentAssetEntrySetId, sharedTo,
+			createTime, false, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
@@ -460,14 +464,14 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
-			JSONArray sharedTo, int childAssetEntrySetsLimit, int start,
-			int end)
+			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
+			int start, int end)
 		throws PortalException, SystemException {
 
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetFinder.findByCT_PASEI(
-				createTime, gtCreateTime, parentAssetEntrySetId, sharedTo,
-				start, end);
+				createTime, gtCreateTime, parentAssetEntrySetId,
+				sharedToJSONArray, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 

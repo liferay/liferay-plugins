@@ -64,7 +64,9 @@ public class AssetEntrySetFinderImpl
 		AssetEntrySetFinder.class.getName() + ".findByCCNI_CCPK_ATN";
 
 	@Override
-	public int countBySharedTo(JSONArray sharedTo) throws SystemException {
+	public int countBySharedTo(JSONArray sharedToJSONArray)
+		throws SystemException {
+
 		Session session = null;
 
 		try {
@@ -73,7 +75,7 @@ public class AssetEntrySetFinderImpl
 			String sql = CustomSQLUtil.get(COUNT_BY_SHARED_TO);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedTo));
+				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -104,7 +106,8 @@ public class AssetEntrySetFinderImpl
 	}
 
 	public int countByCCNI_ATN(
-			long creatorClassNameId, String assetTagName, JSONArray sharedTo)
+			long creatorClassNameId, String assetTagName,
+			JSONArray sharedToJSONArray)
 		throws SystemException {
 
 		Session session = null;
@@ -115,7 +118,7 @@ public class AssetEntrySetFinderImpl
 			String sql = CustomSQLUtil.get(COUNT_BY_CCNI_ATN);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedTo));
+				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -149,7 +152,7 @@ public class AssetEntrySetFinderImpl
 
 	public int countByCCNI_CCPK_ATN(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
-			JSONArray sharedTo, boolean andOperator)
+			JSONArray sharedToJSONArray, boolean andOperator)
 		throws SystemException {
 
 		Session session = null;
@@ -162,7 +165,7 @@ public class AssetEntrySetFinderImpl
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedTo));
+				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -197,7 +200,7 @@ public class AssetEntrySetFinderImpl
 
 	@Override
 	public List<AssetEntrySet> findBySharedTo(
-			JSONArray sharedTo, int start, int end)
+			JSONArray sharedToJSONArray, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -208,7 +211,7 @@ public class AssetEntrySetFinderImpl
 			String sql = CustomSQLUtil.get(FIND_BY_SHARED_TO);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedTo));
+				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -231,7 +234,7 @@ public class AssetEntrySetFinderImpl
 
 	public List<AssetEntrySet> findByCT_PASEI(
 			long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
-			JSONArray sharedTo, int start, int end)
+			JSONArray sharedToJSONArray, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -251,7 +254,7 @@ public class AssetEntrySetFinderImpl
 			}
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedTo));
+				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -275,8 +278,8 @@ public class AssetEntrySetFinderImpl
 	}
 
 	public List<AssetEntrySet> findByCCNI_ATN(
-			long creatorClassNameId, String assetTagName, JSONArray sharedTo,
-			int start, int end)
+			long creatorClassNameId, String assetTagName,
+			JSONArray sharedToJSONArray, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -287,7 +290,7 @@ public class AssetEntrySetFinderImpl
 			String sql = CustomSQLUtil.get(FIND_BY_CCNI_ATN);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedTo));
+				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -312,7 +315,8 @@ public class AssetEntrySetFinderImpl
 
 	public List<AssetEntrySet> findByCCNI_CCPK_ATN(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
-			JSONArray sharedTo, boolean andOperator, int start, int end)
+			JSONArray sharedToJSONArray, boolean andOperator, int start,
+			int end)
 		throws SystemException {
 
 		Session session = null;
@@ -325,7 +329,7 @@ public class AssetEntrySetFinderImpl
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedTo));
+				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -349,13 +353,14 @@ public class AssetEntrySetFinderImpl
 		}
 	}
 
-	protected String getSharedTo(JSONArray sharedTo) {
-		StringBundler sb = new StringBundler((sharedTo.length() * 2) + 2);
+	protected String getSharedTo(JSONArray sharedToJSONArray) {
+		StringBundler sb = new StringBundler(
+			(sharedToJSONArray.length() * 2) + 2);
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
-		for (int i = 0; i < sharedTo.length(); i++) {
-			JSONObject jsonObject = sharedTo.getJSONObject(i);
+		for (int i = 0; i < sharedToJSONArray.length(); i++) {
+			JSONObject jsonObject = sharedToJSONArray.getJSONObject(i);
 
 			long sharedToClassNameId = jsonObject.getLong("classNameId");
 			long sharedToClassPK = jsonObject.getLong("classPK");

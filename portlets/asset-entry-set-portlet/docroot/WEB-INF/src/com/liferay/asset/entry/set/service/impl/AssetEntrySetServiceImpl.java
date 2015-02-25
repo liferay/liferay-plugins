@@ -73,23 +73,27 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
+			long createTime, long parentAssetEntrySetId, String sharedTo,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
+		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
+
 		return assetEntrySetLocalService.getNewAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId, sharedTo,
+			createTime, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, JSONArray sharedTo,
+			long createTime, long parentAssetEntrySetId, String sharedTo,
 			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
 
+		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
+
 		return assetEntrySetLocalService.getOldAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId, sharedTo,
+			createTime, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
