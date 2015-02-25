@@ -225,7 +225,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 					kaleoTask.getKaleoTaskId(), Role.class.getName());
 
-			Map<String, Long> pooledActors = new TreeMap(
+			Map<String, Long> pooledActors = new TreeMap<String, Long>(
 				new NumericalStringComparator());
 
 			for (KaleoTaskAssignment kaleoTaskAssignment :
