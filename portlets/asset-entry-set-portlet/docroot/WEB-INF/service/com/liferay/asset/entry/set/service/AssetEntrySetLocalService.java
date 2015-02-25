@@ -271,39 +271,46 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, int childAssetEntrySetsLimit, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, boolean andOperator,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, long creatorClassNameId, java.lang.String assetTagName,
+		long creatorClassNameId, long creatorClassPK,
+		java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		boolean andOperator, int childAssetEntrySetsLimit, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long creatorClassNameId, java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssetEntrySetsCount(long userId)
+	public int getAssetEntrySetsCount(
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssetEntrySetsCount(long userId, long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName, boolean andOperator)
+	public int getAssetEntrySetsCount(long creatorClassNameId,
+		long creatorClassPK, java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		boolean andOperator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssetEntrySetsCount(long userId, long creatorClassNameId,
-		java.lang.String assetTagName)
+	public int getAssetEntrySetsCount(long creatorClassNameId,
+		java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -316,14 +323,16 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

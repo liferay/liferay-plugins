@@ -89,23 +89,23 @@ public class AssetEntrySetServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getNewAssetEntrySets(createTime, parentAssetEntrySetId,
-			childAssetEntrySetsLimit, start, end);
+			sharedTo, childAssetEntrySetsLimit, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getOldAssetEntrySets(createTime, parentAssetEntrySetId,
-			childAssetEntrySetsLimit, start, end);
+			sharedTo, childAssetEntrySetsLimit, start, end);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(

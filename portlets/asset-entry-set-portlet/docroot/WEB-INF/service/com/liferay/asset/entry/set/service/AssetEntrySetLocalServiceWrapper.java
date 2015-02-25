@@ -313,59 +313,66 @@ public class AssetEntrySetLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, int childAssetEntrySetsLimit, int start, int end)
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySets(userId,
+		return _assetEntrySetLocalService.getAssetEntrySets(sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, boolean andOperator,
-		int childAssetEntrySetsLimit, int start, int end)
+		long creatorClassNameId, long creatorClassPK,
+		java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		boolean andOperator, int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySets(userId,
-			creatorClassNameId, creatorClassPK, assetTagName, andOperator,
+		return _assetEntrySetLocalService.getAssetEntrySets(creatorClassNameId,
+			creatorClassPK, assetTagName, sharedToJSONArray, andOperator,
 			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
-		long userId, long creatorClassNameId, java.lang.String assetTagName,
+		long creatorClassNameId, java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySets(userId,
-			creatorClassNameId, assetTagName, childAssetEntrySetsLimit, start,
+		return _assetEntrySetLocalService.getAssetEntrySets(creatorClassNameId,
+			assetTagName, sharedToJSONArray, childAssetEntrySetsLimit, start,
 			end);
 	}
 
 	@Override
-	public int getAssetEntrySetsCount(long userId)
+	public int getAssetEntrySetsCount(
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySetsCount(userId);
+		return _assetEntrySetLocalService.getAssetEntrySetsCount(sharedToJSONArray);
 	}
 
 	@Override
-	public int getAssetEntrySetsCount(long userId, long creatorClassNameId,
-		long creatorClassPK, java.lang.String assetTagName, boolean andOperator)
+	public int getAssetEntrySetsCount(long creatorClassNameId,
+		long creatorClassPK, java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		boolean andOperator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySetsCount(userId,
-			creatorClassNameId, creatorClassPK, assetTagName, andOperator);
+		return _assetEntrySetLocalService.getAssetEntrySetsCount(creatorClassNameId,
+			creatorClassPK, assetTagName, sharedToJSONArray, andOperator);
 	}
 
 	@Override
-	public int getAssetEntrySetsCount(long userId, long creatorClassNameId,
-		java.lang.String assetTagName)
+	public int getAssetEntrySetsCount(long creatorClassNameId,
+		java.lang.String assetTagName,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getAssetEntrySetsCount(userId,
-			creatorClassNameId, assetTagName);
+		return _assetEntrySetLocalService.getAssetEntrySetsCount(creatorClassNameId,
+			assetTagName, sharedToJSONArray);
 	}
 
 	@Override
@@ -380,24 +387,26 @@ public class AssetEntrySetLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getNewAssetEntrySets(userId,
-			createTime, parentAssetEntrySetId, childAssetEntrySetsLimit, start,
-			end);
+		return _assetEntrySetLocalService.getNewAssetEntrySets(createTime,
+			parentAssetEntrySetId, sharedToJSONArray, childAssetEntrySetsLimit,
+			start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getOldAssetEntrySets(userId,
-			createTime, parentAssetEntrySetId, childAssetEntrySetsLimit, start,
-			end);
+		return _assetEntrySetLocalService.getOldAssetEntrySets(createTime,
+			parentAssetEntrySetId, sharedToJSONArray, childAssetEntrySetsLimit,
+			start, end);
 	}
 
 	@Override

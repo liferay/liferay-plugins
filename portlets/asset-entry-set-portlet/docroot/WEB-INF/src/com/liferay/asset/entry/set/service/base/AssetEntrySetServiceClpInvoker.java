@@ -49,13 +49,13 @@ public class AssetEntrySetServiceClpInvoker {
 		_methodName57 = "getNewAssetEntrySets";
 
 		_methodParameterTypes57 = new String[] {
-				"long", "long", "int", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int"
 			};
 
 		_methodName58 = "getOldAssetEntrySets";
 
 		_methodParameterTypes58 = new String[] {
-				"long", "long", "int", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int"
 			};
 
 		_methodName59 = "likeAssetEntrySet";
@@ -110,18 +110,20 @@ public class AssetEntrySetServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return AssetEntrySetServiceUtil.getNewAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue(),
+				(java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+				((Integer)arguments[4]).intValue(),
+				((Integer)arguments[5]).intValue());
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return AssetEntrySetServiceUtil.getOldAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue(),
+				(java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
-				((Integer)arguments[4]).intValue());
+				((Integer)arguments[4]).intValue(),
+				((Integer)arguments[5]).intValue());
 		}
 
 		if (_methodName59.equals(name) &&

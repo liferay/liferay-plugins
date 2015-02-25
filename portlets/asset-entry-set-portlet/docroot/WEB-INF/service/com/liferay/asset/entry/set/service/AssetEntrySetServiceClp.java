@@ -49,13 +49,13 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		_methodName6 = "getNewAssetEntrySets";
 
 		_methodParameterTypes6 = new String[] {
-				"long", "long", "int", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int"
 			};
 
 		_methodName7 = "getOldAssetEntrySets";
 
 		_methodParameterTypes7 = new String[] {
-				"long", "long", "int", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int"
 			};
 
 		_methodName8 = "likeAssetEntrySet";
@@ -241,7 +241,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -254,6 +254,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 						createTime,
 						
 					parentAssetEntrySetId,
+						
+					ClpSerializer.translateInput(sharedTo),
 						
 					childAssetEntrySetsLimit,
 						
@@ -287,7 +289,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long createTime, long parentAssetEntrySetId,
+		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
 		int childAssetEntrySetsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -300,6 +302,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 						createTime,
 						
 					parentAssetEntrySetId,
+						
+					ClpSerializer.translateInput(sharedTo),
 						
 					childAssetEntrySetsLimit,
 						
