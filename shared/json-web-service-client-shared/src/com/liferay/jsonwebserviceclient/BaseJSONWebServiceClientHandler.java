@@ -61,7 +61,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 	protected <T> List<T> doGetToList(
 			Class<T> clazz, String url, Map<String, String> parameters,
-		Map<String, String> headers)
+			Map<String, String> headers)
 		throws JSONWebServiceInvocationException {
 
 		String json = doGet(url, parameters, headers);
