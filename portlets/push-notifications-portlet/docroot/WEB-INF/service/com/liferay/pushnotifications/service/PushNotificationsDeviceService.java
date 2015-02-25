@@ -80,4 +80,8 @@ public interface PushNotificationsDeviceService extends BaseService,
 	public void sendPushNotification(long[] toUserIds, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	public void sendPushNotification(java.lang.String platform,
+		java.util.List<java.lang.String> tokens, java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

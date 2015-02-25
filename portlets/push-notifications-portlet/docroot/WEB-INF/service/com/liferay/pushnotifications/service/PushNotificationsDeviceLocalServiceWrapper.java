@@ -313,11 +313,20 @@ public class PushNotificationsDeviceLocalServiceWrapper
 
 	@Override
 	public void sendPushNotification(long[] toUserIds,
-		com.liferay.portal.kernel.json.JSONObject jsonObject)
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_pushNotificationsDeviceLocalService.sendPushNotification(toUserIds,
-			jsonObject);
+			payloadJSONObject);
+	}
+
+	@Override
+	public void sendPushNotification(java.lang.String platform,
+		java.util.List<java.lang.String> tokens,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_pushNotificationsDeviceLocalService.sendPushNotification(platform,
+			tokens, payloadJSONObject);
 	}
 
 	/**
