@@ -2692,6 +2692,13 @@ for (String path : paths) {
 		/>
 	</target>
 
+	<target name="compile-test">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="compile-test"
+		/>
+	</target>
+
 	<target name="create">
 		<if>
 			<or>
