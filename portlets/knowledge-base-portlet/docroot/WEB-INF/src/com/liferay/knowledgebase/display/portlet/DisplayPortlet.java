@@ -240,7 +240,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 			List<KBArticle> kbArticles =
 				KBArticleLocalServiceUtil.getKBArticles(
 					groupId, newKBFolderId, WorkflowConstants.STATUS_APPROVED,
-					0, 1, new KBArticlePriorityComparator());
+					0, 1, new KBArticlePriorityComparator(true));
 
 			if (!kbArticles.isEmpty()) {
 				kbArticle = kbArticles.get(0);
