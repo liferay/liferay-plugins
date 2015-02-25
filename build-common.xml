@@ -2015,6 +2015,36 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="run-cpd">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<path id="classpath.net.sourceforge.pmd">
+				<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
+			</path>
+
+			<taskdef classpathref="classpath.net.sourceforge.pmd" classname="net.sourceforge.pmd.cpd.CPDTask" name="cpd" />
+
+			<if>
+				<isset property="cpd.basedir" />
+				<then>
+					<var name="module.cpd.basedir" value="${cpd.basedir}" />
+				</then>
+				<else>
+					<var name="module.cpd.basedir" value="@{module.dir}" />
+				</else>
+			</if>
+
+			<mkdir dir="${module.cpd.basedir}/pmd-reports" />
+
+			<cpd encoding="UTF-8" format="${pmd.output.type}" minimumTokenCount="100" outputFile="${module.cpd.basedir}/pmd-reports/cpd.${pmd.output.type}">
+				<fileset dir="${module.cpd.basedir}">
+					<include name="**/*.java"/>
+				</fileset>
+			</cpd>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="run-pmd">
 		<attribute name="module.dir" />
 
@@ -2804,6 +2834,22 @@ for (String path : paths) {
 		<loop-macrodef-or-target
 			module.dirs="${reset.gradle.path}"
 			target.name="reset-gradle"
+		/>
+	</target>
+
+	<target name="run-cpd">
+		<if>
+			<not>
+				<isset property="plugins.includes.path" />
+			</not>
+			<then>
+				<property name="plugins.includes.path" value="${basedir}" />
+			</then>
+		</if>
+
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="run-cpd"
 		/>
 	</target>
 
