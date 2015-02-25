@@ -845,16 +845,16 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 
 		<test-cmd
 			module.dir="${basedir}"
-			junit.forkmode="once"
+			junit.forkmode="perTest"
 			test.class="${test.classes}"
-			test.type="integration"
+			test.type="unit"
 		/>
 
 		<test-cmd
 			module.dir="${basedir}"
-			junit.forkmode="perTest"
+			junit.forkmode="once"
 			test.class="${test.classes}"
-			test.type="unit"
+			test.type="integration"
 		/>
 	</target>
 </project>
