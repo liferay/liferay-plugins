@@ -38,6 +38,15 @@ public abstract class BaseJSONWebServiceClientHandler {
 			DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
+	protected String doGet(
+		String url, Map<String, String> parameters,
+		Map<String, String> headers) {
+
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
+		return jsonWebServiceClient.doGet(url, parameters, headers);
+	}
+
 	protected String doGet(String url, String... parametersArray) {
 		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
 
@@ -51,10 +60,11 @@ public abstract class BaseJSONWebServiceClientHandler {
 	}
 
 	protected <T> List<T> doGetToList(
-			Class<T> clazz, String url, String... parametersArray)
+			Class<T> clazz, String url, Map<String, String> parameters,
+		Map<String, String> headers)
 		throws JSONWebServiceInvocationException {
 
-		String json = doGet(url, parametersArray);
+		String json = doGet(url, parameters, headers);
 
 		if ((json == null) || json.equals("") || json.equals("{}") ||
 			json.equals("[]")) {
@@ -78,6 +88,20 @@ public abstract class BaseJSONWebServiceClientHandler {
 		catch (IOException ie) {
 			throw new JSONWebServiceInvocationException(ie);
 		}
+	}
+
+	protected <T> List<T> doGetToList(
+			Class<T> clazz, String url, String... parametersArray)
+		throws JSONWebServiceInvocationException {
+
+		Map<String, String> parameters = new HashMap<String, String>();
+
+		for (int i = 0; i < parametersArray.length; i += 2) {
+			parameters.put(parametersArray[i], parametersArray[i + 1]);
+		}
+
+		return doGetToList(
+			clazz, url, parameters, Collections.<String, String>emptyMap());
 	}
 
 	protected <T> T doGetToObject(
