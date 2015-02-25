@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.admin.importer;
 
 import com.liferay.knowledgebase.model.KBArticle;
-import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -69,10 +68,10 @@ public class PrioritizationStrategy {
 			prioritizeByNumericalPrefix, existingKBArticlesMap);
 	}
 
-	public void addKBArticle(KBArticle kbArticle, String fileName)
+	public void addKBArticle(KBArticle kbArticle, String filePath)
 		throws PortalException {
 
-		updateKBArticle(kbArticle, fileName);
+		updateKBArticle(kbArticle, filePath);
 
 		if (!_prioritizeUpdatedKBArticles) {
 			String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(
@@ -122,7 +121,7 @@ public class PrioritizationStrategy {
 		}
 	}
 
-	public void updateKBArticle(KBArticle kbArticle, String fileName)
+	public void updateKBArticle(KBArticle kbArticle, String filePath)
 		throws PortalException {
 
 		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
@@ -138,7 +137,14 @@ public class PrioritizationStrategy {
 		importedUrlTitles.add(kbArticle.getUrlTitle());
 
 		if (_prioritizeByNumericalPrefix) {
-			double sectionFileEntryNamePrefix = getNumericalPrefix(fileName);
+			boolean isChildArticle = true;
+
+			if (kbArticle.getParentKBArticle() == null) {
+				isChildArticle = false;
+			}
+
+			double sectionFileEntryNamePrefix = getNumericalPrefix(
+				filePath, isChildArticle);
 
 			if (sectionFileEntryNamePrefix > 0) {
 				_importedKBArticleUrlTitlesPrioritiesMap.put(
@@ -201,22 +207,61 @@ public class PrioritizationStrategy {
 		return list;
 	}
 
-	protected double getNumericalPrefix(String path) {
-		int i = path.lastIndexOf(CharPool.SLASH);
+	protected double getNumericalPrefix(
+		String filePath, boolean isChildArticleFile) {
 
-		if (i == -1) {
-			return KBArticleConstants.DEFAULT_PRIORITY;
+		double numericalPrefix = -1.0;
+
+		if (isChildArticleFile) {
+			String fileName = filePath;
+
+			int i = filePath.lastIndexOf(CharPool.SLASH);
+
+			if (i != -1) {
+				fileName = filePath.substring(i + 1);
+			}
+
+			String digits = StringUtil.extractLeadingDigits(fileName);
+
+			if (Validator.isNull(digits)) {
+				return numericalPrefix;
+			}
+
+			return Double.parseDouble(digits);
+		}
+		else {
+			String[] pathEntries = filePath.split(StringPool.SLASH);
+
+			if (pathEntries == null) {
+				String digits = StringUtil.extractLeadingDigits(filePath);
+
+				if (Validator.isNull(digits)) {
+					return numericalPrefix;
+				}
+
+				return Double.parseDouble(digits);
+			}
+
+			int len = pathEntries.length;
+
+			for (int i = len - 1; i > -1; i--) {
+				String fileName = pathEntries[i];
+
+				String digits = StringUtil.extractLeadingDigits(fileName);
+
+				if (Validator.isNull(digits)) {
+					continue;
+				}
+
+				numericalPrefix = Double.parseDouble(digits);
+
+				if (numericalPrefix >= 1.0) {
+					return numericalPrefix;
+				}
+			}
 		}
 
-		String name = path.substring(i + 1);
-
-		String numericalPrefix = StringUtil.extractLeadingDigits(name);
-
-		if (Validator.isNull(numericalPrefix)) {
-			return KBArticleConstants.DEFAULT_PRIORITY;
-		}
-
-		return Double.parseDouble(numericalPrefix);
+		return numericalPrefix;
 	}
 
 	protected String getParentKBArticleUrlTitle(KBArticle kbArticle)
