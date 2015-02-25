@@ -173,7 +173,7 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findBySharedTo(
 			sharedToJSONArray, start, end);
 
-		setDisplayFields(assetEntrySets, userId, childAssetEntrySetsLimit);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -190,7 +190,7 @@ public class AssetEntrySetLocalServiceImpl
 				creatorClassNameId, creatorClassPK, assetTagName,
 				sharedToJSONArray, andOperator, start, end);
 
-		setDisplayFields(assetEntrySets, userId, childAssetEntrySetsLimit);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -205,7 +205,7 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findByCCNI_ATN(
 			creatorClassNameId, assetTagName, sharedToJSONArray, start, end);
 
-		setDisplayFields(assetEntrySets, userId, childAssetEntrySetsLimit);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -473,7 +473,7 @@ public class AssetEntrySetLocalServiceImpl
 				createTime, gtCreateTime, parentAssetEntrySetId,
 				sharedToJSONArray, start, end);
 
-		setDisplayFields(assetEntrySets, userId, childAssetEntrySetsLimit);
+		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
 	}
@@ -549,8 +549,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setChildAssetEntrySets(
-			AssetEntrySet assetEntrySet, long userId,
-			int childAssetEntrySetsLimit)
+			AssetEntrySet assetEntrySet, int childAssetEntrySetsLimit)
 		throws PortalException, SystemException {
 
 		if (childAssetEntrySetsLimit <= 0) {
@@ -590,13 +589,11 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setDisplayFields(
-			List<AssetEntrySet> assetEntrySets, long userId,
-			int childAssetEntrySetsLimit)
+			List<AssetEntrySet> assetEntrySets, int childAssetEntrySetsLimit)
 		throws PortalException, SystemException {
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setChildAssetEntrySets(
-				assetEntrySet, userId, childAssetEntrySetsLimit);
+			setChildAssetEntrySets(assetEntrySet, childAssetEntrySetsLimit);
 
 			setParticipants(assetEntrySet);
 		}
