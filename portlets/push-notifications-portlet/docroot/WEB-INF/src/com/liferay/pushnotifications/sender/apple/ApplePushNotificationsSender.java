@@ -43,7 +43,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	}
 
 	@Override
-	public void send(List<String> tokens, JSONObject jsonObject)
+	public void send(List<String> tokens, JSONObject payloadJSONObject)
 		throws Exception {
 
 		ApnsService apnsService = getApnsService();
@@ -52,32 +52,29 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			return;
 		}
 
-		String payload = buildPayload(jsonObject);
+		String payload = buildPayload(payloadJSONObject);
 
 		apnsService.push(tokens, payload);
 	}
 
-	protected String buildPayload(JSONObject jsonObject) {
+	protected String buildPayload(JSONObject payloadJSONObject) {
 		PayloadBuilder builder = PayloadBuilder.newPayload();
 
-		JSONObject payloadJSONObject = jsonObject.getJSONObject(
-			PushNotificationsConstants.KEY_PAYLOAD);
+		String body = payloadJSONObject.getString(
+			PushNotificationsConstants.KEY_BODY);
 
-		String message = payloadJSONObject.getString(
-			PushNotificationsConstants.KEY_MESSAGE);
-
-		if (message != null) {
-			builder.alertBody(message);
+		if (body != null) {
+			builder.alertBody(body);
 		}
 
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_MESSAGE);
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> keys = payloadJSONObject.keys();
 
 		while (keys.hasNext()) {
 			String key = keys.next();
 
-			builder.customField(key, jsonObject.getString(key));
+			builder.customField(key, payloadJSONObject.getString(key));
 		}
 
 		return builder.build();
