@@ -103,45 +103,6 @@ ECJ was automatically installed. Please rerun your task.
 		</then>
 	</if>
 
-	<macrodef name="mirrors-get">
-		<attribute name="dest" />
-		<attribute default="false" name="ignoreerrors" />
-		<attribute default="false" name="skipexisting" />
-		<attribute name="src" />
-		<attribute default="false" name="verbose" />
-
-		<sequential>
-			<propertyregex
-				input="@{src}"
-				override="true"
-				property="mirrors.src"
-				regexp="http://"
-				replace="http://mirrors/"
-			/>
-
-			<trycatch>
-				<try>
-					<get
-						dest="@{dest}"
-						ignoreerrors="@{ignoreerrors}"
-						skipexisting="@{skipexisting}"
-						src="${mirrors.src}"
-						verbose="@{verbose}"
-					/>
-				</try>
-				<catch>
-					<get
-						dest="@{dest}"
-						ignoreerrors="@{ignoreerrors}"
-						skipexisting="@{skipexisting}"
-						src="@{src}"
-						verbose="@{verbose}"
-					/>
-				</catch>
-			</trycatch>
-		</sequential>
-	</macrodef>
-
 	<target name="compile-java">
 		<copy todir="${javac.destdir}">
 			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
