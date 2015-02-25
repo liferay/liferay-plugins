@@ -721,7 +721,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		<if>
 			<equals arg1="${patched.file.available}" arg2="false" />
 			<then>
-				<get
+				<mirrors-get
 					dest="${patch.original.lib.name}-sources.jar"
 					src="${patch.original.lib.url}/${patch.original.lib.name}/${patch.original.lib.version}/${patch.original.lib.name}-${patch.original.lib.version}-sources.jar"
 				/>
