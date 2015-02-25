@@ -28,7 +28,7 @@
 		<then>
 			<mkdir dir="${ivy.home}" />
 
-			<get
+			<mirrors-get
 				dest="${ivy.home}"
 				src="${ivy.jar.url}"
 			/>
