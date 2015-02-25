@@ -2037,7 +2037,7 @@ Please find a solution that does not require portal-impl.jar.
 
 			<mkdir dir="${module.cpd.basedir}/pmd-reports" />
 
-			<cpd encoding="UTF-8" format="${pmd.output.type}" minimumTokenCount="100" outputFile="${module.cpd.basedir}/pmd-reports/cpd.${pmd.output.type}">
+			<cpd encoding="UTF-8" format="${pmd.output.type}" minimumTokenCount="${pmd.cpd.minimun.token.count}" outputFile="${module.cpd.basedir}/pmd-reports/cpd.${pmd.output.type}">
 				<fileset dir="${module.cpd.basedir}">
 					<include name="**/*.java"/>
 				</fileset>
