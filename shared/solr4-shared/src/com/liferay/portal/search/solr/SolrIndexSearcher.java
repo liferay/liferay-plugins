@@ -319,7 +319,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
-		Set<String> sortFieldNames = new HashSet<>();
+		Set<String> sortFieldNames = new HashSet<>(sorts.length);
 
 		for (Sort sort : sorts) {
 			if (sort == null) {
@@ -344,19 +344,27 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
+	protected QueryResponse doRequest(SolrQuery solrQuery) throws Exception {
+		return _solrServer.query(solrQuery, METHOD.POST);
+	}
+
+	protected QueryResponse doSearch(
+			SearchContext searchContext, Query query, int start, int end)
+		throws Exception {
+
+		return doSearch(searchContext, query, start, end, false);
+	}
+
 	protected QueryResponse doSearch(
 			SearchContext searchContext, Query query, int start, int end,
 			boolean count)
 		throws Exception {
 
+		QueryConfig queryConfig = query.getQueryConfig();
+
 		SolrQuery solrQuery = new SolrQuery();
 
-		if (count) {
-			solrQuery.setRows(0);
-		}
-		else {
-			QueryConfig queryConfig = query.getQueryConfig();
-
+		if (!count) {
 			addFacets(solrQuery, searchContext);
 			addHighlights(solrQuery, queryConfig);
 			addPagination(solrQuery, start, end);
@@ -365,6 +373,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 		}
+		else {
+			solrQuery.setRows(0);
+		}
 
 		QueryTranslatorUtil.translateForSolr(query);
 
@@ -372,7 +383,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setQuery(queryString);
 
-		return _solrServer.query(solrQuery, METHOD.POST);
+		QueryResponse queryResponse = doRequest(solrQuery);
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"The search engine processed " + solrQuery.toString() +
+					" in " + queryResponse.getElapsedTime() + " ms");
+		}
+
+		return queryResponse;
 	}
 
 	protected long doSearchCount(SearchContext searchContext, Query query)
@@ -392,17 +411,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		throws Exception {
 
 		QueryResponse queryResponse = doSearch(
-			searchContext, query, start, end, false);
+			searchContext, query, start, end);
 
-		Hits hits = processQueryResponse(queryResponse, searchContext, query);
+		Hits hits = processResponse(queryResponse, searchContext, query);
 
 		return hits;
 	}
 
-	protected Hits processQueryResponse(
-			QueryResponse queryResponse, SearchContext searchContext,
-			Query query)
-		throws Exception {
+	protected Hits processResponse(
+		QueryResponse queryResponse, SearchContext searchContext, Query query) {
 
 		long startTime = System.currentTimeMillis();
 
@@ -519,7 +536,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		SolrIndexSearcher.class);
 
 	private FacetProcessor<SolrQuery> _facetProcessor;
 	private SolrServer _solrServer;
