@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.admin.importer;
 
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
@@ -308,9 +309,14 @@ public class PrioritizationStrategy {
 					QueryUtil.ALL_POS, null);
 			}
 
+			List<KBArticle> siblingKBArticlesCopy = new ArrayList<KBArticle>();
+
+			siblingKBArticlesCopy = ListUtil.copy(siblingKBArticles);
+			siblingKBArticlesCopy.removeAll(kbArticles);
+
 			double maxPriority = 0.0;
 
-			for (KBArticle sibling : siblingKBArticles) {
+			for (KBArticle sibling : siblingKBArticlesCopy) {
 				double priority = sibling.getPriority();
 
 				if (priority > maxPriority) {
