@@ -418,7 +418,8 @@ public class CalendarBookingLocalServiceImpl
 
 	@Override
 	public CalendarBooking fetchCalendarBooking(
-		long calendarId, String vEventUid) {
+			long calendarId, String vEventUid)
+		throws SystemException {
 
 		return calendarBookingPersistence.fetchByC_V(calendarId, vEventUid);
 	}
