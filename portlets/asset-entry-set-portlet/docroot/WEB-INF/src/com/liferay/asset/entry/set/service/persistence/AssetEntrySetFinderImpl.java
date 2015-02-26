@@ -31,6 +31,7 @@ import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -66,6 +67,10 @@ public class AssetEntrySetFinderImpl
 	@Override
 	public int countBySharedTo(JSONArray sharedToJSONArray)
 		throws SystemException {
+
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+			return 0;
+		}
 
 		Session session = null;
 
@@ -109,6 +114,10 @@ public class AssetEntrySetFinderImpl
 			long creatorClassNameId, String assetTagName,
 			JSONArray sharedToJSONArray)
 		throws SystemException {
+
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+			return 0;
+		}
 
 		Session session = null;
 
@@ -154,6 +163,10 @@ public class AssetEntrySetFinderImpl
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
 			JSONArray sharedToJSONArray, boolean andOperator)
 		throws SystemException {
+
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+			return 0;
+		}
 
 		Session session = null;
 
@@ -203,6 +216,10 @@ public class AssetEntrySetFinderImpl
 			JSONArray sharedToJSONArray, int start, int end)
 		throws SystemException {
 
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+			return Collections.emptyList();
+		}
+
 		Session session = null;
 
 		try {
@@ -236,6 +253,10 @@ public class AssetEntrySetFinderImpl
 			long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, int start, int end)
 		throws SystemException {
+
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+			return Collections.emptyList();
+		}
 
 		Session session = null;
 
@@ -282,6 +303,10 @@ public class AssetEntrySetFinderImpl
 			JSONArray sharedToJSONArray, int start, int end)
 		throws SystemException {
 
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+			return Collections.emptyList();
+		}
+
 		Session session = null;
 
 		try {
@@ -318,6 +343,10 @@ public class AssetEntrySetFinderImpl
 			JSONArray sharedToJSONArray, boolean andOperator, int start,
 			int end)
 		throws SystemException {
+
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+			return Collections.emptyList();
+		}
 
 		Session session = null;
 
