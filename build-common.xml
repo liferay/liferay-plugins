@@ -712,7 +712,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 		<sequential>
 			<copy todir="@{javac.destdir}">
-				<fileset dir="@{javac.srcdir}" excludes="**/*.java" />
+				<fileset dir="@{javac.srcdir}" excludes="**/*.java,**/.sass-cache/*" />
 			</copy>
 
 			<if>
