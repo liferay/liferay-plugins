@@ -1,26 +1,6 @@
 apply from: "${gradle.lfrSdkDir}/versions.gradle"
 
 allprojects {
-	apply plugin: "war"
-
-	dependencies {
-		Map projectCompileDependencies = gradle.compileDependencies.find {
-			project.path == it.projectPath
-		}
-
-		if (projectCompileDependencies) {
-			projectCompileDependencies["compile"].each {
-				compile project(it)
-			}
-		}
-	}
-
-	repositories {
-		maven {
-			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
-		}
-	}
-
 	ant.loadproperties(srcFile: "${gradle.lfrSdkDir}/build.properties")
 
 	File pluginSrcDir = file("${projectDir}/docroot")
@@ -36,6 +16,8 @@ allprojects {
 	if (pluginSrcDir == null) {
 		return
 	}
+
+	ext.pluginSrcDir = pluginSrcDir
 
 	task initGradle << {
 		Boolean osgiPlugin
@@ -358,5 +340,82 @@ allprojects {
 		// dependency-settings.gradle
 
 		writeDependencySettingsFile()
+	}
+}
+
+configure(
+	allprojects.findAll {
+		it.hasProperty("pluginSrcDir")
+	}) {
+
+	apply plugin: "war"
+
+	Map projectCompileDependencies = gradle.compileDependencies.find {
+		project.path == it.projectPath
+	}
+
+	clean {
+		if (projectCompileDependencies) {
+			projectCompileDependencies["compile"].each {
+				dependsOn "$it:clean"
+			}
+		}
+	}
+
+	dependencies {
+		if (projectCompileDependencies) {
+			projectCompileDependencies["compile"].each {
+				compile project(it)
+			}
+		}
+
+		if (!((project.name == "portal-compat-shared") || (project.name =~ "layouttpl") || (project.name =~ "themes"))) {
+
+			compile project(":shared:portal-compat-shared")
+		}
+
+		providedCompile(
+			[group: 'com.liferay',				name: 'aQute.bnd',				version: '2.3.0'],
+			[group: 'com.liferay.portal',		name: 'portal-service',			version: '7.0.0-SNAPSHOT'],
+			[group: 'com.liferay.portal',		name: 'util-bridges',			version: '7.0.0-SNAPSHOT'],
+			[group: 'com.liferay.portal',		name: 'util-java',				version: '7.0.0-SNAPSHOT'],
+			[group: 'com.liferay.portal',		name: 'util-taglib',			version: '7.0.0-SNAPSHOT'],
+			[group: 'commons-logging',			name: 'commons-logging',		version: '1.1.1'],
+			[group: 'hsqldb',					name: 'hsqldb',					version: '1.8.0.7'],
+			[group: 'javax.activation',			name: 'activation',				version: '1.1'],
+			[group: 'javax.ccpp',				name: 'ccpp',					version: '1.0'],
+			[group: 'javax.jms',				name: 'jms',					version: '1.1'],
+			[group: 'javax.mail',				name: 'mail',					version: '1.4'],
+			[group: 'javax.portlet',			name: 'portlet-api',			version: '2.0'],
+			[group: 'javax.servlet',			name: 'javax.servlet-api',		version: '3.0.1'],
+			[group: 'javax.servlet.jsp',		name: 'jsp-api',				version: '2.1'],
+			[group: 'log4j',					name: 'log4j',					version: '1.2.16'],
+			[group: 'mysql',					name: 'mysql-connector-java',	version: '5.1.23'],
+			[group: 'net.sf',					name: 'jargs',					version: '1.0'],
+			[group: 'net.sourceforge.jtds',		name: 'jtds',					version: '1.2.6'],
+			[group: 'org.eclipse.persistence',	name: 'javax.persistence',		version: '2.0.0'],
+			[group: 'postgresql',				name: 'postgresql',				version: '9.2-1002.jdbc4']
+		)
+	}
+
+	repositories {
+		maven {
+			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
+		}
+	}
+
+	sourceSets {
+		main {
+			java {
+				srcDir pluginSrcDir
+			}
+		}
+	}
+
+	war {
+		afterEvaluate {
+			destinationDir = file("${rootDir}/dist")
+			version = pluginFullVersion
+		}
 	}
 }

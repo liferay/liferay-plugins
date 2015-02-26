@@ -129,4 +129,6 @@ fileTree.each(
 	}
 )
 
+include(":shared:portal-compat-shared")
+
 gradle.ext.lfrSdkDir = file(".")
