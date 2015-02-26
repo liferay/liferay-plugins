@@ -30,11 +30,11 @@ public class AssetEntrySetParticipantInfoUtil {
 		return _assetEntrySetParticipantInfo;
 	}
 
-	public static ObjectValuePair<Long, Long> getClassNameIdAndClassPK(
+	public static ObjectValuePair<Long, Long> getClassNameIdAndClassPKOVP(
 			long userId)
 		throws SystemException {
 
-		return getAssetEntrySetParticipantInfo().getClassNameIdAndClassPK(
+		return getAssetEntrySetParticipantInfo().getClassNameIdAndClassPKOVP(
 			userId);
 	}
 

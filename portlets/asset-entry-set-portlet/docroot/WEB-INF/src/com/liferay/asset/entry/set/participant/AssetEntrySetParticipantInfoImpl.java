@@ -34,7 +34,7 @@ import com.liferay.portal.util.PortalUtil;
 public class AssetEntrySetParticipantInfoImpl
 	implements AssetEntrySetParticipantInfo {
 
-	public ObjectValuePair<Long, Long> getClassNameIdAndClassPK(long userId)
+	public ObjectValuePair<Long, Long> getClassNameIdAndClassPKOVP(long userId)
 		throws SystemException {
 
 		return new ObjectValuePair<Long, Long>(_USER_CLASS_NAME_ID, userId);
