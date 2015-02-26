@@ -101,12 +101,20 @@ public class SyncDLObjectFinderImpl
 
 			StringBundler sb = new StringBundler(5);
 
-			String sql = CustomSQLUtil.get(FIND_BY_DELETE_EVENT);
+			String sql = StringPool.BLANK;
 
-			sb.append(sql);
-			sb.append(" UNION ALL ");
+			if (modifiedTime != -1) {
+				sql = CustomSQLUtil.get(FIND_BY_DELETE_EVENT);
+
+				sb.append(sql);
+				sb.append(" UNION ALL ");
+			}
 
 			sql = CustomSQLUtil.get(FIND_BY_FOLDER_TYPE);
+
+			if (modifiedTime == -1) {
+				sql = sql + " AND (SyncDLObject.event != 'trash') ";
+			}
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
 				sql, DLFolder.class.getName(), "SyncDLObject.typePK", null,
@@ -117,6 +125,10 @@ public class SyncDLObjectFinderImpl
 			sb.append(" UNION ALL ");
 
 			sql = CustomSQLUtil.get(FIND_BY_FILE_OR_PWC_TYPE);
+
+			if (modifiedTime == -1) {
+				sql = sql + " AND (SyncDLObject.event != 'trash') ";
+			}
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
 				sql, DLFileEntry.class.getName(), "SyncDLObject.typePK", null,
@@ -137,12 +149,14 @@ public class SyncDLObjectFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(companyId);
-			qPos.add(modifiedTime);
-			qPos.add(repositoryId);
+			if (modifiedTime != -1) {
+				qPos.add(companyId);
+				qPos.add(modifiedTime);
+				qPos.add(repositoryId);
 
-			if (parentFolderId != -1) {
-				qPos.add(parentFolderId);
+				if (parentFolderId != -1) {
+					qPos.add(parentFolderId);
+				}
 			}
 
 			qPos.add(companyId);
