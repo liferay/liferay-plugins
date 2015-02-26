@@ -13,5 +13,6 @@
 	<dependencies defaultconf="default">
 		<dependency name="apns" org="com.notnoop.apns" rev="0.2.3" />
 		<dependency name="gcm-server" org="com.ganyo" rev="1.0.2" />
+		<dependency name="jodd-http" org="org.jodd" rev="3.6.4" />
 	</dependencies>
 </ivy-module>
