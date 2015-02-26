@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.util.ObjectValuePair;
  */
 public interface AssetEntrySetParticipantInfo {
 
-	public ObjectValuePair getClassNameIdAndClassPK(long userId)
+	public ObjectValuePair<Long, Long> getClassNameIdAndClassPK(long userId)
 		throws SystemException;
 
 	public JSONObject getParticipantJSONObject(

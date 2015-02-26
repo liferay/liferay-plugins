@@ -34,10 +34,10 @@ import com.liferay.portal.util.PortalUtil;
 public class AssetEntrySetParticipantInfoImpl
 	implements AssetEntrySetParticipantInfo {
 
-	public ObjectValuePair getClassNameIdAndClassPK(long userId)
+	public ObjectValuePair<Long, Long> getClassNameIdAndClassPK(long userId)
 		throws SystemException {
 
-		return new ObjectValuePair(_USER_CLASS_NAME_ID, userId);
+		return new ObjectValuePair<Long, Long>(_USER_CLASS_NAME_ID, userId);
 	}
 
 	public JSONObject getParticipantJSONObject(
