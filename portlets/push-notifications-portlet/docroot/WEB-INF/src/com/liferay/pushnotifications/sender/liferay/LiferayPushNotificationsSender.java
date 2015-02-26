@@ -49,8 +49,7 @@ public class LiferayPushNotificationsSender implements PushNotificationsSender {
 
 		httpRequest.path(
 			"/api/jsonws/push-notifications-portlet.pushnotificationsdevice" +
-				"/send-push-notification"
-		);
+				"/send-push-notification");
 
 		httpRequest.timeout(PortletPropsValues.LIFERAY_TIMEOUT);
 
@@ -69,7 +68,7 @@ public class LiferayPushNotificationsSender implements PushNotificationsSender {
 
 		if (httpResponse.statusCode() != 200) {
 			throw new PushNotificationsException(
-				"Could not send push notification to Liferay Push " +
+				"Unable to send push notification to Liferay Push " +
 					httpResponse.bodyText());
 		}
 	}
