@@ -61,6 +61,7 @@
 			<basic name="calendarId" />
 			<basic name="calendarResourceId" />
 			<basic name="parentCalendarBookingId" />
+			<basic name="vEventUid" />
 			<basic name="title" />
 			<basic name="description" />
 			<basic name="location" />
@@ -78,6 +79,7 @@
 			<basic name="statusDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<transient name="VEventUid" />
 			<transient name="descriptionCurrentLanguageId" />
 			<transient name="descriptionMap" />
 			<transient name="modelAttributes" />

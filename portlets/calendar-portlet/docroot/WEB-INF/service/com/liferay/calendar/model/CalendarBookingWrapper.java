@@ -63,6 +63,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		attributes.put("calendarId", getCalendarId());
 		attributes.put("calendarResourceId", getCalendarResourceId());
 		attributes.put("parentCalendarBookingId", getParentCalendarBookingId());
+		attributes.put("vEventUid", getVEventUid());
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
 		attributes.put("location", getLocation());
@@ -155,6 +156,12 @@ public class CalendarBookingWrapper implements CalendarBooking,
 
 		if (parentCalendarBookingId != null) {
 			setParentCalendarBookingId(parentCalendarBookingId);
+		}
+
+		String vEventUid = (String)attributes.get("vEventUid");
+
+		if (vEventUid != null) {
+			setVEventUid(vEventUid);
 		}
 
 		String title = (String)attributes.get("title");
@@ -528,6 +535,26 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	@Override
 	public void setParentCalendarBookingId(long parentCalendarBookingId) {
 		_calendarBooking.setParentCalendarBookingId(parentCalendarBookingId);
+	}
+
+	/**
+	* Returns the v event uid of this calendar booking.
+	*
+	* @return the v event uid of this calendar booking
+	*/
+	@Override
+	public java.lang.String getVEventUid() {
+		return _calendarBooking.getVEventUid();
+	}
+
+	/**
+	* Sets the v event uid of this calendar booking.
+	*
+	* @param vEventUid the v event uid of this calendar booking
+	*/
+	@Override
+	public void setVEventUid(java.lang.String vEventUid) {
+		_calendarBooking.setVEventUid(vEventUid);
 	}
 
 	/**

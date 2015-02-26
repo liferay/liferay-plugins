@@ -107,6 +107,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		attributes.put("calendarId", getCalendarId());
 		attributes.put("calendarResourceId", getCalendarResourceId());
 		attributes.put("parentCalendarBookingId", getParentCalendarBookingId());
+		attributes.put("vEventUid", getVEventUid());
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
 		attributes.put("location", getLocation());
@@ -199,6 +200,12 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 		if (parentCalendarBookingId != null) {
 			setParentCalendarBookingId(parentCalendarBookingId);
+		}
+
+		String vEventUid = (String)attributes.get("vEventUid");
+
+		if (vEventUid != null) {
+			setVEventUid(vEventUid);
 		}
 
 		String title = (String)attributes.get("title");
@@ -575,6 +582,29 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 				method.invoke(_calendarBookingRemoteModel,
 					parentCalendarBookingId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getVEventUid() {
+		return _vEventUid;
+	}
+
+	@Override
+	public void setVEventUid(String vEventUid) {
+		_vEventUid = vEventUid;
+
+		if (_calendarBookingRemoteModel != null) {
+			try {
+				Class<?> clazz = _calendarBookingRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setVEventUid", String.class);
+
+				method.invoke(_calendarBookingRemoteModel, vEventUid);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -1736,6 +1766,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		clone.setCalendarId(getCalendarId());
 		clone.setCalendarResourceId(getCalendarResourceId());
 		clone.setParentCalendarBookingId(getParentCalendarBookingId());
+		clone.setVEventUid(getVEventUid());
 		clone.setTitle(getTitle());
 		clone.setDescription(getDescription());
 		clone.setLocation(getLocation());
@@ -1815,7 +1846,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		StringBundler sb = new StringBundler(57);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1841,6 +1872,8 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getCalendarResourceId());
 		sb.append(", parentCalendarBookingId=");
 		sb.append(getParentCalendarBookingId());
+		sb.append(", vEventUid=");
+		sb.append(getVEventUid());
 		sb.append(", title=");
 		sb.append(getTitle());
 		sb.append(", description=");
@@ -1878,7 +1911,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		StringBundler sb = new StringBundler(88);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarBooking");
@@ -1931,6 +1964,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(
 			"<column><column-name>parentCalendarBookingId</column-name><column-value><![CDATA[");
 		sb.append(getParentCalendarBookingId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>vEventUid</column-name><column-value><![CDATA[");
+		sb.append(getVEventUid());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>title</column-name><column-value><![CDATA[");
@@ -2011,6 +2048,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private long _calendarId;
 	private long _calendarResourceId;
 	private long _parentCalendarBookingId;
+	private String _vEventUid;
 	private String _title;
 	private String _titleCurrentLanguageId;
 	private String _description;

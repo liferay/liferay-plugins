@@ -1002,6 +1002,69 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or throws a {@link com.liferay.calendar.NoSuchBookingException} if it could not be found.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the matching calendar booking
+	* @throws com.liferay.calendar.NoSuchBookingException if a matching calendar booking could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.CalendarBooking findByC_V(
+		long calendarId, java.lang.String vEventUid)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.CalendarBooking fetchByC_V(
+		long calendarId, java.lang.String vEventUid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the calendar booking where calendarId = &#63; and vEventUid = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.CalendarBooking fetchByC_V(
+		long calendarId, java.lang.String vEventUid, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes the calendar booking where calendarId = &#63; and vEventUid = &#63; from the database.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the calendar booking that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.calendar.model.CalendarBooking removeByC_V(
+		long calendarId, java.lang.String vEventUid)
+		throws com.liferay.calendar.NoSuchBookingException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the number of calendar bookings where calendarId = &#63; and vEventUid = &#63;.
+	*
+	* @param calendarId the calendar ID
+	* @param vEventUid the v event uid
+	* @return the number of matching calendar bookings
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByC_V(long calendarId, java.lang.String vEventUid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns all the calendar bookings where calendarId = &#63; and status = &#63;.
 	*
 	* @param calendarId the calendar ID
