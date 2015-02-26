@@ -41,7 +41,8 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	}
 
 	@Override
-	public void send(List<String> tokens, JSONObject jsonObject)
+	public void send(
+			String platform, List<String> tokens, JSONObject jsonObject)
 		throws Exception {
 
 		Sender sender = getSender();

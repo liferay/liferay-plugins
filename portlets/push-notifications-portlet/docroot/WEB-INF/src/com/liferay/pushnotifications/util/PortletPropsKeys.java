@@ -31,4 +31,12 @@ public interface PortletPropsKeys {
 
 	public static final String APPLE_SANDBOX = "apple.sandbox";
 
+	public static final String LIFERAY_PASSWORD = "liferay.password";
+
+	public static final String LIFERAY_SERVER = "liferay.server";
+
+	public static final String LIFERAY_TIMEOUT = "liferay.timeout";
+
+	public static final String LIFERAY_USERNAME = "liferay.username";
+
 }

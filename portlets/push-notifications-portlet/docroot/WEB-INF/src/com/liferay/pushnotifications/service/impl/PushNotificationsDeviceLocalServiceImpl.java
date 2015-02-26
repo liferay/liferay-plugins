@@ -87,15 +87,12 @@ public class PushNotificationsDeviceLocalServiceImpl
 			long[] toUserIds, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
-		for (Map.Entry<String, PushNotificationsSender> entry :
-				_pushNotificationsSenders.entrySet()) {
-
+		for (String platform : _pushNotificationsSenders.keySet()) {
 			List<String> tokens = new ArrayList<String>();
 
 			List<PushNotificationsDevice> pushNotificationsDevices =
 				pushNotificationsDevicePersistence.findByU_P(
-					toUserIds, entry.getKey(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
+					toUserIds, platform, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (PushNotificationsDevice pushNotificationsDevice :
 					pushNotificationsDevices) {
@@ -107,7 +104,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 				continue;
 			}
 
-			sendPushNotification(entry.getValue(), tokens, payloadJSONObject);
+			sendPushNotification(platform, tokens, payloadJSONObject);
 		}
 	}
 
@@ -119,21 +116,12 @@ public class PushNotificationsDeviceLocalServiceImpl
 		PushNotificationsSender pushNotificationsSender =
 			_pushNotificationsSenders.get(platform);
 
-		sendPushNotification(
-			pushNotificationsSender, tokens, payloadJSONObject);
-	}
-
-	protected void sendPushNotification(
-			PushNotificationsSender pushNotificationsSender,
-			List<String> tokens, JSONObject payloadJSONObject)
-		throws PortalException {
-
 		if (pushNotificationsSender == null) {
 			return;
 		}
 
 		try {
-			pushNotificationsSender.send(tokens, payloadJSONObject);
+			pushNotificationsSender.send(platform, tokens, payloadJSONObject);
 		}
 		catch (PushNotificationsException pne) {
 			if (_log.isWarnEnabled()) {
