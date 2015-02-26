@@ -13,10 +13,5 @@
 	<dependencies defaultconf="default">
 		<dependency name="apns" org="com.notnoop.apns" rev="0.2.3" />
 		<dependency name="gcm-server" org="com.ganyo" rev="1.0.2" />
-		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.1.4" />
-		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.4" />
-		<dependency name="jackson-databind" org="com.fasterxml.jackson.core" rev="2.1.4" />
-		<dependency name="json-simple" org="com.googlecode.json-simple" rev="1.1" />
-		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.2" />
 	</dependencies>
 </ivy-module>
