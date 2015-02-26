@@ -38,4 +38,16 @@ public class PortletPropsValues {
 	public static final boolean APPLE_SANDBOX = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.APPLE_SANDBOX), true);
 
+	public static final String LIFERAY_PASSWORD = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.LIFERAY_PASSWORD));
+
+	public static final String LIFERAY_SERVER = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.LIFERAY_SERVER));
+
+	public static final int LIFERAY_TIMEOUT = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.LIFERAY_TIMEOUT), 1000);
+
+	public static final String LIFERAY_USERNAME = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.LIFERAY_USERNAME));
+
 }

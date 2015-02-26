@@ -43,7 +43,8 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	}
 
 	@Override
-	public void send(List<String> tokens, JSONObject payloadJSONObject)
+	public void send(
+			String platform, List<String> tokens, JSONObject payloadJSONObject)
 		throws Exception {
 
 		ApnsService apnsService = getApnsService();
