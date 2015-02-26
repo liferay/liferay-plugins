@@ -17,11 +17,15 @@ package com.liferay.asset.entry.set.participant;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 
 /**
  * @author Matthew Kong
  */
 public interface AssetEntrySetParticipantInfo {
+
+	public ObjectValuePair getClassNameIdAndClassPK(long userId)
+		throws SystemException;
 
 	public JSONObject getParticipantJSONObject(
 			JSONObject participantJSONObject, long classNameId, long classPK,

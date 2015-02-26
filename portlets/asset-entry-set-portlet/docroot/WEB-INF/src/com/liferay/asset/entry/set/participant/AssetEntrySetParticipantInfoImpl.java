@@ -18,6 +18,7 @@ import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.model.Group;
@@ -32,6 +33,12 @@ import com.liferay.portal.util.PortalUtil;
  */
 public class AssetEntrySetParticipantInfoImpl
 	implements AssetEntrySetParticipantInfo {
+
+	public ObjectValuePair getClassNameIdAndClassPK(long userId)
+		throws SystemException {
+
+		return new ObjectValuePair(_USER_CLASS_NAME_ID, userId);
+	}
 
 	public JSONObject getParticipantJSONObject(
 			JSONObject participantJSONObject, long classNameId, long classPK,
