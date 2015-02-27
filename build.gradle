@@ -3,31 +3,29 @@ import com.liferay.portal.kernel.util.ReleaseInfo
 apply from: "${gradle.lfrSdkDir}/versions.gradle"
 
 buildscript {
-	configurations.all {
-		resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-	}
-
 	repositories {
 		maven {
-			url 'http://repository.liferay.com/nexus/content/groups/public'
+			url 'http://cdn.repository.liferay.com/nexus/content/groups/public'
 		}
-		mavenCentral()
 	}
 
 	dependencies {
-		classpath group: 'com.liferay.portal', name: 'portal-service', version: '7.0.0-SNAPSHOT'
+		classpath([group: 'com.liferay.portal', name: 'portal-service', version: '7.0.0-SNAPSHOT'])
 	}
 }
 
-allprojects {
+configure(allprojects) {
 	Boolean osgiPlugin
 
 	Closure getBuildXmlProperty
+	Closure getPluginFullVersion
+	Closure getPluginsSrcDir
+	Closure readConfigurations
 
 	File bndPropertiesFile
 	File buildXmlFile
 	File pluginPackagePropertiesFile
-	File pluginSrcDir = file("${projectDir}/docroot")
+	File pluginSrcDir
 
 	Node buildXmlNode
 
@@ -50,79 +48,94 @@ allprojects {
 		return value
 	}
 
-	// bnd.bnd
+	getPluginFullVersion = {
+		String pluginFullVersion = null;
 
-	bndProperties = new Properties()
+		String moduleFullVersion = pluginPackageProperties["module-full-version"]
 
-	bndPropertiesFile = new File("${projectDir}/bnd.bnd")
-
-	if (bndPropertiesFile.exists()) {
-		bndProperties.load(new FileInputStream(bndPropertiesFile))
-
-		osgiPlugin = true
-	}
-
-	// build.xml
-
-	XmlParser xmlParser = new XmlParser()
-
-	xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-
-	buildXmlFile = new File("${projectDir}/build.xml")
-
-	if (buildXmlFile.exists()) {
-		buildXmlNode = xmlParser.parse(buildXmlFile)
-	}
-
-	// liferay-plugin-package.properties
-
-	pluginPackageProperties = new Properties()
-
-	pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
-
-	if (pluginPackagePropertiesFile.exists()) {
-		pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
-	}
-
-	// Plugin source directory
-
-	if (!pluginSrcDir.exists()) {
-		pluginSrcDir = file("${projectDir}/src")
-
-		if (!pluginSrcDir.exists()) {
-			pluginSrcDir = null
-		}
-	}
-
-	if (pluginSrcDir == null) {
-		return
-	}
-
-	ext.pluginSrcDir = pluginSrcDir
-
-	// Plugin version
-
-	String moduleFullVersion = pluginPackageProperties["module-full-version"]
-
-	if (moduleFullVersion != null) {
-		version = moduleFullVersion
-	}
-	else {
-		String bundleVersion = bndProperties["Bundle-Version"]
-
-		if (bundleVersion != null) {
-			version = bundleVersion
+		if (moduleFullVersion != null) {
+			pluginFullVersion = moduleFullVersion
 		}
 		else {
-			String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
+			String bundleVersion = bndProperties["Bundle-Version"]
 
-			if (moduleIncrementalVersion == null) {
-				moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
+			if (bundleVersion != null) {
+				pluginFullVersion = bundleVersion
 			}
+			else {
+				String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
 
-			version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.getVersion() + "." + moduleIncrementalVersion)
+				if (moduleIncrementalVersion == null) {
+					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
+				}
+
+				pluginFullVersion = getBuildXmlProperty("plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
+			}
+		}
+
+		return pluginFullVersion
+	}
+
+	getPluginsSrcDir = {
+		pluginSrcDir = file("${projectDir}/docroot")
+
+		if (!pluginSrcDir.exists()) {
+			pluginSrcDir = file("${projectDir}/src")
+
+			if (!pluginSrcDir.exists()) {
+				pluginSrcDir = null
+			}
+		}
+
+		ext.pluginSrcDir = pluginSrcDir
+
+		return pluginSrcDir
+	}
+
+	readConfigurations = {
+
+		// bnd.bnd
+
+		bndProperties = new Properties()
+
+		bndPropertiesFile = new File("${projectDir}/bnd.bnd")
+
+		if (bndPropertiesFile.exists()) {
+			bndProperties.load(new FileInputStream(bndPropertiesFile))
+
+			osgiPlugin = true
+		}
+
+		// build.xml
+
+		XmlParser xmlParser = new XmlParser()
+
+		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+
+		buildXmlFile = new File("${projectDir}/build.xml")
+
+		if (buildXmlFile.exists()) {
+			buildXmlNode = xmlParser.parse(buildXmlFile)
+		}
+
+		// liferay-plugin-package.properties
+
+		pluginPackageProperties = new Properties()
+
+		pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
+
+		if (pluginPackagePropertiesFile.exists()) {
+			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
 		}
 	}
+
+	if (getPluginsSrcDir() == null) {
+		return;
+	}
+
+	readConfigurations()
+
+	version = getPluginFullVersion()
 
 	task initGradle << {
 		Closure getBuildGradleDependencies
@@ -430,12 +443,6 @@ configure(
 	war {
 		doFirst {
 			destinationDir = file("${rootDir}/dist")
-
-			manifest.attributes(
-				"Bundle-Name": project.name,
-				"Bundle-Vendor": "Liferay, Inc.",
-				"Bundle-Version": version,
-				"Class-Path": configurations.compile.asPath)
 		}
 	}
 }
