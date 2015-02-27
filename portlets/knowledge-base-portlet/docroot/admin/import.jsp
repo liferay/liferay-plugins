@@ -51,7 +51,7 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 	</aui:fieldset>
 
 	<aui:field-wrapper label="prioritization-strategy">
-		<aui:input helpMessage="apply-numerical-prefixes-of-article-files-as-priorities-help" label="apply-numerical-prefixes-of-article-files-as-priorities" name="prioritizeByNumericalPrefix" type="checkbox" value="false" />
+		<aui:input helpMessage="apply-numerical-prefixes-of-article-files-as-priorities-help" label="apply-numerical-prefixes-of-article-files-as-priorities" name="prioritizeByNumericalPrefix" type="checkbox" value="true" />
 	</aui:field-wrapper>
 
 	<aui:button-row>
