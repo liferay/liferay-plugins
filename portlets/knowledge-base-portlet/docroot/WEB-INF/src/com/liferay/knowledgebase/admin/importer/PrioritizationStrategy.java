@@ -73,7 +73,7 @@ public class PrioritizationStrategy {
 	public void addKBArticle(KBArticle kbArticle, String filePath)
 		throws PortalException, SystemException {
 
-		updateKBArticle(kbArticle, filePath);
+		handleNumericalPrefix(kbArticle, filePath);
 
 		if (!_prioritizeUpdatedKBArticles) {
 			String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(
@@ -123,42 +123,7 @@ public class PrioritizationStrategy {
 	public void updateKBArticle(KBArticle kbArticle, String filePath)
 		throws PortalException, SystemException {
 
-		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
-
-		List<KBArticle> kbArticles = getList(
-			_importedKBArticlesMap, parentKBArticleUrlTitle);
-
-		kbArticles.add(kbArticle);
-
-		List<String> importedUrlTitles = getList(
-			_importedKBArticleUrlTitlesMap, parentKBArticleUrlTitle);
-
-		importedUrlTitles.add(kbArticle.getUrlTitle());
-
-		if (_prioritizeByNumericalPrefix) {
-			boolean isChildArticle = true;
-
-			if (kbArticle.getParentKBArticle() == null) {
-				isChildArticle = false;
-			}
-
-			double sectionFileEntryNamePrefix = getNumericalPrefix(
-				filePath, isChildArticle);
-
-			if (sectionFileEntryNamePrefix < 0.0) {
-				kbArticle.setPriority(0.0);
-			}
-			else if (sectionFileEntryNamePrefix < 1.0) {
-				kbArticle.setPriority(1.0);
-
-				_importedKBArticleUrlTitlesPrioritiesMap.put(
-					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
-			}
-			else {
-				_importedKBArticleUrlTitlesPrioritiesMap.put(
-					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
-			}
-		}
+		handleNumericalPrefix(kbArticle, filePath);
 	}
 
 	protected PrioritizationStrategy(
@@ -252,6 +217,48 @@ public class PrioritizationStrategy {
 		}
 
 		return parentKBArticle.getUrlTitle();
+	}
+
+	protected void handleNumericalPrefix(KBArticle kbArticle, String filePath)
+			throws PortalException, SystemException {
+		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
+
+		List<KBArticle> kbArticles = getList(
+			_importedKBArticlesMap, parentKBArticleUrlTitle);
+
+		kbArticles.add(kbArticle);
+
+		List<String> importedUrlTitles = getList(
+			_importedKBArticleUrlTitlesMap, parentKBArticleUrlTitle);
+
+		importedUrlTitles.add(kbArticle.getUrlTitle());
+
+		if (_prioritizeByNumericalPrefix) {
+			boolean isChildArticle = true;
+
+			if (kbArticle.getParentKBArticle() == null) {
+				isChildArticle = false;
+			}
+
+			double sectionFileEntryNamePrefix = getNumericalPrefix(
+				filePath, isChildArticle);
+
+			if (sectionFileEntryNamePrefix < 0.0) {
+
+				// do nothing
+
+			}
+			else if (sectionFileEntryNamePrefix < 1.0) {
+				kbArticle.setPriority(1.0);
+
+				_importedKBArticleUrlTitlesPrioritiesMap.put(
+					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
+			}
+			else {
+				_importedKBArticleUrlTitlesPrioritiesMap.put(
+					kbArticle.getUrlTitle(), sectionFileEntryNamePrefix);
+			}
+		}
 	}
 
 	protected void initializeNonImportedKBArticles() {
