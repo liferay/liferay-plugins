@@ -26,6 +26,7 @@ configure(allprojects) {
 	File pluginSrcDir
 
 	Node buildXmlNode
+	Node ivyXmlNode
 
 	Properties bndProperties
 	Properties pluginPackageProperties
@@ -86,6 +87,14 @@ configure(allprojects) {
 
 		if (buildXmlFile.exists()) {
 			buildXmlNode = xmlParser.parse(buildXmlFile)
+		}
+
+		// ivy.xml
+
+		File ivyXmlFile = new File("${projectDir}/ivy.xml")
+
+		if (ivyXmlFile.exists()) {
+			ivyXmlNode = xmlParser.parse(ivyXmlFile)
 		}
 
 		// liferay-plugin-package.properties
@@ -160,10 +169,6 @@ configure(allprojects) {
 		Closure wrapServiceJar
 		Closure writeBuildGradleFile
 		Closure writeDependencySettingsFile
-
-		File ivyXmlFile
-
-		Node ivyXmlNode
 
 		getBuildGradleDependencies = {
 			List contents = []
@@ -340,16 +345,6 @@ configure(allprojects) {
 			else {
 				dependencySettingsFile.delete()
 			}
-		}
-
-		// ivy.xml
-
-		ivyXmlNode = null
-
-		ivyXmlFile = new File("${projectDir}/ivy.xml")
-
-		if (ivyXmlFile.exists()) {
-			ivyXmlNode = xmlParser.parse(ivyXmlFile)
 		}
 
 		// build.gradle
