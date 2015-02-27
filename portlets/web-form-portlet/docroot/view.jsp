@@ -205,6 +205,15 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 								fieldsMap[key] = radioButton.val();
 							}
 						</c:when>
+						<c:when test='<%= fieldType.equals("checkbox") %>'>
+							var checkBox = A.one('input[name=<portlet:namespace />field<%= i %>Checkbox]:checked');
+
+							fieldsMap[key] = '';
+
+							if (checkBox) {
+								fieldsMap[key] = checkBox.val();
+							}
+						</c:when>
 						<c:otherwise>
 							var inputField = A.one('#<portlet:namespace />field<%= i %>');
 
