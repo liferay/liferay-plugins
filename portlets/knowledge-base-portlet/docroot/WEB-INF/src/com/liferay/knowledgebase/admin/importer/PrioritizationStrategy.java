@@ -37,9 +37,8 @@ import java.util.Map;
 public class PrioritizationStrategy {
 
 	public static PrioritizationStrategy create(
-		long groupId, long parentKBFolderId,
-		boolean prioritizeUpdatedKBArticles,
-		boolean prioritizeByNumericalPrefix) {
+			long groupId, long parentKBFolderId,
+			boolean prioritizeByNumericalPrefix) {
 
 		Map<String, List<KBArticle>> existingKBArticlesMap = new HashMap<>();
 

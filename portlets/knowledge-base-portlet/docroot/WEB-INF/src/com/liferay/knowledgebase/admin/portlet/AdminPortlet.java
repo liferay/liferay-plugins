@@ -143,8 +143,6 @@ public class AdminPortlet extends BaseKBPortlet {
 				throw new KBArticleImportException("File name is null");
 			}
 
-			boolean prioritizeUpdatedKBArticles = ParamUtil.getBoolean(
-				uploadPortletRequest, "prioritizeUpdatedKBArticles");
 			boolean prioritizeByNumericalPrefix = ParamUtil.getBoolean(
 				uploadPortletRequest, "prioritizeByNumericalPrefix");
 
@@ -155,11 +153,9 @@ public class AdminPortlet extends BaseKBPortlet {
 
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 
-			int importedKBArticlesCount =
-				KBArticleServiceUtil.addKBArticlesMarkdown(
-					themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
-					prioritizeUpdatedKBArticles, prioritizeByNumericalPrefix,
-					inputStream, serviceContext);
+			int importedKBArticlesCount = KBArticleServiceUtil.addKBArticlesMarkdown(
+				themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
+				prioritizeByNumericalPrefix, inputStream, serviceContext);
 
 			SessionMessages.add(
 				actionRequest, "importedKBArticlesCount",
