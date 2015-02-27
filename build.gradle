@@ -346,8 +346,8 @@ allprojects {
 configure(
 	allprojects.findAll {
 		it.hasProperty("pluginSrcDir")
-	}
-) {
+	}) {
+
 	apply plugin: "war"
 
 	Map projectCompileDependencies = gradle.compileDependencies.find {
@@ -393,8 +393,7 @@ configure(
 			[group: 'net.sf', name: 'jargs', version: '1.0'],
 			[group: 'net.sourceforge.jtds', name: 'jtds', version: '1.2.6'],
 			[group: 'org.eclipse.persistence', name: 'javax.persistence', version: '2.0.0'],
-			[group: 'postgresql', name: 'postgresql', version: '9.2-1002.jdbc4']
-		)
+			[group: 'postgresql', name: 'postgresql', version: '9.2-1002.jdbc4'])
 	}
 
 	repositories {
