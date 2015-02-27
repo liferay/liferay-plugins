@@ -17,6 +17,7 @@
 
 package com.liferay.so.util;
 
+import com.liferay.asset.publisher.web.constants.AssetPublisherPortletKeys;
 import com.liferay.breadcrumb.web.constants.BreadcrumbPortletKeys;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -152,7 +153,9 @@ public class LayoutUtil {
 			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
 				removePortletBorder(layout, portletId);
 			}
-			else if (portletId.startsWith(PortletKeys.ASSET_PUBLISHER)) {
+			else if (portletId.startsWith(
+				AssetPublisherPortletKeys.ASSET_PUBLISHER)) {
+
 				configureAssetPublisher(layout);
 				updatePortletTitle(layout, portletId, "related-content");
 			}

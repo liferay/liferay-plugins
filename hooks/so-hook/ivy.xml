@@ -11,6 +11,7 @@
 	</info>
 
 	<dependencies defaultconf="default">
+		<dependency name="com.liferay.asset.publisher.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.bookmarks.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.breadcrumb.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.wiki.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
