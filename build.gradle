@@ -18,12 +18,10 @@ configure(allprojects) {
 	Boolean osgiPlugin
 
 	Closure getBuildXmlProperty
-	Closure getPluginFullVersion
 	Closure getPluginsSrcDir
 	Closure readConfigurations
+	Closure setModuleProperties
 
-	File bndPropertiesFile
-	File buildXmlFile
 	File pluginPackagePropertiesFile
 	File pluginSrcDir
 
@@ -31,6 +29,8 @@ configure(allprojects) {
 
 	Properties bndProperties
 	Properties pluginPackageProperties
+
+	String pluginPackaging
 
 	getBuildXmlProperty = {
 		String key, String defaultValue = "" ->
@@ -46,34 +46,6 @@ configure(allprojects) {
 		}
 
 		return value
-	}
-
-	getPluginFullVersion = {
-		String pluginFullVersion = null;
-
-		String moduleFullVersion = pluginPackageProperties["module-full-version"]
-
-		if (moduleFullVersion != null) {
-			pluginFullVersion = moduleFullVersion
-		}
-		else {
-			String bundleVersion = bndProperties["Bundle-Version"]
-
-			if (bundleVersion != null) {
-				pluginFullVersion = bundleVersion
-			}
-			else {
-				String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
-
-				if (moduleIncrementalVersion == null) {
-					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
-				}
-
-				pluginFullVersion = getBuildXmlProperty("plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
-			}
-		}
-
-		return pluginFullVersion
 	}
 
 	getPluginsSrcDir = {
@@ -98,12 +70,10 @@ configure(allprojects) {
 
 		bndProperties = new Properties()
 
-		bndPropertiesFile = new File("${projectDir}/bnd.bnd")
+		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
 
 		if (bndPropertiesFile.exists()) {
 			bndProperties.load(new FileInputStream(bndPropertiesFile))
-
-			osgiPlugin = true
 		}
 
 		// build.xml
@@ -112,7 +82,7 @@ configure(allprojects) {
 
 		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
 
-		buildXmlFile = new File("${projectDir}/build.xml")
+		File buildXmlFile = new File("${projectDir}/build.xml")
 
 		if (buildXmlFile.exists()) {
 			buildXmlNode = xmlParser.parse(buildXmlFile)
@@ -129,20 +99,60 @@ configure(allprojects) {
 		}
 	}
 
+	setModuleProperties = {
+
+		// osgiPlugin
+
+		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
+
+		osgiPlugin = bndPropertiesFile.exists()
+
+		// pluginPackaging
+
+		pluginPackaging = "war"
+
+		if ((project.parent.name == "shared") || osgiPlugin) {
+			pluginPackaging = "jar"
+		}
+
+		// version
+
+		String moduleFullVersion = pluginPackageProperties["module-full-version"]
+
+		if (moduleFullVersion != null) {
+			version = moduleFullVersion
+		}
+		else {
+			String bundleVersion = bndProperties["Bundle-Version"]
+
+			if (bundleVersion != null) {
+				version = bundleVersion
+			}
+			else {
+				String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
+
+				if (moduleIncrementalVersion == null) {
+					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
+				}
+
+				version = getBuildXmlProperty("plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
+			}
+		}
+	}
+
 	if (getPluginsSrcDir() == null) {
 		return;
 	}
 
 	readConfigurations()
 
-	version = getPluginFullVersion()
+	setModuleProperties()
 
 	task initGradle << {
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
 		Closure getBuildGradleDependenciesTestCompile
-		Closure getBuildGradleExt
 		Closure getIndent
 		Closure wrapContents
 		Closure wrapDependency
@@ -240,26 +250,6 @@ configure(allprojects) {
 			return wrapContents(contents, 1, "(", "testCompile", ")")
 		}
 
-		getBuildGradleExt = {
-			List contents = []
-
-			contents.addAll(wrapProperty(1, "osgiIdeDependencies", getBuildXmlProperty("osgi.ide.dependencies")))
-			contents.addAll(wrapProperty(1, "osgiRuntimeDependencies", getBuildXmlProperty("osgi.runtime.dependencies")))
-
-			String pluginPackaging = "war"
-
-			if ((project.parent.name == "shared") || osgiPlugin) {
-				pluginPackaging = "jar"
-			}
-
-			contents.addAll(wrapProperty(1, "pluginPackaging", pluginPackaging))
-
-			contents.addAll(wrapProperty(1, "portalDependencyTlds", pluginPackageProperties["portal-dependency-tlds"]))
-			contents.addAll(wrapProperty(1, "themeParent", getBuildXmlProperty("theme.parent")))
-
-			return wrapContents(contents, 0, " {", "ext", "}")
-		}
-
 		getIndent = {
 			String indent = ""
 
@@ -321,7 +311,6 @@ configure(allprojects) {
 			List contents = []
 
 			contents.addAll(getBuildGradleDependencies())
-			contents.addAll(getBuildGradleExt())
 
 			File buildGradleFile = new File("${projectDir}/build.gradle")
 
