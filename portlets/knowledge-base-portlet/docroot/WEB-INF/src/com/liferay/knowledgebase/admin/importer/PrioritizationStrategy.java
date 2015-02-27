@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.admin.importer;
 
-import com.liferay.compat.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
@@ -63,30 +63,18 @@ public class PrioritizationStrategy {
 		}
 
 		return new PrioritizationStrategy(
-			groupId, parentKBFolderId, prioritizeUpdatedKBArticles,
-			prioritizeByNumericalPrefix, existingKBArticlesMap);
+			groupId, parentKBFolderId, prioritizeByNumericalPrefix,
+			existingKBArticlesMap);
 	}
 
 	public void addKBArticle(KBArticle kbArticle, String filePath)
 		throws PortalException {
 
 		handleNumericalPrefix(kbArticle, filePath);
-
-		if (!_prioritizeUpdatedKBArticles) {
-			String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(
-				kbArticle);
-
-			List<KBArticle> newKBArticles = getList(
-				_newKBArticlesMap, parentKBArticleUrlTitle);
-
-			newKBArticles.add(kbArticle);
-		}
 	}
 
 	public void prioritizeKBArticles() throws PortalException {
-		if (_prioritizeUpdatedKBArticles) {
-			initializeNonImportedKBArticles();
-		}
+		initializeNonImportedKBArticles();
 
 		if (_prioritizeByNumericalPrefix) {
 			for (Map.Entry<String, Double> entry :
@@ -109,12 +97,7 @@ public class PrioritizationStrategy {
 			}
 		}
 
-		if (_prioritizeUpdatedKBArticles) {
-			prioritizeKBArticles(_importedKBArticlesMap);
-		}
-		else {
-			prioritizeKBArticles(_newKBArticlesMap);
-		}
+		prioritizeKBArticles(_importedKBArticlesMap);
 	}
 
 	public void updateKBArticle(KBArticle kbArticle, String filePath)
@@ -125,13 +108,11 @@ public class PrioritizationStrategy {
 
 	protected PrioritizationStrategy(
 		long groupId, long parentKBFolderId,
-		boolean prioritizeUpdatedKBArticles,
 		boolean prioritizeByNumericalPrefix,
 		Map<String, List<KBArticle>> existingKBArticlesMap) {
 
 		_groupId = groupId;
 		_parentKBFolderId = parentKBFolderId;
-		_prioritizeUpdatedKBArticles = prioritizeUpdatedKBArticles;
 		_prioritizeByNumericalPrefix = prioritizeByNumericalPrefix;
 		_existingKBArticlesMap = existingKBArticlesMap;
 	}
@@ -217,7 +198,7 @@ public class PrioritizationStrategy {
 	}
 
 	protected void handleNumericalPrefix(KBArticle kbArticle, String filePath)
-			throws PortalException, SystemException {
+			throws PortalException {
 		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
 
 		List<KBArticle> kbArticles = getList(
@@ -373,6 +354,5 @@ public class PrioritizationStrategy {
 	private Map<String, List<KBArticle>> _nonimportedKBArticlesMap;
 	private final long _parentKBFolderId;
 	private final boolean _prioritizeByNumericalPrefix;
-	private final boolean _prioritizeUpdatedKBArticles;
 
 }
