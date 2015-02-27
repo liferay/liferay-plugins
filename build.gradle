@@ -1,9 +1,90 @@
+import com.liferay.portal.kernel.util.ReleaseInfo
+
 apply from: "${gradle.lfrSdkDir}/versions.gradle"
 
-allprojects {
-	ant.loadproperties(srcFile: "${gradle.lfrSdkDir}/build.properties")
+buildscript {
+	configurations.all {
+		resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	}
 
+	repositories {
+		maven {
+			url 'http://repository.liferay.com/nexus/content/groups/public'
+		}
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath group: 'com.liferay.portal', name: 'portal-service', version: '7.0.0-SNAPSHOT'
+	}
+}
+
+allprojects {
+	Boolean osgiPlugin
+
+	Closure getBuildXmlProperty
+
+	File bndPropertiesFile
+	File buildXmlFile
+	File pluginPackagePropertiesFile
 	File pluginSrcDir = file("${projectDir}/docroot")
+
+	Node buildXmlNode
+
+	Properties bndProperties
+	Properties pluginPackageProperties
+
+	getBuildXmlProperty = {
+		String key, String defaultValue = "" ->
+
+		String value = defaultValue
+
+		Node buildXmlPropertyNode = buildXmlNode.property.find {
+			it.@name == key
+		}
+
+		if (buildXmlPropertyNode) {
+			value = buildXmlPropertyNode.@value
+		}
+
+		return value
+	}
+
+	// bnd.bnd
+
+	bndProperties = new Properties()
+
+	bndPropertiesFile = new File("${projectDir}/bnd.bnd")
+
+	if (bndPropertiesFile.exists()) {
+		bndProperties.load(new FileInputStream(bndPropertiesFile))
+
+		osgiPlugin = true
+	}
+
+	// build.xml
+
+	XmlParser xmlParser = new XmlParser()
+
+	xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+
+	buildXmlFile = new File("${projectDir}/build.xml")
+
+	if (buildXmlFile.exists()) {
+		buildXmlNode = xmlParser.parse(buildXmlFile)
+	}
+
+	// liferay-plugin-package.properties
+
+	pluginPackageProperties = new Properties()
+
+	pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
+
+	if (pluginPackagePropertiesFile.exists()) {
+		pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
+	}
+
+	// Plugin source directory
 
 	if (!pluginSrcDir.exists()) {
 		pluginSrcDir = file("${projectDir}/src")
@@ -19,16 +100,36 @@ allprojects {
 
 	ext.pluginSrcDir = pluginSrcDir
 
-	task initGradle << {
-		Boolean osgiPlugin
+	// Plugin version
 
+	String moduleFullVersion = pluginPackageProperties["module-full-version"]
+
+	if (moduleFullVersion != null) {
+		version = moduleFullVersion
+	}
+	else {
+		String bundleVersion = bndProperties["Bundle-Version"]
+
+		if (bundleVersion != null) {
+			version = bundleVersion
+		}
+		else {
+			String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
+
+			if (moduleIncrementalVersion == null) {
+				moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
+			}
+
+			version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.getVersion() + "." + moduleIncrementalVersion)
+		}
+	}
+
+	task initGradle << {
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
 		Closure getBuildGradleDependenciesTestCompile
 		Closure getBuildGradleExt
-		Closure getBuildGradleExtPluginFullVersion
-		Closure getBuildXmlProperty
 		Closure getIndent
 		Closure wrapContents
 		Closure wrapDependency
@@ -37,16 +138,9 @@ allprojects {
 		Closure writeBuildGradleFile
 		Closure writeDependencySettingsFile
 
-		File bndPropertiesFile
-		File buildXmlFile
 		File ivyXmlFile
-		File pluginPackagePropertiesFile
 
-		Node buildXmlNode
 		Node ivyXmlNode
-
-		Properties bndProperties
-		Properties pluginPackageProperties
 
 		getBuildGradleDependencies = {
 			List contents = []
@@ -138,7 +232,6 @@ allprojects {
 
 			contents.addAll(wrapProperty(1, "osgiIdeDependencies", getBuildXmlProperty("osgi.ide.dependencies")))
 			contents.addAll(wrapProperty(1, "osgiRuntimeDependencies", getBuildXmlProperty("osgi.runtime.dependencies")))
-			contents.addAll(wrapProperty(1, "pluginFullVersion", getBuildGradleExtPluginFullVersion()))
 
 			String pluginPackaging = "war"
 
@@ -152,50 +245,6 @@ allprojects {
 			contents.addAll(wrapProperty(1, "themeParent", getBuildXmlProperty("theme.parent")))
 
 			return wrapContents(contents, 0, " {", "ext", "}")
-		}
-
-		getBuildGradleExtPluginFullVersion = {
-			String pluginFullVersion = null;
-
-			String moduleFullVersion = pluginPackageProperties["module-full-version"]
-
-			if (moduleFullVersion != null) {
-				pluginFullVersion = moduleFullVersion
-			}
-			else {
-				String bundleVersion = bndProperties["Bundle-Version"]
-
-				if (bundleVersion != null) {
-					pluginFullVersion = bundleVersion
-				}
-				else {
-					String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
-
-					if (moduleIncrementalVersion == null) {
-						moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
-					}
-
-					pluginFullVersion = getBuildXmlProperty("plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
-				}
-			}
-
-			return pluginFullVersion
-		}
-
-		getBuildXmlProperty = {
-			String key, String defaultValue = "" ->
-
-			String value = defaultValue
-
-			Node buildXmlPropertyNode = buildXmlNode.property.find {
-				it.@name == key
-			}
-
-			if (buildXmlPropertyNode) {
-				value = buildXmlPropertyNode.@value
-			}
-
-			return value
 		}
 
 		getIndent = {
@@ -291,28 +340,6 @@ allprojects {
 			}
 		}
 
-		// bnd.bnd
-
-		bndProperties = new Properties()
-
-		bndPropertiesFile = new File("${projectDir}/bnd.bnd")
-
-		if (bndPropertiesFile.exists()) {
-			bndProperties.load(new FileInputStream(bndPropertiesFile))
-
-			osgiPlugin = true
-		}
-
-		// build.xml
-
-		XmlParser xmlParser = new XmlParser()
-
-		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-
-		buildXmlFile = new File("${projectDir}/build.xml")
-
-		buildXmlNode = xmlParser.parse(buildXmlFile)
-
 		// ivy.xml
 
 		ivyXmlNode = null
@@ -321,16 +348,6 @@ allprojects {
 
 		if (ivyXmlFile.exists()) {
 			ivyXmlNode = xmlParser.parse(ivyXmlFile)
-		}
-
-		// liferay-plugin-package.properties
-
-		pluginPackageProperties = new Properties()
-
-		pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
-
-		if (pluginPackagePropertiesFile.exists()) {
-			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
 		}
 
 		// build.gradle
@@ -411,9 +428,14 @@ configure(
 	}
 
 	war {
-		afterEvaluate {
+		doFirst {
 			destinationDir = file("${rootDir}/dist")
-			version = pluginFullVersion
+
+			manifest.attributes(
+				"Bundle-Name": project.name,
+				"Bundle-Vendor": "Liferay, Inc.",
+				"Bundle-Version": version,
+				"Class-Path": configurations.compile.asPath)
 		}
 	}
 }
