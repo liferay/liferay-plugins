@@ -181,6 +181,7 @@
 
 		<!-- References -->
 
+		<reference package-path="com.liferay.portal" entity="ClassName" />
 		<reference package-path="com.liferay.portal" entity="Company" />
 		<reference package-path="com.liferay.portal" entity="Group" />
 		<reference package-path="com.liferay.portal" entity="Layout" />
@@ -255,6 +256,7 @@
 
 		<!-- References -->
 
+		<reference package-path="com.liferay.portal" entity="ClassName" />
 		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
 		<reference package-path="com.liferay.portlet.ratings" entity="RatingsEntry" />
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
@@ -300,6 +302,10 @@
 			<finder-column name="parentKBFolderId" />
 			<finder-column name="urlTitle" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="ClassName" />
 	</entity>
 	<entity name="KBTemplate" uuid="true" local-service="true" remote-service="true">
 
