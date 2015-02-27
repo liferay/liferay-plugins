@@ -150,14 +150,14 @@ public class LayoutUtil {
 				configureProfile(layout, portletId);
 				removePortletBorder(layout, portletId);
 			}
-			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
-				removePortletBorder(layout, portletId);
-			}
 			else if (portletId.startsWith(
-				AssetPublisherPortletKeys.ASSET_PUBLISHER)) {
+						AssetPublisherPortletKeys.ASSET_PUBLISHER)) {
 
 				configureAssetPublisher(layout);
 				updatePortletTitle(layout, portletId, "related-content");
+			}
+			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
+				removePortletBorder(layout, portletId);
 			}
 			else if (portletId.startsWith(PortletKeys.BLOGS_AGGREGATOR)) {
 				configureBlogsAggregator(layout);
