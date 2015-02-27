@@ -346,8 +346,8 @@ allprojects {
 configure(
 	allprojects.findAll {
 		it.hasProperty("pluginSrcDir")
-	}) {
-
+	}
+) {
 	apply plugin: "war"
 
 	Map projectCompileDependencies = gradle.compileDependencies.find {
@@ -357,7 +357,7 @@ configure(
 	clean {
 		if (projectCompileDependencies) {
 			projectCompileDependencies["compile"].each {
-				dependsOn "$it:clean"
+				dependsOn "${it}:clean"
 			}
 		}
 	}
@@ -369,8 +369,7 @@ configure(
 			}
 		}
 
-		if (!(project.name.equals("portal-compat-shared")) && !(project.name.contains("layouttpl")) && !(project.name.contains("themes"))) {
-
+		if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
 			compile project(":shared:portal-compat-shared")
 		}
 
