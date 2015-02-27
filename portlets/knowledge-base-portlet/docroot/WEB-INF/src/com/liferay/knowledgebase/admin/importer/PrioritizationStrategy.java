@@ -39,7 +39,6 @@ public class PrioritizationStrategy {
 
 	public static PrioritizationStrategy create(
 			long groupId, long parentKBFolderId,
-			boolean prioritizeUpdatedKBArticles,
 			boolean prioritizeByNumericalPrefix)
 		throws SystemException {
 
