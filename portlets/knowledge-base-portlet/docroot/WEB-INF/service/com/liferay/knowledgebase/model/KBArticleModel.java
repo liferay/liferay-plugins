@@ -647,19 +647,19 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	public Object clone();
 
 	@Override
-	public int compareTo(com.liferay.knowledgebase.model.KBArticle kbArticle);
+	public int compareTo(KBArticle kbArticle);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<com.liferay.knowledgebase.model.KBArticle> toCacheModel();
+	public CacheModel<KBArticle> toCacheModel();
 
 	@Override
-	public com.liferay.knowledgebase.model.KBArticle toEscapedModel();
+	public KBArticle toEscapedModel();
 
 	@Override
-	public com.liferay.knowledgebase.model.KBArticle toUnescapedModel();
+	public KBArticle toUnescapedModel();
 
 	@Override
 	public String toString();
