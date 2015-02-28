@@ -156,27 +156,6 @@ Error-Prone was automatically installed. Please rerun your task.
 		</else>
 	</if>
 
-	<macrodef name="baseline-jar-macro">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<manifest-helper />
-
-			<bndexpand propertyfile="@{bndRootFile}" />
-
-			<baseline-jar
-				bndRootFile="${sdk.dir}/common.bnd"
-				file="@{module.dir}/bnd.bnd"
-				outputPath="${plugin.file}"
-				sourcePath="@{module.dir}"
-			>
-				<classpath>
-					<pathelement location="${plugin.classes.dir}" />
-				</classpath>
-			</baseline-jar>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="build-css">
 		<attribute name="module.dir" />
 		<attribute default="${module.dir.unix}/docroot" name="sass.docroot.dir" />
@@ -1798,13 +1777,21 @@ Please find a solution that does not require portal-impl.jar.
 								</then>
 							</if>
 
-							<loadfile property="jar-macro.bnd.bnd.content" srcFile="@{module.dir}/bnd.bnd" />
+							<manifest-helper />
 
-							<var name="jar-macro.bnd.bnd.content" unset="true" />
+							<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
-							<baseline-jar-macro
-								module.dir="@{module.dir}"
-							/>
+							<bnd eclipse="false" failok="false" exceptions="true" inherit="true" output="${plugin.file}">
+								<property name="-sourcepath" value="@{module.dir}" />
+								<classpath>
+									<pathelement location="${plugin.classes.dir}" />
+								</classpath>
+								<bndfiles>
+									<fileset dir="@{module.dir}">
+										<include name="bnd.bnd"/>
+									</fileset>
+								</bndfiles>
+							</bnd>
 						</then>
 					</if>
 
