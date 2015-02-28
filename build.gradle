@@ -144,7 +144,7 @@ configure(allprojects) {
 					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
 				}
 
-				version = getBuildXmlProperty("plugin.full.version", ant.properties["lp.version"] + "." + moduleIncrementalVersion)
+				version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.getVersion() + "." + moduleIncrementalVersion)
 			}
 		}
 	}
