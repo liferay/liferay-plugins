@@ -85,7 +85,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("creatorClassPK", getCreatorClassPK());
 		attributes.put("payload", getPayload());
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
-		attributes.put("ratingsStatsTotalScore", getRatingsStatsTotalScore());
+		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
 
 		return attributes;
@@ -161,11 +161,11 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 		}
 
-		Integer ratingsStatsTotalScore = (Integer)attributes.get(
-				"ratingsStatsTotalScore");
+		Integer assetEntrySetLikesCount = (Integer)attributes.get(
+				"assetEntrySetLikesCount");
 
-		if (ratingsStatsTotalScore != null) {
-			setRatingsStatsTotalScore(ratingsStatsTotalScore);
+		if (assetEntrySetLikesCount != null) {
+			setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 		}
 
 		Boolean privateAssetEntrySet = (Boolean)attributes.get(
@@ -444,22 +444,22 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public int getRatingsStatsTotalScore() {
-		return _ratingsStatsTotalScore;
+	public int getAssetEntrySetLikesCount() {
+		return _assetEntrySetLikesCount;
 	}
 
 	@Override
-	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore) {
-		_ratingsStatsTotalScore = ratingsStatsTotalScore;
+	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount) {
+		_assetEntrySetLikesCount = assetEntrySetLikesCount;
 
 		if (_assetEntrySetRemoteModel != null) {
 			try {
 				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setRatingsStatsTotalScore",
+				Method method = clazz.getMethod("setAssetEntrySetLikesCount",
 						int.class);
 
-				method.invoke(_assetEntrySetRemoteModel, ratingsStatsTotalScore);
+				method.invoke(_assetEntrySetRemoteModel, assetEntrySetLikesCount);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -613,7 +613,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setCreatorClassPK(getCreatorClassPK());
 		clone.setPayload(getPayload());
 		clone.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
-		clone.setRatingsStatsTotalScore(getRatingsStatsTotalScore());
+		clone.setAssetEntrySetLikesCount(getAssetEntrySetLikesCount());
 		clone.setPrivateAssetEntrySet(getPrivateAssetEntrySet());
 
 		return clone;
@@ -699,8 +699,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getPayload());
 		sb.append(", childAssetEntrySetsCount=");
 		sb.append(getChildAssetEntrySetsCount());
-		sb.append(", ratingsStatsTotalScore=");
-		sb.append(getRatingsStatsTotalScore());
+		sb.append(", assetEntrySetLikesCount=");
+		sb.append(getAssetEntrySetLikesCount());
 		sb.append(", privateAssetEntrySet=");
 		sb.append(getPrivateAssetEntrySet());
 		sb.append("}");
@@ -761,8 +761,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getChildAssetEntrySetsCount());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>ratingsStatsTotalScore</column-name><column-value><![CDATA[");
-		sb.append(getRatingsStatsTotalScore());
+			"<column><column-name>assetEntrySetLikesCount</column-name><column-value><![CDATA[");
+		sb.append(getAssetEntrySetLikesCount());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>privateAssetEntrySet</column-name><column-value><![CDATA[");
@@ -786,7 +786,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private long _creatorClassPK;
 	private String _payload;
 	private int _childAssetEntrySetsCount;
-	private int _ratingsStatsTotalScore;
+	private int _assetEntrySetLikesCount;
 	private boolean _privateAssetEntrySet;
 	private BaseModel<?> _assetEntrySetRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.asset.entry.set.service.ClpSerializer.class;

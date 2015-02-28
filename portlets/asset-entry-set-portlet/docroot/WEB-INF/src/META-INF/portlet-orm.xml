@@ -20,7 +20,7 @@
 			<basic name="creatorClassPK" />
 			<basic name="payload" />
 			<basic name="childAssetEntrySetsCount" />
-			<basic name="ratingsStatsTotalScore" />
+			<basic name="assetEntrySetLikesCount" />
 			<basic name="privateAssetEntrySet" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
@@ -28,10 +28,26 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.asset.entry.set.model.impl.AssetEntrySetLikeModelImpl">
+		<id-class class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK" />
+		<attributes>
+			<id name="assetEntrySetId" />
+			<id name="classNameId" />
+			<id name="classPK" />
+			<transient name="className" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<entity class="com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl" name="AssetEntrySet">
 		<table name="AssetEntrySet" />
 		<attributes>
 			<transient name="childAssetEntrySets" />
 		</attributes>
+	</entity>
+	<entity class="com.liferay.asset.entry.set.model.impl.AssetEntrySetLikeImpl" name="AssetEntrySetLike">
+		<table name="AssetEntrySetLike" />
+		<attributes />
 	</entity>
 </entity-mappings>

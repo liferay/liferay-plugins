@@ -10,6 +10,13 @@ create table AssetEntrySet (
 	creatorClassPK LONG,
 	payload STRING null,
 	childAssetEntrySetsCount INTEGER,
-	ratingsStatsTotalScore INTEGER,
+	assetEntrySetLikesCount INTEGER,
 	privateAssetEntrySet BOOLEAN
+);
+
+create table AssetEntrySetLike (
+	assetEntrySetId LONG not null,
+	classNameId LONG not null,
+	classPK LONG not null,
+	primary key (assetEntrySetId, classNameId, classPK)
 );

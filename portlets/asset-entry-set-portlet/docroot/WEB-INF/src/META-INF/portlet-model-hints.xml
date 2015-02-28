@@ -15,7 +15,12 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 		<field name="childAssetEntrySetsCount" type="int" />
-		<field name="ratingsStatsTotalScore" type="int" />
+		<field name="assetEntrySetLikesCount" type="int" />
 		<field name="privateAssetEntrySet" type="boolean" />
+	</model>
+	<model name="com.liferay.asset.entry.set.model.AssetEntrySetLike">
+		<field name="assetEntrySetId" type="long" />
+		<field name="classNameId" type="long" />
+		<field name="classPK" type="long" />
 	</model>
 </model-hints>

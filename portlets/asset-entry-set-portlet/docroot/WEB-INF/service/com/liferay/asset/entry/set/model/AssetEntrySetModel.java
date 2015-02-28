@@ -229,18 +229,18 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public void setChildAssetEntrySetsCount(int childAssetEntrySetsCount);
 
 	/**
-	 * Returns the ratings stats total score of this asset entry set.
+	 * Returns the asset entry set likes count of this asset entry set.
 	 *
-	 * @return the ratings stats total score of this asset entry set
+	 * @return the asset entry set likes count of this asset entry set
 	 */
-	public int getRatingsStatsTotalScore();
+	public int getAssetEntrySetLikesCount();
 
 	/**
-	 * Sets the ratings stats total score of this asset entry set.
+	 * Sets the asset entry set likes count of this asset entry set.
 	 *
-	 * @param ratingsStatsTotalScore the ratings stats total score of this asset entry set
+	 * @param assetEntrySetLikesCount the asset entry set likes count of this asset entry set
 	 */
-	public void setRatingsStatsTotalScore(int ratingsStatsTotalScore);
+	public void setAssetEntrySetLikesCount(int assetEntrySetLikesCount);
 
 	/**
 	 * Returns the private asset entry set of this asset entry set.

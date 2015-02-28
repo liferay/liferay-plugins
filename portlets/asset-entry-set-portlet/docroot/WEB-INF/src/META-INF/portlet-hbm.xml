@@ -3,6 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.asset.entry.set.model.AssetEntrySet" />
+	<import class="com.liferay.asset.entry.set.model.AssetEntrySetLike" />
 	<class name="com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl" table="AssetEntrySet">
 		<cache usage="read-write" />
 		<id name="assetEntrySetId" type="long">
@@ -18,7 +19,15 @@
 		<property name="creatorClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="payload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="childAssetEntrySetsCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="ratingsStatsTotalScore" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="assetEntrySetLikesCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="privateAssetEntrySet" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.liferay.asset.entry.set.model.impl.AssetEntrySetLikeImpl" table="AssetEntrySetLike">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK">
+			<key-property name="assetEntrySetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
 	</class>
 </hibernate-mapping>

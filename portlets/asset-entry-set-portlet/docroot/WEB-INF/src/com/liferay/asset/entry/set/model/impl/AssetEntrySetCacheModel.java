@@ -60,8 +60,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(payload);
 		sb.append(", childAssetEntrySetsCount=");
 		sb.append(childAssetEntrySetsCount);
-		sb.append(", ratingsStatsTotalScore=");
-		sb.append(ratingsStatsTotalScore);
+		sb.append(", assetEntrySetLikesCount=");
+		sb.append(assetEntrySetLikesCount);
 		sb.append(", privateAssetEntrySet=");
 		sb.append(privateAssetEntrySet);
 		sb.append("}");
@@ -91,7 +91,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		}
 
 		assetEntrySetImpl.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
-		assetEntrySetImpl.setRatingsStatsTotalScore(ratingsStatsTotalScore);
+		assetEntrySetImpl.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 		assetEntrySetImpl.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetImpl.resetOriginalValues();
@@ -112,7 +112,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		creatorClassPK = objectInput.readLong();
 		payload = objectInput.readUTF();
 		childAssetEntrySetsCount = objectInput.readInt();
-		ratingsStatsTotalScore = objectInput.readInt();
+		assetEntrySetLikesCount = objectInput.readInt();
 		privateAssetEntrySet = objectInput.readBoolean();
 	}
 
@@ -137,7 +137,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		}
 
 		objectOutput.writeInt(childAssetEntrySetsCount);
-		objectOutput.writeInt(ratingsStatsTotalScore);
+		objectOutput.writeInt(assetEntrySetLikesCount);
 		objectOutput.writeBoolean(privateAssetEntrySet);
 	}
 
@@ -152,6 +152,6 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public long creatorClassPK;
 	public String payload;
 	public int childAssetEntrySetsCount;
-	public int ratingsStatsTotalScore;
+	public int assetEntrySetLikesCount;
 	public boolean privateAssetEntrySet;
 }

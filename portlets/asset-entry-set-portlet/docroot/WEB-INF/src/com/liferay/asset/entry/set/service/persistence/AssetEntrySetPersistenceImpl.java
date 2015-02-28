@@ -2350,7 +2350,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		assetEntrySetImpl.setCreatorClassPK(assetEntrySet.getCreatorClassPK());
 		assetEntrySetImpl.setPayload(assetEntrySet.getPayload());
 		assetEntrySetImpl.setChildAssetEntrySetsCount(assetEntrySet.getChildAssetEntrySetsCount());
-		assetEntrySetImpl.setRatingsStatsTotalScore(assetEntrySet.getRatingsStatsTotalScore());
+		assetEntrySetImpl.setAssetEntrySetLikesCount(assetEntrySet.getAssetEntrySetLikesCount());
 		assetEntrySetImpl.setPrivateAssetEntrySet(assetEntrySet.isPrivateAssetEntrySet());
 
 		return assetEntrySetImpl;
