@@ -15,8 +15,10 @@
 package com.liferay.asset.entry.set.service.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
+import com.liferay.asset.entry.set.model.AssetEntrySetLike;
 import com.liferay.asset.entry.set.participant.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
+import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.PortletKeys;
@@ -36,15 +38,14 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
-import com.liferay.portlet.ratings.model.RatingsStats;
 import com.liferay.util.portlet.PortletProps;
 
 import java.awt.image.RenderedImage;
@@ -281,14 +282,14 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet likeAssetEntrySet(long userId, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		return updateRatingsStatsTotalScore(userId, assetEntrySetId, 1);
+		return updateAssetEntrySetLike(userId, assetEntrySetId, true);
 	}
 
 	@Override
 	public AssetEntrySet unlikeAssetEntrySet(long userId, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		return updateRatingsStatsTotalScore(userId, assetEntrySetId, 0);
+		return updateAssetEntrySetLike(userId, assetEntrySetId, false);
 	}
 
 	@Override
@@ -602,6 +603,48 @@ public class AssetEntrySetLocalServiceImpl
 			null, assetTagNames);
 	}
 
+	protected AssetEntrySet updateAssetEntrySetLike(
+			long userId, long assetEntrySetId, boolean like)
+		throws PortalException, SystemException {
+
+		ObjectValuePair<Long, Long> objectValuePair =
+			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
+				userId);
+
+		AssetEntrySetLikePK assetEntrySetLikePK = new AssetEntrySetLikePK(
+			assetEntrySetId, objectValuePair.getKey(),
+			objectValuePair.getValue());
+
+		if (like) {
+			AssetEntrySetLike assetEntrySetLike =
+				assetEntrySetLikePersistence.fetchByPrimaryKey(
+					assetEntrySetLikePK);
+
+			if (assetEntrySetLike == null) {
+				assetEntrySetLike = assetEntrySetLikePersistence.create(
+					assetEntrySetLikePK);
+
+				assetEntrySetLikePersistence.update(assetEntrySetLike);
+			}
+		}
+		else {
+			assetEntrySetLikePersistence.remove(assetEntrySetLikePK);
+		}
+
+		int assetEntrySetLikesCount =
+			assetEntrySetLikePersistence.countByAssetEntrySetId(
+				assetEntrySetId);
+
+		AssetEntrySet assetEntrySet =
+			assetEntrySetPersistence.fetchByPrimaryKey(assetEntrySetId);
+
+		assetEntrySet.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
+
+		assetEntrySetPersistence.update(assetEntrySet);
+
+		return assetEntrySet;
+	}
+
 	protected void updateChildAssetEntrySetsCount(long parentAssetEntrySetId)
 		throws PortalException, SystemException {
 
@@ -619,29 +662,6 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 
 		assetEntrySetPersistence.update(assetEntrySet);
-	}
-
-	protected AssetEntrySet updateRatingsStatsTotalScore(
-			long userId, long assetEntrySetId, long score)
-		throws PortalException, SystemException {
-
-		String className = AssetEntrySet.class.getName();
-
-		ratingsEntryLocalService.updateEntry(
-			userId, className, assetEntrySetId, score, new ServiceContext());
-
-		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
-			assetEntrySetId);
-
-		RatingsStats ratingsStats = ratingsStatsLocalService.getStats(
-			className, assetEntrySetId);
-
-		assetEntrySet.setRatingsStatsTotalScore(
-			(int)ratingsStats.getTotalScore());
-
-		assetEntrySetPersistence.update(assetEntrySet);
-
-		return assetEntrySet;
 	}
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
