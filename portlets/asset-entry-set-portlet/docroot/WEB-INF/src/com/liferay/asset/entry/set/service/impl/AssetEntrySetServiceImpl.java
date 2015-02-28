@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetServiceBaseImpl;
-import com.liferay.asset.entry.set.service.permission.AssetEntrySetLikePermissionUtil;
 import com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUtil;
 import com.liferay.asset.entry.set.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -109,9 +108,6 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	@Override
 	public AssetEntrySet unlikeAssetEntrySet(long assetEntrySetId)
 		throws PortalException, SystemException {
-
-		AssetEntrySetLikePermissionUtil.check(
-			getPermissionChecker(), assetEntrySetId, ActionKeys.DELETE);
 
 		return assetEntrySetLocalService.unlikeAssetEntrySet(
 			getUserId(), assetEntrySetId);

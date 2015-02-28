@@ -17,9 +17,4 @@
 			<bean class="com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionImpl" />
 		</property>
 	</bean>
-	<bean id="com.liferay.asset.entry.set.service.permission.AssetEntrySetLikePermissionUtil" class="com.liferay.asset.entry.set.service.permission.AssetEntrySetLikePermissionUtil">
-		<property name="AssetEntrySetLikePermission">
-			<bean class="com.liferay.asset.entry.set.service.permission.AssetEntrySetLikePermissionImpl" />
-		</property>
-	</bean>
 </beans>
