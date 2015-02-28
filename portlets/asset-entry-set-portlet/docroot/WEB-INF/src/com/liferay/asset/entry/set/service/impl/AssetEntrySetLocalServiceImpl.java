@@ -607,13 +607,13 @@ public class AssetEntrySetLocalServiceImpl
 			long userId, long assetEntrySetId, boolean like)
 		throws PortalException, SystemException {
 
-		ObjectValuePair<Long, Long> objectValuePair =
+		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
 			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
 				userId);
 
 		AssetEntrySetLikePK assetEntrySetLikePK = new AssetEntrySetLikePK(
-			assetEntrySetId, objectValuePair.getKey(),
-			objectValuePair.getValue());
+			assetEntrySetId, classNameIdAndClassPKOVP.getKey(),
+			classNameIdAndClassPKOVP.getValue());
 
 		if (like) {
 			AssetEntrySetLike assetEntrySetLike =
