@@ -93,6 +93,10 @@
 
 	<taskdef classname="com.liferay.ant.bnd.BaselineJarTask" classpathref="classpath.com.liferay.ant.bnd" name="baseline-jar" />
 
+	<path id="classpath.com.liferay.jspc">
+		<fileset dir="${sdk.dir}/dependencies/com.liferay.jspc/lib" includes="*.jar" />
+	</path>
+
 	<path id="classpath.org.codehaus.groovy">
 		<fileset dir="${sdk.dir}/dependencies/org.codehaus.groovy/lib" includes="*.jar" />
 	</path>
