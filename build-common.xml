@@ -1638,11 +1638,22 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<javadoc
-				classpathref="plugin.classpath"
-				destdir="javadoc"
-				sourcepath="${plugin.source.dir}"
-			/>
+			<resourcecount property="module.java.count">
+				<fileset dir="${plugin.source.dir}" includes="**/*.java" />
+			</resourcecount>
+
+			<if>
+				<not>
+					<equals arg1="${module.java.count}" arg2="0" />
+				</not>
+				<then>
+					<javadoc
+						classpathref="plugin.classpath"
+						destdir="javadoc"
+						sourcepath="${plugin.source.dir}"
+					/>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
@@ -1654,10 +1665,15 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<jar
-				basedir="javadoc"
-				jarfile="${plugin.javadoc.file}"
-			/>
+			<if>
+				<available file="javadoc" />
+				<then>
+					<jar
+						basedir="javadoc"
+						jarfile="${plugin.javadoc.file}"
+					/>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
