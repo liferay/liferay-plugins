@@ -667,7 +667,4 @@ public class AssetEntrySetLocalServiceImpl
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
 
-	private static final long _USER_CLASS_NAME_ID =
-		ClassNameLocalServiceUtil.getClassNameId(User.class);
-
 }
