@@ -53,10 +53,11 @@ page import="com.liferay.portlet.messageboards.model.MBDiscussion" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBDiscussionLocalServiceUtil" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
-page import="com.liferay.portlet.wiki.NoSuchPageException" %><%@
-page import="com.liferay.portlet.wiki.model.WikiNode" %><%@
-page import="com.liferay.portlet.wiki.model.WikiPage" %><%@
-page import="com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil" %><%@
+page import="com.liferay.wiki.constants.WikiPortletKeys" %><%@
+page import="com.liferay.wiki.exception.NoSuchPageException" %><%@
+page import="com.liferay.wiki.model.WikiNode" %><%@
+page import="com.liferay.wiki.model.WikiPage" %><%@
+page import="com.liferay.wiki.service.WikiPageLocalServiceUtil" %><%@
 page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.text.DateFormat" %>

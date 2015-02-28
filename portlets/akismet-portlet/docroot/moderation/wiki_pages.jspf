@@ -39,19 +39,19 @@
 		</c:if>
 
 		<liferay-ui:search-container-row
-			className="com.liferay.portlet.wiki.model.WikiPage"
+			className="com.liferay.wiki.model.WikiPage"
 			escapedModel="<%= true %>"
 			keyProperty="pageId"
 			modelVar="wikiPage"
 		>
 
 			<%
-			long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), PortletKeys.WIKI);
+			long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), WikiPortletKeys.WIKI);
 
 			WikiNode wikiNode = wikiPage.getNode();
 			%>
 
-			<liferay-portlet:renderURL plid="<%= wikiPlid %>" portletName="<%= PortletKeys.WIKI %>" varImpl="rowURL">
+			<liferay-portlet:renderURL plid="<%= wikiPlid %>" portletName="<%= WikiPortletKeys.WIKI %>" varImpl="rowURL">
 				<portlet:param name="struts_action" value="/wiki/view" />
 				<portlet:param name="nodeName" value="<%= wikiNode.getName() %>" />
 				<portlet:param name="title" value="<%= wikiPage.getTitle() %>" />
