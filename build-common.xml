@@ -1781,7 +1781,7 @@ Please find a solution that does not require portal-impl.jar.
 
 							<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
-							<bnd eclipse="false" failok="false" exceptions="true" inherit="true" output="${plugin.file}">
+							<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.file}">
 								<property name="-sourcepath" value="@{module.dir}" />
 								<classpath>
 									<pathelement location="${plugin.classes.dir}" />
