@@ -404,18 +404,21 @@ Fragment-Host: ${bnd.Bundle-SymbolicName}
 Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				</echo>
 
+				<manifest-helper />
+
 				<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
-				<baseline-jar
-					bndRootFile="${sdk.dir}/common.bnd"
-					file="${basedir}/${plugin.name}-wsdd.bnd"
-					outputPath="${plugin.wsdd.file}"
-					sourcePath="${basedir}"
-				>
+				<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.wsdd.file}">
+					<property name="-sourcepath" value="${basedir}" />
 					<classpath>
 						<pathelement location="${plugin.classes.dir}" />
 					</classpath>
-				</baseline-jar>
+					<bndfiles>
+						<fileset dir="${basedir}">
+							<include name="${plugin.name}-wsdd.bnd"/>
+						</fileset>
+					</bndfiles>
+				</bnd>
 
 				<delete file="${basedir}/${plugin.name}-wsdd.bnd" failonerror="false" />
 			</then>
