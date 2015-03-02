@@ -1782,15 +1782,15 @@ Please find a solution that does not require portal-impl.jar.
 							<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
 							<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.file}">
-								<property name="-sourcepath" value="@{module.dir}" />
+								<bndfiles>
+									<fileset dir="@{module.dir}">
+										<include name="bnd.bnd" />
+									</fileset>
+								</bndfiles>
 								<classpath>
 									<pathelement location="${plugin.classes.dir}" />
 								</classpath>
-								<bndfiles>
-									<fileset dir="@{module.dir}">
-										<include name="bnd.bnd"/>
-									</fileset>
-								</bndfiles>
+								<property name="-sourcepath" value="@{module.dir}" />
 							</bnd>
 						</then>
 					</if>
