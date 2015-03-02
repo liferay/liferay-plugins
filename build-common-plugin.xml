@@ -409,15 +409,15 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
 				<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.wsdd.file}">
-					<property name="-sourcepath" value="${basedir}" />
+					<bndfiles>
+						<fileset dir="${basedir}">
+							<include name="${plugin.name}-wsdd.bnd" />
+						</fileset>
+					</bndfiles>
 					<classpath>
 						<pathelement location="${plugin.classes.dir}" />
 					</classpath>
-					<bndfiles>
-						<fileset dir="${basedir}">
-							<include name="${plugin.name}-wsdd.bnd"/>
-						</fileset>
-					</bndfiles>
+					<property name="-sourcepath" value="${basedir}" />
 				</bnd>
 
 				<delete file="${basedir}/${plugin.name}-wsdd.bnd" failonerror="false" />
