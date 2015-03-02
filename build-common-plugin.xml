@@ -551,16 +551,16 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		<path id="jspc.classpath">
 			<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
 			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
 			<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
 			<pathelement location="docroot/WEB-INF/classes" />
 			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<path refid="classpath.com.liferay.jspc" />
 		</path>
 
 		<delete dir="${jspc.classes.dir}" quiet="true" />
 
 		<java
-			classname="com.liferay.jspc.JspC"
+			classname="com.liferay.jasper.jspc.JspC"
 			classpathref="jspc.classpath"
 			fork="true"
 			jvm="${jspc.java.home}/bin/java"
