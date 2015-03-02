@@ -180,20 +180,6 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
-			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
-			int start, int end)
-		throws PortalException, SystemException {
-
-		List<AssetEntrySet> assetEntrySets = assetEntrySetFinder.findBySharedTo(
-			sharedToJSONArray, start, end);
-
-		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
-
-		return assetEntrySets;
-	}
-
-	@Override
-	public List<AssetEntrySet> getAssetEntrySets(
 			long creatorClassNameId, long creatorClassPK, String assetTagName,
 			JSONArray sharedToJSONArray, boolean andOperator,
 			int childAssetEntrySetsLimit, int start, int end)
@@ -222,13 +208,6 @@ public class AssetEntrySetLocalServiceImpl
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 
 		return assetEntrySets;
-	}
-
-	@Override
-	public int getAssetEntrySetsCount(JSONArray sharedToJSONArray)
-		throws PortalException, SystemException {
-
-		return assetEntrySetFinder.countBySharedTo(sharedToJSONArray);
 	}
 
 	@Override

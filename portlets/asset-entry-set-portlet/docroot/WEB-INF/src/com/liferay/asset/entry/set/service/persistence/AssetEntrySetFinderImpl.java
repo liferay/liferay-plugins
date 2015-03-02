@@ -43,17 +43,11 @@ public class AssetEntrySetFinderImpl
 	extends BasePersistenceImpl<AssetEntrySet>
 	implements AssetEntrySetFinder {
 
-	public static final String COUNT_BY_SHARED_TO =
-		AssetEntrySetFinder.class.getName() + ".countBySharedTo";
-
 	public static final String COUNT_BY_CCNI_ATN =
 		AssetEntrySetFinder.class.getName() + ".countByCCNI_ATN";
 
 	public static final String COUNT_BY_CCNI_CCPK_ATN =
 		AssetEntrySetFinder.class.getName() + ".countByCCNI_CCPK_ATN";
-
-	public static final String FIND_BY_SHARED_TO =
-		AssetEntrySetFinder.class.getName() + ".findBySharedTo";
 
 	public static final String FIND_BY_CT_PASEI =
 		AssetEntrySetFinder.class.getName() + ".findByCT_PASEI";
@@ -63,52 +57,6 @@ public class AssetEntrySetFinderImpl
 
 	public static final String FIND_BY_CCNI_CCPK_ATN =
 		AssetEntrySetFinder.class.getName() + ".findByCCNI_CCPK_ATN";
-
-	@Override
-	public int countBySharedTo(JSONArray sharedToJSONArray)
-		throws SystemException {
-
-		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
-			return 0;
-		}
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(COUNT_BY_SHARED_TO);
-
-			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
-
-			Iterator<Long> itr = q.iterate();
-
-			if (itr.hasNext()) {
-				Long count = itr.next();
-
-				if (count != null) {
-					return count.intValue();
-				}
-			}
-
-			return 0;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
 
 	public int countByCCNI_ATN(
 			long creatorClassNameId, String assetTagName,
@@ -202,44 +150,6 @@ public class AssetEntrySetFinderImpl
 			}
 
 			return 0;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	@Override
-	public List<AssetEntrySet> findBySharedTo(
-			JSONArray sharedToJSONArray, int start, int end)
-		throws SystemException {
-
-		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
-			return Collections.emptyList();
-		}
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(FIND_BY_SHARED_TO);
-
-			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addEntity("AssetEntrySet", AssetEntrySetImpl.class);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
-
-			return (List<AssetEntrySet>)QueryUtil.list(
-				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

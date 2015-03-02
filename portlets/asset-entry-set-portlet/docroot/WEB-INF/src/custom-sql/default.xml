@@ -1,20 +1,6 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countBySharedTo">
-		<![CDATA[
-			SELECT
-				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
-			FROM
-				AssetEntrySet
-			INNER JOIN
-				AssetSharingEntry ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			WHERE
-				(AssetSharingEntry.classNameId = ?) AND
-				[$SHARED_TO$]
-		]]>
-	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_ATN">
 		<![CDATA[
 			SELECT
@@ -70,22 +56,6 @@
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
 				([$SHARED_TO$])
-		]]>
-	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findBySharedTo">
-		<![CDATA[
-			SELECT
-				DISTINCT {AssetEntrySet.*}
-			FROM
-				AssetEntrySet
-			INNER JOIN
-				AssetSharingEntry ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			WHERE
-				(AssetSharingEntry.classNameId = ?) AND
-				[$SHARED_TO$]
-			ORDER BY
-				AssetEntrySet.modifiedTime DESC
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PASEI">
