@@ -153,8 +153,9 @@ public class AdminPortlet extends BaseKBPortlet {
 
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 
-			int importedKBArticlesCount = KBArticleServiceUtil.addKBArticlesMarkdown(
-				themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
+			int importedKBArticlesCount =
+				KBArticleServiceUtil.addKBArticlesMarkdown(
+					themeDisplay.getScopeGroupId(), parentKBFolderId, fileName,
 				prioritizeByNumericalPrefix, inputStream, serviceContext);
 
 			SessionMessages.add(

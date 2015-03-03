@@ -14,13 +14,13 @@
 
 package com.liferay.knowledgebase.admin.importer;
 
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -309,9 +309,9 @@ public class PrioritizationStrategy {
 
 	private final long _groupId;
 	private final Map<String, List<KBArticle>> _importedKBArticlesMap =
-		new HashMap<String, List<KBArticle>>();
+		new HashMap<>();
 	private final Map<String, Double> _importedKBArticleUrlTitlesPrioritiesMap =
-		new HashMap<String, Double>();
+		new HashMap<>();
 	private final long _parentKBFolderId;
 	private final boolean _prioritizeByNumericalPrefix;
 
