@@ -69,7 +69,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		_methodName6 = "addKBArticlesMarkdown";
 
 		_methodParameterTypes6 = new String[] {
-				"long", "long", "long", "java.lang.String", "boolean", "boolean",
+				"long", "long", "long", "java.lang.String", "boolean",
 				"java.io.InputStream",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -668,7 +668,6 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	@Override
 	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
-		boolean prioritizeUpdatedKBArticles,
 		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -685,8 +684,6 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 					parentKbFolderId,
 						
 					ClpSerializer.translateInput(fileName),
-						
-					prioritizeUpdatedKBArticles,
 						
 					prioritizeByNumericalPrefix,
 						

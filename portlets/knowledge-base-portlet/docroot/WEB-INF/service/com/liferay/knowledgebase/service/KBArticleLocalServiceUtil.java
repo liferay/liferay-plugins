@@ -102,14 +102,12 @@ public class KBArticleLocalServiceUtil {
 
 	public static int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
-		boolean prioritizeUpdatedKBArticles,
 		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBArticlesMarkdown(userId, groupId, parentKbFolderId,
-			fileName, prioritizeUpdatedKBArticles, prioritizeByNumericalPrefix,
-			inputStream, serviceContext);
+			fileName, prioritizeByNumericalPrefix, inputStream, serviceContext);
 	}
 
 	public static void addTempAttachment(long groupId, long userId,
