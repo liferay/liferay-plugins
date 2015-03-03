@@ -166,6 +166,18 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
+	public AssetEntrySet getAssetEntrySet(long assetEntrySetId)
+		throws PortalException, SystemException {
+
+		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
+			assetEntrySetId);
+
+		setParticipants(assetEntrySet);
+
+		return assetEntrySet;
+	}
+
+	@Override
 	public List<AssetEntrySet> getAssetEntrySets(
 			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
 			int start, int end)
