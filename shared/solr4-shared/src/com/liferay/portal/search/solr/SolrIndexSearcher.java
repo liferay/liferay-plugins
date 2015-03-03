@@ -76,6 +76,11 @@ import org.apache.solr.common.params.FacetParams;
 public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	@Override
+	public String getQueryString(SearchContext searchContext, Query query) {
+		return translateQuery(searchContext, query);
+	}
+
+	@Override
 	public Hits search(SearchContext searchContext, Query query)
 		throws SearchException {
 
@@ -443,17 +448,16 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 		}
 
-		translateQuery(solrQuery, searchContext, query);
+		QueryTranslatorUtil.translateForSolr(query);
+
+		String queryString = translateQuery(searchContext, query);
+
+		solrQuery.setQuery(queryString);
 
 		return _solrServer.query(solrQuery, METHOD.POST);
 	}
 
-	protected void translateQuery(
-			SolrQuery solrQuery, SearchContext searchContext, Query query)
-		throws Exception {
-
-		QueryTranslatorUtil.translateForSolr(query);
-
+	protected String translateQuery(SearchContext searchContext, Query query) {
 		String queryString = query.toString();
 
 		StringBundler sb = new StringBundler(6);
@@ -471,7 +475,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(
 			sb.toString(), searchContext.getKeywords());
 
-		solrQuery.setQuery(solrPostProcesor.postProcess());
+		return solrPostProcesor.postProcess();
 	}
 
 	protected void updateFacetCollectors(
