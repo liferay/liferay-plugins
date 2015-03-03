@@ -18,6 +18,7 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 	public AssetEntrySetImpl() {
 	}
 
+	@JSON(include = true)
 	@Override
 	public List<AssetEntrySet> getChildAssetEntrySets() {
 		return _childAssetEntrySets;
