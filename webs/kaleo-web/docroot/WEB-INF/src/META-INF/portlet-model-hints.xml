@@ -275,7 +275,7 @@
 		<field name="address" type="String">
 			<hint name="max-length">255</hint>
 		</field>
-		<field name="receiptionType" type="String">
+		<field name="notificationReceptionType" type="String">
 			<hint name="max-length">3</hint>
 		</field>
 	</model>

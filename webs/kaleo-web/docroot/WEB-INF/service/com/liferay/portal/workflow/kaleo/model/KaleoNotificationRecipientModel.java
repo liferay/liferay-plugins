@@ -264,6 +264,52 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 	public void setRecipientRoleType(int recipientRoleType);
 
 	/**
+	 * Returns the recipient script of this kaleo notification recipient.
+	 *
+	 * @return the recipient script of this kaleo notification recipient
+	 */
+	@AutoEscape
+	public String getRecipientScript();
+
+	/**
+	 * Sets the recipient script of this kaleo notification recipient.
+	 *
+	 * @param recipientScript the recipient script of this kaleo notification recipient
+	 */
+	public void setRecipientScript(String recipientScript);
+
+	/**
+	 * Returns the recipient script language of this kaleo notification recipient.
+	 *
+	 * @return the recipient script language of this kaleo notification recipient
+	 */
+	@AutoEscape
+	public String getRecipientScriptLanguage();
+
+	/**
+	 * Sets the recipient script language of this kaleo notification recipient.
+	 *
+	 * @param recipientScriptLanguage the recipient script language of this kaleo notification recipient
+	 */
+	public void setRecipientScriptLanguage(String recipientScriptLanguage);
+
+	/**
+	 * Returns the recipient script required contexts of this kaleo notification recipient.
+	 *
+	 * @return the recipient script required contexts of this kaleo notification recipient
+	 */
+	@AutoEscape
+	public String getRecipientScriptRequiredContexts();
+
+	/**
+	 * Sets the recipient script required contexts of this kaleo notification recipient.
+	 *
+	 * @param recipientScriptRequiredContexts the recipient script required contexts of this kaleo notification recipient
+	 */
+	public void setRecipientScriptRequiredContexts(
+		String recipientScriptRequiredContexts);
+
+	/**
 	 * Returns the address of this kaleo notification recipient.
 	 *
 	 * @return the address of this kaleo notification recipient
@@ -277,6 +323,21 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 	 * @param address the address of this kaleo notification recipient
 	 */
 	public void setAddress(String address);
+
+	/**
+	 * Returns the notification reception type of this kaleo notification recipient.
+	 *
+	 * @return the notification reception type of this kaleo notification recipient
+	 */
+	@AutoEscape
+	public String getNotificationReceptionType();
+
+	/**
+	 * Sets the notification reception type of this kaleo notification recipient.
+	 *
+	 * @param notificationReceptionType the notification reception type of this kaleo notification recipient
+	 */
+	public void setNotificationReceptionType(String notificationReceptionType);
 
 	@Override
 	public boolean isNew();

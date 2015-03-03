@@ -202,7 +202,11 @@
 		<property name="recipientClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="recipientClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="recipientRoleType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="recipientScript" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="recipientScriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="recipientScriptRequiredContexts" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="notificationReceptionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl" table="KaleoTask">
 		<id name="kaleoTaskId" type="long">
