@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -142,7 +143,7 @@ public class PrioritizationStrategy {
 				return numericalPrefix;
 			}
 
-			return Double.parseDouble(digits);
+			return GetterUtil.getDouble(digits);
 		}
 		else {
 			String[] pathEntries = filePath.split(StringPool.SLASH);
@@ -154,7 +155,7 @@ public class PrioritizationStrategy {
 					return numericalPrefix;
 				}
 
-				return Double.parseDouble(digits);
+				return GetterUtil.getDouble(digits);
 			}
 
 			int len = pathEntries.length;
@@ -168,7 +169,7 @@ public class PrioritizationStrategy {
 					continue;
 				}
 
-				numericalPrefix = Double.parseDouble(digits);
+				numericalPrefix = GetterUtil.getDouble(digits);
 
 				if (numericalPrefix >= 1.0) {
 					return numericalPrefix;
