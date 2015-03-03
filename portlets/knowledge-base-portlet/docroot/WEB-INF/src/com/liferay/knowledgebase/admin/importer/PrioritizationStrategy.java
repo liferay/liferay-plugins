@@ -213,9 +213,6 @@ public class PrioritizationStrategy {
 				filePath, isChildArticle);
 
 			if (sectionFileEntryNamePrefix < 0.0) {
-
-				// do nothing
-
 			}
 			else if (sectionFileEntryNamePrefix < 1.0) {
 				kbArticle.setPriority(1.0);
