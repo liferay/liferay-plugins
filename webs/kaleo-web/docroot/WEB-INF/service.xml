@@ -483,6 +483,9 @@
 		<column name="recipientClassName" type="String" />
 		<column name="recipientClassPK" type="long" />
 		<column name="recipientRoleType" type="int" />
+		<column name="recipientScript" type="String" />
+		<column name="recipientScriptLanguage" type="String" />
+		<column name="recipientScriptRequiredContexts" type="String" />
 		<column name="address" type="String" />
 
 		<!-- Order -->
