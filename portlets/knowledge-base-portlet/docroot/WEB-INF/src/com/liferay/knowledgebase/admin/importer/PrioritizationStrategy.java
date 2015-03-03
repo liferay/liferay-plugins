@@ -76,7 +76,6 @@ public class PrioritizationStrategy {
 	}
 
 	public void prioritizeKBArticles() throws PortalException, SystemException {
-
 		if (_prioritizeByNumericalPrefix) {
 			for (Map.Entry<String, Double> entry :
 					_importedKBArticleUrlTitlesPrioritiesMap.entrySet()) {
