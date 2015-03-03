@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -31,7 +32,9 @@ import java.util.List;
 
 import org.jboss.arquillian.junit.Arquillian;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -40,6 +43,20 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class UpgradeCalendarTest {
+
+	@Before
+	public void setUp() throws Exception {
+		_group = GroupTestUtil.addGroup();
+
+		_user = UserTestUtil.addUser();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupLocalServiceUtil.deleteGroup(_group);
+
+		UserLocalServiceUtil.deleteUser(_user);
+	}
 
 	@Test
 	public void testDoUpgradeCreatesCalendarTimeZoneId() throws Exception {
@@ -53,11 +70,9 @@ public class UpgradeCalendarTest {
 
 	@Test
 	public void testDoUpgradeSetsSiteCalendarTimeZoneId() throws Exception {
-		Group group = GroupTestUtil.addGroup();
-		long groupId = group.getGroupId();
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getGroupCalendarResource(
-				groupId, new ServiceContext());
+				_group.getGroupId(), new ServiceContext());
 
 		UpgradeCalendar upgradeCalendar = new UpgradeCalendar();
 
@@ -65,7 +80,8 @@ public class UpgradeCalendarTest {
 
 		List<Calendar> calendars =
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
-				groupId, calendarResource.getCalendarResourceId());
+				_group.getGroupId(), calendarResource.getCalendarResourceId());
+
 		Calendar calendar = calendars.get(0);
 
 		Assert.assertEquals(
@@ -75,17 +91,16 @@ public class UpgradeCalendarTest {
 
 	@Test
 	public void testDoUpgradeSetsUserCalendarTimeZoneId() throws Exception {
-		User user = UserTestUtil.addUser();
+		_user.setTimeZoneId("Asia/Shangai");
 
-		user.setTimeZoneId("Asia/Shangai");
-		UserLocalServiceUtil.updateUser(user);
+		UserLocalServiceUtil.updateUser(_user);
 
 		ServiceContext serviceContext = new ServiceContext();
-		serviceContext.setCompanyId(user.getCompanyId());
+		serviceContext.setCompanyId(_user.getCompanyId());
 
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getUserCalendarResource(
-				user.getUserId(), serviceContext);
+				_user.getUserId(), serviceContext);
 
 		UpgradeCalendar upgradeCalendar = new UpgradeCalendar();
 
@@ -93,10 +108,14 @@ public class UpgradeCalendarTest {
 
 		List<Calendar> calendars =
 			CalendarLocalServiceUtil.getCalendarResourceCalendars(
-				user.getGroupId(), calendarResource.getCalendarResourceId());
+				_user.getGroupId(), calendarResource.getCalendarResourceId());
+
 		Calendar calendar = calendars.get(0);
 
 		Assert.assertEquals("Asia/Shangai", calendar.getTimeZoneId());
 	}
+
+	private Group _group;
+	private User _user;
 
 }
