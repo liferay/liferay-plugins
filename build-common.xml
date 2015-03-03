@@ -91,11 +91,11 @@
 		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.bnd/lib" includes="*.jar" />
 	</path>
 
+	<taskdef classname="com.liferay.ant.bnd.BaselineJarTask" classpathref="classpath.com.liferay.ant.bnd" name="baseline-jar" />
+
 	<path id="classpath.net.sourceforge.pmd">
 		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
 	</path>
-
-	<taskdef classname="com.liferay.ant.bnd.BaselineJarTask" classpathref="classpath.com.liferay.ant.bnd" name="baseline-jar" />
 
 	<path id="classpath.org.codehaus.groovy">
 		<fileset dir="${sdk.dir}/dependencies/org.codehaus.groovy/lib" includes="*.jar" />
