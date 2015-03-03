@@ -30,6 +30,8 @@ import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
 import com.liferay.portal.workflow.kaleo.definition.ScriptAssignment;
+import com.liferay.portal.workflow.kaleo.definition.ScriptLanguage;
+import com.liferay.portal.workflow.kaleo.definition.ScriptRecipient;
 import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
@@ -295,6 +297,20 @@ public abstract class BaseNodeExporter implements NodeExporter {
 					roleElement, roleRecipient.getRoleId(),
 					roleRecipient.getRoleType(), roleRecipient.getRoleName(),
 					roleRecipient.isAutoCreate());
+			}
+			else if (recipientType.equals(RecipientType.SCRIPT)) {
+				Element scriptedRecipientElement =
+					recipientsElement.addElement("scripted-recipient");
+
+				ScriptRecipient scriptRecipient = (ScriptRecipient)recipient;
+
+				ScriptLanguage scriptLanguage =
+					scriptRecipient.getScriptLanguage();
+
+				populateScriptingElement(
+					scriptedRecipientElement, scriptRecipient.getScript(),
+					scriptLanguage.getValue(),
+					scriptRecipient.getScriptRequiredContexts());
 			}
 			else if (recipientType.equals(RecipientType.USER)) {
 				Element userElement = recipientsElement.addElement("user");

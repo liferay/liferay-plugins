@@ -39,6 +39,7 @@ import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
 import com.liferay.portal.workflow.kaleo.definition.ScriptAssignment;
+import com.liferay.portal.workflow.kaleo.definition.ScriptRecipient;
 import com.liferay.portal.workflow.kaleo.definition.State;
 import com.liferay.portal.workflow.kaleo.definition.Task;
 import com.liferay.portal.workflow.kaleo.definition.Timer;
@@ -148,7 +149,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Action> actions = new HashSet<>(actionElements.size());
+		Set<Action> actions = new HashSet<Action>(actionElements.size());
 
 		for (Element actionElement : actionElements) {
 			String name = actionElement.elementText("name");
@@ -192,7 +193,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return Collections.emptySet();
 		}
 
-		Set<Assignment> assignments = new HashSet<>();
+		Set<Assignment> assignments = new HashSet<Assignment>();
 
 		Element resourceActionsElement = assignmentsElement.element(
 			"resource-actions");
@@ -391,7 +392,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Notification> notifications = new HashSet<>(
+		Set<Notification> notifications = new HashSet<Notification>(
 			notificationElements.size());
 
 		for (Element notificationElement : notificationElements) {
@@ -482,6 +483,23 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			}
 		}
 
+		List<Element> scriptedRecipientElements = recipientsElement.elements(
+			"scripted-recipient");
+
+		for (Element scriptedRecipientElement : scriptedRecipientElements) {
+			String script = scriptedRecipientElement.elementText("script");
+			String scriptLanguage = scriptedRecipientElement.elementText(
+				"script-language");
+			String scriptRequiredContexts =
+				scriptedRecipientElement.elementText(
+					"script-required-contexts");
+
+			ScriptRecipient scriptRecipient = new ScriptRecipient(
+				script, scriptLanguage, scriptRequiredContexts);
+
+			notification.addRecipients(scriptRecipient);
+		}
+
 		List<Element> userRecipientElements = recipientsElement.elements(
 			"user");
 
@@ -565,7 +583,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Timer> timers = new HashSet<>(taskTimerElements.size());
+		Set<Timer> timers = new HashSet<Timer>(taskTimerElements.size());
 
 		for (Element timerElement : taskTimerElements) {
 			Timer timer = parseTimerElement(timerElement, true);
@@ -643,7 +661,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			return;
 		}
 
-		Set<Timer> timers = new HashSet<>(timerElements.size());
+		Set<Timer> timers = new HashSet<Timer>(timerElements.size());
 
 		for (Element timerElement : timerElements) {
 			Timer timer = parseTimerElement(timerElement, false);

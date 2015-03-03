@@ -19,6 +19,6 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum RecipientType {
 
-	ADDRESS, ASSIGNEES, ROLE, USER
+	ADDRESS, ASSIGNEES, ROLE, SCRIPT, USER
 
 }
