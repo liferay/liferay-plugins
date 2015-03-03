@@ -158,9 +158,9 @@ public class PrioritizationStrategy {
 				return GetterUtil.getDouble(digits);
 			}
 
-			int len = pathEntries.length;
+			int length = pathEntries.length;
 
-			for (int i = len - 1; i > -1; i--) {
+			for (int i = length - 1; i > -1; i--) {
 				String fileName = pathEntries[i];
 
 				String digits = StringUtil.extractLeadingDigits(fileName);
