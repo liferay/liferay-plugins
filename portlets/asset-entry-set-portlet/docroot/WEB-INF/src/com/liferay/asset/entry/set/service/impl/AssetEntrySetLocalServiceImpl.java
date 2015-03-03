@@ -548,51 +548,12 @@ public class AssetEntrySetLocalServiceImpl
 		return returnedSharedToJSONArray;
 	}
 
-	protected void setChildAssetEntrySets(
-			AssetEntrySet assetEntrySet, int childAssetEntrySetsLimit)
-		throws PortalException, SystemException {
-
-		if (childAssetEntrySetsLimit <= 0) {
-			return;
-		}
-
-		List<AssetEntrySet> childAssetEntrySets = getChildAssetEntrySets(
-			assetEntrySet.getAssetEntrySetId(), 0, childAssetEntrySetsLimit,
-			null);
-
-		JSONArray childAssetEntrySetsJSONArray =
-			JSONFactoryUtil.createJSONArray();
-
-		for (AssetEntrySet childAssetEntrySet : childAssetEntrySets) {
-			JSONObject childAssetEntrySetPayload =
-				JSONFactoryUtil.createJSONObject(
-					childAssetEntrySet.getPayload());
-
-			childAssetEntrySetPayload.put(
-				"assetEntrySetId", childAssetEntrySet.getAssetEntrySetId());
-			childAssetEntrySetPayload.put(
-				"modifiedTime", childAssetEntrySet.getModifiedTime());
-
-			childAssetEntrySetsJSONArray.put(childAssetEntrySetPayload);
-		}
-
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-			assetEntrySet.getPayload());
-
-		payloadJSONObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_CHILD_ASSET_ENTRY_SETS,
-			childAssetEntrySetsJSONArray);
-
-		assetEntrySet.setPayload(
-			JSONFactoryUtil.looseSerialize(payloadJSONObject));
-	}
-
 	protected void setDisplayFields(
 			List<AssetEntrySet> assetEntrySets, int childAssetEntrySetsLimit)
 		throws PortalException, SystemException {
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setChildAssetEntrySets(assetEntrySet, childAssetEntrySetsLimit);
+			assetEntrySet.setChildAssetEntrySets(childAssetEntrySetsLimit);
 
 			setParticipants(assetEntrySet);
 		}

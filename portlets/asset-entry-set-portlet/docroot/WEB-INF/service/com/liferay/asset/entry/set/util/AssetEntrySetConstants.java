@@ -30,9 +30,6 @@ public class AssetEntrySetConstants {
 
 	public static final String PAYLOAD_KEY_ASSET_TAG_NAMES = "assetTagNames";
 
-	public static final String PAYLOAD_KEY_CHILD_ASSET_ENTRY_SETS =
-		"childAssetEntrySets";
-
 	public static final String PAYLOAD_KEY_CREATOR = "creator";
 
 	public static final String PAYLOAD_KEY_SHARED_TO = "sharedTo";
