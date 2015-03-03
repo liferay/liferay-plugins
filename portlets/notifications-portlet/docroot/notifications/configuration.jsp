@@ -89,7 +89,7 @@
 </div>
 
 <aui:script use="aui-base,aui-io-request">
-	var userNotifications = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %>');
+	var userNotifications = A.one('#p_p_id_<%= PortletKeys.NOTIFICATIONS %>_');
 
 	var notificationDelivery = userNotifications.one('.manage-notifications');
 
