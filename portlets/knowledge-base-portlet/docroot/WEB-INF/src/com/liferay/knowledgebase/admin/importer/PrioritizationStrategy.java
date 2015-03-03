@@ -263,9 +263,9 @@ public class PrioritizationStrategy {
 					QueryUtil.ALL_POS, null);
 			}
 
-			List<KBArticle> siblingKBArticlesCopy = new ArrayList<KBArticle>();
+			List<KBArticle> siblingKBArticlesCopy = ListUtil.copy(
+				siblingKBArticles);
 
-			siblingKBArticlesCopy = ListUtil.copy(siblingKBArticles);
 			siblingKBArticlesCopy.removeAll(kbArticles);
 
 			double maxPriority = 0.0;
