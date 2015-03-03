@@ -331,7 +331,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getPermissionChecker(), calendarBooking.getCalendarId(),
 			ActionKeys.MANAGE_BOOKINGS);
 
-		calendarBookingApprovalWorkflow.invokeTransition(
+		calendarBookingLocalService.updateStatus(
 			getUserId(), calendarBooking, status, serviceContext);
 	}
 

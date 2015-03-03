@@ -62,6 +62,7 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.SystemEventConstants;
@@ -72,7 +73,10 @@ import com.liferay.portlet.asset.model.AssetLinkConstants;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -178,7 +182,7 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setSecondReminderType(secondReminderType);
 		calendarBooking.setExpandoBridgeAttributes(serviceContext);
 		calendarBooking.setStatus(
-			CalendarBookingWorkflowConstants.STATUS_PENDING);
+			CalendarBookingWorkflowConstants.STATUS_DRAFT);
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
 		calendarBookingPersistence.update(calendarBooking);
@@ -212,7 +216,7 @@ public class CalendarBookingLocalServiceImpl
 
 		// Workflow
 
-		calendarBookingApprovalWorkflow.startWorkflow(
+		calendarBooking = startWorkflowInstance(
 			userId, calendarBooking, serviceContext);
 
 		return calendarBooking;
@@ -310,6 +314,13 @@ public class CalendarBookingLocalServiceImpl
 		trashEntryLocalService.deleteEntry(
 			CalendarBooking.class.getName(),
 			calendarBooking.getCalendarBookingId());
+
+		// Workflow
+
+		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+				calendarBooking.getCompanyId(), calendarBooking.getGroupId(),
+				CalendarBooking.class.getName(),
+				calendarBooking.getCalendarBookingId());
 
 		return calendarBooking;
 	}
@@ -817,8 +828,8 @@ public class CalendarBookingLocalServiceImpl
 
 		// Workflow
 
-		calendarBookingApprovalWorkflow.invokeTransition(
-			userId, calendarBooking, status, serviceContext);
+		calendarBooking = startWorkflowInstance(
+			userId, calendarBooking, serviceContext);
 
 		// Notifications
 
@@ -1146,6 +1157,26 @@ public class CalendarBookingLocalServiceImpl
 				_log.warn(e, e);
 			}
 		}
+	}
+
+	protected CalendarBooking startWorkflowInstance(
+			long userId, CalendarBooking calendarBooking,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		Map<String, Serializable> workflowContext =
+			(Map<String, Serializable>)serviceContext.removeAttribute(
+				"workflowContext");
+
+		if (workflowContext == null) {
+			workflowContext = Collections.emptyMap();
+		}
+
+		return WorkflowHandlerRegistryUtil.startWorkflowInstance(
+			calendarBooking.getCompanyId(), calendarBooking.getGroupId(),
+			userId, CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId(), calendarBooking,
+			serviceContext, workflowContext);
 	}
 
 	protected void updateChildCalendarBookings(
