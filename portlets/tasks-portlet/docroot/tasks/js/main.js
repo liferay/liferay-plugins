@@ -30,7 +30,7 @@ AUI().use(
 			clearFilters: function() {
 				var instance = this;
 
-				A.all('.tasks-portlet .asset-tag-filter .asset-tag.selected').toggle('selected');
+				A.all('.tasks-portlet .asset-tag-filter .asset-tag.selected').toggleClass('selected');
 
 				var groupFilter = A.one('.tasks-portlet .group-filter select');
 
