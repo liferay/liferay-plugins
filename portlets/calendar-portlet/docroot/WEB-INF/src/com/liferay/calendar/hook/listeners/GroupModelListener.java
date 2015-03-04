@@ -17,9 +17,14 @@ package com.liferay.calendar.hook.listeners;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.util.PortalUtil;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Marcellus Tavares
@@ -47,6 +52,33 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 			CalendarResourceLocalServiceUtil.deleteCalendarResources(
 				group.getGroupId());
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
+	@Override
+	public void onAfterUpdate(Group group) throws ModelListenerException {
+		try {
+			long classNameId = PortalUtil.getClassNameId(Group.class);
+
+			CalendarResource calendarResource =
+				CalendarResourceLocalServiceUtil.fetchCalendarResource(
+					classNameId, group.getGroupId());
+
+			if (calendarResource == null) {
+				return;
+			}
+
+			Map<Locale, String> nameMap = new HashMap<Locale, String>();
+
+			nameMap.put(LocaleUtil.getSiteDefault(), group.getName());
+
+			calendarResource.setNameMap(nameMap);
+
+			CalendarResourceLocalServiceUtil.updateCalendarResource(
+				calendarResource);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
