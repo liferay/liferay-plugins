@@ -3,18 +3,40 @@ import com.liferay.portal.kernel.util.ReleaseInfo
 apply from: "${gradle.lfrSdkDir}/versions.gradle"
 
 buildscript {
+	dependencies {
+		classpath([group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"])
+	}
+
 	repositories {
 		maven {
 			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
 		}
 	}
-
-	dependencies {
-		classpath([group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"])
-	}
 }
 
 configure(allprojects) {
+	File pluginSrcDir = file("${projectDir}/docroot")
+
+	if (!pluginSrcDir.exists()) {
+		pluginSrcDir = file("${projectDir}/src")
+
+		if (!pluginSrcDir.exists()) {
+			pluginSrcDir = null
+		}
+	}
+
+	if (pluginSrcDir) {
+		ext.pluginSrcDir = pluginSrcDir
+	}
+}
+
+configure(
+	allprojects.findAll {
+		it.hasProperty("pluginSrcDir")
+	}) {
+
+	apply plugin: "war"
+
 	Boolean osgiPlugin
 
 	Closure getBuildXmlProperty
@@ -23,7 +45,6 @@ configure(allprojects) {
 	Closure setModuleProperties
 
 	File pluginPackagePropertiesFile
-	File pluginSrcDir
 
 	Node buildXmlNode
 	Node ivyXmlNode
@@ -32,6 +53,63 @@ configure(allprojects) {
 	Properties pluginPackageProperties
 
 	String pluginPackaging
+
+	task compile
+	task initGradle
+
+	clean {
+		Map projectCompileDependencies = gradle.compileDependencies.find {
+			project.path == it.projectPath
+		}
+
+		if (projectCompileDependencies) {
+			projectCompileDependencies["compile"].each {
+				dependsOn "${it}:clean"
+			}
+		}
+	}
+
+	compile {
+		dependsOn compileJava
+	}
+
+	dependencies {
+		Map projectCompileDependencies = gradle.compileDependencies.find {
+			project.path == it.projectPath
+		}
+
+		if (projectCompileDependencies) {
+			projectCompileDependencies["compile"].each {
+				compile project(it)
+			}
+		}
+
+		if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
+			compile project(":shared:portal-compat-shared")
+		}
+
+		providedCompile(
+			[group: "com.liferay", name: "aQute.bnd", version: "2.3.0"],
+			[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
+			[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
+			[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
+			[group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"],
+			[group: "commons-logging", name: "commons-logging", version: "1.1.1"],
+			[group: "hsqldb", name: "hsqldb", version: "1.8.0.7"],
+			[group: "javax.activation", name: "activation", version: "1.1"],
+			[group: "javax.ccpp", name: "ccpp", version: "1.0"],
+			[group: "javax.jms", name: "jms", version: "1.1"],
+			[group: "javax.mail", name: "mail", version: "1.4"],
+			[group: "javax.portlet", name: "portlet-api", version: "2.0"],
+			[group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"],
+			[group: "javax.servlet.jsp", name: "jsp-api", version: "2.1"],
+			[group: "log4j", name: "log4j", version: "1.2.16"],
+			[group: "mysql", name: "mysql-connector-java", version: "5.1.23"],
+			[group: "net.sf", name: "jargs", version: "1.0"],
+			[group: "net.sourceforge.jtds", name: "jtds", version: "1.2.6"],
+			[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
+			[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"])
+	}
 
 	getBuildXmlProperty = {
 		String key, String defaultValue = "" ->
@@ -49,115 +127,7 @@ configure(allprojects) {
 		return value
 	}
 
-	getPluginsSrcDir = {
-		pluginSrcDir = file("${projectDir}/docroot")
-
-		if (!pluginSrcDir.exists()) {
-			pluginSrcDir = file("${projectDir}/src")
-
-			if (!pluginSrcDir.exists()) {
-				pluginSrcDir = null
-			}
-		}
-
-		ext.pluginSrcDir = pluginSrcDir
-
-		return pluginSrcDir
-	}
-
-	readConfigurations = {
-
-		// bnd.bnd
-
-		bndProperties = new Properties()
-
-		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
-
-		if (bndPropertiesFile.exists()) {
-			bndProperties.load(new FileInputStream(bndPropertiesFile))
-		}
-
-		// build.xml
-
-		XmlParser xmlParser = new XmlParser()
-
-		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-
-		File buildXmlFile = new File("${projectDir}/build.xml")
-
-		if (buildXmlFile.exists()) {
-			buildXmlNode = xmlParser.parse(buildXmlFile)
-		}
-
-		// ivy.xml
-
-		File ivyXmlFile = new File("${projectDir}/ivy.xml")
-
-		if (ivyXmlFile.exists()) {
-			ivyXmlNode = xmlParser.parse(ivyXmlFile)
-		}
-
-		// liferay-plugin-package.properties
-
-		pluginPackageProperties = new Properties()
-
-		pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
-
-		if (pluginPackagePropertiesFile.exists()) {
-			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
-		}
-	}
-
-	setModuleProperties = {
-
-		// osgiPlugin
-
-		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
-
-		osgiPlugin = bndPropertiesFile.exists()
-
-		// pluginPackaging
-
-		pluginPackaging = "war"
-
-		if ((project.parent.name == "shared") || osgiPlugin) {
-			pluginPackaging = "jar"
-		}
-
-		// version
-
-		String moduleFullVersion = pluginPackageProperties["module-full-version"]
-
-		if (moduleFullVersion != null) {
-			version = moduleFullVersion
-		}
-		else {
-			String bundleVersion = bndProperties["Bundle-Version"]
-
-			if (bundleVersion != null) {
-				version = bundleVersion
-			}
-			else {
-				String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
-
-				if (moduleIncrementalVersion == null) {
-					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
-				}
-
-				version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.getVersion() + "." + moduleIncrementalVersion)
-			}
-		}
-	}
-
-	if (getPluginsSrcDir() == null) {
-		return;
-	}
-
-	readConfigurations()
-
-	setModuleProperties()
-
-	task initGradle << {
+	initGradle << {
 		Closure getBuildGradleDependencies
 		Closure getBuildGradleDependenciesCompile
 		Closure getBuildGradleDependenciesProvidedCompile
@@ -355,64 +325,94 @@ configure(allprojects) {
 
 		writeDependencySettingsFile()
 	}
-}
 
-configure(
-	allprojects.findAll {
-		it.hasProperty("pluginSrcDir")
-	}) {
+	readConfigurations = {
 
-	apply plugin: "war"
+		// bnd.bnd
 
-	Map projectCompileDependencies = gradle.compileDependencies.find {
-		project.path == it.projectPath
-	}
+		bndProperties = new Properties()
 
-	clean {
-		if (projectCompileDependencies) {
-			projectCompileDependencies["compile"].each {
-				dependsOn "${it}:clean"
-			}
-		}
-	}
+		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
 
-	dependencies {
-		if (projectCompileDependencies) {
-			projectCompileDependencies["compile"].each {
-				compile project(it)
-			}
+		if (bndPropertiesFile.exists()) {
+			bndProperties.load(new FileInputStream(bndPropertiesFile))
 		}
 
-		if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
-			compile project(":shared:portal-compat-shared")
+		// build.xml
+
+		XmlParser xmlParser = new XmlParser()
+
+		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+
+		File buildXmlFile = new File("${projectDir}/build.xml")
+
+		if (buildXmlFile.exists()) {
+			buildXmlNode = xmlParser.parse(buildXmlFile)
 		}
 
-		providedCompile(
-			[group: "com.liferay", name: "aQute.bnd", version: "2.3.0"],
-			[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
-			[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
-			[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
-			[group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"],
-			[group: "commons-logging", name: "commons-logging", version: "1.1.1"],
-			[group: "hsqldb", name: "hsqldb", version: "1.8.0.7"],
-			[group: "javax.activation", name: "activation", version: "1.1"],
-			[group: "javax.ccpp", name: "ccpp", version: "1.0"],
-			[group: "javax.jms", name: "jms", version: "1.1"],
-			[group: "javax.mail", name: "mail", version: "1.4"],
-			[group: "javax.portlet", name: "portlet-api", version: "2.0"],
-			[group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"],
-			[group: "javax.servlet.jsp", name: "jsp-api", version: "2.1"],
-			[group: "log4j", name: "log4j", version: "1.2.16"],
-			[group: "mysql", name: "mysql-connector-java", version: "5.1.23"],
-			[group: "net.sf", name: "jargs", version: "1.0"],
-			[group: "net.sourceforge.jtds", name: "jtds", version: "1.2.6"],
-			[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
-			[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"])
+		// ivy.xml
+
+		File ivyXmlFile = new File("${projectDir}/ivy.xml")
+
+		if (ivyXmlFile.exists()) {
+			ivyXmlNode = xmlParser.parse(ivyXmlFile)
+		}
+
+		// liferay-plugin-package.properties
+
+		pluginPackageProperties = new Properties()
+
+		pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
+
+		if (pluginPackagePropertiesFile.exists()) {
+			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
+		}
 	}
 
 	repositories {
 		maven {
 			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
+		}
+	}
+
+	setModuleProperties = {
+
+		// osgiPlugin
+
+		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
+
+		osgiPlugin = bndPropertiesFile.exists()
+
+		// pluginPackaging
+
+		pluginPackaging = "war"
+
+		if ((project.parent.name == "shared") || osgiPlugin) {
+			pluginPackaging = "jar"
+		}
+
+		// version
+
+		String moduleFullVersion = pluginPackageProperties["module-full-version"]
+
+		if (moduleFullVersion != null) {
+			version = moduleFullVersion
+		}
+		else {
+			String bundleVersion = bndProperties["Bundle-Version"]
+
+			if (bundleVersion != null) {
+				version = bundleVersion
+			}
+			else {
+				String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
+
+				if (moduleIncrementalVersion == null) {
+					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
+				}
+
+				version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.getVersion() + "." + moduleIncrementalVersion)
+			}
 		}
 	}
 
@@ -430,7 +430,7 @@ configure(
 		}
 	}
 
-	task compile {
-		dependsOn compileJava
-	}
+	readConfigurations()
+
+	setModuleProperties()
 }
