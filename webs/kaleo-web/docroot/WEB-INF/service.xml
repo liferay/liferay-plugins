@@ -487,6 +487,7 @@
 		<column name="recipientScriptLanguage" type="String" />
 		<column name="recipientScriptRequiredContexts" type="String" />
 		<column name="address" type="String" />
+		<column name="emailRecipientType" type="int" />
 
 		<!-- Order -->
 
