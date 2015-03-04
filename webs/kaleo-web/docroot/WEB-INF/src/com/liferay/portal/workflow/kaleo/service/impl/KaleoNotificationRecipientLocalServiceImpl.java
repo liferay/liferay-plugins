@@ -31,7 +31,6 @@ import com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationRecipient
 import com.liferay.portal.workflow.kaleo.util.RoleUtil;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -135,8 +134,7 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			kaleoNotificationRecipient.setRecipientScript(
 				scriptRecipient.getScript());
 
-			ScriptLanguage scriptLanguage =
-				scriptRecipient.getScriptLanguage();
+			ScriptLanguage scriptLanguage = scriptRecipient.getScriptLanguage();
 
 			kaleoNotificationRecipient.setRecipientScriptLanguage(
 				scriptLanguage.getValue());

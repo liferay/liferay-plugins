@@ -40,7 +40,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationConstants;
 import com.liferay.portal.workflow.kaleo.runtime.util.ClassLoaderUtil;
 import com.liferay.portal.workflow.kaleo.runtime.util.RulesContextBuilder;
 import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil;
@@ -146,7 +145,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			String recipientScript, String recipientScriptingLanguage,
 			String getRecipientScriptRequiredContextsString,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException, Exception {
+		throws Exception {
 
 		String[] recipientScriptRequiredContexts = StringUtil.split(
 			getRecipientScriptRequiredContextsString);
@@ -205,8 +204,9 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				List<Role> roles = (List<Role>)results.get(ROLES_RECIPIENT);
 
 				for (Role role : roles) {
-					addRoleRecipientAddresses(notificationRecipients,
-						role.getRoleId(), role.getType(), executionContext);
+					addRoleRecipientAddresses(
+						notificationRecipients, role.getRoleId(),
+						role.getType(), executionContext);
 				}
 			}
 		}
@@ -247,8 +247,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			ExecutionContext executionContext)
 		throws Exception {
 
-		Set<NotificationRecipient> notificationRecipients =
-			new HashSet<NotificationRecipient>();
+		Set<NotificationRecipient> notificationRecipients = new HashSet<>();
 
 		if (kaleoNotificationRecipients.isEmpty()) {
 			addAssignedRecipients(notificationRecipients, executionContext);
@@ -316,7 +315,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		}
 
-		List<User> users = new ArrayList<User>();
+		List<User> users = new ArrayList<>();
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
@@ -350,11 +349,12 @@ public abstract class BaseNotificationSender implements NotificationSender {
 	private static Log _log = LogFactoryUtil.getLog(
 		BaseNotificationSender.class);
 
-	private static Set<String> _outputNames = new HashSet<String>();
+	private static Set<String> _outputNames = new HashSet<>();
 
 	static {
 		_outputNames.add(ROLES_RECIPIENT);
 		_outputNames.add(USER_RECIPIENT);
 		_outputNames.add(WorkflowContextUtil.WORKFLOW_CONTEXT_NAME);
 	}
+
 }

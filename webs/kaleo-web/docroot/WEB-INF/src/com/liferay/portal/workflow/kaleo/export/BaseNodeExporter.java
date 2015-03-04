@@ -299,8 +299,8 @@ public abstract class BaseNodeExporter implements NodeExporter {
 					roleRecipient.isAutoCreate());
 			}
 			else if (recipientType.equals(RecipientType.SCRIPT)) {
-				Element scriptedRecipientElement =
-					recipientsElement.addElement("scripted-recipient");
+				Element scriptedRecipientElement = recipientsElement.addElement(
+					"scripted-recipient");
 
 				ScriptRecipient scriptRecipient = (ScriptRecipient)recipient;
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -24,12 +24,6 @@ public abstract class NotificationConstants {
 		BEANSHELL("beanshell"), DRL("drl"), GROOVY("groovy"),
 		JAVASCRIPT("javascript"), PYTHON("python"), RUBY("ruby");
 
-		public final String scriptingLanguage;
-
-		private RECIPIENT_SCRIPT_LANGUAGE(String scriptingLanguage) {
-			this.scriptingLanguage = scriptingLanguage;
-		}
-
 		public static boolean hasScriptingLanguage(String scriptingLanguage) {
 			for (RECIPIENT_SCRIPT_LANGUAGE value : values()) {
 				if (value.scriptingLanguage.equals(scriptingLanguage)) {
@@ -38,6 +32,12 @@ public abstract class NotificationConstants {
 			}
 
 			return false;
+		}
+
+		public final String scriptingLanguage;
+
+		private RECIPIENT_SCRIPT_LANGUAGE(String scriptingLanguage) {
+			this.scriptingLanguage = scriptingLanguage;
 		}
 
 	}
