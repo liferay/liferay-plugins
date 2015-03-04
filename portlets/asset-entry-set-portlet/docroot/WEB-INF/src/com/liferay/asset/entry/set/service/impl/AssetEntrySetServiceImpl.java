@@ -92,7 +92,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getNewAssetEntrySets(
-			createTime, parentAssetEntrySetId, sharedToJSONArray,
+			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
@@ -105,7 +105,7 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getOldAssetEntrySets(
-			createTime, parentAssetEntrySetId, sharedToJSONArray,
+			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 

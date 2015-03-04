@@ -195,25 +195,25 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long createTime, long parentAssetEntrySetId,
+			long userId, long createTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
 			int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			createTime, true, parentAssetEntrySetId, sharedToJSONArray,
+			userId, createTime, true, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long createTime, long parentAssetEntrySetId,
+			long userId, long createTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
 			int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			createTime, false, parentAssetEntrySetId, sharedToJSONArray,
+			userId, createTime, false, parentAssetEntrySetId, sharedToJSONArray,
 			childAssetEntrySetsLimit, start, end);
 	}
 
@@ -403,15 +403,20 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected List<AssetEntrySet> getAssetEntrySets(
-			long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
-			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
-			int start, int end)
+			long userId, long createTime, boolean gtCreateTime,
+			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
+			int childAssetEntrySetsLimit, int start, int end)
 		throws PortalException, SystemException {
+
+		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
+			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
+				userId);
 
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetFinder.findByCT_PASEI(
-				createTime, gtCreateTime, parentAssetEntrySetId,
-				sharedToJSONArray, start, end);
+				classNameIdAndClassPKOVP.getKey(),
+				classNameIdAndClassPKOVP.getValue(), createTime, gtCreateTime,
+				parentAssetEntrySetId, sharedToJSONArray, start, end);
 
 		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
 

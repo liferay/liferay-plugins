@@ -16,6 +16,7 @@ package com.liferay.asset.entry.set.service.persistence;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl;
+import com.liferay.asset.entry.set.participant.AssetEntrySetParticipantInfoUtil;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -45,7 +46,8 @@ public class AssetEntrySetFinderImpl
 		AssetEntrySetFinder.class.getName() + ".findByCT_PASEI";
 
 	public List<AssetEntrySet> findByCT_PASEI(
-			long createTime, boolean gtCreateTime, long parentAssetEntrySetId,
+			long classNameId, long classPK, long createTime,
+			boolean gtCreateTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, int start, int end)
 		throws SystemException {
 
@@ -70,7 +72,8 @@ public class AssetEntrySetFinderImpl
 			}
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]", getSharedTo(sharedToJSONArray));
+				sql, "[$SHARED_TO$]",
+				getSharedTo(classNameId, classPK, sharedToJSONArray));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -93,7 +96,9 @@ public class AssetEntrySetFinderImpl
 		}
 	}
 
-	protected String getSharedTo(JSONArray sharedToJSONArray) {
+	protected String getSharedTo(
+		long classNameId, long classPK, JSONArray sharedToJSONArray) {
+
 		StringBundler sb = new StringBundler(
 			(sharedToJSONArray.length() * 2) + 2);
 
@@ -105,7 +110,10 @@ public class AssetEntrySetFinderImpl
 			long sharedToClassNameId = jsonObject.getLong("classNameId");
 			long sharedToClassPK = jsonObject.getLong("classPK");
 
-			sb.append(getSharedTo(sharedToClassNameId, sharedToClassPK));
+			sb.append(
+				getSharedTo(
+					classNameId, classPK, sharedToClassNameId,
+					sharedToClassPK));
 			sb.append(" OR ");
 		}
 
@@ -117,14 +125,33 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected String getSharedTo(
-		long sharedToClassNameId, long sharedToClassPK) {
+		long classNameId, long classPK, long sharedToClassNameId,
+		long sharedToClassPK) {
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(17);
 
-		sb.append("(AssetSharingEntry.sharedToClassNameId = ");
+		sb.append("((AssetSharingEntry.sharedToClassNameId = ");
 		sb.append(sharedToClassNameId);
 		sb.append(" AND AssetSharingEntry.sharedToClassPK = ");
 		sb.append(sharedToClassPK);
+		sb.append(StringPool.CLOSE_PARENTHESIS);
+
+		if (!AssetEntrySetParticipantInfoUtil.isMember(
+				classNameId, classPK, sharedToClassNameId, sharedToClassPK)) {
+
+			sb.append(" AND ((AssetEntrySet.privateAssetEntrySet = [$FALSE$])");
+			sb.append(" OR AssetEntrySet.assetEntrySetId IN (SELECT ");
+			sb.append("AssetSharingEntry.classPK FROM AssetSharingEntry WHERE");
+			sb.append(" AssetSharingEntry.classNameId = ");
+			sb.append(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+			sb.append(" AND AssetSharingEntry.sharedToClassNameId = ");
+			sb.append(classNameId);
+			sb.append(" AND AssetSharingEntry.sharedToClassPK = ");
+			sb.append(classPK);
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+		}
+
 		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		return sb.toString();
