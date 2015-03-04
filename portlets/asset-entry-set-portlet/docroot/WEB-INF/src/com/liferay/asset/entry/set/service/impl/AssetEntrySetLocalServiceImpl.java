@@ -166,13 +166,14 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public AssetEntrySet getAssetEntrySet(long assetEntrySetId)
+	public AssetEntrySet getAssetEntrySet(
+			long assetEntrySetId, int childAssetEntrySetsLimit)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
 			assetEntrySetId);
 
-		setParticipants(assetEntrySet);
+		setDisplayFields(assetEntrySet, childAssetEntrySetsLimit);
 
 		return assetEntrySet;
 	}
@@ -562,13 +563,20 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setDisplayFields(
+			AssetEntrySet assetEntrySet, int childAssetEntrySetsLimit)
+		throws PortalException, SystemException {
+
+		assetEntrySet.setChildAssetEntrySets(childAssetEntrySetsLimit);
+
+		setParticipants(assetEntrySet);
+	}
+
+	protected void setDisplayFields(
 			List<AssetEntrySet> assetEntrySets, int childAssetEntrySetsLimit)
 		throws PortalException, SystemException {
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			assetEntrySet.setChildAssetEntrySets(childAssetEntrySetsLimit);
-
-			setParticipants(assetEntrySet);
+			setDisplayFields(assetEntrySet, childAssetEntrySetsLimit);
 		}
 	}
 
