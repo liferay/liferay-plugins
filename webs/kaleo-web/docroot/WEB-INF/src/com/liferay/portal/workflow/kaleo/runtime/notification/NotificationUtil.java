@@ -62,7 +62,13 @@ public class NotificationUtil {
 				kaleoNotification.getTemplateLanguage(),
 				kaleoNotification.getTemplate(), executionContext);
 
-		String notificationSubject = kaleoNotification.getDescription();
+		String notificationSubject =
+			notificationMessageGenerator.generateMessage(
+				kaleoNotification.getKaleoClassName(),
+				kaleoNotification.getKaleoClassPK(),
+				kaleoNotification.getName(),
+				kaleoNotification.getTemplateLanguage(),
+				kaleoNotification.getDescription(), executionContext);
 
 		String[] notificationTypes = StringUtil.split(
 			kaleoNotification.getNotificationTypes());
