@@ -37,9 +37,9 @@ boolean hasExistingRecipients = false;
 	<aui:button data-delete-message-url="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:button-row >
 
-<portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
-
 <%
+String backURL = ParamUtil.getString(request, "backURL");
+
 String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 %>
 

@@ -52,6 +52,7 @@ page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.model.LayoutSet" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
+page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.documentlibrary.util.DLUtil" %><%@
@@ -78,6 +79,8 @@ page import="javax.portlet.WindowState" %>
 
 <%
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT, locale, timeZone);
+
+String currentURL = PortalUtil.getCurrentURL(request);
 %>
 
 <%!
