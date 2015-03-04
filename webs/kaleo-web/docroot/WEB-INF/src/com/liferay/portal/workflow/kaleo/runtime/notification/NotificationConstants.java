@@ -19,6 +19,18 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
  */
 public abstract class NotificationConstants {
 
+	public enum EMAIL_RECIPIENT_TYPE {
+
+		NOT_APPLICABLE(0), TO(1), CC(2), BCC(3);
+
+		public final int type;
+
+		private EMAIL_RECIPIENT_TYPE(int type) {
+			this.type = type;
+		}
+
+	}
+
 	public enum RECIPIENT_SCRIPT_LANGUAGE {
 
 		BEANSHELL("beanshell"), DRL("drl"), GROOVY("groovy"),

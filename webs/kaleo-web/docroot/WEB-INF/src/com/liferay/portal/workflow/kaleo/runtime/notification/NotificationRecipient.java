@@ -29,16 +29,18 @@ import javax.mail.internet.InternetAddress;
  */
 public class NotificationRecipient {
 
-	public NotificationRecipient(String emailAddress) {
+	public NotificationRecipient(String emailAddress, int emailRecipientType) {
 		_emailAddress = emailAddress;
+		_emailRecipientType = emailRecipientType;
 	}
 
-	public NotificationRecipient(User user) {
+	public NotificationRecipient(User user, int emailRecipientType) {
 		_companyId = user.getCompanyId();
 		_emailAddress = user.getEmailAddress();
 		_fullName = user.getFullName();
 		_screenName = user.getScreenName();
 		_userId = user.getUserId();
+		_emailRecipientType = emailRecipientType;
 	}
 
 	@Override
@@ -71,6 +73,10 @@ public class NotificationRecipient {
 
 	public String getEmailAddress() {
 		return _emailAddress;
+	}
+
+	public int getEmailRecipientType() {
+		return _emailRecipientType;
 	}
 
 	public String getFullName() {
@@ -113,6 +119,7 @@ public class NotificationRecipient {
 
 	private long _companyId;
 	private String _emailAddress;
+	private int _emailRecipientType;
 	private String _fullName;
 	private String _screenName;
 	private long _userId;

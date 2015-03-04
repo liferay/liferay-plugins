@@ -81,13 +81,22 @@ public class EmailNotificationSender
 		MailMessage mailMessage = new MailMessage(
 			from, subject, notificationMessage, true);
 
-		mailMessage.setTo(getInternetAddresses(notificationRecipients));
+		mailMessage.setTo(
+			getInternetAddresses(notificationRecipients,
+			NotificationConstants.EMAIL_RECIPIENT_TYPE.TO.type));
+		mailMessage.setCC(
+			getInternetAddresses(notificationRecipients,
+			NotificationConstants.EMAIL_RECIPIENT_TYPE.CC.type));
+		mailMessage.setBCC(
+			getInternetAddresses(notificationRecipients,
+			NotificationConstants.EMAIL_RECIPIENT_TYPE.BCC.type));
 
 		MailServiceUtil.sendEmail(mailMessage);
 	}
 
 	protected InternetAddress[] getInternetAddresses(
-			Set<NotificationRecipient> notificationRecipients)
+			Set<NotificationRecipient> notificationRecipients,
+			int emailRecipientType)
 		throws AddressException, UnsupportedEncodingException {
 
 		List<InternetAddress> internetAddresses = new ArrayList<>(
@@ -96,7 +105,12 @@ public class EmailNotificationSender
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {
 
-			internetAddresses.add(notificationRecipient.getInternetAddress());
+			if (notificationRecipient.getEmailRecipientType() ==
+					emailRecipientType) {
+
+				internetAddresses.add(
+					notificationRecipient.getInternetAddress());
+			}
 		}
 
 		return internetAddresses.toArray(

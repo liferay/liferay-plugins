@@ -23,10 +23,19 @@ public abstract class Recipient {
 		_recipientType = recipientType;
 	}
 
+	public int getEmailRecipientType() {
+		return _emailRecipientType;
+	}
+
 	public RecipientType getRecipientType() {
 		return _recipientType;
 	}
 
+	public void setEmailRecipientType(int emailRecipientType) {
+		_emailRecipientType = emailRecipientType;
+	}
+
+	private int _emailRecipientType;
 	private RecipientType _recipientType;
 
 }

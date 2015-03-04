@@ -27,6 +27,7 @@ import com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationLocalServ
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -90,13 +91,16 @@ public class KaleoNotificationLocalServiceImpl
 
 		// Kaleo notification recipients
 
-		Set<Recipient> recipients = notification.getRecipients();
+		Map<Integer, Set<Recipient>> recipientsMap =
+			notification.getRecipientsMap();
 
-		for (Recipient recipient : recipients) {
-			kaleoNotificationRecipientLocalService.
-				addKaleoNotificationRecipient(
-					kaleoDefinitionId, kaleoNotificationId, recipient,
-					serviceContext);
+		for (Set<Recipient> recipients : recipientsMap.values()) {
+			for (Recipient recipient : recipients) {
+				kaleoNotificationRecipientLocalService.
+					addKaleoNotificationRecipient(
+						kaleoDefinitionId, kaleoNotificationId, recipient,
+						serviceContext);
+			}
 		}
 
 		return kaleoNotification;

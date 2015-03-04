@@ -62,6 +62,8 @@ public class KaleoNotificationRecipientLocalServiceImpl
 		kaleoNotificationRecipient.setModifiedDate(now);
 		kaleoNotificationRecipient.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoNotificationRecipient.setKaleoNotificationId(kaleoNotificationId);
+		kaleoNotificationRecipient.setEmailRecipientType(
+			recipient.getEmailRecipientType());
 
 		setRecipient(kaleoNotificationRecipient, recipient, serviceContext);
 

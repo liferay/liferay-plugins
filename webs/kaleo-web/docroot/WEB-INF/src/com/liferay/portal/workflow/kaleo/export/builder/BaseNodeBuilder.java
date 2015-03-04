@@ -140,6 +140,9 @@ public abstract class BaseNodeBuilder
 				}
 			}
 
+			recipient.setEmailRecipientType(
+				kaleoNotificationRecipient.getEmailRecipientType());
+
 			notification.addRecipients(recipient);
 		}
 	}
