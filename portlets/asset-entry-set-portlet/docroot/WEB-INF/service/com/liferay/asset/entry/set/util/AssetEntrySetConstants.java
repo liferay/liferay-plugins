@@ -32,6 +32,9 @@ public class AssetEntrySetConstants {
 
 	public static final String PAYLOAD_KEY_CREATOR = "creator";
 
+	public static final String PAYLOAD_KEY_LIKED_PARTICIPANTS =
+		"likedParticipants";
+
 	public static final String PAYLOAD_KEY_SHARED_TO = "sharedTo";
 
 }
