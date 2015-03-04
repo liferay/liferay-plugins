@@ -250,7 +250,8 @@ public class AssetEntrySetLikeUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.asset.entry.set.model.AssetEntrySetLike[] findByAssetEntrySetId_PrevAndNext(
-		AssetEntrySetLikePK assetEntrySetLikePK, long assetEntrySetId,
+		com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK assetEntrySetLikePK,
+		long assetEntrySetId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.entry.set.NoSuchLikeException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -309,7 +310,7 @@ public class AssetEntrySetLikeUtil {
 	* @return the new asset entry set like
 	*/
 	public static com.liferay.asset.entry.set.model.AssetEntrySetLike create(
-		AssetEntrySetLikePK assetEntrySetLikePK) {
+		com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK assetEntrySetLikePK) {
 		return getPersistence().create(assetEntrySetLikePK);
 	}
 
@@ -322,7 +323,7 @@ public class AssetEntrySetLikeUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.asset.entry.set.model.AssetEntrySetLike remove(
-		AssetEntrySetLikePK assetEntrySetLikePK)
+		com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK assetEntrySetLikePK)
 		throws com.liferay.asset.entry.set.NoSuchLikeException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().remove(assetEntrySetLikePK);
@@ -343,7 +344,7 @@ public class AssetEntrySetLikeUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.asset.entry.set.model.AssetEntrySetLike findByPrimaryKey(
-		AssetEntrySetLikePK assetEntrySetLikePK)
+		com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK assetEntrySetLikePK)
 		throws com.liferay.asset.entry.set.NoSuchLikeException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(assetEntrySetLikePK);
@@ -357,7 +358,7 @@ public class AssetEntrySetLikeUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.asset.entry.set.model.AssetEntrySetLike fetchByPrimaryKey(
-		AssetEntrySetLikePK assetEntrySetLikePK)
+		com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK assetEntrySetLikePK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(assetEntrySetLikePK);
 	}

@@ -297,6 +297,14 @@ public class AssetEntrySetLocalServiceUtil {
 		return getService().addFileAttachment(userId, file);
 	}
 
+	public static com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
+		long assetEntrySetId, int childAssetEntrySetsLimit)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getAssetEntrySet(assetEntrySetId, childAssetEntrySetsLimit);
+	}
+
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		int childAssetEntrySetsLimit, int start, int end)

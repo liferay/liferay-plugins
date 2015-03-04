@@ -86,6 +86,15 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 	}
 
 	@Override
+	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
+		long assetEntrySetId, int childAssetEntrySetsLimit)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.getAssetEntrySet(assetEntrySetId,
+			childAssetEntrySetsLimit);
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
 		int childAssetEntrySetsLimit, int start, int end)
