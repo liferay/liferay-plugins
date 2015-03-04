@@ -306,9 +306,9 @@ AUI.add(
 												var manageNotificationsNode = notificationsConfigurationNode.one('.manage-notifications');
 
 												if (!manageNotificationsNode) {
-													var message = Liferay.Language.get('please-sign-in-to-continue');
+													var html = '<div class=\"manage-notifications\">' + Liferay.Language.get('please-sign-in-to-continue') + '</div>';
 
-													notificationsConfigurationNode.setHTML('<div class=\"manage-notifications\">' + message + '</div>');
+													notificationsConfigurationNode.setHTML(html);
 												}
 
 												notificationsConfigurationNode.unplug(A.LoadingMask);
