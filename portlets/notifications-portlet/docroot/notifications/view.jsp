@@ -121,6 +121,7 @@
 			new Liferay.Notifications(
 				{
 					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+					namespace: '<portlet:namespace />',
 					notificationsList: notificationsList
 				}
 			)

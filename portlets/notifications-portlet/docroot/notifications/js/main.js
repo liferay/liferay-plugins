@@ -191,6 +191,7 @@ AUI.add(
 
 						instance._actionableUserNotificationsStart = 0;
 						instance._baseRenderURL = config.baseRenderURL;
+						instance._namespace = config.namespace;
 						instance._nonactionableUserNotificationsStart = 0;
 						instance._notificationsList = config.notificationsList;
 
@@ -300,7 +301,16 @@ AUI.add(
 
 										notificationsConfigurationNode.load(
 											portletURL.toString(),
+											'#' + instance._namespace + 'manageNotifications',
 											function() {
+												var manageNotificationsNode = notificationsConfigurationNode.one('.manage-notifications');
+
+												if (!manageNotificationsNode) {
+													var message = Liferay.Language.get('please-sign-in-to-continue');
+
+													notificationsConfigurationNode.setHTML('<div class=\"manage-notifications\">' + message + '</div>');
+												}
+
 												notificationsConfigurationNode.unplug(A.LoadingMask);
 											}
 										);
