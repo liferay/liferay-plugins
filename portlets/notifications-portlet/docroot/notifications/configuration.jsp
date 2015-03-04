@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="manage-notifications">
+<div class="manage-notifications" id="<portlet:namespace />manageNotifications">
 	<div class="title">
 		<div class="receive-notification">
 			<c:choose>
@@ -89,9 +89,7 @@
 </div>
 
 <aui:script use="aui-base,aui-io-request">
-	var userNotifications = A.one('#p_p_id_<%= PortletKeys.NOTIFICATIONS %>_');
-
-	var notificationDelivery = userNotifications.one('.manage-notifications');
+	var notificationDelivery = A.one('#<portlet:namespace />manageNotifications');
 
 	if (notificationDelivery) {
 		notificationDelivery.delegate(
