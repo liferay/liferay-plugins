@@ -2,8 +2,6 @@
 <!DOCTYPE project>
 
 <project name="build-common-ivy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
-	<property name="ivy.home" value="${sdk.dir}/.ivy" />
-
 	<basename property="basedir.name" file="${basedir}" />
 
 	<propertyregex
