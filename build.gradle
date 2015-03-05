@@ -39,6 +39,7 @@ configure(
 
 	Boolean osgiPlugin
 
+	Closure exists
 	Closure getBuildXmlProperty
 	Closure getPluginsSrcDir
 	Closure readConfigurations
@@ -63,9 +64,19 @@ configure(
 			all {
 				resolutionStrategy.cacheChangingModulesFor 5, 'minutes'
 			}
+
 			buildCssClasspath
+
 			portalWeb
 		}
+
+		args = [
+			"sass.dir=/",
+			"sass.docroot.dir=${projectDir}/docroot",
+			"sass.portal.common.dir=${rootDir}/tmp/portal-web/html/css/common"
+		]
+
+		classpath = configurations.buildCssClasspath
 
 		dependencies {
 			buildCssClasspath(
@@ -85,27 +96,20 @@ configure(
 				[group: "org.springframework", name: "spring-web", version: "3.2.10.RELEASE"],
 				[group: "struts", name: "struts", version: "1.2.9"])
 
-		
 			portalWeb([group: "com.liferay.portal", name: "portal-web", version: "7.0.0-SNAPSHOT"])
 		}
 
-		args = [
-			"sass.dir=/",
-			"sass.docroot.dir=${projectDir}/docroot",
-			"sass.portal.common.dir=${rootDir}/build/html/css/common"
-		]
-
-		classpath = configurations.buildCssClasspath
-
 		doFirst {
-			copy {
-				from(zipTree(configurations.portalWeb.singleFile)) {
-					include "WEB-INF/tld/**/*"
-					include "html/css/**/*"
-					include "html/themes/**/*"
-				}
+			if (!exists("${rootDir}/tmp/portal-web")) {
+				copy {
+					from(zipTree(configurations.portalWeb.singleFile)) {
+						include "html/css/**/*"
+						include "html/themes/**/*"
+						include "WEB-INF/tld/**/*"
+					}
 
-				into "${rootDir}/build"
+					into "${rootDir}/tmp/portal-web"
+				}
 			}
 		}
 
@@ -168,6 +172,14 @@ configure(
 			[group: "net.sourceforge.jtds", name: "jtds", version: "1.2.6"],
 			[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
 			[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"])
+	}
+
+	exists = {
+		String fileName ->
+
+		File file = file(fileName)
+
+		return file.exists()
 	}
 
 	getBuildXmlProperty = {
