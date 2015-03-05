@@ -190,6 +190,76 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="build-wsdl">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<for param="wsdl.full.path">
+				<path>
+					<fileset dir="@{module.dir}" includes="docroot/WEB-INF/wsdl/*.wsdl,wsdl/*.wsdl" />
+				</path>
+				<sequential>
+					<tstamp>
+						<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+					</tstamp>
+
+					<mkdir dir="${tstamp.value}" />
+
+					<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
+
+					<axis-wsdl2java
+						output="${tstamp.value}"
+						url="@{wsdl.full.path}"
+					/>
+
+					<compile-java
+						javac.classpathref="plugin.classpath"
+						javac.destdir="${tstamp.value}"
+						javac.srcdir="${tstamp.value}"
+					/>
+
+					<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.beginindex">
+						<antelope:lastindexof string="${file.separator}" />
+					</antelope:stringutil>
+
+					<antelope:math
+						datatype="int"
+						operand1="${wsdl.name.beginindex}"
+						operand2="1"
+						operation="+"
+						result="wsdl.name.beginindex"
+					/>
+
+					<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.endindex">
+						<antelope:lastindexof string="." />
+					</antelope:stringutil>
+
+					<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name">
+						<antelope:substring beginindex="${wsdl.name.beginindex}" endindex="${wsdl.name.endindex}" />
+					</antelope:stringutil>
+
+					<if>
+						<available file="@{module.dir}/docroot/WEB-INF/lib" />
+						<then>
+							<jar
+								basedir="${tstamp.value}"
+								jarfile="@{module.dir}/docroot/WEB-INF/lib/${wsdl.name}-ws.jar"
+							/>
+						</then>
+						<else>
+							<jar
+								basedir="${tstamp.value}"
+								jarfile="@{module.dir}/lib/${wsdl.name}-ws.jar"
+							/>
+						</else>
+					</if>
+
+					<delete dir="${tstamp.value}" />
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="gradle-execute">
 		<attribute name="task" />
 
@@ -1746,6 +1816,10 @@ Please find a solution that does not require portal-impl.jar.
 								</then>
 							</if>
 
+							<build-wsdl
+								module.dir="@{module.dir}"
+							/>
+
 							<set-build-xml-var
 								build.xml.var.name="original.lib.name"
 								module.dir="@{module.dir}"
@@ -2722,6 +2796,20 @@ for (String path : paths) {
 			</for>
 		</sequential>
 	</macrodef>
+
+	<target name="build-css">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="build-css"
+		/>
+	</target>
+
+	<target name="build-wsdl">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="build-wsdl"
+		/>
+	</target>
 
 	<target name="clean">
 		<loop-macrodef-or-target

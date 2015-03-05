@@ -3,10 +3,4 @@
 
 <project name="build-common-portlet">
 	<import file="../build-common-plugin.xml" />
-
-	<target name="build-css">
-		<build-css
-			module.dir="${basedir}"
-		/>
-	</target>
 </project>

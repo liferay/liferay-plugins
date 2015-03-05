@@ -425,65 +425,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		</if>
 	</target>
 
-	<target name="build-wsdl">
-		<for param="wsdl.full.path">
-			<path>
-				<fileset dir="." includes="docroot/WEB-INF/wsdl/*.wsdl" />
-			</path>
-			<sequential>
-				<tstamp>
-					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-				</tstamp>
-
-				<mkdir dir="${tstamp.value}" />
-
-				<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
-
-				<axis-wsdl2java
-					output="${tstamp.value}"
-					url="@{wsdl.full.path}"
-				/>
-
-				<compile-java
-					javac.classpathref="plugin.classpath"
-					javac.destdir="${tstamp.value}"
-					javac.srcdir="${tstamp.value}"
-				/>
-
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.beginindex">
-					<antelope:lastindexof string="${file.separator}" />
-				</antelope:stringutil>
-
-				<antelope:math
-					datatype="int"
-					operand1="${wsdl.name.beginindex}"
-					operand2="1"
-					operation="+"
-					result="wsdl.name.beginindex"
-				/>
-
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.file">
-					<antelope:substring beginindex="${wsdl.name.beginindex}" />
-				</antelope:stringutil>
-
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.endindex">
-					<antelope:lastindexof string="." />
-				</antelope:stringutil>
-
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name">
-					<antelope:substring beginindex="${wsdl.name.beginindex}" endindex="${wsdl.name.endindex}" />
-				</antelope:stringutil>
-
-				<jar
-					basedir="${tstamp.value}"
-					jarfile="docroot/WEB-INF/lib/${wsdl.name}-ws.jar"
-				/>
-
-				<delete dir="${tstamp.value}" />
-			</sequential>
-		</for>
-	</target>
-
 	<target name="build-xsd">
 		<tstamp>
 			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
