@@ -166,20 +166,6 @@ configure(
 	}
 
 	dependencies {
-		Map projectCompileDependencies = gradle.compileDependencies.find {
-			project.path == it.projectPath
-		}
-
-		if (projectCompileDependencies) {
-			projectCompileDependencies["compile"].each {
-				compile project(it)
-			}
-		}
-
-		if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
-			compile project(":shared:portal-compat-shared")
-		}
-
 		providedCompile(
 			[group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "2.4.1"],
 			[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
@@ -201,6 +187,20 @@ configure(
 			[group: "net.sourceforge.jtds", name: "jtds", version: "1.2.6"],
 			[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
 			[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"])
+
+		Map projectCompileDependencies = gradle.compileDependencies.find {
+			project.path == it.projectPath
+		}
+
+		if (projectCompileDependencies) {
+			projectCompileDependencies["compile"].each {
+				compile project(it)
+			}
+		}
+
+		if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
+			compile project(":shared:portal-compat-shared")
+		}
 	}
 
 	exists = {
