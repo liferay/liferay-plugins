@@ -60,11 +60,11 @@ configure(
 	task initGradle
 
 	buildCss {
-		Closure getSassDocroot
+		Closure setSassProperties
 
 		File sassDocrootDir
 
-		FileTree sassDocrootDirTree
+		FileTree sassDocrootDirFileTree
 
 		configurations {
 			all {
@@ -75,8 +75,6 @@ configure(
 
 			portalWeb
 		}
-
-		classpath = configurations.buildCssClasspath
 
 		dependencies {
 			buildCssClasspath(
@@ -106,6 +104,8 @@ configure(
 				"sass.portal.common.dir=${rootDir}/tmp/portal-web/html/css/common"
 			]
 
+			classpath = configurations.buildCssClasspath
+
 			if (!exists("${rootDir}/tmp/portal-web")) {
 				copy {
 					from(zipTree(configurations.portalWeb.singleFile)) {
@@ -119,7 +119,13 @@ configure(
 			}
 		}
 
-		getSassDocroot = {
+		main = "com.liferay.portal.tools.SassToCssBuilder"
+
+		onlyIf {
+			sassDocrootDirFileTree.getFiles()
+		}
+
+		setSassProperties = {
 			if (osgiPlugin) {
 				sassDocrootDir = file("${projectDir}/src/META-INF/resources")
 			}
@@ -127,16 +133,10 @@ configure(
 				sassDocrootDir = file("${projectDir}/docroot")
 			}
 
-			sassDocrootDirTree = fileTree(dir: sassDocrootDir, include: "**/*.css")
+			sassDocrootDirFileTree = fileTree(dir: sassDocrootDir, include: "**/*.css")
 		}
 
-		onlyIf {
-			sassDocrootDirTree.getFiles()
-		}
-
-		main = "com.liferay.portal.tools.SassToCssBuilder"
-
-		getSassDocroot()
+		setSassProperties()
 	}
 
 	clean {
