@@ -148,11 +148,11 @@ configure(
 	}
 
 	clean {
+		delete "${rootDir}/tmp"
+
 		Map projectCompileDependencies = gradle.compileDependencies.find {
 			project.path == it.projectPath
 		}
-
-		delete "${rootDir}/tmp"
 
 		if (projectCompileDependencies) {
 			projectCompileDependencies["compile"].each {
