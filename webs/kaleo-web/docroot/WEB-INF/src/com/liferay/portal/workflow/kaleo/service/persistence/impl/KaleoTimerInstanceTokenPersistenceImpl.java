@@ -60,7 +60,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoTimerInstanceTokenPersistence
- * @see KaleoTimerInstanceTokenUtil
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerInstanceTokenUtil
  * @generated
  */
 @ProviderType

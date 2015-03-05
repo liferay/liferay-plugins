@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoLog;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoLogPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoLogPersistenceImpl
  * @see KaleoLogUtil
  * @generated
  */

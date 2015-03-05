@@ -26,7 +26,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import java.util.List;
 
 /**
- * The persistence utility for the kaleo definition service. This utility wraps {@link KaleoDefinitionPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the kaleo definition service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoDefinitionPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -34,7 +34,7 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoDefinitionPersistence
- * @see KaleoDefinitionPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoDefinitionPersistenceImpl
  * @generated
  */
 @ProviderType

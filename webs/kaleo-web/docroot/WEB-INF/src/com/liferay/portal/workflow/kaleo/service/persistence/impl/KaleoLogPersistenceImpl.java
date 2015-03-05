@@ -61,7 +61,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoLogPersistence
- * @see KaleoLogUtil
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.KaleoLogUtil
  * @generated
  */
 @ProviderType

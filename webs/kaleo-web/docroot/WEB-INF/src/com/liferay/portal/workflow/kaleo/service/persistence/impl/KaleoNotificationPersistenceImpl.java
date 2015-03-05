@@ -60,7 +60,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoNotificationPersistence
- * @see KaleoNotificationUtil
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationUtil
  * @generated
  */
 @ProviderType

@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoTransitionPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoTransitionPersistenceImpl
  * @see KaleoTransitionUtil
  * @generated
  */

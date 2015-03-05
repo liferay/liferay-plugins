@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoInstanceTokenPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoInstanceTokenPersistenceImpl
  * @see KaleoInstanceTokenUtil
  * @generated
  */

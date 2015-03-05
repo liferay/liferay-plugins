@@ -61,7 +61,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoTransitionPersistence
- * @see KaleoTransitionUtil
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionUtil
  * @generated
  */
 @ProviderType

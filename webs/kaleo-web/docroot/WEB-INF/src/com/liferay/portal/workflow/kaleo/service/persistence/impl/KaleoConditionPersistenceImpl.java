@@ -60,7 +60,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoConditionPersistence
- * @see KaleoConditionUtil
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.KaleoConditionUtil
  * @generated
  */
 @ProviderType

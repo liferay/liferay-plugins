@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoTimerInstanceTokenPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoTimerInstanceTokenPersistenceImpl
  * @see KaleoTimerInstanceTokenUtil
  * @generated
  */

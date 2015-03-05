@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoNotificationPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoNotificationPersistenceImpl
  * @see KaleoNotificationUtil
  * @generated
  */

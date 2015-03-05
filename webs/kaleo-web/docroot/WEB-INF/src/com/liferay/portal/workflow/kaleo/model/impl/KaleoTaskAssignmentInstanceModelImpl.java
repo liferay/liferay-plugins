@@ -98,11 +98,14 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance"),
 			true);
-	public static final long COMPANYID_COLUMN_BITMASK = 1L;
-	public static final long KALEODEFINITIONID_COLUMN_BITMASK = 2L;
-	public static final long KALEOINSTANCEID_COLUMN_BITMASK = 4L;
-	public static final long KALEOTASKINSTANCETOKENID_COLUMN_BITMASK = 8L;
-	public static final long KALEOTASKASSIGNMENTINSTANCEID_COLUMN_BITMASK = 16L;
+	public static final long ASSIGNEECLASSNAME_COLUMN_BITMASK = 1L;
+	public static final long ASSIGNEECLASSPK_COLUMN_BITMASK = 2L;
+	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+	public static final long GROUPID_COLUMN_BITMASK = 8L;
+	public static final long KALEODEFINITIONID_COLUMN_BITMASK = 16L;
+	public static final long KALEOINSTANCEID_COLUMN_BITMASK = 32L;
+	public static final long KALEOTASKINSTANCETOKENID_COLUMN_BITMASK = 64L;
+	public static final long KALEOTASKASSIGNMENTINSTANCEID_COLUMN_BITMASK = 128L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance"));
 
@@ -295,7 +298,19 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 	@Override
 	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
 		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	@Override
@@ -494,7 +509,17 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 	@Override
 	public void setAssigneeClassName(String assigneeClassName) {
+		_columnBitmask |= ASSIGNEECLASSNAME_COLUMN_BITMASK;
+
+		if (_originalAssigneeClassName == null) {
+			_originalAssigneeClassName = _assigneeClassName;
+		}
+
 		_assigneeClassName = assigneeClassName;
+	}
+
+	public String getOriginalAssigneeClassName() {
+		return GetterUtil.getString(_originalAssigneeClassName);
 	}
 
 	@Override
@@ -504,7 +529,19 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 	@Override
 	public void setAssigneeClassPK(long assigneeClassPK) {
+		_columnBitmask |= ASSIGNEECLASSPK_COLUMN_BITMASK;
+
+		if (!_setOriginalAssigneeClassPK) {
+			_setOriginalAssigneeClassPK = true;
+
+			_originalAssigneeClassPK = _assigneeClassPK;
+		}
+
 		_assigneeClassPK = assigneeClassPK;
+	}
+
+	public long getOriginalAssigneeClassPK() {
+		return _originalAssigneeClassPK;
 	}
 
 	@Override
@@ -650,6 +687,10 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 		KaleoTaskAssignmentInstanceModelImpl kaleoTaskAssignmentInstanceModelImpl =
 			this;
 
+		kaleoTaskAssignmentInstanceModelImpl._originalGroupId = kaleoTaskAssignmentInstanceModelImpl._groupId;
+
+		kaleoTaskAssignmentInstanceModelImpl._setOriginalGroupId = false;
+
 		kaleoTaskAssignmentInstanceModelImpl._originalCompanyId = kaleoTaskAssignmentInstanceModelImpl._companyId;
 
 		kaleoTaskAssignmentInstanceModelImpl._setOriginalCompanyId = false;
@@ -665,6 +706,12 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 		kaleoTaskAssignmentInstanceModelImpl._originalKaleoTaskInstanceTokenId = kaleoTaskAssignmentInstanceModelImpl._kaleoTaskInstanceTokenId;
 
 		kaleoTaskAssignmentInstanceModelImpl._setOriginalKaleoTaskInstanceTokenId = false;
+
+		kaleoTaskAssignmentInstanceModelImpl._originalAssigneeClassName = kaleoTaskAssignmentInstanceModelImpl._assigneeClassName;
+
+		kaleoTaskAssignmentInstanceModelImpl._originalAssigneeClassPK = kaleoTaskAssignmentInstanceModelImpl._assigneeClassPK;
+
+		kaleoTaskAssignmentInstanceModelImpl._setOriginalAssigneeClassPK = false;
 
 		kaleoTaskAssignmentInstanceModelImpl._columnBitmask = 0;
 	}
@@ -882,6 +929,8 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 		};
 	private long _kaleoTaskAssignmentInstanceId;
 	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _originalCompanyId;
 	private boolean _setOriginalCompanyId;
@@ -902,7 +951,10 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	private long _kaleoTaskId;
 	private String _kaleoTaskName;
 	private String _assigneeClassName;
+	private String _originalAssigneeClassName;
 	private long _assigneeClassPK;
+	private long _originalAssigneeClassPK;
+	private boolean _setOriginalAssigneeClassPK;
 	private boolean _completed;
 	private Date _completionDate;
 	private long _columnBitmask;

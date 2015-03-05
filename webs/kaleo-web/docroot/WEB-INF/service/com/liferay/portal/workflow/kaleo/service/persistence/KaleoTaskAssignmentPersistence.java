@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoTaskAssignmentPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoTaskAssignmentPersistenceImpl
  * @see KaleoTaskAssignmentUtil
  * @generated
  */

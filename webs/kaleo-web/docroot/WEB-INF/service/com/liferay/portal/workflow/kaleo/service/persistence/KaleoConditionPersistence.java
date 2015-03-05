@@ -27,7 +27,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoConditionPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoConditionPersistenceImpl
  * @see KaleoConditionUtil
  * @generated
  */
