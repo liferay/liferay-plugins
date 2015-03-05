@@ -13,8 +13,10 @@ create index IX_76C781AE on KaleoDefinition (companyId, name);
 create index IX_4C23F11B on KaleoDefinition (companyId, name, active_);
 create index IX_EC14F81A on KaleoDefinition (companyId, name, version);
 
+create index IX_58D85ECB on KaleoInstance (className, classPK);
 create index IX_5F2FCD2D on KaleoInstance (companyId);
 create index IX_BF5839F8 on KaleoInstance (companyId, kaleoDefinitionName, kaleoDefinitionVersion, completionDate);
+create index IX_C6D7A867 on KaleoInstance (companyId, userId);
 create index IX_4DA4D123 on KaleoInstance (kaleoDefinitionId);
 create index IX_ACF16238 on KaleoInstance (kaleoDefinitionId, completed);
 
@@ -53,11 +55,15 @@ create index IX_D835C576 on KaleoTaskAssignment (kaleoClassName, kaleoClassPK);
 create index IX_1087068E on KaleoTaskAssignment (kaleoClassName, kaleoClassPK, assigneeClassName);
 create index IX_575C03A6 on KaleoTaskAssignment (kaleoDefinitionId);
 
+create index IX_945F4EB7 on KaleoTaskAssignmentInstance (assigneeClassName);
+create index IX_3BD436FD on KaleoTaskAssignmentInstance (assigneeClassName, assigneeClassPK);
 create index IX_6E3CDA1B on KaleoTaskAssignmentInstance (companyId);
+create index IX_38A47B17 on KaleoTaskAssignmentInstance (groupId, assigneeClassPK);
 create index IX_C851011 on KaleoTaskAssignmentInstance (kaleoDefinitionId);
 create index IX_67A9EE93 on KaleoTaskAssignmentInstance (kaleoInstanceId);
 create index IX_D4C2235B on KaleoTaskAssignmentInstance (kaleoTaskInstanceTokenId);
 
+create index IX_A3271995 on KaleoTaskInstanceToken (className, classPK);
 create index IX_997FE723 on KaleoTaskInstanceToken (companyId);
 create index IX_608E9519 on KaleoTaskInstanceToken (kaleoDefinitionId);
 create index IX_2CE1159B on KaleoTaskInstanceToken (kaleoInstanceId);

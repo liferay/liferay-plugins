@@ -694,6 +694,183 @@ public class KaleoTaskInstanceTokenUtil {
 	}
 
 	/**
+	* Returns all the kaleo task instance tokens where className = &#63; and classPK = &#63;.
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @return the matching kaleo task instance tokens
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByCN_CPK(
+		java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByCN_CPK(className, classPK);
+	}
+
+	/**
+	* Returns a range of all the kaleo task instance tokens where className = &#63; and classPK = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
+	* @return the range of matching kaleo task instance tokens
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByCN_CPK(
+		java.lang.String className, long classPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByCN_CPK(className, classPK, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the kaleo task instance tokens where className = &#63; and classPK = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @param start the lower bound of the range of kaleo task instance tokens
+	* @param end the upper bound of the range of kaleo task instance tokens (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching kaleo task instance tokens
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findByCN_CPK(
+		java.lang.String className, long classPK, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByCN_CPK(className, classPK, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first kaleo task instance token in the ordered set where className = &#63; and classPK = &#63;.
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo task instance token
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken findByCN_CPK_First(
+		java.lang.String className, long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException {
+		return getPersistence()
+				   .findByCN_CPK_First(className, classPK, orderByComparator);
+	}
+
+	/**
+	* Returns the first kaleo task instance token in the ordered set where className = &#63; and classPK = &#63;.
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchByCN_CPK_First(
+		java.lang.String className, long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCN_CPK_First(className, classPK, orderByComparator);
+	}
+
+	/**
+	* Returns the last kaleo task instance token in the ordered set where className = &#63; and classPK = &#63;.
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo task instance token
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken findByCN_CPK_Last(
+		java.lang.String className, long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException {
+		return getPersistence()
+				   .findByCN_CPK_Last(className, classPK, orderByComparator);
+	}
+
+	/**
+	* Returns the last kaleo task instance token in the ordered set where className = &#63; and classPK = &#63;.
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchByCN_CPK_Last(
+		java.lang.String className, long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByCN_CPK_Last(className, classPK, orderByComparator);
+	}
+
+	/**
+	* Returns the kaleo task instance tokens before and after the current kaleo task instance token in the ordered set where className = &#63; and classPK = &#63;.
+	*
+	* @param kaleoTaskInstanceTokenId the primary key of the current kaleo task instance token
+	* @param className the class name
+	* @param classPK the class p k
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next kaleo task instance token
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken[] findByCN_CPK_PrevAndNext(
+		long kaleoTaskInstanceTokenId, java.lang.String className,
+		long classPK,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException {
+		return getPersistence()
+				   .findByCN_CPK_PrevAndNext(kaleoTaskInstanceTokenId,
+			className, classPK, orderByComparator);
+	}
+
+	/**
+	* Removes all the kaleo task instance tokens where className = &#63; and classPK = &#63; from the database.
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByCN_CPK(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByCN_CPK(className, classPK);
+	}
+
+	/**
+	* Returns the number of kaleo task instance tokens where className = &#63; and classPK = &#63;.
+	*
+	* @param className the class name
+	* @param classPK the class p k
+	* @return the number of matching kaleo task instance tokens
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByCN_CPK(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByCN_CPK(className, classPK);
+	}
+
+	/**
 	* Caches the kaleo task instance token in the entity cache if it is enabled.
 	*
 	* @param kaleoTaskInstanceToken the kaleo task instance token

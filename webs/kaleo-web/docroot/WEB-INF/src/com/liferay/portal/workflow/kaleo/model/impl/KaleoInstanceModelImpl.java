@@ -93,13 +93,16 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoInstance"),
 			true);
-	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long COMPLETED_COLUMN_BITMASK = 2L;
-	public static long COMPLETIONDATE_COLUMN_BITMASK = 4L;
-	public static long KALEODEFINITIONID_COLUMN_BITMASK = 8L;
-	public static long KALEODEFINITIONNAME_COLUMN_BITMASK = 16L;
-	public static long KALEODEFINITIONVERSION_COLUMN_BITMASK = 32L;
-	public static long KALEOINSTANCEID_COLUMN_BITMASK = 64L;
+	public static long CLASSNAME_COLUMN_BITMASK = 1L;
+	public static long CLASSPK_COLUMN_BITMASK = 2L;
+	public static long COMPANYID_COLUMN_BITMASK = 4L;
+	public static long COMPLETED_COLUMN_BITMASK = 8L;
+	public static long COMPLETIONDATE_COLUMN_BITMASK = 16L;
+	public static long KALEODEFINITIONID_COLUMN_BITMASK = 32L;
+	public static long KALEODEFINITIONNAME_COLUMN_BITMASK = 64L;
+	public static long KALEODEFINITIONVERSION_COLUMN_BITMASK = 128L;
+	public static long USERID_COLUMN_BITMASK = 256L;
+	public static long KALEOINSTANCEID_COLUMN_BITMASK = 512L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoInstance"));
 
@@ -313,6 +316,14 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 
 	@Override
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -324,6 +335,10 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	@Override
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public long getOriginalUserId() {
+		return _originalUserId;
 	}
 
 	@Override
@@ -452,7 +467,17 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 
 	@Override
 	public void setClassName(String className) {
+		_columnBitmask |= CLASSNAME_COLUMN_BITMASK;
+
+		if (_originalClassName == null) {
+			_originalClassName = _className;
+		}
+
 		_className = className;
+	}
+
+	public String getOriginalClassName() {
+		return GetterUtil.getString(_originalClassName);
 	}
 
 	@Override
@@ -462,7 +487,19 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 
 	@Override
 	public void setClassPK(long classPK) {
+		_columnBitmask |= CLASSPK_COLUMN_BITMASK;
+
+		if (!_setOriginalClassPK) {
+			_setOriginalClassPK = true;
+
+			_originalClassPK = _classPK;
+		}
+
 		_classPK = classPK;
+	}
+
+	public long getOriginalClassPK() {
+		return _originalClassPK;
 	}
 
 	@Override
@@ -636,6 +673,10 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 
 		kaleoInstanceModelImpl._setOriginalCompanyId = false;
 
+		kaleoInstanceModelImpl._originalUserId = kaleoInstanceModelImpl._userId;
+
+		kaleoInstanceModelImpl._setOriginalUserId = false;
+
 		kaleoInstanceModelImpl._originalKaleoDefinitionId = kaleoInstanceModelImpl._kaleoDefinitionId;
 
 		kaleoInstanceModelImpl._setOriginalKaleoDefinitionId = false;
@@ -645,6 +686,12 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		kaleoInstanceModelImpl._originalKaleoDefinitionVersion = kaleoInstanceModelImpl._kaleoDefinitionVersion;
 
 		kaleoInstanceModelImpl._setOriginalKaleoDefinitionVersion = false;
+
+		kaleoInstanceModelImpl._originalClassName = kaleoInstanceModelImpl._className;
+
+		kaleoInstanceModelImpl._originalClassPK = kaleoInstanceModelImpl._classPK;
+
+		kaleoInstanceModelImpl._setOriginalClassPK = false;
 
 		kaleoInstanceModelImpl._originalCompleted = kaleoInstanceModelImpl._completed;
 
@@ -870,6 +917,8 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	private boolean _setOriginalCompanyId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
@@ -883,7 +932,10 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	private boolean _setOriginalKaleoDefinitionVersion;
 	private long _rootKaleoInstanceTokenId;
 	private String _className;
+	private String _originalClassName;
 	private long _classPK;
+	private long _originalClassPK;
+	private boolean _setOriginalClassPK;
 	private boolean _completed;
 	private boolean _originalCompleted;
 	private boolean _setOriginalCompleted;
