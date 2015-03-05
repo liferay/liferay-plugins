@@ -61,6 +61,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -327,8 +328,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected String buildResponseContent(
-			Object data, String message, int status)
-		throws Exception {
+			Object data, String message, int status) {
 
 		String responseContent = StringPool.BLANK;
 
@@ -341,9 +341,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				jsonObject.put("data", stackTrace);
 			}
 			else {
-				jsonObject.put(
-					"data",
-					JSONFactoryUtil.createJSONObject(String.valueOf(data)));
+				try {
+					jsonObject.put(
+						"data",
+						JSONFactoryUtil.createJSONObject(String.valueOf(data)));
+				}
+				catch (Exception e) {
+					return ReflectionUtil.throwException(e);
+				}
 			}
 
 			jsonObject.put("message", message);
@@ -905,8 +910,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void renderError(
-			int status, Exception e, String pattern, Object... arguments)
-		throws Exception {
+			int status, Exception e, String pattern, Object... arguments) {
 
 		Throwable rootCause = getRootCause(e);
 
@@ -929,8 +933,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		render(_VIEW_PATH_ERROR);
 	}
 
-	protected void renderError(int status, String pattern, Object... arguments)
-		throws Exception {
+	protected void renderError(
+		int status, String pattern, Object... arguments) {
 
 		AlloyException alloyException = new AlloyException(
 			translate("unspecified-cause"));
@@ -938,8 +942,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		renderError(status, alloyException, pattern, arguments);
 	}
 
-	protected void renderError(String pattern, Object... arguments)
-		throws Exception {
+	protected void renderError(String pattern, Object... arguments) {
 
 		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
 	}
