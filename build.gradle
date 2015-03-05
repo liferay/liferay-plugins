@@ -15,6 +15,18 @@ buildscript {
 }
 
 configure(allprojects) {
+	configurations {
+		all {
+			resolutionStrategy.cacheChangingModulesFor 5, 'minutes'
+		}
+	}
+
+	repositories {
+		maven {
+			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
+		}
+	}
+
 	File pluginSrcDir = file("${projectDir}/docroot")
 
 	if (!pluginSrcDir.exists()) {
@@ -67,10 +79,6 @@ configure(
 		FileTree sassDocrootDirFileTree
 
 		configurations {
-			all {
-				resolutionStrategy.cacheChangingModulesFor 5, 'minutes'
-			}
-
 			buildCssClasspath
 
 			portalWeb
@@ -143,6 +151,8 @@ configure(
 		Map projectCompileDependencies = gradle.compileDependencies.find {
 			project.path == it.projectPath
 		}
+
+		delete "${rootDir}/tmp"
 
 		if (projectCompileDependencies) {
 			projectCompileDependencies["compile"].each {
@@ -456,12 +466,6 @@ configure(
 
 		if (pluginPackagePropertiesFile.exists()) {
 			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
-		}
-	}
-
-	repositories {
-		maven {
-			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
 		}
 	}
 
