@@ -87,7 +87,13 @@
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<for list="${basedir},${sdk.dir}" param="ivy.xml.dir">
+	<path id="sdk.dependencies.path">
+		<dirset dir="${sdk.dir}" includes="dependencies/*" />
+	</path>
+
+	<pathconvert pathsep="," property="sdk.dependencies.path" refid="sdk.dependencies.path" targetos="unix" />
+
+	<for list="${basedir},${sdk.dir},${sdk.dependencies.path}" param="ivy.xml.dir">
 		<sequential>
 			<if>
 				<available file="@{ivy.xml.dir}/ivy.xml" />
@@ -109,6 +115,9 @@
 								<or>
 									<equals arg1="@{ivy.xml.dir}" arg2="${sdk.dir}" />
 									<antelope:endswith string="${ant.project.name}" with="-shared" />
+									<not>
+										<available file="@{ivy.xml.dir}/docroot" />
+									</not>
 								</or>
 								<then>
 									<ivy:retrieve
