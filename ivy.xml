@@ -16,8 +16,8 @@
 		<conf name="default" />
 		<conf name="internal" />
 		<conf name="provided" />
-		<conf name="test" />
 		<conf name="runtime" />
+		<conf name="test" />
 	</configurations>
 
 	<dependencies defaultconf="default">
