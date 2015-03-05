@@ -70,9 +70,18 @@ configure(
 			portalWeb
 		}
 
+		File sassDocrootDir
+
+		if (osgiPlugin) {
+			sassDocrootDir = file("${projectDir}/src/META-INF/resources")
+		}
+		else {
+			sassDocrootDir = file("${projectDir}/docroot")
+		}
+
 		args = [
 			"sass.dir=/",
-			"sass.docroot.dir=${projectDir}/docroot",
+			"sass.docroot.dir=${sassDocrootDir}",
 			"sass.portal.common.dir=${rootDir}/tmp/portal-web/html/css/common"
 		]
 
@@ -114,10 +123,6 @@ configure(
 		}
 
 		main = "com.liferay.portal.tools.SassToCssBuilder"
-
-		onlyIf {
-			pluginSrcDir.equals(file("${projectDir}/docroot"))
-		}
 	}
 
 	clean {
