@@ -153,38 +153,6 @@ speed-filters-enabled=false
 		</if>
 
 		<if>
-			<equals arg1="${portlet.framework}" arg2="scala" />
-			<then>
-				<move
-					file="${portlet.dir}/docroot/WEB-INF/src/ScalaPortlet.scala"
-					tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}ScalaPortlet.scala"
-				/>
-
-				<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
-
-portal-dependency-jars=scala-library.jar</echo>
-
-				<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-					<replacetoken><![CDATA[<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
-					<replacevalue><![CDATA[<portlet-class>@portlet.java.package.name@.@portlet.java.class.name@Portlet</portlet-class>]]></replacevalue>
-				</replace>
-
-				<replaceregexp match="&lt;/icon&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/icon&gt;" flags="s">
-					<fileset
-						dir="${portlet.dir}/docroot/WEB-INF"
-						includes="liferay-portlet.xml"
-					/>
-				</replaceregexp>
-
-				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
-					<replacetoken><![CDATA[</icon>]]></replacetoken>
-					<replacevalue><![CDATA[</icon>
-		<ajaxable>false</ajaxable>]]></replacevalue>
-				</replace>
-			</then>
-		</if>
-
-		<if>
 			<equals arg1="${portlet.framework}" arg2="spring_mvc" />
 			<then>
 				<move
