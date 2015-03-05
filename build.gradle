@@ -152,7 +152,7 @@ configure(
 		}
 
 		providedCompile(
-			[group: "com.liferay", name: "aQute.bnd", version: "2.3.0"],
+			[group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "2.4.1"],
 			[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
 			[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
 			[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
