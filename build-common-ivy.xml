@@ -630,6 +630,7 @@
 		>
 			<mapping conf="default" scope="compile" />
 			<mapping conf="provided" scope="provided" />
+			<mapping conf="runtime" scope="runtime" />
 		</ivy:makepom>
 
 		<ivy:publish
