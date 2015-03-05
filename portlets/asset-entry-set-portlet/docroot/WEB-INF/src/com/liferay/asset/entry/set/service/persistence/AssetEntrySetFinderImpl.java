@@ -130,9 +130,9 @@ public class AssetEntrySetFinderImpl
 
 		StringBundler sb = new StringBundler(17);
 
-		sb.append("((AssetSharingEntry.sharedToClassNameId = ");
+		sb.append("((AssetSharingEntry1.sharedToClassNameId = ");
 		sb.append(sharedToClassNameId);
-		sb.append(" AND AssetSharingEntry.sharedToClassPK = ");
+		sb.append(" AND AssetSharingEntry1.sharedToClassPK = ");
 		sb.append(sharedToClassPK);
 		sb.append(StringPool.CLOSE_PARENTHESIS);
 
@@ -140,13 +140,9 @@ public class AssetEntrySetFinderImpl
 				classNameId, classPK, sharedToClassNameId, sharedToClassPK)) {
 
 			sb.append(" AND ((AssetEntrySet.privateAssetEntrySet = [$FALSE$])");
-			sb.append(" OR AssetEntrySet.assetEntrySetId IN (SELECT ");
-			sb.append("AssetSharingEntry.classPK FROM AssetSharingEntry WHERE");
-			sb.append(" AssetSharingEntry.classNameId = ");
-			sb.append(_ASSET_ENTRY_SET_CLASS_NAME_ID);
-			sb.append(" AND AssetSharingEntry.sharedToClassNameId = ");
+			sb.append(" OR (AssetSharingEntry2.sharedToClassNameId = ");
 			sb.append(classNameId);
-			sb.append(" AND AssetSharingEntry.sharedToClassPK = ");
+			sb.append(" AND AssetSharingEntry2.sharedToClassPK = ");
 			sb.append(classPK);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 			sb.append(StringPool.CLOSE_PARENTHESIS);

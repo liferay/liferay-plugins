@@ -8,14 +8,18 @@
 			FROM
 				AssetEntrySet
 			INNER JOIN
-				AssetSharingEntry ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+				AssetSharingEntry AS AssetSharingEntry1 ON
+					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
+			INNER JOIN
+				AssetSharingEntry AS AssetSharingEntry2 ON
+					(AssetSharingEntry1.classNameId = AssetSharingEntry2.classNameId) AND
+					(AssetSharingEntry1.classPK = AssetSharingEntry2.classPK)
 			WHERE
 				(
 					(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
 					(AssetEntrySet.parentAssetEntrySetId = ?)
 				) AND
-				(AssetSharingEntry.classNameId = ?) AND
+				(AssetSharingEntry1.classNameId = ?) AND
 				([$SHARED_TO$])
 			ORDER BY
 				AssetEntrySet.createTime DESC
