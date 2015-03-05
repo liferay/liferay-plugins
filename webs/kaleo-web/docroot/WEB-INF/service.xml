@@ -199,6 +199,14 @@
 
 		<!-- Finder methods -->
 
+		<finder name="C_U" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="userId" />
+		</finder>
+		<finder name="CN_CPK" return-type="Collection">
+			<finder-column name="className" />
+			<finder-column name="classPK" />
+		</finder>
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
@@ -640,8 +648,19 @@
 
 		<!-- Finder methods -->
 
+		<finder name="assigneeClassName" return-type="Collection">
+			<finder-column name="assigneeClassName" />
+		</finder>
+		<finder name="ACN_ACP" return-type="Collection">
+			<finder-column name="assigneeClassName" />
+			<finder-column name="assigneeClassPK" />
+		</finder>
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
+		</finder>
+		<finder name="ACP_G" return-type="Collection">
+			<finder-column name="assigneeClassPK" />
+			<finder-column name="groupId" />
 		</finder>
 		<finder name="KaleoDefinitionId" return-type="Collection">
 			<finder-column name="kaleoDefinitionId" />
@@ -694,6 +713,10 @@
 
 		<!-- Finder methods -->
 
+		<finder name="CN_CPK" return-type="Collection">
+			<finder-column name="className" />
+			<finder-column name="classPK" />
+		</finder>
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
