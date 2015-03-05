@@ -57,13 +57,12 @@ List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(scopeGrou
 	</div>
 
 	<aui:script use="aui-base">
+		var updateRootKBFolderIdFm = A.one('#<portlet:namespace />updateRootKBFolderIdFm');
 		var rootKBFolderIdSelect = A.one('#<portlet:namespace />rootKBFolderId');
 
 		rootKBFolderIdSelect.on(
 			'change',
 			function() {
-				var updateRootKBFolderIdFm = A.one('#<portlet:namespace />updateRootKBFolderIdFm');
-
 				updateRootKBFolderIdFm.submit();
 			}
 		);
