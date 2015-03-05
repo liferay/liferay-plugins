@@ -1,63 +1,6 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_ATN">
-		<![CDATA[
-			SELECT
-				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
-			FROM
-				AssetEntrySet
-			INNER JOIN
-				AssetEntry ON
-					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
-			INNER JOIN
-				AssetEntries_AssetTags ON
-					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			INNER JOIN
-				AssetSharingEntry ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			LEFT JOIN
-				AssetTag ON
-					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
-			WHERE
-				(
-					(AssetEntrySet.creatorClassNameId = ?) OR
-					(AssetTag.name = ?)
-				) AND
-				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO$])
-		]]>
-	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.countByCCNI_CCPK_ATN">
-		<![CDATA[
-			SELECT
-				COUNT(DISTINCT AssetEntrySet.assetEntrySetId) AS COUNT_VALUE
-			FROM
-				AssetEntrySet
-			INNER JOIN
-				AssetEntry ON
-					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
-			INNER JOIN
-				AssetSharingEntry ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			LEFT JOIN
-				AssetEntries_AssetTags ON
-					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			LEFT JOIN
-				AssetTag ON
-					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
-			WHERE
-				(
-					(
-						(AssetEntrySet.creatorClassNameId = ?) AND
-						(AssetEntrySet.creatorClassPK = ?)
-					) [$AND_OR_CONNECTOR$]
-					(AssetTag.name = ?)
-				) AND
-				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO$])
-		]]>
-	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PASEI">
 		<![CDATA[
 			SELECT
@@ -71,67 +14,6 @@
 				(
 					(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
 					(AssetEntrySet.parentAssetEntrySetId = ?)
-				) AND
-				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO$])
-			ORDER BY
-				AssetEntrySet.createTime DESC
-		]]>
-	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_ATN">
-		<![CDATA[
-			SELECT
-				DISTINCT {AssetEntrySet.*}
-			FROM
-				AssetEntrySet
-			INNER JOIN
-				AssetEntry ON
-					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
-			INNER JOIN
-				AssetEntries_AssetTags ON
-					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			INNER JOIN
-				AssetSharingEntry ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			LEFT JOIN
-				AssetTag ON
-					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
-			WHERE
-				(
-					(AssetEntrySet.creatorClassNameId = ?) OR
-					(AssetTag.name = ?)
-				) AND
-				(AssetSharingEntry.classNameId = ?) AND
-				([$SHARED_TO$])
-			ORDER BY
-				AssetEntrySet.createTime DESC
-		]]>
-	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCCNI_CCPK_ATN">
-		<![CDATA[
-			SELECT
-				DISTINCT {AssetEntrySet.*}
-			FROM
-				AssetEntrySet
-			INNER JOIN
-				AssetEntry ON
-					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
-			INNER JOIN
-				AssetSharingEntry ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			LEFT JOIN
-				AssetEntries_AssetTags ON
-					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
-			LEFT JOIN
-				AssetTag ON
-					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
-			WHERE
-				(
-					(
-						(AssetEntrySet.creatorClassNameId = ?) AND
-						(AssetEntrySet.creatorClassPK = ?)
-					) [$AND_OR_CONNECTOR$]
-					(AssetTag.name = ?)
 				) AND
 				(AssetSharingEntry.classNameId = ?) AND
 				([$SHARED_TO$])
