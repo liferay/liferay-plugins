@@ -23,7 +23,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.oauth2.Oauth2;
-import com.google.api.services.oauth2.model.Userinfo;
+import com.google.api.services.oauth2.model.Userinfoplus;
 
 import com.liferay.google.login.util.WebKeys;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
@@ -66,6 +66,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Sergio González
+ * @author Federico Budassi
  */
 public class GoogleLoginAction extends BaseStrutsAction {
 
@@ -130,7 +131,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	}
 
 	protected User addUser(
-			HttpSession session, long companyId, Userinfo userinfo)
+			HttpSession session, long companyId, Userinfoplus userinfo)
 		throws Exception {
 
 		long creatorUserId = 0;
@@ -234,7 +235,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 		builder.setAccessType(accessType);
 
-		builder.setApprovalPrompt("force");
+		builder.setApprovalPrompt("auto");
 
 		return builder.build();
 	}
@@ -244,7 +245,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			_REDIRECT_URI;
 	}
 
-	protected Userinfo getUserinfo(
+	protected Userinfoplus getUserinfo(
 			com.google.api.services.oauth2.Oauth2.Userinfo oAuth2Userinfo)
 		throws Exception {
 
@@ -254,13 +255,13 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		return oAuth2UserinfoGet.execute();
 	}
 
-	protected Userinfo getUserinfo(Credential credentials) throws Exception {
+	protected Userinfoplus getUserinfo(Credential credentials) throws Exception {
 		Oauth2.Builder builder = new Oauth2.Builder(
 			new NetHttpTransport(), new JacksonFactory(), credentials);
 
 		Oauth2 oauth2 = builder.build();
 
-		Userinfo userinfo = getUserinfo(oauth2.userinfo());
+		Userinfoplus userinfo = getUserinfo(oauth2.userinfo());
 
 		if ((userinfo == null) || (userinfo.getId() == null)) {
 			throw new PrincipalException();
@@ -326,7 +327,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			HttpSession session, long companyId, Credential credential)
 		throws Exception {
 
-		Userinfo userinfo = getUserinfo(credential);
+		Userinfoplus userinfo = getUserinfo(credential);
 
 		if (userinfo == null) {
 			return null;
@@ -376,7 +377,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	}
 
 	protected void updateExpandoValues(
-			User user, Userinfo userinfo, String accessToken,
+			User user, Userinfoplus userinfo, String accessToken,
 			String refreshToken)
 		throws Exception {
 
@@ -396,7 +397,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			user.getUserId(), userinfo.getId());
 	}
 
-	protected User updateUser(User user, Userinfo userinfo) throws Exception {
+	protected User updateUser(User user, Userinfoplus userinfo) throws Exception {
 		String emailAddress = userinfo.getEmail();
 		String firstName = userinfo.getGivenName();
 		String lastName = userinfo.getFamilyName();
@@ -459,11 +460,11 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 	private static final List<String> _SCOPES_DRIVE = Arrays.asList(
 		"https://www.googleapis.com/auth/drive",
-		"https://www.googleapis.com/auth/userinfo.email",
-		"https://www.googleapis.com/auth/userinfo.profile");
+		"email",
+		"profile");
 
 	private static final List<String> _SCOPES_LOGIN = Arrays.asList(
-		"https://www.googleapis.com/auth/userinfo.email",
-		"https://www.googleapis.com/auth/userinfo.profile");
+		"email",
+		"profile");
 
 }
