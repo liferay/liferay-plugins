@@ -35,7 +35,7 @@ List<KBFolder> kbFolders = KnowledgeBaseUtil.getAlternateRootKBFolders(scopeGrou
 
 	<div class="kb-field-wrapper kbarticle-root-selector">
 		<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
-			<aui:select label="" name="rootKBFolderId">
+			<aui:select label="" name="rootKBFolderId" title="root-folder">
 
 				<%
 				for (KBFolder kbFolder : kbFolders) {
