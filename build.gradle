@@ -17,7 +17,7 @@ buildscript {
 configure(allprojects) {
 	configurations {
 		all {
-			resolutionStrategy.cacheChangingModulesFor 5, 'minutes'
+			resolutionStrategy.cacheChangingModulesFor 15, 'minutes'
 		}
 	}
 
