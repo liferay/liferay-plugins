@@ -82,14 +82,17 @@ public class EmailNotificationSender
 			from, subject, notificationMessage, true);
 
 		mailMessage.setTo(
-			getInternetAddresses(notificationRecipients,
-			NotificationConstants.EMAIL_RECIPIENT_TYPE.TO.type));
+			getInternetAddresses(
+				notificationRecipients,
+				NotificationConstants.EMAIL_RECIPIENT_TYPE.TO.type));
 		mailMessage.setCC(
-			getInternetAddresses(notificationRecipients,
-			NotificationConstants.EMAIL_RECIPIENT_TYPE.CC.type));
+			getInternetAddresses(
+				notificationRecipients,
+				NotificationConstants.EMAIL_RECIPIENT_TYPE.CC.type));
 		mailMessage.setBCC(
-			getInternetAddresses(notificationRecipients,
-			NotificationConstants.EMAIL_RECIPIENT_TYPE.BCC.type));
+			getInternetAddresses(
+				notificationRecipients,
+				NotificationConstants.EMAIL_RECIPIENT_TYPE.BCC.type));
 
 		MailServiceUtil.sendEmail(mailMessage);
 	}

@@ -40,6 +40,7 @@ public class NotificationRecipient {
 		_fullName = user.getFullName();
 		_screenName = user.getScreenName();
 		_userId = user.getUserId();
+
 		_emailRecipientType = emailRecipientType;
 	}
 

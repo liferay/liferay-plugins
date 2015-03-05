@@ -53,7 +53,7 @@ public class Notification {
 			recipient.getEmailRecipientType());
 
 		if (recipients == null) {
-			recipients = new HashSet<Recipient>();
+			recipients = new HashSet<>();
 		}
 
 		recipients.add(recipient);
@@ -116,10 +116,8 @@ public class Notification {
 	private String _description;
 	private ExecutionType _executionType;
 	private String _name;
-	private Set<NotificationType> _notificationTypes =
-		new HashSet<NotificationType>();
-	private Map<Integer, Set<Recipient>> _recipientsMap =
-		new HashMap<Integer, Set<Recipient>>();
+	private Set<NotificationType> _notificationTypes = new HashSet<>();
+	private Map<Integer, Set<Recipient>> _recipientsMap = new HashMap<>();
 	private String _template;
 	private TemplateLanguage _templateLanguage;
 
