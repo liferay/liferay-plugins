@@ -1797,6 +1797,12 @@ Please find a solution that does not require portal-impl.jar.
 								</classpath>
 								<property name="-sourcepath" value="@{module.dir}" />
 							</bnd>
+
+							<baseline-jar
+								bndFile="@{module.dir}/bnd.bnd"
+								bndRootFile="${sdk.dir}/common.bnd"
+								newJarFile="${plugin.file}"
+							/>
 						</then>
 					</if>
 
