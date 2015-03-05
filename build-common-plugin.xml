@@ -581,20 +581,25 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			</then>
 		</if>
 
-		<javac
-			classpathref="jspc.classpath"
-			compiler="${javac.compiler}"
-			deprecation="${javac.deprecation}"
-			destdir="${jspc.classes.dir}"
-			encoding="${javac.encoding}"
-			errorProperty="jspc.javac.fail"
-			failonerror="false"
-			includeAntRuntime="false"
-			nowarn="on"
-			srcdir="${jspc.classes.dir}"
-		/>
+		<if>
+			<available file="${jspc.classes.dir}" type="dir" />
+			<then>
+				<javac
+					classpathref="jspc.classpath"
+					compiler="${javac.compiler}"
+					deprecation="${javac.deprecation}"
+					destdir="${jspc.classes.dir}"
+					encoding="${javac.encoding}"
+					errorProperty="jspc.javac.fail"
+					failonerror="false"
+					includeAntRuntime="false"
+					nowarn="on"
+					srcdir="${jspc.classes.dir}"
+				/>
 
-		<delete dir="${jspc.classes.dir}" quiet="true" />
+				<delete dir="${jspc.classes.dir}" quiet="true" />
+			</then>
+		</if>
 
 		<if>
 			<istrue value="${jspc.javac.fail}" />
