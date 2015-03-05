@@ -40,7 +40,9 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
@@ -93,6 +95,9 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
+
+		filterAssetTagNames(payloadJSONObject);
+
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
@@ -254,6 +259,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setModifiedTime(now.getTime());
 
+		filterAssetTagNames(payloadJSONObject);
+
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
@@ -402,6 +409,28 @@ public class AssetEntrySetLocalServiceImpl
 		}
 	}
 
+	protected void filterAssetTagNames(JSONObject payloadJSONObject) {
+		String[] assetTagNames = StringUtil.split(
+			payloadJSONObject.getString(
+				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
+
+		StringBundler sb = new StringBundler(assetTagNames.length * 2);
+
+		for (String assetTagName : assetTagNames) {
+			if (isValidAssetTagName(assetTagName)) {
+				sb.append(assetTagName);
+				sb.append(StringPool.COMMA);
+			}
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		payloadJSONObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES, sb.toString());
+	}
+
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long createTime, boolean gtCreateTime,
 			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
@@ -491,6 +520,14 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return returnedSharedToJSONArray;
+	}
+
+	protected boolean isValidAssetTagName(String assetTagName) {
+		if (!Validator.isChar(assetTagName.charAt(0))) {
+			return false;
+		}
+
+		return Validator.isAlphanumericName(assetTagName);
 	}
 
 	protected void setDisplayFields(
