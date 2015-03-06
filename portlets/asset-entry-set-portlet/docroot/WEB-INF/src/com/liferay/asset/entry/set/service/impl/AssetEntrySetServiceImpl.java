@@ -73,40 +73,44 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public AssetEntrySet getAssetEntrySet(
-			long assetEntrySetId, int childAssetEntrySetsLimit)
+			long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
 		AssetEntrySetPermissionUtil.check(
 			getPermissionChecker(), assetEntrySetId, ActionKeys.VIEW);
 
 		return assetEntrySetLocalService.getAssetEntrySet(
-			assetEntrySetId, childAssetEntrySetsLimit);
+			getUserId(), assetEntrySetId, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 	}
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long createTime, long parentAssetEntrySetId, String sharedTo,
-			int childAssetEntrySetsLimit, int start, int end)
+			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getNewAssetEntrySets(
 			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, start, end);
+			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long createTime, long parentAssetEntrySetId, String sharedTo,
-			int childAssetEntrySetsLimit, int start, int end)
+			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getOldAssetEntrySets(
 			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, start, end);
+			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
 	}
 
 	@Override

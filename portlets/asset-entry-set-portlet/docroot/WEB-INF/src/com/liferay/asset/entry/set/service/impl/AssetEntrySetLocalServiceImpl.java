@@ -172,26 +172,31 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public AssetEntrySet getAssetEntrySet(
-			long assetEntrySetId, int childAssetEntrySetsLimit)
+			long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
 			assetEntrySetId);
 
-		setDisplayFields(assetEntrySet, childAssetEntrySetsLimit);
+		setDisplayFields(
+			userId, assetEntrySet, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 
 		return assetEntrySet;
 	}
 
 	@Override
 	public List<AssetEntrySet> getChildAssetEntrySets(
-			long parentAssetEntrySetId, int start, int end,
+			long userId, long parentAssetEntrySetId, int start, int end,
 			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
 
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetPersistence.findByParentAssetEntrySetId(
 				parentAssetEntrySetId, start, end, orderByComparator);
+
+		setLikedParticipants(userId, assetEntrySets, 0);
 
 		setParticipants(assetEntrySets);
 
@@ -202,24 +207,24 @@ public class AssetEntrySetLocalServiceImpl
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
-			int start, int end)
+			int likedParticipantsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, true, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, start, end);
+			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
-			int start, int end)
+			int likedParticipantsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, false, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, start, end);
+			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
 	}
 
 	@Override
@@ -430,7 +435,8 @@ public class AssetEntrySetLocalServiceImpl
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long createTime, boolean gtCreateTime,
 			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
-			int childAssetEntrySetsLimit, int start, int end)
+			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
@@ -443,7 +449,9 @@ public class AssetEntrySetLocalServiceImpl
 				classNameIdAndClassPKOVP.getValue(), createTime, gtCreateTime,
 				parentAssetEntrySetId, sharedToJSONArray, start, end);
 
-		setDisplayFields(assetEntrySets, childAssetEntrySetsLimit);
+		setDisplayFields(
+			userId, assetEntrySets, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 
 		return assetEntrySets;
 	}
@@ -527,22 +535,28 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setDisplayFields(
-			AssetEntrySet assetEntrySet, int childAssetEntrySetsLimit)
+			long userId, AssetEntrySet assetEntrySet,
+			int childAssetEntrySetsLimit, int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
-		assetEntrySet.setChildAssetEntrySets(childAssetEntrySetsLimit);
+		assetEntrySet.setChildAssetEntrySets(userId, childAssetEntrySetsLimit);
+
+		setLikedParticipants(userId, assetEntrySet, likedParticipantsLimit);
 
 		setParticipants(assetEntrySet);
 	}
 
 	protected void setDisplayFields(
-			List<AssetEntrySet> assetEntrySets, int childAssetEntrySetsLimit)
-		throws PortalException, SystemException {
+		long userId, List<AssetEntrySet> assetEntrySets,
+		int childAssetEntrySetsLimit, int likedParticipantsLimit)
+	throws PortalException, SystemException {
 
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setDisplayFields(assetEntrySet, childAssetEntrySetsLimit);
-		}
+	for (AssetEntrySet assetEntrySet : assetEntrySets) {
+		setDisplayFields(
+			userId, assetEntrySet, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 	}
+}
 
 	protected void setLikedParticipants(
 			long userId, AssetEntrySet assetEntrySet,
