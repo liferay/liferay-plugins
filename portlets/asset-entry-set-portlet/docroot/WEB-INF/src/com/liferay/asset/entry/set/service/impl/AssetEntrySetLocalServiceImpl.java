@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -55,6 +54,7 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -410,25 +410,21 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void filterAssetTagNames(JSONObject payloadJSONObject) {
-		String[] assetTagNames = StringUtil.split(
+		List<String> newAssetTagNames = new ArrayList<String>();
+
+		String[] curAssetTagNames = StringUtil.split(
 			payloadJSONObject.getString(
 				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
 
-		StringBundler sb = new StringBundler(assetTagNames.length * 2);
-
-		for (String assetTagName : assetTagNames) {
+		for (String assetTagName : curAssetTagNames) {
 			if (isValidAssetTagName(assetTagName)) {
-				sb.append(assetTagName);
-				sb.append(StringPool.COMMA);
+				newAssetTagNames.add(assetTagName);
 			}
 		}
 
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
 		payloadJSONObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES, sb.toString());
+			AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES,
+			StringUtil.merge(newAssetTagNames));
 	}
 
 	protected List<AssetEntrySet> getAssetEntrySets(
