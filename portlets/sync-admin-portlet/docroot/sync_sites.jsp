@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String keywords = ParamUtil.getString(request, "keywords");
-
 String tabs1 = ParamUtil.getString(request, "tabs1", "sync-sites");
+
+String keywords = ParamUtil.getString(request, "keywords");
 
 int delta = ParamUtil.getInteger(request, "delta", SearchContainer.DEFAULT_DELTA);
 
@@ -29,8 +29,8 @@ String currentURL = currentURLObj.toString();
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("delta", String.valueOf(delta));
 portletURL.setParameter("tabs1", tabs1);
+portletURL.setParameter("delta", String.valueOf(delta));
 %>
 
 <aui:nav-bar>
