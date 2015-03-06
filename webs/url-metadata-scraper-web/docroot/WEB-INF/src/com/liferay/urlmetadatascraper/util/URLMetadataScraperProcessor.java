@@ -79,7 +79,7 @@ public class URLMetadataScraperProcessor {
 			domain = HttpUtil.getDomain(url);
 		}
 
-		jsonObject.put("shortURL", domain.toUpperCase());
+		jsonObject.put("shortURL", domain.toLowerCase());
 
 		jsonObject.put("success", true);
 		jsonObject.put("title", title);
@@ -171,8 +171,12 @@ public class URLMetadataScraperProcessor {
 				return false;
 			}
 
-			if ((bufferedImage.getWidth() >= _MINIMUM_IMAGE_SIZE) &&
-				(bufferedImage.getHeight() >= _MINIMUM_IMAGE_SIZE)) {
+			int height = bufferedImage.getHeight();
+			int width = bufferedImage.getWidth();
+
+			if (((height * width) >= _MINIMUM_IMAGE_AREA) &&
+				(height >= _MINIMUM_IMAGE_DIMENSION) &&
+				(width >= _MINIMUM_IMAGE_DIMENSION)) {
 
 				return true;
 			}
@@ -185,6 +189,8 @@ public class URLMetadataScraperProcessor {
 
 	private static int _MAXIMUM_IMAGE_URLS = 10;
 
-	private static int _MINIMUM_IMAGE_SIZE = 120;
+	private static int _MINIMUM_IMAGE_AREA = 1000;
+
+	private static int _MINIMUM_IMAGE_DIMENSION = 80;
 
 }
