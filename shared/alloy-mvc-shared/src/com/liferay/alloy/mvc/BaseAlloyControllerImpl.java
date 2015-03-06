@@ -328,7 +328,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected String buildResponseContent(
-			Object data, String message, int status) {
+		Object data, String message, int status) {
 
 		String responseContent = StringPool.BLANK;
 
@@ -910,7 +910,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void renderError(
-			int status, Exception e, String pattern, Object... arguments) {
+		int status, Exception e, String pattern, Object... arguments) {
 
 		Throwable rootCause = getRootCause(e);
 
@@ -943,7 +943,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void renderError(String pattern, Object... arguments) {
-
 		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
 	}
 
