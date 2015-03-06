@@ -47,6 +47,14 @@ public class AssetEntrySetParticipantInfoUtil {
 			participantJSONObject, classNameId, classPK, includePortraitURL);
 	}
 
+	public static boolean isMember(
+		long classNameId, long classPK, long sharedToClassNameId,
+		long sharedToClassPK) {
+
+		return getAssetEntrySetParticipantInfo().isMember(
+			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
+	}
+
 	public void setAssetEntrySetParticipantInfo(
 		AssetEntrySetParticipantInfo assetEntrySetParticipantInfo) {
 

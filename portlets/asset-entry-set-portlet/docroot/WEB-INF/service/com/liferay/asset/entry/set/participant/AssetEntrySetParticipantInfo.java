@@ -32,4 +32,8 @@ public interface AssetEntrySetParticipantInfo {
 			boolean includePortraitURL)
 		throws PortalException, SystemException;
 
+	public boolean isMember(
+		long classNameId, long classPK, long sharedToClassNameId,
+		long sharedToClassPK);
+
 }

@@ -25,6 +25,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
@@ -69,6 +70,33 @@ public class AssetEntrySetParticipantInfoImpl
 
 		return participantJSONObject;
 	}
+
+	public boolean isMember(
+		long classNameId, long classPK, long sharedToClassNameId,
+		long sharedToClassPK) {
+
+		if (classNameId != _USER_CLASS_NAME_ID) {
+			return false;
+		}
+
+		if (sharedToClassNameId == _USER_CLASS_NAME_ID) {
+			return (classPK == sharedToClassPK);
+		}
+
+		try {
+			if (classNameId == _GROUP_CLASS_NAME_ID) {
+				return GroupLocalServiceUtil.hasUserGroup(
+					classPK, sharedToClassPK);
+			}
+		}
+		catch (Exception e) {
+		}
+
+		return false;
+	}
+
+	private static final long _GROUP_CLASS_NAME_ID =
+		ClassNameLocalServiceUtil.getClassNameId(Group.class);
 
 	private static final String _LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING =
 		PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
