@@ -42,38 +42,7 @@ public class AdminPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		try {
-			PortletPreferences portletPreferences =
-				PrefsPropsUtil.getPreferences(
-					CompanyThreadLocal.getCompanyId());
-
-			boolean allowUserPersonalSites = ParamUtil.getBoolean(
-				actionRequest, "allowUserPersonalSites");
-
-			portletPreferences.setValue(
-				PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
-				String.valueOf(allowUserPersonalSites));
-
-			boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
-
-			portletPreferences.setValue(
-				PortletPropsKeys.SYNC_SERVICES_ENABLED,
-				String.valueOf(enabled));
-
-			int maxConnections = ParamUtil.getInteger(
-				actionRequest, "maxConnections");
-
-			portletPreferences.setValue(
-				PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
-				String.valueOf(maxConnections));
-
-			int pollInterval = ParamUtil.getInteger(
-				actionRequest, "pollInterval");
-
-			portletPreferences.setValue(
-				PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
-				String.valueOf(pollInterval));
-
-			portletPreferences.store();
+			doUpdatePreferences(actionRequest, actionResponse);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
@@ -107,6 +76,41 @@ public class AdminPortlet extends MVCPortlet {
 
 			GroupLocalServiceUtil.updateGroup(group);
 		}
+	}
+
+	protected void doUpdatePreferences(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
+			CompanyThreadLocal.getCompanyId());
+
+		boolean allowUserPersonalSites = ParamUtil.getBoolean(
+			actionRequest, "allowUserPersonalSites");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
+			String.valueOf(allowUserPersonalSites));
+
+		boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_SERVICES_ENABLED, String.valueOf(enabled));
+
+		int maxConnections = ParamUtil.getInteger(
+			actionRequest, "maxConnections");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
+			String.valueOf(maxConnections));
+
+		int pollInterval = ParamUtil.getInteger(actionRequest, "pollInterval");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
+			String.valueOf(pollInterval));
+
+		portletPreferences.store();
 	}
 
 }
