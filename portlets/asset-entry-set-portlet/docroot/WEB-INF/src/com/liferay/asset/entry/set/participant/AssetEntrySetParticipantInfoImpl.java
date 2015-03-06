@@ -80,7 +80,11 @@ public class AssetEntrySetParticipantInfoImpl
 		}
 
 		if (sharedToClassNameId == _USER_CLASS_NAME_ID) {
-			return (classPK == sharedToClassPK);
+			if (classPK == sharedToClassPK) {
+				return true;
+			}
+
+			return false;
 		}
 
 		try {

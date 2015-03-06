@@ -128,22 +128,24 @@ public class AssetEntrySetFinderImpl
 		long classNameId, long classPK, long sharedToClassNameId,
 		long sharedToClassPK) {
 
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(15);
 
-		sb.append("((AssetSharingEntry1.sharedToClassNameId = ");
+		sb.append("(((AssetSharingEntry1.sharedToClassNameId = ");
 		sb.append(sharedToClassNameId);
-		sb.append(" AND AssetSharingEntry1.sharedToClassPK = ");
+		sb.append(") AND (AssetSharingEntry1.sharedToClassPK = ");
 		sb.append(sharedToClassPK);
+		sb.append(StringPool.CLOSE_PARENTHESIS);
 		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		if (!AssetEntrySetParticipantInfoUtil.isMember(
 				classNameId, classPK, sharedToClassNameId, sharedToClassPK)) {
 
 			sb.append(" AND ((AssetEntrySet.privateAssetEntrySet = [$FALSE$])");
-			sb.append(" OR (AssetSharingEntry2.sharedToClassNameId = ");
+			sb.append(" OR ((AssetSharingEntry2.sharedToClassNameId = ");
 			sb.append(classNameId);
-			sb.append(" AND AssetSharingEntry2.sharedToClassPK = ");
+			sb.append(") AND (AssetSharingEntry2.sharedToClassPK = ");
 			sb.append(classPK);
+			sb.append(StringPool.CLOSE_PARENTHESIS);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 		}
