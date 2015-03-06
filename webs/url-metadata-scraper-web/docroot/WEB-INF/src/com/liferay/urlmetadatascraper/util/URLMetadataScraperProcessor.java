@@ -122,7 +122,7 @@ public class URLMetadataScraperProcessor {
 			if (isValidImageURL(imageURL) && !imageURLs.contains(imageURL)) {
 				imageURLs.add(imageURL);
 
-				if (imageURLs.size() >= _MAXIMUM_IMAGE_URLS) {
+				if (imageURLs.size() >= _IMAGE_URLS_MAXIMUM) {
 					break;
 				}
 			}
@@ -174,9 +174,9 @@ public class URLMetadataScraperProcessor {
 			int height = bufferedImage.getHeight();
 			int width = bufferedImage.getWidth();
 
-			if (((height * width) >= _MINIMUM_IMAGE_AREA) &&
-				(height >= _MINIMUM_IMAGE_DIMENSION) &&
-				(width >= _MINIMUM_IMAGE_DIMENSION)) {
+			if (((height * width) >= _IMAGE_AREA_MINIMUM) &&
+				(height >= _IMAGE_DIMENSION_MINIMUM) &&
+				(width >= _IMAGE_DIMENSION_MINIMUM)) {
 
 				return true;
 			}
@@ -187,10 +187,10 @@ public class URLMetadataScraperProcessor {
 		return false;
 	}
 
-	private static int _MAXIMUM_IMAGE_URLS = 10;
+	private static int _IMAGE_AREA_MINIMUM = 1000;
 
-	private static int _MINIMUM_IMAGE_AREA = 1000;
+	private static int _IMAGE_DIMENSION_MINIMUM = 80;
 
-	private static int _MINIMUM_IMAGE_DIMENSION = 80;
+	private static int _IMAGE_URLS_MAXIMUM = 10;
 
 }
