@@ -70,6 +70,24 @@
 	<bean class="com.liferay.portal.search.solr.SolrIndexSearcher" id="com.liferay.portal.search.solr.SolrIndexSearcher">
 		<property name="facetProcessor" ref="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" />
 		<property name="querySuggester" ref="com.liferay.portal.search.solr.SolrQuerySuggester" />
+		<property name="queryTranslator">
+			<bean class="com.liferay.portal.search.solr.internal.query.SolrQueryTranslator">
+				<property name="booleanQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.BooleanQueryTranslatorImpl" />
+				</property>
+				<property name="termQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.TermQueryTranslatorImpl">
+						<property name="queryPreProcessConfiguration" ref="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" />
+					</bean>
+				</property>
+				<property name="termRangeQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.TermRangeQueryTranslatorImpl" />
+				</property>
+				<property name="wildcardQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.WildcardQueryTranslatorImpl" />
+				</property>
+			</bean>
+		</property>
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 		<property name="swallowException" value="true" />
 	</bean>
@@ -100,6 +118,7 @@
 	<!-- References -->
 
 	<reference id="com.liferay.portal.kernel.messaging.MessageBus" interface="com.liferay.portal.kernel.messaging.MessageBus" timeout="30000" />
+	<reference id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" interface="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" timeout="30000" />
 
 	<!-- Configurator -->
 

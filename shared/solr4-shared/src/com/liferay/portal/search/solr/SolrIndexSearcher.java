@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryConfig;
-import com.liferay.portal.kernel.search.QueryTranslatorUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
@@ -34,13 +33,13 @@ import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.RangeFacet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
+import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.kernel.search.util.SearchUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.SetUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -77,7 +76,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	@Override
 	public String getQueryString(SearchContext searchContext, Query query) {
-		return translateQuery(searchContext, query);
+		return translateQuery(query, searchContext);
 	}
 
 	@Override
@@ -167,6 +166,10 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	public void setFacetProcessor(FacetProcessor<SolrQuery> facetProcessor) {
 		_facetProcessor = facetProcessor;
+	}
+
+	public void setQueryTranslator(QueryTranslator<String> queryTranslator) {
+		_queryTranslator = queryTranslator;
 	}
 
 	public void setSolrServer(SolrServer solrServer) {
@@ -377,9 +380,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			solrQuery.setRows(0);
 		}
 
-		QueryTranslatorUtil.translateForSolr(query);
-
-		String queryString = translateQuery(searchContext, query);
+		String queryString = translateQuery(query, searchContext);
 
 		solrQuery.setQuery(queryString);
 
@@ -387,7 +388,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"The search engine processed " + solrQuery.toString() +
+				"The search engine processed " + solrQuery.getQuery() +
 					" in " + queryResponse.getElapsedTime() + " ms");
 		}
 
@@ -486,25 +487,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return document;
 	}
 
-	protected String translateQuery(SearchContext searchContext, Query query) {
-		String queryString = query.toString();
-
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(StringPool.PLUS);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(queryString);
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.PLUS);
-		sb.append(Field.COMPANY_ID);
-		sb.append(StringPool.COLON);
-		sb.append(searchContext.getCompanyId());
-
-		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(
-			sb.toString(), searchContext.getKeywords());
-
-		return solrPostProcesor.postProcess();
+	protected String translateQuery(Query query, SearchContext searchContext) {
+		return _queryTranslator.translate(query, searchContext);
 	}
 
 	protected void updateFacetCollectors(
@@ -540,6 +524,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		SolrIndexSearcher.class);
 
 	private FacetProcessor<SolrQuery> _facetProcessor;
+	private QueryTranslator<String> _queryTranslator;
 	private SolrServer _solrServer;
 	private boolean _swallowException;
 
