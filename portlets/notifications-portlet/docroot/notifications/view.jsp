@@ -112,8 +112,8 @@
 					notificationsCount: notificationsCount,
 					notificationsNode: '.user-notifications-list .user-notifications',
 					paginationInfoNode: '.pagination .page-info',
-					previousPageNode: '.pagination .previous',
 					portletKey: '<%= portletDisplay.getId() %>',
+					previousPageNode: '.pagination .previous',
 					start: 0
 				}
 			);
@@ -124,7 +124,7 @@
 					namespace: '<portlet:namespace />',
 					notificationsList: notificationsList
 				}
-			)
+			);
 		</aui:script>
 	</c:otherwise>
 </c:choose>
