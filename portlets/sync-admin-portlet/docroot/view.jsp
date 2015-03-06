@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "sync-admin");
+String tabs1 = ParamUtil.getString(request, "tabs1", "general");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
@@ -25,14 +25,14 @@ portletURL.setParameter("tabs1", tabs1);
 %>
 
 <liferay-ui:tabs
-	names="sync-admin,sync-sites"
+	names="general,sync-sites"
 	param="tabs1"
-	portletURL="<%= portletURL %>"
+	url="<%= portletURL.toString() %>"
 />
 
 <c:choose>
-	<c:when test='<%= tabs1.equals("sync-admin") %>'>
-		<liferay-util:include page="/sync_admin.jsp" servletContext="<%= application %>" />
+	<c:when test='<%= tabs1.equals("general") %>'>
+		<liferay-util:include page="/general.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>
 		<liferay-util:include page="/sync_sites.jsp" servletContext="<%= application %>" />

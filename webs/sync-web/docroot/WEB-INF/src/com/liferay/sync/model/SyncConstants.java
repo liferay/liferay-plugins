@@ -25,19 +25,6 @@ public class SyncConstants extends DLSyncConstants {
 
 	public static final String EVENT_TRASH = EVENT_MOVE_TO_TRASH;
 
-	public static final String FULL_ACCESS_PERMISSION =
-		"full-access-permission";
-
-	public static final int PERMISSIONS_DEFAULT = 0;
-
-	public static final int PERMISSIONS_FULL_ACCESS = 4;
-
-	public static final int PERMISSIONS_NONE = 1;
-
-	public static final int PERMISSIONS_VIEW_AND_ADD_DISCUSSION = 3;
-
-	public static final int PERMISSIONS_VIEW_ONLY = 2;
-
 	public static final String TYPE_PRIVATE_WORKING_COPY = "privateWorkingCopy";
 
 }

@@ -19,7 +19,7 @@
 <%
 String keywords = ParamUtil.getString(request, "keywords");
 
-String tabs1 = ParamUtil.getString(request, "tabs1", "sync-admin");
+String tabs1 = ParamUtil.getString(request, "tabs1", "sync-sites");
 
 int delta = ParamUtil.getInteger(request, "delta", SearchContainer.DEFAULT_DELTA);
 
@@ -34,38 +34,17 @@ portletURL.setParameter("tabs1", tabs1);
 %>
 
 <aui:nav-bar>
-	<aui:nav cssClass="navbar-nav" id="toolbarContainer">
+	<aui:nav cssClass="hide navbar-nav" id="toolbarContainer">
+		<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "enableSites();" %>' iconCssClass="icon-ok" label="enable-sync-sites" />
 
-		<%
-		String taglibURL = "javascript:" + renderResponse.getNamespace() + "configureSite('true');";
-		%>
+		<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "disableSites();" %>' iconCssClass="icon-remove" label="disable-sync-sites" />
 
-		<aui:nav-item href="<%= taglibURL %>" iconCssClass="icon-ok" label="enable-sync-sites" />
+		<aui:nav-item dropdown="<%= true %>" iconCssClass="icon-lock" label="default-file-permissions">
+			<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "setPermissionsViewOnly();" %>' label="view-only" />
 
-		<%
-		taglibURL = "javascript:" + renderResponse.getNamespace() + "configureSite('false');";
-		%>
+			<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "setPermissionsViewAndAddDiscussion();" %>' label="view-and-add-discussion" />
 
-		<aui:nav-item href="<%= taglibURL %>" iconCssClass="icon-remove" label="disable-sync-sites" />
-
-		<aui:nav-item dropdown="<%= true %>" iconCssClass="icon-lock" id="defaultPermissionsButton" label="default-permissions">
-			<%
-			taglibURL = "javascript:" + renderResponse.getNamespace() + "configurePermissions('view-permission');";
-			%>
-
-			<aui:nav-item href="<%= taglibURL %>" label="set-view-permission" />
-
-			<%
-			taglibURL = "javascript:" + renderResponse.getNamespace() + "configurePermissions('view-and-add-discussion-permission');";
-			%>
-
-			<aui:nav-item href="<%= taglibURL %>" label="set-view-and-add-discussion-permission" />
-
-			<%
-			taglibURL = "javascript:" + renderResponse.getNamespace() + "configurePermissions('full-access-permission');";
-			%>
-
-			<aui:nav-item href="<%= taglibURL %>" label="set-full-access-permission" />
+			<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "setPermissionsFullAccess();" %>' label="full-access" />
 		</aui:nav-item>
 	</aui:nav>
 
@@ -77,105 +56,173 @@ portletURL.setParameter("tabs1", tabs1);
 </aui:nav-bar>
 
 <aui:form method="post" name="fm">
-	<aui:input name="enableSyncSites" type="hidden" />
+	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+	<aui:input name="enabled" type="hidden" />
 	<aui:input name="groupIds" type="hidden" />
 	<aui:input name="permissions" type="hidden" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
-	<aui:fieldset label="sync-sites">
-		<%
-		List<Group> groups = GroupLocalServiceUtil.getGroups(themeDisplay.getCompanyId(), GroupConstants.ANY_PARENT_GROUP_ID, true);
+	<%
+	LinkedHashMap<String, Object> groupParams = new LinkedHashMap<String, Object>();
 
-		groups = ListUtil.copy(groups);
+	groupParams.put("active", true);
 
-		Iterator<Group> iterator = groups.iterator();
+	List<Group> groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), keywords, groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		while (iterator.hasNext()) {
-			Group group = iterator.next();
+	List<String> defaultResourceActions = ResourceActionsUtil.getModelResourceGroupDefaultActions(DLFileEntry.class.getName());
+	%>
 
-			if (group.isCompany() ||
-				(Validator.isNotNull(keywords) &&
-				(!group.getDescriptiveName().contains(keywords)))) {
+	<liferay-ui:search-container
+		emptyResultsMessage="no-sites-were-found"
+		iteratorURL="<%= portletURL %>"
+		rowChecker="<%= new RowChecker(renderResponse) %>"
+		total="<%= groups.size() %>"
+	>
+		<liferay-ui:search-container-results
+			results="<%= ListUtil.subList(groups, searchContainer.getStart(), searchContainer.getEnd()) %>"
+		/>
 
-				iterator.remove();
-			}
-		}
-		%>
-
-		<liferay-ui:search-container
-			emptyResultsMessage="no-sites-were-found"
-			iteratorURL="<%= portletURL %>"
-			rowChecker="<%= new RowChecker(renderResponse) %>"
-			total="<%= groups.size() %>"
+		<liferay-ui:search-container-row
+			className="com.liferay.portal.model.Group"
+			escapedModel="<%= true %>"
+			keyProperty="groupId"
+			modelVar="group"
 		>
-			<liferay-ui:search-container-results
-				results="<%= ListUtil.subList(groups, searchContainer.getStart(), searchContainer.getEnd()) %>"
+			<liferay-ui:search-container-column-text
+				name="name"
+				value="<%= group.getDescriptiveName() %>"
 			/>
 
-			<liferay-ui:search-container-row
-				className="com.liferay.portal.model.Group"
-				escapedModel="<%= true %>"
-				keyProperty="groupId"
-				modelVar="group"
-			>
-				<liferay-ui:search-container-column-text
-					name="name"
-					value="<%= group.getDescriptiveName() %>"
-				/>
+			<%
+			boolean syncSiteEnabled = GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true);
+			%>
 
-				<liferay-ui:search-container-column-text
-					name="sync-site-enabled"
-					value='<%= LanguageUtil.get(locale, GetterUtil.getString(group.getTypeSettingsProperty("syncEnabled"), "true")) %>'
-				/>
+			<liferay-ui:search-container-column-text
+				name="enabled"
+				translate="true"
+				value='<%= syncSiteEnabled ? "yes" : "no" %>'
+			/>
 
-				<liferay-ui:search-container-column-text
-					name="default-permissions"
-					value='<%= LanguageUtil.get(locale, GetterUtil.getString(group.getTypeSettingsProperty("permissions"), "full-access-permission")) %>'
-				/>
+			<%
+			List<String> localizedResourceActions = null;
 
-				<liferay-ui:search-container-column-jsp
-					align="right"
-					cssClass="entry-action"
-					path="/sync_admin_group_action.jsp"
-				/>
-			</liferay-ui:search-container-row>
+			if (syncSiteEnabled) {
+				int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
 
-			<liferay-ui:search-iterator />
-		</liferay-ui:search-container>
-	</aui:fieldset>
+				List<String> resourceActions = null;
+
+				if (permissions > 0) {
+					resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(permissions));
+				}
+				else {
+					resourceActions = defaultResourceActions;
+				}
+
+				localizedResourceActions = new ArrayList<String>(resourceActions.size());
+
+				for (String resourceAction : resourceActions) {
+					localizedResourceActions.add(LanguageUtil.get(request, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+				}
+			}
+			%>
+
+			<liferay-ui:search-container-column-text
+				name="default-file-permissions"
+				value="<%= ListUtil.isNotEmpty(localizedResourceActions) ? StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE) : StringPool.BLANK %>"
+			/>
+
+			<liferay-ui:search-container-column-jsp
+				align="right"
+				cssClass="entry-action"
+				path="/sync_sites_action.jsp"
+			/>
+		</liferay-ui:search-container-row>
+
+		<liferay-ui:search-iterator />
+	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script>
+<aui:script use="aui-base">
+	A.one('#<portlet:namespace /><%= searchContainerReference.getId() %>SearchContainer').delegate(
+		'click',
+		function() {
+			var hide = (Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace /><%= RowChecker.ALL_ROW_IDS %>').length == 0);
+
+			A.one('#<portlet:namespace />toolbarContainer').toggle(!hide);
+		},
+		'input[type=checkbox]'
+	);
+
 	Liferay.provide(
 		window,
-		'<portlet:namespace />configurePermissions',
-		function(permissions) {
+		'<portlet:namespace />disableSites',
+		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-			if (groupIds) {
+			if (groupIds && confirm('<%= UnicodeLanguageUtil.get(request, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
+				document.<portlet:namespace />fm.<portlet:namespace />enabled.value = false;
 
-				document.<portlet:namespace />fm.<portlet:namespace />permissions.value = permissions;
-
-				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="configurePermissions" />');
+				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateSites" />');
 			}
 		}
 	);
 
 	Liferay.provide(
 		window,
-		'<portlet:namespace />configureSite',
-		function(enableSyncSites) {
+		'<portlet:namespace />enableSites',
+		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
 			if (groupIds) {
-				if ((enableSyncSites === 'true') || confirm('<%= UnicodeLanguageUtil.get(request, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
-					document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
+				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
+				document.<portlet:namespace />fm.<portlet:namespace />enabled.value = true;
 
-					document.<portlet:namespace />fm.<portlet:namespace />enableSyncSites.value = enableSyncSites;
+				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateSites" />');
+			}
+		}
+	);
 
-					submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="configureSite" />');
-				}
+	Liferay.provide(
+		window,
+		'<portlet:namespace />setPermissionsFullAccess',
+		function(permissions) {
+			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
+
+			if (groupIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
+				document.<portlet:namespace />fm.<portlet:namespace />permissions.value = <%= SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS %>;
+
+				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateSites" />');
+			}
+		}
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />setPermissionsViewAndAddDiscussion',
+		function(permissions) {
+			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
+
+			if (groupIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
+				document.<portlet:namespace />fm.<portlet:namespace />permissions.value = <%= SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION %>;
+
+				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateSites" />');
+			}
+		}
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />setPermissionsViewOnly',
+		function(permissions) {
+			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
+
+			if (groupIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
+				document.<portlet:namespace />fm.<portlet:namespace />permissions.value = <%= SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY %>;
+
+				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateSites" />');
 			}
 		}
 	);
