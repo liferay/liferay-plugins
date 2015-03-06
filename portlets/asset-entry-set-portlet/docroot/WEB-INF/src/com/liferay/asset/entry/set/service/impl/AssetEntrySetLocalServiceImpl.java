@@ -544,6 +544,97 @@ public class AssetEntrySetLocalServiceImpl
 		}
 	}
 
+	protected void setLikedParticipants(
+			long userId, AssetEntrySet assetEntrySet,
+			int likedParticipantsLimit)
+		throws PortalException, SystemException {
+
+		if (assetEntrySet.getAssetEntrySetLikesCount() == 0) {
+			return;
+		}
+
+		JSONObject likedParticipantsJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
+			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
+				userId);
+
+		AssetEntrySetLikePK assetEntrySetLikePK = new AssetEntrySetLikePK(
+			assetEntrySet.getAssetEntrySetId(),
+			classNameIdAndClassPKOVP.getKey(),
+			classNameIdAndClassPKOVP.getValue());
+
+		AssetEntrySetLike pariticipantAssetEntrySetLike =
+			assetEntrySetLikePersistence.fetchByPrimaryKey(assetEntrySetLikePK);
+
+		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
+			List<AssetEntrySetLike> unmodifiableAssetEntrySetLikes =
+				assetEntrySetLikePersistence.findByAssetEntrySetId(
+					assetEntrySet.getAssetEntrySetId(), 0,
+					likedParticipantsLimit);
+
+			List<AssetEntrySetLike> assetEntrySetLikes =
+				new ArrayList<AssetEntrySetLike>(
+					unmodifiableAssetEntrySetLikes);
+
+			if (pariticipantAssetEntrySetLike != null) {
+				if (assetEntrySetLikes.contains(
+						pariticipantAssetEntrySetLike)) {
+
+					assetEntrySetLikes.remove(pariticipantAssetEntrySetLike);
+				}
+				else {
+					assetEntrySetLikes.remove(assetEntrySetLikes.size() -1);
+				}
+			}
+
+			JSONArray participantsJSONArray = JSONFactoryUtil.createJSONArray();
+
+			for (int i = 0; i < assetEntrySetLikes.size(); i++) {
+				AssetEntrySetLike assetEntrySetLike = assetEntrySetLikes.get(i);
+
+				JSONObject participantJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				AssetEntrySetParticipantInfoUtil.getParticipantJSONObject(
+					participantJSONObject, assetEntrySetLike.getClassNameId(),
+					assetEntrySetLike.getClassPK(), false);
+
+				participantJSONObject.put(
+					"participantId", assetEntrySetLike.getClassPK());
+
+				participantsJSONArray.put(participantJSONObject);
+			}
+
+			likedParticipantsJSONObject.put(
+				"participants", participantsJSONArray);
+		}
+
+		likedParticipantsJSONObject.put(
+			"liked", Validator.isNotNull(pariticipantAssetEntrySetLike));
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			assetEntrySet.getPayload());
+
+		payloadJSONObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_LIKED_PARTICIPANTS,
+			likedParticipantsJSONObject);
+
+		assetEntrySet.setPayload(
+			JSONFactoryUtil.looseSerialize(payloadJSONObject));
+	}
+
+	protected void setLikedParticipants(
+			long userId, List<AssetEntrySet> assetEntrySets,
+			int likedParticipantsLimit)
+		throws PortalException, SystemException {
+
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			setLikedParticipants(userId, assetEntrySet, likedParticipantsLimit);
+		}
+	}
+
 	protected void setParticipants(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
