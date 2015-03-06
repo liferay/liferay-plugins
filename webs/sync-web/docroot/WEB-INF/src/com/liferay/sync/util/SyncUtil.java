@@ -46,6 +46,7 @@ import com.liferay.sync.SyncSiteUnavailableException;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
+import com.liferay.sync.shared.util.SyncPermissionsConstants;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -339,48 +340,25 @@ public class SyncUtil {
 			group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
 
 		if (syncSiteMemberFilePermissions ==
-				SyncConstants.PERMISSIONS_DEFAULT) {
+				SyncPermissionsConstants.PERMISSIONS_DEFAULT) {
 
 			serviceContext.setDeriveDefaultPermissions(true);
-		}
-		else if (syncSiteMemberFilePermissions ==
-					SyncConstants.PERMISSIONS_NONE) {
 
-			serviceContext.setGroupPermissions(new String[0]);
+			return;
 		}
-		else if (syncSiteMemberFilePermissions ==
-					SyncConstants.PERMISSIONS_VIEW_ONLY) {
 
-			serviceContext.setGroupPermissions(new String[] {"VIEW"});
-		}
-		else if (syncSiteMemberFilePermissions ==
-					SyncConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) {
+		String[] resourceActions = null;
 
-			if (folder) {
-				serviceContext.setGroupPermissions(new String[] {"VIEW"});
-			}
-			else {
-				serviceContext.setGroupPermissions(
-					new String[] {"ADD_DISCUSSION", "VIEW"});
-			}
+		if (folder) {
+			resourceActions = SyncPermissionsConstants.getFolderResourceActions(
+				syncSiteMemberFilePermissions);
 		}
-		else if (syncSiteMemberFilePermissions ==
-					SyncConstants.PERMISSIONS_FULL_ACCESS) {
+		else {
+			resourceActions = SyncPermissionsConstants.getFileResourceActions(
+				syncSiteMemberFilePermissions);
+		}
 
-			if (folder) {
-				serviceContext.setGroupPermissions(
-					new String[] {
-						"ADD_DOCUMENT", "ADD_SHORTCUT", "ADD_SUBFOLDER",
-						"DELETE", "UPDATE","VIEW"
-					});
-			}
-			else {
-				serviceContext.setGroupPermissions(
-					new String[] {
-						"ADD_DISCUSSION" , "DELETE", "UPDATE", "VIEW"
-					});
-			}
-		}
+		serviceContext.setGroupPermissions(resourceActions);
 	}
 
 	public static SyncDLObject toSyncDLObject(

@@ -35,17 +35,15 @@ int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.ge
 		<aui:input name="enabled" type="checkbox" value="<%= enabled %>" />
 	</aui:fieldset>
 
-	<aui:fieldset label="sync-client">
-		<aui:input helpMessage="max-connections-help" label="max-connections" name="maxConnections" type="text" value="<%= maxConnections %>" wrapperCssClass="lfr-input-text-container">
-			<aui:validator name="digits" />
-			<aui:validator name="min">1</aui:validator>
-		</aui:input>
+	<aui:input helpMessage="max-connections-help" label="max-connections" name="maxConnections" type="text" value="<%= maxConnections %>" wrapperCssClass="lfr-input-text-container">
+		<aui:validator name="digits" />
+		<aui:validator name="min">1</aui:validator>
+	</aui:input>
 
-		<aui:input helpMessage="poll-interval-help" label="poll-interval" name="pollInterval" type="text" value="<%= pollInterval %>" wrapperCssClass="lfr-input-text-container">
-			<aui:validator name="digits" />
-			<aui:validator name="min">1</aui:validator>
-		</aui:input>
-	</aui:fieldset>
+	<aui:input helpMessage="poll-interval-help" label="poll-interval" name="pollInterval" type="text" value="<%= pollInterval %>" wrapperCssClass="lfr-input-text-container">
+		<aui:validator name="digits" />
+		<aui:validator name="min">1</aui:validator>
+	</aui:input>
 
 	<aui:button-row>
 		<aui:button type="submit" />

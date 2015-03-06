@@ -17,8 +17,8 @@ package com.liferay.sync.admin.portlet;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -33,57 +33,9 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Shinn Lok
+ * @author Jonathan McCann
  */
 public class AdminPortlet extends MVCPortlet {
-
-	public void configurePermissions(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
-
-		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
-
-		String permissions = ParamUtil.getString(actionRequest, "permissions");
-
-		for (long groupId : groupIds) {
-			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
-
-			UnicodeProperties typeSettingsProperties =
-				group.getTypeSettingsProperties();
-
-			typeSettingsProperties.setProperty("permissions", permissions);
-
-			group.setTypeSettingsProperties(typeSettingsProperties);
-
-			GroupLocalServiceUtil.updateGroup(group);
-		}
-
-		sendRedirect(actionRequest, actionResponse);
-	}
-
-	public void configureSite(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
-
-		String enableSyncSites = ParamUtil.getString(
-			actionRequest, "enableSyncSites");
-
-		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
-
-		for (long groupId : groupIds) {
-			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
-
-			UnicodeProperties typeSettingsProperties =
-				group.getTypeSettingsProperties();
-
-			typeSettingsProperties.setProperty("syncEnabled", enableSyncSites);
-
-			group.setTypeSettingsProperties(typeSettingsProperties);
-
-			GroupLocalServiceUtil.updateGroup(group);
-		}
-
-		sendRedirect(actionRequest, actionResponse);
-	}
 
 	public void updatePreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -115,13 +67,38 @@ public class AdminPortlet extends MVCPortlet {
 				String.valueOf(enabled));
 
 			portletPreferences.store();
-
-			addSuccessMessage(actionRequest, actionResponse);
-
-			sendRedirect(actionRequest, actionResponse);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
+		}
+	}
+
+	public void updateSites(
+		ActionRequest actionRequest, ActionResponse actionResponse) {
+
+		String enabled = ParamUtil.getString(actionRequest, "enabled");
+		String permissions = ParamUtil.getString(actionRequest, "permissions");
+
+		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
+
+		for (long groupId : groupIds) {
+			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+
+			UnicodeProperties typeSettingsProperties =
+				group.getTypeSettingsProperties();
+
+			if (Validator.isNotNull(enabled)) {
+				typeSettingsProperties.setProperty("syncEnabled", enabled);
+			}
+
+			if (Validator.isNotNull(permissions)) {
+				typeSettingsProperties.setProperty(
+					"syncSiteMemberFilePermissions", permissions);
+			}
+
+			group.setTypeSettingsProperties(typeSettingsProperties);
+
+			GroupLocalServiceUtil.updateGroup(group);
 		}
 	}
 
