@@ -104,8 +104,8 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 			notificationsCount: notificationsCount,
 			notificationsNode: '.user-notifications-list .user-notifications',
 			paginationInfoNode: '.pagination .page-info',
-			previousPageNode: '.pagination .previous',
 			portletKey: '<%= portletDisplay.getId() %>',
+			previousPageNode: '.pagination .previous',
 			start: 0
 		}
 	);
@@ -116,5 +116,5 @@ boolean actionable = ParamUtil.getBoolean(request, "actionable");
 			namespace: '<portlet:namespace />',
 			notificationsList: notificationsList
 		}
-	)
+	);
 </aui:script>
