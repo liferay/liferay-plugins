@@ -14,12 +14,82 @@
 
 package com.liferay.asset.entry.set.service.impl;
 
+import com.liferay.asset.entry.set.model.AssetEntrySetLike;
+import com.liferay.asset.entry.set.participant.AssetEntrySetParticipantInfoUtil;
+import com.liferay.asset.entry.set.service.AssetEntrySetLikeLocalServiceUtil;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLikeLocalServiceBaseImpl;
+import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
+import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
+import com.liferay.compat.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.ObjectValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Sherry Yang
  */
 public class AssetEntrySetLikeLocalServiceImpl
 	extends AssetEntrySetLikeLocalServiceBaseImpl {
+
+	@Override
+	public JSONArray getLikedParticipantFullNames(
+			long userId, long assetEntrySetId, int start, int end)
+		throws PortalException, SystemException {
+
+		List<AssetEntrySetLike> unmodifiableAssetEntrySetLikes =
+			assetEntrySetLikePersistence.findByAssetEntrySetId(
+				assetEntrySetId, start, end + 1);
+
+		if (ListUtil.isEmpty(unmodifiableAssetEntrySetLikes)) {
+			return null;
+		}
+
+		List<AssetEntrySetLike> assetEntrySetLikes =
+			new ArrayList<AssetEntrySetLike>(unmodifiableAssetEntrySetLikes);
+
+		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
+			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
+				userId);
+
+		AssetEntrySetLikePK assetEntrySetLikePK = new AssetEntrySetLikePK(
+			assetEntrySetId, classNameIdAndClassPKOVP.getKey(),
+			classNameIdAndClassPKOVP.getValue());
+
+		AssetEntrySetLike participantAssetEntrySetLike =
+			AssetEntrySetLikeLocalServiceUtil.fetchAssetEntrySetLike(
+				assetEntrySetLikePK);
+
+		if (assetEntrySetLikes.contains(participantAssetEntrySetLike)) {
+			assetEntrySetLikes.remove(participantAssetEntrySetLike);
+		}
+		else {
+			assetEntrySetLikes.remove(assetEntrySetLikes.size() -1);
+		}
+
+		JSONArray likedParticipantFullNamesJSONArray =
+			JSONFactoryUtil.createJSONArray();
+
+		for (AssetEntrySetLike assetEntrySetLike : assetEntrySetLikes) {
+			JSONObject participantJSONObject =
+				JSONFactoryUtil.createJSONObject();
+
+			AssetEntrySetParticipantInfoUtil.getParticipantJSONObject(
+				participantJSONObject, assetEntrySetLike.getClassNameId(),
+				assetEntrySetLike.getClassPK(), false);
+
+			String participantFullName = participantJSONObject.getString(
+				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME);
+
+			likedParticipantFullNamesJSONArray.put(participantFullName);
+		}
+
+		return likedParticipantFullNamesJSONArray;
+	}
 
 }
