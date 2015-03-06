@@ -699,7 +699,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 					</else>
 				</if>
 
-				<for delimiter=":" list="${patch.files}" param="patch.file">
+				<for delimiter="${path.separator}" list="${patch.files}" param="patch.file">
 					<sequential>
 						<echo>Applying patch @{patch.file}.</echo>
 
