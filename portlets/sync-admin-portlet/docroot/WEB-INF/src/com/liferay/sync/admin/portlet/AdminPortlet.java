@@ -46,6 +46,19 @@ public class AdminPortlet extends MVCPortlet {
 				PrefsPropsUtil.getPreferences(
 					CompanyThreadLocal.getCompanyId());
 
+			boolean allowUserPersonalSites = ParamUtil.getBoolean(
+				actionRequest, "allowUserPersonalSites");
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
+				String.valueOf(allowUserPersonalSites));
+
+			boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_SERVICES_ENABLED,
+				String.valueOf(enabled));
+
 			int maxConnections = ParamUtil.getInteger(
 				actionRequest, "maxConnections");
 
@@ -59,12 +72,6 @@ public class AdminPortlet extends MVCPortlet {
 			portletPreferences.setValue(
 				PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
 				String.valueOf(pollInterval));
-
-			boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
-
-			portletPreferences.setValue(
-				PortletPropsKeys.SYNC_SERVICES_ENABLED,
-				String.valueOf(enabled));
 
 			portletPreferences.store();
 		}

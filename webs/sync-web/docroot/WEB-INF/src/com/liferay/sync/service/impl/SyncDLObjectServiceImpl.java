@@ -663,7 +663,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 			}
 
-			groups.add(user.getGroup());
+			if (PrefsPropsUtil.getBoolean(
+					user.getCompanyId(),
+					PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
+					PortletPropsValues.SYNC_ALLOW_USER_PERSONAL_SITES)) {
+
+				groups.add(user.getGroup());
+			}
 
 			Collections.sort(groups, new GroupNameComparator());
 
