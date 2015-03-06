@@ -27,14 +27,21 @@ configure(allprojects) {
 		}
 	}
 
-	File pluginSrcDir = file("${projectDir}/docroot")
+	File pluginDocrootDir = file("${projectDir}/docroot")
+	File pluginSrcDir = file("${projectDir}/docroot/WEB-INF/src")
 
 	if (!pluginSrcDir.exists()) {
+		pluginDocrootDir = null
+
 		pluginSrcDir = file("${projectDir}/src")
 
 		if (!pluginSrcDir.exists()) {
 			pluginSrcDir = null
 		}
+	}
+
+	if (pluginDocrootDir) {
+		ext.pluginDocrootDir = pluginDocrootDir
 	}
 
 	if (pluginSrcDir) {
@@ -168,25 +175,40 @@ configure(
 	compileJava {
 		dependencies {
 			afterEvaluate {
-				String projectServiceJarFile = "${pluginSrcDir}/WEB-INF/lib/${project.name}-service.jar"
+				List compileFilesList = []
+				List compileProjectsList = []
+
+				Map projectCompileDependencies = [:]
+
+				String projectServiceJarFile
+
+				projectCompileDependencies = gradle.compileDependencies.find {
+					project.path == it.projectPath
+				}
+
+				projectServiceJarFile = "${projectDir}/docroot/WEB-INF/lib/${project.name}-service.jar"
 
 				if (exists(projectServiceJarFile)) {
-					compile(files(projectServiceJarFile))
+					compileFilesList << projectServiceJarFile
 				}
-			}
 
-			Map projectCompileDependencies = gradle.compileDependencies.find {
-				project.path == it.projectPath
-			}
+				if (projectCompileDependencies) {
+					projectCompileDependencies["compile"].each {
+						compileProjectsList << it
+					}
+				}
 
-			if (projectCompileDependencies) {
-				projectCompileDependencies["compile"].each {
+				if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
+					compileProjectsList << ":shared:portal-compat-shared"
+				}
+
+				compileFilesList.each{
+					compile files(it)
+				}
+
+				compileProjectsList.each {
 					compile project(it)
 				}
-			}
-
-			if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
-				compile project(":shared:portal-compat-shared")
 			}
 
 			providedCompile(
@@ -529,16 +551,16 @@ configure(
 	}
 
 	war {
-		dependsOn buildCss, copyExtraSrcFiles
+		dependsOn buildCss
 
 		destinationDir = file("${rootDir}/dist")
 
 		duplicatesStrategy "exclude"
 
 		exclude "_diffs.*", "_diffs/**", "WEB-INF/lib/*"
-
-		from pluginSrcDir
 	}
+
+	webAppDirName = "docroot"
 
 	readConfigurations()
 
