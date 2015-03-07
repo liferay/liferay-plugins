@@ -579,8 +579,11 @@ public class AssetEntrySetLocalServiceImpl
 			classNameIdAndClassPKOVP.getKey(),
 			classNameIdAndClassPKOVP.getValue());
 
-		AssetEntrySetLike pariticipantAssetEntrySetLike =
+		AssetEntrySetLike assetEntrySetLike =
 			assetEntrySetLikePersistence.fetchByPrimaryKey(assetEntrySetLikePK);
+
+		likedParticipantsJSONObject.put(
+			"liked", Validator.isNotNull(assetEntrySetLike));
 
 		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
 			List<AssetEntrySetLike> unmodifiableAssetEntrySetLikes =
@@ -592,11 +595,9 @@ public class AssetEntrySetLocalServiceImpl
 				new ArrayList<AssetEntrySetLike>(
 					unmodifiableAssetEntrySetLikes);
 
-			if (pariticipantAssetEntrySetLike != null) {
-				if (assetEntrySetLikes.contains(
-						pariticipantAssetEntrySetLike)) {
-
-					assetEntrySetLikes.remove(pariticipantAssetEntrySetLike);
+			if (assetEntrySetLike != null) {
+				if (assetEntrySetLikes.contains(assetEntrySetLike)) {
+					assetEntrySetLikes.remove(assetEntrySetLike);
 				}
 				else {
 					assetEntrySetLikes.remove(assetEntrySetLikes.size() -1);
@@ -605,28 +606,17 @@ public class AssetEntrySetLocalServiceImpl
 
 			JSONArray participantsJSONArray = JSONFactoryUtil.createJSONArray();
 
-			for (int i = 0; i < assetEntrySetLikes.size(); i++) {
-				AssetEntrySetLike assetEntrySetLike = assetEntrySetLikes.get(i);
-
-				JSONObject participantJSONObject =
-					JSONFactoryUtil.createJSONObject();
-
-				AssetEntrySetParticipantInfoUtil.getParticipantJSONObject(
-					participantJSONObject, assetEntrySetLike.getClassNameId(),
-					assetEntrySetLike.getClassPK(), false);
-
-				participantJSONObject.put(
-					"participantId", assetEntrySetLike.getClassPK());
-
-				participantsJSONArray.put(participantJSONObject);
+			for (AssetEntrySetLike curAssetEntrySetLike : assetEntrySetLikes) {
+				participantsJSONArray.put(
+					AssetEntrySetParticipantInfoUtil.getParticipantJSONObject(
+						JSONFactoryUtil.createJSONObject(),
+						curAssetEntrySetLike.getClassNameId(),
+						curAssetEntrySetLike.getClassPK(), false));
 			}
 
 			likedParticipantsJSONObject.put(
 				"participants", participantsJSONArray);
 		}
-
-		likedParticipantsJSONObject.put(
-			"liked", Validator.isNotNull(pariticipantAssetEntrySetLike));
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
 			assetEntrySet.getPayload());

@@ -68,6 +68,9 @@ public class AssetEntrySetParticipantInfoImpl
 			_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
 				group.getFriendlyURL());
 
+		participantJSONObject.put("classNameId", classNameId);
+		participantJSONObject.put("classPK", classPK);
+
 		return participantJSONObject;
 	}
 

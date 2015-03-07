@@ -42,12 +42,15 @@ public class AssetEntrySetLikeLocalServiceImpl
 			long userId, long assetEntrySetId, int start, int end)
 		throws PortalException, SystemException {
 
+		JSONArray likedParticipantFullNamesJSONArray =
+			JSONFactoryUtil.createJSONArray();
+
 		List<AssetEntrySetLike> unmodifiableAssetEntrySetLikes =
 			assetEntrySetLikePersistence.findByAssetEntrySetId(
 				assetEntrySetId, start, end + 1);
 
 		if (ListUtil.isEmpty(unmodifiableAssetEntrySetLikes)) {
-			return null;
+			return likedParticipantFullNamesJSONArray;
 		}
 
 		List<AssetEntrySetLike> assetEntrySetLikes =
@@ -71,9 +74,6 @@ public class AssetEntrySetLikeLocalServiceImpl
 		else {
 			assetEntrySetLikes.remove(assetEntrySetLikes.size() -1);
 		}
-
-		JSONArray likedParticipantFullNamesJSONArray =
-			JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntrySetLike assetEntrySetLike : assetEntrySetLikes) {
 			JSONObject participantJSONObject =
