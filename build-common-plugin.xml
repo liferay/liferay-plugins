@@ -690,12 +690,22 @@
 		</copy>
 
 		<if>
-			<available file="docroot/WEB-INF/src" />
+			<or>
+				<resourcecount when="gt" count="0">
+					<fileset dir="." includes="**/*.jsp" excludes="docroot/META-INF/custom-jsps/" />
+				</resourcecount>
+				<available file="docroot/WEB-INF/src" />
+			</or>
 			<then>
 				<copy todir="docroot/WEB-INF/lib">
 					<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
 				</copy>
+			</then>
+		</if>
 
+		<if>
+			<available file="docroot/WEB-INF/src" />
+			<then>
 				<if>
 					<available file="docroot/WEB-INF/lib/portal-impl.jar" />
 					<then>
