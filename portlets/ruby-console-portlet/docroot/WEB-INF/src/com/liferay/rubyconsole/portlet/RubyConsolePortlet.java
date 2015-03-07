@@ -42,7 +42,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortletException {
+		throws IOException {
 
 		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
