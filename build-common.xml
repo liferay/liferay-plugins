@@ -260,6 +260,64 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="build-xsd">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<if>
+				<available file="@{module.dir}/docroot/WEB-INF/xsd" />
+				<then>
+					<var name="xsd.base.dir" value="docroot/WEB-INF/xsd" />
+				</then>
+				<elseif>
+					<available file="@{module.dir}/xsd" />
+					<then>
+						<var name="xsd.base.dir" value="xsd" />
+					</then>
+				</elseif>
+				<else>
+					<var name="xsd.base.dir" value="" />
+				</else>
+			</if>
+
+			<if>
+				<not>
+					<equals arg1="${xsd.base.dir}" arg2="" />
+				</not>
+				<then>
+					<tstamp>
+						<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+					</tstamp>
+
+					<mkdir dir="${tstamp.value}" />
+
+					<path id="plugin-lib.classpath">
+						<fileset dir="${app.server.lib.portal.dir}" includes="xbean.jar" />
+						<fileset dir="${plugin.lib.dir}" includes="*.jar" />
+						<pathelement location="${plugin.classes.dir}" />
+					</path>
+
+					<taskdef classname="org.apache.xmlbeans.impl.tool.XMLBean" classpathref="portal.classpath" name="xmlbean" />
+
+					<xmlbean
+						classgendir="${tstamp.value}"
+						classpathref="plugin-lib.classpath"
+						srcgendir="${tstamp.value}"
+					>
+						<fileset dir="@{module.dir}" includes="${xsd.base.dir}/**/*.*" />
+					</xmlbean>
+
+					<zip
+						basedir="${tstamp.value}"
+						destfile="${plugin.lib.dir}/${plugin.name}-xbean.jar"
+					/>
+
+					<delete dir="${tstamp.value}" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="gradle-execute">
 		<attribute name="task" />
 
@@ -1820,6 +1878,10 @@ Please find a solution that does not require portal-impl.jar.
 								module.dir="@{module.dir}"
 							/>
 
+							<build-xsd
+								module.dir="@{module.dir}"
+							/>
+
 							<set-build-xml-var
 								build.xml.var.name="original.lib.name"
 								module.dir="@{module.dir}"
@@ -2808,6 +2870,13 @@ for (String path : paths) {
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="build-wsdl"
+		/>
+	</target>
+
+	<target name="build-xsd">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="build-xsd"
 		/>
 	</target>
 

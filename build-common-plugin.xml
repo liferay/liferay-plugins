@@ -425,37 +425,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		</if>
 	</target>
 
-	<target name="build-xsd">
-		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-		</tstamp>
-
-		<mkdir dir="${tstamp.value}" />
-
-		<path id="plugin-lib.classpath">
-			<fileset dir="${app.server.lib.portal.dir}" includes="xbean.jar" />
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
-		</path>
-
-		<taskdef classname="org.apache.xmlbeans.impl.tool.XMLBean" classpathref="portal.classpath" name="xmlbean" />
-
-		<xmlbean
-			classgendir="${tstamp.value}"
-			classpathref="plugin-lib.classpath"
-			srcgendir="${tstamp.value}"
-		>
-			<fileset dir="docroot/WEB-INF/xsd" includes="**/*.*" />
-		</xmlbean>
-
-		<zip
-			basedir="${tstamp.value}"
-			destfile="docroot/WEB-INF/lib/${plugin.name}-xbean.jar"
-		/>
-
-		<delete dir="${tstamp.value}" />
-	</target>
-
 	<target name="compile-import-shared">
 		<compile-import-shared
 			module.dir="${basedir}"
