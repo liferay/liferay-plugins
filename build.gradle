@@ -175,7 +175,7 @@ configure(
 	compileJava {
 		dependencies {
 			afterEvaluate {
-				String projectServiceJarFile = "${pluginDocrootDir}/WEB-INF/lib/${project.name}-service.jar"
+				String projectServiceJarFile = "${projectDir}/docroot/WEB-INF/lib/${project.name}-service.jar"
 
 				if (exists(projectServiceJarFile)) {
 					compile(files(projectServiceJarFile))
