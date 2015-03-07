@@ -97,7 +97,7 @@ public class RecurrenceSerializer {
 			return recurrence;
 		}
 		catch (ParseException pe) {
-			_log.error("Unable to parse data " + data , pe);
+			_log.error("Unable to parse data " + data, pe);
 		}
 
 		return null;
