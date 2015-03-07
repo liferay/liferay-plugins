@@ -175,40 +175,25 @@ configure(
 	compileJava {
 		dependencies {
 			afterEvaluate {
-				List compileFilesList = []
-				List compileProjectsList = []
-
-				Map projectCompileDependencies = [:]
-
-				String projectServiceJarFile
-
-				projectCompileDependencies = gradle.compileDependencies.find {
-					project.path == it.projectPath
-				}
-
-				projectServiceJarFile = "${projectDir}/docroot/WEB-INF/lib/${project.name}-service.jar"
+				String projectServiceJarFile = "${pluginSrcDir}/WEB-INF/lib/${project.name}-service.jar"
 
 				if (exists(projectServiceJarFile)) {
-					compileFilesList << projectServiceJarFile
+					compile(files(projectServiceJarFile))
 				}
+			}
 
-				if (projectCompileDependencies) {
-					projectCompileDependencies["compile"].each {
-						compileProjectsList << it
-					}
-				}
+			Map projectCompileDependencies = gradle.compileDependencies.find {
+				project.path == it.projectPath
+			}
 
-				if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
-					compileProjectsList << ":shared:portal-compat-shared"
-				}
-
-				compileFilesList.each{
-					compile files(it)
-				}
-
-				compileProjectsList.each {
+			if (projectCompileDependencies) {
+				projectCompileDependencies["compile"].each {
 					compile project(it)
 				}
+			}
+
+			if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
+				compile project(":shared:portal-compat-shared")
 			}
 
 			providedCompile(
