@@ -36,7 +36,7 @@ IPInfo ipInfo = (IPInfo)request.getAttribute(IPInfo.class.getName());
 		Region: <%= ipInfo.getRegion() %>
 	</c:when>
 	<c:otherwise>
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<liferay-ui:message key="an-unexpected-error-occurred" />
 		</div>
 	</c:otherwise>
