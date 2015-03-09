@@ -40,7 +40,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 <c:choose>
 	<c:when test="<%= (tasksEntry == null) && (tasksEntryId > 0) %>">
-		<span class="alert alert-error"><liferay-ui:message key="task-could-not-be-found" /></span>
+		<span class="alert alert-danger"><liferay-ui:message key="task-could-not-be-found" /></span>
 	</c:when>
 	<c:otherwise>
 		<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" />

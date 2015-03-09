@@ -27,7 +27,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 
 <c:choose>
 	<c:when test="<%= tasksEntry == null %>">
-		<span class="alert alert-error"><liferay-ui:message key="task-could-not-be-found" /></span>
+		<span class="alert alert-danger"><liferay-ui:message key="task-could-not-be-found" /></span>
 	</c:when>
 	<c:otherwise>
 
