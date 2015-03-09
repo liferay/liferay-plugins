@@ -271,13 +271,14 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit)
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
-		long parentAssetEntrySetId, int start, int end,
+		long userId, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -286,7 +287,8 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -294,7 +296,8 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

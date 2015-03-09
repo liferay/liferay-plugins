@@ -87,33 +87,36 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit)
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.getAssetEntrySet(assetEntrySetId,
-			childAssetEntrySetsLimit);
+			childAssetEntrySetsLimit, likedParticipantsLimit);
 	}
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.getNewAssetEntrySets(createTime,
-			parentAssetEntrySetId, sharedTo, childAssetEntrySetsLimit, start,
-			end);
+			parentAssetEntrySetId, sharedTo, childAssetEntrySetsLimit,
+			likedParticipantsLimit, start, end);
 	}
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.getOldAssetEntrySets(createTime,
-			parentAssetEntrySetId, sharedTo, childAssetEntrySetsLimit, start,
-			end);
+			parentAssetEntrySetId, sharedTo, childAssetEntrySetsLimit,
+			likedParticipantsLimit, start, end);
 	}
 
 	@Override

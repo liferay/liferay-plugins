@@ -21,13 +21,13 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @author Brian Wing Shun Chan
  */
 public class AssetEntrySetFinderUtil {
-	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PASEI(
+	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI(
 		long classNameId, long classPK, long createTime, boolean gtCreateTime,
 		long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
-				   .findByCT_PASEI(classNameId, classPK, createTime,
+				   .findByCT_PAESI(classNameId, classPK, createTime,
 			gtCreateTime, parentAssetEntrySetId, sharedToJSONArray, start, end);
 	}
 

@@ -298,45 +298,49 @@ public class AssetEntrySetLocalServiceUtil {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit)
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getAssetEntrySet(assetEntrySetId, childAssetEntrySetsLimit);
+				   .getAssetEntrySet(userId, assetEntrySetId,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
-		long parentAssetEntrySetId, int start, int end,
+		long userId, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getChildAssetEntrySets(parentAssetEntrySetId, start, end,
-			orderByComparator);
+				   .getChildAssetEntrySets(userId, parentAssetEntrySetId,
+			start, end, orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getNewAssetEntrySets(userId, createTime,
 			parentAssetEntrySetId, sharedToJSONArray, childAssetEntrySetsLimit,
-			start, end);
+			likedParticipantsLimit, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getOldAssetEntrySets(userId, createTime,
 			parentAssetEntrySetId, sharedToJSONArray, childAssetEntrySetsLimit,
-			start, end);
+			likedParticipantsLimit, start, end);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(

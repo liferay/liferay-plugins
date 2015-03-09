@@ -6,5 +6,7 @@
 	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetPersistence" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinderImpl" parent="basePersistence" />
 	<bean id="com.liferay.asset.entry.set.service.AssetEntrySetLikeLocalService" class="com.liferay.asset.entry.set.service.impl.AssetEntrySetLikeLocalServiceImpl" />
+	<bean id="com.liferay.asset.entry.set.service.AssetEntrySetLikeService" class="com.liferay.asset.entry.set.service.impl.AssetEntrySetLikeServiceImpl" />
 	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePersistence" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinderImpl" parent="basePersistence" />
 </beans>

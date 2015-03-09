@@ -17,10 +17,8 @@ package com.liferay.asset.entry.set.service.persistence;
 /**
  * @author Brian Wing Shun Chan
  */
-public interface AssetEntrySetFinder {
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI(
-		long classNameId, long classPK, long createTime, boolean gtCreateTime,
-		long parentAssetEntrySetId,
-		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+public interface AssetEntrySetLikeFinder {
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike> findByAESI_NotC_C(
+		long assetEntrySetId, long classNameId, long classPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

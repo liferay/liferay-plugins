@@ -17,6 +17,7 @@ package com.liferay.asset.entry.set.service.base;
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.AssetEntrySetService;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder;
+import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePersistence;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetPersistence;
 
@@ -149,6 +150,25 @@ public abstract class AssetEntrySetServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the asset entry set like remote service.
+	 *
+	 * @return the asset entry set like remote service
+	 */
+	public com.liferay.asset.entry.set.service.AssetEntrySetLikeService getAssetEntrySetLikeService() {
+		return assetEntrySetLikeService;
+	}
+
+	/**
+	 * Sets the asset entry set like remote service.
+	 *
+	 * @param assetEntrySetLikeService the asset entry set like remote service
+	 */
+	public void setAssetEntrySetLikeService(
+		com.liferay.asset.entry.set.service.AssetEntrySetLikeService assetEntrySetLikeService) {
+		this.assetEntrySetLikeService = assetEntrySetLikeService;
+	}
+
+	/**
 	 * Returns the asset entry set like persistence.
 	 *
 	 * @return the asset entry set like persistence
@@ -165,6 +185,25 @@ public abstract class AssetEntrySetServiceBaseImpl extends BaseServiceImpl
 	public void setAssetEntrySetLikePersistence(
 		AssetEntrySetLikePersistence assetEntrySetLikePersistence) {
 		this.assetEntrySetLikePersistence = assetEntrySetLikePersistence;
+	}
+
+	/**
+	 * Returns the asset entry set like finder.
+	 *
+	 * @return the asset entry set like finder
+	 */
+	public AssetEntrySetLikeFinder getAssetEntrySetLikeFinder() {
+		return assetEntrySetLikeFinder;
+	}
+
+	/**
+	 * Sets the asset entry set like finder.
+	 *
+	 * @param assetEntrySetLikeFinder the asset entry set like finder
+	 */
+	public void setAssetEntrySetLikeFinder(
+		AssetEntrySetLikeFinder assetEntrySetLikeFinder) {
+		this.assetEntrySetLikeFinder = assetEntrySetLikeFinder;
 	}
 
 	/**
@@ -518,8 +557,12 @@ public abstract class AssetEntrySetServiceBaseImpl extends BaseServiceImpl
 	protected AssetEntrySetFinder assetEntrySetFinder;
 	@BeanReference(type = com.liferay.asset.entry.set.service.AssetEntrySetLikeLocalService.class)
 	protected com.liferay.asset.entry.set.service.AssetEntrySetLikeLocalService assetEntrySetLikeLocalService;
+	@BeanReference(type = com.liferay.asset.entry.set.service.AssetEntrySetLikeService.class)
+	protected com.liferay.asset.entry.set.service.AssetEntrySetLikeService assetEntrySetLikeService;
 	@BeanReference(type = AssetEntrySetLikePersistence.class)
 	protected AssetEntrySetLikePersistence assetEntrySetLikePersistence;
+	@BeanReference(type = AssetEntrySetLikeFinder.class)
+	protected AssetEntrySetLikeFinder assetEntrySetLikeFinder;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)

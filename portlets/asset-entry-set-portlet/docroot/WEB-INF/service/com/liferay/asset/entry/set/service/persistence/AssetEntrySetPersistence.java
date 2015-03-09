@@ -183,7 +183,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the matching asset entry sets
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PASEI(
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI(
 		long createTime, long parentAssetEntrySetId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -201,7 +201,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the range of matching asset entry sets
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PASEI(
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI(
 		long createTime, long parentAssetEntrySetId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -220,7 +220,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the ordered range of matching asset entry sets
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PASEI(
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI(
 		long createTime, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -235,7 +235,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet findByCT_PASEI_First(
+	public com.liferay.asset.entry.set.model.AssetEntrySet findByCT_PAESI_First(
 		long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
@@ -250,7 +250,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the first matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCT_PASEI_First(
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCT_PAESI_First(
 		long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -265,7 +265,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a matching asset entry set could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet findByCT_PASEI_Last(
+	public com.liferay.asset.entry.set.model.AssetEntrySet findByCT_PAESI_Last(
 		long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
@@ -280,7 +280,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the last matching asset entry set, or <code>null</code> if a matching asset entry set could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCT_PASEI_Last(
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchByCT_PAESI_Last(
 		long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -296,7 +296,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.asset.entry.set.model.AssetEntrySet[] findByCT_PASEI_PrevAndNext(
+	public com.liferay.asset.entry.set.model.AssetEntrySet[] findByCT_PAESI_PrevAndNext(
 		long assetEntrySetId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException,
@@ -309,7 +309,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @param parentAssetEntrySetId the parent asset entry set ID
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCT_PASEI(long createTime, long parentAssetEntrySetId)
+	public void removeByCT_PAESI(long createTime, long parentAssetEntrySetId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -320,7 +320,7 @@ public interface AssetEntrySetPersistence extends BasePersistence<AssetEntrySet>
 	* @return the number of matching asset entry sets
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCT_PASEI(long createTime, long parentAssetEntrySetId)
+	public int countByCT_PAESI(long createTime, long parentAssetEntrySetId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

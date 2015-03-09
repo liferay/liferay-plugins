@@ -128,12 +128,12 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodName21 = "getAssetEntrySet";
 
-		_methodParameterTypes21 = new String[] { "long", "int" };
+		_methodParameterTypes21 = new String[] { "long", "long", "int", "int" };
 
 		_methodName22 = "getChildAssetEntrySets";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "int", "int",
+				"long", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
@@ -141,14 +141,16 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes23 = new String[] {
 				"long", "long", "long",
-				"com.liferay.portal.kernel.json.JSONArray", "int", "int", "int"
+				"com.liferay.portal.kernel.json.JSONArray", "int", "int", "int",
+				"int"
 			};
 
 		_methodName24 = "getOldAssetEntrySets";
 
 		_methodParameterTypes24 = new String[] {
 				"long", "long", "long",
-				"com.liferay.portal.kernel.json.JSONArray", "int", "int", "int"
+				"com.liferay.portal.kernel.json.JSONArray", "int", "int", "int",
+				"int"
 			};
 
 		_methodName25 = "likeAssetEntrySet";
@@ -812,7 +814,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit)
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -820,7 +823,15 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName21,
 					_methodParameterTypes21,
-					new Object[] { assetEntrySetId, childAssetEntrySetsLimit });
+					new Object[] {
+						userId,
+						
+					assetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -847,7 +858,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
-		long parentAssetEntrySetId, int start, int end,
+		long userId, long parentAssetEntrySetId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -857,7 +868,9 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
 					_methodParameterTypes22,
 					new Object[] {
-						parentAssetEntrySetId,
+						userId,
+						
+					parentAssetEntrySetId,
 						
 					start,
 						
@@ -893,7 +906,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -911,6 +925,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					ClpSerializer.translateInput(sharedToJSONArray),
 						
 					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit,
 						
 					start,
 						
@@ -944,7 +960,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -962,6 +979,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					ClpSerializer.translateInput(sharedToJSONArray),
 						
 					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit,
 						
 					start,
 						

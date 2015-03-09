@@ -48,18 +48,18 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 		_methodName6 = "getAssetEntrySet";
 
-		_methodParameterTypes6 = new String[] { "long", "int" };
+		_methodParameterTypes6 = new String[] { "long", "int", "int" };
 
 		_methodName7 = "getNewAssetEntrySets";
 
 		_methodParameterTypes7 = new String[] {
-				"long", "long", "java.lang.String", "int", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int", "int"
 			};
 
 		_methodName8 = "getOldAssetEntrySets";
 
 		_methodParameterTypes8 = new String[] {
-				"long", "long", "java.lang.String", "int", "int", "int"
+				"long", "long", "java.lang.String", "int", "int", "int", "int"
 			};
 
 		_methodName9 = "likeAssetEntrySet";
@@ -245,7 +245,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit)
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -253,7 +254,13 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName6,
 					_methodParameterTypes6,
-					new Object[] { assetEntrySetId, childAssetEntrySetsLimit });
+					new Object[] {
+						assetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -281,7 +288,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -297,6 +305,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					ClpSerializer.translateInput(sharedTo),
 						
 					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit,
 						
 					start,
 						
@@ -329,7 +339,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		int childAssetEntrySetsLimit, int start, int end)
+		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -345,6 +356,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					ClpSerializer.translateInput(sharedTo),
 						
 					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit,
 						
 					start,
 						

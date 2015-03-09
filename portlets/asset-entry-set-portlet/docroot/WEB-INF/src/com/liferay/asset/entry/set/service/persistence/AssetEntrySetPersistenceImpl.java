@@ -597,27 +597,27 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 
 	private static final String _FINDER_COLUMN_PARENTASSETENTRYSETID_PARENTASSETENTRYSETID_2 =
 		"assetEntrySet.parentAssetEntrySetId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CT_PASEI = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_CT_PAESI = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
 			AssetEntrySetImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByCT_PASEI",
+			"findByCT_PAESI",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
 				
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI =
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PAESI =
 		new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
 			AssetEntrySetImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByCT_PASEI",
+			"findByCT_PAESI",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			AssetEntrySetModelImpl.CREATETIME_COLUMN_BITMASK |
 			AssetEntrySetModelImpl.PARENTASSETENTRYSETID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_CT_PASEI = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_CT_PAESI = new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCT_PASEI",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCT_PAESI",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
@@ -629,9 +629,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<AssetEntrySet> findByCT_PASEI(long createTime,
+	public List<AssetEntrySet> findByCT_PAESI(long createTime,
 		long parentAssetEntrySetId) throws SystemException {
-		return findByCT_PASEI(createTime, parentAssetEntrySetId,
+		return findByCT_PAESI(createTime, parentAssetEntrySetId,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -650,10 +650,10 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<AssetEntrySet> findByCT_PASEI(long createTime,
+	public List<AssetEntrySet> findByCT_PAESI(long createTime,
 		long parentAssetEntrySetId, int start, int end)
 		throws SystemException {
-		return findByCT_PASEI(createTime, parentAssetEntrySetId, start, end,
+		return findByCT_PAESI(createTime, parentAssetEntrySetId, start, end,
 			null);
 	}
 
@@ -673,7 +673,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<AssetEntrySet> findByCT_PASEI(long createTime,
+	public List<AssetEntrySet> findByCT_PAESI(long createTime,
 		long parentAssetEntrySetId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		boolean pagination = true;
@@ -683,11 +683,11 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PAESI;
 			finderArgs = new Object[] { createTime, parentAssetEntrySetId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CT_PASEI;
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_CT_PAESI;
 			finderArgs = new Object[] {
 					createTime, parentAssetEntrySetId,
 					
@@ -722,9 +722,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 
 			query.append(_SQL_SELECT_ASSETENTRYSET_WHERE);
 
-			query.append(_FINDER_COLUMN_CT_PASEI_CREATETIME_2);
+			query.append(_FINDER_COLUMN_CT_PAESI_CREATETIME_2);
 
-			query.append(_FINDER_COLUMN_CT_PASEI_PARENTASSETENTRYSETID_2);
+			query.append(_FINDER_COLUMN_CT_PAESI_PARENTASSETENTRYSETID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -791,10 +791,10 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public AssetEntrySet findByCT_PASEI_First(long createTime,
+	public AssetEntrySet findByCT_PAESI_First(long createTime,
 		long parentAssetEntrySetId, OrderByComparator orderByComparator)
 		throws NoSuchAssetEntrySetException, SystemException {
-		AssetEntrySet assetEntrySet = fetchByCT_PASEI_First(createTime,
+		AssetEntrySet assetEntrySet = fetchByCT_PAESI_First(createTime,
 				parentAssetEntrySetId, orderByComparator);
 
 		if (assetEntrySet != null) {
@@ -826,10 +826,10 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public AssetEntrySet fetchByCT_PASEI_First(long createTime,
+	public AssetEntrySet fetchByCT_PAESI_First(long createTime,
 		long parentAssetEntrySetId, OrderByComparator orderByComparator)
 		throws SystemException {
-		List<AssetEntrySet> list = findByCT_PASEI(createTime,
+		List<AssetEntrySet> list = findByCT_PAESI(createTime,
 				parentAssetEntrySetId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -850,10 +850,10 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public AssetEntrySet findByCT_PASEI_Last(long createTime,
+	public AssetEntrySet findByCT_PAESI_Last(long createTime,
 		long parentAssetEntrySetId, OrderByComparator orderByComparator)
 		throws NoSuchAssetEntrySetException, SystemException {
-		AssetEntrySet assetEntrySet = fetchByCT_PASEI_Last(createTime,
+		AssetEntrySet assetEntrySet = fetchByCT_PAESI_Last(createTime,
 				parentAssetEntrySetId, orderByComparator);
 
 		if (assetEntrySet != null) {
@@ -885,16 +885,16 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public AssetEntrySet fetchByCT_PASEI_Last(long createTime,
+	public AssetEntrySet fetchByCT_PAESI_Last(long createTime,
 		long parentAssetEntrySetId, OrderByComparator orderByComparator)
 		throws SystemException {
-		int count = countByCT_PASEI(createTime, parentAssetEntrySetId);
+		int count = countByCT_PAESI(createTime, parentAssetEntrySetId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<AssetEntrySet> list = findByCT_PASEI(createTime,
+		List<AssetEntrySet> list = findByCT_PAESI(createTime,
 				parentAssetEntrySetId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -916,7 +916,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public AssetEntrySet[] findByCT_PASEI_PrevAndNext(long assetEntrySetId,
+	public AssetEntrySet[] findByCT_PAESI_PrevAndNext(long assetEntrySetId,
 		long createTime, long parentAssetEntrySetId,
 		OrderByComparator orderByComparator)
 		throws NoSuchAssetEntrySetException, SystemException {
@@ -929,12 +929,12 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 
 			AssetEntrySet[] array = new AssetEntrySetImpl[3];
 
-			array[0] = getByCT_PASEI_PrevAndNext(session, assetEntrySet,
+			array[0] = getByCT_PAESI_PrevAndNext(session, assetEntrySet,
 					createTime, parentAssetEntrySetId, orderByComparator, true);
 
 			array[1] = assetEntrySet;
 
-			array[2] = getByCT_PASEI_PrevAndNext(session, assetEntrySet,
+			array[2] = getByCT_PAESI_PrevAndNext(session, assetEntrySet,
 					createTime, parentAssetEntrySetId, orderByComparator, false);
 
 			return array;
@@ -947,7 +947,7 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		}
 	}
 
-	protected AssetEntrySet getByCT_PASEI_PrevAndNext(Session session,
+	protected AssetEntrySet getByCT_PAESI_PrevAndNext(Session session,
 		AssetEntrySet assetEntrySet, long createTime,
 		long parentAssetEntrySetId, OrderByComparator orderByComparator,
 		boolean previous) {
@@ -963,9 +963,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 
 		query.append(_SQL_SELECT_ASSETENTRYSET_WHERE);
 
-		query.append(_FINDER_COLUMN_CT_PASEI_CREATETIME_2);
+		query.append(_FINDER_COLUMN_CT_PAESI_CREATETIME_2);
 
-		query.append(_FINDER_COLUMN_CT_PASEI_PARENTASSETENTRYSETID_2);
+		query.append(_FINDER_COLUMN_CT_PAESI_PARENTASSETENTRYSETID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -1065,9 +1065,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByCT_PASEI(long createTime, long parentAssetEntrySetId)
+	public void removeByCT_PAESI(long createTime, long parentAssetEntrySetId)
 		throws SystemException {
-		for (AssetEntrySet assetEntrySet : findByCT_PASEI(createTime,
+		for (AssetEntrySet assetEntrySet : findByCT_PAESI(createTime,
 				parentAssetEntrySetId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				null)) {
 			remove(assetEntrySet);
@@ -1083,9 +1083,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByCT_PASEI(long createTime, long parentAssetEntrySetId)
+	public int countByCT_PAESI(long createTime, long parentAssetEntrySetId)
 		throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_CT_PASEI;
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_CT_PAESI;
 
 		Object[] finderArgs = new Object[] { createTime, parentAssetEntrySetId };
 
@@ -1097,9 +1097,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 
 			query.append(_SQL_COUNT_ASSETENTRYSET_WHERE);
 
-			query.append(_FINDER_COLUMN_CT_PASEI_CREATETIME_2);
+			query.append(_FINDER_COLUMN_CT_PAESI_CREATETIME_2);
 
-			query.append(_FINDER_COLUMN_CT_PASEI_PARENTASSETENTRYSETID_2);
+			query.append(_FINDER_COLUMN_CT_PAESI_PARENTASSETENTRYSETID_2);
 
 			String sql = query.toString();
 
@@ -1133,8 +1133,8 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_CT_PASEI_CREATETIME_2 = "assetEntrySet.createTime = ? AND ";
-	private static final String _FINDER_COLUMN_CT_PASEI_PARENTASSETENTRYSETID_2 = "assetEntrySet.parentAssetEntrySetId = ?";
+	private static final String _FINDER_COLUMN_CT_PAESI_CREATETIME_2 = "assetEntrySet.createTime = ? AND ";
+	private static final String _FINDER_COLUMN_CT_PAESI_PARENTASSETENTRYSETID_2 = "assetEntrySet.parentAssetEntrySetId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_PAESI_CCNI =
 		new FinderPath(AssetEntrySetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetEntrySetModelImpl.FINDER_CACHE_ENABLED,
@@ -2275,14 +2275,14 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 			}
 
 			if ((assetEntrySetModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI.getColumnBitmask()) != 0) {
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PAESI.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						assetEntrySetModelImpl.getOriginalCreateTime(),
 						assetEntrySetModelImpl.getOriginalParentAssetEntrySetId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CT_PASEI, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CT_PAESI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PAESI,
 					args);
 
 				args = new Object[] {
@@ -2290,8 +2290,8 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 						assetEntrySetModelImpl.getParentAssetEntrySetId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CT_PASEI, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PASEI,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_CT_PAESI, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_CT_PAESI,
 					args);
 			}
 

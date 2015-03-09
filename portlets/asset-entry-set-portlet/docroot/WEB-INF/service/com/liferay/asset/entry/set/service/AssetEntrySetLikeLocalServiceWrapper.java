@@ -289,6 +289,15 @@ public class AssetEntrySetLikeLocalServiceWrapper
 			parameterTypes, arguments);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.json.JSONArray getLikedParticipantFullNames(
+		long userId, long assetEntrySetId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLikeLocalService.getLikedParticipantFullNames(userId,
+			assetEntrySetId, start, end);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
