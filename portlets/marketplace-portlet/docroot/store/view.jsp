@@ -25,7 +25,7 @@
 <input name="mpClientURL" type="hidden" value="<%= themeDisplay.getPortalURL() + themeDisplay.getURLCurrent() %>" />
 </form>
 
-<div class="alert alert-error hide time-out-message">
+<div class="alert alert-danger hide time-out-message">
 	<liferay-ui:message key="could-not-connect-to-the-liferay-marketplace" />
 </div>
 

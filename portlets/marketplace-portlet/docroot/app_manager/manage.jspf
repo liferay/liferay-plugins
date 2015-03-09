@@ -328,7 +328,7 @@ portletURL.setParameter("category", category);
 						failure: function(event, id, obj) {
 							showMessage(
 								A.Node.create(
-									'<div class="alert alert-error">' +
+									'<div class="alert alert-danger">' +
 										'<i class="icon-minus-sign"></i> <liferay-ui:message key="an-unexpected-error-occurred" />' +
 									'</div>'
 								)
