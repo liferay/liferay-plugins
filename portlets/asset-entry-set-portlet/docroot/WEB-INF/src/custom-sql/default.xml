@@ -25,4 +25,15 @@
 				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder.findByNoC_C">
+		<![CDATA[
+			SELECT
+				DISTINCT {AssetEntrySetLike.*}
+			FROM
+				AssetEntrySetLike
+			WHERE
+				(AssetEntrySetLike.classNameId <> ?) AND
+				(AssetEntrySetLike.classPK <> ?)
+		]]>
+	</sql>
 </custom-sql>
