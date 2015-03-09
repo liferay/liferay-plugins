@@ -21,7 +21,7 @@
 <bean:define id="emailAddress" name="unsubscribeForm" property="emailAddress" type="java.lang.String" />
 
 <logic:messagesPresent>
-	<span class="alert alert-error">
+	<span class="alert alert-danger">
 	<html:errors />
 	</span>
 </logic:messagesPresent>
