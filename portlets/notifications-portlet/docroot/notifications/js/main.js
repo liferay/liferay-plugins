@@ -560,7 +560,7 @@ AUI.add(
 
 															var notificationsNode = notificationsContainer.one(instance._notificationsNode);
 
-															notificationsContainer.insertBefore('<div class="alert alert-error">' + Liferay.Language.get('there-was-an-unexpected-error.-please-refresh-the-current-page') + '</div>', notificationsNode);
+															notificationsContainer.insertBefore('<div class="alert alert-danger">' + Liferay.Language.get('there-was-an-unexpected-error.-please-refresh-the-current-page') + '</div>', notificationsNode);
 														}
 													}
 												},
