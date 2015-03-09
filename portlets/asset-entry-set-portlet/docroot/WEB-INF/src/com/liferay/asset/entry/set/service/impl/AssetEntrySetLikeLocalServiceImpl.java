@@ -16,9 +16,7 @@ package com.liferay.asset.entry.set.service.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySetLike;
 import com.liferay.asset.entry.set.participant.AssetEntrySetParticipantInfoUtil;
-import com.liferay.asset.entry.set.service.AssetEntrySetLikeLocalServiceUtil;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLikeLocalServiceBaseImpl;
-import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -28,7 +26,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,34 +42,17 @@ public class AssetEntrySetLikeLocalServiceImpl
 		JSONArray likedParticipantFullNamesJSONArray =
 			JSONFactoryUtil.createJSONArray();
 
-		List<AssetEntrySetLike> unmodifiableAssetEntrySetLikes =
-			assetEntrySetLikePersistence.findByAssetEntrySetId(
-				assetEntrySetId, start, end + 1);
-
-		if (ListUtil.isEmpty(unmodifiableAssetEntrySetLikes)) {
-			return likedParticipantFullNamesJSONArray;
-		}
-
-		List<AssetEntrySetLike> assetEntrySetLikes =
-			new ArrayList<AssetEntrySetLike>(unmodifiableAssetEntrySetLikes);
-
 		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
 			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
 				userId);
 
-		AssetEntrySetLikePK assetEntrySetLikePK = new AssetEntrySetLikePK(
-			assetEntrySetId, classNameIdAndClassPKOVP.getKey(),
-			classNameIdAndClassPKOVP.getValue());
+		List<AssetEntrySetLike> assetEntrySetLikes =
+			assetEntrySetLikeFinder.findByNoC_C(
+				classNameIdAndClassPKOVP.getKey(),
+				classNameIdAndClassPKOVP.getValue(), start, end);
 
-		AssetEntrySetLike participantAssetEntrySetLike =
-			AssetEntrySetLikeLocalServiceUtil.fetchAssetEntrySetLike(
-				assetEntrySetLikePK);
-
-		if (assetEntrySetLikes.contains(participantAssetEntrySetLike)) {
-			assetEntrySetLikes.remove(participantAssetEntrySetLike);
-		}
-		else {
-			assetEntrySetLikes.remove(assetEntrySetLikes.size() -1);
+		if (ListUtil.isEmpty(assetEntrySetLikes)) {
+			return likedParticipantFullNamesJSONArray;
 		}
 
 		for (AssetEntrySetLike assetEntrySetLike : assetEntrySetLikes) {
