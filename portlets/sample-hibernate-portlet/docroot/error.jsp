@@ -14,7 +14,7 @@
  */
 --%>
 
-<span class="alert alert-error">
+<span class="alert alert-danger">
 An unexpected error occurred.
 </span>
 
