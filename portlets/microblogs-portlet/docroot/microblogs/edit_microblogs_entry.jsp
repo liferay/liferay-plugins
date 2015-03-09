@@ -88,7 +88,7 @@ if (comment) {
 
 	<c:choose>
 		<c:when test="<%= microblogsEntry == null %>">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<liferay-ui:message key="entry-could-not-be-found" />
 			</div>
 		</c:when>
