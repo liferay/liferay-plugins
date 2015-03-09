@@ -368,7 +368,7 @@ AUI.add(
 									message = instance._defaultMessageError;
 								}
 
-								instance._messageContainer.html('<span class="alert alert-error">' + message + '</span>');
+								instance._messageContainer.html('<span class="alert alert-danger">' + message + '</span>');
 							}
 						}
 					},

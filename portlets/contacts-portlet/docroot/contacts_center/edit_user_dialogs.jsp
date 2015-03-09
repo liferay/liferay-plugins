@@ -134,7 +134,7 @@ if (extension) {
 								var message = A.one('#<%= namespace %>errorMessage');
 
 								if (message) {
-									message.html('<span class="alert alert-error">' + responseData.message + '</span>');
+									message.html('<span class="alert alert-danger">' + responseData.message + '</span>');
 								}
 							}
 							else {
