@@ -22,7 +22,7 @@ for (String url : SVNConstants.SVN_URLS) {
 	catch (NoSuchSVNRepositoryException nssvnre) {
 %>
 
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			The SVN repositories have not been initialized. This should not be the case except the first time this portlet is deployed when the SVN tables have not been populated. To populate the SVN tables, make sure the property "svn.synchronization.interval" is set to a value greater than 0.
 		</div>
 

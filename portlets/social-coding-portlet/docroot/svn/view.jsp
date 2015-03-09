@@ -18,7 +18,7 @@
 
 <c:choose>
 	<c:when test="<%= user2 == null %>">
-		<div class="alert alert-error">
+		<div class="alert alert-danger">
 			<liferay-ui:message key="this-application-only-functions-when-placed-on-a-user-page" />
 		</div>
 	</c:when>
