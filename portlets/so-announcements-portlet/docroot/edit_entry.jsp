@@ -49,6 +49,7 @@ if (entry == null) {
 	<aui:fieldset>
 		<c:if test='<%= redirectMvcPath.equals("/manage_entries.jsp") %>'>
 			<span class="back-link"><a href="<%= HtmlUtil.escape(redirect) %>">&laquo; Back</a></span>
+			<span class="alert alert-danger">teste de mensagem de erro</span>
 		</c:if>
 
 		<c:choose>
@@ -273,7 +274,7 @@ if (entry == null) {
 							var message = A.one('#<portlet:namespace />errorMessage');
 
 							if (message) {
-								message.html('<span class="alert alert-error">' + responseData.message + '</span>');
+								message.html('<span class="alert alert-danger">' + responseData.message + '</span>');
 							}
 						}
 						else {

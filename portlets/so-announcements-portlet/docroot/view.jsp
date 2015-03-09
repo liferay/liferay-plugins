@@ -96,7 +96,7 @@ if (group.isUser() && !showManageEntries) {
 									var message = A.one('#<portlet:namespace />errorMessage');
 
 									if (message) {
-										message.html('<span class="alert alert-error">' + responseData.message + '</span>');
+										message.html('<span class="alert alert-danger">' + responseData.message + '</span>');
 									}
 								}
 								else {
