@@ -46,12 +46,12 @@ else {
 	<div id="<portlet:namespace />messageContainer">
 		<c:choose>
 			<c:when test="<%= (bbbParticipant == null) || (bbbMeeting == null) %>">
-				<div class="alert alert-error">
+				<div class="alert alert-danger">
 					<liferay-ui:message key="the-meeting-you-have-requested-no-longer-exists" />
 				</div>
 			</c:when>
 			<c:when test="<%= (bbbMeeting != null) && (bbbMeeting.getStatus() == BBBMeetingConstants.STATUS_COMPLETED) && !BBBAPIUtil.isMeetingRunning(bbbMeeting.getBbbMeetingId()) %>">
-				<div class="alert alert-error">
+				<div class="alert alert-danger">
 					<liferay-ui:message key="the-meeting-you-have-requested-has-already-completed" />
 				</div>
 			</c:when>
@@ -152,7 +152,7 @@ else {
 									else {
 										loadingMask.hide();
 
-										messageContainer.html('<span class="alert alert-error"><liferay-ui:message key="the-meeting-you-have-requested-no-longer-exists" /></span>');
+										messageContainer.html('<span class="alert alert-danger"><liferay-ui:message key="the-meeting-you-have-requested-no-longer-exists" /></span>');
 									}
 								}
 							},
