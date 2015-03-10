@@ -124,7 +124,7 @@ public class AssetEntrySetLocalServiceImpl
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
 			sharedToClassPKsMap);
 
-		setParticipants(assetEntrySet);
+		setSharedToParticipants(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -198,7 +198,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		setLikedParticipants(userId, assetEntrySets, 0);
 
-		setParticipants(assetEntrySets);
+		setSharedToParticipants(assetEntrySets);
 
 		return assetEntrySets;
 	}
@@ -294,7 +294,7 @@ public class AssetEntrySetLocalServiceImpl
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
 			sharedToClassPKsMap);
 
-		setParticipants(assetEntrySet);
+		setSharedToParticipants(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -444,7 +444,7 @@ public class AssetEntrySetLocalServiceImpl
 				userId);
 
 		List<AssetEntrySet> assetEntrySets =
-			assetEntrySetFinder.findByCT_PASEI(
+			assetEntrySetFinder.findByCT_PAESI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), createTime, gtCreateTime,
 				parentAssetEntrySetId, sharedToJSONArray, start, end);
@@ -543,7 +543,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		setLikedParticipants(userId, assetEntrySet, likedParticipantsLimit);
 
-		setParticipants(assetEntrySet);
+		setSharedToParticipants(assetEntrySet);
 	}
 
 	protected void setDisplayFields(
@@ -582,29 +582,23 @@ public class AssetEntrySetLocalServiceImpl
 		AssetEntrySetLike assetEntrySetLike =
 			assetEntrySetLikePersistence.fetchByPrimaryKey(assetEntrySetLikePK);
 
-		likedParticipantsJSONObject.put(
-			"liked", Validator.isNotNull(assetEntrySetLike));
+		boolean liked = Validator.isNotNull(assetEntrySetLike);
+
+		likedParticipantsJSONObject.put("liked", liked);
 
 		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
-			List<AssetEntrySetLike> unmodifiableAssetEntrySetLikes =
-				assetEntrySetLikePersistence.findByAssetEntrySetId(
-					assetEntrySet.getAssetEntrySetId(), 0,
-					likedParticipantsLimit);
+			JSONArray participantsJSONArray = JSONFactoryUtil.createJSONArray();
 
-			List<AssetEntrySetLike> assetEntrySetLikes =
-				new ArrayList<AssetEntrySetLike>(
-					unmodifiableAssetEntrySetLikes);
-
-			if (assetEntrySetLike != null) {
-				if (assetEntrySetLikes.contains(assetEntrySetLike)) {
-					assetEntrySetLikes.remove(assetEntrySetLike);
-				}
-				else {
-					assetEntrySetLikes.remove(assetEntrySetLikes.size() -1);
-				}
+			if (liked && (likedParticipantsLimit > 0)) {
+				likedParticipantsLimit = likedParticipantsLimit - 1;
 			}
 
-			JSONArray participantsJSONArray = JSONFactoryUtil.createJSONArray();
+			List<AssetEntrySetLike> assetEntrySetLikes =
+				assetEntrySetLikeFinder.findByAESI_NotC_C(
+					assetEntrySet.getAssetEntrySetId(),
+					classNameIdAndClassPKOVP.getKey(),
+					classNameIdAndClassPKOVP.getValue(), 0,
+					likedParticipantsLimit);
 
 			for (AssetEntrySetLike curAssetEntrySetLike : assetEntrySetLikes) {
 				participantsJSONArray.put(
@@ -639,7 +633,7 @@ public class AssetEntrySetLocalServiceImpl
 		}
 	}
 
-	protected void setParticipants(AssetEntrySet assetEntrySet)
+	protected void setSharedToParticipants(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
@@ -661,11 +655,11 @@ public class AssetEntrySetLocalServiceImpl
 			JSONFactoryUtil.looseSerialize(payloadJSONObject));
 	}
 
-	protected void setParticipants(List<AssetEntrySet> assetEntrySets)
+	protected void setSharedToParticipants(List<AssetEntrySet> assetEntrySets)
 		throws PortalException, SystemException {
 
 		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setParticipants(assetEntrySet);
+			setSharedToParticipants(assetEntrySet);
 		}
 	}
 

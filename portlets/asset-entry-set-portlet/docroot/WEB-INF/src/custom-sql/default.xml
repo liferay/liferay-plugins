@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PASEI">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PAESI">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}
@@ -25,15 +25,18 @@
 				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder.findByNoC_C">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder.findByAESI_NotC_C">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySetLike.*}
 			FROM
 				AssetEntrySetLike
 			WHERE
-				(AssetEntrySetLike.classNameId <> ?) AND
-				(AssetEntrySetLike.classPK <> ?)
+				(AssetEntrySetLike.assetEntrySetId = ?) AND NOT
+				(
+					(AssetEntrySetLike.classNameId <> ?) AND
+					(AssetEntrySetLike.classPK <> ?)
+				)
 		]]>
 	</sql>
 </custom-sql>

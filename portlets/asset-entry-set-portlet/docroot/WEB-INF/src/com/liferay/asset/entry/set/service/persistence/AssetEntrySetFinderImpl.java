@@ -42,10 +42,10 @@ public class AssetEntrySetFinderImpl
 	extends BasePersistenceImpl<AssetEntrySet>
 	implements AssetEntrySetFinder {
 
-	public static final String FIND_BY_CT_PASEI =
-		AssetEntrySetFinder.class.getName() + ".findByCT_PASEI";
+	public static final String FIND_BY_CT_PAESI =
+		AssetEntrySetFinder.class.getName() + ".findByCT_PAESI";
 
-	public List<AssetEntrySet> findByCT_PASEI(
+	public List<AssetEntrySet> findByCT_PAESI(
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, int start, int end)
@@ -60,7 +60,7 @@ public class AssetEntrySetFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_CT_PASEI);
+			String sql = CustomSQLUtil.get(FIND_BY_CT_PAESI);
 
 			if (gtCreateTime) {
 				sql = StringUtil.replace(

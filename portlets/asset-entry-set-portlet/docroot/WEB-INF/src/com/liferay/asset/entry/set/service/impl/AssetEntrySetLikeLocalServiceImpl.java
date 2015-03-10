@@ -18,7 +18,6 @@ import com.liferay.asset.entry.set.model.AssetEntrySetLike;
 import com.liferay.asset.entry.set.participant.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLikeLocalServiceBaseImpl;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
-import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -47,13 +46,9 @@ public class AssetEntrySetLikeLocalServiceImpl
 				userId);
 
 		List<AssetEntrySetLike> assetEntrySetLikes =
-			assetEntrySetLikeFinder.findByNoC_C(
-				classNameIdAndClassPKOVP.getKey(),
+			assetEntrySetLikeFinder.findByAESI_NotC_C(
+				assetEntrySetId, classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), start, end);
-
-		if (ListUtil.isEmpty(assetEntrySetLikes)) {
-			return likedParticipantFullNamesJSONArray;
-		}
 
 		for (AssetEntrySetLike assetEntrySetLike : assetEntrySetLikes) {
 			JSONObject participantJSONObject =

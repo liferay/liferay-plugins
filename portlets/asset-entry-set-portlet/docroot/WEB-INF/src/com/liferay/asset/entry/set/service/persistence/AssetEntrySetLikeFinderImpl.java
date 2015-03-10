@@ -33,11 +33,12 @@ public class AssetEntrySetLikeFinderImpl
 	extends BasePersistenceImpl<AssetEntrySetLike>
 	implements AssetEntrySetLikeFinder {
 
-	public static final String FIND_BY_NO_C_C =
-		AssetEntrySetLikeFinder.class.getName() + ".findByNoC_C";
+	public static final String FIND_BY_AESI_NOTC_C =
+		AssetEntrySetLikeFinder.class.getName() + ".findByAESI_NotC_C";
 
-	public List<AssetEntrySetLike> findByNoC_C(
-			long classNameId, long classPK, int start, int end)
+	public List<AssetEntrySetLike> findByAESI_NotC_C(
+			long assetEntrySetId, long classNameId, long classPK, int start,
+			int end)
 		throws SystemException {
 
 		Session session = null;
@@ -45,7 +46,7 @@ public class AssetEntrySetLikeFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_NO_C_C);
+			String sql = CustomSQLUtil.get(FIND_BY_AESI_NOTC_C);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -53,6 +54,7 @@ public class AssetEntrySetLikeFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			qPos.add(assetEntrySetId);
 			qPos.add(classNameId);
 			qPos.add(classPK);
 
