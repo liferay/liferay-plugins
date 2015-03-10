@@ -79,6 +79,7 @@ configure(
 	task initGradle
 
 	buildCss {
+		Closure setOutputs
 		Closure setSassProperties
 
 		File sassDocrootDir
@@ -140,6 +141,14 @@ configure(
 			sassDocrootDirFileTree.getFiles()
 		}
 
+		setOutputs = {
+			outputs.dir "${rootDir}/tmp"
+
+			sassDocrootDirFileTree.each {
+				outputs.dir "${it}/../.sass-cache"
+			}
+		}
+
 		setSassProperties = {
 			if (osgiPlugin) {
 				sassDocrootDir = file("${projectDir}/src/META-INF/resources")
@@ -148,14 +157,27 @@ configure(
 				sassDocrootDir = file("${projectDir}/docroot")
 			}
 
-			sassDocrootDirFileTree = fileTree(dir: sassDocrootDir, include: "**/*.css")
+			sassDocrootDirFileTree = fileTree(sassDocrootDir).matching {
+				exclude "**/_diffs/**"
+				exclude "**/.sass-cache/**"
+				exclude "**/.sass_cache*/**"
+				exclude "**/_sass_cache_*/**"
+				exclude "**/_styled/**"
+				exclude "**/_unstyled/**"
+				include "**/*.css"
+			}
+
 		}
 
 		setSassProperties()
+
+		setOutputs()
 	}
 
 	clean {
-		delete "${rootDir}/tmp"
+		tasks.each {
+			delete it.outputs
+		}
 
 		Map projectCompileDependencies = gradle.compileDependencies.find {
 			project.path == it.projectPath
