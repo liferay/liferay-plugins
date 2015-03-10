@@ -556,6 +556,9 @@ configure(
 			java {
 				srcDir pluginSrcDir
 			}
+			resources {
+				srcDir pluginSrcDir
+			}
 		}
 	}
 
