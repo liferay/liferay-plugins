@@ -157,16 +157,7 @@ configure(
 				sassDocrootDir = file("${projectDir}/docroot")
 			}
 
-			sassDocrootDirFileTree = fileTree(sassDocrootDir).matching {
-				exclude "**/_diffs/**"
-				exclude "**/.sass-cache/**"
-				exclude "**/.sass_cache*/**"
-				exclude "**/_sass_cache_*/**"
-				exclude "**/_styled/**"
-				exclude "**/_unstyled/**"
-				include "**/*.css"
-			}
-
+			sassDocrootDirFileTree = fileTree(dir: sassDocrootDir, include: "**/*.css")
 		}
 
 		setSassProperties()
