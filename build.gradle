@@ -563,8 +563,6 @@ configure(
 	}
 
 	war {
-		outputs.file archivePath
-
 		dependsOn buildCss
 
 		destinationDir = file("${rootDir}/dist")
@@ -572,6 +570,8 @@ configure(
 		duplicatesStrategy "exclude"
 
 		exclude "_diffs.*", "_diffs/**", "WEB-INF/lib/*"
+
+		outputs.file archivePath
 	}
 
 	webAppDirName = "docroot"
