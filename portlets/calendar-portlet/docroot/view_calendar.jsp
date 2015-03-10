@@ -456,9 +456,12 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 		A.debounce(<portlet:namespace />refreshVisibleCalendarRenderingRules, 100)
 	);
 
-	<portlet:namespace />scheduler.after(['scheduler-events:load'], function(event) {
-		event.currentTarget.eachEvent(<portlet:namespace />refreshSchedulerEventTooltipTitle);
-	});
+	<portlet:namespace />scheduler.after(
+		['scheduler-events:load'],
+		function(event) {
+			event.currentTarget.eachEvent(<portlet:namespace />refreshSchedulerEventTooltipTitle);
+		}
+	);
 
 	<portlet:namespace />scheduler.after(
 		['activeViewChange', 'dateChange'],
