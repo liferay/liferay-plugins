@@ -65,7 +65,7 @@ if (entryId > 0) {
 
 			errorMessage.html('<liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" />');
 		}
-	}
+	};
 
 	form.on(
 		'submit',

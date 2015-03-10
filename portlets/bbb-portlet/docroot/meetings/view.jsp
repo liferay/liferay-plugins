@@ -130,6 +130,10 @@ else {
 					var io = A.io.request(
 						'<liferay-portlet:actionURL name="joinBBBMeeting" />',
 						{
+							dataType: 'JSON',
+							form: {
+								id: form
+							},
 							on: {
 								complete: function(event, id, obj) {
 									var responseText = obj.responseText;
@@ -147,7 +151,7 @@ else {
 												io.start();
 											},
 											5000
-										)
+										);
 									}
 									else {
 										loadingMask.hide();
@@ -155,10 +159,6 @@ else {
 										messageContainer.html('<span class="alert alert-danger"><liferay-ui:message key="the-meeting-you-have-requested-no-longer-exists" /></span>');
 									}
 								}
-							},
-							dataType: 'JSON',
-							form: {
-								id: form
 							}
 						}
 					);

@@ -210,23 +210,28 @@ if (entry == null) {
 			preview.removeClass('important-entry');
 		}
 
+		var scope;
+
 		if (<%= entry != null %>) {
-			var scope = A.one('#<portlet:namespace />scope').get('value');
+			scope = A.one('#<portlet:namespace />scope').get('value');
 		}
 		else {
 			var optValue = A.one('select[name="<portlet:namespace />distributionScope"]').get('value');
-			var scope = A.one('option[value=' + optValue + ']').get('text');
+
+			scope = A.one('option[value=' + optValue + ']').get('text');
 		}
 
 		A.one('#<portlet:namespace />scope').html(scope);
 
 		var url = A.one('#<portlet:namespace />url').get('value');
 
+		var title;
+
 		if (url.length != 0) {
-			var title = '<a href="' + url + '">' + A.one('#<portlet:namespace />title').get('value') + '</a>';
+			title = '<a href="' + url + '">' + A.one('#<portlet:namespace />title').get('value') + '</a>';
 		}
 		else {
-			var title = A.one('#<portlet:namespace />title').get('value');
+			title = A.one('#<portlet:namespace />title').get('value');
 		}
 
 		A.one('.preview #<portlet:namespace />title').html(title);
@@ -244,7 +249,7 @@ if (entry == null) {
 
 			toggle.removeClass('hide');
 
-			preview.addClass('announcement-collapsed')
+			preview.addClass('announcement-collapsed');
 		}
 		else {
 			var contentContainer = preview.one('.entry-content-container');
@@ -277,13 +282,11 @@ if (entry == null) {
 								message.html('<span class="alert alert-danger">' + responseData.message + '</span>');
 							}
 						}
+						else if (<%= redirectMvcPath.equals("/manage_entries.jsp") %>) {
+							window.location.href = responseData.redirect;
+						}
 						else {
-							if (<%= redirectMvcPath.equals("/manage_entries.jsp") %>) {
-								window.location.href = responseData.redirect;
-							}
-							else {
-								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
-							}
+							Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 						}
 					}
 				},

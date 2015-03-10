@@ -1,7 +1,7 @@
 AUI.add(
 	'liferay-contacts-center',
 	function(A) {
-		var Array = A.Array;
+		var AArray = A.Array;
 
 		var Lang = A.Lang;
 
@@ -9,9 +9,9 @@ AUI.add(
 
 		var ParseContent = A.Plugin.ParseContent;
 
-		var CSS_SELECTED_CHECKBOX = 'input[type="checkbox"]:not(:disabled):checked';
-
 		var CSS_NOT_SELECTED_CHECKBOX = 'input[type="checkbox"]:not(:disabled):not(:checked)';
+
+		var CSS_SELECTED_CHECKBOX = 'input[type="checkbox"]:not(:disabled):checked';
 
 		var STR_UNDEFINED = 'undefined';
 
@@ -219,7 +219,7 @@ AUI.add(
 
 						var contacts = data.contacts;
 
-						Array.map(
+						AArray.map(
 							contacts,
 							function(contact) {
 								instance.addContactResult(contact);
@@ -262,7 +262,7 @@ AUI.add(
 					deleteContactResults: function(userIds) {
 						var instance = this;
 
-						Array.map(
+						AArray.map(
 							userIds,
 							function(userId) {
 								instance.deleteContactResult(userId);
@@ -334,7 +334,7 @@ AUI.add(
 							else {
 								instance._clearContactResult();
 
-								Array.map(
+								AArray.map(
 									contacts,
 									function(contact) {
 										instance.addContactResult(contact);
@@ -440,6 +440,48 @@ AUI.add(
 						instance._checkAll.set('checked', false);
 					},
 
+					_createContactList: function(config) {
+						var instance = this;
+
+						var contactsResultContainer = config.contactsResultContainer;
+
+						var contactsResult = config.contactsResult;
+						var contactsResultURL = config.contactsResultURL;
+						var contactsSearchInput = config.contactsSearchInput;
+
+						var contactList = new ContactsResult(
+							{
+								inputNode: contactsSearchInput,
+								listNode: contactsResult,
+								minQueryLength: 0,
+								requestTemplate: function(query) {
+									var data = {};
+
+									data[instance._namespace + 'keywords'] = query;
+
+									return data;
+								},
+								resultTextLocator: function(response) {
+									var result = '';
+
+									if (typeof response.toString != STR_UNDEFINED) {
+										result = response.toString();
+									}
+									else if (typeof response.responseText != STR_UNDEFINED) {
+										result = response.responseText;
+									}
+
+									return result;
+								},
+								source: instance._createDataSource(contactsResultURL)
+							}
+						);
+
+						contactList.on('results', A.bind(instance._updateContactsResult, instance));
+
+						instance._contactList = contactList;
+					},
+
 					_createDataSource: function(url) {
 						var instance = this;
 
@@ -472,49 +514,7 @@ AUI.add(
 								},
 								source: url
 							}
-						)
-					},
-
-					_createContactList: function(config) {
-						var instance = this;
-
-						var contactsResultContainer = config.contactsResultContainer;
-
-						var contactsResult = config.contactsResult;
-						var contactsResultURL = config.contactsResultURL;
-						var contactsSearchInput = config.contactsSearchInput;
-
-						var contactsResult = new ContactsResult(
-							{
-								inputNode: contactsSearchInput,
-								listNode: contactsResult,
-								minQueryLength: 0,
-								requestTemplate: function(query) {
-									var data = {};
-
-									data[instance._namespace + 'keywords'] = query;
-
-									return data;
-								},
-								resultTextLocator: function(response) {
-									var result = '';
-
-									if (typeof response.toString != STR_UNDEFINED) {
-										result = response.toString();
-									}
-									else if (typeof response.responseText != STR_UNDEFINED) {
-										result = response.responseText;
-									}
-
-									return result;
-								},
-								source: instance._createDataSource(contactsResultURL)
-							}
 						);
-
-						contactsResult.on('results', A.bind(instance._updateContactsResult, instance));
-
-						instance._contactList = contactsResult;
 					},
 
 					_deleteEntry: function(contact) {
@@ -564,21 +564,6 @@ AUI.add(
 						instance.showPopup(Liferay.Language.get('update-contact'), portletURL.toString());
 					},
 
-					_getRequestTemplate: function(filterBy) {
-						var instance = this;
-
-						return function(query) {
-							var data = {};
-
-							data[instance._namespace + 'end'] = instance._maxResultCount;
-							data[instance._namespace + 'filterBy'] = filterBy;
-							data[instance._namespace + 'keywords'] = query;
-							data[instance._namespace + 'start'] = 0;
-
-							return data;
-						};
-					},
-
 					_getPopup: function() {
 						var instance = this;
 
@@ -608,6 +593,21 @@ AUI.add(
 						}
 					},
 
+					_getRequestTemplate: function(filterBy) {
+						var instance = this;
+
+						return function(query) {
+							var data = {};
+
+							data[instance._namespace + 'end'] = instance._maxResultCount;
+							data[instance._namespace + 'filterBy'] = filterBy;
+							data[instance._namespace + 'keywords'] = query;
+							data[instance._namespace + 'start'] = 0;
+
+							return data;
+						};
+					},
+
 					_onCheckAll: function(event) {
 						var instance = this;
 
@@ -615,8 +615,10 @@ AUI.add(
 
 						var checkBox = event.target;
 
+						var contacts;
+
 						if (checkBox.get('checked')) {
-							var contacts = instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX);
+							contacts = instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX);
 
 							if (contacts.size() > 0) {
 								contacts.set('checked', true);
@@ -644,7 +646,7 @@ AUI.add(
 							}
 						}
 						else {
-							var contacts = instance._contactsCheckBox.all(CSS_SELECTED_CHECKBOX);
+							contacts = instance._contactsCheckBox.all(CSS_SELECTED_CHECKBOX);
 
 							if (contacts.size() > 0) {
 								contacts.set('checked', false);
@@ -663,9 +665,9 @@ AUI.add(
 								TPL_USER_DETAIL_DATA,
 								{
 									block: user.block ? TPL_BLOCK_IMG : '',
-									cssClass: (instance._numSelectedContacts % 2 == 0) ? '' : 'alt',
-									connectionRequested: user.connectionRequested ? TPL_CONNECTION_REQUESTED_IMG : '',
 									connected: user.connected ? TPL_CONNECTED_IMG : '',
+									connectionRequested: user.connectionRequested ? TPL_CONNECTION_REQUESTED_IMG : '',
+									cssClass: (instance._numSelectedContacts % 2 == 0) ? '' : 'alt',
 									emailAddress: user.emailAddress,
 									firstName: user.firstName,
 									following: user.following ? TPL_FOLLOWING_IMG : '',
@@ -718,22 +720,22 @@ AUI.add(
 								boundingBox: instance._userToolbar,
 								children: [
 									{
+										icon: 'icon-edit',
+										label: Liferay.Language.get('edit'),
 										on: {
 											click: function(event) {
 												instance._editEntry(contact);
 											}
-										},
-										icon: 'icon-edit',
-										label: Liferay.Language.get('edit')
+										}
 									},
 									{
+										icon: 'icon-remove',
+										label: Liferay.Language.get('delete'),
 										on: {
 											click: function(event) {
 												instance._deleteEntry(contact);
 											}
-										},
-										icon: 'icon-remove',
-										label: Liferay.Language.get('delete')
+										}
 									}
 								]
 							}
@@ -765,7 +767,7 @@ AUI.add(
 							}
 
 							buffer.push(
-								Array.map(
+								AArray.map(
 									results,
 									function(result) {
 										var displayLastNameAnchor = false;
@@ -794,17 +796,19 @@ AUI.add(
 											lastNameAnchor = nameAnchor;
 										}
 
+										var str;
+
 										if (result.portalUser) {
-											return Lang.sub(
+											str = Lang.sub(
 												TPL_USER_DATA,
 												{
-													checked: ((Array.indexOf(selectedUsersIds, result.userId) != -1) ? 'checked="true"' : ''),
+													checked: ((AArray.indexOf(selectedUsersIds, result.userId) != -1) ? 'checked="true"' : ''),
 													disabled: (themeDisplay.getUserId() == result.userId) ? 'disabled="true"' : '',
 													emailAddress: (result.emailAddress ? result.emailAddress : ''),
-													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 													firstName: (result.firstName ? result.firstName : ''),
 													fullName: (result.fullName ? result.fullName : ''),
 													lastName: (result.lastName ? result.lastName + ',' : ''),
+													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
 													userId: result.userId,
 													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
@@ -812,18 +816,20 @@ AUI.add(
 											);
 										}
 										else {
-											return Lang.sub(
+											str = Lang.sub(
 												TPL_ENTRY_DATA,
 												{
-													entryId: result.entryId,
 													emailAddress: (result.emailAddress ? result.emailAddress : ''),
-													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
+													entryId: result.entryId,
 													fullName: (result.fullName ? result.fullName : ''),
+													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
 													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
 												}
 											);
 										}
+
+										return str;
 									}
 								).join('')
 							);
@@ -911,12 +917,10 @@ AUI.add(
 										instance._buttonRemoveConnectionUserIds.push(user.userId);
 									}
 								}
-								else {
-									if (instance._addConnectionButton) {
-										instance._showButton(instance._addConnectionButton);
+								else if (instance._addConnectionButton) {
+									instance._showButton(instance._addConnectionButton);
 
-										instance._buttonAddConnectionUserIds.push(user.userId);
-									}
+									instance._buttonAddConnectionUserIds.push(user.userId);
 								}
 							}
 
@@ -927,12 +931,10 @@ AUI.add(
 									instance._buttonUnFollowUserIds.push(user.userId);
 								}
 							}
-							else {
-								if (instance._followButton) {
-									instance._showButton(instance._followButton);
+							else if (instance._followButton) {
+								instance._showButton(instance._followButton);
 
-									instance._buttonFollowUserIds.push(user.userId);
-								}
+								instance._buttonFollowUserIds.push(user.userId);
 							}
 
 							if (instance._exportButton) {
@@ -949,7 +951,7 @@ AUI.add(
 						var blockUserIdIndex = instance._buttonBlockUserIds.indexOf(userId);
 
 						if (blockUserIdIndex >= 0) {
-							Array.remove(instance._buttonBlockUserIds, blockUserIdIndex);
+							AArray.remove(instance._buttonBlockUserIds, blockUserIdIndex);
 
 							if (instance._blockButton && (instance._buttonBlockUserIds.length <= 0)) {
 								instance._blockButton.hide();
@@ -959,7 +961,7 @@ AUI.add(
 						var unblockUserIdIndex = instance._buttonUnBlockUserIds.indexOf(userId);
 
 						if (unblockUserIdIndex >= 0) {
-							Array.remove(instance._buttonUnBlockUserIds, unblockUserIdIndex);
+							AArray.remove(instance._buttonUnBlockUserIds, unblockUserIdIndex);
 
 							if (instance._unblockButton && (instance._buttonUnBlockUserIds.length <= 0)) {
 								instance._unblockButton.hide();
@@ -969,7 +971,7 @@ AUI.add(
 						var addConnectionUserIdIndex = instance._buttonAddConnectionUserIds.indexOf(userId);
 
 						if (addConnectionUserIdIndex >= 0) {
-							Array.remove(instance._buttonAddConnectionUserIds, addConnectionUserIdIndex);
+							AArray.remove(instance._buttonAddConnectionUserIds, addConnectionUserIdIndex);
 
 							if (instance._addConnectionButton && (instance._buttonAddConnectionUserIds.length <= 0)) {
 								instance._addConnectionButton.hide();
@@ -979,7 +981,7 @@ AUI.add(
 						var removeConnectionUserIdIndex = instance._buttonRemoveConnectionUserIds.indexOf(userId);
 
 						if (removeConnectionUserIdIndex >= 0) {
-							Array.remove(instance._buttonRemoveConnectionUserIds, removeConnectionUserIdIndex);
+							AArray.remove(instance._buttonRemoveConnectionUserIds, removeConnectionUserIdIndex);
 
 							if (instance._removeConnectionButton && (instance._buttonRemoveConnectionUserIds.length <= 0)) {
 								instance._removeConnectionButton.hide();
@@ -989,7 +991,7 @@ AUI.add(
 						var followUserIdIndex = instance._buttonFollowUserIds.indexOf(userId);
 
 						if (followUserIdIndex >= 0) {
-							Array.remove(instance._buttonFollowUserIds, followUserIdIndex);
+							AArray.remove(instance._buttonFollowUserIds, followUserIdIndex);
 
 							if (instance._followButton && (instance._buttonFollowUserIds.length <= 0)) {
 								instance._followButton.hide();
@@ -999,7 +1001,7 @@ AUI.add(
 						var unFollowUserIdIndex = instance._buttonUnFollowUserIds.indexOf(userId);
 
 						if (unFollowUserIdIndex >= 0) {
-							Array.remove(instance._buttonUnFollowUserIds, unFollowUserIdIndex);
+							AArray.remove(instance._buttonUnFollowUserIds, unFollowUserIdIndex);
 
 							if (instance._unfollowButton && (instance._buttonUnFollowUserIds.length <= 0)) {
 								instance._unfollowButton.hide();
@@ -1009,7 +1011,7 @@ AUI.add(
 						var exportUserIdIndex = instance._buttonExportUserIds.indexOf(userId);
 
 						if (exportUserIdIndex >= 0) {
-							Array.remove(instance._buttonExportUserIds, exportUserIdIndex);
+							AArray.remove(instance._buttonExportUserIds, exportUserIdIndex);
 
 							if (instance._exportButton && (instance._buttonExportUserIds.length <= 0)) {
 								instance._exportButton.hide();
@@ -1133,6 +1135,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-io-plugin-deprecated','aui-toolbar','autocomplete-base','datasource-io','json-parse','liferay-portlet-base','liferay-portlet-url', 'liferay-util-window']
+		requires: ['aui-io-plugin-deprecated', 'aui-toolbar', 'autocomplete-base', 'datasource-io', 'json-parse', 'liferay-portlet-base', 'liferay-portlet-url', 'liferay-util-window']
 	}
 );
