@@ -175,8 +175,10 @@ configure(
 	}
 
 	clean {
-		tasks.each {
-			delete it.outputs
+		afterEvaluate {
+			tasks.each {
+				delete it.outputs
+			}
 		}
 
 		Map projectCompileDependencies = gradle.compileDependencies.find {
@@ -558,6 +560,8 @@ configure(
 	}
 
 	war {
+		outputs.file archivePath
+
 		dependsOn buildCss
 
 		destinationDir = file("${rootDir}/dist")
