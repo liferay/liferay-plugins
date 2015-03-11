@@ -37,12 +37,12 @@ def portalDependencies = [
 	commonsDigester: [
 		group: "commons-digester",
 		name: "commons-digester",
-		version: "1.8.0"
+		version: "1.8"
 	],
 	commonsDiscovery: [
 		group: "commons-discovery",
 		name: "commons-discovery",
-		version: "0.4.0"
+		version: "0.4"
 	],
 	commonsFileupload: [
 		group: "commons-fileupload",
@@ -52,17 +52,17 @@ def portalDependencies = [
 	commonsHttpclient: [
 		group: "commons-httpclient",
 		name: "commons-httpclient",
-		version: "3.1.0"
+		version: "3.1"
 	],
 	commonsIo: [
 		group: "commons-io",
 		name: "commons-io",
-		version: "2.1.0"
+		version: "2.1"
 	],
 	commonsLang: [
 		group: "commons-lang",
 		name: "commons-lang",
-		version: "2.6.0"
+		version: "2.6"
 	],
 	commonsLogging: [
 		group: "commons-logging",
@@ -70,9 +70,9 @@ def portalDependencies = [
 		version: "1.1.3"
 	],
 	commonsMath: [
-		group: "commons-math",
+		group: "org.apache.commons",
 		name: "commons-math",
-		version: "2.0.0"
+		version: "2.0"
 	],
 	commonsValidator:	[
 		group: "commons-validator",
