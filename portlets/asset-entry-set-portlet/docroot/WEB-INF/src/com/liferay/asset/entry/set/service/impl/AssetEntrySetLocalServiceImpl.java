@@ -21,11 +21,11 @@ import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImp
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
+import com.liferay.asset.entry.set.util.AssetEntrySetPayloadProcessorUtil;
 import com.liferay.asset.entry.set.util.PortletKeys;
 import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
-import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -544,6 +545,10 @@ public class AssetEntrySetLocalServiceImpl
 		setLikedParticipants(userId, assetEntrySet, likedParticipantsLimit);
 
 		setSharedToParticipants(assetEntrySet);
+
+		assetEntrySet.setPayload(
+			AssetEntrySetPayloadProcessorUtil.process(
+				assetEntrySet.getPayload()));
 	}
 
 	protected void setDisplayFields(
