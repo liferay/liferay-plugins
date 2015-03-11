@@ -49,7 +49,6 @@ if (entry == null) {
 	<aui:fieldset>
 		<c:if test='<%= redirectMvcPath.equals("/manage_entries.jsp") %>'>
 			<span class="back-link"><a href="<%= HtmlUtil.escape(redirect) %>">&laquo; Back</a></span>
-			<span class="alert alert-danger">teste de mensagem de erro</span>
 		</c:if>
 
 		<c:choose>
