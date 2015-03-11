@@ -615,3 +615,44 @@ configure(
 
 	setModuleProperties()
 }
+
+task compareDists << {
+	FileTree distFileTree = fileTree(dir: "dist", include: "*.war")
+	FileTree dist2FileTree = fileTree(dir: "dist2", include: "*.war")
+
+	List<String> distFileNames = distFileTree.collect {
+		it.name
+	}
+
+	List<String> dist2FileNames = dist2FileTree.collect {
+		it.name
+	}
+
+	if (distFileNames.size() != dist2FileNames.size()) {
+		println "dist and dist2 do not match: dist contains ${distFileNames.size()} files, while dist2 contains ${dist2FileNames.size()} files"
+
+		return
+	}
+
+	List<String> matchingFileNames = distFileNames.intersect(dist2FileNames)
+
+	if (matchingFileNames.size() != distFileNames.size()) {
+		println "dist and dist2 do not match: the 2 directories contain different files:"
+
+		List<String> uniqueFileNames = distFileNames - matchingFileNames
+
+		if (!uniqueFileNames.empty) {
+			println "\tfiles only in dist: " + uniqueFileNames.join(", ")
+		}
+
+		uniqueFileNames = dist2FileNames - matchingFileNames
+
+		if (!uniqueFileNames.empty) {
+			println "\tfiles only in dist2: " + uniqueFileNames.join(", ")
+		}
+
+		return
+	}
+
+	println "dist and dist2 match"
+}
