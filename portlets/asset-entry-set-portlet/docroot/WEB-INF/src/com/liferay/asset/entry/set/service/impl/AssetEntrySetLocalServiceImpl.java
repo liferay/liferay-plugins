@@ -542,13 +542,13 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setChildAssetEntrySets(userId, childAssetEntrySetsLimit);
 
-		setLikedParticipants(userId, assetEntrySet, likedParticipantsLimit);
-
-		setSharedToParticipants(assetEntrySet);
-
 		assetEntrySet.setPayload(
 			AssetEntrySetPayloadProcessorUtil.process(
 				assetEntrySet.getPayload()));
+
+		setLikedParticipants(userId, assetEntrySet, likedParticipantsLimit);
+
+		setSharedToParticipants(assetEntrySet);
 	}
 
 	protected void setDisplayFields(
