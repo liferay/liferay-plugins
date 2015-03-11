@@ -437,7 +437,21 @@ configure(
 				String[] importSharedArray = importShared.split(",")
 
 				importSharedArray.each {
-					contents << "includeTransitive \":shared:${it}\""
+					String includeTransitivePath
+
+					if (exists("${rootDir}/shared/${it}/src")) {
+						includeTransitivePath = ":shared:${it}"
+					}
+					else if (exists("${projectDir}/../${it}/src")) {
+						includeTransitivePath = project.path.replaceFirst(project.name, it)
+					}
+					else {
+						println("Project dependency ${it} could not be found in the shared directory or this project's parent directory.")
+
+						return
+					}
+
+					contents << "includeTransitive \"${includeTransitivePath}\""
 				}
 
 				contents.each {
