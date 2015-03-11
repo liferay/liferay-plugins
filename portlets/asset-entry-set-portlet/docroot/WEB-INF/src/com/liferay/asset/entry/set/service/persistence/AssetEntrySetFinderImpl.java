@@ -16,7 +16,7 @@ package com.liferay.asset.entry.set.service.persistence;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl;
-import com.liferay.asset.entry.set.participant.AssetEntrySetParticipantInfoUtil;
+import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
