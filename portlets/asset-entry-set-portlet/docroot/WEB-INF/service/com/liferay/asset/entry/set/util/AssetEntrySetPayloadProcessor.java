@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.exception.PortalException;
  */
 public interface AssetEntrySetPayloadProcessor {
 
-	public String process(String payload)
-		throws PortalException;
+	public String process(String payload) throws PortalException;
 
 }
