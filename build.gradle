@@ -616,43 +616,46 @@ configure(
 	setModuleProperties()
 }
 
-task compareDists << {
-	FileTree distFileTree = fileTree(dir: "dist", include: "*.war")
-	FileTree dist2FileTree = fileTree(dir: "dist2", include: "*.war")
+task compareDists
 
-	List<String> distFileNames = distFileTree.collect {
+compareDists << {
+	FileTree antDistFileTree = fileTree(dir: "dist", include: "*.war")
+
+	List<String> antDistFileNames = antDistFileTree.collect {
 		it.name
 	}
 
-	List<String> dist2FileNames = dist2FileTree.collect {
+	FileTree gradleDistFileTree = fileTree(dir: "antDist2", include: "*.war")
+
+	List<String> gradleDistFileNames = gradleDistFileTree.collect {
 		it.name
 	}
 
-	if (distFileNames.size() != dist2FileNames.size()) {
-		println "dist and dist2 do not match: dist contains ${distFileNames.size()} files, while dist2 contains ${dist2FileNames.size()} files"
+	if (antDistFileNames.size() != gradleDistFileNames.size()) {
+		println "Distribution directories contain different numbers of files."
 
 		return
 	}
 
-	List<String> matchingFileNames = distFileNames.intersect(dist2FileNames)
+	List<String> commonFileNames = antDistFileNames.intersect(gradleDistFileNames)
 
-	if (matchingFileNames.size() != distFileNames.size()) {
-		println "dist and dist2 do not match: the 2 directories contain different files:"
+	if (commonFileNames.size() != antDistFileNames.size()) {
+		println "Distribution directories contain different files."
 
-		List<String> uniqueFileNames = distFileNames - matchingFileNames
+		List<String> uniqueFileNames = antDistFileNames - commonFileNames
 
 		if (!uniqueFileNames.empty) {
-			println "\tfiles only in dist: " + uniqueFileNames.join(", ")
+			println "Unique files in the Ant antDistribution directory: " + uniqueFileNames.join(", ")
 		}
 
-		uniqueFileNames = dist2FileNames - matchingFileNames
+		uniqueFileNames = gradleDistFileNames - commonFileNames
 
 		if (!uniqueFileNames.empty) {
-			println "\tfiles only in dist2: " + uniqueFileNames.join(", ")
+			println "Unique files in the Gradle distribution directory: " + uniqueFileNames.join(", ")
 		}
 
 		return
 	}
 
-	println "dist and dist2 match"
+	println "Distribution directories do match."
 }
