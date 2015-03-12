@@ -141,7 +141,7 @@ configure(
 		main = "com.liferay.portal.tools.SassToCssBuilder"
 
 		onlyIf {
-			sassDocrootDirFileTree.getFiles()
+			sassDocrootDirFileTree.files
 		}
 
 		setOutputs = {
@@ -326,12 +326,12 @@ configure(
 					it[1].toUpperCase()
 				}
 
-				String[] portalDependencyJarsArray = portalDependencyJars.split(",");
+				String[] portalDependencyJarsArray = portalDependencyJars.split(",")
 
 				portalDependencyJarsArray.each {
 					String portalDependencyJar ->
 
-					Map portalDependencyJarMap = portalDependencies.get(portalDependencyJar)
+					Map portalDependencyJarMap = portalDependencies[portalDependencyJar]
 
 					if (portalDependencyJarMap == null) {
 						println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
@@ -374,8 +374,8 @@ configure(
 		wrapContents = {
 			List contents, int indentCount, String leftClose, String name, String rightClose ->
 
-			if (contents.isEmpty()) {
-				return contents;
+			if (!contents) {
+				return contents
 			}
 
 			String indent = getIndent(indentCount)
@@ -554,7 +554,7 @@ configure(
 					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
 				}
 
-				version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.getVersion() + "." + moduleIncrementalVersion)
+				version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.version + "." + moduleIncrementalVersion)
 			}
 		}
 	}
@@ -592,12 +592,12 @@ configure(
 		getLanguageProperties = {
 			StringBuilder sb = new StringBuilder()
 
-			File contentDir = file("${pluginSrcDir}/content");
+			File contentDir = file("${pluginSrcDir}/content")
 
-			File[] files = contentDir.listFiles();
+			File[] files = contentDir.listFiles()
 
 			for (int i = 0; i < files.length; i++) {
-				File file = files[i];
+				File file = files[i]
 
 				sb << "\t<language-properties>content/" + file.name + "</language-properties>"
 
