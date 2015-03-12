@@ -120,7 +120,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				localizedResourceActions = new ArrayList<String>(resourceActions.size());
 
 				for (String resourceAction : resourceActions) {
-					localizedResourceActions.add(LanguageUtil.get(request, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+					localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
 				}
 			}
 			%>
@@ -151,14 +151,16 @@ portletURL.setParameter("delta", String.valueOf(delta));
 		},
 		'input[type=checkbox]'
 	);
+</aui:script>
 
+<aui:script>
 	Liferay.provide(
 		window,
 		'<portlet:namespace />disableSites',
 		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-			if (groupIds && confirm('<%= UnicodeLanguageUtil.get(request, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
+			if (groupIds && confirm('<%= UnicodeLanguageUtil.get(locale, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
 				document.<portlet:namespace />fm.<portlet:namespace />enabled.value = false;
 
@@ -185,7 +187,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 	Liferay.provide(
 		window,
 		'<portlet:namespace />setPermissionsFullAccess',
-		function(permissions) {
+		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
 			if (groupIds) {
@@ -200,7 +202,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 	Liferay.provide(
 		window,
 		'<portlet:namespace />setPermissionsViewAndAddDiscussion',
-		function(permissions) {
+		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
 			if (groupIds) {
@@ -215,7 +217,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 	Liferay.provide(
 		window,
 		'<portlet:namespace />setPermissionsViewOnly',
-		function(permissions) {
+		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
 			if (groupIds) {
