@@ -89,7 +89,7 @@ public class MentionsNotifier {
 		subscriptionSender.setScopeGroupId(groupId);
 		subscriptionSender.setServiceContext(serviceContext);
 		subscriptionSender.setSubject(subject);
-		subscriptionSender.setUserId(userId);
+		subscriptionSender.setCurrentUserId(userId);
 
 		for (int i = 0; i < mentionedUsersScreenNames.length; i++) {
 			String mentionedUserScreenName = mentionedUsersScreenNames[i];
