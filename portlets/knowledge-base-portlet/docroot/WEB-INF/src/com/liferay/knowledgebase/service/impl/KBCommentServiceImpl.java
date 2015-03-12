@@ -148,7 +148,7 @@ public class KBCommentServiceImpl extends KBCommentServiceBaseImpl {
 			getPermissionChecker(), kbCommentId, ActionKeys.UPDATE);
 
 		return kbCommentLocalService.updateStatus(
-			kbCommentId, status, serviceContext);
+			getUserId(), kbCommentId, status, serviceContext);
 	}
 
 }

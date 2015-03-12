@@ -103,7 +103,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		// Subscriptions
 
-		notifySubscribers(kbComment, serviceContext);
+		notifySubscribers(userId, kbComment, serviceContext);
 
 		return kbComment;
 	}
@@ -307,7 +307,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	public KBComment updateStatus(
-			long kbCommentId, int status, ServiceContext serviceContext)
+			long userId, long kbCommentId, int status,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
@@ -317,7 +318,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 
 		kbCommentPersistence.update(kbComment);
 
-		notifySubscribers(kbComment, serviceContext);
+		notifySubscribers(userId, kbComment, serviceContext);
 
 		return kbComment;
 	}
@@ -342,7 +343,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	protected void notifySubscribers(
-			KBComment kbComment, ServiceContext serviceContext)
+			long userId, KBComment kbComment, ServiceContext serviceContext)
 		throws PortalException {
 
 		PortletPreferences preferences =
@@ -395,6 +396,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			"[$COMMENT_CREATE_DATE$]",
 			getFormattedKBCommentCreateDate(kbComment, serviceContext), false);
 		subscriptionSender.setContextCreatorUserPrefix("ARTICLE");
+		subscriptionSender.setCreatorUserId(kbArticle.getUserId());
+		subscriptionSender.setCurrentUserId(userId);
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId("kb_article", kbArticle.getKbArticleId());
@@ -402,7 +405,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		subscriptionSender.setReplyToAddress(fromAddress);
 		subscriptionSender.setScopeGroupId(kbArticle.getGroupId());
 		subscriptionSender.setSubject(subject);
-		subscriptionSender.setUserId(kbArticle.getUserId());
 
 		User user = userLocalService.getUser(kbComment.getUserId());
 
