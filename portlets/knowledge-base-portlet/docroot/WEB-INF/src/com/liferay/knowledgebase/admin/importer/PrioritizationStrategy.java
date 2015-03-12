@@ -38,8 +38,8 @@ import java.util.Map;
 public class PrioritizationStrategy {
 
 	public static PrioritizationStrategy create(
-			long groupId, long parentKBFolderId,
-			boolean prioritizeByNumericalPrefix) {
+		long groupId, long parentKBFolderId,
+		boolean prioritizeByNumericalPrefix) {
 
 		Map<String, List<KBArticle>> existingKBArticlesMap = new HashMap<>();
 
@@ -193,7 +193,7 @@ public class PrioritizationStrategy {
 	}
 
 	protected void handleNumericalPrefix(KBArticle kbArticle, String filePath)
-			throws PortalException {
+		throws PortalException {
 
 		String parentKBArticleUrlTitle = getParentKBArticleUrlTitle(kbArticle);
 
