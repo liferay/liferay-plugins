@@ -575,7 +575,7 @@ configure(
 
 		dependsOn buildCss
 
-		destinationDir = file("${rootDir}/dist")
+		destinationDir = file("${rootDir}/dist2")
 
 		duplicatesStrategy "exclude"
 
@@ -637,7 +637,7 @@ compareDists << {
 
 			Map<String, String> antFileChecksums = getFileChecksums(antZipFileTree)
 
-			FileTree gradleZipFileTree = zipTree("antDist2/${fileName}")
+			FileTree gradleZipFileTree = zipTree("dist2/${fileName}")
 
 			Map<String, String> gradleFileChecksums = getFileChecksums(gradleZipFileTree)
 
@@ -713,7 +713,7 @@ compareDists << {
 
 		antDistFileNames = antDistFileTree*.name
 
-		FileTree gradleDistFileTree = fileTree(dir: "antDist2", include: "*.war")
+		FileTree gradleDistFileTree = fileTree(dir: "dist2", include: "*.war")
 
 		gradleDistFileNames = gradleDistFileTree*.name
 
