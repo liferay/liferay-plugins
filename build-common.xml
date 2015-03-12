@@ -216,6 +216,7 @@ Error-Prone was automatically installed. Please rerun your task.
 						javac.classpathref="plugin.classpath"
 						javac.destdir="${tstamp.value}"
 						javac.srcdir="${tstamp.value}"
+						module.dir="@{module.dir}"
 					/>
 
 					<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.beginindex">
