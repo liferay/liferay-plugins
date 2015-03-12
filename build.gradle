@@ -622,35 +622,9 @@ configure(
 task compareDists
 
 compareDists << {
-	FileTree antDistFileTree = fileTree(dir: "dist", include: "*.war")
+	Closure getChecksums
 
-	List<String> antDistFileNames = antDistFileTree*.name
-
-	FileTree gradleDistFileTree = fileTree(dir: "antDist2", include: "*.war")
-
-	List<String> gradleDistFileNames = gradleDistFileTree*.name
-
-	List<String> commonFileNames = antDistFileNames.intersect(gradleDistFileNames)
-
-	if ((antDistFileNames.size() != gradleDistFileNames.size()) || (commonFileNames.size() != antDistFileNames.size())) {
-		println "Distribution directories contain different files."
-
-		List<String> uniqueFileNames = antDistFileNames - commonFileNames
-
-		if (uniqueFileNames) {
-			println "Unique files in the Ant distribution directory: " + uniqueFileNames.join(", ")
-		}
-
-		uniqueFileNames = gradleDistFileNames - commonFileNames
-
-		if (uniqueFileNames) {
-			println "Unique files in the Gradle distribution directory: " + uniqueFileNames.join(", ")
-		}
-
-		return
-	}
-
-	Closure getChecksums = {
+	getChecksums = {
 		FileTree fileTree ->
 
 		Map<String, String> checksums = [:]
@@ -675,6 +649,34 @@ compareDists << {
 		return checksums
 	}
 
+	FileTree antDistFileTree = fileTree(dir: "dist", include: "*.war")
+
+	List<String> antDistFileNames = antDistFileTree*.name
+
+	FileTree gradleDistFileTree = fileTree(dir: "antDist2", include: "*.war")
+
+	List<String> gradleDistFileNames = gradleDistFileTree*.name
+
+	List<String> commonFileNames = antDistFileNames.intersect(gradleDistFileNames)
+
+	if ((antDistFileNames.size() != commonFileNames.size()) || (antDistFileNames.size() != gradleDistFileNames.size())) {
+		println "Distribution directories contain different files."
+
+		List<String> uniqueFileNames = antDistFileNames - commonFileNames
+
+		if (uniqueFileNames) {
+			println "Unique files in the Ant distribution directory: " + uniqueFileNames.join(", ")
+		}
+
+		uniqueFileNames = gradleDistFileNames - commonFileNames
+
+		if (uniqueFileNames) {
+			println "Unique files in the Gradle distribution directory: " + uniqueFileNames.join(", ")
+		}
+
+		return
+	}
+
 	for (String fileName : commonFileNames) {
 		FileTree antWarFileTree = zipTree("dist/${fileName}")
 
@@ -689,7 +691,7 @@ compareDists << {
 
 		Set<String> commonWarFilePaths = antWarFilePaths.intersect(gradleWarFilePaths)
 
-		if ((antWarFilePaths.size() != gradleWarFilePaths.size()) || (commonWarFilePaths.size() != antWarFilePaths.size())) {
+		if ((antWarFilePaths.size() != commonWarFilePaths.size()) || (antWarFilePaths.size() != gradleWarFilePaths.size())) {
 			println "Archive ${fileName} does not match."
 
 			Set<String> uniqueWarFilePaths = antWarFilePaths - commonWarFilePaths
