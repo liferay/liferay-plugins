@@ -166,12 +166,6 @@ configure(
 	}
 
 	clean {
-		afterEvaluate {
-			tasks.each {
-				delete it.outputs
-			}
-		}
-
 		Map projectCompileDependencies = gradle.compileDependencies.find {
 			project.path == it.projectPath
 		}
@@ -179,6 +173,12 @@ configure(
 		if (projectCompileDependencies) {
 			projectCompileDependencies["compile"].each {
 				dependsOn "${it}:clean"
+			}
+		}
+
+		doLast {
+			tasks.each {
+				delete it.outputs
 			}
 		}
 	}
