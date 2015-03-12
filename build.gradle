@@ -622,12 +622,119 @@ configure(
 task compareDists
 
 compareDists << {
-	Closure getChecksums
+	Closure checkDistFileContents
+	Closure checkDistFileNames
+	Closure compareDists
+	Closure getFileChecksums
 
-	getChecksums = {
+	List<String> antDistFileNames
+	List<String> commonDistFileNames
+	List<String> gradleDistFileNames
+
+	checkDistFileContents = {
+		for (String fileName : commonDistFileNames) {
+			FileTree antFileZipTree = zipTree("dist/${fileName}")
+
+			Map<String, String> antFileChecksums = getFileChecksums(antFileZipTree)
+
+			FileTree gradleFileZipTree = zipTree("antDist2/${fileName}")
+
+			Map<String, String> gradleFileChecksums = getFileChecksums(gradleFileZipTree)
+
+			Set<String> antFilePaths = antFileChecksums.keySet()
+			Set<String> gradleFilePaths = gradleFileChecksums.keySet()
+
+			Set<String> commonFilePaths = antFilePaths.intersect(gradleFilePaths)
+
+			if ((antFilePaths.size() != commonFilePaths.size()) || (antFilePaths.size() != gradleFilePaths.size())) {
+				println "${fileName} does not match."
+
+				Set<String> uniqueFilePaths = antFilePaths - commonFilePaths
+
+				if (uniqueFilePaths) {
+					println "Unique files in the Ant version: " + uniqueFilePaths.join(", ")
+				}
+
+				uniqueFilePaths = gradleFilePaths - commonFilePaths
+
+				if (uniqueFilePaths) {
+					println "Unique files in the Gradle version: " + uniqueFilePaths.join(", ")
+				}
+
+				return false
+			}
+
+			List<String> differentChecksumFilePaths = antFileChecksums.findResults {
+				filePath, antFileChecksum ->
+
+				String gradleFileChecksum = gradleFileChecksums[filePath]
+
+				if (antFileChecksum != gradleFileChecksum) {
+					return filePath
+				}
+
+				return null
+			}
+
+			if (differentChecksumFilePaths) {
+				println "${fileName} does not match."
+				println "Files with different checksums: " + differentChecksumFilePaths.join(", ")
+
+				return false
+			}
+		}
+
+		return true
+	}
+
+	checkDistFileNames = {
+		if ((antDistFileNames.size() != commonDistFileNames.size()) || (antDistFileNames.size() != gradleDistFileNames.size())) {
+			println "Distribution directories contain different files."
+
+			List<String> uniqueDistFileNames = antDistFileNames - commonDistFileNames
+
+			if (uniqueDistFileNames) {
+				println "Unique files in the Ant distribution directory: " + uniqueDistFileNames.join(", ")
+			}
+
+			uniqueDistFileNames = gradleDistFileNames - commonDistFileNames
+
+			if (uniqueDistFileNames) {
+				println "Unique files in the Gradle distribution directory: " + uniqueDistFileNames.join(", ")
+			}
+
+			return false
+		}
+
+		return true
+	}
+
+	compareDists = {
+		FileTree antDistFileTree = fileTree(dir: "dist", include: "*.war")
+
+		antDistFileNames = antDistFileTree*.name
+
+		FileTree gradleDistFileTree = fileTree(dir: "antDist2", include: "*.war")
+
+		gradleDistFileNames = gradleDistFileTree*.name
+
+		commonDistFileNames = antDistFileNames.intersect(gradleDistFileNames)
+
+		if (!checkDistFileNames()) {
+			return
+		}
+
+		if (!checkDistFileContents()) {
+			return
+		}
+
+		println "Distribution directories do match."
+	}
+
+	getFileChecksums = {
 		FileTree fileTree ->
 
-		Map<String, String> checksums = [:]
+		Map<String, String> fileChecksums = [:]
 
 		fileTree.visit {
 			FileVisitDetails details ->
@@ -640,94 +747,14 @@ compareDists << {
 
 			is.withStream {
 				String filePath = details.relativePath
-				String checksum = DigestUtils.md5Hex(is)
+				String fileChecksum = DigestUtils.md5Hex(is)
 
-				checksums[filePath] = checksum
+				fileChecksums[filePath] = fileChecksum
 			}
 		}
 
-		return checksums
+		return fileChecksums
 	}
 
-	FileTree antDistFileTree = fileTree(dir: "dist", include: "*.war")
-
-	List<String> antDistFileNames = antDistFileTree*.name
-
-	FileTree gradleDistFileTree = fileTree(dir: "antDist2", include: "*.war")
-
-	List<String> gradleDistFileNames = gradleDistFileTree*.name
-
-	List<String> commonFileNames = antDistFileNames.intersect(gradleDistFileNames)
-
-	if ((antDistFileNames.size() != commonFileNames.size()) || (antDistFileNames.size() != gradleDistFileNames.size())) {
-		println "Distribution directories contain different files."
-
-		List<String> uniqueFileNames = antDistFileNames - commonFileNames
-
-		if (uniqueFileNames) {
-			println "Unique files in the Ant distribution directory: " + uniqueFileNames.join(", ")
-		}
-
-		uniqueFileNames = gradleDistFileNames - commonFileNames
-
-		if (uniqueFileNames) {
-			println "Unique files in the Gradle distribution directory: " + uniqueFileNames.join(", ")
-		}
-
-		return
-	}
-
-	for (String fileName : commonFileNames) {
-		FileTree antWarFileTree = zipTree("dist/${fileName}")
-
-		Map<String, String> antWarFileChecksums = getChecksums(antWarFileTree)
-
-		FileTree gradleWarFileTree = zipTree("antDist2/${fileName}")
-
-		Map<String, String> gradleWarFileChecksums = getChecksums(gradleWarFileTree)
-
-		Set<String> antWarFilePaths = antWarFileChecksums.keySet()
-		Set<String> gradleWarFilePaths = gradleWarFileChecksums.keySet()
-
-		Set<String> commonWarFilePaths = antWarFilePaths.intersect(gradleWarFilePaths)
-
-		if ((antWarFilePaths.size() != commonWarFilePaths.size()) || (antWarFilePaths.size() != gradleWarFilePaths.size())) {
-			println "Archive ${fileName} does not match."
-
-			Set<String> uniqueWarFilePaths = antWarFilePaths - commonWarFilePaths
-
-			if (uniqueWarFilePaths) {
-				println "Unique files in the Ant archive: " + uniqueWarFilePaths.join(", ")
-			}
-
-			uniqueWarFilePaths = gradleWarFilePaths - commonWarFilePaths
-
-			if (uniqueWarFilePaths) {
-				println "Unique files in the Gradle archive: " + uniqueWarFilePaths.join(", ")
-			}
-
-			return
-		}
-
-		List<String> differentChecksumFilePaths = antWarFileChecksums.findResults {
-			filePath, antChecksum ->
-
-			String gradleChecksum = gradleWarFileChecksums[filePath]
-
-			if (antChecksum != gradleChecksum) {
-				return filePath
-			}
-
-			return null
-		}
-
-		if (differentChecksumFilePaths) {
-			println "Archive ${fileName} does not match."
-			println "Files with different checksums: " + differentChecksumFilePaths.join(", ")
-
-			return
-		}
-	}
-
-	println "Distribution directories do match."
+	compareDists()
 }
