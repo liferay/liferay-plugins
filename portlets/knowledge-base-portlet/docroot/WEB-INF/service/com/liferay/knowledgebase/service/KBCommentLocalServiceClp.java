@@ -247,7 +247,8 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		_methodName42 = "updateStatus";
 
 		_methodParameterTypes42 = new String[] {
-				"long", "int", "com.liferay.portal.service.ServiceContext"
+				"long", "long", "int",
+				"com.liferay.portal.service.ServiceContext"
 			};
 	}
 
@@ -1481,7 +1482,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 	}
 
 	@Override
-	public com.liferay.knowledgebase.model.KBComment updateStatus(
+	public com.liferay.knowledgebase.model.KBComment updateStatus(long userId,
 		long kbCommentId, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -1491,7 +1492,9 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 			returnObj = _invokableLocalService.invokeMethod(_methodName42,
 					_methodParameterTypes42,
 					new Object[] {
-						kbCommentId,
+						userId,
+						
+					kbCommentId,
 						
 					status,
 						

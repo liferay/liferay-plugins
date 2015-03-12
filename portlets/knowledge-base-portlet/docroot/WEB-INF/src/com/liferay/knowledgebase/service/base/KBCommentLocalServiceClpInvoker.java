@@ -259,7 +259,8 @@ public class KBCommentLocalServiceClpInvoker {
 		_methodName110 = "updateStatus";
 
 		_methodParameterTypes110 = new String[] {
-				"long", "int", "com.liferay.portal.service.ServiceContext"
+				"long", "long", "int",
+				"com.liferay.portal.service.ServiceContext"
 			};
 	}
 
@@ -548,8 +549,9 @@ public class KBCommentLocalServiceClpInvoker {
 		if (_methodName110.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
 			return KBCommentLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[2]);
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();
