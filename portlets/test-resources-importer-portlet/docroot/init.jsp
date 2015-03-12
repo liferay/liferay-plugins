@@ -21,7 +21,8 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.dao.orm.Criterion" %><%@
+<%@ page import="com.liferay.asset.categories.admin.web.constants.AssetCategoriesAdminPortletKeys" %><%@ 
+page import="com.liferay.portal.kernel.dao.orm.Criterion" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQuery" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil" %><%@
@@ -79,7 +80,7 @@ page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServ
 page import="com.liferay.portlet.journal.NoSuchArticleException" %><%@
 page import="com.liferay.portlet.journal.model.JournalArticle" %><%@
 page import="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil" %><%@
-page import="com.liferay.portlet.wiki.model.WikiPage" %>
+page import="com.liferay.wiki.model.WikiPage" %>
 
 <%@ page import="java.io.File" %>
 
