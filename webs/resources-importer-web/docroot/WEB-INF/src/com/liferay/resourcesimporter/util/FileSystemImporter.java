@@ -136,6 +136,7 @@ public class FileSystemImporter extends BaseImporter {
 		throws PortalException, SystemException {
 
 		String fileName = FileUtil.stripExtension(file.getName());
+		String language = getDDMTemplateLanguage(file.getName());
 
 		String name = getName(fileName);
 
@@ -164,7 +165,7 @@ public class FileSystemImporter extends BaseImporter {
 					userId, groupId, classNameId, 0, getKey(fileName),
 					getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-					StringPool.BLANK, getDDMTemplateLanguage(name), script,
+					StringPool.BLANK, language, script,
 					false, false, StringPool.BLANK, null, serviceContext);
 			}
 			else {
@@ -172,8 +173,8 @@ public class FileSystemImporter extends BaseImporter {
 					ddmTemplate.getTemplateId(), ddmTemplate.getClassPK(),
 					getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-					StringPool.BLANK, getDDMTemplateLanguage(name), script,
-					false, false, StringPool.BLANK, null, serviceContext);
+					StringPool.BLANK, language, script, false, false,
+					serviceContext);
 			}
 		}
 		catch (PortalException e) {
@@ -574,6 +575,8 @@ public class FileSystemImporter extends BaseImporter {
 			String ddmStructureKey, String fileName, InputStream inputStream)
 		throws Exception {
 
+		String language = getDDMTemplateLanguage(fileName);
+
 		fileName = FileUtil.stripExtension(fileName);
 
 		String name = getName(fileName);
@@ -614,7 +617,7 @@ public class FileSystemImporter extends BaseImporter {
 					ddmStructure.getStructureId(), getKey(fileName),
 					getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
-					getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
+					language, replaceFileEntryURL(xsl),
 					false, false, null, null, serviceContext);
 			}
 			else {
@@ -622,7 +625,7 @@ public class FileSystemImporter extends BaseImporter {
 					ddmTemplate.getTemplateId(),
 					PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
 					null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
-					getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
+					language, replaceFileEntryURL(xsl),
 					false, false, null, null, serviceContext);
 			}
 		}
