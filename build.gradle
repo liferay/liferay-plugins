@@ -622,8 +622,8 @@ configure(
 task compareDists
 
 compareDists << {
-	Closure checkDistFileContents
-	Closure checkDistFileNames
+	Closure compareDistFileContents
+	Closure compareDistFileNames
 	Closure compareDists
 	Closure getFileChecksums
 
@@ -631,7 +631,7 @@ compareDists << {
 	List<String> commonDistFileNames
 	List<String> gradleDistFileNames
 
-	checkDistFileContents = {
+	compareDistFileContents = {
 		for (String fileName : commonDistFileNames) {
 			FileTree antFileZipTree = zipTree("dist/${fileName}")
 
@@ -687,7 +687,7 @@ compareDists << {
 		return true
 	}
 
-	checkDistFileNames = {
+	compareDistFileNames = {
 		if ((antDistFileNames.size() != commonDistFileNames.size()) || (antDistFileNames.size() != gradleDistFileNames.size())) {
 			println "Distribution directories contain different files."
 
@@ -720,11 +720,11 @@ compareDists << {
 
 		commonDistFileNames = antDistFileNames.intersect(gradleDistFileNames)
 
-		if (!checkDistFileNames()) {
+		if (!compareDistFileNames()) {
 			return
 		}
 
-		if (!checkDistFileContents()) {
+		if (!compareDistFileContents()) {
 			return
 		}
 
