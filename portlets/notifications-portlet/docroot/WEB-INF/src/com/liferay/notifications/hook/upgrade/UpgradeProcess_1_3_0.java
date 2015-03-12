@@ -14,7 +14,9 @@
 
 package com.liferay.notifications.hook.upgrade;
 
-import com.liferay.notifications.hook.upgrade.v1_3_0.UpgradeUserNotificationEvent;
+import com.liferay.notifications.hook.upgrade.v1_1_0.UpgradeUserNotificationEvent;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
@@ -29,7 +31,14 @@ public class UpgradeProcess_1_3_0 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeUserNotificationEvent.class);
+		DB db = DBFactoryUtil.getDB();
+		String type = db.getType();
+
+		if (type.equals(DB.TYPE_ORACLE)) {
+			runSQL("delete from Ntfctns_UserNotificationEvent");
+
+			upgrade(UpgradeUserNotificationEvent.class);
+		}
 	}
 
 }
