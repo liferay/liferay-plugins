@@ -633,13 +633,13 @@ compareDists << {
 
 	compareDistFileContents = {
 		for (String fileName : commonDistFileNames) {
-			FileTree antFileZipTree = zipTree("dist/${fileName}")
+			FileTree antZipFileTree = zipTree("dist/${fileName}")
 
-			Map<String, String> antFileChecksums = getFileChecksums(antFileZipTree)
+			Map<String, String> antFileChecksums = getFileChecksums(antZipFileTree)
 
-			FileTree gradleFileZipTree = zipTree("antDist2/${fileName}")
+			FileTree gradleZipFileTree = zipTree("antDist2/${fileName}")
 
-			Map<String, String> gradleFileChecksums = getFileChecksums(gradleFileZipTree)
+			Map<String, String> gradleFileChecksums = getFileChecksums(gradleZipFileTree)
 
 			Set<String> antFilePaths = antFileChecksums.keySet()
 			Set<String> gradleFilePaths = gradleFileChecksums.keySet()
@@ -652,13 +652,13 @@ compareDists << {
 				Set<String> uniqueFilePaths = antFilePaths - commonFilePaths
 
 				if (uniqueFilePaths) {
-					println "Unique files in the Ant version: " + uniqueFilePaths.join(", ")
+					println "Unique files in the Ant distribution: " + uniqueFilePaths.join(", ") + "."
 				}
 
 				uniqueFilePaths = gradleFilePaths - commonFilePaths
 
 				if (uniqueFilePaths) {
-					println "Unique files in the Gradle version: " + uniqueFilePaths.join(", ")
+					println "Unique files in the Gradle distribution: " + uniqueFilePaths.join(", ") + "."
 				}
 
 				return false
@@ -677,8 +677,7 @@ compareDists << {
 			}
 
 			if (differentChecksumFilePaths) {
-				println "${fileName} does not match."
-				println "Files with different checksums: " + differentChecksumFilePaths.join(", ")
+				println "${fileName} does not match and has different files: " + differentChecksumFilePaths.join(", ")
 
 				return false
 			}
@@ -694,13 +693,13 @@ compareDists << {
 			List<String> uniqueDistFileNames = antDistFileNames - commonDistFileNames
 
 			if (uniqueDistFileNames) {
-				println "Unique files in the Ant distribution directory: " + uniqueDistFileNames.join(", ")
+				println "Unique files in the Ant distribution directory: " + uniqueDistFileNames.join(", ") + "."
 			}
 
 			uniqueDistFileNames = gradleDistFileNames - commonDistFileNames
 
 			if (uniqueDistFileNames) {
-				println "Unique files in the Gradle distribution directory: " + uniqueDistFileNames.join(", ")
+				println "Unique files in the Gradle distribution directory: " + uniqueDistFileNames.join(", ") + "."
 			}
 
 			return false
@@ -737,17 +736,17 @@ compareDists << {
 		Map<String, String> fileChecksums = [:]
 
 		fileTree.visit {
-			FileVisitDetails details ->
+			FileVisitDetails fileVisitDetails ->
 
-			if (details.directory) {
+			if (fileVisitDetails.directory) {
 				return
 			}
 
-			InputStream is = details.open()
+			InputStream inputStream = fileVisitDetails.open()
 
-			is.withStream {
-				String filePath = details.relativePath
-				String fileChecksum = DigestUtils.md5Hex(is)
+			inputStream.withStream {
+				String filePath = fileVisitDetails.relativePath
+				String fileChecksum = DigestUtils.md5Hex(inputStream)
 
 				fileChecksums[filePath] = fileChecksum
 			}
