@@ -744,7 +744,6 @@ public class CalendarBookingLocalServiceImpl
 
 		// Calendar booking
 
-		User user = userPersistence.findByPrimaryKey(userId);
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
@@ -781,9 +780,6 @@ public class CalendarBookingLocalServiceImpl
 		validate(titleMap, startTimeJCalendar, endTimeJCalendar);
 
 		calendarBooking.setGroupId(calendar.getGroupId());
-		calendarBooking.setCompanyId(user.getCompanyId());
-		calendarBooking.setUserId(user.getUserId());
-		calendarBooking.setUserName(user.getFullName());
 		calendarBooking.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendarBooking.setCalendarId(calendarId);
 		calendarBooking.setTitleMap(titleMap);
