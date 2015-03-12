@@ -120,7 +120,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				localizedResourceActions = new ArrayList<String>(resourceActions.size());
 
 				for (String resourceAction : resourceActions) {
-					localizedResourceActions.add(LanguageUtil.get(request, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+					localizedResourceActions.add(LanguageUtil.get(pageContext, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
 				}
 			}
 			%>
@@ -141,7 +141,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script use="aui-base,liferay-util-list-fields">
 	A.one('#<portlet:namespace /><%= searchContainerReference.getId() %>SearchContainer').delegate(
 		'click',
 		function() {
@@ -151,14 +151,16 @@ portletURL.setParameter("delta", String.valueOf(delta));
 		},
 		'input[type=checkbox]'
 	);
+</aui:script>
 
+<aui:script>
 	Liferay.provide(
 		window,
 		'<portlet:namespace />disableSites',
 		function() {
 			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-			if (groupIds && confirm('<%= UnicodeLanguageUtil.get(request, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
+			if (groupIds && confirm('<%= UnicodeLanguageUtil.get(pageContext, "disabling-a-sync-site-will-delete-all-associated-files-from-all-clients") %>')) {
 				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
 				document.<portlet:namespace />fm.<portlet:namespace />enabled.value = false;
 
