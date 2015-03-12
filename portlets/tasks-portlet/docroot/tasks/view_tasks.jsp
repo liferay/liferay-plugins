@@ -205,7 +205,7 @@ taskListURL.setParameter("tabs2", tabs2);
 							</c:if>
 						</div>
 
-						<div class="progress-picker hide">
+						<div class="hide progress-picker">
 							<div class="new-progress"><!-- --></div>
 							<div class="progress-indicator"></div>
 							<div class="progress-selector">
@@ -249,7 +249,7 @@ taskListURL.setParameter("tabs2", tabs2);
 				<div class="tags-wrapper">
 					<i class="icon-tag"></i>
 
-					<div class="tags hide">
+					<div class="hide tags">
 						<%= ListUtil.toString(assetTags, AssetTag.NAME_ACCESSOR) %>
 					</div>
 				</div>

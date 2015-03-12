@@ -19,7 +19,7 @@
 
 <h3><liferay-ui:message key="filter-by-tags" /></h3>
 
-<div class="filter-container asset-tag-filter">
+<div class="asset-tag-filter filter-container">
 
 	<%
 	List<AssetTagStats> assetTagStatsList = AssetTagStatsLocalServiceUtil.getTagStats(PortalUtil.getClassNameId(TasksEntry.class), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
