@@ -52,49 +52,21 @@
 		</for>
 	</target>
 
-	<target name="loop-modules">
-		<if>
-			<not>
-				<equals arg1="${plugins.includes}" arg2="" />
-			</not>
-			<then>
-				<for param="module.name">
-					<path>
-						<dirset dir="." excludes="${plugins.excludes}" includes="${plugins.includes}" />
-					</path>
-					<sequential>
-						<antelope:stringutil string="@{module.name}" property="module.name.unix">
-							<antelope:replace regex="\\" replacement="/" />
-						</antelope:stringutil>
-
-						<antelope:grep in="${module.name.unix}" regex="(.*/)(.*)" group="2" property="module.name" />
-
-						<antcall target="${loop.modules.cmd}" />
-					</sequential>
-				</for>
-			</then>
-		</if>
-	</target>
-
 	<target name="setup-eclipse">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="setup-eclipse-module" />
-		</antcall>
-	</target>
-
-	<target name="setup-eclipse-module">
-		<ant dir="${module.name}" target="setup-eclipse" inheritAll="false" />
+		<subant target="setup-eclipse-module">
+			<multirootfileset basedirs="${plugins.includes.path}">
+				<include name="build.xml" />
+			</multirootfileset>
+		</subant>
 	</target>
 
 	<target name="test-class-group">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="test-class-group-module" />
-		</antcall>
+		<subant target="test-class-group">
+			<multirootfileset basedirs="${plugins.includes.path}">
+				<include name="build.xml" />
+			</multirootfileset>
+		</subant>
 
 		<stop-test-app-server />
-	</target>
-
-	<target name="test-class-group-module">
-		<ant dir="${module.name}" target="test-class-group" inheritAll="false" />
 	</target>
 </project>
