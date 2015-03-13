@@ -524,7 +524,9 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="compile-jsp">
-		<compile-jsp compile.jsp.docroot.dir="docroot" />
+		<compile-jsp
+			compile.jsp.docroot.dir="docroot"
+		/>
 	</target>
 
 	<target name="compile-test">
