@@ -572,6 +572,7 @@ configure(
 
 	war {
 		Closure getLanguageProperties
+		Closure getNewDependencyNames
 
 		dependsOn buildCss
 
@@ -609,7 +610,23 @@ configure(
 			return sb.toString()
 		}
 
+		getNewDependencyNames = {
+			configurations.compile.resolvedConfiguration.resolvedArtifacts.collectEntries {
+				ModuleVersionIdentifier moduleVersionIdentifier = it.moduleVersion.id
+
+				[(String)"${moduleVersionIdentifier.name}-${moduleVersionIdentifier.version}.jar", (String)"${moduleVersionIdentifier.name}.jar"]
+			}
+		}.memoize()
+
 		outputs.file archivePath
+
+		rootSpec.childSpecs*.rename {
+			String fileName ->
+
+			Map<String, String> newNames = getNewDependencyNames();
+
+			return newNames[fileName] ?: fileName
+		}
 	}
 
 	webAppDirName = "docroot"
