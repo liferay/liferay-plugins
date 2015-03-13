@@ -25,8 +25,8 @@ import com.liferay.pushnotifications.PushNotificationsException;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.pushnotifications.util.PortletPropsValues;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -63,13 +63,9 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	protected Message buildMessage(JSONObject payloadJSONObject) {
 		Builder builder = new Builder();
 
-		Iterator<String> keys = payloadJSONObject.keys();
-
-		while (keys.hasNext()) {
-			String key = keys.next();
-
-			builder.addData(key, payloadJSONObject.getString(key));
-		}
+		builder.addData(
+			PushNotificationsConstants.KEY_PAYLOAD,
+			payloadJSONObject.toString());
 
 		return builder.build();
 	}

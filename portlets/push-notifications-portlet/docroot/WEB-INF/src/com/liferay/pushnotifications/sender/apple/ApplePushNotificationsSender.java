@@ -28,7 +28,6 @@ import com.notnoop.apns.ApnsService;
 import com.notnoop.apns.ApnsServiceBuilder;
 import com.notnoop.apns.PayloadBuilder;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -70,13 +69,9 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
 
-		Iterator<String> keys = payloadJSONObject.keys();
-
-		while (keys.hasNext()) {
-			String key = keys.next();
-
-			builder.customField(key, payloadJSONObject.getString(key));
-		}
+		builder.customField(
+			PushNotificationsConstants.KEY_PAYLOAD,
+			payloadJSONObject.toString());
 
 		return builder.build();
 	}
