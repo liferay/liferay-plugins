@@ -622,17 +622,17 @@ configure(
 		}.memoize()
 
 		setManifest = {
-			File file
+			File manifestFile
 
 			if (osgiPlugin) {
-				file = file("${projectDir}/src/META-INF/MANIFEST.MF")
+				manifestFile = file("${projectDir}/src/META-INF/MANIFEST.MF")
 			}
 			else {
-				file = file("${projectDir}/docroot/META-INF/MANIFEST.MF")
+				manifestFile = file("${projectDir}/docroot/META-INF/MANIFEST.MF")
 			}
 
-			if (file.exists()) {
-				manifest.from file
+			if (manifestFile.exists()) {
+				manifest.from manifestFile
 			}
 			else {
 				CopySpec copySpec = rootSpec.children.find {
