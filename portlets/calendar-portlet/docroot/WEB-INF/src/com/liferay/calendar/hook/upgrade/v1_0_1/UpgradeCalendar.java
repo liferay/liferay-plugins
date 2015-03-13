@@ -14,13 +14,13 @@
 
 package com.liferay.calendar.hook.upgrade.v1_0_1;
 
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.User;
+import com.liferay.portal.util.PortalUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -65,7 +65,7 @@ public class UpgradeCalendar extends UpgradeProcess {
 					timeZoneId = rs.getString(3);
 				}
 
-				updateCalendarTimeZoneId(calendarId, timeZoneId);
+				updateCalendarTimeZoneId(con, calendarId, timeZoneId);
 			}
 		}
 		finally {
@@ -73,12 +73,16 @@ public class UpgradeCalendar extends UpgradeProcess {
 		}
 	}
 
-	protected void updateCalendarTimeZoneId(long calendarId, String timeZoneId)
+	protected void updateCalendarTimeZoneId(
+			Connection connection, long calendarId, String timeZoneId)
 		throws Exception {
 
-		runSQL(
-			"update Calendar set timeZoneId = '" + timeZoneId +
-				"' where calendarId = " + calendarId);
+		PreparedStatement ps = connection.prepareStatement(
+			"update Calendar set timeZoneId = ? where calendarId = ?");
+
+		ps.setString(1, timeZoneId);
+		ps.setLong(2, calendarId);
+		ps.execute();
 	}
 
 	private static final String _PORTAL_TIME_ZONE_ID = PropsUtil.get(
