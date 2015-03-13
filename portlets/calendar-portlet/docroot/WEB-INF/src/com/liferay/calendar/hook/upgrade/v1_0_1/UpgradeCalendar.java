@@ -59,10 +59,14 @@ public class UpgradeCalendar extends UpgradeProcess {
 				long calendarId = rs.getLong(1);
 				long classNameId = rs.getLong(2);
 
-				String timeZoneId = _PORTAL_TIME_ZONE_ID;
+				String timeZoneId = null;
 
 				if (classNameId == userClassNameId) {
 					timeZoneId = rs.getString(3);
+				}
+				else {
+					timeZoneId = PropsUtil.get(
+						PropsKeys.COMPANY_DEFAULT_TIME_ZONE);
 				}
 
 				updateCalendarTimeZoneId(con, calendarId, timeZoneId);
@@ -82,10 +86,8 @@ public class UpgradeCalendar extends UpgradeProcess {
 
 		ps.setString(1, timeZoneId);
 		ps.setLong(2, calendarId);
+
 		ps.execute();
 	}
-
-	private static final String _PORTAL_TIME_ZONE_ID = PropsUtil.get(
-		PropsKeys.COMPANY_DEFAULT_TIME_ZONE);
 
 }
