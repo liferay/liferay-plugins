@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PAESI">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PAESI_CNI">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}
@@ -10,19 +10,38 @@
 			INNER JOIN
 				AssetSharingEntry AS AssetSharingEntry1 ON
 					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
+			[$JOIN_BY$]
+			WHERE
+				(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
+				(AssetEntrySet.parentAssetEntrySetId = ?) AND
+				(AssetSharingEntry1.classNameId = ?) AND
+				(
+					[$SHARED_TO$]
+					[$ASSET_TAG_NAMES$]
+				)
+			ORDER BY
+				AssetEntrySet.createTime DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetTag">
+		<![CDATA[
+			INNER JOIN
+				AssetEntry ON
+					(AssetEntry.classPK = AssetEntrySet.assetEntrySetId)
+			LEFT JOIN
+				AssetEntries_AssetTags ON
+					(AssetEntries_AssetTags.entryId = AssetEntry.entryId)
+			LEFT JOIN
+				AssetTag ON
+					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
+		]]>
+	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetSharingEntry">
+		<![CDATA[
 			INNER JOIN
 				AssetSharingEntry AS AssetSharingEntry2 ON
 					(AssetSharingEntry1.classNameId = AssetSharingEntry2.classNameId) AND
 					(AssetSharingEntry1.classPK = AssetSharingEntry2.classPK)
-			WHERE
-				(
-					(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
-					(AssetEntrySet.parentAssetEntrySetId = ?)
-				) AND
-				(AssetSharingEntry1.classNameId = ?) AND
-				([$SHARED_TO$])
-			ORDER BY
-				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder.findByAESI_NotC_C">

@@ -88,29 +88,31 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long createTime, long parentAssetEntrySetId, String sharedTo,
-			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
-			int end)
+			String[] assetTagNames, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getNewAssetEntrySets(
 			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
+			assetTagNames, childAssetEntrySetsLimit, likedParticipantsLimit,
+			start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long createTime, long parentAssetEntrySetId, String sharedTo,
-			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
-			int end)
+			String[] assetTagNames, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getOldAssetEntrySets(
 			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
+			assetTagNames, childAssetEntrySetsLimit, likedParticipantsLimit,
+			start, end);
 	}
 
 	@Override

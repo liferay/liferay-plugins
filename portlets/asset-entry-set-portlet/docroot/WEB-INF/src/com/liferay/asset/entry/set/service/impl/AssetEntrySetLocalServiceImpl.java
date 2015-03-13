@@ -207,25 +207,29 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
-			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
-			int likedParticipantsLimit, int start, int end)
+			JSONArray sharedToJSONArray, String[] assetTagNames,
+			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, true, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
+			assetTagNames, childAssetEntrySetsLimit, likedParticipantsLimit,
+			start, end);
 	}
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
-			JSONArray sharedToJSONArray, int childAssetEntrySetsLimit,
-			int likedParticipantsLimit, int start, int end)
+			JSONArray sharedToJSONArray, String[] assetTagNames,
+			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, createTime, false, parentAssetEntrySetId, sharedToJSONArray,
-			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
+			assetTagNames, childAssetEntrySetsLimit, likedParticipantsLimit,
+			start, end);
 	}
 
 	@Override
@@ -436,8 +440,8 @@ public class AssetEntrySetLocalServiceImpl
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long createTime, boolean gtCreateTime,
 			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
-			int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
-			int end)
+			String[] assetTagNames, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit, int start, int end)
 		throws PortalException, SystemException {
 
 		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
@@ -445,10 +449,11 @@ public class AssetEntrySetLocalServiceImpl
 				userId);
 
 		List<AssetEntrySet> assetEntrySets =
-			assetEntrySetFinder.findByCT_PAESI(
+			assetEntrySetFinder.findByCT_PAESI_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), createTime, gtCreateTime,
-				parentAssetEntrySetId, sharedToJSONArray, start, end);
+				parentAssetEntrySetId, sharedToJSONArray, assetTagNames, start,
+				end);
 
 		setDisplayFields(
 			userId, assetEntrySets, childAssetEntrySetsLimit,
