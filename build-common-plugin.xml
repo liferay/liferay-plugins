@@ -782,7 +782,7 @@
 
 		<if>
 			<or>
-				<resourcecount when="gt" count="0">
+				<resourcecount count="0" when="gt">
 					<fileset dir="." includes="**/*.jsp" excludes="docroot/META-INF/custom-jsps/" />
 				</resourcecount>
 				<available file="docroot/WEB-INF/src" />
