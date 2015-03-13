@@ -32,7 +32,6 @@ page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.service.permission.PortletPermissionUtil" %><%@
-page import="com.liferay.portal.util.PortletKeys" %><%@
 page import="com.liferay.wiki.constants.WikiPortletKeys" %><%@
 page import="com.liferay.wiki.exception.NoSuchNodeException" %><%@
 page import="com.liferay.wiki.model.WikiNode" %><%@
