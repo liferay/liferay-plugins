@@ -1968,46 +1968,30 @@ Please find a solution that does not require portal-impl.jar.
 							<if>
 								<and>
 									<available file="@{module.dir}/docroot" />
-								</and>
-								<then>
-									<resourcecount property="module.css.count">
+									<resourcecount count="0" when="gt">
 										<fileset dir="@{module.dir}/docroot" includes="**/*.css" />
 									</resourcecount>
-
-									<if>
-										<not>
-											<equals arg1="${module.css.count}" arg2="0" />
-										</not>
-										<then>
-											<build-css
-												module.dir="@{module.dir}"
-												sass.docroot.dir="docroot"
-											/>
-										</then>
-									</if>
+								</and>
+								<then>
+									<build-css
+										module.dir="@{module.dir}"
+										sass.docroot.dir="${module.dir.unix}/docroot"
+									/>
 								</then>
 							</if>
 
 							<if>
 								<and>
 									<available file="@{module.dir}/src/META-INF/resources" />
-								</and>
-								<then>
-									<resourcecount property="module.css.count">
+									<resourcecount count="0" when="gt">
 										<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.css" />
 									</resourcecount>
-
-									<if>
-										<not>
-											<equals arg1="${module.css.count}" arg2="0" />
-										</not>
-										<then>
-											<build-css
-												module.dir="@{module.dir}"
-												sass.docroot.dir="src/META-INF/resources"
-											/>
-										</then>
-									</if>
+								</and>
+								<then>
+									<build-css
+										module.dir="@{module.dir}"
+										sass.docroot.dir="${module.dir.unix}/src/META-INF/resources"
+									/>
 								</then>
 							</if>
 
