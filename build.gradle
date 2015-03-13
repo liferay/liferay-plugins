@@ -620,7 +620,7 @@ configure(
 
 		outputs.file archivePath
 
-		rootSpec.childSpecs*.rename {
+		rootSpec.children*.rename {
 			String fileName ->
 
 			Map<String, String> newDependencyNames = getNewDependencyNames();
