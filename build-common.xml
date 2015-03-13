@@ -1118,12 +1118,22 @@ Error-Prone was automatically installed. Please rerun your task.
 			</copy>
 
 			<if>
-				<available file="@{module.dir}/docroot/WEB-INF/src" />
+				<or>
+					<resourcecount when="gt" count="0">
+						<fileset dir="." includes="**/*.jsp" excludes="@{module.dir}/docroot/META-INF/custom.jsps/" />
+					</resourcecount>
+					<available file="@{module.dir}/docroot/WEB-INF/src" />
+				</or>
 				<then>
 					<copy todir="@{module.dir}/docroot/WEB-INF/lib">
 						<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
 					</copy>
+				</then>
+			</if>
 
+			<if>
+				<available file="@{module.dir}/docroot/WEB-INF/src" />
+				<then>
 					<if>
 						<available file="@{module.dir}/docroot/WEB-INF/lib/portal-impl.jar" />
 						<then>
