@@ -161,6 +161,138 @@ Error-Prone was automatically installed. Please rerun your task.
 		</else>
 	</if>
 
+	<macrodef name="bnd-post-process">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<move file="@{module.dir}/bnd.bnd.original" tofile="@{module.dir}/bnd.bnd" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="bnd-pre-process">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<copy file="@{module.dir}/bnd.bnd" tofile="@{module.dir}/bnd.bnd.original" />
+
+			<script classpathref="portal.classpath" language="beanshell">
+				<![CDATA[
+					import java.nio.charset.StandardCharsets;
+
+					import org.apache.commons.io.FileUtils;
+					import org.apache.commons.lang.StringUtils;
+					import org.apache.tools.ant.DirectoryScanner;
+
+					public void processBndFile() throws IOException {
+						File bndFile = new File(project.getProperty("module.dir.unix"), "bnd.bnd");
+
+						String content = FileUtils.readFileToString(bndFile, StandardCharsets.UTF_8.toString());
+
+						Properties properties = new Properties();
+
+						properties.load(new StringReader(content));
+
+						processProperties(properties);
+
+						StringBuilder sb = new StringBuilder();
+
+						Set keys = new TreeSet(properties.keySet());
+
+						for (String key : keys) {
+							sb.append(key);
+							sb.append(": ");
+							sb.append(properties.getProperty(key));
+							sb.append("\n");
+						}
+
+						FileUtils.write(bndFile, sb.toString(), StandardCharsets.UTF_8.toString());
+					}
+
+					public void processIncludeResource(Properties properties) {
+						List keyValuePairsList = new ArrayList();
+
+						String includeResource = properties.getProperty("Include-Resource", "");
+
+						if (includeResource.length() > 0) {
+							for (String keyValuePair : includeResource.split(",")) {
+								keyValuePairsList.add(keyValuePair);
+							}
+						}
+
+						File classesDir = new File(project.getProperty("module.dir.unix"), "classes");
+
+						if (classesDir.exists() && !keyValuePairsList.contains("classes")) {
+							keyValuePairsList.add("classes");
+						}
+
+						File srcDir = new File(project.getProperty("module.dir.unix"), "src"); 
+
+						if (!srcDir.exists()) {
+
+							// While this generates the proper bnd property for WABs (i.e. bookmarks-web), the directive "-wab" seems to create a bug that ignores the property to include .sass-cache directories.
+
+							srcDir = new File(project.getProperty("module.dir.unix"), "docroot");
+						}
+
+						if (srcDir.exists()) {
+							Set keyValuePairsSet = new TreeSet(new CaseInsensitiveStringComparator());
+
+							DirectoryScanner directoryScanner = new DirectoryScanner();
+
+							directoryScanner.setBasedir(srcDir.toString());
+							directoryScanner.setIncludes(new String[] {"**/.sass-cache/**"});
+
+							directoryScanner.scan();
+
+							for (String fileName : directoryScanner.getIncludedFiles()) {
+								int index = fileName.lastIndexOf("/");
+
+								fileName = fileName.substring(0, index);
+
+								keyValuePairsSet.add(fileName.replaceFirst("/.sass-cache", "") + "=" + srcDir.getName() + "/" + fileName);
+							}
+
+							for (String keyValuePair : keyValuePairsSet) {
+								keyValuePairsList.add(keyValuePair);
+							}
+						}
+
+						if (keyValuePairsList.isEmpty()) {
+							properties.remove("Include-Resource");
+						}
+						else {
+							String[] keyValuePairsArray = keyValuePairsList.toArray(new String[keyValuePairsList.size()]);
+
+							properties.setProperty("Include-Resource", StringUtils.join(keyValuePairsArray, ","));
+						}
+					}
+
+					public void processProperties(Properties properties) {
+						processIncludeResource(properties);
+					}
+
+					public class CaseInsensitiveStringComparator implements Comparator {
+
+						public int compare(Object obj1, Object obj2) {
+							String s1 = (String)obj1;
+
+							s1 = s1.toLowerCase();
+
+							String s2 = (String)obj2;
+
+							s2 = s2.toLowerCase();
+
+							return s1.compareTo(s2);
+						}
+
+					}
+
+					processBndFile();
+				]]>
+			</script>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="build-css">
 		<attribute name="module.dir" />
 		<attribute default="${module.dir.unix}/docroot" name="sass.docroot.dir" />
@@ -444,6 +576,8 @@ Error-Prone was automatically installed. Please rerun your task.
 				<fileset dir="@{module.dir}/docroot" includes="**/.sprite.png" />
 				<fileset dir="@{module.dir}/docroot" includes="**/.sprite.properties" />
 				<fileset dir="@{module.dir}/docroot" includes="**/Thumbs.db" />
+				<fileset dir="@{module.dir}/src" includes="**/.sass-cache/**" />
+				<fileset dir="@{module.dir}/src" includes="**/Thumbs.db" />
 			</delete>
 
 			<delete file="${plugin.file}" />
@@ -1925,17 +2059,30 @@ Please find a solution that does not require portal-impl.jar.
 
 							<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
-							<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.file}">
-								<bndfiles>
-									<fileset dir="@{module.dir}">
-										<include name="bnd.bnd" />
-									</fileset>
-								</bndfiles>
-								<classpath>
-									<pathelement location="${plugin.classes.dir}" />
-								</classpath>
-								<property name="-sourcepath" value="@{module.dir}" />
-							</bnd>
+							<trycatch>
+								<try>
+									<bnd-pre-process
+										module.dir="@{module.dir}"
+									/>
+
+									<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.file}">
+										<bndfiles>
+											<fileset dir="@{module.dir}">
+												<include name="bnd.bnd" />
+											</fileset>
+										</bndfiles>
+										<classpath>
+											<pathelement location="${plugin.classes.dir}" />
+										</classpath>
+										<property name="-sourcepath" value="@{module.dir}" />
+									</bnd>
+								</try>
+								<finally>
+									<bnd-post-process
+										module.dir="@{module.dir}"
+									/>
+								</finally>
+							</trycatch>
 
 							<baseline-jar
 								bndFile="@{module.dir}/bnd.bnd"
