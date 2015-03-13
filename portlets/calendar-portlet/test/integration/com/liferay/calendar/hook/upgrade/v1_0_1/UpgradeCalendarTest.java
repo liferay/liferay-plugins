@@ -59,7 +59,7 @@ public class UpgradeCalendarTest {
 	}
 
 	@Test
-	public void testDoUpgradeCreatesCalendarTimeZoneId() throws Exception {
+	public void testUpgradeCreatesCalendarTimeZoneId() throws Exception {
 		UpgradeCalendar upgradeCalendar = new UpgradeCalendar();
 
 		upgradeCalendar.doUpgrade();
@@ -69,7 +69,7 @@ public class UpgradeCalendarTest {
 	}
 
 	@Test
-	public void testDoUpgradeSetsSiteCalendarTimeZoneId() throws Exception {
+	public void testUpgradeSetsSiteCalendarTimeZoneId() throws Exception {
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getGroupCalendarResource(
 				_group.getGroupId(), new ServiceContext());
@@ -90,12 +90,13 @@ public class UpgradeCalendarTest {
 	}
 
 	@Test
-	public void testDoUpgradeSetsUserCalendarTimeZoneId() throws Exception {
+	public void testUpgradeSetsUserCalendarTimeZoneId() throws Exception {
 		_user.setTimeZoneId("Asia/Shangai");
 
 		UserLocalServiceUtil.updateUser(_user);
 
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setCompanyId(_user.getCompanyId());
 
 		CalendarResource calendarResource =
