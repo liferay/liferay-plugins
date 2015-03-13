@@ -147,7 +147,7 @@
 		</sequential>
 	</macrodef>
 
-	<macrodef name="compile-jsp-macro">
+	<macrodef name="compile-jsp">
 		<attribute name="compile.jsp.base.dir" />
 
 		<sequential>
@@ -929,7 +929,7 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="compile-jsp">
-		<compile-jsp-macro compile.jsp.base.dir="docroot"/>
+		<compile-jsp compile.jsp.base.dir="docroot"/>
 	</target>
 
 	<target name="compile-test">
