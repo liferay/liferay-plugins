@@ -78,6 +78,7 @@ public class MentionsNotifier {
 			getAssetEntryName(className, serviceContext), "[$USER_ADDRESS$]",
 			messageUserEmailAddress, "[USER_NAME$]", messageUserName,
 			"[$CONTENT_URL$]", contentURL);
+		subscriptionSender.setCurrentUserId(userId);
 		subscriptionSender.setEntryTitle(title);
 		subscriptionSender.setEntryURL(contentURL);
 		subscriptionSender.setFrom(fromAddress, fromName);
@@ -89,7 +90,6 @@ public class MentionsNotifier {
 		subscriptionSender.setScopeGroupId(groupId);
 		subscriptionSender.setServiceContext(serviceContext);
 		subscriptionSender.setSubject(subject);
-		subscriptionSender.setCurrentUserId(userId);
 
 		for (int i = 0; i < mentionedUsersScreenNames.length; i++) {
 			String mentionedUserScreenName = mentionedUsersScreenNames[i];
