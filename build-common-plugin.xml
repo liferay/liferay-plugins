@@ -193,7 +193,7 @@
 	</macrodef>
 
 	<macrodef name="compile-jsp">
-		<attribute name="compile.jsp.base.dir" />
+		<attribute name="compile.jsp.docroot.dir" />
 
 		<sequential>
 			<antcall target="compile" />
@@ -227,8 +227,8 @@
 				<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 				<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
 				<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
-				<pathelement location="@{compile.jsp.base.dir}/WEB-INF/classes" />
-				<fileset dir="@{compile.jsp.base.dir}/WEB-INF/lib" includes="*.jar" />
+				<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
+				<fileset dir="@{compile.jsp.docroot.dir}/WEB-INF/lib" includes="*.jar" />
 			</path>
 
 			<delete dir="${jspc.classes.dir}" quiet="true" />
@@ -241,7 +241,7 @@
 				newenvironment="true"
 				outputproperty="jspc.output"
 			>
-				<arg line="-d ${jspc.classes.dir} -webapp @{compile.jsp.base.dir}" />
+				<arg line="-d ${jspc.classes.dir} -webapp @{compile.jsp.docroot.dir}" />
 			</java>
 
 			<echo>${jspc.output}</echo>
@@ -524,7 +524,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="compile-jsp">
-		<compile-jsp compile.jsp.base.dir="docroot" />
+		<compile-jsp compile.jsp.docroot.dir="docroot" />
 	</target>
 
 	<target name="compile-test">

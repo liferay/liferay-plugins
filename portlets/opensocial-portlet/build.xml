@@ -8,7 +8,7 @@
 
 	<target name="compile-jsp">
 		<compile-jsp
-			compile.jsp.base.dir="tmp"
+			compile.jsp.docroot.dir="tmp"
 		/>
 	</target>
 
