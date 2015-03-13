@@ -21,6 +21,8 @@ public class PushNotificationsConstants {
 
 	public static final String KEY_BODY = "body";
 
+	public static final String KEY_PAYLOAD = "payload";
+
 	public static final String KEY_TO_USER = "toUser";
 
 	public static final String KEY_USER_ID = "userId";
