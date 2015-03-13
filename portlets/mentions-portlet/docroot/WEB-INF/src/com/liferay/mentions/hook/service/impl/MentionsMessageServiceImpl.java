@@ -20,7 +20,6 @@ import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -77,8 +76,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		if (message.isFormatBBCode()) {
 			content = BBCodeTranslatorUtil.getHTML(content);
 		}
-
-		content = HtmlUtil.extractText(content);
 
 		String title = StringPool.BLANK;
 
