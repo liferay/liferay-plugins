@@ -53,13 +53,15 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		_methodName7 = "getNewAssetEntrySets";
 
 		_methodParameterTypes7 = new String[] {
-				"long", "long", "java.lang.String", "int", "int", "int", "int"
+				"long", "long", "java.lang.String", "java.lang.String[][]",
+				"int", "int", "int", "int"
 			};
 
 		_methodName8 = "getOldAssetEntrySets";
 
 		_methodParameterTypes8 = new String[] {
-				"long", "long", "java.lang.String", "int", "int", "int", "int"
+				"long", "long", "java.lang.String", "java.lang.String[][]",
+				"int", "int", "int", "int"
 			};
 
 		_methodName9 = "likeAssetEntrySet";
@@ -288,8 +290,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
-		int end)
+		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -303,6 +305,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					parentAssetEntrySetId,
 						
 					ClpSerializer.translateInput(sharedTo),
+						
+					ClpSerializer.translateInput(assetTagNames),
 						
 					childAssetEntrySetsLimit,
 						
@@ -339,8 +343,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
-		int end)
+		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -354,6 +358,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					parentAssetEntrySetId,
 						
 					ClpSerializer.translateInput(sharedTo),
+						
+					ClpSerializer.translateInput(assetTagNames),
 						
 					childAssetEntrySetsLimit,
 						

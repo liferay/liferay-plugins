@@ -53,13 +53,15 @@ public class AssetEntrySetServiceClpInvoker {
 		_methodName56 = "getNewAssetEntrySets";
 
 		_methodParameterTypes56 = new String[] {
-				"long", "long", "java.lang.String", "int", "int", "int", "int"
+				"long", "long", "java.lang.String", "java.lang.String[][]",
+				"int", "int", "int", "int"
 			};
 
 		_methodName57 = "getOldAssetEntrySets";
 
 		_methodParameterTypes57 = new String[] {
-				"long", "long", "java.lang.String", "int", "int", "int", "int"
+				"long", "long", "java.lang.String", "java.lang.String[][]",
+				"int", "int", "int", "int"
 			};
 
 		_methodName58 = "likeAssetEntrySet";
@@ -122,10 +124,11 @@ public class AssetEntrySetServiceClpInvoker {
 			return AssetEntrySetServiceUtil.getNewAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
-				((Integer)arguments[3]).intValue(),
+				(java.lang.String[])arguments[3],
 				((Integer)arguments[4]).intValue(),
 				((Integer)arguments[5]).intValue(),
-				((Integer)arguments[6]).intValue());
+				((Integer)arguments[6]).intValue(),
+				((Integer)arguments[7]).intValue());
 		}
 
 		if (_methodName57.equals(name) &&
@@ -133,10 +136,11 @@ public class AssetEntrySetServiceClpInvoker {
 			return AssetEntrySetServiceUtil.getOldAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
-				((Integer)arguments[3]).intValue(),
+				(java.lang.String[])arguments[3],
 				((Integer)arguments[4]).intValue(),
 				((Integer)arguments[5]).intValue(),
-				((Integer)arguments[6]).intValue());
+				((Integer)arguments[6]).intValue(),
+				((Integer)arguments[7]).intValue());
 		}
 
 		if (_methodName58.equals(name) &&

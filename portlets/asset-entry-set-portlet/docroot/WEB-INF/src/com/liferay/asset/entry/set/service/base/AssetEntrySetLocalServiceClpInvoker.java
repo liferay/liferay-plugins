@@ -150,16 +150,16 @@ public class AssetEntrySetLocalServiceClpInvoker {
 
 		_methodParameterTypes74 = new String[] {
 				"long", "long", "long",
-				"com.liferay.portal.kernel.json.JSONArray", "int", "int", "int",
-				"int"
+				"com.liferay.portal.kernel.json.JSONArray",
+				"java.lang.String[][]", "int", "int", "int", "int"
 			};
 
 		_methodName75 = "getOldAssetEntrySets";
 
 		_methodParameterTypes75 = new String[] {
 				"long", "long", "long",
-				"com.liferay.portal.kernel.json.JSONArray", "int", "int", "int",
-				"int"
+				"com.liferay.portal.kernel.json.JSONArray",
+				"java.lang.String[][]", "int", "int", "int", "int"
 			};
 
 		_methodName76 = "likeAssetEntrySet";
@@ -331,10 +331,11 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(com.liferay.portal.kernel.json.JSONArray)arguments[3],
-				((Integer)arguments[4]).intValue(),
+				(java.lang.String[])arguments[4],
 				((Integer)arguments[5]).intValue(),
 				((Integer)arguments[6]).intValue(),
-				((Integer)arguments[7]).intValue());
+				((Integer)arguments[7]).intValue(),
+				((Integer)arguments[8]).intValue());
 		}
 
 		if (_methodName75.equals(name) &&
@@ -343,10 +344,11 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(com.liferay.portal.kernel.json.JSONArray)arguments[3],
-				((Integer)arguments[4]).intValue(),
+				(java.lang.String[])arguments[4],
 				((Integer)arguments[5]).intValue(),
 				((Integer)arguments[6]).intValue(),
-				((Integer)arguments[7]).intValue());
+				((Integer)arguments[7]).intValue(),
+				((Integer)arguments[8]).intValue());
 		}
 
 		if (_methodName76.equals(name) &&

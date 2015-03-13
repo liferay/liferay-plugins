@@ -320,27 +320,27 @@ public class AssetEntrySetLocalServiceUtil {
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
-		int end)
+		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getNewAssetEntrySets(userId, createTime,
-			parentAssetEntrySetId, sharedToJSONArray, childAssetEntrySetsLimit,
-			likedParticipantsLimit, start, end);
+			parentAssetEntrySetId, sharedToJSONArray, assetTagNames,
+			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		int childAssetEntrySetsLimit, int likedParticipantsLimit, int start,
-		int end)
+		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getOldAssetEntrySets(userId, createTime,
-			parentAssetEntrySetId, sharedToJSONArray, childAssetEntrySetsLimit,
-			likedParticipantsLimit, start, end);
+			parentAssetEntrySetId, sharedToJSONArray, assetTagNames,
+			childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
