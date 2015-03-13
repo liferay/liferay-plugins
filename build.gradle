@@ -623,9 +623,9 @@ configure(
 		rootSpec.childSpecs*.rename {
 			String fileName ->
 
-			Map<String, String> newNames = getNewDependencyNames();
+			Map<String, String> newDependencyNames = getNewDependencyNames();
 
-			return newNames[fileName] ?: fileName
+			return newDependencyNames[fileName] ?: fileName
 		}
 	}
 
