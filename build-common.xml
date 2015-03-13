@@ -1119,7 +1119,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 			<if>
 				<or>
-					<resourcecount when="gt" count="0">
+					<resourcecount count="0" when="gt">
 						<fileset dir="." includes="**/*.jsp" excludes="@{module.dir}/docroot/META-INF/custom.jsps/" />
 					</resourcecount>
 					<available file="@{module.dir}/docroot/WEB-INF/src" />
