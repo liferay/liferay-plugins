@@ -103,9 +103,9 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		}
 
 		mentionsNotifier.notify(
-			message.getUserId(), message.getGroupId(), content,
-			message.getModelClassName(), message.getMessageId(), subject, body,
-			serviceContext);
+			message.getUserId(), message.getGroupId(), message.getSubject(),
+			content, message.getModelClassName(), message.getMessageId(),
+			subject, body, serviceContext);
 
 		return message;
 	}

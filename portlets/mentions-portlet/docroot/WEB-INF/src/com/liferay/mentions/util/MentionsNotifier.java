@@ -41,8 +41,8 @@ import java.util.regex.Pattern;
 public class MentionsNotifier {
 
 	public void notify(
-			long userId, long groupId, String content, String className,
-			long classPK, String subject, String body,
+			long userId, long groupId, String title, String content,
+			String className, long classPK, String subject, String body,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -78,7 +78,7 @@ public class MentionsNotifier {
 			getAssetEntryName(className, serviceContext), "[$USER_ADDRESS$]",
 			messageUserEmailAddress, "[USER_NAME$]", messageUserName,
 			"[$CONTENT_URL$]", contentURL);
-		subscriptionSender.setEntryTitle(content);
+		subscriptionSender.setEntryTitle(title);
 		subscriptionSender.setEntryURL(contentURL);
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
