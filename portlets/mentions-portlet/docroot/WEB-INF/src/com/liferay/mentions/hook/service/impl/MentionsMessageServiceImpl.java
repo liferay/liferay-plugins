@@ -19,7 +19,6 @@ import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
@@ -80,8 +79,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		if (message.isFormatBBCode()) {
 			content = BBCodeTranslatorUtil.getHTML(content);
 		}
-
-		content = HtmlUtil.extractText(content);
 
 		String subject = ContentUtil.get(
 			PortletPropsValues.COMMENT_MENTION_EMAIL_SUBJECT);
