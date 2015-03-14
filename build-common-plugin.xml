@@ -749,7 +749,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		<stop-test-app-server />
 	</target>
 
-	<target name="test-class-group" depends="compile,compile-test">
+	<target name="test-class-group">
 		<if>
 			<not>
 				<isset property="test.class.group.index" />
@@ -759,22 +759,36 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			</then>
 		</if>
 
-		<property file="${lp.portal.project.dir}/test.class.file.names.properties" />
+		<if>
+			<available file="${basedir}/test" type="dir" />
+			<then>
+				<property file="${lp.portal.project.dir}/test.class.file.names.properties" />
 
-		<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
+				<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
-		<test-cmd
-			module.dir="${basedir}"
-			junit.forkmode="perTest"
-			test.class="${test.classes}"
-			test.type="unit"
-		/>
+				<test-cmd
+					module.dir="${basedir}"
+					junit.forkmode="perTest"
+					test.class="${test.classes}"
+					test.type="unit"
+				/>
 
-		<test-cmd
-			module.dir="${basedir}"
-			junit.forkmode="once"
-			test.class="${test.classes}"
-			test.type="integration"
-		/>
+				<test-cmd
+					module.dir="${basedir}"
+					junit.forkmode="once"
+					test.class="${test.classes}"
+					test.type="integration"
+				/>
+			</then>
+			<elseif>
+				<equals arg1="${test.class.group.index}" arg2="0" />
+				<then>
+
+					<!-- Only group 0 does compile for modules without tests -->
+
+					<antcall target="compile" />
+				</then>
+			</elseif>
+		</if>
 	</target>
 </project>
