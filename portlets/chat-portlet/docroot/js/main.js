@@ -511,10 +511,6 @@ AUI().use(
 						content = '&nbsp;&nbsp;';
 					}
 
-					if (Liferay.Browser.isIe()) {
-						content = content.replace(/\n/g, '<br />');
-					}
-
 					heightMonitorEl.innerHTML = content;
 
 					var height = Math.max(heightMonitorEl.offsetHeight, 14);
