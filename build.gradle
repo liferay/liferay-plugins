@@ -724,7 +724,7 @@ compareDists << {
 				return null
 			}
 
-			if (project.hasProperty("excludeSharedChecksums") && project.excludeSharedChecksums.toBoolean()) {
+			if (project.hasProperty("compareDistsExcludeSharedChecksums") && project.compareDistsExcludeSharedChecksums.toBoolean()) {
 				differentChecksumFilePaths.removeAll {
 					it.endsWith "-shared.jar"
 				}
