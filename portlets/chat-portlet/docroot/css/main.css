@@ -415,10 +415,8 @@ pre.chat-height-monitor {
 }
 
 .panel-input textarea.focus {
-	&, .ie6 & {
-		background: #FFF;
-		border-width: 0;
-	}
+	background: #FFF;
+	border-width: 0;
 }
 
 .chat-height-monitor {
@@ -471,47 +469,6 @@ pre.chat-height-monitor {
 
 .message-waiting {
 	background-color: #A5D6EF;
-}
-
-/* ---------- IE/IE6/IE7 ---------- */
-
-.ie {
-	.buddy-list .panel-content .online-users li {
-		width: 202px;
-	}
-
-	.panel-output {
-		position: relative;
-	}
-
-	.chat-height-monitor {
-		word-wrap: break-word;
-		zoom: 1;
-	}
-}
-
-.ie6, .ie7 {
-	.buddy-list .search-buddies-field {
-		width: 88%;
-	}
-
-	.panel-window {
-		min-width: auto;
-		width: 226px;
-	}
-}
-
-.ie6 {
-	.chat-bar {
-		position: absolute;
-	}
-
-	.lfr-shim {
-		border-width: 0;
-		bottom: 0;
-		position: absolute;
-		z-index: 100;
-	}
 }
 
 /* ---------- Extras ---------- */

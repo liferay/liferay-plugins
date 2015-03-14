@@ -29,28 +29,6 @@
 
 /* ---------- Extras ---------- */
 
-html.ie, .ie body, .ie #loginPage {
-	height: 100%;
-}
-
-.ie6 img {
-	position: static;
-}
-
-.ie7 #loginPage {
-	#main-content {
-		text-align: center;
-	}
-
-	.portlet {
-		display: inline-block;
-	}
-
-	.portlet-content {
-		text-align: left;
-	}
-}
-
 .ie9 #loginPage .portlet {
 	border-collapse: separate;
 }

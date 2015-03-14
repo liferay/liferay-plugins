@@ -559,20 +559,6 @@ ul.arrow {
 	}
 }
 
-/* ---------- Browser specific rules ---------- */
-
-.ie6 {
-	.carousel-menu-active {
-		background-image: url(../images/custom/tab.png);
-	}
-}
-
-.ie6, .ie7 {
-	.carousel-container #tabs .divider {
-		background: none;
-	}
-}
-
 /* ---------- Extras ---------- */
 
 #banner .site-name {

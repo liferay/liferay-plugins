@@ -269,14 +269,6 @@
 	}
 }
 
-/* ---------- Internet explorer ---------- */
-
-.ie6, .ie7 {
-	.so-announcements-portlet .entry-content-container {
-		height: 75px;
-	}
-}
-
 /* ---------- Extras ---------- */
 
 .so-announcements-portlet .announcement-collapsed .entry-footer-toolbar {

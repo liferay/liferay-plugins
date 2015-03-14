@@ -175,21 +175,6 @@
 	}
 }
 
-.ie .so-portlet-invite-members .invite-to select {
-	width: 300px;
-}
-
-.ie6 .so-portlet-invite-members {
-	.search {
-		background-image: none;
-	}
-
-	.invited, .user {
-		border-bottom: 1px solid #FFF;
-		border-top: 1px solid #FFF;
-	}
-}
-
 /* ---------- Responsive ---------- */
 
 @include respond-to(phone) {

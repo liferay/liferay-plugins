@@ -31,10 +31,6 @@ hr, .separator {
 	position: relative;
 }
 
-.ie6 #wrapper {
-	width: 90%;
-}
-
 #banner {
 	background: none;
 	height: auto;
@@ -89,14 +85,6 @@ body #banner .logo a {
 	background-image: url(../images/common/my_places_private.png);
 }
 
-.ie6 #banner {
-	height: 1%;
-}
-
-.ie6 #banner h1.logo {
-	height: 1%;
-}
-
 /* ---------- Main navigation ---------- */
 
 #navigation {
@@ -115,11 +103,6 @@ body #banner .logo a {
 
 #navigation li, #navigation a {
 	display: inline-block;
-}
-
-.ie6 #navigation li, .ie7 #navigation li, .ie6 #navigation a, .ie7 #navigation a {
-	display: inline;
-	zoom: 1;
 }
 
 #navigation li {
@@ -151,14 +134,6 @@ body #banner .logo a {
 	z-index: 200;
 }
 
-.ie6 #navigation li.hover .child-menu {
-	background: #1E2529;
-	display: block;
-	position: absolute;
-	width: 200px;
-	z-index: 200;
-}
-
 #navigation .child-menu {
 	display: none;
 }
@@ -172,10 +147,6 @@ body #banner .logo a {
 
 #navigation .child-menu li a {
 	cursor: pointer !important;
-}
-
-.ie7 #navigation .child-menu li a {
-	zoom: 1;
 }
 
 #navigation .child-menu li a:hover {
@@ -217,16 +188,8 @@ body #banner .logo a {
 	z-index: 9999;
 }
 
-.ie .lfr-portlet-title-editable {
-	margin-top: -6px;
-}
-
 .lfr-portlet-title-editable-content {
 	padding: 0;
-}
-
-.ie .lfr-portlet-title-editable-content {
-	margin-top: 4px;
 }
 
 .portlet-icons {
@@ -242,14 +205,6 @@ body #banner .logo a {
 }
 
 .portlet-icon-back {
-}
-
-.ie .portlet-title {
-	padding-bottom: 5px;
-}
-
-.ie6 .portlet-topper {
-	zoom: 1;
 }
 
 /* ---------- Footer ---------- */

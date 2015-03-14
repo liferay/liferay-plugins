@@ -255,26 +255,6 @@ $defaultTextColor: #202020;
 	clear: both;
 }
 
-.ie7 {
-	.portlet-dockbar {
-		clear: both;
-
-		.container-fluid .nav-account-controls {
-			bottom: 100%;
-			position: relative;
-		}
-
-		.search-focus .so-portlet-sites .portlet {
-			width: 350px;
-		}
-	}
-
-	.default .portlet-dockbar {
-		height: 0;
-		position: relative;
-	}
-}
-
 /* ---------- Control panel ---------- */
 
 .so-portlet-user-bar {

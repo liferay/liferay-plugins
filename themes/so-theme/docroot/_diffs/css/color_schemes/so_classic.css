@@ -199,32 +199,4 @@ body.so-classic {
 			@include button-active;
 		}
 	}
-
-	/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
-
-	.ie fieldset {
-		padding-top: 0;
-	}
-
-	.ie6 {
-		input.text, input.password, input.submit, input.file, input.button, button {
-			@include input-field-default;
-		}
-
-		input.submit, input.button, button {
-			@include button-default;
-		}
-
-		input, textarea {
-			&.focus {
-				@include input-field-focus;
-			}
-		}
-	}
-
-	.ie7 {
-		.aui-fieldset {
-			zoom: 1;
-		}
-	}
 }

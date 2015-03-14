@@ -605,29 +605,6 @@ $defaultTextColor: #202020;
 	}
 }
 
-.ie7 .portlet-dockbar .so-portlet-sites {
-	.site-list-container {
-		.member {
-			height: 32px;
-			position: relative;
-		}
-
-		.favorite, .name {
-			position: absolute;
-			top: 0;
-		}
-
-		.name a {
-			width: 280px;
-		}
-	}
-
-	.toolbar-content button {
-		display: inline;
-		width: 49%;
-	}
-}
-
 /* ---------- Extras ---------- */
 
 .so-portlet-sites ul.site-list {

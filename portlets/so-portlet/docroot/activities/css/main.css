@@ -400,28 +400,6 @@ $default-border-color: #E7E7E7;
 	}
 }
 
-/* ---------- Internet explorer ---------- */
-
-.ie7 {
-	.so-portlet-activities .grouped-activity-body-container {
-		height: 107px;
-		max-height: none;
-
-		.activity-subentry-title {
-			float: left;
-			margin: 7px 0;
-		}
-	}
-
-	.portlet-document-library-activity .grouped-activity-body-container {
-		position: relative;
-	}
-
-	.tasks-portlet-activity .grouped-activity-body-container {
-		height: 126px;
-	}
-}
-
 /* ---------- Responsive ---------- */
 
 @include respond-to(phone) {

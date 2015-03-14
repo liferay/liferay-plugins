@@ -564,12 +564,6 @@
 	width: 70%;
 }
 
-/* ---------- Internet explorer ---------- */
-
-.ie8 .user-thumbnail img {
-	max-width: none;
-}
-
 /* ---------- Touch ---------- */
 
 .touch {

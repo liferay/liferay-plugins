@@ -237,13 +237,6 @@
 	border-radius: 4px;
 }
 
-.ie7 .private-messaging-portlet {
-	.message-to {
-		position: relative;
-		z-index: 1;
-	}
-}
-
 /* ---------- Responsive ---------- */
 
 @include respond-to(phone, tablet) {

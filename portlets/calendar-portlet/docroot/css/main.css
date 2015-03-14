@@ -357,12 +357,6 @@
 	margin-bottom: 2em;
 }
 
-.ie6, .ie7, .ie8 {
-	.yui3-skin-sam .yui3-calendar-day.lfr-busy-day {
-		background: transparent url(../images/lfr-busy-day-arrow.png) right top no-repeat;
-	}
-}
-
 .rss-time-interval {
 	margin-left: 2em;
 	margin-top: -1em;

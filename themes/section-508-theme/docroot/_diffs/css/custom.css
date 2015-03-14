@@ -70,11 +70,6 @@ a {
 	margin: 0;
 }
 
-.ie6 #navigation ul,
-.ie7 #navigation ul {
-	zoom: 1;
-}
-
 #navigation ul:after {
 	clear: both;
 	content: ".";

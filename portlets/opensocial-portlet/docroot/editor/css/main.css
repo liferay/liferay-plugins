@@ -118,16 +118,6 @@
 	z-index: 10;
 }
 
-.ie .opensocial-portlet-editor .tabview-list .tab-content .gadget-editor-tab-close {
-	opacity: 0.2;
-
-	&:hover {
-		opacity: 1;
-
-		zoom: 1;
-	}
-}
-
 /* ---------- Extras ---------- */
 
 .gadget-editor-contextmenu-toolbar {

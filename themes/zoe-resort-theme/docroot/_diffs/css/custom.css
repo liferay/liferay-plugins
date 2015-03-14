@@ -414,20 +414,6 @@ img.center {
 	}
 }
 
-/* ---------- Internet explorer ---------- */
-
-.ie #keywords {
-	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000, endColorstr=#20000000);
-	zoom: 1;
-}
-
-.ie6, .ie7 {
-	#social ul {
-		display: inline;
-	}
-}
-
 /* ---------- Hidden accessible ---------- */
 
 #footer-social a span, #navigation .child-menu, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
