@@ -783,9 +783,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			<elseif>
 				<equals arg1="${test.class.group.index}" arg2="0" />
 				<then>
-
-					<!-- Only group 0 does compile for modules without tests -->
-
 					<antcall target="compile" />
 				</then>
 			</elseif>
