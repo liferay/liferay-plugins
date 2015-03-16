@@ -23,6 +23,14 @@
 				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetSharingEntry">
+		<![CDATA[
+			INNER JOIN
+				AssetSharingEntry AS AssetSharingEntry2 ON
+					(AssetSharingEntry1.classNameId = AssetSharingEntry2.classNameId) AND
+					(AssetSharingEntry1.classPK = AssetSharingEntry2.classPK)
+		]]>
+	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetTag">
 		<![CDATA[
 			INNER JOIN
@@ -34,14 +42,6 @@
 			LEFT JOIN
 				AssetTag ON
 					(AssetTag.tagId = AssetEntries_AssetTags.tagId)
-		]]>
-	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetSharingEntry">
-		<![CDATA[
-			INNER JOIN
-				AssetSharingEntry AS AssetSharingEntry2 ON
-					(AssetSharingEntry1.classNameId = AssetSharingEntry2.classNameId) AND
-					(AssetSharingEntry1.classPK = AssetSharingEntry2.classPK)
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder.findByAESI_NotC_C">
