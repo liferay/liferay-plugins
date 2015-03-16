@@ -85,9 +85,9 @@
 		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.bnd/lib" includes="*.jar" />
 	</path>
 
-	<taskdef classpathref="classpath.com.liferay.ant.bnd" resource="aQute/bnd/ant/taskdef.properties" />
 	<taskdef classname="com.liferay.ant.bnd.BaselineJarTask" classpathref="classpath.com.liferay.ant.bnd" name="baseline-jar" />
 	<taskdef classname="com.liferay.ant.bnd.ReleaseToRepoTask" classpathref="classpath.com.liferay.ant.bnd" name="release-to-repo" />
+	<taskdef classpathref="classpath.com.liferay.ant.bnd" resource="aQute/bnd/ant/taskdef.properties" />
 
 	<path id="classpath.net.sourceforge.pmd">
 		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
