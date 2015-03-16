@@ -524,7 +524,7 @@
 		<field indexed="true" name="visible" stored="true" type="string" />
 		<field indexed="true" multiValued="false" name="_version_" stored="true" type="long" />
 		<dynamicField indexed="true" name="*Date_sortable" stored="true" type="long" />
-		<dynamicField indexed="true" multiValued="true" name="*_sortable" stored="true" type="string" />
+		<dynamicField indexed="true" multiValued="false" name="*_sortable" stored="true" type="string" />
 		<dynamicField indexed="true" multiValued="true" name="assetCategoryTitles*" stored="true" termPositions="true" termVectors="true" type="text" />
 		<dynamicField indexed="true" multiValued="true" name="expando__*" stored="true" type="text" />
 		<dynamicField indexed="true" multiValued="true" name="ddm__*" stored="true" type="string" />
