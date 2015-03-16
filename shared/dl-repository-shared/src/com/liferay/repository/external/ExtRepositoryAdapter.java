@@ -687,21 +687,13 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_extRepository.initRepository(
 				getTypeSettingsProperties(), credentialsProvider);
 		}
-		catch (PortalException pe) {
+		catch (PortalException | SystemException e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to initialize repository " + _extRepository, pe);
+					"Unable to initialize repository " + _extRepository, e);
 			}
 
-			throw pe;
-		}
-		catch (SystemException se) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to initialize repository " + _extRepository, se);
-			}
-
-			throw se;
+			throw e;
 		}
 	}
 
@@ -881,11 +873,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			extRepositorySearchResults = _extRepository.search(
 				searchContext, query, new ExtRepositoryQueryMapperImpl(this));
 		}
-		catch (PortalException pe) {
-			throw new SearchException("Unable to perform search", pe);
-		}
-		catch (SystemException se) {
-			throw new SearchException("Unable to perform search", se);
+		catch (PortalException | SystemException e) {
+			throw new SearchException("Unable to perform search", e);
 		}
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
@@ -929,14 +918,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 				total++;
 			}
-			catch (SystemException se) {
+			catch (PortalException | SystemException e) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Invalid entry returned from search", se);
-				}
-			}
-			catch (PortalException pe) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("Invalid entry returned from search", pe);
+					_log.warn("Invalid entry returned from search", e);
 				}
 			}
 		}
@@ -1171,17 +1155,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				}
 			}
 		}
-		catch (PortalException e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Unable to get login to connect to external repository " +
-						_extRepository,
-					e);
-			}
-
-			login = null;
-		}
-		catch (SystemException e) {
+		catch (PortalException | SystemException e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to get login to connect to external repository " +
