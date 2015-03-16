@@ -66,11 +66,11 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 		_methodName9 = "likeAssetEntrySet";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] { "long", "int", "int" };
 
 		_methodName10 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes10 = new String[] { "long" };
+		_methodParameterTypes10 = new String[] { "long", "int", "int" };
 
 		_methodName11 = "updateAssetEntrySet";
 
@@ -395,14 +395,22 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
-		long assetEntrySetId)
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName9,
-					_methodParameterTypes9, new Object[] { assetEntrySetId });
+					_methodParameterTypes9,
+					new Object[] {
+						assetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -429,14 +437,22 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet unlikeAssetEntrySet(
-		long assetEntrySetId)
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { assetEntrySetId });
+					_methodParameterTypes10,
+					new Object[] {
+						assetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

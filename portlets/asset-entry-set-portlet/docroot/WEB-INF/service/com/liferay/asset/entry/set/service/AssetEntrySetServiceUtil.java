@@ -123,17 +123,23 @@ public class AssetEntrySetServiceUtil {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
-		long assetEntrySetId)
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().likeAssetEntrySet(assetEntrySetId);
+		return getService()
+				   .likeAssetEntrySet(assetEntrySetId,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet unlikeAssetEntrySet(
-		long assetEntrySetId)
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().unlikeAssetEntrySet(assetEntrySetId);
+		return getService()
+				   .unlikeAssetEntrySet(assetEntrySetId,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(

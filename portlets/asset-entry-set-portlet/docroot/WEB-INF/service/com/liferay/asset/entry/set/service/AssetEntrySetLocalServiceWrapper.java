@@ -361,20 +361,22 @@ public class AssetEntrySetLocalServiceWrapper
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
-		long userId, long assetEntrySetId)
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.likeAssetEntrySet(userId,
-			assetEntrySetId);
+			assetEntrySetId, childAssetEntrySetsLimit, likedParticipantsLimit);
 	}
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet unlikeAssetEntrySet(
-		long userId, long assetEntrySetId)
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.unlikeAssetEntrySet(userId,
-			assetEntrySetId);
+			assetEntrySetId, childAssetEntrySetsLimit, likedParticipantsLimit);
 	}
 
 	@Override

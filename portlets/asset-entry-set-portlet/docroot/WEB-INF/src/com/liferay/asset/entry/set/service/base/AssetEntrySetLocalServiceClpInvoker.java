@@ -164,11 +164,11 @@ public class AssetEntrySetLocalServiceClpInvoker {
 
 		_methodName76 = "likeAssetEntrySet";
 
-		_methodParameterTypes76 = new String[] { "long", "long" };
+		_methodParameterTypes76 = new String[] { "long", "long", "int", "int" };
 
 		_methodName77 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes77 = new String[] { "long", "long" };
+		_methodParameterTypes77 = new String[] { "long", "long", "int", "int" };
 
 		_methodName78 = "updateAssetEntry";
 
@@ -354,13 +354,17 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		if (_methodName76.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName77.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName78.equals(name) &&

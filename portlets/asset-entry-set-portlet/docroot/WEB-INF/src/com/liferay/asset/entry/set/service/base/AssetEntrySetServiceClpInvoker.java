@@ -66,11 +66,11 @@ public class AssetEntrySetServiceClpInvoker {
 
 		_methodName58 = "likeAssetEntrySet";
 
-		_methodParameterTypes58 = new String[] { "long" };
+		_methodParameterTypes58 = new String[] { "long", "int", "int" };
 
 		_methodName59 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes59 = new String[] { "long" };
+		_methodParameterTypes59 = new String[] { "long", "int", "int" };
 
 		_methodName60 = "updateAssetEntrySet";
 
@@ -145,12 +145,16 @@ public class AssetEntrySetServiceClpInvoker {
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue());
+			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return AssetEntrySetServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue());
+			return AssetEntrySetServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName60.equals(name) &&

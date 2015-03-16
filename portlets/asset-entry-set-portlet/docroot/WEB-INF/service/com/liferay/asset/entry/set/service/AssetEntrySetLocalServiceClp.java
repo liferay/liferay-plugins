@@ -155,11 +155,11 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodName25 = "likeAssetEntrySet";
 
-		_methodParameterTypes25 = new String[] { "long", "long" };
+		_methodParameterTypes25 = new String[] { "long", "long", "int", "int" };
 
 		_methodName26 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes26 = new String[] { "long", "long" };
+		_methodParameterTypes26 = new String[] { "long", "long", "int", "int" };
 
 		_methodName27 = "updateAssetEntry";
 
@@ -1016,7 +1016,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
-		long userId, long assetEntrySetId)
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1024,7 +1025,15 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName25,
 					_methodParameterTypes25,
-					new Object[] { userId, assetEntrySetId });
+					new Object[] {
+						userId,
+						
+					assetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1051,7 +1060,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet unlikeAssetEntrySet(
-		long userId, long assetEntrySetId)
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1059,7 +1069,15 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName26,
 					_methodParameterTypes26,
-					new Object[] { userId, assetEntrySetId });
+					new Object[] {
+						userId,
+						
+					assetEntrySetId,
+						
+					childAssetEntrySetsLimit,
+						
+					likedParticipantsLimit
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
