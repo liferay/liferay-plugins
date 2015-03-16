@@ -39,7 +39,7 @@ String structureId = BeanParamUtil.getString(article, request, "structureId");
 									modal: true
 								},
 								id: '<portlet:namespace />articleDownload',
-								title: '<%= article.getTitle(locale) %>'
+								title: '<%= HtmlUtil.escapeJS(article.getTitle(locale)) %>'
 							}
 						);
 					}
