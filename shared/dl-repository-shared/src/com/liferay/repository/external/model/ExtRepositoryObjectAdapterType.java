@@ -21,16 +21,16 @@ package com.liferay.repository.external.model;
 public class ExtRepositoryObjectAdapterType
 	<T extends ExtRepositoryModelAdapter<?>> {
 
-	public static final ExtRepositoryObjectAdapterType<
-		ExtRepositoryFileEntryAdapter> FILE =
+	public static final ExtRepositoryObjectAdapterType
+		<ExtRepositoryFileEntryAdapter> FILE =
 			new ExtRepositoryObjectAdapterType<>("FILE");
 
-	public static final ExtRepositoryObjectAdapterType<
-		ExtRepositoryFolderAdapter> FOLDER =
+	public static final ExtRepositoryObjectAdapterType
+		<ExtRepositoryFolderAdapter> FOLDER =
 			new ExtRepositoryObjectAdapterType<>("FOLDER");
 
-	public static final ExtRepositoryObjectAdapterType<
-		ExtRepositoryObjectAdapter<?>> OBJECT =
+	public static final ExtRepositoryObjectAdapterType
+		<ExtRepositoryObjectAdapter<?>> OBJECT =
 			new ExtRepositoryObjectAdapterType<>("OBJECT");
 
 	@Override
