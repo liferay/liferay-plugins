@@ -245,7 +245,7 @@ Error-Prone was automatically installed. Please rerun your task.
 							directoryScanner.scan();
 
 							for (String fileName : directoryScanner.getIncludedFiles()) {
-								int index = fileName.lastIndexOf("/");
+								int index = fileName.lastIndexOf(File.separator);
 
 								fileName = fileName.substring(0, index);
 
