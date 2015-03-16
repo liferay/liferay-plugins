@@ -63,7 +63,6 @@ configure(
 
 	Boolean osgiPlugin
 
-	Closure exists
 	Closure getBuildXmlProperty
 	Closure getPluginsSrcDir
 	Closure readConfigurations
@@ -238,14 +237,6 @@ configure(
 				[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
 				[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"])
 		}
-	}
-
-	exists = {
-		String fileName ->
-
-		File file = file(fileName)
-
-		return file.exists()
 	}
 
 	getBuildXmlProperty = {
@@ -810,4 +801,11 @@ compareDists << {
 	}
 
 	compareDists()
+}
+
+private boolean exists(String fileName) {
+
+	File file = file(fileName)
+
+	return file.exists()
 }
