@@ -170,6 +170,10 @@ configure(
 	}
 
 	clean {
+		tasks.each {
+			dependsOn "clean" + it.name.capitalize()
+		}
+
 		Map projectCompileDependencies = gradle.compileDependencies.find {
 			project.path == it.projectPath
 		}
@@ -177,12 +181,6 @@ configure(
 		if (projectCompileDependencies) {
 			projectCompileDependencies["compile"].each {
 				dependsOn "${it}:clean"
-			}
-		}
-
-		doLast {
-			tasks.each {
-				delete it.outputs
 			}
 		}
 	}
