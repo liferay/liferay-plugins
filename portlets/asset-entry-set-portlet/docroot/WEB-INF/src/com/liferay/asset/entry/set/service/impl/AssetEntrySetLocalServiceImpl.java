@@ -233,17 +233,25 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public AssetEntrySet likeAssetEntrySet(long userId, long assetEntrySetId)
+	public AssetEntrySet likeAssetEntrySet(
+			long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
-		return updateAssetEntrySetLike(userId, assetEntrySetId, true);
+		return updateAssetEntrySetLike(
+			userId, assetEntrySetId, true, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 	}
 
 	@Override
-	public AssetEntrySet unlikeAssetEntrySet(long userId, long assetEntrySetId)
+	public AssetEntrySet unlikeAssetEntrySet(
+			long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
-		return updateAssetEntrySetLike(userId, assetEntrySetId, false);
+		return updateAssetEntrySetLike(
+			userId, assetEntrySetId, false, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 	}
 
 	@Override
@@ -687,7 +695,8 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected AssetEntrySet updateAssetEntrySetLike(
-			long userId, long assetEntrySetId, boolean like)
+			long userId, long assetEntrySetId, boolean like,
+			int childAssetEntrySetsLimit, int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
 		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
@@ -724,6 +733,10 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 
 		assetEntrySetPersistence.update(assetEntrySet);
+
+		setDisplayFields(
+			userId, assetEntrySet, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 
 		return assetEntrySet;
 	}

@@ -116,19 +116,25 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	}
 
 	@Override
-	public AssetEntrySet likeAssetEntrySet(long assetEntrySetId)
+	public AssetEntrySet likeAssetEntrySet(
+			long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.likeAssetEntrySet(
-			getUserId(), assetEntrySetId);
+			getUserId(), assetEntrySetId, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 	}
 
 	@Override
-	public AssetEntrySet unlikeAssetEntrySet(long assetEntrySetId)
+	public AssetEntrySet unlikeAssetEntrySet(
+			long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
 		return assetEntrySetLocalService.unlikeAssetEntrySet(
-			getUserId(), assetEntrySetId);
+			getUserId(), assetEntrySetId, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
 	}
 
 	@Override
