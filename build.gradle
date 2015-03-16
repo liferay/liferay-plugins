@@ -799,8 +799,7 @@ compareDists << {
 	compareDists()
 }
 
-private boolean exists(String fileName) {
-
+public boolean exists(String fileName) {
 	File file = file(fileName)
 
 	return file.exists()
