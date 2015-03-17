@@ -112,9 +112,9 @@ public class WSRPConsumerManagerFactory {
 					session.getAttribute(WebKeys.WSRP_CONSUMER_MANAGERS);
 
 			if (transientValue == null) {
-				wsrpConsumerManagers = new ConcurrentHashMap<>();
-
-				transientValue = new TransientValue<>(wsrpConsumerManagers);
+				transientValue =
+					new TransientValue<Map<String, WSRPConsumerManager>>(
+						new ConcurrentHashMap<String, WSRPConsumerManager>());
 
 				session.setAttribute(
 					WebKeys.WSRP_CONSUMER_MANAGERS, transientValue);

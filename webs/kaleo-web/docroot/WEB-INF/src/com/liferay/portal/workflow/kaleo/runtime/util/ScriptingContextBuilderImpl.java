@@ -53,9 +53,8 @@ public class ScriptingContextBuilderImpl implements ScriptingContextBuilder {
 				kaleoInstance.getWorkflowContext());
 		}
 
-		Map<String, Object> inputObjects = new HashMap<>();
-
-		inputObjects.putAll(workflowContext);
+		Map<String, Object> inputObjects = new HashMap<String, Object>(
+			workflowContext);
 
 		inputObjects.put(
 			"kaleoInstanceToken", executionContext.getKaleoInstanceToken());
