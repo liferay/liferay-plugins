@@ -99,6 +99,7 @@ sourceSets {
 		java {
 			srcDir pluginSrcDir
 		}
+
 		resources {
 			srcDir pluginSrcDir
 		}
