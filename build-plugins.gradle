@@ -108,19 +108,19 @@ sourceSets {
 
 String moduleFullVersion = pluginPackageProperties["module-full-version"]
 
-if (moduleFullVersion != null) {
+if (moduleFullVersion) {
 	version = moduleFullVersion
 }
 else {
 	String bundleVersion = bndProperties["Bundle-Version"]
 
-	if (bundleVersion != null) {
+	if (bundleVersion) {
 		version = bundleVersion
 	}
 	else {
 		String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
 
-		if (moduleIncrementalVersion == null) {
+		if (!moduleIncrementalVersion) {
 			moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
 		}
 
