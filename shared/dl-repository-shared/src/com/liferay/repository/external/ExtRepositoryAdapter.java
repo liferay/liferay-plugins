@@ -1215,13 +1215,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			RepositoryEntry repositoryEntry = getRepositoryEntry(
 				extRepositoryModelKey);
 
-			long extRepositoryObjectId = repositoryEntry.getRepositoryEntryId();
-
-			String uuid = repositoryEntry.getUuid();
-
 			extRepositoryVersionAdapter = new ExtRepositoryFileVersionAdapter(
-				this, extRepositoryObjectId, uuid,
-				extRepositoryFileEntryAdapter, extRepositoryFileVersion);
+				this, repositoryEntry.getRepositoryEntryId(),
+				repositoryEntry.getUuid(), extRepositoryFileEntryAdapter,
+				extRepositoryFileVersion);
 
 			extRepositoryAdapterCache.put(extRepositoryVersionAdapter);
 		}
@@ -1273,23 +1270,21 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			RepositoryEntry repositoryEntry = getRepositoryEntry(
 				extRepositoryModelKey);
 
-			long extRepositoryObjectId = repositoryEntry.getRepositoryEntryId();
-
-			String uuid = repositoryEntry.getUuid();
-
 			if (extRepositoryObject instanceof ExtRepositoryFolder) {
 				ExtRepositoryFolder extRepositoryFolder =
 					(ExtRepositoryFolder)extRepositoryObject;
 
 				extRepositoryObjectAdapter = new ExtRepositoryFolderAdapter(
-					this, extRepositoryObjectId, uuid, extRepositoryFolder);
+					this, repositoryEntry.getRepositoryEntryId(),
+					repositoryEntry.getUuid(), extRepositoryFolder);
 			}
 			else {
 				ExtRepositoryFileEntry extRepositoryFileEntry =
 					(ExtRepositoryFileEntry)extRepositoryObject;
 
 				extRepositoryObjectAdapter = new ExtRepositoryFileEntryAdapter(
-					this, extRepositoryObjectId, uuid, extRepositoryFileEntry);
+					this, repositoryEntry.getRepositoryEntryId(),
+					repositoryEntry.getUuid(), extRepositoryFileEntry);
 
 				_forceGetFileVersions(
 					(ExtRepositoryFileEntryAdapter)extRepositoryObjectAdapter);
