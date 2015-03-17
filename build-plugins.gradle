@@ -183,8 +183,10 @@ buildCss {
 }
 
 clean {
-	tasks.each {
-		dependsOn "clean" + it.name.capitalize()
+	afterEvaluate {
+		tasks.each {
+			dependsOn "clean" + it.name.capitalize()
+		}
 	}
 
 	Map projectCompileDependencies = gradle.compileDependencies.find {
