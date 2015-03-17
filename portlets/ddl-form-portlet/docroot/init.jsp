@@ -81,7 +81,6 @@ boolean multipleSubmissions = GetterUtil.getBoolean(portletPreferences.getValue(
 
 DDMDisplay ddmDisplay = DDMDisplayRegistryUtil.getDDMDisplay(PortletKeys.DYNAMIC_DATA_LISTS);
 
-long scopeClassNameId = PortalUtil.getClassNameId(ddmDisplay.getStructureType());
-
 DDMPermissionHandler ddmPermissionHandler = ddmDisplay.getDDMPermissionHandler();
+long scopeClassNameId = PortalUtil.getClassNameId(ddmDisplay.getStructureType());
 %>
