@@ -808,8 +808,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 			serviceHolder.setRegistrationContext(registrationContext);
 
-			serviceHolderTransientValue = new TransientValue<ServiceHolder>(
-				serviceHolder);
+			serviceHolderTransientValue = new TransientValue<>(serviceHolder);
 
 			portletSession.setAttribute(
 				markupServiceKey, serviceHolderTransientValue,

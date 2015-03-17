@@ -112,9 +112,8 @@ public class WSRPConsumerManagerFactory {
 					session.getAttribute(WebKeys.WSRP_CONSUMER_MANAGERS);
 
 			if (transientValue == null) {
-				transientValue =
-					new TransientValue<Map<String, WSRPConsumerManager>>(
-						new ConcurrentHashMap<String, WSRPConsumerManager>());
+				transientValue = new TransientValue<>(
+					new ConcurrentHashMap<String, WSRPConsumerManager>());
 
 				session.setAttribute(
 					WebKeys.WSRP_CONSUMER_MANAGERS, transientValue);
@@ -143,8 +142,7 @@ public class WSRPConsumerManagerFactory {
 	}
 
 	private static AutoResetThreadLocal<HttpSession> _session =
-		new AutoResetThreadLocal<HttpSession>(
-			HttpSession.class + "._session", null);
+		new AutoResetThreadLocal<>(HttpSession.class + "._session", null);
 	private static Map<String, WSRPConsumerManager>
 		_wsrpConsumerManagers = new ConcurrentHashMap<>();
 

@@ -141,7 +141,7 @@ public class WSRPHTTPSender extends HTTPSender {
 				HTTPConstants.REQUEST_HEADERS);
 
 		if (requestHeaders == null) {
-			requestHeaders = new Hashtable<String, Object>();
+			requestHeaders = new Hashtable<>();
 
 			messageContext.setProperty(
 				HTTPConstants.REQUEST_HEADERS, requestHeaders);
@@ -175,10 +175,10 @@ public class WSRPHTTPSender extends HTTPSender {
 	private static Log _log = LogFactoryUtil.getLog(WSRPHTTPSender.class);
 
 	private static ThreadLocal<String> _currentCookie =
-		new InitialThreadLocal<String>(
+		new InitialThreadLocal<>(
 			SimpleHTTPSender.class + "._currentCookie", StringPool.BLANK);
 	private static ThreadLocal<HttpServletRequest> _currentRequest =
-		new InitialThreadLocal<HttpServletRequest>(
+		new InitialThreadLocal<>(
 			SimpleHTTPSender.class + "._currentRequest", null);
 
 	private String[] _forwardCookies = new String[0];

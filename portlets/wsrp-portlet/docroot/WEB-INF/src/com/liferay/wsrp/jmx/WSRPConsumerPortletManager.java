@@ -27,8 +27,7 @@ public class WSRPConsumerPortletManager
 	extends StandardMBean
 	implements DynamicMBean, WSRPConsumerPortletManagerMBean {
 
-	public WSRPConsumerPortletManager()
-		throws NotCompliantMBeanException {
+	public WSRPConsumerPortletManager() throws NotCompliantMBeanException {
 		super(WSRPConsumerPortletManagerMBean.class);
 	}
 

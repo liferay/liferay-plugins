@@ -136,11 +136,10 @@ public class WSRPProducerStagedModelDataHandler
 			}
 		}
 		else {
-			importedWSRPProducer =
-				WSRPProducerLocalServiceUtil.addWSRPProducer(
-					portletDataContext.getUserId(null), wsrpProducer.getName(),
-					wsrpProducer.getVersion(), wsrpProducer.getPortletIds(),
-					serviceContext);
+			importedWSRPProducer = WSRPProducerLocalServiceUtil.addWSRPProducer(
+				portletDataContext.getUserId(null), wsrpProducer.getName(),
+				wsrpProducer.getVersion(), wsrpProducer.getPortletIds(),
+				serviceContext);
 		}
 
 		portletDataContext.importClassedModel(

@@ -100,7 +100,8 @@ public class WSRPProducerLocalServiceImpl
 	@Override
 	@SystemEvent(
 		action = SystemEventConstants.ACTION_SKIP,
-		type = SystemEventConstants.TYPE_DELETE)
+		type = SystemEventConstants.TYPE_DELETE
+	)
 	public WSRPProducer deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException {
 
