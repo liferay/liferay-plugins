@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.ant.bnd" org="com.liferay" rev="1.0.6" />
+		<dependency name="com.liferay.ant.bnd" org="com.liferay" rev="1.0.7" />
 	</dependencies>
 </ivy-module>
