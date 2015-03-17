@@ -1,15 +1,12 @@
 import com.liferay.portal.kernel.util.ReleaseInfo
 
-import org.apache.commons.codec.digest.DigestUtils
-
 import org.gradle.api.internal.file.copy.CopySpecResolver
 
-apply from: "${gradle.lfrSdkDir}/versions.gradle"
+apply plugin: "war"
 
 buildscript {
 	dependencies {
-		classpath([group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"])
-		classpath([group: "commons-codec", name: "commons-codec", version: "1.9"])
+		classpath group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"
 	}
 
 	repositories {
@@ -19,788 +16,488 @@ buildscript {
 	}
 }
 
-configure(allprojects) {
-	configurations {
-		all {
-			resolutionStrategy.cacheChangingModulesFor 15, 'minutes'
+configurations {
+	portal
+
+	portalBuildCss {
+		extendsFrom portal
+	}
+
+	portalWeb
+}
+
+dependencies {
+	File projectServiceJarFile = file("docroot/WEB-INF/lib/${name}-service.jar")
+
+	if (projectServiceJarFile.exists()) {
+		compile files(projectServiceJarFile)
+	}
+
+	Map projectCompileDependencies = gradle.compileDependencies.find {
+		project.path == it.projectPath
+	}
+
+	if (projectCompileDependencies) {
+		projectCompileDependencies["compile"].each {
+			compile project(it)
 		}
 	}
 
-	repositories {
-		maven {
-			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
+	if (!name.endsWith("-layouttpl") && !name.equals("portal-compat-shared")) {
+		compile project(":shared:portal-compat-shared")
+	}
+
+	portal(
+		[group: "com.liferay.portal", name: "portal-impl", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
+		[group: "com.thoughtworks.xstream", name: "xstream", version: "1.4.3"],
+		[group: "commons-configuration", name: "commons-configuration", version: "1.6"],
+		[group: "commons-lang", name: "commons-lang", version: "2.6"],
+		[group: "easyconf", name: "easyconf", version: "0.9.5", transitive: false],
+		[group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"]
+	)
+
+	portalBuildCss(
+		[group: "com.liferay", name: "com.liferay.ruby.gems", version: "1.0.0-SNAPSHOT"],
+		[group: "javax.portlet", name: "portlet-api", version: "2.0"],
+		[group: "org.apache.ant", name: "ant", version: "1.8.2"],
+		[group: "org.jruby", name: "jruby-complete", version: "1.6.5"],
+		[group: "org.mozilla", name: "rhino", version: "1.7R4"],
+		[group: "org.springframework", name: "spring-web", version: "3.2.10.RELEASE"],
+		[group: "struts", name: "struts", version: "1.2.9"]
+	)
+
+	portalWeb group: "com.liferay.portal", name: "portal-web", version: "7.0.0-SNAPSHOT"
+
+	providedCompile(
+		[group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "2.4.1"],
+		[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"],
+		[group: "commons-logging", name: "commons-logging", version: "1.1.1"],
+		[group: "hsqldb", name: "hsqldb", version: "1.8.0.7"],
+		[group: "javax.activation", name: "activation", version: "1.1"],
+		[group: "javax.ccpp", name: "ccpp", version: "1.0"],
+		[group: "javax.jms", name: "jms", version: "1.1"],
+		[group: "javax.mail", name: "mail", version: "1.4"],
+		[group: "javax.portlet", name: "portlet-api", version: "2.0"],
+		[group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"],
+		[group: "javax.servlet.jsp", name: "jsp-api", version: "2.1"],
+		[group: "log4j", name: "log4j", version: "1.2.16"],
+		[group: "mysql", name: "mysql-connector-java", version: "5.1.23"],
+		[group: "net.sf", name: "jargs", version: "1.0"],
+		[group: "net.sourceforge.jtds", name: "jtds", version: "1.2.6"],
+		[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
+		[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"]
+	)
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir pluginSrcDir
 		}
-	}
-
-	File pluginDocrootDir = file("${projectDir}/docroot")
-	File pluginSrcDir = file("${projectDir}/docroot/WEB-INF/src")
-
-	if (!pluginSrcDir.exists()) {
-		pluginDocrootDir = null
-
-		pluginSrcDir = file("${projectDir}/src")
-
-		if (!pluginSrcDir.exists()) {
-			pluginSrcDir = null
+		resources {
+			srcDir pluginSrcDir
 		}
-	}
-
-	if (pluginDocrootDir) {
-		ext.pluginDocrootDir = pluginDocrootDir
-	}
-
-	if (pluginSrcDir) {
-		ext.pluginSrcDir = pluginSrcDir
 	}
 }
 
-configure(
-	allprojects.findAll {
-		it.hasProperty("pluginSrcDir")
-	}) {
+String moduleFullVersion = pluginPackageProperties["module-full-version"]
 
-	apply plugin: "war"
+if (moduleFullVersion != null) {
+	version = moduleFullVersion
+}
+else {
+	String bundleVersion = bndProperties["Bundle-Version"]
 
-	Boolean osgiPlugin
+	if (bundleVersion != null) {
+		version = bundleVersion
+	}
+	else {
+		String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
 
-	Closure getBuildXmlProperty
-	Closure getPluginsSrcDir
-	Closure readConfigurations
-	Closure setModuleProperties
-
-	File pluginPackagePropertiesFile
-
-	Node buildXmlNode
-	Node ivyXmlNode
-
-	Properties bndProperties
-	Properties pluginPackageProperties
-
-	String pluginPackaging
-
-	task buildCss(type: JavaExec)
-	task compile
-	task initGradle
-
-	buildCss {
-		Closure setOutputs
-		Closure setSassProperties
-
-		File sassDocrootDir
-
-		FileTree sassDocrootDirFileTree
-
-		configurations {
-			buildCssClasspath
-
-			portalWeb
+		if (moduleIncrementalVersion == null) {
+			moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
 		}
 
-		dependencies {
-			buildCssClasspath(
-				[group: "com.liferay", name: "com.liferay.ruby.gems", version: "1.0.0-SNAPSHOT"],
-				[group: "com.liferay.portal", name: "portal-impl", version: "7.0.0-SNAPSHOT"],
-				[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
-				[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
-				[group: "com.thoughtworks.xstream", name: "xstream", version: "1.4.3"],
-				[group: "commons-lang", name: "commons-lang", version: "2.6"],
-				[group: "commons-configuration", name: "commons-configuration", version: "1.6"],
-				[group: "javax.portlet", name: "portlet-api", version: "2.0"],
-				[group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"],
-				[group: "easyconf", name: "easyconf", version: "0.9.5", transitive: false],
-				[group: "org.apache.ant", name: "ant", version: "1.8.2"],
-				[group: "org.jruby", name: "jruby-complete", version: "1.6.5"],
-				[group: "org.mozilla", name: "rhino", version: "1.7R4"],
-				[group: "org.springframework", name: "spring-web", version: "3.2.10.RELEASE"],
-				[group: "struts", name: "struts", version: "1.2.9"])
+		version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.version + "." + moduleIncrementalVersion)
+	}
+}
 
-			portalWeb([group: "com.liferay.portal", name: "portal-web", version: "7.0.0-SNAPSHOT"])
-		}
+webAppDirName = "docroot"
 
-		doFirst {
-			args = [
-				"sass.dir=/",
-				"sass.docroot.dir=${sassDocrootDir}",
-				"sass.portal.common.dir=${rootDir}/tmp/portal-web/html/css/common"
-			]
+task buildCss(type: JavaExec)
+task compile
+task initGradle
 
-			classpath = configurations.buildCssClasspath
+buildCss {
+	File sassDocrootDir
+	FileTree sassDocrootDirFileTree
 
-			if (!exists("${rootDir}/tmp/portal-web")) {
-				copy {
-					from(zipTree(configurations.portalWeb.singleFile)) {
-						include "html/css/**/*"
-						include "html/themes/**/*"
-						include "WEB-INF/tld/**/*"
-					}
-
-					into "${rootDir}/tmp/portal-web"
-				}
-			}
-		}
-
-		main = "com.liferay.portal.tools.SassToCssBuilder"
-
-		onlyIf {
-			sassDocrootDirFileTree.files
-		}
-
-		setOutputs = {
-			outputs.dir "${rootDir}/tmp"
-
-			sassDocrootDirFileTree.each {
-				outputs.dir "${it}/../.sass-cache"
-			}
-		}
-
-		setSassProperties = {
-			if (osgiPlugin) {
-				sassDocrootDir = file("${projectDir}/src/META-INF/resources")
-			}
-			else {
-				sassDocrootDir = file("${projectDir}/docroot")
-			}
-
-			sassDocrootDirFileTree = fileTree(dir: sassDocrootDir, include: "**/*.css")
-		}
-
-		setSassProperties()
-
-		setOutputs()
+	if (osgiPlugin) {
+		sassDocrootDir = file("src/META-INF/resources")
+	}
+	else {
+		sassDocrootDir = file("docroot")
 	}
 
-	clean {
-		tasks.each {
-			dependsOn "clean" + it.name.capitalize()
-		}
+	sassDocrootDirFileTree = fileTree(dir: sassDocrootDir, include: "**/*.css")
 
-		Map projectCompileDependencies = gradle.compileDependencies.find {
-			project.path == it.projectPath
-		}
+	args(
+		"sass.dir=/",
+		"sass.docroot.dir=${sassDocrootDir}",
+		"sass.portal.common.dir=${rootDir}/tmp/portal-web/html/css/common"
+	)
 
-		if (projectCompileDependencies) {
-			projectCompileDependencies["compile"].each {
-				dependsOn "${it}:clean"
+	classpath configurations.portalBuildCss
+
+	doFirst {
+		if (!file("${rootDir}/tmp/portal-web").exists()) {
+			copy {
+				from(zipTree(configurations.portalWeb.singleFile)) {
+					include "html/css/**/*"
+					include "html/themes/**/*"
+					include "WEB-INF/tld/**/*"
+				}
+
+				into "${rootDir}/tmp/portal-web"
 			}
 		}
 	}
 
-	compile {
-		dependsOn compileJava
+	main = "com.liferay.portal.tools.SassToCssBuilder"
+
+	onlyIf {
+		sassDocrootDirFileTree.files
 	}
 
-	compileJava {
-		dependencies {
-			String projectServiceJarFile = "${projectDir}/docroot/WEB-INF/lib/${project.name}-service.jar"
+	outputs.dir "${rootDir}/tmp"
 
-			if (exists(projectServiceJarFile)) {
-				compile(files(projectServiceJarFile))
-			}
+	sassDocrootDirFileTree.each {
+		outputs.dir "${it}/../.sass-cache"
+	}
+}
 
-			Map projectCompileDependencies = gradle.compileDependencies.find {
-				project.path == it.projectPath
-			}
-
-			if (projectCompileDependencies) {
-				projectCompileDependencies["compile"].each {
-					compile project(it)
-				}
-			}
-
-			if (!project.name.endsWith("-layouttpl") && !project.name.equals("portal-compat-shared")) {
-				compile project(":shared:portal-compat-shared")
-			}
-
-			providedCompile(
-				[group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "2.4.1"],
-				[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
-				[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
-				[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
-				[group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"],
-				[group: "commons-logging", name: "commons-logging", version: "1.1.1"],
-				[group: "hsqldb", name: "hsqldb", version: "1.8.0.7"],
-				[group: "javax.activation", name: "activation", version: "1.1"],
-				[group: "javax.ccpp", name: "ccpp", version: "1.0"],
-				[group: "javax.jms", name: "jms", version: "1.1"],
-				[group: "javax.mail", name: "mail", version: "1.4"],
-				[group: "javax.portlet", name: "portlet-api", version: "2.0"],
-				[group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"],
-				[group: "javax.servlet.jsp", name: "jsp-api", version: "2.1"],
-				[group: "log4j", name: "log4j", version: "1.2.16"],
-				[group: "mysql", name: "mysql-connector-java", version: "5.1.23"],
-				[group: "net.sf", name: "jargs", version: "1.0"],
-				[group: "net.sourceforge.jtds", name: "jtds", version: "1.2.6"],
-				[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
-				[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"])
-		}
+clean {
+	tasks.each {
+		dependsOn "clean" + it.name.capitalize()
 	}
 
-	getBuildXmlProperty = {
-		String key, String defaultValue = "" ->
-
-		String value = defaultValue
-
-		Node buildXmlPropertyNode = buildXmlNode.property.find {
-			it.@name == key
-		}
-
-		if (buildXmlPropertyNode) {
-			value = buildXmlPropertyNode.@value
-		}
-
-		return value
+	Map projectCompileDependencies = gradle.compileDependencies.find {
+		project.path == it.projectPath
 	}
 
-	initGradle << {
-		Closure getBuildGradleDependencies
-		Closure getBuildGradleDependenciesCompile
-		Closure getBuildGradleDependenciesProvidedCompile
-		Closure getBuildGradleDependenciesTestCompile
-		Closure getIndent
-		Closure wrapContents
-		Closure wrapDependency
-		Closure wrapProperty
-		Closure wrapServiceJar
-		Closure writeBuildGradleFile
-		Closure writeDependencySettingsFile
+	if (projectCompileDependencies) {
+		projectCompileDependencies["compile"].each {
+			dependsOn "${it}:clean"
+		}
+	}
+}
 
-		getBuildGradleDependencies = {
-			List contents = []
+compile {
+	dependsOn compileJava
+}
 
-			contents.addAll(getBuildGradleDependenciesCompile())
-			contents.addAll(getBuildGradleDependenciesProvidedCompile())
-			contents.addAll(getBuildGradleDependenciesTestCompile())
+initGradle << {
+	Closure getBuildGradleDependencies
+	Closure getBuildGradleDependenciesCompile
+	Closure getBuildGradleDependenciesProvidedCompile
+	Closure getBuildGradleDependenciesTestCompile
+	Closure getIndent
+	Closure wrapContents
+	Closure wrapDependency
+	Closure wrapProperty
+	Closure wrapServiceJar
+	Closure writeBuildGradleFile
+	Closure writeDependencySettingsFile
 
-			return wrapContents(contents, 0, " {", "dependencies", "}")
+	getBuildGradleDependencies = {
+		List contents = []
+
+		contents.addAll(getBuildGradleDependenciesCompile())
+		contents.addAll(getBuildGradleDependenciesProvidedCompile())
+		contents.addAll(getBuildGradleDependenciesTestCompile())
+
+		return wrapContents(contents, 0, " {", "dependencies", "}")
+	}
+
+	getBuildGradleDependenciesCompile = {
+		List contents = []
+
+		if (ivyXmlNode) {
+			ivyXmlNode.dependencies.dependency.each {
+				if ((it.@conf == null) || (it.@conf == "default")) {
+					contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
+				}
+			}
 		}
 
-		getBuildGradleDependenciesCompile = {
-			List contents = []
+		String requiredDeploymentContexts = pluginPackageProperties["required-deployment-contexts"]
 
-			if (ivyXmlNode) {
-				ivyXmlNode.dependencies.dependency.each {
-					if ((it.@conf == null) || (it.@conf == "default")) {
-						contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
-					}
+		if (requiredDeploymentContexts) {
+			String[] requiredDeploymentContextsArray = requiredDeploymentContexts.split(",")
+
+			requiredDeploymentContextsArray.each {
+				String serviceJarFileName = "../../" + it.replaceFirst(".+-", "") + "s/${it}/docroot/WEB-INF/lib/${it}-service.jar"
+
+				File serviceJarFile = new File("${projectDir}", serviceJarFileName)
+
+				if (serviceJarFile.exists()) {
+					contents.addAll(wrapServiceJar(2, serviceJarFileName))
+				}
+			}
+		}
+
+		return wrapContents(contents, 1, "(", "compile", ")")
+	}
+
+	getBuildGradleDependenciesProvidedCompile = {
+		List contents = []
+
+		String portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
+
+		if (portalDependencyJars) {
+			portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
+			portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
+				it[1].toUpperCase()
+			}
+
+			String[] portalDependencyJarsArray = portalDependencyJars.split(",")
+
+			portalDependencyJarsArray.each {
+				String portalDependencyJar ->
+
+				Map portalDependencyJarMap = portalDependencies[portalDependencyJar]
+
+				if (portalDependencyJarMap == null) {
+					println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
+				}
+				else {
+					contents.addAll(wrapDependency(2, portalDependencyJarMap["group"], portalDependencyJarMap["name"], portalDependencyJarMap["version"]))
 				}
 			}
 
-			String requiredDeploymentContexts = pluginPackageProperties["required-deployment-contexts"]
-
-			if (requiredDeploymentContexts) {
-				String[] requiredDeploymentContextsArray = requiredDeploymentContexts.split(",")
-
-				requiredDeploymentContextsArray.each {
-					String serviceJarFileName = "../../" + it.replaceFirst(".+-", "") + "s/${it}/docroot/WEB-INF/lib/${it}-service.jar"
-
-					File serviceJarFile = new File("${projectDir}", serviceJarFileName)
-
-					if (serviceJarFile.exists()) {
-						contents.addAll(wrapServiceJar(2, serviceJarFileName))
-					}
-				}
-			}
-
-			return wrapContents(contents, 1, "(", "compile", ")")
 		}
 
-		getBuildGradleDependenciesProvidedCompile = {
-			List contents = []
+		return wrapContents(contents, 1, "(", "providedCompile", ")")
+	}
 
-			String portalDependencyJars = pluginPackageProperties["portal-dependency-jars"]
+	getBuildGradleDependenciesTestCompile = {
+		List contents = []
 
-			if (portalDependencyJars) {
-				portalDependencyJars = portalDependencyJars.replaceAll("\\.jar", "")
-				portalDependencyJars = portalDependencyJars.replaceAll("-\\w") {
-					it[1].toUpperCase()
-				}
-
-				String[] portalDependencyJarsArray = portalDependencyJars.split(",")
-
-				portalDependencyJarsArray.each {
-					String portalDependencyJar ->
-
-					Map portalDependencyJarMap = portalDependencies[portalDependencyJar]
-
-					if (portalDependencyJarMap == null) {
-						println("Portal dependency " + portalDependencyJar + " is not defined in versions.gradle")
-					}
-					else {
-						contents.addAll(wrapDependency(2, portalDependencyJarMap["group"], portalDependencyJarMap["name"], portalDependencyJarMap["version"]))
-					}
-				}
-
-			}
-
-			return wrapContents(contents, 1, "(", "providedCompile", ")")
-		}
-
-		getBuildGradleDependenciesTestCompile = {
-			List contents = []
-
-			if (ivyXmlNode) {
-				ivyXmlNode.dependencies.dependency.each {
-					if (it.@conf =~ "test") {
-						contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
-					}
+		if (ivyXmlNode) {
+			ivyXmlNode.dependencies.dependency.each {
+				if (it.@conf =~ "test") {
+					contents.addAll(wrapDependency(2, it.@org, it.@name, it.@rev))
 				}
 			}
-
-			return wrapContents(contents, 1, "(", "testCompile", ")")
 		}
 
-		getIndent = {
-			String indent = ""
+		return wrapContents(contents, 1, "(", "testCompile", ")")
+	}
 
-			it.times(
-			{
-				indent = indent + "\t"
-			})
+	getIndent = {
+		String indent = ""
 
-			return indent
-		}
+		it.times(
+		{
+			indent = indent + "\t"
+		})
 
-		wrapContents = {
-			List contents, int indentCount, String leftClose, String name, String rightClose ->
+		return indent
+	}
 
-			if (!contents) {
-				return contents
-			}
+	wrapContents = {
+		List contents, int indentCount, String leftClose, String name, String rightClose ->
 
-			String indent = getIndent(indentCount)
-
-			contents.add(0, indent + name + leftClose)
-
-			String content = contents.last()
-
-			if (content.endsWith(",")) {
-				contents.pop()
-
-				contents << content.substring(0, content.length() - 1)
-			}
-
-			contents << indent + rightClose
-
+		if (!contents) {
 			return contents
 		}
 
-		wrapDependency = {
-			int indentCount, String group, String name, String version ->
+		String indent = getIndent(indentCount)
 
-			return "${getIndent(indentCount)}[group: \"${group}\", name: \"${name}\", version: \"${version}\"],"
+		contents.add(0, indent + name + leftClose)
+
+		String content = contents.last()
+
+		if (content.endsWith(",")) {
+			contents.pop()
+
+			contents << content.substring(0, content.length() - 1)
 		}
 
-		wrapProperty = {
-			int indentCount, String name, String value = "" ->
+		contents << indent + rightClose
 
-			if (value) {
-				return "${getIndent(indentCount)}${name} = \"${value}\""
-			}
+		return contents
+	}
 
-			return []
+	wrapDependency = {
+		int indentCount, String group, String name, String version ->
+
+		return "${getIndent(indentCount)}[group: \"${group}\", name: \"${name}\", version: \"${version}\"],"
+	}
+
+	wrapProperty = {
+		int indentCount, String name, String value = "" ->
+
+		if (value) {
+			return "${getIndent(indentCount)}${name} = \"${value}\""
 		}
 
-		wrapServiceJar = {
-			int indentCount, String serviceJarFileName ->
+		return []
+	}
 
-			return "${getIndent(indentCount)}files(\"${serviceJarFileName}\"),"
+	wrapServiceJar = {
+		int indentCount, String serviceJarFileName ->
+
+		return "${getIndent(indentCount)}files(\"${serviceJarFileName}\"),"
+	}
+
+	writeBuildGradleFile = {
+		List contents = []
+
+		contents.addAll(getBuildGradleDependencies())
+
+		File buildGradleFile = new File("${projectDir}/build.gradle")
+
+		contents.each {
+			buildGradleFile << it + "\n"
 		}
+	}
 
-		writeBuildGradleFile = {
+	writeDependencySettingsFile = {
+		File dependencySettingsFile = new File("${projectDir}/dependency-settings.gradle")
+
+		String importShared = getBuildXmlProperty("import.shared")
+
+		if (importShared) {
 			List contents = []
 
-			contents.addAll(getBuildGradleDependencies())
+			String[] importSharedArray = importShared.split(",")
 
-			File buildGradleFile = new File("${projectDir}/build.gradle")
+			importSharedArray.each {
+				String includeTransitivePath
+
+				if (file("${rootDir}/shared/${it}/src").exists()) {
+					includeTransitivePath = ":shared:${it}"
+				}
+				else if (file("${projectDir}/../${it}/src").exists()) {
+					includeTransitivePath = project.path.replaceFirst(project.name, it)
+				}
+				else {
+					println("Project dependency ${it} could not be found in the shared directory or this project's parent directory.")
+
+					return
+				}
+
+				contents << "includeTransitive \"${includeTransitivePath}\""
+			}
 
 			contents.each {
-				buildGradleFile << it + "\n"
+				dependencySettingsFile << it + "\n"
 			}
-		}
-
-		writeDependencySettingsFile = {
-			File dependencySettingsFile = new File("${projectDir}/dependency-settings.gradle")
-
-			String importShared = getBuildXmlProperty("import.shared")
-
-			if (importShared) {
-				List contents = []
-
-				String[] importSharedArray = importShared.split(",")
-
-				importSharedArray.each {
-					String includeTransitivePath
-
-					if (exists("${rootDir}/shared/${it}/src")) {
-						includeTransitivePath = ":shared:${it}"
-					}
-					else if (exists("${projectDir}/../${it}/src")) {
-						includeTransitivePath = project.path.replaceFirst(project.name, it)
-					}
-					else {
-						println("Project dependency ${it} could not be found in the shared directory or this project's parent directory.")
-
-						return
-					}
-
-					contents << "includeTransitive \"${includeTransitivePath}\""
-				}
-
-				contents.each {
-					dependencySettingsFile << it + "\n"
-				}
-			}
-			else {
-				dependencySettingsFile.delete()
-			}
-		}
-
-		// build.gradle
-
-		writeBuildGradleFile()
-
-		// dependency-settings.gradle
-
-		writeDependencySettingsFile()
-	}
-
-	readConfigurations = {
-
-		// bnd.bnd
-
-		bndProperties = new Properties()
-
-		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
-
-		if (bndPropertiesFile.exists()) {
-			bndProperties.load(new FileInputStream(bndPropertiesFile))
-		}
-
-		// build.xml
-
-		XmlParser xmlParser = new XmlParser()
-
-		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-
-		File buildXmlFile = new File("${projectDir}/build.xml")
-
-		if (buildXmlFile.exists()) {
-			buildXmlNode = xmlParser.parse(buildXmlFile)
-		}
-
-		// ivy.xml
-
-		File ivyXmlFile = new File("${projectDir}/ivy.xml")
-
-		if (ivyXmlFile.exists()) {
-			ivyXmlNode = xmlParser.parse(ivyXmlFile)
-		}
-
-		// liferay-plugin-package.properties
-
-		pluginPackageProperties = new Properties()
-
-		pluginPackagePropertiesFile = new File("${projectDir}/docroot/WEB-INF/liferay-plugin-package.properties")
-
-		if (pluginPackagePropertiesFile.exists()) {
-			pluginPackageProperties.load(new FileInputStream(pluginPackagePropertiesFile))
-		}
-	}
-
-	setModuleProperties = {
-
-		// osgiPlugin
-
-		File bndPropertiesFile = new File("${projectDir}/bnd.bnd")
-
-		osgiPlugin = bndPropertiesFile.exists()
-
-		// pluginPackaging
-
-		pluginPackaging = "war"
-
-		if ((project.parent.name == "shared") || osgiPlugin) {
-			pluginPackaging = "jar"
-		}
-
-		// version
-
-		String moduleFullVersion = pluginPackageProperties["module-full-version"]
-
-		if (moduleFullVersion != null) {
-			version = moduleFullVersion
 		}
 		else {
-			String bundleVersion = bndProperties["Bundle-Version"]
-
-			if (bundleVersion != null) {
-				version = bundleVersion
-			}
-			else {
-				String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
-
-				if (moduleIncrementalVersion == null) {
-					moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
-				}
-
-				version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.version + "." + moduleIncrementalVersion)
-			}
+			dependencySettingsFile.delete()
 		}
 	}
 
-	sourceSets {
-		main {
-			java {
-				srcDir pluginSrcDir
-			}
-			resources {
-				srcDir pluginSrcDir
-			}
-		}
-	}
+	// build.gradle
 
-	war {
-		Closure getLanguageProperties
-		Closure getNewDependencyNames
-		Closure setManifest
+	writeBuildGradleFile()
 
-		dependsOn buildCss
+	// dependency-settings.gradle
 
-		destinationDir = file("${rootDir}/dist2")
-
-		duplicatesStrategy "exclude"
-
-		exclude "_diffs.*", "_diffs/**", "WEB-INF/lib/*"
-
-		filesMatching("WEB-INF/liferay-hook.xml") {
-			filter {
-				line ->
-
-				line.contains("content/Language*.properties") ? getLanguageProperties() : line
-			}
-		}
-
-		getLanguageProperties = {
-			StringBuilder sb = new StringBuilder()
-
-			File contentDir = file("${pluginSrcDir}/content")
-
-			File[] files = contentDir.listFiles()
-
-			for (int i = 0; i < files.length; i++) {
-				File file = files[i]
-
-				sb << "\t<language-properties>content/" + file.name + "</language-properties>"
-
-				if ((i + 1) < files.length) {
-					sb << "\n"
-				}
-			}
-
-			return sb.toString()
-		}
-
-		getNewDependencyNames = {
-			configurations.compile.resolvedConfiguration.resolvedArtifacts.collectEntries {
-				ModuleVersionIdentifier moduleVersionIdentifier = it.moduleVersion.id
-
-				[(String)"${moduleVersionIdentifier.name}-${moduleVersionIdentifier.version}.jar", (String)"${moduleVersionIdentifier.name}.jar"]
-			}
-		}.memoize()
-
-		setManifest = {
-			File manifestFile
-
-			if (osgiPlugin) {
-				manifestFile = file("${projectDir}/src/META-INF/MANIFEST.MF")
-			}
-			else {
-				manifestFile = file("${projectDir}/docroot/META-INF/MANIFEST.MF")
-			}
-
-			if (manifestFile.exists()) {
-				manifest.from manifestFile
-			}
-			else {
-				CopySpec copySpec = rootSpec.children.find {
-					CopySpecResolver copySpecResolver = it.buildRootResolver()
-
-					copySpecResolver.destPath.pathString == "META-INF"
-				}
-
-				if (copySpec) {
-					copySpec.exclude "**"
-				}
-			}
-		}
-
-		outputs.file archivePath
-
-		rootSpec.children*.rename {
-			String fileName ->
-
-			Map<String, String> newDependencyNames = getNewDependencyNames();
-
-			return newDependencyNames[fileName] ?: fileName
-		}
-
-		setManifest()
-	}
-
-	webAppDirName = "docroot"
-
-	readConfigurations()
-
-	setModuleProperties()
+	writeDependencySettingsFile()
 }
 
-task compareDists
+war {
+	Closure getLanguageProperties
+	Closure getNewDependencyNames
+	Closure setManifest
 
-compareDists << {
-	Closure compareDistFileContents
-	Closure compareDistFileNames
-	Closure compareDists
-	Closure getFileChecksums
+	dependsOn buildCss
 
-	List<String> antDistFileNames
-	List<String> commonDistFileNames
-	List<String> gradleDistFileNames
+	destinationDir = file("${rootDir}/dist2")
 
-	compareDistFileContents = {
-		for (String fileName : commonDistFileNames) {
-			FileTree antZipFileTree = zipTree("dist/${fileName}")
+	duplicatesStrategy "exclude"
 
-			Map<String, String> antFileChecksums = getFileChecksums(antZipFileTree)
+	exclude "_diffs.*", "_diffs/**", "WEB-INF/lib/*"
 
-			FileTree gradleZipFileTree = zipTree("dist2/${fileName}")
+	filesMatching("WEB-INF/liferay-hook.xml") {
+		filter {
+			line ->
 
-			Map<String, String> gradleFileChecksums = getFileChecksums(gradleZipFileTree)
-
-			Set<String> antFilePaths = antFileChecksums.keySet()
-			Set<String> gradleFilePaths = gradleFileChecksums.keySet()
-
-			Set<String> commonFilePaths = antFilePaths.intersect(gradleFilePaths)
-
-			if ((antFilePaths.size() != commonFilePaths.size()) || (antFilePaths.size() != gradleFilePaths.size())) {
-				println "${fileName} does not match."
-
-				Set<String> uniqueFilePaths = antFilePaths - commonFilePaths
-
-				if (uniqueFilePaths) {
-					println "Unique files in the Ant distribution: " + uniqueFilePaths.join(", ") + "."
-				}
-
-				uniqueFilePaths = gradleFilePaths - commonFilePaths
-
-				if (uniqueFilePaths) {
-					println "Unique files in the Gradle distribution: " + uniqueFilePaths.join(", ") + "."
-				}
-
-				return false
-			}
-
-			List<String> differentChecksumFilePaths = antFileChecksums.findResults {
-				filePath, antFileChecksum ->
-
-				String gradleFileChecksum = gradleFileChecksums[filePath]
-
-				if (antFileChecksum != gradleFileChecksum) {
-					return filePath
-				}
-
-				return null
-			}
-
-			if (project.hasProperty("compareDistsExcludeSharedChecksums") && project.compareDistsExcludeSharedChecksums.toBoolean()) {
-				differentChecksumFilePaths.removeAll {
-					it.endsWith "-shared.jar"
-				}
-			}
-
-			if (differentChecksumFilePaths) {
-				println "${fileName} does not match and has different files: " + differentChecksumFilePaths.join(", ")
-
-				return false
-			}
+			line.contains("content/Language*.properties") ? getLanguageProperties() : line
 		}
-
-		return true
 	}
 
-	compareDistFileNames = {
-		if ((antDistFileNames.size() != commonDistFileNames.size()) || (antDistFileNames.size() != gradleDistFileNames.size())) {
-			println "Distribution directories contain different files."
+	getLanguageProperties = {
+		StringBuilder sb = new StringBuilder()
 
-			List<String> uniqueDistFileNames = antDistFileNames - commonDistFileNames
+		File contentDir = file("${pluginSrcDir}/content")
 
-			if (uniqueDistFileNames) {
-				println "Unique files in the Ant distribution directory: " + uniqueDistFileNames.join(", ") + "."
+		File[] files = contentDir.listFiles()
+
+		for (int i = 0; i < files.length; i++) {
+			File file = files[i]
+
+			sb << "\t<language-properties>content/" + file.name + "</language-properties>"
+
+			if ((i + 1) < files.length) {
+				sb << "\n"
 			}
-
-			uniqueDistFileNames = gradleDistFileNames - commonDistFileNames
-
-			if (uniqueDistFileNames) {
-				println "Unique files in the Gradle distribution directory: " + uniqueDistFileNames.join(", ") + "."
-			}
-
-			return false
 		}
 
-		return true
+		return sb.toString()
 	}
 
-	compareDists = {
-		FileTree antDistFileTree = fileTree(dir: "dist", include: "*.war")
+	getNewDependencyNames = {
+		configurations.compile.resolvedConfiguration.resolvedArtifacts.collectEntries {
+			ModuleVersionIdentifier moduleVersionIdentifier = it.moduleVersion.id
 
-		antDistFileNames = antDistFileTree*.name
+			[(String)"${moduleVersionIdentifier.name}-${moduleVersionIdentifier.version}.jar", (String)"${moduleVersionIdentifier.name}.jar"]
+		}
+	}.memoize()
 
-		FileTree gradleDistFileTree = fileTree(dir: "dist2", include: "*.war")
+	setManifest = {
+		File manifestFile
 
-		gradleDistFileNames = gradleDistFileTree*.name
-
-		commonDistFileNames = antDistFileNames.intersect(gradleDistFileNames)
-
-		if (!compareDistFileNames()) {
-			return
+		if (osgiPlugin) {
+			manifestFile = file("src/META-INF/MANIFEST.MF")
+		}
+		else {
+			manifestFile = file("docroot/META-INF/MANIFEST.MF")
 		}
 
-		if (!compareDistFileContents()) {
-			return
+		if (manifestFile.exists()) {
+			manifest.from manifestFile
 		}
+		else {
+			CopySpec copySpec = rootSpec.children.find {
+				CopySpecResolver copySpecResolver = it.buildRootResolver()
 
-		println "Distribution directories do match."
-	}
-
-	getFileChecksums = {
-		FileTree fileTree ->
-
-		Map<String, String> fileChecksums = [:]
-
-		fileTree.visit {
-			FileVisitDetails fileVisitDetails ->
-
-			if (fileVisitDetails.directory) {
-				return
+				copySpecResolver.destPath.pathString == "META-INF"
 			}
 
-			InputStream inputStream = fileVisitDetails.open()
-
-			inputStream.withStream {
-				String filePath = fileVisitDetails.relativePath
-				String fileChecksum = DigestUtils.md5Hex(inputStream)
-
-				fileChecksums[filePath] = fileChecksum
+			if (copySpec) {
+				copySpec.exclude "**"
 			}
 		}
-
-		return fileChecksums
 	}
 
-	compareDists()
-}
+	outputs.file archivePath
 
-public boolean exists(String fileName) {
-	File file = file(fileName)
+	rootSpec.children*.rename {
+		String fileName ->
 
-	return file.exists()
+		Map<String, String> newDependencyNames = getNewDependencyNames();
+
+		return newDependencyNames[fileName] ?: fileName
+	}
+
+	setManifest()
 }
