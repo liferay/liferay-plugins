@@ -30,7 +30,9 @@ configure(allprojects) {
 
 configure(
 	subprojects.findAll {
-		it.file("build.gradle").exists()
+		File file = it.file("build.gradle")
+
+		file.exists()
 	}) {
 
 	Closure readConfigurations
@@ -45,7 +47,9 @@ configure(
 		File bndPropertiesFile = project.file("bnd.bnd")
 
 		if (bndPropertiesFile.exists()) {
-			new FileInputStream(bndPropertiesFile).withStream {
+			InputStream inputStream = new FileInputStream(bndPropertiesFile)
+
+			inputStream.withStream {
 				bndProperties.load(it)
 			}
 		}
@@ -80,7 +84,9 @@ configure(
 		File pluginPackagePropertiesFile = project.file("docroot/WEB-INF/liferay-plugin-package.properties")
 
 		if (pluginPackagePropertiesFile.exists()) {
-			new FileInputStream(pluginPackagePropertiesFile).withStream {
+			InputStream inputStream = new FileInputStream(pluginPackagePropertiesFile)
+
+			inputStream.withStream {
 				pluginPackageProperties.load(it)
 			}
 		}
@@ -270,4 +276,3 @@ compareDists << {
 
 	compareDists()
 }
-
