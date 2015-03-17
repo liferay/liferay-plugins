@@ -46,32 +46,37 @@ import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
+import org.apache.http.auth.AuthScheme;
 import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.ChallengeState;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.AuthCache;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.HttpClientConnectionManager;
-import org.apache.http.conn.routing.HttpRoutePlanner;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
+import org.apache.http.impl.client.ProxyAuthenticationStrategy;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HttpContext;
@@ -332,8 +337,35 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 				afterPropertiesSet();
 			}
 
-			HttpResponse httpResponse = _closeableHttpClient.execute(
-				httpHost, httpRequestBase);
+			HttpResponse httpResponse = null;
+
+			if ((_login != null) && (_password != null)) {
+				AuthScheme authScheme = null;
+
+				if (_proxyHostName != null) {
+					authScheme = new BasicScheme(ChallengeState.PROXY);
+				}
+				else {
+					authScheme = new BasicScheme(ChallengeState.TARGET);
+				}
+
+				AuthCache authCache = new BasicAuthCache();
+
+				authCache.put(httpHost, authScheme);
+
+				HttpClientContext httpClientContext =
+					HttpClientContext.create();
+
+				httpClientContext.setAttribute(
+					ClientContext.AUTH_CACHE, authCache);
+
+				httpResponse = _closeableHttpClient.execute(
+					httpHost, httpRequestBase, httpClientContext);
+			}
+			else {
+				httpResponse = _closeableHttpClient.execute(
+					httpHost, httpRequestBase);
+			}
 
 			StatusLine statusLine = httpResponse.getStatusLine();
 
@@ -428,12 +460,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			return;
 		}
 
-		HttpHost httpHost = new HttpHost(_proxyHostName, _proxyHostPort);
-
-		HttpRoutePlanner httpRoutePlanner = new DefaultProxyRoutePlanner(
-			httpHost);
-
-		httpClientBuilder.setRoutePlanner(httpRoutePlanner);
+		httpClientBuilder.setProxy(
+			new HttpHost(_proxyHostName, _proxyHostPort));
+		httpClientBuilder.setProxyAuthenticationStrategy(
+			new ProxyAuthenticationStrategy());
 	}
 
 	protected List<NameValuePair> toNameValuePairs(
