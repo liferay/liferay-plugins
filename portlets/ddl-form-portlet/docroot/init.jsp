@@ -57,7 +57,8 @@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplate" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplay" %><%@
-page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplayRegistryUtil" %>
+page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplayRegistryUtil" %><%@
+page import="com.liferay.portlet.dynamicdatamapping.util.DDMPermissionHandler" %>
 
 <%@ page import="java.util.List" %><%@
 page import="java.util.Locale" %>
@@ -79,4 +80,8 @@ long formDDMTemplateId = GetterUtil.getLong(portletPreferences.getValue("formDDM
 boolean multipleSubmissions = GetterUtil.getBoolean(portletPreferences.getValue("multipleSubmissions", null));
 
 DDMDisplay ddmDisplay = DDMDisplayRegistryUtil.getDDMDisplay(PortletKeys.DYNAMIC_DATA_LISTS);
+
+long scopeClassNameId = PortalUtil.getClassNameId(ddmDisplay.getStructureType());
+
+DDMPermissionHandler ddmPermissionHandler = ddmDisplay.getDDMPermissionHandler();
 %>
