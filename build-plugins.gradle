@@ -212,6 +212,7 @@ initGradle << {
 	Closure getIndent
 	Closure wrapContents
 	Closure wrapDependency
+	Closure wrapProjectDependency
 	Closure wrapProperty
 	Closure wrapServiceJar
 	Closure writeBuildGradleFile
@@ -229,6 +230,8 @@ initGradle << {
 
 	getBuildGradleDependenciesCompile = {
 		List contents = []
+
+		String importShared = getBuildXmlProperty("import.shared")
 
 		if (ivyXmlNode) {
 			ivyXmlNode.dependencies.dependency.each {
@@ -251,6 +254,28 @@ initGradle << {
 				if (serviceJarFile.exists()) {
 					contents.addAll(wrapServiceJar(2, serviceJarFileName))
 				}
+			}
+		}
+
+		if (importShared) {
+			String[] importSharedArray = importShared.split(",")
+
+			importSharedArray.each {
+				String projectDependencyPath
+
+				if (file("${rootDir}/shared/${it}/src").exists()) {
+					projectDependencyPath = ":shared:${it}"
+				}
+				else if (file("${projectDir}/../${it}/src").exists()) {
+					projectDependencyPath = project.path.replaceFirst(project.name, it)
+				}
+				else {
+					println("Project dependency ${it} could not be found in the shared directory or this project's parent directory.")
+
+					return
+				}
+
+				contents.addAll(wrapProjectDependency(2, projectDependencyPath))
 			}
 		}
 
@@ -337,6 +362,12 @@ initGradle << {
 		return contents
 	}
 
+	wrapProjectDependency = {
+		int indentCount, String projectDependencyPath ->
+
+		return "${getIndent(indentCount)}project(\"${projectDependencyPath}\"),"
+	}
+
 	wrapDependency = {
 		int indentCount, String group, String name, String version ->
 
@@ -371,50 +402,9 @@ initGradle << {
 		}
 	}
 
-	writeDependencySettingsFile = {
-		File dependencySettingsFile = new File("${projectDir}/dependency-settings.gradle")
-
-		String importShared = getBuildXmlProperty("import.shared")
-
-		if (importShared) {
-			List contents = []
-
-			String[] importSharedArray = importShared.split(",")
-
-			importSharedArray.each {
-				String includeTransitivePath
-
-				if (exists("${rootDir}/shared/${it}/src")) {
-					includeTransitivePath = ":shared:${it}"
-				}
-				else if (exists("${projectDir}/../${it}/src")) {
-					includeTransitivePath = project.path.replaceFirst(project.name, it)
-				}
-				else {
-					println("Project dependency ${it} could not be found in the shared directory or this project's parent directory.")
-
-					return
-				}
-
-				contents << "includeTransitive \"${includeTransitivePath}\""
-			}
-
-			contents.each {
-				dependencySettingsFile << it + "\n"
-			}
-		}
-		else {
-			dependencySettingsFile.delete()
-		}
-	}
-
 	// build.gradle
 
 	writeBuildGradleFile()
-
-	// dependency-settings.gradle
-
-	writeDependencySettingsFile()
 }
 
 war {

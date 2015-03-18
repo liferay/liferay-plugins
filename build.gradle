@@ -1,5 +1,11 @@
 import org.apache.commons.codec.digest.DigestUtils
 
+Closure commonProjectCondition
+Closure commonProjects
+Closure configureProjects
+Closure pluginProjectCondition
+Closure pluginProjects
+
 apply from: "${gradle.lfrSdkDir}/versions.gradle"
 
 buildscript {
@@ -14,7 +20,11 @@ buildscript {
 	}
 }
 
-configure(allprojects) {
+commonProjectCondition = {
+	1
+}
+
+commonProjects = {
 	apply from: "${gradle.lfrSdkDir}/util.gradle"
 
 	configurations {
@@ -30,11 +40,21 @@ configure(allprojects) {
 	}
 }
 
-configure(
-	subprojects.findAll {
-		it.exists("build.gradle")
-	}) {
+configureProjects = { Closure projectCondition, Closure projectConfig ->
+	gradle.beforeProject {
+		if (!projectCondition(it)) {
+			return
+		}
 
+		configure(it, projectConfig)
+	}
+}
+
+pluginProjectCondition = {
+	it.file("build.gradle").exists() && it.parent
+}
+
+pluginProjects = {
 	Closure readConfigurations
 	Closure setExtProperties
 
@@ -274,3 +294,7 @@ compareDists << {
 
 	compareDists()
 }
+
+configureProjects(commonProjectCondition, commonProjects)
+
+configureProjects(pluginProjectCondition, pluginProjects)
