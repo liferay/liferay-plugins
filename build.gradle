@@ -127,7 +127,7 @@ configure(
 
 	setExtProperties()
 
-	apply from: "${rootDir}/build-plugins.gradle"
+	apply from: "${gradle.lfrSdkDir}/build-plugins.gradle"
 }
 
 task compareDists
