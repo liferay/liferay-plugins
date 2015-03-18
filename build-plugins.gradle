@@ -231,8 +231,6 @@ initGradle << {
 	getBuildGradleDependenciesCompile = {
 		List contents = []
 
-		String importShared = getBuildXmlProperty("import.shared")
-
 		if (ivyXmlNode) {
 			ivyXmlNode.dependencies.dependency.each {
 				if ((it.@conf == null) || (it.@conf == "default")) {
@@ -257,16 +255,18 @@ initGradle << {
 			}
 		}
 
+		String importShared = getBuildXmlProperty("import.shared")
+
 		if (importShared) {
 			String[] importSharedArray = importShared.split(",")
 
 			importSharedArray.each {
 				String projectDependencyPath
 
-				if (file("${rootDir}/shared/${it}/src").exists()) {
+				if (exists("${rootDir}/shared/${it}/src")) {
 					projectDependencyPath = ":shared:${it}"
 				}
-				else if (file("${projectDir}/../${it}/src").exists()) {
+				else if (exists("${projectDir}/../${it}/src")) {
 					projectDependencyPath = project.path.replaceFirst(project.name, it)
 				}
 				else {
@@ -362,16 +362,16 @@ initGradle << {
 		return contents
 	}
 
-	wrapProjectDependency = {
-		int indentCount, String projectDependencyPath ->
-
-		return "${getIndent(indentCount)}project(\"${projectDependencyPath}\"),"
-	}
-
 	wrapDependency = {
 		int indentCount, String group, String name, String version ->
 
 		return "${getIndent(indentCount)}[group: \"${group}\", name: \"${name}\", version: \"${version}\"],"
+	}
+
+	wrapProjectDependency = {
+		int indentCount, String projectDependencyPath ->
+
+		return "${getIndent(indentCount)}project(\"${projectDependencyPath}\"),"
 	}
 
 	wrapProperty = {
