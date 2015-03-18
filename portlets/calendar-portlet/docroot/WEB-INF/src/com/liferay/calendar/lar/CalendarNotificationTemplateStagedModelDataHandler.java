@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
@@ -60,29 +59,22 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 	}
 
 	@Override
-	public CalendarNotificationTemplate fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<CalendarNotificationTemplate> calendarNotificationTemplates =
-			CalendarNotificationTemplateLocalServiceUtil.
-				getCalendarNotificationTemplatesByUuidAndCompanyId(
-					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new StagedModelModifiedDateComparator
-						<CalendarNotificationTemplate>());
-
-		if (ListUtil.isEmpty(calendarNotificationTemplates)) {
-			return null;
-		}
-
-		return calendarNotificationTemplates.get(0);
-	}
-
-	@Override
 	public CalendarNotificationTemplate fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return CalendarNotificationTemplateLocalServiceUtil.
 			fetchCalendarNotificationTemplateByUuidAndGroupId(uuid, groupId);
+	}
+
+	@Override
+	public List<CalendarNotificationTemplate>
+		fetchStagedModelsByUuidAndCompanyId(String uuid, long companyId) {
+
+		return CalendarNotificationTemplateLocalServiceUtil.
+			getCalendarNotificationTemplatesByUuidAndCompanyId(
+				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new StagedModelModifiedDateComparator
+					<CalendarNotificationTemplate>());
 	}
 
 	@Override

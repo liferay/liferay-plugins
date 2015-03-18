@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
@@ -59,27 +58,20 @@ public class CalendarStagedModelDataHandler
 	}
 
 	@Override
-	public Calendar fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<Calendar> calendars =
-			CalendarLocalServiceUtil.getCalendarsByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<Calendar>());
-
-		if (ListUtil.isEmpty(calendars)) {
-			return null;
-		}
-
-		return calendars.get(0);
-	}
-
-	@Override
 	public Calendar fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public List<Calendar> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return CalendarLocalServiceUtil.getCalendarsByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<Calendar>());
 	}
 
 	@Override
