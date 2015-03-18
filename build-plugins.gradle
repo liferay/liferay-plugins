@@ -59,13 +59,9 @@ dependencies {
 	)
 
 	portalBuildCss(
-		[group: "com.liferay", name: "com.liferay.ruby.gems", version: "1.0.0-SNAPSHOT"],
-		[group: "javax.portlet", name: "portlet-api", version: "2.0"],
+		[group: "com.liferay", name: "com.liferay.sass.compiler", version: "1.0.0-SNAPSHOT"],
 		[group: "org.apache.ant", name: "ant", version: "1.8.2"],
-		[group: "org.jruby", name: "jruby-complete", version: "1.6.5"],
-		[group: "org.mozilla", name: "rhino", version: "1.7R4"],
-		[group: "org.springframework", name: "spring-web", version: "3.2.10.RELEASE"],
-		[group: "struts", name: "struts", version: "1.2.9"]
+		[group: "org.mozilla", name: "rhino", version: "1.7R4"]
 	)
 
 	portalWeb group: "com.liferay.portal", name: "portal-web", version: "7.0.0-SNAPSHOT"
