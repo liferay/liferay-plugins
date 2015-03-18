@@ -836,11 +836,17 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			InputStream inputStream = _extRepository.getContentStream(
 				extRepositoryFileVersion);
 
-			try {
-				_extRepository.checkOutExtRepositoryFileEntry(
-					extRepositoryFileEntryKey);
-			}
-			catch (UnsupportedOperationException uoe) {
+			boolean needsCheckIn = false;
+
+			if (!isCheckedOut(extRepositoryFileEntry)) {
+				try {
+					_extRepository.checkOutExtRepositoryFileEntry(
+						extRepositoryFileEntryKey);
+
+					needsCheckIn = true;
+				}
+				catch (UnsupportedOperationException uoe) {
+				}
 			}
 
 			_extRepository.updateExtRepositoryFileEntry(
@@ -849,11 +855,13 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 			String changeLog = "Reverted to " + version;
 
-			try {
-				_extRepository.checkInExtRepositoryFileEntry(
-					extRepositoryFileEntryKey, true, changeLog);
-			}
-			catch (UnsupportedOperationException uoe) {
+			if (needsCheckIn) {
+				try {
+					_extRepository.checkInExtRepositoryFileEntry(
+						extRepositoryFileEntryKey, true, changeLog);
+				}
+				catch (UnsupportedOperationException uoe) {
+				}
 			}
 		}
 		else {
@@ -989,30 +997,23 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String extRepositoryFileEntryKey = getExtRepositoryObjectKey(
 			fileEntryId);
 
-		ExtRepositoryFileEntry extRepositoryFileEntry = null;
-
-		if (inputStream == null) {
-			extRepositoryFileEntry = _extRepository.getExtRepositoryObject(
+		ExtRepositoryFileEntry extRepositoryFileEntry =
+			_extRepository.getExtRepositoryObject(
 				ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
-		}
-		else {
-			try {
-				_extRepository.checkOutExtRepositoryFileEntry(
-					extRepositoryFileEntryKey);
-			}
-			catch (UnsupportedOperationException uoe) {
-			}
 
+		boolean needsCheckIn = false;
+
+		if (!isCheckedOut(extRepositoryFileEntry)) {
+			_extRepository.checkOutExtRepositoryFileEntry(
+				extRepositoryFileEntryKey);
+
+			needsCheckIn = true;
+		}
+
+		if (inputStream != null) {
 			extRepositoryFileEntry =
 				_extRepository.updateExtRepositoryFileEntry(
 					extRepositoryFileEntryKey, mimeType, inputStream);
-
-			try {
-				_extRepository.checkInExtRepositoryFileEntry(
-					extRepositoryFileEntryKey, majorVersion, changeLog);
-			}
-			catch (UnsupportedOperationException uoe) {
-			}
 		}
 
 		if (!title.equals(extRepositoryFileEntry.getTitle())) {
@@ -1028,6 +1029,11 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				ExtRepositoryAdapterCache.getInstance();
 
 			extRepositoryAdapterCache.remove(extRepositoryFileEntryKey);
+		}
+
+		if (needsCheckIn) {
+			_extRepository.checkInExtRepositoryFileEntry(
+				extRepositoryFileEntryKey, majorVersion, changeLog);
 		}
 
 		return _toExtRepositoryObjectAdapter(
@@ -1103,6 +1109,18 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		repositoryEntry = _getRootRepositoryEntry(rootMountDLFolder);
 
 		return repositoryEntry.getMappedId();
+	}
+
+	protected boolean isCheckedOut(
+		ExtRepositoryFileEntry extRepositoryFileEntry) {
+
+		String checkedOutBy = extRepositoryFileEntry.getCheckedOutBy();
+
+		if (Validator.isNull(checkedOutBy)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private void _checkAssetEntry(
