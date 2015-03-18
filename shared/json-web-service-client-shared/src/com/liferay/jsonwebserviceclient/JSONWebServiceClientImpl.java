@@ -99,23 +99,34 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		httpClientBuilder.setConnectionManager(httpClientConnectionManager);
 
-		if ((_login != null) && (_password != null)) {
+		if (((_login != null) && (_password != null)) ||
+			((_proxyLogin != null) && (_proxyPassword != null))) {
+
 			CredentialsProvider credentialsProvider =
 				new BasicCredentialsProvider();
 
-			credentialsProvider.setCredentials(
-				new AuthScope(_hostName, _hostPort),
-				new UsernamePasswordCredentials(_login, _password));
+			if (_login != null) {
+				credentialsProvider.setCredentials(
+					new AuthScope(_hostName, _hostPort),
+					new UsernamePasswordCredentials(_login, _password));
+			}
+			else {
+				if (_logger.isInfoEnabled()) {
+					_logger.info("No credentials are used");
+				}
+			}
+
+			if (_proxyLogin != null) {
+				credentialsProvider.setCredentials(
+					new AuthScope(_proxyHostName, _proxyHostPort),
+					new UsernamePasswordCredentials(
+						_proxyLogin, _proxyPassword));
+			}
 
 			httpClientBuilder.setDefaultCredentialsProvider(
 				credentialsProvider);
 			httpClientBuilder.setRetryHandler(
 				new HttpRequestRetryHandlerImpl());
-		}
-		else {
-			if (_logger.isWarnEnabled()) {
-				_logger.warn("Login and password are required");
-			}
 		}
 
 		try {
@@ -327,6 +338,14 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		_proxyHostPort = proxyHostPort;
 	}
 
+	public void setProxyLogin(String proxyLogin) {
+		_proxyLogin = proxyLogin;
+	}
+
+	public void setProxyPassword(String proxyPassword) {
+		_proxyPassword = proxyPassword;
+	}
+
 	protected String execute(HttpRequestBase httpRequestBase)
 		throws JSONWebServiceTransportException {
 
@@ -504,6 +523,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private String _protocol = "http";
 	private String _proxyHostName;
 	private int _proxyHostPort;
+	private String _proxyLogin;
+	private String _proxyPassword;
 
 	private class HttpRequestRetryHandlerImpl
 		implements HttpRequestRetryHandler {
