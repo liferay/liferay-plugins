@@ -53,7 +53,7 @@
 	</target>
 
 	<target name="setup-eclipse">
-		<subant target="setup-eclipse-module">
+		<subant target="setup-eclipse">
 			<multirootfileset basedirs="${plugins.includes.path}">
 				<include name="build.xml" />
 			</multirootfileset>
