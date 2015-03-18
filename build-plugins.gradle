@@ -117,15 +117,6 @@ else {
 	if (bundleVersion) {
 		version = bundleVersion
 	}
-	else {
-		String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
-
-		if (!moduleIncrementalVersion) {
-			moduleIncrementalVersion = getBuildXmlProperty("plugin.version")
-		}
-
-		version = getBuildXmlProperty("plugin.full.version", ReleaseInfo.version + "." + moduleIncrementalVersion)
-	}
 }
 
 webAppDirName = "docroot"
@@ -209,7 +200,9 @@ initGradle << {
 	Closure getBuildGradleDependenciesCompile
 	Closure getBuildGradleDependenciesProvidedCompile
 	Closure getBuildGradleDependenciesTestCompile
+	Closure getBuildXmlProperty
 	Closure getIndent
+	Closure readLegacyXmls
 	Closure wrapContents
 	Closure wrapDependency
 	Closure wrapProjectDependency
@@ -327,6 +320,22 @@ initGradle << {
 		return wrapContents(contents, 1, "(", "testCompile", ")")
 	}
 
+	getBuildXmlProperty = {
+		String key, String defaultValue = "" ->
+
+		String value = defaultValue
+
+		Node buildXmlPropertyNode = buildXmlNode.property.find {
+			it.@name == key
+		}
+
+		if (buildXmlPropertyNode) {
+			value = buildXmlPropertyNode.@value
+		}
+
+		return value
+	}
+
 	getIndent = {
 		String indent = ""
 
@@ -336,6 +345,31 @@ initGradle << {
 		})
 
 		return indent
+	}
+
+	readLegacyXmls = {
+		// build.xml
+
+		XmlParser xmlParser = new XmlParser()
+
+		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+
+		File buildXmlFile = project.file("build.xml")
+
+		if (buildXmlFile.exists()) {
+			project.ext.buildXmlNode = xmlParser.parse(buildXmlFile)
+		}
+
+		// ivy.xml
+
+		File ivyXmlFile = project.file("ivy.xml")
+
+		if (ivyXmlFile.exists()) {
+			project.ext.ivyXmlNode = xmlParser.parse(ivyXmlFile)
+		}
+		else {
+			project.ext.ivyXmlNode = null
+		}
 	}
 
 	wrapContents = {
@@ -402,7 +436,7 @@ initGradle << {
 		}
 	}
 
-	// build.gradle
+	readLegacyXmls()
 
 	writeBuildGradleFile()
 }

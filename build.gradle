@@ -76,29 +76,6 @@ pluginProjects = {
 			}
 		}
 
-		// build.xml
-
-		XmlParser xmlParser = new XmlParser()
-
-		xmlParser.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
-
-		File buildXmlFile = project.file("build.xml")
-
-		if (buildXmlFile.exists()) {
-			project.ext.buildXmlNode = xmlParser.parse(buildXmlFile)
-		}
-
-		// ivy.xml
-
-		File ivyXmlFile = project.file("ivy.xml")
-
-		if (ivyXmlFile.exists()) {
-			project.ext.ivyXmlNode = xmlParser.parse(ivyXmlFile)
-		}
-		else {
-			project.ext.ivyXmlNode = null
-		}
-
 		// liferay-plugin-package.properties
 
 		project.ext.pluginPackageProperties = new Properties()
@@ -127,22 +104,6 @@ pluginProjects = {
 		if (!project.pluginSrcDir.exists()) {
 			project.pluginSrcDir = project.file("src")
 		}
-	}
-
-	ext.getBuildXmlProperty = {
-		String key, String defaultValue = "" ->
-
-		String value = defaultValue
-
-		Node buildXmlPropertyNode = buildXmlNode.property.find {
-			it.@name == key
-		}
-
-		if (buildXmlPropertyNode) {
-			value = buildXmlPropertyNode.@value
-		}
-
-		return value
 	}
 
 	readConfigurations()
