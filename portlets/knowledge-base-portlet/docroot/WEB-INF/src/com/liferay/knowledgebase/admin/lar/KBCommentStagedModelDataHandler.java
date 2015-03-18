@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
@@ -51,27 +50,20 @@ public class KBCommentStagedModelDataHandler
 	}
 
 	@Override
-	public KBComment fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<KBComment> kbComments =
-			KBCommentLocalServiceUtil.getKBCommentsByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<KBComment>());
-
-		if (ListUtil.isEmpty(kbComments)) {
-			return null;
-		}
-
-		return kbComments.get(0);
-	}
-
-	@Override
 	public KBComment fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return KBCommentLocalServiceUtil.fetchKBCommentByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public List<KBComment> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return KBCommentLocalServiceUtil.getKBCommentsByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<KBComment>());
 	}
 
 	@Override

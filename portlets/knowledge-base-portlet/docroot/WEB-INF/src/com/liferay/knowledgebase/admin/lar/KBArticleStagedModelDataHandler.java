@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -70,27 +69,20 @@ public class KBArticleStagedModelDataHandler
 	}
 
 	@Override
-	public KBArticle fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<KBArticle> kbArticles =
-			KBArticleLocalServiceUtil.getKBArticlesByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<KBArticle>());
-
-		if (ListUtil.isEmpty(kbArticles)) {
-			return null;
-		}
-
-		return kbArticles.get(0);
-	}
-
-	@Override
 	public KBArticle fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return KBArticleLocalServiceUtil.fetchKBArticleByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public List<KBArticle> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return KBArticleLocalServiceUtil.getKBArticlesByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<KBArticle>());
 	}
 
 	@Override

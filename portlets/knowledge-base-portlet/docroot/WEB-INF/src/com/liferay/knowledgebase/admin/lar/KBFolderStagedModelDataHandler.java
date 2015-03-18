@@ -54,19 +54,12 @@ public class KBFolderStagedModelDataHandler
 	}
 
 	@Override
-	public KBFolder fetchStagedModelByUuidAndCompanyId(
+	public List<KBFolder> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		List<KBFolder> kbFolders =
-			KBFolderLocalServiceUtil.getKBFoldersByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<KBFolder>());
-
-		if (kbFolders.isEmpty()) {
-			return null;
-		}
-
-		return kbFolders.get(0);
+		return KBFolderLocalServiceUtil.getKBFoldersByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<KBFolder>());
 	}
 
 	@Override
