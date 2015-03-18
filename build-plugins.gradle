@@ -156,7 +156,7 @@ buildCss {
 	classpath configurations.portalBuildCss
 
 	doFirst {
-		if (!file("${rootDir}/tmp/portal-web").exists()) {
+		if (!exists("${rootDir}/tmp/portal-web")) {
 			copy {
 				from(zipTree(configurations.portalWeb.singleFile)) {
 					include "html/css/**/*"
@@ -382,10 +382,10 @@ initGradle << {
 			importSharedArray.each {
 				String includeTransitivePath
 
-				if (file("${rootDir}/shared/${it}/src").exists()) {
+				if (exists("${rootDir}/shared/${it}/src")) {
 					includeTransitivePath = ":shared:${it}"
 				}
-				else if (file("${projectDir}/../${it}/src").exists()) {
+				else if (exists("${projectDir}/../${it}/src")) {
 					includeTransitivePath = project.path.replaceFirst(project.name, it)
 				}
 				else {

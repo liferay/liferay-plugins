@@ -15,6 +15,8 @@ buildscript {
 }
 
 configure(allprojects) {
+	apply from: "${gradle.lfrSdkDir}/util.gradle"
+
 	configurations {
 		all {
 			resolutionStrategy.cacheChangingModulesFor 15, 'minutes'
@@ -30,9 +32,7 @@ configure(allprojects) {
 
 configure(
 	subprojects.findAll {
-		File file = it.file("build.gradle")
-
-		file.exists()
+		it.exists("build.gradle")
 	}) {
 
 	Closure readConfigurations
@@ -96,9 +96,7 @@ configure(
 
 		// osgiPlugin
 
-		File bndPropertiesFile = project.file("bnd.bnd")
-
-		project.ext.osgiPlugin = bndPropertiesFile.exists()
+		project.ext.osgiPlugin = project.exists("bnd.bnd")
 
 		// pluginSrcDir
 
