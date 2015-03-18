@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.wsrp.model.WSRPProducer;
@@ -50,27 +49,20 @@ public class WSRPProducerStagedModelDataHandler
 	}
 
 	@Override
-	public WSRPProducer fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<WSRPProducer> wsrpProducers =
-			WSRPProducerLocalServiceUtil.getWSRPProducersByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<WSRPProducer>());
-
-		if (ListUtil.isEmpty(wsrpProducers)) {
-			return null;
-		}
-
-		return wsrpProducers.get(0);
-	}
-
-	@Override
 	public WSRPProducer fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return WSRPProducerLocalServiceUtil.fetchWSRPProducerByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public List<WSRPProducer> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return WSRPProducerLocalServiceUtil.getWSRPProducersByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<WSRPProducer>());
 	}
 
 	@Override

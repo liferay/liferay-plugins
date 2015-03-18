@@ -25,6 +25,9 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Michael C. Han
  */
@@ -40,8 +43,9 @@ public class WSRPConsumerStagedModelDataHandler
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		WSRPConsumer wsrpConsumer = fetchStagedModelByUuidAndCompanyId(
-			uuid, group.getCompanyId());
+		WSRPConsumer wsrpConsumer =
+			WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(
+				uuid, group.getCompanyId());
 
 		if (wsrpConsumer != null) {
 			WSRPConsumerLocalServiceUtil.deleteWSRPConsumer(wsrpConsumer);
@@ -49,11 +53,16 @@ public class WSRPConsumerStagedModelDataHandler
 	}
 
 	@Override
-	public WSRPConsumer fetchStagedModelByUuidAndCompanyId(
+	public List<WSRPConsumer> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		return WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(
-			uuid, companyId);
+		List<WSRPConsumer> wsrpConsumers = new ArrayList<>();
+
+		wsrpConsumers.add(
+			WSRPConsumerLocalServiceUtil.fetchWSRPConsumerByUuidAndCompanyId(
+				uuid, companyId));
+
+		return wsrpConsumers;
 	}
 
 	@Override
@@ -91,8 +100,10 @@ public class WSRPConsumerStagedModelDataHandler
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			WSRPConsumer existingWSRPConsumer =
-				fetchStagedModelByUuidAndCompanyId(
-					wsrpConsumer.getUuid(), portletDataContext.getCompanyId());
+				WSRPConsumerLocalServiceUtil.
+					fetchWSRPConsumerByUuidAndCompanyId(
+						wsrpConsumer.getUuid(),
+						portletDataContext.getCompanyId());
 
 			if (existingWSRPConsumer == null) {
 				serviceContext.setUuid(wsrpConsumer.getUuid());
