@@ -25,6 +25,9 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Michael C. Han
  */
@@ -40,7 +43,7 @@ public class GadgetStagedModelDataHandler
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		Gadget gadget = fetchStagedModelByUuidAndCompanyId(
+		Gadget gadget = GadgetLocalServiceUtil.fetchGadgetByUuidAndCompanyId(
 			uuid, group.getCompanyId());
 
 		if (gadget != null) {
@@ -49,11 +52,16 @@ public class GadgetStagedModelDataHandler
 	}
 
 	@Override
-	public Gadget fetchStagedModelByUuidAndCompanyId(
+	public List<Gadget> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		return GadgetLocalServiceUtil.fetchGadgetByUuidAndCompanyId(
-			uuid, companyId);
+		List<Gadget> gadgets = new ArrayList<>();
+
+		gadgets.add(
+			GadgetLocalServiceUtil.fetchGadgetByUuidAndCompanyId(
+				uuid, companyId));
+
+		return gadgets;
 	}
 
 	@Override
@@ -88,8 +96,9 @@ public class GadgetStagedModelDataHandler
 		Gadget importedGadget = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			Gadget existingGadget = fetchStagedModelByUuidAndCompanyId(
-				gadget.getUuid(), portletDataContext.getCompanyId());
+			Gadget existingGadget =
+				GadgetLocalServiceUtil.fetchGadgetByUuidAndCompanyId(
+					gadget.getUuid(), portletDataContext.getCompanyId());
 
 			if (existingGadget == null) {
 				serviceContext.setUuid(gadget.getUuid());
