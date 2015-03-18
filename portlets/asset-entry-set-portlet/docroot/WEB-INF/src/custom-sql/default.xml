@@ -53,8 +53,8 @@
 			WHERE
 				(AssetEntrySetLike.assetEntrySetId = ?) AND NOT
 				(
-					(AssetEntrySetLike.classNameId <> ?) AND
-					(AssetEntrySetLike.classPK <> ?)
+					(AssetEntrySetLike.classNameId = ?) AND
+					(AssetEntrySetLike.classPK = ?)
 				)
 		]]>
 	</sql>
