@@ -1,0 +1,25 @@
+apply plugin: UtilPlugin
+
+class UtilPlugin implements Plugin<Project> {
+
+	void apply(Project project) {
+		project.convention.plugins.util = new UtilPluginConvention(project)
+	}
+
+}
+
+class UtilPluginConvention {
+
+	UtilPluginConvention(Project project)  {
+		_project = project
+	}
+
+	boolean exists(String fileName) {
+		File file = _project.file(fileName)
+
+		file.exists()
+	}
+
+	private Project _project
+
+}
