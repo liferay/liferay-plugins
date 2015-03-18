@@ -340,6 +340,11 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			HttpResponse httpResponse = null;
 
 			if ((_login != null) && (_password != null)) {
+				HttpClientContext httpClientContext =
+					HttpClientContext.create();
+
+				AuthCache authCache = new BasicAuthCache();
+
 				AuthScheme authScheme = null;
 
 				if (_proxyHostName != null) {
@@ -349,12 +354,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 					authScheme = new BasicScheme(ChallengeState.TARGET);
 				}
 
-				AuthCache authCache = new BasicAuthCache();
-
 				authCache.put(httpHost, authScheme);
-
-				HttpClientContext httpClientContext =
-					HttpClientContext.create();
 
 				httpClientContext.setAttribute(
 					ClientContext.AUTH_CACHE, authCache);
