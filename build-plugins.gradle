@@ -348,6 +348,7 @@ initGradle << {
 	}
 
 	readLegacyXmls = {
+
 		// build.xml
 
 		XmlParser xmlParser = new XmlParser()
