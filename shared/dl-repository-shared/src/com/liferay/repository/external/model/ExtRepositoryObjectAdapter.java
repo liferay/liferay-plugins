@@ -150,6 +150,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 	private static Map<String, Boolean> _unsupportedActionIds = new HashMap<>();
 
 	static {
+		_unsupportedActionIds.put(ActionKeys.OVERRIDE_CHECKOUT, Boolean.FALSE);
 		_unsupportedActionIds.put(ActionKeys.SUBSCRIBE, Boolean.FALSE);
 	}
 
