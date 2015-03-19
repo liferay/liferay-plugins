@@ -2994,8 +2994,8 @@ for (String path : paths) {
 
 	<target name="reset-gradle">
 		<path id="reset.gradle.path">
-			<dirset dir="${basedir}" includes="**/docroot" excludes="tools/**" />
-			<dirset dir="${basedir}" includes="**/src" excludes="**/docroot/WEB-INF/src" />
+			<dirset dir="${basedir}" excludes="tools/**" includes="**/docroot" />
+			<dirset dir="${basedir}" excludes="**/docroot/WEB-INF/src" includes="**/src" />
 		</path>
 
 		<pathconvert
