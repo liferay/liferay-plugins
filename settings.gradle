@@ -24,9 +24,7 @@ if (!hasProperty("lfrPluginsIncludes")) {
 	ext.lfrPluginsIncludes = antProperties["plugins.includes"]
 }
 
-String userDirName = System.getProperty("user.dir")
-
-FileTree fileTree = fileTree(userDirName) {
+FileTree fileTree = fileTree(rootDir) {
 	if ((lfrPluginsIncludes != "") && (lfrPluginsIncludes != "*")) {
 		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(" ", "")
 		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(",+", ",")
