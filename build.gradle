@@ -111,6 +111,10 @@ pluginProjects = {
 	setExtProperties()
 
 	apply from: "${gradle.lfrSdkDir}/build-plugins.gradle"
+
+	if (name.endsWith("-theme")) {
+		apply from: "${gradle.lfrSdkDir}/build-themes.gradle"
+	}
 }
 
 task compareDists
