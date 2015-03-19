@@ -14,18 +14,10 @@
 
 package com.liferay.shortlink.service.impl;
 
-import com.liferay.portal.kernel.dao.orm.ORMException;
-import com.liferay.portal.kernel.dao.orm.QueryPos;
-import com.liferay.portal.kernel.dao.orm.SQLQuery;
-import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.transaction.Isolation;
-import com.liferay.portal.kernel.transaction.Propagation;
-import com.liferay.portal.kernel.transaction.Transactional;
-import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.shortlink.DuplicateShortLinkEntryException;
 import com.liferay.shortlink.ShortLinkEntryOriginalURLException;
@@ -34,9 +26,6 @@ import com.liferay.shortlink.model.ShortLinkEntry;
 import com.liferay.shortlink.service.base.ShortLinkEntryLocalServiceBaseImpl;
 import com.liferay.shortlink.util.ShortLinkConstants;
 import com.liferay.shortlink.util.ShortURLUtil;
-import com.liferay.util.dao.orm.CustomSQLUtil;
-
-import java.sql.Timestamp;
 
 import java.util.Date;
 import java.util.List;
@@ -80,29 +69,12 @@ public class ShortLinkEntryLocalServiceImpl
 	}
 
 	@Override
-	@Transactional(
-		isolation = Isolation.READ_COMMITTED,
-		propagation = Propagation.REQUIRES_NEW)
-	public void deleteShortLinkEntries(Date modifiedDate) {
+	public void deleteShortLinkEntries(Date olderThen) {
 		try {
-			Session session = shortLinkEntryPersistence.openSession();
-
-			String sql = CustomSQLUtil.get(_DELETE_SHORT_LINK_ENTRIES);
-
-			SQLQuery sqlQuery = session.createSQLQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
-
-			Timestamp modifiedDateTS = CalendarUtil.getTimestamp(modifiedDate);
-
-			qPos.add(modifiedDateTS);
-
-			sqlQuery.executeUpdate();
-
-			shortLinkEntryPersistence.closeSession(session);
+			shortLinkEntryPersistence.removeByModifiedDate(olderThen);
 		}
-		catch (ORMException orme) {
-			_log.error("Unable to remove old short links.", orme);
+		catch (SystemException e) {
+			_log.error("Unable to remove old Links.", e);
 		}
 	}
 
@@ -169,10 +141,6 @@ public class ShortLinkEntryLocalServiceImpl
 			throw new DuplicateShortLinkEntryException();
 		}
 	}
-
-	private static final String _DELETE_SHORT_LINK_ENTRIES =
-		ShortLinkEntryLocalServiceImpl.class.getName() +
-			".deleteShortLinkEntries";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ShortLinkEntryLocalServiceImpl.class);
