@@ -24,8 +24,6 @@ if (!hasProperty("lfrPluginsIncludes")) {
 	ext.lfrPluginsIncludes = antProperties["plugins.includes"]
 }
 
-gradle.ext.compileDependencies = []
-
 String userDirName = System.getProperty("user.dir")
 
 FileTree fileTree = fileTree(userDirName) {
@@ -73,11 +71,7 @@ FileTree fileTree = fileTree(userDirName) {
 		exclude("**/build.gradle")
 	}
 
-	if (userDirName.equals(rootDir.toString())) {
-		exclude("build.gradle")
-		exclude("tools/gradle/build.gradle")
-	}
-
+	exclude("build.gradle")
 	exclude("tools/gradle/build.gradle")
 }
 

@@ -32,16 +32,6 @@ dependencies {
 		compile files(projectServiceJarFile)
 	}
 
-	Map projectCompileDependencies = gradle.compileDependencies.find {
-		project.path == it.projectPath
-	}
-
-	if (projectCompileDependencies) {
-		projectCompileDependencies["compile"].each {
-			compile project(it)
-		}
-	}
-
 	if (!name.endsWith("-layouttpl") && !name.endsWith("-theme") && !name.equals("portal-compat-shared")) {
 		compile project(":shared:portal-compat-shared")
 	}
@@ -186,15 +176,11 @@ clean {
 		tasks.each {
 			dependsOn "clean" + it.name.capitalize()
 		}
-	}
 
-	Map projectCompileDependencies = gradle.compileDependencies.find {
-		project.path == it.projectPath
-	}
+		Set<ProjectDependency> projectDependencies = configurations.compile.allDependencies.withType(ProjectDependency)
 
-	if (projectCompileDependencies) {
-		projectCompileDependencies["compile"].each {
-			dependsOn "${it}:clean"
+		projectDependencies.each {
+			dependsOn "${it.dependencyProject.path}:clean"
 		}
 	}
 }
