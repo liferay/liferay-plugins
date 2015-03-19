@@ -196,6 +196,7 @@ initGradle << {
 	Closure getBuildGradleDependenciesCompile
 	Closure getBuildGradleDependenciesProvidedCompile
 	Closure getBuildGradleDependenciesTestCompile
+	Closure getBuildGradleExt
 	Closure getBuildXmlProperty
 	Closure getIndent
 	Closure readLegacyXmls
@@ -319,6 +320,27 @@ initGradle << {
 		return wrapContents(contents, 1, "(", "testCompile", ")")
 	}
 
+	getBuildGradleExt = {
+		List<String> contents = []
+
+		if (project.name.endsWith("-theme")) {
+			String themeParent = getBuildXmlProperty("theme.parent")
+			String themeType = getBuildXmlProperty("theme.type", "vm")
+
+			if (themeParent) {
+				contents.add(wrapProperty(1, "themeParent", themeParent))
+			}
+
+			contents.add(wrapProperty(1, "themeType", themeType))
+		}
+
+		if (contents) {
+			contents = wrapContents(contents, 0, " {", "ext", "}")
+		}
+
+		return contents
+	}
+
 	getBuildXmlProperty = {
 		String key, String defaultValue = "" ->
 
@@ -425,11 +447,16 @@ initGradle << {
 		List<String> contents = []
 
 		contents.addAll(getBuildGradleDependencies())
+		contents.addAll(getBuildGradleExt())
 
 		File buildGradleFile = file("build.gradle")
 
-		contents.each {
-			buildGradleFile << it + "\n"
+		buildGradleFile.withWriter {
+			BufferedWriter bufferedWriter ->
+
+			contents.each {
+				bufferedWriter.writeLine it
+			}
 		}
 	}
 
