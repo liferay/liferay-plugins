@@ -120,6 +120,11 @@ else {
 	if (bundleVersion) {
 		version = bundleVersion
 	}
+	else {
+		String moduleIncrementalVersion = pluginPackageProperties["module-incremental-version"]
+
+		version = ReleaseInfo.version + "." + moduleIncrementalVersion
+	}
 }
 
 webAppDirName = "docroot"
