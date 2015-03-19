@@ -134,7 +134,7 @@ buildCss {
 		sassDocrootDir = file("docroot")
 	}
 
-	sassDocrootDirFileTree = fileTree(dir: sassDocrootDir, include: "**/*.css")
+	sassDocrootDirFileTree = fileTree(dir: sassDocrootDir, exclude: "**/.sass-cache/**", include: "**/*.css")
 
 	args(
 		"sass.dir=/",
@@ -157,6 +157,8 @@ buildCss {
 			}
 		}
 	}
+
+	inputs.files sassDocrootDirFileTree
 
 	main = "com.liferay.portal.tools.SassToCssBuilder"
 
