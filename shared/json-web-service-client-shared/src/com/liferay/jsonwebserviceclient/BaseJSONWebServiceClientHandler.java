@@ -36,6 +36,9 @@ public abstract class BaseJSONWebServiceClientHandler {
 	protected BaseJSONWebServiceClientHandler() {
 		objectMapper.configure(
 			DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+		objectMapper.enableDefaultTypingAsProperty(
+			ObjectMapper.DefaultTyping.JAVA_LANG_OBJECT, "class");
 	}
 
 	protected String doGet(
