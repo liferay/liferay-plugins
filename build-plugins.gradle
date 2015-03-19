@@ -21,6 +21,7 @@ configurations {
 	portalBuildCss
 	portalBuildCssLegacy
 	portalWeb
+	requiredLibraries
 
 	portalBuildCss.extendsFrom portal, portalBuildCssLegacy
 }
@@ -66,10 +67,6 @@ dependencies {
 	providedCompile(
 		[group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "2.4.1"],
 		[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
-		[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
-		[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
-		[group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"],
-		[group: "commons-logging", name: "commons-logging", version: "1.1.1"],
 		[group: "hsqldb", name: "hsqldb", version: "1.8.0.7"],
 		[group: "javax.activation", name: "activation", version: "1.1"],
 		[group: "javax.ccpp", name: "ccpp", version: "1.0"],
@@ -78,13 +75,24 @@ dependencies {
 		[group: "javax.portlet", name: "portlet-api", version: "2.0"],
 		[group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"],
 		[group: "javax.servlet.jsp", name: "jsp-api", version: "2.1"],
-		[group: "log4j", name: "log4j", version: "1.2.16"],
 		[group: "mysql", name: "mysql-connector-java", version: "5.1.23"],
 		[group: "net.sf", name: "jargs", version: "1.0"],
 		[group: "net.sourceforge.jtds", name: "jtds", version: "1.2.6"],
 		[group: "org.eclipse.persistence", name: "javax.persistence", version: "2.0.0"],
 		[group: "postgresql", name: "postgresql", version: "9.2-1002.jdbc4"]
 	)
+
+	requiredLibraries(
+		[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"],
+		[group: "commons-logging", name: "commons-logging", version: "1.1.1"],
+		[group: "log4j", name: "log4j", version: "1.2.16"]
+	)
+
+	if (!name.endsWith("-theme")) {
+		providedCompile configurations.requiredLibraries
+	}
 }
 
 sourceSets {
@@ -188,6 +196,7 @@ clean {
 }
 
 compile {
+	dependsOn buildCss
 	dependsOn compileJava
 }
 
@@ -471,13 +480,13 @@ war {
 	Closure getNewDependencyNames
 	Closure setManifest
 
-	dependsOn buildCss
+	dependsOn compile
 
 	destinationDir = file("${rootDir}/dist2")
 
 	duplicatesStrategy "exclude"
 
-	exclude "_diffs.*", "_diffs/**", "WEB-INF/lib/*"
+	exclude "WEB-INF/lib/*"
 
 	filesMatching("WEB-INF/liferay-hook.xml") {
 		filter {
