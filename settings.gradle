@@ -70,7 +70,7 @@ FileTree fileTree = fileTree(rootDir) {
 	}
 
 	exclude("build.gradle")
-	exclude("tools/gradle/build.gradle")
+	exclude("tools/**/build.gradle")
 }
 
 fileTree.each(
