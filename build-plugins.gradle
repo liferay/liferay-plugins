@@ -325,11 +325,12 @@ initGradle << {
 
 		if (project.name.endsWith("-theme")) {
 			String themeParent = getBuildXmlProperty("theme.parent")
-			String themeType = getBuildXmlProperty("theme.type", "vm")
 
 			if (themeParent) {
 				contents.add(wrapProperty(1, "themeParent", themeParent))
 			}
+
+			String themeType = getBuildXmlProperty("theme.type", "vm")
 
 			contents.add(wrapProperty(1, "themeType", themeType))
 		}
