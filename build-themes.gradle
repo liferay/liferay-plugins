@@ -1,18 +1,18 @@
 configurations {
-	portalBuildThumbnails
+	portalToolsBuildThumbnails
 
-	portalBuildThumbnails.extendsFrom portal
+	portalToolsBuildThumbnails.extendsFrom portalTools
 }
 
 dependencies {
-	portalBuildThumbnails group: "com.liferay", name: "org.monte", version: "0.7.7"
+	portalToolsBuildThumbnails group: "com.liferay", name: "org.monte", version: "0.7.7"
 
 	if (exists("docroot/WEB-INF/src")) {
-		compile configurations.requiredLibraries
+		compile configurations.pluginRequiredLibraries
 		compile project(":shared:portal-compat-shared")
 	}
 	else {
-		providedCompile configurations.requiredLibraries
+		providedCompile configurations.pluginRequiredLibraries
 	}
 }
 
@@ -40,7 +40,7 @@ buildThumbnails << {
 				"thumbnail.overwrite=false"
 			)
 
-			classpath configurations.portalBuildThumbnails
+			classpath configurations.portalToolsBuildThumbnails
 
 			main "com.liferay.portal.tools.ThumbnailBuilder"
 		}
