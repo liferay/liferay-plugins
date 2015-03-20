@@ -79,7 +79,6 @@ compileTheme {
 				}
 			}
 		}
-
 	}
 
 	dependsOn buildThumbnails
