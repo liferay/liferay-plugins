@@ -196,8 +196,7 @@ clean {
 }
 
 compile {
-	dependsOn buildCss
-	dependsOn compileJava
+	dependsOn buildCss, compileJava
 }
 
 initGradle << {
