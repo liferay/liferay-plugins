@@ -69,13 +69,10 @@ public class ShortLinkEntryLocalServiceImpl
 	}
 
 	@Override
-	public void deleteShortLinkEntries(Date olderThen) {
-		try {
-			shortLinkEntryPersistence.removeByModifiedDate(olderThen);
-		}
-		catch (SystemException e) {
-			_log.error("Unable to remove old Links.", e);
-		}
+	public void deleteShortLinkEntries(Date modifiedDate)
+		throws SystemException {
+
+		shortLinkEntryPersistence.removeByModifiedDate(modifiedDate);
 	}
 
 	@Override
