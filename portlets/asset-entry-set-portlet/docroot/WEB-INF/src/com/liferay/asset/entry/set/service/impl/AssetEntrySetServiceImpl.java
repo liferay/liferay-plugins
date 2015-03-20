@@ -139,12 +139,14 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
-			long assetEntrySetId, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet)
+			long assetEntrySetId, String payload, boolean privateAssetEntrySet)
 		throws PortalException, SystemException {
 
 		AssetEntrySetPermissionUtil.check(
 			getPermissionChecker(), assetEntrySetId, ActionKeys.UPDATE);
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
 
 		return assetEntrySetLocalService.updateAssetEntrySet(
 			assetEntrySetId, payloadJSONObject, privateAssetEntrySet);
