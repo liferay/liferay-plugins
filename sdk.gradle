@@ -166,7 +166,7 @@ createLayouttpl << {
 	File layouttplDir = file("layouttpl/${layouttplName}-layouttpl")
 
 	if (layouttplDir.exists()) {
-		println "${layouttplName} already exists."
+		println "${layouttplName}-layouttpl already exists."
 
 		return
 	}
@@ -201,7 +201,7 @@ createTheme << {
 	File themeDir = file("themes/${themeName}-theme")
 
 	if (themeDir.exists()) {
-		println "${themeName} already exists."
+		println "${themeName}-theme already exists."
 
 		return
 	}
