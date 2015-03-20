@@ -23,9 +23,9 @@
 
 		<!-- Finder methods -->
 
-        <finder name="LtModifiedDate" return-type="Collection">
-            <finder-column name="modifiedDate" comparator="&lt;" />
-        </finder>
+		<finder name="LtModifiedDate" return-type="Collection">
+			<finder-column name="modifiedDate" comparator="&lt;" />
+		</finder>
 		<finder name="ShortURL" return-type="ShortLinkEntry">
 			<finder-column name="shortURL" />
 		</finder>
