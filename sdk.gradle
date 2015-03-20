@@ -175,12 +175,14 @@ createLayouttpl << {
 
 	copy {
 		filesNotMatching("**/*.png") {
-			filter(ReplaceTokens, tokens: [
-				"layouttpl.display.name": layouttplDisplayName,
-				"layouttpl.name": layouttplName,
-				"layouttpl.template.name": layouttplTemplateName,
-				"plugin.type.dir": ".."
-			])
+			filter(
+				ReplaceTokens,
+				tokens: [
+					"layouttpl.display.name": layouttplDisplayName,
+					"layouttpl.name": layouttplName,
+					"layouttpl.template.name": layouttplTemplateName,
+					"plugin.type.dir": ".."
+				])
 		}
 
 		from "${rootDir}/tools/templates/layouttpl_tmpl"
@@ -205,11 +207,13 @@ createTheme << {
 	}
 
 	copy {
-		filter(ReplaceTokens, tokens: [
-			"theme.display.name": themeDisplayName,
-			"theme.name": themeName,
-			"plugin.type.dir": ".."
-		])
+		filter(
+			ReplaceTokens,
+			tokens: [
+				"plugin.type.dir": "..",
+				"theme.display.name": themeDisplayName,
+				"theme.name": themeName
+			])
 
 		from "${rootDir}/tools/templates/theme_tmpl"
 

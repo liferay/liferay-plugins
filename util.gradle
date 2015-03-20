@@ -20,8 +20,8 @@ class UtilPluginConvention {
 		file.exists()
 	}
 
-	void mkdirs(String pathName) {
-		File file = _project.file(pathName)
+	void mkdirs(String dirName) {
+		File file = _project.file(dirName)
 
 		file.mkdirs()
 	}
