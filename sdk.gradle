@@ -1,4 +1,5 @@
 import org.apache.commons.codec.digest.DigestUtils
+import org.apache.tools.ant.filters.ReplaceTokens
 
 buildscript {
 	dependencies {
@@ -13,6 +14,7 @@ buildscript {
 }
 
 task compareDists
+task createLayouttpl
 
 compareDists << {
 	Closure compareDistFileContents
@@ -155,4 +157,37 @@ compareDists << {
 	}
 
 	compareDists()
+}
+
+createLayouttpl << {
+	File layouttplDir = file("layouttpl/${layouttplName}-layouttpl")
+
+	if (layouttplDir.exists()) {
+		println "${layouttplName} already exists."
+
+		return
+	}
+
+	String layouttplTemplateName = layouttplName.replaceAll("-", "_")
+
+	copy {
+		filesNotMatching("**/*.png") {
+			filter(ReplaceTokens, tokens: [
+				"layouttpl.display.name": layouttplDisplayName,
+				"layouttpl.name": layouttplName,
+				"layouttpl.template.name": layouttplTemplateName,
+				"plugin.type.dir": ".."
+			])
+		}
+
+		from "${rootDir}/tools/templates/layouttpl_tmpl"
+
+		into layouttplDir
+
+		rename {
+			String fileName ->
+
+			fileName.replace("blank_columns", layouttplTemplateName)
+		}
+	}
 }
