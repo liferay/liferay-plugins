@@ -72,7 +72,7 @@ public class ShortLinkEntryLocalServiceImpl
 	public void deleteShortLinkEntries(Date modifiedDate)
 		throws SystemException {
 
-		shortLinkEntryPersistence.removeByModifiedDate(modifiedDate);
+		shortLinkEntryPersistence.removeByLtModifiedDate(modifiedDate);
 	}
 
 	@Override
