@@ -20,6 +20,12 @@ class UtilPluginConvention {
 		file.exists()
 	}
 
+	void mkdirs(String pathName) {
+		File file = _project.file(pathName)
+
+		file.mkdirs()
+	}
+
 	private Project _project
 
 }

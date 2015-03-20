@@ -1,6 +1,8 @@
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.tools.ant.filters.ReplaceTokens
 
+apply from: "util.gradle"
+
 buildscript {
 	dependencies {
 		classpath group: "commons-codec", name: "commons-codec", version: "1.9"
@@ -15,6 +17,7 @@ buildscript {
 
 task compareDists
 task createLayouttpl
+task createTheme
 
 compareDists << {
 	Closure compareDistFileContents
@@ -190,4 +193,32 @@ createLayouttpl << {
 			fileName.replace("blank_columns", layouttplTemplateName)
 		}
 	}
+}
+
+createTheme << {
+	File themeDir = file("themes/${themeName}-theme")
+
+	if (themeDir.exists()) {
+		println "${themeName} already exists."
+
+		return
+	}
+
+	copy {
+		filter(ReplaceTokens, tokens: [
+			"theme.display.name": themeDisplayName,
+			"theme.name": themeName,
+			"plugin.type.dir": ".."
+		])
+
+		from "${rootDir}/tools/templates/theme_tmpl"
+
+		into themeDir
+	}
+
+	mkdirs("${themeDir}/docroot/_diffs")
+	mkdirs("${themeDir}/docroot/WEB-INF/src/resources-importer/document_library/documents")
+	mkdirs("${themeDir}/docroot/WEB-INF/src/resources-importer/journal/articles")
+	mkdirs("${themeDir}/docroot/WEB-INF/src/resources-importer/journal/structures")
+	mkdirs("${themeDir}/docroot/WEB-INF/src/resources-importer/journal/templates")
 }
