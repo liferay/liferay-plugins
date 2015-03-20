@@ -75,7 +75,7 @@ public class AssetEntrySetServiceClpInvoker {
 		_methodName60 = "updateAssetEntrySet";
 
 		_methodParameterTypes60 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean"
+				"long", "java.lang.String", "boolean"
 			};
 	}
 
@@ -160,7 +160,7 @@ public class AssetEntrySetServiceClpInvoker {
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return AssetEntrySetServiceUtil.updateAssetEntrySet(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.kernel.json.JSONObject)arguments[1],
+				(java.lang.String)arguments[1],
 				((Boolean)arguments[2]).booleanValue());
 		}
 

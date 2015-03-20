@@ -183,12 +183,11 @@ public class AssetEntrySetServiceSoap {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap updateAssetEntrySet(
-		long assetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		long assetEntrySetId, java.lang.String payload,
 		boolean privateAssetEntrySet) throws RemoteException {
 		try {
 			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.updateAssetEntrySet(assetEntrySetId,
-					payloadJSONObject, privateAssetEntrySet);
+					payload, privateAssetEntrySet);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}

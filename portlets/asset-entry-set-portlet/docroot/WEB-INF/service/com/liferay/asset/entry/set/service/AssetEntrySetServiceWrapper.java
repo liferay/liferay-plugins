@@ -141,13 +141,12 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
-		long assetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		long assetEntrySetId, java.lang.String payload,
 		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetService.updateAssetEntrySet(assetEntrySetId,
-			payloadJSONObject, privateAssetEntrySet);
+			payload, privateAssetEntrySet);
 	}
 
 	/**

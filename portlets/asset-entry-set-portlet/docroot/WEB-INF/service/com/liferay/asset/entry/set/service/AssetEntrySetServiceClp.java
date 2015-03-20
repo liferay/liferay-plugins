@@ -75,7 +75,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		_methodName11 = "updateAssetEntrySet";
 
 		_methodParameterTypes11 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean"
+				"long", "java.lang.String", "boolean"
 			};
 	}
 
@@ -479,8 +479,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
-		long assetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		long assetEntrySetId, java.lang.String payload,
 		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -492,7 +491,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 					new Object[] {
 						assetEntrySetId,
 						
-					ClpSerializer.translateInput(payloadJSONObject),
+					ClpSerializer.translateInput(payload),
 						
 					privateAssetEntrySet
 					});

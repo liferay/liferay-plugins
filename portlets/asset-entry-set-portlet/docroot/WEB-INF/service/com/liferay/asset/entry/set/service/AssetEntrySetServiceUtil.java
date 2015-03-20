@@ -143,13 +143,12 @@ public class AssetEntrySetServiceUtil {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
-		long assetEntrySetId,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		long assetEntrySetId, java.lang.String payload,
 		boolean privateAssetEntrySet)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateAssetEntrySet(assetEntrySetId, payloadJSONObject,
+				   .updateAssetEntrySet(assetEntrySetId, payload,
 			privateAssetEntrySet);
 	}
 
