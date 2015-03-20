@@ -99,13 +99,13 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		httpClientBuilder.setConnectionManager(httpClientConnectionManager);
 
-		if (((_login != null) && (_password != null)) ||
-			((_proxyLogin != null) && (_proxyPassword != null))) {
+		if ((!isNull(_login) && !isNull(_password)) ||
+			(!isNull(_proxyLogin) && !isNull(_proxyPassword))) {
 
 			CredentialsProvider credentialsProvider =
 				new BasicCredentialsProvider();
 
-			if (_login != null) {
+			if (!isNull(_login)) {
 				credentialsProvider.setCredentials(
 					new AuthScope(_hostName, _hostPort),
 					new UsernamePasswordCredentials(_login, _password));
@@ -116,7 +116,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 				}
 			}
 
-			if (_proxyLogin != null) {
+			if (!isNull(_proxyLogin)) {
 				credentialsProvider.setCredentials(
 					new AuthScope(_proxyHostName, _proxyHostPort),
 					new UsernamePasswordCredentials(
@@ -358,7 +358,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			HttpResponse httpResponse = null;
 
-			if ((_login != null) && (_password != null)) {
+			if (!isNull(_login) && !isNull(_password)) {
 				HttpClientContext httpClientContext =
 					HttpClientContext.create();
 
@@ -366,7 +366,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 				AuthScheme authScheme = null;
 
-				if (_proxyHostName != null) {
+				if (!isNull(_proxyHostName)) {
 					authScheme = new BasicScheme(ChallengeState.PROXY);
 				}
 				else {
@@ -472,6 +472,14 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		return new SSLConnectionSocketFactory(
 			sslContext, new String[] {"TLSv1"}, null,
 			SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+	}
+
+	protected boolean isNull(String s) {
+		if ((s == null) || s.equals("")) {
+			return true;
+		}
+
+		return false;
 	}
 
 	protected void setProxyHost(HttpClientBuilder httpClientBuilder) {
