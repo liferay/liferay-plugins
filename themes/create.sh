@@ -15,7 +15,9 @@ if [ $# -lt 2 ]; then
 	exit 127
 fi
 
-ant -Dtheme.name=$1 -Dtheme.display.name=\"$2\" create
+chmod a+x ../tools/gradle/gradlew
+
+../tools/gradle/gradlew -b ../sdk.gradle -PthemeName=$1 -PthemeDisplayName=\"$2\" createTheme
 
 #ant deploy
 
