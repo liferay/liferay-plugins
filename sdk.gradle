@@ -1,0 +1,158 @@
+import org.apache.commons.codec.digest.DigestUtils
+
+buildscript {
+	dependencies {
+		classpath group: "commons-codec", name: "commons-codec", version: "1.9"
+	}
+
+	repositories {
+		maven {
+			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
+		}
+	}
+}
+
+task compareDists
+
+compareDists << {
+	Closure compareDistFileContents
+	Closure compareDistFileNames
+	Closure compareDists
+	Closure getFileChecksums
+
+	List<String> antDistFileNames
+	List<String> commonDistFileNames
+	List<String> gradleDistFileNames
+
+	compareDistFileContents = {
+		for (String fileName : commonDistFileNames) {
+			FileTree antZipFileTree = zipTree("dist/${fileName}")
+
+			Map<String, String> antFileChecksums = getFileChecksums(antZipFileTree)
+
+			FileTree gradleZipFileTree = zipTree("dist2/${fileName}")
+
+			Map<String, String> gradleFileChecksums = getFileChecksums(gradleZipFileTree)
+
+			Set<String> antFilePaths = antFileChecksums.keySet()
+			Set<String> gradleFilePaths = gradleFileChecksums.keySet()
+
+			Set<String> commonFilePaths = antFilePaths.intersect(gradleFilePaths)
+
+			if ((antFilePaths.size() != commonFilePaths.size()) || (antFilePaths.size() != gradleFilePaths.size())) {
+				println "${fileName} does not match."
+
+				Set<String> uniqueFilePaths = antFilePaths - commonFilePaths
+
+				if (uniqueFilePaths) {
+					println "Unique files in the Ant distribution: " + uniqueFilePaths.join(", ") + "."
+				}
+
+				uniqueFilePaths = gradleFilePaths - commonFilePaths
+
+				if (uniqueFilePaths) {
+					println "Unique files in the Gradle distribution: " + uniqueFilePaths.join(", ") + "."
+				}
+
+				return false
+			}
+
+			List<String> differentChecksumFilePaths = antFileChecksums.findResults {
+				filePath, antFileChecksum ->
+
+				String gradleFileChecksum = gradleFileChecksums[filePath]
+
+				if (antFileChecksum != gradleFileChecksum) {
+					return filePath
+				}
+
+				return null
+			}
+
+			if (project.hasProperty("compareDistsExcludeSharedChecksums") && project.compareDistsExcludeSharedChecksums.toBoolean()) {
+				differentChecksumFilePaths.removeAll {
+					it.endsWith "-shared.jar"
+				}
+			}
+
+			if (differentChecksumFilePaths) {
+				println "${fileName} does not match and has different files: " + differentChecksumFilePaths.join(", ")
+
+				return false
+			}
+		}
+
+		return true
+	}
+
+	compareDistFileNames = {
+		if ((antDistFileNames.size() != commonDistFileNames.size()) || (antDistFileNames.size() != gradleDistFileNames.size())) {
+			println "Distribution directories contain different files."
+
+			List<String> uniqueDistFileNames = antDistFileNames - commonDistFileNames
+
+			if (uniqueDistFileNames) {
+				println "Unique files in the Ant distribution directory: " + uniqueDistFileNames.join(", ") + "."
+			}
+
+			uniqueDistFileNames = gradleDistFileNames - commonDistFileNames
+
+			if (uniqueDistFileNames) {
+				println "Unique files in the Gradle distribution directory: " + uniqueDistFileNames.join(", ") + "."
+			}
+
+			return false
+		}
+
+		return true
+	}
+
+	compareDists = {
+		FileTree antDistFileTree = fileTree(dir: "dist", include: "*.war")
+
+		antDistFileNames = antDistFileTree*.name
+
+		FileTree gradleDistFileTree = fileTree(dir: "dist2", include: "*.war")
+
+		gradleDistFileNames = gradleDistFileTree*.name
+
+		commonDistFileNames = antDistFileNames.intersect(gradleDistFileNames)
+
+		if (!compareDistFileNames()) {
+			return
+		}
+
+		if (!compareDistFileContents()) {
+			return
+		}
+
+		println "Distribution directories do match."
+	}
+
+	getFileChecksums = {
+		FileTree fileTree ->
+
+		Map<String, String> fileChecksums = [:]
+
+		fileTree.visit {
+			FileVisitDetails fileVisitDetails ->
+
+			if (fileVisitDetails.directory) {
+				return
+			}
+
+			InputStream inputStream = fileVisitDetails.open()
+
+			inputStream.withStream {
+				String filePath = fileVisitDetails.relativePath
+				String fileChecksum = DigestUtils.md5Hex(inputStream)
+
+				fileChecksums[filePath] = fileChecksum
+			}
+		}
+
+		return fileChecksums
+	}
+
+	compareDists()
+}
