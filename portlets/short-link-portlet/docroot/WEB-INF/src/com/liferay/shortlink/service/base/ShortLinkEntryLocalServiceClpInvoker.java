@@ -111,6 +111,30 @@ public class ShortLinkEntryLocalServiceClpInvoker {
 		_methodName45 = "setBeanIdentifier";
 
 		_methodParameterTypes45 = new String[] { "java.lang.String" };
+
+		_methodName50 = "addShortLinkEntry";
+
+		_methodParameterTypes50 = new String[] {
+				"java.lang.String", "java.lang.String", "boolean"
+			};
+
+		_methodName51 = "deleteShortLinkEntries";
+
+		_methodParameterTypes51 = new String[] { "java.util.Date" };
+
+		_methodName52 = "getShortLinkEntries";
+
+		_methodParameterTypes52 = new String[] { "boolean", "int", "int" };
+
+		_methodName53 = "getShortLinkEntry";
+
+		_methodParameterTypes53 = new String[] { "java.lang.String", "boolean" };
+
+		_methodName54 = "updateShortLinkEntry";
+
+		_methodParameterTypes54 = new String[] {
+				"long", "java.lang.String", "java.lang.String", "boolean"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -214,6 +238,40 @@ public class ShortLinkEntryLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return ShortLinkEntryLocalServiceUtil.addShortLinkEntry((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1],
+				((Boolean)arguments[2]).booleanValue());
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			ShortLinkEntryLocalServiceUtil.deleteShortLinkEntries((java.util.Date)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return ShortLinkEntryLocalServiceUtil.getShortLinkEntries(((Boolean)arguments[0]).booleanValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+			return ShortLinkEntryLocalServiceUtil.getShortLinkEntry((java.lang.String)arguments[0],
+				((Boolean)arguments[1]).booleanValue());
+		}
+
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+			return ShortLinkEntryLocalServiceUtil.updateShortLinkEntry(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
+				((Boolean)arguments[3]).booleanValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -253,4 +311,14 @@ public class ShortLinkEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes44;
 	private String _methodName45;
 	private String[] _methodParameterTypes45;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 }

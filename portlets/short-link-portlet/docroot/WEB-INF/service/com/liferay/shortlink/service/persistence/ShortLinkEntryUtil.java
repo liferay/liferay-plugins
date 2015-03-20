@@ -328,6 +328,191 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Returns all the short link entries where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @return the matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.shortlink.model.ShortLinkEntry> findByLtModifiedDate(
+		java.util.Date modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByLtModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Returns a range of all the short link entries where modifiedDate &lt; &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param modifiedDate the modified date
+	* @param start the lower bound of the range of short link entries
+	* @param end the upper bound of the range of short link entries (not inclusive)
+	* @return the range of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.shortlink.model.ShortLinkEntry> findByLtModifiedDate(
+		java.util.Date modifiedDate, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByLtModifiedDate(modifiedDate, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the short link entries where modifiedDate &lt; &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param modifiedDate the modified date
+	* @param start the lower bound of the range of short link entries
+	* @param end the upper bound of the range of short link entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.shortlink.model.ShortLinkEntry> findByLtModifiedDate(
+		java.util.Date modifiedDate, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByLtModifiedDate(modifiedDate, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first short link entry in the ordered set where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry findByLtModifiedDate_First(
+		java.util.Date modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence()
+				   .findByLtModifiedDate_First(modifiedDate, orderByComparator);
+	}
+
+	/**
+	* Returns the first short link entry in the ordered set where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching short link entry, or <code>null</code> if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry fetchByLtModifiedDate_First(
+		java.util.Date modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByLtModifiedDate_First(modifiedDate, orderByComparator);
+	}
+
+	/**
+	* Returns the last short link entry in the ordered set where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry findByLtModifiedDate_Last(
+		java.util.Date modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence()
+				   .findByLtModifiedDate_Last(modifiedDate, orderByComparator);
+	}
+
+	/**
+	* Returns the last short link entry in the ordered set where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching short link entry, or <code>null</code> if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry fetchByLtModifiedDate_Last(
+		java.util.Date modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByLtModifiedDate_Last(modifiedDate, orderByComparator);
+	}
+
+	/**
+	* Returns the short link entries before and after the current short link entry in the ordered set where modifiedDate &lt; &#63;.
+	*
+	* @param shortLinkEntryId the primary key of the current short link entry
+	* @param modifiedDate the modified date
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a short link entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry[] findByLtModifiedDate_PrevAndNext(
+		long shortLinkEntryId, java.util.Date modifiedDate,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence()
+				   .findByLtModifiedDate_PrevAndNext(shortLinkEntryId,
+			modifiedDate, orderByComparator);
+	}
+
+	/**
+	* Returns the short link entry where shortURL = &#63; or throws a {@link com.liferay.shortlink.NoSuchEntryException} if it could not be found.
+	*
+	* @param shortURL the short u r l
+	* @return the matching short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry findByShortURL(
+		java.lang.String shortURL)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence().findByShortURL(shortURL);
+	}
+
+	/**
+	* Returns the short link entry where shortURL = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param shortURL the short u r l
+	* @return the matching short link entry, or <code>null</code> if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry fetchByShortURL(
+		java.lang.String shortURL)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByShortURL(shortURL);
+	}
+
+	/**
+	* Returns the short link entry where shortURL = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param shortURL the short u r l
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching short link entry, or <code>null</code> if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry fetchByShortURL(
+		java.lang.String shortURL, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByShortURL(shortURL, retrieveFromCache);
+	}
+
+	/**
 	* Returns all the short link entries where autogenerated = &#63;.
 	*
 	* @param autogenerated the autogenerated
@@ -471,6 +656,164 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Returns all the short link entries where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @return the matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.shortlink.model.ShortLinkEntry> findByOURL_A(
+		java.lang.String originalURL, boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByOURL_A(originalURL, autogenerated);
+	}
+
+	/**
+	* Returns a range of all the short link entries where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @param start the lower bound of the range of short link entries
+	* @param end the upper bound of the range of short link entries (not inclusive)
+	* @return the range of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.shortlink.model.ShortLinkEntry> findByOURL_A(
+		java.lang.String originalURL, boolean autogenerated, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByOURL_A(originalURL, autogenerated, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the short link entries where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @param start the lower bound of the range of short link entries
+	* @param end the upper bound of the range of short link entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.shortlink.model.ShortLinkEntry> findByOURL_A(
+		java.lang.String originalURL, boolean autogenerated, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByOURL_A(originalURL, autogenerated, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first short link entry in the ordered set where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry findByOURL_A_First(
+		java.lang.String originalURL, boolean autogenerated,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence()
+				   .findByOURL_A_First(originalURL, autogenerated,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first short link entry in the ordered set where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching short link entry, or <code>null</code> if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry fetchByOURL_A_First(
+		java.lang.String originalURL, boolean autogenerated,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByOURL_A_First(originalURL, autogenerated,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last short link entry in the ordered set where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry findByOURL_A_Last(
+		java.lang.String originalURL, boolean autogenerated,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence()
+				   .findByOURL_A_Last(originalURL, autogenerated,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last short link entry in the ordered set where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching short link entry, or <code>null</code> if a matching short link entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry fetchByOURL_A_Last(
+		java.lang.String originalURL, boolean autogenerated,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByOURL_A_Last(originalURL, autogenerated,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the short link entries before and after the current short link entry in the ordered set where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param shortLinkEntryId the primary key of the current short link entry
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a short link entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry[] findByOURL_A_PrevAndNext(
+		long shortLinkEntryId, java.lang.String originalURL,
+		boolean autogenerated,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence()
+				   .findByOURL_A_PrevAndNext(shortLinkEntryId, originalURL,
+			autogenerated, orderByComparator);
+	}
+
+	/**
 	* Returns the short link entry where shortURL = &#63; and autogenerated = &#63; or throws a {@link com.liferay.shortlink.NoSuchEntryException} if it could not be found.
 	*
 	* @param shortURL the short u r l
@@ -578,6 +921,31 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Removes all the short link entries where modifiedDate &lt; &#63; from the database.
+	*
+	* @param modifiedDate the modified date
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByLtModifiedDate(java.util.Date modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByLtModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Removes the short link entry where shortURL = &#63; from the database.
+	*
+	* @param shortURL the short u r l
+	* @return the short link entry that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry removeByShortURL(
+		java.lang.String shortURL)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence().removeByShortURL(shortURL);
+	}
+
+	/**
 	* Removes all the short link entries where autogenerated = &#63; from the database.
 	*
 	* @param autogenerated the autogenerated
@@ -586,6 +954,19 @@ public class ShortLinkEntryUtil {
 	public static void removeByAutogenerated(boolean autogenerated)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByAutogenerated(autogenerated);
+	}
+
+	/**
+	* Removes all the short link entries where originalURL = &#63; and autogenerated = &#63; from the database.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByOURL_A(java.lang.String originalURL,
+		boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByOURL_A(originalURL, autogenerated);
 	}
 
 	/**
@@ -626,6 +1007,30 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Returns the number of short link entries where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByLtModifiedDate(java.util.Date modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByLtModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Returns the number of short link entries where shortURL = &#63;.
+	*
+	* @param shortURL the short u r l
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByShortURL(java.lang.String shortURL)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByShortURL(shortURL);
+	}
+
+	/**
 	* Returns the number of short link entries where autogenerated = &#63;.
 	*
 	* @param autogenerated the autogenerated
@@ -635,6 +1040,20 @@ public class ShortLinkEntryUtil {
 	public static int countByAutogenerated(boolean autogenerated)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByAutogenerated(autogenerated);
+	}
+
+	/**
+	* Returns the number of short link entries where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByOURL_A(java.lang.String originalURL,
+		boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByOURL_A(originalURL, autogenerated);
 	}
 
 	/**

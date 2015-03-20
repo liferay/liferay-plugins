@@ -230,6 +230,24 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
+		if (className.equals(
+					"com.liferay.shortlink.DuplicateShortLinkEntryException")) {
+			return new com.liferay.shortlink.DuplicateShortLinkEntryException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.shortlink.ShortLinkEntryOriginalURLException")) {
+			return new com.liferay.shortlink.ShortLinkEntryOriginalURLException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.shortlink.ShortLinkEntryShortURLException")) {
+			return new com.liferay.shortlink.ShortLinkEntryShortURLException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
 		if (className.equals("com.liferay.shortlink.NoSuchEntryException")) {
 			return new com.liferay.shortlink.NoSuchEntryException(throwable.getMessage(),
 				throwable.getCause());
