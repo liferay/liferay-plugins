@@ -4,7 +4,7 @@ if "" == "%1" goto errorCreate
 
 if "" == "%2" goto errorCreate
 
-call ..\tools\gradle\gradlew.bat -b ..\sdk.gradle -PthemeName=%1 -PthemeDisplayName=%2 createTheme
+call ..\tools\gradle\gradlew.bat --build-file=..\sdk.gradle -PthemeName=%1 -PthemeDisplayName=%2 createTheme
 
 rem call ant deploy
 
