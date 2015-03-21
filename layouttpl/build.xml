@@ -1,66 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="layouttpl" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="layouttpl" basedir="." default="deploy">
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
-		<if>
-			<or>
-				<not>
-					<isset property="layouttpl.display.name" />
-				</not>
-				<not>
-					<isset property="layouttpl.name" />
-				</not>
-			</or>
-			<then>
-				<fail>This task must be called by the create script.</fail>
-			</then>
-		</if>
+		<property name="layouttpl.display.name" value="" />
+		<property name="layouttpl.name" value="" />
 
-		<property name="layouttpl.parent.dir" value="${user.dir}" />
-		<property name="layouttpl.dir" value="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl" />
-
-		<if>
-			<available file="${layouttpl.dir}" />
-			<then>
-				<fail>${layouttpl.name}-layouttpl already exists.</fail>
-			</then>
-		</if>
-
-		<copy todir="${layouttpl.dir}">
-			<fileset
-				dir="${sdk.dir}/tools/templates/layouttpl_tmpl"
-			/>
-		</copy>
-
-		<antelope:stringutil string="${layouttpl.name}" property="layouttpl.template.name">
-			<replace regex="-" replacement="_" />
-		</antelope:stringutil>
-
-		<replace dir="${layouttpl.dir}">
-			<replacefilter token="@layouttpl.display.name@" value="${layouttpl.display.name}" />
-			<replacefilter token="@layouttpl.name@" value="${layouttpl.name}" />
-			<replacefilter token="@layouttpl.template.name@" value="${layouttpl.template.name}" />
-			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
-		</replace>
-
-		<move
-			file="${layouttpl.dir}/docroot/blank_columns.png"
-			tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.png"
-		/>
-
-		<move
-			file="${layouttpl.dir}/docroot/blank_columns.tpl"
-			tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.tpl"
-		/>
-
-		<move
-			file="${layouttpl.dir}/docroot/blank_columns.wap.tpl"
-			tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.wap.tpl"
-		/>
-
-		<touch file="${layouttpl.dir}/docroot/${layouttpl.template.name}.wap.tpl" />
+		<gradle-execute task="createLayouttpl">
+			<arg value="--build-file=../sdk.gradle" />
+			<arg value="-PlayouttplDisplayName=${layouttpl.display.name}" />
+			<arg value="-PlayouttplName=${layouttpl.name}" />
+		</gradle-execute>
 	</target>
 </project>
