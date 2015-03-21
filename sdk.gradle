@@ -163,6 +163,20 @@ compareDists << {
 }
 
 createLayouttpl << {
+	if (!project.hasProperty("layouttplDisplayName")) {
+		project.ext.layouttplDisplayName = null
+	}
+
+	if (!project.hasProperty("layouttplName")) {
+		project.ext.layouttplName = null
+	}
+
+	if (!layouttplDisplayName || !layouttplName) {
+		println "This task must be called by the create script."
+
+		return
+	}
+
 	File layouttplDir = file("layouttpl/${layouttplName}-layouttpl")
 
 	if (layouttplDir.exists()) {
@@ -198,6 +212,20 @@ createLayouttpl << {
 }
 
 createTheme << {
+	if (!project.hasProperty("themeDisplayName")) {
+		project.ext.themeDisplayName = null
+	}
+
+	if (!project.hasProperty("themeName")) {
+		project.ext.themeName = null
+	}
+
+	if (!themeDisplayName || !themeName) {
+		println "This task must be called by the create script."
+
+		return
+	}
+
 	File themeDir = file("themes/${themeName}-theme")
 
 	if (themeDir.exists()) {
