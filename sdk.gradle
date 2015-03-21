@@ -172,17 +172,13 @@ createLayouttpl << {
 	}
 
 	if (!layouttplDisplayName || !layouttplName) {
-		println "This task must be called by the create script."
-
-		return
+		throw new GradleException("This task must be called by the create script.")
 	}
 
 	File layouttplDir = file("layouttpl/${layouttplName}-layouttpl")
 
 	if (layouttplDir.exists()) {
-		println "${layouttplName}-layouttpl already exists."
-
-		return
+		throw new GradleException("${layouttplName}-layouttpl already exists.")
 	}
 
 	String layouttplTemplateName = layouttplName.replaceAll("-", "_")
@@ -221,17 +217,13 @@ createTheme << {
 	}
 
 	if (!themeDisplayName || !themeName) {
-		println "This task must be called by the create script."
-
-		return
+		throw new GradleException("This task must be called by the create script.")
 	}
 
 	File themeDir = file("themes/${themeName}-theme")
 
 	if (themeDir.exists()) {
-		println "${themeName}-theme already exists."
-
-		return
+		throw new GradleException("${themeName}-theme already exists.")
 	}
 
 	copy {
