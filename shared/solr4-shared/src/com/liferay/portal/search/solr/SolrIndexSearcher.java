@@ -94,9 +94,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			int start = searchContext.getStart();
 			int end = searchContext.getEnd();
 
-			if ((searchContext.getStart() == QueryUtil.ALL_POS) &&
-				(searchContext.getEnd() == QueryUtil.ALL_POS)) {
-
+			if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
 				start = 0;
 				end = total;
 			}
@@ -107,11 +105,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			start = startAndEnd[0];
 			end = startAndEnd[1];
 
-			QueryResponse queryResponse = search(
-				searchContext, query, start, end, false);
-
-			Hits hits = processQueryResponse(
-				queryResponse, searchContext, query);
+			Hits hits = doSearchHits(searchContext, query, start, end);
 
 			hits.setStart(stopWatch.getStartTime());
 
@@ -123,7 +117,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 
 			if (!_swallowException) {
-				throw new SearchException(e.getMessage());
+				throw new SearchException(e.getMessage(), e);
 			}
 
 			return new HitsImpl();
@@ -354,6 +348,18 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 			solrQuery.addSort(new SortClause(sortFieldName, order));
 		}
+	}
+
+	protected Hits doSearchHits(
+			SearchContext searchContext, Query query, int start, int end)
+		throws Exception {
+
+		QueryResponse queryResponse = search(
+			searchContext, query, start, end, false);
+
+		Hits hits = processQueryResponse(queryResponse, searchContext, query);
+
+		return hits;
 	}
 
 	protected Hits processQueryResponse(
