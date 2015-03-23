@@ -344,10 +344,41 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
+	protected QueryResponse doSearch(
+			SearchContext searchContext, Query query, int start, int end,
+			boolean count)
+		throws Exception {
+
+		SolrQuery solrQuery = new SolrQuery();
+
+		if (count) {
+			solrQuery.setRows(0);
+		}
+		else {
+			QueryConfig queryConfig = query.getQueryConfig();
+
+			addFacets(solrQuery, searchContext);
+			addHighlights(solrQuery, queryConfig);
+			addPagination(solrQuery, start, end);
+			addSelectedFields(solrQuery, queryConfig);
+			addSort(solrQuery, searchContext.getSorts());
+
+			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
+		}
+
+		QueryTranslatorUtil.translateForSolr(query);
+
+		String queryString = translateQuery(searchContext, query);
+
+		solrQuery.setQuery(queryString);
+
+		return _solrServer.query(solrQuery, METHOD.POST);
+	}
+
 	protected long doSearchCount(SearchContext searchContext, Query query)
 		throws Exception {
 
-		QueryResponse queryResponse = search(
+		QueryResponse queryResponse = doSearch(
 			searchContext, query, searchContext.getStart(),
 			searchContext.getEnd(), true);
 
@@ -360,7 +391,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			SearchContext searchContext, Query query, int start, int end)
 		throws Exception {
 
-		QueryResponse queryResponse = search(
+		QueryResponse queryResponse = doSearch(
 			searchContext, query, start, end, false);
 
 		Hits hits = processQueryResponse(queryResponse, searchContext, query);
@@ -436,37 +467,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		populateUID(document, queryConfig);
 
 		return document;
-	}
-
-	protected QueryResponse search(
-			SearchContext searchContext, Query query, int start, int end,
-			boolean count)
-		throws Exception {
-
-		SolrQuery solrQuery = new SolrQuery();
-
-		if (count) {
-			solrQuery.setRows(0);
-		}
-		else {
-			QueryConfig queryConfig = query.getQueryConfig();
-
-			addFacets(solrQuery, searchContext);
-			addHighlights(solrQuery, queryConfig);
-			addPagination(solrQuery, start, end);
-			addSelectedFields(solrQuery, queryConfig);
-			addSort(solrQuery, searchContext.getSorts());
-
-			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
-		}
-
-		QueryTranslatorUtil.translateForSolr(query);
-
-		String queryString = translateQuery(searchContext, query);
-
-		solrQuery.setQuery(queryString);
-
-		return _solrServer.query(solrQuery, METHOD.POST);
 	}
 
 	protected String translateQuery(SearchContext searchContext, Query query) {
