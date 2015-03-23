@@ -141,13 +141,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		stopWatch.start();
 
 		try {
-			QueryResponse queryResponse = search(
-				searchContext, query, searchContext.getStart(),
-				searchContext.getEnd(), true);
-
-			SolrDocumentList solrDocumentList = queryResponse.getResults();
-
-			return solrDocumentList.getNumFound();
+			return doSearchCount(searchContext, query);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
@@ -155,7 +149,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 
 			if (!_swallowException) {
-				throw new SearchException(e.getMessage());
+				throw new SearchException(e.getMessage(), e);
 			}
 
 			return 0;
@@ -348,6 +342,18 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 			solrQuery.addSort(new SortClause(sortFieldName, order));
 		}
+	}
+
+	protected long doSearchCount(SearchContext searchContext, Query query)
+		throws Exception {
+
+		QueryResponse queryResponse = search(
+			searchContext, query, searchContext.getStart(),
+			searchContext.getEnd(), true);
+
+		SolrDocumentList solrDocumentList = queryResponse.getResults();
+
+		return solrDocumentList.getNumFound();
 	}
 
 	protected Hits doSearchHits(
