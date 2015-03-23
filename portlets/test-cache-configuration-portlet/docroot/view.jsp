@@ -66,7 +66,9 @@ if (!GetterUtil.getBoolean(PropsUtil.get(PropsKeys.HIBERNATE_CACHE_USE_QUERY_CAC
 
 <%!
 private static String _testAttributeList(String cacheManagerName, String name, Object... values) throws Exception {
-	MBeanServer mBeanServer = (MBeanServer)PortalBeanLocatorUtil.locate("mBeanServer");
+	Registry registry = RegistryUtil.getRegistry();
+
+	MBeanServer mBeanServer = registry.getService(MBeanServer.class);
 
 	ObjectName objectName = new ObjectName("net.sf.ehcache:type=CacheConfiguration,CacheManager=" + cacheManagerName + ",name=" + name);
 

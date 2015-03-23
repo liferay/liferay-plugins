@@ -16,7 +16,9 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.bean.PortalBeanLocatorUtil" %><%@
+<%@ page import="com.liferay.registry.Registry" %><%@
+page import="com.liferay.registry.RegistryUtil" %><%@
+page import="com.liferay.portal.kernel.bean.PortalBeanLocatorUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
 page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
