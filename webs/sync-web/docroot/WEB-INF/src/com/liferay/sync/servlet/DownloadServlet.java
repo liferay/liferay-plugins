@@ -222,6 +222,10 @@ public class DownloadServlet extends HttpServlet {
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntryByUuidAndGroupId(
 			uuid, groupId);
 
+		if (fileEntry.isInTrash()) {
+			throw new NoSuchFileEntryException();
+		}
+
 		if (Validator.isNull(version)) {
 			version = fileEntry.getVersion();
 		}
@@ -241,6 +245,10 @@ public class DownloadServlet extends HttpServlet {
 
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntryByUuidAndGroupId(
 			uuid, groupId);
+
+		if (fileEntry.isInTrash()) {
+			throw new NoSuchFileEntryException();
+		}
 
 		DLFileVersion sourceDLFileVersion =
 			DLFileVersionLocalServiceUtil.getDLFileVersion(sourceVersionId);
