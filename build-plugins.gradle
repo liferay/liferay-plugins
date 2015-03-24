@@ -21,9 +21,11 @@ configurations {
 	portalTools
 	portalToolsBuildCss
 	portalToolsBuildCssLegacy
+	portalToolsFormatSource
 	portalWeb
 
 	portalToolsBuildCss.extendsFrom portalTools, portalToolsBuildCssLegacy
+	portalToolsFormatSource.extendsFrom portalTools
 }
 
 dependencies {
@@ -68,6 +70,13 @@ dependencies {
 		[group: "org.jruby", name: "jruby-complete", version: "1.6.5"],
 		[group: "org.springframework", name: "spring-web", version: "3.2.10.RELEASE"],
 		[group: "struts", name: "struts", version: "1.2.9"]
+	)
+
+	portalToolsFormatSource(
+		[group: "com.thoughtworks.qdox", name: "qdox", version: "1.12.1"],
+		[group: "dom4j", name: "dom4j", version: "1.6.1"],
+		[group: "org.apache.ant", name: "ant", version: "1.8.2"],
+		[group: "xerces", name: "xercesImpl", version: "2.11.0"]
 	)
 
 	portalWeb group: "com.liferay.portal", name: "portal-web", version: "7.0.0-SNAPSHOT"
@@ -129,6 +138,7 @@ webAppDirName = "docroot"
 
 task buildCss(type: JavaExec)
 task compile
+task formatSource(type: JavaExec)
 task initGradle
 
 buildCss {
@@ -197,6 +207,22 @@ clean {
 
 compile {
 	dependsOn buildCss, compileJava
+}
+
+formatSource {
+	classpath configurations.portalToolsFormatSource
+
+	inputs.dir projectDir
+
+	main = "com.liferay.portal.tools.sourceformatter.SourceFormatter"
+
+	maxHeapSize = "512m"
+
+	outputs.dir projectDir
+}
+
+formatSource << {
+	delete "ServiceBuilder.temp"
 }
 
 initGradle << {
