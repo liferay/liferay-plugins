@@ -1,76 +1,75 @@
 Map<String, Map<String, String>> appServers = [
 	geronimo: [
-		name: "geronimo",
 		deployDirName: "deploy",
 		libGlobalDirName: "var/shared/lib",
+		name: "geronimo",
 		portalDirName: "deploy/liferay-portal",
 		version: "2.2.1"
 	],
 	glassfish: [
-		name: "glassfish",
 		deployDirName: "autodeploy",
 		libGlobalDirName: "domains/domain1/lib",
+		name: "glassfish",
 		portalDirName: "domains/domain1/applications/liferay-portal",
 		version: "3.1.2.2"
 	],
 	jboss: [
-		name: "jboss",
 		deployDirName: "standalone/deployments",
 		libGlobalDirName: "modules/com/liferay/portal/main",
+		name: "jboss",
 		portalDirName: "standalone/deployments/ROOT.war",
 		version: "7.1.1"
 	],
 	jboss5: [
-		name: "jboss",
 		deployDirName: "standalone/deploy",
 		libGlobalDirName: "server/default/lib",
+		name: "jboss",
 		portalDirName: "standalone/deployments/ROOT.war",
 		version: "5.1.0"
 	],
 	jbossEap: [
-		name: "jboss-eap",
 		deployDirName: "standalone/deployments",
 		libGlobalDirName: "modules/com/liferay/portal/main",
+		name: "jboss-eap",
 		portalDirName: "standalone/deployments/ROOT.war",
 		version: "6.1.0"
 	],
 	jbossWildfly: [
-		name: "jboss-wildfly",
 		deployDirName: "standalone/deployments",
 		libGlobalDirName: "modules/com/liferay/portal/main",
+		name: "jboss-wildfly",
 		portalDirName: "standalone/deployments/ROOT.war",
 		version: "8.1.0"
 	],
 	jetty: [
-		name: "jetty",
 		deployDirName: "webapps",
 		libGlobalDirName: "lib/ext/liferay",
+		name: "jetty",
 		portalDirName: "webapps/root",
 		version: "8.1.10"
 	],
 	jonas: [
-		name: "jonas",
 		deployDirName: "deploy",
 		libGlobalDirName: "lib/ext",
+		name: "jonas",
 		portalDirName: "deploy/liferay-portal",
 		version: "5.2.3"
 	],
 	resin: [
-		name: "resin",
 		deployDirName: "webapps",
 		libGlobalDirName: "ext-lib",
+		name: "resin",
 		portalDirName: "webapps/ROOT",
 		version: "4.0.33"
 	],
 	tcserver: [
-		name: "tcserver",
 		deployDirName: "liferay/webapps",
 		libGlobalDirName: "liferay/lib",
+		name: "tcserver",
 		portalDirName: "liferay/webapps/ROOT",
 		version: "2.6.4"
 	],
 	tomcat: [
-		deployDirName: "webapps",
 		libGlobalDirName: "lib/ext",
 		managerPassword: "tomcat",
 		managerUser: "tomcat",
@@ -79,16 +78,16 @@ Map<String, Map<String, String>> appServers = [
 		version: "7.0.42"
 	],
 	weblogic: [
-		name: "weblogic",
 		deployDirName: "domains/liferay/autodeploy",
 		libGlobalDirName: "domains/liferay/lib",
+		name: "weblogic",
 		portalDirName: "domains/liferay/autodeploy/ROOT",
 		version: "12.1.2"
 	],
 	websphere: [
-		name: "websphere",
 		deployDirName: "profiles/liferay/wsadmin-deploy",
 		libGlobalDirName: "lib/ext",
+		name: "websphere",
 		portalDirName: "profiles/liferay/installedApps/liferay-cell/liferay-portal.ear/liferay-portal.war",
 		version: "7.0"
 	]
