@@ -316,7 +316,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 	<macrodef name="gradle-execute">
 		<attribute name="task" />
-		<element implicit="true" name="arg-elements" optional="true" />
+		<element implicit="true" name="args" optional="true" />
 
 		<sequential>
 			<if>
@@ -334,7 +334,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="true">
 				<arg value="-PpluginsExcludes=${plugins.excludes}" />
 				<arg value="-PpluginsIncludes=${plugins.includes}" />
-				<arg-elements />
+				<args />
 				<arg value="@{task}" />
 			</exec>
 		</sequential>
