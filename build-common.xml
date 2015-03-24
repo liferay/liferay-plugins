@@ -1754,33 +1754,6 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="javadoc-macro">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
-			<resourcecount property="module.java.count">
-				<fileset dir="${plugin.source.dir}" includes="**/*.java" />
-			</resourcecount>
-
-			<if>
-				<not>
-					<equals arg1="${module.java.count}" arg2="0" />
-				</not>
-				<then>
-					<javadoc
-						classpathref="plugin.classpath"
-						destdir="javadoc"
-						sourcepath="${plugin.source.dir}"
-					/>
-				</then>
-			</if>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="jar-javadoc">
 		<attribute name="module.dir" />
 
@@ -2047,6 +2020,33 @@ Please find a solution that does not require portal-impl.jar.
 						jarfile="${plugin.sources.file}"
 					/>
 				</else>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="javadoc-macro">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<resourcecount property="module.java.count">
+				<fileset dir="${plugin.source.dir}" includes="**/*.java" />
+			</resourcecount>
+
+			<if>
+				<not>
+					<equals arg1="${module.java.count}" arg2="0" />
+				</not>
+				<then>
+					<javadoc
+						classpathref="plugin.classpath"
+						destdir="javadoc"
+						sourcepath="${plugin.source.dir}"
+					/>
+				</then>
 			</if>
 		</sequential>
 	</macrodef>
