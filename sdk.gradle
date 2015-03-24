@@ -163,13 +163,8 @@ compareDists << {
 }
 
 createLayouttpl << {
-	if (!project.hasProperty("layouttplDisplayName")) {
-		project.ext.layouttplDisplayName = null
-	}
-
-	if (!project.hasProperty("layouttplName")) {
-		project.ext.layouttplName = null
-	}
+	String layouttplDisplayName = project.properties["layouttplDisplayName"]
+	String layouttplName = project.properties["layouttplName"]
 
 	if (!layouttplDisplayName || !layouttplName) {
 		throw new GradleException("This task must be called by the create script.")
@@ -208,13 +203,8 @@ createLayouttpl << {
 }
 
 createTheme << {
-	if (!project.hasProperty("themeDisplayName")) {
-		project.ext.themeDisplayName = null
-	}
-
-	if (!project.hasProperty("themeName")) {
-		project.ext.themeName = null
-	}
+	String themeDisplayName = project.properties["themeDisplayName"]
+	String themeName = project.properties["themeName"]
 
 	if (!themeDisplayName || !themeName) {
 		throw new GradleException("This task must be called by the create script.")
