@@ -1,4 +1,4 @@
-apply from: "${gradle.lfrSdkDir}/app.servers.gradle"
+apply from: "${gradle.lfrSdkDir}/app-servers.gradle"
 apply from: "${gradle.lfrSdkDir}/versions.gradle"
 
 Closure commonProjectCondition
