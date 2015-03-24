@@ -39,18 +39,21 @@ import javax.portlet.RenderResponse;
 public class KBSuggestionListDisplayContext {
 
 	public KBSuggestionListDisplayContext(
-		RenderRequest renderRequest, KBArticle kbArticle,
+		RenderRequest renderRequest, String templatePath, KBArticle kbArticle,
 		String selectedNavItem) {
 
 		_renderRequest = renderRequest;
+		_templatePath = templatePath;
 		_kbArticle = kbArticle;
 		_selectedNavItem = selectedNavItem;
 	}
 
 	public KBSuggestionListDisplayContext(
-		RenderRequest renderRequest, long groupId, String selectedNavItem) {
+		RenderRequest renderRequest, String templatePath, long groupId,
+		String selectedNavItem) {
 
 		_renderRequest = renderRequest;
+		_templatePath = templatePath;
 		_groupId = groupId;
 		_selectedNavItem = selectedNavItem;
 	}
@@ -114,7 +117,8 @@ public class KBSuggestionListDisplayContext {
 				 portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
 			if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-				portletURL.setParameter("mvcPath", "/admin/view_article.jsp");
+				portletURL.setParameter(
+					"mvcPath", _templatePath + "/view_article.jsp");
 			}
 
 			portletURL.setParameter(
@@ -156,5 +160,6 @@ public class KBSuggestionListDisplayContext {
 	private KBArticle _kbArticle;
 	private final RenderRequest _renderRequest;
 	private String _selectedNavItem;
+	private final String _templatePath;
 
 }
