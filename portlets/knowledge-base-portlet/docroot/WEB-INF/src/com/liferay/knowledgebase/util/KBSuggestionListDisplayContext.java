@@ -26,10 +26,12 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 
 import java.util.List;
 
 import javax.portlet.PortletURL;
+import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 /**
@@ -38,15 +40,18 @@ import javax.portlet.RenderResponse;
 public class KBSuggestionListDisplayContext {
 
 	public KBSuggestionListDisplayContext(
-		KBArticle kbArticle, String selectedNavItem) {
+		RenderRequest renderRequest, KBArticle kbArticle,
+		String selectedNavItem) {
 
+		_renderRequest = renderRequest;
 		_kbArticle = kbArticle;
 		_selectedNavItem = selectedNavItem;
 	}
 
 	public KBSuggestionListDisplayContext(
-		long groupId, String selectedNavItem) {
+		RenderRequest renderRequest, long groupId, String selectedNavItem) {
 
+		_renderRequest = renderRequest;
 		_groupId = groupId;
 		_selectedNavItem = selectedNavItem;
 	}
@@ -104,13 +109,21 @@ public class KBSuggestionListDisplayContext {
 	public String getViewSuggestionURL(PortletURL portletURL, String navItem)
 		throws PortalException, SystemException {
 
+		String portletId = PortalUtil.getPortletId(_renderRequest);
+
 		portletURL.setParameter("navItem", navItem);
 		portletURL.setParameter("expanded", Boolean.TRUE.toString());
 
 		if (_kbArticle == null) {
 			portletURL.setParameter("mvcPath", "/admin/view_suggestions.jsp");
 		}
-		else if (Validator.isNull(_kbArticle.getUrlTitle())) {
+		else if (Validator.isNull(_kbArticle.getUrlTitle()) ||
+				 portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+
+			if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+				portletURL.setParameter("mvcPath", "/admin/view_article.jsp");
+			}
+
 			portletURL.setParameter(
 				"resourceClassNameId",
 				String.valueOf(_kbArticle.getClassNameId()));
@@ -148,6 +161,7 @@ public class KBSuggestionListDisplayContext {
 
 	private long _groupId;
 	private KBArticle _kbArticle;
+	private final RenderRequest _renderRequest;
 	private String _selectedNavItem;
 
 }
