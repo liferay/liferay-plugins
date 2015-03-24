@@ -15,7 +15,9 @@ if [ $# -lt 2 ]; then
 	exit 127
 fi
 
-ant -Dext.name=$1 -Dext.display.name=\"$2\" create
+chmod a+x ../tools/gradle/gradlew
+
+../tools/gradle/gradlew --build-file=../sdk.gradle -PextName=$1 -PextDisplayName=\"$2\" createExt
 
 #ant deploy
 

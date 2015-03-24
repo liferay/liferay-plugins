@@ -16,6 +16,7 @@ buildscript {
 }
 
 task compareDists
+task createExt
 task createLayouttpl
 task createTheme
 task createWeb
@@ -161,6 +162,43 @@ compareDists << {
 	}
 
 	compareDists()
+}
+
+createExt << {
+	String extDisplayName = project.properties["extDisplayName"]
+	String extName = project.properties["extName"]
+
+	if (!extDisplayName || !extName) {
+		throw new GradleException("This task must be called by the create script.")
+	}
+
+	File extDir = file("ext/${extName}-ext")
+
+	if (extDir.exists()) {
+		throw new GradleException("${extName}-ext already exists.")
+	}
+
+	copy {
+		filter(
+			ReplaceTokens,
+			tokens: [
+				"ext.display.name": extDisplayName,
+				"ext.name": extName,
+				"plugin.type.dir": ".."
+			])
+
+		from "${rootDir}/tools/templates/ext_tmpl"
+
+		into extDir
+	}
+
+	mkdirs("${extDir}/docroot/WEB-INF/ext-impl/src")
+	mkdirs("${extDir}/docroot/WEB-INF/ext-lib/global")
+	mkdirs("${extDir}/docroot/WEB-INF/ext-lib/portal")
+	mkdirs("${extDir}/docroot/WEB-INF/ext-service/src")
+	mkdirs("${extDir}/docroot/WEB-INF/ext-util-bridges/src")
+	mkdirs("${extDir}/docroot/WEB-INF/ext-util-java/src")
+	mkdirs("${extDir}/docroot/WEB-INF/ext-util-taglib/src")
 }
 
 createLayouttpl << {
