@@ -15,7 +15,9 @@ if [ $# -lt 2 ]; then
 	exit 127
 fi
 
-ant -Dweb.name=$1 -Dweb.display.name=\"$2\" create
+chmod a+x ../tools/gradle/gradlew
+
+../tools/gradle/gradlew --build-file=../sdk.gradle -PwebName=$1 -PwebDisplayName=\"$2\" createWeb
 
 #ant deploy
 

@@ -18,6 +18,7 @@ buildscript {
 task compareDists
 task createLayouttpl
 task createTheme
+task createWeb
 
 compareDists << {
 	Closure compareDistFileContents
@@ -235,4 +236,33 @@ createTheme << {
 	mkdirs("${themeDir}/docroot/WEB-INF/src/resources-importer/journal/articles")
 	mkdirs("${themeDir}/docroot/WEB-INF/src/resources-importer/journal/structures")
 	mkdirs("${themeDir}/docroot/WEB-INF/src/resources-importer/journal/templates")
+}
+
+createWeb << {
+	String webDisplayName = project.properties["webDisplayName"]
+	String webName = project.properties["webName"]
+
+	if (!webDisplayName || !webName) {
+		throw new GradleException("This task must be called by the create script.")
+	}
+
+	File webDir = file("webs/${webName}-web")
+
+	if (webDir.exists()) {
+		throw new GradleException("${webName}-web already exists.")
+	}
+
+	copy {
+		filter(
+			ReplaceTokens,
+			tokens: [
+				"plugin.type.dir": "..",
+				"web.display.name": webDisplayName,
+				"web.name": webName
+			])
+
+		from "${rootDir}/tools/templates/web_tmpl"
+
+		into webDir
+	}
 }
