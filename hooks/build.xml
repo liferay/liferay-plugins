@@ -5,43 +5,13 @@
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
-		<if>
-			<or>
-				<not>
-					<isset property="hook.display.name" />
-				</not>
-				<not>
-					<isset property="hook.name" />
-				</not>
-			</or>
-			<then>
-				<fail>This task must be called by the create script.</fail>
-			</then>
-		</if>
+		<property name="hook.display.name" value="" />
+		<property name="hook.name" value="" />
 
-		<property name="hook.parent.dir" value="${user.dir}" />
-		<property name="hook.dir" value="${hook.parent.dir}/${hook.name}-hook" />
-
-		<if>
-			<available file="${hook.dir}" />
-			<then>
-				<fail>${hook.name}-hook already exists.</fail>
-			</then>
-		</if>
-
-		<copy todir="${hook.dir}">
-			<fileset
-				dir="${sdk.dir}/tools/templates/hook_tmpl"
-			/>
-		</copy>
-
-		<replace dir="${hook.dir}">
-			<replacefilter token="@app.server.tomcat.manager.password@" value="${app.server.tomcat.manager.password}" />
-			<replacefilter token="@app.server.tomcat.manager.user@" value="${app.server.tomcat.manager.user}" />
-			<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
-			<replacefilter token="@hook.name@" value="${hook.name}" />
-			<replacefilter token="@jmx.remote.port@" value="${jmx.remote.port}" />
-			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
-		</replace>
+		<gradle-execute task="createHook">
+			<arg value="--build-file=../sdk.gradle" />
+			<arg value="-PhookDisplayName=${hook.display.name}" />
+			<arg value="-PhookName=${hook.name}" />
+		</gradle-execute>
 	</target>
 </project>

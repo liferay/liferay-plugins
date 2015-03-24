@@ -1,6 +1,7 @@
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.tools.ant.filters.ReplaceTokens
 
+apply from: "app-servers.gradle"
 apply from: "util.gradle"
 
 buildscript {
@@ -17,6 +18,7 @@ buildscript {
 
 task compareDists
 task createExt
+task createHook
 task createLayouttpl
 task createTheme
 task createWeb
@@ -199,6 +201,38 @@ createExt << {
 	mkdirs("${extDir}/docroot/WEB-INF/ext-util-bridges/src")
 	mkdirs("${extDir}/docroot/WEB-INF/ext-util-java/src")
 	mkdirs("${extDir}/docroot/WEB-INF/ext-util-taglib/src")
+}
+
+createHook << {
+	String hookDisplayName = project.properties["hookDisplayName"]
+	String hookName = project.properties["hookName"]
+
+	if (!hookDisplayName || !hookName) {
+		throw new GradleException("This task must be called by the create script.")
+	}
+
+	File hookDir = file("hooks/${hookName}-hook")
+
+	if (hookDir.exists()) {
+		throw new GradleException("${hookName}-hook already exists.")
+	}
+
+	copy {
+		filter(
+			ReplaceTokens,
+			tokens: [
+				"app.server.tomcat.manager.password": appServers.tomcat.managerPassword,
+				"app.server.tomcat.manager.user": appServers.tomcat.managerUser,
+				"hook.display.name": hookDisplayName,
+				"hook.name": hookName,
+				"jmx.remote.port": jmxRemotePort,
+				"plugin.type.dir": ".."
+		])
+
+		from "${rootDir}/tools/templates/hook_tmpl"
+
+		into hookDir
+	}
 }
 
 createLayouttpl << {
