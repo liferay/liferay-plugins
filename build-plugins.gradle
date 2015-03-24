@@ -212,13 +212,9 @@ compile {
 formatSource {
 	classpath configurations.portalToolsFormatSource
 
-	inputs.dir projectDir
-
 	main = "com.liferay.portal.tools.sourceformatter.SourceFormatter"
 
 	maxHeapSize = "512m"
-
-	outputs.dir projectDir
 }
 
 formatSource << {
