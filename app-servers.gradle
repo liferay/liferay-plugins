@@ -93,9 +93,9 @@ Map<String, Map<String, String>> appServers = [
 	]
 ]
 
-ext {
-	appServers = appServers
+ext.appServers = appServers
 
+ext {
 	appServerParentDir = file("${gradle.lfrSdkDir}/../bundles")
 
 	appServerDir = file(appServerParentDir.toString() + "/" + appServers[appServerType].name + "-" + appServers[appServerType].version)

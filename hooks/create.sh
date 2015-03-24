@@ -15,7 +15,9 @@ if [ $# -lt 2 ]; then
 	exit 127
 fi
 
-ant -Dhook.name=$1 -Dhook.display.name=\"$2\" create
+chmod a+x ../tools/gradle/gradlew
+
+../tools/gradle/gradlew --build-file=../sdk.gradle -PhookName=$1 -PhookDisplayName=\"$2\" createHook
 
 #ant deploy
 
