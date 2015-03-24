@@ -1020,8 +1020,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected AlloySearchResult search(
 			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
 			HttpServletRequest request, PortletRequest portletRequest,
-			SearchContainer<? extends BaseModel<?>> searchContainer,
-			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts,
+			int start, int end)
 		throws Exception {
 
 		if (indexer == null) {
@@ -1031,11 +1031,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		AlloySearchResult alloySearchResult = new AlloySearchResult();
 
 		alloySearchResult.setAlloyServiceInvoker(alloyServiceInvoker);
-
-		if (searchContainer == null) {
-			searchContainer = new SearchContainer<>(
-				portletRequest, portletURL, null, null);
-		}
 
 		SearchContext searchContext = SearchContextFactory.getInstance(request);
 
@@ -1047,7 +1042,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			searchContext.setAttributes(attributes);
 		}
 
-		searchContext.setEnd(searchContainer.getEnd());
+		searchContext.setEnd(end);
 
 		Class<?> indexerClass = Class.forName(indexer.getClassNames()[0]);
 
@@ -1069,7 +1064,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			searchContext.setSorts(sorts);
 		}
 
-		searchContext.setStart(searchContainer.getStart());
+		searchContext.setStart(start);
 
 		Hits hits = indexer.search(searchContext);
 
@@ -1084,6 +1079,24 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected AlloySearchResult search(
+			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
+			HttpServletRequest request, PortletRequest portletRequest,
+			SearchContainer<? extends BaseModel<?>> searchContainer,
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
+		throws Exception {
+
+		if (searchContainer == null) {
+			searchContainer = new SearchContainer<>(
+				portletRequest, portletURL, null, null);
+		}
+
+		return search(
+			indexer, alloyServiceInvoker, request, portletRequest, attributes,
+			keywords, sorts, searchContainer.getStart(),
+			searchContainer.getEnd());
+	}
+
+	protected AlloySearchResult search(
 			Map<String, Serializable> attributes, String keywords, Sort sort)
 		throws Exception {
 
@@ -1095,6 +1108,16 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		throws Exception {
 
 		return search(request, portletRequest, attributes, keywords, sorts);
+	}
+
+	protected AlloySearchResult search(
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts,
+			int start, int end)
+		throws Exception {
+
+		return search(
+			indexer, alloyServiceInvoker, request, portletRequest, attributes,
+			keywords, sorts, start, end);
 	}
 
 	protected AlloySearchResult search(String keywords) throws Exception {
