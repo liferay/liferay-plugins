@@ -36,7 +36,7 @@
 <%
 String navItem = ParamUtil.getString(request, "navItem", "viewNewSuggestions");
 
-KBSuggestionListDisplayContext kbSuggestionListDisplayContext = new KBSuggestionListDisplayContext(renderRequest, scopeGroupId, navItem);
+KBSuggestionListDisplayContext kbSuggestionListDisplayContext = new KBSuggestionListDisplayContext(renderRequest, templatePath, scopeGroupId, navItem);
 
 request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT, kbSuggestionListDisplayContext);
 %>
