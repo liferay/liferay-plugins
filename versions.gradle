@@ -1,4 +1,4 @@
-def portalDependencies = [
+Map<String, Map<String, String>> portalDependencies = [
 	antlr2: [
 		group: "antlr",
 		name: "antlr",
