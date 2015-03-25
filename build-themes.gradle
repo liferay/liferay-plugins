@@ -47,7 +47,7 @@ buildThumbnails << {
 	}
 }
 
-compile {
+classes {
 	dependsOn compileTheme
 }
 
