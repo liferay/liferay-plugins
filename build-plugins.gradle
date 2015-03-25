@@ -191,6 +191,10 @@ buildCss {
 	}
 }
 
+classes {
+	dependsOn buildCss
+}
+
 clean {
 	afterEvaluate {
 		tasks.each {
@@ -206,7 +210,7 @@ clean {
 }
 
 compile {
-	dependsOn buildCss, compileJava
+	dependsOn compileJava
 }
 
 formatSource {
@@ -500,8 +504,6 @@ war {
 	Closure getLanguageProperties
 	Closure getNewDependencyNames
 	Closure setManifest
-
-	dependsOn compile
 
 	destinationDir = file("${rootDir}/dist2")
 
