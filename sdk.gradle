@@ -436,7 +436,7 @@ createPortlet << {
 
 		text = portletXmlFile.text
 
-		text = text.replace("<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>")
+		text = text.replace("<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>")
 		text = text.replace("<name>view-template</name>", "<name>javax.portlet.faces.defaultViewId.view</name>")
 		text = text.replace("<value>/view.jsp</value>", "<value>/views/view.xhtml</value>")
 
@@ -487,7 +487,7 @@ createPortlet << {
 
 		text = portletXmlFile.text
 
-		text = text.replace("<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>")
+		text = text.replace("<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>")
 		text = text.replace("<name>view-template</name>", "<name>contextConfigLocation</name>")
 		text = text.replace("<value>/view.jsp</value>", "<value>/WEB-INF/spring-context/portlet/@portlet.name@-portlet.xml</value>")
 
@@ -550,7 +550,7 @@ createPortlet << {
 
 		text = portletXmlFile.text
 
-		text = text.replace("<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>")
+		text = text.replace("<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>")
 		text = text.replace("<name>view-template</name>", "<name>application</name>")
 		text = text.replace("<value>/view.jsp</value>", "<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>")
 
