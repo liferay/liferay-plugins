@@ -16,10 +16,25 @@ buildscript {
 	}
 }
 
+configurations {
+	portalTaglib
+}
+
+dependencies {
+	portalTaglib group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"
+}
+
+repositories {
+	maven {
+		url "http://cdn.repository.liferay.com/nexus/content/groups/public"
+	}
+}
+
 task compareDists
 task createExt
 task createHook
 task createLayouttpl
+task createPortlet
 task createTheme
 task createWeb
 
@@ -273,6 +288,282 @@ createLayouttpl << {
 			fileName.replace("blank_columns", layouttplTemplateName)
 		}
 	}
+}
+
+createPortlet << {
+	Closure copyTemplate
+	Closure copyTlds
+	Closure createPortlet
+	Closure processJSF
+	Closure processSpringMVC
+	Closure processTokens
+	Closure processVaadin
+
+	File portletDir
+	String portletDisplayName
+	String portletFramework
+	String portletJavaClassName
+	String portletJavaPackageName
+	String portletName
+
+	copyTemplate = {
+		CopySpec portletCopySpec = copySpec {
+			duplicatesStrategy "exclude"
+
+			from "${rootDir}/tools/templates/portlet_tmpl"
+		}
+
+		if (portletFramework in ["icefaces", "liferay_faces_alloy", "primefaces", "richfaces"]) {
+			portletCopySpec.from "${rootDir}/tools/templates/portlet_jsf_tmpl"
+		}
+
+		copy {
+			into portletDir
+
+			with portletCopySpec
+		}
+
+		if (portletFramework != "mvc") {
+			copy {
+				from "${rootDir}/tools/templates/portlet_${portletFramework}_tmpl"
+
+				into portletDir
+			}
+		}
+	}
+
+	copyTlds = {
+		File tldDir = file("${portletDir}/docroot/WEB-INF/tld")
+
+		tldDir.mkdirs()
+
+		ant.unzip(dest: tldDir, src: configurations.portalTaglib.singleFile) {
+			ant.cutdirsmapper(dirs: 1)
+
+			ant.patternset() {
+				ant.include(name: "META-INF/aui.tld")
+				ant.include(name: "META-INF/liferay-portlet.tld")
+				ant.include(name: "META-INF/liferay-portlet-ext.tld")
+				ant.include(name: "META-INF/liferay-security.tld")
+				ant.include(name: "META-INF/liferay-theme.tld")
+				ant.include(name: "META-INF/liferay-ui.tld")
+				ant.include(name: "META-INF/liferay-util.tld")
+			}
+		}
+	}
+
+	createPortlet = {
+		portletDisplayName = project.properties["portletDisplayName"]
+		portletFramework = project.properties["portletFramework"] ?: "mvc"
+		portletName = project.properties["portletName"]
+
+		if (!portletDisplayName || !portletName) {
+			throw new GradleException("This task must be called by the create script.")
+		}
+
+		portletDir = file("portlets/${portletName}-portlet")
+
+		if (portletDir.exists()) {
+			throw new GradleException("${portletName}-portlet already exists.")
+		}
+
+		portletJavaClassName = portletDisplayName.replaceAll("\\s", "")
+		portletJavaClassName.trim()
+
+		portletJavaPackageName = portletName.replace("-", "")
+		portletJavaPackageName.trim()
+
+		copyTemplate()
+
+		if (portletFramework in ["icefaces", "jsf", "liferay_faces_alloy", "primefaces", "richfaces"]) {
+			processJSF()
+		}
+		else if (portletFramework == "spring_mvc") {
+			processSpringMVC()
+		}
+		else if (portletFramework == "vaadin") {
+			processVaadin()
+		}
+
+		processTokens()
+
+		copyTlds()
+	}
+
+	processJSF = {
+
+		// liferay-plugin-package.properties
+
+		File liferayPluginPackagePropertiesFile = file("${portletDir}/docroot/WEB-INF/liferay-plugin-package.properties")
+
+		liferayPluginPackagePropertiesFile.withWriterAppend {
+			BufferedWriter bufferedWriter ->
+
+			String portalDependencyJars
+
+			if (portletFramework in ["jsf", "liferay_faces_alloy", "primefaces", "richfaces"]) {
+				portalDependencyJars = "commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-fileupload.jar,commons-io.jar,commons-lang.jar"
+			}
+			else {
+				portalDependencyJars = "commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-lang.jar"
+			}
+
+			bufferedWriter.newLine()
+			bufferedWriter.newLine()
+			bufferedWriter.writeLine("portal-dependency-jars=" + portalDependencyJars)
+			bufferedWriter.newLine()
+			bufferedWriter.writeLine("speed-filters-enabled=false")
+		}
+
+		// liferay-portlet.xml
+
+		File liferayPortletXmlFile = file("${portletDir}/docroot/WEB-INF/liferay-portlet.xml")
+
+		String text = liferayPortletXmlFile.text
+
+		text = text.replace("</icon>", """\
+</icon>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<ajaxable>false</ajaxable>""")
+
+		text = text.replaceAll("(?s)</header-portlet-css>(.*)</footer-portlet-javascript>", "</header-portlet-css>");
+
+		liferayPortletXmlFile.write(text)
+
+		// portlet.xml
+
+		File portletXmlFile = file("${portletDir}/docroot/WEB-INF/portlet.xml")
+
+		text = portletXmlFile.text
+
+		text = text.replace("<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>")
+		text = text.replace("<name>view-template</name>", "<name>javax.portlet.faces.defaultViewId.view</name>")
+		text = text.replace("<value>/view.jsp</value>", "<value>/views/view.xhtml</value>")
+
+		portletXmlFile.write(text)
+
+		// Delete
+
+		ant.delete(includeEmptyDirs: true) {
+			ant.fileset(dir: "${portletDir}/docroot", includes: "js/**,view.jsp")
+		}
+	}
+
+	processSpringMVC = {
+
+		// Move
+
+		move("${portletDir}/docroot/WEB-INF/jsp/view.jsp", "${portletDir}/docroot/WEB-INF/jsp/${portletName}/view.jsp")
+		move("${portletDir}/docroot/WEB-INF/spring-context/portlet-context.xml", "${portletDir}/docroot/WEB-INF/spring-context/portlet/${portletName}-portlet.xml")
+		move("${portletDir}/docroot/WEB-INF/src/PortletViewController.java", "${portletDir}/docroot/WEB-INF/src/${portletJavaPackageName}/${portletJavaClassName}PortletViewController.java")
+
+		// liferay-plugin-package.properties
+
+		File liferayPluginPackagePropertiesFile = file("${portletDir}/docroot/WEB-INF/liferay-plugin-package.properties")
+
+		liferayPluginPackagePropertiesFile.withWriterAppend {
+			BufferedWriter bufferedWriter ->
+
+			bufferedWriter.newLine()
+			bufferedWriter.newLine()
+			bufferedWriter.write("portal-dependency-jars=aopalliance.jar,commons-logging.jar,jstl-api.jar,jstl-impl.jar,spring-aop.jar,spring-beans.jar,spring-context.jar,spring-core.jar,spring-expression.jar,spring-web.jar,spring-webmvc.jar,spring-webmvc-portlet.jar")
+		}
+
+		// liferay-portlet.xml
+
+		File liferayPortletXmlFile = file("${portletDir}/docroot/WEB-INF/liferay-portlet.xml")
+
+		String text = liferayPortletXmlFile.text
+
+		text = text.replace("</icon>", """\
+</icon>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>""")
+
+		liferayPortletXmlFile.write(text)
+
+		// portlet.xml
+
+		File portletXmlFile = file("${portletDir}/docroot/WEB-INF/portlet.xml")
+
+		text = portletXmlFile.text
+
+		text = text.replace("<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>")
+		text = text.replace("<name>view-template</name>", "<name>contextConfigLocation</name>")
+		text = text.replace("<value>/view.jsp</value>", "<value>/WEB-INF/spring-context/portlet/@portlet.name@-portlet.xml</value>")
+
+		portletXmlFile.write(text)
+
+		// Delete
+
+		delete("${portletDir}/docroot/view.jsp")
+	}
+
+	processTokens = {
+		ant.replace(dir: portletDir) {
+			ant.replacefilter(token: "@app.server.tomcat.manager.password@", value: appServers.tomcat.managerPassword)
+			ant.replacefilter(token: "@app.server.tomcat.manager.user@", value: appServers.tomcat.managerUser)
+			ant.replacefilter(token: "@jmx.remote.port@", value: jmxRemotePort)
+			ant.replacefilter(token: "@plugin.type.dir@", value: "..")
+			ant.replacefilter(token: "@portlet.display.name@", value: portletDisplayName)
+			ant.replacefilter(token: "@portlet.java.class.name@", value: portletJavaClassName)
+			ant.replacefilter(token: "@portlet.java.package.name@", value: portletJavaPackageName)
+			ant.replacefilter(token: "@portlet.name@", value: portletName)
+		}
+	}
+
+	processVaadin = {
+
+		// Move
+
+		move("${portletDir}/docroot/WEB-INF/src/Application.java", "${portletDir}/docroot/WEB-INF/src/${portletJavaPackageName}/${portletJavaClassName}Application.java")
+
+		// liferay-plugin-package.properties
+
+		File liferayPluginPackagePropertiesFile = file("${portletDir}/docroot/WEB-INF/liferay-plugin-package.properties")
+
+		liferayPluginPackagePropertiesFile.withWriterAppend {
+			BufferedWriter bufferedWriter ->
+
+			bufferedWriter.newLine()
+			bufferedWriter.newLine()
+			bufferedWriter.write("portal-dependency-jars=vaadin.jar")
+		}
+
+		// liferay-portlet.xml
+
+		File liferayPortletXmlFile = file("${portletDir}/docroot/WEB-INF/liferay-portlet.xml")
+
+		String text = liferayPortletXmlFile.text
+
+		text = text.replaceAll("(?s)</icon>(.*)</footer-portlet-javascript>", "</icon>");
+
+		text = text.replace("</icon>", """\
+</icon>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
+		<ajaxable>false</ajaxable>""")
+
+		liferayPortletXmlFile.write(text)
+
+		// portlet.xml
+
+		File portletXmlFile = file("${portletDir}/docroot/WEB-INF/portlet.xml")
+
+		text = portletXmlFile.text
+
+		text = text.replace("<portlet-class>com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet</portlet-class>", "<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>")
+		text = text.replace("<name>view-template</name>", "<name>application</name>")
+		text = text.replace("<value>/view.jsp</value>", "<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>")
+
+		portletXmlFile.write(text)
+
+		// Delete
+
+		ant.delete(includeEmptyDirs: true) {
+			ant.fileset(dir: "${portletDir}/docroot", includes: "css/**,js/**,view.jsp")
+		}
+	}
+
+	createPortlet()
 }
 
 createTheme << {

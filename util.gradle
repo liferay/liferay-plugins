@@ -26,6 +26,15 @@ class UtilPluginConvention {
 		file.mkdirs()
 	}
 
+	void move(String sourceFileName, String destinationFileName) {
+		File sourceFile = _project.file(sourceFileName)
+		File destinationFile = _project.file(destinationFileName)
+
+		mkdirs(destinationFile.parent)
+
+		sourceFile.renameTo(destinationFileName)
+	}
+
 	private Project _project
 
 }

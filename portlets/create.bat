@@ -7,7 +7,7 @@ if "" == "%2" goto errorCreate
 if "" == "%3" set PORTLET_FRAMEWORK=mvc
 if not "" == "%3" set PORTLET_FRAMEWORK=%3
 
-call ant -Dportlet.name=%1 -Dportlet.display.name=%2 -Dportlet.framework=%PORTLET_FRAMEWORK% create
+call ..\tools\gradle\gradlew.bat --build-file=..\sdk.gradle -PportletName=%1 -PportletDisplayName=%2 -PportletFramework=%PORTLET_FRAMEWORK% createPortlet
 
 rem call ant deploy
 
