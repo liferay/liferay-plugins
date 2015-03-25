@@ -20,7 +20,9 @@ if [ $# -lt 2 ]; then
 	exit 127
 fi
 
-ant -Dportlet.name=$1 -Dportlet.display.name=\"$2\" -Dportlet.framework=$3 create
+chmod a+x ../tools/gradle/gradlew
+
+../tools/gradle/gradlew --build-file=../sdk.gradle -PportletName=$1 -PportletDisplayName=\"$2\" -PportletFramework=$3 createPortlet
 
 #ant deploy
 
