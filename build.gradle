@@ -78,7 +78,7 @@ pluginProjects = {
 			}
 
 			return file
-		}.call()
+		}()
 	}
 
 	apply from: "${gradle.lfrSdkDir}/build-plugins.gradle"
