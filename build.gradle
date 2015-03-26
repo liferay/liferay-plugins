@@ -7,12 +7,6 @@ Closure configureProjects
 Closure pluginProjectCondition
 Closure pluginProjects
 
-gradle.beforeProject {
-	configureProjects(it, commonProjectCondition, commonProjects)
-
-	configureProjects(it, pluginProjectCondition, pluginProjects)
-}
-
 commonProjectCondition = {
 	true
 }
@@ -86,4 +80,10 @@ pluginProjects = {
 	if (name.endsWith("-theme")) {
 		apply from: "${gradle.lfrSdkDir}/build-themes.gradle"
 	}
+}
+
+gradle.beforeProject {
+	configureProjects(it, commonProjectCondition, commonProjects)
+
+	configureProjects(it, pluginProjectCondition, pluginProjects)
 }
