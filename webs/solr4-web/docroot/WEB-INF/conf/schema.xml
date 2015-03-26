@@ -640,7 +640,7 @@
 		This must be the last entry since the fields element is an ordered set.
 		-->
 
-		<dynamicField indexed="true" multiValued="true" name="*" type="text" />
+		<dynamicField indexed="true" multiValued="true" name="*" stored="true" type="string" />
 	</fields>
 	<uniqueKey>uid</uniqueKey>
 	<defaultSearchField>content</defaultSearchField>
