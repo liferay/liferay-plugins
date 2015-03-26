@@ -7,6 +7,12 @@ Closure configureProjects
 Closure pluginProjectCondition
 Closure pluginProjects
 
+gradle.beforeProject {
+	configureProjects(it, commonProjectCondition, commonProjects)
+
+	configureProjects(it, pluginProjectCondition, pluginProjects)
+}
+
 commonProjectCondition = {
 	true
 }
@@ -28,15 +34,13 @@ commonProjects = {
 }
 
 configureProjects = {
-	Closure projectCondition, Closure projectConfig ->
+	currentProject, projectCondition, projectConfig ->
 
-	gradle.beforeProject {
-		if (!projectCondition(it)) {
-			return
-		}
-
-		configure(it, projectConfig)
+	if (!projectCondition(currentProject)) {
+		return
 	}
+
+	configure(currentProject, projectConfig)
 }
 
 pluginProjectCondition = {
@@ -44,58 +48,38 @@ pluginProjectCondition = {
 }
 
 pluginProjects = {
-	Closure readConfigurations
-	Closure setExtProperties
+	Closure loadProperties
 
-	readConfigurations = {
+	loadProperties = {
+		File file = project.file(it)
 
-		// bnd.bnd
+		Properties properties = new Properties()
 
-		project.ext.bndProperties = new Properties()
-
-		File bndPropertiesFile = project.file("bnd.bnd")
-
-		if (bndPropertiesFile.exists()) {
-			InputStream inputStream = new FileInputStream(bndPropertiesFile)
+		if (file.exists()) {
+			InputStream inputStream = new FileInputStream(file)
 
 			inputStream.withStream {
-				bndProperties.load(it)
+				properties.load(it)
 			}
 		}
 
-		// liferay-plugin-package.properties
+		return properties
+	}
 
-		project.ext.pluginPackageProperties = new Properties()
+	project.ext {
+		bndProperties = loadProperties("bnd.bnd")
+		osgiPlugin = project.exists("bnd.bnd")
+		pluginPackageProperties = loadProperties("docroot/WEB-INF/liferay-plugin-package.properties")
+		pluginSrcDir = {
+			File file = project.file("docroot/WEB-INF/src")
 
-		File pluginPackagePropertiesFile = project.file("docroot/WEB-INF/liferay-plugin-package.properties")
-
-		if (pluginPackagePropertiesFile.exists()) {
-			InputStream inputStream = new FileInputStream(pluginPackagePropertiesFile)
-
-			inputStream.withStream {
-				pluginPackageProperties.load(it)
+			if (!file.exists()) {
+				return project.file("src")
 			}
-		}
+
+			return file
+		}.call()
 	}
-
-	setExtProperties = {
-
-		// osgiPlugin
-
-		project.ext.osgiPlugin = project.exists("bnd.bnd")
-
-		// pluginSrcDir
-
-		project.ext.pluginSrcDir = project.file("docroot/WEB-INF/src")
-
-		if (!project.pluginSrcDir.exists()) {
-			project.pluginSrcDir = project.file("src")
-		}
-	}
-
-	readConfigurations()
-
-	setExtProperties()
 
 	apply from: "${gradle.lfrSdkDir}/build-plugins.gradle"
 
@@ -103,7 +87,3 @@ pluginProjects = {
 		apply from: "${gradle.lfrSdkDir}/build-themes.gradle"
 	}
 }
-
-configureProjects(commonProjectCondition, commonProjects)
-
-configureProjects(pluginProjectCondition, pluginProjects)
