@@ -44,10 +44,12 @@ public class AnnouncementsAssetEntrySetHandler
 	}
 
 	@Override
-	public JSONObject interpret(JSONObject payloadJSONObject, long classPK)
+	public JSONObject interpret(
+			JSONObject payloadJSONObject, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		JSONObject jsonObject = super.interpret(payloadJSONObject, classPK);
+		JSONObject jsonObject = super.interpret(
+			payloadJSONObject, assetEntrySetId);
 
 		long userId = payloadJSONObject.getLong("userId");
 		long classNameId = payloadJSONObject.getLong("classNameId");
@@ -79,7 +81,7 @@ public class AnnouncementsAssetEntrySetHandler
 
 		AnnouncementsEntry announcementEntry =
 			AnnouncementsEntryLocalServiceUtil.addEntry(
-				userId, classNameId, classPK, title, content, url, type,
+				userId, classNameId, assetEntrySetId, title, content, url, type,
 				displayCalendar.get(Calendar.MONTH),
 				displayCalendar.get(Calendar.DATE),
 				displayCalendar.get(Calendar.YEAR),

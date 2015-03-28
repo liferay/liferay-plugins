@@ -89,7 +89,8 @@ public class AssetEntrySetManagerUtil {
 		return _assetEntrySetHandlers.get(portletId);
 	}
 
-	public static JSONObject interpret(JSONObject jsonObject, long classPK)
+	public static JSONObject interpret(
+			JSONObject jsonObject, long assetEntrySetId)
 		throws PortalException, SystemException {
 
 		String type = jsonObject.getString("type");
@@ -103,7 +104,7 @@ public class AssetEntrySetManagerUtil {
 			return null;
 		}
 
-		return assetEntrySetHandler.interpret(jsonObject, classPK);
+		return assetEntrySetHandler.interpret(jsonObject, assetEntrySetId);
 	}
 
 	private static Map<String, AssetEntrySetHandler> _assetEntrySetHandlers =

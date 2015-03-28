@@ -41,10 +41,12 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 	}
 
 	@Override
-	public JSONObject interpret(JSONObject payloadJSONObject, long classPK)
+	public JSONObject interpret(
+			JSONObject payloadJSONObject, long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		JSONObject jsonObject = super.interpret(payloadJSONObject, classPK);
+		JSONObject jsonObject = super.interpret(
+			payloadJSONObject, assetEntrySetId);
 
 		Set<Long> assetEntryIds = new HashSet<Long>();
 
@@ -64,7 +66,7 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 				DLFileEntry dlFileEntry =
 					DLFileEntryLocalServiceUtil.getFileEntry(fileEntryId);
 
-				dlFileEntry.setClassPK(classPK);
+				dlFileEntry.setClassPK(assetEntrySetId);
 
 				dlFileEntry = DLFileEntryLocalServiceUtil.updateDLFileEntry(
 					dlFileEntry);
