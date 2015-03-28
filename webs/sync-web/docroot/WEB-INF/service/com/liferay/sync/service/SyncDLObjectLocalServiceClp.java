@@ -31,12 +31,12 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		_methodName0 = "addSyncDLObject";
 
 		_methodParameterTypes0 = new String[] {
-				"long", "long", "long", "long", "java.lang.String",
+				"long", "long", "java.lang.String", "long", "long", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.util.Date", "long", "java.lang.String", "java.lang.String",
-				"long", "java.lang.String"
+				"java.lang.String", "long", "long", "java.lang.String",
+				"java.lang.String", "java.util.Date", "long", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String"
 			};
 
 		_methodName1 = "addSyncDLObject";
@@ -156,15 +156,15 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 	@Override
 	public com.liferay.sync.model.SyncDLObject addSyncDLObject(long companyId,
-		long modifiedTime, long repositoryId, long parentFolderId,
-		java.lang.String name, java.lang.String extension,
-		java.lang.String mimeType, java.lang.String description,
-		java.lang.String changeLog, java.lang.String extraSettings,
-		java.lang.String version, long versionId, long size,
-		java.lang.String checksum, java.lang.String event,
-		java.util.Date lockExpirationDate, long lockUserId,
-		java.lang.String lockUserName, java.lang.String type, long typePK,
-		java.lang.String typeUuid)
+		long userId, java.lang.String userName, long modifiedTime,
+		long repositoryId, long parentFolderId, java.lang.String name,
+		java.lang.String extension, java.lang.String mimeType,
+		java.lang.String description, java.lang.String changeLog,
+		java.lang.String extraSettings, java.lang.String version,
+		long versionId, long size, java.lang.String checksum,
+		java.lang.String event, java.util.Date lockExpirationDate,
+		long lockUserId, java.lang.String lockUserName, java.lang.String type,
+		long typePK, java.lang.String typeUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -173,6 +173,10 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 					_methodParameterTypes0,
 					new Object[] {
 						companyId,
+						
+					userId,
+						
+					ClpSerializer.translateInput(userName),
 						
 					modifiedTime,
 						

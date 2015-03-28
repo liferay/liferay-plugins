@@ -64,7 +64,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see SyncDLFileVersionDiffPersistence
- * @see SyncDLFileVersionDiffUtil
+ * @see com.liferay.sync.service.persistence.SyncDLFileVersionDiffUtil
  * @generated
  */
 @ProviderType

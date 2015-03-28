@@ -28,7 +28,7 @@ import com.liferay.sync.model.SyncDLFileVersionDiff;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see SyncDLFileVersionDiffPersistenceImpl
+ * @see com.liferay.sync.service.persistence.impl.SyncDLFileVersionDiffPersistenceImpl
  * @see SyncDLFileVersionDiffUtil
  * @generated
  */

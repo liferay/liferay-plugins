@@ -130,12 +130,12 @@ public class SyncDLObjectLocalServiceClpInvoker {
 		_methodName89 = "addSyncDLObject";
 
 		_methodParameterTypes89 = new String[] {
-				"long", "long", "long", "long", "java.lang.String",
+				"long", "long", "java.lang.String", "long", "long", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"long", "long", "java.lang.String", "java.lang.String",
-				"java.util.Date", "long", "java.lang.String", "java.lang.String",
-				"long", "java.lang.String"
+				"java.lang.String", "long", "long", "java.lang.String",
+				"java.lang.String", "java.util.Date", "long", "java.lang.String",
+				"java.lang.String", "long", "java.lang.String"
 			};
 
 		_methodName90 = "deleteSyncDLObjects";
@@ -268,21 +268,24 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes89, parameterTypes)) {
 			return SyncDLObjectLocalServiceUtil.addSyncDLObject(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
+				(java.lang.String)arguments[2],
 				((Long)arguments[3]).longValue(),
-				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				((Long)arguments[4]).longValue(),
+				((Long)arguments[5]).longValue(),
 				(java.lang.String)arguments[6], (java.lang.String)arguments[7],
 				(java.lang.String)arguments[8], (java.lang.String)arguments[9],
 				(java.lang.String)arguments[10],
-				((Long)arguments[11]).longValue(),
-				((Long)arguments[12]).longValue(),
-				(java.lang.String)arguments[13],
-				(java.lang.String)arguments[14], (java.util.Date)arguments[15],
-				((Long)arguments[16]).longValue(),
-				(java.lang.String)arguments[17],
-				(java.lang.String)arguments[18],
-				((Long)arguments[19]).longValue(),
-				(java.lang.String)arguments[20]);
+				(java.lang.String)arguments[11],
+				(java.lang.String)arguments[12],
+				((Long)arguments[13]).longValue(),
+				((Long)arguments[14]).longValue(),
+				(java.lang.String)arguments[15],
+				(java.lang.String)arguments[16], (java.util.Date)arguments[17],
+				((Long)arguments[18]).longValue(),
+				(java.lang.String)arguments[19],
+				(java.lang.String)arguments[20],
+				((Long)arguments[21]).longValue(),
+				(java.lang.String)arguments[22]);
 		}
 
 		if (_methodName90.equals(name) &&
