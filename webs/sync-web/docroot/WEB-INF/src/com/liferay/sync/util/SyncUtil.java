@@ -35,6 +35,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Lock;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
@@ -418,6 +421,23 @@ public class SyncUtil {
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
 		syncDLObject.setCompanyId(dlFileVersion.getCompanyId());
+
+		long userId = 0;
+		String userName = StringPool.BLANK;
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (permissionChecker != null) {
+			User user = permissionChecker.getUser();
+
+			userId = user.getUserId();
+			userName = user.getFullName();
+		}
+
+		syncDLObject.setUserId(userId);
+		syncDLObject.setUserName(userName);
+
 		syncDLObject.setCreateDate(dlFileVersion.getCreateDate());
 		syncDLObject.setModifiedDate(dlFileVersion.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFileVersion.getRepositoryId());
@@ -456,6 +476,22 @@ public class SyncUtil {
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
 		syncDLObject.setCompanyId(dlFolder.getCompanyId());
+
+		long userId = 0;
+		String userName = StringPool.BLANK;
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (permissionChecker != null) {
+			User user = permissionChecker.getUser();
+
+			userId = user.getUserId();
+			userName = user.getFullName();
+		}
+
+		syncDLObject.setUserId(userId);
+		syncDLObject.setUserName(userName);
 		syncDLObject.setCreateDate(dlFolder.getCreateDate());
 		syncDLObject.setModifiedDate(dlFolder.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFolder.getRepositoryId());

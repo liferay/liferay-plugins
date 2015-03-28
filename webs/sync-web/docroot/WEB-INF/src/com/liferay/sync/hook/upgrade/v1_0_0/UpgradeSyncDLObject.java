@@ -149,7 +149,8 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 			for (SyncDLObject syncDLObject : syncDLObjects) {
 				SyncDLObjectLocalServiceUtil.addSyncDLObject(
-					syncDLObject.getCompanyId(), syncDLObject.getModifiedTime(),
+					syncDLObject.getCompanyId(), syncDLObject.getUserId(),
+					syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
 					syncDLObject.getRepositoryId(),
 					syncDLObject.getParentFolderId(), syncDLObject.getName(),
 					syncDLObject.getExtension(), syncDLObject.getMimeType(),

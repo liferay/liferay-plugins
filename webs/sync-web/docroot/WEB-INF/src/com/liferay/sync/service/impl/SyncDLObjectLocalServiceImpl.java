@@ -46,12 +46,13 @@ public class SyncDLObjectLocalServiceImpl
 
 	@Override
 	public SyncDLObject addSyncDLObject(
-			long companyId, long modifiedTime, long repositoryId,
-			long parentFolderId, String name, String extension, String mimeType,
-			String description, String changeLog, String extraSettings,
-			String version, long versionId, long size, String checksum,
-			String event, Date lockExpirationDate, long lockUserId,
-			String lockUserName, String type, long typePK, String typeUuid)
+			long companyId, long userId, String userName, long modifiedTime,
+			long repositoryId, long parentFolderId, String name,
+			String extension, String mimeType, String description,
+			String changeLog, String extraSettings, String version,
+			long versionId, long size, String checksum, String event,
+			Date lockExpirationDate, long lockUserId, String lockUserName,
+			String type, long typePK, String typeUuid)
 		throws PortalException, SystemException {
 
 		if (!isDefaultRepository(parentFolderId)) {
@@ -116,6 +117,8 @@ public class SyncDLObjectLocalServiceImpl
 			}
 		}
 
+		syncDLObject.setUserId(userId);
+		syncDLObject.setUserName(userName);
 		syncDLObject.setModifiedTime(modifiedTime);
 		syncDLObject.setParentFolderId(parentFolderId);
 		syncDLObject.setName(name);
