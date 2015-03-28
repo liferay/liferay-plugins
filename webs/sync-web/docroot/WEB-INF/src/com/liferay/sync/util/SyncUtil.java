@@ -34,6 +34,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Lock;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
@@ -446,6 +449,22 @@ public class SyncUtil {
 		syncDLObject.setTypePK(dlFileEntry.getFileEntryId());
 		syncDLObject.setTypeUuid(dlFileEntry.getUuid());
 
+		long userId = 0;
+		String userName = StringPool.BLANK;
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (permissionChecker != null) {
+			User user = permissionChecker.getUser();
+
+			userId = user.getUserId();
+			userName = user.getFullName();
+		}
+
+		syncDLObject.setUserId(userId);
+		syncDLObject.setUserName(userName);
+
 		return syncDLObject;
 	}
 
@@ -474,6 +493,22 @@ public class SyncUtil {
 		syncDLObject.setType(SyncConstants.TYPE_FOLDER);
 		syncDLObject.setTypePK(dlFolder.getFolderId());
 		syncDLObject.setTypeUuid(dlFolder.getUuid());
+
+		long userId = 0;
+		String userName = StringPool.BLANK;
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (permissionChecker != null) {
+			User user = permissionChecker.getUser();
+
+			userId = user.getUserId();
+			userName = user.getFullName();
+		}
+
+		syncDLObject.setUserId(userId);
+		syncDLObject.setUserName(userName);
 
 		return syncDLObject;
 	}

@@ -21,6 +21,9 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
@@ -42,12 +45,25 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 		throws Exception {
 
 		if (event.equals(SyncConstants.EVENT_DELETE)) {
+			long userId = 0;
+			String userName = StringPool.BLANK;
+
+			PermissionChecker permissionChecker =
+				PermissionThreadLocal.getPermissionChecker();
+
+			if (permissionChecker != null) {
+				User user = permissionChecker.getUser();
+
+				userId = user.getUserId();
+				userName = user.getFullName();
+			}
+
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				0, modifiedTime, 0, 0, StringPool.BLANK, StringPool.BLANK,
 				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
 				StringPool.BLANK, StringPool.BLANK, 0, 0, StringPool.BLANK,
 				event, null, 0, StringPool.BLANK, type, typePK,
-				StringPool.BLANK);
+				StringPool.BLANK, userId, userName);
 
 			return;
 		}
@@ -94,7 +110,8 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 			syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
 			syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
 			syncDLObject.getType(), syncDLObject.getTypePK(),
-			syncDLObject.getTypeUuid());
+			syncDLObject.getTypeUuid(), syncDLObject.getUserId(),
+			syncDLObject.getUserName());
 
 		if (event.equals(SyncConstants.EVENT_RESTORE) &&
 			type.equals(SyncConstants.TYPE_FOLDER)) {

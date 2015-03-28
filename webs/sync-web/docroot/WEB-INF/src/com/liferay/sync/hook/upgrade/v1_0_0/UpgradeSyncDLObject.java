@@ -159,7 +159,8 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 					syncDLObject.getLockExpirationDate(),
 					syncDLObject.getLockUserId(),
 					syncDLObject.getLockUserName(), syncDLObject.getType(),
-					syncDLObject.getTypePK(), syncDLObject.getTypeUuid());
+					syncDLObject.getTypePK(), syncDLObject.getTypeUuid(),
+					syncDLObject.getUserId(), syncDLObject.getUserName());
 			}
 		}
 	}

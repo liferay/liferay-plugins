@@ -70,6 +70,8 @@
 		<column name="type" type="String" />
 		<column name="typePK" type="long" />
 		<column name="typeUuid" type="String" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
 
 		<!-- Order -->
 

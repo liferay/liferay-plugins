@@ -50,7 +50,8 @@ public class SyncDLObjectLocalServiceImpl
 			String description, String changeLog, String extraSettings,
 			String version, long versionId, long size, String checksum,
 			String event, Date lockExpirationDate, long lockUserId,
-			String lockUserName, String type, long typePK, String typeUuid)
+			String lockUserName, String type, long typePK, String typeUuid,
+			long userId, String userName)
 		throws PortalException {
 
 		if (!isDefaultRepository(parentFolderId)) {
@@ -130,6 +131,8 @@ public class SyncDLObjectLocalServiceImpl
 		syncDLObject.setLockExpirationDate(lockExpirationDate);
 		syncDLObject.setLockUserId(lockUserId);
 		syncDLObject.setLockUserName(lockUserName);
+		syncDLObject.setUserId(userId);
+		syncDLObject.setUserName(userName);
 
 		syncDLObject = syncDLObjectPersistence.update(syncDLObject);
 
