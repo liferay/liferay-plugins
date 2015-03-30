@@ -89,6 +89,50 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	public void setCompanyId(long companyId);
 
 	/**
+	 * Returns the user ID of this sync d l object.
+	 *
+	 * @return the user ID of this sync d l object
+	 */
+	public long getUserId();
+
+	/**
+	 * Sets the user ID of this sync d l object.
+	 *
+	 * @param userId the user ID of this sync d l object
+	 */
+	public void setUserId(long userId);
+
+	/**
+	 * Returns the user uuid of this sync d l object.
+	 *
+	 * @return the user uuid of this sync d l object
+	 * @throws SystemException if a system exception occurred
+	 */
+	public String getUserUuid() throws SystemException;
+
+	/**
+	 * Sets the user uuid of this sync d l object.
+	 *
+	 * @param userUuid the user uuid of this sync d l object
+	 */
+	public void setUserUuid(String userUuid);
+
+	/**
+	 * Returns the user name of this sync d l object.
+	 *
+	 * @return the user name of this sync d l object
+	 */
+	@AutoEscape
+	public String getUserName();
+
+	/**
+	 * Sets the user name of this sync d l object.
+	 *
+	 * @param userName the user name of this sync d l object
+	 */
+	public void setUserName(String userName);
+
+	/**
 	 * Returns the create time of this sync d l object.
 	 *
 	 * @return the create time of this sync d l object

@@ -276,8 +276,9 @@ public class SyncDLObjectLocalServiceUtil {
 	}
 
 	public static com.liferay.sync.model.SyncDLObject addSyncDLObject(
-		long companyId, long modifiedTime, long repositoryId,
-		long parentFolderId, java.lang.String name, java.lang.String extension,
+		long companyId, long userId, java.lang.String userName,
+		long modifiedTime, long repositoryId, long parentFolderId,
+		java.lang.String name, java.lang.String extension,
 		java.lang.String mimeType, java.lang.String description,
 		java.lang.String changeLog, java.lang.String extraSettings,
 		java.lang.String version, long versionId, long size,
@@ -288,10 +289,11 @@ public class SyncDLObjectLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addSyncDLObject(companyId, modifiedTime, repositoryId,
-			parentFolderId, name, extension, mimeType, description, changeLog,
-			extraSettings, version, versionId, size, checksum, event,
-			lockExpirationDate, lockUserId, lockUserName, type, typePK, typeUuid);
+				   .addSyncDLObject(companyId, userId, userName, modifiedTime,
+			repositoryId, parentFolderId, name, extension, mimeType,
+			description, changeLog, extraSettings, version, versionId, size,
+			checksum, event, lockExpirationDate, lockUserId, lockUserName,
+			type, typePK, typeUuid);
 	}
 
 	public static void deleteSyncDLObjects(java.lang.String version,

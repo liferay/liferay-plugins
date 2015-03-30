@@ -29,6 +29,8 @@
 		<attributes>
 			<id name="syncDLObjectId" />
 			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
 			<basic name="createTime" />
 			<basic name="modifiedTime" />
 			<basic name="repositoryId" />
@@ -60,6 +62,7 @@
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl" name="SyncDLFileVersionDiff">

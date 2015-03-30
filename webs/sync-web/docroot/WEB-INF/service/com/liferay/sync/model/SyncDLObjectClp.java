@@ -77,6 +77,8 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 		attributes.put("syncDLObjectId", getSyncDLObjectId());
 		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
 		attributes.put("createTime", getCreateTime());
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("repositoryId", getRepositoryId());
@@ -114,6 +116,18 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 		if (companyId != null) {
 			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
 		}
 
 		Long createTime = (Long)attributes.get("createTime");
@@ -282,6 +296,62 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 				Method method = clazz.getMethod("setCompanyId", long.class);
 
 				method.invoke(_syncDLObjectRemoteModel, companyId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public long getUserId() {
+		return _userId;
+	}
+
+	@Override
+	public void setUserId(long userId) {
+		_userId = userId;
+
+		if (_syncDLObjectRemoteModel != null) {
+			try {
+				Class<?> clazz = _syncDLObjectRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserId", long.class);
+
+				method.invoke(_syncDLObjectRemoteModel, userId);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	@Override
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
+	}
+
+	@Override
+	public String getUserName() {
+		return _userName;
+	}
+
+	@Override
+	public void setUserName(String userName) {
+		_userName = userName;
+
+		if (_syncDLObjectRemoteModel != null) {
+			try {
+				Class<?> clazz = _syncDLObjectRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUserName", String.class);
+
+				method.invoke(_syncDLObjectRemoteModel, userName);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -886,6 +956,8 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 		clone.setSyncDLObjectId(getSyncDLObjectId());
 		clone.setCompanyId(getCompanyId());
+		clone.setUserId(getUserId());
+		clone.setUserName(getUserName());
 		clone.setCreateTime(getCreateTime());
 		clone.setModifiedTime(getModifiedTime());
 		clone.setRepositoryId(getRepositoryId());
@@ -993,12 +1065,16 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(47);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(getSyncDLObjectId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
 		sb.append(", createTime=");
 		sb.append(getCreateTime());
 		sb.append(", modifiedTime=");
@@ -1048,7 +1124,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(73);
+		StringBundler sb = new StringBundler(79);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sync.model.SyncDLObject");
@@ -1061,6 +1137,14 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
 		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createTime</column-name><column-value><![CDATA[");
@@ -1154,6 +1238,9 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	private long _syncDLObjectId;
 	private long _companyId;
+	private long _userId;
+	private String _userUuid;
+	private String _userName;
 	private long _createTime;
 	private long _modifiedTime;
 	private long _repositoryId;

@@ -13,6 +13,8 @@
 	<model name="com.liferay.sync.model.SyncDLObject">
 		<field name="syncDLObjectId" type="long" />
 		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
 		<field name="createTime" type="long" />
 		<field name="modifiedTime" type="long" />
 		<field name="repositoryId" type="long" />

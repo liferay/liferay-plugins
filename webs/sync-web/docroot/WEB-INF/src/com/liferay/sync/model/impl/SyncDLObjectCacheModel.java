@@ -38,12 +38,16 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(47);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(syncDLObjectId);
 		sb.append(", companyId=");
 		sb.append(companyId);
+		sb.append(", userId=");
+		sb.append(userId);
+		sb.append(", userName=");
+		sb.append(userName);
 		sb.append(", createTime=");
 		sb.append(createTime);
 		sb.append(", modifiedTime=");
@@ -97,6 +101,15 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 
 		syncDLObjectImpl.setSyncDLObjectId(syncDLObjectId);
 		syncDLObjectImpl.setCompanyId(companyId);
+		syncDLObjectImpl.setUserId(userId);
+
+		if (userName == null) {
+			syncDLObjectImpl.setUserName(StringPool.BLANK);
+		}
+		else {
+			syncDLObjectImpl.setUserName(userName);
+		}
+
 		syncDLObjectImpl.setCreateTime(createTime);
 		syncDLObjectImpl.setModifiedTime(modifiedTime);
 		syncDLObjectImpl.setRepositoryId(repositoryId);
@@ -209,6 +222,8 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		syncDLObjectId = objectInput.readLong();
 		companyId = objectInput.readLong();
+		userId = objectInput.readLong();
+		userName = objectInput.readUTF();
 		createTime = objectInput.readLong();
 		modifiedTime = objectInput.readLong();
 		repositoryId = objectInput.readLong();
@@ -237,6 +252,15 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		throws IOException {
 		objectOutput.writeLong(syncDLObjectId);
 		objectOutput.writeLong(companyId);
+		objectOutput.writeLong(userId);
+
+		if (userName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(userName);
+		}
+
 		objectOutput.writeLong(createTime);
 		objectOutput.writeLong(modifiedTime);
 		objectOutput.writeLong(repositoryId);
@@ -337,6 +361,8 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 
 	public long syncDLObjectId;
 	public long companyId;
+	public long userId;
+	public String userName;
 	public long createTime;
 	public long modifiedTime;
 	public long repositoryId;
