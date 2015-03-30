@@ -434,6 +434,7 @@ public class SyncUtil {
 
 		syncDLObject.setUserId(userId);
 		syncDLObject.setUserName(userName);
+
 		syncDLObject.setCreateDate(dlFileVersion.getCreateDate());
 		syncDLObject.setModifiedDate(dlFileVersion.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFileVersion.getRepositoryId());

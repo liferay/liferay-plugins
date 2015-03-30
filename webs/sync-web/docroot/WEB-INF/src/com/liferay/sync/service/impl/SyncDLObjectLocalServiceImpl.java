@@ -116,9 +116,9 @@ public class SyncDLObjectLocalServiceImpl
 			}
 		}
 
-		syncDLObject.setModifiedTime(modifiedTime);
 		syncDLObject.setUserId(userId);
 		syncDLObject.setUserName(userName);
+		syncDLObject.setModifiedTime(modifiedTime);
 		syncDLObject.setParentFolderId(parentFolderId);
 		syncDLObject.setName(name);
 		syncDLObject.setExtension(extension);
