@@ -347,6 +347,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 				jsonObject.put("data", stackTrace);
 			}
+			else if (data instanceof JSONArray) {
+				jsonObject.put("data", (JSONArray)data);
+			}
+			else if (data instanceof JSONObject) {
+				jsonObject.put("data", (JSONObject)data);
+			}
 			else {
 				jsonObject.put(
 					"data",
@@ -950,40 +956,43 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
 	}
 
-	protected boolean respondWith(int status, Object object) throws Exception {
-		String data = StringPool.BLANK;
+	protected boolean respondWith(int status, String key, Object object)
+		throws Exception {
+
+		Object data = null;
 
 		if (isRespondingTo("json")) {
 			if (object instanceof AlloySearchResult) {
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
 				Hits hits = ((AlloySearchResult)object).getHits();
 
 				Document[] documents = hits.getDocs();
 
-				jsonObject.put(controllerPath, toJSONArray(documents));
-
-				data = jsonObject.toString();
+				data = toJSONArray(documents);
 			}
 			else if (object instanceof Collection) {
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
 				Object[] objects =
 					((Collection)object).toArray(new BaseModel[0]);
 
-				jsonObject.put(controllerPath, toJSONArray(objects));
-
-				data = jsonObject.toString();
+				data = toJSONArray(objects);
 			}
 			else if (object instanceof JSONArray) {
-				JSONArray jsonArray = (JSONArray)object;
-
-				data = jsonArray.toString();
+				data = object;
 			}
 			else {
-				JSONObject jsonObject = toJSONObject(object);
+				data = toJSONObject(object);
+			}
 
-				data = jsonObject.toString();
+			if (Validator.isNotNull(key)) {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+				if (data instanceof JSONArray) {
+					jsonObject.put(key, (JSONArray)data);
+				}
+				else {
+					jsonObject.put(key, (JSONObject)data);
+				}
+
+				data = jsonObject;
 			}
 		}
 
@@ -994,7 +1003,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	@SuppressWarnings("unused")
 	protected boolean respondWith(Object object) throws Exception {
-		return respondWith(HttpServletResponse.SC_OK, object);
+		return respondWith(HttpServletResponse.SC_OK, null, object);
+	}
+
+	protected boolean respondWith(String key, Object object) throws Exception {
+		return respondWith(HttpServletResponse.SC_OK, key, object);
 	}
 
 	protected AlloySearchResult search(
