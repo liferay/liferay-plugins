@@ -347,17 +347,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	protected QueryResponse doRequest(SolrQuery solrQuery) throws Exception {
-		return _solrServer.query(solrQuery, METHOD.POST);
-	}
-
-	protected QueryResponse doSearch(
-			SearchContext searchContext, Query query, int start, int end)
-		throws Exception {
-
-		return doSearch(searchContext, query, start, end, false);
-	}
-
 	protected QueryResponse doSearch(
 			SearchContext searchContext, Query query, int start, int end,
 			boolean count)
@@ -384,7 +373,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setQuery(queryString);
 
-		QueryResponse queryResponse = doRequest(solrQuery);
+		QueryResponse queryResponse = executeSearchRequest(solrQuery);
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
@@ -412,11 +401,17 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		throws Exception {
 
 		QueryResponse queryResponse = doSearch(
-			searchContext, query, start, end);
+			searchContext, query, start, end, false);
 
 		Hits hits = processResponse(queryResponse, searchContext, query);
 
 		return hits;
+	}
+
+	protected QueryResponse executeSearchRequest(SolrQuery solrQuery)
+		throws Exception {
+
+		return _solrServer.query(solrQuery, METHOD.POST);
 	}
 
 	protected Hits processResponse(
