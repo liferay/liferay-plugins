@@ -221,7 +221,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 
 					params.put(
 						"usersOrgsTree",
-						ListUtil.fromArray(new Organization[]{organization}));
+						ListUtil.fromArray(new Organization[] {organization}));
 				}
 				else if (className.equals(Role.class.getName())) {
 					Role role = RoleLocalServiceUtil.fetchRole(classPK);

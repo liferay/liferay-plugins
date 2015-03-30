@@ -49,6 +49,7 @@ import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.site.my.sites.web.constants.MySitesPortletKeys;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -93,7 +94,8 @@ public class InstanceUtil {
 
 		// My Sites
 
-		portlet = PortletLocalServiceUtil.getPortletById(PortletKeys.MY_SITES);
+		portlet = PortletLocalServiceUtil.getPortletById(
+			MySitesPortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
 
