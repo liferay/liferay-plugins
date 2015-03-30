@@ -418,6 +418,22 @@ public class SyncUtil {
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
 		syncDLObject.setCompanyId(dlFileVersion.getCompanyId());
+
+		long userId = 0;
+		String userName = StringPool.BLANK;
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (permissionChecker != null) {
+			User user = permissionChecker.getUser();
+
+			userId = user.getUserId();
+			userName = user.getFullName();
+		}
+
+		syncDLObject.setUserId(userId);
+		syncDLObject.setUserName(userName);
 		syncDLObject.setCreateDate(dlFileVersion.getCreateDate());
 		syncDLObject.setModifiedDate(dlFileVersion.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFileVersion.getRepositoryId());
@@ -449,6 +465,14 @@ public class SyncUtil {
 		syncDLObject.setTypePK(dlFileEntry.getFileEntryId());
 		syncDLObject.setTypeUuid(dlFileEntry.getUuid());
 
+		return syncDLObject;
+	}
+
+	public static SyncDLObject toSyncDLObject(DLFolder dlFolder, String event) {
+		SyncDLObject syncDLObject = new SyncDLObjectImpl();
+
+		syncDLObject.setCompanyId(dlFolder.getCompanyId());
+
 		long userId = 0;
 		String userName = StringPool.BLANK;
 
@@ -464,14 +488,6 @@ public class SyncUtil {
 
 		syncDLObject.setUserId(userId);
 		syncDLObject.setUserName(userName);
-
-		return syncDLObject;
-	}
-
-	public static SyncDLObject toSyncDLObject(DLFolder dlFolder, String event) {
-		SyncDLObject syncDLObject = new SyncDLObjectImpl();
-
-		syncDLObject.setCompanyId(dlFolder.getCompanyId());
 		syncDLObject.setCreateDate(dlFolder.getCreateDate());
 		syncDLObject.setModifiedDate(dlFolder.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFolder.getRepositoryId());
@@ -493,22 +509,6 @@ public class SyncUtil {
 		syncDLObject.setType(SyncConstants.TYPE_FOLDER);
 		syncDLObject.setTypePK(dlFolder.getFolderId());
 		syncDLObject.setTypeUuid(dlFolder.getUuid());
-
-		long userId = 0;
-		String userName = StringPool.BLANK;
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		if (permissionChecker != null) {
-			User user = permissionChecker.getUser();
-
-			userId = user.getUserId();
-			userName = user.getFullName();
-		}
-
-		syncDLObject.setUserId(userId);
-		syncDLObject.setUserName(userName);
 
 		return syncDLObject;
 	}
