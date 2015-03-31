@@ -1,3 +1,5 @@
+/* global gadgets,OpenAjax,shindig */
+
 AUI.add(
 	'liferay-open-social-gadget',
 	function(A) {

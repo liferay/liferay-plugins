@@ -1,3 +1,5 @@
+/* global google */
+
 AUI.add(
 	'liferay-google-maps',
 	function(A) {

@@ -1,3 +1,5 @@
+/* global SWFObject */
+
 AUI().use(
 	'anim-color',
 	'anim-easing',
