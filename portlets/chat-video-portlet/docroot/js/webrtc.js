@@ -527,7 +527,7 @@ AUI().use(
 		};
 
 		var State = Liferay.Chat.WebRtcConversation.State;
-		var Error = Liferay.Chat.WebRtcConversation.Error;
+		var ConversationError = Liferay.Chat.WebRtcConversation.Error;
 
 		Liferay.Chat.WebRtcConversation.prototype = {
 			getState: function() {
@@ -605,7 +605,7 @@ AUI().use(
 						instance.setState(State.GOTANSWER);
 					}
 					else {
-						instance.onError(Error.REMOTEPEERDENIEDCALL);
+						instance.onError(ConversationError.REMOTEPEERDENIEDCALL);
 						instance.setState(State.STOPPED);
 					}
 				}
@@ -686,7 +686,7 @@ AUI().use(
 
 				if (instance.getState() === State.GOTCALL || instance.getState() === State.GOTCALLWAITING) {
 					if (!instance._isUserAvailable()) {
-						instance.onError(Error.REMOTEPEERNOTAVAILABLE);
+						instance.onError(ConversationError.REMOTEPEERNOTAVAILABLE);
 						instance.setState(State.DENYINGCALL);
 						Liferay.Chat.WebRtcManager.errorMsg('remote peer not available for WebRTC to "accept"');
 					}
@@ -868,10 +868,10 @@ AUI().use(
 				}
 
 				if (reason === 'hangUp') {
-					instance.onError(Error.HANGUP);
+					instance.onError(ConversationError.HANGUP);
 				}
 				else if (reason === 'reset') {
-					instance.onError(Error.REMOTEPEERRESET);
+					instance.onError(ConversationError.REMOTEPEERRESET);
 				}
 
 				var state = instance.getState();

@@ -16,7 +16,7 @@ AUI().use(
 			closePopup: function() {
 				var instance = this;
 
-				var popup = instance.getPopup()
+				var popup = instance.getPopup();
 
 				if (popup) {
 					popup.hide();

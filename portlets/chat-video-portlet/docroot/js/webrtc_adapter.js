@@ -42,7 +42,9 @@ AUI().use(
 
 				var mLineIndex = null;
 
-				for (var i = 0; i < sdpLines.length; ++i) {
+				var i;
+
+				for (i = 0; i < sdpLines.length; ++i) {
 					if (sdpLines[i].indexOf('m=audio') !== -1) {
 						mLineIndex = i;
 
@@ -54,7 +56,7 @@ AUI().use(
 					return sdp;
 				}
 
-				for (var i = 0; i < sdpLines.length; ++i) {
+				for (i = 0; i < sdpLines.length; ++i) {
 					if (sdpLines[i].indexOf('opus/48000') !== -1) {
 						var opusPayload = Liferay.Chat.WebRtcAdapter._extractSdp(sdpLines[i], /:(\d+) opus\/48000/i);
 

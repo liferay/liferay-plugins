@@ -19,7 +19,7 @@ AUI.add(
 						instance._nonactionableNotificationsList = config.nonactionableNotificationsList;
 						instance._portletKey = config.portletKey;
 
-						var navAccountControls =  A.one('.nav-account-controls');
+						var navAccountControls = A.one('.nav-account-controls');
 
 						navAccountControls.delegate(
 							'click',

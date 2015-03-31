@@ -187,22 +187,6 @@ AUI.add(
 				);
 			},
 
-			loadAccounts: function(accountId) {
-				var instance = this;
-
-				instance.accountsContainer.io.set(
-					'data',
-					Liferay.Util.ns(
-						instance.namespace,
-						{
-							accountId: accountId
-						}
-					)
-				);
-
-				instance.accountsContainer.io.start();
-			},
-
 			loadAccount: function(accountId, inboxFolderId) {
 				var instance = this;
 
@@ -242,6 +226,22 @@ AUI.add(
 				);
 
 				instance._hideWindow();
+			},
+
+			loadAccounts: function(accountId) {
+				var instance = this;
+
+				instance.accountsContainer.io.set(
+					'data',
+					Liferay.Util.ns(
+						instance.namespace,
+						{
+							accountId: accountId
+						}
+					)
+				);
+
+				instance.accountsContainer.io.start();
 			},
 
 			loadCompose: function(accountId, messageId, messageType, replyMessageId) {
@@ -321,10 +321,10 @@ AUI.add(
 						instance.namespace,
 						{
 							folderId: folderId,
+							keywords: keywords,
 							messageNumber: messageNumber,
 							orderByField: orderByField,
-							orderByType: orderByType,
-							keywords: keywords
+							orderByType: orderByType
 						}
 					)
 				);
@@ -380,7 +380,8 @@ AUI.add(
 					themeDisplay.getLayoutURL() + '/-/mail/move_messages',
 					{
 						data: Liferay.Util.ns(
-							instance.namespace, {
+							instance.namespace,
+							{
 								folderId: folderId,
 								messageIds: messageIds
 							}
@@ -541,9 +542,6 @@ AUI.add(
 				instance.messagesContainer.plug(
 					A.Plugin.IO,
 					{
-						autoLoad: false,
-						method: 'POST',
-						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages',
 						after: {
 							success: function() {
 								instance.messagesContainer.all('.flag-messages').on(
@@ -571,7 +569,10 @@ AUI.add(
 									}
 								);
 							}
-						}
+						},
+						autoLoad: false,
+						method: 'POST',
+						uri: themeDisplay.getLayoutURL() + '/-/mail/view_messages'
 					}
 				);
 

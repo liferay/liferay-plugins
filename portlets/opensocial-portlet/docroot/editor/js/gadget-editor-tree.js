@@ -36,9 +36,9 @@ AUI.add(
 
 		var NEW_NODE = 'newNode';
 
-		var OWNER_TREE = 'ownerTree';
-
 		var OVERFLOW = 'overflow';
+
+		var OWNER_TREE = 'ownerTree';
 
 		var PARENT_NODE = 'parentNode';
 
@@ -752,7 +752,7 @@ AUI.add(
 							}
 							else {
 								publishMenuButton.show();
-								publishMenuButton.get('boundingBox').addClass('last', true)
+								publishMenuButton.get('boundingBox').addClass('last', true);
 								unpublishMenuButton.hide();
 							}
 						}
@@ -793,8 +793,6 @@ AUI.add(
 						var instance = this;
 
 						EditableEditor.superclass._defStartEditingFn.apply(this, arguments);
-
-						var inputField = instance._comboBox._field;
 					}
 				}
 			}

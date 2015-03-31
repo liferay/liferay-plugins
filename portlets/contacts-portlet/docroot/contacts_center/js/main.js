@@ -15,26 +15,22 @@ AUI.add(
 
 		var STR_UNDEFINED = 'undefined';
 
-		var TPL_BLOCK_IMG =
-			'<span>' +
+		var TPL_BLOCK_IMG = '<span>' +
 				'<i class="icon-ban-circle"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('blocked') + '</span>' +
 			'</span>';
 
-		var TPL_CONNECTED_IMG =
-			'<span>' +
+		var TPL_CONNECTED_IMG = '<span>' +
 				'<i class="icon-user"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('connected') + '</span>' +
 			'</span>';
 
-		var TPL_CONNECTION_REQUESTED_IMG =
-			'<span>' +
+		var TPL_CONNECTION_REQUESTED_IMG = '<span>' +
 				'<i class="icon-user"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('connection-requested') + '</span>' +
 			'</span>';
 
-		var TPL_ENTRY_DATA =
-			'{lastNameAnchor}' +
+		var TPL_ENTRY_DATA = '{lastNameAnchor}' +
 			'<div class="lfr-contact">' +
 				'<div class="lfr-contact-checkbox">' +
 					'<input type="checkbox" value="{entryId}" disabled="true" name="contact-ids-{entryId}" class="contact-ids" label="" />' +
@@ -55,8 +51,7 @@ AUI.add(
 				'</div>' +
 			'</div>';
 
-		var TPL_ENTRY_DETAIL_DATA =
-			'<div class="contacts-profile external-contact">' +
+		var TPL_ENTRY_DETAIL_DATA = '<div class="contacts-profile external-contact">' +
 				'<div class="lfr-detail-info">' +
 					'{icon}' +
 					'<div class="{cssClass} lfr-contact-info">' +
@@ -75,19 +70,16 @@ AUI.add(
 				'</div>' +
 			'</div>';
 
-		var TPL_FOLLOWING_IMG =
-			'<span>' +
+		var TPL_FOLLOWING_IMG = '<span>' +
 				'<i class="icon-user"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('following') + '</span>' +
 			'</span>';
 
-		var TPL_ICON =
-			'<div class="lfr-contact-thumb">' +
+		var TPL_ICON = '<div class="lfr-contact-thumb">' +
 				'<img alt="{fullName}" src="{portraitURL}" />' +
 			'</div>';
 
-		var TPL_USER_DATA =
-			'{lastNameAnchor}' +
+		var TPL_USER_DATA = '{lastNameAnchor}' +
 			'<div class="lfr-contact">' +
 				'<div class="lfr-contact-checkbox">' +
 					'<input type="checkbox" value="{userId}" {disabled} {checked} name="contact-ids-{userId}" class="contact-ids" label="" />' +
@@ -108,8 +100,7 @@ AUI.add(
 				'</div>' +
 			'</div>';
 
-		var TPL_USER_DETAIL_DATA =
-			'<div class="lfr-contact-grid-item lfr-selected-user {cssClass}" data-viewSummaryURL="{viewSummaryURL}" id="user-{userId}">' +
+		var TPL_USER_DETAIL_DATA = '<div class="lfr-contact-grid-item lfr-selected-user {cssClass}" data-viewSummaryURL="{viewSummaryURL}" id="user-{userId}">' +
 				'<input type="hidden" value="{userId}" name="selected-user-{userId}" />' +
 				'<div class="lfr-contact-thumb">' +
 					'<img alt="{fullName}" src="{portraitURL}" />' +

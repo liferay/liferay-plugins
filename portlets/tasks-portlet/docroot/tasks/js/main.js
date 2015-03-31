@@ -21,12 +21,6 @@ AUI().use(
 				instance._taskListURL = param.taskListURL;
 			},
 
-			initUpcomingTasks: function(param) {
-				var instance = this;
-
-				instance._upcomingTasksListURL = param.upcomingTasksListURL;
-			},
-
 			clearFilters: function() {
 				var instance = this;
 
@@ -65,6 +59,12 @@ AUI().use(
 						uri: url
 					}
 				);
+			},
+
+			initUpcomingTasks: function(param) {
+				var instance = this;
+
+				instance._upcomingTasksListURL = param.upcomingTasksListURL;
 			},
 
 			openTask: function(href, tasksEntryId) {
@@ -115,7 +115,7 @@ AUI().use(
 					var data = {};
 
 					if (!showAll) {
-						var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
+						showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
 					}
 
 					data[instance._namespace + 'assetTagIds'] = instance._getAssetTagIds();
@@ -185,26 +185,6 @@ AUI().use(
 				);
 			},
 
-			_setupTagsPopup: function() {
-				var container = A.one('.tasks-portlet');
-
-				container.delegate(
-					'mouseover',
-					function(event) {
-						event.currentTarget.one('.tags').show();
-					},
-					'.tags-wrapper'
-				);
-
-				container.delegate(
-					'mouseout',
-					function(event) {
-						event.currentTarget.one('.tags').hide();
-					},
-					'.tags-wrapper'
-				);
-			},
-
 			_setupProgressBar: function() {
 				var instance = this;
 
@@ -243,7 +223,7 @@ AUI().use(
 
 						var completedText = Liferay.Language.get('complete');
 
-						if (pos !== "100") {
+						if (pos !== '100') {
 							completedText = Liferay.Language.get(pos + '-percent-complete');
 						}
 
@@ -268,6 +248,26 @@ AUI().use(
 				);
 			},
 
+			_setupTagsPopup: function() {
+				var container = A.one('.tasks-portlet');
+
+				container.delegate(
+					'mouseover',
+					function(event) {
+						event.currentTarget.one('.tags').show();
+					},
+					'.tags-wrapper'
+				);
+
+				container.delegate(
+					'mouseout',
+					function(event) {
+						event.currentTarget.one('.tags').hide();
+					},
+					'.tags-wrapper'
+				);
+			},
+
 			_updateViewCount: function(tasksEntryId) {
 				var instance = this;
 
@@ -279,6 +279,6 @@ AUI().use(
 
 				A.io.request(portletURL.toString());
 			}
-		}
+		};
 	}
 );
