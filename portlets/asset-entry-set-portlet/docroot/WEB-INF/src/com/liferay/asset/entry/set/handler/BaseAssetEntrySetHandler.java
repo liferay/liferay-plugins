@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -55,9 +54,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 				JSONFactoryUtil.createJSONObject(assetEntrySet.getPayload()),
 				payloadJSONObject)) {
 
-			Date now = new Date();
-
-			jsonObject.put("contentModifiedTime", now.getTime());
+			jsonObject.put("contentModifiedTime", System.currentTimeMillis());
 		}
 
 		jsonObject.put("linkData", payloadJSONObject.getString("linkData"));
