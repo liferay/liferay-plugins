@@ -406,13 +406,13 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 			Liferay.CalendarUtil.toUTC(miniCalendarEndDate),
 			'busy',
 			function(rulesDefinition) {
+				var selectedDates = <portlet:namespace />miniCalendar._getSelectedDatesList();
+
 				window.<portlet:namespace />miniCalendar.set(
 					'customRenderer',
 					{
 						filterFunction: function(date, node, rules) {
 							node.addClass('lfr-busy-day');
-
-							var selectedDates = this._getSelectedDatesList();
 
 							DateMath.toMidnight(date);
 
@@ -427,6 +427,8 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 						rules: rulesDefinition
 					}
 				);
+
+				<portlet:namespace />miniCalendar.selectDates(selectedDates);
 			}
 		);
 	};
