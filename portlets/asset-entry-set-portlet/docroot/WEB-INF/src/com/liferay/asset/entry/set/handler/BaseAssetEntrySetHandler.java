@@ -77,7 +77,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 	}
 
 	protected boolean isContentModified(
-		JSONObject oldPayloadJSONObject, JSONObject payloadJSONObject) {
+		JSONObject oldPayloadJSONObject, JSONObject newPayloadJSONObject) {
 
 		Iterator<String> keys = oldPayloadJSONObject.keys();
 
@@ -92,9 +92,9 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			}
 
 			String oldValue = oldPayloadJSONObject.getString(key);
-			String value = payloadJSONObject.getString(key);
+			String newValue = newPayloadJSONObject.getString(key);
 
-			if (!Validator.equals(oldValue, value)) {
+			if (!Validator.equals(oldValue, newValue)) {
 				return true;
 			}
 		}
