@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
@@ -257,7 +258,8 @@ public class CalendarBookingStagedModelDataHandler
 			portletDataContext.getComments();
 
 		return comments.get(
-			CalendarBooking.class.getName() + calendarBookingId);
+			CalendarBooking.class.getName() + StringPool.POUND +
+				calendarBookingId);
 	}
 
 	private static final int[] _EXPORTABLE_STATUSES = {
