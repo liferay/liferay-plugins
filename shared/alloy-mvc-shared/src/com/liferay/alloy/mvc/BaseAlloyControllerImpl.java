@@ -1047,7 +1047,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-		boolean andOperator = ParamUtil.getBoolean(request, "andOperator");
+		boolean andOperator = false;
+
+		boolean advancedSearch = ParamUtil.getBoolean(
+			request, "advancedSearch");
+
+		if (advancedSearch) {
+			andOperator = ParamUtil.getBoolean(request, "andOperator");
+		}
 
 		searchContext.setAndSearch(andOperator);
 
