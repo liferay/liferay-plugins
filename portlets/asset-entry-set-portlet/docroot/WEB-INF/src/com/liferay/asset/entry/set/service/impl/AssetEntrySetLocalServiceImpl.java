@@ -181,8 +181,8 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetId);
 
 		setDisplayFields(
-			userId, assetEntrySet, childAssetEntrySetsLimit,
-			likedParticipantsLimit);
+			userId, System.currentTimeMillis(), assetEntrySet,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
 
 		return assetEntrySet;
 	}
@@ -483,7 +483,7 @@ public class AssetEntrySetLocalServiceImpl
 				end);
 
 		setDisplayFields(
-			userId, assetEntrySets, childAssetEntrySetsLimit,
+			userId, createTime, assetEntrySets, childAssetEntrySetsLimit,
 			likedParticipantsLimit);
 
 		return assetEntrySets;
@@ -568,11 +568,12 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setDisplayFields(
-			long userId, AssetEntrySet assetEntrySet,
+			long userId, long createTime, AssetEntrySet assetEntrySet,
 			int childAssetEntrySetsLimit, int likedParticipantsLimit)
 		throws PortalException, SystemException {
 
-		assetEntrySet.setChildAssetEntrySets(userId, childAssetEntrySetsLimit);
+		assetEntrySet.setChildAssetEntrySets(
+			userId, createTime, childAssetEntrySetsLimit);
 
 		assetEntrySet.setPayload(
 			AssetEntrySetPayloadProcessorUtil.process(
@@ -584,13 +585,13 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setDisplayFields(
-		long userId, List<AssetEntrySet> assetEntrySets,
+		long userId, long createTime, List<AssetEntrySet> assetEntrySets,
 		int childAssetEntrySetsLimit, int likedParticipantsLimit)
 	throws PortalException, SystemException {
 
 	for (AssetEntrySet assetEntrySet : assetEntrySets) {
 		setDisplayFields(
-			userId, assetEntrySet, childAssetEntrySetsLimit,
+			userId, createTime, assetEntrySet, childAssetEntrySetsLimit,
 			likedParticipantsLimit);
 	}
 }
@@ -754,8 +755,8 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		setDisplayFields(
-			userId, assetEntrySet, childAssetEntrySetsLimit,
-			likedParticipantsLimit);
+			userId, System.currentTimeMillis(), assetEntrySet,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
 
 		return assetEntrySet;
 	}
