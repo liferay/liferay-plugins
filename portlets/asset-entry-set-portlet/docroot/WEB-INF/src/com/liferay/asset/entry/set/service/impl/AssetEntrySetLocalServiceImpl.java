@@ -212,9 +212,7 @@ public class AssetEntrySetLocalServiceImpl
 				createTime, parentAssetEntrySetId, start, end,
 				orderByComparator);
 
-		setLikedParticipants(userId, assetEntrySets, 0);
-
-		setSharedToParticipants(assetEntrySets);
+		setDisplayFields(userId, createTime, assetEntrySets, 0, 0);
 
 		return assetEntrySets;
 	}
@@ -244,9 +242,7 @@ public class AssetEntrySetLocalServiceImpl
 				createTime, parentAssetEntrySetId, start, end,
 				orderByComparator);
 
-		setLikedParticipants(userId, assetEntrySets, 0);
-
-		setSharedToParticipants(assetEntrySets);
+		setDisplayFields(userId, createTime, assetEntrySets, 0, 0);
 
 		return assetEntrySets;
 	}
