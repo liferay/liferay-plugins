@@ -46,9 +46,9 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 		}
 
 		_childAssetEntrySets =
-			AssetEntrySetLocalServiceUtil.getChildAssetEntrySets(
-				userId, getAssetEntrySetId(), 0, childAssetEntrySetsLimit,
-				null);
+			AssetEntrySetLocalServiceUtil.getOldChildAssetEntrySets(
+				userId, System.currentTimeMillis(), getAssetEntrySetId(), 0,
+				childAssetEntrySetsLimit, null);
 	}
 
 	private List<AssetEntrySet> _childAssetEntrySets;

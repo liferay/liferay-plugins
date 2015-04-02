@@ -38,8 +38,12 @@
 		<finder name="ParentAssetEntrySetId" return-type="Collection">
 			<finder-column name="parentAssetEntrySetId" />
 		</finder>
-		<finder name="CT_PAESI" return-type="Collection">
-			<finder-column name="createTime" />
+		<finder name="GtCT_PAESI" return-type="Collection">
+			<finder-column name="createTime" comparator="&gt;" />
+			<finder-column name="parentAssetEntrySetId" />
+		</finder>
+		<finder name="LtCT_PAESI" return-type="Collection">
+			<finder-column name="createTime" comparator="&lt;=" />
 			<finder-column name="parentAssetEntrySetId" />
 		</finder>
 		<finder name="PAESI_CCNI" return-type="Collection">

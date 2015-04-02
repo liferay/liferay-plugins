@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.File;
 
@@ -101,6 +102,20 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	}
 
 	@Override
+	public List<AssetEntrySet> getNewChildAssetEntrySets(
+			long createTime, long parentAssetEntrySetId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), parentAssetEntrySetId, ActionKeys.VIEW);
+
+		return assetEntrySetLocalService.getNewChildAssetEntrySets(
+			getUserId(), createTime, parentAssetEntrySetId, start, end,
+			orderByComparator);
+	}
+
+	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long createTime, long parentAssetEntrySetId, String sharedTo,
 			String[] assetTagNames, int childAssetEntrySetsLimit,
@@ -113,6 +128,20 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
 			assetTagNames, childAssetEntrySetsLimit, likedParticipantsLimit,
 			start, end);
+	}
+
+	@Override
+	public List<AssetEntrySet> getOldChildAssetEntrySets(
+			long createTime, long parentAssetEntrySetId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), parentAssetEntrySetId, ActionKeys.VIEW);
+
+		return assetEntrySetLocalService.getOldChildAssetEntrySets(
+			getUserId(), createTime, parentAssetEntrySetId, start, end,
+			orderByComparator);
 	}
 
 	@Override

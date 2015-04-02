@@ -188,23 +188,6 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
-	public List<AssetEntrySet> getChildAssetEntrySets(
-			long userId, long parentAssetEntrySetId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
-
-		List<AssetEntrySet> assetEntrySets =
-			assetEntrySetPersistence.findByParentAssetEntrySetId(
-				parentAssetEntrySetId, start, end, orderByComparator);
-
-		setLikedParticipants(userId, assetEntrySets, 0);
-
-		setSharedToParticipants(assetEntrySets);
-
-		return assetEntrySets;
-	}
-
-	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, String[] assetTagNames,
@@ -219,6 +202,24 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
+	public List<AssetEntrySet> getNewChildAssetEntrySets(
+			long userId, long createTime, long parentAssetEntrySetId, int start,
+			int end, OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		List<AssetEntrySet> assetEntrySets =
+			assetEntrySetPersistence.findByGtCT_PAESI(
+				createTime, parentAssetEntrySetId, start, end,
+				orderByComparator);
+
+		setLikedParticipants(userId, assetEntrySets, 0);
+
+		setSharedToParticipants(assetEntrySets);
+
+		return assetEntrySets;
+	}
+
+	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long createTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, String[] assetTagNames,
@@ -230,6 +231,24 @@ public class AssetEntrySetLocalServiceImpl
 			userId, createTime, false, parentAssetEntrySetId, sharedToJSONArray,
 			assetTagNames, childAssetEntrySetsLimit, likedParticipantsLimit,
 			start, end);
+	}
+
+	@Override
+	public List<AssetEntrySet> getOldChildAssetEntrySets(
+			long userId, long createTime, long parentAssetEntrySetId, int start,
+			int end, OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		List<AssetEntrySet> assetEntrySets =
+			assetEntrySetPersistence.findByLtCT_PAESI(
+				createTime, parentAssetEntrySetId, start, end,
+				orderByComparator);
+
+		setLikedParticipants(userId, assetEntrySets, 0);
+
+		setSharedToParticipants(assetEntrySets);
+
+		return assetEntrySets;
 	}
 
 	@Override
