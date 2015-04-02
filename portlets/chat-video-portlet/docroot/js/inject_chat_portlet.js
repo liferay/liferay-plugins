@@ -9,7 +9,7 @@ AUI().use(
 		Liferay.namespace('Chat');
 
 		var TPL_CHAT_PANEL = '<li class="user user_{panelId}" panelId="{panelId}">' +
-				'<div class="panel-trigger">' +
+				'<div class="panel-trigger" tabindex="0">' +
 					'<span class="trigger-name"></span>' +
 					'<div class="typing-status"></div>' +
 				'</div>' +
