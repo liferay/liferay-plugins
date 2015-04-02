@@ -57,24 +57,38 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 				"int", "int", "int", "int"
 			};
 
-		_methodName8 = "getOldAssetEntrySets";
+		_methodName8 = "getNewChildAssetEntrySets";
 
 		_methodParameterTypes8 = new String[] {
+				"long", "long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+
+		_methodName9 = "getOldAssetEntrySets";
+
+		_methodParameterTypes9 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String[][]",
 				"int", "int", "int", "int"
 			};
 
-		_methodName9 = "likeAssetEntrySet";
+		_methodName10 = "getOldChildAssetEntrySets";
 
-		_methodParameterTypes9 = new String[] { "long", "int", "int" };
+		_methodParameterTypes10 = new String[] {
+				"long", "long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
 
-		_methodName10 = "unlikeAssetEntrySet";
+		_methodName11 = "likeAssetEntrySet";
 
-		_methodParameterTypes10 = new String[] { "long", "int", "int" };
+		_methodParameterTypes11 = new String[] { "long", "int", "int" };
 
-		_methodName11 = "updateAssetEntrySet";
+		_methodName12 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes11 = new String[] {
+		_methodParameterTypes12 = new String[] { "long", "int", "int" };
+
+		_methodName13 = "updateAssetEntrySet";
+
+		_methodParameterTypes13 = new String[] {
 				"long", "java.lang.String", "boolean"
 			};
 	}
@@ -341,6 +355,52 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewChildAssetEntrySets(
+		long createTime, long parentAssetEntrySetId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
+					new Object[] {
+						createTime,
+						
+					parentAssetEntrySetId,
+						
+					start,
+						
+					end,
+						
+					ClpSerializer.translateInput(orderByComparator)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
 		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
@@ -350,8 +410,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName8,
-					_methodParameterTypes8,
+			returnObj = _invokableService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						createTime,
 						
@@ -394,6 +454,52 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldChildAssetEntrySets(
+		long createTime, long parentAssetEntrySetId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName10,
+					_methodParameterTypes10,
+					new Object[] {
+						createTime,
+						
+					parentAssetEntrySetId,
+						
+					start,
+						
+					end,
+						
+					ClpSerializer.translateInput(orderByComparator)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
 		long assetEntrySetId, int childAssetEntrySetsLimit,
 		int likedParticipantsLimit)
@@ -402,8 +508,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableService.invokeMethod(_methodName11,
+					_methodParameterTypes11,
 					new Object[] {
 						assetEntrySetId,
 						
@@ -444,8 +550,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
+			returnObj = _invokableService.invokeMethod(_methodName12,
+					_methodParameterTypes12,
 					new Object[] {
 						assetEntrySetId,
 						
@@ -486,8 +592,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName11,
-					_methodParameterTypes11,
+			returnObj = _invokableService.invokeMethod(_methodName13,
+					_methodParameterTypes13,
 					new Object[] {
 						assetEntrySetId,
 						
@@ -542,4 +648,8 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 	private String[] _methodParameterTypes10;
 	private String _methodName11;
 	private String[] _methodParameterTypes11;
+	private String _methodName12;
+	private String[] _methodParameterTypes12;
+	private String _methodName13;
+	private String[] _methodParameterTypes13;
 }

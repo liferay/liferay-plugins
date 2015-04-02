@@ -57,24 +57,38 @@ public class AssetEntrySetServiceClpInvoker {
 				"int", "int", "int", "int"
 			};
 
-		_methodName57 = "getOldAssetEntrySets";
+		_methodName57 = "getNewChildAssetEntrySets";
 
 		_methodParameterTypes57 = new String[] {
+				"long", "long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+
+		_methodName58 = "getOldAssetEntrySets";
+
+		_methodParameterTypes58 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String[][]",
 				"int", "int", "int", "int"
 			};
 
-		_methodName58 = "likeAssetEntrySet";
+		_methodName59 = "getOldChildAssetEntrySets";
 
-		_methodParameterTypes58 = new String[] { "long", "int", "int" };
+		_methodParameterTypes59 = new String[] {
+				"long", "long", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
 
-		_methodName59 = "unlikeAssetEntrySet";
+		_methodName60 = "likeAssetEntrySet";
 
-		_methodParameterTypes59 = new String[] { "long", "int", "int" };
+		_methodParameterTypes60 = new String[] { "long", "int", "int" };
 
-		_methodName60 = "updateAssetEntrySet";
+		_methodName61 = "unlikeAssetEntrySet";
 
-		_methodParameterTypes60 = new String[] {
+		_methodParameterTypes61 = new String[] { "long", "int", "int" };
+
+		_methodName62 = "updateAssetEntrySet";
+
+		_methodParameterTypes62 = new String[] {
 				"long", "java.lang.String", "boolean"
 			};
 	}
@@ -133,6 +147,15 @@ public class AssetEntrySetServiceClpInvoker {
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+			return AssetEntrySetServiceUtil.getNewChildAssetEntrySets(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue(),
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+		}
+
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return AssetEntrySetServiceUtil.getOldAssetEntrySets(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -143,22 +166,31 @@ public class AssetEntrySetServiceClpInvoker {
 				((Integer)arguments[7]).intValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+			return AssetEntrySetServiceUtil.getOldChildAssetEntrySets(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue(),
+				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
+		}
+
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return AssetEntrySetServiceUtil.likeAssetEntrySet(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return AssetEntrySetServiceUtil.unlikeAssetEntrySet(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return AssetEntrySetServiceUtil.updateAssetEntrySet(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Boolean)arguments[2]).booleanValue());
@@ -189,4 +221,8 @@ public class AssetEntrySetServiceClpInvoker {
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
+	private String _methodName61;
+	private String[] _methodParameterTypes61;
+	private String _methodName62;
+	private String[] _methodParameterTypes62;
 }

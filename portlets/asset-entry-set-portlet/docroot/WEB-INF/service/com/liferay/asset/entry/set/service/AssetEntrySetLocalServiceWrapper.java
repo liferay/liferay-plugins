@@ -322,16 +322,6 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
-		long userId, long parentAssetEntrySetId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntrySetLocalService.getChildAssetEntrySets(userId,
-			parentAssetEntrySetId, start, end, orderByComparator);
-	}
-
-	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
@@ -346,6 +336,17 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewChildAssetEntrySets(
+		long userId, long createTime, long parentAssetEntrySetId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.getNewChildAssetEntrySets(userId,
+			createTime, parentAssetEntrySetId, start, end, orderByComparator);
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
@@ -357,6 +358,17 @@ public class AssetEntrySetLocalServiceWrapper
 			createTime, parentAssetEntrySetId, sharedToJSONArray,
 			assetTagNames, childAssetEntrySetsLimit, likedParticipantsLimit,
 			start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldChildAssetEntrySets(
+		long userId, long createTime, long parentAssetEntrySetId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.getOldChildAssetEntrySets(userId,
+			createTime, parentAssetEntrySetId, start, end, orderByComparator);
 	}
 
 	@Override

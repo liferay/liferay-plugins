@@ -517,14 +517,17 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public void setChildAssetEntrySets(long userId, int childAssetEntrySetsLimit) {
+	public void setChildAssetEntrySets(long userId, long createTime,
+		int childAssetEntrySetsLimit) {
 		try {
 			String methodName = "setChildAssetEntrySets";
 
-			Class<?>[] parameterTypes = new Class<?>[] { long.class, int.class };
+			Class<?>[] parameterTypes = new Class<?>[] {
+					long.class, long.class, int.class
+				};
 
 			Object[] parameterValues = new Object[] {
-					userId, childAssetEntrySetsLimit
+					userId, createTime, childAssetEntrySetsLimit
 				};
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
