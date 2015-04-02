@@ -74,8 +74,9 @@ public class CalendarBookingLocalServiceTest {
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				RandomTestUtil.randomLocaleStringMap(),
 				RandomTestUtil.randomLocaleStringMap(),
-				RandomTestUtil.randomString(), startTime, startTime + (Time.HOUR * 10),
-				false, null, 0, null, 0, null, serviceContext);
+				RandomTestUtil.randomString(), startTime,
+				startTime + (Time.HOUR * 10), false, null, 0, null, 0, null,
+				serviceContext);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, calendarBooking.getStatus());
@@ -103,8 +104,9 @@ public class CalendarBookingLocalServiceTest {
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				RandomTestUtil.randomLocaleStringMap(),
 				RandomTestUtil.randomLocaleStringMap(),
-				RandomTestUtil.randomString(), startTime, startTime + (Time.HOUR * 10),
-				false, null, 0, null, 0, null, serviceContext);
+				RandomTestUtil.randomString(), startTime,
+				startTime + (Time.HOUR * 10), false, null, 0, null, 0, null,
+				serviceContext);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_DRAFT, calendarBooking.getStatus());
@@ -132,8 +134,9 @@ public class CalendarBookingLocalServiceTest {
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				RandomTestUtil.randomLocaleStringMap(),
 				RandomTestUtil.randomLocaleStringMap(),
-				RandomTestUtil.randomString(), startTime, startTime + (Time.HOUR * 10),
-				false, null, 0, null, 0, null, serviceContext);
+				RandomTestUtil.randomString(), startTime,
+				startTime + (Time.HOUR * 10), false, null, 0, null, 0, null,
+				serviceContext);
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
 
@@ -142,9 +145,9 @@ public class CalendarBookingLocalServiceTest {
 			calendar.getCalendarId(), new long[0],
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomString(), startTime, startTime + (Time.HOUR * 10),
-			false, null, 0, null, 0, null, RandomTestUtil.randomInt(),
-			serviceContext);
+			RandomTestUtil.randomString(), startTime,
+			startTime + (Time.HOUR * 10), false, null, 0, null, 0, null,
+			RandomTestUtil.randomInt(), serviceContext);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_APPROVED, calendarBooking.getStatus());
@@ -172,8 +175,9 @@ public class CalendarBookingLocalServiceTest {
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				RandomTestUtil.randomLocaleStringMap(),
 				RandomTestUtil.randomLocaleStringMap(),
-				RandomTestUtil.randomString(), startTime, startTime + (Time.HOUR * 10),
-				false, null, 0, null, 0, null, serviceContext);
+				RandomTestUtil.randomString(), startTime,
+				startTime + (Time.HOUR * 10), false, null, 0, null, 0, null,
+				serviceContext);
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
 
@@ -182,9 +186,9 @@ public class CalendarBookingLocalServiceTest {
 			calendar.getCalendarId(), new long[0],
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomString(), startTime, startTime + (Time.HOUR * 10),
-			false, null, 0, null, 0, null, RandomTestUtil.randomInt(),
-			serviceContext);
+			RandomTestUtil.randomString(), startTime,
+			startTime + (Time.HOUR * 10), false, null, 0, null, 0, null,
+			RandomTestUtil.randomInt(), serviceContext);
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_DRAFT, calendarBooking.getStatus());
