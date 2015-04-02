@@ -56,14 +56,14 @@ public class CalendarBookingLocalServiceTest {
 	public void testAddCalendarBookingWorkflowActionPublish()
 		throws PortalException {
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCompanyId(_user.getCompanyId());
+		ServiceContext serviceContext = createServiceContext();
 
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getUserCalendarResource(
 				_user.getUserId(), serviceContext);
+
 		Calendar calendar = calendarResource.getDefaultCalendar();
+
 		long startDate = DateUtil.newTime();
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
@@ -85,14 +85,14 @@ public class CalendarBookingLocalServiceTest {
 	public void testAddCalendarBookingWorkflowActionSaveDraft()
 		throws PortalException {
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCompanyId(_user.getCompanyId());
+		ServiceContext serviceContext = createServiceContext();
 
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getUserCalendarResource(
 				_user.getUserId(), serviceContext);
+
 		Calendar calendar = calendarResource.getDefaultCalendar();
+
 		long startDate = DateUtil.newTime();
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
@@ -114,14 +114,14 @@ public class CalendarBookingLocalServiceTest {
 	public void testUpdateCalendarBookingWorkflowActionPublish()
 		throws PortalException {
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCompanyId(_user.getCompanyId());
+		ServiceContext serviceContext = createServiceContext();
 
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getUserCalendarResource(
 				_user.getUserId(), serviceContext);
+
 		Calendar calendar = calendarResource.getDefaultCalendar();
+
 		long startDate = DateUtil.newTime();
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
@@ -154,14 +154,14 @@ public class CalendarBookingLocalServiceTest {
 	public void testUpdateCalendarBookingWorkflowActionSaveDraft()
 		throws PortalException {
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCompanyId(_user.getCompanyId());
+		ServiceContext serviceContext = createServiceContext();
 
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getUserCalendarResource(
 				_user.getUserId(), serviceContext);
+
 		Calendar calendar = calendarResource.getDefaultCalendar();
+
 		long startDate = DateUtil.newTime();
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
@@ -188,6 +188,14 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertEquals(
 			WorkflowConstants.STATUS_DRAFT, calendarBooking.getStatus());
+	}
+
+	protected ServiceContext createServiceContext() {
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(_user.getCompanyId());
+
+		return serviceContext;
 	}
 
 	private User _user;

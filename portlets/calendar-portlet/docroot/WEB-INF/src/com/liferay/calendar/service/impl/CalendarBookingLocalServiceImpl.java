@@ -73,10 +73,7 @@ import com.liferay.portlet.asset.model.AssetLinkConstants;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -216,8 +213,11 @@ public class CalendarBookingLocalServiceImpl
 
 		// Workflow
 
-		calendarBooking = startWorkflowInstance(
-			userId, calendarBooking, serviceContext);
+		WorkflowHandlerRegistryUtil.startWorkflowInstance(
+			calendarBooking.getCompanyId(), calendarBooking.getGroupId(),
+			userId, CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId(), calendarBooking,
+			serviceContext);
 
 		return calendarBooking;
 	}
@@ -826,15 +826,18 @@ public class CalendarBookingLocalServiceImpl
 			CalendarActivityKeys.UPDATE_CALENDAR_BOOKING,
 			getExtraDataJSON(calendarBooking), 0);
 
-		// Workflow
-
-		calendarBooking = startWorkflowInstance(
-			userId, calendarBooking, serviceContext);
-
 		// Notifications
 
 		sendNotification(
 			calendarBooking, NotificationTemplateType.UPDATE, serviceContext);
+
+		// Workflow
+
+		WorkflowHandlerRegistryUtil.startWorkflowInstance(
+			calendarBooking.getCompanyId(), calendarBooking.getGroupId(),
+			userId, CalendarBooking.class.getName(),
+			calendarBooking.getCalendarBookingId(), calendarBooking,
+			serviceContext);
 
 		return calendarBooking;
 	}
@@ -1157,26 +1160,6 @@ public class CalendarBookingLocalServiceImpl
 				_log.warn(e, e);
 			}
 		}
-	}
-
-	protected CalendarBooking startWorkflowInstance(
-			long userId, CalendarBooking calendarBooking,
-			ServiceContext serviceContext)
-		throws PortalException {
-
-		Map<String, Serializable> workflowContext =
-			(Map<String, Serializable>)serviceContext.removeAttribute(
-				"workflowContext");
-
-		if (workflowContext == null) {
-			workflowContext = Collections.emptyMap();
-		}
-
-		return WorkflowHandlerRegistryUtil.startWorkflowInstance(
-			calendarBooking.getCompanyId(), calendarBooking.getGroupId(),
-			userId, CalendarBooking.class.getName(),
-			calendarBooking.getCalendarBookingId(), calendarBooking,
-			serviceContext, workflowContext);
 	}
 
 	protected void updateChildCalendarBookings(
