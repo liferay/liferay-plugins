@@ -1,5 +1,3 @@
-package com.liferay.calendar.workflow;
-
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -13,6 +11,8 @@ package com.liferay.calendar.workflow;
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
+package com.liferay.calendar.workflow;
 
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
