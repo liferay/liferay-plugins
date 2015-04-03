@@ -3,6 +3,12 @@
 <schema name="liferay" version="1.1">
 	<types>
 		<fieldType class="solr.StrField" name="string" omitNorms="true" sortMissingLast="true" />
+		<fieldType class="solr.TextField" name="string_keyword_lowercase" omitNorms="true" sortMissingLast="true">
+			<analyzer>
+				<tokenizer class="solr.KeywordTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+			</analyzer>
+		</fieldType>
 		<fieldType class="solr.TextField" name="string_lowercase" omitNorms="true" sortMissingLast="true">
 			<analyzer>
 				<tokenizer class="solr.WhitespaceTokenizerFactory" />
@@ -453,7 +459,7 @@
 	</types>
 	<fields>
 		<field indexed="true" multiValued="true" name="ancestorOrganizationIds" stored="true" type="string" />
-		<field indexed="true" name="articleId" stored="true" type="string" />
+		<field indexed="true" name="articleId" stored="true" type="string_keyword_lowercase" />
 		<field indexed="true" name="assetCategoryId" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="assetCategoryIds" stored="true" type="string" />
 		<field indexed="true" name="assetTagId" stored="true" type="string" />
