@@ -23,7 +23,7 @@ AUI().use(
 						'<div class="minimize panel-button"></div>' +
 						'<div class="close panel-button"></div>' +
 						'<div class="panel-self-view">' +
-							'<img alt="{panelTitle}" src="{userImagePath}" title="{panelTitle}" />' +
+							'<img alt="{panelTitle}" src="{userImagePath}" />' +
 							'<video autoplay="autoplay" class="local hide" muted="muted"></video>' +
 						'</div>' +
 						'<div class="panel-title">{panelTitle}</div>' +

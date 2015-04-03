@@ -610,9 +610,13 @@ AUI().use(
 				_setPanelHTML: function() {
 					var instance = this;
 
+					var panelId = instance._panelId;
+
+					var panelTitle = LString.escapeHTML(instance._panelTitle);
+
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(instance._panelIcon);
 
-					var html = '<li class="user user_' + instance._panelId + '" panelId="' + instance._panelId + '">' +
+					var html = '<li class="user user_' + panelId + '" panelId="' + panelId + '">' +
 							'<div class="panel-trigger">' +
 								'<span class="trigger-name"></span>' +
 								'<div class="typing-status"></div>' +
@@ -621,8 +625,8 @@ AUI().use(
 								'<div class="panel-window">' +
 									'<div class="minimize panel-button "></div>' +
 									'<div class="close panel-button"></div>' +
-									'<img alt="' + LString.escapeHTML(instance._panelTitle) + '" class="panel-icon" src="' + userImagePath + '" />' +
-									'<div class="panel-title">' + LString.escapeHTML(instance._panelTitle) + '</div>' +
+									'<img alt="' + panelTitle + '" class="panel-icon" src="' + userImagePath + '" />' +
+									'<div class="panel-title">' + panelTitle + '</div>' +
 									'<div class="panel-profile">...</div>' +
 									'<div class="panel-output"></div>' +
 									'<div class="panel-input">' +
@@ -1351,12 +1355,14 @@ AUI().use(
 
 					currentBuddies[buddy.userId] = buddy;
 
+					var fullName = LString.escapeHTML(buddy.fullName);
+
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitURL);
 
 					buffer.push(
-						'<li class="active user" data-groupId="' + buddy.groupId + '" data-userId="' + buddy.userId + '" title="' + LString.escapeHTML(buddy.fullName) + '">' +
-							'<img alt="' + LString.escapeHTML(buddy.fullName) + '" src="' + userImagePath + '" />' +
-							'<div class="name">' + LString.escapeHTML(buddy.fullName) + '</div>' +
+						'<li class="active user" data-groupId="' + buddy.groupId + '" data-userId="' + buddy.userId + '">' +
+							'<img alt="' + fullName + '" src="' + userImagePath + '" />' +
+							'<div class="name">' + fullName + '</div>' +
 							'<div class="buddy-services">'
 					);
 
