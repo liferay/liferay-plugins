@@ -353,7 +353,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			else if (data instanceof JSONObject) {
 				jsonObject.put("data", (JSONObject)data);
 			}
-			else {
+			else if (data != null) {
 				jsonObject.put(
 					"data",
 					JSONFactoryUtil.createJSONObject(String.valueOf(data)));
@@ -978,7 +978,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			else if (object instanceof JSONArray) {
 				data = object;
 			}
-			else {
+			else if (object != null) {
 				data = toJSONObject(object);
 			}
 		}
@@ -986,6 +986,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		responseContent = buildResponseContent(data, message, status);
 
 		return true;
+	}
+
+	protected boolean respondWith(String message) throws Exception {
+		return respondWith(message, null);
 	}
 
 	@SuppressWarnings("unused")
