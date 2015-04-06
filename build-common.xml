@@ -1459,54 +1459,36 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<antelope:endswith string="${plugin.name}" with="-ext" />
 				<then>
-					<direct-deploy-ext-cmd
-						direct.deploy.dir="${app.server.deploy.dir}"
-						module.dir="@{module.dir}"
-					/>
+					<direct-deploy-ext-cmd />
 				</then>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-hook" />
 					<then>
-						<direct-deploy-hook-cmd
-							direct.deploy.dir="${app.server.deploy.dir}"
-							module.dir="@{module.dir}"
-						/>
+						<direct-deploy-hook-cmd />
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 					<then>
-						<direct-deploy-layouttpl-cmd
-							direct.deploy.dir="${app.server.deploy.dir}"
-							module.dir="@{module.dir}"
-						/>
+						<direct-deploy-layouttpl-cmd />
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-portlet" />
 					<then>
-						<direct-deploy-portlet-cmd
-							direct.deploy.dir="${app.server.deploy.dir}"
-							module.dir="@{module.dir}"
-						/>
+						<direct-deploy-portlet-cmd />
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-theme" />
 					<then>
-						<direct-deploy-theme-cmd
-							direct.deploy.dir="${app.server.deploy.dir}"
-							module.dir="@{module.dir}"
-						/>
+						<direct-deploy-theme-cmd />
 					</then>
 				</elseif>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-web" />
 					<then>
-						<direct-deploy-web-cmd
-							direct.deploy.dir="${app.server.deploy.dir}"
-							module.dir="@{module.dir}"
-						/>
+						<direct-deploy-web-cmd />
 					</then>
 				</elseif>
 			</if>
@@ -1514,14 +1496,9 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="direct-deploy-ext-cmd">
-		<attribute name="direct.deploy.dir" />
-		<attribute name="module.dir" />
+		<attribute name="direct.deploy.dir" default="${app.server.deploy.dir}" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
 			<java
 				classname="com.liferay.portal.tools.deploy.ExtDeployer"
 				classpathref="portal.classpath"
@@ -1553,14 +1530,9 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="direct-deploy-hook-cmd">
-		<attribute name="direct.deploy.dir" />
-		<attribute name="module.dir" />
+		<attribute name="direct.deploy.dir" default="${app.server.deploy.dir}" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
 			<java
 				classname="com.liferay.portal.tools.deploy.HookDeployer"
 				classpathref="portal.classpath"
@@ -1592,14 +1564,9 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="direct-deploy-layouttpl-cmd">
-		<attribute name="direct.deploy.dir" />
-		<attribute name="module.dir" />
+		<attribute name="direct.deploy.dir" default="${app.server.deploy.dir}" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
 			<java
 				classname="com.liferay.portal.tools.deploy.LayoutTemplateDeployer"
 				classpathref="portal.classpath"
@@ -1627,14 +1594,9 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="direct-deploy-portlet-cmd">
-		<attribute name="direct.deploy.dir" />
-		<attribute name="module.dir" />
+		<attribute name="direct.deploy.dir" default="${app.server.deploy.dir}" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
 			<java
 				classname="com.liferay.portal.tools.deploy.PortletDeployer"
 				classpathref="portal.classpath"
@@ -1675,14 +1637,9 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="direct-deploy-theme-cmd">
-		<attribute name="direct.deploy.dir" />
-		<attribute name="module.dir" />
+		<attribute name="direct.deploy.dir" default="${app.server.deploy.dir}" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
 			<java
 				classname="com.liferay.portal.tools.deploy.ThemeDeployer"
 				classpathref="portal.classpath"
@@ -1716,14 +1673,9 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="direct-deploy-web-cmd">
-		<attribute name="direct.deploy.dir" />
-		<attribute name="module.dir" />
+		<attribute name="direct.deploy.dir" default="${app.server.deploy.dir}" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
 			<java
 				classname="com.liferay.portal.tools.deploy.WebDeployer"
 				classpathref="portal.classpath"
@@ -2936,6 +2888,30 @@ for (String path : paths) {
 			module.dirs="${plugins.includes.path}"
 			target.name="direct-deploy"
 		/>
+	</target>
+
+	<target name="direct-deploy-ext-cmd">
+		<direct-deploy-ext-cmd />
+	</target>
+
+	<target name="direct-deploy-hook-cmd">
+		<direct-deploy-hook-cmd />
+	</target>
+
+	<target name="direct-deploy-layouttpl-cmd">
+		<direct-deploy-layouttpl-cmd />
+	</target>
+
+	<target name="direct-deploy-portlet-cmd">
+		<direct-deploy-portlet-cmd />
+	</target>
+
+	<target name="direct-deploy-theme-cmd">
+		<direct-deploy-theme-cmd />
+	</target>
+
+	<target name="direct-deploy-web-cmd">
+		<direct-deploy-web-cmd />
 	</target>
 
 	<target name="format-javadoc">
