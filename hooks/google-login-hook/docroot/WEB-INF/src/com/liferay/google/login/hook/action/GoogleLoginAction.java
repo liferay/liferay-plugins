@@ -235,8 +235,6 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 		builder.setAccessType(accessType);
 
-		builder.setApprovalPrompt("auto");
-
 		return builder.build();
 	}
 
