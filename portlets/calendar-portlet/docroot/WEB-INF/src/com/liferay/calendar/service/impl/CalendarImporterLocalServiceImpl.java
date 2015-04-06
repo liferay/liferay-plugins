@@ -590,7 +590,7 @@ public class CalendarImporterLocalServiceImpl
 
 		if (assetVocabulary == null) {
 			assetVocabulary = assetVocabularyLocalService.addVocabulary(
-				userId, _ASSET_VOCABULARY_NAME, serviceContext);
+				userId, groupId, _ASSET_VOCABULARY_NAME, serviceContext);
 		}
 
 		AssetCategory assetCategory = assetCategoryPersistence.fetchByP_N_V(
@@ -602,7 +602,8 @@ public class CalendarImporterLocalServiceImpl
 		}
 
 		return assetCategoryLocalService.addCategory(
-			userId, name, assetVocabulary.getVocabularyId(), serviceContext);
+			userId, groupId, name, assetVocabulary.getVocabularyId(),
+			serviceContext);
 	}
 
 	protected CalendarResource getCalendarResource(long companyId, long groupId)
