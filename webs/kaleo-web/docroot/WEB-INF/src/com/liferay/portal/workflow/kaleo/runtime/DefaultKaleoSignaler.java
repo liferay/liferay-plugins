@@ -47,8 +47,8 @@ public class DefaultKaleoSignaler
 			new DefaultSingleDestinationMessageSender();
 
 		singleDestinationMessageSender.setDestinationName(destinationName);
-		singleDestinationMessageSender.setMessageSender(
-			MessageBusUtil.getMessageSender());
+		singleDestinationMessageSender.setMessageBus(
+			MessageBusUtil.getMessageBus());
 
 		_singleDestinationMessageSender = singleDestinationMessageSender;
 	}
