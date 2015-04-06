@@ -126,7 +126,7 @@ public class ResourceServlet extends WebServerServlet {
 			String contentType = _httpContext.getMimeType(fileName);
 
 			if (isSupportsRangeHeader(contentType)) {
-				sendFileWithRangeHeader(
+				ServletResponseUtil.sendFileWithRangeHeader(
 					request, response, fileName, urlConnection.getInputStream(),
 					urlConnection.getContentLength(), contentType);
 			}
