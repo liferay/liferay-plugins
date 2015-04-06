@@ -988,16 +988,18 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return true;
 	}
 
-	protected boolean respondWith(String message) throws Exception {
-		return respondWith(message, null);
-	}
-
 	@SuppressWarnings("unused")
 	protected boolean respondWith(Object object) throws Exception {
 		return respondWith(HttpServletResponse.SC_OK, null, object);
 	}
 
-	protected boolean respondWith(String message, Object object) throws Exception {
+	protected boolean respondWith(String message) throws Exception {
+		return respondWith(message, null);
+	}
+
+	protected boolean respondWith(String message, Object object)
+		throws Exception {
+
 		return respondWith(HttpServletResponse.SC_OK, message, object);
 	}
 
