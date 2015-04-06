@@ -956,7 +956,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
 	}
 
-	protected boolean respondWith(int status, String key, Object object)
+	protected boolean respondWith(int status, String message, Object object)
 		throws Exception {
 
 		Object data = null;
@@ -982,14 +982,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				data = toJSONObject(object);
 			}
 
-			if (Validator.isNotNull(key)) {
+			if (Validator.isNotNull(message)) {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 				if (data instanceof JSONArray) {
-					jsonObject.put(key, (JSONArray)data);
+					jsonObject.put(message, (JSONArray)data);
 				}
 				else {
-					jsonObject.put(key, (JSONObject)data);
+					jsonObject.put(message, (JSONObject)data);
 				}
 
 				data = jsonObject;
@@ -1006,8 +1006,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return respondWith(HttpServletResponse.SC_OK, null, object);
 	}
 
-	protected boolean respondWith(String key, Object object) throws Exception {
-		return respondWith(HttpServletResponse.SC_OK, key, object);
+	protected boolean respondWith(String message, Object object) throws Exception {
+		return respondWith(HttpServletResponse.SC_OK, message, object);
 	}
 
 	protected AlloySearchResult search(
