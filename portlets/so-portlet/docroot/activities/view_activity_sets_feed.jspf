@@ -94,7 +94,7 @@ for (SocialActivitySet activitySet : results) {
 							%>
 
 							<c:if test="<%= (microblogsEntry != null) && (microblogsEntry.getSocialRelationType() == MicroblogsEntryConstants.TYPE_EVERYONE) %>">
-								<span class="repost action">
+								<span class="action repost">
 									<a data-microblogsEntryId="<%= classPK %>" href="javascript:;"><liferay-ui:message key="repost" /></a>
 								</span>
 							</c:if>

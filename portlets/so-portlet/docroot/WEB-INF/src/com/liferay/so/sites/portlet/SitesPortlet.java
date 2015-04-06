@@ -343,7 +343,7 @@ public class SitesPortlet extends MVCPortlet {
 			}
 			else if (member &&
 					 !isOrganizationOrUserGroupMember(
-						themeDisplay.getUserId(), group)) {
+						 themeDisplay.getUserId(), group)) {
 
 				siteAssignmentsPortletURL.setParameter(
 					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
