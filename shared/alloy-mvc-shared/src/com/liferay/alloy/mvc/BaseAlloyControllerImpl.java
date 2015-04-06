@@ -981,22 +981,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			else {
 				data = toJSONObject(object);
 			}
-
-			if (Validator.isNotNull(message)) {
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-				if (data instanceof JSONArray) {
-					jsonObject.put(message, (JSONArray)data);
-				}
-				else {
-					jsonObject.put(message, (JSONObject)data);
-				}
-
-				data = jsonObject;
-			}
 		}
 
-		responseContent = buildResponseContent(data, StringPool.BLANK, status);
+		responseContent = buildResponseContent(data, message, status);
 
 		return true;
 	}
