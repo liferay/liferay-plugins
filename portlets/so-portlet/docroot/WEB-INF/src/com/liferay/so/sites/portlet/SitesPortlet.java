@@ -262,31 +262,15 @@ public class SitesPortlet extends MVCPortlet {
 				themeDisplay.getUserId(), group.getGroupId());
 
 			if (group.hasPrivateLayouts() && member) {
-				PortletURL portletURL = liferayPortletResponse.createActionURL(
-					PortletKeys.SITE_REDIRECTOR);
-
-				portletURL.setParameter("struts_action", "/my_sites/view");
-				portletURL.setParameter(
-					"groupId", String.valueOf(group.getGroupId()));
-				portletURL.setParameter(
-					"privateLayout", Boolean.TRUE.toString());
-				portletURL.setWindowState(WindowState.NORMAL);
-
-				groupJSONObject.put("privateLayoutsURL", portletURL.toString());
+				groupJSONObject.put(
+					"privateLayoutsURL",
+					group.getDisplayURL(themeDisplay, true));
 			}
 
 			if (group.hasPublicLayouts()) {
-				PortletURL portletURL = liferayPortletResponse.createActionURL(
-					PortletKeys.SITE_REDIRECTOR);
-
-				portletURL.setParameter("struts_action", "/my_sites/view");
-				portletURL.setParameter(
-					"groupId", String.valueOf(group.getGroupId()));
-				portletURL.setParameter(
-					"privateLayout", Boolean.FALSE.toString());
-				portletURL.setWindowState(WindowState.NORMAL);
-
-				groupJSONObject.put("publicLayoutsURL", portletURL.toString());
+				groupJSONObject.put(
+					"publicLayoutsURL",
+					group.getDisplayURL(themeDisplay, false));
 			}
 
 			boolean socialOfficeGroup =
