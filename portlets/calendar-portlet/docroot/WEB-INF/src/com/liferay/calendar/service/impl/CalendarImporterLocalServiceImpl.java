@@ -590,7 +590,7 @@ public class CalendarImporterLocalServiceImpl
 
 		if (assetVocabulary == null) {
 			assetVocabulary = assetVocabularyLocalService.addVocabulary(
-				userId, _ASSET_VOCABULARY_NAME, serviceContext);
+				userId, groupId, _ASSET_VOCABULARY_NAME, serviceContext);
 		}
 
 		AssetCategory assetCategory = assetCategoryPersistence.fetchByP_N_V(
@@ -602,7 +602,8 @@ public class CalendarImporterLocalServiceImpl
 		}
 
 		return assetCategoryLocalService.addCategory(
-			userId, name, assetVocabulary.getVocabularyId(), serviceContext);
+			userId, groupId, name, assetVocabulary.getVocabularyId(),
+			serviceContext);
 	}
 
 	protected CalendarResource getCalendarResource(long companyId, long groupId)
@@ -638,8 +639,7 @@ public class CalendarImporterLocalServiceImpl
 
 		int interval = tzsRecurrence.getInterval();
 
-		List<PositionalWeekday> positionalWeekdays =
-			new ArrayList<PositionalWeekday>();
+		List<PositionalWeekday> positionalWeekdays = new ArrayList<>();
 
 		if ((frequency == Frequency.DAILY) && (interval == 0)) {
 			frequency = Frequency.WEEKLY;
@@ -670,10 +670,10 @@ public class CalendarImporterLocalServiceImpl
 			int[] months = tzsRecurrence.getByMonth();
 
 			if (ArrayUtil.isNotEmpty(months)) {
-				List<Integer> monthsList = new ArrayList<Integer>();
+				List<Integer> monthsList = new ArrayList<>();
 
 				for (int month : months) {
-					monthsList.add(month + 1);
+					monthsList.add(month);
 				}
 
 				recurrence.setMonths(monthsList);
@@ -798,7 +798,7 @@ public class CalendarImporterLocalServiceImpl
 
 		// Asset categories
 
-		List<AssetCategory> assetCategories = new ArrayList<AssetCategory>();
+		List<AssetCategory> assetCategories = new ArrayList<>();
 
 		assetCategories.addAll(assetEntry.getCategories());
 
@@ -968,7 +968,7 @@ public class CalendarImporterLocalServiceImpl
 			mbThread.getStatusByUserId(), mbThread.getStatusByUserName(),
 			mbThread.getStatusDate());
 
-		Map<Long, Long> mbMessageIds = new HashMap<Long, Long>();
+		Map<Long, Long> mbMessageIds = new HashMap<>();
 
 		List<MBMessage> mbMessages = mbMessagePersistence.findByThreadId(
 			mbThread.getThreadId());
@@ -1133,10 +1133,8 @@ public class CalendarImporterLocalServiceImpl
 
 	private static final String _ASSET_VOCABULARY_NAME = "Calendar Event Types";
 
-	private static Map<Integer, Frequency> _frequencyMap =
-		new HashMap<Integer, Frequency>();
-	private static Map<Integer, Weekday> _weekdayMap =
-		new HashMap<Integer, Weekday>();
+	private static Map<Integer, Frequency> _frequencyMap = new HashMap<>();
+	private static Map<Integer, Weekday> _weekdayMap = new HashMap<>();
 
 	static {
 		_frequencyMap.put(TZSRecurrence.DAILY, Frequency.DAILY);

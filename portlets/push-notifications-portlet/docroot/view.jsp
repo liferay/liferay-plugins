@@ -16,25 +16,67 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:form name="fm">
-	<aui:input label="message" name="message" rows="6" type="textarea" />
+<%
+String androidApiKey = PrefsPropsUtil.getString(PortletPropsKeys.ANDROID_API_KEY, PortletPropsValues.ANDROID_API_KEY);
+int androidRetries = PrefsPropsUtil.getInteger(PortletPropsKeys.ANDROID_RETRIES, PortletPropsValues.ANDROID_RETRIES);
+String appleCertificatePassword = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD, PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
+String appleCertificatePath = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CERTIFICATE_PATH, PortletPropsValues.APPLE_CERTIFICATE_PATH);
+boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX, PortletPropsValues.APPLE_SANDBOX);
+%>
 
-	<aui:input label="url" name="url" />
+<liferay-portlet:actionURL name="updatePortletPreferences" var="updatePortletPreferencesURL" />
 
-	<aui:button disabled="<%= !PushNotificationsPermission.contains(permissionChecker, ActionKeys.ADD_ENTRY) %>" type="submit" value="send" />
+<liferay-ui:tabs
+	names="configuration,test"
+	refresh="<%= false %>"
+>
+	<liferay-ui:section>
+		<aui:form action="<%= updatePortletPreferencesURL %>" method="post" name="configurationFm">
+			<aui:fieldset label="android">
+				<aui:input helpMessage="android-api-key-help" label="android-api-key" name="androidApiKey" type="text" value="<%= androidApiKey %>" wrapperCssClass="lfr-input-text-container" />
 
-	<aui:button type="reset" value="reset" />
-</aui:form>
+				<aui:input helpMessage="android-retries-help" label="android-retries" name="androidRetries" type="text" value="<%= androidRetries %>" wrapperCssClass="lfr-input-text-container">
+					<aui:validator name="digits" />
+					<aui:validator name="min">0</aui:validator>
+				</aui:input>
+			</aui:fieldset>
 
-<br />
+			<aui:fieldset label="ios">
+				<aui:input helpMessage="apple-certificate-path-help" label="apple-certificate-path" name="appleCertificatePath" type="text" value="<%= appleCertificatePath %>" wrapperCssClass="lfr-input-text-container" />
 
-<div class="alert alert-success hide" id="<portlet:namespace />success">
-	<p><liferay-ui:message key="the-alert-was-sent-successfully" /></p>
-</div>
+				<aui:input helpMessage="apple-certificate-password-help" label="apple-certificate-password" name="appleCertificatePassword" type="password" value="<%= appleCertificatePassword %>" wrapperCssClass="lfr-input-text-container" />
 
-<div class="alert alert-danger hide" id="<portlet:namespace />error">
-	<p></p>
-</div>
+				<aui:fieldset>
+					<aui:input helpMessage="apple-sandbox-help" label="apple-sandbox"  name="appleSandbox" type="checkbox" value="<%= appleSandbox %>" />
+				</aui:fieldset>
+			</aui:fieldset>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
+		</aui:form>
+	</liferay-ui:section>
+
+	<liferay-ui:section>
+		<aui:form name="fm">
+			<aui:input label="message" name="message" rows="6" type="textarea" />
+
+			<aui:button type="submit" value="send" />
+
+			<aui:button type="reset" value="reset" />
+		</aui:form>
+
+		<br />
+
+		<div class="alert alert-success hide" id="<portlet:namespace />success">
+			<p><liferay-ui:message key="the-push-notification-was-sent-successfully" /></p>
+		</div>
+
+		<div class="alert alert-danger hide" id="<portlet:namespace />error">
+			<p></p>
+		</div>
+	</liferay-ui:section>
+</liferay-ui:tabs>
 
 <aui:script use="aui-base">
 	var form = A.one('#<portlet:namespace />fm');
@@ -45,44 +87,21 @@
 			event.halt();
 
 			var message = form.one('textarea[name="<portlet:namespace />message"]').val();
-			var type = 'text';
-			var url = form.one('input[name="<portlet:namespace />url"]').val().trim();
-
-			if (url.length !== 0) {
-				if (<portlet:namespace />isImage(url)) {
-					type = 'image';
-				}
-				else {
-					type = 'link';
-				}
-			}
 
 			Liferay.Service(
-				'/push-notifications-portlet.pushnotificationsentry/add-push-notifications-entry',
+				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
 				{
 					payload: A.JSON.stringify(
 						{
-							message: message,
-							type: type,
-							url: url
+							body: message
 						}
-					)
+					),
+					toUserIds: []
 				},
 				<portlet:namespace />onSendPushNotification
 			);
 		}
 	);
-
-	function <portlet:namespace />isImage(url) {
-		var regex = /(.*\.(?:gif|jpeg|jpg|png))/i;
-
-		if (regex.test(url)) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 
 	function <portlet:namespace />onSendPushNotification(result) {
 		var success = A.one('#<portlet:namespace />success');
@@ -93,13 +112,13 @@
 
 		error.hide();
 
-		if (A.Object.hasKey(result, 'pushNotificationsEntryId')) {
-			success.show();
-		}
-		else {
+		if (A.Object.hasKey(result, 'exception')) {
 			error.one('p').text(result);
 
 			error.show();
+		}
+		else {
+			success.show();
 		}
 	}
 </aui:script>

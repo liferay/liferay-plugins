@@ -499,6 +499,12 @@ public class ClpSerializer {
 				throwable.getCause());
 		}
 
+		if (className.equals(
+					"com.liferay.knowledgebase.NoSuchKBArticleSelectorException")) {
+			return new com.liferay.knowledgebase.NoSuchKBArticleSelectorException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
 		if (className.equals("com.liferay.knowledgebase.NoSuchArticleException")) {
 			return new com.liferay.knowledgebase.NoSuchArticleException(throwable.getMessage(),
 				throwable.getCause());

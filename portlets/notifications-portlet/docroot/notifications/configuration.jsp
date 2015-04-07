@@ -16,143 +16,142 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="manage-notifications">
-	<div class="title">
-		<div class="receive-notification">
-			<c:choose>
-				<c:when test="<%= UserNotificationDeliveryLocalServiceUtil.getUserNotificationDeliveriesCount() > 0 %>">
-					<span><liferay-ui:message key="receive-a-notification-when-someone" /></span>
-				</c:when>
-				<c:otherwise>
-					<span><liferay-ui:message key="there-are-no-available-options-to-configure" /></span>
-				</c:otherwise>
-			</c:choose>
+<div class="manage-notifications-content">
+	<div class="manage-notifications" id="<portlet:namespace />manageNotifications">
+		<div class="title">
+			<div class="receive-notification">
+				<c:choose>
+					<c:when test="<%= UserNotificationDeliveryLocalServiceUtil.getUserNotificationDeliveriesCount() > 0 %>">
+						<span><liferay-ui:message key="receive-a-notification-when-someone" /></span>
+					</c:when>
+					<c:otherwise>
+						<span><liferay-ui:message key="there-are-no-available-options-to-configure" /></span>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
-	</div>
 
-	<%
-	Map<String, List<UserNotificationDefinition>> userNotificationDefinitionsMap = new TreeMap<String, List<UserNotificationDefinition>>(new PortletIdComparator(locale));
+		<%
+		Map<String, List<UserNotificationDefinition>> userNotificationDefinitionsMap = new TreeMap<String, List<UserNotificationDefinition>>(new PortletIdComparator(locale));
 
-	userNotificationDefinitionsMap.putAll(UserNotificationManagerUtil.getUserNotificationDefinitions());
+		userNotificationDefinitionsMap.putAll(UserNotificationManagerUtil.getUserNotificationDefinitions());
 
-	for (Map.Entry<String, List<UserNotificationDefinition>> entry : userNotificationDefinitionsMap.entrySet()) {
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(entry.getKey());
-	%>
+		for (Map.Entry<String, List<UserNotificationDefinition>> entry : userNotificationDefinitionsMap.entrySet()) {
+			Portlet portlet = PortletLocalServiceUtil.getPortletById(entry.getKey());
+		%>
 
-		<table class="notification-deliveries table table-condensed">
-			<caption><%= PortalUtil.getPortletTitle(portlet, application, locale) %></caption>
-			<tbody>
+			<table class="notification-deliveries table table-condensed">
+				<caption><%= PortalUtil.getPortletTitle(portlet, application, locale) %></caption>
+				<tbody>
 
-			<%
-			List<UserNotificationDefinition> userNotificationDefinitions = entry.getValue();
+				<%
+				List<UserNotificationDefinition> userNotificationDefinitions = entry.getValue();
 
-			for (UserNotificationDefinition userNotificationDefinition : userNotificationDefinitions) {
-			%>
+				for (UserNotificationDefinition userNotificationDefinition : userNotificationDefinitions) {
+				%>
 
-				<tr>
-					<td class="span8">
-						<liferay-ui:message key="<%= userNotificationDefinition.getDescription() %>" />
-					</td>
-					<td class="span1">
+					<tr>
+						<td class="span8">
+							<liferay-ui:message key="<%= userNotificationDefinition.getDescription() %>" />
+						</td>
+						<td class="span1">
 
-						<%
-						Map<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypesMap = userNotificationDefinition.getUserNotificationDeliveryTypes();
+							<%
+							Map<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypesMap = userNotificationDefinition.getUserNotificationDeliveryTypes();
 
-						for (Map.Entry<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypeEntry : userNotificationDeliveryTypesMap.entrySet()) {
-							UserNotificationDeliveryType userNotificationDeliveryType = userNotificationDeliveryTypeEntry.getValue();
+							for (Map.Entry<Integer, UserNotificationDeliveryType> userNotificationDeliveryTypeEntry : userNotificationDeliveryTypesMap.entrySet()) {
+								UserNotificationDeliveryType userNotificationDeliveryType = userNotificationDeliveryTypeEntry.getValue();
 
-							UserNotificationDelivery userNotificationDelivery = UserNotificationDeliveryLocalServiceUtil.getUserNotificationDelivery(themeDisplay.getUserId(), entry.getKey(), userNotificationDefinition.getClassNameId(), userNotificationDefinition.getNotificationType(), userNotificationDeliveryType.getType(), userNotificationDeliveryType.isDefault());
-						%>
+								UserNotificationDelivery userNotificationDelivery = UserNotificationDeliveryLocalServiceUtil.getUserNotificationDelivery(themeDisplay.getUserId(), entry.getKey(), userNotificationDefinition.getClassNameId(), userNotificationDefinition.getNotificationType(), userNotificationDeliveryType.getType(), userNotificationDeliveryType.isDefault());
+							%>
 
-							<div class="checkbox-container">
-								<aui:input cssClass="notification-delivery" data-userNotificationDeliveryId="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" disabled="<%= !userNotificationDeliveryType.isModifiable() %>" inlineLabel="true" label="<%= userNotificationDeliveryType.getName() %>" name="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" type="checkbox" value="<%= userNotificationDelivery.isDeliver() %>" />
-							</div>
+								<div class="checkbox-container">
+									<aui:input cssClass="notification-delivery" data-userNotificationDeliveryId="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" disabled="<%= !userNotificationDeliveryType.isModifiable() %>" inlineLabel="true" label="<%= userNotificationDeliveryType.getName() %>" name="<%= String.valueOf(userNotificationDelivery.getUserNotificationDeliveryId()) %>" type="checkbox" value="<%= userNotificationDelivery.isDeliver() %>" />
+								</div>
 
-						<%
-						}
-						%>
+							<%
+							}
+							%>
 
-					</td>
-				</tr>
+						</td>
+					</tr>
 
-			<%
-			}
-			%>
+				<%
+				}
+				%>
 
-			</tbody>
-		</table>
+				</tbody>
+			</table>
 
-	<%
-	}
-	%>
+		<%
+		}
+		%>
 
-</div>
+		<aui:script use="aui-base,aui-io-request">
+			var notificationDelivery = A.one('#<portlet:namespace />manageNotifications');
 
-<aui:script use="aui-base,aui-io-request">
-	var userNotifications = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %>');
+			if (notificationDelivery) {
+				notificationDelivery.delegate(
+					'change',
+					function(event) {
+						event.preventDefault();
 
-	var notificationDelivery = userNotifications.one('.manage-notifications');
+						var currentTarget = event.currentTarget;
 
-	if (notificationDelivery) {
-		notificationDelivery.delegate(
-			'change',
-			function(event) {
-				event.preventDefault();
+						A.io.request(
+							'<portlet:actionURL name="updateUserNotificationDelivery" />',
+							{
+								data: {
+									<portlet:namespace />deliver: currentTarget.attr('checked'),
+									<portlet:namespace />userNotificationDeliveryId: currentTarget.attr('data-userNotificationDeliveryId')
+								},
+								dataType: 'json',
+								on: {
+									success: function() {
+										var responseData = this.get('responseData');
 
-				var currentTarget = event.currentTarget;
+										if (responseData.success) {
+											var checkboxContainer = currentTarget.ancestor('.checkbox-container');
 
-				A.io.request(
-					'<portlet:actionURL name="updateUserNotificationDelivery" />',
-					{
-						data: {
-							<portlet:namespace />deliver: currentTarget.attr('checked'),
-							<portlet:namespace />userNotificationDeliveryId: currentTarget.attr('data-userNotificationDeliveryId')
-						},
-						dataType: 'json',
-						on: {
-							success: function() {
-								var responseData = this.get('responseData');
-
-								if (responseData.success) {
-									var checkboxContainer = currentTarget.ancestor('.checkbox-container');
-
-									var saved = checkboxContainer.one('.saved');
-
-									if (saved) {
-										saved.remove();
-									}
-
-									var input = checkboxContainer.one('input');
-
-									checkboxContainer.insertBefore('<span class="saved" style="background: #0A85E4; color: #FFF;"><liferay-ui:message key="saved" /></span>', input);
-
-									setInterval(
-										function() {
 											var saved = checkboxContainer.one('.saved');
 
 											if (saved) {
-												saved.setStyle('background', 'transparent');
-												saved.setStyle('color', 'transparent');
+												saved.remove();
 											}
+
+											var input = checkboxContainer.one('input');
+
+											checkboxContainer.insertBefore('<span class="saved" style="background: #0A85E4; color: #FFF;"><liferay-ui:message key="saved" /></span>', input);
 
 											setInterval(
 												function() {
+													var saved = checkboxContainer.one('.saved');
+
 													if (saved) {
-														saved.remove();
+														saved.setStyle('background', 'transparent');
+														saved.setStyle('color', 'transparent');
 													}
+
+													setInterval(
+														function() {
+															if (saved) {
+																saved.remove();
+															}
+														},
+														3000
+													);
 												},
-												3000
+												500
 											);
-										},
-										500
-									);
+										}
+									}
 								}
 							}
-						}
-					}
+						);
+					},
+					'.notification-deliveries .notification-delivery'
 				);
-			},
-			'.notification-deliveries .notification-delivery'
-		);
-	}
-</aui:script>
+			}
+		</aui:script>
+	</div>
+</div>

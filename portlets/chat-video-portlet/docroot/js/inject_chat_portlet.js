@@ -6,18 +6,7 @@ AUI().use(
 	function(A) {
 		Liferay.namespace('Chat');
 
-		var TPL_CHAT_VIDEO_AVAILABLE =
-			'<div class="chat-video-available"></div>';
-
-		var TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI =
-			'<li>' +
-				'<label for="availableForChatVideo">' +
-					'<input checked="checked" id="availableForChatVideo" type="checkbox"> {showMeAsAvailableText}' +
-				'</label>' +
-			'</li>';
-
-		var TPL_CHAT_PANEL =
-			'<li class="user user_{panelId}" panelId="{panelId}">' +
+		var TPL_CHAT_PANEL = '<li class="user user_{panelId}" panelId="{panelId}">' +
 				'<div class="panel-trigger">' +
 					'<span class="trigger-name"></span>' +
 					'<div class="typing-status"></div>' +
@@ -57,6 +46,14 @@ AUI().use(
 						'</div>' +
 					'</div>' +
 				'</div>' +
+			'</li>';
+
+		var TPL_CHAT_VIDEO_AVAILABLE = '<div class="chat-video-available"></div>';
+
+		var TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI = '<li>' +
+				'<label for="availableForChatVideo">' +
+					'<input checked="checked" id="availableForChatVideo" type="checkbox"> {showMeAsAvailableText}' +
+				'</label>' +
 			'</li>';
 
 		Liferay.Chat.VideoManager = {
@@ -677,15 +674,15 @@ AUI().use(
 							{
 								cb: {
 									onError: function(error) {
-										var Error = Liferay.Chat.WebRtcConversation.Error;
+										var ConversationError = Liferay.Chat.WebRtcConversation.Error;
 
 										var errorMessages = {};
 
-										errorMessages[Error.CANNOTGETUSERMEDIA] = Liferay.Language.get('cannot-access-your-camera');
-										errorMessages[Error.HANGUP] = Liferay.Language.get('video-call-ended');
-										errorMessages[Error.REMOTEPEERDENIEDCALL] = Liferay.Language.get('your-friend-denied-your-call');
-										errorMessages[Error.REMOTEPEERNOTAVAILABLE] = Liferay.Language.get('your-friend-is-not-available');
-										errorMessages[Error.REMOTEPEERRESET] = Liferay.Language.get('your-friend-had-an-issue');
+										errorMessages[ConversationError.CANNOTGETUSERMEDIA] = Liferay.Language.get('cannot-access-your-camera');
+										errorMessages[ConversationError.HANGUP] = Liferay.Language.get('video-call-ended');
+										errorMessages[ConversationError.REMOTEPEERDENIEDCALL] = Liferay.Language.get('your-friend-denied-your-call');
+										errorMessages[ConversationError.REMOTEPEERNOTAVAILABLE] = Liferay.Language.get('your-friend-is-not-available');
+										errorMessages[ConversationError.REMOTEPEERRESET] = Liferay.Language.get('your-friend-had-an-issue');
 
 										if (error in errorMessages) {
 											instance._status.setErrorMessage(errorMessages[error]);

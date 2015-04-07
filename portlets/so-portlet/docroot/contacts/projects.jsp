@@ -67,7 +67,7 @@ if (user2 != null) {
 
 <c:if test="<%= showCompleteYourProfile && (themeDisplay.getUserId() == user2.getUserId()) && projectsEntries.isEmpty() %>">
 	<div class="profile-actions">
-		<p class="portlet-msg alert alert-info"><liferay-ui:message key="add-projects" />:</p>
+		<p class="alert alert-info portlet-msg"><liferay-ui:message key="add-projects" />:</p>
 
 		<div class="field-actions-toolbar">
 			<ul class="settings-actions">

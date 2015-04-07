@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.SuggestionConstants;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.util.PortletKeys;
 
 import java.util.Collection;
 
@@ -138,9 +137,9 @@ public class SolrSpellCheckIndexWriter
 
 		addQuerySeparator(sb);
 
-		sb.append(Field.PORTLET_ID);
+		sb.append(Field.SPELL_CHECK_WORD);
 		sb.append(StringPool.COLON);
-		sb.append(PortletKeys.SEARCH);
+		sb.append(Boolean.TRUE.toString());
 
 		addQuerySeparator(sb);
 

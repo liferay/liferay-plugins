@@ -353,7 +353,7 @@ public class ContactsUtil {
 		sb.append(user.getMiddleName());
 		sb.append(StringPool.SEMICOLON);
 
-		int prefixId = contact.getPrefixId();
+		long prefixId = contact.getPrefixId();
 
 		if (prefixId > 0) {
 			ListType listType = ListTypeServiceUtil.getListType(prefixId);
@@ -363,7 +363,7 @@ public class ContactsUtil {
 
 		sb.append(StringPool.SEMICOLON);
 
-		int suffixId = contact.getSuffixId();
+		long suffixId = contact.getSuffixId();
 
 		if (suffixId > 0) {
 			ListType listType = ListTypeServiceUtil.getListType(suffixId);

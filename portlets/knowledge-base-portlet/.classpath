@@ -30,7 +30,9 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.markdown.converter.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.portal.log.bridge.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.wiki.api.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/knowledge-base-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/org.osgi.core.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/parboiled-core.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/parboiled-java.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/pegdown.jar" />

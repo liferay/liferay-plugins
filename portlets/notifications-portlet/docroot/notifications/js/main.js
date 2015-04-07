@@ -19,7 +19,7 @@ AUI.add(
 						instance._nonactionableNotificationsList = config.nonactionableNotificationsList;
 						instance._portletKey = config.portletKey;
 
-						var navAccountControls =  A.one('.nav-account-controls');
+						var navAccountControls = A.one('.nav-account-controls');
 
 						navAccountControls.delegate(
 							'click',
@@ -191,6 +191,7 @@ AUI.add(
 
 						instance._actionableUserNotificationsStart = 0;
 						instance._baseRenderURL = config.baseRenderURL;
+						instance._namespace = config.namespace;
 						instance._nonactionableUserNotificationsStart = 0;
 						instance._notificationsList = config.notificationsList;
 
@@ -300,7 +301,16 @@ AUI.add(
 
 										notificationsConfigurationNode.load(
 											portletURL.toString(),
+											'#' + instance._namespace + 'manageNotifications',
 											function() {
+												var manageNotificationsNode = notificationsConfigurationNode.one('.manage-notifications');
+
+												if (!manageNotificationsNode) {
+													var html = '<div class=\"manage-notifications\">' + Liferay.Language.get('please-sign-in-to-continue') + '</div>';
+
+													notificationsConfigurationNode.setHTML(html);
+												}
+
 												notificationsConfigurationNode.unplug(A.LoadingMask);
 											}
 										);
@@ -550,7 +560,7 @@ AUI.add(
 
 															var notificationsNode = notificationsContainer.one(instance._notificationsNode);
 
-															notificationsContainer.insertBefore('<div class="alert alert-error">' + Liferay.Language.get('there-was-an-unexpected-error.-please-refresh-the-current-page') + '</div>', notificationsNode);
+															notificationsContainer.insertBefore('<div class="alert alert-danger">' + Liferay.Language.get('there-was-an-unexpected-error.-please-refresh-the-current-page') + '</div>', notificationsNode);
 														}
 													}
 												},

@@ -49,6 +49,7 @@ import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.site.my.sites.web.constants.MySitesPortletKeys;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -93,7 +94,8 @@ public class InstanceUtil {
 
 		// My Sites
 
-		portlet = PortletLocalServiceUtil.getPortletById(PortletKeys.MY_SITES);
+		portlet = PortletLocalServiceUtil.getPortletById(
+			MySitesPortletKeys.MY_SITES);
 
 		portlet.setAddDefaultResource(true);
 
@@ -137,7 +139,7 @@ public class InstanceUtil {
 			long companyId, String name)
 		throws Exception {
 
-		Map<Locale, String> localeNamesMap = new HashMap<Locale, String>();
+		Map<Locale, String> localeNamesMap = new HashMap<>();
 
 		Locale defaultLocale = LocaleUtil.getDefault();
 
@@ -529,7 +531,7 @@ public class InstanceUtil {
 	protected static void setupRole(long companyId) throws Exception {
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		descriptionMap.put(
 			LocaleUtil.getDefault(),

@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 @import "so";
 
@@ -131,7 +131,7 @@ div#navigation {
 			}
 
 			.btn {
-				@include border-radius(4px);
+				border-radius: 4px;
 
 				display: block;
 				float: right;
@@ -184,8 +184,8 @@ div#navigation {
 	.selected a {
 		border-bottom-width: 0;
 		border-top: 1px solid #0E50A9;
+		box-shadow: 0 1px 0 #7FBBF4 inset;
 
-		@include box-shadow(0 1px 0 #7FBBF4 inset);
 		@include button-primary-gradient;
 	}
 }
@@ -198,14 +198,6 @@ div#navigation {
 
 		img {
 			visibility: hidden;
-		}
-	}
-}
-
-.ie {
-	#banner, #navigation {
-		.avatar img {
-			visibility: visible;
 		}
 	}
 }
@@ -230,9 +222,7 @@ body {
 
 #main-content {
 	background: #FFF;
-
-	@include box-shadow(-4px 0 15px -7px rgba(0, 0, 0, 0.6));
-
+	box-shadow: -4px 0 15px -7px rgba(0, 0, 0, 0.6);
 	float: left;
 	min-height: 500px;
 	position: relative;
@@ -257,7 +247,7 @@ a {
 }
 
 .button {
-	@include border-radius(4px);
+	border-radius: 4px;
 
 	&:hover {
 		text-decoration: none;
@@ -275,9 +265,7 @@ a {
 .aui-dialog-iframe-popup, .portal-popup {
 	#main-content {
 		background: transparent;
-
-		@include box-shadow(none);
-
+		box-shadow: none;
 		float: none;
 		min-height: auto;
 	}
@@ -333,21 +321,12 @@ a {
 	}
 }
 
-.ie7 .opens-new-window-accessible {
-	background: url(/html/themes/classic/images/common/open_window.png) no-repeat 0 50%;
-	height: 16px;
-	text-indent: -9999px;
-	width: 11px;
-}
-
 /* ---------- Dockbar ---------- */
 
 .alert .close {
 	background: inherit;
 	border-width: 0;
-
-	@include box-shadow(none);
-
+	box-shadow: none;
 	padding: 0;
 }
 
@@ -479,22 +458,6 @@ input, textarea {
 	background-color: #1D87EB;
 }
 
-.ie6 {
-	input.text, input.password, input.submit, input.file, input.button, button {
-		@include input-field-default;
-	}
-
-	input.submit, input.button, button {
-		@include button-default;
-	}
-
-	input, textarea {
-		&.focus {
-			@include input-field-focus;
-		}
-	}
-}
-
 /* ---------- Forms custom ---------- */
 
 .lfr-panel.lfr-extended .lfr-panel-titlebar {
@@ -504,7 +467,7 @@ input, textarea {
 }
 
 .invite-members, .social-relations a {
-	@include border-radius(4px);
+	border-radius: 4px;
 	@include button-default;
 
 	&:hover, &:focus {
@@ -603,7 +566,7 @@ input, textarea {
 }
 
 .controls-hidden {
-	@include border-radius(4px);
+	border-radius: 4px;
 
 	.delete-tab {
 		display: none;
@@ -1169,8 +1132,7 @@ input, textarea {
 			padding: 0 15px;
 
 			.app-view-navigation-entry .overlay.entry-action .btn {
-				@include box-shadow(none);
-
+				box-shadow: none;
 				padding: 15px 10px 5px;
 			}
 
@@ -1212,7 +1174,7 @@ input, textarea {
 				}
 
 				.nav > li.open > a {
-					@include box-shadow(inset 0 3px 8px rgba(0, 0, 0, 0.25));
+					box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.25);
 				}
 			}
 
@@ -1341,10 +1303,8 @@ input, textarea {
 			&:hover .user-details {
 				background-color: #FFF;
 				border: 1px solid $defaultBorderColor;
-
-				@include border-radius(4px);
-				@include box-shadow(-4px 0 15px -7px rgba(0, 0, 0, 0.6));
-
+				border-radius: 4px;
+				box-shadow: -4px 0 15px -7px rgba(0, 0, 0, 0.6);
 				display: block;
 				margin-top: 0;
 				padding: 10px;
@@ -1399,7 +1359,7 @@ input, textarea {
 			background: #FFF;
 			border: 2px solid #2D8308;
 
-			@include border-radius(4px 0 0 4px);
+			border-radius: 4px 0 0 4px;
 
 			border-right-width: 0;
 			margin-right: 1px;
@@ -1515,7 +1475,7 @@ input, textarea {
 	}
 
 	.thumbnail {
-		@include border-radius(0);
+		border-radius: 0;
 
 		border-width: 0;
 		height: 50px;
@@ -1576,7 +1536,7 @@ input, textarea {
 
 .private-messaging-portlet {
 	.controls {
-		@include border-radius(0);
+		border-radius: 0;
 
 		border-width: 0 0 1px;
 	}
@@ -1693,14 +1653,14 @@ input, textarea {
 			}
 
 			.aui-field-input {
-				@include border-radius(4px 0 0 4px);
+				border-radius: 4px 0 0 4px;
 
 				margin-right: -1px;
 				width: 9em;
 			}
 
 			.aui-button-submit input {
-				@include border-radius(0 4px 4px 0);
+				border-radius: 0 4px 4px 0;
 			}
 		}
 
@@ -1723,7 +1683,7 @@ input, textarea {
 	}
 
 	.page-actions a, .toc a.toc-trigger {
-		@include border-radius(4px);
+		border-radius: 4px;
 		@include button-default;
 
 		display: inline-block;
@@ -1752,7 +1712,7 @@ input, textarea {
 	}
 }
 
-.ie8, .ie9 {
+.ie9 {
 	#navigation .avatar img {
 		visibility: visible;
 		width: 155px;
@@ -1852,7 +1812,7 @@ input, textarea {
 
 	.portlet-asset-publisher, .portlet-message-boards {
 		.message-container .thread-top .answer {
-			@include border-radius(4px);
+			border-radius: 4px;
 
 			border-width: 2px;
 			display: block;
@@ -1895,7 +1855,7 @@ input, textarea {
 	.modal {
 		bottom: 0;
 
-		@include border-radius(0);
+		border-radius: 0;
 
 		border-width: 0;
 		height: 100% !important;

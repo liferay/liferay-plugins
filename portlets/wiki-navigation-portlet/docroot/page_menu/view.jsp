@@ -52,7 +52,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) && WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.UPDATE) %>">
 			<br />
 
-			<liferay-portlet:renderURL portletName="<%= PortletKeys.WIKI %>" var="editURL">
+			<liferay-portlet:renderURL portletName="<%= WikiPortletKeys.WIKI %>" var="editURL">
 				<portlet:param name="struts_action" value="/wiki/edit_page" />
 				<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />
 				<portlet:param name="title" value="<%= HtmlUtil.unescape(wikiPage.getTitle()) %>" />

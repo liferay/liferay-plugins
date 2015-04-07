@@ -29,6 +29,7 @@
 		<asset-renderer-factory>com.liferay.calendar.asset.CalendarBookingAssetRendererFactory</asset-renderer-factory>
 		<custom-attributes-display>com.liferay.calendar.CalendarCustomAttributesDisplay</custom-attributes-display>
 		<trash-handler>com.liferay.calendar.trash.CalendarBookingTrashHandler</trash-handler>
+		<workflow-handler>com.liferay.calendar.workflow.CalendarBookingWorkflowHandler</workflow-handler>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>
 		<preferences-owned-by-group>true</preferences-owned-by-group>
 		<header-portlet-css>/css/main.css</header-portlet-css>

@@ -152,7 +152,7 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	public Map<Locale, String> getTargetValueMap() {
-		Map<Locale, String> targetValueMap = new HashMap<Locale, String>();
+		Map<Locale, String> targetValueMap = new HashMap<>();
 
 		Locale locale = LocaleUtil.getDefault();
 

@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.wiki.model.WikiPage;
 
 /**
  * @author Jorge Ferrer

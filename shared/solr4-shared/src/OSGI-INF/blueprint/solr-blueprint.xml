@@ -1,6 +1,16 @@
 <?xml version="1.0"?>
 
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+<blueprint
+	xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+>
+	<context:property-placeholder
+		ignore-resource-not-found="true"
+		ignore-unresolvable="true"
+		location="classpath:solr.properties,classpath:solr-ext.properties"
+	/>
 
 	<!-- Solr document -->
 
@@ -22,13 +32,20 @@
 
 	<!-- Solr search engine client -->
 
-	<bean class="com.liferay.portal.search.solr.server.BasicAuthSolrServer" id="com.liferay.portal.search.solr.server.BasicAuthSolrServer" init-method="afterPropertiesSet">
+	<bean class="com.liferay.portal.search.solr.http.BasicAuthPoolingDelegatingHttpClientFactory" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory" init-method="afterPropertiesSet">
+		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
 				<bean class="com.liferay.portal.search.solr.interceptor.PreemptiveAuthInterceptor" />
 			</list>
 		</property>
-		<property name="url" value="http://localhost:8080/solr" />
+		<property name="maxTotalConnections" value="20" />
+		<property name="password" value="${basic.auth.password}" />
+		<property name="username" value="${basic.auth.username}" />
+	</bean>
+	<bean class="com.liferay.portal.search.solr.server.HttpSolrServer" id="com.liferay.portal.search.solr.server.HttpSolrServer" init-method="afterPropertiesSet">
+		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
+		<property name="url" value="${server.http.url}" />
 	</bean>
 	<bean class="com.liferay.portal.search.solr.server.LiveServerChecker" destroy-method="shutdown" id="com.liferay.portal.search.solr.server.LiveServerChecker" init-method="afterPropertiesSet">
 		<property name="delay" value="10" />
@@ -40,7 +57,7 @@
 	>
 		<property name="solrServers">
 			<map key-type="java.lang.String" value-type="org.apache.solr.client.solrj.SolrServer">
-				<entry key="node1" value-ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+				<entry key="node1" value-ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 			</map>
 		</property>
 		<property name="solrServerSelector">
@@ -53,12 +70,12 @@
 	<bean class="com.liferay.portal.search.solr.SolrIndexSearcher" id="com.liferay.portal.search.solr.SolrIndexSearcher">
 		<property name="facetProcessor" ref="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" />
 		<property name="querySuggester" ref="com.liferay.portal.search.solr.SolrQuerySuggester" />
-		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 		<property name="swallowException" value="true" />
 	</bean>
 	<bean class="com.liferay.portal.search.solr.SolrIndexWriter" id="com.liferay.portal.search.solr.SolrIndexWriter">
 		<property name="solrDocumentFactory" ref="com.liferay.portal.search.solr.document.SolrDocumentFactory" />
-		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 		<property name="spellCheckIndexWriter" ref="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" />
 	</bean>
 	<bean class="com.liferay.portal.search.solr.SolrQuerySuggester" id="com.liferay.portal.search.solr.SolrQuerySuggester">
@@ -66,7 +83,7 @@
 		<property name="NGramQueryBuilder">
 			<bean class="com.liferay.portal.search.solr.NGramQueryBuilderImpl" />
 		</property>
-		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
 	<bean class="com.liferay.portal.kernel.search.BaseSearchEngine" id="com.liferay.portal.search.solr.SolrSearchEngineImpl">
 		<property name="clusteredWrite" value="false" />
@@ -77,7 +94,7 @@
 	</bean>
 	<bean class="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" id="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter">
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
-		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
+		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
 
 	<!-- References -->

@@ -1,6 +1,7 @@
 create index IX_571C019E on KBArticle (companyId, latest);
 create index IX_5A381890 on KBArticle (companyId, main);
 create index IX_FBC2D349 on KBArticle (companyId, status);
+create index IX_CFB8C81F on KBArticle (groupId, kbFolderId, status);
 create index IX_379FD6BC on KBArticle (groupId, kbFolderId, urlTitle, status);
 create index IX_694EA2E0 on KBArticle (groupId, latest);
 create index IX_97C62252 on KBArticle (groupId, main);

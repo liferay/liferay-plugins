@@ -466,11 +466,11 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	}
 
 	@Override
-	public com.liferay.knowledgebase.model.KBComment updateStatus(
+	public com.liferay.knowledgebase.model.KBComment updateStatus(long userId,
 		long kbCommentId, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbCommentLocalService.updateStatus(kbCommentId, status,
+		return _kbCommentLocalService.updateStatus(userId, kbCommentId, status,
 			serviceContext);
 	}
 

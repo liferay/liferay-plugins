@@ -35,7 +35,7 @@ import java.util.List;
 public class SocialOfficeServiceImpl extends SocialOfficeServiceBaseImpl {
 
 	public long[] getUserSocialOfficeGroupIds() throws PortalException {
-		List<Group> groups = new ArrayList<Group>();
+		List<Group> groups = new ArrayList<>();
 
 		for (Group group : GroupServiceUtil.getUserSites()) {
 			if (isSocialOfficeGroup(group.getGroupId())) {

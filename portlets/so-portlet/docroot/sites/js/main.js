@@ -72,7 +72,7 @@ AUI.add(
 					}
 				}
 			);
-		}
+		};
 
 		Liferay.namespace('SO');
 
@@ -153,7 +153,7 @@ AUI().use(
 						},
 						source: url
 					}
-				)
+				);
 			},
 
 			createDirectoryList: function(directoryList) {
@@ -278,7 +278,7 @@ AUI().use(
 				var siteListURL = config.siteListURL;
 				var siteSearchInput = config.siteSearchInput;
 
-				var siteList = new Liferay.SO.SiteList(
+				siteList = new Liferay.SO.SiteList(
 					{
 						inputNode: siteSearchInput,
 						listNode: siteList,
@@ -324,8 +324,7 @@ AUI().use(
 				var buffer = [];
 
 				var getSiteActionHtml = function(actionClassNames, actionLinkClassName, actionTitle, actionURL) {
-					var siteActionTemplate =
-						'<span class="{actionClassNames}" title="{actionTitle}">' +
+					var siteActionTemplate = '<span class="{actionClassNames}" title="{actionTitle}">' +
 							'<a class="{actionLinkClassName}" href="{actionURL}">' +
 							'</a>' +
 						'</span>';
@@ -347,8 +346,7 @@ AUI().use(
 					);
 				}
 				else {
-					var siteTemplate =
-						'<li class="{classNames}">' +
+					var siteTemplate = '<li class="{classNames}">' +
 							'{favoriteHTML}' +
 							'<span class="name">{siteName}</span>' +
 						'</li>';
@@ -372,13 +370,11 @@ AUI().use(
 								if (result.favoriteURL == '') {
 									favoriteHTML = getSiteActionHtml('favorite', 'disabled', Liferay.Language.get('you-must-be-a-member-of-the-site-to-add-to-favorites'), '#');
 								}
+								else if (result.favoriteURL) {
+									favoriteHTML = getSiteActionHtml('action favorite', '', Liferay.Language.get('add-to-favorites'), result.favoriteURL);
+								}
 								else {
-									if (result.favoriteURL) {
-										favoriteHTML = getSiteActionHtml('action favorite', '', Liferay.Language.get('add-to-favorites'), result.favoriteURL);
-									}
-									else {
-										favoriteHTML = getSiteActionHtml('action unfavorite', '', Liferay.Language.get('remove-from-favorites'), result.unfavoriteURL);
-									}
+									favoriteHTML = getSiteActionHtml('action unfavorite', '', Liferay.Language.get('remove-from-favorites'), result.unfavoriteURL);
 								}
 
 								var name = result.name;

@@ -46,7 +46,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 
 	@Override
 	public List<Long> getAncestorResourcePrimaryKeys() throws PortalException {
-		List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
+		List<Long> ancestorResourcePrimaryKeys = new ArrayList<>();
 
 		ancestorResourcePrimaryKeys.add(getResourcePrimKey());
 
@@ -96,7 +96,7 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 
 	@Override
 	public long getClassPK() {
-		if (isApproved()) {
+		if (isApproved() || isPending()) {
 			return getResourcePrimKey();
 		}
 

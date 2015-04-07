@@ -366,7 +366,7 @@ public class MongoExpandoValueLocalServiceImpl
 				dbCursor = dbCursor.skip(start).limit(end - start);
 			}
 
-			List<ExpandoValue> expandoValues = new ArrayList<ExpandoValue>();
+			List<ExpandoValue> expandoValues = new ArrayList<>();
 
 			for (DBObject dbObject : dbCursor.toArray()) {
 				BasicDBObject expandoValueDBObject = (BasicDBObject)dbObject;
@@ -485,7 +485,7 @@ public class MongoExpandoValueLocalServiceImpl
 				expandoColumns = expandoColumns.subList(start, end);
 			}
 
-			List<ExpandoValue> expandoValues = new ArrayList<ExpandoValue>();
+			List<ExpandoValue> expandoValues = new ArrayList<>();
 
 			for (ExpandoColumn expandoColumn : expandoColumns) {
 				ExpandoValue expandoValue = toExpandoValue(

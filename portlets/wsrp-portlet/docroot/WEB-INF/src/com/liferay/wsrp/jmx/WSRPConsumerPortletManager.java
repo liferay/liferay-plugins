@@ -16,11 +16,20 @@ package com.liferay.wsrp.jmx;
 
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
+import javax.management.DynamicMBean;
+import javax.management.NotCompliantMBeanException;
+import javax.management.StandardMBean;
+
 /**
  * @author Michael C. Han
  */
 public class WSRPConsumerPortletManager
-	implements WSRPConsumerPortletManagerMBean {
+	extends StandardMBean
+	implements DynamicMBean, WSRPConsumerPortletManagerMBean {
+
+	public WSRPConsumerPortletManager() throws NotCompliantMBeanException {
+		super(WSRPConsumerPortletManagerMBean.class);
+	}
 
 	public void initFailedWSRPConsumerPortlets() {
 		WSRPConsumerPortletLocalServiceUtil.initFailedWSRPConsumerPortlets();

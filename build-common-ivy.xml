@@ -2,8 +2,6 @@
 <!DOCTYPE project>
 
 <project name="build-common-ivy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
-	<property name="ivy.home" value="${sdk.dir}/.ivy" />
-
 	<basename property="basedir.name" file="${basedir}" />
 
 	<propertyregex
@@ -21,6 +19,45 @@
 		replace="\."
 	/>
 
+	<macrodef name="mirrors-get">
+		<attribute name="dest" />
+		<attribute default="false" name="ignoreerrors" />
+		<attribute default="false" name="skipexisting" />
+		<attribute name="src" />
+		<attribute default="false" name="verbose" />
+
+		<sequential>
+			<propertyregex
+				input="@{src}"
+				override="true"
+				property="mirrors.src"
+				regexp="http://"
+				replace="http://mirrors/"
+			/>
+
+			<trycatch>
+				<try>
+					<get
+						dest="@{dest}"
+						ignoreerrors="@{ignoreerrors}"
+						skipexisting="@{skipexisting}"
+						src="${mirrors.src}"
+						verbose="@{verbose}"
+					/>
+				</try>
+				<catch>
+					<get
+						dest="@{dest}"
+						ignoreerrors="@{ignoreerrors}"
+						skipexisting="@{skipexisting}"
+						src="@{src}"
+						verbose="@{verbose}"
+					/>
+				</catch>
+			</trycatch>
+		</sequential>
+	</macrodef>
+
 	<if>
 		<not>
 			<available file="${ivy.home}/ivy-${ivy.version}.jar" />
@@ -28,7 +65,7 @@
 		<then>
 			<mkdir dir="${ivy.home}" />
 
-			<get
+			<mirrors-get
 				dest="${ivy.home}/ivy-${ivy.version}.jar"
 				src="${ivy.jar.url}"
 			/>
@@ -357,6 +394,7 @@
 			<var name="plugin.pom.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
 			<var name="plugin.sources.file" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
 			<var name="plugin.src.file" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
+			<var name="plugin.wsdd.file" value="${sdk.dir}/dist/${plugin.name}-wsdd-${plugin.full.version}.jar" />
 
 			<if>
 				<available file="@{module.dir}/src" />
@@ -461,6 +499,15 @@
 					<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
 				</else>
 			</if>
+
+			<if>
+				<not>
+					<available file="@{module.dir}/build.gradle" />
+				</not>
+				<then>
+					<touch file="@{module.dir}/build.gradle" />
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
@@ -521,7 +568,7 @@
 											<ivy:retrieve
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
-												type="bundle,eclipse-plugin,jar,orbit"
+												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
 											/>
 
 											<ivy:retrieve
@@ -534,7 +581,7 @@
 											<ivy:retrieve
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
-												type="bundle,eclipse-plugin,jar,orbit"
+												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
 											/>
 
 											<ivy:retrieve
@@ -579,10 +626,11 @@
 			description="${ivy.pom.description}"
 			ivyfile="ivy.xml"
 			pomfile="${plugin.pom.file}"
-			templatefile="${sdk.dir}/tools/pom_tmpl/template.pom"
+			templatefile="${sdk.dir}/tools/templates/pom_tmpl/template.pom"
 		>
 			<mapping conf="default" scope="compile" />
 			<mapping conf="provided" scope="provided" />
+			<mapping conf="runtime" scope="runtime" />
 		</ivy:makepom>
 
 		<ivy:publish

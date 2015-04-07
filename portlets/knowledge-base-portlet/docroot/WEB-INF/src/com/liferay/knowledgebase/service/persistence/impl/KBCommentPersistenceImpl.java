@@ -65,7 +65,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KBCommentPersistence
- * @see KBCommentUtil
+ * @see com.liferay.knowledgebase.service.persistence.KBCommentUtil
  * @generated
  */
 @ProviderType

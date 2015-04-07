@@ -149,11 +149,16 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingCommentsPanel" persistState="<%= true %>" title="comments">
 				<liferay-portlet:actionURL name="updateDiscussion" var="updateDiscussionURL" />
 
+				<portlet:resourceURL var="discussionPaginationURL">
+					<portlet:param name="invokeTaglibDiscussion" value="<%= Boolean.TRUE.toString() %>" />
+				</portlet:resourceURL>
+
 				<liferay-ui:discussion
 					className="<%= CalendarBooking.class.getName() %>"
 					classPK="<%= calendarBooking.getCalendarBookingId() %>"
 					formAction="<%= updateDiscussionURL %>"
 					formName="fm2"
+					paginationURL="<%= discussionPaginationURL %>"
 					ratingsEnabled="true"
 					redirect="<%= currentURL %>"
 					subject="<%= calendarBooking.getTitle(locale) %>"
@@ -242,7 +247,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 			interval: <%= recurrence.getInterval() %>,
 			untilDate: untilDate,
 			weekdays: <%= jsonSerializer.serialize(weekdays) %>
-		}
+		};
 
 		var recurrenceSummary = Liferay.RecurrenceUtil.getSummary(recurrence);
 

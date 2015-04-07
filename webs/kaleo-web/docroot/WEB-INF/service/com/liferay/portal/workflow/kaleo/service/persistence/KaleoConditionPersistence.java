@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 
@@ -25,10 +27,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoConditionPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoConditionPersistenceImpl
  * @see KaleoConditionUtil
  * @generated
  */
+@ProviderType
 public interface KaleoConditionPersistence extends BasePersistence<KaleoCondition> {
 	/*
 	 * NOTE FOR DEVELOPERS:

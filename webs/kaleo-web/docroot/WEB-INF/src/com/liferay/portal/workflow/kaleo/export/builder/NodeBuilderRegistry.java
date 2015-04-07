@@ -32,6 +32,6 @@ public class NodeBuilderRegistry {
 	}
 
 	protected static NodeTypeDependentObjectRegistry<NodeBuilder>
-		_nodeBuilders = new NodeTypeDependentObjectRegistry<NodeBuilder>();
+		_nodeBuilders = new NodeTypeDependentObjectRegistry<>();
 
 }

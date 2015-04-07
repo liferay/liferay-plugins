@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Message
  * @generated
  */
+@ProviderType
 public class MessageWrapper implements Message, ModelWrapper<Message> {
 	public MessageWrapper(Message message) {
 		_message = message;
@@ -68,6 +71,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		attributes.put("flags", getFlags());
 		attributes.put("size", getSize());
 		attributes.put("remoteMessageId", getRemoteMessageId());
+		attributes.put("contentType", getContentType());
 
 		return attributes;
 	}
@@ -187,6 +191,12 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		if (remoteMessageId != null) {
 			setRemoteMessageId(remoteMessageId);
 		}
+
+		String contentType = (String)attributes.get("contentType");
+
+		if (contentType != null) {
+			setContentType(contentType);
+		}
 	}
 
 	@Override
@@ -247,6 +257,16 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	@Override
 	public long getCompanyId() {
 		return _message.getCompanyId();
+	}
+
+	/**
+	* Returns the content type of this message.
+	*
+	* @return the content type of this message
+	*/
+	@Override
+	public java.lang.String getContentType() {
+		return _message.getContentType();
 	}
 
 	/**
@@ -426,6 +446,11 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	@Override
+	public boolean hasAttachments() {
+		return _message.hasAttachments();
+	}
+
+	@Override
 	public boolean hasFlag(int flag) {
 		return _message.hasFlag(flag);
 	}
@@ -508,6 +533,16 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	@Override
 	public void setCompanyId(long companyId) {
 		_message.setCompanyId(companyId);
+	}
+
+	/**
+	* Sets the content type of this message.
+	*
+	* @param contentType the content type of this message
+	*/
+	@Override
+	public void setContentType(java.lang.String contentType) {
+		_message.setContentType(contentType);
 	}
 
 	/**
@@ -770,5 +805,5 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 		_message.resetOriginalValues();
 	}
 
-	private Message _message;
+	private final Message _message;
 }

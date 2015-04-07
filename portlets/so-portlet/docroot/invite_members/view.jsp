@@ -25,7 +25,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 <c:choose>
 	<c:when test="<%= group.isUser() %>">
-		<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-site-page" />
+		<liferay-ui:message key="this-application-only-functions-when-placed-on-a-site-page" />
 	</c:when>
 	<c:when test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="inviteURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">

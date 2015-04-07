@@ -77,7 +77,7 @@ if (bean instanceof WikiPage) {
 %>
 
 <c:if test="<%= displayMessage %>">
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 </c:if>
 
 <%= html %>

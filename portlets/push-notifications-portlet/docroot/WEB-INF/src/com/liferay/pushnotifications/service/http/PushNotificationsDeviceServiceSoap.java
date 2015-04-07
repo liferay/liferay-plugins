@@ -97,12 +97,25 @@ public class PushNotificationsDeviceServiceSoap {
 		}
 	}
 
-	public static boolean hasPermission(java.lang.String actionId)
+	public static void sendPushNotification(long[] toUserIds,
+		java.lang.String payload) throws RemoteException {
+		try {
+			PushNotificationsDeviceServiceUtil.sendPushNotification(toUserIds,
+				payload);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void sendPushNotification(java.lang.String platform,
+		java.util.List<java.lang.String> tokens, java.lang.String payload)
 		throws RemoteException {
 		try {
-			boolean returnValue = PushNotificationsDeviceServiceUtil.hasPermission(actionId);
-
-			return returnValue;
+			PushNotificationsDeviceServiceUtil.sendPushNotification(platform,
+				tokens, payload);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

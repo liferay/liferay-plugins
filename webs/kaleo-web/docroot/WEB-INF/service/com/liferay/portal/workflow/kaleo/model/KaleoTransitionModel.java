@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl
  * @generated
  */
+@ProviderType
 public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	GroupedModel {
 	/*
@@ -362,19 +365,20 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition>,
 	public Object clone();
 
 	@Override
-	public int compareTo(KaleoTransition kaleoTransition);
+	public int compareTo(
+		com.liferay.portal.workflow.kaleo.model.KaleoTransition kaleoTransition);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoTransition> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTransition> toCacheModel();
 
 	@Override
-	public KaleoTransition toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toEscapedModel();
 
 	@Override
-	public KaleoTransition toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toUnescapedModel();
 
 	@Override
 	public String toString();

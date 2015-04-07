@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 
 /* ---------- Set compass defaults ---------- */
 
@@ -459,7 +459,7 @@ hr {
 
 ul.arrow {
 	list-style: none;
-	list-style-image:url(../images/custom/bullet.png);
+	list-style-image: url(../images/custom/bullet.png);
 	margin: 15px;
 
 	li {
@@ -559,44 +559,32 @@ ul.arrow {
 	}
 }
 
-/* ---------- Browser specific rules ---------- */
-
-.ie6 {
-	.carousel-menu-active {
-		background-image: url(../images/custom/tab.png);
-	}
-}
-
-.ie6, .ie7 {
-	.carousel-container #tabs .divider {
-		background: none;
-	}
-}
-
 /* ---------- Extras ---------- */
 
 #banner .site-name {
 	@include background(linear-gradient(top left, #132832, #193340));
-	@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px #FFF);
-	@include text-shadow(1px 1px rgba(0, 0, 0, 0.5));
+
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px #FFF;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #sign-in {
 	@include border-bottom-radius(3px);
-	@include box-shadow(1px 2px 3px 0px #999);
+
+	box-shadow: 1px 2px 3px 0 #999;
 }
 
 #pageSearch #keywords {
-	@include box-shadow(none);
+	box-shadow: none;
 }
 
 .modify-pages .delete-tab {
-	@include border-radius(50%);
-	@include text-shadow(none);
+	border-radius: 50%;
+	text-shadow: none;
 	@include transition(opacity 0.3s ease);
 
 	&:hover {
-		@include box-shadow(0 1px 1px -1px #000);
+		box-shadow: 0 1px 1px -1px #000;
 	}
 }
 
@@ -605,13 +593,13 @@ ul.arrow {
 }
 
 #banner .site-name, .carousel-container, .carousel-container #tabs .tab-item {
-	@include border-radius(5px);
+	border-radius: 5px;
 }
 
 .carousel-container, .column-text img, .pod .pod-image {
-	@include single-box-shadow;
+	box-shadow: 0 5px #333;
 }
 
 #quoteBox h3 {
-	@include text-shadow(1px 1px rgba(255, 255, 255, 1));
+	text-shadow: 1px 1px rgba(255, 255, 255, 1);
 }

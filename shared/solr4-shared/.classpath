@@ -9,6 +9,7 @@
 	<classpathentry kind="lib" path="/portal-master/lib/development/mockito.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-api-mockito.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-api-support.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-core.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-module-junit4.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-module-junit4-common.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/spring-test.jar" />

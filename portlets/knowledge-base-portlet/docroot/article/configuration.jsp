@@ -49,13 +49,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 				<div class="form-group kb-field-wrapper">
 
 					<%
-					KBArticle kbArticle = null;
-
-					try {
-						kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-					}
-					catch (NoSuchArticleException nsae) {
-					}
+					KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 					%>
 
 					<aui:input label="article" name="configurationKBArticle" type="resource" value="<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>" />
@@ -93,7 +87,12 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 
 				<aui:input label="enable-print" name="preferences--enableKBArticlePrint--" type="checkbox" value="<%= enableKBArticlePrint %>" />
 
-				<aui:input label="enable-social-bookmarks" name="preferences--enableSocialBookmarks--" type="checkbox" value="<%= enableSocialBookmarks %>" />
+				<liferay-ui:social-bookmarks-settings
+					displayPosition="<%= socialBookmarksDisplayPosition %>"
+					displayStyle="<%= socialBookmarksDisplayStyle %>"
+					enabled="<%= enableSocialBookmarks %>"
+					types="<%= socialBookmarksTypes %>"
+				/>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				<liferay-ui:rss-settings
@@ -123,6 +122,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 	<c:when test='<%= tabs2.equals("display-settings") %>'>
 		<aui:script>
 			Liferay.Util.toggleBoxes('<portlet:namespace />enableKBArticleRatingsCheckbox', '<portlet:namespace />ratingsType');
+			Liferay.Util.toggleBoxes('<portlet:namespace />enableSocialBookmarksCheckbox','<portlet:namespace />socialBookmarksOptions');
 		</aui:script>
 	</c:when>
 </c:choose>

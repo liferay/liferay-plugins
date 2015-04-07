@@ -108,13 +108,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			>
 
 				<%
-				KBArticle kbArticle = null;
-
-				try {
-					kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(assetEntry.getClassPK(), WorkflowConstants.STATUS_APPROVED);
-				}
-				catch (NoSuchArticleException nsae) {
-				}
+				KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(assetEntry.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
 				int viewCount = (kbArticle != null) ? kbArticle.getViewCount() : 0;
 

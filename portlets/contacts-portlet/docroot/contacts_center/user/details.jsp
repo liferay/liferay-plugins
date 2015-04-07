@@ -28,47 +28,54 @@ User selUser = (User)request.getAttribute("user.selUser");
 <h3><liferay-ui:message key="details" /></h3>
 
 <aui:fieldset column="<%= true %>" cssClass="w50">
-	<aui:input autocapitalize="off" autocorrect="off" name="screenName" type="text" />
+	<aui:input autocapitalize="off" autocorrect="off" disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "screenName") %>' name="screenName" type="text" />
 
-	<aui:input bean="<%= user %>" model="<%= User.class %>" name="emailAddress" type="email">
+	<aui:input bean="<%= user %>" disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "emailAddress") %>' model="<%= User.class %>" name="emailAddress" type="email">
 		<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
 			<aui:validator name="required" />
 		</c:if>
 	</aui:input>
 
-	<aui:input name="firstName" />
+	<aui:input disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "firstName") %>' name="firstName" />
 
-	<aui:input name="middleName" />
+	<aui:input disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "middleName") %>' name="middleName" />
 
-	<aui:input name="lastName" />
+	<aui:input disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "lastName") %>' name="lastName" />
 
-	<aui:input name="jobTitle" />
+	<aui:input disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "jobTitle") %>' name="jobTitle" />
 </aui:fieldset>
 
 <aui:fieldset column="<%= true %>" cssClass="w50">
 	<div class="user-profile-image" id="<portlet:namespace />userProfileImage">
 		<c:if test="<%= selUser != null %>">
+			<c:choose>
+				<c:when test='<%= UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "portrait") %>'>
 
-			<%
-			Group controlPanelGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.CONTROL_PANEL);
+					<%
+					Group controlPanelGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.CONTROL_PANEL);
 
-			long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(controlPanelGroup.getGroupId(), true);
-			%>
+					long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(controlPanelGroup.getGroupId(), true);
+					%>
 
-			<liferay-portlet:renderURL plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.MY_ACCOUNT %>" refererPlid="<%= plid %>" var="editUserPortraitURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="struts_action" value="/my_account/edit_user_portrait" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="p_u_i_d" value="<%= String.valueOf(selUser.getUserId()) %>" />
-				<portlet:param name="portrait_id" value="<%= String.valueOf(selUser.getPortraitId()) %>" />
-			</liferay-portlet:renderURL>
+					<liferay-portlet:renderURL plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.MY_ACCOUNT %>" refererPlid="<%= plid %>" var="editUserPortraitURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+						<portlet:param name="struts_action" value="/my_account/edit_user_portrait" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="p_u_i_d" value="<%= String.valueOf(selUser.getUserId()) %>" />
+						<portlet:param name="portrait_id" value="<%= String.valueOf(selUser.getPortraitId()) %>" />
+					</liferay-portlet:renderURL>
 
-			<liferay-ui:logo-selector
-				defaultLogoURL="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), selUser.isMale(), 0) %>"
-				editLogoURL="<%= editUserPortraitURL %>"
-				imageId="<%= selUser.getPortraitId() %>"
-				logoDisplaySelector=".user-logo"
-				showBackground="<%= false %>"
-			/>
+					<liferay-ui:logo-selector
+						currentLogoURL="<%= selUser.getPortraitURL(themeDisplay) %>"
+						defaultLogoURL="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), selUser.isMale(), 0) %>"
+						defaultLogo="<%= selUser.getPortraitId() == 0 %>"
+						logoDisplaySelector=".user-logo"
+						showBackground="<%= false %>"
+					/>
+				</c:when>
+				<c:otherwise>
+					<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="portrait" />" src="<%= selUser.getPortraitURL(themeDisplay) %>" />
+				</c:otherwise>
+			</c:choose>
 		</c:if>
 	</div>
 </aui:fieldset>

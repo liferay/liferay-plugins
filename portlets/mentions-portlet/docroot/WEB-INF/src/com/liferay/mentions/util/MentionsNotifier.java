@@ -41,8 +41,8 @@ import java.util.regex.Pattern;
 public class MentionsNotifier {
 
 	public void notify(
-			long userId, long groupId, String content, String className,
-			long classPK, String subject, String body,
+			long userId, long groupId, String title, String content,
+			String className, long classPK, String subject, String body,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -78,7 +78,8 @@ public class MentionsNotifier {
 			getAssetEntryName(className, serviceContext), "[$USER_ADDRESS$]",
 			messageUserEmailAddress, "[USER_NAME$]", messageUserName,
 			"[$CONTENT_URL$]", contentURL);
-		subscriptionSender.setEntryTitle(content);
+		subscriptionSender.setCurrentUserId(userId);
+		subscriptionSender.setEntryTitle(title);
 		subscriptionSender.setEntryURL(contentURL);
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
@@ -89,7 +90,6 @@ public class MentionsNotifier {
 		subscriptionSender.setScopeGroupId(groupId);
 		subscriptionSender.setServiceContext(serviceContext);
 		subscriptionSender.setSubject(subject);
-		subscriptionSender.setUserId(userId);
 
 		for (int i = 0; i < mentionedUsersScreenNames.length; i++) {
 			String mentionedUserScreenName = mentionedUsersScreenNames[i];
@@ -134,7 +134,7 @@ public class MentionsNotifier {
 
 		Matcher matcher = _pattern.matcher(content);
 
-		Set<String> mentionedUsersScreenNames = new HashSet<String>();
+		Set<String> mentionedUsersScreenNames = new HashSet<>();
 
 		while (matcher.find()) {
 			String mentionedUserScreenName = matcher.group(2);

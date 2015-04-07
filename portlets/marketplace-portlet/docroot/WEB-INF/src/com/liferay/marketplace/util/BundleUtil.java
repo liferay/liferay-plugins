@@ -74,7 +74,7 @@ public class BundleUtil {
 					continue;
 				}
 
-				Map<String, Object> bundleData = new HashMap<String, Object>();
+				Map<String, Object> bundleData = new HashMap<>();
 
 				bundleData.put("bundleId", compositeData.get("Identifier"));
 				bundleData.put("location", compositeData.get("Location"));
@@ -154,7 +154,7 @@ public class BundleUtil {
 		try {
 			List<Map<String, Object>> bundles = getInstalledBundles();
 
-			List<Long> bundleIds = new ArrayList<Long>();
+			List<Long> bundleIds = new ArrayList<>();
 
 			for (Map<String, Object> bundle : bundles) {
 				String curSymbolicName = GetterUtil.getString(

@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.samplelar.model.SampleLARBooking;
@@ -50,28 +49,21 @@ public class SampleLARBookingStagedModelDataHandler
 	}
 
 	@Override
-	public SampleLARBooking fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<SampleLARBooking> sampleLARBookings =
-			SampleLARBookingLocalServiceUtil.
-				getSampleLARBookingsByUuidAndCompanyId(
-					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					new StagedModelModifiedDateComparator<SampleLARBooking>());
-
-		if (ListUtil.isEmpty(sampleLARBookings)) {
-			return null;
-		}
-
-		return sampleLARBookings.get(0);
-	}
-
-	@Override
 	public SampleLARBooking fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return SampleLARBookingLocalServiceUtil.
 			fetchSampleLARBookingByUuidAndGroupId(uuid, groupId);
+	}
+
+	@Override
+	public List<SampleLARBooking> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return SampleLARBookingLocalServiceUtil.
+			getSampleLARBookingsByUuidAndCompanyId(
+				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new StagedModelModifiedDateComparator<SampleLARBooking>());
 	}
 
 	@Override

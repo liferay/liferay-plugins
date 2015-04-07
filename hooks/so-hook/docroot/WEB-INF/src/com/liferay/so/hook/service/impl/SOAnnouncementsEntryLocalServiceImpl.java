@@ -193,8 +193,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			int count = 0;
 			long teamId = 0;
 
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			if (announcementEntry.getClassNameId() == 0) {
 				count = UserLocalServiceUtil.getUsersCount();
@@ -222,7 +221,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 
 					params.put(
 						"usersOrgsTree",
-						ListUtil.fromArray(new Organization[]{organization}));
+						ListUtil.fromArray(new Organization[] {organization}));
 				}
 				else if (className.equals(Role.class.getName())) {
 					Role role = RoleLocalServiceUtil.fetchRole(classPK);

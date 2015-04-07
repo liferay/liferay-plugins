@@ -32,7 +32,8 @@ import java.util.List;
  */
 @Transactional(
 	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
-	rollbackFor = {Exception.class})
+	rollbackFor = {Exception.class}
+)
 public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 
 	@Override

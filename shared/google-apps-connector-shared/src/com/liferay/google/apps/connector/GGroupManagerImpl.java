@@ -188,7 +188,7 @@ public class GGroupManagerImpl
 	public List<GGroupMember> getGGroupMembers(String emailAddress)
 		throws GoogleAppsException {
 
-		List<GGroupMember> gGroupMembers = new ArrayList<GGroupMember>();
+		List<GGroupMember> gGroupMembers = new ArrayList<>();
 
 		StringBundler sb = new StringBundler(4);
 
@@ -234,7 +234,7 @@ public class GGroupManagerImpl
 	public List<GGroupOwner> getGGroupOwners(String emailAddress)
 		throws GoogleAppsException {
 
-		List<GGroupOwner> gGroupOwners = new ArrayList<GGroupOwner>();
+		List<GGroupOwner> gGroupOwners = new ArrayList<>();
 
 		StringBundler sb = new StringBundler(4);
 
@@ -250,7 +250,7 @@ public class GGroupManagerImpl
 
 	@Override
 	public List<GGroup> getGGroups() throws GoogleAppsException {
-		List<GGroup> gGroups = new ArrayList<GGroup>();
+		List<GGroup> gGroups = new ArrayList<>();
 
 		getGGroups(gGroups, groupURL);
 
@@ -261,7 +261,7 @@ public class GGroupManagerImpl
 	public List<GGroup> getGGroups(long userId, boolean directOnly)
 		throws GoogleAppsException {
 
-		List<GGroup> gGroups = new ArrayList<GGroup>();
+		List<GGroup> gGroups = new ArrayList<>();
 
 		StringBundler sb = new StringBundler(4);
 

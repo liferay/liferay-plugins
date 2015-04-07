@@ -26,26 +26,22 @@ import com.liferay.calendar.notification.NotificationTemplateContext;
 import com.liferay.calendar.notification.NotificationTemplateContextFactory;
 import com.liferay.calendar.notification.NotificationTemplateType;
 import com.liferay.calendar.notification.NotificationType;
-import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Eduardo Lundgren
@@ -131,7 +127,7 @@ public class NotificationUtil {
 
 	public static void notifyCalendarBookingRecipients(
 			CalendarBooking calendarBooking, NotificationType notificationType,
-			NotificationTemplateType notificationTemplateType)
+			NotificationTemplateType notificationTemplateType, User sender)
 		throws Exception {
 
 		NotificationSender notificationSender =
@@ -145,6 +141,10 @@ public class NotificationUtil {
 				notificationRecipients) {
 
 			User user = notificationRecipient.getUser();
+
+			if (user.equals(sender)) {
+				continue;
+			}
 
 			NotificationTemplateContext notificationTemplateContext =
 				NotificationTemplateContextFactory.getInstance(
@@ -213,57 +213,18 @@ public class NotificationUtil {
 			CalendarBooking calendarBooking)
 		throws Exception {
 
-		Calendar calendar = calendarBooking.getCalendar();
+		List<NotificationRecipient> notificationRecipients = new ArrayList<>();
 
 		CalendarResource calendarResource =
 			calendarBooking.getCalendarResource();
 
-		List<Role> roles = RoleLocalServiceUtil.getResourceBlockRoles(
-			calendar.getResourceBlockId(), Calendar.class.getName(),
-			ActionKeys.MANAGE_BOOKINGS);
+		Set<User> users = new HashSet<>();
 
-		List<NotificationRecipient> notificationRecipients =
-			new ArrayList<NotificationRecipient>();
+		users.add(UserLocalServiceUtil.getUser(calendarBooking.getUserId()));
+		users.add(UserLocalServiceUtil.getUser(calendarResource.getUserId()));
 
-		for (Role role : roles) {
-			String name = role.getName();
-
-			if (name.equals(RoleConstants.OWNER)) {
-				User calendarResourceUser = UserLocalServiceUtil.getUser(
-					calendarResource.getUserId());
-
-				notificationRecipients.add(
-					new NotificationRecipient(calendarResourceUser));
-
-				User calendarUser = UserLocalServiceUtil.getUser(
-					calendar.getUserId());
-
-				if (calendarResourceUser.getUserId() !=
-						calendarUser.getUserId()) {
-
-					notificationRecipients.add(
-						new NotificationRecipient(calendarUser));
-				}
-			}
-			else {
-				List<User> roleUsers = UserLocalServiceUtil.getRoleUsers(
-					role.getRoleId());
-
-				for (User roleUser : roleUsers) {
-					PermissionChecker permissionChecker =
-						PermissionCheckerFactoryUtil.create(roleUser);
-
-					if (!CalendarPermission.contains(
-							permissionChecker, calendar,
-							ActionKeys.MANAGE_BOOKINGS)) {
-
-						continue;
-					}
-
-					notificationRecipients.add(
-						new NotificationRecipient(roleUser));
-				}
-			}
+		for (User user : users) {
+			notificationRecipients.add(new NotificationRecipient(user));
 		}
 
 		return notificationRecipients;

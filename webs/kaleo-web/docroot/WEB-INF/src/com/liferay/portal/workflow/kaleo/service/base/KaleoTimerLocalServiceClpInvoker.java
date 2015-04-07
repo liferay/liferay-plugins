@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class KaleoTimerLocalServiceClpInvoker {
 	public KaleoTimerLocalServiceClpInvoker() {
 		_methodName0 = "addKaleoTimer";

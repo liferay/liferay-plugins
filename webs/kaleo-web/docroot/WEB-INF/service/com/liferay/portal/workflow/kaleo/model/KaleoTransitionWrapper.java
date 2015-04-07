@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see KaleoTransition
  * @generated
  */
+@ProviderType
 public class KaleoTransitionWrapper implements KaleoTransition,
 	ModelWrapper<KaleoTransition> {
 	public KaleoTransitionWrapper(KaleoTransition kaleoTransition) {
@@ -705,5 +708,5 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 		_kaleoTransition.resetOriginalValues();
 	}
 
-	private KaleoTransition _kaleoTransition;
+	private final KaleoTransition _kaleoTransition;
 }

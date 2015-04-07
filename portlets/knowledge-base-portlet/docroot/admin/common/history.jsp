@@ -26,6 +26,8 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", kbArticle.get
 
 String orderByCol = ParamUtil.getString(request, "orderByCol", "version");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">
@@ -177,16 +179,17 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</div>
 
 				<div class="kb-tools">
-					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-					</liferay-portlet:renderURL>
+
+					<%
+					PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(kbArticle);
+					%>
 
 					<liferay-ui:icon
 						iconCssClass="icon-file-alt"
 						label="<%= true %>"
 						message="latest-version"
-						url="<%= viewKBArticleURL %>"
+						method="get"
+						url="<%= viewKBArticleURL.toString() %>"
 					/>
 				</div>
 			</div>
@@ -212,12 +215,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			var A = AUI();
 
 			var rowIds = A.all('input[name=<portlet:namespace />rowIds]:checked');
+
 			var sourceVersion = A.one('input[name="<portlet:namespace />sourceVersion"]');
 			var targetVersion = A.one('input[name="<portlet:namespace />targetVersion"]');
 
 			var rowIdsSize = rowIds.size();
 
-			if (rowIdsSize == 1) {
+			if (rowIdsSize === 1) {
 				if (sourceVersion) {
 					sourceVersion.val(rowIds.item(0).val());
 				}
@@ -248,7 +252,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			rowIds.each(
 				function(item, index, collection) {
 					if (index >= 2) {
-						item.set('checked', false);
+						item.attr('checked', false);
 					}
 				}
 			);
@@ -271,7 +275,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					index = 1;
 				}
 
-				rowsChecked.item(index).set('checked', false);
+				rowsChecked.item(index).attr('checked', false);
 			}
 		},
 		['aui-base', 'selector-css3']

@@ -746,8 +746,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		recurrence.setUntilJCalendar(untilJCalendar);
 
-		List<PositionalWeekday> positionalWeekdays =
-			new ArrayList<PositionalWeekday>();
+		List<PositionalWeekday> positionalWeekdays = new ArrayList<>();
 
 		if (frequency == Frequency.WEEKLY) {
 			for (Weekday weekday : Weekday.values()) {
@@ -1017,7 +1016,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 
-		Set<Calendar> calendarsSet = new LinkedHashSet<Calendar>();
+		Set<Calendar> calendarsSet = new LinkedHashSet<>();
 
 		Hits hits = search(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords);
@@ -1035,8 +1034,7 @@ public class CalendarPortlet extends MVCPortlet {
 		String name = StringUtil.merge(
 			CustomSQLUtil.keywords(keywords), StringPool.BLANK);
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		params.put("usersGroups", themeDisplay.getUserId());
 

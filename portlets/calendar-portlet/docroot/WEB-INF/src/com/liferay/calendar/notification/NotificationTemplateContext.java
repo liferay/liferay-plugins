@@ -143,8 +143,7 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 		_toName = toName;
 	}
 
-	private Map<String, Serializable> _attributes =
-		new LinkedHashMap<String, Serializable>();
+	private Map<String, Serializable> _attributes = new LinkedHashMap<>();
 	private long _calendarId;
 	private CalendarNotificationTemplate _calendarNotificationTemplate;
 	private long _companyId;

@@ -88,8 +88,8 @@ Group group = themeDisplay.getScopeGroup();
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		<div class="alert alert-error">
-			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-page" />
+		<div class="alert alert-danger">
+			<liferay-ui:message key="this-application-only-functions-when-placed-on-a-user-page" />
 		</div>
 	</c:otherwise>
 </c:choose>

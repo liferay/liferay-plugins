@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see KaleoTimerLocalService
  * @generated
  */
+@ProviderType
 public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 	ServiceWrapper<KaleoTimerLocalService> {
 	public KaleoTimerLocalServiceWrapper(
@@ -160,10 +163,10 @@ public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(
@@ -172,11 +175,11 @@ public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(

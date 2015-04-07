@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.service.ClpSerializer;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 
@@ -40,6 +42,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class MessageClp extends BaseModelImpl<Message> implements Message {
 	public MessageClp() {
 	}
@@ -97,6 +100,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		attributes.put("flags", getFlags());
 		attributes.put("size", getSize());
 		attributes.put("remoteMessageId", getRemoteMessageId());
+		attributes.put("contentType", getContentType());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -218,6 +222,12 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 		if (remoteMessageId != null) {
 			setRemoteMessageId(remoteMessageId);
+		}
+
+		String contentType = (String)attributes.get("contentType");
+
+		if (contentType != null) {
+			setContentType(contentType);
 		}
 
 		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
@@ -678,6 +688,29 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	}
 
 	@Override
+	public String getContentType() {
+		return _contentType;
+	}
+
+	@Override
+	public void setContentType(String contentType) {
+		_contentType = contentType;
+
+		if (_messageRemoteModel != null) {
+			try {
+				Class<?> clazz = _messageRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setContentType", String.class);
+
+				method.invoke(_messageRemoteModel, contentType);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public boolean hasFlag(int flag) {
 		try {
 			String methodName = "hasFlag";
@@ -706,6 +739,25 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 			Object[] parameterValues = new Object[] {  };
 
 			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public boolean hasAttachments() {
+		try {
+			String methodName = "hasAttachments";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -803,6 +855,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		clone.setFlags(getFlags());
 		clone.setSize(getSize());
 		clone.setRemoteMessageId(getRemoteMessageId());
+		clone.setContentType(getContentType());
 
 		return clone;
 	}
@@ -863,7 +916,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(39);
+		StringBundler sb = new StringBundler(41);
 
 		sb.append("{messageId=");
 		sb.append(getMessageId());
@@ -903,6 +956,8 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		sb.append(getSize());
 		sb.append(", remoteMessageId=");
 		sb.append(getRemoteMessageId());
+		sb.append(", contentType=");
+		sb.append(getContentType());
 		sb.append("}");
 
 		return sb.toString();
@@ -910,7 +965,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(64);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.mail.model.Message");
@@ -992,6 +1047,10 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 			"<column><column-name>remoteMessageId</column-name><column-value><![CDATA[");
 		sb.append(getRemoteMessageId());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>contentType</column-name><column-value><![CDATA[");
+		sb.append(getContentType());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -1017,6 +1076,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	private String _flags;
 	private long _size;
 	private long _remoteMessageId;
+	private String _contentType;
 	private BaseModel<?> _messageRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.mail.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;

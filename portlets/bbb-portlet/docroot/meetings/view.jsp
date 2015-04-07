@@ -46,12 +46,12 @@ else {
 	<div id="<portlet:namespace />messageContainer">
 		<c:choose>
 			<c:when test="<%= (bbbParticipant == null) || (bbbMeeting == null) %>">
-				<div class="alert alert-error">
+				<div class="alert alert-danger">
 					<liferay-ui:message key="the-meeting-you-have-requested-no-longer-exists" />
 				</div>
 			</c:when>
 			<c:when test="<%= (bbbMeeting != null) && (bbbMeeting.getStatus() == BBBMeetingConstants.STATUS_COMPLETED) && !BBBAPIUtil.isMeetingRunning(bbbMeeting.getBbbMeetingId()) %>">
-				<div class="alert alert-error">
+				<div class="alert alert-danger">
 					<liferay-ui:message key="the-meeting-you-have-requested-has-already-completed" />
 				</div>
 			</c:when>
@@ -130,6 +130,10 @@ else {
 					var io = A.io.request(
 						'<liferay-portlet:actionURL name="joinBBBMeeting" />',
 						{
+							dataType: 'JSON',
+							form: {
+								id: form
+							},
 							on: {
 								complete: function(event, id, obj) {
 									var responseText = obj.responseText;
@@ -147,18 +151,14 @@ else {
 												io.start();
 											},
 											5000
-										)
+										);
 									}
 									else {
 										loadingMask.hide();
 
-										messageContainer.html('<span class="alert alert-error"><liferay-ui:message key="the-meeting-you-have-requested-no-longer-exists" /></span>');
+										messageContainer.html('<span class="alert alert-danger"><liferay-ui:message key="the-meeting-you-have-requested-no-longer-exists" /></span>');
 									}
 								}
-							},
-							dataType: 'JSON',
-							form: {
-								id: form
 							}
 						}
 					);

@@ -17,8 +17,9 @@ package com.liferay.portal.workflow.kaleo;
 import com.liferay.portal.DuplicateLockException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PrimitiveLongSet;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
@@ -57,6 +58,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * @author Michael C. Han
@@ -211,7 +213,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			List<KaleoTransition> kaleoTransitions =
 				kaleoNode.getKaleoTransitions();
 
-			List<String> transitionNames = new ArrayList<String>(
+			List<String> transitionNames = new ArrayList<>(
 				kaleoTransitions.size());
 
 			for (KaleoTransition kaleoTransition : kaleoTransitions) {
@@ -240,7 +242,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 					kaleoTask.getKaleoTaskId(), Role.class.getName());
 
-			PrimitiveLongSet pooledActors = new PrimitiveLongSet();
+			Map<String, Long> pooledActors = new TreeMap<>(
+				new NaturalOrderStringComparator());
 
 			for (KaleoTaskAssignment kaleoTaskAssignment :
 					kaleoTaskAssignments) {
@@ -258,7 +261,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 								kaleoTaskAssignment.getAssigneeClassPK());
 
 					for (UserGroupRole userGroupRole : userGroupRoles) {
-						pooledActors.add(userGroupRole.getUserId());
+						User user = userGroupRole.getUser();
+
+						pooledActors.put(user.getFullName(), user.getUserId());
 					}
 
 					List<UserGroupGroupRole> userGroupGroupRoles =
@@ -275,7 +280,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 								userGroupGroupRole.getUserGroupId());
 
 						for (User user : userGroupUsers) {
-							pooledActors.add(user.getUserId());
+							pooledActors.put(
+								user.getFullName(), user.getUserId());
 						}
 					}
 				}
@@ -286,12 +292,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 							QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 					for (User user : inheritedRoleUsers) {
-						pooledActors.add(user.getUserId());
+						pooledActors.put(user.getFullName(), user.getUserId());
 					}
 				}
 			}
 
-			return pooledActors.getArray();
+			return ArrayUtil.toLongArray(pooledActors.values());
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -772,7 +778,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens)
 		throws PortalException {
 
-		List<WorkflowTask> workflowTasks = new ArrayList<WorkflowTask>(
+		List<WorkflowTask> workflowTasks = new ArrayList<>(
 			kaleoTaskInstanceTokens.size());
 
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken :

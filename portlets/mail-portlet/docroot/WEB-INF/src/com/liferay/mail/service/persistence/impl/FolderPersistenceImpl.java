@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.NoSuchFolderException;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.impl.FolderImpl;
@@ -63,6 +65,7 @@ import java.util.Set;
  * @see FolderUtil
  * @generated
  */
+@ProviderType
 public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	implements FolderPersistence {
 	/*
@@ -1525,8 +1528,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Folder exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(FolderPersistenceImpl.class);
-	private static Folder _nullFolder = new FolderImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(FolderPersistenceImpl.class);
+	private static final Folder _nullFolder = new FolderImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1538,7 +1541,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			}
 		};
 
-	private static CacheModel<Folder> _nullFolderCacheModel = new CacheModel<Folder>() {
+	private static final CacheModel<Folder> _nullFolderCacheModel = new CacheModel<Folder>() {
 			@Override
 			public Folder toEntityModel() {
 				return _nullFolder;

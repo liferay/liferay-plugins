@@ -373,6 +373,6 @@ public class ResourceImporter extends FileSystemImporter {
 		return urlConnection.getInputStream();
 	}
 
-	private Map<String, Long> _folderIds = new HashMap<String, Long>();
+	private Map<String, Long> _folderIds = new HashMap<>();
 
 }

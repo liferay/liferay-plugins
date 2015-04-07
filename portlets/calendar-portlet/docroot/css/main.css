@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 .calendar-booking-invitations {
@@ -161,11 +161,15 @@
 	}
 
 	.scheduler-view-agenda-info-container {
-		.scheduler-view-agenda-info {
-			line-height: 1.2;
+		font-size: 1em;
 
+		.scheduler-view-agenda-info {
 			.scheduler-view-agenda-info-biggie {
-				line-height: 30px;
+				padding: 0 8px;
+			}
+
+			.scheduler-view-agenda-info-label {
+				padding: 10px 0 10px 8px;
 			}
 		}
 	}
@@ -215,11 +219,11 @@
 }
 
 .calendar-portlet-event-loading {
-	@include opacity(0.5);
+	opacity: 0.5;
 }
 
 .calendar-portlet-event-maybe, .calendar-portlet-event-pending {
-	@include opacity(0.8);
+	opacity: 0.8;
 }
 
 .calendar-portlet-event-recorder {
@@ -345,7 +349,7 @@
 	}
 
 	.scheduler-event-disabled {
-		@include opacity(0.8);
+		opacity: 0.8;
 	}
 }
 
@@ -353,23 +357,31 @@
 	margin-bottom: 2em;
 }
 
-.ie6, .ie7, .ie8 {
-	.yui3-skin-sam .yui3-calendar-day.lfr-busy-day {
-		background: transparent url(../images/lfr-busy-day-arrow.png) right top no-repeat;
-	}
-}
-
 .rss-time-interval {
 	margin-left: 2em;
 	margin-top: -1em;
 }
 
-.scheduler-base-controls .calendar-add-event-btn {
-	margin-right: 3px;
+.scheduler-base-controls {
+	&, .scheduler-base-views {
+		width: 50%;
+	}
+
+	.btn-group .calendar-add-event-btn {
+		margin-right: 3px;
+
+		@include respond-to(phone) {
+			width: 100%;
+		}
+	}
+}
+
+.scheduler-base-icon-next span, .scheduler-base-icon-prev span {
+	font-size: 16px;
 }
 
 .scheduler-event-past {
-	@include opacity(0.4);
+	opacity: 0.4;
 }
 
 .scheduler-event-recorder-body select {
@@ -392,6 +404,10 @@
 
 .scheduler-event-recorder-popover .popover-title .close {
 	margin-top: 5px;
+}
+
+.scheduler-view-agenda {
+	margin-top: -13px;
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col {
@@ -547,28 +563,30 @@
 
 .scheduler-event-recorder-content {
 	@include background-image(linear-gradient(top, #F7F7F7, #FFF));
-	@include box-shadow(inset 0 1px 2px #DDD);
+
+	box-shadow: inset 0 1px 2px #DDD;
+
 	@include transition(background 0.3s ease-in, border-color 0.3s ease-out);
 }
 
 .scheduler-event-recorder-content, .calendar-portlet .yui3-calendar-day {
-	@include border-radius(2px);
+	border-radius: 2px;
 }
 
 .calendar-portlet-wrapper {
-	@include border-radius(5px);
+	border-radius: 5px;
 }
 
 .calendar-list-item .calendar-list-item-color, .calendar-list-item-arrow, .calendar-list-item-arrow .icon-caret-down {
-	@include border-radius(3px);
+	border-radius: 3px;
 }
 
 .simple-color-picker-item {
-	@include border-radius(1px);
+	border-radius: 1px;
 }
 
 .simple-menu-content {
-	@include box-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .simple-menu-item {
@@ -590,5 +608,39 @@
 @include respond-to(phone, tablet) {
 	.scheduler-view-table-header-day div {
 		overflow: hidden
+	}
+}
+
+@include respond-to(phone) {
+	.scheduler-base-content .scheduler-base-view-date,
+	.scheduler-base-content .scheduler-base-controls,
+	.scheduler-base-content .scheduler-base-controls .btn-group,
+	.scheduler-base-content .scheduler-base-hd .scheduler-base-views {
+		text-align: center;
+		width: 100%;
+	}
+
+	.scheduler-base-content .scheduler-base-hd .scheduler-base-views {
+		margin-top: 5px;
+	}
+
+	.scheduler-base-controls .btn-group .scheduler-base-today {
+		width: 50%;
+	}
+
+	.scheduler-base-hd .btn-group button {
+		width: 25%;
+	}
+
+	.scheduler-base-views button {
+		float: none;
+	}
+
+	.scheduler-view-day-header-day-weekday {
+		font-size: 0;
+
+		&:first-letter {
+			font-size: 14px;
+		}
 	}
 }

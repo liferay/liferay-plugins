@@ -19,7 +19,7 @@
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="java.util.Properties" %>
 
-<span class="alert alert-error">
+<span class="alert alert-danger">
 An unexpected error occurred.
 </span>
 

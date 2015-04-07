@@ -33,7 +33,7 @@ import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Eduardo Lundgren
- * @deprecated As of 7.0.0, replaced by {@link com.liferay.calendar.service.CalendarBookingLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.calendar.service.CalendarBookingLocalServiceUtil#getExportActionableDynamicQuery(PortletDataContext)}
  * @generated
  */
 @Deprecated

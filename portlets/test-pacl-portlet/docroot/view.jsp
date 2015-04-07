@@ -2815,7 +2815,9 @@ String dbType = db.getType();
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				PortalExecutorManagerUtil.shutdown("liferay/hot_deploy");
+				ThreadPoolExecutor threadPoolExecutor = PortalExecutorManagerUtil.getPortalExecutor("liferay/hot_deploy");
+
+				threadPoolExecutor.shutdown();
 			}
 
 		};

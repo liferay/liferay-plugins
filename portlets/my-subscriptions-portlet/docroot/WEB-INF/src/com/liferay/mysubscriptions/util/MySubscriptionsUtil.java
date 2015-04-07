@@ -45,8 +45,9 @@ import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
-import com.liferay.portlet.wiki.model.WikiNode;
-import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
+import com.liferay.wiki.constants.WikiPortletKeys;
+import com.liferay.wiki.model.WikiNode;
+import com.liferay.wiki.service.WikiNodeLocalServiceUtil;
 
 import java.util.Locale;
 
@@ -98,7 +99,7 @@ public class MySubscriptionsUtil {
 
 		if (className.equals(WikiNode.class.getName())) {
 			long plid = PortalUtil.getPlidFromPortletId(
-				themeDisplay.getScopeGroupId(), PortletKeys.WIKI);
+				themeDisplay.getScopeGroupId(), WikiPortletKeys.WIKI);
 
 			if (plid == 0) {
 				return null;

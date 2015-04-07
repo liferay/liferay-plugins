@@ -146,7 +146,6 @@ public class TemplateNotificationMessageGenerator
 		}
 	}
 
-	private Map<String, String> _templateManagerNames =
-		new HashMap<String, String>();
+	private Map<String, String> _templateManagerNames = new HashMap<>();
 
 }

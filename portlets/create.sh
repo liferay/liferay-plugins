@@ -14,13 +14,15 @@ if [ $# -lt 2 ]; then
 	echo
 	echo A third value can be passed to specify the portlet framework to use. Valid
 	echo values are \"jsf\", \"icefaces\", \"liferay_faces_alloy\", \"mvc\", \"primefaces\",
-	echo \"richfaces\", or \"vaadin\". The default value is \"mvc\". The quotation marks are
-	echo not needed.
+	echo \"richfaces\", \"spring_mvc\", or \"vaadin\". The default value is \"mvc\". The
+	echo quotation marks are not needed.
 
 	exit 127
 fi
 
-ant -Dportlet.name=$1 -Dportlet.display.name=\"$2\" -Dportlet.framework=$3 create
+chmod a+x ../tools/gradle/gradlew
+
+../tools/gradle/gradlew --build-file=../sdk.gradle -PportletName=$1 -PportletDisplayName=\"$2\" -PportletFramework=$3 createPortlet
 
 #ant deploy
 

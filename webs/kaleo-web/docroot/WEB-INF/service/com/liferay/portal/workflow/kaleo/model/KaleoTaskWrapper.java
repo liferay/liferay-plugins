@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see KaleoTask
  * @generated
  */
+@ProviderType
 public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	public KaleoTaskWrapper(KaleoTask kaleoTask) {
 		_kaleoTask = kaleoTask;
@@ -555,5 +558,5 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 		_kaleoTask.resetOriginalValues();
 	}
 
-	private KaleoTask _kaleoTask;
+	private final KaleoTask _kaleoTask;
 }

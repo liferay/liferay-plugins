@@ -1,0 +1,224 @@
+Map<String, Map<String, String>> portalDependencies = [
+	antlr2: [
+		group: "antlr",
+		name: "antlr",
+		version: "2.7.7"
+	],
+	axis: [
+		group: "axis",
+		name: "axis",
+		version: "1.4"
+	],
+	backportConcurrent: [
+		group: "backport-util-concurrent",
+		name: "backport-util-concurrent",
+		version: "3.1"
+	],
+	bsf: [
+		group: "bsf",
+		name: "bsf",
+		version: "2.4.0"
+	],
+	commonsBeanutils: [
+		group: "commons-beanutils",
+		name: "commons-beanutils",
+		version: "1.8.2"
+	],
+	commonsCodec: [
+		group: "commons-codec",
+		name: "commons-codec",
+		version: "1.9"
+	],
+	commonsCollections: [
+		group: "commons-collections",
+		name: "commons-collections",
+		version: "3.2.1"
+	],
+	commonsDigester: [
+		group: "commons-digester",
+		name: "commons-digester",
+		version: "1.8"
+	],
+	commonsDiscovery: [
+		group: "commons-discovery",
+		name: "commons-discovery",
+		version: "0.4"
+	],
+	commonsFileupload: [
+		group: "commons-fileupload",
+		name: "commons-fileupload",
+		version: "1.3.1"
+	],
+	commonsHttpclient: [
+		group: "commons-httpclient",
+		name: "commons-httpclient",
+		version: "3.1"
+	],
+	commonsIo: [
+		group: "commons-io",
+		name: "commons-io",
+		version: "2.1"
+	],
+	commonsLang: [
+		group: "commons-lang",
+		name: "commons-lang",
+		version: "2.6"
+	],
+	commonsLogging: [
+		group: "commons-logging",
+		name: "commons-logging",
+		version: "1.1.3"
+	],
+	commonsMath: [
+		group: "org.apache.commons",
+		name: "commons-math",
+		version: "2.0"
+	],
+	commonsValidator:	[
+		group: "commons-validator",
+		name: "commons-validator",
+		version: "1.3.1"
+	],
+	dom4j: [
+		group: "dom4j",
+		name: "dom4j",
+		version: "1.6.1"
+	],
+	hibernateCore: [
+		group: "org.hibernate",
+		name: "hibernate-core",
+		version: "3.6.10.Final"
+	],
+	ical4j: [
+		group: "org.mnode.ical4j",
+		name: "ical4j",
+		version: "1.0.2"
+	],
+	jabsorb: [
+		group: "org.jabsorb",
+		name: "jabsorb",
+		version: "1.3.1"
+	],
+	jaxrpc: [
+		group: "javax.xml",
+		name: "jaxrpc",
+		version: "1.1"
+	],
+	jcommon: [
+		group: "jfree",
+		name: "jcommon",
+		version: "1.0.16"
+	],
+	jdom: [
+		group: "org.jopendocument",
+		name: "jdom",
+		version: "1.1.1"
+	],
+	jfreechart: [
+		group: "jfree",
+		name: "jfreechart",
+		version: "1.0.13"
+	],
+	jerichoHtml: [
+		group: "net.htmlparser.jericho",
+		name: "jericho-html",
+		version: "3.1"
+	],
+	jruby: [
+		group: "org.jruby",
+		name: "jruby",
+		version: "1.6.5"
+	],
+	jsonJava: [
+		group: "com.liferay",
+		name: "com.liferay.org.json",
+		version: "1.0.0"
+	],
+	jstlApi: [
+		group: "javax.servlet.jsp.jstl",
+		name: "jstl-api",
+		version: "1.2"
+	],
+	jstlImpl: [
+		group: "org.glassfish.web",
+		name: "jstl-impl",
+		version: "1.2"
+	],
+	jutf7: [
+		group: "com.beetstra.jutf7",
+		name: "jutf7",
+		version: "0.9.0"
+	],
+	nekohtml: [
+		group: "net.sourceforge.nekohtml",
+		name: "nekohtml",
+		version: "1.9.14"
+	],
+	oro: [
+		group: "oro",
+		name: "oro",
+		version: "2.0.8"
+	],
+	portalsBridges: [
+		group: "org.apache.portals.bridges",
+		name: "portals-bridges-common",
+		version: "1.0"
+	],
+	rhino: [
+		group: "org.mozilla",
+		name: "rhino",
+		version: "1.7R4"
+	],
+	rome: [
+		group: "rome",
+		name: "rome",
+		version: "1.0"
+	],
+	saajApi: [
+		group: "javax.xml.soap",
+		name: "saaj-api",
+		version: "1.3"
+	],
+	saajImpl: [
+		group: "com.sun.xml.messaging.saaj",
+		name: "saaj-impl",
+		version: "1.3"
+	],
+	slf4jApi: [
+		group: "org.slf4j",
+		name: "slf4j-api",
+		version: "1.7.2"
+	],
+	struts: [
+		group: "com.liferay",
+		name: "org.apache.struts",
+		version: "1.2.9.LIFERAY-PATCHED-1"
+	],
+	utilSlf4j: [
+		group: "com.liferay.portal",
+		name: "util-slf4j",
+		version: "7.0.0-SNAPSHOT"
+	],
+	wsdl4j: [
+		group: "wsdl4j",
+		name: "wsdl4j",
+		version: "1.6.1"
+	],
+	xercesImpl: [
+		group: "xerces",
+		name: "xercesImpl",
+		version: "2.11.0"
+	],
+	xmlApis: [
+		group: "xml-apis",
+		name: "xml-apis",
+		version: "1.4.01"
+	],
+	xmlsec: [
+		group: "org.apache.santuario",
+		name: "xmlsec",
+		version: "1.4.5"
+	]
+]
+
+ext.portalDependencies = portalDependencies

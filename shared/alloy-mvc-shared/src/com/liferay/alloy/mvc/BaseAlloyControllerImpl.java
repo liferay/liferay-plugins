@@ -248,6 +248,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	@Override
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
 	public void updateModel(BaseModel<?> baseModel, Object... properties)
 		throws Exception {
 
@@ -342,6 +347,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 				jsonObject.put("data", stackTrace);
 			}
+			else if (data instanceof JSONArray) {
+				jsonObject.put("data", (JSONArray)data);
+			}
+			else if (data instanceof JSONObject) {
+				jsonObject.put("data", (JSONObject)data);
+			}
 			else {
 				jsonObject.put(
 					"data",
@@ -387,48 +398,17 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			addOpenerSuccessMessage();
 		}
 
-		if (Validator.isNull(viewPath)) {
-			viewPath = actionPath;
+		if (Validator.isNull(responseContent)) {
+			if (Validator.isNull(viewPath)) {
+				viewPath = actionPath;
+			}
+
+			String includePath = buildIncludePath(viewPath);
+
+			include(includePath);
 		}
 
-		String includePath = buildIncludePath(viewPath);
-
-		PortletRequestDispatcher portletRequestDispatcher =
-			portletContext.getRequestDispatcher(includePath);
-
-		if (portletRequestDispatcher == null) {
-			log.error(includePath + " is not a valid include");
-		}
-		else {
-			portletRequestDispatcher.include(portletRequest, portletResponse);
-		}
-
-		Boolean touch = (Boolean)portletContext.getAttribute(
-			TOUCH + portlet.getRootPortletId());
-
-		if (touch != null) {
-			return;
-		}
-
-		String touchPath =
-			"/WEB-INF/jsp/" + portlet.getFriendlyURLMapping() +
-				"/views/touch.jsp";
-
-		if (log.isDebugEnabled()) {
-			log.debug(
-				"Touch " + portlet.getRootPortletId() + " by including " +
-					touchPath);
-		}
-
-		portletContext.setAttribute(
-			TOUCH + portlet.getRootPortletId(), Boolean.FALSE);
-
-		portletRequestDispatcher = portletContext.getRequestDispatcher(
-			touchPath);
-
-		if (portletRequestDispatcher != null) {
-			portletRequestDispatcher.include(portletRequest, portletResponse);
-		}
+		touch();
 	}
 
 	protected void executeResource(Method method) throws Exception {
@@ -536,8 +516,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			Object... attributes)
 		throws Exception {
 
-		Map<String, Serializable> attributesMap =
-			new HashMap<String, Serializable>();
+		Map<String, Serializable> attributesMap = new HashMap<>();
 
 		if ((attributes.length == 0) || ((attributes.length % 2) != 0)) {
 			throw new Exception("Arguments length is not an even number");
@@ -575,6 +554,18 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return true;
 	}
 
+	protected void include(String path) throws Exception {
+		PortletRequestDispatcher portletRequestDispatcher =
+			portletContext.getRequestDispatcher(path);
+
+		if (portletRequestDispatcher != null) {
+			portletRequestDispatcher.include(portletRequest, portletResponse);
+		}
+		else {
+			log.error(path + " is not a valid include");
+		}
+	}
+
 	protected long increment(String name) throws Exception {
 		return CounterLocalServiceUtil.increment(name);
 	}
@@ -609,7 +600,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		BaseAlloyIndexer baseAlloyIndexer = (BaseAlloyIndexer)indexer;
 
 		baseAlloyIndexer.setAlloyServiceInvoker(alloyServiceInvoker);
-		baseAlloyIndexer.setPortletId(portlet.getRootPortletId());
+		baseAlloyIndexer.setClassName(portlet.getModelClassName());
 
 		PortletBag portletBag = PortletBagPool.get(portlet.getPortletId());
 
@@ -728,7 +719,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected void initMethods() {
-		methodsMap = new HashMap<String, Method>();
+		methodsMap = new HashMap<>();
 
 		Method[] methods = clazz.getMethods();
 
@@ -965,30 +956,44 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		renderError(HttpServletResponse.SC_BAD_REQUEST, pattern, arguments);
 	}
 
-	protected boolean respondWith(int status, Object object) throws Exception {
-		String data = StringPool.BLANK;
+	protected boolean respondWith(int status, String key, Object object)
+		throws Exception {
+
+		Object data = null;
 
 		if (isRespondingTo("json")) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
 			if (object instanceof AlloySearchResult) {
 				Hits hits = ((AlloySearchResult)object).getHits();
 
 				Document[] documents = hits.getDocs();
 
-				jsonObject.put(controllerPath, toJSONArray(documents));
+				data = toJSONArray(documents);
 			}
 			else if (object instanceof Collection) {
 				Object[] objects =
 					((Collection)object).toArray(new BaseModel[0]);
 
-				jsonObject.put(controllerPath, toJSONArray(objects));
+				data = toJSONArray(objects);
+			}
+			else if (object instanceof JSONArray) {
+				data = object;
 			}
 			else {
-				jsonObject = toJSONObject(object);
+				data = toJSONObject(object);
 			}
 
-			data = jsonObject.toString();
+			if (Validator.isNotNull(key)) {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+				if (data instanceof JSONArray) {
+					jsonObject.put(key, (JSONArray)data);
+				}
+				else {
+					jsonObject.put(key, (JSONObject)data);
+				}
+
+				data = jsonObject;
+			}
 		}
 
 		responseContent = buildResponseContent(data, StringPool.BLANK, status);
@@ -998,7 +1003,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	@SuppressWarnings("unused")
 	protected boolean respondWith(Object object) throws Exception {
-		return respondWith(HttpServletResponse.SC_OK, object);
+		return respondWith(HttpServletResponse.SC_OK, null, object);
+	}
+
+	protected boolean respondWith(String key, Object object) throws Exception {
+		return respondWith(HttpServletResponse.SC_OK, key, object);
 	}
 
 	protected AlloySearchResult search(
@@ -1024,8 +1033,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected AlloySearchResult search(
 			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
 			HttpServletRequest request, PortletRequest portletRequest,
-			SearchContainer<? extends BaseModel<?>> searchContainer,
-			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts,
+			int start, int end)
 		throws Exception {
 
 		if (indexer == null) {
@@ -1036,14 +1045,16 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		alloySearchResult.setAlloyServiceInvoker(alloyServiceInvoker);
 
-		if (searchContainer == null) {
-			searchContainer = new SearchContainer<BaseModel<?>>(
-				portletRequest, portletURL, null, null);
-		}
-
 		SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-		boolean andOperator = ParamUtil.getBoolean(request, "andOperator");
+		boolean andOperator = false;
+
+		boolean advancedSearch = ParamUtil.getBoolean(
+			request, "advancedSearch");
+
+		if (advancedSearch) {
+			andOperator = ParamUtil.getBoolean(request, "andOperator");
+		}
 
 		searchContext.setAndSearch(andOperator);
 
@@ -1051,7 +1062,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			searchContext.setAttributes(attributes);
 		}
 
-		searchContext.setEnd(searchContainer.getEnd());
+		searchContext.setEnd(end);
 
 		Class<?> indexerClass = Class.forName(indexer.getClassNames()[0]);
 
@@ -1073,7 +1084,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			searchContext.setSorts(sorts);
 		}
 
-		searchContext.setStart(searchContainer.getStart());
+		searchContext.setStart(start);
 
 		Hits hits = indexer.search(searchContext);
 
@@ -1088,6 +1099,24 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected AlloySearchResult search(
+			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
+			HttpServletRequest request, PortletRequest portletRequest,
+			SearchContainer<? extends BaseModel<?>> searchContainer,
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
+		throws Exception {
+
+		if (searchContainer == null) {
+			searchContainer = new SearchContainer<>(
+				portletRequest, portletURL, null, null);
+		}
+
+		return search(
+			indexer, alloyServiceInvoker, request, portletRequest, attributes,
+			keywords, sorts, searchContainer.getStart(),
+			searchContainer.getEnd());
+	}
+
+	protected AlloySearchResult search(
 			Map<String, Serializable> attributes, String keywords, Sort sort)
 		throws Exception {
 
@@ -1099,6 +1128,16 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		throws Exception {
 
 		return search(request, portletRequest, attributes, keywords, sorts);
+	}
+
+	protected AlloySearchResult search(
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts,
+			int start, int end)
+		throws Exception {
+
+		return search(
+			indexer, alloyServiceInvoker, request, portletRequest, attributes,
+			keywords, sorts, start, end);
 	}
 
 	protected AlloySearchResult search(String keywords) throws Exception {
@@ -1190,7 +1229,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			portlet.getPortletId() + SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 			portlet.getPortletId());
 
-		Map<String, String> data = new HashMap<String, String>();
+		Map<String, String> data = new HashMap<>();
 
 		data.put("addSuccessMessage", StringPool.TRUE);
 
@@ -1255,6 +1294,30 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		throw new AlloyException(
 			"Unable to convert " + object + " to a JSON object");
+	}
+
+	protected void touch() throws Exception {
+		Boolean touch = (Boolean)portletContext.getAttribute(
+			TOUCH + portlet.getRootPortletId());
+
+		if (touch != null) {
+			return;
+		}
+
+		String touchPath =
+			"/WEB-INF/jsp/" + portlet.getFriendlyURLMapping() +
+				"/views/touch.jsp";
+
+		if (log.isDebugEnabled()) {
+			log.debug(
+				"Touch " + portlet.getRootPortletId() + " by including " +
+					touchPath);
+		}
+
+		portletContext.setAttribute(
+			TOUCH + portlet.getRootPortletId(), Boolean.FALSE);
+
+		include(touchPath);
 	}
 
 	protected String translate(String pattern, Object... arguments) {

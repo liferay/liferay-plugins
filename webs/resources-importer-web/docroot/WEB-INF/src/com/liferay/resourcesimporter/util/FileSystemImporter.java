@@ -90,7 +90,7 @@ import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.portlet.journal.service.JournalArticleServiceUtil;
 import com.liferay.portlet.journal.util.JournalConverterUtil;
-import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.wiki.model.WikiPage;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -160,8 +160,9 @@ public class FileSystemImporter extends BaseImporter {
 		try {
 			if (!updateModeEnabled || (ddmTemplate == null)) {
 				DDMTemplateLocalServiceUtil.addTemplate(
-					userId, groupId, classNameId, 0, getKey(fileName),
-					getMap(name), null,
+					userId, groupId, classNameId, 0,
+					PortalUtil.getClassNameId(JournalArticle.class),
+					getKey(fileName), getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 					StringPool.BLANK, getDDMTemplateLanguage(name), script,
 					false, false, StringPool.BLANK, null, serviceContext);
@@ -520,9 +521,11 @@ public class FileSystemImporter extends BaseImporter {
 				DDMTemplateLocalServiceUtil.addTemplate(
 					userId, templateGroupId,
 					PortalUtil.getClassNameId(DDMStructure.class),
-					ddmStructureId, getKey(fileName), getMap(name), null, type,
-					mode, language, script, false, false, StringPool.BLANK,
-					null, serviceContext);
+					ddmStructureId,
+					PortalUtil.getClassNameId(JournalArticle.class),
+					getKey(fileName), getMap(name), null, type, mode, language,
+					script, false, false, StringPool.BLANK, null,
+					serviceContext);
 			}
 			else {
 				DDMTemplateLocalServiceUtil.updateTemplate(
@@ -610,8 +613,9 @@ public class FileSystemImporter extends BaseImporter {
 				ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
 					userId, groupId,
 					PortalUtil.getClassNameId(DDMStructure.class),
-					ddmStructure.getStructureId(), getKey(fileName),
-					getMap(name), null,
+					ddmStructure.getStructureId(),
+					PortalUtil.getClassNameId(JournalArticle.class),
+					getKey(fileName), getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 					getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl),
 					false, false, null, null, serviceContext);
@@ -922,7 +926,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		boolean hidden = layoutJSONObject.getBoolean("hidden");
 
-		Map<Locale, String> friendlyURLMap = new HashMap<Locale, String>();
+		Map<Locale, String> friendlyURLMap = new HashMap<>();
 
 		String friendlyURL = layoutJSONObject.getString("friendlyURL");
 
@@ -1239,7 +1243,7 @@ public class FileSystemImporter extends BaseImporter {
 		Set<Long> primaryKeys = _primaryKeys.get(className);
 
 		if (primaryKeys == null) {
-			primaryKeys = new HashSet<Long>();
+			primaryKeys = new HashSet<>();
 
 			_primaryKeys.put(className, primaryKeys);
 		}
@@ -1391,7 +1395,7 @@ public class FileSystemImporter extends BaseImporter {
 	protected Map<Locale, String> getMap(
 		JSONObject layoutJSONObject, String name) {
 
-		Map<Locale, String> map = new HashMap<Locale, String>();
+		Map<Locale, String> map = new HashMap<>();
 
 		JSONObject jsonObject = layoutJSONObject.getJSONObject(
 			name.concat("Map"));
@@ -1417,7 +1421,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected Map<Locale, String> getMap(Locale locale, String value) {
-		Map<Locale, String> map = new HashMap<Locale, String>();
+		Map<Locale, String> map = new HashMap<>();
 
 		map.put(locale, value);
 
@@ -1539,7 +1543,7 @@ public class FileSystemImporter extends BaseImporter {
 			return new File[0];
 		}
 
-		List<File> filesList = new ArrayList<File>();
+		List<File> filesList = new ArrayList<>();
 
 		for (File file : files) {
 			if (file.isFile()) {
@@ -1789,16 +1793,13 @@ public class FileSystemImporter extends BaseImporter {
 
 	private static Log _log = LogFactoryUtil.getLog(FileSystemImporter.class);
 
-	private Map<String, JSONObject> _assetJSONObjectMap =
-		new HashMap<String, JSONObject>();
-	private Set<String> _ddmStructures = new HashSet<String>();
+	private Map<String, JSONObject> _assetJSONObjectMap = new HashMap<>();
+	private Set<String> _ddmStructures = new HashSet<>();
 	private String _defaultLayoutTemplateId;
-	private Map<String, FileEntry> _fileEntries =
-		new HashMap<String, FileEntry>();
+	private Map<String, FileEntry> _fileEntries = new HashMap<>();
 	private Pattern _fileEntryPattern = Pattern.compile(
 		"\\[\\$FILE=([^\\$]+)\\$\\]");
-	private Map<String, Set<Long>> _primaryKeys =
-		new HashMap<String, Set<Long>>();
+	private Map<String, Set<Long>> _primaryKeys = new HashMap<>();
 	private File _resourcesDir;
 
 }

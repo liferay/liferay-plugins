@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 @import url(custom_common.css);
@@ -259,7 +259,7 @@ img.center {
 .portlet-topper {
 	background: url(../images/custom/port_topper.png) 100% repeat-x;
 	height: 37px;
-	letter-spacing: .05em;
+	letter-spacing: 0.05em;
 
 	.portlet-topper-toolbar {
 		a, a:visited {
@@ -414,20 +414,6 @@ img.center {
 	}
 }
 
-/* ---------- Internet explorer ---------- */
-
-.ie #keywords {
-	background: transparent;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#20000000,endColorstr=#20000000);
-	zoom: 1;
-}
-
-.ie6, .ie7 {
-	#social ul {
-		display: inline;
-	}
-}
-
 /* ---------- Hidden accessible ---------- */
 
 #footer-social a span, #navigation .child-menu, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
@@ -440,52 +426,54 @@ img.center {
 /* ---------- Extras ---------- */
 
 #wrapper {
-	@include box-shadow(#000 0 0 10px);
+	box-shadow: #000 0 0 10px;
 }
 
 .dockbar {
 	.navbar-inner {
-		@include box-shadow(none);
+		box-shadow: none;
 
 		.nav {
 			li.dropdown.open > .dropdown-toggle {
 				@include background-image(linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd));
-				@include box-shadow(none);
-				@include filter-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd, vertical);
+
+				box-shadow: none;
+
+				@include linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd, vertical);
 			}
 		}
 
 		.nav-account-controls {
 			@include background-image(linear-gradient($dockbarGradientStart 0%, $dockbarGradientStart 10%, $dockbarGradientEnd 100%));
-			@include filter-gradient($dockbarGradientStart, $dockbarGradientEnd, vertical);
+			@include linear-gradient($dockbarGradientStart, $dockbarGradientEnd, vertical);
 		}
 	}
 }
 
 #banner #heading .site-name {
-	@include border-radius(4px);
-	@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px $color);
-	@include text-shadow(1px 1px rgba(0, 0, 0, 0.5));
+	border-radius: 4px;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px $color;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .button {
-	@include box-shadow(#BEBEBE 0 2px 2px);
+	box-shadow: #BEBEBE 0 2px 2px;
 }
 
 .portlet-title {
-	@include text-shadow(0 -1px 0 #295973);
+	text-shadow: 0 -1px 0 #295973;
 }
 
 .button, #banner #navigation a, #footer #navigation a:hover {
-	@include text-shadow(0 1px 0 #FFF);
+	text-shadow: 0 1px 0 #FFF;
 }
 
 .modify-pages .delete-tab {
-	@include border-radius(50%);
-	@include text-shadow(none);
+	border-radius: 50%;
+	text-shadow: none;
 	@include transition(opacity 0.2s ease);
 
 	&:hover {
-		@include box-shadow(0 1px 1px -1px #000);
+		box-shadow: 0 1px 1px -1px #000;
 	}
 }

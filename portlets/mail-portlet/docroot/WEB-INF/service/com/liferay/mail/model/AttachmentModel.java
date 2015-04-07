@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -36,6 +38,7 @@ import java.io.Serializable;
  * @see com.liferay.mail.model.impl.AttachmentModelImpl
  * @generated
  */
+@ProviderType
 public interface AttachmentModel extends BaseModel<Attachment> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -236,19 +239,19 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Attachment attachment);
+	public int compareTo(com.liferay.mail.model.Attachment attachment);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Attachment> toCacheModel();
+	public CacheModel<com.liferay.mail.model.Attachment> toCacheModel();
 
 	@Override
-	public Attachment toEscapedModel();
+	public com.liferay.mail.model.Attachment toEscapedModel();
 
 	@Override
-	public Attachment toUnescapedModel();
+	public com.liferay.mail.model.Attachment toUnescapedModel();
 
 	@Override
 	public String toString();

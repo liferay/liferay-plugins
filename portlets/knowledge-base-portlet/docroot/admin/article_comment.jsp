@@ -22,6 +22,8 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_comment");
 
 KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionListDisplayContext)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT);
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <div class="kb-article-comment">
@@ -35,18 +37,17 @@ KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionLis
 			/>
 		</td>
 		<td>
-			<portlet:renderURL var="viewKBArticleURL">
-				<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-			</portlet:renderURL>
+
+			<%
+			PortletURL viewKBArticleURL = kbArticleURLHelper.createViewWithRedirectURL(kbArticle, currentURL);
+			%>
 
 			<c:if test="<%= kbSuggestionListDisplayContext.isShowKBArticleTitle() %>">
-				<h4><a href="<%= viewKBArticleURL %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
+				<h4><a href="<%= viewKBArticleURL.toString() %>"><%= HtmlUtil.escape(kbArticle.getTitle()) %></a></h4>
 			</c:if>
 
-			<div>
-				<%= HtmlUtil.escape(kbComment.getContent()) %>
+			<div class="kb-article-comment-body">
+				<%= HtmlUtil.replaceNewLine(HtmlUtil.escape(kbComment.getContent())) %>
 			</div>
 
 			<div class="kb-article-comment-helpful">
@@ -86,33 +87,35 @@ KBSuggestionListDisplayContext kbSuggestionListDisplayContext = (KBSuggestionLis
 			int nextStatus = KnowledgeBaseUtil.getNextStatus(suggestionStatus);
 			%>
 
-			<div class="kb-suggestion-actions">
-				<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
-					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
-						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="kbCommentStatus" value="<%= String.valueOf(previousStatus) %>" />
-					</liferay-portlet:actionURL>
+			<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">
+				<div class="kb-suggestion-actions">
+					<c:if test="<%= previousStatus != KBCommentConstants.STATUS_NONE %>">
+						<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="previousStatusURL">
+							<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
+							<portlet:param name="kbCommentStatus" value="<%= String.valueOf(previousStatus) %>" />
+						</liferay-portlet:actionURL>
 
-					<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(previousStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
-				</c:if>
+						<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(previousStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(previousStatus) %>" />
+					</c:if>
 
-				<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
-					<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="nextStatusURL">
-						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-						<portlet:param name="kbCommentStatus" value="<%= String.valueOf(nextStatus) %>" />
-					</liferay-portlet:actionURL>
+					<c:if test="<%= nextStatus != KBCommentConstants.STATUS_NONE %>">
+						<liferay-portlet:actionURL name="updateKBCommentStatus" varImpl="nextStatusURL">
+							<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
+							<portlet:param name="kbCommentStatus" value="<%= String.valueOf(nextStatus) %>" />
+						</liferay-portlet:actionURL>
 
-					<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(nextStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
-				</c:if>
+						<aui:button href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(nextStatusURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="<%= KnowledgeBaseUtil.getStatusTransitionLabel(nextStatus) %>" />
+					</c:if>
 
-				<c:if test="<%= (suggestionStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
-					<liferay-portlet:actionURL name="deleteKBComment" varImpl="deleteURL">
-						<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
-					</liferay-portlet:actionURL>
+					<c:if test="<%= (suggestionStatus == KBCommentConstants.STATUS_COMPLETED) && KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">
+						<liferay-portlet:actionURL name="deleteKBComment" varImpl="deleteURL">
+							<portlet:param name="kbCommentId" value="<%= String.valueOf(kbComment.getKbCommentId()) %>" />
+						</liferay-portlet:actionURL>
 
-					<aui:button cssClass="kb-suggestion-delete" href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(deleteURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="delete" />
-				</c:if>
-			</div>
+						<aui:button cssClass="kb-suggestion-delete" data-href="<%= kbSuggestionListDisplayContext.getViewSuggestionURL(deleteURL, kbSuggestionListDisplayContext.getSelectedNavItem()) %>" value="delete" />
+					</c:if>
+				</div>
+			</c:if>
 		</td>
 	</tr>
 	</table>

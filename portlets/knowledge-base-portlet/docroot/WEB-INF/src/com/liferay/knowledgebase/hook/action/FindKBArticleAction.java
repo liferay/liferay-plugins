@@ -125,7 +125,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 			long plid, boolean privateLayout, KBArticle kbArticle)
 		throws Exception {
 
-		List<Layout> candidateLayouts = new ArrayList<Layout>();
+		List<Layout> candidateLayouts = new ArrayList<>();
 
 		Group group = GroupLocalServiceUtil.getGroup(kbArticle.getGroupId());
 

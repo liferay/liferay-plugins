@@ -19,7 +19,6 @@ import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
@@ -81,8 +80,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			content = BBCodeTranslatorUtil.getHTML(content);
 		}
 
-		content = HtmlUtil.extractText(content);
-
 		String subject = ContentUtil.get(
 			PortletPropsValues.COMMENT_MENTION_EMAIL_SUBJECT);
 		String body = ContentUtil.get(
@@ -103,9 +100,9 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		}
 
 		mentionsNotifier.notify(
-			message.getUserId(), message.getGroupId(), content,
-			message.getModelClassName(), message.getMessageId(), subject, body,
-			serviceContext);
+			message.getUserId(), message.getGroupId(), message.getSubject(),
+			content, message.getModelClassName(), message.getMessageId(),
+			subject, body, serviceContext);
 
 		return message;
 	}

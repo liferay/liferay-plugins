@@ -23,11 +23,11 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 WikiPage wikiPage = (WikiPage)row.getObject();
 
-long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), PortletKeys.WIKI);
+long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), WikiPortletKeys.WIKI);
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
-	<liferay-portlet:renderURL plid="<%= wikiPlid %>" portletName="<%= PortletKeys.WIKI %>" var="viewURL">
+	<liferay-portlet:renderURL plid="<%= wikiPlid %>" portletName="<%= WikiPortletKeys.WIKI %>" var="viewURL">
 		<portlet:param name="struts_action" value="/wiki/view" />
 		<portlet:param name="nodeName" value="<%= wikiPage.getNode().getName() %>" />
 		<portlet:param name="title" value="<%= wikiPage.getTitle() %>" />

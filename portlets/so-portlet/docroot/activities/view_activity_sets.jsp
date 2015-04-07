@@ -23,46 +23,58 @@
 Group group = themeDisplay.getScopeGroup();
 
 List<SocialActivitySet> results = null;
+
+int count = 0;
 int total = 0;
 
 int start = ParamUtil.getInteger(request, "start");
 int end = start + _DELTA;
 
-if (group.isUser()) {
-	if (layout.isPrivateLayout()) {
-		if (tabs1.equals("connections")) {
-			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
-			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
+while ((count < _DELTA) && ((results == null) || !results.isEmpty())) {
+	if (group.isUser()) {
+		if (layout.isPrivateLayout()) {
+			if (tabs1.equals("connections")) {
+				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
+				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
+			}
+			else if (tabs1.equals("following")) {
+				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
+				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+			}
+			else if (tabs1.equals("me")) {
+				results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
+				total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
+			}
+			else if (tabs1.equals("my-sites")) {
+				results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), start, end);
+				total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(group.getClassPK());
+			}
+			else {
+				results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), start, end);
+				total = SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(group.getClassPK());
+			}
 		}
-		else if (tabs1.equals("following")) {
-			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
-			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-		}
-		else if (tabs1.equals("me")) {
+		else {
 			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
 			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
 		}
-		else if (tabs1.equals("my-sites")) {
-			results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), start, end);
-			total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(group.getClassPK());
-		}
-		else {
-			results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), start, end);
-			total = SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(group.getClassPK());
-		}
 	}
 	else {
-		results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
-		total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
+		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), start, end);
+		total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
 	}
-}
-else {
-	results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), start, end);
-	total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
+%>
+
+	<%@ include file="/activities/view_activity_sets_feed.jspf" %>
+
+<%
+	end = start + _DELTA;
 }
 %>
 
-<%@ include file="/activities/view_activity_sets_feed.jspf" %>
+<aui:script>
+	<portlet:namespace />start = <%= start %>;
+</aui:script>
 
 <c:if test="<%= (results.isEmpty()) %>">
 	<div class="no-activities">

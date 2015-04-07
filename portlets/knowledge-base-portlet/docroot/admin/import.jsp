@@ -20,20 +20,49 @@
 long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 %>
 
-<portlet:actionURL name="importFile" var="importFileURL" />
+<portlet:actionURL name="importFile" var="importFileURL">
+	<portlet:param name="redirect" value="<%= redirect %>" />
+</portlet:actionURL>
 
 <aui:form action="<%= importFileURL %>" class="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
+	<aui:input name="mvcPath" type="hidden" value="/admin/import.jsp" />
 	<aui:input name="parentKBFolderId" type="hidden" value="<%= String.valueOf(parentKBFolderId) %>" />
 
-	<liferay-ui:message key="upload-your-zip-file" />
+	<liferay-ui:error exception="<%= KBArticleImportException.class %>">
+
+		<%
+		KBArticleImportException kbaie = (KBArticleImportException)errorException;
+		%>
+
+		<%= LanguageUtil.format(locale, "an-unexpected-error-occurred-while-importing-articles-x", kbaie.getLocalizedMessage()) %>
+	</liferay-ui:error>
 
 	<aui:fieldset class="kb-block-labels">
-		<aui:input id="file" name="file" type="file" />
+		<aui:field-wrapper>
+			<div class="alert alert-info">
+				<liferay-ui:message
+					arguments="<%= StringUtil.merge(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS, StringPool.COMMA_AND_SPACE) %>"
+					key="upload-your-zip-file-help"
+				/>
+			</div>
+		</aui:field-wrapper>
+
+		<aui:input id="file" label="upload-your-zip-file" name="file" type="file" />
 	</aui:fieldset>
+
+	<aui:field-wrapper label="prioritization-strategy">
+		<aui:input helpMessage="apply-numerical-prefixes-of-article-files-as-priorities-help" label="apply-numerical-prefixes-of-article-files-as-priorities" name="prioritizeByNumericalPrefix" type="checkbox" value="true" />
+	</aui:field-wrapper>
 
 	<aui:button-row>
 		<aui:button name="submit" type="submit" />
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<portlet:renderURL var="cancelURL">
+			<portlet:param name="mvcPath" value="/admin/view.jsp" />
+			<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentKBFolderId) %>" />
+		</portlet:renderURL>
+
+		<aui:button href="<%= cancelURL %>" type="cancel" />
 	</aui:button-row>
 </aui:form>

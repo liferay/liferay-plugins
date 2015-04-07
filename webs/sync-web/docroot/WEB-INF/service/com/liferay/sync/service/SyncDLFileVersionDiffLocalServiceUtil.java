@@ -91,9 +91,11 @@ public class SyncDLFileVersionDiffLocalServiceUtil {
 	*
 	* @param syncDLFileVersionDiff the sync d l file version diff
 	* @return the sync d l file version diff that was removed
+	* @throws PortalException
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff) {
+		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSyncDLFileVersionDiff(syncDLFileVersionDiff);
 	}
 
@@ -108,6 +110,11 @@ public class SyncDLFileVersionDiffLocalServiceUtil {
 		long syncDLFileVersionDiffId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSyncDLFileVersionDiff(syncDLFileVersionDiffId);
+	}
+
+	public static void deleteSyncDLFileVersionDiffs(long fileEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteSyncDLFileVersionDiffs(fileEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {

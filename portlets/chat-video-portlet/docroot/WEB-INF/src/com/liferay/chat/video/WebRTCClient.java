@@ -103,6 +103,6 @@ public class WebRTCClient {
 	private long _presenceTime;
 	private long _userId;
 	private Map<WebRTCClient, WebRTCConnection> _webRTCConnections =
-		new ConcurrentHashMap<WebRTCClient, WebRTCConnection>();
+		new ConcurrentHashMap<>();
 
 }

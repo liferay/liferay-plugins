@@ -162,10 +162,10 @@ public class SyncDLObjectServiceClpInvoker {
 		_methodName95 = "patchFileEntry";
 
 		_methodParameterTypes95 = new String[] {
-				"long", "java.lang.String", "java.lang.String",
+				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "boolean", "java.io.File",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"boolean", "java.io.File", "java.lang.String",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName96 = "restoreFileEntryFromTrash";
@@ -370,9 +370,10 @@ public class SyncDLObjectServiceClpInvoker {
 		if (_methodName95.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
 			return SyncDLObjectServiceUtil.patchFileEntry(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String)arguments[6],
 				((Boolean)arguments[7]).booleanValue(),
 				(java.io.File)arguments[8], (java.lang.String)arguments[9],
 				(com.liferay.portal.service.ServiceContext)arguments[10]);

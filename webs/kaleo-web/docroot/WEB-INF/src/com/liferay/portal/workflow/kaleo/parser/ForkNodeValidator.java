@@ -57,7 +57,7 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 	protected List<Node> getUnvisitedNodes(
 		List<Node> nodes, Collection<Transition> transitions, boolean target) {
 
-		List<Node> unvisitedNodes = new ArrayList<Node>();
+		List<Node> unvisitedNodes = new ArrayList<>();
 
 		for (Transition transition : transitions) {
 			Node node = transition.getSourceNode();
@@ -79,7 +79,7 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 			Map<Join, Fork> joinForkMap)
 		throws WorkflowException {
 
-		List<Node> sourceNodes = new ArrayList<Node>();
+		List<Node> sourceNodes = new ArrayList<>();
 
 		sourceNodes.add(join);
 
@@ -123,9 +123,9 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 	protected Join traverse(Fork fork) throws WorkflowException {
 		Join join = null;
 
-		List<Node> targetNodes = new ArrayList<Node>();
+		List<Node> targetNodes = new ArrayList<>();
 
-		Map<Join, Fork> joinForkMap = new HashMap<Join, Fork>();
+		Map<Join, Fork> joinForkMap = new HashMap<>();
 
 		targetNodes.add(fork);
 

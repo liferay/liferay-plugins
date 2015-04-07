@@ -123,25 +123,6 @@
 						</c:if>
 					</td>
 					<td class="plugin-actions">
-
-						<%
-						List<Indexer> indexers = portlet.getIndexerInstances();
-						%>
-
-						<c:if test="<%= !indexers.isEmpty() %>">
-
-							<%
-							LiferayPortletURL reindexURL = PortletURLFactoryUtil.create(request, PortletKeys.ADMIN, themeDisplay.getPlid(), PortletRequest.ACTION_PHASE);
-
-							reindexURL.setParameter("struts_action", "/admin/edit_server");
-							reindexURL.setParameter(Constants.CMD, "reindex");
-							reindexURL.setParameter("redirect", PortalUtil.getCurrentURL(request));
-							reindexURL.setParameter("portletId", portlet.getPortletId());
-							%>
-
-							<a class="btn btn-mini btn-info reindex" href="<%= reindexURL %>"><liferay-ui:message key="reindex-search" /></a>
-						</c:if>
-
 						<c:choose>
 							<c:when test="<%= portlet.isActive() %>">
 								<liferay-portlet:actionURL name="updatePluginSetting" var="deactivateURL">

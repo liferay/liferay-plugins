@@ -1,5 +1,3 @@
-@import "compass";
-
 body.independent {
 	background-color: #F3F7FA;
 
@@ -73,6 +71,6 @@ body.independent {
 	/* ---------- Extras ---------- */
 
 	#content #main-content {
-		@include box-shadow(none);
+		box-shadow: none;
 	}
 }

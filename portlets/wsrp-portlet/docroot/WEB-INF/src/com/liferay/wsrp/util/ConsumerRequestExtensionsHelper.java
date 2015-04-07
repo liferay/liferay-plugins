@@ -77,7 +77,7 @@ public class ConsumerRequestExtensionsHelper {
 			return;
 		}
 
-		_consumerRequestExtensions = new ArrayList<ConsumerRequestExtension>(
+		_consumerRequestExtensions = new ArrayList<>(
 			PortletPropsValues.CONSUMER_REQUEST_EXTENSIONS.length);
 
 		for (String consumerRequestExtensionClassName :

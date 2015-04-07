@@ -1,10 +1,10 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 /* ---------- Mixins ---------- */
 
 @mixin default-border-radius {
-	@include border-radius(4px);
+	border-radius: 4px;
 }
 
 @mixin font-awesome($icon) {
@@ -47,7 +47,8 @@
 	}
 
 	25% {
-		@include transform(translate(3px, -4px), rotate(0));
+		@include transform(rotate(0));
+		@include transform(translate(3px, -4px));
 	}
 
 	50% {
@@ -59,7 +60,8 @@
 	}
 
 	100% {
-		@include transform(translate(0, 0), rotate(5deg));
+		@include transform(rotate(5deg));
+		@include transform(translate(0, 0));
 	}
 }
 
@@ -192,9 +194,8 @@
 				position: relative;
 
 				.user-thumbnail {
-					@include border-radius(50%);
-					@include box-shadow(0 0 0 2px #5594E0);
-
+					border-radius: 50%;
+					box-shadow: 0 0 0 2px #5594E0;
 					display: block;
 					height: 30px;
 					margin: 5px 10px 0 0;
@@ -283,13 +284,9 @@
 
 		.actionable-user-notifications-count, .nonactionable-user-notifications-count {
 			background-color: #2AAAE6;
-
-			@include border-radius(8px);
-
+			border-radius: 8px;
 			border-width: 0;
-
-			@include box-shadow(-1px 1px 1px #00518E);
-
+			box-shadow: -1px 1px 1px #00518E;
 			font-size: 10px;
 			font-weight: 200;
 			height: 16px;
@@ -304,8 +301,7 @@
 
 			&.alert {
 				border-width: 0;
-
-				@include box-shadow(-1px 1px 1px #C87501);
+				box-shadow: -1px 1px 1px #C87501;
 			}
 		}
 	}
@@ -566,12 +562,6 @@
 
 .span8 {
 	width: 70%;
-}
-
-/* ---------- Internet explorer ---------- */
-
-.ie8 .user-thumbnail img {
-	max-width: none;
 }
 
 /* ---------- Touch ---------- */

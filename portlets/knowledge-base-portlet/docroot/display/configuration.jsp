@@ -100,7 +100,12 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 
 					<aui:input label="enable-print" name="preferences--enableKBArticlePrint--" type="checkbox" value="<%= enableKBArticlePrint %>" />
 
-					<aui:input label="enable-social-bookmarks" name="preferences--enableSocialBookmarks--" type="checkbox" value="<%= enableSocialBookmarks %>" />
+					<liferay-ui:social-bookmarks-settings
+						displayPosition="<%= socialBookmarksDisplayPosition %>"
+						displayStyle="<%= socialBookmarksDisplayStyle %>"
+						enabled="<%= enableSocialBookmarks %>"
+						types="<%= socialBookmarksTypes %>"
+					/>
 				</aui:field-wrapper>
 
 				<aui:field-wrapper>
@@ -158,7 +163,8 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 	</c:when>
 	<c:when test='<%= tabs2.equals("display-settings") %>'>
 		<aui:script>
-			Liferay.Util.toggleBoxes('<portlet:namespace />enableKBArticleRatingsCheckbox', '<portlet:namespace />ratingsType');
+			Liferay.Util.toggleBoxes('<portlet:namespace />enableKBArticleRatings', '<portlet:namespace />ratingsType');
+			Liferay.Util.toggleBoxes('<portlet:namespace />enableSocialBookmarksCheckbox','<portlet:namespace />socialBookmarksOptions');
 		</aui:script>
 	</c:when>
 </c:choose>

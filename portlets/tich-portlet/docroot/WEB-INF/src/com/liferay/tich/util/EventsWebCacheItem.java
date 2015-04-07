@@ -34,7 +34,7 @@ public class EventsWebCacheItem implements WebCacheItem {
 
 	@Override
 	public Object convert(String key) throws WebCacheException {
-		List<Event> events = new ArrayList<Event>();
+		List<Event> events = new ArrayList<>();
 
 		try {
 			String text = HttpUtil.URLtoString(

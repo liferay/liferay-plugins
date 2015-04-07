@@ -58,7 +58,8 @@ import java.util.concurrent.Callable;
  */
 @Transactional(
 	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRED,
-	rollbackFor = {Exception.class})
+	rollbackFor = {Exception.class}
+)
 public class DefaultWorkflowEngineImpl
 	extends BaseKaleoBean implements WorkflowEngine {
 
@@ -176,7 +177,7 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstanceToken rootKaleoInstanceToken =
 				kaleoInstance.getRootKaleoInstanceToken(null, serviceContext);
 
-			List<String> transitionNames = new ArrayList<String>();
+			List<String> transitionNames = new ArrayList<>();
 
 			getNextTransitionNames(rootKaleoInstanceToken, transitionNames);
 
@@ -566,8 +567,8 @@ public class DefaultWorkflowEngineImpl
 			List<KaleoInstance> kaleoInstances, ServiceContext serviceContext)
 		throws PortalException {
 
-		List<WorkflowInstance> workflowInstances =
-			new ArrayList<WorkflowInstance>(kaleoInstances.size());
+		List<WorkflowInstance> workflowInstances = new ArrayList<>(
+			kaleoInstances.size());
 
 		for (KaleoInstance kaleoInstance : kaleoInstances) {
 			KaleoInstanceToken rootKaleoInstanceToken =

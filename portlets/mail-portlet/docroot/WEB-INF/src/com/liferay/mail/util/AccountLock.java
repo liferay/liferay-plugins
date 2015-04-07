@@ -72,6 +72,6 @@ public class AccountLock {
 	private static Log _log = LogFactoryUtil.getLog(AccountLock.class);
 
 	private static ConcurrentHashMap<String, Long> _locks =
-		new ConcurrentHashMap<String, Long>();
+		new ConcurrentHashMap<>();
 
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Attachment;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -30,6 +32,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @see AttachmentUtil
  * @generated
  */
+@ProviderType
 public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	/*
 	 * NOTE FOR DEVELOPERS:

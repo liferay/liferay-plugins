@@ -81,8 +81,8 @@ public class MentionsBlogsEntryServiceImpl
 		}
 
 		mentionsNotifier.notify(
-			entry.getUserId(), entry.getGroupId(), entry.getContent(),
-			BlogsEntry.class.getName(), entry.getEntryId(),
+			entry.getUserId(), entry.getGroupId(), entry.getTitle(),
+			entry.getContent(), BlogsEntry.class.getName(), entry.getEntryId(),
 			ContentUtil.get(
 				PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_SUBJECT),
 			ContentUtil.get(PortletPropsValues.ASSET_ENTRY_MENTION_EMAIL_BODY),

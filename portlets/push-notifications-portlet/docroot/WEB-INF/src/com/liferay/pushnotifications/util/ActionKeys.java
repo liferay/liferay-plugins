@@ -20,8 +20,9 @@ package com.liferay.pushnotifications.util;
 public class ActionKeys
 	extends com.liferay.portal.security.permission.ActionKeys {
 
-	public static final String ADD_DEVICE = "ADD_DEVICE";
+	public static final String MANAGE_DEVICES = "MANAGE_DEVICES";
 
-	public static final String ADD_ENTRY = "ADD_ENTRY";
+	public static final String SEND_PUSH_NOTIFICATION =
+		"SEND_PUSH_NOTIFICATION";
 
 }

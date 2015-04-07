@@ -142,7 +142,7 @@ public class ResourcesImporterHotDeployMessageListener
 			message.put("targetClassPK", importer.getTargetClassPK());
 
 			if (Validator.isNotNull(messageResponseId)) {
-				Map<String, Object> responseMap = new HashMap<String, Object>();
+				Map<String, Object> responseMap = new HashMap<>();
 
 				responseMap.put("groupId", importer.getTargetClassPK());
 

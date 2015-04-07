@@ -32,9 +32,8 @@ public class KaleoTaskAssignmentInstanceUtil {
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
 
-		List<WorkflowTaskAssignee> workflowTaskAssignees =
-			new ArrayList<WorkflowTaskAssignee>(
-				kaleoTaskAssignmentInstances.size());
+		List<WorkflowTaskAssignee> workflowTaskAssignees = new ArrayList<>(
+			kaleoTaskAssignmentInstances.size());
 
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 				kaleoTaskAssignmentInstances) {

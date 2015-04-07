@@ -59,7 +59,7 @@ public class CDISessionImpl extends CDISession {
 			return null;
 		}
 
-		List<String> valueNames = new ArrayList<String>();
+		List<String> valueNames = new ArrayList<>();
 
 		while (attributeNames.hasMoreElements()) {
 			String attributeName = attributeNames.nextElement();

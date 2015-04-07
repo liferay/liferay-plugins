@@ -127,7 +127,7 @@ public class GoogleMailGroupsGroupLocalServiceImpl
 					_group.getDescriptiveName(), groupEmailAddress);
 
 				LinkedHashMap<String, Object> userParams =
-					new LinkedHashMap<String, Object>();
+					new LinkedHashMap<>();
 
 				userParams.put("inherit", Boolean.TRUE);
 				userParams.put("usersGroups", new Long(_group.getGroupId()));

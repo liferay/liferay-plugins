@@ -18,6 +18,7 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PwdGenerator;
 import com.liferay.portal.kernel.util.ReflectionUtil;
@@ -99,7 +100,8 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 			if (credentials != null) {
 				authVerifierResult.setPassword(credentials[1]);
 				authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
-				authVerifierResult.setUserId(Long.valueOf(credentials[0]));
+				authVerifierResult.setUserId(
+					GetterUtil.getLong(credentials[0]));
 			}
 
 			return authVerifierResult;
@@ -176,7 +178,7 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 					object, request, response);
 
 				if (credentials != null) {
-					token = createToken(Long.valueOf(credentials[0]));
+					token = createToken(GetterUtil.getLong(credentials[0]));
 
 					if (token != null) {
 						response.addHeader(_TOKEN_HEADER, token);

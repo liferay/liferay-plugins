@@ -136,10 +136,14 @@ AUI.add(
 
 					userId = userId || user.getAttribute('data-userId');
 
-					var user = instance._findMembersList.one('[data-userId="' + userId + '"]');
+					user = instance._findMembersList.one('[data-userId="' + userId + '"]');
+
 					var invitedUser = instance._invitedMembersList.one('[data-userId="' + userId + '"]');
 
-					user.removeClass('invited');
+					if (user) {
+						user.removeClass('invited');
+					}
+
 					invitedUser.remove();
 				},
 

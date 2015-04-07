@@ -1,3 +1,5 @@
+/* global gadgets,OpenAjax,shindig */
+
 AUI.add(
 	'liferay-open-social-gadget',
 	function(A) {
@@ -25,10 +27,6 @@ AUI.add(
 
 		var Gadget = A.Component.create(
 			{
-				_id: 0,
-
-				NAME: 'liferaygadget',
-
 				ATTRS: {
 					additionalParams: {},
 					appId: {},
@@ -39,23 +37,21 @@ AUI.add(
 					content: {},
 					country: {
 						setter: function(v) {
-							if (v) {
-								return v;
+							if (!v) {
+								v = 'ALL';
 							}
-							else {
-								return 'ALL';
-							}
+
+							return v;
 						}
 					},
 					debug: {},
 					height: {
 						setter: function(v) {
-							if (v > 0) {
-								return v;
+							if (v <= 0) {
+								v = null;
 							}
-							else {
-								return null;
-							}
+
+							return v;
 						}
 					},
 					iframeId: {
@@ -66,12 +62,11 @@ AUI.add(
 					},
 					language: {
 						setter: function(v) {
-							if (v) {
-								return v;
+							if (!v) {
+								v = 'ALL';
 							}
-							else {
-								return 'ALL';
-							}
+
+							return v;
 						}
 					},
 					moduleId: {
@@ -81,39 +76,33 @@ AUI.add(
 					},
 					nocache: {},
 					parentUrl: {
-						value: document.location.protocol + '://' + document.location.host,
-						setter: '_setParentUrl'
+						setter: '_setParentUrl',
+						value: document.location.protocol + '://' + document.location.host
 					},
-					portletId:{},
+					portletId: {},
 					pubsubURILoadTimeout: {
 						setter: function(v) {
-							if (v > 0) {
-								return v;
+							if (v <= 0) {
+								v = null;
 							}
-							else {
-								return null;
-							}
+
+							return v;
 						}
 					},
-					requiresPubsub:{},
+					requiresPubsub: {},
 					rpcRelay: {},
 					rpcToken: {
 						value: Math.round(0x7FFFFFFF * Math.random())
 					},
 					scrolling: {
 						setter: function(v) {
-							if (v) {
-								return 'yes';
-							}
-							else {
-								return 'no';
-							}
+							return v ? 'yes' : 'no';
 						}
 					},
-					serverBase: {},
 					secureToken: {
 						value: 'john.doe:john.doe:appid:cont:url:0:default'
 					},
+					serverBase: {},
 					specUrl: {},
 					store: {
 						valueFn: function() {
@@ -122,12 +111,11 @@ AUI.add(
 					},
 					userPrefs: {
 						setter: function(v) {
-							if (v) {
-								return v;
+							if (!v) {
+								v = {};
 							}
-							else {
-								return {};
-							}
+
+							return v;
 						}
 					},
 					view: {
@@ -136,15 +124,16 @@ AUI.add(
 					viewParams: {},
 					width: {
 						setter: function(v) {
-							if (v > 0) {
-								return v;
+							if (v <= 0) {
+								v = null;
 							}
-							else {
-								return null;
-							}
+
+							return v;
 						}
 					}
 				},
+
+				NAME: 'liferaygadget',
 
 				prototype: {
 					initializer: function() {
@@ -264,13 +253,15 @@ AUI.add(
 
 						var prevAdditionalParams = event.prevVal;
 
-						for (var i in prevAdditionalParams) {
+						var i;
+
+						for (i in prevAdditionalParams) {
 							src = instance._setSrcParameter(encodeURIComponent(i), '', src);
 						}
 
 						var newAdditionalParams = event.newVal;
 
-						for (var i in newAdditionalParams) {
+						for (i in newAdditionalParams) {
 							src = instance._setSrcParameter(encodeURIComponent(i), encodeURIComponent(newAdditionalParams[i]), src);
 						}
 
@@ -372,6 +363,8 @@ AUI.add(
 
 						var viewParams = event.newVal;
 
+						var parentUrl = instance.get('parentUrl');
+
 						if (parentUrl) {
 							instance._refreshSrcParameter('view-params', encodeURIComponent(A.JSON.stringify(viewParams)));
 						}
@@ -392,11 +385,11 @@ AUI.add(
 							aid: instance.get('appId'),
 							checksum: instance.get('checksum'),
 							container: instance._CONTAINER,
-							mid: instance.get('moduleId'),
 							country: instance.get('country'),
 							lang: instance.get('language'),
-							view: instance.get('view'),
-							url: instance.get('specUrl')
+							mid: instance.get('moduleId'),
+							url: instance.get('specUrl'),
+							view: instance.get('view')
 						};
 
 						if (instance.get('debug')) {
@@ -541,7 +534,9 @@ AUI.add(
 					},
 
 					_CONTAINER: 'default'
-				}
+				},
+
+				_id: 0
 			}
 		);
 
@@ -583,12 +578,12 @@ AUI.add(
 						Liferay.Service(
 							'/expandovalue/add-value',
 							{
-								companyId: themeDisplay.getCompanyId(),
 								className: instance._CLASS_NAME,
-								tableName: instance._TABLE_NAME,
-								columnName: instance.get('userPrefsKey'),
 								classPK: themeDisplay.getPlid(),
-								data: A.JSON.stringify(gadget.get('userPrefs'))
+								columnName: instance.get('userPrefsKey'),
+								companyId: themeDisplay.getCompanyId(),
+								data: A.JSON.stringify(gadget.get('userPrefs')),
+								tableName: instance._TABLE_NAME
 							}
 						);
 					},
@@ -762,16 +757,18 @@ AUI.add(
 		};
 
 		var unsubscribeTopic = function(topic, subscriptionId, fn) {
+			var i;
+
 			if (isString(topic) && isString(subscriptionId)) {
 				unsubscribeGadgetEvent(topic, subscriptionId, fn);
 			}
 			else if (isString(topic) && isArray(subscriptionId)) {
-				for (var i = 0; i < subscriptionId.length; i++) {
+				for (i = 0; i < subscriptionId.length; i++) {
 					unsubscribeGadgetEvent(topic, subscriptionId[i], fn);
 				}
 			}
 			else if (isArray(topic) && isArray(subscriptionId)) {
-				for (var i = 0; i < subscriptionId.length; i++) {
+				for (i = 0; i < subscriptionId.length; i++) {
 					unsubscribeGadgetEvent(topic[i], subscriptionId[i]);
 				}
 			}
@@ -794,12 +791,14 @@ AUI.add(
 			}
 		);
 
-		var inlineContainer = new OpenAjax.hub.InlineContainer(managedHub , "liferay",
+		var inlineContainer = new OpenAjax.hub.InlineContainer(
+			managedHub,
+			'liferay',
 			{
 				Container: {
-					onSecurityAlert: function(source, alertType) {},
 					onConnect: function(container) {},
-					onDisconnect: function(container) {}
+					onDisconnect: function(container) {},
+					onSecurityAlert: function(source, alertType) {}
 				}
 			}
 		);
@@ -868,7 +867,7 @@ AUI.add(
 					var userPrefs = gadget.get('userPrefs');
 
 					for (var i = 1; i < length; i += 2) {
-						arg = arguments[i];
+						var arg = arguments[i];
 
 						userPrefs[arg] = arguments[i + 1];
 					}

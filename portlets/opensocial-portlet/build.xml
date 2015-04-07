@@ -6,6 +6,12 @@
 
 	<import file="../build-common-portlet.xml" />
 
+	<target name="compile-jsp">
+		<compile-jsp
+			compile.jsp.docroot.dir="tmp"
+		/>
+	</target>
+
 	<target name="merge">
 
 		<!-- Delete unused Shindig directories -->

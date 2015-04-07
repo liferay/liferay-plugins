@@ -56,9 +56,9 @@ page import="com.liferay.portal.model.LayoutConstants" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portal.util.PortletKeys" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
-page import="com.liferay.portlet.eventsdisplay.util.comparator.CalendarBookingTimeComparator" %>
+page import="com.liferay.portlet.eventsdisplay.util.comparator.CalendarBookingTimeComparator" %><%@
+page import="com.liferay.site.my.sites.web.constants.MySitesPortletKeys" %>
 
 <%@ page import="java.text.Format" %>
 

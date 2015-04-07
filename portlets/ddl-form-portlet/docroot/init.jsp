@@ -32,6 +32,7 @@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
+page import="com.liferay.portal.kernel.util.LocaleUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
@@ -56,9 +57,11 @@ page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplate" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil" %><%@
 page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplay" %><%@
-page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplayRegistryUtil" %>
+page import="com.liferay.portlet.dynamicdatamapping.util.DDMDisplayRegistryUtil" %><%@
+page import="com.liferay.portlet.dynamicdatamapping.util.DDMPermissionHandler" %>
 
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.List" %><%@
+page import="java.util.Locale" %>
 
 <%@ page import="javax.portlet.ActionRequest" %><%@
 page import="javax.portlet.WindowState" %>
@@ -77,4 +80,7 @@ long formDDMTemplateId = GetterUtil.getLong(portletPreferences.getValue("formDDM
 boolean multipleSubmissions = GetterUtil.getBoolean(portletPreferences.getValue("multipleSubmissions", null));
 
 DDMDisplay ddmDisplay = DDMDisplayRegistryUtil.getDDMDisplay(PortletKeys.DYNAMIC_DATA_LISTS);
+
+DDMPermissionHandler ddmPermissionHandler = ddmDisplay.getDDMPermissionHandler();
+long scopeClassNameId = PortalUtil.getClassNameId(ddmDisplay.getStructureType());
 %>

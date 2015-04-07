@@ -397,10 +397,9 @@ public class ActivitiesPortlet extends MVCPortlet {
 		jsonObject.put(
 			"mbMessageIdOrMicroblogsEntryId", mbMessageIdOrMicroblogsEntryId);
 
-		Format dateFormat =
-			FastDateFormatFactoryUtil.getDate(
-				DateFormat.FULL, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
+		Format dateFormat = FastDateFormatFactoryUtil.getDate(
+			DateFormat.FULL, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
 
 		jsonObject.put(
 			"modifiedDate",

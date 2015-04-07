@@ -39,6 +39,9 @@ import com.liferay.knowledgebase.util.comparator.KBTemplateUserNameComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.json.JSONException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
@@ -76,6 +79,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
@@ -89,17 +93,19 @@ import javax.servlet.http.HttpServletRequest;
 public class KnowledgeBaseUtil {
 
 	public static void addPortletBreadcrumbEntries(
-			long oldParentResourceClassNameId, long oldParentResourcePrimKey,
-			long parentResourceClassNameId, long parentResourcePrimKey,
-			String mvcPath, HttpServletRequest request,
-			RenderResponse renderResponse)
+			long originalParentResourceClassNameId,
+			long originalParentResourcePrimKey, long parentResourceClassNameId,
+			long parentResourcePrimKey, String mvcPath,
+			HttpServletRequest request, RenderResponse renderResponse)
 		throws PortalException {
 
-		Map<String, Object> parameters = new HashMap<String, Object>();
+		Map<String, Object> parameters = new HashMap<>();
 
 		parameters.put(
-			"oldParentResourceClassNameId", oldParentResourceClassNameId);
-		parameters.put("oldParentResourcePrimKey", oldParentResourcePrimKey);
+			"originalParentResourceClassNameId",
+			originalParentResourceClassNameId);
+		parameters.put(
+			"originalParentResourcePrimKey", originalParentResourcePrimKey);
 		parameters.put("parentResourceClassNameId", parentResourceClassNameId);
 		parameters.put("parentResourcePrimKey", parentResourcePrimKey);
 		parameters.put("mvcPath", mvcPath);
@@ -113,7 +119,7 @@ public class KnowledgeBaseUtil {
 			RenderResponse renderResponse)
 		throws PortalException {
 
-		Map<String, Object> parameters = new HashMap<String, Object>();
+		Map<String, Object> parameters = new HashMap<>();
 
 		parameters.put("parentResourceClassNameId", parentResourceClassNameId);
 		parameters.put("parentResourcePrimKey", parentResourcePrimKey);
@@ -129,7 +135,7 @@ public class KnowledgeBaseUtil {
 		List<KBFolder> kbFolders = KBFolderServiceUtil.getKBFolders(
 			groupId, kbFolderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		kbFolders = new ArrayList<KBFolder>(kbFolders);
+		kbFolders = new ArrayList<>(kbFolders);
 
 		Iterator<KBFolder> itr = kbFolders.iterator();
 
@@ -395,6 +401,20 @@ public class KnowledgeBaseUtil {
 		};
 	}
 
+	public static String getPreferredKBFolderURLTitle(
+			PortalPreferences portalPreferences, String contentRootPrefix)
+		throws JSONException {
+
+		String preferredKBFolderURLTitle = portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
+			"{}");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			preferredKBFolderURLTitle);
+
+		return jsonObject.getString(contentRootPrefix, StringPool.BLANK);
+	}
+
 	public static final int getPreviousStatus(int status) {
 		if (status == KBCommentConstants.STATUS_COMPLETED) {
 			return KBCommentConstants.STATUS_IN_PROGRESS;
@@ -482,10 +502,29 @@ public class KnowledgeBaseUtil {
 		return matcher.matches();
 	}
 
+	public static void setPreferredKBFolderURLTitle(
+			PortalPreferences portalPreferences, String contentRootPrefix,
+			String value)
+		throws JSONException {
+
+		String preferredKBFolderURLTitle = portalPreferences.getValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
+			"{}");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			preferredKBFolderURLTitle);
+
+		jsonObject.put(contentRootPrefix, value);
+
+		portalPreferences.setValue(
+			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
+			jsonObject.toString());
+	}
+
 	public static List<KBArticle> sort(
 		long[] resourcePrimKeys, List<KBArticle> kbArticles) {
 
-		Map<Long, KBArticle> map = new HashMap<Long, KBArticle>();
+		Map<Long, KBArticle> map = new HashMap<>();
 
 		for (KBArticle kbArticle : kbArticles) {
 			map.put(kbArticle.getResourcePrimKey(), kbArticle);
@@ -503,7 +542,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String[] splitKeywords(String keywords) {
-		Set<String> keywordsSet = new LinkedHashSet<String>();
+		Set<String> keywordsSet = new LinkedHashSet<>();
 
 		StringBundler sb = new StringBundler();
 
@@ -612,9 +651,13 @@ public class KnowledgeBaseUtil {
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
 
-		String kbFolderURLTitle = portalPreferences.getValue(
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY, "preferredKBFolderURLTitle",
-			null);
+		PortletPreferences portletPreferences = portletRequest.getPreferences();
+
+		String contentRootPrefix = GetterUtil.getString(
+			portletPreferences.getValue("contentRootPrefix", null));
+
+		String kbFolderURLTitle = getPreferredKBFolderURLTitle(
+			portalPreferences, contentRootPrefix);
 
 		long childKbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 

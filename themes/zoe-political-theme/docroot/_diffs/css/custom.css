@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 
 @import url(color_schemes/democrat.css);
 @import url(color_schemes/republican.css);
@@ -217,7 +217,7 @@ a {
 	top: 0;
 
 	&:hover {
-		@include box-shadow(0 1px 1px -1px #000)
+		box-shadow: 0 1px 1px -1px #000
 	}
 }
 
@@ -329,7 +329,7 @@ a {
 /* ---------- Extras ---------- */
 
 .btn:hover {
-	@include box-shadow(rgba(0, 0, 0, 0.5) 1px 1px 15px);
+	box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 15px;
 }
 
 .dockbar-split .dockbar {
@@ -345,20 +345,19 @@ a {
 }
 
 #heading #sign-in:hover {
-	@include box-shadow(rgba(0, 0, 0, 0.5) 1px 1px 15px);
+	box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 15px;
 }
 
-
 #content #main-content {
-	@include box-shadow(rgba(0, 0, 0, 0.1) 1px 1px 15px);
+	box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 15px;
 }
 
 .modify-pages .delete-tab {
-	@include border-radius(50%);
-	@include text-shadow(none);
+	border-radius: 50%;
+	text-shadow: none;
 	@include transition(opacity 0.2s ease);
 
 	&:hover {
-		@include box-shadow(0 1px 1px -1px #000);
+		box-shadow: 0 1px 1px -1px #000;
 	}
 }

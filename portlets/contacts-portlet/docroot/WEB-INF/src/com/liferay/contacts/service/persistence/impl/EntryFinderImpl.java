@@ -90,7 +90,7 @@ public class EntryFinderImpl
 	public List<BaseModel<?>> findByKeywords(
 		long companyId, long userId, String keywords, int start, int end) {
 
-		List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
+		List<BaseModel<?>> models = new ArrayList<>();
 
 		if (Validator.isNotNull(keywords)) {
 			String[] fullNames = CustomSQLUtil.keywords(keywords);

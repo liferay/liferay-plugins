@@ -5,14 +5,11 @@
 	<portlet-resource>
 		<portlet-name>1</portlet-name>
 		<permissions>
-			<supports>
-				<action-key>VIEW</action-key>
-			</supports>
-			<site-member-defaults>
-				<action-key>VIEW</action-key>
-			</site-member-defaults>
+			<supports />
+			<site-member-defaults />
 			<guest-defaults />
 			<guest-unsupported>
+				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
 				<action-key>VIEW</action-key>
 			</guest-unsupported>
 		</permissions>
@@ -24,14 +21,14 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ADD_DEVICE</action-key>
-				<action-key>ADD_ENTRY</action-key>
-				<action-key>PERMISSIONS</action-key>
+				<action-key>MANAGE_DEVICES</action-key>
+				<action-key>SEND_PUSH_NOTIFICATION</action-key>
 			</supports>
 			<site-member-defaults />
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>PERMISSIONS</action-key>
+				<action-key>SEND_PUSH_NOTIFICATION</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>

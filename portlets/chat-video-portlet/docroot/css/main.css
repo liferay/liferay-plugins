@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 
 $preferredPadding: 10px;
 $remoteVideoHeight: 165px;
@@ -139,7 +139,7 @@ $remoteVideoHeight: 165px;
 			height: $height;
 			left: 0;
 
-			@include opacity(0);
+			opacity: 0;
 
 			padding: 5px 0 5px 35px;
 			position: absolute;
@@ -218,7 +218,7 @@ $remoteVideoHeight: 165px;
 	height: 100%;
 	left: 0;
 
-	@include opacity(0);
+	opacity: 0;
 
 	position: fixed;
 	top: 0;
@@ -274,17 +274,17 @@ $remoteVideoHeight: 165px;
 
 .chat-bar, .chat-video-overlay {
 	.remote-video-container {
-		@include border-radius(3px);
+		border-radius: 3px;
 	}
 }
 
 .chat-video-overlay {
 	.chat-video-ctrl-buttons, .call-time {
-		@include border-radius(3px);
+		border-radius: 3px;
 	}
 
 	video.local {
-		@include border-radius(2px);
+		border-radius: 2px;
 	}
 }
 
@@ -326,20 +326,20 @@ $remoteVideoHeight: 165px;
 
 @include keyframes(chat-video-fade-in-kf) {
 	from {
-		@include opacity(0);
+		opacity: 0;
 	}
 
 	to {
-		@include opacity(1);
+		opacity: 1;
 	}
 }
 
 @include keyframes(chat-video-fade-out-kf) {
 	from {
-		@include opacity(1);
+		opacity: 1;
 	}
 
 	to {
-		@include opacity(0);
+		opacity: 0;
 	}
 }

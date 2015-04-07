@@ -175,7 +175,6 @@ public class WURFLDevice extends AbstractDevice {
 		return capability.getValue();
 	}
 
-	private Map<String, Capability> _capabilities =
-		new HashMap<String, Capability>();
+	private Map<String, Capability> _capabilities = new HashMap<>();
 
 }

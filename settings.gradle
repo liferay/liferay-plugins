@@ -1,0 +1,94 @@
+def loadProperties = {
+	Properties properties, String fileName ->
+
+	File file = file(fileName)
+
+	if (file.exists()) {
+		properties.load(new FileInputStream(file))
+	}
+}
+
+Properties antProperties = new Properties()
+
+loadProperties(antProperties, "build.properties")
+loadProperties(antProperties, "build." + System.properties["user.name"] + ".properties")
+loadProperties(antProperties, "build." + System.properties["COMPUTERNAME"] + ".properties")
+loadProperties(antProperties, "build." + System.properties["HOST"] + ".properties")
+loadProperties(antProperties, "build." + System.properties["HOSTNAME"] + ".properties")
+
+if (!hasProperty("lfrPluginsExcludes")) {
+	ext.lfrPluginsExcludes = antProperties["plugins.excludes"]
+}
+
+if (!hasProperty("lfrPluginsIncludes")) {
+	ext.lfrPluginsIncludes = antProperties["plugins.includes"]
+}
+
+FileTree fileTree = fileTree(rootDir) {
+	if ((lfrPluginsIncludes != "") && (lfrPluginsIncludes != "*")) {
+		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(" ", "")
+		lfrPluginsIncludes = lfrPluginsIncludes.replaceAll(",+", ",")
+
+		def lfrPluginsIncludesArray = lfrPluginsIncludes.split(",")
+
+		lfrPluginsIncludesArray = lfrPluginsIncludesArray.collect(
+			{
+				"**/" + it + "/build.gradle"
+			}
+		)
+ 
+		lfrPluginsIncludesArray.each(
+			{
+				include(it)
+			}
+		)
+	}
+	else {
+		include("**/build.gradle")
+	}
+ 
+	if ((lfrPluginsExcludes != "") && (lfrPluginsExcludes != "*")) {
+		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(" ", "")
+		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(",+", ",")
+
+		String[] lfrPluginsExcludesArray = lfrPluginsExcludes.split(",")
+
+		lfrPluginsExcludesArray = lfrPluginsExcludesArray.collect(
+			{
+				"**/" + it + "/build.gradle"
+			}
+		)
+ 
+		lfrPluginsExcludesArray.each(
+			{
+				exclude(it)
+			}
+		)
+	}
+	else {
+		exclude("**/build.gradle")
+	}
+
+	exclude("build.gradle")
+	exclude("tools/**/build.gradle")
+}
+
+fileTree.each(
+	{
+		URI rootURI = rootDir.toURI()
+
+		URI pluginURI = it.toURI()
+
+		pluginURI = rootURI.relativize(pluginURI)
+
+		String pluginDir = pluginURI.toString()
+
+		pluginDir = pluginDir.replaceFirst("/build.gradle", "")
+
+		include(":" + pluginDir.replaceAll("[\\/]", ":"))
+	}
+)
+
+include(":shared:portal-compat-shared")
+
+gradle.ext.lfrSdkDir = file(".")

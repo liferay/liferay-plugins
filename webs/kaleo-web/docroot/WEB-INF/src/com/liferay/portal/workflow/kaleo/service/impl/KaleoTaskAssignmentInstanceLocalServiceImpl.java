@@ -105,8 +105,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		throws PortalException {
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
-			new ArrayList<KaleoTaskAssignmentInstance>(
-				kaleoTaskAssignments.size());
+			new ArrayList<>(kaleoTaskAssignments.size());
 
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
 			long groupId = kaleoTaskAssignment.getGroupId();

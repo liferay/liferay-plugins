@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 $defaultBackgroundColor: #252D31;
@@ -149,7 +149,7 @@ $defaultTextColor: #202020;
 		.user-notifications-count {
 			background-color: #FFF;
 
-			@include border-radius(50%);
+			border-radius: 50%;
 
 			border-width: 0;
 			box-sizing: border-box;
@@ -173,9 +173,8 @@ $defaultTextColor: #202020;
 
 		.container-fluid .dockbar-item, .nav .user-avatar .user-avatar-link {
 			.user-avatar-image {
-				@include border-radius(50%);
-				@include box-shadow(none);
-
+				border-radius: 50%;
+				box-shadow: none;
 				height: 22px;
 				top: 0;
 				vertical-align: middle;
@@ -241,9 +240,7 @@ $defaultTextColor: #202020;
 
 		.container-fluid {
 			background: none;
-
-			@include box-shadow(none);
-
+			box-shadow: none;
 			filter: none;
 			width: auto;
 
@@ -256,26 +253,6 @@ $defaultTextColor: #202020;
 
 #wrapper {
 	clear: both;
-}
-
-.ie7 {
-	.portlet-dockbar {
-		clear: both;
-
-		.container-fluid .nav-account-controls {
-			bottom: 100%;
-			position: relative;
-		}
-
-		.search-focus .so-portlet-sites .portlet {
-			width: 350px;
-		}
-	}
-
-	.default .portlet-dockbar {
-		height: 0;
-		position: relative;
-	}
 }
 
 /* ---------- Control panel ---------- */
@@ -392,7 +369,7 @@ $defaultTextColor: #202020;
 							a {
 								background: transparent;
 
-								@include border-radius(0);
+								border-radius: 0;
 
 								font-size: 1em;
 								line-height: 2.4em;
@@ -474,7 +451,7 @@ $defaultTextColor: #202020;
 						.user-notification {
 							background-color: #DDD;
 
-							@include border-radius(0);
+							border-radius: 0;
 							@include hover-transition;
 
 							margin-bottom: 0;
@@ -511,7 +488,7 @@ $defaultTextColor: #202020;
 			background: transparent;
 			border-bottom-width: 0;
 
-			@include border-radius(0);
+			border-radius: 0;
 
 			margin-bottom: 0;
 

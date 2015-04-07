@@ -16,8 +16,12 @@ package com.liferay.sync.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
@@ -51,13 +55,18 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		syncDLFileVersionDiff.setSourceFileVersionId(sourceFileVersionId);
 		syncDLFileVersionDiff.setTargetFileVersionId(targetFileVersionId);
 
+		Company company = companyLocalService.getCompanyByMx(
+			PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
+
+		Group group = company.getGroup();
+
 		FileEntry fileEntry = dlAppService.getFileEntry(fileEntryId);
 
 		String dataFileName = getDataFileName(
 			fileEntryId, sourceFileVersionId, targetFileVersionId);
 
 		FileEntry dataFileEntry = PortletFileRepositoryUtil.addPortletFileEntry(
-			fileEntry.getGroupId(), fileEntry.getUserId(),
+			group.getGroupId(), fileEntry.getUserId(),
 			SyncDLFileVersionDiff.class.getName(),
 			syncDLFileVersionDiff.getSyncDLFileVersionDiffId(),
 			PortletKeys.DOCUMENT_LIBRARY,
@@ -91,11 +100,32 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		for (SyncDLFileVersionDiff syncDLFileVersionDiff :
 				syncDLFileVersionDiffs) {
 
-			PortletFileRepositoryUtil.deletePortletFileEntry(
-				syncDLFileVersionDiff.getDataFileEntryId());
+			deleteSyncDLFileVersionDiff(syncDLFileVersionDiff);
+		}
+	}
 
-			syncDLFileVersionDiffPersistence.remove(
-				syncDLFileVersionDiff.getSyncDLFileVersionDiffId());
+	@Override
+	public SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
+			SyncDLFileVersionDiff syncDLFileVersionDiff)
+		throws PortalException {
+
+		PortletFileRepositoryUtil.deletePortletFileEntry(
+			syncDLFileVersionDiff.getDataFileEntryId());
+
+		return super.deleteSyncDLFileVersionDiff(syncDLFileVersionDiff);
+	}
+
+	@Override
+	public void deleteSyncDLFileVersionDiffs(long fileEntryId)
+		throws PortalException {
+
+		List<SyncDLFileVersionDiff> syncDLFileVersionDiffs =
+			syncDLFileVersionDiffPersistence.findByFileEntryId(fileEntryId);
+
+		for (SyncDLFileVersionDiff syncDLFileVersionDiff :
+				syncDLFileVersionDiffs) {
+
+			deleteSyncDLFileVersionDiff(syncDLFileVersionDiff);
 		}
 	}
 

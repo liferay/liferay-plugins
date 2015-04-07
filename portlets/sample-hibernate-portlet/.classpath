@@ -15,7 +15,7 @@
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-httpclient.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/dom4j.jar" />
-	<classpathentry kind="lib" path="/portal-master/lib/portal/hibernate3.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/hibernate-core.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/saaj-api.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/slf4j-api.jar" />

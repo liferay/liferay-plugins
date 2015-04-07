@@ -22,9 +22,9 @@ AUI.add(
 
 		var TPL_CLOSE_BUTTON = '<a class="gadget-editor-tab-close icon-remove" href="javascript:;"></a>';
 
-		var TPL_DIV = '<div></div>';
-
 		var TPL_DIRTY_INDICATOR = '<span>*</span>';
+
+		var TPL_DIV = '<div></div>';
 
 		var TabViewEditor = A.Component.create(
 			{

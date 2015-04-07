@@ -18,8 +18,8 @@
 
 <c:choose>
 	<c:when test="<%= user2 == null %>">
-		<div class="alert alert-error">
-			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-page" />
+		<div class="alert alert-danger">
+			<liferay-ui:message key="this-application-only-functions-when-placed-on-a-user-page" />
 		</div>
 	</c:when>
 	<c:otherwise>
@@ -35,7 +35,7 @@
 		catch (Exception e) {
 		%>
 
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<liferay-ui:message key="please-configure-a-valid-jira-database" />
 			</div>
 

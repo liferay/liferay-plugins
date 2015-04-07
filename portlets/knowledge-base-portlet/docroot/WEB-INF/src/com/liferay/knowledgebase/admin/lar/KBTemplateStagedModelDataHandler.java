@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
 
@@ -49,27 +48,20 @@ public class KBTemplateStagedModelDataHandler
 	}
 
 	@Override
-	public KBTemplate fetchStagedModelByUuidAndCompanyId(
-		String uuid, long companyId) {
-
-		List<KBTemplate> kbTemplates =
-			KBTemplateLocalServiceUtil.getKBTemplatesByUuidAndCompanyId(
-				uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new StagedModelModifiedDateComparator<KBTemplate>());
-
-		if (ListUtil.isEmpty(kbTemplates)) {
-			return null;
-		}
-
-		return kbTemplates.get(0);
-	}
-
-	@Override
 	public KBTemplate fetchStagedModelByUuidAndGroupId(
 		String uuid, long groupId) {
 
 		return KBTemplateLocalServiceUtil.fetchKBTemplateByUuidAndGroupId(
 			uuid, groupId);
+	}
+
+	@Override
+	public List<KBTemplate> fetchStagedModelsByUuidAndCompanyId(
+		String uuid, long companyId) {
+
+		return KBTemplateLocalServiceUtil.getKBTemplatesByUuidAndCompanyId(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new StagedModelModifiedDateComparator<KBTemplate>());
 	}
 
 	@Override

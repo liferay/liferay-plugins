@@ -42,13 +42,19 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodParameterTypes2 = new String[] {  };
 
-		_methodName3 = "hasPermission";
+		_methodName4 = "sendPushNotification";
 
-		_methodParameterTypes3 = new String[] { "java.lang.String" };
+		_methodParameterTypes4 = new String[] {
+				"java.lang.String", "java.util.List", "java.lang.String"
+			};
 
-		_methodName5 = "setBeanIdentifier";
+		_methodName5 = "sendPushNotification";
 
-		_methodParameterTypes5 = new String[] { "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "long[][]", "java.lang.String" };
+
+		_methodName6 = "setBeanIdentifier";
+
+		_methodParameterTypes6 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -139,14 +145,26 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
-	public boolean hasPermission(java.lang.String actionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
 
+	@Override
+	public void sendPushNotification(java.lang.String platform,
+		java.util.List<java.lang.String> tokens, java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(actionId) });
+			_invokableService.invokeMethod(_methodName4,
+				_methodParameterTypes4,
+				new Object[] {
+					ClpSerializer.translateInput(platform),
+					
+				ClpSerializer.translateInput(tokens),
+					
+				ClpSerializer.translateInput(payload)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -163,22 +181,42 @@ public class PushNotificationsDeviceServiceClp
 					" is not a valid exception");
 			}
 		}
-
-		return ((Boolean)returnObj).booleanValue();
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
+	public void sendPushNotification(long[] toUserIds, java.lang.String payload)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			_invokableService.invokeMethod(_methodName5,
+				_methodParameterTypes5,
+				new Object[] {
+					ClpSerializer.translateInput(toUserIds),
+					
+				ClpSerializer.translateInput(payload)
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
 	}
 
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableService.invokeMethod(_methodName5,
-				_methodParameterTypes5,
+			_invokableService.invokeMethod(_methodName6,
+				_methodParameterTypes6,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -201,8 +239,10 @@ public class PushNotificationsDeviceServiceClp
 	private String[] _methodParameterTypes1;
 	private String _methodName2;
 	private String[] _methodParameterTypes2;
-	private String _methodName3;
-	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
 	private String _methodName5;
 	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
 }

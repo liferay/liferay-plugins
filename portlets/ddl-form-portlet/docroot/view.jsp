@@ -46,6 +46,8 @@ try {
 			<aui:form action="<%= saveDataURL %>" cssClass="lfr-dynamic-form" enctype="multipart/form-data" method="post" name="fm">
 				<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 				<aui:input name="recordSetId" type="hidden" value="<%= recordSet.getRecordSetId() %>" />
+				<aui:input name="defaultLanguageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
+				<aui:input name="languageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
 				<aui:input name="multipleSubmissions" type="hidden" value="<%= multipleSubmissions %>" />
 				<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
 
@@ -67,6 +69,11 @@ try {
 							</c:when>
 							<c:when test="<%= multipleSubmissions || !(DDLFormUtil.hasSubmitted(request, recordSet.getRecordSetId())) %>">
 								<aui:fieldset>
+									<aui:translation-manager
+										availableLocales="<%= new Locale[] {LocaleUtil.fromLanguageId(themeDisplay.getLanguageId())} %>"
+										defaultLanguageId="<%= themeDisplay.getLanguageId() %>"
+										id="translationManager"
+									/>
 
 									<%
 									long classNameId = PortalUtil.getClassNameId(DDMStructure.class);
@@ -99,7 +106,7 @@ try {
 						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<div class="alert alert-error">
+						<div class="alert alert-danger">
 							<liferay-ui:message key="you-do-not-have-the-required-permissions" />
 						</div>
 					</c:otherwise>
@@ -125,7 +132,7 @@ try {
 catch (NoSuchRecordSetException nsrse) {
 %>
 
-	<div class="alert alert-error">
+	<div class="alert alert-danger">
 		<%= LanguageUtil.get(request, "the-selected-list-no-longer-exists") %>
 	</div>
 
@@ -134,13 +141,13 @@ catch (NoSuchRecordSetException nsrse) {
 
 boolean hasConfigurationPermission = PortletPermissionUtil.contains(permissionChecker, layout, portletDisplay.getId(), ActionKeys.CONFIGURATION);
 
-boolean showAddListIcon = hasConfigurationPermission && permissionChecker.hasPermission(scopeGroupId, ddmDisplay.getResourceName(), scopeGroupId, ActionKeys.ADD_RECORD_SET);
-boolean showAddTemplateIcon = (recordSet != null) && permissionChecker.hasPermission(scopeGroupId, ddmDisplay.getResourceName(), scopeGroupId, ActionKeys.ADD_TEMPLATE);
+boolean showAddListIcon = hasConfigurationPermission && permissionChecker.hasPermission(scopeGroupId, ddmPermissionHandler.getResourceName(scopeClassNameId), scopeGroupId, ActionKeys.ADD_RECORD_SET);
+boolean showAddTemplateIcon = (recordSet != null) && permissionChecker.hasPermission(scopeGroupId, ddmPermissionHandler.getResourceName(scopeClassNameId), scopeGroupId, ActionKeys.ADD_TEMPLATE);
 boolean showEditTemplateIcon = (ddmTemplate != null) && (permissionChecker.hasOwnerPermission(ddmTemplate.getCompanyId(), DDMTemplate.class.getName(), ddmTemplate.getTemplateId(), ddmTemplate.getUserId(), ActionKeys.UPDATE) || permissionChecker.hasPermission(ddmTemplate.getGroupId(), DDMTemplate.class.getName(), ddmTemplate.getTemplateId(), ActionKeys.UPDATE));
 %>
 
 <c:if test="<%= themeDisplay.isSignedIn() && (hasConfigurationPermission || showEditTemplateIcon || showAddListIcon) %>">
-	<div class="lfr-meta-actions icons-container">
+	<div class="icons-container lfr-meta-actions">
 		<div class="lfr-icon-actions">
 			<c:if test="<%= showAddTemplateIcon %>">
 				<liferay-portlet:renderURL portletName="<%= PortletKeys.DYNAMIC_DATA_MAPPING %>" var="addTemplateURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">

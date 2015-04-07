@@ -36,16 +36,13 @@ import java.util.Locale;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 /**
  * @author Adam Brandizzi
  */
 public class CalendarIndexer extends BaseIndexer {
 
-	public static final String[] CLASS_NAMES = {Calendar.class.getName()};
-
-	public static final String PORTLET_ID = PortletKeys.CALENDAR;
+	public static final String CLASS_NAME = Calendar.class.getName();
 
 	public CalendarIndexer() {
 		setDefaultSelectedFieldNames(
@@ -59,13 +56,8 @@ public class CalendarIndexer extends BaseIndexer {
 	}
 
 	@Override
-	public String[] getClassNames() {
-		return CLASS_NAMES;
-	}
-
-	@Override
-	public String getPortletId() {
-		return PORTLET_ID;
+	public String getClassName() {
+		return CLASS_NAME;
 	}
 
 	@Override
@@ -101,7 +93,7 @@ public class CalendarIndexer extends BaseIndexer {
 	protected Document doGetDocument(Object object) throws Exception {
 		Calendar calendar = (Calendar)object;
 
-		Document document = getBaseModelDocument(PORTLET_ID, calendar);
+		Document document = getBaseModelDocument(CLASS_NAME, calendar);
 
 		document.addLocalizedText(
 			Field.DESCRIPTION, calendar.getDescriptionMap());
@@ -124,19 +116,15 @@ public class CalendarIndexer extends BaseIndexer {
 
 	@Override
 	protected Summary doGetSummary(
-		Document document, Locale locale, String snippet, PortletURL portletURL,
+		Document document, Locale locale, String snippet,
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		String calendarId = document.get(Field.ENTRY_CLASS_PK);
-
-		portletURL.setParameter("mvcPath", "/edit_calendar.jsp");
-		portletURL.setParameter("calendarId", calendarId);
 
 		Summary summary = createSummary(
 			document, Field.NAME, Field.DESCRIPTION);
 
 		summary.setMaxContentLength(200);
-		summary.setPortletURL(portletURL);
 
 		return summary;
 	}
@@ -164,11 +152,6 @@ public class CalendarIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexCalendars(companyId);
-	}
-
-	@Override
-	protected String getPortletId(SearchContext searchContext) {
-		return PORTLET_ID;
 	}
 
 	protected void reindexCalendars(long companyId) throws PortalException {

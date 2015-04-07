@@ -77,9 +77,8 @@ public class SocialRelationModelListener
 		SocialRelationModelListener.class);
 
 	private AutoResetThreadLocal<SocialRelationReindexerCallable>
-		_socialRelationReindexerCallable =
-			new AutoResetThreadLocal<SocialRelationReindexerCallable>(
-				SocialRelationModelListener.class.getName());
+		_socialRelationReindexerCallable = new AutoResetThreadLocal<>(
+			SocialRelationModelListener.class.getName());
 
 	private class SocialRelationReindexerCallable implements Callable<Void> {
 
@@ -106,7 +105,7 @@ public class SocialRelationModelListener
 			return null;
 		}
 
-		private Set<Long> _userIds = new HashSet<Long>();
+		private Set<Long> _userIds = new HashSet<>();
 
 	}
 

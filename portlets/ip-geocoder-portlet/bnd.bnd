@@ -1,7 +1,6 @@
 Bundle-Name: Liferay IP Geocoder Portlet
 Import-Package:\
 	com.liferay.ip.geocoder,\
-	com.liferay.portal.http.service.servlet,\
 	com.liferay.portal.kernel.exception,\
 	com.liferay.portal.kernel.language,\
 	com.liferay.portal.kernel.lar,\
@@ -14,7 +13,6 @@ Import-Package:\
 	com.liferay.portal.service,\
 	com.liferay.portal.servlet.filters.aggregate,\
 	com.liferay.portal.servlet.filters.dynamiccss,\
-	com.liferay.portal.servlet.jsp.compiler.jsp,\
 	com.liferay.portal.webserver,\
 	com.liferay.portlet,\
 	com.liferay.util.bridges.freemarker,\
@@ -22,13 +20,6 @@ Import-Package:\
 	javax.portlet,\
 	javax.servlet,\
 	javax.servlet.http,\
-    org.apache.el,\
-	org.apache.jasper.runtime,\
-    org.apache.jasper.servlet,\
-    org.apache.taglibs.standard.tei,\
-    org.apache.taglibs.standard.tlv,\
-    org.eclipse.jetty.servlet.listener,\
-    org.glassfish.jsp.api,\
 	*;resolution:="optional"
 Web-ContextPath: /ip-geocoder-portlet
 -wab: \

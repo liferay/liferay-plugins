@@ -473,7 +473,7 @@ public class ShindigUtil {
 		new AutoResetThreadLocal<String>(
 			ShindigUtil.class + "._host", StringPool.BLANK);
 	private static Set<String> _ignoreGadgetSpecCache =
-		new ConcurrentHashSet<String>();
+		new ConcurrentHashSet<>();
 
 	@Inject
 	private static Processor _processor;

@@ -36,7 +36,7 @@ public class ConnectionCache<T> {
 		_sessionKey =
 			ConnectionCache.class.getName() + StringPool.POUND + repositoryId;
 
-		_connectionThreadLocal = new AutoResetThreadLocal<T>(
+		_connectionThreadLocal = new AutoResetThreadLocal<>(
 			connectionClass.getName());
 	}
 
@@ -64,8 +64,7 @@ public class ConnectionCache<T> {
 		connection = _connectionBuilder.buildConnection();
 
 		if (httpSession != null) {
-			TransientValue<T> transientValue = new TransientValue<T>(
-				connection);
+			TransientValue<T> transientValue = new TransientValue<>(connection);
 
 			httpSession.setAttribute(_sessionKey, transientValue);
 		}

@@ -14,12 +14,15 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class KaleoInstanceTokenLocalServiceClp
 	implements KaleoInstanceTokenLocalService {
 	public KaleoInstanceTokenLocalServiceClp(

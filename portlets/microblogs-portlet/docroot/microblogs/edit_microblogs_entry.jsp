@@ -88,7 +88,7 @@ if (comment) {
 
 	<c:choose>
 		<c:when test="<%= microblogsEntry == null %>">
-			<div class="alert alert-error">
+			<div class="alert alert-danger">
 				<liferay-ui:message key="entry-could-not-be-found" />
 			</div>
 		</c:when>
@@ -214,7 +214,7 @@ if (comment) {
 			return '[@' + MAP_USERS[str] + ']';
 		},
 		userName: function(str, match) {
-			return '<span>' + str + '</span>'
+			return '<span>' + str + '</span>';
 		}
 	};
 
@@ -232,6 +232,8 @@ if (comment) {
 			'<span class="job-title">{jobTitle}</span>' +
 		'</div>' +
 	'</div>';
+
+	var autocompleteDiv;
 
 	var form = A.one('#<portlet:namespace /><%= formName %>');
 
@@ -412,11 +414,11 @@ if (comment) {
 
 			MAP_USERS[fullName] = screenName;
 
-			autocompleteDiv.hide()
+			autocompleteDiv.hide();
 		};
 
 		var createAutocomplete = function(contentTextarea) {
-			return autocompleteDiv = new A.AutoComplete(
+			autocompleteDiv = new A.AutoComplete(
 				{
 					inputNode: contentTextarea,
 					maxResults: 5,
@@ -435,7 +437,9 @@ if (comment) {
 					source: <%= MicroblogsUtil.getJSONRecipients(user.getUserId(), themeDisplay) %>
 				}
 			).render();
-		}
+
+			return autocompleteDiv;
+		};
 
 		<c:choose>
 			<c:when test="<%= !edit %>">

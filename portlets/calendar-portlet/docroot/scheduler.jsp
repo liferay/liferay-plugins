@@ -41,7 +41,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	Liferay.CalendarUtil.USER_TIME_ZONE = '<%= HtmlUtil.escapeJS(userTimeZone.getID()) %>';
 
 	<c:if test="<%= !hideDayView %>">
-		window.<portlet:namespace />dayView = new A.SchedulerDayView(
+		window.<portlet:namespace />dayView = new Liferay.SchedulerDayView(
 			{
 				height: 700,
 				isoTime: <%= isoTimeFormat %>,
@@ -54,7 +54,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	</c:if>
 
 	<c:if test="<%= !hideWeekView %>">
-		window.<portlet:namespace />weekView = new A.SchedulerWeekView(
+		window.<portlet:namespace />weekView = new Liferay.SchedulerWeekView(
 			{
 				height: 700,
 				isoTime: <%= isoTimeFormat %>,
@@ -67,9 +67,9 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	</c:if>
 
 	<c:if test="<%= !hideMonthView %>">
-		window.<portlet:namespace />monthView = new A.SchedulerMonthView(
+		window.<portlet:namespace />monthView = new Liferay.SchedulerMonthView(
 			{
-				height: 700,
+				height: 'auto',
 				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: {
@@ -82,7 +82,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	</c:if>
 
 	<c:if test="<%= !hideAgendaView %>">
-		window.<portlet:namespace />agendaView = new A.SchedulerAgendaView(
+		window.<portlet:namespace />agendaView = new Liferay.SchedulerAgendaView(
 			{
 				height: 700,
 				isoTime: <%= isoTimeFormat %>,

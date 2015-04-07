@@ -114,8 +114,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 	}
 
 	@Override
-	public void deletePortletDocuments(
-			SearchContext searchContext, String portletId)
+	public void deleteEntityDocuments(
+			SearchContext searchContext, String className)
 		throws SearchException {
 
 		try {
@@ -138,9 +138,9 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			}
 
 			sb.append(StringPool.PLUS);
-			sb.append(Field.PORTLET_ID);
+			sb.append(Field.ENTRY_CLASS_NAME);
 			sb.append(StringPool.COLON);
-			sb.append(portletId);
+			sb.append(className);
 
 			_solrServer.deleteByQuery(sb.toString());
 
@@ -207,8 +207,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 	protected Collection<SolrInputDocument> getSolrInputDocuments(
 		Collection<Document> documents) {
 
-		List<SolrInputDocument> solrInputDocuments =
-			new ArrayList<SolrInputDocument>(documents.size());
+		List<SolrInputDocument> solrInputDocuments = new ArrayList<>(
+			documents.size());
 
 		for (Document document : documents) {
 			SolrInputDocument solrInputDocument =

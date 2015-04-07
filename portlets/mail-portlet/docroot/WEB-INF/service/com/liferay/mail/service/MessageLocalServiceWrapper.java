@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see MessageLocalService
  * @generated
  */
+@ProviderType
 public class MessageLocalServiceWrapper implements MessageLocalService,
 	ServiceWrapper<MessageLocalService> {
 	public MessageLocalServiceWrapper(MessageLocalService messageLocalService) {
@@ -46,10 +49,12 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long remoteMessageId)
+		java.lang.String flags, long remoteMessageId,
+		java.lang.String contentType)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _messageLocalService.addMessage(userId, folderId, sender, to,
-			cc, bcc, sentDate, subject, body, flags, remoteMessageId);
+			cc, bcc, sentDate, subject, body, flags, remoteMessageId,
+			contentType);
 	}
 
 	/**
@@ -165,10 +170,10 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(
@@ -177,11 +182,11 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(

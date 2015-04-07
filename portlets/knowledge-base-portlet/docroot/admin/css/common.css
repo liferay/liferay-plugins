@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 /* ---------- Configuration ---------- */
@@ -23,6 +23,10 @@
 	.kb-submit-buttons {
 		margin: 0;
 		padding: 10px 0 0;
+	}
+
+	.social-boomarks-options {
+		margin-left: 15px;
 	}
 }
 
@@ -115,6 +119,10 @@
 			vertical-align: top;
 			width: 100%;
 
+			.kb-article-comment-body {
+				word-break: normal;
+			}
+
 			.kb-article-comment-user {
 				text-align: center;
 				width: 30%;
@@ -161,8 +169,8 @@
 
 	.kb-article-suggestion-actions {
 		clear: both;
-		display: block;
-		padding: 10px 0 10px 5px;
+		display: inline-block;
+		padding-left: 20px;
 	}
 
 	.kb-article-siblings {
@@ -214,11 +222,7 @@
 		}
 	}
 
-	.kb-article-comment-date {
-		margin-top: 10px;
-	}
-
-	.kb-article-comment-helpful {
+	.kb-article-comment-date, .kb-article-comment-helpful {
 		margin-top: 10px;
 	}
 
@@ -292,11 +296,7 @@
 			}
 		}
 
-		.kb-article-assets {
-			margin: 10px 0 0;
-		}
-
-		.kb-article-attachments {
+		.kb-article-assets, .kb-article-attachments {
 			margin: 10px 0 0;
 		}
 
@@ -356,10 +356,6 @@
 		label {
 			display: inherit;
 		}
-	}
-
-	.kb-new-parent .control-group-inline {
-		margin-bottom: 0;
 	}
 
 	.kb-panel-separator {

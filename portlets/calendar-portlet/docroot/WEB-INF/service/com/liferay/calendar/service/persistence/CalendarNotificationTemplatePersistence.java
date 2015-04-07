@@ -28,7 +28,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * </p>
  *
  * @author Eduardo Lundgren
- * @see CalendarNotificationTemplatePersistenceImpl
+ * @see com.liferay.calendar.service.persistence.impl.CalendarNotificationTemplatePersistenceImpl
  * @see CalendarNotificationTemplateUtil
  * @generated
  */

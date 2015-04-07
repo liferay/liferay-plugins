@@ -1,0 +1,89 @@
+apply from: "${gradle.lfrSdkDir}/app-servers.gradle"
+apply from: "${gradle.lfrSdkDir}/versions.gradle"
+
+Closure commonProjectCondition
+Closure commonProjects
+Closure configureProjects
+Closure pluginProjectCondition
+Closure pluginProjects
+
+commonProjectCondition = {
+	true
+}
+
+commonProjects = {
+	apply from: "${gradle.lfrSdkDir}/util.gradle"
+
+	configurations {
+		all {
+			resolutionStrategy.cacheChangingModulesFor 15, 'minutes'
+		}
+	}
+
+	repositories {
+		maven {
+			url "http://cdn.repository.liferay.com/nexus/content/groups/public"
+		}
+	}
+}
+
+configureProjects = {
+	currentProject, projectCondition, projectConfig ->
+
+	if (!projectCondition(currentProject)) {
+		return
+	}
+
+	configure(currentProject, projectConfig)
+}
+
+pluginProjectCondition = {
+	it.exists("build.gradle") && it.parent
+}
+
+pluginProjects = {
+	Closure loadProperties
+
+	loadProperties = {
+		File file = project.file(it)
+
+		Properties properties = new Properties()
+
+		if (file.exists()) {
+			InputStream inputStream = new FileInputStream(file)
+
+			inputStream.withStream {
+				properties.load(it)
+			}
+		}
+
+		return properties
+	}
+
+	project.ext {
+		bndProperties = loadProperties("bnd.bnd")
+		osgiPlugin = project.exists("bnd.bnd")
+		pluginPackageProperties = loadProperties("docroot/WEB-INF/liferay-plugin-package.properties")
+		pluginSrcDir = {
+			File file = project.file("docroot/WEB-INF/src")
+
+			if (!file.exists()) {
+				return project.file("src")
+			}
+
+			return file
+		}()
+	}
+
+	apply from: "${gradle.lfrSdkDir}/build-plugins.gradle"
+
+	if (name.endsWith("-theme")) {
+		apply from: "${gradle.lfrSdkDir}/build-themes.gradle"
+	}
+}
+
+gradle.beforeProject {
+	configureProjects(it, commonProjectCondition, commonProjects)
+
+	configureProjects(it, pluginProjectCondition, pluginProjects)
+}

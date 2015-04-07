@@ -55,14 +55,14 @@ public class KBArticleServiceUtil {
 			sourceURL, sections, selectedFileNames, serviceContext);
 	}
 
-	public static void addKBArticlesMarkdown(long groupId,
+	public static int addKBArticlesMarkdown(long groupId,
 		long parentKBFolderId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addKBArticlesMarkdown(groupId, parentKBFolderId, fileName,
-			inputStream, serviceContext);
+		return getService()
+				   .addKBArticlesMarkdown(groupId, parentKBFolderId, fileName,
+			prioritizeByNumericalPrefix, inputStream, serviceContext);
 	}
 
 	public static void addTempAttachment(long groupId, long resourcePrimKey,

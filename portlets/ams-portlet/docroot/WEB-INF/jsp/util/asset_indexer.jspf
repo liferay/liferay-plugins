@@ -34,7 +34,7 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 	protected Document doGetDocument(Object obj) throws Exception {
 		Asset asset = (Asset)obj;
 
-		Document document = getBaseModelDocument(portletId, asset);
+		Document document = getBaseModelDocument(className, asset);
 
 		if (asset.isActive()) {
 			document.addText("active", "active");
@@ -62,23 +62,12 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 	}
 
 	@Override
-	protected Summary doGetSummary(Document document, Locale locale, String snippet, PortletURL portletURL, PortletRequest portletRequest, PortletResponse portletResponse) {
-		String title = document.get(Field.ENTRY_CLASS_PK);
-
-		String content = null;
-
-		portletURL.setParameter("mvcPath", "/WEB-INF/jsp/ams/views/assets/view.jsp");
-
-		String assetId = document.get(Field.ENTRY_CLASS_PK);
-
-		portletURL.setParameter("id", assetId);
-
-		return new Summary(title, content, portletURL);
+	protected Summary doGetSummary(Document document, Locale locale, String snippet, PortletRequest portletRequest, PortletResponse portletResponse) {
+		return new Summary(document.get(Field.ENTRY_CLASS_PK), null);
 	}
 
 	private AssetIndexer() {
 		setClassName(Asset.class.getName());
-		setPortletId(PortletKeys.AMS);
 	}
 
 	private static AssetIndexer _instance = new AssetIndexer();

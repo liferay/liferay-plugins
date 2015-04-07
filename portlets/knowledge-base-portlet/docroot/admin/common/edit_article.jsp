@@ -78,7 +78,7 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 	<c:choose>
 		<c:when test="<%= (kbArticle != null) && kbArticle.isApproved() %>">
 			<div class="alert alert-info">
-				<liferay-ui:message key="a-new-version-will-be-created-automatically-if-this-content-is-modified" />
+				<liferay-ui:message key="a-new-version-is-created-automatically-if-this-content-is-modified" />
 			</div>
 		</c:when>
 		<c:when test="<%= (kbArticle != null) && kbArticle.isPending() %>">
@@ -213,31 +213,30 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 </aui:script>
 
 <aui:script use="aui-base,event-input">
-	var A = AUI();
-
+	var form = A.one('#<portlet:namespace />fm');
 	var titleInput = A.one('#<portlet:namespace />title');
 	var urlTitleInput = A.one('#<portlet:namespace />urlTitle');
+
+	var publishButton = form.one('#<portlet:namespace />publish');
 
 	var urlTitleCustomized = false;
 
 	titleInput.on(
 		'input',
 		function(event) {
-			if (urlTitleCustomized) {
-				return;
+			if (!urlTitleCustomized) {
+				var urlTitle = titleInput.val();
+
+				urlTitle = urlTitle.replace(/[^a-zA-Z0-9_-]/g, '-');
+
+				if (urlTitle[0] === '-') {
+					urlTitle = urlTitle.replace(/^-+/, '');
+				}
+
+				urlTitle = urlTitle.replace(/--+/g, '-');
+
+				urlTitleInput.val('/' + urlTitle.toLowerCase());
 			}
-
-			var urlTitle = titleInput.val();
-
-			urlTitle = urlTitle.replace(/[^a-zA-Z0-9_-]/g, '-');
-
-			if (urlTitle[0] === '-') {
-				urlTitle = urlTitle.replace(/^-+/, '');
-			}
-
-			urlTitle = urlTitle.replace(/--+/g, '-');
-
-			urlTitleInput.val('/' + urlTitle.toLowerCase());
 		}
 	);
 
@@ -248,15 +247,14 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 		}
 	);
 
-	var form = A.one('#<portlet:namespace />fm');
-	var publishButton = form.one('#<portlet:namespace />publish');
-
 	publishButton.on(
 		'click',
 		function() {
 			var workflowActionInput = form.one('#<portlet:namespace />workflowAction');
 
-			workflowActionInput.val('<%= WorkflowConstants.ACTION_PUBLISH %>');
+			if (workflowActionInput) {
+				workflowActionInput.val('<%= WorkflowConstants.ACTION_PUBLISH %>');
+			}
 		}
 	);
 
@@ -265,7 +263,9 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 		function() {
 			var contentInput = form.one('#<portlet:namespace />content');
 
-			contentInput.val(<portlet:namespace />editor.getHTML());
+			if (contentInput) {
+				contentInput.val(<portlet:namespace />editor.getHTML());
+			}
 
 			updateMultipleKBArticleAttachments();
 		}
@@ -276,19 +276,20 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 
 		var selectedFileNameContainer = A.one('#<portlet:namespace />selectedFileNameContainer');
 
-		var inputTpl = '<input id="<portlet:namespace />selectedFileName{0}" name="<portlet:namespace />selectedFileName" type="hidden" value="{1}" />';
+		var TPL_INPUT = '<input id="<portlet:namespace />selectedFileName{id}" name="<portlet:namespace />selectedFileName" type="hidden" value="{value}" />';
 
 		var values = A.all('input[name=<portlet:namespace />selectUploadedFile]:checked').val();
 
 		var buffer = [];
-		var dataBuffer = [];
-		var length = values.length;
 
-		for (var i = 0; i < length; i++) {
-			dataBuffer[0] = i;
-			dataBuffer[1] = values[i];
-
-			buffer[i] = Lang.sub(inputTpl, dataBuffer);
+		for (var i = 0; i < values.length; i++) {
+			buffer[i] = Lang.sub(
+				TPL_INPUT,
+				{
+					id: i,
+					value: values[i]
+				}
+			);
 		}
 
 		selectedFileNameContainer.html(buffer.join(''));

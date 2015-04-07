@@ -1,0 +1,150 @@
+configurations {
+	portalToolsBuildThumbnails
+
+	portalToolsBuildThumbnails.extendsFrom portalTools
+}
+
+dependencies {
+	portalToolsBuildThumbnails group: "com.liferay", name: "org.monte", version: "0.7.7"
+
+	if (exists("docroot/WEB-INF/src")) {
+		compile configurations.pluginRequiredLibraries
+		compile project(":shared:portal-compat-shared")
+	}
+	else {
+		providedCompile configurations.pluginRequiredLibraries
+	}
+}
+
+task buildThumbnails
+task compileTheme
+
+buildCss {
+	dependsOn compileTheme
+}
+
+buildThumbnails << {
+	FileTree screenshotsFileTree = fileTree(dir: "docroot/_diffs/images", include: "**/screenshot.png")
+
+	screenshotsFileTree.each {
+		File screenshotFile ->
+
+		File thumbnailFile = file(screenshotFile.absolutePath.replace("screenshot.png", "thumbnail.png"))
+
+		javaexec {
+			args(
+				"thumbnail.original.file=${screenshotFile.absolutePath}",
+				"thumbnail.thumbnail.file=${thumbnailFile}",
+				"thumbnail.height=120",
+				"thumbnail.width=160",
+				"thumbnail.overwrite=false"
+			)
+
+			classpath configurations.portalToolsBuildThumbnails
+
+			main "com.liferay.portal.tools.ThumbnailBuilder"
+		}
+	}
+}
+
+classes {
+	dependsOn compileTheme
+}
+
+compileTheme {
+	ext.docrootDir = file("docroot")
+	ext.diffsDir = file("docroot/_diffs")
+
+	afterEvaluate {
+		if (!project.hasProperty("themeParent")) {
+			project.ext.themeParent = null
+		}
+
+		if (!project.hasProperty("themeType")) {
+			project.ext.themeType = "vm"
+		}
+
+		if (themeParent && !(project.themeParent in ["_styled", "_unstyled", "classic", "control_panel"])) {
+			File themeParentDir = file(themeParent)
+
+			if (themeParentDir.exists()) {
+				themeParent = themeParentDir.name
+			}
+
+			dependsOn ":themes:${themeParent}:compileTheme"
+
+			themeParentDir.eachDir {
+				if (!(it.name in ["_diffs", "WEB-INF"])) {
+					inputs.dir it
+				}
+			}
+		}
+	}
+
+	dependsOn buildThumbnails
+
+	if (diffsDir.exists()) {
+		inputs.dir diffsDir
+
+		docrootDir.eachDir {
+			if (!(it.name in ["_diffs", "WEB-INF"])) {
+				outputs.dir it
+			}
+		}
+	}
+}
+
+compileTheme << {
+	Closure copyPortalThemeDir
+
+	copyPortalThemeDir = {
+		String theme, String include, List<String> excludes = [] ->
+
+		ant.unzip(dest: docrootDir, src: configurations.portalWeb.singleFile) {
+			ant.cutdirsmapper(dirs: 3)
+
+			ant.patternset() {
+				excludes.each {
+					ant.exclude(name: "html/themes/${theme}/${it}")
+				}
+
+				ant.include(name: "html/themes/${theme}/${include}")
+			}
+		}
+	}
+
+	if (themeParent in ["_styled", "_unstyled"]) {
+		copyPortalThemeDir("_unstyled", "**", ["templates/**"])
+		copyPortalThemeDir("_unstyled", "templates/**/*.${themeType}", ["templates/init.${themeType}"])
+	}
+
+	if (themeParent == "_styled") {
+		copyPortalThemeDir("_styled", "**")
+	}
+	else if (themeParent in ["classic", "control_panel"]) {
+		copyPortalThemeDir(themeParent, "**", ["**/.sass-cache/**", "_diffs/**", "templates/**"])
+		copyPortalThemeDir(themeParent, "templates/*.${themeType}")
+	}
+	else if (themeParent && (themeParent != "_unstyled")) {
+		copy {
+			exclude "**/.sass-cache/**"
+			exclude "_diffs/**"
+			exclude "WEB-INF/*.properties"
+			exclude "WEB-INF/*.xml"
+			from project(":themes:" + themeParent).file("docroot")
+			into docrootDir
+		}
+	}
+
+
+	if (diffsDir.exists()) {
+		copy {
+			from diffsDir
+			into docrootDir
+		}
+	}
+}
+
+war {
+	exclude "_diffs.*", "_diffs/**"
+}

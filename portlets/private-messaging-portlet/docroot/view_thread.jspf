@@ -18,9 +18,13 @@
 --%>
 
 <%
-UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
+String backURL = ParamUtil.getString(request, "backURL");
+
+String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 
 boolean hasExistingRecipients = false;
+
+UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 %>
 
 <aui:button-row cssClass="controls">
@@ -36,12 +40,6 @@ boolean hasExistingRecipients = false;
 
 	<aui:button data-delete-message-url="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:button-row >
-
-<portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
-
-<%
-String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
-%>
 
 <liferay-ui:header
 	backLabel="messages"

@@ -21,6 +21,8 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", kbFolderClassNameId);
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
@@ -33,16 +35,32 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 	<aui:input name="resourcePrimKeys" type="hidden" />
 
-	<liferay-ui:error exception="<%= KBArticleImportException.class %>">
+	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
+
+	<c:if test='<%= SessionMessages.contains(renderRequest, "importedKBArticlesCount") %>'>
 
 		<%
-		KBArticleImportException kbaie = (KBArticleImportException)errorException;
+		int importedKBArticlesCount = GetterUtil.getInteger(SessionMessages.get(renderRequest, "importedKBArticlesCount"));
 		%>
 
-		<%= LanguageUtil.format(locale, "an-unexpected-error-occurred-while-importing-articles-x", kbaie.getLocalizedMessage()) %>
-	</liferay-ui:error>
+		<c:choose>
+			<c:when test="<%= importedKBArticlesCount > 0 %>">
+				<div class="alert alert-success">
+					<liferay-ui:message key="your-request-completed-successfully" />
 
-	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
+					<liferay-ui:message arguments="<%= importedKBArticlesCount %>" key="a-total-of-x-articles-have-been-imported" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-warning">
+					<liferay-ui:message
+						arguments="<%= StringUtil.merge(PortletPropsValues.MARKDOWN_IMPORTER_ARTICLE_EXTENSIONS, StringPool.COMMA_AND_SPACE) %>"
+						key="nothing-was-imported-no-articles-were-found-with-one-of-the-supported-extensions-x"
+					/>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
 
 	<liferay-portlet:renderURL varImpl="iteratorURL">
 		<portlet:param name="mvcPath" value="/admin/view.jsp" />
@@ -50,16 +68,21 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 	</liferay-portlet:renderURL>
 
+	<%
+	boolean hasDeleteKBArticlesPermission = AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES);
+	boolean hasUpdateKBArticlesPrioritiesPermission = AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES);
+	%>
+
 	<aui:fieldset>
 		<aui:nav-bar>
 			<aui:nav cssClass="navbar-nav">
-				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES) %>">
+				<c:if test="<%= hasDeleteKBArticlesPermission || hasUpdateKBArticlesPrioritiesPermission %>">
 					<aui:nav-item cssClass="hide" dropdown="<%= true %>" id="actionsButton" label="actions">
-						<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES) %>">
+						<c:if test="<%= hasUpdateKBArticlesPrioritiesPermission %>">
 							<aui:nav-item iconCssClass="icon-save" id="updateKBArticlesPriorities" label="save" />
 						</c:if>
 
-						<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) %>">
+						<c:if test="<%= hasDeleteKBArticlesPermission %>">
 							<aui:nav-item cssClass="item-remove" iconCssClass="icon-remove" id="deleteKBArticles" label="delete" />
 						</c:if>
 					</aui:nav-item>
@@ -227,7 +250,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		<liferay-ui:search-container
 			curParam="cur2"
 			id="kbArticlesAdminSearchContainer"
-			rowChecker="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) ? new RowChecker(renderResponse) : null %>"
+			rowChecker="<%= (hasDeleteKBArticlesPermission || hasUpdateKBArticlesPrioritiesPermission) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new KBArticleSearch(renderRequest, iteratorURL) %>"
 		>
 
@@ -236,10 +259,6 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			%>
 
 			<%@ include file="/admin/article_search_results.jspf" %>
-
-			<%
-			boolean updateArticlesPriorities = AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES);
-			%>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBArticle"
@@ -264,7 +283,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					orderable="<%= true %>"
 				>
 					<c:choose>
-						<c:when test="<%= updateArticlesPriorities %>">
+						<c:when test="<%= hasUpdateKBArticlesPrioritiesPermission %>">
 							<aui:input cssClass="kb-article-priority" label="" name='<%= "priority" + kbArticle.getResourcePrimKey() %>' size="5" title="priority" type="text" value="<%= BigDecimal.valueOf(kbArticle.getPriority()).toPlainString() %>" />
 						</c:when>
 						<c:otherwise>
@@ -303,12 +322,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					value="<%= kbArticle.getModifiedDate() %>"
 				/>
 
-				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
+				<liferay-ui:search-container-column-status
 					href="<%= rowURL %>"
 					name="status"
 					orderable="<%= true %>"
-					value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(request, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -334,18 +351,18 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				%>
 
 				<div class="alert alert-info">
-					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
-					</liferay-portlet:renderURL>
 
 					<%
+					KBArticle parentKBArticle = KBArticleServiceUtil.getLatestKBArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+					PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(parentKBArticle);
+
 					StringBundler sb = new StringBundler(5);
 
 					sb.append("<a href=\"");
-					sb.append(viewKBArticleURL);
+					sb.append(viewKBArticleURL.toString());
 					sb.append("\">");
-					sb.append(BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title"));
+					sb.append(BeanPropertiesUtil.getString(parentKBArticle, "title"));
 					sb.append("</a>");
 					%>
 
@@ -366,6 +383,8 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 </aui:form>
 
 <aui:script use="aui-base,liferay-util-list-fields">
+	var deleteKBArticles = A.one('#<portlet:namespace />deleteKBArticles');
+	var kbArticlesAdminSearchContainer = A.one('#<portlet:namespace />kbArticlesAdminSearchContainer');
 	var updateKBArticlesPriorities = A.one('#<portlet:namespace />updateKBArticlesPriorities');
 
 	if (updateKBArticlesPriorities) {
@@ -378,8 +397,6 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			}
 		);
 	}
-
-	var deleteKBArticles = A.one('#<portlet:namespace />deleteKBArticles');
 
 	if (deleteKBArticles) {
 		deleteKBArticles.on(
@@ -395,7 +412,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		);
 	}
 
-	A.one('#<portlet:namespace />kbArticlesAdminSearchContainer').delegate(
+	kbArticlesAdminSearchContainer.delegate(
 		'click',
 		function() {
 			var hide = (Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace /><%= RowChecker.ALL_ROW_IDS %>').length == 0);
@@ -407,5 +424,22 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			}
 		},
 		'input[type=checkbox]'
+	);
+
+	kbArticlesAdminSearchContainer.delegate(
+		'key',
+		function() {
+			var parentTr = this.ancestor('tr');
+
+			var rowIdsNode = parentTr.one('input[type="checkbox"]');
+
+			rowIdsNode.attr('checked', true);
+
+			document.<portlet:namespace />fm.method = 'post';
+
+			submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateKBArticlesPriorities"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');
+		},
+		'enter',
+		'input[type=text]'
 	);
 </aui:script>

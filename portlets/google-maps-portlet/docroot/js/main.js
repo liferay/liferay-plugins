@@ -1,3 +1,5 @@
+/* global google */
+
 AUI.add(
 	'liferay-google-maps',
 	function(A) {
@@ -86,6 +88,17 @@ AUI.add(
 						instance._markersArray = [];
 					},
 
+					renderUI: function() {
+						var instance = this;
+
+						if (instance._isGoogleMapLoaded()) {
+							instance._renderMap();
+						}
+						else {
+							instance._initGoogleMaps();
+						}
+					},
+
 					bindUI: function() {
 						var instance = this;
 
@@ -148,17 +161,6 @@ AUI.add(
 						var instance = this;
 
 						A.Array.invoke(instance._eventHandles, 'detach');
-					},
-
-					renderUI: function() {
-						var instance = this;
-
-						if (instance._isGoogleMapLoaded()) {
-							instance._renderMap();
-						}
-						else {
-							instance._initGoogleMaps();
-						}
 					},
 
 					_attachInstructionText: function(marker, text) {
@@ -259,15 +261,7 @@ AUI.add(
 					_isDirectionFilled: function() {
 						var instance = this;
 
-						var isDirectionFilled = false;
-
-						if (instance.get(STR_DIRECTION_ADDRESS)) {
-							if (instance.byId(STR_DIRECTION_ADDRESS).val()) {
-								isDirectionFilled = true;
-							}
-						}
-
-						return isDirectionFilled;
+						return instance.get(STR_DIRECTION_ADDRESS) && instance.byId(STR_DIRECTION_ADDRESS).val();
 					},
 
 					_isGoogleMapLoaded: function() {
@@ -450,8 +444,8 @@ AUI.add(
 						for (var i = 0; i < stepsCount; i++) {
 							var marker = new googleMaps.Marker(
 								{
-									position: myRoute.steps[i].start_point,
-									map: instance._map
+									map: instance._map,
+									position: myRoute.steps[i].start_point
 								}
 							);
 

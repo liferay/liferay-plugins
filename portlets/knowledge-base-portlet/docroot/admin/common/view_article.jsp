@@ -19,7 +19,7 @@
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
+if (enableKBArticleViewCountIncrement && !kbArticle.isDraft() && !kbArticle.isPending()) {
 	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
 
 	KBArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), kbArticle.getResourcePrimKey(), latestKBArticle.getViewCount() + 1);
@@ -27,6 +27,10 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 	AssetEntryServiceUtil.incrementViewCounter(KBArticle.class.getName(), latestKBArticle.getClassPK());
 }
 %>
+
+<c:if test='<%= enableSocialBookmarks && socialBookmarksDisplayPosition.equals("top") %>'>
+	<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
+</c:if>
 
 <c:choose>
 	<c:when test="<%= !redirect.equals(currentURL) %>">
@@ -70,6 +74,12 @@ request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 
 	<liferay-util:include page="/admin/article_child.jsp" servletContext="<%= application %>" />
 
+	<c:if test='<%= enableSocialBookmarks && socialBookmarksDisplayPosition.equals("bottom") %>'>
+		<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
+	</c:if>
+
+	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
+
 	<c:if test="<%= !rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE) %>">
 		<liferay-util:include page="/admin/article_siblings.jsp" servletContext="<%= application %>" />
 	</c:if>
@@ -79,8 +89,4 @@ request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 	<liferay-util:include page="/admin/article_asset_entries.jsp" servletContext="<%= application %>" />
 
 	<liferay-util:include page="/admin/article_asset_links.jsp" servletContext="<%= application %>" />
-
-	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
-
-	<liferay-util:include page="/admin/article_social_bookmarks.jsp" servletContext="<%= application %>" />
 </div>

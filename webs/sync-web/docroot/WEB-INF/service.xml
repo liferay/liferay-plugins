@@ -20,6 +20,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="FileEntryId" return-type="Collection">
+			<finder-column name="fileEntryId" />
+		</finder>
 		<finder name="ExpirationDate" return-type="Collection">
 			<finder-column name="expirationDate" comparator="&lt;" />
 		</finder>
@@ -31,6 +34,7 @@
 
 		<!-- References -->
 
+		<reference package-path="com.liferay.portal" entity="Company" />
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp" />
 	</entity>
 	<entity name="SyncDLObject" local-service="true" remote-service="true">
@@ -42,6 +46,8 @@
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
 		<column name="createTime" type="long" />
 		<column name="modifiedTime" type="long" />
 
@@ -56,6 +62,7 @@
 		<column name="changeLog" type="String" />
 		<column name="extraSettings" type="String" />
 		<column name="version" type="String" />
+		<column name="versionId" type="long" />
 		<column name="size" type="long" />
 		<column name="checksum" type="String" />
 		<column name="event" type="String" />

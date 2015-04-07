@@ -40,9 +40,9 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
-import com.liferay.portlet.wiki.model.WikiPage;
-import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
-import com.liferay.portlet.wiki.util.comparator.PageVersionComparator;
+import com.liferay.wiki.model.WikiPage;
+import com.liferay.wiki.service.WikiPageLocalServiceUtil;
+import com.liferay.wiki.util.comparator.PageVersionComparator;
 
 import java.io.IOException;
 
@@ -366,7 +366,7 @@ public class AkismetUtil {
 			Http.HTTP_WITH_SLASH + AkismetConstants.URL_REST +
 				AkismetConstants.PATH_VERIFY;
 
-		Map<String, String> parts = new HashMap<String, String>();
+		Map<String, String> parts = new HashMap<>();
 
 		parts.put("blog", _getPortalURL(companyId));
 		parts.put("key", apiKey);
@@ -395,7 +395,7 @@ public class AkismetUtil {
 			String userName, String emailAddress, String content)
 		throws PortalException {
 
-		Map<String, String> parts = new HashMap<String, String>();
+		Map<String, String> parts = new HashMap<>();
 
 		parts.put("blog", _getPortalURL(companyId));
 		parts.put("comment_author", userName);

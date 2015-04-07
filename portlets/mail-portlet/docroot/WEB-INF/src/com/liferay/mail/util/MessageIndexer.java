@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
@@ -45,25 +44,17 @@ import java.util.Locale;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 /**
  * @author Scott Lee
  */
 public class MessageIndexer extends BaseIndexer {
 
-	public static final String[] CLASS_NAMES = {Message.class.getName()};
-
-	public static final String PORTLET_ID = PortletKeys.MAIL;
+	public static final String CLASS_NAME = Message.class.getName();
 
 	@Override
-	public String[] getClassNames() {
-		return CLASS_NAMES;
-	}
-
-	@Override
-	public String getPortletId() {
-		return PORTLET_ID;
+	public String getClassName() {
+		return CLASS_NAME;
 	}
 
 	@Override
@@ -83,13 +74,13 @@ public class MessageIndexer extends BaseIndexer {
 			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
 				searchContext);
 
-			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
+			booleanQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, CLASS_NAME);
 
 			booleanQuery.addRequiredTerm("accountId", account.getAccountId());
 
 			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
 
-			List<String> uids = new ArrayList<String>(hits.getLength());
+			List<String> uids = new ArrayList<>(hits.getLength());
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);
@@ -112,13 +103,13 @@ public class MessageIndexer extends BaseIndexer {
 			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
 				searchContext);
 
-			booleanQuery.addRequiredTerm(Field.PORTLET_ID, PORTLET_ID);
+			booleanQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, CLASS_NAME);
 
 			booleanQuery.addRequiredTerm("folderId", folder.getFolderId());
 
 			Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
 
-			List<String> uids = new ArrayList<String>(hits.getLength());
+			List<String> uids = new ArrayList<>(hits.getLength());
 
 			for (int i = 0; i < hits.getLength(); i++) {
 				Document document = hits.doc(i);
@@ -135,7 +126,7 @@ public class MessageIndexer extends BaseIndexer {
 
 			Document document = new DocumentImpl();
 
-			document.addUID(PORTLET_ID, message.getMessageId());
+			document.addUID(CLASS_NAME, message.getMessageId());
 
 			SearchEngineUtil.deleteDocument(
 				getSearchEngineId(), message.getCompanyId(),
@@ -147,7 +138,7 @@ public class MessageIndexer extends BaseIndexer {
 	protected Document doGetDocument(Object obj) throws Exception {
 		Message message = (Message)obj;
 
-		Document document = getBaseModelDocument(PORTLET_ID, message);
+		Document document = getBaseModelDocument(CLASS_NAME, message);
 
 		ExpandoBridge expandoBridge = message.getExpandoBridge();
 
@@ -166,7 +157,7 @@ public class MessageIndexer extends BaseIndexer {
 
 	@Override
 	protected Summary doGetSummary(
-		Document doc, Locale locale, String snippet, PortletURL portletURL,
+		Document doc, Locale locale, String snippet,
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		return null;
@@ -195,11 +186,6 @@ public class MessageIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexMessages(companyId);
-	}
-
-	@Override
-	protected String getPortletId(SearchContext searchContext) {
-		return PORTLET_ID;
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {

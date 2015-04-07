@@ -18,34 +18,17 @@
 
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
+
+PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(kbArticle);
 %>
 
-<liferay-portlet:renderURL var="viewKBArticleURL">
-	<c:choose>
-		<c:when test="<%= Validator.isNotNull(kbArticle.getUrlTitle()) %>">
-			<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
-
-			<c:if test="<%= kbArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
-
-				<%
-				KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(kbArticle.getKbFolderId());
-				%>
-
-				<portlet:param name="kbFolderUrlTitle" value="<%= kbFolder.getUrlTitle() %>" />
-			</c:if>
-		</c:when>
-		<c:otherwise>
-			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-		</c:otherwise>
-	</c:choose>
-</liferay-portlet:renderURL>
-
-<c:if test="<%= enableSocialBookmarks %>">
-	<liferay-ui:social-bookmarks
-		contentId="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>"
-		displayStyle="<%= PortletPropsValues.KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE %>"
-		target="_blank"
-		title="<%= kbArticle.getTitle() %>"
-		url="<%= PortalUtil.getCanonicalURL(viewKBArticleURL.toString(), themeDisplay, layout) %>"
-	/>
-</c:if>
+<liferay-ui:social-bookmarks
+	contentId="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>"
+	displayStyle="<%= socialBookmarksDisplayStyle %>"
+	target="_blank"
+	title="<%= kbArticle.getTitle() %>"
+	types="<%= socialBookmarksTypes %>"
+	url="<%= PortalUtil.getCanonicalURL(viewKBArticleURL.toString(), themeDisplay, layout) %>"
+/>

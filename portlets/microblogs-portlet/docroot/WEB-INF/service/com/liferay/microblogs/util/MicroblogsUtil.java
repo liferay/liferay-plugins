@@ -61,7 +61,7 @@ import javax.portlet.WindowStateException;
 public class MicroblogsUtil {
 
 	public static List<String> getHashtags(String content) {
-		List<String> hashtags = new ArrayList<String>();
+		List<String> hashtags = new ArrayList<>();
 
 		Matcher matcher = _hashtagPattern.matcher(content);
 
@@ -200,7 +200,7 @@ public class MicroblogsUtil {
 	}
 
 	public static List<String> getScreenNames(String content) {
-		List<String> screenNames = new ArrayList<String>();
+		List<String> screenNames = new ArrayList<>();
 
 		Matcher matcher = _userTagPattern.matcher(content);
 
@@ -219,7 +219,7 @@ public class MicroblogsUtil {
 	public static List<Long> getSubscriberUserIds(
 		MicroblogsEntry microblogsEntry) {
 
-		List<Long> receiverUserIds = new ArrayList<Long>();
+		List<Long> receiverUserIds = new ArrayList<>();
 
 		List<Subscription> subscriptions =
 			SubscriptionLocalServiceUtil.getSubscriptions(
@@ -240,8 +240,7 @@ public class MicroblogsUtil {
 	public static boolean hasReplied(long parentMicroblogsEntryId, long userId)
 		throws PortalException {
 
-		List<MicroblogsEntry> microblogsEntries =
-			new ArrayList<MicroblogsEntry>();
+		List<MicroblogsEntry> microblogsEntries = new ArrayList<>();
 
 		microblogsEntries.addAll(
 			MicroblogsEntryLocalServiceUtil.
@@ -281,8 +280,7 @@ public class MicroblogsUtil {
 
 		long rootMicroblogsEntryId = getRootMicroblogsEntryId(microblogsEntry);
 
-		List<MicroblogsEntry> microblogsEntries =
-			new ArrayList<MicroblogsEntry>();
+		List<MicroblogsEntry> microblogsEntries = new ArrayList<>();
 
 		microblogsEntries.addAll(
 			MicroblogsEntryLocalServiceUtil.

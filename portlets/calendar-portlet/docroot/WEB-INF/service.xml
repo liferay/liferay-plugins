@@ -82,6 +82,7 @@
 		<column name="calendarId" type="long" />
 		<column name="calendarResourceId" type="long" />
 		<column name="parentCalendarBookingId" type="long" />
+		<column name="vEventUid" type="String" />
 		<column name="title" type="String" localized="true" />
 		<column name="description" type="String" localized="true" />
 		<column name="location" type="String" />
@@ -120,6 +121,10 @@
 			<finder-column name="calendarId" />
 			<finder-column name="parentCalendarBookingId" />
 		</finder>
+		<finder name="C_V" return-type="CalendarBooking" unique="true">
+			<finder-column name="calendarId" />
+			<finder-column name="vEventUid" />
+		</finder>
 		<finder name="C_S" return-type="Collection">
 			<finder-column name="calendarId" />
 			<finder-column name="status" arrayable-operator="OR" />
@@ -134,6 +139,7 @@
 		<reference package-path="com.liferay.mail" entity="Mail" />
 		<reference package-path="com.liferay.portal" entity="Company" />
 		<reference package-path="com.liferay.portal" entity="Subscription" />
+		<reference package-path="com.liferay.portal" entity="WorkflowInstanceLink" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
 		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />

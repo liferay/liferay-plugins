@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 
@@ -25,10 +27,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoTaskAssignmentPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoTaskAssignmentPersistenceImpl
  * @see KaleoTaskAssignmentUtil
  * @generated
  */
+@ProviderType
 public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTaskAssignment> {
 	/*
 	 * NOTE FOR DEVELOPERS:

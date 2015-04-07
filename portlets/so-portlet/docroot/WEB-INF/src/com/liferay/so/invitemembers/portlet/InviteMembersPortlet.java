@@ -94,10 +94,9 @@ public class InviteMembersPortlet extends MVCPortlet {
 
 		jsonObject.put("options", optionsJSONObject);
 
-		List<User> users =
-			InviteMembersUtil.getAvailableUsers(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				keywords, start, end);
+		List<User> users = InviteMembersUtil.getAvailableUsers(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			keywords, start, end);
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 

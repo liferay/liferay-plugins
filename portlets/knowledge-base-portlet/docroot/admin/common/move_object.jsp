@@ -17,8 +17,6 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
-
 int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 long kbArticleClassNameId = PortalUtil.getClassNameId(KBArticleConstants.getClassName());
@@ -28,21 +26,12 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId");
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey");
 
-if (kbArticle != null) {
-	resourceClassNameId = kbArticle.getClassNameId();
-	resourcePrimKey = kbArticle.getResourcePrimKey();
-	parentResourceClassNameId = kbArticle.getParentResourceClassNameId();
-	parentResourcePrimKey = kbArticle.getParentResourcePrimKey();
-}
-
 String title = null;
 String parentTitle = null;
 double priority = KBArticleConstants.DEFAULT_PRIORITY;
 
 if (resourceClassNameId == kbArticleClassNameId) {
-	if (kbArticle == null) {
-		kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey, status);
-	}
+	KBArticle kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(resourcePrimKey, status);
 
 	title = kbArticle.getTitle();
 	parentTitle = kbArticle.getParentTitle(locale, status);
@@ -77,21 +66,15 @@ else {
 
 	<aui:fieldset>
 		<aui:field-wrapper label="current-parent">
-			<div class="input-append">
-				<liferay-ui:input-resource url="<%= parentTitle %>" />
+			<aui:input label="" name="currentParentTitle" readonly="<%= true %>" value="<%= parentTitle %>" />
 
-				<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
-			</div>
+			<aui:input cssClass="input-mini" label="priority" name="currentPriority" readonly="<%= true %>" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 		</aui:field-wrapper>
 
-		<aui:field-wrapper label="new-parent">
-			<div id="<portlet:namespace />newParent">
-				<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>" />
-			</div>
-		</aui:field-wrapper>
+		<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>" />
 
 		<aui:button-row cssClass="kb-submit-buttons">
-			<aui:button type="submit" />
+			<aui:button type="submit" value="move" />
 
 			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>

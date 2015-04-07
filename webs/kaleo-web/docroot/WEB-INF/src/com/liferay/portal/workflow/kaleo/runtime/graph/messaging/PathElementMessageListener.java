@@ -35,8 +35,8 @@ public class PathElementMessageListener extends BaseMessageListener {
 			new DefaultSingleDestinationMessageSender();
 
 		singleDestinationMessageSender.setDestinationName(destinationName);
-		singleDestinationMessageSender.setMessageSender(
-			MessageBusUtil.getMessageSender());
+		singleDestinationMessageSender.setMessageBus(
+			MessageBusUtil.getMessageBus());
 
 		_singleDestinationMessageSender = singleDestinationMessageSender;
 	}
@@ -49,7 +49,7 @@ public class PathElementMessageListener extends BaseMessageListener {
 	protected void doReceive(Message message) throws Exception {
 		PathElement pathElement = (PathElement)message.getPayload();
 
-		List<PathElement> remainingPathElements = new ArrayList<PathElement>();
+		List<PathElement> remainingPathElements = new ArrayList<>();
 
 		_graphWalker.follow(
 			pathElement.getStartNode(), pathElement.getTargetNode(),

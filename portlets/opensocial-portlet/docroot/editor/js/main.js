@@ -74,17 +74,17 @@ AUI.add(
 		var STR_EMPTY = '';
 
 		var TPL_EDITOR = '<div id="editorPortlet">' +
-			'<div id="gadgetEditorToolbar"></div>' +
-			'<hr />' +
-			'<div class="gadget-editor-content" id="gadgetEditorContent">' +
-				'<div class="tree-view-editor-column" id="treeViewEditorColumn">' +
-					'<div id="treeViewEditor"></div>' +
+				'<div id="gadgetEditorToolbar"></div>' +
+				'<hr />' +
+				'<div class="gadget-editor-content" id="gadgetEditorContent">' +
+					'<div class="tree-view-editor-column" id="treeViewEditorColumn">' +
+						'<div id="treeViewEditor"></div>' +
+					'</div>' +
+					'<div class="main-editor-column" id="mainEditorColumn">' +
+						'<div id="tabViewEditor"></div>' +
+					'</div>' +
 				'</div>' +
-				'<div class="main-editor-column" id="mainEditorColumn">' +
-					'<div id="tabViewEditor"></div>' +
-				'</div>' +
-			'</div>' +
-		'</div>';
+			'</div>';
 
 		var TPL_ERROR_MESSAGE = '{name}<br /><br />{message}';
 
@@ -189,8 +189,6 @@ AUI.add(
 						var instance = this;
 
 						instance._tabViewEditor.addNewTab();
-
-						var tabViewEditorBoundingBox = instance._tabViewEditor.get(BOUNDING_BOX);
 					},
 
 					_addEntryToMap: function(object) {
@@ -310,8 +308,10 @@ AUI.add(
 
 						var node = instance._getNodeFromDataSet(entryId);
 
+						var lastSelected;
+
 						if (activeTab.get(IS_NEW)) {
-							var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
+							lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
 
 							if (lastSelected && lastSelected.isLeaf()) {
 								lastSelected.unselect();
@@ -322,7 +322,7 @@ AUI.add(
 							}
 						}
 						else if (node && !node.isSelected()) {
-							var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
+							lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
 
 							if (lastSelected) {
 								lastSelected.unselect();
@@ -624,23 +624,23 @@ AUI.add(
 
 						if (options) {
 							if ('buttons' in options) {
-								dialog['toolbars.footer'] = options['buttons'];
+								dialog['toolbars.footer'] = options.buttons;
 							}
 
 							if ('centered' in options) {
-								dialog.centered = options['centered'];
+								dialog.centered = options.centered;
 							}
 
 							if ('height' in options) {
-								dialog.height = options['height'];
+								dialog.height = options.height;
 							}
 
 							if ('modal' in options) {
-								dialog.modal = options['modal'];
+								dialog.modal = options.modal;
 							}
 
 							if ('width' in options) {
-								dialog.width = options['width'];
+								dialog.width = options.width;
 							}
 						}
 
@@ -762,7 +762,7 @@ AUI.add(
 						var tab = instance._getTabFromDataSet(event.entryId);
 
 						if (tab && tab.get(IS_DIRTY) && !event.noConfirm) {
-							var tabFileName =  tab.get('fileName');
+							var tabFileName = tab.get('fileName');
 							var message = Liferay.Language.get('has-not-been-saved-are-you-sure-you-want-to-close-the-tab', tabFileName);
 
 							instance._showConfirmationDialog(message, instance._closeFileEntry, entryId);
@@ -1852,6 +1852,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-button-core', 'aui-form-deprecated', 'aui-map', 'aui-panel-deprecated', 'aui-tabs-base', 'aui-toolbar', 'gadget-editor-tabs', 'gadget-editor-tree', 'liferay-open-social-gadget', 'liferay-portlet-base', 'liferay-util-window' ]
+		requires: ['aui-button-core', 'aui-form-deprecated', 'aui-map', 'aui-panel-deprecated', 'aui-tabs-base', 'aui-toolbar', 'gadget-editor-tabs', 'gadget-editor-tree', 'liferay-open-social-gadget', 'liferay-portlet-base', 'liferay-util-window']
 	}
 );

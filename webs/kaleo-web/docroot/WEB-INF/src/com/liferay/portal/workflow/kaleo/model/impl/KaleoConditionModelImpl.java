@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -52,6 +54,7 @@ import java.util.Map;
  * @see com.liferay.portal.workflow.kaleo.model.KaleoConditionModel
  * @generated
  */
+@ProviderType
 public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	implements KaleoConditionModel {
 	/*
@@ -74,7 +77,7 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			{ "scriptLanguage", Types.VARCHAR },
 			{ "scriptRequiredContexts", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,script TEXT null,scriptLanguage VARCHAR(75) null,scriptRequiredContexts VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,script TEXT null,scriptLanguage VARCHAR(75) null,scriptRequiredContexts STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoCondition";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoCondition.kaleoConditionId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoCondition.kaleoConditionId ASC";
@@ -90,10 +93,10 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
 			true);
-	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long KALEODEFINITIONID_COLUMN_BITMASK = 2L;
-	public static long KALEONODEID_COLUMN_BITMASK = 4L;
-	public static long KALEOCONDITIONID_COLUMN_BITMASK = 8L;
+	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+	public static final long KALEODEFINITIONID_COLUMN_BITMASK = 2L;
+	public static final long KALEONODEID_COLUMN_BITMASK = 4L;
+	public static final long KALEOCONDITIONID_COLUMN_BITMASK = 8L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoCondition"));
 
@@ -714,8 +717,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = KaleoCondition.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] {
+	private static final ClassLoader _classLoader = KaleoCondition.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			KaleoCondition.class
 		};
 	private long _kaleoConditionId;

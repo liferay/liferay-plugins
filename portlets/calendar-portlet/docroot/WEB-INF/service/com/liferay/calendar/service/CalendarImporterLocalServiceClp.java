@@ -126,18 +126,13 @@ public class CalendarImporterLocalServiceClp
 	}
 
 	@Override
-	public void importRolePermissions()
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public void importRolePermissions() {
 		try {
 			_invokableLocalService.invokeMethod(_methodName3,
 				_methodParameterTypes3, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

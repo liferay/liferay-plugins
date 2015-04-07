@@ -125,8 +125,6 @@ public class WebFormPortlet extends MVCPortlet {
 			preferences.getValue("databaseTableName", StringPool.BLANK));
 		boolean saveToFile = GetterUtil.getBoolean(
 			preferences.getValue("saveToFile", StringPool.BLANK));
-		String fileName = GetterUtil.getString(
-			preferences.getValue("fileName", StringPool.BLANK));
 
 		if (requireCaptcha) {
 			try {
@@ -140,7 +138,7 @@ public class WebFormPortlet extends MVCPortlet {
 			}
 		}
 
-		Map<String, String> fieldsMap = new LinkedHashMap<String, String>();
+		Map<String, String> fieldsMap = new LinkedHashMap<>();
 
 		for (int i = 1; true; i++) {
 			String fieldLabel = preferences.getValue(
@@ -199,6 +197,9 @@ public class WebFormPortlet extends MVCPortlet {
 			}
 
 			if (saveToFile) {
+				String fileName = WebFormUtil.getFileName(
+					themeDisplay, portletId);
+
 				fileSuccess = saveFile(fieldsMap, fileName);
 			}
 
@@ -272,7 +273,7 @@ public class WebFormPortlet extends MVCPortlet {
 
 		StringBundler sb = new StringBundler();
 
-		List<String> fieldLabels = new ArrayList<String>();
+		List<String> fieldLabels = new ArrayList<>();
 
 		for (int i = 1; true; i++) {
 			String fieldLabel = preferences.getValue(
@@ -458,7 +459,7 @@ public class WebFormPortlet extends MVCPortlet {
 			Map<String, String> fieldsMap, PortletPreferences preferences)
 		throws Exception {
 
-		Set<String> validationErrors = new HashSet<String>();
+		Set<String> validationErrors = new HashSet<>();
 
 		for (int i = 0; i < fieldsMap.size(); i++) {
 			String fieldType = preferences.getValue(

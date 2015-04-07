@@ -63,6 +63,6 @@ public class MultiLanguageConditionEvaluator implements ConditionEvaluator {
 	}
 
 	private Map<ScriptLanguage, ConditionEvaluator> _conditionEvaluators =
-		new HashMap<ScriptLanguage, ConditionEvaluator>();
+		new HashMap<>();
 
 }

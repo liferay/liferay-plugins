@@ -100,14 +100,14 @@ public class KBArticleLocalServiceUtil {
 			guestPermissions);
 	}
 
-	public static void addKBArticlesMarkdown(long userId, long groupId,
+	public static int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addKBArticlesMarkdown(userId, groupId, parentKbFolderId, fileName,
-			inputStream, serviceContext);
+		return getService()
+				   .addKBArticlesMarkdown(userId, groupId, parentKbFolderId,
+			fileName, prioritizeByNumericalPrefix, inputStream, serviceContext);
 	}
 
 	public static void addTempAttachment(long groupId, long userId,
@@ -263,6 +263,12 @@ public class KBArticleLocalServiceUtil {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle fetchFirstChildKBArticle(
+		long groupId, long parentResourcePrimKey) {
+		return getService()
+				   .fetchFirstChildKBArticle(groupId, parentResourcePrimKey);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
@@ -513,6 +519,12 @@ public class KBArticleLocalServiceUtil {
 		long parentResourcePrimKey, int status) {
 		return getService()
 				   .getKBArticlesCount(groupId, parentResourcePrimKey, status);
+	}
+
+	public static int getKBFolderKBArticlesCount(long groupId, long kbFolderId,
+		int status) {
+		return getService()
+				   .getKBFolderKBArticlesCount(groupId, kbFolderId, status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(

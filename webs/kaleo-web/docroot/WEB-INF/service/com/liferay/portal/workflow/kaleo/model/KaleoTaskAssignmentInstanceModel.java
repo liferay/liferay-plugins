@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceModelImpl
  * @generated
  */
+@ProviderType
 public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAssignmentInstance>,
 	GroupedModel {
 	/*
@@ -376,19 +379,19 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 
 	@Override
 	public int compareTo(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance);
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<KaleoTaskAssignmentInstance> toCacheModel();
+	public CacheModel<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> toCacheModel();
 
 	@Override
-	public KaleoTaskAssignmentInstance toEscapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance toEscapedModel();
 
 	@Override
-	public KaleoTaskAssignmentInstance toUnescapedModel();
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance toUnescapedModel();
 
 	@Override
 	public String toString();

@@ -20,6 +20,8 @@
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
 boolean showAdminSuggestionView = SuggestionPermission.contains(permissionChecker, scopeGroupId, kbArticle, ActionKeys.VIEW_SUGGESTIONS);
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
 <c:if test="<%= enableKBArticleRatings %>">
@@ -94,31 +96,13 @@ boolean showAdminSuggestionView = SuggestionPermission.contains(permissionChecke
 		<a name="kbSuggestions"></a>
 
 		<div class="hide kb-article-suggestion" id="<portlet:namespace />suggestionContainer">
-			<liferay-portlet:renderURL var="viewKBArticle">
-				<portlet:param name="expanded" value="true" />
 
-				<c:choose>
-					<c:when test="<%= Validator.isNotNull(kbArticle.getUrlTitle()) %>">
-						<portlet:param name="urlTitle" value="<%= kbArticle.getUrlTitle() %>" />
-
-						<c:if test="<%= kbArticle.getKbFolderId() != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
-
-							<%
-							KBFolder kbFolder = KBFolderServiceUtil.getKBFolder(kbArticle.getKbFolderId());
-							%>
-
-							<portlet:param name="kbFolderUrlTitle" value="<%= kbFolder.getUrlTitle() %>" />
-						</c:if>
-					</c:when>
-					<c:otherwise>
-						<portlet:param name="resourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-					</c:otherwise>
-				</c:choose>
-			</liferay-portlet:renderURL>
+			<%
+			PortletURL viewKBArticleURL = kbArticleURLHelper.createViewWithCommentsURL(kbArticle);
+			%>
 
 			<liferay-portlet:actionURL name="updateKBComment" var="updateKBCommentURL">
-				<portlet:param name="redirect" value="<%= viewKBArticle %>" />
+				<portlet:param name="redirect" value="<%= viewKBArticleURL.toString() %>" />
 			</liferay-portlet:actionURL>
 
 			<aui:form action='<%= updateKBCommentURL + "#kbSuggestions" %>' method="post" name="suggestionFm">

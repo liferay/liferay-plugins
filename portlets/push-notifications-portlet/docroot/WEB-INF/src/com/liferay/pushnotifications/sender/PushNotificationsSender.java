@@ -23,7 +23,10 @@ import java.util.List;
  */
 public interface PushNotificationsSender {
 
-	public void send(List<String> tokens, JSONObject jsonObject)
+	public void reset();
+
+	public void send(
+			String platform, List<String> tokens, JSONObject payloadJSONObject)
 		throws Exception;
 
 }

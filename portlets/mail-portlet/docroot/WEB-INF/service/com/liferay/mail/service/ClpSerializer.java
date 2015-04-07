@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.AccountClp;
 import com.liferay.mail.model.AttachmentClp;
 import com.liferay.mail.model.FolderClp;
@@ -39,6 +41,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpSerializer {
 	public static String getServletContextName() {
 		if (Validator.isNotNull(_servletContextName)) {

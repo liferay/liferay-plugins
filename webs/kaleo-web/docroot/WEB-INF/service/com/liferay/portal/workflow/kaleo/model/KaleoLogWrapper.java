@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see KaleoLog
  * @generated
  */
+@ProviderType
 public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	public KaleoLogWrapper(KaleoLog kaleoLog) {
 		_kaleoLog = kaleoLog;
@@ -1078,5 +1081,5 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 		_kaleoLog.resetOriginalValues();
 	}
 
-	private KaleoLog _kaleoLog;
+	private final KaleoLog _kaleoLog;
 }

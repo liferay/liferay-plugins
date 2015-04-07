@@ -73,7 +73,7 @@ public class LARImporter extends BaseImporter {
 	}
 
 	protected Map<String, String[]> getParameterMap() {
-		Map<String, String[]> parameters = new HashMap<String, String[]>();
+		Map<String, String[]> parameters = new HashMap<>();
 
 		parameters.put(
 			PortletDataHandlerKeys.DELETE_MISSING_LAYOUTS,

@@ -63,8 +63,7 @@ public class GoogleMailGroupsUtil {
 
 		boolean largeGroup = isLargeGroup(group);
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		params.put("inherit", Boolean.TRUE);
 		params.put("usersGroups", group.getGroupId());
@@ -170,8 +169,7 @@ public class GoogleMailGroupsUtil {
 					return;
 				}
 
-				List<String> groupMemberEmailAddresses =
-					new ArrayList<String>();
+				List<String> groupMemberEmailAddresses = new ArrayList<>();
 				Members members = null;
 
 				String groupEmailAddress = getGroupEmailAddress(group);
@@ -201,10 +199,10 @@ public class GoogleMailGroupsUtil {
 					}
 				}
 
-				List<String> emailAddresses = new ArrayList<String>();
+				List<String> emailAddresses = new ArrayList<>();
 
 				LinkedHashMap<String, Object> userParams =
-					new LinkedHashMap<String, Object>();
+					new LinkedHashMap<>();
 
 				userParams.put("inherit", Boolean.TRUE);
 				userParams.put("usersGroups", new Long(group.getGroupId()));

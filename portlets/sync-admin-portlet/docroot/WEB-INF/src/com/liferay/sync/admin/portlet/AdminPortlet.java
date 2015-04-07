@@ -17,8 +17,8 @@ package com.liferay.sync.admin.portlet;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -33,47 +33,69 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Shinn Lok
+ * @author Jonathan McCann
  */
 public class AdminPortlet extends MVCPortlet {
 
-	@Override
-	public void processAction(
+	public void updatePreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		try {
-			updatePreferences(actionRequest, actionResponse);
-			updateTypeSettingsProperties(actionRequest, actionResponse);
-
-			addSuccessMessage(actionRequest, actionResponse);
-
-			sendRedirect(actionRequest, actionResponse);
+			doUpdatePreferences(actionRequest, actionResponse);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
 	}
 
-	protected void updateGroup(long groupId, boolean syncEnabled) {
-		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
+	public void updateSites(
+		ActionRequest actionRequest, ActionResponse actionResponse) {
 
-		UnicodeProperties typeSettingsProperties =
-			group.getTypeSettingsProperties();
+		String enabled = ParamUtil.getString(actionRequest, "enabled");
+		String permissions = ParamUtil.getString(actionRequest, "permissions");
 
-		typeSettingsProperties.setProperty(
-			"syncEnabled", String.valueOf(syncEnabled));
+		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
 
-		group.setTypeSettingsProperties(typeSettingsProperties);
+		for (long groupId : groupIds) {
+			Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
-		GroupLocalServiceUtil.updateGroup(group);
+			UnicodeProperties typeSettingsProperties =
+				group.getTypeSettingsProperties();
+
+			if (Validator.isNotNull(enabled)) {
+				typeSettingsProperties.setProperty("syncEnabled", enabled);
+			}
+
+			if (Validator.isNotNull(permissions)) {
+				typeSettingsProperties.setProperty(
+					"syncSiteMemberFilePermissions", permissions);
+			}
+
+			group.setTypeSettingsProperties(typeSettingsProperties);
+
+			GroupLocalServiceUtil.updateGroup(group);
+		}
 	}
 
-	protected void updatePreferences(
+	protected void doUpdatePreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
 			CompanyThreadLocal.getCompanyId());
+
+		boolean allowUserPersonalSites = ParamUtil.getBoolean(
+			actionRequest, "allowUserPersonalSites");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
+			String.valueOf(allowUserPersonalSites));
+
+		boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_SERVICES_ENABLED, String.valueOf(enabled));
 
 		int maxConnections = ParamUtil.getInteger(
 			actionRequest, "maxConnections");
@@ -88,30 +110,7 @@ public class AdminPortlet extends MVCPortlet {
 			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
 			String.valueOf(pollInterval));
 
-		boolean enabled = ParamUtil.getBoolean(actionRequest, "enabled");
-
-		portletPreferences.setValue(
-			PortletPropsKeys.SYNC_SERVICES_ENABLED, String.valueOf(enabled));
-
 		portletPreferences.store();
-	}
-
-	protected void updateTypeSettingsProperties(
-		ActionRequest actionRequest, ActionResponse actionResponse) {
-
-		String disabledGroupIds = ParamUtil.getString(
-			actionRequest, "disabledGroupIds");
-
-		for (long groupId : StringUtil.split(disabledGroupIds, 0L)) {
-			updateGroup(groupId, false);
-		}
-
-		String enabledGroupIds = ParamUtil.getString(
-			actionRequest, "enabledGroupIds");
-
-		for (long groupId : StringUtil.split(enabledGroupIds, 0L)) {
-			updateGroup(groupId, true);
-		}
 	}
 
 }

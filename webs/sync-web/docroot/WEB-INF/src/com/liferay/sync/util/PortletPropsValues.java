@@ -22,6 +22,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final boolean SYNC_ALLOW_USER_PERSONAL_SITES =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES));
+
 	public static final String SYNC_AUTH_VERIFIER_PIPELINE = PortletProps.get(
 		PortletPropsKeys.SYNC_AUTH_VERIFIER_PIPELINE);
 
@@ -49,6 +53,16 @@ public class PortletPropsValues {
 		GetterUtil.getLong(
 			PortletProps.get(
 				PortletPropsKeys.SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME));
+
+	public static final String[] SYNC_MAC_PACKAGE_FOLDER_EXTENSIONS =
+		GetterUtil.getStringValues(
+			PortletProps.getArray(
+				PortletPropsKeys.SYNC_MAC_PACKAGE_FOLDER_EXTENSIONS));
+
+	public static final String[] SYNC_MAC_PACKAGE_METADATA_FILE_NAMES =
+		GetterUtil.getStringValues(
+			PortletProps.getArray(
+				PortletPropsKeys.SYNC_MAC_PACKAGE_METADATA_FILE_NAMES));
 
 	public static final boolean SYNC_SERVICES_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SYNC_SERVICES_ENABLED));

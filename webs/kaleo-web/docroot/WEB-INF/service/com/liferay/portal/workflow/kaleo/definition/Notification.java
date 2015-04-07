@@ -105,9 +105,8 @@ public class Notification {
 	private String _description;
 	private ExecutionType _executionType;
 	private String _name;
-	private Set<NotificationType> _notificationTypes =
-		new HashSet<NotificationType>();
-	private Set<Recipient> _recipients = new HashSet<Recipient>();
+	private Set<NotificationType> _notificationTypes = new HashSet<>();
+	private Set<Recipient> _recipients = new HashSet<>();
 	private String _template;
 	private TemplateLanguage _templateLanguage;
 

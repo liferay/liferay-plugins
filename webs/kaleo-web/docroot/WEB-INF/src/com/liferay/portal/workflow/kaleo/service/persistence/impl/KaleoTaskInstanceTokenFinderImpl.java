@@ -111,7 +111,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 				kaleoTaskInstanceTokenQuery, false, session);
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
-				new ArrayList<KaleoTaskInstanceToken>();
+				new ArrayList<>();
 
 			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
 				q, getDialect(), kaleoTaskInstanceTokenQuery.getStart(),
@@ -515,7 +515,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 		User user = UserLocalServiceUtil.getUserById(
 			kaleoTaskInstanceTokenQuery.getUserId());
 
-		List<Group> groups = new ArrayList<Group>();
+		List<Group> groups = new ArrayList<>();
 
 		groups.addAll(user.getGroups());
 		groups.addAll(
@@ -652,8 +652,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 	protected List<UserGroupGroupRole> getUserGroupGroupRoles(long userId)
 		throws Exception {
 
-		List<UserGroupGroupRole> userGroupGroupRoles =
-			new ArrayList<UserGroupGroupRole>();
+		List<UserGroupGroupRole> userGroupGroupRoles = new ArrayList<>();
 
 		List<UserGroup> userGroups =
 			UserGroupLocalServiceUtil.getUserUserGroups(userId);

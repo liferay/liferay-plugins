@@ -31,7 +31,6 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
@@ -39,13 +38,14 @@ import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
-import com.liferay.portlet.wiki.model.WikiNode;
-import com.liferay.portlet.wiki.model.WikiPage;
-import com.liferay.portlet.wiki.model.WikiPageResource;
-import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
-import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
-import com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil;
 import com.liferay.so.activities.util.SocialActivityKeyConstants;
+import com.liferay.wiki.constants.WikiPortletKeys;
+import com.liferay.wiki.model.WikiNode;
+import com.liferay.wiki.model.WikiPage;
+import com.liferay.wiki.model.WikiPageResource;
+import com.liferay.wiki.service.WikiNodeLocalServiceUtil;
+import com.liferay.wiki.service.WikiPageLocalServiceUtil;
+import com.liferay.wiki.service.WikiPageResourceLocalServiceUtil;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -319,15 +319,16 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			return null;
 		}
 
-		long plid = PortalUtil.getPlidFromPortletId(groupId, PortletKeys.WIKI);
+		long plid = PortalUtil.getPlidFromPortletId(
+			groupId, WikiPortletKeys.WIKI);
 
 		if (plid == LayoutConstants.DEFAULT_PLID) {
 			return null;
 		}
 
 		PortletURL diffsURL = PortletURLFactoryUtil.create(
-			serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI, plid,
-			PortletRequest.RENDER_PHASE);
+			serviceContext.getLiferayPortletRequest(), WikiPortletKeys.WIKI,
+			plid, PortletRequest.RENDER_PHASE);
 
 		diffsURL.setParameter("struts_action", "/wiki/compare_versions");
 		diffsURL.setParameter(
@@ -429,15 +430,16 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			return null;
 		}
 
-		long plid = PortalUtil.getPlidFromPortletId(groupId, PortletKeys.WIKI);
+		long plid = PortalUtil.getPlidFromPortletId(
+			groupId, WikiPortletKeys.WIKI);
 
 		if (plid == LayoutConstants.DEFAULT_PLID) {
 			return HtmlUtil.escape(node.getName());
 		}
 
 		PortletURL nodeURL = PortletURLFactoryUtil.create(
-			serviceContext.getLiferayPortletRequest(), PortletKeys.WIKI, plid,
-			PortletRequest.RENDER_PHASE);
+			serviceContext.getLiferayPortletRequest(), WikiPortletKeys.WIKI,
+			plid, PortletRequest.RENDER_PHASE);
 
 		nodeURL.setParameter("struts_action", "/wiki/view");
 		nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));

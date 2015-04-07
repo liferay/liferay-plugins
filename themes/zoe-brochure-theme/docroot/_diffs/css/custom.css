@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 @import url(custom_common.css);
@@ -520,159 +520,12 @@ p {
 	}
 }
 
-/* ---------- Internet explorer ---------- */
-
-.ie6 {
-	#banner #heading .logo.default-logo {
-		background-image: url(../images/custom/ie6/logo.gif);
-	}
-
-	#footer p {
-		background-image: url(../images/custom/ie6/footer_logo.gif);
-	}
-
-	#navigation {
-		background-image: url(../images/custom/ie6/nav_bg.gif);
-
-		ul li.selected a span {
-			background-image: url(../images/custom/ie6/nav_active.gif);
-		}
-	}
-
-	.pod {
-		&.button {
-			&, &:hover {
-				background-image: url(../images/custom/ie6/pod_button.gif);
-
-				.pod-text .description {
-					clear: left;
-					float: left;
-					height: 50px;
-					text-align: left;
-					text-indent: -3px;
-					white-space: pre;
-				}
-			}
-		}
-
-		.divider {
-			background-image: url(../images/custom/ie6/home_content_divs.gif);
-			clear: both;
-			display: inline-block;
-			margin: 29px 0 0;
-			padding: 0 5px;
-			position: absolute;
-			width: 100%;
-		}
-
-		.pod-text {
-			padding: 0 0 0 10px;
-			width: 280px;
-
-			a {
-				text-decoration: none;
-			}
-		}
-	}
-
-	.pod-image {
-		float: left;
-		position: relative;
-	}
-
-	.pod-text {
-		display: inline-block;
-		padding-left: 10px;
-		padding-right: 0;
-		position: relative;
-		width: 190px;
-	}
-
-	.page-content .divider {
-		background-image: url(../images/custom/ie6/home_content_divs.gif);
-	}
-}
-
-.ie7 {
-	#wrapper {
-		zoom: 1;
-	}
-
-	.pod {
-		&.button .pod-text {
-			left: 20px;
-			padding-top: 0;
-			position: absolute;
-			z-index: 2;
-
-			.description {
-				margin: 0;
-				padding: 0;
-				text-indent: -3px;
-				white-space: pre;
-			}
-		}
-
-		.divider {
-			clear: both;
-			display: block;
-			margin: 29px 0 0;
-			padding: 0 5px;
-			position: absolute;
-			width: 100%;
-		}
-
-		.pod-text {
-			display: inline;
-		}
-	}
-}
-
-.ie8 {
-	.pod {
-		&.button {
-			.pod-text {
-				left: 35px;
-				padding-left: 105px;
-				padding-right: 0;
-				position: absolute;
-				top: 5px;
-				width: 300px;
-				z-index: 2;
-
-				.description {
-					margin: 0;
-					padding: 0;
-					text-indent: -3px;
-					white-space: pre;
-				}
-
-				span.description {
-					color: #666;
-					font-size: 1em;
-					letter-spacing: 0.034em;
-					line-height: 1.5em;
-					white-space: pre-line;
-				}
-			}
-		}
-
-		.pod-text {
-			display: inline-block;
-			padding-left: 10px;
-			padding-right: 0;
-			position: relative;
-			width: 190px;
-		}
-	}
-}
-
 /* ---------- Theme modules ---------- */
 
 .banner {
 	background-color: #FAFAFA;
+	box-shadow: 0 1px 1px #E7E7E7;
 
-	@include box-shadow(0 1px 1px #E7E7E7);
 	@include box-sizing(border-box);
 
 	float: left;
@@ -699,18 +552,19 @@ p {
 
 /* ---------- Extras ---------- */
 
-a, a:link, a:visited, p, #navigation ul, .columns-max .portlet-topper-toolbar, .ie8 .pod.button span.description, .innovation-title, .pod {
-	@include single-text-shadow($textShadowColor1, 1px, 1px, 1px);
+a, a:link, a:visited, p, #navigation ul, .columns-max .portlet-topper-toolbar, .innovation-title, .pod {
+	text-shadow: 1px, 1px, 1px, $textShadowColor1;
 }
 
 .dockbar-split .dockbar {
 	.navbar-inner {
-		@include box-shadow(none);
+		box-shadow: none;
 
 		.nav {
 			li.dropdown.open > .dropdown-toggle {
+				box-shadow: none;
+
 				@include background-image(linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd));
-				@include box-shadow(none);
 			}
 		}
 
@@ -719,41 +573,41 @@ a, a:link, a:visited, p, #navigation ul, .columns-max .portlet-topper-toolbar, .
 		}
 
 		.dropdown-menu li a {
-			@include text-shadow(none);
+			text-shadow: none;
 		}
 	}
 }
 
 .columns-max .portlet-boundary {
-	@include border-radius(5px);
-	@include single-box-shadow;
+	border-radius: 5px;
+	box-shadow: 0 5px #333;
 }
 
 .pod {
-	@include border-radius(7px);
+	border-radius: 7px;
 }
 
 .tab-active span span a, .columns-2-1-2 #column-1 .featured-text h3, .columns-2-1-2 #column-2 .featured-text h3, .featured-text p, .portlet-topper-toolbar a, .portlet-topper-toolbar a:visited {
-	@include single-text-shadow($textShadowColor2, 1px, 1px, 1px);
+	text-shadow: 1px, 1px, 1px, $textShadowColor2;
 }
 
 #banner #heading .site-name {
-	@include border-radius(4px);
-	@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px #3D7899);
-	@include text-shadow(1px 1px rgba(0, 0, 0, 0.5));
+	border-radius: 4px;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px #3D7899;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #wrapper {
-	@include single-box-shadow;
+	box-shadow: 0 5px #333;
 }
 
 .modify-pages .delete-tab {
-	@include border-radius(50%);
-	@include text-shadow(none);
+	border-radius: 50%;
+	text-shadow: none;
 	@include transition(opacity 0.2s ease);
 
 	&:hover {
-		@include box-shadow(0 1px 1px -1px #000);
+		box-shadow: 0 1px 1px -1px #000;
 	}
 }
 

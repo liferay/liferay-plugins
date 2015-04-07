@@ -37,7 +37,7 @@ public class TaskAssignerUtil {
 		throws PortalException {
 
 		List<KaleoTaskAssignment> reassignedKaleoTaskAssignments =
-			new ArrayList<KaleoTaskAssignment>();
+			new ArrayList<>();
 
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
 			String[] assigneeScriptRequiredContexts = StringUtil.split(

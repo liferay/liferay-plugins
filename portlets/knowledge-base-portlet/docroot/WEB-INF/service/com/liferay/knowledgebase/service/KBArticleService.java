@@ -57,8 +57,9 @@ public interface KBArticleService extends BaseService, InvokableService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public void addKBArticlesMarkdown(long groupId, long parentKBFolderId,
-		java.lang.String fileName, java.io.InputStream inputStream,
+	public int addKBArticlesMarkdown(long groupId, long parentKBFolderId,
+		java.lang.String fileName, boolean prioritizeByNumericalPrefix,
+		java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException;
 

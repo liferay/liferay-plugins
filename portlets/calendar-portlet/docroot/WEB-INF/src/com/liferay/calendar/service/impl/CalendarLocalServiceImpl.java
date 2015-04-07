@@ -104,7 +104,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	@Override
 	@SystemEvent(
 		action = SystemEventConstants.ACTION_SKIP,
-		type = SystemEventConstants.TYPE_DELETE)
+		type = SystemEventConstants.TYPE_DELETE
+	)
 	public Calendar deleteCalendar(Calendar calendar) throws PortalException {
 		if (calendar.isDefaultCalendar()) {
 			throw new RequiredCalendarException();

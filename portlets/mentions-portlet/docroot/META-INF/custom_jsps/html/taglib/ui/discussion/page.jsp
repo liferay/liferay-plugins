@@ -48,7 +48,7 @@
 			)
 		).render();
 
-		A.one('#<portlet:namespace />discussion-container').delegate(
+		A.one('#<portlet:namespace />discussionContainer').delegate(
 			'click',
 			function(event) {
 				var currentTarget = event.currentTarget;

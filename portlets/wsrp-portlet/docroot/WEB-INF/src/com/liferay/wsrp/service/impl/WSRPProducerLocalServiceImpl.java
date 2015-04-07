@@ -100,7 +100,8 @@ public class WSRPProducerLocalServiceImpl
 	@Override
 	@SystemEvent(
 		action = SystemEventConstants.ACTION_SKIP,
-		type = SystemEventConstants.TYPE_DELETE)
+		type = SystemEventConstants.TYPE_DELETE
+	)
 	public WSRPProducer deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException {
 
@@ -180,8 +181,7 @@ public class WSRPProducerLocalServiceImpl
 		User user = userPersistence.findByPrimaryKey(userId);
 		name = getGroupName(name);
 
-		LinkedHashMap<String, Object> params =
-			new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		int type = GroupConstants.TYPE_SITE_SYSTEM;
 

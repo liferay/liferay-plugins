@@ -124,12 +124,9 @@ public class WURFLKnownDevices implements KnownDevices {
 			_log.debug("Loading database");
 		}
 
-		Map<String, VersionableName> brands =
-			new HashMap<String, VersionableName>();
-		Map<String, VersionableName> browsers =
-			new HashMap<String, VersionableName>();
-		Map<String, VersionableName> operatingSystems =
-			new HashMap<String, VersionableName>();
+		Map<String, VersionableName> brands = new HashMap<>();
+		Map<String, VersionableName> browsers = new HashMap<>();
+		Map<String, VersionableName> operatingSystems = new HashMap<>();
 
 		for (Object deviceIdObject : wurflUtils.getAllDevicesId()) {
 			String deviceId = (String)deviceIdObject;
@@ -154,10 +151,9 @@ public class WURFLKnownDevices implements KnownDevices {
 			updateDevicesIds(device, WURFLConstants.DEVICE_OS);
 		}
 
-		_brands = new TreeSet<VersionableName>(brands.values());
-		_browsers = new TreeSet<VersionableName>(browsers.values());
-		_operatingSystems = new TreeSet<VersionableName>(
-			operatingSystems.values());
+		_brands = new TreeSet<>(brands.values());
+		_browsers = new TreeSet<>(browsers.values());
+		_operatingSystems = new TreeSet<>(operatingSystems.values());
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Loaded database in " + stopWatch.getTime() + " ms");
@@ -194,7 +190,7 @@ public class WURFLKnownDevices implements KnownDevices {
 			Set<String> deviceIds = _devicesIds.get(capability);
 
 			if (deviceIds == null) {
-				deviceIds = new TreeSet<String>();
+				deviceIds = new TreeSet<>();
 
 				_devicesIds.put(capability, deviceIds);
 			}
@@ -251,11 +247,10 @@ public class WURFLKnownDevices implements KnownDevices {
 
 	private Set<VersionableName> _brands;
 	private Set<VersionableName> _browsers;
-	private Map<Capability, Set<String>> _devicesIds =
-		new HashMap<Capability, Set<String>>();
+	private Map<Capability, Set<String>> _devicesIds = new HashMap<>();
 	private boolean _initialized;
 	private Set<VersionableName> _operatingSystems;
-	private Set<String> _pointingMethods = new TreeSet<String>();
+	private Set<String> _pointingMethods = new TreeSet<>();
 	private WURFLHolder _wurflHolder;
 
 }

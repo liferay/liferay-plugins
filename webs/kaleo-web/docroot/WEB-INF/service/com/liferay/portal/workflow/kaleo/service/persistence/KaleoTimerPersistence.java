@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 
@@ -25,10 +27,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoTimerPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoTimerPersistenceImpl
  * @see KaleoTimerUtil
  * @generated
  */
+@ProviderType
 public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	/*
 	 * NOTE FOR DEVELOPERS:

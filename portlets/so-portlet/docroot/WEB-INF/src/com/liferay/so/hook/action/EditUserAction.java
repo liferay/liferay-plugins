@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.DynamicActionRequest;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
 import com.liferay.portal.kernel.struts.StrutsPortletAction;
@@ -164,7 +166,7 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			return;
 		}
 
-		Set<Long> projectsEntryIds = new HashSet<Long>();
+		Set<Long> projectsEntryIds = new HashSet<>();
 
 		int[] projectsEntriesIndexes = StringUtil.split(
 			projectsEntriesIndexesString, 0);
@@ -234,6 +236,10 @@ public class EditUserAction extends BaseStrutsPortletAction {
 					projectsEntry.getProjectsEntryId());
 			}
 		}
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(User.class);
+
+		indexer.reindex(user);
 	}
 
 	protected void updateUser(

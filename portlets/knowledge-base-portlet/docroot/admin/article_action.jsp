@@ -22,19 +22,20 @@ String mvcPath = ParamUtil.getString(request, "mvcPath");
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 KBArticle kbArticle = (KBArticle)row.getObject();
+
+KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, renderResponse, templatePath);
 %>
 
-<liferay-ui:icon-menu cssClass="kb-article-action" icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
-	<liferay-portlet:renderURL var="viewURL">
-		<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-	</liferay-portlet:renderURL>
+<liferay-ui:icon-menu cssClass="kb-article-action">
+
+	<%
+	PortletURL viewURL = kbArticleURLHelper.createViewWithRedirectURL(kbArticle, currentURL);
+	%>
 
 	<liferay-ui:icon
-		iconCssClass="icon-search"
-		message="view"
-		url="<%= viewURL %>"
+		image="view"
+		method="get"
+		url="<%= viewURL.toString() %>"
 	/>
 
 	<c:if test="<%= KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) %>">

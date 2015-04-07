@@ -41,8 +41,7 @@ public class DefaultMentionsUserFinderImpl implements MentionsUserFinder {
 		if (socialInteractionsConfiguration.
 				isSocialInteractionsAnyUserEnabled()) {
 
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 			params.put("wildcardMode", WildcardMode.TRAILING);
 

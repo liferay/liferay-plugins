@@ -201,7 +201,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		try {
 			List<UserNotificationEvent> userNotificationEvents =
-				new ArrayList<UserNotificationEvent>();
+				new ArrayList<>();
 
 			if (PortletPropsValues.USER_NOTIFICATION_DOCKBAR_SPLIT) {
 				boolean actionable = ParamUtil.getBoolean(
@@ -540,7 +540,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		List<Long> newUserNotificationEventIds = new ArrayList<Long>();
+		List<Long> newUserNotificationEventIds = new ArrayList<>();
 
 		for (UserNotificationEvent userNotificationEvent :
 				userNotificationEvents) {

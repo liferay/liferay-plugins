@@ -83,7 +83,7 @@ if (group.isUser() && !showManageEntries) {
 
 				var uri = '<liferay-portlet:actionURL name="deleteEntry"></liferay-portlet:actionURL>';
 
-				uri = Liferay.Util.addParams('<portlet:namespace />entryId=' + entryId, uri)
+				uri = Liferay.Util.addParams('<portlet:namespace />entryId=' + entryId, uri);
 
 				A.io.request(
 					uri,
@@ -96,7 +96,7 @@ if (group.isUser() && !showManageEntries) {
 									var message = A.one('#<portlet:namespace />errorMessage');
 
 									if (message) {
-										message.html('<span class="alert alert-error">' + responseData.message + '</span>');
+										message.html('<span class="alert alert-danger">' + responseData.message + '</span>');
 									}
 								}
 								else {

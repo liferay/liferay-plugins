@@ -58,6 +58,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 		while ((i == 1) || Validator.isNotNull(fieldLabel)) {
 			String fieldType = portletPreferences.getValue("fieldType" + i, "text");
 			String fieldOptions = LocalizationUtil.getPreferencesValue(portletPreferences, "fieldOptions" + i, themeDisplay.getLanguageId());
+			String fieldParagraph = LocalizationUtil.getPreferencesValue(portletPreferences, "fieldParagraph" + i, themeDisplay.getLanguageId());
 			String fieldValidationScript = portletPreferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
 			String fieldValidationErrorMessage = portletPreferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 		%>
@@ -67,20 +68,20 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 
 				<c:if test="<%= Validator.isNotNull(fieldValidationScript) %>">
 					<div class="hide" id="<portlet:namespace />validationError<%= fieldName %>">
-						<span class="alert alert-error"><%= fieldValidationErrorMessage %></span>
+						<span class="alert alert-danger"><%= fieldValidationErrorMessage %></span>
 					</div>
 				</c:if>
 			</c:if>
 
 			<c:if test="<%= !fieldOptional %>">
 				<div class="hide" id="<portlet:namespace />fieldOptionalError<%= fieldName %>">
-					<span class="alert alert-error"><liferay-ui:message key="this-field-is-mandatory" /></span>
+					<span class="alert alert-danger"><liferay-ui:message key="this-field-is-mandatory" /></span>
 				</div>
 			</c:if>
 
 			<c:choose>
 				<c:when test='<%= fieldType.equals("paragraph") %>'>
-					<p class="lfr-webform" id="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldOptions) %></p>
+					<p class="format-paragraph" id="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldParagraph) %></p>
 				</c:when>
 				<c:when test='<%= fieldType.equals("text") %>'>
 					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" value="<%= HtmlUtil.escape(fieldValue) %>" />
@@ -173,12 +174,12 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 					String fieldValidationErrorMessage = portletPreferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 				%>
 
-					var key = '<%= fieldName %>';
+					var fieldKey = '<%= fieldName %>';
 
-					keys[<%= i %>] = key;
+					keys[<%= i %>] = fieldKey;
 
-					fieldLabels[key] = '<%= HtmlUtil.escape(fieldLabel) %>';
-					fieldValidationErrorMessages[key] = '<%= fieldValidationErrorMessage %>';
+					fieldLabels[fieldKey] = '<%= HtmlUtil.escape(fieldLabel) %>';
+					fieldValidationErrorMessages[fieldKey] = '<%= fieldValidationErrorMessage %>';
 
 					function fieldValidationFunction<%= i %>(currentFieldValue, fieldsMap) {
 						<c:choose>
@@ -189,25 +190,25 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 								return true;
 							</c:otherwise>
 						</c:choose>
-					};
+					}
 
-					fieldOptional[key] = <%= fieldOptional %>;
-					fieldValidationFunctions[key] = fieldValidationFunction<%= i %>;
+					fieldOptional[fieldKey] = <%= fieldOptional %>;
+					fieldValidationFunctions[fieldKey] = fieldValidationFunction<%= i %>;
 
 					<c:choose>
 						<c:when test='<%= fieldType.equals("checkbox") || fieldType.equals("radio") %>'>
 							var checkedField = A.one('input[name=<portlet:namespace />field<%= i %>]:checked');
 
-							fieldsMap[key] = '';
+							fieldsMap[fieldKey] = '';
 
 							if (checkedField) {
-								fieldsMap[key] = checkedField.val();
+								fieldsMap[fieldKey] = checkedField.val();
 							}
 						</c:when>
 						<c:otherwise>
 							var inputField = A.one('#<portlet:namespace />field<%= i %>');
 
-							fieldsMap[key] = (inputField && inputField.val()) || '';
+							fieldsMap[fieldKey] = (inputField && inputField.val()) || '';
 						</c:otherwise>
 					</c:choose>
 
@@ -222,7 +223,7 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 				var validationErrors = false;
 
 				for (var i = 1; i < keys.length; i++) {
-					var key = keys [i];
+					var key = keys[i];
 
 					var currentFieldValue = fieldsMap[key];
 

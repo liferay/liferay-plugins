@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * @see com.liferay.mail.service.impl.MessageLocalServiceImpl
  * @generated
  */
+@ProviderType
 public class MessageLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -54,11 +57,12 @@ public class MessageLocalServiceUtil {
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long remoteMessageId)
+		java.lang.String flags, long remoteMessageId,
+		java.lang.String contentType)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addMessage(userId, folderId, sender, to, cc, bcc, sentDate,
-			subject, body, flags, remoteMessageId);
+			subject, body, flags, remoteMessageId, contentType);
 	}
 
 	/**
@@ -165,10 +169,10 @@ public class MessageLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
@@ -176,11 +180,11 @@ public class MessageLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,

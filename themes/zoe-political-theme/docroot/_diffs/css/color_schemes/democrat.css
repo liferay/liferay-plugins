@@ -1,5 +1,3 @@
-@import "compass";
-
 body.democrat {
 	background-color: #F3F7FA;
 
@@ -17,8 +15,8 @@ body.democrat {
 		}
 
 		.btn {
-			background-image: none;
 			background-color: #E62238;
+			background-image: none;
 			color: #FFF;
 		}
 	}

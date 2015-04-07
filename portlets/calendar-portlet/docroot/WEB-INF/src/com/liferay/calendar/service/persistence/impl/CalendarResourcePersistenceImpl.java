@@ -67,7 +67,7 @@ import java.util.Set;
  *
  * @author Eduardo Lundgren
  * @see CalendarResourcePersistence
- * @see CalendarResourceUtil
+ * @see com.liferay.calendar.service.persistence.CalendarResourceUtil
  * @generated
  */
 @ProviderType

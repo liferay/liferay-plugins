@@ -93,7 +93,7 @@ public class UserIndexerPostProcessor extends BaseIndexerPostProcessor {
 			user.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION,
 			StringPool.EQUAL);
 
-		List<Long> socialRelationshipUserIds = new ArrayList<Long>();
+		List<Long> socialRelationshipUserIds = new ArrayList<>();
 
 		int pages = count / Indexer.DEFAULT_INTERVAL;
 

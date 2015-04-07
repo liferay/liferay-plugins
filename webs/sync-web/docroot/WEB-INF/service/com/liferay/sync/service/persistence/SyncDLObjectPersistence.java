@@ -28,7 +28,7 @@ import com.liferay.sync.model.SyncDLObject;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see SyncDLObjectPersistenceImpl
+ * @see com.liferay.sync.service.persistence.impl.SyncDLObjectPersistenceImpl
  * @see SyncDLObjectUtil
  * @generated
  */

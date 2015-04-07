@@ -16,9 +16,9 @@ package com.liferay.wikinavigation.util;
 
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portlet.wiki.model.WikiNode;
-import com.liferay.portlet.wiki.model.WikiPage;
-import com.liferay.portlet.wiki.service.WikiPageServiceUtil;
+import com.liferay.wiki.model.WikiNode;
+import com.liferay.wiki.model.WikiPage;
+import com.liferay.wiki.service.WikiPageServiceUtil;
 
 import java.io.Serializable;
 
@@ -45,7 +45,7 @@ public class MenuItem implements Serializable {
 				nodeId, WikiNavigationConstants.MAX_PAGES);
 		}
 		catch (Exception e) {
-			return new LinkedList<MenuItem>();
+			return new LinkedList<>();
 		}
 
 		return _fromWikiNode(wikiPages, 1, depth, portletURL);
@@ -58,7 +58,7 @@ public class MenuItem implements Serializable {
 	}
 
 	public MenuItem() {
-		_children = new LinkedList<MenuItem>();
+		_children = new LinkedList<>();
 	}
 
 	public void addChild(MenuItem child) {
@@ -105,7 +105,7 @@ public class MenuItem implements Serializable {
 		List<WikiPage> wikiPages, int curDepth, int depth,
 		PortletURL portletURL) {
 
-		List<MenuItem> menuItems = new LinkedList<MenuItem>();
+		List<MenuItem> menuItems = new LinkedList<>();
 
 		for (WikiPage wikiPage : wikiPages) {
 			if ((wikiPage.fetchParentPage() != null) && (curDepth == 1)) {
@@ -143,7 +143,7 @@ public class MenuItem implements Serializable {
 	private static List<MenuItem> _fromWikiPage(
 		WikiPage wikiPage, PortletURL portletURL) {
 
-		List<MenuItem> menuItems = new LinkedList<MenuItem>();
+		List<MenuItem> menuItems = new LinkedList<>();
 
 		Matcher matcher = _pattern.matcher(wikiPage.getContent());
 

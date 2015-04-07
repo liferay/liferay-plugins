@@ -407,7 +407,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		HashSet<Long> receiverUserIds = new HashSet<Long>(3);
+		HashSet<Long> receiverUserIds = new HashSet<>(3);
 
 		receiverUserIds.add(oldAssigneeUserId);
 		receiverUserIds.add(tasksEntry.getUserId());

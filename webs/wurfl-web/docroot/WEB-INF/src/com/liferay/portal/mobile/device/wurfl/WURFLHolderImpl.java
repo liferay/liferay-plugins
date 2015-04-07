@@ -67,7 +67,7 @@ public class WURFLHolderImpl implements WURFLHolder {
 	}
 
 	public void initialize() throws Exception {
-		List<InputStream> inputStreams = new ArrayList<InputStream>();
+		List<InputStream> inputStreams = new ArrayList<>();
 
 		try {
 			XMLResource xmlResource = getWURFLDatabase(inputStreams);

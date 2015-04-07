@@ -15,6 +15,8 @@
 package com.liferay.pushnotifications.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.security.ac.AccessControlled;
@@ -22,6 +24,8 @@ import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl;
 import com.liferay.pushnotifications.service.permission.PushNotificationsPermission;
 import com.liferay.pushnotifications.util.ActionKeys;
+
+import java.util.List;
 
 /**
  * @author Silvio Santos
@@ -37,7 +41,7 @@ public class PushNotificationsDeviceServiceImpl
 		throws PortalException {
 
 		PushNotificationsPermission.check(
-			getPermissionChecker(), ActionKeys.ADD_DEVICE);
+			getPermissionChecker(), ActionKeys.MANAGE_DEVICES);
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(token);
@@ -64,9 +68,13 @@ public class PushNotificationsDeviceServiceImpl
 		return pushNotificationsDevice;
 	}
 
+	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
 		throws PortalException {
+
+		PushNotificationsPermission.check(
+			getPermissionChecker(), ActionKeys.MANAGE_DEVICES);
 
 		PushNotificationsDevice pushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(token);
@@ -77,7 +85,7 @@ public class PushNotificationsDeviceServiceImpl
 			}
 		}
 		else {
-			long userId = getUserId();
+			long userId = getGuestOrUserId();
 
 			if (pushNotificationsDevice.getUserId() == userId) {
 				pushNotificationsDevice =
@@ -95,9 +103,32 @@ public class PushNotificationsDeviceServiceImpl
 	}
 
 	@Override
-	public boolean hasPermission(String actionId) throws PortalException {
-		return PushNotificationsPermission.contains(
-			getPermissionChecker(), actionId);
+	public void sendPushNotification(long[] toUserIds, String payload)
+		throws PortalException {
+
+		PushNotificationsPermission.check(
+			getPermissionChecker(), ActionKeys.SEND_PUSH_NOTIFICATION);
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
+
+		pushNotificationsDeviceLocalService.sendPushNotification(
+			toUserIds, payloadJSONObject);
+	}
+
+	@Override
+	public void sendPushNotification(
+			String platform, List<String> tokens, String payload)
+		throws PortalException {
+
+		PushNotificationsPermission.check(
+			getPermissionChecker(), ActionKeys.SEND_PUSH_NOTIFICATION);
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
+
+		pushNotificationsDeviceLocalService.sendPushNotification(
+			platform, tokens, payloadJSONObject);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

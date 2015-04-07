@@ -322,7 +322,7 @@ public class V2MarkupServiceImpl
 			}
 		}
 
-		List<NamedString> clientAttributes = new ArrayList<NamedString>();
+		List<NamedString> clientAttributes = new ArrayList<>();
 
 		String contentDisposition = response.getHeader(
 			HttpHeaders.CONTENT_DISPOSITION);
@@ -611,7 +611,7 @@ public class V2MarkupServiceImpl
 	}
 
 	protected String getRawContent(Http.Options httpOptions) throws Exception {
-		Map<String, Cookie> cookiesMap = new HashMap<String, Cookie>();
+		Map<String, Cookie> cookiesMap = new HashMap<>();
 
 		HttpSession session = ServletUtil.getSession();
 

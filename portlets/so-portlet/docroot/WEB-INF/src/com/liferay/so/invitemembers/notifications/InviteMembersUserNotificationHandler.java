@@ -159,19 +159,8 @@ public class InviteMembersUserNotificationHandler
 		if (group.hasPublicLayouts()) {
 			sb.append(" href=\"");
 
-			LiferayPortletResponse liferayPortletResponse =
-				serviceContext.getLiferayPortletResponse();
-
-			PortletURL portletURL = liferayPortletResponse.createActionURL(
-				PortletKeys.SITE_REDIRECTOR);
-
-			portletURL.setWindowState(WindowState.NORMAL);
-
-			portletURL.setParameter("struts_action", "/my_sites/view");
-			portletURL.setParameter("groupId", String.valueOf(groupId));
-			portletURL.setParameter("privateLayout", Boolean.FALSE.toString());
-
-			sb.append(portletURL);
+			sb.append(
+				group.getDisplayURL(serviceContext.getThemeDisplay(), false));
 
 			sb.append("\">");
 		}

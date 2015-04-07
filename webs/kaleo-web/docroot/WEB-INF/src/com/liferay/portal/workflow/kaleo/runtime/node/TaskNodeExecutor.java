@@ -77,7 +77,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			return null;
 		}
 
-		TreeSet<Date> sortedDueDates = new TreeSet<Date>();
+		TreeSet<Date> sortedDueDates = new TreeSet<>();
 
 		for (KaleoTimer kaleoTimer : kaleoTimers) {
 			DelayDuration delayDuration = new DelayDuration(
@@ -105,7 +105,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 			kaleoTask.getKaleoTaskAssignments();
 
 		Collection<KaleoTaskAssignment> kaleoTaskAssignments =
-			new ArrayList<KaleoTaskAssignment>();
+			new ArrayList<>();
 
 		for (KaleoTaskAssignment configuredKaleoTaskAssignment :
 				configuredKaleoTaskAssignments) {
@@ -243,7 +243,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		List<Organization> organizations = user.getOrganizations();
 
 		Collection<KaleoTaskAssignment> organizationKaleoTaskAssignments =
-			new HashSet<KaleoTaskAssignment>();
+			new HashSet<>();
 
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
 			String assigneeClassName =

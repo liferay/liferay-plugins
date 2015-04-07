@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see KaleoTimerInstanceToken
  * @generated
  */
+@ProviderType
 public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	ModelWrapper<KaleoTimerInstanceToken> {
 	public KaleoTimerInstanceTokenWrapper(
@@ -850,5 +853,5 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 		_kaleoTimerInstanceToken.resetOriginalValues();
 	}
 
-	private KaleoTimerInstanceToken _kaleoTimerInstanceToken;
+	private final KaleoTimerInstanceToken _kaleoTimerInstanceToken;
 }

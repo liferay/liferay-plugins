@@ -115,8 +115,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	public String exportCalendarBooking(long calendarBookingId)
 		throws Exception {
 
-		List<CalendarBooking> calendarBookings =
-			new ArrayList<CalendarBooking>();
+		List<CalendarBooking> calendarBookings = new ArrayList<>();
 
 		CalendarBooking calendarBooking =
 			CalendarBookingLocalServiceUtil.getCalendarBooking(
@@ -155,7 +154,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		User user = UserLocalServiceUtil.getUser(calendar.getUserId());
 
-		Map<Locale, String> titleMap = new HashMap<Locale, String>();
+		Map<Locale, String> titleMap = new HashMap<>();
 
 		Summary summary = vEvent.getSummary();
 
@@ -168,7 +167,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// Description
 
-		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		Description description = vEvent.getDescription();
 
@@ -344,7 +343,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		PropertyList propertyList = vEvent.getProperties(Property.ATTENDEE);
 
-		List<Long> childCalendarIds = new ArrayList<Long>();
+		List<Long> childCalendarIds = new ArrayList<>();
 
 		for (Iterator<Attendee> iterator = propertyList.iterator();
 				iterator.hasNext();) {
@@ -389,16 +388,16 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		CalendarBooking calendarBooking = null;
 
-		String uuid = null;
+		String vEventUidValue = null;
 
 		Uid uid = vEvent.getUid();
 
 		if (uid != null) {
-			uuid = uid.getValue();
+			vEventUidValue = uid.getValue();
 
 			calendarBooking =
 				CalendarBookingLocalServiceUtil.fetchCalendarBooking(
-					uuid, calendar.getGroupId());
+					calendarId, vEventUidValue);
 		}
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -406,11 +405,10 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setAttribute("sendNotification", Boolean.FALSE);
+		serviceContext.setAttribute("vEventUid", vEventUidValue);
 		serviceContext.setScopeGroupId(calendar.getGroupId());
 
 		if (calendarBooking == null) {
-			serviceContext.setUuid(uuid);
-
 			CalendarBookingServiceUtil.addCalendarBooking(
 				calendarId, childCalendarIdsArray,
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
@@ -593,7 +591,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// UID
 
-		Uid uid = new Uid(calendarBooking.getUuid());
+		Uid uid = new Uid(calendarBooking.getVEventUid());
 
 		propertyList.add(uid);
 

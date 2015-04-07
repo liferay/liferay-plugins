@@ -209,7 +209,7 @@ public class IMAPAccessor {
 
 	public List<Folder> getFolders() throws MailException {
 		try {
-			List<Folder> jxFolders = new ArrayList<Folder>();
+			List<Folder> jxFolders = new ArrayList<>();
 
 			Store store = _imapConnection.getStore(true);
 
@@ -463,7 +463,7 @@ public class IMAPAccessor {
 
 				StringBundler bodyPlain = new StringBundler();
 				StringBundler bodyHtml = new StringBundler();
-				List<MailFile> mailFiles = new ArrayList<MailFile>();
+				List<MailFile> mailFiles = new ArrayList<>();
 
 				getParts(
 					_user.getUserId(), bodyPlain, bodyHtml, StringPool.BLANK,
@@ -634,6 +634,7 @@ public class IMAPAccessor {
 				String subject = jxMessage.getSubject();
 				String flags = getFlags(jxMessage);
 				long remoteMessageId = getUID(jxFolder, jxMessage);
+				String contentType = jxMessage.getContentType();
 
 				try {
 					MessageLocalServiceUtil.getMessage(
@@ -643,7 +644,7 @@ public class IMAPAccessor {
 					MessageLocalServiceUtil.addMessage(
 						_user.getUserId(), folderId, sender, to, cc, bcc,
 						sentDate, subject, StringPool.BLANK, flags,
-						remoteMessageId);
+						remoteMessageId, contentType);
 				}
 			}
 
@@ -899,7 +900,7 @@ public class IMAPAccessor {
 			remoteMessageIds[i] = message.getRemoteMessageId();
 		}
 
-		List<Message> jxMessages = new ArrayList<Message>();
+		List<Message> jxMessages = new ArrayList<>();
 
 		Message[] jxMessagesArray = getMessagesByUID(
 			jxFolder, remoteMessageIds);

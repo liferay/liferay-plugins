@@ -36,6 +36,8 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.Group;
@@ -99,7 +101,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			SyncUtil.checkSyncEnabled(repositoryId);
+			Group group = groupLocalService.getGroup(repositoryId);
+
+			SyncUtil.checkSyncEnabled(group.getGroupId());
+
+			if (serviceContext.getGroupPermissions() == null) {
+				SyncUtil.setFilePermissions(group, false, serviceContext);
+			}
 
 			FileEntry fileEntry = dlAppService.addFileEntry(
 				repositoryId, folderId, sourceFileName, mimeType, title,
@@ -136,7 +144,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			SyncUtil.checkSyncEnabled(repositoryId);
+			Group group = groupLocalService.getGroup(repositoryId);
+
+			SyncUtil.checkSyncEnabled(group.getGroupId());
+
+			if (serviceContext.getGroupPermissions() == null) {
+				SyncUtil.setFilePermissions(group, true, serviceContext);
+			}
 
 			Folder folder = dlAppService.addFolder(
 				repositoryId, parentFolderId, name, description,
@@ -334,7 +348,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			List<FileEntry> fileEntries = dlAppService.getFileEntries(
 				repositoryId, folderId);
 
-			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>(
+			List<SyncDLObject> syncDLObjects = new ArrayList<>(
 				fileEntries.size());
 
 			for (FileEntry fileEntry : fileEntries) {
@@ -406,8 +420,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			List<Folder> folders = dlAppService.getFolders(
 				repositoryId, parentFolderId);
 
-			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>(
-				folders.size());
+			List<SyncDLObject> syncDLObjects = new ArrayList<>(folders.size());
 
 			for (Folder folder : folders) {
 				if (!SyncUtil.isSupportedFolder(folder)) {
@@ -564,7 +577,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			repositoryService.checkRepository(repositoryId);
 
-			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>();
+			List<SyncDLObject> syncDLObjects = new ArrayList<>();
 
 			if (parentFolderId > 0) {
 				PermissionChecker permissionChecker = getPermissionChecker();
@@ -599,10 +612,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		try {
 			User user = getUser();
 
-			List<Group> groups = new ArrayList<Group>();
+			List<Group> groups = new ArrayList<>();
 
-			LinkedHashMap<String, Object> groupParams =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
 
 			groupParams.put("active", true);
 			groupParams.put("usersGroups", user.getUserId());
@@ -613,10 +625,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			for (Group userSiteGroup : userSiteGroups) {
 				if (SyncUtil.isSyncEnabled(userSiteGroup)) {
-					if (userSiteGroup.isGuest()) {
-						userSiteGroup.setName(
-							userSiteGroup.getDescriptiveName());
-					}
+					userSiteGroup.setName(userSiteGroup.getDescriptiveName());
 
 					groups.add(userSiteGroup);
 				}
@@ -653,7 +662,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 			}
 
-			groups.add(user.getGroup());
+			if (PrefsPropsUtil.getBoolean(
+					user.getCompanyId(),
+					PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
+					PortletPropsValues.SYNC_ALLOW_USER_PERSONAL_SITES)) {
+
+				groups.add(user.getGroup());
+			}
 
 			Collections.sort(groups, new GroupNameComparator());
 
@@ -761,7 +776,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Override
 	public SyncDLObject patchFileEntry(
-			long fileEntryId, String sourceVersion, String sourceFileName,
+			long fileEntryId, long sourceVersionId, String sourceFileName,
 			String mimeType, String title, String description, String changeLog,
 			boolean majorVersion, File deltaFile, String checksum,
 			ServiceContext serviceContext)
@@ -774,8 +789,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
+			DLFileVersion dlFileVersion =
+				dlFileVersionLocalService.getDLFileVersion(sourceVersionId);
+
 			File sourceFile = dlFileEntryLocalService.getFile(
-				getUserId(), fileEntryId, sourceVersion, false);
+				fileEntryId, dlFileVersion.getVersion(), false);
 
 			patchedFile = FileUtil.createTempFile();
 
@@ -785,16 +803,15 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				fileEntryId, sourceFileName, mimeType, title, description,
 				changeLog, majorVersion, patchedFile, checksum, serviceContext);
 
-			if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
-				DLFileVersion sourceDLFileVersion =
-					dlFileVersionLocalService.getFileVersion(
-						fileEntryId, sourceVersion);
+			if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED &&
+				(sourceVersionId != syncDLObject.getVersionId())) {
+
 				DLFileVersion targetDLFileVersion =
 					dlFileVersionLocalService.getFileVersion(
-						fileEntryId, syncDLObject.getVersion());
+						syncDLObject.getVersionId());
 
 				syncDLFileVersionDiffLocalService.addSyncDLFileVersionDiff(
-					fileEntryId, sourceDLFileVersion.getFileVersionId(),
+					fileEntryId, sourceVersionId,
 					targetDLFileVersion.getFileVersionId(), deltaFile);
 			}
 
@@ -853,34 +870,54 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	public Map<String, Object> updateFileEntries(File zipFile)
 		throws PortalException {
 
-		Map<String, Object> responseMap = new HashMap<String, Object>();
+		Map<String, Object> responseMap = new HashMap<>();
 
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
+		ZipReader zipReader = null;
 
-		String manifest = zipReader.getEntryAsString("/manifest.json");
+		try {
+			zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray(manifest);
+			String manifest = zipReader.getEntryAsString("/manifest.json");
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			JSONArray jsonArray = JSONFactoryUtil.createJSONArray(manifest);
 
-			JSONWebServiceActionParametersMap
-				jsonWebServiceActionParametersMap =
-					JSONFactoryUtil.looseDeserialize(
-						jsonObject.toString(),
-						JSONWebServiceActionParametersMap.class);
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-			String zipFileId = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "zipFileId");
+				JSONWebServiceActionParametersMap
+					jsonWebServiceActionParametersMap =
+						JSONFactoryUtil.looseDeserialize(
+							jsonObject.toString(),
+							JSONWebServiceActionParametersMap.class);
 
-			try {
-				updateFileEntries(
-					zipReader, zipFileId, jsonWebServiceActionParametersMap);
+				String zipFileId = MapUtil.getString(
+					jsonWebServiceActionParametersMap, "zipFileId");
+
+				try {
+					responseMap.put(
+						zipFileId,
+						updateFileEntries(
+							zipReader, zipFileId,
+							jsonWebServiceActionParametersMap));
+				}
+				catch (Exception e) {
+					String message = e.getMessage();
+
+					if (!message.startsWith(StringPool.QUOTE) &&
+						!message.endsWith(StringPool.QUOTE)) {
+
+						message = StringUtil.quote(message, StringPool.QUOTE);
+					}
+
+					String json = "{\"exception\": " + message + "}";
+
+					responseMap.put(zipFileId, json);
+				}
 			}
-			catch (Exception e) {
-				String json = "{\"exception\": \"" + e.getMessage() + "\"}";
-
-				responseMap.put(zipFileId, json);
+		}
+		finally {
+			if (zipReader != null) {
+				zipReader.close();
 			}
 		}
 
@@ -956,8 +993,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	protected Map<String, String> getPortletPreferencesMap()
 		throws PortalException {
 
-		Map<String, String> portletPreferencesMap =
-			new HashMap<String, String>();
+		Map<String, String> portletPreferencesMap = new HashMap<>();
 
 		User user = getUser();
 
@@ -994,7 +1030,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		for (SyncDLObject curSyncDLObject : curSyncDLObjects) {
 			String type = curSyncDLObject.getType();
 
-			if (type.equals("file")) {
+			if (!type.equals(SyncConstants.TYPE_FOLDER)) {
 				continue;
 			}
 
@@ -1022,7 +1058,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		return checkModifiedTime(syncDLObject, folder.getFolderId());
 	}
 
-	protected void updateFileEntries(
+	protected SyncDLObject updateFileEntries(
 			ZipReader zipReader, String zipFileId,
 			JSONWebServiceActionParametersMap jsonWebServiceActionParametersMap)
 		throws Exception {
@@ -1070,14 +1106,21 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			InputStream inputStream = zipReader.getEntryAsInputStream(
 				zipFileId);
 
-			File tempFile = FileUtil.createTempFile(inputStream);
+			File tempFile = null;
 
-			String checksum = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "checksum");
+			try {
+				tempFile = FileUtil.createTempFile(inputStream);
 
-			addFileEntry(
-				repositoryId, folderId, sourceFileName, mimeType, title,
-				description, changeLog, tempFile, checksum, serviceContext);
+				String checksum = MapUtil.getString(
+					jsonWebServiceActionParametersMap, "checksum");
+
+				return addFileEntry(
+					repositoryId, folderId, sourceFileName, mimeType, title,
+					description, changeLog, tempFile, checksum, serviceContext);
+			}
+			finally {
+				FileUtil.delete(tempFile);
+			}
 		}
 		else if (urlPath.endsWith("/add-folder")) {
 			long repositoryId = MapUtil.getLong(
@@ -1089,7 +1132,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			String description = MapUtil.getString(
 				jsonWebServiceActionParametersMap, "description");
 
-			addFolder(
+			return addFolder(
 				repositoryId, parentFolderId, name, description,
 				serviceContext);
 		}
@@ -1099,13 +1142,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			long newFolderId = MapUtil.getLong(
 				jsonWebServiceActionParametersMap, "newFolderId");
 
-			moveFileEntry(fileEntryId, newFolderId, serviceContext);
+			return moveFileEntry(fileEntryId, newFolderId, serviceContext);
 		}
 		else if (urlPath.endsWith("/move-file-entry-to-trash")) {
 			long fileEntryId = MapUtil.getLong(
 				jsonWebServiceActionParametersMap, "fileEntryId");
 
-			moveFileEntryToTrash(fileEntryId);
+			return moveFileEntryToTrash(fileEntryId);
 		}
 		else if (urlPath.endsWith("/move-folder")) {
 			long folderId = MapUtil.getLong(
@@ -1113,19 +1156,19 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			long parentFolderId = MapUtil.getLong(
 				jsonWebServiceActionParametersMap, "parentFolderId");
 
-			moveFolder(folderId, parentFolderId, serviceContext);
+			return moveFolder(folderId, parentFolderId, serviceContext);
 		}
 		else if (urlPath.endsWith("/move-folder-to-trash")) {
 			long folderId = MapUtil.getLong(
 				jsonWebServiceActionParametersMap, "folderId");
 
-			moveFolderToTrash(folderId);
+			return moveFolderToTrash(folderId);
 		}
 		else if (urlPath.endsWith("/patch-file-entry")) {
 			long fileEntryId = MapUtil.getLong(
 				jsonWebServiceActionParametersMap, "fileEntryId");
-			String sourceVersion = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "sourceVersion");
+			long sourceVersionId = MapUtil.getLong(
+				jsonWebServiceActionParametersMap, "sourceVersionId");
 			String sourceFileName = MapUtil.getString(
 				jsonWebServiceActionParametersMap, "sourceFileName");
 			String mimeType = MapUtil.getString(
@@ -1142,15 +1185,22 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			InputStream inputStream = zipReader.getEntryAsInputStream(
 				zipFileId);
 
-			File tempFile = FileUtil.createTempFile(inputStream);
+			File tempFile = null;
 
-			String checksum = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "checksum");
+			try {
+				tempFile = FileUtil.createTempFile(inputStream);
 
-			patchFileEntry(
-				fileEntryId, sourceVersion, sourceFileName, mimeType, title,
-				description, changeLog, majorVersion, tempFile, checksum,
-				serviceContext);
+				String checksum = MapUtil.getString(
+					jsonWebServiceActionParametersMap, "checksum");
+
+				return patchFileEntry(
+					fileEntryId, sourceVersionId, sourceFileName, mimeType,
+					title, description, changeLog, majorVersion, tempFile,
+					checksum, serviceContext);
+			}
+			finally {
+				FileUtil.delete(tempFile);
+			}
 		}
 		else if (urlPath.endsWith("/update-file-entry")) {
 			long fileEntryId = MapUtil.getLong(
@@ -1168,17 +1218,27 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			boolean majorVersion = MapUtil.getBoolean(
 				jsonWebServiceActionParametersMap, "majorVersion");
 
-			InputStream inputStream = zipReader.getEntryAsInputStream(
-				zipFileId);
+			File tempFile = null;
 
-			File tempFile = FileUtil.createTempFile(inputStream);
+			try {
+				InputStream inputStream = zipReader.getEntryAsInputStream(
+					zipFileId);
 
-			String checksum = MapUtil.getString(
-				jsonWebServiceActionParametersMap, "checksum");
+				if (inputStream != null) {
+					tempFile = FileUtil.createTempFile(inputStream);
+				}
 
-			updateFileEntry(
-				fileEntryId, sourceFileName, mimeType, title, description,
-				changeLog, majorVersion, tempFile, checksum, serviceContext);
+				String checksum = MapUtil.getString(
+					jsonWebServiceActionParametersMap, "checksum");
+
+				return updateFileEntry(
+					fileEntryId, sourceFileName, mimeType, title, description,
+					changeLog, majorVersion, tempFile, checksum,
+					serviceContext);
+			}
+			finally {
+				FileUtil.delete(tempFile);
+			}
 		}
 		else if (urlPath.endsWith("/update-folder")) {
 			long folderId = MapUtil.getLong(
@@ -1188,8 +1248,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			String description = MapUtil.getString(
 				jsonWebServiceActionParametersMap, "description");
 
-			updateFolder(folderId, name, description, serviceContext);
+			return updateFolder(folderId, name, description, serviceContext);
 		}
+
+		return null;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

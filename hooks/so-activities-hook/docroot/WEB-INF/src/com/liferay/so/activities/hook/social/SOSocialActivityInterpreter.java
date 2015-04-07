@@ -47,8 +47,8 @@ import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.portlet.trash.util.TrashUtil;
-import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.so.activities.util.PortletPropsValues;
+import com.liferay.wiki.model.WikiPageResource;
 
 import java.text.DateFormat;
 import java.text.Format;
@@ -431,8 +431,7 @@ public abstract class SOSocialActivityInterpreter
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		List<SocialActivity> viewableActivities =
-			new ArrayList<SocialActivity>();
+		List<SocialActivity> viewableActivities = new ArrayList<>();
 
 		List<SocialActivity> activities =
 			SocialActivityLocalServiceUtil.getActivitySetActivities(

@@ -48,10 +48,19 @@
 	.label-name input, .options input {
 		width: 200px;
 	}
+
+	.paragraph textarea {
+		height: 100px;
+		resize: none;
+	}
 }
 
 .web-form-portlet {
 	.description {
 		margin-bottom: 2em;
+	}
+
+	.format-paragraph {
+		margin-bottom: 30px;
 	}
 }

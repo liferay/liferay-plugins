@@ -11,6 +11,8 @@ create table SyncDLFileVersionDiff (
 create table SyncDLObject (
 	syncDLObjectId LONG not null primary key,
 	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
 	createTime LONG,
 	modifiedTime LONG,
 	repositoryId LONG,
@@ -22,6 +24,7 @@ create table SyncDLObject (
 	changeLog VARCHAR(75) null,
 	extraSettings TEXT null,
 	version VARCHAR(75) null,
+	versionId LONG,
 	size_ LONG,
 	checksum VARCHAR(75) null,
 	event VARCHAR(75) null,

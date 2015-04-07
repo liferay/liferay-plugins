@@ -1,0 +1,40 @@
+apply plugin: UtilPlugin
+
+class UtilPlugin implements Plugin<Project> {
+
+	void apply(Project project) {
+		project.convention.plugins.util = new UtilPluginConvention(project)
+	}
+
+}
+
+class UtilPluginConvention {
+
+	UtilPluginConvention(Project project)  {
+		_project = project
+	}
+
+	boolean exists(String fileName) {
+		File file = _project.file(fileName)
+
+		file.exists()
+	}
+
+	void mkdirs(String dirName) {
+		File file = _project.file(dirName)
+
+		file.mkdirs()
+	}
+
+	void move(String sourceFileName, String destinationFileName) {
+		File sourceFile = _project.file(sourceFileName)
+		File destinationFile = _project.file(destinationFileName)
+
+		mkdirs(destinationFile.parent)
+
+		sourceFile.renameTo(destinationFileName)
+	}
+
+	private Project _project
+
+}

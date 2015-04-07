@@ -335,7 +335,7 @@ private static File _exportLayoutsAsFile(Group group, boolean privateLayout) thr
 	parameters.put(PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL, new String[] {Boolean.TRUE.toString()});
 	parameters.put(PortletDataHandlerKeys.PORTLET_DATA, new String[] {Boolean.TRUE.toString()});
 	parameters.put(PortletDataHandlerKeys.PORTLET_DATA_ALL, new String[] {Boolean.TRUE.toString()});
-	parameters.put(PortletDataHandlerKeys.PORTLET_DATA + StringPool.UNDERLINE + PortletKeys.ASSET_CATEGORIES_ADMIN, new String[] {Boolean.TRUE.toString()});
+	parameters.put(PortletDataHandlerKeys.PORTLET_DATA + StringPool.UNDERLINE + AssetCategoriesAdminPortletKeys.ASSET_CATEGORIES_ADMIN, new String[] {Boolean.TRUE.toString()});
 	parameters.put(PortletDataHandlerKeys.PORTLET_SETUP_ALL, new String[] {Boolean.TRUE.toString()});
 	parameters.put(PortletDataHandlerKeys.THEME_REFERENCE, new String[] {Boolean.TRUE.toString()});
 	parameters.put(PortletDataHandlerKeys.PORTLET_SETUP_ALL, new String[] {Boolean.TRUE.toString()});

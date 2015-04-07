@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.mail.model.impl.AccountModelImpl
  * @generated
  */
+@ProviderType
 public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -532,19 +535,19 @@ public interface AccountModel extends AuditedModel, BaseModel<Account> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Account account);
+	public int compareTo(com.liferay.mail.model.Account account);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Account> toCacheModel();
+	public CacheModel<com.liferay.mail.model.Account> toCacheModel();
 
 	@Override
-	public Account toEscapedModel();
+	public com.liferay.mail.model.Account toEscapedModel();
 
 	@Override
-	public Account toUnescapedModel();
+	public com.liferay.mail.model.Account toUnescapedModel();
 
 	@Override
 	public String toString();

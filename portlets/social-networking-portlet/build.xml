@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="social-networking-portlet" basedir="." default="deploy">
-	<property name="import.shared" value="ip-geocoder-shared" />
-
-	<import file="../build-common-portlet.xml" />
-</project>

@@ -23,7 +23,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.oauth2.Oauth2;
-import com.google.api.services.oauth2.model.Userinfo;
+import com.google.api.services.oauth2.model.Userinfoplus;
 
 import com.liferay.google.login.util.WebKeys;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
@@ -66,6 +66,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Sergio González
+ * @author Federico Budassi
  */
 public class GoogleLoginAction extends BaseStrutsAction {
 
@@ -130,7 +131,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	}
 
 	protected User addUser(
-			HttpSession session, long companyId, Userinfo userinfo)
+			HttpSession session, long companyId, Userinfoplus userinfoplus)
 		throws Exception {
 
 		long creatorUserId = 0;
@@ -139,15 +140,15 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		String password2 = StringPool.BLANK;
 		boolean autoScreenName = true;
 		String screenName = StringPool.BLANK;
-		String emailAddress = userinfo.getEmail();
+		String emailAddress = userinfoplus.getEmail();
 		String openId = StringPool.BLANK;
 		Locale locale = LocaleUtil.getDefault();
-		String firstName = userinfo.getGivenName();
+		String firstName = userinfoplus.getGivenName();
 		String middleName = StringPool.BLANK;
-		String lastName = userinfo.getFamilyName();
-		int prefixId = 0;
-		int suffixId = 0;
-		boolean male = Validator.equals(userinfo.getGender(), "male");
+		String lastName = userinfoplus.getFamilyName();
+		long prefixId = 0;
+		long suffixId = 0;
+		boolean male = Validator.equals(userinfoplus.getGender(), "male");
 		int birthdayMonth = Calendar.JANUARY;
 		int birthdayDay = 1;
 		int birthdayYear = 1970;
@@ -234,8 +235,6 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 		builder.setAccessType(accessType);
 
-		builder.setApprovalPrompt("force");
-
 		return builder.build();
 	}
 
@@ -244,7 +243,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			_REDIRECT_URI;
 	}
 
-	protected Userinfo getUserinfo(
+	protected Userinfoplus getUserinfoplus(
 			com.google.api.services.oauth2.Oauth2.Userinfo oAuth2Userinfo)
 		throws Exception {
 
@@ -254,19 +253,21 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		return oAuth2UserinfoGet.execute();
 	}
 
-	protected Userinfo getUserinfo(Credential credentials) throws Exception {
+	protected Userinfoplus getUserinfoplus(Credential credentials)
+		throws Exception {
+
 		Oauth2.Builder builder = new Oauth2.Builder(
 			new NetHttpTransport(), new JacksonFactory(), credentials);
 
 		Oauth2 oauth2 = builder.build();
 
-		Userinfo userinfo = getUserinfo(oauth2.userinfo());
+		Userinfoplus userinfoplus = getUserinfoplus(oauth2.userinfo());
 
-		if ((userinfo == null) || (userinfo.getId() == null)) {
+		if ((userinfoplus == null) || (userinfoplus.getId() == null)) {
 			throw new PrincipalException();
 		}
 
-		return userinfo;
+		return userinfoplus;
 	}
 
 	protected void sendLoginRedirect(
@@ -326,15 +327,15 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			HttpSession session, long companyId, Credential credential)
 		throws Exception {
 
-		Userinfo userinfo = getUserinfo(credential);
+		Userinfoplus userinfoplus = getUserinfoplus(credential);
 
-		if (userinfo == null) {
+		if (userinfoplus == null) {
 			return null;
 		}
 
 		User user = null;
 
-		String emailAddress = userinfo.getEmail();
+		String emailAddress = userinfoplus.getEmail();
 
 		if ((user == null) && Validator.isNotNull(emailAddress)) {
 			user = UserLocalServiceUtil.fetchUserByEmailAddress(
@@ -351,24 +352,24 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		if (user != null) {
 			if (user.getStatus() == WorkflowConstants.STATUS_INCOMPLETE) {
 				session.setAttribute(
-					WebKeys.GOOGLE_INCOMPLETE_USER_ID, userinfo.getId());
+					WebKeys.GOOGLE_INCOMPLETE_USER_ID, userinfoplus.getId());
 
-				user.setEmailAddress(userinfo.getEmail());
-				user.setFirstName(userinfo.getGivenName());
-				user.setLastName(userinfo.getFamilyName());
+				user.setEmailAddress(userinfoplus.getEmail());
+				user.setFirstName(userinfoplus.getGivenName());
+				user.setLastName(userinfoplus.getFamilyName());
 
 				return user;
 			}
 
-			user = updateUser(user, userinfo);
+			user = updateUser(user, userinfoplus);
 		}
 		else {
-			user = addUser(session, companyId, userinfo);
+			user = addUser(session, companyId, userinfoplus);
 		}
 
 		if (DeployManagerUtil.isDeployed(_GOOGLE_DRIVE_CONTEXT)) {
 			updateExpandoValues(
-				user, userinfo, credential.getAccessToken(),
+				user, userinfoplus, credential.getAccessToken(),
 				credential.getRefreshToken());
 		}
 
@@ -376,7 +377,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	}
 
 	protected void updateExpandoValues(
-			User user, Userinfo userinfo, String accessToken,
+			User user, Userinfoplus userinfoplus, String accessToken,
 			String refreshToken)
 		throws Exception {
 
@@ -393,14 +394,16 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		ExpandoValueLocalServiceUtil.addValue(
 			user.getCompanyId(), User.class.getName(),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleUserId",
-			user.getUserId(), userinfo.getId());
+			user.getUserId(), userinfoplus.getId());
 	}
 
-	protected User updateUser(User user, Userinfo userinfo) throws Exception {
-		String emailAddress = userinfo.getEmail();
-		String firstName = userinfo.getGivenName();
-		String lastName = userinfo.getFamilyName();
-		boolean male = Validator.equals(userinfo.getGender(), "male");
+	protected User updateUser(User user, Userinfoplus userinfoplus)
+		throws Exception {
+
+		String emailAddress = userinfoplus.getEmail();
+		String firstName = userinfoplus.getGivenName();
+		String lastName = userinfoplus.getFamilyName();
+		boolean male = Validator.equals(userinfoplus.getGender(), "male");
 
 		if (emailAddress.equals(user.getEmailAddress()) &&
 			firstName.equals(user.getFirstName()) &&
@@ -458,12 +461,9 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		"/portal/google_login?cmd=token";
 
 	private static final List<String> _SCOPES_DRIVE = Arrays.asList(
-		"https://www.googleapis.com/auth/drive",
-		"https://www.googleapis.com/auth/userinfo.email",
-		"https://www.googleapis.com/auth/userinfo.profile");
+		"https://www.googleapis.com/auth/drive", "email", "profile");
 
 	private static final List<String> _SCOPES_LOGIN = Arrays.asList(
-		"https://www.googleapis.com/auth/userinfo.email",
-		"https://www.googleapis.com/auth/userinfo.profile");
+		"email", "profile");
 
 }

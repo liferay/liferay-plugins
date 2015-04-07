@@ -69,7 +69,7 @@ public abstract class BaseExecutor implements Executor {
 
 		Map<String, Executor> nextExecutors = getNextExecutors();
 
-		List<String> paths = new ArrayList<String>(nextExecutors.keySet());
+		List<String> paths = new ArrayList<>(nextExecutors.keySet());
 
 		Collections.sort(paths);
 

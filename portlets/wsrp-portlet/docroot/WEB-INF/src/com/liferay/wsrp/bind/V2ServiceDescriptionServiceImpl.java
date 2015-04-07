@@ -106,12 +106,12 @@ public class V2ServiceDescriptionServiceImpl
 		Map<String, Set<String>> portletModes = portlet.getPortletModes();
 		Map<String, Set<String>> windowStates = portlet.getWindowStates();
 
-		Set<String> mimeTypes = new HashSet<String>();
+		Set<String> mimeTypes = new HashSet<>();
 
 		mimeTypes.addAll(portletModes.keySet());
 		mimeTypes.addAll(windowStates.keySet());
 
-		List<MarkupType> markupTypes = new ArrayList<MarkupType>();
+		List<MarkupType> markupTypes = new ArrayList<>();
 
 		for (String mimeType : mimeTypes) {
 			Set<String> mimeTypePortletModes = portletModes.get(mimeType);
@@ -186,8 +186,7 @@ public class V2ServiceDescriptionServiceImpl
 
 		String[] portletIds = StringUtil.split(wsrpProducer.getPortletIds());
 
-		List<PortletDescription> portletDescriptions =
-			new ArrayList<PortletDescription>();
+		List<PortletDescription> portletDescriptions = new ArrayList<>();
 
 		for (String portletId : portletIds) {
 			String rootPortletId = PortletConstants.getRootPortletId(portletId);
@@ -224,7 +223,7 @@ public class V2ServiceDescriptionServiceImpl
 	protected void setExtensions(
 		PortletDescription portletDescription, Portlet portlet) {
 
-		List<MessageElement> messageElements = new ArrayList<MessageElement>();
+		List<MessageElement> messageElements = new ArrayList<>();
 
 		ExtensionHelperUtil.addMessageElement(
 			messageElements, "css-class-wrapper", portlet.getCssClassWrapper());

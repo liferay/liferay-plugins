@@ -25,7 +25,7 @@ public class LogExecutor extends BaseExecutor {
 
 	@Override
 	protected Map<String, Executor> initNextExecutors() {
-		Map<String, Executor> executors = new HashMap<String, Executor>();
+		Map<String, Executor> executors = new HashMap<>();
 
 		executors.put("error", new ErrorLogExecutor());
 		executors.put("output", new OutputLogExecutor());

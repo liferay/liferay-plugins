@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Account
  * @generated
  */
+@ProviderType
 public class AccountWrapper implements Account, ModelWrapper<Account> {
 	public AccountWrapper(Account account) {
 		_account = account;
@@ -1008,5 +1011,5 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 		_account.resetOriginalValues();
 	}
 
-	private Account _account;
+	private final Account _account;
 }

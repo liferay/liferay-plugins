@@ -103,7 +103,7 @@ public class UpgradeKBFolder extends UpgradeProcess {
 
 			rs = ps.executeQuery();
 
-			Map<Long, String> urlTitles = new HashMap<Long, String>();
+			Map<Long, String> urlTitles = new HashMap<>();
 
 			while (rs.next()) {
 				long kbFolderId = rs.getLong(1);

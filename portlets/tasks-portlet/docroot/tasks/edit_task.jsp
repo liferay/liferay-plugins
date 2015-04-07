@@ -40,7 +40,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 <c:choose>
 	<c:when test="<%= (tasksEntry == null) && (tasksEntryId > 0) %>">
-		<span class="alert alert-error"><liferay-ui:message key="task-could-not-be-found" /></span>
+		<span class="alert alert-danger"><liferay-ui:message key="task-could-not-be-found" /></span>
 	</c:when>
 	<c:otherwise>
 		<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" />
@@ -122,9 +122,9 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				String taglibAddDueDateOnClick = renderResponse.getNamespace() + "displayInputDate();";
 				%>
 
-				<label class="field-label due-date-label"><%= LanguageUtil.get(request, "due-date") %></label>
+				<label class="due-date-label field-label"><%= LanguageUtil.get(request, "due-date") %></label>
 
-				<a class="field-content due-date-toggle" href="javascript:;" id="toggleDueDate" onClick="<%= taglibAddDueDateOnClick %>"><%= dueDateToggleText %></a>
+				<a class="due-date-toggle field-content" href="javascript:;" id="toggleDueDate" onClick="<%= taglibAddDueDateOnClick %>"><%= dueDateToggleText %></a>
 
 				<aui:input id="addDueDate" name="addDueDate" type="hidden" value="<%= addDueDate %>" />
 

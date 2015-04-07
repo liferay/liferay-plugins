@@ -27,7 +27,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 
 <c:choose>
 	<c:when test="<%= tasksEntry == null %>">
-		<span class="alert alert-error"><liferay-ui:message key="task-could-not-be-found" /></span>
+		<span class="alert alert-danger"><liferay-ui:message key="task-could-not-be-found" /></span>
 	</c:when>
 	<c:otherwise>
 
@@ -89,7 +89,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 				/>
 			</div>
 
-			<div class="task-data last">
+			<div class="last task-data">
 				<liferay-ui:icon
 					iconCssClass="icon-calendar"
 					label="<%= true %>"
@@ -98,13 +98,13 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 			</div>
 		</div>
 
-		<table class="task-data-table lfr-table">
+		<table class="lfr-table task-data-table">
 		<tr>
 			<td class="lfr-label">
 				<liferay-ui:message key="status" />
 			</td>
 			<td>
-				<div class="task-data status">
+				<div class="status task-data">
 					<liferay-ui:message key="<%= tasksEntry.getStatusLabel() %>" />
 				</div>
 			</td>
@@ -128,7 +128,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 					<liferay-ui:message key="due-date" />
 				</td>
 				<td>
-					<div class="task-data due-date">
+					<div class="due-date task-data">
 						<liferay-ui:icon
 							iconCssClass="icon-calendar"
 							label="<%= true %>"

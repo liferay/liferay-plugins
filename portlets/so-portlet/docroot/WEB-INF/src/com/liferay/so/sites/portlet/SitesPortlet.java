@@ -18,7 +18,7 @@
 package com.liferay.so.sites.portlet;
 
 import com.liferay.portal.DuplicateGroupException;
-import com.liferay.portal.GroupNameException;
+import com.liferay.portal.GroupKeyException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -113,7 +113,7 @@ public class SitesPortlet extends MVCPortlet {
 				if (e instanceof DuplicateGroupException) {
 					message = "please-enter-a-unique-name";
 				}
-				else if (e instanceof GroupNameException) {
+				else if (e instanceof GroupKeyException) {
 					message = "please-enter-a-valid-name";
 				}
 				else {
@@ -262,31 +262,15 @@ public class SitesPortlet extends MVCPortlet {
 				themeDisplay.getUserId(), group.getGroupId());
 
 			if (group.hasPrivateLayouts() && member) {
-				PortletURL portletURL = liferayPortletResponse.createActionURL(
-					PortletKeys.SITE_REDIRECTOR);
-
-				portletURL.setParameter("struts_action", "/my_sites/view");
-				portletURL.setParameter(
-					"groupId", String.valueOf(group.getGroupId()));
-				portletURL.setParameter(
-					"privateLayout", Boolean.TRUE.toString());
-				portletURL.setWindowState(WindowState.NORMAL);
-
-				groupJSONObject.put("privateLayoutsURL", portletURL.toString());
+				groupJSONObject.put(
+					"privateLayoutsURL",
+					group.getDisplayURL(themeDisplay, true));
 			}
 
 			if (group.hasPublicLayouts()) {
-				PortletURL portletURL = liferayPortletResponse.createActionURL(
-					PortletKeys.SITE_REDIRECTOR);
-
-				portletURL.setParameter("struts_action", "/my_sites/view");
-				portletURL.setParameter(
-					"groupId", String.valueOf(group.getGroupId()));
-				portletURL.setParameter(
-					"privateLayout", Boolean.FALSE.toString());
-				portletURL.setWindowState(WindowState.NORMAL);
-
-				groupJSONObject.put("publicLayoutsURL", portletURL.toString());
+				groupJSONObject.put(
+					"publicLayoutsURL",
+					group.getDisplayURL(themeDisplay, false));
 			}
 
 			boolean socialOfficeGroup =
@@ -359,7 +343,7 @@ public class SitesPortlet extends MVCPortlet {
 			}
 			else if (member &&
 					 !isOrganizationOrUserGroupMember(
-						themeDisplay.getUserId(), group)) {
+						 themeDisplay.getUserId(), group)) {
 
 				siteAssignmentsPortletURL.setParameter(
 					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
@@ -599,7 +583,7 @@ public class SitesPortlet extends MVCPortlet {
 
 		long[] deleteLayoutIds = getLongArray(actionRequest, "deleteLayoutIds");
 
-		List<Layout> layouts = new ArrayList<Layout>(deleteLayoutIds.length);
+		List<Layout> layouts = new ArrayList<>(deleteLayoutIds.length);
 
 		for (long deleteLayoutId : deleteLayoutIds) {
 			Layout layout = LayoutLocalServiceUtil.getLayout(

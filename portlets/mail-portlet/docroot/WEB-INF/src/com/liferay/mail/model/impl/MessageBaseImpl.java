@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 
@@ -29,6 +31,7 @@ import com.liferay.mail.service.MessageLocalServiceUtil;
  * @see com.liferay.mail.model.Message
  * @generated
  */
+@ProviderType
 public abstract class MessageBaseImpl extends MessageModelImpl
 	implements Message {
 	/*

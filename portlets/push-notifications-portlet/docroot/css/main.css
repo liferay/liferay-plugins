@@ -1,9 +1,10 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 .push-notifications-portlet {
 	textarea {
 		@include box-sizing("border-box");
+
 		width: 100%;
 	}
 }

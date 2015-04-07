@@ -59,7 +59,7 @@ public class SolrFacetQueryCollector implements FacetCollector {
 			return _termCollectors;
 		}
 
-		List<TermCollector> termCollectors = new ArrayList<TermCollector>();
+		List<TermCollector> termCollectors = new ArrayList<>();
 
 		for (Map.Entry<String, Integer> entry : _counts.entrySet()) {
 			Integer count = entry.getValue();
@@ -79,7 +79,7 @@ public class SolrFacetQueryCollector implements FacetCollector {
 		return term.substring(_fieldName.length() + 1);
 	}
 
-	private Map<String, Integer> _counts = new HashMap<String, Integer>();
+	private Map<String, Integer> _counts = new HashMap<>();
 	private String _fieldName;
 	private List<TermCollector> _termCollectors;
 

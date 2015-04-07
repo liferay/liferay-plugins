@@ -64,7 +64,7 @@ import java.util.Set;
  *
  * @author Eduardo Lundgren
  * @see CalendarNotificationTemplatePersistence
- * @see CalendarNotificationTemplateUtil
+ * @see com.liferay.calendar.service.persistence.CalendarNotificationTemplateUtil
  * @generated
  */
 @ProviderType

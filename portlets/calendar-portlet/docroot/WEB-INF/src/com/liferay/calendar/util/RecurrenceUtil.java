@@ -39,8 +39,7 @@ public class RecurrenceUtil {
 		CalendarBooking calendarBooking, long startTime, long endTime,
 		int maxSize) {
 
-		List<CalendarBooking> expandedCalendarBookings =
-			new ArrayList<CalendarBooking>();
+		List<CalendarBooking> expandedCalendarBookings = new ArrayList<>();
 
 		try {
 			CalendarBookingIterator calendarBookingIterator =
@@ -84,8 +83,7 @@ public class RecurrenceUtil {
 		List<CalendarBooking> calendarBookings, long startTime, long endTime,
 		int maxSize) {
 
-		List<CalendarBooking> expandedCalendarBookings =
-			new ArrayList<CalendarBooking>();
+		List<CalendarBooking> expandedCalendarBookings = new ArrayList<>();
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			List<CalendarBooking> expandedCalendarBooking =

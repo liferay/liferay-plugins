@@ -58,7 +58,7 @@ public class GroupAwareRoleTaskAssignmentSelector
 		}
 
 		List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
-			new ArrayList<KaleoTaskAssignment>();
+			new ArrayList<>();
 
 		if (isValidAssignment(kaleoTaskAssignment, group)) {
 			calculatedKaleoTaskAssignments.add(kaleoTaskAssignment);

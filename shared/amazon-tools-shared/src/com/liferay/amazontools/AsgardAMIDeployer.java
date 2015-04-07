@@ -52,6 +52,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			"base.dir");
 		CmdLineParser.Option imageNameOption = cmdLineParser.addStringOption(
 			"image.name");
+		CmdLineParser.Option openAsgardURLOption =
+			cmdLineParser.addBooleanOption("open.asgard.url");
 		CmdLineParser.Option parallelDeploymentOption =
 			cmdLineParser.addBooleanOption("parallel.deployment");
 		CmdLineParser.Option propertiesFileNameOption =
@@ -64,6 +66,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 				(String)cmdLineParser.getOptionValue(baseDirOption),
 				(String)cmdLineParser.getOptionValue(imageNameOption),
 				(Boolean)cmdLineParser.getOptionValue(
+					openAsgardURLOption, Boolean.FALSE),
+				(Boolean)cmdLineParser.getOptionValue(
 					parallelDeploymentOption, Boolean.FALSE),
 				(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 		}
@@ -71,12 +75,16 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			e.printStackTrace();
 
 			System.exit(-1);
+
+			return;
 		}
+
+		System.exit(0);
 	}
 
 	public AsgardAMIDeployer(
-			String baseDirName, String imageName, boolean parallelDeployment,
-			String propertiesFileName)
+			String baseDirName, String imageName, boolean openAsgardURLOption,
+			boolean parallelDeployment, String propertiesFileName)
 		throws Exception {
 
 		super(propertiesFileName);
@@ -118,7 +126,9 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		deactivateOldScalingGroup(autoScalingGroupName);
 
-		openAsgardURL();
+		if (openAsgardURLOption) {
+			openAsgardURL();
+		}
 
 		System.out.println(
 			"Deployed Auto Scaling Group " + autoScalingGroupName);
@@ -162,7 +172,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		boolean deployed = false;
 		JSONObject loadBalancerJSONObject = null;
 
-		for (int i = 1; i < 30; i++) {
+		for (int i = 1; i < 50; i++) {
 			String json = _jsonWebServiceClient.doGet(
 				"/" + availabilityZone + "/loadBalancer/show/" +
 					asgardClusterName + ".json",
@@ -193,7 +203,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		}
 
 		if (!deployed) {
-			Map<String, String> parameters = new HashMap<String, String>();
+			Map<String, String> parameters = new HashMap<>();
 
 			parameters.put("name", autoScalingGroupName);
 
@@ -204,7 +214,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 				"Unable to deploy Auto Scaling Group " + autoScalingGroupName);
 		}
 
-		List<String> instanceIds = new ArrayList<String>();
+		List<String> instanceIds = new ArrayList<>();
 
 		List<JSONObject> instanceStateJSONObjects = getInstanceStateJSONObjects(
 			loadBalancerJSONObject, autoScalingGroupName);
@@ -232,7 +242,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		String availabilityZone = properties.getProperty("availability.zone");
 
-		Map<String, String> parameters = new HashMap<String, String>();
+		Map<String, String> parameters = new HashMap<>();
 
 		parameters.put("checkHealth", "true");
 		parameters.put("imageId", getImageId(_imageName));
@@ -289,7 +299,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 				"autoScalingGroupName");
 			maxSize = autoScalingGroupJSONObject.getInt("maxSize");
 
-			List<String> instanceIds = new ArrayList<String>();
+			List<String> instanceIds = new ArrayList<>();
 
 			JSONArray instancesJSONArray =
 				autoScalingGroupJSONObject.getJSONArray("instances");
@@ -311,7 +321,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 				createTagsRequest.setResources(instanceIds);
 
-				List<Tag> tags = new ArrayList<Tag>();
+				List<Tag> tags = new ArrayList<>();
 
 				Tag tag = new Tag();
 
@@ -431,7 +441,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 					continue;
 				}
 
-				Map<String, String> parameters = new HashMap<String, String>();
+				Map<String, String> parameters = new HashMap<>();
 
 				parameters.put("name", curAutoScalingGroupName);
 
@@ -444,7 +454,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	protected List<JSONObject> getInstanceStateJSONObjects(
 		JSONObject loadBalancerJSONObject, String autoScalingGroupName) {
 
-		List<JSONObject> instanceStateJSONObjects = new ArrayList<JSONObject>();
+		List<JSONObject> instanceStateJSONObjects = new ArrayList<>();
 
 		JSONArray instanceStatesJSONArray = loadBalancerJSONObject.getJSONArray(
 			"instanceStates");

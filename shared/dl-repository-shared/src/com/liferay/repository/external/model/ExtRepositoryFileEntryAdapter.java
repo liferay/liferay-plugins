@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Lock;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.service.persistence.LockUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
@@ -323,7 +324,18 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	public boolean hasLock() {
-		return isCheckedOut();
+		if (!isCheckedOut()) {
+			return false;
+		}
+
+		User checkedOutByUser = getUser(
+			_extRepositoryFileEntry.getCheckedOutBy());
+
+		if (checkedOutByUser.getUserId() != PrincipalThreadLocal.getUserId()) {
+			return false;
+		}
+
+		return true;
 	}
 
 	@Override
@@ -349,21 +361,14 @@ public class ExtRepositoryFileEntryAdapter
 			_getExtRepositoryFileVersionAdapters()
 		throws PortalException {
 
-		if (_extRepositoryFileVersionAdapters == null) {
-			ExtRepositoryAdapter extRepositoryAdapter = getRepository();
+		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
 
-			_extRepositoryFileVersionAdapters =
-				extRepositoryAdapter.getExtRepositoryFileVersionAdapters(this);
-		}
-
-		return _extRepositoryFileVersionAdapters;
+		return extRepositoryAdapter.getExtRepositoryFileVersionAdapters(this);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ExtRepositoryFileEntryAdapter.class);
 
 	private ExtRepositoryFileEntry _extRepositoryFileEntry;
-	private List<ExtRepositoryFileVersionAdapter>
-		_extRepositoryFileVersionAdapters;
 
 }

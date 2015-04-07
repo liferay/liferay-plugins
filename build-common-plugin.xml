@@ -60,6 +60,7 @@
 				<path refid="lib.classpath" />
 				<path refid="portal.classpath" />
 				<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
+				<fileset dir="${sdk.dir}/dependencies/org.freemarker/lib" includes="*.jar" />
 				<fileset dir="${service.base.dir}/lib" includes="*.jar" />
 				<pathelement location="${sdk.dir}/misc" />
 				<pathelement location="${service.base.dir}/classes" />
@@ -186,6 +187,98 @@
 					<path id="@{classpathref}">
 						<fileset file="@{jarfile}" />
 					</path>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-jsp">
+		<attribute name="compile.jsp.docroot.dir" />
+
+		<sequential>
+			<antcall target="compile" />
+
+			<if>
+				<not>
+					<equals arg1="${app.server.type}" arg2="tomcat" />
+				</not>
+				<then>
+					<fail>Compiling JSPs with ${app.server.type} is not supported.</fail>
+				</then>
+			</if>
+
+			<property name="jspc.classes.dir" value="classes/${app.server.type}" />
+
+			<if>
+				<and>
+					<equals arg1="${app.server.type}" arg2="tomcat" />
+					<equals arg1="${ant.java.version}" arg2="1.5" />
+				</and>
+				<then>
+					<var name="jspc.java.home" value="${jdk.windows.home}" />
+				</then>
+				<else>
+					<var name="jspc.java.home" value="${env.JAVA_HOME}" />
+				</else>
+			</if>
+
+			<path id="jspc.classpath">
+				<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
+				<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+				<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
+				<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
+				<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
+				<fileset dir="@{compile.jsp.docroot.dir}/WEB-INF/lib" includes="*.jar" />
+			</path>
+
+			<delete dir="${jspc.classes.dir}" quiet="true" />
+
+			<java
+				classname="com.liferay.jasper.jspc.JspC"
+				classpathref="jspc.classpath"
+				fork="true"
+				jvm="${jspc.java.home}/bin/java"
+				newenvironment="true"
+				outputproperty="jspc.output"
+			>
+				<arg line="-d ${jspc.classes.dir} -webapp @{compile.jsp.docroot.dir}" />
+			</java>
+
+			<echo>${jspc.output}</echo>
+
+			<if>
+				<contains string="${jspc.output}" substring="JasperException" />
+				<then>
+					<delete dir="${jspc.classes.dir}" quiet="true" />
+
+					<fail>JSPs failed to compile.</fail>
+				</then>
+			</if>
+
+			<if>
+				<available file="${jspc.classes.dir}" type="dir" />
+				<then>
+					<javac
+						classpathref="jspc.classpath"
+						compiler="${javac.compiler}"
+						deprecation="${javac.deprecation}"
+						destdir="${jspc.classes.dir}"
+						encoding="${javac.encoding}"
+						errorProperty="jspc.javac.fail"
+						failonerror="false"
+						includeAntRuntime="false"
+						nowarn="on"
+						srcdir="${jspc.classes.dir}"
+					/>
+
+					<delete dir="${jspc.classes.dir}" quiet="true" />
+				</then>
+			</if>
+
+			<if>
+				<istrue value="${jspc.javac.fail}" />
+				<then>
+					<fail>JSPs failed to compile.</fail>
 				</then>
 			</if>
 		</sequential>
@@ -345,8 +438,8 @@
 		<path id="wsdd.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
+			<fileset dir="${plugin.lib.dir}" includes="*.jar" />
+			<pathelement location="${plugin.classes.dir}" />
 		</path>
 
 		<if>
@@ -369,10 +462,10 @@
 		>
 			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-			<arg value="wsdd.input.file=docroot/WEB-INF/service.xml" />
-			<arg value="wsdd.server.config.file=docroot/WEB-INF/server-config.wsdd" />
+			<arg value="wsdd.input.file=${plugin.source.dir}/../service.xml" />
+			<arg value="wsdd.server.config.file=${plugin.source.dir}/../server-config.wsdd" />
 			<arg value="wsdd.service.namespace=Plugin" />
-			<arg value="wsdd.output.path=docroot/WEB-INF/src/" />
+			<arg value="wsdd.output.path=${plugin.source.dir}/" />
 		</java>
 
 		<if>
@@ -390,96 +483,38 @@
 				<fail>WSDD Builder generated exceptions.</fail>
 			</then>
 		</if>
-	</target>
 
-	<target name="build-wsdl">
-		<for param="wsdl.full.path">
-			<path>
-				<fileset dir="." includes="docroot/WEB-INF/wsdl/*.wsdl" />
-			</path>
-			<sequential>
-				<tstamp>
-					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-				</tstamp>
+		<if>
+			<available file="bnd.bnd" />
+			<then>
+				<property file="bnd.bnd" prefix="bnd." />
 
-				<mkdir dir="${tstamp.value}" />
+				<echo file="${plugin.name}-wsdd.bnd">Bundle-SymbolicName: ${bnd.Bundle-SymbolicName}.wsdd
+Bundle-Name: ${bnd.Bundle-Name} WSDD descriptors
+Bundle-Version: ${bnd.Bundle-Version}
+Fragment-Host: ${bnd.Bundle-SymbolicName}
+Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
+				</echo>
 
-				<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
+				<manifest-helper />
 
-				<axis-wsdl2java
-					output="${tstamp.value}"
-					url="@{wsdl.full.path}"
-				/>
+				<bndexpand propertyfile="${sdk.dir}/common.bnd" />
 
-				<compile-java
-					javac.classpathref="plugin.classpath"
-					javac.destdir="${tstamp.value}"
-					javac.srcdir="${tstamp.value}"
-				/>
+				<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.wsdd.file}">
+					<bndfiles>
+						<fileset dir="${basedir}">
+							<include name="${plugin.name}-wsdd.bnd" />
+						</fileset>
+					</bndfiles>
+					<classpath>
+						<pathelement location="${plugin.classes.dir}" />
+					</classpath>
+					<property name="-sourcepath" value="${basedir}" />
+				</bnd>
 
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.beginindex">
-					<antelope:lastindexof string="${file.separator}" />
-				</antelope:stringutil>
-
-				<antelope:math
-					datatype="int"
-					operand1="${wsdl.name.beginindex}"
-					operand2="1"
-					operation="+"
-					result="wsdl.name.beginindex"
-				/>
-
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.file">
-					<antelope:substring beginindex="${wsdl.name.beginindex}" />
-				</antelope:stringutil>
-
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.endindex">
-					<antelope:lastindexof string="." />
-				</antelope:stringutil>
-
-				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name">
-					<antelope:substring beginindex="${wsdl.name.beginindex}" endindex="${wsdl.name.endindex}" />
-				</antelope:stringutil>
-
-				<jar
-					basedir="${tstamp.value}"
-					jarfile="docroot/WEB-INF/lib/${wsdl.name}-ws.jar"
-				/>
-
-				<delete dir="${tstamp.value}" />
-			</sequential>
-		</for>
-	</target>
-
-	<target name="build-xsd">
-		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-		</tstamp>
-
-		<mkdir dir="${tstamp.value}" />
-
-		<path id="plugin-lib.classpath">
-			<fileset dir="${app.server.lib.portal.dir}" includes="xbean.jar" />
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
-		</path>
-
-		<taskdef classname="org.apache.xmlbeans.impl.tool.XMLBean" classpathref="portal.classpath" name="xmlbean" />
-
-		<xmlbean
-			classgendir="${tstamp.value}"
-			classpathref="plugin-lib.classpath"
-			srcgendir="${tstamp.value}"
-		>
-			<fileset dir="docroot/WEB-INF/xsd" includes="**/*.*" />
-		</xmlbean>
-
-		<zip
-			basedir="${tstamp.value}"
-			destfile="docroot/WEB-INF/lib/${plugin.name}-xbean.jar"
-		/>
-
-		<delete dir="${tstamp.value}" />
+				<delete file="${basedir}/${plugin.name}-wsdd.bnd" failonerror="false" />
+			</then>
+		</if>
 	</target>
 
 	<target name="compile-import-shared">
@@ -489,94 +524,9 @@
 	</target>
 
 	<target name="compile-jsp">
-		<antcall target="compile" />
-
-		<if>
-			<not>
-				<equals arg1="${app.server.type}" arg2="tomcat" />
-			</not>
-			<then>
-				<fail>Compiling JSPs with ${app.server.type} is not supported.</fail>
-			</then>
-		</if>
-
-		<property name="jspc.classes.dir" value="classes/${app.server.type}" />
-
-		<if>
-			<and>
-				<equals arg1="${app.server.type}" arg2="tomcat" />
-				<equals arg1="${ant.java.version}" arg2="1.5" />
-			</and>
-			<then>
-				<var name="jspc.java.home" value="${jdk.windows.home}" />
-			</then>
-			<else>
-				<var name="jspc.java.home" value="${env.JAVA_HOME}" />
-			</else>
-		</if>
-
-		<path id="jspc.classpath">
-			<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
-			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-			<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="${app.server.dir}/bin/tomcat-juli.jar" />
-			<pathelement location="${app.server.dir}/lib/el-api.jar" />
-			<pathelement location="${app.server.dir}/lib/jasper.jar" />
-			<pathelement location="${app.server.dir}/lib/jasper-el.jar" />
-			<pathelement location="${app.server.dir}/lib/jasper-jdt.jar" />
-			<pathelement location="${app.server.dir}/lib/jsp-api.jar" />
-			<pathelement location="${app.server.dir}/lib/servlet-api.jar" />
-			<pathelement location="${app.server.dir}/lib/tomcat-api.jar" />
-			<pathelement location="${app.server.dir}/lib/tomcat-util.jar" />
-		</path>
-
-		<delete dir="${jspc.classes.dir}" quiet="true" />
-
-		<java
-			classname="org.apache.jasper.JspC"
-			classpathref="jspc.classpath"
-			fork="true"
-			jvm="${jspc.java.home}/bin/java"
-			newenvironment="true"
-			outputproperty="jspc.output"
-		>
-			<arg line="-d ${jspc.classes.dir} -webapp docroot" />
-		</java>
-
-		<echo>${jspc.output}</echo>
-
-		<if>
-			<contains string="${jspc.output}" substring="JasperException" />
-			<then>
-				<delete dir="${jspc.classes.dir}" quiet="true" />
-
-				<fail>JSPs failed to compile.</fail>
-			</then>
-		</if>
-
-		<javac
-			classpathref="jspc.classpath"
-			compiler="${javac.compiler}"
-			deprecation="${javac.deprecation}"
-			destdir="${jspc.classes.dir}"
-			encoding="${javac.encoding}"
-			errorProperty="jspc.javac.fail"
-			failonerror="false"
-			includeAntRuntime="false"
-			nowarn="on"
-			srcdir="${jspc.classes.dir}"
+		<compile-jsp
+			compile.jsp.docroot.dir="docroot"
 		/>
-
-		<delete dir="${jspc.classes.dir}" quiet="true" />
-
-		<if>
-			<istrue value="${jspc.javac.fail}" />
-			<then>
-				<fail>JSPs failed to compile.</fail>
-			</then>
-		</if>
 	</target>
 
 	<target name="compile-test">
@@ -691,7 +641,7 @@
 		<if>
 			<equals arg1="${patched.file.available}" arg2="false" />
 			<then>
-				<get
+				<mirrors-get
 					dest="${patch.original.lib.name}-sources.jar"
 					src="${patch.original.lib.url}/${patch.original.lib.name}/${patch.original.lib.version}/${patch.original.lib.name}-${patch.original.lib.version}-sources.jar"
 				/>
@@ -702,7 +652,7 @@
 				>
 					<mapper
 						type="glob"
-						from="src/java/*"
+						from="${patch.original.lib.source.dir}/*"
 						to="*"
 					/>
 					<patternset includes="${patch.destination}" />
@@ -728,7 +678,7 @@
 					</else>
 				</if>
 
-				<for delimiter=":" list="${patch.files}" param="patch.file">
+				<for delimiter="${path.separator}" list="${patch.files}" param="patch.file">
 					<sequential>
 						<echo>Applying patch @{patch.file}.</echo>
 
@@ -795,9 +745,11 @@
 			module.dir="${basedir}"
 			test.class="${test.class}"
 		/>
+
+		<stop-test-app-server />
 	</target>
 
-	<target name="test-class-group" depends="compile,compile-test">
+	<target name="test-class-group">
 		<if>
 			<not>
 				<isset property="test.class.group.index" />
@@ -807,22 +759,33 @@
 			</then>
 		</if>
 
-		<property file="${env.WORKSPACE}/test.class.file.names.properties" />
+		<if>
+			<available file="${basedir}/test" type="dir" />
+			<then>
+				<property file="${lp.portal.project.dir}/test.class.file.names.properties" />
 
-		<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
+				<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
-		<test-cmd
-			module.dir="${basedir}"
-			junit.forkmode="once" 
-			test.class="${test.classes}"
-			test.type="integration"
-		/>
+				<test-cmd
+					module.dir="${basedir}"
+					junit.forkmode="perTest"
+					test.class="${test.classes}"
+					test.type="unit"
+				/>
 
-		<test-cmd
-			module.dir="${basedir}"
-			junit.forkmode="perTest"
-			test.class="${test.classes}"
-			test.type="unit"
-		/>
+				<test-cmd
+					module.dir="${basedir}"
+					junit.forkmode="once"
+					test.class="${test.classes}"
+					test.type="integration"
+				/>
+			</then>
+			<elseif>
+				<equals arg1="${test.class.group.index}" arg2="0" />
+				<then>
+					<antcall target="compile" />
+				</then>
+			</elseif>
+		</if>
 	</target>
 </project>

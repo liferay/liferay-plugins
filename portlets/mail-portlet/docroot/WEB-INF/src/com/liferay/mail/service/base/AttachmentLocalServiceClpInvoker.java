@@ -14,6 +14,8 @@
 
 package com.liferay.mail.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.service.AttachmentLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class AttachmentLocalServiceClpInvoker {
 	public AttachmentLocalServiceClpInvoker() {
 		_methodName0 = "addAttachment";

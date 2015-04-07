@@ -41,7 +41,7 @@ public class WorkflowContextUtil {
 
 	public static Map<String, Serializable> convert(String json) {
 		if (Validator.isNull(json)) {
-			return new HashMap<String, Serializable>();
+			return new HashMap<>();
 		}
 
 		return (Map<String, Serializable>)JSONFactoryUtil.deserialize(json);

@@ -79,7 +79,7 @@ public class SyncServletContextListener
 			for (DLSyncEvent dlSyncEvent : dlSyncEvents) {
 				Message message = new Message();
 
-				Map<String, Object> values = new HashMap<String, Object>(4);
+				Map<String, Object> values = new HashMap<>(4);
 
 				values.put("event", dlSyncEvent.getEvent());
 				values.put("modifiedTime", dlSyncEvent.getModifiedTime());

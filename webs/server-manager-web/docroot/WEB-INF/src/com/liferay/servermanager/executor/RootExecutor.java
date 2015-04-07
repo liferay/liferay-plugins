@@ -25,7 +25,7 @@ public class RootExecutor extends BaseExecutor {
 
 	@Override
 	protected Map<String, Executor> initNextExecutors() {
-		Map<String, Executor> executors = new HashMap<String, Executor>();
+		Map<String, Executor> executors = new HashMap<>();
 
 		executors.put("plugins", new PluginsExecutor());
 		executors.put("server", new ServerExecutor());

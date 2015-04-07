@@ -48,7 +48,7 @@ public class ForkNodeExecutor extends BaseNodeExecutor {
 			currentKaleoNode.getKaleoTransitions();
 
 		Map<String, KaleoInstanceToken> childKaleoInstanceTokens =
-			new HashMap<String, KaleoInstanceToken>();
+			new HashMap<>();
 
 		for (KaleoTransition kaleoTransition : kaleoTransitions) {
 			KaleoInstanceToken parentKaleoInstanceToken =

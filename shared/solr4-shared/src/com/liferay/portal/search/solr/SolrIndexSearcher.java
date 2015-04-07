@@ -76,6 +76,11 @@ import org.apache.solr.common.params.FacetParams;
 public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	@Override
+	public String getQueryString(SearchContext searchContext, Query query) {
+		return translateQuery(searchContext, query);
+	}
+
+	@Override
 	public Hits search(SearchContext searchContext, Query query)
 		throws SearchException {
 
@@ -326,7 +331,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
-		Set<String> sortFieldNames = new HashSet<String>();
+		Set<String> sortFieldNames = new HashSet<>();
 
 		for (Sort sort : sorts) {
 			if (sort == null) {
@@ -364,16 +369,16 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		Hits hits = new HitsImpl();
 
-		List<Document> documents = new ArrayList<Document>();
-		Set<String> queryTerms = new HashSet<String>();
-		List<Float> scores = new ArrayList<Float>();
+		List<Document> documents = new ArrayList<>();
+		Set<String> queryTerms = new HashSet<>();
+		List<Float> scores = new ArrayList<>();
 
 		QueryConfig queryConfig = query.getQueryConfig();
 		Map<String, Map<String, List<String>>> highlights =
 			queryResponse.getHighlighting();
 
 		for (SolrDocument solrDocument : solrDocumentList) {
-			Document document = processSolrDocument(solrDocument);
+			Document document = processSolrDocument(solrDocument, queryConfig);
 
 			documents.add(document);
 
@@ -397,7 +402,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return hits;
 	}
 
-	protected Document processSolrDocument(SolrDocument solrDocument) {
+	protected Document processSolrDocument(
+		SolrDocument solrDocument, QueryConfig queryConfig) {
+
 		Document document = new DocumentImpl();
 
 		Collection<String> fieldNames = solrDocument.getFieldNames();
@@ -413,6 +420,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 			document.add(field);
 		}
+
+		populateUID(document, queryConfig);
 
 		return document;
 	}
@@ -439,22 +448,24 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
 		}
 
-		translateQuery(solrQuery, searchContext, query);
+		QueryTranslatorUtil.translateForSolr(query);
+
+		String queryString = translateQuery(searchContext, query);
+
+		solrQuery.setQuery(queryString);
 
 		return _solrServer.query(solrQuery, METHOD.POST);
 	}
 
-	protected void translateQuery(
-			SolrQuery solrQuery, SearchContext searchContext, Query query)
-		throws Exception {
-
-		QueryTranslatorUtil.translateForSolr(query);
-
+	protected String translateQuery(SearchContext searchContext, Query query) {
 		String queryString = query.toString();
 
 		StringBundler sb = new StringBundler(6);
 
+		sb.append(StringPool.PLUS);
+		sb.append(StringPool.OPEN_PARENTHESIS);
 		sb.append(queryString);
+		sb.append(StringPool.CLOSE_PARENTHESIS);
 		sb.append(StringPool.SPACE);
 		sb.append(StringPool.PLUS);
 		sb.append(Field.COMPANY_ID);
@@ -464,7 +475,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		SolrPostProcesor solrPostProcesor = new SolrPostProcesor(
 			sb.toString(), searchContext.getKeywords());
 
-		solrQuery.setQuery(solrPostProcesor.postProcess());
+		return solrPostProcesor.postProcess();
 	}
 
 	protected void updateFacetCollectors(

@@ -67,7 +67,7 @@ public class BBBUtil {
 			return Collections.emptyList();
 		}
 
-		List<BBBParticipant> bbbParticipants = new ArrayList<BBBParticipant>();
+		List<BBBParticipant> bbbParticipants = new ArrayList<>();
 
 		int[] bbbParticipantsIndexes = StringUtil.split(
 			bbbParticipantsIndexesString, 0);

@@ -35,6 +35,9 @@
 		<field name="calendarId" type="long" />
 		<field name="calendarResourceId" type="long" />
 		<field name="parentCalendarBookingId" type="long" />
+		<field name="vEventUid" type="String">
+			<hint name="max-length">255</hint>
+		</field>
 		<field name="title" type="String" localized="true" />
 		<field name="description" type="String" localized="true">
 			<hint-collection name="EDITOR" />

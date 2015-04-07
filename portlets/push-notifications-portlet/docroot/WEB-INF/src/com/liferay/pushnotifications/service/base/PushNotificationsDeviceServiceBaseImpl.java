@@ -29,7 +29,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceService;
 import com.liferay.pushnotifications.service.persistence.PushNotificationsDevicePersistence;
-import com.liferay.pushnotifications.service.persistence.PushNotificationsEntryPersistence;
 
 import javax.sql.DataSource;
 
@@ -109,63 +108,6 @@ public abstract class PushNotificationsDeviceServiceBaseImpl
 	public void setPushNotificationsDevicePersistence(
 		PushNotificationsDevicePersistence pushNotificationsDevicePersistence) {
 		this.pushNotificationsDevicePersistence = pushNotificationsDevicePersistence;
-	}
-
-	/**
-	 * Returns the push notifications entry local service.
-	 *
-	 * @return the push notifications entry local service
-	 */
-	public com.liferay.pushnotifications.service.PushNotificationsEntryLocalService getPushNotificationsEntryLocalService() {
-		return pushNotificationsEntryLocalService;
-	}
-
-	/**
-	 * Sets the push notifications entry local service.
-	 *
-	 * @param pushNotificationsEntryLocalService the push notifications entry local service
-	 */
-	public void setPushNotificationsEntryLocalService(
-		com.liferay.pushnotifications.service.PushNotificationsEntryLocalService pushNotificationsEntryLocalService) {
-		this.pushNotificationsEntryLocalService = pushNotificationsEntryLocalService;
-	}
-
-	/**
-	 * Returns the push notifications entry remote service.
-	 *
-	 * @return the push notifications entry remote service
-	 */
-	public com.liferay.pushnotifications.service.PushNotificationsEntryService getPushNotificationsEntryService() {
-		return pushNotificationsEntryService;
-	}
-
-	/**
-	 * Sets the push notifications entry remote service.
-	 *
-	 * @param pushNotificationsEntryService the push notifications entry remote service
-	 */
-	public void setPushNotificationsEntryService(
-		com.liferay.pushnotifications.service.PushNotificationsEntryService pushNotificationsEntryService) {
-		this.pushNotificationsEntryService = pushNotificationsEntryService;
-	}
-
-	/**
-	 * Returns the push notifications entry persistence.
-	 *
-	 * @return the push notifications entry persistence
-	 */
-	public PushNotificationsEntryPersistence getPushNotificationsEntryPersistence() {
-		return pushNotificationsEntryPersistence;
-	}
-
-	/**
-	 * Sets the push notifications entry persistence.
-	 *
-	 * @param pushNotificationsEntryPersistence the push notifications entry persistence
-	 */
-	public void setPushNotificationsEntryPersistence(
-		PushNotificationsEntryPersistence pushNotificationsEntryPersistence) {
-		this.pushNotificationsEntryPersistence = pushNotificationsEntryPersistence;
 	}
 
 	/**
@@ -407,12 +349,6 @@ public abstract class PushNotificationsDeviceServiceBaseImpl
 	protected com.liferay.pushnotifications.service.PushNotificationsDeviceService pushNotificationsDeviceService;
 	@BeanReference(type = PushNotificationsDevicePersistence.class)
 	protected PushNotificationsDevicePersistence pushNotificationsDevicePersistence;
-	@BeanReference(type = com.liferay.pushnotifications.service.PushNotificationsEntryLocalService.class)
-	protected com.liferay.pushnotifications.service.PushNotificationsEntryLocalService pushNotificationsEntryLocalService;
-	@BeanReference(type = com.liferay.pushnotifications.service.PushNotificationsEntryService.class)
-	protected com.liferay.pushnotifications.service.PushNotificationsEntryService pushNotificationsEntryService;
-	@BeanReference(type = PushNotificationsEntryPersistence.class)
-	protected PushNotificationsEntryPersistence pushNotificationsEntryPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)

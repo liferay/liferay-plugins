@@ -224,28 +224,6 @@ AUI.add(
 						}
 					},
 
-					_bindMarkMessageUnread: function() {
-						var instance = this;
-
-						var markMessageUnread = instance.byId('markMessageAsUnread');
-
-						if (markMessageUnread) {
-							instance._eventHandles.push(
-								markMessageUnread.on(
-									STR_CLICK,
-									function(event) {
-										if (confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-message-as-unread'))) {
-											var currentTarget = event.currentTarget;
-
-											instance._sendRequest(currentTarget.getAttribute('data-mark-as-unread-url'));
-										}
-									},
-									instance
-								)
-							);
-						}
-					},
-
 					_bindMarkMessagesUnread: function() {
 						var instance = this;
 
@@ -264,6 +242,28 @@ AUI.add(
 											if (confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-selected-messages-as-unread'))) {
 												instance.markMessagesAsUnread(mbThreadIds);
 											}
+										}
+									},
+									instance
+								)
+							);
+						}
+					},
+
+					_bindMarkMessageUnread: function() {
+						var instance = this;
+
+						var markMessageUnread = instance.byId('markMessageAsUnread');
+
+						if (markMessageUnread) {
+							instance._eventHandles.push(
+								markMessageUnread.on(
+									STR_CLICK,
+									function(event) {
+										if (confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-message-as-unread'))) {
+											var currentTarget = event.currentTarget;
+
+											instance._sendRequest(currentTarget.getAttribute('data-mark-as-unread-url'));
 										}
 									},
 									instance
@@ -362,7 +362,7 @@ AUI.add(
 
 						redirectURL.setWindowState('NORMAL');
 
-						var portletURL =  new Liferay.PortletURL.createURL(instance.get('baseRenderURL'));
+						var portletURL = new Liferay.PortletURL.createURL(instance.get('baseRenderURL'));
 
 						portletURL.setPortletId(instance.get('portletId'));
 						portletURL.setWindowState('POP_UP');
@@ -398,7 +398,7 @@ AUI.add(
 					_sendRequest: function(request, mbThreadIds) {
 						var instance = this;
 
-						var request = Liferay.Util.addParams(instance._namespace + 'mbThreadIds=' + mbThreadIds, request) || request;
+						request = Liferay.Util.addParams(instance._namespace + 'mbThreadIds=' + mbThreadIds, request) || request;
 
 						A.io.request(
 							request,

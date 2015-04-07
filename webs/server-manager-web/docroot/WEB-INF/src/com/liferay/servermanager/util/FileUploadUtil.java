@@ -57,7 +57,7 @@ public class FileUploadUtil {
 	public static List<FileItem> getFileItems(HttpServletRequest request)
 		throws FileUploadException {
 
-		List<FileItem> uploadFileItems = new ArrayList<FileItem>();
+		List<FileItem> uploadFileItems = new ArrayList<>();
 
 		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
 

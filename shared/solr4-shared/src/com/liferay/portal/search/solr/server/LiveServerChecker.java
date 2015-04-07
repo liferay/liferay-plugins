@@ -81,8 +81,7 @@ public class LiveServerChecker implements Runnable {
 	}
 
 	public void shutdown() {
-		List<SolrServerWrapper> allSolrServerWrappers =
-			new ArrayList<SolrServerWrapper>();
+		List<SolrServerWrapper> allSolrServerWrappers = new ArrayList<>();
 
 		List<SolrServerWrapper> deadSolrServerWrappers =
 			_solrServerFactory.getDeadServers();

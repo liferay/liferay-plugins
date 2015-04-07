@@ -41,13 +41,8 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 	}
 
 	@Override
-	public String[] getClassNames() {
-		return classNames;
-	}
-
-	@Override
-	public String getPortletId() {
-		return portletId;
+	public String getClassName() {
+		return className;
 	}
 
 	@Override
@@ -71,7 +66,7 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 		Document document = new DocumentImpl();
 
 		document.addUID(
-			portletId, String.valueOf(baseModel.getPrimaryKeyObj()));
+			className, String.valueOf(baseModel.getPrimaryKeyObj()));
 
 		AuditedModel auditedModel = (AuditedModel)obj;
 
@@ -107,8 +102,15 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 	}
 
 	@Override
-	protected String getPortletId(SearchContext searchContext) {
-		return portletId;
+	protected Document getBaseModelDocument(
+		String portletId, BaseModel<?> baseModel) {
+
+		Document document = super.getBaseModelDocument(portletId, baseModel);
+
+		document.remove(Field.USER_ID);
+		document.remove(Field.USER_NAME);
+
+		return document;
 	}
 
 	protected void reindexModels(long companyId) throws Exception {
@@ -135,7 +137,7 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 			return;
 		}
 
-		Collection<Document> documents = new ArrayList<Document>(models.size());
+		Collection<Document> documents = new ArrayList<>(models.size());
 
 		for (Object model : models) {
 			Document document = getDocument(model);
@@ -154,19 +156,12 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 	}
 
 	protected void setClassName(String className) {
-		if (this.classNames == null) {
-			classNames = new String[] {className};
-		}
-	}
-
-	protected void setPortletId(String portletId) {
-		if (this.portletId == null) {
-			this.portletId = portletId;
+		if (this.className == null) {
+			this.className = className;
 		}
 	}
 
 	protected AlloyServiceInvoker alloyServiceInvoker;
-	protected String[] classNames;
-	protected String portletId;
+	protected String className;
 
 }

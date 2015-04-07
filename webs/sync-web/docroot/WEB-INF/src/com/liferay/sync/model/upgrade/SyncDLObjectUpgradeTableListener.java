@@ -66,6 +66,14 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 			return;
 		}
 
+		if (isUpdated()) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("SyncDLObject table was already updated");
+			}
+
+			return;
+		}
+
 		String createSQL = upgradeTable.getCreateSQL();
 
 		createSQL = StringUtil.replace(
@@ -77,7 +85,7 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 	}
 
 	protected Map<Long, Long> getSyncDLObjectIds() {
-		Map<Long, Long> syncDLObjectIds = new HashMap<Long, Long>();
+		Map<Long, Long> syncDLObjectIds = new HashMap<>();
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -116,6 +124,29 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 		}
 
 		return syncDLObjectIds;
+	}
+
+	protected boolean isUpdated() {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select * from SyncDLObject where objectId = 0");
+
+			rs = ps.executeQuery();
+		}
+		catch (Exception e) {
+			return true;
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+
+		return false;
 	}
 
 	protected void updateSyncDLObjectIds(Map<Long, Long> keyValueMap)

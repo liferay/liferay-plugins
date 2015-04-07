@@ -26,6 +26,12 @@ AUI.add(
 			return Lang.toInt(value, 10, 0);
 		};
 
+		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
+
+		var CONTROLS_NODE = 'controlsNode';
+
+		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
+
 		var STR_BLANK = '';
 
 		var STR_COMMA_SPACE = ', ';
@@ -34,17 +40,11 @@ AUI.add(
 
 		var STR_SPACE = ' ';
 
-		var CONTROLS_NODE = 'controlsNode';
-
-		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
-
 		var TPL_ICON_ADD_EVENT_NODE = '<div class="btn-group">' +
-										'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
-											Liferay.Language.get('add-calendar-booking') +
-										'</div>' +
-									'</button>';
-
-		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
+				'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
+					Liferay.Language.get('add-calendar-booking') +
+				'</div>' +
+			'</button>';
 
 		var USER_ID = toInt(themeDisplay.getUserId());
 
@@ -83,6 +83,20 @@ AUI.add(
 		};
 
 		Liferay.Time = Time;
+
+		A.mix(
+			A.DataType.DateMath,
+			{
+				getWeeksInMonth: function(date) {
+					var daysInMonth = DateMath.getDaysInMonth(date.getFullYear(), date.getMonth());
+					var firstWeekDay = DateMath.getDate(date.getFullYear(), date.getMonth(), 1).getDay();
+
+					var daysInFirstWeek = DateMath.WEEK_LENGTH - firstWeekDay;
+
+					return Math.ceil((daysInMonth - daysInFirstWeek) / DateMath.WEEK_LENGTH) + 1;
+				}
+			}
+		);
 
 		var CalendarUtil = {
 			INVOKER_URL: themeDisplay.getPathContext() + '/api/jsonws/invoke',
@@ -1320,6 +1334,9 @@ AUI.add(
 
 						Scheduler.superclass.renderUI.apply(this, arguments);
 
+						instance.navDateNode.replaceClass('hidden-xs', 'hidden');
+						instance.viewDateNode.removeClass('visible-xs');
+
 						var showAddEventBtn = instance.get('showAddEventBtn');
 
 						if (showAddEventBtn) {
@@ -1461,6 +1478,35 @@ AUI.add(
 								instance._updateSchedulerEvent(schedulerEvent, changedAttributes);
 							}
 						}
+					},
+
+					_createViewTriggerNode: function(view, tpl) {
+						var instance = this;
+
+						var node = Scheduler.superclass._createViewTriggerNode.apply(this, arguments);
+
+						var schedulerViewText = '';
+
+						var viewName = view.get('name');
+
+						if (viewName == 'agenda') {
+							schedulerViewText = Liferay.Language.get('agenda-view');
+						}
+						else if (viewName == 'day') {
+							schedulerViewText = Liferay.Language.get('day-view');
+						}
+						else if (viewName == 'month') {
+							schedulerViewText = Liferay.Language.get('month-view');
+						}
+						else if (viewName == 'week') {
+							schedulerViewText = Liferay.Language.get('week-view');
+						}
+
+						if (node.get('nodeName') === 'OPTION') {
+							node.text(schedulerViewText);
+						}
+
+						return node;
 					},
 
 					_getCalendarBookingDuration: function(schedulerEvent) {
@@ -1613,6 +1659,58 @@ AUI.add(
 		);
 
 		Liferay.Scheduler = Scheduler;
+
+		Liferay.SchedulerDayView = A.SchedulerDayView;
+
+		Liferay.SchedulerWeekView = A.SchedulerWeekView;
+
+		var SchedulerMonthView = A.Component.create(
+			{
+				EXTENDS: A.SchedulerMonthView,
+
+				NAME: 'scheduler-month-view',
+
+				prototype: {
+					_syncCellDimensions: function() {
+						var instance = this;
+
+						var scheduler = instance.get('scheduler');
+
+						var viewDate = scheduler.get('viewDate');
+
+						var weeks = DateMath.getWeeksInMonth(viewDate);
+
+						SchedulerMonthView.superclass._syncCellDimensions.apply(this, arguments);
+
+						instance.gridCellHeight = instance.rowsContainerNode.get('offsetHeight') / weeks;
+					},
+
+					_uiSetDate: function(date) {
+						var instance = this;
+
+						var weeks = DateMath.getWeeksInMonth(date);
+
+						A.each(
+							instance.tableRows,
+							function(item, index) {
+								if (index < weeks) {
+									item.removeClass('hide');
+								}
+								else {
+									item.addClass('hide');
+								}
+							}
+						);
+
+						SchedulerMonthView.superclass._uiSetDate.apply(this, arguments);
+					}
+				}
+			}
+		);
+
+		Liferay.SchedulerMonthView = SchedulerMonthView;
+
+		Liferay.SchedulerAgendaView = A.SchedulerAgendaView;
 
 		var SchedulerEventRecorder = A.Component.create(
 			{

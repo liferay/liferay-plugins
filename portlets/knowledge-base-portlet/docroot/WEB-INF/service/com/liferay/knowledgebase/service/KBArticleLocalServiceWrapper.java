@@ -95,13 +95,14 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	}
 
 	@Override
-	public void addKBArticlesMarkdown(long userId, long groupId,
+	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
-		java.io.InputStream inputStream,
+		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_kbArticleLocalService.addKBArticlesMarkdown(userId, groupId,
-			parentKbFolderId, fileName, inputStream, serviceContext);
+		return _kbArticleLocalService.addKBArticlesMarkdown(userId, groupId,
+			parentKbFolderId, fileName, prioritizeByNumericalPrefix,
+			inputStream, serviceContext);
 	}
 
 	@Override
@@ -271,6 +272,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _kbArticleLocalService.dynamicQueryCount(dynamicQuery, projection);
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle fetchFirstChildKBArticle(
+		long groupId, long parentResourcePrimKey) {
+		return _kbArticleLocalService.fetchFirstChildKBArticle(groupId,
+			parentResourcePrimKey);
 	}
 
 	@Override
@@ -548,6 +556,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		int status) {
 		return _kbArticleLocalService.getKBArticlesCount(groupId,
 			parentResourcePrimKey, status);
+	}
+
+	@Override
+	public int getKBFolderKBArticlesCount(long groupId, long kbFolderId,
+		int status) {
+		return _kbArticleLocalService.getKBFolderKBArticlesCount(groupId,
+			kbFolderId, status);
 	}
 
 	@Override

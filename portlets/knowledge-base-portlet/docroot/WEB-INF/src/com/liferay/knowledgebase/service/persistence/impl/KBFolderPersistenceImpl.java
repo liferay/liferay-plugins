@@ -66,7 +66,7 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see KBFolderPersistence
- * @see KBFolderUtil
+ * @see com.liferay.knowledgebase.service.persistence.KBFolderUtil
  * @generated
  */
 @ProviderType

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 
@@ -25,10 +27,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoNotificationPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoNotificationPersistenceImpl
  * @see KaleoNotificationUtil
  * @generated
  */
+@ProviderType
 public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotification> {
 	/*
 	 * NOTE FOR DEVELOPERS:

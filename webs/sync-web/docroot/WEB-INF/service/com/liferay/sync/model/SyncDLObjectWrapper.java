@@ -55,6 +55,8 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 
 		attributes.put("syncDLObjectId", getSyncDLObjectId());
 		attributes.put("companyId", getCompanyId());
+		attributes.put("userId", getUserId());
+		attributes.put("userName", getUserName());
 		attributes.put("createTime", getCreateTime());
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("repositoryId", getRepositoryId());
@@ -66,6 +68,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 		attributes.put("changeLog", getChangeLog());
 		attributes.put("extraSettings", getExtraSettings());
 		attributes.put("version", getVersion());
+		attributes.put("versionId", getVersionId());
 		attributes.put("size", getSize());
 		attributes.put("checksum", getChecksum());
 		attributes.put("event", getEvent());
@@ -91,6 +94,18 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 
 		if (companyId != null) {
 			setCompanyId(companyId);
+		}
+
+		Long userId = (Long)attributes.get("userId");
+
+		if (userId != null) {
+			setUserId(userId);
+		}
+
+		String userName = (String)attributes.get("userName");
+
+		if (userName != null) {
+			setUserName(userName);
 		}
 
 		Long createTime = (Long)attributes.get("createTime");
@@ -157,6 +172,12 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 
 		if (version != null) {
 			setVersion(version);
+		}
+
+		Long versionId = (Long)attributes.get("versionId");
+
+		if (versionId != null) {
+			setVersionId(versionId);
 		}
 
 		Long size = (Long)attributes.get("size");
@@ -465,6 +486,36 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
+	* Returns the user ID of this sync d l object.
+	*
+	* @return the user ID of this sync d l object
+	*/
+	@Override
+	public long getUserId() {
+		return _syncDLObject.getUserId();
+	}
+
+	/**
+	* Returns the user name of this sync d l object.
+	*
+	* @return the user name of this sync d l object
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _syncDLObject.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this sync d l object.
+	*
+	* @return the user uuid of this sync d l object
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _syncDLObject.getUserUuid();
+	}
+
+	/**
 	* Returns the version of this sync d l object.
 	*
 	* @return the version of this sync d l object
@@ -472,6 +523,16 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public java.lang.String getVersion() {
 		return _syncDLObject.getVersion();
+	}
+
+	/**
+	* Returns the version ID of this sync d l object.
+	*
+	* @return the version ID of this sync d l object
+	*/
+	@Override
+	public long getVersionId() {
+		return _syncDLObject.getVersionId();
 	}
 
 	@Override
@@ -773,6 +834,36 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
+	* Sets the user ID of this sync d l object.
+	*
+	* @param userId the user ID of this sync d l object
+	*/
+	@Override
+	public void setUserId(long userId) {
+		_syncDLObject.setUserId(userId);
+	}
+
+	/**
+	* Sets the user name of this sync d l object.
+	*
+	* @param userName the user name of this sync d l object
+	*/
+	@Override
+	public void setUserName(java.lang.String userName) {
+		_syncDLObject.setUserName(userName);
+	}
+
+	/**
+	* Sets the user uuid of this sync d l object.
+	*
+	* @param userUuid the user uuid of this sync d l object
+	*/
+	@Override
+	public void setUserUuid(java.lang.String userUuid) {
+		_syncDLObject.setUserUuid(userUuid);
+	}
+
+	/**
 	* Sets the version of this sync d l object.
 	*
 	* @param version the version of this sync d l object
@@ -780,6 +871,16 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public void setVersion(java.lang.String version) {
 		_syncDLObject.setVersion(version);
+	}
+
+	/**
+	* Sets the version ID of this sync d l object.
+	*
+	* @param versionId the version ID of this sync d l object
+	*/
+	@Override
+	public void setVersionId(long versionId) {
+		_syncDLObject.setVersionId(versionId);
 	}
 
 	@Override

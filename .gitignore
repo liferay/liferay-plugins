@@ -13,7 +13,11 @@
 .sass_cache_*.css
 _sass_cache_*.css
 
+**/.sonar
+**/pmd-reports
+
 /.bnd
+/.gradle
 /.ivy
 
 /*/*/bin
@@ -43,3 +47,4 @@ _sass_cache_*.css
 /themes/*/docroot/WEB-INF/lib
 
 /tools/*/*/*/lib
+/tools/node*

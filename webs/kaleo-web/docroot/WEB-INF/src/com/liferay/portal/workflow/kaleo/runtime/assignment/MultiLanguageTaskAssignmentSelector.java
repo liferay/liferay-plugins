@@ -81,6 +81,6 @@ public class MultiLanguageTaskAssignmentSelector
 	}
 
 	private Map<String, TaskAssignmentSelector> _taskAssignmentSelectors =
-		new HashMap<String, TaskAssignmentSelector>();
+		new HashMap<>();
 
 }

@@ -1,4 +1,4 @@
-@import "compass";
+@import "bourbon";
 @import "mixins";
 
 $microblogs-border-color: #EAEAEA;
@@ -20,8 +20,7 @@ $microblogs-border-color: #EAEAEA;
 			padding: 0 5px;
 
 			textarea {
-				@include box-shadow(none);
-
+				box-shadow: none;
 				margin: 0 -13px;
 				overflow: hidden;
 				padding: 4px 8px;
@@ -62,7 +61,7 @@ $microblogs-border-color: #EAEAEA;
 		.microblogs-countdown {
 			background: #CFD8E1;
 
-			@include border-radius(3px);
+			border-radius: 3px;
 
 			color: #FFF;
 			opacity: 0.5;
@@ -93,7 +92,7 @@ $microblogs-border-color: #EAEAEA;
 		&, &:focus, &.inactive {
 			border: 1px solid #EAEAEA;
 
-			@include border-radius(3px);
+			border-radius: 3px;
 		}
 
 		.textarea {

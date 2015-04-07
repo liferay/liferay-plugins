@@ -66,7 +66,7 @@ public class ScriptingConditionEvaluator implements ConditionEvaluator {
 
 	private static final String _RETURN_VALUE = "returnValue";
 
-	private static Set<String> _outputNames = new HashSet<String>();
+	private static Set<String> _outputNames = new HashSet<>();
 
 	static {
 		_outputNames.add(_RETURN_VALUE);

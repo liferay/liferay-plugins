@@ -116,7 +116,7 @@ public class ServerManagerServlet extends HttpServlet {
 		responseJSONObject.put(JSONKeys.STATUS, 0);
 
 		try {
-			Queue<String> arguments = new LinkedList<String>();
+			Queue<String> arguments = new LinkedList<>();
 
 			String path = request.getPathInfo();
 

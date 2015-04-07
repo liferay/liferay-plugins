@@ -62,6 +62,6 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 		return PortletPreferencesFactoryUtil.toXML(preferences);
 	}
 
-	private Map<String, String> _preferencesMap = new HashMap<String, String>();
+	private Map<String, String> _preferencesMap = new HashMap<>();
 
 }

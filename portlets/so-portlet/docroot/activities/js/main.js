@@ -30,10 +30,6 @@ AUI.add(
 
 		var Scroll = A.Component.create(
 			{
-				NAME: SCROLL,
-
-				NS: SCROLL,
-
 				ATTRS: {
 					delay: {
 						validator: isNumber,
@@ -68,6 +64,10 @@ AUI.add(
 				},
 
 				EXTENDS: A.Plugin.Base,
+
+				NAME: SCROLL,
+
+				NS: SCROLL,
 
 				prototype: {
 					initializer: function(config) {
@@ -117,8 +117,8 @@ AUI.add(
 
 						var state = {
 							availableScrollY: availableScrollY,
-							scrollTop: scrollTop,
-							scrolledDown: scrolledDown
+							scrolledDown: scrolledDown,
+							scrollTop: scrollTop
 						};
 
 						if (scrolledDown) {
@@ -186,27 +186,27 @@ AUI().use(
 	'transition',
 	function(A) {
 		var TPL_COMMENT_ENTRY = '<div class="comment-entry">' +
-			'<div class="user-portrait">' +
-				'<span class="avatar">' +
-					'<a href={userDisplayURL}>' +
-						'<img alt={userName} src={userPortraitURL} />' +
-					'</a>' +
-				'</span>' +
-			'</div>' +
-			'<div class="comment-body">' +
-				'<span class="user-name"><a href={userDisplayURL}>{userName}</a></span>' +
-				'<span class="message">{body}</span>' +
-			'</div>' +
-			'<div class="comment-info">' +
-				'<span class="post-date">{modifiedDate} </span>' +
-				'<span class="edit-comment {commentControlsClass}">' +
-					'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('edit') + '</a>' +
-				'</span>' +
-				'<span class="delete-comment {commentControlsClass}">' +
-					'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('delete') + '</a>' +
-				'</span>' +
-			'</div>' +
-		'</div>';
+				'<div class="user-portrait">' +
+					'<span class="avatar">' +
+						'<a href={userDisplayURL}>' +
+							'<img alt={userName} src={userPortraitURL} />' +
+						'</a>' +
+					'</span>' +
+				'</div>' +
+				'<div class="comment-body">' +
+					'<span class="user-name"><a href={userDisplayURL}>{userName}</a></span>' +
+					'<span class="message">{body}</span>' +
+				'</div>' +
+				'<div class="comment-info">' +
+					'<span class="post-date">{modifiedDate} </span>' +
+					'<span class="edit-comment {commentControlsClass}">' +
+						'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('edit') + '</a>' +
+					'</span>' +
+					'<span class="delete-comment {commentControlsClass}">' +
+						'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('delete') + '</a>' +
+					'</span>' +
+				'</div>' +
+			'</div>';
 
 		var Activities = {
 			addNewComment: function(commentsList, responseData) {

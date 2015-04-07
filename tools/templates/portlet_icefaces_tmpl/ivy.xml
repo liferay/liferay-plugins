@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:m2="http://ant.apache.org/ivy/maven"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="portlet_icefaces_tmpl" organisation="com.liferay">
+		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
+	</info>
+
+	<dependencies defaultconf="default">
+		<dependency name="icefaces" org="org.icefaces" rev="3.3.0" />
+		<dependency name="icefaces-ace" org="org.icefaces" rev="3.3.0" />
+		<dependency name="jboss-el" org="org.jboss.el" rev="2.0.1.GA" />
+		<dependency name="jsf-api" org="com.sun.faces" rev="2.1.21" />
+		<dependency name="jsf-impl" org="com.sun.faces" rev="2.1.21" />
+		<dependency name="liferay-faces-bridge-api" org="com.liferay.faces" rev="3.2.4-ga5" />
+		<dependency name="liferay-faces-bridge-impl" org="com.liferay.faces" rev="3.2.4-ga5" />
+		<dependency name="liferay-faces-portal" org="com.liferay.faces" rev="3.2.4-ga5" />
+		<dependency name="liferay-faces-util" org="com.liferay.faces" rev="3.2.4-ga5" />
+		<dependency conf="test->default" name="arquillian-junit-container" org="org.jboss.arquillian.junit" rev="1.1.6.Final" />
+		<dependency conf="test->default" name="arquillian-tomcat-remote-7" org="org.jboss.arquillian.container" rev="1.0.0.CR6" />
+		<dependency conf="test->default" name="com.liferay.ant.arquillian" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+	</dependencies>
+</ivy-module>

@@ -34,7 +34,7 @@ import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
-import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.wiki.model.WikiPage;
 
 import java.io.InputStream;
 

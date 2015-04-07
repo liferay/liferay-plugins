@@ -172,8 +172,7 @@ public class AlloyPortlet extends GenericPortlet {
 	}
 
 	protected Map<String, String> getDefaultRouteParameters() {
-		/*Map<String, String> defaultRouteParameters =
-			new HashMap<String, String[]>();
+		/*Map<String, String> defaultRouteParameters = new HashMap<>();
 
 		defaultRouteParameters.put("controller", new String[] {"assets"});
 		defaultRouteParameters.put("action", new String[] {"index"});
@@ -233,8 +232,7 @@ public class AlloyPortlet extends GenericPortlet {
 	private static Log _log = LogFactoryUtil.getLog(AlloyPortlet.class);
 
 	private Map<String, BaseAlloyControllerImpl> _alloyControllers =
-		new HashMap<String, BaseAlloyControllerImpl>();
-	private Map<String, String> _defaultRouteParameters =
-		new HashMap<String, String>();
+		new HashMap<>();
+	private Map<String, String> _defaultRouteParameters = new HashMap<>();
 
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 
@@ -25,10 +27,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoInstanceTokenPersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoInstanceTokenPersistenceImpl
  * @see KaleoInstanceTokenUtil
  * @generated
  */
+@ProviderType
 public interface KaleoInstanceTokenPersistence extends BasePersistence<KaleoInstanceToken> {
 	/*
 	 * NOTE FOR DEVELOPERS:

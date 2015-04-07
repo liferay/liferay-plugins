@@ -33,8 +33,7 @@ public abstract class BaseTaskAssignmentSelector
 	protected Collection<KaleoTaskAssignment> getKaleoTaskAssignments(
 		Map<String, ?> results) {
 
-		List<KaleoTaskAssignment> kaleoTaskAssignments =
-			new ArrayList<KaleoTaskAssignment>();
+		List<KaleoTaskAssignment> kaleoTaskAssignments = new ArrayList<>();
 
 		User user = (User)results.get(USER_ASSIGNMENT);
 

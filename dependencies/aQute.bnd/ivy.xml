@@ -6,11 +6,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
 >
-	<info module="com.liferay.sdk.dependencies.biz.aQute.bnd" organisation="com.liferay">
+	<info module="com.liferay.sdk.dependencies.aQute.bnd" organisation="com.liferay">
 		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="aQute.bnd" org="com.liferay" rev="2.3.0.20140225-161137" />
+		<dependency name="biz.aQute.bnd" org="biz.aQute.bnd" rev="2.4.1" />
 	</dependencies>
 </ivy-module>

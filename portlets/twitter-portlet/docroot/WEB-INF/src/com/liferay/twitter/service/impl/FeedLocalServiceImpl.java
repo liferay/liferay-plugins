@@ -66,8 +66,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		ShardUtil.pushCompanyService(companyId);
 
 		try {
-			LinkedHashMap<String, Object> userParams =
-				new LinkedHashMap<String, Object>();
+			LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
 
 			userParams.put("contactTwitterSn", Boolean.TRUE);
 

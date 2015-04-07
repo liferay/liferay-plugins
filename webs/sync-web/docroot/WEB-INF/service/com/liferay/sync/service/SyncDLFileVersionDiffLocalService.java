@@ -88,10 +88,12 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	*
 	* @param syncDLFileVersionDiff the sync d l file version diff
 	* @return the sync d l file version diff that was removed
+	* @throws PortalException
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff);
+		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the sync d l file version diff with the primary key from the database. Also notifies the appropriate model listeners.
@@ -103,6 +105,9 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
 		long syncDLFileVersionDiffId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteSyncDLFileVersionDiffs(long fileEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();

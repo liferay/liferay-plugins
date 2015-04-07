@@ -39,7 +39,7 @@
 							</td>
 							<td align="right">
 								<c:if test="<%= stocks.getChange() < 0 %>">
-									<span class="alert alert-error">
+									<span class="alert alert-danger">
 										<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(request, "not-available") %>
 									</span>
 								</c:if>
@@ -146,7 +146,7 @@
 
 								<c:if test="<%= stocks.isChangeAvailable() && stocks.isPreviousCloseAvailable() %>">
 									<c:if test="<%= stocks.getChange() < 0 %>">
-										<span class="alert alert-error">
+										<span class="alert alert-danger">
 											<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose() * 100) %>%</strong>
 										</span>
 									</c:if>

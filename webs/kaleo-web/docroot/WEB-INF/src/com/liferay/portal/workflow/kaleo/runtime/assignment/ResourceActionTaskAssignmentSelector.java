@@ -68,8 +68,8 @@ public class ResourceActionTaskAssignmentSelector
 			ResourceConstants.SCOPE_INDIVIDUAL, resourceClassPK,
 			kaleoTaskAssignment.getAssigneeActionId());
 
-		List<KaleoTaskAssignment> kaleoTaskAssignments =
-			new ArrayList<KaleoTaskAssignment>(roles.size());
+		List<KaleoTaskAssignment> kaleoTaskAssignments = new ArrayList<>(
+			roles.size());
 
 		getRoleKaleoTaskAssignments(roles, kaleoTaskAssignments);
 

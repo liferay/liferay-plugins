@@ -86,7 +86,7 @@ public class Recurrence {
 	}
 
 	private int _count;
-	private List<Calendar> _exceptionJCalendars = new ArrayList<Calendar>();
+	private List<Calendar> _exceptionJCalendars = new ArrayList<>();
 	private Frequency _frequency;
 	private int _interval;
 	private List<Integer> _months;

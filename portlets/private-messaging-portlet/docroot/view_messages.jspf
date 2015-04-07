@@ -70,6 +70,7 @@
 			<div class="last-thread">
 				<portlet:renderURL var="viewThreadURL">
 					<portlet:param name="mvcPath" value="/view.jsp" />
+					<portlet:param name="backURL" value="<%= currentURL %>" />
 					<portlet:param name="mbThreadId" value="<%= String.valueOf(userThread.getMbThreadId()) %>" />
 				</portlet:renderURL>
 

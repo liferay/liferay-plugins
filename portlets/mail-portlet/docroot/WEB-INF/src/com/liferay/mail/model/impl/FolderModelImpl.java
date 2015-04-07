@@ -14,6 +14,8 @@
 
 package com.liferay.mail.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.FolderModel;
 
@@ -53,6 +55,7 @@ import java.util.Map;
  * @see com.liferay.mail.model.FolderModel
  * @generated
  */
+@ProviderType
 public class FolderModelImpl extends BaseModelImpl<Folder>
 	implements FolderModel {
 	/*
@@ -89,8 +92,8 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.liferay.mail.model.Folder"),
 			true);
-	public static long ACCOUNTID_COLUMN_BITMASK = 1L;
-	public static long FULLNAME_COLUMN_BITMASK = 2L;
+	public static final long ACCOUNTID_COLUMN_BITMASK = 1L;
+	public static final long FULLNAME_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.mail.model.Folder"));
 
@@ -617,8 +620,10 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		return sb.toString();
 	}
 
-	private static ClassLoader _classLoader = Folder.class.getClassLoader();
-	private static Class<?>[] _escapedModelInterfaces = new Class[] { Folder.class };
+	private static final ClassLoader _classLoader = Folder.class.getClassLoader();
+	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
+			Folder.class
+		};
 	private long _folderId;
 	private long _companyId;
 	private long _userId;

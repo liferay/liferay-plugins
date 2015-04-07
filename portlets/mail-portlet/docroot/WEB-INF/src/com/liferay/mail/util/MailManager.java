@@ -140,7 +140,7 @@ public class MailManager {
 		Message message = MessageLocalServiceUtil.addMessage(
 			_user.getUserId(), account.getDraftFolderId(), account.getAddress(),
 			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, new Date(),
-			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 0);
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 0, null);
 
 		return message;
 	}
@@ -356,8 +356,8 @@ public class MailManager {
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
 
-		List<Folder> requiredFolders = new ArrayList<Folder>();
-		List<Folder> nonRequiredFolders = new ArrayList<Folder>();
+		List<Folder> requiredFolders = new ArrayList<>();
+		List<Folder> nonRequiredFolders = new ArrayList<>();
 
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
 

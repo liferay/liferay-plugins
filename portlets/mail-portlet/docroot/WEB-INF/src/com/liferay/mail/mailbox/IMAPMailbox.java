@@ -165,7 +165,7 @@ public class IMAPMailbox extends BaseMailbox {
 			orderByField = MailConstants.ORDER_BY_SENT_DATE;
 		}
 
-		List<Message> messages = new ArrayList<Message>(messagesPerPage);
+		List<Message> messages = new ArrayList<>(messagesPerPage);
 
 		int messageCount = MessageLocalServiceUtil.populateMessages(
 			messages, folderId, keywords, pageNumber, messagesPerPage,
@@ -293,7 +293,7 @@ public class IMAPMailbox extends BaseMailbox {
 			message = MessageLocalServiceUtil.addMessage(
 				user.getUserId(), account.getDraftFolderId(), sender, to, cc,
 				bcc, null, subject, body,
-				String.valueOf(MailConstants.FLAG_DRAFT), 0);
+				String.valueOf(MailConstants.FLAG_DRAFT), 0, null);
 		}
 
 		if (mailFiles == null) {
@@ -329,7 +329,7 @@ public class IMAPMailbox extends BaseMailbox {
 		List<Attachment> attachments =
 			AttachmentLocalServiceUtil.getAttachments(messageId);
 
-		List<MailFile> mailFiles = new ArrayList<MailFile>();
+		List<MailFile> mailFiles = new ArrayList<>();
 
 		for (Attachment attachment : attachments) {
 			File file = AttachmentLocalServiceUtil.getFile(
@@ -420,7 +420,7 @@ public class IMAPMailbox extends BaseMailbox {
 		long[] remoteMessageIds = _imapAccessor.getMessageUIDs(
 			folderId, pageNumber, messagesPerPage);
 
-		List<Long> missingRemoteMessageIdsList = new ArrayList<Long>();
+		List<Long> missingRemoteMessageIdsList = new ArrayList<>();
 
 		for (int i = 0; i < remoteMessageIds.length; i++) {
 			long remoteMessageId = remoteMessageIds[i];
@@ -527,7 +527,7 @@ public class IMAPMailbox extends BaseMailbox {
 	protected long getFolderId(String type) {
 		Locale[] locales = LanguageUtil.getAvailableLocales();
 
-		List<String> words = new ArrayList<String>();
+		List<String> words = new ArrayList<>();
 
 		for (Locale locale : locales) {
 			String translation = StringUtil.toLowerCase(

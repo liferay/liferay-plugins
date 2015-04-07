@@ -17,11 +17,13 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
+taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.pushnotifications.service.permission.PushNotificationsPermission" %><%@
-page import="com.liferay.pushnotifications.util.ActionKeys" %>
+<%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
+page import="com.liferay.pushnotifications.util.PortletPropsKeys" %><%@
+page import="com.liferay.pushnotifications.util.PortletPropsValues" %>
 
 <portlet:defineObjects />
 

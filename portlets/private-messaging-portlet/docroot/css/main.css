@@ -1,4 +1,3 @@
-@import "compass";
 @import "mixins";
 
 .private-messaging-portlet {
@@ -103,7 +102,7 @@
 	}
 
 	.table {
-		border-top: 0;
+		border-top-width: 0;
 		margin-bottom: 0;
 
 		thead {
@@ -235,14 +234,7 @@
 /* ---------- Extras ---------- */
 
 .private-messaging-portlet .controls {
-	@include border-radius(4px);
-}
-
-.ie7 .private-messaging-portlet {
-	.message-to {
-		position: relative;
-		z-index: 1;
-	}
+	border-radius: 4px;
 }
 
 /* ---------- Responsive ---------- */

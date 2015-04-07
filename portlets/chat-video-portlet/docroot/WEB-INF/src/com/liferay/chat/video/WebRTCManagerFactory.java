@@ -38,6 +38,6 @@ public class WebRTCManagerFactory {
 	}
 
 	private static List<WebRTCManager> _webRTCManagers =
-		new CopyOnWriteArrayList<WebRTCManager>();
+		new CopyOnWriteArrayList<>();
 
 }

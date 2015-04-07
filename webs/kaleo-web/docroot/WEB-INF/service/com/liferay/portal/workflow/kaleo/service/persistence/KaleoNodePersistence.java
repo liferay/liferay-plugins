@@ -14,6 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 
@@ -25,10 +27,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see KaleoNodePersistenceImpl
+ * @see com.liferay.portal.workflow.kaleo.service.persistence.impl.KaleoNodePersistenceImpl
  * @see KaleoNodeUtil
  * @generated
  */
+@ProviderType
 public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	/*
 	 * NOTE FOR DEVELOPERS:
