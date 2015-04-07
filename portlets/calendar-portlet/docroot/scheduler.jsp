@@ -40,15 +40,17 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
 	Liferay.CalendarUtil.USER_TIME_ZONE = '<%= HtmlUtil.escapeJS(userTimeZone.getID()) %>';
 
+	var showMoreStrings = {
+		close: '<liferay-ui:message key="close" />',
+		more: '<%= StringUtil.toLowerCase(LanguageUtil.get(request, "more")) %>',
+		show: '<liferay-ui:message key="show" />'
+	};
+
 	<c:if test="<%= !hideDayView %>">
 		window.<portlet:namespace />dayView = new Liferay.SchedulerDayView(
 			{
 				headerViewConfig: {
-					strings: {
-						close: '<liferay-ui:message key="close" />',
-						more: '<%= StringUtil.toLowerCase(LanguageUtil.get(request, "more")) %>',
-						show: '<liferay-ui:message key="show" />'
-					}
+					strings: showMoreStrings
 				},
 				height: 700,
 				isoTime: <%= isoTimeFormat %>,
@@ -65,11 +67,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			{
 				headerViewConfig: {
 					displayDaysInterval: A.DataType.DateMath.WEEK_LENGTH,
-					strings: {
-						close: '<liferay-ui:message key="close" />',
-						more: '<%= StringUtil.toLowerCase(LanguageUtil.get(request, "more")) %>',
-						show: '<liferay-ui:message key="show" />'
-					}
+					strings: showMoreStrings
 				},
 				height: 700,
 				isoTime: <%= isoTimeFormat %>,
@@ -87,11 +85,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 				height: 'auto',
 				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>,
-				strings: {
-					close: '<liferay-ui:message key="close" />',
-					more: '<%= StringUtil.toLowerCase(LanguageUtil.get(request, "more")) %>',
-					show: '<liferay-ui:message key="show" />'
-				}
+				strings: showMoreStrings
 			}
 		);
 	</c:if>
