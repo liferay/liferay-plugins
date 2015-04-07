@@ -74,7 +74,7 @@ public class CookieKeys {
 		HttpServletRequest request, HttpServletResponse response, Cookie cookie,
 		boolean secure) {
 
-		if (!_SESSION_ENABLE_PERSISTENT_COOKIES || _TCK_URL) {
+		if (!_SESSION_ENABLE_PERSISTENT_COOKIES) {
 			return;
 		}
 
@@ -311,9 +311,6 @@ public class CookieKeys {
 	private static final boolean _SESSION_TEST_COOKIE_SUPPORT =
 		GetterUtil.getBoolean(
 			PropsUtil.get(PropsKeys.SESSION_TEST_COOKIE_SUPPORT));
-
-	private static final boolean _TCK_URL = GetterUtil.getBoolean(
-		PropsUtil.get(PropsKeys.TCK_URL));
 
 	private static Log _log = LogFactoryUtil.getLog(CookieKeys.class);
 
