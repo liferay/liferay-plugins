@@ -43,6 +43,13 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	<c:if test="<%= !hideDayView %>">
 		window.<portlet:namespace />dayView = new Liferay.SchedulerDayView(
 			{
+				headerViewConfig: {
+					strings: {
+						close: '<liferay-ui:message key="close" />',
+						more: '<%= StringUtil.toLowerCase(LanguageUtil.get(request, "more")) %>',
+						show: '<liferay-ui:message key="show" />'
+					}
+				},
 				height: 700,
 				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>,
@@ -56,6 +63,14 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	<c:if test="<%= !hideWeekView %>">
 		window.<portlet:namespace />weekView = new Liferay.SchedulerWeekView(
 			{
+				headerViewConfig: {
+					displayDaysInterval: A.DataType.DateMath.WEEK_LENGTH,
+					strings: {
+						close: '<liferay-ui:message key="close" />',
+						more: '<%= StringUtil.toLowerCase(LanguageUtil.get(request, "more")) %>',
+						show: '<liferay-ui:message key="show" />'
+					}
+				},
 				height: 700,
 				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>,
