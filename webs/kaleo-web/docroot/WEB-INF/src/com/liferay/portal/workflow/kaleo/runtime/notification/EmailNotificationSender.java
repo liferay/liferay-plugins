@@ -18,6 +18,7 @@ import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
@@ -47,9 +48,9 @@ public class EmailNotificationSender
 
 	@Override
 	protected void doSendNotification(
-			Set<NotificationRecipient> notificationRecipients,
-			String defaultSubject, String notificationMessage,
-			ExecutionContext executionContext)
+			Map<NotificationReceptionType, Set<NotificationRecipient>>
+				notificationRecipients, String defaultSubject,
+			String notificationMessage, ExecutionContext executionContext)
 		throws Exception {
 
 		Map<String, Serializable> workflowContext =
@@ -83,23 +84,19 @@ public class EmailNotificationSender
 
 		mailMessage.setTo(
 			getInternetAddresses(
-				notificationRecipients,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.TO.type));
+				notificationRecipients.get(NotificationReceptionType.TO)));
 		mailMessage.setCC(
 			getInternetAddresses(
-				notificationRecipients,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.CC.type));
+				notificationRecipients.get(NotificationReceptionType.CC)));
 		mailMessage.setBCC(
 			getInternetAddresses(
-				notificationRecipients,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.BCC.type));
+				notificationRecipients.get(NotificationReceptionType.BCC)));
 
 		MailServiceUtil.sendEmail(mailMessage);
 	}
 
 	protected InternetAddress[] getInternetAddresses(
-			Set<NotificationRecipient> notificationRecipients,
-			int emailRecipientType)
+			Set<NotificationRecipient> notificationRecipients)
 		throws AddressException, UnsupportedEncodingException {
 
 		List<InternetAddress> internetAddresses = new ArrayList<>(
@@ -108,12 +105,8 @@ public class EmailNotificationSender
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {
 
-			if (notificationRecipient.getNotificationReceptionType() ==
-					emailRecipientType) {
-
 				internetAddresses.add(
 					notificationRecipient.getInternetAddress());
-			}
 		}
 
 		return internetAddresses.toArray(

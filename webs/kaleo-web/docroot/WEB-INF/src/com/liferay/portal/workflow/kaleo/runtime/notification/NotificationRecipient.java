@@ -39,8 +39,7 @@ public class NotificationRecipient {
 	}
 
 	public NotificationRecipient(
-		User user,
-		NotificationReceptionType notificationReceptionType) {
+		User user, NotificationReceptionType notificationReceptionType) {
 
 		_companyId = user.getCompanyId();
 		_emailAddress = user.getEmailAddress();
@@ -83,10 +82,6 @@ public class NotificationRecipient {
 		return _emailAddress;
 	}
 
-	public NotificationReceptionType getNotificationReceptionType() {
-		return _notificationReceptionType;
-	}
-
 	public String getFullName() {
 		return _fullName;
 	}
@@ -100,6 +95,10 @@ public class NotificationRecipient {
 		else {
 			return new InternetAddress(_emailAddress, _fullName);
 		}
+	}
+
+	public NotificationReceptionType getNotificationReceptionType() {
+		return _notificationReceptionType;
 	}
 
 	public String getScreenName() {
@@ -127,8 +126,8 @@ public class NotificationRecipient {
 
 	private long _companyId;
 	private String _emailAddress;
-	private NotificationReceptionType _notificationReceptionType;
 	private String _fullName;
+	private NotificationReceptionType _notificationReceptionType;
 	private String _screenName;
 	private long _userId;
 

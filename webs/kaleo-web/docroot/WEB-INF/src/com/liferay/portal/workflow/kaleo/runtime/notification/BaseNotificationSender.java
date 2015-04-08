@@ -49,6 +49,7 @@ import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -67,8 +68,8 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		throws NotificationMessageSenderException {
 
 		try {
-			Set<NotificationRecipient> notificationRecipients =
-				getNotificationRecipients(
+			Map<NotificationReceptionType, Set<NotificationRecipient>>
+				notificationRecipients = getNotificationRecipients(
 					kaleoNotificationRecipients, executionContext);
 
 			if (notificationRecipients.isEmpty()) {
@@ -244,21 +245,27 @@ public abstract class BaseNotificationSender implements NotificationSender {
 	}
 
 	protected abstract void doSendNotification(
-			Set<NotificationRecipient> notificationRecipients,
-			String defaultSubject, String notificationMessage,
-			ExecutionContext executionContext)
+			Map<NotificationReceptionType, Set<NotificationRecipient>>
+				notificationRecipients, String defaultSubject,
+			String notificationMessage, ExecutionContext executionContext)
 		throws Exception;
 
-	protected Set<NotificationRecipient> getNotificationRecipients(
+	protected Map<NotificationReceptionType, Set<NotificationRecipient>>
+		getNotificationRecipients(
 			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
 			ExecutionContext executionContext)
 		throws Exception {
 
-		Set<NotificationRecipient> notificationRecipients = new HashSet<>();
+		Map<NotificationReceptionType, Set<NotificationRecipient>>
+			notificationRecipients = new HashMap<>();
 
 		if (kaleoNotificationRecipients.isEmpty()) {
+			Set<NotificationRecipient> notificationRecipientsSet =
+				retrieveNotificationRecipients(
+					notificationRecipients, NotificationReceptionType.TO);
+
 			addAssignedRecipients(
-				notificationRecipients, NotificationReceptionType.TO,
+				notificationRecipientsSet, NotificationReceptionType.TO,
 				executionContext);
 
 			return notificationRecipients;
@@ -274,6 +281,10 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				NotificationReceptionType.parse(
 					kaleoNotificationRecipient.getReceiptionType());
 
+			Set<NotificationRecipient> notificationRecipientsSet =
+				retrieveNotificationRecipients(
+					notificationRecipients, notificationReceptionType);
+
 			if (recipientClassName.equals(RecipientType.ADDRESS.name())) {
 				String address = kaleoNotificationRecipient.getAddress();
 
@@ -281,39 +292,36 @@ public abstract class BaseNotificationSender implements NotificationSender {
 					new NotificationRecipient(
 						address, notificationReceptionType);
 
-				notificationRecipients.add(notificationRecipient);
+				notificationRecipientsSet.add(notificationRecipient);
 			}
 			else if (recipientClassName.equals(
 						RecipientType.ASSIGNEES.name())) {
 
 				addAssignedRecipients(
-					notificationRecipients, notificationReceptionType,
+					notificationRecipientsSet, notificationReceptionType,
 					executionContext);
 			}
 			else if (recipientClassName.equals(Role.class.getName())) {
 				addRoleRecipientAddresses(
-					notificationRecipients,
+					notificationRecipientsSet,
 					kaleoNotificationRecipient.getRecipientClassPK(),
 					kaleoNotificationRecipient.getRecipientRoleType(),
-					notificationReceptionType,
-					executionContext);
+					notificationReceptionType, executionContext);
 			}
 			else if (recipientClassName.equals(RecipientType.SCRIPT.name())) {
 				addScriptRecipientAddresses(
-					notificationRecipients,
+					notificationRecipientsSet,
 					kaleoNotificationRecipient.getRecipientScript(),
 					kaleoNotificationRecipient.getRecipientScriptLanguage(),
 					kaleoNotificationRecipient.
 						getRecipientScriptRequiredContexts(),
-					notificationReceptionType,
-					executionContext);
+					notificationReceptionType, executionContext);
 			}
 			else if (recipientClassName.equals(User.class.getName())) {
 				addUserNotificationRecipient(
-					notificationRecipients,
+					notificationRecipientsSet,
 					kaleoNotificationRecipient.getRecipientClassPK(),
-					notificationReceptionType,
-					executionContext);
+					notificationReceptionType, executionContext);
 			}
 			else {
 				if (_log.isWarnEnabled()) {
@@ -360,6 +368,24 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		}
 
 		return users;
+	}
+
+	protected Set<NotificationRecipient> retrieveNotificationRecipients(
+		Map<NotificationReceptionType, Set<NotificationRecipient>>
+			notificationRecipients,
+		NotificationReceptionType notificationReceptionType) {
+
+		Set<NotificationRecipient> notificationRecipientsSet =
+			notificationRecipients.get(notificationReceptionType);
+
+		if (notificationRecipientsSet == null) {
+			notificationRecipientsSet = new HashSet<>();
+
+			notificationRecipients.put(
+				notificationReceptionType, notificationRecipientsSet);
+		}
+
+		return notificationRecipientsSet;
 	}
 
 	protected static final String ROLES_RECIPIENT = "roles";
