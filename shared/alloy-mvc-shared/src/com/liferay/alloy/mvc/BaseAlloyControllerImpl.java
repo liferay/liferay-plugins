@@ -253,6 +253,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	@Override
+	public String translate(String pattern, Object... arguments) {
+		return LanguageUtil.format(pageContext, pattern, arguments);
+	}
+
+	@Override
 	public void updateModel(BaseModel<?> baseModel, Object... properties)
 		throws Exception {
 
@@ -1312,10 +1317,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			TOUCH + portlet.getRootPortletId(), Boolean.FALSE);
 
 		include(touchPath);
-	}
-
-	protected String translate(String pattern, Object... arguments) {
-		return LanguageUtil.format(locale, pattern, arguments);
 	}
 
 	protected void writeResponse(Object content, String contentType)
