@@ -59,9 +59,9 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"communities,friends") ||
 				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
-					"sites,social") ||
+					 "sites,social") ||
 				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
-					"friends,sites")) {
+					 "friends,sites")) {
 
 			List<Object[]> groupBuddies =
 				StatusLocalServiceUtil.getGroupStatuses(
@@ -74,7 +74,7 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 					PortletPropsValues.BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES,
 					modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 
-			buddies = new ArrayList<Object[]>(
+			buddies = new ArrayList<>(
 				groupBuddies.size() + socialBuddies.size());
 
 			buddies.addAll(groupBuddies);

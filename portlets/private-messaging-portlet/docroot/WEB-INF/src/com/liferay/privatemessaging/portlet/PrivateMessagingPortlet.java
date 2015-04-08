@@ -215,8 +215,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 				try {
 					ObjectValuePair<String, InputStream> inputStreamOVP =
-						new ObjectValuePair<String, InputStream>(
-							fileName, inputStream);
+						new ObjectValuePair<>(fileName, inputStream);
 
 					inputStreamOVPs.add(inputStreamOVP);
 				}
@@ -349,20 +348,11 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 	}
 
 	protected boolean isValidName(String name) {
-		if ((name == null) ||
-			name.contains("\\") ||
-			name.contains("\\\\") ||
-			name.contains("//") ||
-			name.contains(":") ||
-			name.contains("*") ||
-			name.contains("?") ||
-			name.contains("\"") ||
-			name.contains("<") ||
-			name.contains(">") ||
-			name.contains("|") ||
-			name.contains("[") ||
-			name.contains("]") ||
-			name.contains("../") ||
+		if ((name == null) || name.contains("\\") || name.contains("\\\\") ||
+			name.contains("//") || name.contains(":") || name.contains("*") ||
+			name.contains("?") || name.contains("\"") || name.contains("<") ||
+			name.contains(">") || name.contains("|") || name.contains("[") ||
+			name.contains("]") || name.contains("../") ||
 			name.contains("/..")) {
 
 			return false;
@@ -383,7 +373,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			if ((PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE) > 0) &&
 				((file == null) ||
 				 (file.length() >
-				  PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE)))) {
+					 PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE)))) {
 
 				throw new FileSizeException(fileName);
 			}

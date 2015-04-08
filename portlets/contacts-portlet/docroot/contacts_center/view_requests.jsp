@@ -70,7 +70,7 @@
 					<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
 				</portlet:actionURL >
 
-				<span class="lfr-user-action-item lfr-user-action-confirm">
+				<span class="lfr-user-action-confirm lfr-user-action-item">
 					<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
 				</span>
 
@@ -80,7 +80,7 @@
 					<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
 				</portlet:actionURL >
 
-				<span class="lfr-user-action-item lfr-user-action-ignore">
+				<span class="lfr-user-action-ignore lfr-user-action-item">
 					<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
 				</span>
 			</div>

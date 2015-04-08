@@ -18,12 +18,12 @@
 --%>
 
 <div class="profile-actions">
-	<p class="portlet-msg alert alert-info"><liferay-ui:message key="to-complete-your-profile-please-add" /></p>
+	<p class="alert alert-info portlet-msg"><liferay-ui:message key="to-complete-your-profile-please-add" /></p>
 
 	<div class="field-actions-toolbar">
 		<ul class="settings-actions">
 			<c:if test="<%= Validator.isNull(user2.getComments()) %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="comments" data-title="<%= LanguageUtil.get(request, "introduction") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="comments" data-title="<%= LanguageUtil.get(request, "introduction") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -33,7 +33,7 @@
 			</c:if>
 
 			<c:if test="<%= assetTags.isEmpty() %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="categorization" data-title="<%= LanguageUtil.get(request, "tags") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="categorization" data-title="<%= LanguageUtil.get(request, "tags") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -43,7 +43,7 @@
 			</c:if>
 
 			<c:if test="<%= phones.isEmpty() %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="phoneNumbers" data-title="<%= LanguageUtil.get(request, "phone-numbers") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="phoneNumbers" data-title="<%= LanguageUtil.get(request, "phone-numbers") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -53,7 +53,7 @@
 			</c:if>
 
 			<c:if test="<%= emailAddresses.isEmpty() %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="additionalEmailAddresses" data-title="<%= LanguageUtil.get(request, "additional-email-addresses") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="additionalEmailAddresses" data-title="<%= LanguageUtil.get(request, "additional-email-addresses") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -63,7 +63,7 @@
 			</c:if>
 
 			<c:if test="<%= Validator.isNull(aim) && Validator.isNull(icq) && Validator.isNull(jabber) && Validator.isNull(msn) && Validator.isNull(skype) && Validator.isNull(ym) %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(request, "instant-messenger") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(request, "instant-messenger") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -73,7 +73,7 @@
 			</c:if>
 
 			<c:if test="<%= addresses.isEmpty() %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="addresses" data-title="<%= LanguageUtil.get(request, "addresses") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="addresses" data-title="<%= LanguageUtil.get(request, "addresses") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -83,7 +83,7 @@
 			</c:if>
 
 			<c:if test="<%= websites.isEmpty() %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="websites" data-title="<%= LanguageUtil.get(request, "websites") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="websites" data-title="<%= LanguageUtil.get(request, "websites") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -93,7 +93,7 @@
 			</c:if>
 
 			<c:if test="<%= Validator.isNull(facebook) && Validator.isNull(twitter) %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="socialNetwork" data-title="<%= LanguageUtil.get(request, "social-network") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="socialNetwork" data-title="<%= LanguageUtil.get(request, "social-network") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 
@@ -103,7 +103,7 @@
 			</c:if>
 
 			<c:if test="<%= Validator.isNull(contact2.getSmsSn()) %>">
-				<li class="action-field component settings-field lfr-token" data-sectionId="sms" data-title="<%= LanguageUtil.get(request, "sms") %>">
+				<li class="action-field component lfr-token settings-field" data-sectionId="sms" data-title="<%= LanguageUtil.get(request, "sms") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 

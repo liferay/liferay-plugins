@@ -230,7 +230,7 @@ public class StatusFinderImpl
 	protected List<Object[]> toObjectArray(List<?> list) throws Exception {
 		List<Object[]> objectArrayList = (List<Object[]>)list;
 
-		List<Object[]> newObjectArrayList = new ArrayList<Object[]>(
+		List<Object[]> newObjectArrayList = new ArrayList<>(
 			objectArrayList.size());
 
 		for (Object[] objectArray : objectArrayList) {

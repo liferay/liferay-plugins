@@ -68,7 +68,7 @@ request.setAttribute("view_user.jsp-user", user2);
 						</c:if>
 
 						<c:if test="<%= follower %>">
-							<span class="lfr-asset-icon lfr-asset-follower last">
+							<span class="last lfr-asset-follower lfr-asset-icon">
 								<i class="icon-user"></i>
 
 								<liferay-ui:message key="follower" />
@@ -132,7 +132,7 @@ request.setAttribute("view_user.jsp-user", user2);
 				</aui:layout>
 			</aui:layout>
 
-			<div class="lfr-detail-info field-group" data-sectionId="details" data-title="<%= LanguageUtil.get(request, "details") %>">
+			<div class="field-group lfr-detail-info" data-sectionId="details" data-title="<%= LanguageUtil.get(request, "details") %>">
 				<i class="icon-edit"></i>
 
 				<c:if test="<%= showIcon %>">
