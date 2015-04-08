@@ -253,7 +253,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		if (kaleoNotificationRecipients.isEmpty()) {
 			addAssignedRecipients(
 				notificationRecipients,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.NOT_APPLICABLE.type,
+				NotificationConstants.EMAIL_RECIPIENT_TYPE.TO.type,
 				executionContext);
 
 			return notificationRecipients;
