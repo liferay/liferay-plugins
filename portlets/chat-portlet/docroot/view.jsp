@@ -100,7 +100,7 @@
 											Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 										%>
 
-											<li class="active user"  data-displayURL="<%= group.getDisplayURL(themeDisplay, false) %>" data-groupId="<%= groupId %>" data-userId="<%= userId %>">
+											<li class="active user" data-displayURL="<%= group.getDisplayURL(themeDisplay, false) %>" data-groupId="<%= groupId %>" data-userId="<%= userId %>">
 												<img alt="" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), male, portraitId, userUuid) %>" />
 
 												<div class="name">
