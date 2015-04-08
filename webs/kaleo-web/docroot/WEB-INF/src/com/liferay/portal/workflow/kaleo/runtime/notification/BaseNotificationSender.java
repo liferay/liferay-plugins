@@ -14,41 +14,13 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
-import com.liferay.portal.kernel.bi.rules.Fact;
-import com.liferay.portal.kernel.bi.rules.Query;
-import com.liferay.portal.kernel.bi.rules.RulesEngineUtil;
-import com.liferay.portal.kernel.bi.rules.RulesResourceRetriever;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.resource.StringResourceRetriever;
-import com.liferay.portal.kernel.scripting.ScriptingUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroupGroupRole;
-import com.liferay.portal.model.UserGroupRole;
-import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
-import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.definition.RecipientType;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.runtime.util.ClassLoaderUtil;
-import com.liferay.portal.workflow.kaleo.runtime.util.RulesContextBuilder;
-import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil;
-import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
+import com.liferay.portal.workflow.kaleo.runtime.notification.recipient.NotificationRecipientBuilder;
+import com.liferay.portal.workflow.kaleo.runtime.notification.recipient.NotificationRecipientBuilderRegistry;
 
-import java.io.Serializable;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -86,162 +58,12 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		}
 	}
 
-	protected void addAssignedRecipients(
-			Set<NotificationRecipient> notificationRecipients,
-			NotificationReceptionType notificationReceptionType,
-			ExecutionContext executionContext)
-		throws Exception {
+	public void setNotificationRecipientBuilderRegistry(
+		NotificationRecipientBuilderRegistry
+			notificationRecipientBuilderRegistry) {
 
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			executionContext.getKaleoTaskInstanceToken();
-
-		if (kaleoTaskInstanceToken == null) {
-			return;
-		}
-
-		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
-			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
-
-		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
-				kaleoTaskAssignmentInstances) {
-
-			String assigneeClassName =
-				kaleoTaskAssignmentInstance.getAssigneeClassName();
-
-			if (assigneeClassName.equals(User.class.getName())) {
-				addUserNotificationRecipient(
-					notificationRecipients,
-					kaleoTaskAssignmentInstance.getAssigneeClassPK(),
-					notificationReceptionType, executionContext);
-			}
-			else {
-				long roleId = kaleoTaskAssignmentInstance.getAssigneeClassPK();
-
-				Role role = RoleLocalServiceUtil.getRole(roleId);
-
-				addRoleRecipientAddresses(
-					notificationRecipients, roleId, role.getType(),
-					notificationReceptionType, executionContext);
-			}
-		}
-	}
-
-	protected void addRoleRecipientAddresses(
-			Set<NotificationRecipient> notificationRecipients, long roleId,
-			int roleType, NotificationReceptionType notificationReceptionType,
-			ExecutionContext executionContext)
-		throws Exception {
-
-		List<User> users = getRoleUsers(roleId, roleType, executionContext);
-
-		for (User user : users) {
-			if (user.isActive()) {
-				NotificationRecipient notificationRecipient =
-					new NotificationRecipient(user, notificationReceptionType);
-
-				notificationRecipients.add(notificationRecipient);
-			}
-		}
-	}
-
-	protected void addScriptRecipientAddresses(
-			Set<NotificationRecipient> notificationRecipients,
-			String recipientScript, String recipientScriptingLanguage,
-			String recipientScriptRequiredContextsString,
-			NotificationReceptionType notificationReceptionType,
-			ExecutionContext executionContext)
-		throws Exception {
-
-		String[] recipientScriptRequiredContexts = StringUtil.split(
-			recipientScriptRequiredContextsString);
-
-		ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
-			recipientScriptRequiredContexts);
-
-		if (NotificationConstants.RECIPIENT_SCRIPT_LANGUAGE.
-				hasScriptingLanguage(recipientScriptingLanguage)) {
-
-			Map<String, ?> results = null;
-
-			if (NotificationConstants.RECIPIENT_SCRIPT_LANGUAGE.DRL.equals(
-					recipientScriptingLanguage)) {
-
-				List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
-					executionContext);
-
-				RulesResourceRetriever rulesResourceRetriever =
-					new RulesResourceRetriever(
-						new StringResourceRetriever(recipientScript));
-
-				Query query = Query.createStandardQuery();
-
-				results = RulesEngineUtil.execute(
-					rulesResourceRetriever, facts, query, classLoaders);
-			}
-			else {
-				Map<String, Object> inputObjects =
-					ScriptingContextBuilderUtil.buildScriptingContext(
-						executionContext);
-
-				results = ScriptingUtil.eval(
-					null, inputObjects, _outputNames,
-					recipientScriptingLanguage, recipientScript, classLoaders);
-			}
-
-			Map<String, Serializable> resultsWorkflowContext =
-				(Map<String, Serializable>)results.get(
-					WorkflowContextUtil.WORKFLOW_CONTEXT_NAME);
-
-			WorkflowContextUtil.mergeWorkflowContexts(
-				executionContext, resultsWorkflowContext);
-
-			User user = (User)results.get(USER_RECIPIENT);
-
-			if (user != null) {
-				if (user.isActive()) {
-					NotificationRecipient notificationRecipient =
-						new NotificationRecipient(
-							user, notificationReceptionType);
-
-					notificationRecipients.add(notificationRecipient);
-				}
-			}
-			else {
-				List<Role> roles = (List<Role>)results.get(ROLES_RECIPIENT);
-
-				for (Role role : roles) {
-					addRoleRecipientAddresses(
-						notificationRecipients, role.getRoleId(),
-						role.getType(), notificationReceptionType,
-						executionContext);
-				}
-			}
-		}
-	}
-
-	protected void addUserNotificationRecipient(
-			Set<NotificationRecipient> notificationRecipients, long userId,
-			NotificationReceptionType notificationReceptionType,
-			ExecutionContext executionContext)
-		throws Exception {
-
-		if (userId <= 0) {
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-
-			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
-
-			userId = kaleoInstance.getUserId();
-		}
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		if (user.isActive()) {
-			NotificationRecipient notificationRecipient =
-				new NotificationRecipient(user, notificationReceptionType);
-
-			notificationRecipients.add(notificationRecipient);
-		}
+		_notificationRecipientBuilderRegistry =
+			notificationRecipientBuilderRegistry;
 	}
 
 	protected abstract void doSendNotification(
@@ -264,8 +86,13 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				retrieveNotificationRecipients(
 					notificationRecipients, NotificationReceptionType.TO);
 
-			addAssignedRecipients(
-				notificationRecipientsSet, NotificationReceptionType.TO,
+			NotificationRecipientBuilder notificationRecipientBuilder =
+				_notificationRecipientBuilderRegistry.
+					getKaleoNotificationRecipientHandler(
+						RecipientType.ASSIGNEES);
+
+			notificationRecipientBuilder.processKaleoNotificationRecipient(
+				notificationRecipientsSet, null, NotificationReceptionType.TO,
 				executionContext);
 
 			return notificationRecipients;
@@ -273,9 +100,6 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 		for (KaleoNotificationRecipient kaleoNotificationRecipient :
 				kaleoNotificationRecipients) {
-
-			String recipientClassName =
-				kaleoNotificationRecipient.getRecipientClassName();
 
 			NotificationReceptionType notificationReceptionType =
 				NotificationReceptionType.parse(
@@ -285,89 +109,19 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				retrieveNotificationRecipients(
 					notificationRecipients, notificationReceptionType);
 
-			if (recipientClassName.equals(RecipientType.ADDRESS.name())) {
-				String address = kaleoNotificationRecipient.getAddress();
+			RecipientType recipientType = RecipientType.valueOf(
+				kaleoNotificationRecipient.getRecipientClassName());
 
-				NotificationRecipient notificationRecipient =
-					new NotificationRecipient(
-						address, notificationReceptionType);
+			NotificationRecipientBuilder notificationRecipientBuilder =
+				_notificationRecipientBuilderRegistry.
+					getKaleoNotificationRecipientHandler(recipientType);
 
-				notificationRecipientsSet.add(notificationRecipient);
-			}
-			else if (recipientClassName.equals(
-						RecipientType.ASSIGNEES.name())) {
-
-				addAssignedRecipients(
-					notificationRecipientsSet, notificationReceptionType,
-					executionContext);
-			}
-			else if (recipientClassName.equals(Role.class.getName())) {
-				addRoleRecipientAddresses(
-					notificationRecipientsSet,
-					kaleoNotificationRecipient.getRecipientClassPK(),
-					kaleoNotificationRecipient.getRecipientRoleType(),
-					notificationReceptionType, executionContext);
-			}
-			else if (recipientClassName.equals(RecipientType.SCRIPT.name())) {
-				addScriptRecipientAddresses(
-					notificationRecipientsSet,
-					kaleoNotificationRecipient.getRecipientScript(),
-					kaleoNotificationRecipient.getRecipientScriptLanguage(),
-					kaleoNotificationRecipient.
-						getRecipientScriptRequiredContexts(),
-					notificationReceptionType, executionContext);
-			}
-			else if (recipientClassName.equals(User.class.getName())) {
-				addUserNotificationRecipient(
-					notificationRecipientsSet,
-					kaleoNotificationRecipient.getRecipientClassPK(),
-					notificationReceptionType, executionContext);
-			}
-			else {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unsupported recipient " + kaleoNotificationRecipient);
-				}
-			}
+			notificationRecipientBuilder.processKaleoNotificationRecipient(
+				notificationRecipientsSet, kaleoNotificationRecipient,
+				notificationReceptionType, executionContext);
 		}
 
 		return notificationRecipients;
-	}
-
-	protected List<User> getRoleUsers(
-			long roleId, int roleType, ExecutionContext executionContext)
-		throws Exception {
-
-		if (roleType == RoleConstants.TYPE_REGULAR) {
-			return UserLocalServiceUtil.getInheritedRoleUsers(
-				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		}
-
-		List<User> users = new ArrayList<>();
-
-		KaleoInstanceToken kaleoInstanceToken =
-			executionContext.getKaleoInstanceToken();
-
-		List<UserGroupRole> userGroupRoles =
-			UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-				kaleoInstanceToken.getGroupId(), roleId);
-
-		for (UserGroupRole userGroupRole : userGroupRoles) {
-			users.add(userGroupRole.getUser());
-		}
-
-		List<UserGroupGroupRole> userGroupGroupRoles =
-			UserGroupGroupRoleLocalServiceUtil.
-				getUserGroupGroupRolesByGroupAndRole(
-					kaleoInstanceToken.getGroupId(), roleId);
-
-		for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
-			users.addAll(
-				UserLocalServiceUtil.getUserGroupUsers(
-					userGroupGroupRole.getUserGroupId()));
-		}
-
-		return users;
 	}
 
 	protected Set<NotificationRecipient> retrieveNotificationRecipients(
@@ -388,19 +142,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		return notificationRecipientsSet;
 	}
 
-	protected static final String ROLES_RECIPIENT = "roles";
-
-	protected static final String USER_RECIPIENT = "user";
-
-	private static Log _log = LogFactoryUtil.getLog(
-		BaseNotificationSender.class);
-
-	private static Set<String> _outputNames = new HashSet<>();
-
-	static {
-		_outputNames.add(ROLES_RECIPIENT);
-		_outputNames.add(USER_RECIPIENT);
-		_outputNames.add(WorkflowContextUtil.WORKFLOW_CONTEXT_NAME);
-	}
+	private NotificationRecipientBuilderRegistry
+		_notificationRecipientBuilderRegistry;
 
 }
