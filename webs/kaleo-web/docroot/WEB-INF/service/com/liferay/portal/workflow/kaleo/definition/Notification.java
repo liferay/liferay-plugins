@@ -50,7 +50,7 @@ public class Notification {
 
 	public void addRecipients(Recipient recipient) {
 		Set<Recipient> recipients = _recipientsMap.get(
-			recipient.getEmailRecipientType());
+			recipient.getNotificationReceptionType());
 
 		if (recipients == null) {
 			recipients = new HashSet<>();
@@ -58,7 +58,8 @@ public class Notification {
 
 		recipients.add(recipient);
 
-		_recipientsMap.put(recipient.getEmailRecipientType(), recipients);
+		_recipientsMap.put(
+			recipient.getNotificationReceptionType(), recipients);
 	}
 
 	@Override
@@ -96,7 +97,7 @@ public class Notification {
 		return _notificationTypes;
 	}
 
-	public Map<Integer, Set<Recipient>> getRecipientsMap() {
+	public Map<NotificationReceptionType, Set<Recipient>> getRecipientsMap() {
 		return _recipientsMap;
 	}
 
@@ -117,7 +118,8 @@ public class Notification {
 	private ExecutionType _executionType;
 	private String _name;
 	private Set<NotificationType> _notificationTypes = new HashSet<>();
-	private Map<Integer, Set<Recipient>> _recipientsMap = new HashMap<>();
+	private Map<NotificationReceptionType, Set<Recipient>> _recipientsMap =
+		new HashMap<>();
 	private String _template;
 	private TemplateLanguage _templateLanguage;
 

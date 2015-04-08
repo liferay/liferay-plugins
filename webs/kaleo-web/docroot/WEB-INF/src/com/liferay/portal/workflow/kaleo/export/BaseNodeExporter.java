@@ -23,6 +23,7 @@ import com.liferay.portal.workflow.kaleo.definition.AssignmentType;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.definition.NotificationType;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
 import com.liferay.portal.workflow.kaleo.definition.RecipientType;
@@ -36,7 +37,6 @@ import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
-import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationConstants;
 
 import java.util.List;
 import java.util.Map;
@@ -252,17 +252,19 @@ public abstract class BaseNodeExporter implements NodeExporter {
 				notificationType.getValue());
 		}
 
-		Map<Integer, Set<Recipient>> recipientsMap =
+		Map<NotificationReceptionType, Set<Recipient>> recipientsMap =
 			notification.getRecipientsMap();
 
-		for (Map.Entry<Integer, Set<Recipient>> recipientsEntry :
+		for (Map.Entry<NotificationReceptionType, Set<Recipient>>
+				recipientsEntry :
 				recipientsMap.entrySet()) {
 
 			Set<Recipient> recipients = recipientsEntry.getValue();
-			int emailRecipientType = recipientsEntry.getKey();
+			NotificationReceptionType notificationReceptionType =
+				recipientsEntry.getKey();
 
 			exportRecipientsElement(
-				notificationElement, recipients, emailRecipientType);
+				notificationElement, recipients, notificationReceptionType);
 		}
 
 		addTextElement(
@@ -272,28 +274,17 @@ public abstract class BaseNodeExporter implements NodeExporter {
 
 	protected void exportRecipientsElement(
 		Element notificationElement, Set<Recipient> recipients,
-		int emailRecipientType) {
+		NotificationReceptionType notificationReceptionType) {
 
 		if (recipients.isEmpty()) {
 			return;
 		}
 
-		Element recipientsElement = null;
+		Element recipientsElement = notificationElement.addElement(
+			"recipients");
 
-		if (emailRecipientType ==
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.BCC.type) {
-
-			recipientsElement = notificationElement.addElement(
-				"bcc-recipients");
-		}
-		else if (emailRecipientType ==
-					NotificationConstants.EMAIL_RECIPIENT_TYPE.CC.type) {
-
-			recipientsElement = notificationElement.addElement("cc-recipients");
-		}
-		else {
-			recipientsElement = notificationElement.addElement("recipients");
-		}
+		recipientsElement.addAttribute(
+			"receptionType", notificationReceptionType.getValue());
 
 		Element rolesElement = null;
 

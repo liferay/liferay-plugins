@@ -17,27 +17,38 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public abstract class Recipient {
+public enum NotificationReceptionType {
 
-	public Recipient(RecipientType recipientType) {
-		_recipientType = recipientType;
+	BCC("bcc"), CC("cc"), TO("to");
+
+	public static NotificationReceptionType parse(String value) {
+		if (BCC.getValue().equals(value)) {
+			return BCC;
+		}
+		else if (CC.getValue().equals(value)) {
+			return CC;
+		}
+		else if (TO.getValue().equals(value)) {
+			return TO;
+		}
+		else {
+			throw new IllegalArgumentException("Invalid value " + value);
+		}
 	}
 
-	public NotificationReceptionType getNotificationReceptionType() {
-		return _notificationReceptionType;
+	public String getValue() {
+		return _value;
 	}
 
-	public RecipientType getRecipientType() {
-		return _recipientType;
+	@Override
+	public String toString() {
+		return _value;
 	}
 
-	public void setNotificationReceptionType(
-		NotificationReceptionType notificationReceptionType) {
-
-		_notificationReceptionType = notificationReceptionType;
+	private NotificationReceptionType(String value) {
+		_value = value;
 	}
 
-	private NotificationReceptionType _notificationReceptionType;
-	private RecipientType _recipientType;
+	private String _value;
 
 }

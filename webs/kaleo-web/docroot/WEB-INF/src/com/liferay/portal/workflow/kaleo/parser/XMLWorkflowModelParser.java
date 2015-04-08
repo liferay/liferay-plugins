@@ -35,6 +35,7 @@ import com.liferay.portal.workflow.kaleo.definition.JoinXor;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.NotificationAware;
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
@@ -46,7 +47,6 @@ import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
-import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationConstants;
 
 import java.io.InputStream;
 
@@ -416,26 +416,15 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 					notificationTypeElement.getText());
 			}
 
-			Element bccRecipientsElement = notificationElement.element(
-				"bcc-recipients");
-
-			parseRecipients(
-				bccRecipientsElement, notification,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.BCC.type);
-
-			Element ccRecipientsElement = notificationElement.element(
-				"cc-recipients");
-
-			parseRecipients(
-				ccRecipientsElement, notification,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.CC.type);
-
-			Element recipientsElement = notificationElement.element(
+			List<Element> recipientsElements = notificationElement.elements(
 				"recipients");
 
-			parseRecipients(
-				recipientsElement, notification,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.TO.type);
+			for (Element recipientsElement : recipientsElements) {
+				parseRecipients(
+					recipientsElement, notification,
+					NotificationReceptionType.parse(
+						recipientsElement.attributeValue("receptionType")));
+			}
 
 			notifications.add(notification);
 		}
@@ -445,7 +434,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 	protected void parseRecipients(
 		Element recipientsElement, Notification notification,
-		int recipientType) {
+		NotificationReceptionType notificationReceptionType) {
 
 		if (recipientsElement == null) {
 			return;
@@ -458,7 +447,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			AddressRecipient addressRecipient = new AddressRecipient(
 				addressRecipientElement.getText());
 
-			addressRecipient.setEmailRecipientType(recipientType);
+			addressRecipient.setNotificationReceptionType(
+				notificationReceptionType);
 
 			notification.addRecipients(addressRecipient);
 		}
@@ -469,7 +459,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		if (assigneesRecipientElement != null) {
 			AssigneesRecipient assigneesRecipient = new AssigneesRecipient();
 
-			assigneesRecipient.setEmailRecipientType(recipientType);
+			assigneesRecipient.setNotificationReceptionType(
+				notificationReceptionType);
 
 			notification.addRecipients(assigneesRecipient);
 		}
@@ -501,7 +492,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 					roleRecipient.setAutoCreate(autoCreate);
 				}
 
-				roleRecipient.setEmailRecipientType(recipientType);
+				roleRecipient.setNotificationReceptionType(
+					notificationReceptionType);
 
 				notification.addRecipients(roleRecipient);
 			}
@@ -521,7 +513,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			ScriptRecipient scriptRecipient = new ScriptRecipient(
 				script, scriptLanguage, scriptRequiredContexts);
 
-			scriptRecipient.setEmailRecipientType(recipientType);
+			scriptRecipient.setNotificationReceptionType(
+				notificationReceptionType);
 
 			notification.addRecipients(scriptRecipient);
 		}
@@ -539,7 +532,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			UserRecipient userRecipient = new UserRecipient(
 				userId, screenName, emailAddress);
 
-			userRecipient.setEmailRecipientType(recipientType);
+			userRecipient.setNotificationReceptionType(
+				notificationReceptionType);
 
 			notification.addRecipients(userRecipient);
 		}
