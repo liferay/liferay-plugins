@@ -50,6 +50,8 @@ public interface AlloyController {
 
 	public void setUser(User user);
 
+	public String translate(String pattern, Object... arguments);
+
 	public void updateModel(BaseModel<?> baseModel, Object... properties)
 		throws Exception;
 
