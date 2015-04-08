@@ -28,7 +28,8 @@ page import="com.liferay.knowledgebase.model.KBCommentConstants" %><%@
 page import="com.liferay.knowledgebase.util.KBSuggestionListDisplayContext" %><%@
 page import="com.liferay.portal.kernel.servlet.SessionMessages" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
-page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
+page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
+page import="com.liferay.portlet.documentlibrary.util.DLUtil" %>
 
 <%
 String kbArticlesOrderByCol = portletPreferences.getValue("kbArticlesOrderByCol", StringPool.BLANK);

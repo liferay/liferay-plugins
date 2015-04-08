@@ -51,14 +51,16 @@ if (kbArticle != null) {
 			%>
 
 				<div id="<portlet:namespace />fileEntryIdWrapper<%= fileEntry.getFileEntryId() %>">
-					<liferay-portlet:resourceURL id="attachment" var="clipURL">
-						<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
-					</liferay-portlet:resourceURL>
+
+					<%
+					String clipURL = DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK);
+					%>
 
 					<liferay-ui:icon
 						iconCssClass="icon-paper-clip"
 						label="<%= true %>"
 						message='<%= fileEntry.getTitle() + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)" %>'
+						method="get"
 						url="<%= clipURL %>"
 					/>
 
