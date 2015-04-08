@@ -108,7 +108,7 @@ public class EmailNotificationSender
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {
 
-			if (notificationRecipient.getEmailRecipientType() ==
+			if (notificationRecipient.getNotificationReceptionType() ==
 					emailRecipientType) {
 
 				internetAddresses.add(

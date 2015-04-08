@@ -33,6 +33,7 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.definition.RecipientType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -86,7 +87,8 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 	protected void addAssignedRecipients(
 			Set<NotificationRecipient> notificationRecipients,
-			int emailRecipientType, ExecutionContext executionContext)
+			NotificationReceptionType notificationReceptionType,
+			ExecutionContext executionContext)
 		throws Exception {
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
@@ -109,7 +111,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				addUserNotificationRecipient(
 					notificationRecipients,
 					kaleoTaskAssignmentInstance.getAssigneeClassPK(),
-					emailRecipientType, executionContext);
+					notificationReceptionType, executionContext);
 			}
 			else {
 				long roleId = kaleoTaskAssignmentInstance.getAssigneeClassPK();
@@ -118,14 +120,14 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 				addRoleRecipientAddresses(
 					notificationRecipients, roleId, role.getType(),
-					emailRecipientType, executionContext);
+					notificationReceptionType, executionContext);
 			}
 		}
 	}
 
 	protected void addRoleRecipientAddresses(
 			Set<NotificationRecipient> notificationRecipients, long roleId,
-			int roleType, int emailRecipientType,
+			int roleType, NotificationReceptionType notificationReceptionType,
 			ExecutionContext executionContext)
 		throws Exception {
 
@@ -134,7 +136,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		for (User user : users) {
 			if (user.isActive()) {
 				NotificationRecipient notificationRecipient =
-					new NotificationRecipient(user, emailRecipientType);
+					new NotificationRecipient(user, notificationReceptionType);
 
 				notificationRecipients.add(notificationRecipient);
 			}
@@ -145,7 +147,8 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			Set<NotificationRecipient> notificationRecipients,
 			String recipientScript, String recipientScriptingLanguage,
 			String recipientScriptRequiredContextsString,
-			int emailRecipientType, ExecutionContext executionContext)
+			NotificationReceptionType notificationReceptionType,
+			ExecutionContext executionContext)
 		throws Exception {
 
 		String[] recipientScriptRequiredContexts = StringUtil.split(
@@ -196,7 +199,8 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			if (user != null) {
 				if (user.isActive()) {
 					NotificationRecipient notificationRecipient =
-						new NotificationRecipient(user, emailRecipientType);
+						new NotificationRecipient(
+							user, notificationReceptionType);
 
 					notificationRecipients.add(notificationRecipient);
 				}
@@ -207,7 +211,8 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				for (Role role : roles) {
 					addRoleRecipientAddresses(
 						notificationRecipients, role.getRoleId(),
-						role.getType(), emailRecipientType, executionContext);
+						role.getType(), notificationReceptionType,
+						executionContext);
 				}
 			}
 		}
@@ -215,7 +220,8 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 	protected void addUserNotificationRecipient(
 			Set<NotificationRecipient> notificationRecipients, long userId,
-			int emailRecipientType, ExecutionContext executionContext)
+			NotificationReceptionType notificationReceptionType,
+			ExecutionContext executionContext)
 		throws Exception {
 
 		if (userId <= 0) {
@@ -231,7 +237,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 		if (user.isActive()) {
 			NotificationRecipient notificationRecipient =
-				new NotificationRecipient(user, emailRecipientType);
+				new NotificationRecipient(user, notificationReceptionType);
 
 			notificationRecipients.add(notificationRecipient);
 		}
@@ -252,8 +258,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 		if (kaleoNotificationRecipients.isEmpty()) {
 			addAssignedRecipients(
-				notificationRecipients,
-				NotificationConstants.EMAIL_RECIPIENT_TYPE.TO.type,
+				notificationRecipients, NotificationReceptionType.TO,
 				executionContext);
 
 			return notificationRecipients;
@@ -265,13 +270,16 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			String recipientClassName =
 				kaleoNotificationRecipient.getRecipientClassName();
 
+			NotificationReceptionType notificationReceptionType =
+				NotificationReceptionType.parse(
+					kaleoNotificationRecipient.getReceiptionType());
+
 			if (recipientClassName.equals(RecipientType.ADDRESS.name())) {
 				String address = kaleoNotificationRecipient.getAddress();
-				int emailRecipientType =
-					kaleoNotificationRecipient.getEmailRecipientType();
 
 				NotificationRecipient notificationRecipient =
-					new NotificationRecipient(address, emailRecipientType);
+					new NotificationRecipient(
+						address, notificationReceptionType);
 
 				notificationRecipients.add(notificationRecipient);
 			}
@@ -279,8 +287,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 						RecipientType.ASSIGNEES.name())) {
 
 				addAssignedRecipients(
-					notificationRecipients,
-					kaleoNotificationRecipient.getEmailRecipientType(),
+					notificationRecipients, notificationReceptionType,
 					executionContext);
 			}
 			else if (recipientClassName.equals(Role.class.getName())) {
@@ -288,7 +295,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 					notificationRecipients,
 					kaleoNotificationRecipient.getRecipientClassPK(),
 					kaleoNotificationRecipient.getRecipientRoleType(),
-					kaleoNotificationRecipient.getEmailRecipientType(),
+					notificationReceptionType,
 					executionContext);
 			}
 			else if (recipientClassName.equals(RecipientType.SCRIPT.name())) {
@@ -298,14 +305,14 @@ public abstract class BaseNotificationSender implements NotificationSender {
 					kaleoNotificationRecipient.getRecipientScriptLanguage(),
 					kaleoNotificationRecipient.
 						getRecipientScriptRequiredContexts(),
-					kaleoNotificationRecipient.getEmailRecipientType(),
+					notificationReceptionType,
 					executionContext);
 			}
 			else if (recipientClassName.equals(User.class.getName())) {
 				addUserNotificationRecipient(
 					notificationRecipients,
 					kaleoNotificationRecipient.getRecipientClassPK(),
-					kaleoNotificationRecipient.getEmailRecipientType(),
+					notificationReceptionType,
 					executionContext);
 			}
 			else {
