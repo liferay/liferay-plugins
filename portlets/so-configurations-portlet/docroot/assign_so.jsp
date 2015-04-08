@@ -108,11 +108,6 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 </div>
 
 <aui:script>
-
-	<%
-	Group userGroup = user.getGroup();
-	%>
-
 	Liferay.provide(
 		window,
 		'<portlet:namespace />updateRole',
@@ -121,13 +116,14 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 
 			var addAllUsers = A.one('#addAllUsers input[type=checkbox]');
 
-			<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="dashboardURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-				<portlet:param name="struts_action" value="/my_sites/view" />
-				<portlet:param name="groupId" value="<%= String.valueOf(userGroup.getGroupId()) %>" />
-				<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
-			</liferay-portlet:actionURL>
-
 			if (addAllUsers && addAllUsers.get('checked')) {
+
+				<%
+				Group userGroup = user.getGroup();
+
+				String dashboardURL = userGroup.getDisplayURL(themeDisplay, true);
+				%>
+
 				if (finished) {
 					uri = '<portlet:actionURL name="addRoleAllUsers"><portlet:param name="redirect" value="<%= dashboardURL %>" /></portlet:actionURL>';
 				}
