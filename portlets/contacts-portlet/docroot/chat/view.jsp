@@ -19,15 +19,6 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), PortletKeys.SITE_REDIRECTOR);
-%>
-
-<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" varImpl="profileURL">
-	<portlet:param name="struts_action" value="/my_sites/view" />
-	<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-</liferay-portlet:actionURL>
-
 <aui:script>
 	Liferay.on(
 		'chatPortletReady',
@@ -35,13 +26,9 @@ Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(),
 			Liferay.Chat.Manager.registerBuddyService(
 				{
 					fn: function(user) {
-						var groupId = user.getAttribute('data-groupId');
-
-						var url = Liferay.Util.addParams('<%= PortalUtil.getPortletNamespace(PortletKeys.SITE_REDIRECTOR) %>groupId=' + groupId, '<%= profileURL %>');
-
-						window.location = url;
+						window.location = user.getAttribute('data-displayURL');
 					},
-					icon: '<%= portlet.getStaticResourcePath().concat(portlet.getIcon()) %>',
+					icon: '<%= themeDisplay.getPathThemeImages() + "/common/pages.png" %>',
 					name: 'contacts-portlet'
 				}
 			);
