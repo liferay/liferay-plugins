@@ -64,13 +64,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 		<c:choose>
 			<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED && curUser.isActive() %>">
-				<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="publicPagesURL">
-					<portlet:param name="struts_action" value="/my_sites/view" />
-					<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
-					<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-				</liferay-portlet:actionURL>
-
-				<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
+				<a class="profile-link" href="<%= curUser.getGroup().getDisplayURL(themeDisplay, false) %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
 			</c:when>
 			<c:otherwise>
 				<c:choose>
@@ -101,13 +95,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 	<c:choose>
 		<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
-			<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="selfPublicPagesURL">
-				<portlet:param name="struts_action" value="/my_sites/view" />
-				<portlet:param name="groupId" value="<%= String.valueOf(user.getGroup().getGroupId()) %>" />
-				<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-			</liferay-portlet:actionURL>
-
-			<a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
+			<a class="profile-link" href="<%= user.getGroup().getDisplayURL(themeDisplay, false) %>"><liferay-ui:message key="you" /></a>
 		</c:when>
 		<c:otherwise>
 			<span class="profile-link"><liferay-ui:message key="you" /></span>
@@ -157,14 +145,8 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 			<div class="message">
 				<c:choose>
 					<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED && curUser.isActive() %>">
-						<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_SITES %>" var="publicPagesURL">
-							<portlet:param name="struts_action" value="/my_sites/view" />
-							<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
-							<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-						</liferay-portlet:actionURL>
-
 						<span class="name">
-							<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
+							<a class="profile-link" href="<%= curUser.getGroup().getDisplayURL(themeDisplay, false) %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
 						</span>
 					</c:when>
 					<c:otherwise>
