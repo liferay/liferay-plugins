@@ -64,7 +64,12 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 		<c:choose>
 			<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED && curUser.isActive() %>">
-				<a class="profile-link" href="<%= curUser.getGroup().getDisplayURL(themeDisplay, false) %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
+
+				<%
+				Group curUserGroup = curUser.getGroup();
+				%>
+
+				<a class="profile-link" href="<%= curUserGroup.getDisplayURL(themeDisplay, false) %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
 			</c:when>
 			<c:otherwise>
 				<c:choose>
@@ -95,7 +100,12 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 	<c:choose>
 		<c:when test="<%= LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
-			<a class="profile-link" href="<%= user.getGroup().getDisplayURL(themeDisplay, false) %>"><liferay-ui:message key="you" /></a>
+
+			<%
+			Group userGroup = user.getGroup();
+			%>
+
+			<a class="profile-link" href="<%= userGroup.getDisplayURL(themeDisplay, false) %>"><liferay-ui:message key="you" /></a>
 		</c:when>
 		<c:otherwise>
 			<span class="profile-link"><liferay-ui:message key="you" /></span>
