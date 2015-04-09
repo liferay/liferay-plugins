@@ -28,11 +28,8 @@ public enum NotificationReceptionType {
 		else if (CC.getValue().equals(value)) {
 			return CC;
 		}
-		else if (TO.getValue().equals(value)) {
-			return TO;
-		}
 		else {
-			throw new IllegalArgumentException("Invalid value " + value);
+			return TO;
 		}
 	}
 
