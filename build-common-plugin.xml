@@ -222,14 +222,30 @@
 				</else>
 			</if>
 
-			<path id="jspc.classpath">
+			<path id="jspc.classpath.common">
 				<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
 				<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 				<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
 				<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
-				<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
-				<fileset dir="@{compile.jsp.docroot.dir}/WEB-INF/lib" includes="*.jar" />
 			</path>
+
+			<if>
+				<available file="docroot" type="dir" />
+				<then>
+					<path id="jspc.classpath">
+						<path refid="jspc.classpath.common" />
+						<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
+						<fileset dir="@{compile.jsp.docroot.dir}/WEB-INF/lib" includes="*.jar" />
+					</path>
+				</then>
+				<else>
+					<path id="jspc.classpath">
+						<path refid="jspc.classpath.common" />
+						<pathelement location="classes" />
+						<fileset dir="lib" includes="*.jar" />
+					</path>
+				</else>
+			</if>
 
 			<delete dir="${jspc.classes.dir}" quiet="true" />
 
@@ -524,6 +540,9 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="compile-jsp">
+		<compile-jsp
+			compile.jsp.docroot.dir="src/META-INF/resources"
+		/>
 		<compile-jsp
 			compile.jsp.docroot.dir="docroot"
 		/>
