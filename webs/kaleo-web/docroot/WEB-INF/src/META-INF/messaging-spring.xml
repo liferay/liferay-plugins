@@ -60,6 +60,22 @@
 	<!-- Configurator -->
 
 	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+		<property name="destinationEventListeners">
+			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="liferay/workflow_engine">
+					<list value-type="com.liferay.portal.kernel.messaging.DestinationEventListener">
+						<bean class="com.liferay.portal.kernel.workflow.messaging.DefaultWorkflowDestinationEventListener">
+							<property name="workflowDefinitionManagerListener" ref="messageListener.workflow_definition" />
+							<property name="workflowEngineManagerListener" ref="messageListener.workflow_engine" />
+							<property name="workflowEngineName" value="Liferay Kaleo Workflow Engine" />
+							<property name="workflowInstanceManagerListener" ref="messageListener.workflow_instance" />
+							<property name="workflowLogManagerListener" ref="messageListener.workflow_log" />
+							<property name="workflowTaskManagerListener" ref="messageListener.workflow_task" />
+						</bean>
+					</list>
+				</entry>
+			</map>
+		</property>
 		<property name="destinations">
 			<list>
 				<ref bean="destination.kaleo_graph_walker" />
@@ -120,22 +136,6 @@
 				<entry key="liferay/workflow_timer">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.workflow_timer" />
-					</list>
-				</entry>
-			</map>
-		</property>
-		<property name="destinationEventListeners">
-			<map key-type="java.lang.String" value-type="java.util.List">
-				<entry key="liferay/workflow_engine">
-					<list value-type="com.liferay.portal.kernel.messaging.DestinationEventListener">
-						<bean class="com.liferay.portal.kernel.workflow.messaging.DefaultWorkflowDestinationEventListener">
-							<property name="workflowDefinitionManagerListener" ref="messageListener.workflow_definition" />
-							<property name="workflowEngineManagerListener" ref="messageListener.workflow_engine" />
-							<property name="workflowEngineName" value="Liferay Kaleo Workflow Engine" />
-							<property name="workflowInstanceManagerListener" ref="messageListener.workflow_instance" />
-							<property name="workflowLogManagerListener" ref="messageListener.workflow_log" />
-							<property name="workflowTaskManagerListener" ref="messageListener.workflow_task" />
-						</bean>
 					</list>
 				</entry>
 			</map>
