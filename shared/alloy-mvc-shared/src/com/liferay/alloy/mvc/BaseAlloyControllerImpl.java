@@ -254,7 +254,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	@Override
 	public String translate(String pattern, Object... arguments) {
-		return LanguageUtil.format(pageContext, pattern, arguments);
+		return LanguageUtil.format(request, pattern, arguments);
 	}
 
 	@Override
