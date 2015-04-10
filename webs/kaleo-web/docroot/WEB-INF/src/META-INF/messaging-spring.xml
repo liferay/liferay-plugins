@@ -124,7 +124,7 @@
 				</entry>
 			</map>
 		</property>
-		<property name="specificDestinationEventListener">
+		<property name="destinationEventListeners">
 			<map key-type="java.lang.String" value-type="java.util.List">
 				<entry key="liferay/workflow_engine">
 					<list value-type="com.liferay.portal.kernel.messaging.DestinationEventListener">
