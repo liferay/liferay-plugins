@@ -104,10 +104,8 @@
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
 	<bean class="com.liferay.portal.kernel.search.BaseSearchEngine" id="com.liferay.portal.search.solr.SolrSearchEngineImpl">
-		<property name="clusteredWrite" value="false" />
 		<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcher" />
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
-		<property name="luceneBased" value="false" />
 		<property name="vendor" value="SOLR" />
 	</bean>
 	<bean class="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" id="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter">
