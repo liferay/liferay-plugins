@@ -196,105 +196,110 @@
 		<attribute name="compile.jsp.docroot.dir" />
 
 		<sequential>
-			<antcall target="compile" />
-
 			<if>
-				<not>
-					<equals arg1="${app.server.type}" arg2="tomcat" />
-				</not>
+				<available file="@{compile.jsp.docroot.dir}" />
 				<then>
-					<fail>Compiling JSPs with ${app.server.type} is not supported.</fail>
-				</then>
-			</if>
+					<antcall target="compile" />
 
-			<property name="jspc.classes.dir" value="classes/${app.server.type}" />
+					<if>
+						<not>
+							<equals arg1="${app.server.type}" arg2="tomcat" />
+						</not>
+						<then>
+							<fail>Compiling JSPs with ${app.server.type} is not supported.</fail>
+						</then>
+					</if>
 
-			<if>
-				<and>
-					<equals arg1="${app.server.type}" arg2="tomcat" />
-					<equals arg1="${ant.java.version}" arg2="1.5" />
-				</and>
-				<then>
-					<var name="jspc.java.home" value="${jdk.windows.home}" />
-				</then>
-				<else>
-					<var name="jspc.java.home" value="${env.JAVA_HOME}" />
-				</else>
-			</if>
+					<property name="jspc.classes.dir" value="classes/${app.server.type}" />
 
-			<path id="jspc.classpath.common">
-				<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
-				<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-				<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
-				<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
-			</path>
+					<if>
+						<and>
+							<equals arg1="${app.server.type}" arg2="tomcat" />
+							<equals arg1="${ant.java.version}" arg2="1.5" />
+						</and>
+						<then>
+							<var name="jspc.java.home" value="${jdk.windows.home}" />
+						</then>
+						<else>
+							<var name="jspc.java.home" value="${env.JAVA_HOME}" />
+						</else>
+					</if>
 
-			<if>
-				<available file="docroot" type="dir" />
-				<then>
-					<path id="jspc.classpath">
-						<path refid="jspc.classpath.common" />
-						<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
-						<fileset dir="@{compile.jsp.docroot.dir}/WEB-INF/lib" includes="*.jar" />
+					<path id="jspc.classpath.common">
+						<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
+						<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
+						<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
+						<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
 					</path>
-				</then>
-				<else>
-					<path id="jspc.classpath">
-						<path refid="jspc.classpath.common" />
-						<pathelement location="classes" />
-						<fileset dir="lib" includes="*.jar" />
-					</path>
-				</else>
-			</if>
 
-			<delete dir="${jspc.classes.dir}" quiet="true" />
+					<if>
+						<available file="docroot" type="dir" />
+						<then>
+							<path id="jspc.classpath">
+								<path refid="jspc.classpath.common" />
+								<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
+								<fileset dir="@{compile.jsp.docroot.dir}/WEB-INF/lib" includes="*.jar" />
+							</path>
+						</then>
+						<else>
+							<path id="jspc.classpath">
+								<path refid="jspc.classpath.common" />
+								<pathelement location="classes" />
+								<fileset dir="lib" includes="*.jar" />
+							</path>
+						</else>
+					</if>
 
-			<java
-				classname="com.liferay.jasper.jspc.JspC"
-				classpathref="jspc.classpath"
-				fork="true"
-				jvm="${jspc.java.home}/bin/java"
-				newenvironment="true"
-				outputproperty="jspc.output"
-			>
-				<arg line="-d ${jspc.classes.dir} -webapp @{compile.jsp.docroot.dir}" />
-			</java>
-
-			<echo>${jspc.output}</echo>
-
-			<if>
-				<contains string="${jspc.output}" substring="JasperException" />
-				<then>
 					<delete dir="${jspc.classes.dir}" quiet="true" />
 
-					<fail>JSPs failed to compile.</fail>
-				</then>
-			</if>
-
-			<if>
-				<available file="${jspc.classes.dir}" type="dir" />
-				<then>
-					<javac
+					<java
+						classname="com.liferay.jasper.jspc.JspC"
 						classpathref="jspc.classpath"
-						compiler="${javac.compiler}"
-						deprecation="${javac.deprecation}"
-						destdir="${jspc.classes.dir}"
-						encoding="${javac.encoding}"
-						errorProperty="jspc.javac.fail"
-						failonerror="false"
-						includeAntRuntime="false"
-						nowarn="on"
-						srcdir="${jspc.classes.dir}"
-					/>
+						fork="true"
+						jvm="${jspc.java.home}/bin/java"
+						newenvironment="true"
+						outputproperty="jspc.output"
+					>
+						<arg line="-d ${jspc.classes.dir} -webapp @{compile.jsp.docroot.dir}" />
+					</java>
 
-					<delete dir="${jspc.classes.dir}" quiet="true" />
-				</then>
-			</if>
+					<echo>${jspc.output}</echo>
 
-			<if>
-				<istrue value="${jspc.javac.fail}" />
-				<then>
-					<fail>JSPs failed to compile.</fail>
+					<if>
+						<contains string="${jspc.output}" substring="JasperException" />
+						<then>
+							<delete dir="${jspc.classes.dir}" quiet="true" />
+
+							<fail>JSPs failed to compile.</fail>
+						</then>
+					</if>
+
+					<if>
+						<available file="${jspc.classes.dir}" type="dir" />
+						<then>
+							<javac
+								classpathref="jspc.classpath"
+								compiler="${javac.compiler}"
+								deprecation="${javac.deprecation}"
+								destdir="${jspc.classes.dir}"
+								encoding="${javac.encoding}"
+								errorProperty="jspc.javac.fail"
+								failonerror="false"
+								includeAntRuntime="false"
+								nowarn="on"
+								srcdir="${jspc.classes.dir}"
+							/>
+
+							<delete dir="${jspc.classes.dir}" quiet="true" />
+						</then>
+					</if>
+
+					<if>
+						<istrue value="${jspc.javac.fail}" />
+						<then>
+							<fail>JSPs failed to compile.</fail>
+						</then>
+					</if>
 				</then>
 			</if>
 		</sequential>
