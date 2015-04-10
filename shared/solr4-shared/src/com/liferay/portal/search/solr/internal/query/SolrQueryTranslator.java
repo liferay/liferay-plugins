@@ -36,9 +36,8 @@ import com.liferay.portal.search.solr.query.WildcardQueryTranslator;
  * @author Miguel Angelo Caldas Gallindo
  */
 public class SolrQueryTranslator
-	implements
-		QueryTranslator<String>,
-		QueryVisitor<org.apache.lucene.search.Query> {
+	implements QueryTranslator<String>,
+			   QueryVisitor<org.apache.lucene.search.Query> {
 
 	public void setBooleanQueryTranslator(
 		BooleanQueryTranslator booleanQueryTranslator) {

@@ -32,11 +32,8 @@ public class WildcardQueryTranslatorImpl implements WildcardQueryTranslator {
 
 		QueryTerm queryTerm = wildcardQuery.getQueryTerm();
 
-		org.apache.lucene.search.WildcardQuery luceneWildcardQuery =
-			new org.apache.lucene.search.WildcardQuery(
-				new Term(queryTerm.getField(), queryTerm.getValue()));
-
-		return luceneWildcardQuery;
+		return new org.apache.lucene.search.WildcardQuery(
+			new Term(queryTerm.getField(), queryTerm.getValue()));
 	}
 
 }

@@ -111,14 +111,14 @@ public class TermQueryTranslatorImpl implements TermQueryTranslator {
 
 		org.apache.lucene.search.Query query = _parseLuceneQuery(field, value);
 
-		if (query instanceof org.apache.lucene.search.TermQuery) {
-			return _toCaseInsensitiveSubstringQuery(
-				(org.apache.lucene.search.TermQuery)query);
-		}
-
 		if (query instanceof org.apache.lucene.search.BooleanQuery) {
 			return _toCaseInsensitiveSubstringQuery(
 				(org.apache.lucene.search.BooleanQuery)query);
+		}
+
+		if (query instanceof org.apache.lucene.search.TermQuery) {
+			return _toCaseInsensitiveSubstringQuery(
+				(org.apache.lucene.search.TermQuery)query);
 		}
 
 		throw new IllegalArgumentException();

@@ -37,36 +37,40 @@ public class BooleanQueryTranslatorImpl implements BooleanQueryTranslator {
 		org.apache.lucene.search.BooleanQuery luceneBooleanQuery =
 			new org.apache.lucene.search.BooleanQuery();
 
-		for (BooleanClause clause : booleanQuery.clauses()) {
-			_addClause(clause, luceneBooleanQuery, queryVisitor);
+		for (BooleanClause booleanClause : booleanQuery.clauses()) {
+			_addClause(booleanClause, luceneBooleanQuery, queryVisitor);
 		}
 
 		return luceneBooleanQuery;
 	}
 
 	private void _addClause(
-		BooleanClause clause,
+		BooleanClause booleanClause,
 		org.apache.lucene.search.BooleanQuery booleanQuery,
 		QueryVisitor<org.apache.lucene.search.Query> queryVisitor) {
 
-		BooleanClauseOccur booleanClauseOccur = clause.getBooleanClauseOccur();
+		BooleanClauseOccur booleanClauseOccur =
+			booleanClause.getBooleanClauseOccur();
 
-		Query query = clause.getQuery();
+		Query query = booleanClause.getQuery();
 
 		org.apache.lucene.search.Query luceneQuery = query.accept(queryVisitor);
 
 		if (booleanClauseOccur.equals(BooleanClauseOccur.MUST)) {
 			booleanQuery.add(luceneQuery, Occur.MUST);
+
 			return;
 		}
 
 		if (booleanClauseOccur.equals(BooleanClauseOccur.MUST_NOT)) {
 			booleanQuery.add(luceneQuery, Occur.MUST_NOT);
+
 			return;
 		}
 
 		if (booleanClauseOccur.equals(BooleanClauseOccur.SHOULD)) {
 			booleanQuery.add(luceneQuery, Occur.SHOULD);
+
 			return;
 		}
 
