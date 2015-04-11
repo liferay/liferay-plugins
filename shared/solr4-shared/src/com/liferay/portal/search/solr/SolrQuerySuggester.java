@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.search.StringDistanceCalculatorUtil;
 import com.liferay.portal.kernel.search.SuggestionConstants;
 import com.liferay.portal.kernel.search.TokenizerUtil;
 import com.liferay.portal.kernel.search.WeightedWord;
@@ -39,6 +38,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
+import org.apache.lucene.search.spell.LevensteinDistance;
+import org.apache.lucene.search.spell.StringDistance;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServer;
@@ -63,6 +64,10 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 	public void setSolrServer(SolrServer solrServer) {
 		_solrServer = solrServer;
+	}
+
+	public void setStringDistance(StringDistance stringDistance) {
+		_stringDistance = stringDistance;
 	}
 
 	@Override
@@ -293,7 +298,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 					String suggestionLowerCase = StringUtil.toLowerCase(
 						suggestion);
 
-					float distance = StringDistanceCalculatorUtil.getDistance(
+					float distance = _stringDistance.getDistance(
 						inputLowerCase, suggestionLowerCase);
 
 					if (distance >= _distanceThreshold) {
@@ -337,5 +342,6 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	private float _distanceThreshold;
 	private NGramQueryBuilder _nGramQueryBuilder;
 	private SolrServer _solrServer;
+	private StringDistance _stringDistance = new LevensteinDistance();
 
 }
