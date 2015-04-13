@@ -116,7 +116,7 @@
 	<!-- References -->
 
 	<reference id="com.liferay.portal.kernel.messaging.MessageBus" interface="com.liferay.portal.kernel.messaging.MessageBus" timeout="30000" />
-	<reference id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" interface="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" timeout="30000" />
+	<reference availability="optional" id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" interface="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" />
 
 	<!-- Configurator -->
 

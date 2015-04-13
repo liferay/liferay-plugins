@@ -49,11 +49,19 @@ public class TermQueryTranslatorImpl implements TermQueryTranslator {
 		String field = queryTerm.getField();
 		String value = queryTerm.getValue();
 
-		if (_queryPreProcessConfiguration.isSubstringSearchAlways(field)) {
+		if ((_queryPreProcessConfiguration != null) &&
+			_queryPreProcessConfiguration.isSubstringSearchAlways(field)) {
+
 			return _toCaseInsensitiveSubstringQuery(field, value);
 		}
 
 		return new org.apache.lucene.search.TermQuery(new Term(field, value));
+	}
+
+	public void unsetQueryPreProcessConfiguration(
+		QueryPreProcessConfiguration queryPreProcessConfiguration) {
+
+		_queryPreProcessConfiguration = null;
 	}
 
 	private org.apache.lucene.search.Query _parseLuceneQuery(
