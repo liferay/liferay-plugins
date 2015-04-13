@@ -11,17 +11,22 @@ AUI().use(
 	'stylesheet',
 	'swfobject',
 	function(A) {
-		var ENTER = 'ENTER';
-		var ESC = 'ESC';
 		var Lang = A.Lang;
 		var LString = Lang.String;
-		var Notification = A.config.win.Notification;
+
+		var Config = A.config;
+
+		var Notification = Config.win.Notification;
 
 		var windowId = Liferay.Util.randomInt();
 
 		var now = Date.now;
 
-		var DOC = A.config.doc;
+		var DOC = Config.doc;
+
+		var ENTER = 'ENTER';
+
+		var ESC = 'ESC';
 
 		var NOTIFICATIONS_LIST = [];
 
@@ -966,9 +971,13 @@ AUI().use(
 					function(event) {
 						buddyListPanel.hide();
 
-						buddyListNode.one('.panel-trigger').focus();
+						var panelTrigger = buddyListNode.one('.panel-trigger');
+
+						if (panelTrigger) {
+							panelTrigger.focus();
+						}
 					},
-					'up:27','input, li.active.user'
+					'up:27', 'input, li.active.user'
 				);
 
 				if (buddyList) {
@@ -991,14 +1000,17 @@ AUI().use(
 						'li, .buddy-services div'
 					);
 
-					buddyList.plug(A.Plugin.NodeFocusManager, {
-						circular: true,
-						descendants: 'li',
-						keys: {
-							next: 'down:40',
-							previous: 'down:38'
+					buddyList.plug(
+						A.Plugin.NodeFocusManager,
+						{
+							circular: true,
+							descendants: 'li',
+							keys: {
+								next: 'down:40',
+								previous: 'down:38'
+							}
 						}
-					});
+					);
 				}
 
 				instance._liveSearch = liveSearch;
@@ -1156,7 +1168,11 @@ AUI().use(
 					function(event) {
 						settings.hide();
 
-						settingsPanel.one('.panel-trigger').focus();
+						var panelTrigger = settingsPanel.one('.panel-trigger');
+
+						if (panelTrigger) {
+							panelTrigger.focus();
+						}
 					},
 					'up:27', 'input'
 				);
@@ -1403,10 +1419,7 @@ AUI().use(
 
 				var currentBuddies = instance._buddies;
 				var currentChats = instance._chatSessions;
-
-				var focusManager = instance._onlineBuddies.focusManager;
-
-				var buddyFocused = focusManager.get('focused');
+				var onlineBuddies = instance._onlineBuddies;
 
 				instance._onlineBuddiesCount = numBuddies;
 
@@ -1449,7 +1462,11 @@ AUI().use(
 					);
 				}
 
-				instance._onlineBuddies.html(buffer.join(''));
+				onlineBuddies.html(buffer.join(''));
+
+				var focusManager = onlineBuddies.focusManager;
+
+				var buddyFocused = focusManager.get('focused');
 
 				focusManager.refresh();
 
