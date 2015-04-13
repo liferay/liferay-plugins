@@ -11,6 +11,8 @@ AUI().use(
 	'stylesheet',
 	'swfobject',
 	function(A) {
+		var ENTER = 'ENTER';
+		var ESC = 'ESC';
 		var Lang = A.Lang;
 		var LString = Lang.String;
 		var Notification = A.config.win.Notification;
@@ -291,14 +293,13 @@ AUI().use(
 			_keyup: function(event) {
 				var instance = this;
 
-				var keyCode = event.keyCode;
-
-				if (keyCode == 13) {
+				if (event.isKey(ENTER)) {
 					instance.toggle();
 				}
 
-				if (keyCode == 27) {
+				if (event.isKey(ESC)) {
 					instance.hide();
+
 					instance._popupTrigger.focus();
 				}
 			},
@@ -606,14 +607,15 @@ AUI().use(
 						instance.set('typedTo', userId);
 					}
 
-					if (event.keyCode == 13 && !event.shiftKey && content.length) {
+					if (event.isKey(ENTER) && !event.shiftKey && content.length) {
 						instance._sendChat(chatInputVal);
 
 						chatInput.val('');
 					}
 
-					if (event.keyCode == 27) {
+					if (event.isKey(ESC)) {
 						instance.hide();
+
 						instance._popupTrigger.focus();
 					}
 
@@ -963,8 +965,10 @@ AUI().use(
 					'key',
 					function(event) {
 						buddyListPanel.hide();
+
 						buddyListNode.one('.panel-trigger').focus();
-					}, 'up:27', 'input, li.active.user'
+					},
+					'up:27','input, li.active.user'
 				);
 
 				if (buddyList) {
@@ -990,7 +994,10 @@ AUI().use(
 					buddyList.plug(A.Plugin.NodeFocusManager, {
 						circular: true,
 						descendants: 'li',
-						keys: { next: 'down:40', previous: 'down:38' }
+						keys: {
+							next: 'down:40',
+							previous: 'down:38'
+						}
 					});
 				}
 
@@ -1148,8 +1155,10 @@ AUI().use(
 					'key',
 					function(event) {
 						settings.hide();
+
 						settingsPanel.one('.panel-trigger').focus();
-					}, 'up:27', 'input'
+					},
+					'up:27', 'input'
 				);
 			},
 
