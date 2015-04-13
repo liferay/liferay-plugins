@@ -234,9 +234,13 @@
 						<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
 					</path>
 
+					<local name="module.web" />
+
 					<if>
 						<available file="bnd.bnd" type="file" />
 						<then>
+							<property name="module.web" value="true" />
+
 							<path id="jspc.classpath.module.common">
 								<path refid="jspc.classpath.common" />
 								<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
@@ -262,6 +266,8 @@
 							</if>
 						</then>
 						<else>
+							<property name="module.web" value="false" />
+
 							<path id="jspc.classpath">
 								<path refid="jspc.classpath.common" />
 								<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
@@ -280,6 +286,8 @@
 						newenvironment="true"
 						outputproperty="jspc.output"
 					>
+						<sysproperty key="module.web" value="${module.web}" />
+						<sysproperty key="portal.dir" value="${app.server.portal.dir}" />
 						<arg line="-d ${jspc.classes.dir} -webapp @{compile.jsp.docroot.dir}" />
 					</java>
 
