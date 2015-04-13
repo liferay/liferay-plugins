@@ -235,11 +235,29 @@
 					<if>
 						<available file="bnd.bnd" type="file" />
 						<then>
-							<path id="jspc.classpath">
+							<path id="jspc.classpath.module.common">
 								<path refid="jspc.classpath.common" />
-								<pathelement location="classes" />
-								<fileset dir="lib" includes="*.jar" />
+								<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
+								<fileset dir="${module.framework.base.dir}/modules" includes="*.jar" />
 							</path>
+
+							<if>
+								<available file="docroot" type="dir" />
+								<then>
+									<path id="jspc.classpath">
+										<path refid="jspc.classpath.module.common" />
+										<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
+										<fileset dir="@{compile.jsp.docroot.dir}/WEB-INF/lib" includes="*.jar" />
+									</path>
+								</then>
+								<else>
+									<path id="jspc.classpath">
+										<path refid="jspc.classpath.module.common" />
+										<pathelement location="classes" />
+										<fileset dir="lib" includes="*.jar" />
+									</path>
+								</else>
+							</if>
 						</then>
 						<else>
 							<path id="jspc.classpath">
