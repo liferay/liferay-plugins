@@ -83,16 +83,17 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 					SyncDLObject fileEntrySyncDLObject =
 						SyncUtil.toSyncDLObject(dlFileEntry, event, true);
 
-					syncDLObjects.add(fileEntrySyncDLObject);
-
 					String type = fileEntrySyncDLObject.getType();
 
 					if (type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
 						SyncDLObject approvedSyncDLObject =
-							SyncUtil.toSyncDLObject(dlFileEntry, event, true);
+							SyncUtil.toSyncDLObject(
+								dlFileEntry, event, true, true);
 
 						syncDLObjects.add(approvedSyncDLObject);
 					}
+
+					syncDLObjects.add(fileEntrySyncDLObject);
 				}
 				catch (NoSuchFileException nsfe) {
 					if (_log.isWarnEnabled()) {
