@@ -199,7 +199,9 @@
 			<if>
 				<available file="@{compile.jsp.docroot.dir}" />
 				<then>
-					<antcall target="compile" />
+					<antcall target="compile">
+						<param name="plugins.includes.path" value="${basedir}" />
+					</antcall>
 
 					<if>
 						<not>
