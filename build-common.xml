@@ -1890,7 +1890,6 @@ Please find a solution that does not require portal-impl.jar.
 
 									<direct-deploy-portlet-cmd
 										direct.deploy.dir="${tstamp.value}"
-										module.dir="@{module.dir}"
 									/>
 
 									<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}-${plugin.full.version}" />
