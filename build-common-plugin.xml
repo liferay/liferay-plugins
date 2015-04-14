@@ -574,10 +574,11 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 
 	<target name="compile-jsp">
 		<compile-jsp
-			compile.jsp.docroot.dir="src/META-INF/resources"
-		/>
-		<compile-jsp
 			compile.jsp.docroot.dir="docroot"
+		/>
+
+		<compile-jsp
+			compile.jsp.docroot.dir="src/META-INF/resources"
 		/>
 	</target>
 
