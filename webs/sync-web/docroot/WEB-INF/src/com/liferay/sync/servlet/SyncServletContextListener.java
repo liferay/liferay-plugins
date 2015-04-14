@@ -14,6 +14,7 @@
 
 package com.liferay.sync.servlet;
 
+import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -28,17 +29,27 @@ import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
 import com.liferay.sync.messaging.SyncDLFileVersionDiffMessageListener;
 import com.liferay.sync.messaging.SyncDLObjectMessageListener;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
+import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
+import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.portlet.PortletPreferences;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -117,6 +128,50 @@ public class SyncServletContextListener
 
 	@Override
 	protected void doPortalInit() {
+		try {
+			List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+			for (Company company : companies) {
+				boolean oAuthEnabled = PrefsPropsUtil.getBoolean(
+					company.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED,
+					PortletPropsValues.SYNC_OAUTH_ENABLED);
+
+				if (oAuthEnabled) {
+					User user = UserLocalServiceUtil.getDefaultUser(
+						company.getCompanyId());
+
+					ServiceContext serviceContext = new ServiceContext();
+
+					serviceContext.setUserId(user.getUserId());
+
+					OAuthApplication oAuthApplication =
+						SyncPreferencesLocalServiceUtil.enableOAuth(
+							company.getCompanyId(), serviceContext);
+
+					PortletPreferences portletPreferences =
+						PrefsPropsUtil.getPreferences(company.getCompanyId());
+
+					portletPreferences.setValue(
+						PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID,
+						String.valueOf(
+							oAuthApplication.getOAuthApplicationId()));
+
+					portletPreferences.setValue(
+						PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY,
+						oAuthApplication.getConsumerKey());
+
+					portletPreferences.setValue(
+						PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET,
+						oAuthApplication.getConsumerSecret());
+
+					portletPreferences.store();
+				}
+			}
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
 		_syncDLObjectMessageListener = new SyncDLObjectMessageListener();
 
 		registerMessageListener(

@@ -110,6 +110,7 @@
 
 		<tx-required>getFileDeltaAsStream</tx-required>
 	</entity>
+	<entity name="SyncPreferences" local-service="true" remote-service="false" tx-manager="false" />
 	<exceptions>
 		<exception>SyncDLObjectChecksum</exception>
 	</exceptions>

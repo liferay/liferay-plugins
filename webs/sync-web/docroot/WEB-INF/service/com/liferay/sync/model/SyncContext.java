@@ -31,6 +31,14 @@ public class SyncContext {
 		return _authType;
 	}
 
+	public String getOAuthConsumerKey() {
+		return _oAuthConsumerKey;
+	}
+
+	public String getOAuthConsumerSecret() {
+		return _oAuthConsumerSecret;
+	}
+
 	public String getPluginVersion() {
 		return _pluginVersion;
 	}
@@ -54,12 +62,28 @@ public class SyncContext {
 		return _userSitesGroups;
 	}
 
+	public boolean isOAuthEnabled() {
+		return _oAuthEnabled;
+	}
+
 	public boolean isSocialOfficeInstalled() {
 		return _socialOfficeInstalled;
 	}
 
 	public void setAuthType(String authType) {
 		_authType = authType;
+	}
+
+	public void setOAuthConsumerKey(String oAuthConsumerKey) {
+		_oAuthConsumerKey = oAuthConsumerKey;
+	}
+
+	public void setOAuthConsumerSecret(String oAuthConsumerSecret) {
+		_oAuthConsumerSecret = oAuthConsumerSecret;
+	}
+
+	public void setOAuthEnabled(boolean oAuthEnabled) {
+		_oAuthEnabled = oAuthEnabled;
 	}
 
 	public void setPluginVersion(String pluginVersion) {
@@ -89,6 +113,9 @@ public class SyncContext {
 	}
 
 	private String _authType;
+	private String _oAuthConsumerKey;
+	private String _oAuthConsumerSecret;
+	private boolean _oAuthEnabled;
 	private String _pluginVersion;
 	private int _portalBuildNumber;
 	private Map<String, String> _portletPreferencesMap;

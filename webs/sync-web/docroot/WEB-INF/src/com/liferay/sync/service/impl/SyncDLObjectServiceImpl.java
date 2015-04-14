@@ -70,7 +70,6 @@ import com.liferay.sync.util.JSONWebServiceActionParametersMap;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
-import com.liferay.util.portlet.PortletProps;
 
 import java.io.File;
 import java.io.InputStream;
@@ -82,9 +81,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-
-import javax.portlet.PortletPreferences;
 
 import jodd.bean.BeanUtil;
 
@@ -467,34 +463,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		return syncDLObjectLocalService.getLatestModifiedTime();
 	}
 
-	@Override
-	public PortletPreferences getPortletPreferences() throws PortalException {
-		User user = getUser();
-
-		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
-			user.getCompanyId());
-
-		Properties properties = PortletProps.getProperties();
-
-		for (Map.Entry<Object, Object> entry : properties.entrySet()) {
-			String key = String.valueOf(entry.getKey());
-			String value = String.valueOf(entry.getValue());
-
-			if (portletPreferences.getValue(key, null) != null) {
-				continue;
-			}
-
-			try {
-				portletPreferences.setValue(key, value);
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
-		}
-
-		return portletPreferences;
-	}
-
 	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public SyncContext getSyncContext() throws PortalException {
@@ -509,6 +477,26 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				PropsUtil.get(PropsKeys.COMPANY_SECURITY_AUTH_TYPE));
 
 			syncContext.setAuthType(authType);
+
+			boolean oAuthEnabled = PrefsPropsUtil.getBoolean(
+				user.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED,
+				PortletPropsValues.SYNC_OAUTH_ENABLED);
+
+			if (oAuthEnabled) {
+				String oAuthConsumerKey = PrefsPropsUtil.getString(
+					user.getCompanyId(),
+					PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY);
+
+				syncContext.setOAuthConsumerKey(oAuthConsumerKey);
+
+				String oAuthConsumerSecret = PrefsPropsUtil.getString(
+					user.getCompanyId(),
+					PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET);
+
+				syncContext.setOAuthConsumerSecret(oAuthConsumerSecret);
+			}
+
+			syncContext.setOAuthEnabled(oAuthEnabled);
 
 			PluginPackage syncWebPluginPackage =
 				DeployManagerUtil.getInstalledPluginPackage("sync-web");
