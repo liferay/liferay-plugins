@@ -19,21 +19,58 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-portletPreferences = SyncDLObjectServiceUtil.getPortletPreferences();
+portletPreferences = SyncPreferencesLocalServiceUtil.getPortletPreferences(themeDisplay.getCompanyId());
 
 boolean allowUserPersonalSites = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES);
 boolean enabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_SERVICES_ENABLED);
 int maxConnections = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS);
+boolean oAuthEnabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED);
 int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL);
+
+boolean oAuthPortletDeployed = true;
+boolean oAuthApplicationMissing = false;
+
+PluginPackage oAuthPortletPluginPackage = DeployManagerUtil.getInstalledPluginPackage("oauth-portlet");
+
+if (oAuthPortletPluginPackage == null) {
+	oAuthPortletDeployed = false;
+}
+else if (oAuthEnabled) {
+	long oAuthApplicationId = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID, 0);
+
+	OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.fetchOAuthApplication(oAuthApplicationId);
+
+	if (oAuthApplication == null) {
+		oAuthApplicationMissing = true;
+	}
+}
 %>
+
+<c:if test="<%= oAuthEnabled && !oAuthPortletDeployed %>">
+	<div class="alert alert-warning">
+		<liferay-ui:message key="oauth-portlet-is-not-deployed" />
+	</div>
+</c:if>
+
+<c:if test="<%= oAuthEnabled && oAuthApplicationMissing %>">
+	<div class="alert alert-warning">
+		<liferay-ui:message key="the-oauth-application-for-liferay-sync-is-missing" />
+	</div>
+</c:if>
 
 <liferay-portlet:actionURL var="configurationActionURL" />
 
 <aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updatePreferences();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
+	<liferay-ui:error exception="<%= OAuthPortletUndeployedException.class %>" message="oauth-portlet-is-not-deployed" />
+
 	<aui:fieldset>
 		<aui:input name="enabled" type="checkbox" value="<%= enabled %>" />
+	</aui:fieldset>
+
+	<aui:fieldset>
+		<aui:input helpMessage="oauth-enabled-help" label="oauth-enabled" name="oAuthEnabled" type="checkbox" value="<%= oAuthEnabled %>" />
 	</aui:fieldset>
 
 	<aui:fieldset>

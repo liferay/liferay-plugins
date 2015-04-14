@@ -64,6 +64,9 @@ public class PortletPropsValues {
 			PortletProps.getArray(
 				PortletPropsKeys.SYNC_MAC_PACKAGE_METADATA_FILE_NAMES));
 
+	public static final boolean SYNC_OAUTH_ENABLED = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.SYNC_OAUTH_ENABLED));
+
 	public static final boolean SYNC_SERVICES_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SYNC_SERVICES_ENABLED));
 

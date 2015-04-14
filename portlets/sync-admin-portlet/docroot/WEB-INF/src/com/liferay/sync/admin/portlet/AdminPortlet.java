@@ -14,6 +14,10 @@
 
 package com.liferay.sync.admin.portlet;
 
+import com.liferay.oauth.model.OAuthApplication;
+import com.liferay.portal.kernel.deploy.DeployManagerUtil;
+import com.liferay.portal.kernel.plugin.PluginPackage;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -21,6 +25,10 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.sync.OAuthPortletUndeployedException;
+import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
 import com.liferay.sync.shared.util.PortletPropsKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -51,7 +59,7 @@ public class AdminPortlet extends MVCPortlet {
 
 	public void updateSites(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception{
+		throws Exception {
 
 		String enabled = ParamUtil.getString(actionRequest, "enabled");
 		String permissions = ParamUtil.getString(actionRequest, "permissions");
@@ -104,6 +112,43 @@ public class AdminPortlet extends MVCPortlet {
 		portletPreferences.setValue(
 			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
 			String.valueOf(maxConnections));
+
+		boolean oAuthEnabled = ParamUtil.getBoolean(
+			actionRequest, "oAuthEnabled");
+
+		if (oAuthEnabled) {
+			PluginPackage oAuthPortletPluginPackage =
+				DeployManagerUtil.getInstalledPluginPackage("oauth-portlet");
+
+			if (oAuthPortletPluginPackage == null) {
+				SessionErrors.add(
+					actionRequest, OAuthPortletUndeployedException.class);
+
+				return;
+			}
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				actionRequest);
+
+			OAuthApplication oAuthApplication =
+				SyncPreferencesLocalServiceUtil.enableOAuth(
+					CompanyThreadLocal.getCompanyId(), serviceContext);
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID,
+				String.valueOf(oAuthApplication.getOAuthApplicationId()));
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY,
+				oAuthApplication.getConsumerKey());
+
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET,
+				oAuthApplication.getConsumerSecret());
+		}
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_OAUTH_ENABLED, String.valueOf(oAuthEnabled));
 
 		int pollInterval = ParamUtil.getInteger(actionRequest, "pollInterval");
 
