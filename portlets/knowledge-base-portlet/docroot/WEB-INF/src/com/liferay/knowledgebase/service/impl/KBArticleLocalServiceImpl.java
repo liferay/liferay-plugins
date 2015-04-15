@@ -1830,7 +1830,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		while (!kbArticle.isRoot() &&
 			   (kbArticle.getClassNameId() ==
-					kbArticle.getParentResourceClassNameId())) {
+				   kbArticle.getParentResourceClassNameId())) {
 
 			kbArticle = getLatestKBArticle(
 				kbArticle.getParentResourcePrimKey(),
