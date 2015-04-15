@@ -26,7 +26,7 @@ symbolsString = StringUtil.merge(symbols, StringPool.SPACE);
 
 <portlet:actionURL var="portletURL" />
 
-<aui:form action="<%= portletURL %>" method="post" name="fm" onSubmit="submitForm(document.<portlet:namespace />fm);">
+<aui:form action="<%= portletURL %>" method="post" name="fm" onSubmit="submitForm(this);">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<liferay-ui:error exception="<%= ValidatorException.class %>">
