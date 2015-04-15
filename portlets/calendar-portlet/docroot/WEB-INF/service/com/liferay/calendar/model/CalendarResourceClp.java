@@ -1325,7 +1325,7 @@ public class CalendarResourceClp extends BaseModelImpl<CalendarResource>
 	private String _descriptionCurrentLanguageId;
 	private boolean _active;
 	private BaseModel<?> _calendarResourceRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.calendar.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

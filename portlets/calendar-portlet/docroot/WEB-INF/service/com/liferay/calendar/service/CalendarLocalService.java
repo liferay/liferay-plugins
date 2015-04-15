@@ -68,7 +68,7 @@ public interface CalendarLocalService extends BaseLocalService,
 		java.lang.String timeZoneId, int color, boolean defaultCalendar,
 		boolean enableComments, boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Creates a new calendar with the primary key. Does not add the calendar to the database.
@@ -88,8 +88,7 @@ public interface CalendarLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	@com.liferay.portal.kernel.systemevent.SystemEvent(action = SystemEventConstants.ACTION_SKIP, type = SystemEventConstants.TYPE_DELETE)
 	public com.liferay.calendar.model.Calendar deleteCalendar(
-		com.liferay.calendar.model.Calendar calendar)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		com.liferay.calendar.model.Calendar calendar) throws PortalException;
 
 	/**
 	* Deletes the calendar with the primary key from the database. Also notifies the appropriate model listeners.
@@ -100,7 +99,7 @@ public interface CalendarLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.calendar.model.Calendar deleteCalendar(long calendarId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -108,7 +107,7 @@ public interface CalendarLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -211,7 +210,7 @@ public interface CalendarLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.Calendar getCalendar(long calendarId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Returns the calendar matching the UUID and group.
@@ -223,8 +222,7 @@ public interface CalendarLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.Calendar getCalendarByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String uuid, long groupId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
@@ -290,8 +288,7 @@ public interface CalendarLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	public void importCalendar(long calendarId, java.lang.String data,
 		java.lang.String type) throws java.lang.Exception;
@@ -342,13 +339,13 @@ public interface CalendarLocalService extends BaseLocalService,
 		com.liferay.calendar.model.Calendar calendar);
 
 	public void updateCalendar(long calendarId, boolean defaultCalendar)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		int color, com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
@@ -357,9 +354,9 @@ public interface CalendarLocalService extends BaseLocalService,
 		java.lang.String timeZoneId, int color, boolean defaultCalendar,
 		boolean enableComments, boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.calendar.model.Calendar updateColor(long calendarId,
 		int color, com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 }

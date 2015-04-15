@@ -29,7 +29,7 @@ import java.util.Map;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.calendar.service.CalendarBookingServiceUtil} service utility. The
+ * {@link CalendarBookingServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -64,7 +64,7 @@ import java.util.Map;
  * @author Eduardo Lundgren
  * @see CalendarBookingServiceHttp
  * @see com.liferay.calendar.model.CalendarBookingSoap
- * @see com.liferay.calendar.service.CalendarBookingServiceUtil
+ * @see CalendarBookingServiceUtil
  * @generated
  */
 @ProviderType

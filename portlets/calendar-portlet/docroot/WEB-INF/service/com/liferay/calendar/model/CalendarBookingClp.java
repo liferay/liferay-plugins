@@ -2131,7 +2131,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private BaseModel<?> _calendarBookingRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.calendar.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -55,10 +55,9 @@ public interface CalendarImporterLocalService extends BaseLocalService,
 
 	public void importCalEvent(
 		com.liferay.portlet.calendar.model.CalEvent calEvent)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
-	public void importCalEvents()
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void importCalEvents() throws PortalException;
 
 	public void importRolePermissions();
 

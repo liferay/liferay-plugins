@@ -55,7 +55,7 @@ public interface CalendarNotificationTemplateService extends BaseService,
 		com.liferay.calendar.notification.NotificationTemplateType notificationTemplateType,
 		java.lang.String subject, java.lang.String body,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -81,5 +81,5 @@ public interface CalendarNotificationTemplateService extends BaseService,
 		java.lang.String notificationTypeSettings, java.lang.String subject,
 		java.lang.String body,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 }

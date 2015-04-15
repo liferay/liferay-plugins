@@ -1258,7 +1258,7 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 	private boolean _enableComments;
 	private boolean _enableRatings;
 	private BaseModel<?> _calendarRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.calendar.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

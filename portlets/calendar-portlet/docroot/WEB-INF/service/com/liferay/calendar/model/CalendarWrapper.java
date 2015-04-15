@@ -246,7 +246,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the create date of this calendar
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _calendar.getCreateDate();
 	}
 
@@ -339,7 +339,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the locales and localized descriptions of this calendar
 	*/
 	@Override
-	public java.util.Map<java.util.Locale, java.lang.String> getDescriptionMap() {
+	public Map<java.util.Locale, java.lang.String> getDescriptionMap() {
 		return _calendar.getDescriptionMap();
 	}
 
@@ -384,7 +384,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the modified date of this calendar
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _calendar.getModifiedDate();
 	}
 
@@ -461,7 +461,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the locales and localized names of this calendar
 	*/
 	@Override
-	public java.util.Map<java.util.Locale, java.lang.String> getNameMap() {
+	public Map<java.util.Locale, java.lang.String> getNameMap() {
 		return _calendar.getNameMap();
 	}
 
@@ -665,7 +665,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param createDate the create date of this calendar
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_calendar.setCreateDate(createDate);
 	}
 
@@ -726,7 +726,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	*/
 	@Override
 	public void setDescriptionMap(
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap) {
+		Map<java.util.Locale, java.lang.String> descriptionMap) {
 		_calendar.setDescriptionMap(descriptionMap);
 	}
 
@@ -738,7 +738,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	*/
 	@Override
 	public void setDescriptionMap(
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		Map<java.util.Locale, java.lang.String> descriptionMap,
 		java.util.Locale defaultLocale) {
 		_calendar.setDescriptionMap(descriptionMap, defaultLocale);
 	}
@@ -797,7 +797,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param modifiedDate the modified date of this calendar
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_calendar.setModifiedDate(modifiedDate);
 	}
 
@@ -846,8 +846,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param nameMap the locales and localized names of this calendar
 	*/
 	@Override
-	public void setNameMap(
-		java.util.Map<java.util.Locale, java.lang.String> nameMap) {
+	public void setNameMap(Map<java.util.Locale, java.lang.String> nameMap) {
 		_calendar.setNameMap(nameMap);
 	}
 
@@ -858,8 +857,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setNameMap(
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+	public void setNameMap(Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Locale defaultLocale) {
 		_calendar.setNameMap(nameMap, defaultLocale);
 	}

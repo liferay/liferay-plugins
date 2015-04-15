@@ -222,7 +222,7 @@ public class CalendarNotificationTemplateWrapper
 	* @return the create date of this calendar notification template
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _calendarNotificationTemplate.getCreateDate();
 	}
 
@@ -247,7 +247,7 @@ public class CalendarNotificationTemplateWrapper
 	* @return the modified date of this calendar notification template
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _calendarNotificationTemplate.getModifiedDate();
 	}
 
@@ -428,7 +428,7 @@ public class CalendarNotificationTemplateWrapper
 	* @param createDate the create date of this calendar notification template
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_calendarNotificationTemplate.setCreateDate(createDate);
 	}
 
@@ -466,7 +466,7 @@ public class CalendarNotificationTemplateWrapper
 	* @param modifiedDate the modified date of this calendar notification template
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_calendarNotificationTemplate.setModifiedDate(modifiedDate);
 	}
 
