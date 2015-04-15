@@ -640,9 +640,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		String calendarBookingDescription = StringUtil.replace(
 			calendarBooking.getDescription(user.getLocale()),
-			new String[] {
-				"href=\"/", "src=\"/"
-			},
+			new String[] {"href=\"/", "src=\"/"},
 			new String[] {
 				"href=\"" +
 					company.getPortalURL(calendarBooking.getGroupId()) + "/",

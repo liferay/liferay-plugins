@@ -817,9 +817,7 @@ public class CalendarPortlet extends MVCPortlet {
 		String secondReminderType = ParamUtil.getString(
 			portletRequest, "reminderType1");
 
-		return new String[] {
-			firstReminderType, secondReminderType
-		};
+		return new String[] {firstReminderType, secondReminderType};
 	}
 
 	protected TimeZone getTimeZone(PortletRequest portletRequest) {
