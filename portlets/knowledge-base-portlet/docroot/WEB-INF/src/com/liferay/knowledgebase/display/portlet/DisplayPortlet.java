@@ -260,6 +260,10 @@ public class DisplayPortlet extends BaseKBPortlet {
 			long resourcePrimKey = ParamUtil.getLong(
 				renderRequest, "resourcePrimKey");
 
+			if (resourcePrimKey == 0) {
+				return null;
+			}
+
 			return KBArticleLocalServiceUtil.getLatestKBArticle(
 				resourcePrimKey, WorkflowConstants.STATUS_ANY);
 		}
