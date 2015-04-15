@@ -22,8 +22,8 @@ public class AssetEntrySetConstants {
 	public static final String ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME =
 		"participantFullName";
 
-	public static final String ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL =
-		"participantPortraitURL";
+	public static final String ASSET_ENTRY_KEY_PARTICIPANT_PROFILE_IMAGE_URL =
+		"participantProfileImageURL";
 
 	public static final String ASSET_ENTRY_KEY_PARTICIPANT_URL =
 		"participantURL";

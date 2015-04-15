@@ -40,11 +40,12 @@ public class AssetEntrySetParticipantInfoUtil {
 
 	public static JSONObject getParticipantJSONObject(
 			JSONObject participantJSONObject, long classNameId, long classPK,
-			boolean includePortraitURL)
+			boolean includeProfileImageURL)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySetParticipantInfo().getParticipantJSONObject(
-			participantJSONObject, classNameId, classPK, includePortraitURL);
+			participantJSONObject, classNameId, classPK,
+			includeProfileImageURL);
 	}
 
 	public static boolean isMember(

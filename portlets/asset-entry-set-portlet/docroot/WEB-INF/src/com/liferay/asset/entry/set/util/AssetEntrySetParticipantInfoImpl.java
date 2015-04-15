@@ -42,7 +42,7 @@ public class AssetEntrySetParticipantInfoImpl
 
 	public JSONObject getParticipantJSONObject(
 			JSONObject participantJSONObject, long classNameId, long classPK,
-			boolean includePortraitURL)
+			boolean includeProfileImageURL)
 		throws PortalException, SystemException {
 
 		if (classNameId != _USER_CLASS_NAME_ID) {
@@ -55,7 +55,8 @@ public class AssetEntrySetParticipantInfoImpl
 			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
 			user.getFullName());
 		participantJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_PORTRAIT_URL,
+			AssetEntrySetConstants.
+				ASSET_ENTRY_KEY_PARTICIPANT_PROFILE_IMAGE_URL,
 			UserConstants.getPortraitURL(
 				PortalUtil.getPathImage(), user.isMale(),
 				user.getPortraitId()));

@@ -29,7 +29,7 @@ public interface AssetEntrySetParticipantInfo {
 
 	public JSONObject getParticipantJSONObject(
 			JSONObject participantJSONObject, long classNameId, long classPK,
-			boolean includePortraitURL)
+			boolean includeProfileImageURL)
 		throws PortalException, SystemException;
 
 	public boolean isMember(
