@@ -35,6 +35,8 @@ public interface AlloyController {
 
 	public HttpServletRequest getRequest();
 
+	public String getResponseContent();
+
 	public ThemeDisplay getThemeDisplay();
 
 	public long increment() throws Exception;
