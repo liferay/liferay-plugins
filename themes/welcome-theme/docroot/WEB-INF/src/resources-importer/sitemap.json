@@ -12,7 +12,7 @@
 					"Welcome.xml"
 				]
 			],
-			"friendlyURL": "/welcome",
+			"friendlyURL": "/home",
 			"name": "Welcome",
 			"title": "Welcome"
 		}
