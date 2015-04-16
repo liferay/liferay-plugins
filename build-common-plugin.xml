@@ -256,7 +256,7 @@
 									<path id="jspc.classpath">
 										<path refid="jspc.classpath.module.common" />
 										<pathelement location="classes" />
-										<fileset dir="lib" includes="*.jar" />
+										<fileset dir="${basedir}" includes="lib/*.jar" />
 									</path>
 								</else>
 							</if>
