@@ -57,6 +57,7 @@ import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.MethodComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.ServiceBeanMethodInvocationFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -80,8 +81,10 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.io.StringWriter;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -136,6 +139,53 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	@Override
+	public boolean equals(Object other) {
+		if ((other == null) || !(other instanceof BaseAlloyControllerImpl)) {
+			return false;
+		}
+
+		Class<?> clazz = getClass();
+		Class<?> otherClass = other.getClass();
+
+		Method[] methods = clazz.getDeclaredMethods();
+		Method[] otherMethods = otherClass.getDeclaredMethods();
+
+		if (methods.length != otherMethods.length) {
+			return false;
+		}
+
+		Arrays.sort(methods, new MethodComparator());
+		Arrays.sort(otherMethods, new MethodComparator());
+
+		for (int i = 0; i < methods.length; i++) {
+			Method method = methods[i];
+			Method otherMethod = otherMethods[i];
+
+			if (!Validator.equals(method.getName(), otherMethod.getName())) {
+				return false;
+			}
+
+			Annotation[] annotations = method.getDeclaredAnnotations();
+			Annotation[] otherAnnotations =
+				otherMethod.getDeclaredAnnotations();
+
+			if (annotations.length != otherAnnotations.length) {
+				return false;
+			}
+
+			for (int j = 0; j < annotations.length; j++) {
+				Annotation annotation = annotations[j];
+
+				if (!annotation.equals(otherAnnotations[j])) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	@Override
 	public void execute() throws Exception {
 		Method method = getMethod(actionPath);
 
@@ -179,6 +229,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	@Override
 	public HttpServletRequest getRequest() {
 		return request;
+	}
+
+	@Override
+	public String getResponseContent() {
+		return responseContent;
 	}
 
 	@Override
@@ -1358,22 +1413,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void writeResponse(Object content, String contentType)
 		throws Exception {
 
-		if (actionResponse != null) {
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				actionResponse);
+		response.setContentType(contentType);
 
-			response.setContentType(contentType);
-
-			ServletResponseUtil.write(response, content.toString());
-		}
-		else if (renderResponse != null) {
-			renderResponse.setContentType(contentType);
-
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				renderResponse);
-
-			ServletResponseUtil.write(response, content.toString());
-		}
+		ServletResponseUtil.write(response, content.toString());
 	}
 
 	protected static final String CALLED_PROCESS_ACTION =

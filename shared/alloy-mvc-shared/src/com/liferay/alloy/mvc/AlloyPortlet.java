@@ -29,8 +29,11 @@ import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.PortletInfo;
 
 import java.io.IOException;
 
@@ -93,6 +96,8 @@ public class AlloyPortlet extends GenericPortlet {
 				}
 			}
 		}
+
+		_alloyControllerInvokerManager.unregisterControllers();
 	}
 
 	@Override
@@ -110,6 +115,14 @@ public class AlloyPortlet extends GenericPortlet {
 		Router router = friendlyURLMapper.getRouter();
 
 		router.urlToParameters(HttpMethods.GET, _defaultRouteParameters);
+
+		PortletInfo portletInfo = portlet.getPortletInfo();
+
+		String contextPath = TextFormatter.format(
+			portletInfo.getTitle(), TextFormatter.C);
+
+		_alloyControllerInvokerManager = new AlloyControllerInvokerManager(
+			StringPool.SLASH + contextPath);
 	}
 
 	@Override
@@ -205,17 +218,29 @@ public class AlloyPortlet extends GenericPortlet {
 		}
 	}
 
-	protected void registerAlloyController(AlloyController alloyController) {
+	protected synchronized void registerAlloyController(
+		AlloyController alloyController) {
+
 		BaseAlloyControllerImpl baseAlloyControllerImpl =
 			(BaseAlloyControllerImpl)alloyController;
 
 		String controllerPath = baseAlloyControllerImpl.controllerPath;
 
-		_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
+		if (!baseAlloyControllerImpl.equals(
+				_alloyControllers.get(controllerPath))) {
+
+			_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
+
+			_alloyControllerInvokerManager.registerController(
+				this, baseAlloyControllerImpl.getThemeDisplay(),
+				baseAlloyControllerImpl.portlet, controllerPath,
+				baseAlloyControllerImpl.getClass());
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AlloyPortlet.class);
 
+	private AlloyControllerInvokerManager _alloyControllerInvokerManager;
 	private Map<String, BaseAlloyControllerImpl> _alloyControllers =
 		new HashMap<>();
 	private Map<String, String> _defaultRouteParameters = new HashMap<>();
