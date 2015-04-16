@@ -45,6 +45,7 @@ import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.ac.AccessControlled;
+import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
@@ -493,8 +494,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncContext syncContext = new SyncContext();
 
-			String authType = PropsUtil.get(
-				PropsKeys.COMPANY_SECURITY_AUTH_TYPE);
+			String authType = PrefsPropsUtil.getString(
+				CompanyThreadLocal.getCompanyId(),
+				PropsKeys.COMPANY_SECURITY_AUTH_TYPE,
+				PropsUtil.get(PropsKeys.COMPANY_SECURITY_AUTH_TYPE));
 
 			syncContext.setAuthType(authType);
 
