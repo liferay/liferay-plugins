@@ -59,8 +59,10 @@ public class AlloyServiceInvoker {
 				new Class[] {DynamicQuery.class, int.class, int.class});
 			dynamicQueryMethod4 = serviceClass.getMethod(
 				"dynamicQuery",
-				new Class[] {DynamicQuery.class, int.class, int.class,
-					OrderByComparator.class});
+				new Class[] {
+					DynamicQuery.class, int.class, int.class,
+					OrderByComparator.class
+				});
 			fetchModelMethod = serviceClass.getMethod(
 				"fetch" + simpleClassName, new Class[] {long.class});
 			getModelsCountMethod = serviceClass.getMethod(
