@@ -190,7 +190,7 @@
 
 	<macrodef name="compile-jsp">
 		<attribute name="compile.jsp.docroot.dir" />
-		<attribute name="module.web.dir" default="" />
+		<attribute name="compile.jsp.temp.dir" default="" />
 
 		<sequential>
 			<if>
@@ -218,7 +218,7 @@
 					<local name="jspc.module.web" />
 
 					<if>
-						<equals arg1="@{module.web.dir}" arg2="" />
+						<equals arg1="@{compile.jsp.temp.dir}" arg2="" />
 						<then>
 							<path id="jspc.classpath">
 								<path refid="jspc.classpath.common" />
@@ -232,7 +232,7 @@
 								<path refid="jspc.classpath.common" />
 								<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 								<fileset dir="${module.framework.base.dir}/modules" includes="*.jar" />
-								<pathelement location="@{module.web.dir}" />
+								<pathelement location="@{compile.jsp.temp.dir}" />
 							</path>
 
 							<if>
@@ -576,13 +576,13 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 					<then>
 						<compile-jsp
 							compile.jsp.docroot.dir="${tstamp.value}/META-INF/resources"
-							module.web.dir="${tstamp.value}"
+							compile.jsp.temp.dir="${tstamp.value}"
 						/>
 					</then>
 					<else>
 						<compile-jsp
 							compile.jsp.docroot.dir="${tstamp.value}"
-							module.web.dir="${tstamp.value}"
+							compile.jsp.temp.dir="${tstamp.value}"
 						/>
 					</else>
 				</if>
