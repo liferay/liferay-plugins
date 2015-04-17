@@ -204,10 +204,6 @@
 			<if>
 				<available file="@{compile.jsp.docroot.dir}" />
 				<then>
-					<antcall target="jar">
-						<param name="plugins.includes.path" value="${basedir}" />
-					</antcall>
-
 					<path id="jspc.classpath.common">
 						<pathelement location="${env.JAVA_HOME}/jre/lib/rt.jar" />
 						<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
@@ -554,6 +550,10 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="compile-jsp">
+		<antcall target="jar">
+			<param name="plugins.includes.path" value="${basedir}" />
+		</antcall>
+
 		<compile-jsp
 			compile.jsp.docroot.dir="docroot"
 		/>
