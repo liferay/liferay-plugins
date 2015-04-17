@@ -557,7 +557,9 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 
 		<if>
 			<and>
-				<antelope:endswith string="${basedir}" with="-web" />
+				<resourcecount count="0" when="gt">
+					<fileset dir="${basedir}" includes="docroot/**/*.jsp,src/META-INF/resources/**/*.jsp" />
+				</resourcecount>
 				<available file="bnd.bnd" type="file" />
 			</and>
 			<then>
