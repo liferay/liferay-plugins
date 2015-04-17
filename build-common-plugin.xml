@@ -218,10 +218,16 @@
 					<local name="jspc.module.web" />
 
 					<if>
-						<not>
-							<equals arg1="@{module.web.dir}" arg2="" />
-						</not>
+						<equals arg1="@{module.web.dir}" arg2="" />
 						<then>
+							<path id="jspc.classpath">
+								<path refid="jspc.classpath.common" />
+								<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
+							</path>
+
+							<property name="jspc.module.web" value="false" />
+						</then>
+						<else>
 							<path id="jspc.classpath.module.common">
 								<path refid="jspc.classpath.common" />
 								<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
@@ -245,14 +251,6 @@
 							</if>
 
 							<property name="jspc.module.web" value="true" />
-						</then>
-						<else>
-							<path id="jspc.classpath">
-								<path refid="jspc.classpath.common" />
-								<pathelement location="@{compile.jsp.docroot.dir}/WEB-INF/classes" />
-							</path>
-
-							<property name="jspc.module.web" value="false" />
 						</else>
 					</if>
 
