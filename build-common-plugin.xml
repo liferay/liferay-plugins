@@ -193,20 +193,20 @@
 
 		<sequential>
 			<if>
+				<not>
+					<equals arg1="${app.server.type}" arg2="tomcat" />
+				</not>
+				<then>
+					<fail>Compiling JSPs with ${app.server.type} is not supported.</fail>
+				</then>
+			</if>
+
+			<if>
 				<available file="@{compile.jsp.docroot.dir}" />
 				<then>
 					<antcall target="compile">
 						<param name="plugins.includes.path" value="${basedir}" />
 					</antcall>
-
-					<if>
-						<not>
-							<equals arg1="${app.server.type}" arg2="tomcat" />
-						</not>
-						<then>
-							<fail>Compiling JSPs with ${app.server.type} is not supported.</fail>
-						</then>
-					</if>
 
 					<property name="jspc.classes.dir" value="classes/${app.server.type}" />
 
