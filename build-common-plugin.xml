@@ -210,10 +210,8 @@
 
 					<property name="jspc.classes.dir" value="classes/${app.server.type}" />
 
-					<var name="jspc.java.home" value="${env.JAVA_HOME}" />
-
 					<path id="jspc.classpath.common">
-						<pathelement location="${jspc.java.home}/jre/lib/rt.jar" />
+						<pathelement location="${env.JAVA_HOME}/jre/lib/rt.jar" />
 						<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 						<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
 						<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
@@ -267,7 +265,7 @@
 						classname="com.liferay.jasper.jspc.JspC"
 						classpathref="jspc.classpath"
 						fork="true"
-						jvm="${jspc.java.home}/bin/java"
+						jvm="${env.JAVA_HOME}/bin/java"
 						newenvironment="true"
 						outputproperty="jspc.output"
 					>
