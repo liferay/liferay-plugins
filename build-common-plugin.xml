@@ -571,7 +571,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 				</tstamp>
 
-				<unzip src="${plugin.file}" dest="${tstamp.value}" />
+				<unzip dest="${tstamp.value}" src="${plugin.file}" />
 
 				<if>
 					<available file="${tstamp.value}/META-INF/resources" type="dir" />
