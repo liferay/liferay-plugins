@@ -565,10 +565,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="compile-jsp">
-		<antcall target="jar">
-			<param name="plugins.includes.path" value="${basedir}" />
-		</antcall>
-
 		<set-module-properties
 			module.dir="${basedir}"
 		/>
@@ -579,6 +575,10 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				<available file="bnd.bnd" type="file" />
 			</and>
 			<then>
+				<antcall target="jar">
+					<param name="plugins.includes.path" value="${basedir}" />
+				</antcall>
+
 				<tstamp>
 					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 				</tstamp>
@@ -604,6 +604,10 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				<delete dir="${tstamp.value}" />
 			</then>
 			<else>
+				<compile
+					module.dir="${basedir}"
+				/>
+
 				<compile-jsp
 					compile.jsp.docroot.dir="docroot"
 				/>
