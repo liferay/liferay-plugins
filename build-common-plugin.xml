@@ -208,8 +208,6 @@
 						<param name="plugins.includes.path" value="${basedir}" />
 					</antcall>
 
-					<property name="jspc.classes.dir" value="classes/${app.server.type}" />
-
 					<path id="jspc.classpath.common">
 						<pathelement location="${env.JAVA_HOME}/jre/lib/rt.jar" />
 						<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
@@ -259,7 +257,7 @@
 						</else>
 					</if>
 
-					<delete dir="${jspc.classes.dir}" quiet="true" />
+					<delete dir="classes/tomcat" quiet="true" />
 
 					<java
 						classname="com.liferay.jasper.jspc.JspC"
@@ -271,7 +269,7 @@
 					>
 						<sysproperty key="jspc.module.web" value="${jspc.module.web}" />
 						<sysproperty key="jspc.portal.dir" value="${app.server.portal.dir}" />
-						<arg line="-d ${jspc.classes.dir} -webapp @{compile.jsp.docroot.dir}" />
+						<arg line="-d classes/tomcat -webapp @{compile.jsp.docroot.dir}" />
 					</java>
 
 					<echo>${jspc.output}</echo>
@@ -279,29 +277,29 @@
 					<if>
 						<contains string="${jspc.output}" substring="JasperException" />
 						<then>
-							<delete dir="${jspc.classes.dir}" quiet="true" />
+							<delete dir="classes/tomcat" quiet="true" />
 
 							<fail>JSPs failed to compile.</fail>
 						</then>
 					</if>
 
 					<if>
-						<available file="${jspc.classes.dir}" type="dir" />
+						<available file="classes/tomcat" type="dir" />
 						<then>
 							<javac
 								classpathref="jspc.classpath"
 								compiler="${javac.compiler}"
 								deprecation="${javac.deprecation}"
-								destdir="${jspc.classes.dir}"
+								destdir="classes/tomcat"
 								encoding="${javac.encoding}"
 								errorProperty="jspc.javac.fail"
 								failonerror="false"
 								includeAntRuntime="false"
 								nowarn="on"
-								srcdir="${jspc.classes.dir}"
+								srcdir="classes/tomcat"
 							/>
 
-							<delete dir="${jspc.classes.dir}" quiet="true" />
+							<delete dir="classes/tomcat" quiet="true" />
 						</then>
 					</if>
 
