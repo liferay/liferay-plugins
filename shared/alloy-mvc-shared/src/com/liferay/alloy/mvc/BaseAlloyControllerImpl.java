@@ -1273,11 +1273,17 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			else if (value instanceof Date) {
 				jsonObject.put(String.valueOf(key), (Date)value);
 			}
+			else if (value instanceof Double) {
+				jsonObject.put(String.valueOf(key), (Double)value);
+			}
 			else if (value instanceof Integer) {
 				jsonObject.put(String.valueOf(key), (Integer)value);
 			}
 			else if (value instanceof Long) {
 				jsonObject.put(String.valueOf(key), (Long)value);
+			}
+			else if (value instanceof Short) {
+				jsonObject.put(String.valueOf(key), (Short)value);
 			}
 			else {
 				jsonObject.put(String.valueOf(key), String.valueOf(value));
