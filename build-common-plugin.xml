@@ -211,10 +211,7 @@
 					<property name="jspc.classes.dir" value="classes/${app.server.type}" />
 
 					<if>
-						<and>
-							<equals arg1="${app.server.type}" arg2="tomcat" />
-							<equals arg1="${ant.java.version}" arg2="1.5" />
-						</and>
+						<equals arg1="${ant.java.version}" arg2="1.5" />
 						<then>
 							<var name="jspc.java.home" value="${jdk.windows.home}" />
 						</then>
