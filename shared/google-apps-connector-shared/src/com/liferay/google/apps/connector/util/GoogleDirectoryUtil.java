@@ -17,6 +17,7 @@ package com.liferay.google.apps.connector.util;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.admin.directory.Directory;
+import com.google.api.services.admin.directory.DirectoryRequest;
 import com.google.api.services.admin.directory.model.Group;
 import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
@@ -24,6 +25,8 @@ import com.google.api.services.admin.directory.model.Members;
 import com.liferay.google.apps.connector.auth.GoogleCredentialUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.StringPool;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Matthew Kong
@@ -34,7 +37,7 @@ public class GoogleDirectoryUtil {
 		throws PortalException {
 
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Directory.Groups groups = directory.groups();
 
@@ -45,26 +48,7 @@ public class GoogleDirectoryUtil {
 
 			Directory.Groups.Insert insert = groups.insert(group);
 
-			insert.setFields(StringPool.BLANK);
-
-			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
-					i++) {
-
-				try {
-					insert.execute();
-
-					return;
-				}
-				catch (GoogleJsonResponseException gjre) {
-					if (i == PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS) {
-						throw new PortalException(gjre);
-					}
-					else {
-						Thread.sleep(
-							PortletPropsValues.GOOGLE_API_RETRY_INTERVAL);
-					}
-				}
-			}
+			_executeAction(insert);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
@@ -76,7 +60,7 @@ public class GoogleDirectoryUtil {
 		throws PortalException {
 
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Directory.Members members = directory.members();
 
@@ -87,30 +71,7 @@ public class GoogleDirectoryUtil {
 			Directory.Members.Insert insert = members.insert(
 				groupEmailAddress, member);
 
-			insert.setFields(StringPool.BLANK);
-
-			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
-					i++) {
-
-				try {
-					insert.execute();
-
-					return;
-				}
-				catch (GoogleJsonResponseException gjre) {
-					if (gjre.getStatusCode() == _ERROR_CONFLICT) {
-						return;
-					}
-
-					if (i == PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS) {
-						throw new PortalException(gjre);
-					}
-					else {
-						Thread.sleep(
-							PortletPropsValues.GOOGLE_API_RETRY_INTERVAL);
-					}
-				}
-			}
+			_executeAction(insert);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
@@ -121,32 +82,13 @@ public class GoogleDirectoryUtil {
 		throws PortalException {
 
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Directory.Groups groups = directory.groups();
 
 			Directory.Groups.Delete delete = groups.delete(groupEmailAddress);
 
-			delete.setFields(StringPool.BLANK);
-
-			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
-					i++) {
-
-				try {
-					delete.execute();
-
-					return;
-				}
-				catch (GoogleJsonResponseException gjre) {
-					if (i == PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS) {
-						throw new PortalException(gjre);
-					}
-					else {
-						Thread.sleep(
-							PortletPropsValues.GOOGLE_API_RETRY_INTERVAL);
-					}
-				}
-			}
+			_executeAction(delete);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
@@ -158,7 +100,7 @@ public class GoogleDirectoryUtil {
 		throws PortalException {
 
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Group group = getGroup(groupEmailAddress);
 
@@ -171,52 +113,16 @@ public class GoogleDirectoryUtil {
 			Directory.Members.Delete delete = members.delete(
 				groupEmailAddress, emailAddress);
 
-			delete.setFields(StringPool.BLANK);
-
-			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
-					i++) {
-
-				try {
-					delete.execute();
-
-					return;
-				}
-				catch (GoogleJsonResponseException gjre) {
-					if (i == PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS) {
-						throw new PortalException(gjre);
-					}
-					else {
-						Thread.sleep(
-							PortletPropsValues.GOOGLE_API_RETRY_INTERVAL);
-					}
-				}
-			}
+			_executeAction(delete);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
 		}
 	}
 
-	public static Directory getDirectory() throws Exception {
-		if (_directory != null) {
-			return _directory;
-		}
-
-		GoogleCredential googleCredential =
-			GoogleCredentialUtil.getGoogleCredential();
-
-		Directory.Builder builder = new Directory.Builder(
-			googleCredential.getTransport(), googleCredential.getJsonFactory(),
-			googleCredential);
-
-		_directory = builder.build();
-
-		return _directory;
-	}
-
 	public static Group getGroup(String groupEmailAddress) {
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Directory.Groups groups = directory.groups();
 
@@ -233,7 +139,7 @@ public class GoogleDirectoryUtil {
 		String groupEmailAddress, String userEmailAddress) {
 
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Directory.Members members = directory.members();
 
@@ -249,7 +155,7 @@ public class GoogleDirectoryUtil {
 
 	public static Members getGroupMembers(String groupEmailAddress) {
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Directory.Members members = directory.members();
 
@@ -267,40 +173,64 @@ public class GoogleDirectoryUtil {
 		throws PortalException {
 
 		try {
-			Directory directory = getDirectory();
+			Directory directory = _getDirectory();
 
 			Directory.Members members = directory.members();
 
 			Directory.Members.Update update = members.update(
 				groupEmailAddress, userEmailAddress, member);
 
-			update.setFields(StringPool.BLANK);
-
-			for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
-					i++) {
-
-				try {
-					update.execute();
-
-					return;
-				}
-				catch (GoogleJsonResponseException gjre) {
-					if (i == PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS) {
-						throw new PortalException(gjre);
-					}
-					else {
-						Thread.sleep(
-							PortletPropsValues.GOOGLE_API_RETRY_INTERVAL);
-					}
-				}
-			}
+			_executeAction(update);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
 		}
 	}
 
-	private static final int _ERROR_CONFLICT = 409;
+	private static void _executeAction(DirectoryRequest<?> directoryRequest)
+		throws Exception {
+
+		directoryRequest.setFields(StringPool.BLANK);
+
+		for (int i = 1; i <= PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS;
+				i++) {
+
+			try {
+				directoryRequest.execute();
+
+				return;
+			}
+			catch (GoogleJsonResponseException gjre) {
+				if (gjre.getStatusCode() == HttpServletResponse.SC_CONFLICT) {
+					return;
+				}
+
+				if (i == PortletPropsValues.GOOGLE_API_RETRY_ATTEMPTS) {
+					throw new PortalException(gjre);
+				}
+				else {
+					Thread.sleep(PortletPropsValues.GOOGLE_API_RETRY_INTERVAL);
+				}
+			}
+		}
+	}
+
+	private static Directory _getDirectory() throws Exception {
+		if (_directory != null) {
+			return _directory;
+		}
+
+		GoogleCredential googleCredential =
+			GoogleCredentialUtil.getGoogleCredential();
+
+		Directory.Builder builder = new Directory.Builder(
+			googleCredential.getTransport(), googleCredential.getJsonFactory(),
+			googleCredential);
+
+		_directory = builder.build();
+
+		return _directory;
+	}
 
 	private static Directory _directory;
 
