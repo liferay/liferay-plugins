@@ -18,9 +18,12 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.services.admin.directory.Directory;
 import com.google.api.services.admin.directory.DirectoryRequest;
+import com.google.api.services.admin.directory.model.Alias;
 import com.google.api.services.admin.directory.model.Group;
 import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
+import com.google.api.services.admin.directory.model.User;
+import com.google.api.services.admin.directory.model.UserName;
 
 import com.liferay.google.apps.connector.auth.GoogleCredentialUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -30,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Matthew Kong
+ * @author Amos Fong
  */
 public class GoogleDirectoryUtil {
 
@@ -78,6 +82,63 @@ public class GoogleDirectoryUtil {
 		}
 	}
 
+	public static void addUser(
+			String primaryEmailAddress, String password, String firstName,
+			String middleName, String lastName)
+		throws PortalException {
+
+		try {
+			Directory directory = _getDirectory();
+
+			Directory.Users users = directory.users();
+
+			User user = new User();
+
+			UserName userName = new UserName();
+
+			userName.setFamilyName(lastName);
+			userName.setGivenName(firstName);
+
+			user.setName(userName);
+
+			user.setPassword(password);
+
+			user.setPrimaryEmail(primaryEmailAddress);
+
+			Directory.Users.Insert insert = users.insert(user);
+
+			_executeAction(insert);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static void addUserAlias(
+			String primaryEmailAddress, String aliasEmailAddress)
+		throws PortalException {
+
+		try {
+			Directory directory = _getDirectory();
+
+			Directory.Users users = directory.users();
+
+			Directory.Users.Aliases aliases = users.aliases();
+
+			Alias alias = new Alias();
+
+			alias.setAlias(aliasEmailAddress);
+
+			Directory.Users.Aliases.Insert insert = aliases.insert(
+				primaryEmailAddress, alias);
+
+			_executeAction(insert);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
 	public static void deleteGroup(String groupEmailAddress)
 		throws PortalException {
 
@@ -112,6 +173,44 @@ public class GoogleDirectoryUtil {
 
 			Directory.Members.Delete delete = members.delete(
 				groupEmailAddress, emailAddress);
+
+			_executeAction(delete);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static void deleteUser(String primaryEmailAddress)
+		throws PortalException {
+
+		try {
+			Directory directory = _getDirectory();
+
+			Directory.Users users = directory.users();
+
+			Directory.Users.Delete delete = users.delete(primaryEmailAddress);
+
+			_executeAction(delete);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static void deleteUserAlias(
+			String primaryEmailAddress, String aliasEmailAddress)
+		throws PortalException {
+
+		try {
+			Directory directory = _getDirectory();
+
+			Directory.Users users = directory.users();
+
+			Directory.Users.Aliases aliases = users.aliases();
+
+			Directory.Users.Aliases.Delete delete = aliases.delete(
+				primaryEmailAddress, aliasEmailAddress);
 
 			_executeAction(delete);
 		}
@@ -179,6 +278,29 @@ public class GoogleDirectoryUtil {
 
 			Directory.Members.Update update = members.update(
 				groupEmailAddress, userEmailAddress, member);
+
+			_executeAction(update);
+		}
+		catch (Exception e) {
+			throw new PortalException(e);
+		}
+	}
+
+	public static void updateUserPassword(
+			String primaryEmailAddress, String password)
+		throws PortalException {
+
+		try {
+			Directory directory = _getDirectory();
+
+			Directory.Users users = directory.users();
+
+			User user = new User();
+
+			user.setPassword(password);
+
+			Directory.Users.Update update = users.update(
+				primaryEmailAddress, user);
 
 			_executeAction(update);
 		}
