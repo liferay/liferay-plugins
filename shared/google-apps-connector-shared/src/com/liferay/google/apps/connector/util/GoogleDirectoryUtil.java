@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.google.mail.groups.util;
+package com.liferay.google.apps.connector.util;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -21,6 +21,7 @@ import com.google.api.services.admin.directory.model.Group;
 import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
 
+import com.liferay.google.apps.connector.auth.GoogleCredentialUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.StringPool;
 
