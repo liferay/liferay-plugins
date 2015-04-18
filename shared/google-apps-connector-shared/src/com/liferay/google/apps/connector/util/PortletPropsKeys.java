@@ -31,6 +31,9 @@ public class PortletPropsKeys {
 	public static final String GOOGLE_API_SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE =
 		"google.api.service.account.private.key.p12.file";
 
+	public static final String GOOGLE_API_SERVICE_ACCOUNT_SCOPES =
+		"google.api.service.account.scopes";
+
 	public static final String GOOGLE_API_SERVICE_ACCOUNT_USER =
 		"google.api.service.account.user";
 

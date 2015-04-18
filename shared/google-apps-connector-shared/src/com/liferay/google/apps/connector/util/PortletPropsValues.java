@@ -15,6 +15,7 @@
 package com.liferay.google.apps.connector.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
@@ -37,6 +38,11 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.
 					GOOGLE_API_SERVICE_ACCOUNT_PRIVATE_KEY_P12_FILE));
+
+	public static final String[] GOOGLE_API_SERVICE_ACCOUNT_SCOPES =
+		StringUtil.splitLines(
+			PortletProps.get(
+				PortletPropsKeys.GOOGLE_API_SERVICE_ACCOUNT_SCOPES));
 
 	public static final String GOOGLE_API_SERVICE_ACCOUNT_USER =
 		GetterUtil.getString(
