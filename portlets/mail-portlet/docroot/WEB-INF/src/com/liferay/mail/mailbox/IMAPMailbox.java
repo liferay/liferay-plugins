@@ -525,11 +525,9 @@ public class IMAPMailbox extends BaseMailbox {
 	}
 
 	protected long getFolderId(String type) {
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-
 		List<String> words = new ArrayList<>();
 
-		for (Locale locale : locales) {
+		for (Locale locale : LanguageUtil.getAvailableLocales()) {
 			String translation = StringUtil.toLowerCase(
 				LanguageUtil.get(locale, type));
 
