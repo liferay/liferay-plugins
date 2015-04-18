@@ -2,5 +2,7 @@
 <!DOCTYPE project>
 
 <project name="google-mail-groups-hook" basedir="." default="deploy">
+	<property name="import.shared" value="google-apps-connector-shared" />
+
 	<import file="../build-common-hook.xml" />
 </project>

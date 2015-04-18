@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.google.mail.groups.util;
+package com.liferay.google.apps.connector.auth;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 
+import com.liferay.google.apps.connector.util.PortletPropsValues;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 

@@ -17,5 +17,18 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="lib/google-api-client.jar" />
+	<classpathentry kind="lib" path="lib/google-api-services-admin-directory.jar" />
+	<classpathentry kind="lib" path="lib/google-api-services-groupssettings.jar" />
+	<classpathentry kind="lib" path="lib/google-http-client-jackson2.jar" />
+	<classpathentry kind="lib" path="lib/google-http-client.jar" />
+	<classpathentry kind="lib" path="lib/google-oauth-client.jar" />
+	<classpathentry kind="lib" path="lib/guava-jdk5.jar" />
+	<classpathentry kind="lib" path="lib/httpclient.jar" />
+	<classpathentry kind="lib" path="lib/httpcore.jar" />
+	<classpathentry kind="lib" path="lib/jackson-core.jar" />
+	<classpathentry kind="lib" path="lib/jsr305.jar" />
+	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

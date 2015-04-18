@@ -18,6 +18,8 @@ import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
 import com.google.api.services.groupssettings.model.Groups;
 
+import com.liferay.google.apps.connector.util.GoogleDirectoryUtil;
+import com.liferay.google.apps.connector.util.GoogleGroupssettingsUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
