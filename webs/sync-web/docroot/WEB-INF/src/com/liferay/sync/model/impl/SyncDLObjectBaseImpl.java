@@ -28,7 +28,7 @@ import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see SyncDLObjectImpl
- * @see com.liferay.sync.model.SyncDLObject
+ * @see SyncDLObject
  * @generated
  */
 @ProviderType

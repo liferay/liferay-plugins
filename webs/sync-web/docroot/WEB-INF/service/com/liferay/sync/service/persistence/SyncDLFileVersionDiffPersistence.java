@@ -46,14 +46,14 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param fileEntryId the file entry ID
 	* @return the matching sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByFileEntryId(
+	public java.util.List<SyncDLFileVersionDiff> findByFileEntryId(
 		long fileEntryId);
 
 	/**
 	* Returns a range of all the sync d l file version diffs where fileEntryId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param fileEntryId the file entry ID
@@ -61,14 +61,14 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param end the upper bound of the range of sync d l file version diffs (not inclusive)
 	* @return the range of matching sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByFileEntryId(
+	public java.util.List<SyncDLFileVersionDiff> findByFileEntryId(
 		long fileEntryId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the sync d l file version diffs where fileEntryId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param fileEntryId the file entry ID
@@ -77,9 +77,9 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByFileEntryId(
+	public java.util.List<SyncDLFileVersionDiff> findByFileEntryId(
 		long fileEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator);
 
 	/**
 	* Returns the first sync d l file version diff in the ordered set where fileEntryId = &#63;.
@@ -87,11 +87,10 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param fileEntryId the file entry ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
+	* @throws NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff findByFileEntryId_First(
-		long fileEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator)
+	public SyncDLFileVersionDiff findByFileEntryId_First(long fileEntryId,
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -101,9 +100,8 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByFileEntryId_First(
-		long fileEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator);
+	public SyncDLFileVersionDiff fetchByFileEntryId_First(long fileEntryId,
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator);
 
 	/**
 	* Returns the last sync d l file version diff in the ordered set where fileEntryId = &#63;.
@@ -111,11 +109,10 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param fileEntryId the file entry ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
+	* @throws NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff findByFileEntryId_Last(
-		long fileEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator)
+	public SyncDLFileVersionDiff findByFileEntryId_Last(long fileEntryId,
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -125,9 +122,8 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByFileEntryId_Last(
-		long fileEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator);
+	public SyncDLFileVersionDiff fetchByFileEntryId_Last(long fileEntryId,
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator);
 
 	/**
 	* Returns the sync d l file version diffs before and after the current sync d l file version diff in the ordered set where fileEntryId = &#63;.
@@ -136,11 +132,11 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param fileEntryId the file entry ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
+	* @throws NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff[] findByFileEntryId_PrevAndNext(
+	public SyncDLFileVersionDiff[] findByFileEntryId_PrevAndNext(
 		long syncDLFileVersionDiffId, long fileEntryId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -164,14 +160,14 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param expirationDate the expiration date
 	* @return the matching sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByExpirationDate(
+	public java.util.List<SyncDLFileVersionDiff> findByExpirationDate(
 		java.util.Date expirationDate);
 
 	/**
 	* Returns a range of all the sync d l file version diffs where expirationDate &lt; &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param expirationDate the expiration date
@@ -179,14 +175,14 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param end the upper bound of the range of sync d l file version diffs (not inclusive)
 	* @return the range of matching sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByExpirationDate(
+	public java.util.List<SyncDLFileVersionDiff> findByExpirationDate(
 		java.util.Date expirationDate, int start, int end);
 
 	/**
 	* Returns an ordered range of all the sync d l file version diffs where expirationDate &lt; &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param expirationDate the expiration date
@@ -195,9 +191,9 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByExpirationDate(
+	public java.util.List<SyncDLFileVersionDiff> findByExpirationDate(
 		java.util.Date expirationDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator);
 
 	/**
 	* Returns the first sync d l file version diff in the ordered set where expirationDate &lt; &#63;.
@@ -205,11 +201,11 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param expirationDate the expiration date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
+	* @throws NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff findByExpirationDate_First(
+	public SyncDLFileVersionDiff findByExpirationDate_First(
 		java.util.Date expirationDate,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -219,9 +215,9 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByExpirationDate_First(
+	public SyncDLFileVersionDiff fetchByExpirationDate_First(
 		java.util.Date expirationDate,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator);
 
 	/**
 	* Returns the last sync d l file version diff in the ordered set where expirationDate &lt; &#63;.
@@ -229,11 +225,11 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param expirationDate the expiration date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
+	* @throws NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff findByExpirationDate_Last(
+	public SyncDLFileVersionDiff findByExpirationDate_Last(
 		java.util.Date expirationDate,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -243,9 +239,9 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByExpirationDate_Last(
+	public SyncDLFileVersionDiff fetchByExpirationDate_Last(
 		java.util.Date expirationDate,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator);
 
 	/**
 	* Returns the sync d l file version diffs before and after the current sync d l file version diff in the ordered set where expirationDate &lt; &#63;.
@@ -254,11 +250,11 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param expirationDate the expiration date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
+	* @throws NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff[] findByExpirationDate_PrevAndNext(
+	public SyncDLFileVersionDiff[] findByExpirationDate_PrevAndNext(
 		long syncDLFileVersionDiffId, java.util.Date expirationDate,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -277,16 +273,16 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	public int countByExpirationDate(java.util.Date expirationDate);
 
 	/**
-	* Returns the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; or throws a {@link com.liferay.sync.NoSuchDLFileVersionDiffException} if it could not be found.
+	* Returns the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; or throws a {@link NoSuchDLFileVersionDiffException} if it could not be found.
 	*
 	* @param fileEntryId the file entry ID
 	* @param sourceFileVersionId the source file version ID
 	* @param targetFileVersionId the target file version ID
 	* @return the matching sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
+	* @throws NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff findByF_S_T(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
+	public SyncDLFileVersionDiff findByF_S_T(long fileEntryId,
+		long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -297,8 +293,8 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param targetFileVersionId the target file version ID
 	* @return the matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByF_S_T(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId);
+	public SyncDLFileVersionDiff fetchByF_S_T(long fileEntryId,
+		long sourceFileVersionId, long targetFileVersionId);
 
 	/**
 	* Returns the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -309,8 +305,8 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByF_S_T(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
+	public SyncDLFileVersionDiff fetchByF_S_T(long fileEntryId,
+		long sourceFileVersionId, long targetFileVersionId,
 		boolean retrieveFromCache);
 
 	/**
@@ -321,8 +317,8 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param targetFileVersionId the target file version ID
 	* @return the sync d l file version diff that was removed
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff removeByF_S_T(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
+	public SyncDLFileVersionDiff removeByF_S_T(long fileEntryId,
+		long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -341,8 +337,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	*
 	* @param syncDLFileVersionDiff the sync d l file version diff
 	*/
-	public void cacheResult(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff);
+	public void cacheResult(SyncDLFileVersionDiff syncDLFileVersionDiff);
 
 	/**
 	* Caches the sync d l file version diffs in the entity cache if it is enabled.
@@ -350,7 +345,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param syncDLFileVersionDiffs the sync d l file version diffs
 	*/
 	public void cacheResult(
-		java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> syncDLFileVersionDiffs);
+		java.util.List<SyncDLFileVersionDiff> syncDLFileVersionDiffs);
 
 	/**
 	* Creates a new sync d l file version diff with the primary key. Does not add the sync d l file version diff to the database.
@@ -358,32 +353,29 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param syncDLFileVersionDiffId the primary key for the new sync d l file version diff
 	* @return the new sync d l file version diff
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff create(
-		long syncDLFileVersionDiffId);
+	public SyncDLFileVersionDiff create(long syncDLFileVersionDiffId);
 
 	/**
 	* Removes the sync d l file version diff with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param syncDLFileVersionDiffId the primary key of the sync d l file version diff
 	* @return the sync d l file version diff that was removed
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
+	* @throws NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff remove(
-		long syncDLFileVersionDiffId)
+	public SyncDLFileVersionDiff remove(long syncDLFileVersionDiffId)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
-	public com.liferay.sync.model.SyncDLFileVersionDiff updateImpl(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff);
+	public SyncDLFileVersionDiff updateImpl(
+		SyncDLFileVersionDiff syncDLFileVersionDiff);
 
 	/**
-	* Returns the sync d l file version diff with the primary key or throws a {@link com.liferay.sync.NoSuchDLFileVersionDiffException} if it could not be found.
+	* Returns the sync d l file version diff with the primary key or throws a {@link NoSuchDLFileVersionDiffException} if it could not be found.
 	*
 	* @param syncDLFileVersionDiffId the primary key of the sync d l file version diff
 	* @return the sync d l file version diff
-	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
+	* @throws NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff findByPrimaryKey(
-		long syncDLFileVersionDiffId)
+	public SyncDLFileVersionDiff findByPrimaryKey(long syncDLFileVersionDiffId)
 		throws com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
@@ -392,11 +384,10 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param syncDLFileVersionDiffId the primary key of the sync d l file version diff
 	* @return the sync d l file version diff, or <code>null</code> if a sync d l file version diff with the primary key could not be found
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByPrimaryKey(
-		long syncDLFileVersionDiffId);
+	public SyncDLFileVersionDiff fetchByPrimaryKey(long syncDLFileVersionDiffId);
 
 	@Override
-	public java.util.Map<java.io.Serializable, com.liferay.sync.model.SyncDLFileVersionDiff> fetchByPrimaryKeys(
+	public java.util.Map<java.io.Serializable, SyncDLFileVersionDiff> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
@@ -404,27 +395,26 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	*
 	* @return the sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findAll();
+	public java.util.List<SyncDLFileVersionDiff> findAll();
 
 	/**
 	* Returns a range of all the sync d l file version diffs.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of sync d l file version diffs
 	* @param end the upper bound of the range of sync d l file version diffs (not inclusive)
 	* @return the range of sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findAll(
-		int start, int end);
+	public java.util.List<SyncDLFileVersionDiff> findAll(int start, int end);
 
 	/**
 	* Returns an ordered range of all the sync d l file version diffs.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of sync d l file version diffs
@@ -432,9 +422,8 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of sync d l file version diffs
 	*/
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDLFileVersionDiff> orderByComparator);
+	public java.util.List<SyncDLFileVersionDiff> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator);
 
 	/**
 	* Removes all the sync d l file version diffs from the database.

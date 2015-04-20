@@ -315,7 +315,7 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	 *
 	 * @return the sync d l file version diff local service
 	 */
-	public com.liferay.sync.service.SyncDLFileVersionDiffLocalService getSyncDLFileVersionDiffLocalService() {
+	public SyncDLFileVersionDiffLocalService getSyncDLFileVersionDiffLocalService() {
 		return syncDLFileVersionDiffLocalService;
 	}
 
@@ -325,7 +325,7 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	 * @param syncDLFileVersionDiffLocalService the sync d l file version diff local service
 	 */
 	public void setSyncDLFileVersionDiffLocalService(
-		com.liferay.sync.service.SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService) {
+		SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService) {
 		this.syncDLFileVersionDiffLocalService = syncDLFileVersionDiffLocalService;
 	}
 
@@ -421,6 +421,25 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	 */
 	public void setSyncDLObjectFinder(SyncDLObjectFinder syncDLObjectFinder) {
 		this.syncDLObjectFinder = syncDLObjectFinder;
+	}
+
+	/**
+	 * Returns the sync preferences local service.
+	 *
+	 * @return the sync preferences local service
+	 */
+	public com.liferay.sync.service.SyncPreferencesLocalService getSyncPreferencesLocalService() {
+		return syncPreferencesLocalService;
+	}
+
+	/**
+	 * Sets the sync preferences local service.
+	 *
+	 * @param syncPreferencesLocalService the sync preferences local service
+	 */
+	public void setSyncPreferencesLocalService(
+		com.liferay.sync.service.SyncPreferencesLocalService syncPreferencesLocalService) {
+		this.syncPreferencesLocalService = syncPreferencesLocalService;
 	}
 
 	/**
@@ -755,8 +774,8 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.sync.service.SyncDLFileVersionDiffLocalService.class)
-	protected com.liferay.sync.service.SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService;
+	@BeanReference(type = SyncDLFileVersionDiffLocalService.class)
+	protected SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService;
 	@BeanReference(type = SyncDLFileVersionDiffPersistence.class)
 	protected SyncDLFileVersionDiffPersistence syncDLFileVersionDiffPersistence;
 	@BeanReference(type = com.liferay.sync.service.SyncDLObjectLocalService.class)
@@ -767,6 +786,8 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	protected SyncDLObjectPersistence syncDLObjectPersistence;
 	@BeanReference(type = SyncDLObjectFinder.class)
 	protected SyncDLObjectFinder syncDLObjectFinder;
+	@BeanReference(type = com.liferay.sync.service.SyncPreferencesLocalService.class)
+	protected com.liferay.sync.service.SyncPreferencesLocalService syncPreferencesLocalService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)

@@ -4,6 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.sync.model.SyncDLFileVersionDiff" />
 	<import class="com.liferay.sync.model.SyncDLObject" />
+	<import class="com.liferay.sync.model.SyncPreferences" />
 	<class name="com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl" table="SyncDLFileVersionDiff">
 		<cache usage="read-write" />
 		<id name="syncDLFileVersionDiffId" type="long">

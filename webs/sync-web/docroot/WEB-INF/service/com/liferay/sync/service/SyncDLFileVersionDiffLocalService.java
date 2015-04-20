@@ -50,8 +50,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	 */
 	public com.liferay.sync.model.SyncDLFileVersionDiff addSyncDLFileVersionDiff(
 		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
-		java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.File file) throws PortalException;
 
 	/**
 	* Adds the sync d l file version diff to the database. Also notifies the appropriate model listeners.
@@ -72,8 +71,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	public com.liferay.sync.model.SyncDLFileVersionDiff createSyncDLFileVersionDiff(
 		long syncDLFileVersionDiffId);
 
-	public void deleteExpiredSyncDLFileVersionDiffs()
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void deleteExpiredSyncDLFileVersionDiffs() throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -81,7 +79,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Deletes the sync d l file version diff from the database. Also notifies the appropriate model listeners.
@@ -93,7 +91,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
 		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Deletes the sync d l file version diff with the primary key from the database. Also notifies the appropriate model listeners.
@@ -104,11 +102,10 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
-		long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long syncDLFileVersionDiffId) throws PortalException;
 
 	public void deleteSyncDLFileVersionDiffs(long fileEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -196,8 +193,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	/**
 	* Returns the sync d l file version diff with the primary key.
@@ -208,8 +204,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLFileVersionDiff getSyncDLFileVersionDiff(
-		long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long syncDLFileVersionDiffId) throws PortalException;
 
 	/**
 	* Returns a range of all the sync d l file version diffs.
@@ -240,7 +235,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public void refreshExpirationDate(long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.

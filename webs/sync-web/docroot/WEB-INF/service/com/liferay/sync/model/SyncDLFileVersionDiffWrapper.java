@@ -143,7 +143,7 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	* @return the expiration date of this sync d l file version diff
 	*/
 	@Override
-	public java.util.Date getExpirationDate() {
+	public Date getExpirationDate() {
 		return _syncDLFileVersionDiff.getExpirationDate();
 	}
 
@@ -276,7 +276,7 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	* @param expirationDate the expiration date of this sync d l file version diff
 	*/
 	@Override
-	public void setExpirationDate(java.util.Date expirationDate) {
+	public void setExpirationDate(Date expirationDate) {
 		_syncDLFileVersionDiff.setExpirationDate(expirationDate);
 	}
 

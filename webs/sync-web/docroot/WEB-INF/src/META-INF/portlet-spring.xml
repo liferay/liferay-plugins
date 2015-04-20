@@ -7,4 +7,5 @@
 	<bean id="com.liferay.sync.service.SyncDLObjectService" class="com.liferay.sync.service.impl.SyncDLObjectServiceImpl" />
 	<bean id="com.liferay.sync.service.persistence.SyncDLObjectPersistence" class="com.liferay.sync.service.persistence.impl.SyncDLObjectPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.sync.service.persistence.SyncDLObjectFinder" class="com.liferay.sync.service.persistence.impl.SyncDLObjectFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.sync.service.SyncPreferencesLocalService" class="com.liferay.sync.service.impl.SyncPreferencesLocalServiceImpl" />
 </beans>

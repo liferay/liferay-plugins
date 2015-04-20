@@ -168,12 +168,6 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
-	public javax.portlet.PortletPreferences getPortletPreferences()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _syncDLObjectService.getPortletPreferences();
-	}
-
-	@Override
 	public com.liferay.sync.model.SyncContext getSyncContext()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _syncDLObjectService.getSyncContext();

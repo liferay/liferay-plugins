@@ -878,11 +878,11 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		try {
 			String methodName = "setCreateDate";
 
-			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
+			Class<?>[] parameterTypes = new Class<?>[] { Date.class };
 
 			Object[] parameterValues = new Object[] { createDate };
 
@@ -894,11 +894,11 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		try {
 			String methodName = "setModifiedDate";
 
-			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
+			Class<?>[] parameterTypes = new Class<?>[] { Date.class };
 
 			Object[] parameterValues = new Object[] { modifiedDate };
 
@@ -1296,7 +1296,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	private long _typePK;
 	private String _typeUuid;
 	private BaseModel<?> _syncDLObjectRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.sync.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

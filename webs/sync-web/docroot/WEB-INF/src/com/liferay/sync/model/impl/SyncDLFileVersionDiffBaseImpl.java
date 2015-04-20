@@ -28,7 +28,7 @@ import com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see SyncDLFileVersionDiffImpl
- * @see com.liferay.sync.model.SyncDLFileVersionDiff
+ * @see SyncDLFileVersionDiff
  * @generated
  */
 @ProviderType

@@ -336,7 +336,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	* @return the lock expiration date of this sync d l object
 	*/
 	@Override
-	public java.util.Date getLockExpirationDate() {
+	public Date getLockExpirationDate() {
 		return _syncDLObject.getLockExpirationDate();
 	}
 
@@ -596,7 +596,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_syncDLObject.setCreateDate(createDate);
 	}
 
@@ -674,7 +674,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	* @param lockExpirationDate the lock expiration date of this sync d l object
 	*/
 	@Override
-	public void setLockExpirationDate(java.util.Date lockExpirationDate) {
+	public void setLockExpirationDate(Date lockExpirationDate) {
 		_syncDLObject.setLockExpirationDate(lockExpirationDate);
 	}
 
@@ -719,7 +719,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_syncDLObject.setModifiedDate(modifiedDate);
 	}
 
