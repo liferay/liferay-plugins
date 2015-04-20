@@ -463,8 +463,8 @@
 		/>
 
 		<path id="wsdd.classpath">
-			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.portal.tools.wsdd.builder/lib" includes="*.jar" />
 			<fileset dir="${plugin.lib.dir}" includes="*.jar" />
 			<pathelement location="${plugin.classes.dir}" />
 		</path>
@@ -480,7 +480,7 @@
 		</if>
 
 		<java
-			classname="com.liferay.portal.tools.WSDDBuilder"
+			classname="com.liferay.portal.tools.wsdd.builder.WSDDBuilder"
 			classpathref="wsdd.classpath"
 			fork="true"
 			maxmemory="256m"
