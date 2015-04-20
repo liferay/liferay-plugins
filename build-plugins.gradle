@@ -72,7 +72,7 @@ dependencies {
 	)
 
 	portalToolsBuildCss(
-		[group: "com.liferay", name: "com.liferay.sass.compiler", version: "1.0.0-SNAPSHOT"],
+		[group: "com.liferay", name: "com.liferay.sass.compiler.jni", version: "1.0.0-SNAPSHOT"],
 		[group: "org.apache.ant", name: "ant", version: "1.8.2"],
 		[group: "org.mozilla", name: "rhino", version: "1.7R4"]
 	)
