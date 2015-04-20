@@ -27,26 +27,18 @@ int maxConnections = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.
 boolean oAuthEnabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED);
 int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL);
 
-boolean oAuthPortletDeployed = true;
 boolean oAuthApplicationMissing = false;
 
-PluginPackage oAuthPortletPluginPackage = DeployManagerUtil.getInstalledPluginPackage("oauth-portlet");
-
-if (oAuthPortletPluginPackage == null) {
-	oAuthPortletDeployed = false;
-}
-else if (oAuthEnabled) {
+if (oAuthEnabled) {
 	long oAuthApplicationId = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID, 0);
 
-	OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.fetchOAuthApplication(oAuthApplicationId);
-
-	if (oAuthApplication == null) {
+	if (OAuthApplicationLocalServiceUtil.fetchOAuthApplication(oAuthApplicationId) == null) {
 		oAuthApplicationMissing = true;
 	}
 }
 %>
 
-<c:if test="<%= oAuthEnabled && !oAuthPortletDeployed %>">
+<c:if test='<%= oAuthEnabled && DeployManagerUtil.isDeployed("oauth-portlet") %>'>
 	<div class="alert alert-warning">
 		<liferay-ui:message key="oauth-portlet-is-not-deployed" />
 	</div>
@@ -69,9 +61,11 @@ else if (oAuthEnabled) {
 		<aui:input name="enabled" type="checkbox" value="<%= enabled %>" />
 	</aui:fieldset>
 
-	<aui:fieldset>
-		<aui:input helpMessage="oauth-enabled-help" label="oauth-enabled" name="oAuthEnabled" type="checkbox" value="<%= oAuthEnabled %>" />
-	</aui:fieldset>
+	<c:if test='<%= DeployManagerUtil.isDeployed("oauth-portlet") %>'>
+		<aui:fieldset>
+			<aui:input helpMessage="oauth-enabled-help" label="oauth-enabled" name="oAuthEnabled" type="checkbox" value="<%= oAuthEnabled %>" />
+		</aui:fieldset>
+	</c:if>
 
 	<aui:fieldset>
 		<aui:input label="allow-user-personal-sites" name="allowUserPersonalSites" type="checkbox" value="<%= allowUserPersonalSites %>" />
