@@ -48,32 +48,28 @@ public class SyncPreferencesLocalServiceImpl
 		long oAuthApplicationId = PrefsPropsUtil.getLong(
 			companyId, PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID, 0);
 
-		OAuthApplication oAuthApplication = null;
+		OAuthApplication oAuthApplication =
+			OAuthApplicationLocalServiceUtil.fetchOAuthApplication(
+				oAuthApplicationId);
 
-		if (oAuthApplicationId != 0) {
-			oAuthApplication =
-				OAuthApplicationLocalServiceUtil.fetchOAuthApplication(
-					oAuthApplicationId);
+		if (oAuthApplication != null) {
+			return oAuthApplication;
 		}
 
-		if (oAuthApplication == null) {
-			oAuthApplication =
-				OAuthApplicationLocalServiceUtil.addOAuthApplication(
-					serviceContext.getUserId(), "Liferay Sync",
-					StringPool.BLANK, OAuthApplicationConstants.ACCESS_WRITE,
-					true, "http://liferay-sync", "http://liferay-sync",
-					serviceContext);
+		oAuthApplication = OAuthApplicationLocalServiceUtil.addOAuthApplication(
+			serviceContext.getUserId(), "Liferay Sync", StringPool.BLANK,
+			OAuthApplicationConstants.ACCESS_WRITE, true, "http://liferay-sync",
+			"http://liferay-sync", serviceContext);
 
-			Class<?> clazz = getClass();
+		Class<?> clazz = getClass();
 
-			ClassLoader classLoader = clazz.getClassLoader();
+		ClassLoader classLoader = clazz.getClassLoader();
 
-			InputStream inputStream = classLoader.getResourceAsStream(
-				"/resources/images/logo.png");
+		InputStream inputStream = classLoader.getResourceAsStream(
+			"/resources/images/logo.png");
 
-			OAuthApplicationLocalServiceUtil.updateLogo(
-				oAuthApplication.getOAuthApplicationId(), inputStream);
-		}
+		OAuthApplicationLocalServiceUtil.updateLogo(
+			oAuthApplication.getOAuthApplicationId(), inputStream);
 
 		return oAuthApplication;
 	}
