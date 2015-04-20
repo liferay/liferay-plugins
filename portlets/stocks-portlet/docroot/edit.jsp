@@ -26,7 +26,7 @@ symbolsString = StringUtil.merge(symbols, StringPool.SPACE);
 
 <portlet:actionURL var="portletURL" />
 
-<aui:form action="<%= portletURL %>" method="post" name="fm" onSubmit="submitForm(document.<portlet:namespace />fm);">
+<aui:form action="<%= portletURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<liferay-ui:error exception="<%= ValidatorException.class %>">
@@ -58,6 +58,12 @@ symbolsString = StringUtil.merge(symbols, StringPool.SPACE);
 		<aui:button type="submit" />
 	</aui:button-row>
 </aui:form>
+
+<aui:script>
+	function <portlet:namespace />saveForm() {
+		submitForm(document.<portlet:namespace />fm);
+	}
+</aui:script>
 
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 	<aui:script>
