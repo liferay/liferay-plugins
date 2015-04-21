@@ -2909,7 +2909,7 @@ for (String path : paths) {
 
 	<target name="compile-jsp">
 		<for param="module.web.dir">
-			<dirset dir="." />
+			<dirset dir="." excludes="**/templates/**" />
 			<sequential>
 				<if>
 					<resourcecount count="0" when="gt">
