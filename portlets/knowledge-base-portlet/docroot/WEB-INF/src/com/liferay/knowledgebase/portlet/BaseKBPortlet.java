@@ -93,9 +93,9 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		InputStream inputStream = null;
 
 		try {
-			inputStream = uploadPortletRequest.getFileAsStream("file");
-
 			String mimeType = uploadPortletRequest.getContentType("file");
+
+			inputStream = uploadPortletRequest.getFileAsStream("file");
 
 			KBArticleServiceUtil.addTempAttachment(
 				themeDisplay.getScopeGroupId(), resourcePrimKey, sourceFileName,
