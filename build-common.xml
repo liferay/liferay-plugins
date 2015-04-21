@@ -2086,11 +2086,11 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="multiroot-subant">
-		<attribute name="root.dir" />
-		<attribute name="includes" />
-		<attribute name="excludes" />
-		<attribute name="target" />
 		<attribute name="build.file" />
+		<attribute name="excludes" />
+		<attribute name="includes" />
+		<attribute name="root.dir" />
+		<attribute name="target" />
 
 		<sequential>
 			<path id="includes.path">
