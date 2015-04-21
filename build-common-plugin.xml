@@ -592,8 +592,9 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				<delete dir="${tstamp.value}" />
 			</then>
 			<else>
-				<compile
-					module.dir="${basedir}"
+				<loop-macrodef-or-target
+					module.dirs="${basedir}"
+					target.name="compile"
 				/>
 
 				<compile-jsp
