@@ -2907,6 +2907,17 @@ for (String path : paths) {
 		/>
 	</target>
 
+	<target name="compile-jsp">
+		<for param="module.web.dir">
+			<dirset dir=".">
+				<include name="**/*-web" />
+			</dirset>
+			<sequential>
+				<ant antfile="${sdk.dir}/build-common-plugin.xml" dir="@{module.web.dir}" target="compile-jsp" />
+			</sequential>
+		</for>
+	</target>
+
 	<target name="compile-test">
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
