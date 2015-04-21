@@ -65,21 +65,21 @@
 
 	<target name="setup-eclipse">
 		<multiroot-subant
-			root.dir="${basedir}"
-			includes="${plugins.includes}"
-			excludes="${plugins.excludes}"
-			target="setup-eclipse"
 			build.file="build.xml"
+			root.dir="${basedir}"
+			excludes="${plugins.excludes}"
+			includes="${plugins.includes}"
+			target="setup-eclipse"
 		/>
 	</target>
 
 	<target name="test-class-group">
 		<multiroot-subant
-			root.dir="${basedir}"
-			includes="${plugins.includes}"
-			excludes="${plugins.excludes}"
-			target="test-class-group"
 			build.file="build.xml"
+			root.dir="${basedir}"
+			excludes="${plugins.excludes}"
+			includes="${plugins.includes}"
+			target="test-class-group"
 		/>
 	</target>
 </project>
