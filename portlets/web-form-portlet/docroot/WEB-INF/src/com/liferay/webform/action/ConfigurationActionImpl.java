@@ -255,7 +255,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			String[] emailAdresses = WebFormUtil.split(
 				getParameter(actionRequest, "emailAddress"));
 			String emailFromAddress = GetterUtil.getString(
-					getParameter(actionRequest, "emailFromAddress"));
+				getParameter(actionRequest, "emailFromAddress"));
 
 			if ((emailAdresses.length == 0) ||
 				Validator.isNull(emailFromAddress)) {
