@@ -2,15 +2,10 @@
 <!DOCTYPE project>
 
 <project name="opensocial-portlet" basedir="." default="deploy">
+	<property name="compile.jsp.docroot.dir" value="tmp" />
 	<property name="original.war.file" value="shindig-server-2.0.2.war" />
 
 	<import file="../build-common-portlet.xml" />
-
-	<target name="compile-jsp">
-		<compile-jsp
-			compile.jsp.docroot.dir="tmp"
-		/>
-	</target>
 
 	<target name="merge">
 

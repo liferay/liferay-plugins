@@ -11,6 +11,7 @@
 	for more information.
 	-->
 
+	<property name="compile.jsp.docroot.dir" value="tmp" />
 	<property name="original.war.file" value="petportal.war" />
 
 	<import file="../build-common-portlet.xml" />
