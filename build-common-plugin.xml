@@ -623,6 +623,10 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="format-wsdl">
+		<path id="xml.classpath">
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.xml.formatter/lib" includes="*.jar" />
+		</path>
+
 		<for param="wsdl.full.path">
 			<path>
 				<fileset
@@ -632,12 +636,11 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			</path>
 			<sequential>
 				<java
-					classname="com.liferay.portal.tools.XMLFormatter"
-					classpathref="portal.classpath"
+					classname="com.liferay.xml.formatter.XMLFormatter"
+					classpathref="xml.classpath"
 					fork="true"
 					newenvironment="true"
 				>
-					<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 					<jvmarg value="-Dxml.formatter.file=@{wsdl.full.path}" />
 					<jvmarg value="-Dxml.formatter.strip.comments=true" />
 				</java>
