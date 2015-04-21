@@ -190,7 +190,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 		<sequential>
 			<fileset
-				dir="${basedir}"
+				dir="@{module.dir}"
 				id="soy.fileset"
 				includes="docroot/**/*.soy,src/META-INF/resources/**/*.soy"
 			/>
@@ -212,10 +212,10 @@ Error-Prone was automatically installed. Please rerun your task.
 								maxmemory="1024m"
 								newenvironment="true"
 							>
-								<arg value="--srcs" />
-								<arg value="@{soy.full.path}" />
 								<arg value="--outputPathFormat" />
 								<arg value="@{soy.full.path}.js" />
+								<arg value="--srcs" />
+								<arg value="@{soy.full.path}" />
 							</java>
 						</sequential>
 					</for>
