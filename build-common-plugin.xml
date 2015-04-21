@@ -56,7 +56,7 @@
 				<fileset dir="${service.base.dir}/src" excludes="**/*.java" />
 			</copy>
 
-			<path id="service.classpath">
+			<path id="service.builder.classpath">
 				<fileset dir="${sdk.dir}/dependencies/com.liferay.portal.tools.service.builder/lib" includes="*.jar" />
 				<fileset dir="${service.base.dir}/lib" includes="*.jar" />
 				<pathelement location="${service.base.dir}/classes" />
@@ -66,8 +66,8 @@
 				<os family="windows" />
 				<then>
 					<classpath-to-jar
-						classpathref="service.classpath"
-						jarfile="build-service-classpath.jar"
+						classpathref="service.builder.classpath"
+						jarfile="service-builder-classpath.jar"
 					/>
 				</then>
 			</if>
@@ -83,7 +83,7 @@
 
 			<java
 				classname="com.liferay.portal.tools.service.builder.ServiceBuilder"
-				classpathref="service.classpath"
+				classpathref="service.builder.classpath"
 				fork="true"
 				newenvironment="true"
 				outputproperty="build-service.output"
@@ -121,7 +121,7 @@
 			<if>
 				<os family="windows" />
 				<then>
-					<delete file="build-service-classpath.jar" />
+					<delete file="service-builder-classpath.jar" />
 				</then>
 			</if>
 
@@ -462,7 +462,7 @@
 			target.name="compile"
 		/>
 
-		<path id="wsdd.classpath">
+		<path id="wsdd.builder.classpath">
 			<fileset dir="${sdk.dir}/dependencies/com.liferay.portal.tools.wsdd.builder/lib" includes="*.jar" />
 			<path refid="portal.classpath" />
 			<fileset dir="${plugin.lib.dir}" includes="*.jar" />
@@ -473,15 +473,15 @@
 			<os family="windows" />
 			<then>
 				<classpath-to-jar
-					classpathref="wsdd.classpath"
-					jarfile="build-wsdd-classpath.jar"
+					classpathref="wsdd.builder.classpath"
+					jarfile="wsdd-builder-classpath.jar"
 				/>
 			</then>
 		</if>
 
 		<java
 			classname="com.liferay.portal.tools.wsdd.builder.WSDDBuilder"
-			classpathref="wsdd.classpath"
+			classpathref="wsdd.builder.classpath"
 			fork="true"
 			maxmemory="256m"
 			newenvironment="true"
@@ -498,7 +498,7 @@
 		<if>
 			<os family="windows" />
 			<then>
-				<delete file="build-wsdd-classpath.jar" />
+				<delete file="wsdd-builder-classpath.jar" />
 			</then>
 		</if>
 
@@ -623,7 +623,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="format-wsdl">
-		<path id="xml.classpath">
+		<path id="xml.formatter.classpath">
 			<fileset dir="${sdk.dir}/dependencies/com.liferay.xml.formatter/lib" includes="*.jar" />
 		</path>
 
@@ -637,7 +637,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			<sequential>
 				<java
 					classname="com.liferay.xml.formatter.XMLFormatter"
-					classpathref="xml.classpath"
+					classpathref="xml.formatter.classpath"
 					fork="true"
 					newenvironment="true"
 				>
