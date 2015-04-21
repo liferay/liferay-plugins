@@ -463,8 +463,8 @@
 		/>
 
 		<path id="wsdd.classpath">
-			<path refid="portal.classpath" />
 			<fileset dir="${sdk.dir}/dependencies/com.liferay.portal.tools.wsdd.builder/lib" includes="*.jar" />
+			<path refid="portal.classpath" />
 			<fileset dir="${plugin.lib.dir}" includes="*.jar" />
 			<pathelement location="${plugin.classes.dir}" />
 		</path>
