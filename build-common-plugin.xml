@@ -56,7 +56,7 @@
 				<fileset dir="${service.base.dir}/src" excludes="**/*.java" />
 			</copy>
 
-			<path id="service.classpath">
+			<path id="service.builder.classpath">
 				<path refid="lib.classpath" />
 				<path refid="portal.classpath" />
 				<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
@@ -70,8 +70,8 @@
 				<os family="windows" />
 				<then>
 					<classpath-to-jar
-						classpathref="service.classpath"
-						jarfile="build-service-classpath.jar"
+						classpathref="service.builder.classpath"
+						jarfile="service-builder-classpath.jar"
 					/>
 				</then>
 			</if>
@@ -87,7 +87,7 @@
 
 			<java
 				classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
-				classpathref="service.classpath"
+				classpathref="service.builder.classpath"
 				fork="true"
 				newenvironment="true"
 				outputproperty="build-service.output"
@@ -133,7 +133,7 @@
 			<if>
 				<os family="windows" />
 				<then>
-					<delete file="build-service-classpath.jar" />
+					<delete file="service-builder-classpath.jar" />
 				</then>
 			</if>
 
@@ -474,7 +474,7 @@
 			target.name="compile"
 		/>
 
-		<path id="wsdd.classpath">
+		<path id="wsdd.builder.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
 			<fileset dir="${plugin.lib.dir}" includes="*.jar" />
@@ -485,15 +485,15 @@
 			<os family="windows" />
 			<then>
 				<classpath-to-jar
-					classpathref="wsdd.classpath"
-					jarfile="build-wsdd-classpath.jar"
+					classpathref="wsdd.builder.classpath"
+					jarfile="wsdd-builder-classpath.jar"
 				/>
 			</then>
 		</if>
 
 		<java
 			classname="com.liferay.portal.tools.WSDDBuilder"
-			classpathref="wsdd.classpath"
+			classpathref="wsdd.builder.classpath"
 			fork="true"
 			maxmemory="256m"
 			newenvironment="true"
@@ -510,7 +510,7 @@
 		<if>
 			<os family="windows" />
 			<then>
-				<delete file="build-wsdd-classpath.jar" />
+				<delete file="wsdd-builder-classpath.jar" />
 			</then>
 		</if>
 
