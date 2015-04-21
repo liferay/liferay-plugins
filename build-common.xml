@@ -2085,6 +2085,30 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="multiroot-subant">
+		<attribute name="root.dir" />
+		<attribute name="includes" />
+		<attribute name="excludes" />
+		<attribute name="target" />
+		<attribute name="build.file" />
+
+		<sequential>
+			<path id="includes.path">
+				<dirset dir="@{root.dir}" excludes="@{excludes}" includes="@{includes}" />
+			</path>
+
+			<local name="includes.path" />
+
+			<pathconvert pathsep="," property="includes.path" refid="includes.path" targetos="unix" />
+
+			<subant target="@{target}">
+				<multirootfileset basedirs="${includes.path}">
+					<include name="@{build.file}" />
+				</multirootfileset>
+			</subant>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="release">
 		<attribute name="module.dir" />
 

@@ -64,18 +64,22 @@
 	</target>
 
 	<target name="setup-eclipse">
-		<subant target="setup-eclipse">
-			<multirootfileset basedirs="${plugins.includes.path}">
-				<include name="build.xml" />
-			</multirootfileset>
-		</subant>
+		<multiroot-subant
+			root.dir="${basedir}"
+			includes="${plugins.includes}"
+			excludes="${plugins.excludes}"
+			target="setup-eclipse"
+			build.file="build.xml"
+		/>
 	</target>
 
 	<target name="test-class-group">
-		<subant target="test-class-group">
-			<multirootfileset basedirs="${plugins.includes.path}">
-				<include name="build.xml" />
-			</multirootfileset>
-		</subant>
+		<multiroot-subant
+			root.dir="${basedir}"
+			includes="${plugins.includes}"
+			excludes="${plugins.excludes}"
+			target="test-class-group"
+			build.file="build.xml"
+		/>
 	</target>
 </project>
