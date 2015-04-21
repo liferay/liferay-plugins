@@ -2913,7 +2913,7 @@ for (String path : paths) {
 			<sequential>
 				<if>
 					<resourcecount count="0" when="gt">
-						<fileset dir="@{module.web.dir}" includes="docroot/**/*.jsp,src/META-INF/resources/**/*.jsp" />
+						<fileset dir="@{module.web.dir}" includes="docroot/**/*.jsp,tmp/**/*.jsp,src/META-INF/resources/**/*.jsp" excludes="**/custom_jsps/**/*" />
 					</resourcecount>
 					<then>
 						<ant antfile="@{module.web.dir}/build.xml" dir="@{module.web.dir}" target="compile-jsp" />

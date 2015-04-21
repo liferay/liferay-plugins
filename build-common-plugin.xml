@@ -573,36 +573,50 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		/>
 
 		<if>
-			<available file="bnd.bnd" type="file" />
+			<isset property="compile.jsp.docroot.dir" />
 			<then>
-				<antcall target="jar">
-					<param name="plugins.includes.path" value="${basedir}" />
-				</antcall>
+				<compile
+					module.dir="${basedir}"
+				/>
 
-				<tstamp>
-					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-				</tstamp>
+				<compile-jsp
+					compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
+				/>
 
-				<unzip dest="${tstamp.value}" src="${plugin.file}" />
-
-				<if>
-					<available file="${tstamp.value}/META-INF/resources" type="dir" />
-					<then>
-						<compile-jsp
-							compile.jsp.docroot.dir="${tstamp.value}/META-INF/resources"
-							compile.jsp.temp.dir="${tstamp.value}"
-						/>
-					</then>
-					<else>
-						<compile-jsp
-							compile.jsp.docroot.dir="${tstamp.value}"
-							compile.jsp.temp.dir="${tstamp.value}"
-						/>
-					</else>
-				</if>
-
-				<delete dir="${tstamp.value}" />
+				<var name="compile.jsp.docroot.dir" unset="true" />
 			</then>
+			<elseif>
+				<available file="bnd.bnd" type="file" />
+				<then>
+					<antcall target="jar">
+						<param name="plugins.includes.path" value="${basedir}" />
+					</antcall>
+
+					<tstamp>
+						<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+					</tstamp>
+
+					<unzip dest="${tstamp.value}" src="${plugin.file}" />
+
+					<if>
+						<available file="${tstamp.value}/META-INF/resources" type="dir" />
+						<then>
+							<compile-jsp
+								compile.jsp.docroot.dir="${tstamp.value}/META-INF/resources"
+								compile.jsp.temp.dir="${tstamp.value}"
+							/>
+						</then>
+						<else>
+							<compile-jsp
+								compile.jsp.docroot.dir="${tstamp.value}"
+								compile.jsp.temp.dir="${tstamp.value}"
+							/>
+						</else>
+					</if>
+
+					<delete dir="${tstamp.value}" />
+				</then>
+			</elseif>
 			<else>
 				<loop-macrodef-or-target
 					module.dirs="${basedir}"
