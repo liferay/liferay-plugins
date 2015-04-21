@@ -185,6 +185,45 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="build-soy">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<fileset
+				dir="${basedir}"
+				id="soy.fileset"
+				includes="docroot/**/*.soy,src/META-INF/resources/**/*.soy"
+			/>
+
+			<if>
+				<resourcecount count="0" when="gt" >
+					<fileset refid="soy.fileset" />
+				</resourcecount>
+				<then>
+					<for param="soy.full.path">
+						<path>
+							<fileset refid="soy.fileset" />
+						</path>
+						<sequential>
+							<java
+								classname="com.google.template.soy.SoyToJsSrcCompiler"
+								classpathref="plugin.classpath"
+								fork="true"
+								maxmemory="1024m"
+								newenvironment="true"
+							>
+								<arg value="--srcs" />
+								<arg value="@{soy.full.path}" />
+								<arg value="--outputPathFormat" />
+								<arg value="@{soy.full.path}.js" />
+							</java>
+						</sequential>
+					</for>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="build-wsdl">
 		<attribute name="module.dir" />
 
@@ -2830,6 +2869,13 @@ for (String path : paths) {
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="build-css"
+		/>
+	</target>
+
+	<target name="build-soy">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="build-soy"
 		/>
 	</target>
 
