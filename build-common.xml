@@ -2909,11 +2909,16 @@ for (String path : paths) {
 
 	<target name="compile-jsp">
 		<for param="module.web.dir">
-			<dirset dir=".">
-				<include name="**/*-web" />
-			</dirset>
+			<dirset dir="." />
 			<sequential>
-				<ant antfile="${sdk.dir}/build-common-plugin.xml" dir="@{module.web.dir}" target="compile-jsp" />
+				<if>
+					<resourcecount count="0" when="gt">
+						<fileset dir="@{module.web.dir}" includes="docroot/**/*.jsp,src/META-INF/resources/**/*.jsp" />
+					</resourcecount>
+					<then>
+						<ant antfile="${sdk.dir}/build-common-plugin.xml" dir="@{module.web.dir}" target="compile-jsp" />
+					</then>
+				</if>
 			</sequential>
 		</for>
 	</target>
