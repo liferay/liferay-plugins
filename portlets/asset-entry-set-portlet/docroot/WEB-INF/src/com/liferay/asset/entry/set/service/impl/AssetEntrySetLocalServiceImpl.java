@@ -172,6 +172,26 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	@Override
+	public AssetEntrySet fetchAssetEntrySet(
+			long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
+		throws PortalException, SystemException {
+
+		AssetEntrySet assetEntrySet =
+			assetEntrySetPersistence.fetchByPrimaryKey(assetEntrySetId);
+
+		if (assetEntrySet == null) {
+			return null;
+		}
+
+		setDisplayFields(
+			userId, System.currentTimeMillis(), assetEntrySet,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
+
+		return assetEntrySet;
+	}
+
+	@Override
 	public AssetEntrySet getAssetEntrySet(
 			long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
 			int likedParticipantsLimit)

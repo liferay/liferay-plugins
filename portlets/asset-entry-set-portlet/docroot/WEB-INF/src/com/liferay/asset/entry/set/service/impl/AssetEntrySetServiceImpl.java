@@ -73,6 +73,20 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 	}
 
 	@Override
+	public AssetEntrySet fetchAssetEntrySet(
+			long assetEntrySetId, int childAssetEntrySetsLimit,
+			int likedParticipantsLimit)
+		throws PortalException, SystemException {
+
+		AssetEntrySetPermissionUtil.check(
+			getPermissionChecker(), assetEntrySetId, ActionKeys.VIEW);
+
+		return assetEntrySetLocalService.fetchAssetEntrySet(
+			getUserId(), assetEntrySetId, childAssetEntrySetsLimit,
+			likedParticipantsLimit);
+	}
+
+	@Override
 	public AssetEntrySet getAssetEntrySet(
 			long assetEntrySetId, int childAssetEntrySetsLimit,
 			int likedParticipantsLimit)
