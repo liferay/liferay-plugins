@@ -283,6 +283,8 @@
 					<if>
 						<available file="classes/tomcat" type="dir" />
 						<then>
+							<record action="start" name="jspc.javac.output.txt" />
+
 							<javac
 								classpathref="jspc.classpath"
 								compiler="${javac.compiler}"
@@ -295,6 +297,19 @@
 								nowarn="on"
 								srcdir="classes/tomcat"
 							/>
+
+							<record action="stop" name="jspc.javac.output.txt" />
+
+							<loadfile property="jspc.javac.output.txt.content" srcfile="jspc.javac.output.txt" />
+
+							<delete file="jspc.javac.output.txt" />
+
+							<if>
+								<matches string="${jspc.javac.output.txt.content}" pattern="error: package .* does not exist" />
+								<then>
+									<fail>JSPs failed to compile. Please check whether all dependencies modules are deployed.</fail>
+								</then>
+							</if>
 
 							<delete dir="classes/tomcat" quiet="true" />
 						</then>
