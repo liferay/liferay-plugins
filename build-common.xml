@@ -200,7 +200,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					<fileset refid="soy.fileset" />
 				</resourcecount>
 				<then>
-					<for param="soy.full.path">
+					<for param="soy.file">
 						<path>
 							<fileset refid="soy.fileset" />
 						</path>
@@ -213,9 +213,9 @@ Error-Prone was automatically installed. Please rerun your task.
 								newenvironment="true"
 							>
 								<arg value="--outputPathFormat" />
-								<arg value="@{soy.full.path}.js" />
+								<arg value="@{soy.file}.js" />
 								<arg value="--srcs" />
-								<arg value="@{soy.full.path}" />
+								<arg value="@{soy.file}" />
 							</java>
 						</sequential>
 					</for>
