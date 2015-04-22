@@ -23,6 +23,20 @@
 				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findClassNameIdAndClassPKsByPAESI_CNI">
+		<![CDATA[
+			SELECT
+				DISTINCT sharedToClassNameId, sharedToClassPK
+			FROM
+				AssetSharingEntry
+			LEFT JOIN
+				AssetEntrySet ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+			WHERE
+				(AssetEntrySet.parentAssetEntrySetId = ?) AND
+				(AssetSharingEntry.classNameId = ?)
+		]]>
+	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetSharingEntry">
 		<![CDATA[
 			INNER JOIN

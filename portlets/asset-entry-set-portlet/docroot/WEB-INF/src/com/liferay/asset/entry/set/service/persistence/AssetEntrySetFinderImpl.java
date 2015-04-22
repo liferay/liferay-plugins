@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -32,6 +33,9 @@ import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
+import java.math.BigInteger;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,6 +49,10 @@ public class AssetEntrySetFinderImpl
 
 	public static final String FIND_BY_CT_PAESI_CNI =
 		AssetEntrySetFinder.class.getName() + ".findByCT_PAESI_CNI";
+
+	public static final String FIND_CLASS_NAME_ID_AND_CLASS_PKS_BY_PAESI_CNI =
+		AssetEntrySetFinder.class.getName() +
+			".findClassNameIdAndClassPKsByPAESI_CNI";
 
 	public static final String JOIN_BY_ASSET_SHARING_ENTRY =
 		AssetEntrySetFinder.class.getName() + ".joinByAssetSharingEntry";
@@ -108,6 +116,55 @@ public class AssetEntrySetFinderImpl
 
 			return (List<AssetEntrySet>)QueryUtil.list(
 				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<ObjectValuePair<Long, Long>>
+		findClassNameIdAndClassPKsByPAESI_CNI(
+			long parentAssetEntrySetId, int start, int end)
+		throws SystemException {
+
+		List<ObjectValuePair<Long, Long>> sharedToClassNameIdAndClassPKOVPs =
+			new ArrayList<ObjectValuePair<Long, Long>>();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(
+				FIND_CLASS_NAME_ID_AND_CLASS_PKS_BY_PAESI_CNI);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentAssetEntrySetId);
+			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+
+			List<Object[]> sharedToClassNameIdAndClassPKs =
+				(List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
+
+			for (Object[] sharedToClassNameIdAndClassPK :
+					sharedToClassNameIdAndClassPKs) {
+
+				BigInteger classNameId =
+					(BigInteger)sharedToClassNameIdAndClassPK[0];
+				BigInteger classPK =
+					(BigInteger)sharedToClassNameIdAndClassPK[1];
+
+				sharedToClassNameIdAndClassPKOVPs.add(
+					new ObjectValuePair<Long, Long>(
+						classNameId.longValue(), classPK.longValue()));
+			}
+
+			return sharedToClassNameIdAndClassPKOVPs;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
