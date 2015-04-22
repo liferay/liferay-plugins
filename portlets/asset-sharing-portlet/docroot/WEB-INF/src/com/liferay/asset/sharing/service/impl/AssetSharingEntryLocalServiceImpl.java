@@ -77,6 +77,19 @@ public class AssetSharingEntryLocalServiceImpl
 	}
 
 	@Override
+	public AssetSharingEntry fetchAssetSharingEntry(
+			long classNameId, long classPK, long sharedToClassNameId,
+			long sharedToClassPK)
+		throws SystemException {
+
+		AssetSharingEntryPK assetSharingEntryPK = new AssetSharingEntryPK(
+			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
+
+		return assetSharingEntryPersistence.fetchByPrimaryKey(
+			assetSharingEntryPK);
+	}
+
+	@Override
 	public List<AssetSharingEntry> getAssetSharingEntries(
 			long classNameId, long classPK)
 		throws SystemException {
