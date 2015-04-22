@@ -312,6 +312,16 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchAssetEntrySet(
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.fetchAssetEntrySet(userId,
+			assetEntrySetId, childAssetEntrySetsLimit, likedParticipantsLimit);
+	}
+
+	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
 		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
 		int likedParticipantsLimit)

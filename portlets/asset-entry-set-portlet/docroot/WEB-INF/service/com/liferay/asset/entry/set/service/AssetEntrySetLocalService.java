@@ -270,6 +270,13 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchAssetEntrySet(
+		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
 		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
 		int likedParticipantsLimit)

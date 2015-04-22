@@ -86,6 +86,16 @@ public class AssetEntrySetServiceWrapper implements AssetEntrySetService,
 	}
 
 	@Override
+	public com.liferay.asset.entry.set.model.AssetEntrySet fetchAssetEntrySet(
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetService.fetchAssetEntrySet(assetEntrySetId,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
+	}
+
+	@Override
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
 		long assetEntrySetId, int childAssetEntrySetsLimit,
 		int likedParticipantsLimit)

@@ -88,6 +88,16 @@ public class AssetEntrySetServiceUtil {
 		return getService().deleteAssetEntrySet(assetEntrySetId);
 	}
 
+	public static com.liferay.asset.entry.set.model.AssetEntrySet fetchAssetEntrySet(
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .fetchAssetEntrySet(assetEntrySetId,
+			childAssetEntrySetsLimit, likedParticipantsLimit);
+	}
+
 	public static com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
 		long assetEntrySetId, int childAssetEntrySetsLimit,
 		int likedParticipantsLimit)

@@ -94,6 +94,22 @@ public class AssetEntrySetServiceSoap {
 		}
 	}
 
+	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap fetchAssetEntrySet(
+		long assetEntrySetId, int childAssetEntrySetsLimit,
+		int likedParticipantsLimit) throws RemoteException {
+		try {
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.fetchAssetEntrySet(assetEntrySetId,
+					childAssetEntrySetsLimit, likedParticipantsLimit);
+
+			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap getAssetEntrySet(
 		long assetEntrySetId, int childAssetEntrySetsLimit,
 		int likedParticipantsLimit) throws RemoteException {
