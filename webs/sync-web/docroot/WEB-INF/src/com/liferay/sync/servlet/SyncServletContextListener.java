@@ -140,10 +140,10 @@ public class SyncServletContextListener
 					continue;
 				}
 
+				ServiceContext serviceContext = new ServiceContext();
+
 				User user = UserLocalServiceUtil.getDefaultUser(
 					company.getCompanyId());
-
-				ServiceContext serviceContext = new ServiceContext();
 
 				serviceContext.setUserId(user.getUserId());
 
