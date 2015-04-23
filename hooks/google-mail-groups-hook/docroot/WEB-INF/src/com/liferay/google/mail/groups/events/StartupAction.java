@@ -48,8 +48,8 @@ public class StartupAction extends SimpleAction {
 				for (String id : ids) {
 					long companyId = Long.valueOf(id);
 
-					setupExpando(companyId);
-					setupRole(companyId);
+					setUpExpando(companyId);
+					setUpRole(companyId);
 				}
 			}
 
@@ -64,7 +64,7 @@ public class StartupAction extends SimpleAction {
 		}
 	}
 
-	protected void setupExpando(long companyId) throws Exception {
+	protected void setUpExpando(long companyId) throws Exception {
 		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.fetchTable(
 			companyId, PortalUtil.getClassNameId(Group.class.getName()),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME);
@@ -84,7 +84,7 @@ public class StartupAction extends SimpleAction {
 		}
 	}
 
-	protected void setupRole(long companyId) throws Exception {
+	protected void setUpRole(long companyId) throws Exception {
 		Role role = RoleLocalServiceUtil.fetchRole(
 			companyId, PortletPropsValues.EMAIL_LARGE_GROUP_ROLE);
 

@@ -41,10 +41,10 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		setupExpando(companyId);
+		setUpExpando(companyId);
 	}
 
-	protected void setupExpando(long companyId) throws Exception {
+	protected void setUpExpando(long companyId) throws Exception {
 		ExpandoTable table = null;
 
 		try {
