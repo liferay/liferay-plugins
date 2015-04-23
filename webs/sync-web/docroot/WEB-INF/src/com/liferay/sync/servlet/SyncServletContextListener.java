@@ -157,11 +157,9 @@ public class SyncServletContextListener
 				portletPreferences.setValue(
 					PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID,
 					String.valueOf(oAuthApplication.getOAuthApplicationId()));
-
 				portletPreferences.setValue(
 					PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY,
 					oAuthApplication.getConsumerKey());
-
 				portletPreferences.setValue(
 					PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET,
 					oAuthApplication.getConsumerSecret());
