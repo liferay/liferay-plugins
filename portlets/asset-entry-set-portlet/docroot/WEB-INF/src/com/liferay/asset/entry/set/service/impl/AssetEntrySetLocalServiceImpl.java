@@ -305,6 +305,26 @@ public class AssetEntrySetLocalServiceImpl
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
 			assetEntrySetId);
 
+		boolean updateAssetSharingEntries = true;
+
+		JSONObject oldPayloadJSONObject = JSONFactoryUtil.createJSONObject(
+			assetEntrySet.getPayload());
+
+		JSONArray oldSharedTOJSONArray = JSONFactoryUtil.createJSONArray(
+			oldPayloadJSONObject.getString(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
+
+		JSONArray sharedTOJSONArray = JSONFactoryUtil.createJSONArray(
+			payloadJSONObject.getString(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
+
+		if (Validator.equals(
+				oldSharedTOJSONArray.toString(),
+				sharedTOJSONArray.toString())) {
+
+			updateAssetSharingEntries = false;
+		}
+
 		Date now = new Date();
 
 		assetEntrySet.setModifiedTime(now.getTime());
@@ -325,7 +345,9 @@ public class AssetEntrySetLocalServiceImpl
 				payloadJSONObject.getString(
 					AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES)));
 
-		updateAssetSharingEntries(assetEntrySet);
+		if (updateAssetSharingEntries) {
+			updateAssetSharingEntries(assetEntrySet);
+		}
 
 		setSharedToParticipants(assetEntrySet);
 
