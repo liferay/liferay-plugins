@@ -2,6 +2,7 @@
 <!DOCTYPE project>
 
 <project name="cas-web" basedir="." default="deploy">
+	<property name="compile.jsp.docroot.dir" value="tmp" />
 	<property name="original.war.file" value="cas-web.war" />
 
 	<import file="../build-common-web.xml" />

@@ -934,9 +934,21 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="compile-jsp">
-		<compile-jsp
-			compile.jsp.docroot.dir="docroot"
-		/>
+		<if>
+			<isset property="compile.jsp.docroot.dir" />
+			<then>
+				<compile-jsp
+					compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
+				/>
+
+				<var name="compile.jsp.docroot.dir" unset="true" />
+			</then>
+			<else>
+				<compile-jsp
+					compile.jsp.docroot.dir="docroot"
+				/>
+			</else>
+		</if>
 	</target>
 
 	<target name="compile-test">
