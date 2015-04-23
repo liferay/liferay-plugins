@@ -136,36 +136,37 @@ public class SyncServletContextListener
 					company.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED,
 					PortletPropsValues.SYNC_OAUTH_ENABLED);
 
-				if (oAuthEnabled) {
-					User user = UserLocalServiceUtil.getDefaultUser(
-						company.getCompanyId());
-
-					ServiceContext serviceContext = new ServiceContext();
-
-					serviceContext.setUserId(user.getUserId());
-
-					OAuthApplication oAuthApplication =
-						SyncPreferencesLocalServiceUtil.enableOAuth(
-							company.getCompanyId(), serviceContext);
-
-					PortletPreferences portletPreferences =
-						PrefsPropsUtil.getPreferences(company.getCompanyId());
-
-					portletPreferences.setValue(
-						PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID,
-						String.valueOf(
-							oAuthApplication.getOAuthApplicationId()));
-
-					portletPreferences.setValue(
-						PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY,
-						oAuthApplication.getConsumerKey());
-
-					portletPreferences.setValue(
-						PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET,
-						oAuthApplication.getConsumerSecret());
-
-					portletPreferences.store();
+				if (!oAuthEnabled) {
+					continue;
 				}
+
+				User user = UserLocalServiceUtil.getDefaultUser(
+					company.getCompanyId());
+
+				ServiceContext serviceContext = new ServiceContext();
+
+				serviceContext.setUserId(user.getUserId());
+
+				OAuthApplication oAuthApplication =
+					SyncPreferencesLocalServiceUtil.enableOAuth(
+						company.getCompanyId(), serviceContext);
+
+				PortletPreferences portletPreferences =
+					PrefsPropsUtil.getPreferences(company.getCompanyId());
+
+				portletPreferences.setValue(
+					PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID,
+					String.valueOf(oAuthApplication.getOAuthApplicationId()));
+
+				portletPreferences.setValue(
+					PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY,
+					oAuthApplication.getConsumerKey());
+
+				portletPreferences.setValue(
+					PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET,
+					oAuthApplication.getConsumerSecret());
+
+				portletPreferences.store();
 			}
 		}
 		catch (Exception e) {
