@@ -61,9 +61,7 @@ public class SyncPreferencesLocalServiceImpl
 			OAuthApplicationConstants.ACCESS_WRITE, true, "http://liferay-sync",
 			"http://liferay-sync", serviceContext);
 
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
+		ClassLoader classLoader = getClassLoader();
 
 		InputStream inputStream = classLoader.getResourceAsStream(
 			"/resources/images/logo.png");
