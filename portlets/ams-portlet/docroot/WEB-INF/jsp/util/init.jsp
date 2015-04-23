@@ -15,7 +15,10 @@
 --%>
 
 <%@ page import="com.liferay.alloy.mvc.AlloyController" %><%@
+page import="com.liferay.alloy.mvc.AlloyException" %><%@
 page import="com.liferay.alloy.mvc.AlloySearchResult" %><%@
+page import="com.liferay.alloy.mvc.JSONWebServiceMethod" %><%@
+page import="com.liferay.alloy.mvc.JSONWebServiceParameter" %><%@
 page import="com.liferay.alloy.mvc.BaseAlloyIndexer" %><%@
 page import="com.liferay.ams.model.Asset" %><%@
 page import="com.liferay.ams.model.Definition" %><%@
