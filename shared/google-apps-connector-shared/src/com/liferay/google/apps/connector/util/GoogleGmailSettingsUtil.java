@@ -39,7 +39,7 @@ public class GoogleGmailSettingsUtil {
 		GmailSettingsService gmailSettingsService = _getGmailSettingsService(
 			companyId);
 
-		List<String> users = new ArrayList<>();
+		List<String> users = new ArrayList<String>();
 
 		users.add(String.valueOf(userId));
 
