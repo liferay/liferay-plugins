@@ -6,5 +6,4 @@
 	<property name="original.war.file" value="cas-web.war" />
 
 	<import file="../build-common-web.xml" />
-
 </project>

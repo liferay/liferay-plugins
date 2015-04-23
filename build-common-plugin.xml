@@ -582,8 +582,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				<compile-jsp
 					compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
 				/>
-
-				<var name="compile.jsp.docroot.dir" unset="true" />
 			</then>
 			<elseif>
 				<available file="bnd.bnd" type="file" />
