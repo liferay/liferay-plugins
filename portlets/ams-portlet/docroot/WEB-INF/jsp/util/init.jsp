@@ -15,7 +15,10 @@
 --%>
 
 <%@ page import="com.liferay.alloy.mvc.AlloyController" %><%@
+page import="com.liferay.alloy.mvc.AlloyException" %><%@
 page import="com.liferay.alloy.mvc.AlloySearchResult" %><%@
+page import="com.liferay.alloy.mvc.JSONWebServiceMethod" %><%@
+page import="com.liferay.alloy.mvc.JSONWebServiceParameter" %><%@
 page import="com.liferay.alloy.mvc.BaseAlloyIndexer" %><%@
 page import="com.liferay.ams.model.Asset" %><%@
 page import="com.liferay.ams.model.Definition" %><%@
@@ -37,6 +40,7 @@ page import="com.liferay.portal.kernel.util.Validator" %>
 page import="java.util.regex.Matcher" %><%@
 page import="java.util.regex.Pattern" %>
 
-<%@ page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.PortletURL" %>
 
 <%@ include file="/WEB-INF/jsp/util/portlet_keys.jspf" %>

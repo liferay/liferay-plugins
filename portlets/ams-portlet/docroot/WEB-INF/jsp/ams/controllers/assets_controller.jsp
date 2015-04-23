@@ -18,16 +18,28 @@
 <%@ include file="/WEB-INF/jsp/util/asset_indexer.jspf" %>
 
 <%!
-public class AlloyControllerImpl extends BaseAlloyControllerImpl {
+public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
 	public AlloyControllerImpl() {
 		setPermissioned(true);
 	}
 
+	@JSONWebServiceMethod(
+		lifecycle = PortletRequest.ACTION_PHASE,
+		parameters = {
+			@JSONWebServiceParameter(name = "id", type = Long.class)
+		}
+	)
 	public void delete() throws Exception {
 		long assetId = ParamUtil.getLong(request, "id");
 
 		AssetLocalServiceUtil.deleteAsset(assetId);
+
+		if (isRespondingTo()) {
+			respondWith(translate("your-request-completed-successfully"));
+
+			return;
+		}
 
 		addSuccessMessage();
 
@@ -36,6 +48,13 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		redirectTo(redirectURL);
 	}
 
+	@JSONWebServiceMethod(
+		lifecycle = PortletRequest.RENDER_PHASE,
+		parameters = {
+			@JSONWebServiceParameter(name = "cur", type = Integer.class),
+			@JSONWebServiceParameter(name = "delta", type = Integer.class)
+		}
+	)
 	public void index() throws Exception {
 		AlloySearchResult alloySearchResult = search(null);
 
@@ -44,28 +63,39 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		respondWith(alloySearchResult);
 	}
 
+	@JSONWebServiceMethod(
+		lifecycle = PortletRequest.ACTION_PHASE,
+		parameters = {
+			@JSONWebServiceParameter(name = "id", type = Long.class),
+			@JSONWebServiceParameter(name = "serialNumber", type = String.class)
+		}
+	)
 	public void save() throws Exception {
 		Asset asset = AssetLocalServiceUtil.createAsset(0);
 
-		String message = _validateSave();
+		_validateSave();
 
-		if (Validator.isNotNull(message)) {
-			renderError(message);
+		updateModel(asset);
+
+		if (isRespondingTo()) {
+			respondWith(asset);
 
 			return;
 		}
-
-		updateModel(asset);
 
 		addSuccessMessage();
 
 		String redirect = ParamUtil.getString(request, "redirect");
 
 		redirectTo(redirect);
-
-		respondWith(asset);
 	}
 
+	@JSONWebServiceMethod(
+		lifecycle = PortletRequest.RENDER_PHASE,
+		parameters = {
+			@JSONWebServiceParameter(name = "id", type = Long.class)
+		}
+	)
 	public void view() throws Exception {
 		long assetId = ParamUtil.getLong(request, "id");
 
@@ -81,7 +111,7 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		return AssetIndexer.getInstance();
 	}
 
-	private String _validateSave() throws Exception {
+	private void _validateSave() throws Exception {
 		String serialNumber = ParamUtil.getString(request, "serialNumber");
 
 		Pattern pattern = Pattern.compile(_SERIAL_NUMBER_REGEX);
@@ -89,10 +119,8 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		Matcher matcher = pattern.matcher(serialNumber);
 
 		if (!matcher.find()) {
-			return "the-serial-number-is-invalid";
+			throw new AlloyException("the-serial-number-is-invalid");
 		}
-
-		return StringPool.BLANK;
 	}
 
 	private static final String _SERIAL_NUMBER_REGEX = "^[a-zA-Z0-9]+$";
