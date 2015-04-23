@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.PortletProvider;
+import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.Constants;
@@ -42,6 +44,7 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
+import com.liferay.portal.model.MembershipRequest;
 import com.liferay.portal.model.MembershipRequestConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
@@ -279,13 +282,10 @@ public class SitesPortlet extends MVCPortlet {
 			groupJSONObject.put("socialOfficeGroup", socialOfficeGroup);
 
 			PortletURL siteAssignmentsPortletURL =
-				liferayPortletResponse.createActionURL(
-					PortletKeys.SITE_MEMBERSHIPS_ADMIN);
+				PortletProviderUtil.getPortletURL(
+					resourceRequest, MembershipRequest.class.getName(),
+					PortletProvider.Action.EDIT);
 
-			siteAssignmentsPortletURL.setParameter(
-				"struts_action", "/sites_admin/edit_site_assignments");
-			siteAssignmentsPortletURL.setParameter(
-				Constants.CMD, "group_users");
 			siteAssignmentsPortletURL.setParameter(
 				"redirect", themeDisplay.getURLCurrent());
 			siteAssignmentsPortletURL.setParameter(
