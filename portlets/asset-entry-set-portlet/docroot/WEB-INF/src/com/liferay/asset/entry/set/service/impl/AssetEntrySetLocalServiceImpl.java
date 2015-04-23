@@ -574,16 +574,16 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setDisplayFields(
-		long userId, long createTime, List<AssetEntrySet> assetEntrySets,
-		int childAssetEntrySetsLimit, int likedParticipantsLimit)
-	throws PortalException, SystemException {
+			long userId, long createTime, List<AssetEntrySet> assetEntrySets,
+			int childAssetEntrySetsLimit, int likedParticipantsLimit)
+		throws PortalException, SystemException {
 
-	for (AssetEntrySet assetEntrySet : assetEntrySets) {
-		setDisplayFields(
-			userId, createTime, assetEntrySet, childAssetEntrySetsLimit,
-			likedParticipantsLimit);
+		for (AssetEntrySet assetEntrySet : assetEntrySets) {
+			setDisplayFields(
+				userId, createTime, assetEntrySet, childAssetEntrySetsLimit,
+				likedParticipantsLimit);
+		}
 	}
-}
 
 	protected void setLikedParticipants(
 			long userId, AssetEntrySet assetEntrySet,
@@ -650,16 +650,6 @@ public class AssetEntrySetLocalServiceImpl
 			JSONFactoryUtil.looseSerialize(payloadJSONObject));
 	}
 
-	protected void setLikedParticipants(
-			long userId, List<AssetEntrySet> assetEntrySets,
-			int likedParticipantsLimit)
-		throws PortalException, SystemException {
-
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setLikedParticipants(userId, assetEntrySet, likedParticipantsLimit);
-		}
-	}
-
 	protected void setSharedToParticipants(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
@@ -680,14 +670,6 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(payloadJSONObject));
-	}
-
-	protected void setSharedToParticipants(List<AssetEntrySet> assetEntrySets)
-		throws PortalException, SystemException {
-
-		for (AssetEntrySet assetEntrySet : assetEntrySets) {
-			setSharedToParticipants(assetEntrySet);
-		}
 	}
 
 	protected void updateAssetEntry(
