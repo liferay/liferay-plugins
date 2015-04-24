@@ -15,9 +15,8 @@
 package com.liferay.portal.workflow.kaleo.runtime;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.sender.DefaultSingleDestinationMessageSender;
 import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSender;
+import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSenderFactoryUtil;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -43,14 +42,9 @@ public class DefaultKaleoSignaler
 	extends BaseKaleoBean implements KaleoSignaler {
 
 	public void setDestinationName(String destinationName) {
-		DefaultSingleDestinationMessageSender singleDestinationMessageSender =
-			new DefaultSingleDestinationMessageSender();
-
-		singleDestinationMessageSender.setDestinationName(destinationName);
-		singleDestinationMessageSender.setMessageBus(
-			MessageBusUtil.getMessageBus());
-
-		_singleDestinationMessageSender = singleDestinationMessageSender;
+		_singleDestinationMessageSender =
+			SingleDestinationMessageSenderFactoryUtil.
+				createSingleDestinationMessageSender(destinationName);
 	}
 
 	@Override

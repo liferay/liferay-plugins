@@ -16,9 +16,8 @@ package com.liferay.portal.workflow.kaleo.runtime.graph.messaging;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.sender.DefaultSingleDestinationMessageSender;
 import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSender;
+import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSenderFactoryUtil;
 import com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 
@@ -31,14 +30,9 @@ import java.util.List;
 public class PathElementMessageListener extends BaseMessageListener {
 
 	public void setDestinationName(String destinationName) {
-		DefaultSingleDestinationMessageSender singleDestinationMessageSender =
-			new DefaultSingleDestinationMessageSender();
-
-		singleDestinationMessageSender.setDestinationName(destinationName);
-		singleDestinationMessageSender.setMessageBus(
-			MessageBusUtil.getMessageBus());
-
-		_singleDestinationMessageSender = singleDestinationMessageSender;
+		_singleDestinationMessageSender =
+			SingleDestinationMessageSenderFactoryUtil.
+				createSingleDestinationMessageSender(destinationName);
 	}
 
 	public void setGraphWalker(GraphWalker graphWalker) {
