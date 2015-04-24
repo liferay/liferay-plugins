@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Sherry Yang
@@ -31,14 +32,14 @@ public class AssetSharingEntryLocalServiceImpl
 	@Override
 	public void addAssetSharingEntries(
 			long classNameId, long classPK,
-			Map<Long, long[]> sharedToClassPKsMap)
+			Map<Long, Set<Long>> sharedToClassPKsMap)
 		throws SystemException {
 
 		for (Long sharedToClassNameId : sharedToClassPKsMap.keySet()) {
-			long[] sharedToClassPKs = sharedToClassPKsMap.get(
+			Set<Long> sharedToClassPKs = sharedToClassPKsMap.get(
 				sharedToClassNameId);
 
-			if (sharedToClassPKs.length == 0) {
+			if (sharedToClassPKs.isEmpty()) {
 				continue;
 			}
 
@@ -74,19 +75,6 @@ public class AssetSharingEntryLocalServiceImpl
 		throws SystemException {
 
 		assetSharingEntryPersistence.removeByC_C(classNameId, classPK);
-	}
-
-	@Override
-	public AssetSharingEntry fetchAssetSharingEntry(
-			long classNameId, long classPK, long sharedToClassNameId,
-			long sharedToClassPK)
-		throws SystemException {
-
-		AssetSharingEntryPK assetSharingEntryPK = new AssetSharingEntryPK(
-			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
-
-		return assetSharingEntryPersistence.fetchByPrimaryKey(
-			assetSharingEntryPK);
 	}
 
 	@Override
