@@ -404,16 +404,13 @@
 		}
 	}
 
-	.user-notifications-list-container {
+	.user-notifications-list {
 		border: 1px solid #D5D5D5;
+		margin: 0;
+		padding: 0 15px;
 
 		@include box-sizing(border-box);
 		@include default-border-radius;
-	}
-
-	.user-notifications-list{
-		margin: 0;
-		padding: 0;
 
 		.pagination {
 			@include box-sizing(border-box);
