@@ -2,13 +2,13 @@
 <!DOCTYPE project>
 
 <project name="sun-tour-ipc-portlet" basedir="." default="deploy">
+	<property name="compile.jsp.docroot.dir" value="tmp" />
 
 	<!--
 	Download Tour IPC Portlets from
 	https://portlet-repository.dev.java.net/public/Download.html.
 	-->
 
-	<property name="compile.jsp.docroot.dir" value="tmp" />
 	<property name="original.war.file" value="touripcportlet.war" />
 
 	<import file="../build-common-portlet.xml" />
