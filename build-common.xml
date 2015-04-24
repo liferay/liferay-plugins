@@ -185,6 +185,27 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="build-db">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<java
+				classname="com.liferay.portal.tools.DBBuilder"
+				classpathref="portal.classpath"
+				fork="true"
+				maxmemory="384m"
+				newenvironment="true"
+			>
+				<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+				<arg value="db.database.name=${database.name}" />
+				<arg value="db.database.types=${database.types}" />
+				<arg value="db.sql.dir=@{module.dir}/docroot/WEB-INF/sql" />
+			</java>
+
+			<delete file="velocity.log" quiet="true" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="build-soy">
 		<attribute name="module.dir" />
 
@@ -2869,6 +2890,13 @@ for (String path : paths) {
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="build-css"
+		/>
+	</target>
+
+	<target name="build-db">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="build-db"
 		/>
 	</target>
 
