@@ -50,7 +50,7 @@ for (long calendarId : calendarIds) {
 
 Calendar defaultCalendar = null;
 
-if ((groupCalendars != null) && (groupCalendars.size() > 0)) {
+if (groupCalendars != null) {
 	for (Calendar groupCalendar : groupCalendars) {
 		if (groupCalendar.isDefaultCalendar()) {
 			defaultCalendar = groupCalendar;
