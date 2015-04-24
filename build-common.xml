@@ -374,80 +374,6 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="gradle-execute">
-		<attribute name="task" />
-		<element implicit="true" name="args" optional="true" />
-
-		<sequential>
-			<if>
-				<os family="unix" />
-				<then>
-					<property name="gradlew.suffix" value="" />
-
-					<chmod file="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" perm="a+x" />
-				</then>
-				<else>
-					<property name="gradlew.suffix" value=".bat" />
-				</else>
-			</if>
-
-			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="true">
-				<arg value="-PpluginsExcludes=${plugins.excludes}" />
-				<arg value="-PpluginsIncludes=${plugins.includes}" />
-				<args />
-				<arg value="@{task}" />
-			</exec>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="loop-macrodef-or-target">
-		<attribute name="module.dirs" />
-		<attribute name="target.name" />
-
-		<sequential>
-			<var name="module.dirs" value="@{module.dirs}" />
-			<var name="target.name" value="@{target.name}" />
-
-			<groovy>
-				<![CDATA[
-					targetName = properties["target.name"]
-
-					if ((properties["target.name"] == "jar") ||
-						(properties["target.name"] == "javadoc") ||
-						(properties["target.name"] == "war")) {
-
-						macrodefName = properties["target.name"] + "-macro"
-					}
-					else {
-						macrodefName = properties["target.name"]
-					}
-
-					moduleDirs = "${properties["module.dirs"]}".split(",")
-
-					for (moduleDir in moduleDirs) {
-						File buildXml = new File(moduleDir + "/build.xml")
-
-						if (buildXml.exists()) {
-							String buildXmlContent = buildXml.text
-
-							ant."set-module-properties"("module.dir": moduleDir)
-
-							if (buildXmlContent =~ "<target name=\"" + targetName + "\"") {
-								ant.ant(dir: moduleDir, target: targetName)
-							}
-							else {
-								ant."${macrodefName}"("module.dir": moduleDir)
-							}
-						}
-						else {
-							println "Skipping " + moduleDir + " because it does not have a build.xml file."
-						}
-					}
-				]]>
-			</groovy>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="clean">
 		<attribute name="module.dir" />
 
@@ -1766,6 +1692,32 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="gradle-execute">
+		<attribute name="task" />
+		<element implicit="true" name="args" optional="true" />
+
+		<sequential>
+			<if>
+				<os family="unix" />
+				<then>
+					<property name="gradlew.suffix" value="" />
+
+					<chmod file="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" perm="a+x" />
+				</then>
+				<else>
+					<property name="gradlew.suffix" value=".bat" />
+				</else>
+			</if>
+
+			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="true">
+				<arg value="-PpluginsExcludes=${plugins.excludes}" />
+				<arg value="-PpluginsIncludes=${plugins.includes}" />
+				<args />
+				<arg value="@{task}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="jar-javadoc">
 		<attribute name="module.dir" />
 
@@ -2059,6 +2011,54 @@ Please find a solution that does not require portal-impl.jar.
 					/>
 				</then>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="loop-macrodef-or-target">
+		<attribute name="module.dirs" />
+		<attribute name="target.name" />
+
+		<sequential>
+			<var name="module.dirs" value="@{module.dirs}" />
+			<var name="target.name" value="@{target.name}" />
+
+			<groovy>
+				<![CDATA[
+					targetName = properties["target.name"]
+
+					if ((properties["target.name"] == "jar") ||
+						(properties["target.name"] == "javadoc") ||
+						(properties["target.name"] == "war")) {
+
+						macrodefName = properties["target.name"] + "-macro"
+					}
+					else {
+						macrodefName = properties["target.name"]
+					}
+
+					moduleDirs = "${properties["module.dirs"]}".split(",")
+
+					for (moduleDir in moduleDirs) {
+						File buildXml = new File(moduleDir + "/build.xml")
+
+						if (buildXml.exists()) {
+							String buildXmlContent = buildXml.text
+
+							ant."set-module-properties"("module.dir": moduleDir)
+
+							if (buildXmlContent =~ "<target name=\"" + targetName + "\"") {
+								ant.ant(dir: moduleDir, target: targetName)
+							}
+							else {
+								ant."${macrodefName}"("module.dir": moduleDir)
+							}
+						}
+						else {
+							println "Skipping " + moduleDir + " because it does not have a build.xml file."
+						}
+					}
+				]]>
+			</groovy>
 		</sequential>
 	</macrodef>
 
