@@ -30,7 +30,7 @@ import com.liferay.portal.AddressStreetException;
 import com.liferay.portal.AddressZipException;
 import com.liferay.portal.ContactFirstNameException;
 import com.liferay.portal.ContactFullNameException;
-import com.liferay.portal.ContactRequiredNameException;
+import com.liferay.portal.ContactLastNameException;
 import com.liferay.portal.DuplicateUserEmailAddressException;
 import com.liferay.portal.EmailAddressException;
 import com.liferay.portal.NoSuchCountryException;
@@ -558,7 +558,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			else if (e instanceof ContactFullNameException) {
 				message = "please-enter-a-valid-first-middle-and-last-name";
 			}
-			else if (e instanceof ContactRequiredNameException) {
+			else if (e instanceof ContactLastNameException) {
 				message = "please-enter-a-valid-last-name";
 			}
 			else if (e instanceof DuplicateUserEmailAddressException) {
