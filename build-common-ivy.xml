@@ -552,7 +552,7 @@
 									</if>
 
 									<ivy:resolve
-										conf="default,internal"
+										conf="default,internal,provided"
 										file="@{ivy.xml.dir}/ivy.xml"
 										log="download-only"
 										transitive="${plugin.ivy.resolve.transitive.dependencies}"
