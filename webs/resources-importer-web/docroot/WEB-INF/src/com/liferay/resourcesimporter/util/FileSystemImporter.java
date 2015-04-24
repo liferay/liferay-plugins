@@ -874,16 +874,15 @@ public class FileSystemImporter extends BaseImporter {
 					serviceContext);
 			}
 			else {
-				journalArticle =
-					JournalArticleLocalServiceUtil.updateArticle(
-						userId, groupId, 0, journalArticleId,
-						journalArticle.getVersion(),
-						getMap(articleDefaultLocale, title), descriptionMap,
-						content, ddmStructureKey, ddmTemplateKey,
-						StringPool.BLANK, 1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true,
-						0, 0, 0, 0, 0, true, indexable, smallImage,
-						smallImageURL, null, new HashMap<String, byte[]>(),
-						StringPool.BLANK, serviceContext);
+				journalArticle = JournalArticleLocalServiceUtil.updateArticle(
+					userId, groupId, 0, journalArticleId,
+					journalArticle.getVersion(),
+					getMap(articleDefaultLocale, title), descriptionMap,
+					content, ddmStructureKey, ddmTemplateKey, StringPool.BLANK,
+					1, 1, 2010, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
+					indexable, smallImage, smallImageURL, null,
+					new HashMap<String, byte[]>(), StringPool.BLANK,
+					serviceContext);
 			}
 
 			JournalArticleLocalServiceUtil.updateStatus(
@@ -1761,7 +1760,8 @@ public class FileSystemImporter extends BaseImporter {
 			{"asset_category", AssetCategory.class},
 			{"asset_entry", AssetEntry.class}, {"asset_tag", AssetTag.class},
 			{"blogs_entry", BlogsEntry.class},
-			{"document_library",FileEntry.class}, {"site_map", LayoutSet.class},
+			{"document_library", FileEntry.class},
+			{"site_map", LayoutSet.class},
 			{"wiki_page", WikiPage.class}
 		};
 
