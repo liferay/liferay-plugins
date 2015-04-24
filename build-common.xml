@@ -123,7 +123,7 @@ ECJ was automatically installed. Please rerun your task.
 
 	<target name="compile-jsp">
 		<for param="module.web.dir">
-			<dirset dir="." excludes="**/tools/**,**/hooks/**/*" />
+			<dirset dir="." excludes="**/hooks/**/*,**/tools/**" />
 			<sequential>
 				<if>
 					<resourcecount count="0" when="gt">
