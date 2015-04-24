@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -32,8 +33,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
-
-import java.math.BigInteger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,9 +49,10 @@ public class AssetEntrySetFinderImpl
 	public static final String FIND_BY_CT_PAESI_CNI =
 		AssetEntrySetFinder.class.getName() + ".findByCT_PAESI_CNI";
 
-	public static final String FIND_CLASS_NAME_ID_AND_CLASS_PKS_BY_PAESI_CNI =
-		AssetEntrySetFinder.class.getName() +
-			".findClassNameIdAndClassPKsByPAESI_CNI";
+	public static final String
+		FIND_CLASS_NAME_ID_AND_CLASS_PK_OVPS_BY_PAESI_CNI =
+			AssetEntrySetFinder.class.getName() +
+				".findClassNameIdAndClassPKOVPsByPAESI_CNI";
 
 	public static final String JOIN_BY_ASSET_SHARING_ENTRY =
 		AssetEntrySetFinder.class.getName() + ".joinByAssetSharingEntry";
@@ -126,7 +126,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	public List<ObjectValuePair<Long, Long>>
-		findClassNameIdAndClassPKsByPAESI_CNI(
+		findClassNameIdAndClassPKOVPsByPAESI_CNI(
 			long parentAssetEntrySetId, int start, int end)
 		throws SystemException {
 
@@ -139,7 +139,7 @@ public class AssetEntrySetFinderImpl
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(
-				FIND_CLASS_NAME_ID_AND_CLASS_PKS_BY_PAESI_CNI);
+				FIND_CLASS_NAME_ID_AND_CLASS_PK_OVPS_BY_PAESI_CNI);
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -154,14 +154,10 @@ public class AssetEntrySetFinderImpl
 			for (Object[] sharedToClassNameIdAndClassPK :
 					sharedToClassNameIdAndClassPKs) {
 
-				BigInteger classNameId =
-					(BigInteger)sharedToClassNameIdAndClassPK[0];
-				BigInteger classPK =
-					(BigInteger)sharedToClassNameIdAndClassPK[1];
-
 				sharedToClassNameIdAndClassPKOVPs.add(
 					new ObjectValuePair<Long, Long>(
-						classNameId.longValue(), classPK.longValue()));
+						GetterUtil.getLong(sharedToClassNameIdAndClassPK[0]),
+						GetterUtil.getLong(sharedToClassNameIdAndClassPK[1])));
 			}
 
 			return sharedToClassNameIdAndClassPKOVPs;

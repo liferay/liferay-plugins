@@ -26,7 +26,6 @@ import com.liferay.asset.entry.set.util.AssetEntrySetPayloadProcessorUtil;
 import com.liferay.asset.entry.set.util.PortletKeys;
 import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
-import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -62,7 +61,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -152,7 +153,10 @@ public class AssetEntrySetLocalServiceImpl
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntryId());
 
 		if (assetEntrySet.getParentAssetEntrySetId() > 0) {
-			updateParentAssetSharingEntries(assetEntrySet);
+			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
+				assetEntrySet.getParentAssetEntrySetId());
+
+			updateAssetSharingEntries(parentAssetEntrySet);
 		}
 
 		return assetEntrySet;
@@ -354,23 +358,6 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySet;
 	}
 
-	protected void addAssetSharingEntry(
-			long assetEntrySetId, long sharedToClassNameId,
-			long sharedToClassPK)
-		throws PortalException, SystemException {
-
-		AssetSharingEntry assetSharingEntry =
-			AssetSharingEntryLocalServiceUtil.fetchAssetSharingEntry(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
-				sharedToClassNameId, sharedToClassPK);
-
-		if (assetSharingEntry == null) {
-			AssetSharingEntryLocalServiceUtil.addAssetSharingEntry(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId,
-				sharedToClassNameId, sharedToClassPK);
-		}
-	}
-
 	protected FileEntry addFileEntry(long userId, File file, String type)
 		throws PortalException, SystemException {
 
@@ -520,6 +507,39 @@ public class AssetEntrySetLocalServiceImpl
 			creatorClassPK, true);
 	}
 
+	protected Map<Long, Set<Long>> getSharedToClassPKsMap(
+			AssetEntrySet assetEntrySet)
+		throws PortalException {
+
+		Map<Long, Set<Long>> sharedToClassPKsMap =
+			new LinkedHashMap<Long, Set<Long>>();
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			assetEntrySet.getPayload());
+
+		JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
+
+		if (sharedToJSONArray == null) {
+			return sharedToClassPKsMap;
+		}
+
+		for (int i = 0; i < sharedToJSONArray.length(); i++) {
+			JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(i);
+
+			long classNameId = sharedToJSONObject.getLong("classNameId");
+			long classPK = sharedToJSONObject.getLong("classPK");
+
+			setSharedToClassPKsMap(sharedToClassPKsMap, classNameId, classPK);
+		}
+
+		setSharedToClassPKsMap(
+			sharedToClassPKsMap, assetEntrySet.getCreatorClassNameId(),
+			assetEntrySet.getCreatorClassPK());
+
+		return sharedToClassPKsMap;
+	}
+
 	protected JSONArray getSharedToJSONArray(JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
@@ -650,6 +670,21 @@ public class AssetEntrySetLocalServiceImpl
 			JSONFactoryUtil.looseSerialize(payloadJSONObject));
 	}
 
+	protected void setSharedToClassPKsMap(
+		Map<Long, Set<Long>> sharedToClassPKsMap, long classNameId,
+		long classPK) {
+
+		Set<Long> classNamePks = new HashSet<Long>();
+
+		if (sharedToClassPKsMap.containsKey(classNameId)) {
+			classNamePks = sharedToClassPKsMap.get(classNameId);
+		}
+
+		classNamePks.add(classPK);
+
+		sharedToClassPKsMap.put(classNameId, classNamePks);
+	}
+
 	protected void setSharedToParticipants(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
@@ -735,35 +770,40 @@ public class AssetEntrySetLocalServiceImpl
 	protected void updateAssetSharingEntries(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
-		if (assetEntrySet.getParentAssetEntrySetId() > 0) {
-			AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID,
-				assetEntrySet.getAssetEntrySetId());
+		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
+			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntrySetId());
 
-			JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-				assetEntrySet.getPayload());
+		Map<Long, Set<Long>> sharedToClassPKsMap = getSharedToClassPKsMap(
+			assetEntrySet);
 
-			JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
+		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
+			List<ObjectValuePair<Long, Long>>
+				sharedToClassNameIdAndClassPKOVPs =
+					AssetEntrySetFinderUtil.
+						findClassNameIdAndClassPKOVPsByPAESI_CNI(
+							assetEntrySet.getAssetEntrySetId(),
+							QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-			for (int i = 0; i < sharedToJSONArray.length(); i++) {
-				JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(
-					i);
+			for (ObjectValuePair<Long, Long> sharedToClassNameIdAndClassPKOVP :
+					sharedToClassNameIdAndClassPKOVPs) {
 
-				AssetSharingEntryLocalServiceUtil.addAssetSharingEntry(
-					_ASSET_ENTRY_SET_CLASS_NAME_ID,
-					assetEntrySet.getAssetEntrySetId(),
-					sharedToJSONObject.getLong("classNameId"),
-					sharedToJSONObject.getLong("classPK"));
+				setSharedToClassPKsMap(
+					sharedToClassPKsMap,
+					sharedToClassNameIdAndClassPKOVP.getKey(),
+					sharedToClassNameIdAndClassPKOVP.getValue());
 			}
-
-			addAssetSharingEntry(
-				assetEntrySet.getAssetEntrySetId(),
-				assetEntrySet.getCreatorClassNameId(),
-				assetEntrySet.getCreatorClassPK());
 		}
 
-		updateParentAssetSharingEntries(assetEntrySet);
+		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
+			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntrySetId(),
+			sharedToClassPKsMap);
+
+		if (assetEntrySet.getParentAssetEntrySetId() > 0) {
+			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
+				assetEntrySet.getParentAssetEntrySetId());
+
+			updateAssetSharingEntries(parentAssetEntrySet);
+		}
 	}
 
 	protected void updateChildAssetEntrySetsCount(long parentAssetEntrySetId)
@@ -783,53 +823,6 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 
 		assetEntrySetPersistence.update(assetEntrySet);
-	}
-
-	protected void updateParentAssetSharingEntries(AssetEntrySet assetEntrySet)
-		throws PortalException, SystemException {
-
-		if (assetEntrySet.getParentAssetEntrySetId() > 0) {
-			assetEntrySet = getAssetEntrySet(
-				assetEntrySet.getParentAssetEntrySetId());
-		}
-
-		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
-			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntrySetId());
-
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-			assetEntrySet.getPayload());
-
-		JSONArray sharedToJSONArray = payloadJSONObject.getJSONArray(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
-
-		for (int i = 0; i < sharedToJSONArray.length(); i++) {
-			JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(i);
-
-			AssetSharingEntryLocalServiceUtil.addAssetSharingEntry(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID,
-				assetEntrySet.getAssetEntrySetId(),
-				sharedToJSONObject.getLong("classNameId"),
-				sharedToJSONObject.getLong("classPK"));
-		}
-
-		addAssetSharingEntry(
-			assetEntrySet.getAssetEntrySetId(),
-			assetEntrySet.getCreatorClassNameId(),
-			assetEntrySet.getCreatorClassPK());
-
-		List<ObjectValuePair<Long, Long>> sharedToClassNameIdAndClassPKs =
-			AssetEntrySetFinderUtil.findClassNameIdAndClassPKsByPAESI_CNI(
-				assetEntrySet.getAssetEntrySetId(), QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS);
-
-		for (ObjectValuePair<Long, Long> sharedToClassNameIdAndClassPK :
-				sharedToClassNameIdAndClassPKs) {
-
-			addAssetSharingEntry(
-				assetEntrySet.getAssetEntrySetId(),
-				sharedToClassNameIdAndClassPK.getKey(),
-				sharedToClassNameIdAndClassPK.getValue());
-		}
 	}
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
