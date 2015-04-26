@@ -14,7 +14,6 @@
 
 package com.liferay.portal.search.solr.osgi;
 
-import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.search.AbstractSearchEngineConfigurator;
 import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.IndexWriter;
@@ -37,10 +36,6 @@ public class OSGIPluginSearchEngineConfigurator
 		_indexWriter = indexWriter;
 	}
 
-	public void setMessageBus(MessageBus messageBus) {
-		_messageBus = messageBus;
-	}
-
 	@Override
 	protected String getDefaultSearchEngineId() {
 		return _defaultSearchEngineId;
@@ -57,11 +52,6 @@ public class OSGIPluginSearchEngineConfigurator
 	}
 
 	@Override
-	protected MessageBus getMessageBus() {
-		return _messageBus;
-	}
-
-	@Override
 	protected ClassLoader getOperatingClassloader() {
 		Class<?> clazz = getClass();
 
@@ -71,6 +61,5 @@ public class OSGIPluginSearchEngineConfigurator
 	private String _defaultSearchEngineId;
 	private IndexSearcher _indexSearcher;
 	private IndexWriter _indexWriter;
-	private MessageBus _messageBus;
 
 }
