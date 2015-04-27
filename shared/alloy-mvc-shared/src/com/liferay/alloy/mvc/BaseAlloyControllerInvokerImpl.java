@@ -14,6 +14,7 @@
 
 package com.liferay.alloy.mvc;
 
+import com.liferay.portal.kernel.json.JSONSerializable;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.DynamicServletRequest;
 import com.liferay.portal.kernel.util.JavaConstants;
@@ -52,7 +53,8 @@ public abstract class BaseAlloyControllerInvokerImpl
 	implements AlloyControllerInvoker {
 
 	@Override
-	public String invokeAlloyController(String lifecycle, Object... parameters)
+	public JSONSerializable invokeAlloyController(
+			String lifecycle, Object... parameters)
 		throws Exception {
 
 		Constructor<? extends AlloyController> constructor =
@@ -71,7 +73,7 @@ public abstract class BaseAlloyControllerInvokerImpl
 
 		alloyController.execute();
 
-		return alloyController.getResponseContent();
+		return getJSONSerializable(alloyController.getResponseContent());
 	}
 
 	@Override
@@ -232,6 +234,17 @@ public abstract class BaseAlloyControllerInvokerImpl
 			}
 
 			protected String contentType = null;
+
+		};
+	}
+
+	protected JSONSerializable getJSONSerializable(final String content) {
+		return new JSONSerializable() {
+
+			@Override
+			public String toJSONString() {
+				return content;
+			}
 
 		};
 	}
