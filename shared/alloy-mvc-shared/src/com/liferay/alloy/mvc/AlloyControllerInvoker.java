@@ -14,6 +14,7 @@
 
 package com.liferay.alloy.mvc;
 
+import com.liferay.portal.kernel.json.JSONSerializable;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -22,7 +23,8 @@ import com.liferay.portal.theme.ThemeDisplay;
  */
 public interface AlloyControllerInvoker {
 
-	public String invokeAlloyController(String lifecycle, Object... parameters)
+	public JSONSerializable invokeAlloyController(
+			String lifecycle, Object... parameters)
 		throws Exception;
 
 	public void setProperties(

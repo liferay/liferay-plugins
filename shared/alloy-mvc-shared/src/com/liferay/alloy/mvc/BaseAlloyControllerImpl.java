@@ -1413,6 +1413,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected void writeResponse(Object content, String contentType)
 		throws Exception {
 
+		HttpServletResponse response = this.response;
+
+		if (!(response instanceof AlloyMockUtil.MockHttpServletResponse)) {
+			response = PortalUtil.getHttpServletResponse(portletResponse);
+		}
+
 		response.setContentType(contentType);
 
 		ServletResponseUtil.write(response, content.toString());

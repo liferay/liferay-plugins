@@ -14,6 +14,7 @@
 
 package com.liferay.alloy.mvc;
 
+import com.liferay.portal.kernel.json.JSONSerializable;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManagerUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -251,7 +252,7 @@ public class AlloyControllerInvokerManager {
 			}
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);
-			sb.append(Type.getDescriptor(String.class));
+			sb.append(Type.getDescriptor(JSONSerializable.class));
 
 			String methodDescriptor = sb.toString();
 
@@ -304,10 +305,17 @@ public class AlloyControllerInvokerManager {
 				methodVisitor.visitInsn(Opcodes.AASTORE);
 			}
 
+			sb = new StringBundler(5);
+
+			sb.append(StringPool.OPEN_PARENTHESIS);
+			sb.append(Type.getDescriptor(String.class));
+			sb.append(Type.getDescriptor(Object[].class));
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+			sb.append(Type.getDescriptor(JSONSerializable.class));
+
 			methodVisitor.visitMethodInsn(
 				Opcodes.INVOKEVIRTUAL, alloyControllerInvokerClassBinaryName,
-				"invokeAlloyController",
-				"(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;");
+				"invokeAlloyController", sb.toString());
 
 			methodVisitor.visitInsn(Opcodes.ARETURN);
 
