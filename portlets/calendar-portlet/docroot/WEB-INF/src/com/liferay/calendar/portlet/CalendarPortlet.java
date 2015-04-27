@@ -936,7 +936,13 @@ public class CalendarPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		if (!PortalUtil.isRSSFeedsEnabled()) {
+		PortletPreferences portletPreferences =
+			resourceRequest.getPreferences();
+
+		boolean enableRss = GetterUtil.getBoolean(
+			portletPreferences.getValue("enableRss", null));
+
+		if (!PortalUtil.isRSSFeedsEnabled() || !enableRss) {
 			PortalUtil.sendRSSFeedsDisabledError(
 				resourceRequest, resourceResponse);
 
@@ -947,9 +953,6 @@ public class CalendarPortlet extends MVCPortlet {
 			WebKeys.THEME_DISPLAY);
 
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
-
-		PortletPreferences portletPreferences =
-			resourceRequest.getPreferences();
 
 		long timeInterval = GetterUtil.getLong(
 			portletPreferences.getValue("rssTimeInterval", StringPool.BLANK),
