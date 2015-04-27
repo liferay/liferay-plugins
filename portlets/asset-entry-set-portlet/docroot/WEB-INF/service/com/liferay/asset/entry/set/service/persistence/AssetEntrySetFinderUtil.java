@@ -21,6 +21,13 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @author Brian Wing Shun Chan
  */
 public class AssetEntrySetFinderUtil {
+	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetReference> findAssetEntrySetReferenceByPAESI_CNI(
+		long parentAssetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder()
+				   .findAssetEntrySetReferenceByPAESI_CNI(parentAssetEntrySetId);
+	}
+
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI_CNI(
 		long classNameId, long classPK, long createTime, boolean gtCreateTime,
 		long parentAssetEntrySetId,

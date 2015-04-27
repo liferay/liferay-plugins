@@ -18,6 +18,10 @@ package com.liferay.asset.entry.set.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface AssetEntrySetFinder {
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetReference> findAssetEntrySetReferenceByPAESI_CNI(
+		long parentAssetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI_CNI(
 		long classNameId, long classPK, long createTime, boolean gtCreateTime,
 		long parentAssetEntrySetId,
