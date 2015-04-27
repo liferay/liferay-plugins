@@ -15,6 +15,7 @@
 package com.liferay.asset.entry.set.service.persistence;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
+import com.liferay.asset.entry.set.model.AssetEntrySetReference;
 import com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
@@ -26,7 +27,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -36,6 +36,7 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -46,19 +47,68 @@ public class AssetEntrySetFinderImpl
 	extends BasePersistenceImpl<AssetEntrySet>
 	implements AssetEntrySetFinder {
 
+	public static final String
+		FIND_ASSET_ENTRY_SET_REFERENCE_BY_PAESI_CNI =
+			AssetEntrySetFinder.class.getName() +
+				".findAssetEntrySetReferenceByPAESI_CNI";
+
 	public static final String FIND_BY_CT_PAESI_CNI =
 		AssetEntrySetFinder.class.getName() + ".findByCT_PAESI_CNI";
-
-	public static final String
-		FIND_CLASS_NAME_ID_AND_CLASS_PK_OVPS_BY_PAESI_CNI =
-			AssetEntrySetFinder.class.getName() +
-				".findClassNameIdAndClassPKOVPsByPAESI_CNI";
 
 	public static final String JOIN_BY_ASSET_SHARING_ENTRY =
 		AssetEntrySetFinder.class.getName() + ".joinByAssetSharingEntry";
 
 	public static final String JOIN_BY_ASSET_TAG =
 		AssetEntrySetFinder.class.getName() + ".joinByAssetTag";
+
+	/**
+	 * Pattern for finding reference objects {@link
+	 * com.liferay.portal.service.persistence.LayoutFinderImpl#findByC_P_P}
+	 */
+	public List<AssetEntrySetReference>findAssetEntrySetReferenceByPAESI_CNI(
+			long parentAssetEntrySetId)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(
+				FIND_ASSET_ENTRY_SET_REFERENCE_BY_PAESI_CNI);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentAssetEntrySetId);
+			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+
+			List<AssetEntrySetReference> assetEntrySetReferences =
+				new ArrayList<AssetEntrySetReference>();
+
+			Iterator<Object[]> itr = q.iterate();
+
+			while (itr.hasNext()) {
+				Object[] array = itr.next();
+
+				long sharedToClassNameId = GetterUtil.getLong(array[0]);
+				long sharedToClassPK = GetterUtil.getLong(array[1]);
+
+				assetEntrySetReferences.add(
+					new AssetEntrySetReference(
+						sharedToClassNameId, sharedToClassPK));
+			}
+
+			return assetEntrySetReferences;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
 
 	public List<AssetEntrySet> findByCT_PAESI_CNI(
 			long classNameId, long classPK, long createTime,
@@ -116,51 +166,6 @@ public class AssetEntrySetFinderImpl
 
 			return (List<AssetEntrySet>)QueryUtil.list(
 				q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<ObjectValuePair<Long, Long>>
-		findClassNameIdAndClassPKOVPsByPAESI_CNI(
-			long parentAssetEntrySetId, int start, int end)
-		throws SystemException {
-
-		List<ObjectValuePair<Long, Long>> sharedToClassNameIdAndClassPKOVPs =
-			new ArrayList<ObjectValuePair<Long, Long>>();
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(
-				FIND_CLASS_NAME_ID_AND_CLASS_PK_OVPS_BY_PAESI_CNI);
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(parentAssetEntrySetId);
-			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
-
-			List<Object[]> sharedToClassNameIdAndClassPKs =
-				(List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
-
-			for (Object[] sharedToClassNameIdAndClassPK :
-					sharedToClassNameIdAndClassPKs) {
-
-				sharedToClassNameIdAndClassPKOVPs.add(
-					new ObjectValuePair<Long, Long>(
-						GetterUtil.getLong(sharedToClassNameIdAndClassPK[0]),
-						GetterUtil.getLong(sharedToClassNameIdAndClassPK[1])));
-			}
-
-			return sharedToClassNameIdAndClassPKOVPs;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

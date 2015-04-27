@@ -23,20 +23,6 @@
 				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findClassNameIdAndClassPKOVPsByPAESI_CNI">
-		<![CDATA[
-			SELECT
-				DISTINCT sharedToClassNameId, sharedToClassPK
-			FROM
-				AssetSharingEntry
-			INNER JOIN
-				AssetEntrySet ON
-					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
-			WHERE
-				(AssetEntrySet.parentAssetEntrySetId = ?) AND
-				(AssetSharingEntry.classNameId = ?)
-		]]>
-	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetSharingEntry">
 		<![CDATA[
 			INNER JOIN
@@ -70,6 +56,20 @@
 					(AssetEntrySetLike.classNameId = ?) AND
 					(AssetEntrySetLike.classPK = ?)
 				)
+		]]>
+	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findAssetEntrySetReferenceByPAESI_CNI">
+		<![CDATA[
+			SELECT
+				DISTINCT sharedToClassNameId, sharedToClassPK
+			FROM
+				AssetSharingEntry
+			INNER JOIN
+				AssetEntrySet ON
+					(AssetSharingEntry.classPK = AssetEntrySet.assetEntrySetId)
+			WHERE
+				(AssetEntrySet.parentAssetEntrySetId = ?) AND
+				(AssetSharingEntry.classNameId = ?)
 		]]>
 	</sql>
 </custom-sql>

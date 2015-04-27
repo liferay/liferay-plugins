@@ -16,6 +16,7 @@ package com.liferay.asset.entry.set.service.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.model.AssetEntrySetLike;
+import com.liferay.asset.entry.set.model.AssetEntrySetReference;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImpl;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinderUtil;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
@@ -28,7 +29,6 @@ import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
 import com.liferay.portal.kernel.configuration.Filter;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.image.ImageBag;
@@ -777,20 +777,19 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySet);
 
 		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
-			List<ObjectValuePair<Long, Long>>
-				sharedToClassNameIdAndClassPKOVPs =
+			List<AssetEntrySetReference>
+				assetEntrySetReferences =
 					AssetEntrySetFinderUtil.
-						findClassNameIdAndClassPKOVPsByPAESI_CNI(
-							assetEntrySet.getAssetEntrySetId(),
-							QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+						findAssetEntrySetReferenceByPAESI_CNI(
+							assetEntrySet.getAssetEntrySetId());
 
-			for (ObjectValuePair<Long, Long> sharedToClassNameIdAndClassPKOVP :
-					sharedToClassNameIdAndClassPKOVPs) {
+			for (AssetEntrySetReference assetEntrySetReference :
+					assetEntrySetReferences) {
 
 				setSharedToClassPKsMap(
 					sharedToClassPKsMap,
-					sharedToClassNameIdAndClassPKOVP.getKey(),
-					sharedToClassNameIdAndClassPKOVP.getValue());
+					assetEntrySetReference.getSharedToClassNameId(),
+					assetEntrySetReference.getSharedToClassPK());
 			}
 		}
 
