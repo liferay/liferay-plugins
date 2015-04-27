@@ -167,19 +167,20 @@ public interface AssetSharingEntryModel extends AttachedModel,
 	public Object clone();
 
 	@Override
-	public int compareTo(AssetSharingEntry assetSharingEntry);
+	public int compareTo(
+		com.liferay.asset.sharing.model.AssetSharingEntry assetSharingEntry);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<AssetSharingEntry> toCacheModel();
+	public CacheModel<com.liferay.asset.sharing.model.AssetSharingEntry> toCacheModel();
 
 	@Override
-	public AssetSharingEntry toEscapedModel();
+	public com.liferay.asset.sharing.model.AssetSharingEntry toEscapedModel();
 
 	@Override
-	public AssetSharingEntry toUnescapedModel();
+	public com.liferay.asset.sharing.model.AssetSharingEntry toUnescapedModel();
 
 	@Override
 	public String toString();

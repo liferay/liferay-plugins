@@ -730,7 +730,7 @@ public class AssetSharingEntryLocalServiceClp
 
 	@Override
 	public void addAssetSharingEntries(long classNameId, long classPK,
-		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
+		java.util.Map<java.lang.Long, java.util.Set<java.lang.Long>> sharedToClassPKsMap)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName19,

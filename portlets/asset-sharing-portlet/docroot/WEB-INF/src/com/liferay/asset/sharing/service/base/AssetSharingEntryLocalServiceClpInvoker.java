@@ -266,7 +266,7 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
-				(java.util.Map<java.lang.Long, long[]>)arguments[2]);
+				(java.util.Map<java.lang.Long, java.util.Set<java.lang.Long>>)arguments[2]);
 
 			return null;
 		}

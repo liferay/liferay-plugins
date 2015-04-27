@@ -291,7 +291,7 @@ public class AssetSharingEntryLocalServiceWrapper
 
 	@Override
 	public void addAssetSharingEntries(long classNameId, long classPK,
-		java.util.Map<java.lang.Long, long[]> sharedToClassPKsMap)
+		java.util.Map<java.lang.Long, java.util.Set<java.lang.Long>> sharedToClassPKsMap)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_assetSharingEntryLocalService.addAssetSharingEntries(classNameId,
 			classPK, sharedToClassPKsMap);
