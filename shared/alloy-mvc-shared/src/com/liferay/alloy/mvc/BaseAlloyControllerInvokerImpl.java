@@ -78,7 +78,7 @@ public abstract class BaseAlloyControllerInvokerImpl
 
 	@Override
 	public void setProperties(
-		AlloyPortlet alloyPortlet, ThemeDisplay themeDisplay, Portlet portlet,
+		ThemeDisplay themeDisplay, AlloyPortlet alloyPortlet, Portlet portlet,
 		Class<? extends AlloyController> controllerClass, String controller) {
 
 		_alloyPortlet = alloyPortlet;

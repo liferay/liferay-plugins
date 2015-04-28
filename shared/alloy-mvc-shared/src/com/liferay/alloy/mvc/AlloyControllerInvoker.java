@@ -28,7 +28,7 @@ public interface AlloyControllerInvoker {
 		throws Exception;
 
 	public void setProperties(
-		AlloyPortlet alloyPortlet, ThemeDisplay themeDisplay, Portlet portlet,
+		ThemeDisplay themeDisplay, AlloyPortlet alloyPortlet, Portlet portlet,
 		Class<? extends AlloyController> controllerClass, String controller);
 
 }
