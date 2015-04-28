@@ -1054,10 +1054,6 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		}
 	}
 
-	public Class<?> getClpSerializerClass() {
-		return _clpSerializerClass;
-	}
-
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -1264,5 +1260,4 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	private long _typePK;
 	private String _typeUuid;
 	private BaseModel<?> _syncDLObjectRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.sync.service.ClpSerializer.class;
 }

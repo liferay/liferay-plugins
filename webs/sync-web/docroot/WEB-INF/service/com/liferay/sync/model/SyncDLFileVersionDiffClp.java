@@ -417,10 +417,6 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 		}
 	}
 
-	public Class<?> getClpSerializerClass() {
-		return _clpSerializerClass;
-	}
-
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -499,5 +495,4 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 	private long _size;
 	private Date _expirationDate;
 	private BaseModel<?> _syncDLFileVersionDiffRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.sync.service.ClpSerializer.class;
 }
