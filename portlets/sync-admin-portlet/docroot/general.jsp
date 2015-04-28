@@ -40,7 +40,7 @@ if (oAuthEnabled) {
 
 <c:if test='<%= oAuthEnabled && DeployManagerUtil.isDeployed("oauth-portlet") %>'>
 	<div class="alert alert-warning">
-		<liferay-ui:message key="oauth-portlet-is-not-deployed" />
+		<liferay-ui:message key="oauth-publisher-is-not-deployed" />
 	</div>
 </c:if>
 
@@ -55,7 +55,7 @@ if (oAuthEnabled) {
 <aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updatePreferences();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
-	<liferay-ui:error exception="<%= OAuthPortletUndeployedException.class %>" message="oauth-portlet-is-not-deployed" />
+	<liferay-ui:error exception="<%= OAuthPortletUndeployedException.class %>" message="oauth-publisher-is-not-deployed" />
 
 	<aui:fieldset>
 		<aui:input name="enabled" type="checkbox" value="<%= enabled %>" />
