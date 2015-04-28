@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.alloy.mvc;
+package com.liferay.alloy.mvc.jsonwebservice;
 
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
 
 import java.util.Collection;
 import java.util.Enumeration;
@@ -38,7 +37,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.CacheControl;
 import javax.portlet.PortalContext;
 import javax.portlet.PortletMode;
-import javax.portlet.PortletModeException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
@@ -47,7 +45,6 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceURL;
 import javax.portlet.WindowState;
-import javax.portlet.WindowStateException;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.DispatcherType;
@@ -85,27 +82,7 @@ public class AlloyMockUtil {
 		implements ActionRequest {
 
 		@Override
-		public InputStream getPortletInputStream() {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public void setCharacterEncoding(String characterEncoding) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public BufferedReader getReader() {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
 		public String getCharacterEncoding() {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public String getContentType() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -115,7 +92,27 @@ public class AlloyMockUtil {
 		}
 
 		@Override
+		public String getContentType() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
 		public String getMethod() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public InputStream getPortletInputStream() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public BufferedReader getReader() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public void setCharacterEncoding(String characterEncoding) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -199,17 +196,17 @@ public class AlloyMockUtil {
 		}
 
 		@Override
+		public AsyncContext getAsyncContext() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
 		public Object getAttribute(String name) {
 			return attributeMap.get(name);
 		}
 
 		@Override
 		public Enumeration<String> getAttributeNames() {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public AsyncContext getAsyncContext() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -259,12 +256,12 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public Enumeration<String> getHeaders(String name) {
+		public Enumeration<String> getHeaderNames() {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public Enumeration<String> getHeaderNames() {
+		public Enumeration<String> getHeaders(String name) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -435,12 +432,12 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public HttpSession getSession(boolean create) {
+		public HttpSession getSession() {
 			return new MockHttpSession();
 		}
 
 		@Override
-		public HttpSession getSession() {
+		public HttpSession getSession(boolean create) {
 			return new MockHttpSession();
 		}
 
@@ -464,14 +461,14 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		@Override
-		public boolean isRequestedSessionIdFromURL() {
-			throw new UnsupportedOperationException();
-		}
-
 		@Deprecated
 		@Override
 		public boolean isRequestedSessionIdFromUrl() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public boolean isRequestedSessionIdFromURL() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -560,14 +557,9 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		@Override
-		public String encodeURL(String url) {
-			throw new UnsupportedOperationException();
-		}
-
 		@Deprecated
 		@Override
-		public String encodeUrl(String url) {
+		public String encodeRedirectUrl(String url) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -578,7 +570,12 @@ public class AlloyMockUtil {
 
 		@Deprecated
 		@Override
-		public String encodeRedirectUrl(String url) {
+		public String encodeUrl(String url) {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public String encodeURL(String url) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -653,12 +650,12 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void sendError(int sc, String msg) {
+		public void sendError(int sc) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void sendError(int sc) {
+		public void sendError(int sc, String msg) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -941,6 +938,11 @@ public class AlloyMockUtil {
 		}
 
 		@Override
+		public void release() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
 		public void removeAttribute(String name) {
 			throw new UnsupportedOperationException();
 		}
@@ -957,11 +959,6 @@ public class AlloyMockUtil {
 
 		@Override
 		public void setAttribute(String name, Object value, int scope) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public void release() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -1391,12 +1388,12 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void resetBuffer() {
+		public void reset() {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void reset() {
+		public void resetBuffer() {
 			throw new UnsupportedOperationException();
 		}
 
