@@ -1005,7 +1005,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			String type = syncDLObject.getType();
 
 			try {
-				if (type.equals(SyncConstants.TYPE_FILE)) {
+				if (type.equals(SyncConstants.TYPE_FILE) ||
+					type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
+
 					dlAppService.getFileEntry(syncDLObject.getTypePK());
 				}
 				else {
