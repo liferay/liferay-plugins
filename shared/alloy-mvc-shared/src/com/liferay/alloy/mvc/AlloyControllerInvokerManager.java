@@ -237,18 +237,14 @@ public class AlloyControllerInvokerManager {
 
 			jsonWebServiceMethodsPresent = true;
 
-			JSONWebServiceParameter[] jsonWebServiceParameters =
-				jsonWebServiceMethod.parameters();
+			Class<?>[] parameterTypes = jsonWebServiceMethod.parameterTypes();
 
-			StringBundler sb = new StringBundler(
-				jsonWebServiceParameters.length + 3);
+			StringBundler sb = new StringBundler(parameterTypes.length + 3);
 
 			sb.append(StringPool.OPEN_PARENTHESIS);
 
-			for (JSONWebServiceParameter jsonWebServiceParameter :
-					jsonWebServiceParameters) {
-
-				sb.append(Type.getDescriptor(jsonWebServiceParameter.type()));
+			for (Class<?> parameterType : parameterTypes) {
+				sb.append(Type.getDescriptor(parameterType));
 			}
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -262,13 +258,12 @@ public class AlloyControllerInvokerManager {
 
 			methodVisitor.visitCode();
 
-			for (int i = 0; i < jsonWebServiceParameters.length; i++) {
-				JSONWebServiceParameter jsonWebServiceParameter =
-					jsonWebServiceParameters[i];
+			for (int i = 0; i < parameterTypes.length; i++) {
+				String parameterName = jsonWebServiceMethod.parameterNames()[i];
+				Class<?> parameterType = parameterTypes[i];
 
 				methodVisitor.visitLocalVariable(
-					jsonWebServiceParameter.name(),
-					Type.getDescriptor(jsonWebServiceParameter.type()), null,
+					parameterName, Type.getDescriptor(parameterType), null,
 					new Label(), new Label(), i + 1);
 			}
 
@@ -276,7 +271,7 @@ public class AlloyControllerInvokerManager {
 			methodVisitor.visitLdcInsn(jsonWebServiceMethod.lifecycle());
 
 			methodVisitor.visitIntInsn(
-				Opcodes.BIPUSH, jsonWebServiceParameters.length * 2 + 2);
+				Opcodes.BIPUSH, parameterTypes.length * 2 + 2);
 			methodVisitor.visitTypeInsn(
 				Opcodes.ANEWARRAY, getClassBinaryName(Object.class.getName()));
 
@@ -290,13 +285,12 @@ public class AlloyControllerInvokerManager {
 			methodVisitor.visitLdcInsn(method.getName());
 			methodVisitor.visitInsn(Opcodes.AASTORE);
 
-			for (int i = 0; i < jsonWebServiceParameters.length; i++) {
-				JSONWebServiceParameter jsonWebServiceParameter =
-					jsonWebServiceParameters[i];
+			for (int i = 0; i < parameterTypes.length; i++) {
+				String parameterName = jsonWebServiceMethod.parameterNames()[i];
 
 				methodVisitor.visitInsn(Opcodes.DUP);
 				methodVisitor.visitIntInsn(Opcodes.BIPUSH, (i + 1) * 2);
-				methodVisitor.visitLdcInsn(jsonWebServiceParameter.name());
+				methodVisitor.visitLdcInsn(parameterName);
 				methodVisitor.visitInsn(Opcodes.AASTORE);
 
 				methodVisitor.visitInsn(Opcodes.DUP);

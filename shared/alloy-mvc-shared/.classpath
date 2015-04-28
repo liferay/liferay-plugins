@@ -10,12 +10,16 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/bnd.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="lib/asm-tree.jar" />
+	<classpathentry kind="lib" path="lib/asm-util.jar" />
+	<classpathentry kind="lib" path="lib/asm.jar" />
 	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>

@@ -34,6 +34,8 @@ public @interface JSONWebServiceMethod {
 
 	public String lifecycle() default PortletRequest.RENDER_PHASE;
 
-	public JSONWebServiceParameter[] parameters() default {};
+	public String[] parameterNames() default {};
+
+	public Class<?>[] parameterTypes() default {};
 
 }
