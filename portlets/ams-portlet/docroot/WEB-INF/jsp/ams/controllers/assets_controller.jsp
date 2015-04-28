@@ -24,12 +24,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		setPermissioned(true);
 	}
 
-	@JSONWebServiceMethod(
-		lifecycle = PortletRequest.ACTION_PHASE,
-		parameters = {
-			@JSONWebServiceParameter(name = "id", type = Long.class)
-		}
-	)
+	@JSONWebServiceMethod(lifecycle = PortletRequest.ACTION_PHASE, parameterNames = {"id"}, parameterTypes = {Long.class})
 	public void delete() throws Exception {
 		long assetId = ParamUtil.getLong(request, "id");
 
@@ -48,13 +43,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		redirectTo(redirectURL);
 	}
 
-	@JSONWebServiceMethod(
-		lifecycle = PortletRequest.RENDER_PHASE,
-		parameters = {
-			@JSONWebServiceParameter(name = "cur", type = Integer.class),
-			@JSONWebServiceParameter(name = "delta", type = Integer.class)
-		}
-	)
+	@JSONWebServiceMethod(lifecycle = PortletRequest.RENDER_PHASE, parameterNames = {"cur", "delta"}, parameterTypes = {Integer.class, Integer.class})
 	public void index() throws Exception {
 		AlloySearchResult alloySearchResult = search(null);
 
@@ -63,13 +52,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		respondWith(alloySearchResult);
 	}
 
-	@JSONWebServiceMethod(
-		lifecycle = PortletRequest.ACTION_PHASE,
-		parameters = {
-			@JSONWebServiceParameter(name = "id", type = Long.class),
-			@JSONWebServiceParameter(name = "serialNumber", type = String.class)
-		}
-	)
+	@JSONWebServiceMethod(lifecycle = PortletRequest.ACTION_PHASE, parameterNames = {"id", "serialNumber"}, parameterTypes = {Long.class, String.class})
 	public void save() throws Exception {
 		Asset asset = AssetLocalServiceUtil.createAsset(0);
 
@@ -90,12 +73,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		redirectTo(redirect);
 	}
 
-	@JSONWebServiceMethod(
-		lifecycle = PortletRequest.RENDER_PHASE,
-		parameters = {
-			@JSONWebServiceParameter(name = "id", type = Long.class)
-		}
-	)
+	@JSONWebServiceMethod(lifecycle = PortletRequest.RENDER_PHASE, parameterNames = {"id"}, parameterTypes = {Long.class})
 	public void view() throws Exception {
 		long assetId = ParamUtil.getLong(request, "id");
 
