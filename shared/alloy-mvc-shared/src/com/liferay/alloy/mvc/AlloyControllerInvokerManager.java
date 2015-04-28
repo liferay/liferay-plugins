@@ -56,7 +56,7 @@ public class AlloyControllerInvokerManager {
 	}
 
 	public void registerController(
-		AlloyPortlet alloyPortlet, ThemeDisplay themeDisplay, Portlet portlet,
+		ThemeDisplay themeDisplay, AlloyPortlet alloyPortlet, Portlet portlet,
 		String controller,
 		Class<? extends AlloyController> alloyControllerClass) {
 
@@ -84,7 +84,7 @@ public class AlloyControllerInvokerManager {
 				alloyControllerInvoker = constructor.newInstance();
 
 				alloyControllerInvoker.setProperties(
-					alloyPortlet, themeDisplay, portlet, alloyControllerClass,
+					themeDisplay, alloyPortlet, portlet, alloyControllerClass,
 					controller);
 
 				_alloyControllerInvokers.put(

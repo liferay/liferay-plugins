@@ -232,7 +232,7 @@ public class AlloyPortlet extends GenericPortlet {
 			_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
 
 			_alloyControllerInvokerManager.registerController(
-				this, baseAlloyControllerImpl.getThemeDisplay(),
+				baseAlloyControllerImpl.getThemeDisplay(), this,
 				baseAlloyControllerImpl.portlet, controllerPath,
 				baseAlloyControllerImpl.getClass());
 		}

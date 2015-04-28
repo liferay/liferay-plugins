@@ -79,27 +79,23 @@ import org.w3c.dom.Element;
 /**
  * @author Ethan Bustad
  */
-class AlloyMockUtil {
+public class AlloyMockUtil {
 
-	static class MockActionRequest extends MockPortletRequest
+	public static class MockActionRequest extends MockPortletRequest
 		implements ActionRequest {
 
 		@Override
-		public InputStream getPortletInputStream() throws IOException {
+		public InputStream getPortletInputStream() {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void setCharacterEncoding(String enc)
-			throws UnsupportedEncodingException {
-
+		public void setCharacterEncoding(String characterEncoding) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public BufferedReader getReader()
-			throws IOException, UnsupportedEncodingException {
-
+		public BufferedReader getReader() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -125,7 +121,7 @@ class AlloyMockUtil {
 
 	}
 
-	static class MockActionResponse extends MockPortletResponse
+	public static class MockActionResponse extends MockPortletResponse
 		implements ActionResponse {
 
 		@Override
@@ -149,14 +145,12 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void sendRedirect(String location) throws IOException {
+		public void sendRedirect(String location) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void sendRedirect(String location, String renderUrlParamName)
-			throws IOException {
-
+		public void sendRedirect(String location, String renderUrlParamName) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -171,9 +165,7 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void setPortletMode(PortletMode portletMode)
-			throws PortletModeException {
-
+		public void setPortletMode(PortletMode portletMode) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -193,20 +185,16 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void setWindowState(WindowState windowState)
-			throws WindowStateException {
-
+		public void setWindowState(WindowState windowState) {
 			throw new UnsupportedOperationException();
 		}
 
 	}
 
-	static class MockHttpServletRequest implements HttpServletRequest {
+	public static class MockHttpServletRequest implements HttpServletRequest {
 
 		@Override
-		public boolean authenticate(HttpServletResponse response)
-			throws IOException, ServletException {
-
+		public boolean authenticate(HttpServletResponse response) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -281,7 +269,7 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public ServletInputStream getInputStream() throws IOException {
+		public ServletInputStream getInputStream() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -341,14 +329,12 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public Part getPart(String name) throws IOException, ServletException {
+		public Part getPart(String name) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public Collection<Part> getParts()
-			throws IOException, ServletException {
-
+		public Collection<Part> getParts() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -373,10 +359,11 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public BufferedReader getReader() throws IOException {
+		public BufferedReader getReader() {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public String getRealPath(String path) {
 			throw new UnsupportedOperationException();
@@ -482,6 +469,7 @@ class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public boolean isRequestedSessionIdFromUrl() {
 			throw new UnsupportedOperationException();
@@ -503,14 +491,12 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void login(String username, String password)
-			throws ServletException {
-
+		public void login(String username, String password) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void logout() throws ServletException {
+		public void logout() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -525,9 +511,7 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void setCharacterEncoding(String env)
-			throws UnsupportedEncodingException {
-
+		public void setCharacterEncoding(String characterEncoding) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -549,7 +533,7 @@ class AlloyMockUtil {
 
 	}
 
-	static class MockHttpServletResponse implements HttpServletResponse {
+	public static class MockHttpServletResponse implements HttpServletResponse {
 
 		@Override
 		public void addCookie(Cookie cookie) {
@@ -581,6 +565,7 @@ class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public String encodeUrl(String url) {
 			throw new UnsupportedOperationException();
@@ -591,13 +576,14 @@ class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public String encodeRedirectUrl(String url) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void flushBuffer() throws IOException {
+		public void flushBuffer() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -637,7 +623,7 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public ServletOutputStream getOutputStream() throws IOException {
+		public ServletOutputStream getOutputStream() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -647,7 +633,7 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public PrintWriter getWriter() throws IOException {
+		public PrintWriter getWriter() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -667,17 +653,17 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void sendError(int sc, String msg) throws IOException {
+		public void sendError(int sc, String msg) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void sendError(int sc) throws IOException {
+		public void sendError(int sc) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void sendRedirect(String location) throws IOException {
+		public void sendRedirect(String location) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -692,7 +678,7 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void setContentLength(int len) {
+		public void setContentLength(int contentLength) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -717,23 +703,24 @@ class AlloyMockUtil {
 		}
 
 		@Override
-		public void setLocale(Locale loc) {
+		public void setLocale(Locale locale) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void setStatus(int sc) {
+		public void setStatus(int code) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
-		public void setStatus(int sc, String sm) {
+		public void setStatus(int code, String message) {
 			throw new UnsupportedOperationException();
 		}
 
 	}
 
-	static class MockHttpSession implements HttpSession {
+	public static class MockHttpSession implements HttpSession {
 
 		@Override
 		public Object getAttribute(String name) {
@@ -825,7 +812,7 @@ class AlloyMockUtil {
 
 	}
 
-	static class MockPageContext extends PageContext {
+	public static class MockPageContext extends PageContext {
 
 		@Override
 		public Object findAttribute(String name) {
@@ -980,7 +967,7 @@ class AlloyMockUtil {
 
 	}
 
-	static class MockPortletRequest implements PortletRequest {
+	public static class MockPortletRequest implements PortletRequest {
 
 		@Override
 		public Object getAttribute(String name) {
@@ -1189,7 +1176,7 @@ class AlloyMockUtil {
 
 	}
 
-	static class MockPortletResponse implements LiferayPortletResponse {
+	public static class MockPortletResponse implements LiferayPortletResponse {
 
 		@Override
 		public void addDateHeader(String name, long date) {
@@ -1330,7 +1317,7 @@ class AlloyMockUtil {
 
 	}
 
-	static class MockRenderRequest extends MockPortletRequest
+	public static class MockRenderRequest extends MockPortletRequest
 		implements RenderRequest {
 
 		@Override
@@ -1340,7 +1327,7 @@ class AlloyMockUtil {
 
 	}
 
-	static class MockRenderResponse extends MockPortletResponse
+	public static class MockRenderResponse extends MockPortletResponse
 		implements RenderResponse {
 
 		@Override
