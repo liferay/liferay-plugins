@@ -139,13 +139,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	@Override
-	public boolean equals(Object other) {
-		if ((other == null) || !(other instanceof BaseAlloyControllerImpl)) {
+	public boolean equals(Object obj) {
+		if ((obj == null) || !(obj instanceof BaseAlloyControllerImpl)) {
 			return false;
 		}
 
 		Class<?> clazz = getClass();
-		Class<?> otherClass = other.getClass();
+		Class<?> otherClass = obj.getClass();
 
 		Method[] methods = clazz.getDeclaredMethods();
 		Method[] otherMethods = otherClass.getDeclaredMethods();
