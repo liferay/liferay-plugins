@@ -38,7 +38,7 @@ if (oAuthEnabled) {
 }
 %>
 
-<c:if test='<%= oAuthEnabled && DeployManagerUtil.isDeployed("oauth-portlet") %>'>
+<c:if test='<%= oAuthEnabled && !DeployManagerUtil.isDeployed("oauth-portlet") %>'>
 	<div class="alert alert-warning">
 		<liferay-ui:message key="oauth-publisher-is-not-deployed" />
 	</div>
