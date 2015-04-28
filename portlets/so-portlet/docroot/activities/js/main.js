@@ -194,7 +194,9 @@ AUI().use(
 					'</span>' +
 				'</div>' +
 				'<div class="comment-body">' +
-					'<span class="user-name"><a href={userDisplayURL}>{userName}</a></span>' +
+					'<span class="user-name">' +
+						'<a href={userDisplayURL}>{userName}</a>' +
+					'</span>' +
 					'<span class="message">{body}</span>' +
 				'</div>' +
 				'<div class="comment-info">' +

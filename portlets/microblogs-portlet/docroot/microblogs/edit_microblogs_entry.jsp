@@ -227,8 +227,10 @@ if (comment) {
 			'<img alt="{fullName}" src="{portraitURL}" />' +
 		'</div>' +
 		'<div>' +
-			'<span class="user-name">{fullName}</span><br />' +
-			'<span class="small">{emailAddress}</span><br />' +
+			'<span class="user-name">{fullName}</span>' +
+			'<br />' +
+			'<span class="small">{emailAddress}</span>' +
+			'<br />' +
 			'<span class="job-title">{jobTitle}</span>' +
 		'</div>' +
 	'</div>';
