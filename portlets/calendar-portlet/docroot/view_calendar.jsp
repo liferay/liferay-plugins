@@ -20,13 +20,13 @@
 String activeView = ParamUtil.getString(request, "activeView", sessionClicksDefaultView);
 long date = ParamUtil.getLong(request, "date", System.currentTimeMillis());
 
-List<Calendar> groupCalendars = null;
+List<Calendar> groupCalendars = Collections.emptyList();
 
 if (groupCalendarResource != null) {
 	groupCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, new long[] {groupCalendarResource.getCalendarResourceId()}, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 }
 
-List<Calendar> userCalendars = null;
+List<Calendar> userCalendars = Collections.emptyList();
 
 if (userCalendarResource != null) {
 	userCalendars = CalendarServiceUtil.search(themeDisplay.getCompanyId(), null, new long[] {userCalendarResource.getCalendarResourceId()}, null, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
@@ -50,11 +50,9 @@ for (long calendarId : calendarIds) {
 
 Calendar defaultCalendar = null;
 
-if (groupCalendars != null) {
-	for (Calendar groupCalendar : groupCalendars) {
-		if (groupCalendar.isDefaultCalendar()) {
-			defaultCalendar = groupCalendar;
-		}
+for (Calendar groupCalendar : groupCalendars) {
+	if (groupCalendar.isDefaultCalendar()) {
+		defaultCalendar = groupCalendar;
 	}
 }
 
