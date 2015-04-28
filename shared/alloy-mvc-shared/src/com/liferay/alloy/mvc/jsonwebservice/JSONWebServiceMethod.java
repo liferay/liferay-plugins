@@ -12,23 +12,30 @@
  * details.
  */
 
-package com.liferay.alloy.mvc;
+package com.liferay.alloy.mvc.jsonwebservice;
 
-import com.liferay.portal.kernel.json.JSONSerializable;
-import com.liferay.portal.model.Portlet;
-import com.liferay.portal.theme.ThemeDisplay;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import javax.portlet.PortletRequest;
 
 /**
  * @author Ethan Bustad
  */
-public interface AlloyControllerInvoker {
+@Documented
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+public @interface JSONWebServiceMethod {
 
-	public JSONSerializable invokeAlloyController(
-			String lifecycle, Object... parameters)
-		throws Exception;
+	public String lifecycle() default PortletRequest.RENDER_PHASE;
 
-	public void setProperties(
-		ThemeDisplay themeDisplay, AlloyPortlet alloyPortlet, Portlet portlet,
-		Class<? extends AlloyController> controllerClass, String controller);
+	public String[] parameterNames() default {};
+
+	public Class<?>[] parameterTypes() default {};
 
 }
