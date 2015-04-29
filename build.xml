@@ -9,6 +9,15 @@
 		<antcall target="deploy" />
 	</target>
 
+	<target name="build-db">
+		<ant dir="hooks" target="build-db" inheritAll="false" />
+		<ant dir="layouttpl" target="build-db" inheritAll="false" />
+		<ant dir="portlets" target="build-db" inheritAll="false" />
+		<ant dir="shared" target="build-db" inheritAll="false" />
+		<ant dir="themes" target="build-db" inheritAll="false" />
+		<ant dir="webs" target="build-db" inheritAll="false" />
+	</target>
+
 	<target name="build-service">
 		<ant dir="hooks" target="build-service" inheritAll="false" />
 		<ant dir="portlets" target="build-service" inheritAll="false" />

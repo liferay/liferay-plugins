@@ -14,6 +14,16 @@
 		</else>
 	</if>
 
+	<target name="build-db">
+		<antcall target="loop-modules">
+			<param name="loop.modules.cmd" value="build-db-module" />
+		</antcall>
+	</target>
+
+	<target name="build-db-module">
+		<ant dir="${module.name}" target="build-db" inheritAll="false" />
+	</target>
+
 	<target name="build-service">
 		<for param="service.file">
 			<path>
