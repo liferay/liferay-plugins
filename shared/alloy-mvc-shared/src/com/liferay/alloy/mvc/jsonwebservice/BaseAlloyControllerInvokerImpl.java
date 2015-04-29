@@ -65,8 +65,8 @@ public abstract class BaseAlloyControllerInvokerImpl
 
 		AlloyController alloyController = constructor.newInstance();
 
-		ServletRequest request = createRequest(lifecycle, parameters);
-		ServletResponse response = createResponse();
+		HttpServletRequest request = createRequest(lifecycle, parameters);
+		HttpServletResponse response = createResponse();
 
 		PageContext pageContext = createPageContext(request, response);
 
@@ -236,7 +236,7 @@ public abstract class BaseAlloyControllerInvokerImpl
 				contentType = type;
 			}
 
-			protected String contentType = null;
+			protected String contentType;
 
 		};
 	}
