@@ -31,11 +31,14 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.io.File;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+
 import java.net.URI;
 import java.net.URL;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -58,7 +61,7 @@ public class AlloyControllerInvokerManager {
 
 		PortletContext portletContext =
 			liferayPortletConfig.getPortletContext();
-		
+
 		_contextPath =
 			StringPool.SLASH + portletContext.getPortletContextName();
 	}
