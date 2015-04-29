@@ -18,6 +18,7 @@ import com.liferay.alloy.mvc.AlloyController;
 import com.liferay.alloy.mvc.AlloyPortlet;
 import com.liferay.portal.kernel.json.JSONSerializable;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManagerUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -30,17 +31,16 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.io.File;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-
 import java.net.URI;
 import java.net.URL;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.portlet.PortletContext;
 
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Label;
@@ -53,8 +53,14 @@ import org.objectweb.asm.Type;
  */
 public class AlloyControllerInvokerManager {
 
-	public AlloyControllerInvokerManager(String contextPath) {
-		_contextPath = contextPath;
+	public AlloyControllerInvokerManager(
+		LiferayPortletConfig liferayPortletConfig) {
+
+		PortletContext portletContext =
+			liferayPortletConfig.getPortletContext();
+		
+		_contextPath =
+			StringPool.SLASH + portletContext.getPortletContextName();
 	}
 
 	public void registerController(
