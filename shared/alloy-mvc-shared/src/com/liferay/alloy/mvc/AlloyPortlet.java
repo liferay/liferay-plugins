@@ -31,10 +31,8 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.PortletInfo;
 
 import java.io.IOException;
 
@@ -117,13 +115,11 @@ public class AlloyPortlet extends GenericPortlet {
 
 		router.urlToParameters(HttpMethods.GET, _defaultRouteParameters);
 
-		PortletInfo portletInfo = portlet.getPortletInfo();
-
-		String contextPath = TextFormatter.format(
-			portletInfo.getTitle(), TextFormatter.C);
+		PortletContext portletContext =
+			liferayPortletConfig.getPortletContext();
 
 		_alloyControllerInvokerManager = new AlloyControllerInvokerManager(
-			StringPool.SLASH + contextPath);
+			StringPool.SLASH + portletContext.getPortletContextName());
 	}
 
 	@Override
