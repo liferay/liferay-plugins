@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -52,7 +51,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletRequest;
@@ -70,7 +68,6 @@ import javax.servlet.jsp.el.VariableResolver;
 
 import javax.xml.namespace.QName;
 
-import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
 
 /**
@@ -360,7 +357,6 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		@Deprecated
 		@Override
 		public String getRealPath(String path) {
 			throw new UnsupportedOperationException();
@@ -461,7 +457,6 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		@Deprecated
 		@Override
 		public boolean isRequestedSessionIdFromUrl() {
 			throw new UnsupportedOperationException();
@@ -503,8 +498,8 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void setAttribute(String name, Object o) {
-			attributeMap.put(name, o);
+		public void setAttribute(String name, Object value) {
+			attributeMap.put(name, value);
 		}
 
 		@Override
@@ -513,14 +508,13 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public AsyncContext startAsync() throws IllegalStateException {
+		public AsyncContext startAsync() {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public AsyncContext startAsync(
-				ServletRequest servletRequest, ServletResponse servletResponse)
-			throws IllegalStateException {
+			ServletRequest servletRequest, ServletResponse servletResponse) {
 
 			throw new UnsupportedOperationException();
 		}
@@ -557,7 +551,6 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		@Deprecated
 		@Override
 		public String encodeRedirectUrl(String url) {
 			throw new UnsupportedOperationException();
@@ -568,7 +561,6 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		@Deprecated
 		@Override
 		public String encodeUrl(String url) {
 			throw new UnsupportedOperationException();
@@ -650,12 +642,12 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void sendError(int sc) {
+		public void sendError(int status) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void sendError(int sc, String msg) {
+		public void sendError(int status, String message) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -670,7 +662,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void setCharacterEncoding(String charset) {
+		public void setCharacterEncoding(String characterEncoding) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -705,13 +697,12 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void setStatus(int code) {
+		public void setStatus(int status) {
 			throw new UnsupportedOperationException();
 		}
 
-		@Deprecated
 		@Override
-		public void setStatus(int code, String message) {
+		public void setStatus(int status, String message) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -754,6 +745,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public HttpSessionContext getSessionContext() {
 			throw new UnsupportedOperationException();
@@ -817,9 +809,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void forward(String relativeUrlPath)
-			throws IOException, ServletException {
-
+		public void forward(String relativeUrlPath) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -853,6 +843,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public ExpressionEvaluator getExpressionEvaluator() {
 			throw new UnsupportedOperationException();
@@ -893,46 +884,37 @@ public class AlloyMockUtil {
 			return new MockHttpSession();
 		}
 
+		@Deprecated
 		@Override
 		public VariableResolver getVariableResolver() {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void handlePageException(Exception e)
-			throws IOException, ServletException {
-
+		public void handlePageException(Exception e) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void handlePageException(Throwable t)
-			throws IOException, ServletException {
-
+		public void handlePageException(Throwable t) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void include(String relativeUrlPath)
-			throws IOException, ServletException {
-
+		public void include(String relativeUrlPath) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public void include(String relativeUrlPath, boolean flush)
-			throws IOException, ServletException {
-
+		public void include(String relativeUrlPath, boolean flush) {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
 		public void initialize(
-				Servlet servlet, ServletRequest request,
-				ServletResponse response, String errorPageURL,
-				boolean needsSession, int bufferSize, boolean autoFlush)
-			throws IOException, IllegalStateException,
-				   IllegalArgumentException {
+			Servlet servlet, ServletRequest request, ServletResponse response,
+			String errorPageURL, boolean needsSession, int bufferSize,
+			boolean autoFlush) {
 
 			throw new UnsupportedOperationException();
 		}
@@ -1216,7 +1198,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public Element createElement(String tagName) throws DOMException {
+		public Element createElement(String tagName) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -1343,7 +1325,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void flushBuffer() throws IOException {
+		public void flushBuffer() {
 			throw new UnsupportedOperationException();
 		}
 
@@ -1373,12 +1355,12 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public OutputStream getPortletOutputStream() throws IOException {
+		public OutputStream getPortletOutputStream() {
 			throw new UnsupportedOperationException();
 		}
 
 		@Override
-		public PrintWriter getWriter() throws IOException {
+		public PrintWriter getWriter() {
 			throw new UnsupportedOperationException();
 		}
 
