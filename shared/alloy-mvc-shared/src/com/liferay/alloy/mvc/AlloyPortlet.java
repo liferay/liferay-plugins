@@ -115,11 +115,8 @@ public class AlloyPortlet extends GenericPortlet {
 
 		router.urlToParameters(HttpMethods.GET, _defaultRouteParameters);
 
-		PortletContext portletContext =
-			liferayPortletConfig.getPortletContext();
-
 		_alloyControllerInvokerManager = new AlloyControllerInvokerManager(
-			StringPool.SLASH + portletContext.getPortletContextName());
+			liferayPortletConfig);
 	}
 
 	@Override
