@@ -223,17 +223,17 @@ if (comment) {
 	var REGEX_USER_NAME = /@(.*[^\s]+)$/;
 
 	var TPL_SEARCH_RESULTS = '<div class="microblogs-autocomplete">' +
-		'<div class="thumbnail">' +
-			'<img alt="{fullName}" src="{portraitURL}" />' +
-		'</div>' +
-		'<div>' +
-			'<span class="user-name">{fullName}</span>' +
-			'<br />' +
-			'<span class="small">{emailAddress}</span>' +
-			'<br />' +
-			'<span class="job-title">{jobTitle}</span>' +
-		'</div>' +
-	'</div>';
+			'<div class="thumbnail">' +
+				'<img alt="{fullName}" src="{portraitURL}" />' +
+			'</div>' +
+			'<div>' +
+				'<span class="user-name">{fullName}</span>' +
+				'<br />' +
+				'<span class="small">{emailAddress}</span>' +
+				'<br />' +
+				'<span class="job-title">{jobTitle}</span>' +
+			'</div>' +
+		'</div>';
 
 	var autocompleteDiv;
 
