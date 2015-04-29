@@ -122,7 +122,6 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 	<c:when test='<%= tabs2.equals("display-settings") %>'>
 		<aui:script>
 			Liferay.Util.toggleBoxes('<portlet:namespace />enableKBArticleRatingsCheckbox', '<portlet:namespace />ratingsType');
-			Liferay.Util.toggleBoxes('<portlet:namespace />enableSocialBookmarksCheckbox','<portlet:namespace />socialBookmarksOptions');
 		</aui:script>
 	</c:when>
 </c:choose>
