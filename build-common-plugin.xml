@@ -205,15 +205,45 @@
 			<if>
 				<available file="@{compile.jsp.docroot.dir}" />
 				<then>
+					<var name="dependencies.classpath" />
+
+					<if>
+						<isset property="osgi.compile.jsp.wab.dependencies" />
+						<then>
+							<for list="${osgi.compile.jsp.wab.dependencies}" param="osgi.compile.jsp.wab.dependency">
+								<sequential>
+									<var name="dependency.dir" value="${basedir}/../@{osgi.compile.jsp.wab.dependency}" />
+
+									<compile module.dir="${dependency.dir}" />
+
+									<if>
+										<equals arg1="${dependencies.classpath}" arg2="" />
+										<then>
+											<var name="dependencies.classpath" value="${dependency.dir}/docroot/WEB-INF/classes" />
+										</then>
+										<else>
+											<var name="dependencies.classpath" value="${dependencies.classpath}:${dependency.dir}/docroot/WEB-INF/classes" />
+										</else>
+									</if>
+
+									<var name="dependency.dir" unset="true"/>
+								</sequential>
+							</for>
+						</then>
+					</if>
+
 					<path id="jspc.classpath.common">
 						<pathelement location="${env.JAVA_HOME}/jre/lib/rt.jar" />
 						<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 						<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
 						<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
+						<pathelement path="${dependencies.classpath}"/>
 						<fileset dir="${basedir}" includes="lib/*.jar" />
 						<fileset dir="${basedir}" includes="docroot/WEB-INF/lib/*.jar" />
 						<fileset dir="@{compile.jsp.docroot.dir}" includes="WEB-INF/lib/*.jar" />
 					</path>
+
+					<var name="dependencies.classpath" unset="true"/>
 
 					<local name="jspc.module.web" />
 
