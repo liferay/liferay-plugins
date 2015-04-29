@@ -128,6 +128,12 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	public static final String VIEW_PATH =
 		BaseAlloyControllerImpl.class.getName() + "#VIEW_PATH";
 
+	public BaseAlloyControllerImpl() {
+		if (_lastModified == 0) {
+			_lastModified = System.currentTimeMillis();
+		}
+	}
+
 	@Override
 	public void afterPropertiesSet() {
 		initClass();
@@ -223,6 +229,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				request, controllerPath, actionPath,
 				alloyNotificationEventHelperPayloadJSONObject);
 		}
+	}
+
+	@Override
+	public long getLastModified() {
+		return _lastModified;
 	}
 
 	@Override
@@ -1480,5 +1491,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected String viewPath;
 
 	private static final String _VIEW_PATH_ERROR = "VIEW_PATH_ERROR";
+
+	private static long _lastModified;
 
 }
