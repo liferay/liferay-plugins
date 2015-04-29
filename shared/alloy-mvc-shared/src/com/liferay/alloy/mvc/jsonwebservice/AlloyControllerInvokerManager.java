@@ -336,7 +336,7 @@ public class AlloyControllerInvokerManager {
 	protected String getAlloyControllerInvokerClassName(
 		Class<? extends AlloyController> controllerClass) {
 
-		Package classPackage = controllerClass.getPackage();
+		Package pkg = controllerClass.getPackage();
 
 		String simpleName = StringPool.BLANK;
 
@@ -362,7 +362,7 @@ public class AlloyControllerInvokerManager {
 			simpleName = _BASE_CLASS_NAME + _counter.getAndIncrement();
 		}
 
-		return classPackage.getName() + StringPool.PERIOD + simpleName;
+		return pkg.getName() + StringPool.PERIOD + simpleName;
 	}
 
 	protected String getAPIPath(String controller, Method method) {

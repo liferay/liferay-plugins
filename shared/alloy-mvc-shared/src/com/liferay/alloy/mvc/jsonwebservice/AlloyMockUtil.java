@@ -75,8 +75,8 @@ import org.w3c.dom.Element;
  */
 public class AlloyMockUtil {
 
-	public static class MockActionRequest extends MockPortletRequest
-		implements ActionRequest {
+	public static class MockActionRequest
+		extends MockPortletRequest implements ActionRequest {
 
 		@Override
 		public String getCharacterEncoding() {
@@ -115,8 +115,8 @@ public class AlloyMockUtil {
 
 	}
 
-	public static class MockActionResponse extends MockPortletResponse
-		implements ActionResponse {
+	public static class MockActionResponse
+		extends MockPortletResponse implements ActionResponse {
 
 		@Override
 		public PortletMode getPortletMode() {
@@ -357,6 +357,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public String getRealPath(String path) {
 			throw new UnsupportedOperationException();
@@ -457,6 +458,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public boolean isRequestedSessionIdFromUrl() {
 			throw new UnsupportedOperationException();
@@ -551,6 +553,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public String encodeRedirectUrl(String url) {
 			throw new UnsupportedOperationException();
@@ -561,6 +564,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public String encodeUrl(String url) {
 			throw new UnsupportedOperationException();
@@ -701,6 +705,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public void setStatus(int status, String message) {
 			throw new UnsupportedOperationException();
@@ -751,11 +756,13 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public Object getValue(String name) {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public String[] getValueNames() {
 			throw new UnsupportedOperationException();
@@ -771,6 +778,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public void putValue(String name, Object value) {
 			throw new UnsupportedOperationException();
@@ -781,6 +789,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
+		@Deprecated
 		@Override
 		public void removeValue(String name) {
 			throw new UnsupportedOperationException();
@@ -1296,8 +1305,8 @@ public class AlloyMockUtil {
 
 	}
 
-	public static class MockRenderRequest extends MockPortletRequest
-		implements RenderRequest {
+	public static class MockRenderRequest
+		extends MockPortletRequest implements RenderRequest {
 
 		@Override
 		public String getETag() {
@@ -1306,8 +1315,8 @@ public class AlloyMockUtil {
 
 	}
 
-	public static class MockRenderResponse extends MockPortletResponse
-		implements RenderResponse {
+	public static class MockRenderResponse
+		extends MockPortletResponse implements RenderResponse {
 
 		@Override
 		public PortletURL createActionURL() {
