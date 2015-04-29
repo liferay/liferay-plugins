@@ -43,8 +43,8 @@ AUI.add(
 		var TPL_ICON_ADD_EVENT_NODE = '<div class="btn-group">' +
 				'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
 					Liferay.Language.get('add-calendar-booking') +
-				'</div>' +
-			'</button>';
+				'</button>' +
+			'</div>';
 
 		var USER_ID = toInt(themeDisplay.getUserId());
 
