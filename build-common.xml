@@ -3032,9 +3032,13 @@ for (String path : paths) {
 	</target>
 
 	<target name="format-javadoc">
+		<path id="javadoc.formatter.classpath">
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.javadoc.formatter/lib" includes="*.jar" />
+		</path>
+
 		<java
-			classname="com.liferay.portal.tools.JavadocFormatter"
-			classpathref="portal.classpath"
+			classname="com.liferay.javadoc.formatter.JavadocFormatter"
+			classpathref="javadoc.formatter.classpath"
 			fork="true"
 			newenvironment="true"
 		>
