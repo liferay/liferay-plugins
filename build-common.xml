@@ -781,7 +781,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 					<for param="import.shared.full.path">
 						<path>
-							<fileset dir="${sdk.dir}/dist" includes="${import.shared.current.plugin.name}-${import.shared.current.plugin.full.version}*.jar" />
+							<fileset dir="${sdk.dir}/dist" excludes="**-sources.jar" includes="${import.shared.current.plugin.name}-${import.shared.current.plugin.full.version}*.jar" />
 						</path>
 						<sequential>
 							<copy
