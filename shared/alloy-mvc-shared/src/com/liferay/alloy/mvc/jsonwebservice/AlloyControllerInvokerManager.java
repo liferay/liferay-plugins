@@ -38,8 +38,8 @@ import java.lang.reflect.Modifier;
 import java.net.URI;
 import java.net.URL;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.objectweb.asm.ClassWriter;
@@ -59,8 +59,7 @@ public class AlloyControllerInvokerManager {
 
 	public void registerController(
 		ThemeDisplay themeDisplay, AlloyPortlet alloyPortlet, Portlet portlet,
-		String controller,
-		Class<? extends AlloyController> alloyControllerClass) {
+		String controller, Class<? extends AlloyController> controllerClass) {
 
 		synchronized (_alloyControllerInvokers) {
 			if (_alloyControllerInvokers.containsKey(controller)) {
@@ -78,7 +77,7 @@ public class AlloyControllerInvokerManager {
 
 			try {
 				alloyControllerInvokerClass = createAlloyControllerInvokerClass(
-					alloyControllerClass);
+					controllerClass);
 
 				Constructor<? extends AlloyControllerInvoker> constructor =
 					alloyControllerInvokerClass.getConstructor();
@@ -86,8 +85,8 @@ public class AlloyControllerInvokerManager {
 				alloyControllerInvoker = constructor.newInstance();
 
 				alloyControllerInvoker.setProperties(
-					themeDisplay, alloyPortlet, portlet, alloyControllerClass,
-					controller);
+					themeDisplay, alloyPortlet, portlet, controller,
+					controllerClass);
 
 				_alloyControllerInvokers.put(
 					controller, alloyControllerInvoker);
@@ -125,13 +124,13 @@ public class AlloyControllerInvokerManager {
 
 	protected Class<? extends AlloyControllerInvoker>
 		createAlloyControllerInvokerClass(
-			Class<? extends AlloyController> alloyControllerClass)
+			Class<? extends AlloyController> controllerClass)
 		throws NoClassNecessaryException {
 
-		ClassLoader classLoader = alloyControllerClass.getClassLoader();
+		ClassLoader classLoader = controllerClass.getClassLoader();
 
 		String alloyControllerInvokerClassName =
-			getAlloyControllerInvokerClassName(alloyControllerClass);
+			getAlloyControllerInvokerClassName(controllerClass);
 
 		Class<? extends AlloyControllerInvoker> alloyControllerInvokerClass =
 			null;
@@ -144,7 +143,7 @@ public class AlloyControllerInvokerManager {
 
 				final byte[] classData =
 					generateAlloyControllerInvokerClassData(
-						alloyControllerClass, alloyControllerInvokerClassName);
+						controllerClass, alloyControllerInvokerClassName);
 
 				final String filename =
 					PropsUtil.get(PropsKeys.LIFERAY_HOME) + "/data/alloy/" +
@@ -192,8 +191,7 @@ public class AlloyControllerInvokerManager {
 	}
 
 	protected byte[] generateAlloyControllerInvokerClassData(
-			Class<?> alloyControllerClass,
-			String alloyControllerInvokerClassName)
+			Class<?> controllerClass, String alloyControllerInvokerClassName)
 		throws NoClassNecessaryException {
 
 		boolean jsonWebServiceMethodsPresent = false;
@@ -223,7 +221,7 @@ public class AlloyControllerInvokerManager {
 		methodVisitor.visitMaxs(1, 1);
 		methodVisitor.visitEnd();
 
-		Method[] methods = alloyControllerClass.getDeclaredMethods();
+		Method[] methods = controllerClass.getDeclaredMethods();
 
 		for (Method method : methods) {
 			if (!Modifier.isPublic(method.getModifiers())) {
@@ -329,13 +327,13 @@ public class AlloyControllerInvokerManager {
 	}
 
 	protected String getAlloyControllerInvokerClassName(
-		Class<? extends AlloyController> alloyControllerClass) {
+		Class<? extends AlloyController> controllerClass) {
 
-		Package classPackage = alloyControllerClass.getPackage();
+		Package classPackage = controllerClass.getPackage();
 
 		String simpleName = StringPool.BLANK;
 
-		Class<?> enclosingClass = alloyControllerClass.getEnclosingClass();
+		Class<?> enclosingClass = controllerClass.getEnclosingClass();
 
 		if (enclosingClass != null) {
 			String name = StringUtil.replace(
@@ -389,7 +387,7 @@ public class AlloyControllerInvokerManager {
 	private static final String _BASE_CLASS_NAME = "AlloyControllerInvokerImpl";
 
 	private Map<String, AlloyControllerInvoker> _alloyControllerInvokers =
-		new ConcurrentHashMap<String, AlloyControllerInvoker>();
+		new HashMap<String, AlloyControllerInvoker>();
 	private String _contextPath;
 	private AtomicInteger _counter = new AtomicInteger(0);
 

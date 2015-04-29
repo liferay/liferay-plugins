@@ -31,6 +31,6 @@ public interface AlloyControllerInvoker {
 
 	public void setProperties(
 		ThemeDisplay themeDisplay, AlloyPortlet alloyPortlet, Portlet portlet,
-		Class<? extends AlloyController> controllerClass, String controller);
+		String controller, Class<? extends AlloyController> controllerClass);
 
 }
