@@ -212,21 +212,21 @@
 						<then>
 							<for list="${osgi.compile.jsp.wab.dependencies}" param="osgi.compile.jsp.wab.dependency">
 								<sequential>
-									<var name="dependency.dir" value="${basedir}/../@{osgi.compile.jsp.wab.dependency}" />
+									<var name="compile.jsp.dependency.dir" value="${basedir}/../@{osgi.compile.jsp.wab.dependency}" />
 
-									<compile module.dir="${dependency.dir}" />
+									<compile module.dir="${compile.jsp.dependency.dir}" />
 
 									<if>
 										<equals arg1="${compile.jsp.dependencies.classpath}" arg2="" />
 										<then>
-											<var name="compile.jsp.dependencies.classpath" value="${dependency.dir}/docroot/WEB-INF/classes" />
+											<var name="compile.jsp.dependencies.classpath" value="${compile.jsp.dependency.dir}/docroot/WEB-INF/classes" />
 										</then>
 										<else>
-											<var name="compile.jsp.dependencies.classpath" value="${compile.jsp.dependencies.classpath}:${dependency.dir}/docroot/WEB-INF/classes" />
+											<var name="compile.jsp.dependencies.classpath" value="${compile.jsp.dependencies.classpath}:${compile.jsp.dependency.dir}/docroot/WEB-INF/classes" />
 										</else>
 									</if>
 
-									<var name="dependency.dir" unset="true"/>
+									<var name="compile.jsp.dependency.dir" unset="true"/>
 								</sequential>
 							</for>
 						</then>
