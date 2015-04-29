@@ -151,7 +151,7 @@ public class AlloyControllerInvokerManager {
 					generateAlloyControllerInvokerClassData(
 						controllerClass, alloyControllerInvokerClassName);
 
-				final String filename =
+				final String fileName =
 					PropsUtil.get(PropsKeys.LIFERAY_HOME) + "/data/alloy/" +
 						getClassBinaryName(alloyControllerInvokerClassName) +
 							".class";
@@ -160,8 +160,8 @@ public class AlloyControllerInvokerManager {
 
 					@Override
 					public URL getResource(String name) {
-						if (filename.contains(name)) {
-							File file = new File(filename);
+						if (fileName.contains(name)) {
+							File file = new File(fileName);
 
 							try {
 								FileUtil.write(file, classData);
