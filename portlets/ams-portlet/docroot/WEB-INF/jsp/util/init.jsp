@@ -18,7 +18,7 @@
 page import="com.liferay.alloy.mvc.AlloyException" %><%@
 page import="com.liferay.alloy.mvc.AlloySearchResult" %><%@
 page import="com.liferay.alloy.mvc.BaseAlloyIndexer" %><%@
-page import="com.liferay.alloy.mvc.JSONWebServiceMethod" %><%@
+page import="com.liferay.alloy.mvc.jsonwebservice.JSONWebServiceMethod" %><%@
 page import="com.liferay.ams.model.Asset" %><%@
 page import="com.liferay.ams.model.Definition" %><%@
 page import="com.liferay.ams.model.Type" %><%@
