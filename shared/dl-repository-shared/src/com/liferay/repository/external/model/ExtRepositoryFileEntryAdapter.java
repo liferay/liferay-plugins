@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.FileShortcut;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.repository.model.RepositoryModelOperation;
@@ -97,6 +98,11 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public String getFileName() {
 		return DLUtil.getSanitizedFileName(getTitle(), getExtension());
+	}
+
+	@Override
+	public List<FileShortcut> getFileShortcuts() {
+		return null;
 	}
 
 	@Override
