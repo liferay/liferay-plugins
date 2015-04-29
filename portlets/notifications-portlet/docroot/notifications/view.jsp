@@ -26,13 +26,9 @@
 
 		<%
 		boolean actionable = ParamUtil.getBoolean(request, "actionable");
-
-		String cssClass = "user-notifications-container ";
-
-		cssClass += actionable ? "actionable" : "nonactionable";
 		%>
 
-		<aui:container cssClass="<%= cssClass %>">
+		<aui:container cssClass='<%= "user-notifications-container " + (actionable ? "actionable" : "nonactionable") %>'>
 			<aui:row>
 				<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
 					<div class="nav">
