@@ -95,42 +95,34 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 		_keyStoreLoader = keyStoreLoader;
 	}
 
-	@Override
 	public void setKeyStorePassword(char[] keyStorePassword) {
 		_keyStorePassword = keyStorePassword;
 	}
 
-	@Override
 	public void setKeyStorePath(String keyStorePath) {
 		_keyStorePath = keyStorePath;
 	}
 
-	@Override
 	public void setKeyStoreType(String keyStoreType) {
 		_keyStoreType = keyStoreType;
 	}
 
-	@Override
 	public void setTrustStorePassword(char[] trustStorePassword) {
 		_trustStorePassword = trustStorePassword;
 	}
 
-	@Override
 	public void setTrustStorePath(String trustStorePath) {
 		_trustStorePath = trustStorePath;
 	}
 
-	@Override
 	public void setTrustStoreType(String trustStoreType) {
 		_trustStoreType = trustStoreType;
 	}
 
-	@Override
 	public void setVerifyServerCertificate(boolean verifyServerCertificate) {
 		_verifyServerCertificate = verifyServerCertificate;
 	}
 
-	@Override
 	public void setVerifyServerHostname(boolean verifyServerHostname) {
 		_verifyServerHostname = verifyServerHostname;
 	}
