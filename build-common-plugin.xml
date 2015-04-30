@@ -686,6 +686,10 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="format-xsd">
+		<path id="xml.formatter.classpath">
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.xml.formatter/lib" includes="*.jar" />
+		</path>
+
 		<for param="xsd.full.path">
 			<path>
 				<fileset
@@ -695,8 +699,8 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			</path>
 			<sequential>
 				<java
-					classname="com.liferay.portal.tools.XMLFormatter"
-					classpathref="portal.classpath"
+					classname="com.liferay.xml.formatter.XMLFormatter"
+					classpathref="xml.formatter.classpath"
 					fork="true"
 					newenvironment="true"
 				>
