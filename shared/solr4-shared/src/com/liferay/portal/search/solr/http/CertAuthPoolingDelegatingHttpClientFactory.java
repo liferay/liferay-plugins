@@ -26,7 +26,7 @@ public class CertAuthPoolingDelegatingHttpClientFactory
 	public void afterPropertiesSet() throws Exception {
 		SSLSocketFactory sslSocketFactory = _sslSocketFactoryBuilder.build();
 
-		HttpClientFactory httpClientFactory =
+		CertAuthPoolingHttpClientFactory httpClientFactory =
 			new CertAuthPoolingHttpClientFactory(sslSocketFactory);
 
 		httpClientFactory.setDefaultMaxConnectionsPerRoute(

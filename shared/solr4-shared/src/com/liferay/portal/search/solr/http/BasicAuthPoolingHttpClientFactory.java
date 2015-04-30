@@ -70,7 +70,6 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 		_authScope = authScope;
 	}
 
-	@Override
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
@@ -78,7 +77,6 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 			defaultMaxConnectionsPerRoute);
 	}
 
-	@Override
 	public void setHttpRequestInterceptors(
 		List<HttpRequestInterceptor> httpRequestInterceptors) {
 
@@ -86,7 +84,6 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 			httpRequestInterceptors);
 	}
 
-	@Override
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
 		_basePoolingHttpClientFactory.setMaxTotalConnections(
 			maxTotalConnections);
@@ -106,7 +103,7 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 	}
 
 	private AuthScope _authScope;
-	private BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
+	private final BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
 	private String _password;
 	private String _username;
 
