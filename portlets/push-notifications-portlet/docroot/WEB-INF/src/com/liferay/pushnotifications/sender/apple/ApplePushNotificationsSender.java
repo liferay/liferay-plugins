@@ -246,6 +246,9 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			if (isSandbox()) {
 				appleServiceBuilder.withSandboxDestination();
 			}
+			else {
+				appleServiceBuilder.withProductionDestination();
+			}
 
 			_apnsService = appleServiceBuilder.build();
 		}
