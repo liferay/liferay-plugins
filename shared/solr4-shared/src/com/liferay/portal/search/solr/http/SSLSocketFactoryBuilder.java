@@ -23,20 +23,4 @@ public interface SSLSocketFactoryBuilder {
 
 	public SSLSocketFactory build() throws Exception;
 
-	public void setKeyStorePassword(char[] keyStorePassword);
-
-	public void setKeyStorePath(String keyStorePath);
-
-	public void setKeyStoreType(String keyStoreType);
-
-	public void setTrustStorePassword(char[] trustStorePassword);
-
-	public void setTrustStorePath(String trustStoreLocation);
-
-	public void setTrustStoreType(String trustStoreType);
-
-	public void setVerifyServerCertificate(boolean verifyServerCertificate);
-
-	public void setVerifyServerHostname(boolean verifyServerHostname);
-
 }

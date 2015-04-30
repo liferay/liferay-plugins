@@ -38,43 +38,10 @@ public class CertAuthPoolingDelegatingHttpClientFactory
 		setHttpClientFactory(httpClientFactory);
 	}
 
-	public void setKeyStorePassword(char[] keyStorePassword) {
-		_sslSocketFactoryBuilder.setKeyStorePassword(keyStorePassword);
-	}
-
-	public void setKeyStorePath(String keyStoreLocation) {
-		_sslSocketFactoryBuilder.setKeyStorePath(keyStoreLocation);
-	}
-
-	public void setKeyStoreType(String keyStoreType) {
-		_sslSocketFactoryBuilder.setKeyStoreType(keyStoreType);
-	}
-
 	public void setSslSocketFactoryBuilder(
 		SSLSocketFactoryBuilder sslSocketFactoryBuilder) {
 
 		_sslSocketFactoryBuilder = sslSocketFactoryBuilder;
-	}
-
-	public void setTrustStorePassword(char[] trustStorePassword) {
-		_sslSocketFactoryBuilder.setTrustStorePassword(trustStorePassword);
-	}
-
-	public void setTrustStorePath(String trustStorePath) {
-		_sslSocketFactoryBuilder.setTrustStorePath(trustStorePath);
-	}
-
-	public void setTrustStoreType(String trustStoreType) {
-		_sslSocketFactoryBuilder.setTrustStoreType(trustStoreType);
-	}
-
-	public void setVerifyServerCertificate(boolean verifyServerCertificate) {
-		_sslSocketFactoryBuilder.setVerifyServerCertificate(
-			verifyServerCertificate);
-	}
-
-	public void setVerifyServerHostname(boolean verifyServerHostname) {
-		_sslSocketFactoryBuilder.setVerifyServerHostname(verifyServerHostname);
 	}
 
 	private SSLSocketFactoryBuilder _sslSocketFactoryBuilder;
