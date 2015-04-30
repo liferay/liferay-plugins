@@ -25,7 +25,7 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import sample.appsforyourdomain.gmailsettings.GmailSettingsService;
+import com.google.gdata.sample.appsforyourdomain.gmailsettings.GmailSettingsService;
 
 /**
  * @author Amos Fong
