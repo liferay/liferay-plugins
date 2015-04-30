@@ -17,7 +17,7 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="lib/AppsForYourDomainClient.jar" />
+	<classpathentry kind="lib" path="lib/com.google.gdata.sample.appsforyourdomain.jar" />
 	<classpathentry kind="lib" path="lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="lib/gdata-appsforyourdomain-1.0.jar" />
 	<classpathentry kind="lib" path="lib/gdata-core-1.0.jar" />
@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="lib/httpcore.jar" />
 	<classpathentry kind="lib" path="lib/jackson-core.jar" />
 	<classpathentry kind="lib" path="lib/jsr305.jar" />
+	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
