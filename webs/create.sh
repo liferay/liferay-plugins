@@ -17,7 +17,7 @@ fi
 
 chmod a+x ../tools/gradle/gradlew
 
-../tools/gradle/gradlew --build-file=../sdk.gradle -PwebName=$1 -PwebDisplayName=\"$2\" createWeb
+../tools/gradle/gradlew --build-file=../sdk.gradle -PwebName=$1 -PwebDisplayName="$2" createWeb
 
 #ant deploy
 

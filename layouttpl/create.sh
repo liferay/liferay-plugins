@@ -17,7 +17,7 @@ fi
 
 chmod a+x ../tools/gradle/gradlew
 
-../tools/gradle/gradlew --build-file=../sdk.gradle -PlayouttplName=$1 -PlayouttplDisplayName=\"$2\" createLayouttpl
+../tools/gradle/gradlew --build-file=../sdk.gradle -PlayouttplName=$1 -PlayouttplDisplayName="$2" createLayouttpl
 
 cd $1-layouttpl
 
