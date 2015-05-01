@@ -27,87 +27,23 @@
 		<attribute default="false" name="verbose" />
 
 		<sequential>
-			<condition property="cache.dir" value="C:/opt/dev/cache" else="/opt/dev/cache">
-				<contains string="${os.name}" substring="Windows" casesensitive="false" />
-			</condition>
-
-			<var name="dest" value="@{dest}" />
-			<var name="src" value="@{src}" />
-
-			<script classpathref="lib.classpath" language="beanshell">
-				<![CDATA[
-					import java.util.regex.Matcher;
-					import java.util.regex.Pattern;
-
-					public String trimSlash(String s) {
-						if (s.endsWith("/")) {
-							s = s.substring(0, s.length() - 1);
-						}
-
-						return s;
-					}
-
-					String dest = project.getProperty("dest");
-					String src = project.getProperty("src");
-					String cacheDir = project.getProperty("cache.dir");
-
-					String cacheFilePath = src.replace("http://", cacheDir + "/http/");
-
-					int x = cacheFilePath.lastIndexOf("/");
-
-					String cacheFileName = cacheFilePath.substring(x + 1);
-					String cacheFileDir = trimSlash(cacheFilePath.substring(0, x));
-
-					String destDirOrFile = dest;
-
-					if (destDirOrFile.contains("/")) {
-						int x = destDirOrFile.lastIndexOf("/");
-
-						destDirOrFile = destDirOrFile.substring(x + 1);
-					}
-
-					Pattern pattern = Pattern.compile("[\\w\\-]+\\.[\\w]+");
-
-					Matcher matcher = pattern.matcher(destDirOrFile);
-
-					String destFileDir = dest;
-					String destFileName = cacheFileName;
-
-					if (matcher.find()) {
-						destFileDir = ".";
-						destFileName = matcher.group();
-
-						if (dest.contains("/")) {
-							int x = dest.lastIndexOf("/");
-
-							destFileDir = dest.substring(0, x);
-						}
-					}
-					else {
-						destFileDir = dest;
-						destFileName = cacheFileName;
-					}
-
-					destFileDir = trimSlash(destFileDir);
-
-					project.setProperty("cache.file.dir", cacheFileDir);
-					project.setProperty("cache.file.path", cacheFilePath);
-					project.setProperty("dest.file.path", destFileDir + "/" + destFileName);
-				]]>
-			</script>
-
 			<if>
-				<available file="${cache.dir}" />
+				<available file="/opt/dev/cache" />
 				<then>
+					<propertyregex
+						input="@{src}"
+						property="mirrors.get.cache.file"
+						regexp="[:/]"
+						replace="_"
+					/>
+
 					<if>
 						<not>
-							<available file="${cache.file.path}" />
+							<available file="/opt/dev/cache/${mirrors.get.cache.file}" />
 						</not>
 						<then>
-							<mkdir dir="${cache.file.dir}" />
-
 							<mirrors-get-cmd
-								dest="${cache.file.path}"
+								dest="/opt/dev/cache/${mirrors.get.cache.file}"
 								ignoreerrors="@{ignoreerrors}"
 								skipexisting="@{skipexisting}"
 								src="@{src}"
@@ -117,10 +53,12 @@
 					</if>
 
 					<copy
-						file="${cache.file.path}"
+						file="/opt/dev/cache/${mirrors.get.cache.file}"
 						overwrite="true"
-						tofile="${dest.file.path}"
+						tofile="@{dest}"
 					/>
+
+					<var name="mirrors.get.cache.file" unset="true" />
 				</then>
 				<else>
 					<mirrors-get-cmd
