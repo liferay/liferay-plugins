@@ -17,7 +17,7 @@ fi
 
 chmod a+x ../tools/gradle/gradlew
 
-../tools/gradle/gradlew --build-file=../sdk.gradle -PthemeName=$1 -PthemeDisplayName=\"$2\" createTheme
+../tools/gradle/gradlew --build-file=../sdk.gradle -PthemeName=$1 -PthemeDisplayName="$2" createTheme
 
 #ant deploy
 

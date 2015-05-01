@@ -17,7 +17,7 @@ fi
 
 chmod a+x ../tools/gradle/gradlew
 
-../tools/gradle/gradlew --build-file=../sdk.gradle -PextName=$1 -PextDisplayName=\"$2\" createExt
+../tools/gradle/gradlew --build-file=../sdk.gradle -PextName=$1 -PextDisplayName="$2" createExt
 
 #ant deploy
 

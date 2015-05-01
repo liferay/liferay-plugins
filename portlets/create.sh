@@ -22,7 +22,7 @@ fi
 
 chmod a+x ../tools/gradle/gradlew
 
-../tools/gradle/gradlew --build-file=../sdk.gradle -PportletName=$1 -PportletDisplayName=\"$2\" -PportletFramework=$3 createPortlet
+../tools/gradle/gradlew --build-file=../sdk.gradle -PportletName=$1 -PportletDisplayName="$2" -PportletFramework=$3 createPortlet
 
 #ant deploy
 

@@ -17,7 +17,7 @@ fi
 
 chmod a+x ../tools/gradle/gradlew
 
-../tools/gradle/gradlew --build-file=../sdk.gradle -PhookName=$1 -PhookDisplayName=\"$2\" createHook
+../tools/gradle/gradlew --build-file=../sdk.gradle -PhookName=$1 -PhookDisplayName="$2" createHook
 
 #ant deploy
 
