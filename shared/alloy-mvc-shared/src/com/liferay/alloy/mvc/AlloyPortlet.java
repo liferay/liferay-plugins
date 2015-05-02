@@ -37,6 +37,7 @@ import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -211,23 +212,35 @@ public class AlloyPortlet extends GenericPortlet {
 		}
 	}
 
-	protected synchronized void registerAlloyController(
-		AlloyController alloyController) {
-
+	protected void registerAlloyController(AlloyController alloyController) {
 		BaseAlloyControllerImpl baseAlloyControllerImpl =
 			(BaseAlloyControllerImpl)alloyController;
 
-		String controllerPath = baseAlloyControllerImpl.controllerPath;
+		String controller = baseAlloyControllerImpl.controllerPath;
 
-		if (!baseAlloyControllerImpl.equals(
-				_alloyControllers.get(controllerPath))) {
+		BaseAlloyControllerImpl otherBaseAlloyControllerImpl =
+			_alloyControllers.get(controller);
 
-			_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
+		if ((otherBaseAlloyControllerImpl == null) ||
+			(baseAlloyControllerImpl.getClass() !=
+				otherBaseAlloyControllerImpl.getClass())) {
 
-			_alloyControllerInvokerManager.registerController(
-				baseAlloyControllerImpl.getThemeDisplay(), this,
-				baseAlloyControllerImpl.portlet, controllerPath,
-				baseAlloyControllerImpl.getClass());
+			synchronized (controller.intern()) {
+				otherBaseAlloyControllerImpl = _alloyControllers.get(
+					controller);
+
+				if ((otherBaseAlloyControllerImpl == null) ||
+					(baseAlloyControllerImpl.getClass() !=
+						otherBaseAlloyControllerImpl.getClass())) {
+
+					_alloyControllers.put(controller, baseAlloyControllerImpl);
+
+					_alloyControllerInvokerManager.registerController(
+						baseAlloyControllerImpl.getThemeDisplay(), this,
+						baseAlloyControllerImpl.portlet, controller,
+						baseAlloyControllerImpl.getClass());
+				}
+			}
 		}
 	}
 
@@ -235,7 +248,7 @@ public class AlloyPortlet extends GenericPortlet {
 
 	private AlloyControllerInvokerManager _alloyControllerInvokerManager;
 	private Map<String, BaseAlloyControllerImpl> _alloyControllers =
-		new HashMap<>();
+		new ConcurrentHashMap<>();
 	private Map<String, String> _defaultRouteParameters = new HashMap<>();
 
 }

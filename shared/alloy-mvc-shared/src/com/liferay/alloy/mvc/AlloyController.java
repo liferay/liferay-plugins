@@ -31,8 +31,6 @@ public interface AlloyController {
 
 	public void execute() throws Exception;
 
-	public long getLastModified();
-
 	public Portlet getPortlet();
 
 	public HttpServletRequest getRequest();
