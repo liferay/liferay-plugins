@@ -940,7 +940,7 @@ public class CalendarPortlet extends MVCPortlet {
 			resourceRequest.getPreferences();
 
 		boolean enableRss = GetterUtil.getBoolean(
-			portletPreferences.getValue("enableRss", null));
+			portletPreferences.getValue("enableRss", null), true);
 
 		if (!PortalUtil.isRSSFeedsEnabled() || !enableRss) {
 			PortalUtil.sendRSSFeedsDisabledError(
