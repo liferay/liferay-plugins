@@ -39,8 +39,8 @@ import java.lang.reflect.Modifier;
 import java.net.URI;
 import java.net.URL;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.portlet.PortletContext;
@@ -70,65 +70,71 @@ public class AlloyControllerInvokerManager {
 		ThemeDisplay themeDisplay, AlloyPortlet alloyPortlet, Portlet portlet,
 		String controller, Class<? extends AlloyController> controllerClass) {
 
-		synchronized (_alloyControllerInvokers) {
-			if (_alloyControllerInvokers.containsKey(controller)) {
-				AlloyControllerInvoker alloyControllerInvoker =
-					_alloyControllerInvokers.get(controller);
+		if (_locked) {
+			return;
+		}
 
-				JSONWebServiceActionsManagerUtil.
-					unregisterJSONWebServiceActions(alloyControllerInvoker);
-			}
+		if (_alloyControllerInvokers.containsKey(controller)) {
+			AlloyControllerInvoker alloyControllerInvoker =
+				_alloyControllerInvokers.get(controller);
 
-			Class<? extends AlloyControllerInvoker>
-				alloyControllerInvokerClass = null;
+			JSONWebServiceActionsManagerUtil.unregisterJSONWebServiceActions(
+				alloyControllerInvoker);
+		}
 
-			AlloyControllerInvoker alloyControllerInvoker = null;
+		Class<? extends AlloyControllerInvoker>
+			alloyControllerInvokerClass = null;
 
-			try {
-				alloyControllerInvokerClass = createAlloyControllerInvokerClass(
-					controllerClass);
+		AlloyControllerInvoker alloyControllerInvoker = null;
 
-				Constructor<? extends AlloyControllerInvoker> constructor =
-					alloyControllerInvokerClass.getConstructor();
+		try {
+			alloyControllerInvokerClass = createAlloyControllerInvokerClass(
+				controllerClass);
 
-				alloyControllerInvoker = constructor.newInstance();
+			Constructor<? extends AlloyControllerInvoker> constructor =
+				alloyControllerInvokerClass.getConstructor();
 
-				alloyControllerInvoker.setProperties(
-					themeDisplay, alloyPortlet, portlet, controller,
-					controllerClass);
+			alloyControllerInvoker = constructor.newInstance();
 
-				_alloyControllerInvokers.put(
-					controller, alloyControllerInvoker);
-			}
-			catch (NoClassNecessaryException ncne) {
-				return;
-			}
-			catch (Exception e) {
-				throw new RuntimeException(e);
-			}
+			alloyControllerInvoker.setProperties(
+				themeDisplay, alloyPortlet, portlet, controller,
+				controllerClass);
 
-			for (Method method :
-					alloyControllerInvokerClass.getDeclaredMethods()) {
+			_alloyControllerInvokers.put(controller, alloyControllerInvoker);
+		}
+		catch (NoClassNecessaryException ncne) {
+			return;
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 
-				JSONWebServiceActionsManagerUtil.registerJSONWebServiceAction(
-					_contextPath, alloyControllerInvoker,
-					alloyControllerInvokerClass, method,
-					getAPIPath(controller, method), "GET");
-			}
+		for (Method method : alloyControllerInvokerClass.getDeclaredMethods()) {
+			JSONWebServiceActionsManagerUtil.registerJSONWebServiceAction(
+				_contextPath, alloyControllerInvoker,
+				alloyControllerInvokerClass, method,
+				getAPIPath(controller, method), "GET");
 		}
 	}
 
 	public void unregisterControllers() {
-		synchronized (_alloyControllerInvokers) {
-			for (AlloyControllerInvoker alloyControllerInvoker :
-					_alloyControllerInvokers.values()) {
+		_locked = true;
+
+		for (Map.Entry<String, AlloyControllerInvoker> entry :
+				_alloyControllerInvokers.entrySet()) {
+
+			String controller = entry.getKey();
+
+			synchronized (controller.intern()) {
+				AlloyControllerInvoker alloyControllerInvoker =
+					entry.getValue();
 
 				JSONWebServiceActionsManagerUtil.
 					unregisterJSONWebServiceActions(alloyControllerInvoker);
 			}
-
-			_alloyControllerInvokers.clear();
 		}
+
+		_alloyControllerInvokers.clear();
 	}
 
 	protected Class<? extends AlloyControllerInvoker>
@@ -397,8 +403,9 @@ public class AlloyControllerInvokerManager {
 	private static final String _BASE_CLASS_NAME = "AlloyControllerInvokerImpl";
 
 	private Map<String, AlloyControllerInvoker> _alloyControllerInvokers =
-		new HashMap<String, AlloyControllerInvoker>();
+		new ConcurrentHashMap<String, AlloyControllerInvoker>();
 	private String _contextPath;
 	private AtomicInteger _counter = new AtomicInteger(0);
+	private boolean _locked = false;
 
 }
