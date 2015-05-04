@@ -32,18 +32,18 @@
 				<then>
 					<propertyregex
 						input="@{src}"
-						property="mirrors.get.cache.file"
+						property="mirrors.cache.file"
 						regexp="[:/]"
 						replace="_"
 					/>
 
 					<if>
 						<not>
-							<available file="/opt/dev/cache/${mirrors.get.cache.file}" />
+							<available file="/opt/dev/cache/${mirrors.cache.file}" />
 						</not>
 						<then>
 							<mirrors-get-cmd
-								dest="/opt/dev/cache/${mirrors.get.cache.file}"
+								dest="/opt/dev/cache/${mirrors.cache.file}"
 								ignoreerrors="@{ignoreerrors}"
 								skipexisting="@{skipexisting}"
 								src="@{src}"
@@ -57,29 +57,29 @@
 						<then>
 							<propertyregex
 								input="@{src}"
-								property="mirrors.get.dest.file"
+								property="mirrors.dest.file"
 								regexp=".*/(.*)"
 								replace="\1"
 							/>
 
 							<copy
-								file="/opt/dev/cache/${mirrors.get.cache.file}"
+								file="/opt/dev/cache/${mirrors.cache.file}"
 								overwrite="true"
-								tofile="@{dest}/${mirrors.get.dest.file}"
+								tofile="@{dest}/${mirrors.dest.file}"
 							/>
 
-							<var name="mirrors.get.dest.file" unset="true" />
+							<var name="mirrors.dest.file" unset="true" />
 						</then>
 						<else>
 							<copy
-								file="/opt/dev/cache/${mirrors.get.cache.file}"
+								file="/opt/dev/cache/${mirrors.cache.file}"
 								overwrite="true"
 								tofile="@{dest}"
 							/>
 						</else>
 					</if>
 
-					<var name="mirrors.get.cache.file" unset="true" />
+					<var name="mirrors.cache.file" unset="true" />
 				</then>
 				<else>
 					<mirrors-get-cmd
