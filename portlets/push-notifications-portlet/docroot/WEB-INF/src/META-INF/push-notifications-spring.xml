@@ -15,5 +15,8 @@
 		<entry key="apple">
 			<bean class="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" />
 		</entry>
+		<entry key="sms">
+			<bean class="com.liferay.pushnotifications.sender.sms.TwilioSMSSender" />
+		</entry>
 	</util:map>
 </beans>

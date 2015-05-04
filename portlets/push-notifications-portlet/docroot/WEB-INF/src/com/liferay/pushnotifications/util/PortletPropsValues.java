@@ -50,4 +50,13 @@ public class PortletPropsValues {
 	public static final String LIFERAY_USERNAME = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.LIFERAY_USERNAME));
 
+	public static final String SMS_TWILIO_ACCOUNT_SID = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.SMS_TWILIO_ACCOUNT_SID));
+
+	public static final String SMS_TWILIO_AUTH_TOKEN = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.SMS_TWILIO_AUTH_TOKEN));
+
+	public static final String SMS_TWILIO_NUMBER = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.SMS_TWILIO_NUMBER));
+
 }

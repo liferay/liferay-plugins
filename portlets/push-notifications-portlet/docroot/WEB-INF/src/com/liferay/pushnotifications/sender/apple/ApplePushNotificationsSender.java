@@ -63,7 +63,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		String body = payloadJSONObject.getString(
 			PushNotificationsConstants.KEY_BODY);
 
-		if (body != null) {
+		if (Validator.isNotNull(body)) {
 			builder.alertBody(body);
 		}
 

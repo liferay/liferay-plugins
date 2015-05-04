@@ -39,4 +39,11 @@ public interface PortletPropsKeys {
 
 	public static final String LIFERAY_USERNAME = "liferay.username";
 
+	public static final String SMS_TWILIO_ACCOUNT_SID =
+		"sms.twilio.account.sid";
+
+	public static final String SMS_TWILIO_AUTH_TOKEN = "sms.twilio.auth.token";
+
+	public static final String SMS_TWILIO_NUMBER = "sms.twilio.number";
+
 }

@@ -42,7 +42,7 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 	@Override
 	public void send(
-			String platform, List<String> tokens, JSONObject jsonObject)
+			String platform, List<String> tokens, JSONObject payloadJSONObject)
 		throws Exception {
 
 		Sender sender = getSender();
@@ -51,7 +51,7 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 			return;
 		}
 
-		Message message = buildMessage(jsonObject);
+		Message message = buildMessage(payloadJSONObject);
 
 		int retries = PrefsPropsUtil.getInteger(
 			PortletPropsKeys.ANDROID_RETRIES,
