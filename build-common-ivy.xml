@@ -52,11 +52,32 @@
 						</then>
 					</if>
 
-					<copy
-						file="/opt/dev/cache/${mirrors.get.cache.file}"
-						overwrite="true"
-						tofile="@{dest}"
-					/>
+					<if>
+						<available file="@{dest}" type="dir" />
+						<then>
+							<propertyregex
+								input="@{src}"
+								property="mirrors.get.dest.file"
+								regexp=".*/(.*)"
+								replace="\1"
+							/>
+
+							<copy
+								file="/opt/dev/cache/${mirrors.get.cache.file}"
+								overwrite="true"
+								tofile="@{dest}/${mirrors.get.dest.file}"
+							/>
+
+							<var name="mirrors.get.dest.file" unset="true" />
+						</then>
+						<else>
+							<copy
+								file="/opt/dev/cache/${mirrors.get.cache.file}"
+								overwrite="true"
+								tofile="@{dest}"
+							/>
+						</else>
+					</if>
 
 					<var name="mirrors.get.cache.file" unset="true" />
 				</then>
