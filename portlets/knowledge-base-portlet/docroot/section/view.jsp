@@ -65,7 +65,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					<div class="<%= (i == 0) ? "kb-article-title kb-article-title-first" : "kb-article-title" %>">
 
 						<%
-						PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(kbArticle);
+						PortletURL viewKBArticleURL = kbArticleURLHelper.createViewWithRedirectURL(kbArticle, currentURL);
 						%>
 
 						<liferay-ui:icon
