@@ -1754,10 +1754,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			preferences, kbArticle.getCompanyId());
 
 		String kbArticleContent = StringUtil.replace(
-			kbArticle.getContent(),
-			new String[] {
-				"href=\"/", "src=\"/"
-			},
+			kbArticle.getContent(), new String[] {"href=\"/", "src=\"/"},
 			new String[] {
 				"href=\"" + serviceContext.getPortalURL() + "/",
 				"src=\"" + serviceContext.getPortalURL() + "/"
@@ -1767,10 +1764,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		for (String key : kbArticleDiffs.keySet()) {
 			String value = StringUtil.replace(
-				kbArticleDiffs.get(key),
-				new String[] {
-					"href=\"/", "src=\"/"
-				},
+				kbArticleDiffs.get(key), new String[] {"href=\"/", "src=\"/"},
 				new String[] {
 					"href=\"" + serviceContext.getPortalURL() + "/",
 					"src=\"" + serviceContext.getPortalURL() + "/"

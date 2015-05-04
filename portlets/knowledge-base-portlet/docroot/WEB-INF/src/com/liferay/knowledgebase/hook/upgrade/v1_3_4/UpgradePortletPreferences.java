@@ -53,9 +53,7 @@ public class UpgradePortletPreferences extends BaseUpgradePortletPreferences {
 		return PortletPreferencesFactoryUtil.toXML(portletPreferences);
 	}
 
-	private static final String[] _PORTLET_IDS = {
-		"1_WAR_knowledgebaseportlet"
-	};
+	private static final String[] _PORTLET_IDS = {"1_WAR_knowledgebaseportlet"};
 
 	private static final String[][] _PREFERENCE_NAMES = {
 		{

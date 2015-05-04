@@ -764,9 +764,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			else {
 				value = StringUtil.replace(
 					kbArticle.getContent(),
-					new String[] {
-						"href=\"/", "src=\"/"
-					},
+					new String[] {"href=\"/", "src=\"/"},
 					new String[] {
 						"href=\"" + themeDisplay.getURLPortal() + "/",
 						"src=\"" + themeDisplay.getURLPortal() + "/"

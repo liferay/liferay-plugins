@@ -374,10 +374,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			kbComment.getClassPK(), WorkflowConstants.STATUS_APPROVED);
 
 		String kbArticleContent = StringUtil.replace(
-			kbArticle.getContent(),
-			new String[] {
-				"href=\"/", "src=\"/"
-			},
+			kbArticle.getContent(), new String[] {"href=\"/", "src=\"/"},
 			new String[] {
 				"href=\"" + serviceContext.getPortalURL() + "/",
 				"src=\"" + serviceContext.getPortalURL() + "/"
