@@ -38,7 +38,14 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					<h2 class="kb-element-header">
 
 						<%
-						PortletURL viewKBArticleURL = kbArticleURLHelper.createViewURL(childrenKBArticle);
+						PortletURL viewKBArticleURL = null;
+
+						if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SECTION)) {
+							viewKBArticleURL = kbArticleURLHelper.createViewWithRedirectURL(childrenKBArticle, currentURL);
+						}
+						else {
+							viewKBArticleURL = kbArticleURLHelper.createViewURL(childrenKBArticle);
+						}
 						%>
 
 						<aui:a href="<%= viewKBArticleURL.toString() %>"><%= childrenKBArticle.getTitle() %></aui:a>
