@@ -5990,450 +5990,412 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	* Returns all the k b articles where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param latest the latest
 	* @return the matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_L(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_L(
+		long groupId, java.lang.String sections, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_L(
+		long groupId, java.lang.String sections, boolean latest, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_L(
+		long groupId, java.lang.String sections, boolean latest, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle findByG_S_L_First(
+		long groupId, java.lang.String sections, boolean latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle fetchByG_S_L_First(
+		long groupId, java.lang.String sections, boolean latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle findByG_S_L_Last(
+		long groupId, java.lang.String sections, boolean latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle fetchByG_S_L_Last(
+		long groupId, java.lang.String sections, boolean latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle[] findByG_S_L_PrevAndNext(
+		long kbArticleId, long groupId, java.lang.String sections,
+		boolean latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @return the matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_L(
+		long groupId, java.lang.String sections, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_L(
+		long groupId, java.lang.String sections, boolean latest, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_L(
+		long groupId, java.lang.String sections, boolean latest, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle[] filterFindByG_S_L_PrevAndNext(
+		long kbArticleId, long groupId, java.lang.String sections,
+		boolean latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @return the matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_L(
+		long groupId, java.lang.String[] sectionses, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_L(
+		long groupId, java.lang.String[] sectionses, boolean latest, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_L(
+		long groupId, java.lang.String[] sectionses, boolean latest, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the k b articles where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @return the matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_L(
+		long groupId, java.lang.String[] sectionses, boolean latest)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_L(
+		long groupId, java.lang.String[] sectionses, boolean latest, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param latest the latest
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_L(
+		long groupId, java.lang.String[] sectionses, boolean latest, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where groupId = &#63; and sections LIKE &#63; and latest = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param latest the latest
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_S_L(long groupId, java.lang.String sections,
 		boolean latest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
+	* Returns the number of k b articles where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of matching k b articles
+	* @return the number of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_L(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_L(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching k b article
-	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle findByG_P_S_L_First(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle fetchByG_P_S_L_First(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching k b article
-	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle findByG_P_S_L_Last(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle fetchByG_P_S_L_Last(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param kbArticleId the primary key of the current k b article
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next k b article
-	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle[] findByG_P_S_L_PrevAndNext(
-		long kbArticleId, long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @return the matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_L(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
+	public int countByG_S_L(long groupId, java.lang.String sections,
 		boolean latest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
+	* Returns the number of k b articles where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_L(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_L(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean latest, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param kbArticleId the primary key of the current k b article
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next k b article
-	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle[] filterFindByG_P_S_L_PrevAndNext(
-		long kbArticleId, long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @return the matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_L(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_L(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_L(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @return the matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_L(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_L(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param latest the latest
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_L(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param latest the latest
-	* @return the number of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public int countByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param latest the latest
 	* @return the number of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest)
+	public int countByG_S_L(long groupId, java.lang.String[] sectionses,
+		boolean latest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and latest = &#63;.
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param latest the latest
 	* @return the number of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean latest)
+	public int filterCountByG_S_L(long groupId, java.lang.String sections,
+		boolean latest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and latest = &#63;.
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param latest the latest
 	* @return the number of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByG_P_S_L(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean latest)
+	public int filterCountByG_S_L(long groupId, java.lang.String[] sectionses,
+		boolean latest)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns all the k b articles where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @return the matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_M(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main)
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_M(
+		long groupId, java.lang.String sections, boolean main)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns a range of all the k b articles where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @param start the lower bound of the range of k b articles
@@ -6441,20 +6403,18 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the range of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_M(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_M(
+		long groupId, java.lang.String sections, boolean main, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns an ordered range of all the k b articles where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @param start the lower bound of the range of k b articles
@@ -6463,17 +6423,16 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the ordered range of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_M(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main, int start, int end,
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_M(
+		long groupId, java.lang.String sections, boolean main, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -6481,35 +6440,31 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle findByG_P_S_M_First(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main,
+	public com.liferay.knowledgebase.model.KBArticle findByG_S_M_First(
+		long groupId, java.lang.String sections, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle fetchByG_P_S_M_First(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main,
+	public com.liferay.knowledgebase.model.KBArticle fetchByG_S_M_First(
+		long groupId, java.lang.String sections, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -6517,36 +6472,32 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle findByG_P_S_M_Last(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main,
+	public com.liferay.knowledgebase.model.KBArticle findByG_S_M_Last(
+		long groupId, java.lang.String sections, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle fetchByG_P_S_M_Last(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main,
+	public com.liferay.knowledgebase.model.KBArticle fetchByG_S_M_Last(
+		long groupId, java.lang.String sections, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param kbArticleId the primary key of the current k b article
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -6554,306 +6505,283 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle[] findByG_P_S_M_PrevAndNext(
-		long kbArticleId, long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main,
+	public com.liferay.knowledgebase.model.KBArticle[] findByG_S_M_PrevAndNext(
+		long kbArticleId, long groupId, java.lang.String sections,
+		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @return the matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_M(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_M(
+		long groupId, java.lang.String sections, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and main = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param main the main
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_M(
+		long groupId, java.lang.String sections, boolean main, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and sections LIKE &#63; and main = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param main the main
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_M(
+		long groupId, java.lang.String sections, boolean main, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and main = &#63;.
+	*
+	* @param kbArticleId the primary key of the current k b article
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param main the main
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next k b article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.knowledgebase.model.KBArticle[] filterFindByG_S_M_PrevAndNext(
+		long kbArticleId, long groupId, java.lang.String sections,
+		boolean main,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param main the main
+	* @return the matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_M(
+		long groupId, java.lang.String[] sectionses, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param main the main
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_M(
+		long groupId, java.lang.String[] sectionses, boolean main, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param main the main
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_M(
+		long groupId, java.lang.String[] sectionses, boolean main, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns all the k b articles where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param main the main
+	* @return the matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_M(
+		long groupId, java.lang.String[] sectionses, boolean main)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns a range of all the k b articles where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param main the main
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @return the range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_M(
+		long groupId, java.lang.String[] sectionses, boolean main, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Returns an ordered range of all the k b articles where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param sectionses the sectionses
+	* @param main the main
+	* @param start the lower bound of the range of k b articles
+	* @param end the upper bound of the range of k b articles (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching k b articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_M(
+		long groupId, java.lang.String[] sectionses, boolean main, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Removes all the k b articles where groupId = &#63; and sections LIKE &#63; and main = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param sections the sections
+	* @param main the main
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByG_S_M(long groupId, java.lang.String sections,
 		boolean main)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
+	* Returns the number of k b articles where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param main the main
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_M(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param main the main
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_M(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		boolean main, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	*
-	* @param kbArticleId the primary key of the current k b article
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param main the main
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next k b article
-	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public com.liferay.knowledgebase.model.KBArticle[] filterFindByG_P_S_M_PrevAndNext(
-		long kbArticleId, long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @return the matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_M(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_M(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching k b articles that the user has permission to view
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_M(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @return the matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_M(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @return the range of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_M(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sectionses the sectionses
-	* @param main the main
-	* @param start the lower bound of the range of k b articles
-	* @param end the upper bound of the range of k b articles (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching k b articles
-	* @throws SystemException if a system exception occurred
-	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_M(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
-	* @param sections the sections
-	* @param main the main
-	* @throws SystemException if a system exception occurred
-	*/
-	public void removeByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
-	*
-	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @return the number of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main)
+	public int countByG_S_M(long groupId, java.lang.String sections,
+		boolean main)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	* Returns the number of k b articles where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param main the main
 	* @return the number of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main)
+	public int countByG_S_M(long groupId, java.lang.String[] sectionses,
+		boolean main)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and main = &#63;.
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param main the main
 	* @return the number of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, boolean main)
+	public int filterCountByG_S_M(long groupId, java.lang.String sections,
+		boolean main)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and main = &#63;.
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param main the main
 	* @return the number of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByG_P_S_M(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, boolean main)
+	public int filterCountByG_S_M(long groupId, java.lang.String[] sectionses,
+		boolean main)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns all the k b articles where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @return the matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_S(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status) throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_S(
+		long groupId, java.lang.String sections, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns a range of all the k b articles where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -6861,20 +6789,18 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the range of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_S(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status, int start, int end)
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_S(
+		long groupId, java.lang.String sections, int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns an ordered range of all the k b articles where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -6883,17 +6809,16 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the ordered range of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_S(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status, int start, int end,
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_S(
+		long groupId, java.lang.String sections, int status, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -6901,35 +6826,31 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle findByG_P_S_S_First(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status,
+	public com.liferay.knowledgebase.model.KBArticle findByG_S_S_First(
+		long groupId, java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b article, or <code>null</code> if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle fetchByG_P_S_S_First(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status,
+	public com.liferay.knowledgebase.model.KBArticle fetchByG_S_S_First(
+		long groupId, java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -6937,36 +6858,32 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle findByG_P_S_S_Last(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status,
+	public com.liferay.knowledgebase.model.KBArticle findByG_S_S_Last(
+		long groupId, java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b article, or <code>null</code> if a matching k b article could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle fetchByG_P_S_S_Last(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status,
+	public com.liferay.knowledgebase.model.KBArticle fetchByG_S_S_Last(
+		long groupId, java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the k b articles before and after the current k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param kbArticleId the primary key of the current k b article
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -6974,36 +6891,33 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle[] findByG_P_S_S_PrevAndNext(
-		long kbArticleId, long groupId, long parentResourcePrimKey,
-		java.lang.String sections, int status,
+	public com.liferay.knowledgebase.model.KBArticle[] findByG_S_S_PrevAndNext(
+		long kbArticleId, long groupId, java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @return the matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_S(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status) throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_S(
+		long groupId, java.lang.String sections, int status)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -7011,20 +6925,18 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the range of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_S(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status, int start, int end)
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_S(
+		long groupId, java.lang.String sections, int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns an ordered range of all the k b articles that the user has permissions to view where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -7033,18 +6945,17 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the ordered range of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_S(
-		long groupId, long parentResourcePrimKey, java.lang.String sections,
-		int status, int start, int end,
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_S(
+		long groupId, java.lang.String sections, int status, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the k b articles before and after the current k b article in the ordered set of k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param kbArticleId the primary key of the current k b article
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
@@ -7052,37 +6963,33 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a k b article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.knowledgebase.model.KBArticle[] filterFindByG_P_S_S_PrevAndNext(
-		long kbArticleId, long groupId, long parentResourcePrimKey,
-		java.lang.String sections, int status,
+	public com.liferay.knowledgebase.model.KBArticle[] filterFindByG_S_S_PrevAndNext(
+		long kbArticleId, long groupId, java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @return the matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_S(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status)
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_S(
+		long groupId, java.lang.String[] sectionses, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns a range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -7090,20 +6997,18 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the range of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_S(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_S(
+		long groupId, java.lang.String[] sectionses, int status, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns an ordered range of all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -7112,40 +7017,37 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the ordered range of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_P_S_S(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status, int start, int end,
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> filterFindByG_S_S(
+		long groupId, java.lang.String[] sectionses, int status, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns all the k b articles where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @return the matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_S(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status)
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_S(
+		long groupId, java.lang.String[] sectionses, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns a range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns a range of all the k b articles where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -7153,20 +7055,18 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the range of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_S(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_S(
+		long groupId, java.lang.String[] sectionses, int status, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns an ordered range of all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns an ordered range of all the k b articles where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBArticleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @param start the lower bound of the range of k b articles
@@ -7175,80 +7075,70 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the ordered range of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_P_S_S(
-		long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status, int start, int end,
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> findByG_S_S(
+		long groupId, java.lang.String[] sectionses, int status, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes all the k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63; from the database.
+	* Removes all the k b articles where groupId = &#63; and sections LIKE &#63; and status = &#63; from the database.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByG_P_S_S(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByG_S_S(long groupId, java.lang.String sections,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the number of k b articles where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @return the number of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByG_P_S_S(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, int status)
+	public int countByG_S_S(long groupId, java.lang.String sections, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns the number of k b articles where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @return the number of matching k b articles
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByG_P_S_S(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByG_S_S(long groupId, java.lang.String[] sectionses,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE &#63; and status = &#63;.
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sections the sections
 	* @param status the status
 	* @return the number of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByG_P_S_S(long groupId, long parentResourcePrimKey,
-		java.lang.String sections, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByG_S_S(long groupId, java.lang.String sections,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and sections LIKE any &#63; and status = &#63;.
+	* Returns the number of k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
 	*
 	* @param groupId the group ID
-	* @param parentResourcePrimKey the parent resource prim key
 	* @param sectionses the sectionses
 	* @param status the status
 	* @return the number of matching k b articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByG_P_S_S(long groupId, long parentResourcePrimKey,
-		java.lang.String[] sectionses, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByG_S_S(long groupId, java.lang.String[] sectionses,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
