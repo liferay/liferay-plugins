@@ -14,5 +14,6 @@
 		<dependency name="apns" org="com.notnoop.apns" rev="0.2.3" />
 		<dependency name="gcm-server" org="com.ganyo" rev="1.0.2" />
 		<dependency name="jodd-http" org="org.jodd" rev="3.6.4" />
+		<dependency name="twilio-java-sdk" org="com.twilio.sdk" rev="4.0.2" />
 	</dependencies>
 </ivy-module>
