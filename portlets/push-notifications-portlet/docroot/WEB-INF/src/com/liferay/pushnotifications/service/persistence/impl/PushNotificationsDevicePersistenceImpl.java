@@ -63,7 +63,7 @@ import java.util.Set;
  *
  * @author Bruno Farache
  * @see PushNotificationsDevicePersistence
- * @see PushNotificationsDeviceUtil
+ * @see com.liferay.pushnotifications.service.persistence.PushNotificationsDeviceUtil
  * @generated
  */
 @ProviderType
@@ -101,11 +101,11 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 			new String[] { String.class.getName() });
 
 	/**
-	 * Returns the push notifications device where token = &#63; or throws a {@link com.liferay.pushnotifications.NoSuchDeviceException} if it could not be found.
+	 * Returns the push notifications device where token = &#63; or throws a {@link NoSuchDeviceException} if it could not be found.
 	 *
 	 * @param token the token
 	 * @return the matching push notifications device
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
+	 * @throws NoSuchDeviceException if a matching push notifications device could not be found
 	 */
 	@Override
 	public PushNotificationsDevice findByToken(String token)
@@ -369,7 +369,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns a range of all the push notifications devices where userId = &#63; and platform = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -388,7 +388,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns an ordered range of all the push notifications devices where userId = &#63; and platform = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -528,7 +528,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param platform the platform
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching push notifications device
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
+	 * @throws NoSuchDeviceException if a matching push notifications device could not be found
 	 */
 	@Override
 	public PushNotificationsDevice findByU_P_First(long userId,
@@ -586,7 +586,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param platform the platform
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching push notifications device
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
+	 * @throws NoSuchDeviceException if a matching push notifications device could not be found
 	 */
 	@Override
 	public PushNotificationsDevice findByU_P_Last(long userId, String platform,
@@ -650,7 +650,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param platform the platform
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next push notifications device
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
+	 * @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	 */
 	@Override
 	public PushNotificationsDevice[] findByU_P_PrevAndNext(
@@ -813,7 +813,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns all the push notifications devices where userId = any &#63; and platform = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userIds the user IDs
@@ -831,7 +831,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns a range of all the push notifications devices where userId = any &#63; and platform = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userIds the user IDs
@@ -850,7 +850,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns an ordered range of all the push notifications devices where userId = any &#63; and platform = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userIds the user IDs
@@ -1344,7 +1344,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param pushNotificationsDeviceId the primary key of the push notifications device
 	 * @return the push notifications device that was removed
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
+	 * @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	 */
 	@Override
 	public PushNotificationsDevice remove(long pushNotificationsDeviceId)
@@ -1357,7 +1357,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param primaryKey the primary key of the push notifications device
 	 * @return the push notifications device that was removed
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
+	 * @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	 */
 	@Override
 	public PushNotificationsDevice remove(Serializable primaryKey)
@@ -1427,7 +1427,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 
 	@Override
 	public PushNotificationsDevice updateImpl(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
+		PushNotificationsDevice pushNotificationsDevice) {
 		pushNotificationsDevice = toUnwrappedModel(pushNotificationsDevice);
 
 		boolean isNew = pushNotificationsDevice.isNew();
@@ -1522,7 +1522,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param primaryKey the primary key of the push notifications device
 	 * @return the push notifications device
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
+	 * @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	 */
 	@Override
 	public PushNotificationsDevice findByPrimaryKey(Serializable primaryKey)
@@ -1542,11 +1542,11 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	}
 
 	/**
-	 * Returns the push notifications device with the primary key or throws a {@link com.liferay.pushnotifications.NoSuchDeviceException} if it could not be found.
+	 * Returns the push notifications device with the primary key or throws a {@link NoSuchDeviceException} if it could not be found.
 	 *
 	 * @param pushNotificationsDeviceId the primary key of the push notifications device
 	 * @return the push notifications device
-	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
+	 * @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	 */
 	@Override
 	public PushNotificationsDevice findByPrimaryKey(
@@ -1721,7 +1721,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns a range of all the push notifications devices.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of push notifications devices
@@ -1737,7 +1737,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns an ordered range of all the push notifications devices.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link PushNotificationsDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of push notifications devices

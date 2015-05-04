@@ -311,7 +311,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 *
 	 * @return the push notifications device local service
 	 */
-	public com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService getPushNotificationsDeviceLocalService() {
+	public PushNotificationsDeviceLocalService getPushNotificationsDeviceLocalService() {
 		return pushNotificationsDeviceLocalService;
 	}
 
@@ -321,7 +321,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * @param pushNotificationsDeviceLocalService the push notifications device local service
 	 */
 	public void setPushNotificationsDeviceLocalService(
-		com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService pushNotificationsDeviceLocalService) {
+		PushNotificationsDeviceLocalService pushNotificationsDeviceLocalService) {
 		this.pushNotificationsDeviceLocalService = pushNotificationsDeviceLocalService;
 	}
 
@@ -601,8 +601,8 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService.class)
-	protected com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService pushNotificationsDeviceLocalService;
+	@BeanReference(type = PushNotificationsDeviceLocalService.class)
+	protected PushNotificationsDeviceLocalService pushNotificationsDeviceLocalService;
 	@BeanReference(type = com.liferay.pushnotifications.service.PushNotificationsDeviceService.class)
 	protected com.liferay.pushnotifications.service.PushNotificationsDeviceService pushNotificationsDeviceService;
 	@BeanReference(type = PushNotificationsDevicePersistence.class)

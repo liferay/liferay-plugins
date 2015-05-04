@@ -28,7 +28,7 @@ import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService
  *
  * @author Bruno Farache
  * @see PushNotificationsDeviceImpl
- * @see com.liferay.pushnotifications.model.PushNotificationsDevice
+ * @see PushNotificationsDevice
  * @generated
  */
 @ProviderType

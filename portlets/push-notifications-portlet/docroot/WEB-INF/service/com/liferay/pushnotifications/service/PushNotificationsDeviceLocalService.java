@@ -77,7 +77,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Deletes the push notifications device from the database. Also notifies the appropriate model listeners.
@@ -98,12 +98,10 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
-		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long pushNotificationsDeviceId) throws PortalException;
 
 	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
-		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String token) throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -187,8 +185,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	/**
 	* Returns the push notifications device with the primary key.
@@ -199,8 +196,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevice(
-		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long pushNotificationsDeviceId) throws PortalException;
 
 	/**
 	* Returns a range of all the push notifications devices.
@@ -235,11 +231,11 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	public void sendPushNotification(java.lang.String platform,
 		java.util.List<java.lang.String> tokens,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public void sendPushNotification(long[] toUserIds,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.

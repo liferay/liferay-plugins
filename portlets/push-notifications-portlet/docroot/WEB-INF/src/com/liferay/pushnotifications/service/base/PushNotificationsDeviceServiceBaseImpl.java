@@ -77,7 +77,7 @@ public abstract class PushNotificationsDeviceServiceBaseImpl
 	 *
 	 * @return the push notifications device remote service
 	 */
-	public com.liferay.pushnotifications.service.PushNotificationsDeviceService getPushNotificationsDeviceService() {
+	public PushNotificationsDeviceService getPushNotificationsDeviceService() {
 		return pushNotificationsDeviceService;
 	}
 
@@ -87,7 +87,7 @@ public abstract class PushNotificationsDeviceServiceBaseImpl
 	 * @param pushNotificationsDeviceService the push notifications device remote service
 	 */
 	public void setPushNotificationsDeviceService(
-		com.liferay.pushnotifications.service.PushNotificationsDeviceService pushNotificationsDeviceService) {
+		PushNotificationsDeviceService pushNotificationsDeviceService) {
 		this.pushNotificationsDeviceService = pushNotificationsDeviceService;
 	}
 
@@ -345,8 +345,8 @@ public abstract class PushNotificationsDeviceServiceBaseImpl
 
 	@BeanReference(type = com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService.class)
 	protected com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService pushNotificationsDeviceLocalService;
-	@BeanReference(type = com.liferay.pushnotifications.service.PushNotificationsDeviceService.class)
-	protected com.liferay.pushnotifications.service.PushNotificationsDeviceService pushNotificationsDeviceService;
+	@BeanReference(type = PushNotificationsDeviceService.class)
+	protected PushNotificationsDeviceService pushNotificationsDeviceService;
 	@BeanReference(type = PushNotificationsDevicePersistence.class)
 	protected PushNotificationsDevicePersistence pushNotificationsDevicePersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
