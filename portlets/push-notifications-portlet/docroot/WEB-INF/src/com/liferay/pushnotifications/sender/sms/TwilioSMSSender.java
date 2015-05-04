@@ -38,7 +38,7 @@ public class TwilioSMSSender implements PushNotificationsSender {
 
 	@Override
 	public void reset() {
-		_client = null;
+		_twilioRestClient = null;
 	}
 
 	@Override
@@ -47,13 +47,13 @@ public class TwilioSMSSender implements PushNotificationsSender {
 			JSONObject payloadJSONObject)
 		throws Exception {
 
-		TwilioRestClient client = getClient();
+		TwilioRestClient twilioRestClient = getTwilioRestClient();
 
-		if (client == null) {
+		if (twilioRestClient == null) {
 			return;
 		}
 
-		Account account = client.getAccount();
+		Account account = twilioRestClient.getAccount();
 
 		SmsFactory smsFactory = account.getSmsFactory();
 
@@ -80,8 +80,8 @@ public class TwilioSMSSender implements PushNotificationsSender {
 		}
 	}
 
-	protected TwilioRestClient getClient() throws Exception {
-		if (_client == null) {
+	protected TwilioRestClient getTwilioRestClient() throws Exception {
+		if (_twilioRestClient == null) {
 			String accountSID = PrefsPropsUtil.getString(
 				PortletPropsKeys.SMS_TWILIO_ACCOUNT_SID,
 				PortletPropsValues.SMS_TWILIO_ACCOUNT_SID);
@@ -102,12 +102,12 @@ public class TwilioSMSSender implements PushNotificationsSender {
 						"portlet.properties");
 			}
 
-			_client = new TwilioRestClient(accountSID, authToken);
+			_twilioRestClient = new TwilioRestClient(accountSID, authToken);
 		}
 
-		return _client;
+		return _twilioRestClient;
 	}
 
-	private TwilioRestClient _client;
+	private TwilioRestClient _twilioRestClient;
 
 }
