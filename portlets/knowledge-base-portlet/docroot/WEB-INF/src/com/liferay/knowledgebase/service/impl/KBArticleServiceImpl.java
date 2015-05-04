@@ -17,7 +17,6 @@ package com.liferay.knowledgebase.service.impl;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleSearchDisplay;
-import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.model.impl.KBArticleSearchDisplayImpl;
 import com.liferay.knowledgebase.service.base.KBArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
@@ -558,19 +557,16 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		}
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return kbArticlePersistence.filterFindByG_P_S_L(
-				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
-				true, start, end, orderByComparator);
+			return kbArticlePersistence.filterFindByG_S_L(
+				groupId, array, true, start, end, orderByComparator);
 		}
 		else if (status == WorkflowConstants.STATUS_APPROVED) {
-			return kbArticlePersistence.filterFindByG_P_S_M(
-				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
-				true, start, end, orderByComparator);
+			return kbArticlePersistence.filterFindByG_S_M(
+				groupId, array, true, start, end, orderByComparator);
 		}
 
-		return kbArticlePersistence.filterFindByG_P_S_S(
-			groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array, status,
-			start, end, orderByComparator);
+		return kbArticlePersistence.filterFindByG_S_S(
+			groupId, array, status, start, end, orderByComparator);
 	}
 
 	@Override
@@ -584,18 +580,15 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		}
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return kbArticlePersistence.filterCountByG_P_S_L(
-				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
-				true);
+			return kbArticlePersistence.filterCountByG_S_L(
+				groupId, array, true);
 		}
 		else if (status == WorkflowConstants.STATUS_APPROVED) {
-			return kbArticlePersistence.filterCountByG_P_S_M(
-				groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array,
-				true);
+			return kbArticlePersistence.filterCountByG_S_M(
+				groupId, array, true);
 		}
 
-		return kbArticlePersistence.filterCountByG_P_S_S(
-			groupId, KBFolderConstants.DEFAULT_PARENT_FOLDER_ID, array, status);
+		return kbArticlePersistence.filterCountByG_S_S(groupId, array, status);
 	}
 
 	/**
