@@ -3054,9 +3054,13 @@ for (String path : paths) {
 	</target>
 
 	<target name="format-source">
+		<path id="source.formatter.classpath">
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.source.formatter/lib" includes="*.jar" />
+		</path>
+
 		<java
-			classname="com.liferay.portal.tools.sourceformatter.SourceFormatter"
-			classpathref="portal.classpath"
+			classname="com.liferay.source.formatter.SourceFormatter"
+			classpathref="source.formatter.classpath"
 			fork="true"
 			newenvironment="true"
 		>
