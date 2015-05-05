@@ -1103,6 +1103,18 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			extRepositoryFileEntryAdapter.getFileVersion() );
 	}
 
+	private User _fetchDefaultUser() {
+		try {
+			return userLocalService.getDefaultUser(getCompanyId());
+		}
+		catch (PortalException e) {
+			_log.error(
+				"Unable to get default user for company " + getCompanyId(), e);
+
+			return null;
+		}
+	}
+
 	private <T extends ExtRepositoryObjectAdapter<?>> List<T> _filterByMimeType(
 		List<T> extRepositoryObjects, String[] mimeTypes) {
 
@@ -1155,7 +1167,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	private String _getLogin() {
 		String login = PrincipalThreadLocal.getName();
 
-		if (Validator.isNull(login)) {
+		if (Validator.isNull(login) || _isDefaultUser(login)) {
 			return PropsUtil.get(PropsKeys.DL_REPOSITORY_GUEST_USERNAME);
 		}
 
@@ -1190,7 +1202,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	private String _getPassword() {
 		String login = PrincipalThreadLocal.getName();
 
-		if (Validator.isNull(login)) {
+		if (Validator.isNull(login) || _isDefaultUser(login)) {
 			return PropsUtil.get(PropsKeys.DL_REPOSITORY_GUEST_PASSWORD);
 		}
 
@@ -1203,6 +1215,18 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		return repositoryEntryLocalService.getRepositoryEntry(
 			rootMountFolder.getUserId(), getGroupId(), getRepositoryId(),
 			_extRepository.getRootFolderKey());
+	}
+
+	private boolean _isDefaultUser(String login) {
+		User defaultUser = _fetchDefaultUser();
+
+		if ((defaultUser != null) &&
+			login.equals(defaultUser.getScreenName())) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private <T, V extends T> List<T> _subList(
