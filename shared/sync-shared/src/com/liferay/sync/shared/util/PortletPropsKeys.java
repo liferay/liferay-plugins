@@ -25,6 +25,8 @@ public class PortletPropsKeys {
 	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
 		"sync.client.max.connections";
 
+	public static final String SYNC_CLIENT_MIN_BUILD = "sync.client.min.build";
+
 	public static final String SYNC_CLIENT_POLL_INTERVAL =
 		"sync.client.poll.interval";
 
