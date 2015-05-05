@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.sync.SyncClientMinBuildException;
 import com.liferay.sync.SyncServicesUnavailableException;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
@@ -60,6 +61,8 @@ public class SyncJSONFilter implements Filter {
 			return;
 		}
 
+		Throwable throwable = null;
+
 		try {
 			HttpServletRequest httpServletRequest =
 				(HttpServletRequest)servletRequest;
@@ -69,9 +72,32 @@ public class SyncJSONFilter implements Filter {
 					PortletPropsKeys.SYNC_SERVICES_ENABLED,
 					PortletPropsValues.SYNC_SERVICES_ENABLED)) {
 
-				filterChain.doFilter(servletRequest, servletResponse);
+				int build = httpServletRequest.getIntHeader("Sync-Build");
 
-				return;
+				int syncClientMinBuild = PrefsPropsUtil.getInteger(
+					PortalUtil.getCompanyId(httpServletRequest),
+					PortletPropsKeys.SYNC_CLIENT_MIN_BUILD,
+					PortletPropsValues.SYNC_CLIENT_MIN_BUILD);
+
+				if (syncClientMinBuild < _ABSOLUTE_MINIMUM_BUILD) {
+					syncClientMinBuild = _ABSOLUTE_MINIMUM_BUILD;
+				}
+
+				if ((build == -1) || (build >= syncClientMinBuild)) {
+					filterChain.doFilter(servletRequest, servletResponse);
+
+					return;
+				}
+				else {
+					String message =
+						"Sync client does not meet minimum build " +
+							syncClientMinBuild;
+
+					throwable = new SyncClientMinBuildException(message);
+				}
+			}
+			else {
+				throwable = new SyncServicesUnavailableException();
 			}
 		}
 		catch (SystemException se) {
@@ -83,8 +109,7 @@ public class SyncJSONFilter implements Filter {
 
 		OutputStream outputStream = servletResponse.getOutputStream();
 
-		String json = SyncUtil.buildExceptionMessage(
-			new SyncServicesUnavailableException());
+		String json = SyncUtil.buildExceptionMessage(throwable);
 
 		json = "{\"exception\": \"" + json + "\"}";
 
@@ -96,5 +121,7 @@ public class SyncJSONFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) {
 	}
+
+	private static final int _ABSOLUTE_MINIMUM_BUILD = 3000;
 
 }

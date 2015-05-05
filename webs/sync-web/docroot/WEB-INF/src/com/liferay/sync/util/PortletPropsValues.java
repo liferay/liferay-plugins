@@ -32,6 +32,9 @@ public class PortletPropsValues {
 	public static final int SYNC_CLIENT_MAX_CONNECTIONS = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS));
 
+	public static final int SYNC_CLIENT_MIN_BUILD = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MIN_BUILD));
+
 	public static final int SYNC_CLIENT_POLL_INTERVAL = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL));
 
