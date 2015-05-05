@@ -2176,8 +2176,6 @@ Please find a solution that does not require portal-impl.jar.
 
 						<fileset dir="@{module.dir}/classes" erroronmissingdir="false">
 							<include name="**/*.class" />
-							<exclude name="**/*Test.class" />
-							<exclude name="**/*TestCase.class" />
 						</fileset>
 						<fileset dir="@{module.dir}/docroot/WEB-INF/classes" erroronmissingdir="false">
 							<include name="**/*.class" />
