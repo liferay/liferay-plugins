@@ -53,7 +53,7 @@ startTime = startTimeJCalendar.getTimeInMillis();
 
 java.util.Calendar defaultEndTimeJCalendar = (java.util.Calendar)nowJCalendar.clone();
 
-defaultEndTimeJCalendar.add(java.util.Calendar.HOUR, 1);
+defaultEndTimeJCalendar.add(java.util.Calendar.MINUTE, defaultDuration);
 
 long endTime = BeanPropertiesUtil.getLong(calendarBooking, "endTime", defaultEndTimeJCalendar.getTimeInMillis());
 
