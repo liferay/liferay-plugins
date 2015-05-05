@@ -161,6 +161,8 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute default="${module.dir.unix}/docroot" name="sass.docroot.dir" />
 
 		<sequential>
+			<local name="build-css.output"/>
+
 			<java
 				classname="com.liferay.portal.tools.SassToCssBuilder"
 				classpathref="portal.classpath"
