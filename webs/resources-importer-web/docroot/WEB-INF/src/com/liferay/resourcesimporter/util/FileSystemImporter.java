@@ -135,7 +135,6 @@ public class FileSystemImporter extends BaseImporter {
 		throws PortalException {
 
 		String fileName = FileUtil.stripExtension(file.getName());
-		String language = getDDMTemplateLanguage(file.getName());
 
 		String name = getName(fileName);
 
@@ -165,16 +164,17 @@ public class FileSystemImporter extends BaseImporter {
 					PortalUtil.getClassNameId(JournalArticle.class),
 					getKey(fileName), getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-					StringPool.BLANK, language, script,
-					false, false, StringPool.BLANK, null, serviceContext);
+					StringPool.BLANK, getDDMTemplateLanguage(file.getName()),
+					script, false, false, StringPool.BLANK, null,
+					serviceContext);
 			}
 			else {
 				DDMTemplateLocalServiceUtil.updateTemplate(
 					ddmTemplate.getTemplateId(), ddmTemplate.getClassPK(),
 					getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-					StringPool.BLANK, language, script,
-					false, serviceContext);
+					StringPool.BLANK, getDDMTemplateLanguage(file.getName()),
+					script, false, serviceContext);
 			}
 		}
 		catch (PortalException e) {
@@ -245,8 +245,6 @@ public class FileSystemImporter extends BaseImporter {
 		File[] files = listFiles(dir);
 
 		for (File file : files) {
-			String language = getDDMTemplateLanguage(file.getName());
-
 			String script = StringUtil.read(getInputStream(file));
 
 			if (Validator.isNull(script)) {
@@ -255,8 +253,8 @@ public class FileSystemImporter extends BaseImporter {
 
 			addDDMTemplate(
 				groupId, ddmStructure.getStructureId(), file.getName(),
-				language, script, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-				null);
+				getDDMTemplateLanguage(file.getName()), script,
+				DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null);
 		}
 	}
 
@@ -619,17 +617,17 @@ public class FileSystemImporter extends BaseImporter {
 					ddmStructure.getStructureId(),
 					PortalUtil.getClassNameId(JournalArticle.class),
 					getKey(fileName), getMap(name), null,
-					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
-					language, replaceFileEntryURL(xsl),
-					false, false, null, null, serviceContext);
+					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null, language,
+					replaceFileEntryURL(xsl), false, false, null, null,
+					serviceContext);
 			}
 			else {
 				ddmTemplate = DDMTemplateLocalServiceUtil.updateTemplate(
 					ddmTemplate.getTemplateId(),
 					PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
 					null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
-					language, replaceFileEntryURL(xsl),
-					false, false, null, null, serviceContext);
+					language, replaceFileEntryURL(xsl), false, false, null,
+					null, serviceContext);
 			}
 		}
 		catch (PortalException e) {
