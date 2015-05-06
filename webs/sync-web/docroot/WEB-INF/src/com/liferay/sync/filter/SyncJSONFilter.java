@@ -87,11 +87,9 @@ public class SyncJSONFilter implements Filter {
 				return;
 			}
 			else {
-				String message =
+				throwable = new SyncClientMinBuildException(
 					"Sync client does not meet minimum build " +
-						syncClientMinBuild;
-
-				throwable = new SyncClientMinBuildException(message);
+						syncClientMinBuild);
 			}
 		}
 		else {
