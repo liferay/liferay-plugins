@@ -174,7 +174,8 @@ public class FileSystemImporter extends BaseImporter {
 					getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 					StringPool.BLANK, getDDMTemplateLanguage(file.getName()),
-					script, false, false, serviceContext);
+					script, false, false, StringPool.BLANK, null,
+					serviceContext);
 			}
 		}
 		catch (PortalException e) {
