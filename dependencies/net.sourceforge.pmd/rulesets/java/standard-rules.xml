@@ -160,13 +160,12 @@ public class Foo {
 			]]>
 		</example>
 	</rule>
-		<rule
+	<rule
 		class="com.liferay.pmd.rules.junit.AssertFailJUnitRule"
 		language="java"
 		message="Do not call Assert#fail improperly"
 		name="AssertFailJUnitRule"
-		since="0.1"
-	>
+		since="0.1">
 		<description>
 			Detect when Assert#fail is called improperly.
 		</description>
