@@ -256,15 +256,20 @@ Error-Prone was automatically installed. Please rerun your task.
 				module.dir="@{module.dir}"
 			/>
 
-			<java
-				classname="com.liferay.portal.tools.UpgradeTableBuilder"
-				classpathref="portal.classpath"
-				fork="true"
-				newenvironment="true"
-			>
-				<arg value="${upgrade.table.dir}" />
-				<arg value="${module.name}" />
-			</java>
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<java
+						classname="com.liferay.portal.tools.UpgradeTableBuilder"
+						classpathref="portal.classpath"
+						fork="true"
+						newenvironment="true"
+					>
+						<arg value="${upgrade.table.dir}" />
+						<arg value="${set-build-xml-var.return}" />
+					</java>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
