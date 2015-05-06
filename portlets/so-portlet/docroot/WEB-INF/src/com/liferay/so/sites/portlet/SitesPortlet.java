@@ -314,8 +314,7 @@ public class SitesPortlet extends MVCPortlet {
 							PortletKeys.SITE_ADMIN);
 
 					membershipRequestURL.setParameter(
-						"struts_action",
-						"/sites_admin/post_membership_request");
+						"javax.portlet.action", "postMembershipRequest");
 					membershipRequestURL.setParameter(
 						"redirect", themeDisplay.getURLCurrent());
 					membershipRequestURL.setParameter(
@@ -372,9 +371,7 @@ public class SitesPortlet extends MVCPortlet {
 					deletePortletURL.setWindowState(WindowState.NORMAL);
 
 					deletePortletURL.setParameter(
-						"struts_action", "/sites_admin/edit_site");
-					deletePortletURL.setParameter(
-						Constants.CMD, Constants.DELETE);
+						"javax.portlet.action", "deleteGroups");
 					deletePortletURL.setParameter(
 						"redirect", themeDisplay.getURLCurrent());
 					deletePortletURL.setParameter(
