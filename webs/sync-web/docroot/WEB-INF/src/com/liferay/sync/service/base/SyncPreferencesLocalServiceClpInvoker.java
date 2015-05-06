@@ -24,59 +24,59 @@ import java.util.Arrays;
  */
 public class SyncPreferencesLocalServiceClpInvoker {
 	public SyncPreferencesLocalServiceClpInvoker() {
-		_methodName26 = "getBeanIdentifier";
+		_methodName32 = "getBeanIdentifier";
 
-		_methodParameterTypes26 = new String[] {  };
+		_methodParameterTypes32 = new String[] {  };
 
-		_methodName27 = "setBeanIdentifier";
+		_methodName33 = "setBeanIdentifier";
 
-		_methodParameterTypes27 = new String[] { "java.lang.String" };
+		_methodParameterTypes33 = new String[] { "java.lang.String" };
 
-		_methodName30 = "enableOAuth";
+		_methodName36 = "enableOAuth";
 
-		_methodParameterTypes30 = new String[] {
+		_methodParameterTypes36 = new String[] {
 				"long", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName31 = "getPortletPreferences";
+		_methodName37 = "getPortletPreferences";
 
-		_methodParameterTypes31 = new String[] { "long" };
+		_methodParameterTypes37 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName26.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName27.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			SyncPreferencesLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.getPortletPreferences(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
+	private String _methodName33;
+	private String[] _methodParameterTypes33;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 }
