@@ -204,7 +204,7 @@ AUI.add(
 
 						instance._messageContainer.empty();
 
-						instance._checkAll.set('checked', (instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX).size() <= 0));
+						instance._checkAll.set('checked', instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX).size() <= 0);
 					},
 
 					addContactResults: function(data) {
@@ -317,8 +317,8 @@ AUI.add(
 
 						var contacts = data.contacts;
 
-						if (contacts && (contacts.length > 0)) {
-							if (!instance._detailUserView.hasClass('hide') && (contacts.length == 1)) {
+						if (contacts && contacts.length > 0) {
+							if (!instance._detailUserView.hasClass('hide') && contacts.length == 1) {
 								var user = contacts[0].user;
 
 								instance._updateUserToolBar(user);
@@ -350,14 +350,14 @@ AUI.add(
 
 						if (instance._messageContainer) {
 							if (success) {
-								if (!message || (message == '')) {
+								if (!message || message == '') {
 									message = instance._defaultMessageSuccess;
 								}
 
 								instance._messageContainer.html('<span class="alert alert-success">' + message + '</span>');
 							}
 							else {
-								if (!message || (message == '')) {
+								if (!message || message == '') {
 									message = instance._defaultMessageError;
 								}
 
@@ -660,7 +660,7 @@ AUI.add(
 									block: user.block ? TPL_BLOCK_IMG : '',
 									connected: user.connected ? TPL_CONNECTED_IMG : '',
 									connectionRequested: user.connectionRequested ? TPL_CONNECTION_REQUESTED_IMG : '',
-									cssClass: (instance._numSelectedContacts % 2 == 0) ? '' : 'alt',
+									cssClass: instance._numSelectedContacts % 2 == 0 ? '' : 'alt',
 									emailAddress: user.emailAddress,
 									firstName: user.firstName,
 									following: user.following ? TPL_FOLLOWING_IMG : '',
@@ -692,10 +692,10 @@ AUI.add(
 							TPL_ENTRY_DETAIL_DATA,
 							{
 								comments: contact.comments,
-								cssClass: (instance._showIcon) ? '' : 'no-icon',
+								cssClass: instance._showIcon ? '' : 'no-icon',
 								emailAddress: contact.emailAddress,
 								fullName: contact.fullName,
-								icon: (instance._showIcon) ? icon : ''
+								icon: instance._showIcon ? icon : ''
 							}
 						);
 
@@ -745,7 +745,7 @@ AUI.add(
 
 						var buffer = [];
 
-						if ((results.length == 0) && displayMessage) {
+						if (results.length == 0 && displayMessage) {
 							buffer.push(TPL_NO_RESULTS);
 						}
 						else {
@@ -793,16 +793,16 @@ AUI.add(
 											str = Lang.sub(
 												TPL_USER_DATA,
 												{
-													checked: ((AArray.indexOf(selectedUsersIds, result.userId) != -1) ? 'checked="true"' : ''),
-													disabled: (themeDisplay.getUserId() == result.userId) ? 'disabled="true"' : '',
-													emailAddress: (result.emailAddress ? result.emailAddress : ''),
-													firstName: (result.firstName ? result.firstName : ''),
-													fullName: (result.fullName ? result.fullName : ''),
-													lastName: (result.lastName ? result.lastName + ',' : ''),
-													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
-													portraitURL: (result.portraitURL ? result.portraitURL : ''),
+													checked: AArray.indexOf(selectedUsersIds, result.userId) != -1 ? 'checked="true"' : '',
+													disabled: themeDisplay.getUserId() == result.userId ? 'disabled="true"' : '',
+													emailAddress: result.emailAddress ? result.emailAddress : '',
+													firstName: result.firstName ? result.firstName : '',
+													fullName: result.fullName ? result.fullName : '',
+													lastName: result.lastName ? result.lastName + ',' : '',
+													lastNameAnchor: displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : '',
+													portraitURL: result.portraitURL ? result.portraitURL : '',
 													userId: result.userId,
-													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
+													viewSummaryURL: result.viewSummaryURL ? result.viewSummaryURL : ''
 												}
 											);
 										}
@@ -810,12 +810,12 @@ AUI.add(
 											str = Lang.sub(
 												TPL_ENTRY_DATA,
 												{
-													emailAddress: (result.emailAddress ? result.emailAddress : ''),
+													emailAddress: result.emailAddress ? result.emailAddress : '',
 													entryId: result.entryId,
-													fullName: (result.fullName ? result.fullName : ''),
-													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
-													portraitURL: (result.portraitURL ? result.portraitURL : ''),
-													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
+													fullName: result.fullName ? result.fullName : '',
+													lastNameAnchor: displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : '',
+													portraitURL: result.portraitURL ? result.portraitURL : '',
+													viewSummaryURL: result.viewSummaryURL ? result.viewSummaryURL : ''
 												}
 											);
 										}
@@ -878,7 +878,7 @@ AUI.add(
 
 						instance._contactsCheckBox = A.one('.contacts-result');
 
-						instance._checkAll.set('checked', (instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX).size() <= 0));
+						instance._checkAll.set('checked', instance._contactsCheckBox.all(CSS_NOT_SELECTED_CHECKBOX).size() <= 0);
 					},
 
 					_updateToolbarButtonsAdd: function(data) {
@@ -944,7 +944,7 @@ AUI.add(
 						if (blockUserIdIndex >= 0) {
 							AArray.remove(instance._buttonBlockUserIds, blockUserIdIndex);
 
-							if (instance._blockButton && (instance._buttonBlockUserIds.length <= 0)) {
+							if (instance._blockButton && instance._buttonBlockUserIds.length <= 0) {
 								instance._blockButton.hide();
 							}
 						}
@@ -954,7 +954,7 @@ AUI.add(
 						if (unblockUserIdIndex >= 0) {
 							AArray.remove(instance._buttonUnBlockUserIds, unblockUserIdIndex);
 
-							if (instance._unblockButton && (instance._buttonUnBlockUserIds.length <= 0)) {
+							if (instance._unblockButton && instance._buttonUnBlockUserIds.length <= 0) {
 								instance._unblockButton.hide();
 							}
 						}
@@ -964,7 +964,7 @@ AUI.add(
 						if (addConnectionUserIdIndex >= 0) {
 							AArray.remove(instance._buttonAddConnectionUserIds, addConnectionUserIdIndex);
 
-							if (instance._addConnectionButton && (instance._buttonAddConnectionUserIds.length <= 0)) {
+							if (instance._addConnectionButton && instance._buttonAddConnectionUserIds.length <= 0) {
 								instance._addConnectionButton.hide();
 							}
 						}
@@ -974,7 +974,7 @@ AUI.add(
 						if (removeConnectionUserIdIndex >= 0) {
 							AArray.remove(instance._buttonRemoveConnectionUserIds, removeConnectionUserIdIndex);
 
-							if (instance._removeConnectionButton && (instance._buttonRemoveConnectionUserIds.length <= 0)) {
+							if (instance._removeConnectionButton && instance._buttonRemoveConnectionUserIds.length <= 0) {
 								instance._removeConnectionButton.hide();
 							}
 						}
@@ -984,7 +984,7 @@ AUI.add(
 						if (followUserIdIndex >= 0) {
 							AArray.remove(instance._buttonFollowUserIds, followUserIdIndex);
 
-							if (instance._followButton && (instance._buttonFollowUserIds.length <= 0)) {
+							if (instance._followButton && instance._buttonFollowUserIds.length <= 0) {
 								instance._followButton.hide();
 							}
 						}
@@ -994,7 +994,7 @@ AUI.add(
 						if (unFollowUserIdIndex >= 0) {
 							AArray.remove(instance._buttonUnFollowUserIds, unFollowUserIdIndex);
 
-							if (instance._unfollowButton && (instance._buttonUnFollowUserIds.length <= 0)) {
+							if (instance._unfollowButton && instance._buttonUnFollowUserIds.length <= 0) {
 								instance._unfollowButton.hide();
 							}
 						}
@@ -1004,7 +1004,7 @@ AUI.add(
 						if (exportUserIdIndex >= 0) {
 							AArray.remove(instance._buttonExportUserIds, exportUserIdIndex);
 
-							if (instance._exportButton && (instance._buttonExportUserIds.length <= 0)) {
+							if (instance._exportButton && instance._buttonExportUserIds.length <= 0) {
 								instance._exportButton.hide();
 							}
 						}
