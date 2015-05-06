@@ -15,10 +15,10 @@
 						"portletId": "58"
 					},
 					{
-						"portletId": "71"
+						"portletId": "com_liferay_site_navigation_menu_web_portlet_NavigationMenuPortlet"
 					},
 					{
-						"portletId": "56",
+						"portletId": "com_liferay_journal_content_web_portlet_JournalContentPortlet",
 						"portletPreferences": {
 							"articleId": "Without Border.html",
 							"groupId": "${groupId}",
@@ -26,7 +26,7 @@
 						}
 					},
 					{
-						"portletId": "56",
+						"portletId": "com_liferay_journal_content_web_portlet_JournalContentPortlet",
 						"portletPreferences": {
 							"articleId": "Custom Title.html",
 							"groupId": "${groupId}",
@@ -41,7 +41,7 @@
 						"portletId": "47"
 					},
 					{
-						"portletId": "71_INSTANCE_${groupId}",
+						"portletId": "com_liferay_site_navigation_menu_web_portlet_NavigationMenuPortlet_INSTANCE_${groupId}",
 						"portletPreferences": {
 							"displayStyle": "[custom]",
 							"headerType": "root-layout",
@@ -53,12 +53,12 @@
 					},
 					"Web Content with Image.html",
 					{
-						"portletId": "118",
+						"portletId": "com_liferay_nested_portlets_web_portlet_NestedPortletsPortlet",
 						"portletPreferences": {
 							"columns": [
 								[
 									{
-										"portletId": "56",
+										"portletId": "com_liferay_journal_content_web_portlet_JournalContentPortlet",
 										"portletPreferences": {
 											"articleId": "Child Web Content 1.xml",
 											"groupId": "${groupId}",
@@ -70,7 +70,7 @@
 								],
 								[
 									{
-										"portletId": "56",
+										"portletId": "com_liferay_journal_content_web_portlet_JournalContentPortlet",
 										"portletPreferences": {
 											"articleId": "Child Web Content 2.xml",
 											"groupId": "${groupId}",
