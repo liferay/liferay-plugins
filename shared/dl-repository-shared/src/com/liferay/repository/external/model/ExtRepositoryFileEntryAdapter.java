@@ -102,7 +102,7 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	public List<FileShortcut> getFileShortcuts() {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
