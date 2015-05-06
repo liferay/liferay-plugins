@@ -79,6 +79,8 @@ AUI.add(
 				'<img alt="{fullName}" src="{portraitURL}" />' +
 			'</div>';
 
+		var TPL_NO_RESULTS = '<div class="empty"><i class="icon-warning-sign"></i>' + Liferay.Language.get('there-are-no-results') + '</div>';
+
 		var TPL_USER_DATA = '{lastNameAnchor}' +
 			'<div class="lfr-contact">' +
 				'<div class="lfr-contact-checkbox">' +
@@ -744,9 +746,7 @@ AUI.add(
 						var buffer = [];
 
 						if ((results.length == 0) && displayMessage) {
-							buffer.push(
-								'<div class="empty"><i class="icon-warning-sign"></i>' + Liferay.Language.get('there-are-no-results') + '</div>'
-							);
+							buffer.push(TPL_NO_RESULTS);
 						}
 						else {
 							var selectedUsersNodes = A.all('.lfr-contact-grid-item input');
