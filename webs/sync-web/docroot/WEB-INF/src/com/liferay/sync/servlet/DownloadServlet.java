@@ -45,6 +45,7 @@ import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ImageServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
@@ -277,6 +278,13 @@ public class DownloadServlet extends HttpServlet {
 		if (syncDLFileVersionDiff != null) {
 			SyncDLFileVersionDiffLocalServiceUtil.refreshExpirationDate(
 				syncDLFileVersionDiff.getSyncDLFileVersionDiffId());
+
+			FileEntry dataFileEntry =
+				PortletFileRepositoryUtil.getPortletFileEntry(
+					syncDLFileVersionDiff.getDataFileEntryId());
+
+			return new DownloadServletInputStream(
+				dataFileEntry.getContentStream(), dataFileEntry.getSize());
 		}
 		else {
 			File deltaFile = null;
@@ -286,22 +294,22 @@ public class DownloadServlet extends HttpServlet {
 					user.getUserId(), fileEntry.getFileEntryId(),
 					sourceDLFileVersion, targetDLFileVersion);
 
-				syncDLFileVersionDiff =
+				try {
 					SyncDLFileVersionDiffLocalServiceUtil.
 						addSyncDLFileVersionDiff(
 							fileEntry.getFileEntryId(), sourceVersionId,
 							targetVersionId, deltaFile);
+				}
+				catch (DuplicateFileException dfe) {
+				}
+
+				return new DownloadServletInputStream(
+					new FileInputStream(deltaFile), deltaFile.length());
 			}
 			finally {
 				FileUtil.delete(deltaFile);
 			}
 		}
-
-		FileEntry dataFileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
-			syncDLFileVersionDiff.getDataFileEntryId());
-
-		return new DownloadServletInputStream(
-			dataFileEntry.getContentStream(), dataFileEntry.getSize());
 	}
 
 	protected void processException(
