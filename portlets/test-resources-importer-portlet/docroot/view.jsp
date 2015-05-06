@@ -239,11 +239,13 @@ for (String importer : importers) {
 
 		<%
 		DDMTemplate ddmTemplate = null;
+		DDMTemplate ddmTemplate2 = null;
 
 		String ddmStructureKey = StringPool.BLANK;
 
 		try {
 			ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1" + keySuffix);
+			ddmTemplate2 = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(AssetCategory.class), "ASSET-CATEGORY" + keySuffix);
 
 			DDMStructure ddmTemplateStructure = null;
 
@@ -265,6 +267,7 @@ for (String importer : importers) {
 			</c:when>
 			<c:when test="<%= ddmTemplate != null %>">
 				DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1" + keySuffix, ddmStructureKey) %><br />
+				DDMTemplate#getLanguage=<%= _assertEquals("ftl", ddmTemplate2.getLanguage()) %><br />
 				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetCategory)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetCategory.class))) %><br />
 				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetEntry)=<%= _assertEquals(2, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetEntry.class))) %><br />
 				DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetTag)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetTag.class))) %><br />
