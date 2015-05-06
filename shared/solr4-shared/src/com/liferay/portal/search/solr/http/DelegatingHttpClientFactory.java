@@ -27,7 +27,7 @@ import org.apache.http.client.HttpClient;
 public class DelegatingHttpClientFactory implements HttpClientFactory {
 
 	@Override
-	public HttpClient createInstance() {
+	public HttpClient createInstance() throws Exception {
 		return _httpClientFactory.createInstance();
 	}
 
