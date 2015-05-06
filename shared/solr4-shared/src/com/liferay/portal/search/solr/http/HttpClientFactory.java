@@ -22,7 +22,7 @@ import org.apache.http.client.HttpClient;
  */
 public interface HttpClientFactory {
 
-	public HttpClient createInstance();
+	public HttpClient createInstance() throws Exception;
 
 	public void shutdown();
 

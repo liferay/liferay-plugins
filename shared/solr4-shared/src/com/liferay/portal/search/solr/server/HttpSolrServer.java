@@ -22,7 +22,7 @@ import com.liferay.portal.search.solr.http.HttpClientFactory;
  */
 public class HttpSolrServer extends BaseHttpSolrServer {
 
-	public void afterPropertiesSet() {
+	public void afterPropertiesSet() throws Exception {
 		initHttpSolrServer(_httpClientFactory.createInstance());
 	}
 

@@ -15,6 +15,7 @@
 package com.liferay.portal.search.solr.http;
 
 import org.apache.http.auth.AuthScope;
+import org.apache.http.client.HttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 
 /**
@@ -25,7 +26,8 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
 public class BasicAuthPoolingDelegatingHttpClientFactory
 	extends DelegatingHttpClientFactory {
 
-	public void afterPropertiesSet() {
+	@Override
+	public HttpClient createInstance() throws Exception {
 		PoolingClientConnectionManager poolingClientConnectionManager =
 			new PoolingClientConnectionManager();
 
@@ -44,6 +46,8 @@ public class BasicAuthPoolingDelegatingHttpClientFactory
 		basicAuthPoolingHttpClientFactory.setUsername(_username);
 
 		setHttpClientFactory(basicAuthPoolingHttpClientFactory);
+
+		return super.createInstance();
 	}
 
 	public void setAuthScope(AuthScope authScope) {

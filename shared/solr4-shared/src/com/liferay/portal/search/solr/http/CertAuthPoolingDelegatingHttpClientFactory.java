@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.solr.http;
 
+import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
 /**
@@ -23,7 +24,8 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 public class CertAuthPoolingDelegatingHttpClientFactory
 	extends DelegatingHttpClientFactory {
 
-	public void afterPropertiesSet() throws Exception {
+	@Override
+	public HttpClient createInstance() throws Exception {
 		SSLSocketFactory sslSocketFactory = _sslSocketFactoryBuilder.build();
 
 		CertAuthPoolingHttpClientFactory httpClientFactory =
@@ -36,6 +38,8 @@ public class CertAuthPoolingDelegatingHttpClientFactory
 		httpClientFactory.setMaxTotalConnections(getMaxTotalConnections());
 
 		setHttpClientFactory(httpClientFactory);
+
+		return super.createInstance();
 	}
 
 	public void setSslSocketFactoryBuilder(
