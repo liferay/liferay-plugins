@@ -71,4 +71,14 @@
 			target="test-class-group"
 		/>
 	</target>
+
+	<target name="test-package">
+		<multiroot-subant
+			build.file="build.xml"
+			root.dir="${basedir}"
+			excludes="${plugins.excludes}"
+			includes="${plugins.includes}"
+			target="test-package"
+		/>
+	</target>
 </project>
