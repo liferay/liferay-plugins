@@ -304,7 +304,9 @@ AUI.add(
 						instance._renderEntryToolbar(contact);
 
 						var contactList = data.contactList;
+
 						var contactUserHTML = instance._renderResult(contactList, true, lastNameAnchor);
+
 						var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
 
 						contactResultContent.html(contactUserHTML.join(''));
@@ -337,7 +339,9 @@ AUI.add(
 						}
 
 						var contactList = data.contactList;
+
 						var contactUserHTML = instance._renderResult(contactList, true, lastNameAnchor);
+
 						var contactResultContent = A.one('.contacts-portlet .contacts-result-content');
 
 						contactResultContent.html(contactUserHTML.join(''));
@@ -738,8 +742,8 @@ AUI.add(
 					_renderResult: function(data, displayMessage, lastNameAnchor) {
 						var instance = this;
 
-						var results = data.users;
 						var count = data.count;
+						var results = data.users;
 
 						var options = data.options;
 
@@ -1018,8 +1022,8 @@ AUI.add(
 						contactsAction.hide();
 
 						var blockIcon = contactsAction.one('.block');
-						var disabledIcon = contactsAction.one('.disabled');
 						var connectedIcon = contactsAction.one('.connected');
+						var disabledIcon = contactsAction.one('.disabled');
 						var followingIcon = contactsAction.one('.following');
 
 						if (user.block) {
