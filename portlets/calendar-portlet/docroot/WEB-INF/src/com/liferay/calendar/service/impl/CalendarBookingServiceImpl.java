@@ -23,6 +23,7 @@ import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.RSSUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
+import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -244,8 +245,16 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		Calendar calendar = calendarService.getCalendar(calendarId);
 
-		List<CalendarBooking> calendarBookings = getCalendarBookings(
-			calendarId, startTime, endTime, max);
+		long[] calendarIds = {calendarId};
+
+		int[] statuses = {
+			CalendarBookingWorkflowConstants.STATUS_APPROVED,
+			CalendarBookingWorkflowConstants.STATUS_MAYBE
+		};
+
+		List<CalendarBooking> calendarBookings = search(
+			themeDisplay.getCompanyId(), new long[0], calendarIds, new long[0],
+			-1, null, startTime, endTime, true, statuses, 0, max, null);
 
 		return exportToRSS(
 			calendar.getName(themeDisplay.getLocale()),
