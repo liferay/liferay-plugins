@@ -552,8 +552,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			return _extRepository.getExtRepositoryObjectsCount(
 				ExtRepositoryObjectType.OBJECT, extRepositoryFolderKey);
 		}
-		catch (PortalException e) {
-			throw new SystemException(e);
+		catch (PortalException pe) {
+			throw new SystemException(pe);
 		}
 	}
 
