@@ -238,19 +238,19 @@ for (String importer : importers) {
 	<p>
 
 		<%
-		DDMTemplate ddmTemplate = null;
+		DDMTemplate ddmTemplate1 = null;
 		DDMTemplate ddmTemplate2 = null;
 
 		String ddmStructureKey = StringPool.BLANK;
 
 		try {
-			ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1" + keySuffix);
+			ddmTemplate1 = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1" + keySuffix);
 			ddmTemplate2 = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(AssetCategory.class), "ASSET-CATEGORY" + keySuffix);
 
 			DDMStructure ddmTemplateStructure = null;
 
-			if (ddmTemplate != null) {
-				ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
+			if (ddmTemplate1 != null) {
+				ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate1.getClassPK());
 			}
 
 			if (ddmTemplateStructure != null) {
@@ -262,7 +262,7 @@ for (String importer : importers) {
 		%>
 
 		<c:choose>
-			<c:when test="<%= ddmTemplate == null %>">
+			<c:when test="<%= ddmTemplate1 == null %>">
 				DDMTemplateLocalServiceUtil#getTemplate=<%= _assertTrue(ddmStructure != null) %><br />
 			</c:when>
 			<c:otherwise>
