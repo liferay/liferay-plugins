@@ -1152,7 +1152,7 @@ AUI.add(
 						date = DateMath.add(date, DateMath.WEEK, 1);
 					}
 
-					return CalendarUtil.toUTC(date);
+					return date;
 				},
 
 				getLoadStartDate: function(activeView) {
@@ -1167,7 +1167,7 @@ AUI.add(
 						date = DateMath.subtract(date, DateMath.WEEK, 1);
 					}
 
-					return CalendarUtil.toUTC(date);
+					return date;
 				},
 
 				_doRead: function(options, callback) {
