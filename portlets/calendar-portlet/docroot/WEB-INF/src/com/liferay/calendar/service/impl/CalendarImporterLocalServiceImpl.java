@@ -313,6 +313,7 @@ public class CalendarImporterLocalServiceImpl
 		calendarBooking.setStatusByUserId(userId);
 		calendarBooking.setStatusByUserName(userName);
 		calendarBooking.setStatusDate(createDate);
+		calendarBooking.setVEventUid(uuid);
 
 		calendarBookingPersistence.update(calendarBooking);
 	}
