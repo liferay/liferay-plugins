@@ -16,43 +16,12 @@
 
 <%@ include file="/init.jsp" %>
 
-<h3>hibernate-clustered</h3>
-
-<%
-if (!GetterUtil.getBoolean(PropsUtil.get(PropsKeys.HIBERNATE_CACHE_USE_QUERY_CACHE)) || !GetterUtil.getBoolean(PropsUtil.get(PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE))) {
-%>
-
-	<p>
-		Hibernate second level cache is disabled, please enable it by updating portal-ext.properties with:
-	</p>
-
-	<p>
-		hibernate.cache.use_query_cache=true<br />
-		hibernate.cache.use_second_level_cache=true
-	</p>
-
-<%
-	}
-	else {
-%>
-
-	<p>
-
-		<%= _testAttributeList("hibernate-clustered", "com.liferay.portlet.asset.model.impl.AssetTagPropertyImpl", false, 1000, 60) %>
-		<%= _testAttributeList("hibernate-clustered", "com.liferay.testcacheconfiguration.HibernateClusteredObject", false, 100000, 6000) %>
-
-	</p>
-
-<%
-	}
-%>
-
 <h3>liferay-multi-vm-clustered</h3>
 
 <p>
 
-	<%= _testAttributeList("liferay-multi-vm-clustered", "com.liferay.portal.kernel.dao.orm.EntityCache.com.liferay.portal.model.impl.UserImpl", false, 10, 60) %>
-	<%= _testAttributeList("liferay-multi-vm-clustered", "com.liferay.testcacheconfiguration.MultiVMClusteredObject", false, 100000, 6000) %>
+	<%= _testAttributeList("MULTI_VM_PORTAL_CACHE_MANAGER", "com.liferay.portal.kernel.dao.orm.EntityCache.com.liferay.portal.model.impl.UserImpl", false, 10, 60) %>
+	<%= _testAttributeList("MULTI_VM_PORTAL_CACHE_MANAGER", "com.liferay.testcacheconfiguration.MultiVMClusteredObject", false, 100000, 6000) %>
 
 </p>
 
@@ -60,7 +29,7 @@ if (!GetterUtil.getBoolean(PropsUtil.get(PropsKeys.HIBERNATE_CACHE_USE_QUERY_CAC
 
 <p>
 
-	<%= _testAttributeList("liferay-single-vm", "com.liferay.portal.util.WebCachePool", false, 1, 10) %>
+	<%= _testAttributeList("SINGLE_VM_PORTAL_CACHE_MANAGER", "com.liferay.portal.util.WebCachePool", false, 1, 10) %>
 
 </p>
 
