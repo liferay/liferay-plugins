@@ -11,7 +11,7 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.pmd" org="com.liferay" rev="1.0.0" />
+		<dependency name="com.liferay.pmd" org="com.liferay" rev="1.0.1" />
 		<dependency name="pmd-java" org="net.sourceforge.pmd" rev="5.2.3" />
 	</dependencies>
 </ivy-module>
