@@ -15,7 +15,6 @@
 package com.liferay.asset.entry.set.model.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
-import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
@@ -37,18 +36,10 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 	}
 
 	@Override
-	public void setChildAssetEntrySets(
-			long userId, long createTime, int childAssetEntrySetsLimit)
+	public void setChildAssetEntrySets(List<AssetEntrySet> childAssetEntrySets)
 		throws PortalException, SystemException {
 
-		if (childAssetEntrySetsLimit <= 0) {
-			return;
-		}
-
-		_childAssetEntrySets =
-			AssetEntrySetLocalServiceUtil.getOldChildAssetEntrySets(
-				userId, createTime, getAssetEntrySetId(), 0,
-				childAssetEntrySetsLimit, null);
+		_childAssetEntrySets = childAssetEntrySets;
 	}
 
 	private List<AssetEntrySet> _childAssetEntrySets;
