@@ -311,7 +311,7 @@ public class SitesPortlet extends MVCPortlet {
 
 					PortletURL membershipRequestURL =
 						liferayPortletResponse.createActionURL(
-							PortletKeys.SITES_ADMIN);
+							PortletKeys.SITE_ADMIN);
 
 					membershipRequestURL.setParameter(
 						"struts_action",
@@ -367,7 +367,7 @@ public class SitesPortlet extends MVCPortlet {
 				else {
 					PortletURL deletePortletURL =
 						liferayPortletResponse.createActionURL(
-							PortletKeys.SITES_ADMIN);
+							PortletKeys.SITE_ADMIN);
 
 					deletePortletURL.setWindowState(WindowState.NORMAL);
 
