@@ -330,7 +330,6 @@ public class SitesPortlet extends MVCPortlet {
 						}, false);
 
 					membershipRequestURL.setParameter("comments", comments);
-
 					membershipRequestURL.setWindowState(WindowState.NORMAL);
 
 					groupJSONObject.put(
@@ -368,14 +367,13 @@ public class SitesPortlet extends MVCPortlet {
 						liferayPortletResponse.createActionURL(
 							PortletKeys.SITE_ADMIN);
 
-					deletePortletURL.setWindowState(WindowState.NORMAL);
-
 					deletePortletURL.setParameter(
 						"javax.portlet.action", "deleteGroups");
 					deletePortletURL.setParameter(
 						"redirect", themeDisplay.getURLCurrent());
 					deletePortletURL.setParameter(
 						"groupId", String.valueOf(group.getGroupId()));
+					deletePortletURL.setWindowState(WindowState.NORMAL);
 
 					groupJSONObject.put(
 						"deleteURL", deletePortletURL.toString());
@@ -384,14 +382,13 @@ public class SitesPortlet extends MVCPortlet {
 
 			PortletURL favoritePortletURL = resourceResponse.createActionURL();
 
-			favoritePortletURL.setWindowState(WindowState.NORMAL);
-
 			favoritePortletURL.setParameter(
 				ActionRequest.ACTION_NAME, "updateFavorites");
 			favoritePortletURL.setParameter(
 				"redirect", themeDisplay.getURLCurrent());
 			favoritePortletURL.setParameter(
 				"groupId", String.valueOf(group.getGroupId()));
+			favoritePortletURL.setWindowState(WindowState.NORMAL);
 
 			if (!member && !group.hasPublicLayouts()) {
 				groupJSONObject.put("favoriteURL", StringPool.BLANK);

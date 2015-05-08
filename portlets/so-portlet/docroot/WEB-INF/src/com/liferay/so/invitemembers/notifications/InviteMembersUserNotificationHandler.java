@@ -90,7 +90,8 @@ public class InviteMembersUserNotificationHandler
 				new Object[] {
 					getUserNameLink(memberRequest.getUserId(), serviceContext),
 					getSiteDescriptiveName(
-						memberRequest.getGroupId(), serviceContext)});
+						memberRequest.getGroupId(), serviceContext)
+					});
 		}
 
 		LiferayPortletResponse liferayPortletResponse =
