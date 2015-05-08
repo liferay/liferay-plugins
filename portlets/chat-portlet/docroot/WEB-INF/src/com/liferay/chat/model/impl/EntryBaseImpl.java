@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.chat.service.EntryLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see EntryImpl
- * @see com.liferay.chat.model.Entry
+ * @see Entry
  * @generated
  */
+@ProviderType
 public abstract class EntryBaseImpl extends EntryModelImpl implements Entry {
 	/*
 	 * NOTE FOR DEVELOPERS:

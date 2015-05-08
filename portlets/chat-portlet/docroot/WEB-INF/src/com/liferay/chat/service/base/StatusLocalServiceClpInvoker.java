@@ -14,6 +14,8 @@
 
 package com.liferay.chat.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.chat.service.StatusLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class StatusLocalServiceClpInvoker {
 	public StatusLocalServiceClpInvoker() {
 		_methodName0 = "addStatus";

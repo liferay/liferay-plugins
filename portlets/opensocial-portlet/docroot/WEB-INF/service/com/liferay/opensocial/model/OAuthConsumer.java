@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.opensocial.model.impl.OAuthConsumerModelImpl
  * @generated
  */
+@ProviderType
 public interface OAuthConsumer extends OAuthConsumerModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

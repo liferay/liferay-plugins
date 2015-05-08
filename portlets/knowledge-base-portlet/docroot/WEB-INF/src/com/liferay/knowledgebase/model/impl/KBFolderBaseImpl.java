@@ -28,7 +28,7 @@ import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see KBFolderImpl
- * @see com.liferay.knowledgebase.model.KBFolder
+ * @see KBFolder
  * @generated
  */
 @ProviderType

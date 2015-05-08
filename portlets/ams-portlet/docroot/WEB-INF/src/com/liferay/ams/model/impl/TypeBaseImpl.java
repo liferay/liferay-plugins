@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Type;
 import com.liferay.ams.service.TypeLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.ams.service.TypeLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see TypeImpl
- * @see com.liferay.ams.model.Type
+ * @see Type
  * @generated
  */
+@ProviderType
 public abstract class TypeBaseImpl extends TypeModelImpl implements Type {
 	/*
 	 * NOTE FOR DEVELOPERS:

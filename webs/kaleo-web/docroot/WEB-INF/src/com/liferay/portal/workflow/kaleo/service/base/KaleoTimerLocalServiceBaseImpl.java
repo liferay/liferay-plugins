@@ -849,7 +849,7 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 *
 	 * @return the kaleo timer local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService getKaleoTimerLocalService() {
+	public KaleoTimerLocalService getKaleoTimerLocalService() {
 		return kaleoTimerLocalService;
 	}
 
@@ -859,7 +859,7 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * @param kaleoTimerLocalService the kaleo timer local service
 	 */
 	public void setKaleoTimerLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService kaleoTimerLocalService) {
+		KaleoTimerLocalService kaleoTimerLocalService) {
 		this.kaleoTimerLocalService = kaleoTimerLocalService;
 	}
 
@@ -1252,8 +1252,8 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
 	@BeanReference(type = KaleoTaskInstanceTokenFinder.class)
 	protected KaleoTaskInstanceTokenFinder kaleoTaskInstanceTokenFinder;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService kaleoTimerLocalService;
+	@BeanReference(type = KaleoTimerLocalService.class)
+	protected KaleoTimerLocalService kaleoTimerLocalService;
 	@BeanReference(type = KaleoTimerPersistence.class)
 	protected KaleoTimerPersistence kaleoTimerPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService.class)

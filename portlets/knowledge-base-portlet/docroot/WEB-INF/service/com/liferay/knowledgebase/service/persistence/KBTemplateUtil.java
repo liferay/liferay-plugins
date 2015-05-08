@@ -115,8 +115,7 @@ public class KBTemplateUtil {
 	* @param uuid the uuid
 	* @return the matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByUuid(
-		java.lang.String uuid) {
+	public static List<KBTemplate> findByUuid(java.lang.String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -124,7 +123,7 @@ public class KBTemplateUtil {
 	* Returns a range of all the k b templates where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -132,8 +131,8 @@ public class KBTemplateUtil {
 	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByUuid(
-		java.lang.String uuid, int start, int end) {
+	public static List<KBTemplate> findByUuid(java.lang.String uuid, int start,
+		int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -141,7 +140,7 @@ public class KBTemplateUtil {
 	* Returns an ordered range of all the k b templates where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -150,9 +149,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByUuid(
-		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static List<KBTemplate> findByUuid(java.lang.String uuid, int start,
+		int end, OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -162,11 +160,10 @@ public class KBTemplateUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
+	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate findByUuid_First(java.lang.String uuid,
+		OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -178,9 +175,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static KBTemplate fetchByUuid_First(java.lang.String uuid,
+		OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -190,11 +186,10 @@ public class KBTemplateUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
+	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate findByUuid_Last(java.lang.String uuid,
+		OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -206,9 +201,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static KBTemplate fetchByUuid_Last(java.lang.String uuid,
+		OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -219,11 +213,10 @@ public class KBTemplateUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate[] findByUuid_PrevAndNext(
-		long kbTemplateId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate[] findByUuid_PrevAndNext(long kbTemplateId,
+		java.lang.String uuid, OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(kbTemplateId, uuid, orderByComparator);
@@ -249,15 +242,14 @@ public class KBTemplateUtil {
 	}
 
 	/**
-	* Returns the k b template where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
+	* Returns the k b template where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchTemplateException} if it could not be found.
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
+	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByUUID_G(
-		java.lang.String uuid, long groupId)
+	public static KBTemplate findByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
@@ -269,8 +261,7 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByUUID_G(
-		java.lang.String uuid, long groupId) {
+	public static KBTemplate fetchByUUID_G(java.lang.String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
@@ -282,8 +273,8 @@ public class KBTemplateUtil {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByUUID_G(
-		java.lang.String uuid, long groupId, boolean retrieveFromCache) {
+	public static KBTemplate fetchByUUID_G(java.lang.String uuid, long groupId,
+		boolean retrieveFromCache) {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
 
@@ -294,8 +285,7 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @return the k b template that was removed
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate removeByUUID_G(
-		java.lang.String uuid, long groupId)
+	public static KBTemplate removeByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
@@ -318,8 +308,8 @@ public class KBTemplateUtil {
 	* @param companyId the company ID
 	* @return the matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByUuid_C(
-		java.lang.String uuid, long companyId) {
+	public static List<KBTemplate> findByUuid_C(java.lang.String uuid,
+		long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -327,7 +317,7 @@ public class KBTemplateUtil {
 	* Returns a range of all the k b templates where uuid = &#63; and companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -336,8 +326,8 @@ public class KBTemplateUtil {
 	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end) {
+	public static List<KBTemplate> findByUuid_C(java.lang.String uuid,
+		long companyId, int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -345,7 +335,7 @@ public class KBTemplateUtil {
 	* Returns an ordered range of all the k b templates where uuid = &#63; and companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -355,9 +345,9 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static List<KBTemplate> findByUuid_C(java.lang.String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -369,11 +359,10 @@ public class KBTemplateUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
+	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate findByUuid_C_First(java.lang.String uuid,
+		long companyId, OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -387,9 +376,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static KBTemplate fetchByUuid_C_First(java.lang.String uuid,
+		long companyId, OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -401,11 +389,10 @@ public class KBTemplateUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
+	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate findByUuid_C_Last(java.lang.String uuid,
+		long companyId, OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -419,9 +406,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static KBTemplate fetchByUuid_C_Last(java.lang.String uuid,
+		long companyId, OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -434,11 +420,11 @@ public class KBTemplateUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate[] findByUuid_C_PrevAndNext(
-		long kbTemplateId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate[] findByUuid_C_PrevAndNext(long kbTemplateId,
+		java.lang.String uuid, long companyId,
+		OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(kbTemplateId, uuid, companyId,
@@ -472,8 +458,7 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @return the matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByGroupId(
-		long groupId) {
+	public static List<KBTemplate> findByGroupId(long groupId) {
 		return getPersistence().findByGroupId(groupId);
 	}
 
@@ -481,7 +466,7 @@ public class KBTemplateUtil {
 	* Returns a range of all the k b templates where groupId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -489,8 +474,8 @@ public class KBTemplateUtil {
 	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByGroupId(
-		long groupId, int start, int end) {
+	public static List<KBTemplate> findByGroupId(long groupId, int start,
+		int end) {
 		return getPersistence().findByGroupId(groupId, start, end);
 	}
 
@@ -498,7 +483,7 @@ public class KBTemplateUtil {
 	* Returns an ordered range of all the k b templates where groupId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -507,9 +492,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findByGroupId(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static List<KBTemplate> findByGroupId(long groupId, int start,
+		int end, OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -520,11 +504,10 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
+	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate findByGroupId_First(long groupId,
+		OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
@@ -536,9 +519,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByGroupId_First(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static KBTemplate fetchByGroupId_First(long groupId,
+		OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -548,11 +530,10 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
+	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate findByGroupId_Last(long groupId,
+		OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
@@ -564,9 +545,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b template, or <code>null</code> if a matching k b template could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByGroupId_Last(
-		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static KBTemplate fetchByGroupId_Last(long groupId,
+		OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -577,11 +557,10 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate[] findByGroupId_PrevAndNext(
-		long kbTemplateId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+	public static KBTemplate[] findByGroupId_PrevAndNext(long kbTemplateId,
+		long groupId, OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(kbTemplateId, groupId,
@@ -594,8 +573,7 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @return the matching k b templates that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> filterFindByGroupId(
-		long groupId) {
+	public static List<KBTemplate> filterFindByGroupId(long groupId) {
 		return getPersistence().filterFindByGroupId(groupId);
 	}
 
@@ -603,7 +581,7 @@ public class KBTemplateUtil {
 	* Returns a range of all the k b templates that the user has permission to view where groupId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -611,8 +589,8 @@ public class KBTemplateUtil {
 	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of matching k b templates that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> filterFindByGroupId(
-		long groupId, int start, int end) {
+	public static List<KBTemplate> filterFindByGroupId(long groupId, int start,
+		int end) {
 		return getPersistence().filterFindByGroupId(groupId, start, end);
 	}
 
@@ -620,7 +598,7 @@ public class KBTemplateUtil {
 	* Returns an ordered range of all the k b templates that the user has permissions to view where groupId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -629,9 +607,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b templates that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> filterFindByGroupId(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static List<KBTemplate> filterFindByGroupId(long groupId, int start,
+		int end, OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence()
 				   .filterFindByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -643,11 +620,11 @@ public class KBTemplateUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate[] filterFindByGroupId_PrevAndNext(
+	public static KBTemplate[] filterFindByGroupId_PrevAndNext(
 		long kbTemplateId, long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator)
+		OrderByComparator<KBTemplate> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence()
 				   .filterFindByGroupId_PrevAndNext(kbTemplateId, groupId,
@@ -688,8 +665,7 @@ public class KBTemplateUtil {
 	*
 	* @param kbTemplate the k b template
 	*/
-	public static void cacheResult(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate) {
+	public static void cacheResult(KBTemplate kbTemplate) {
 		getPersistence().cacheResult(kbTemplate);
 	}
 
@@ -698,8 +674,7 @@ public class KBTemplateUtil {
 	*
 	* @param kbTemplates the k b templates
 	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.knowledgebase.model.KBTemplate> kbTemplates) {
+	public static void cacheResult(List<KBTemplate> kbTemplates) {
 		getPersistence().cacheResult(kbTemplates);
 	}
 
@@ -709,8 +684,7 @@ public class KBTemplateUtil {
 	* @param kbTemplateId the primary key for the new k b template
 	* @return the new k b template
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate create(
-		long kbTemplateId) {
+	public static KBTemplate create(long kbTemplateId) {
 		return getPersistence().create(kbTemplateId);
 	}
 
@@ -719,28 +693,25 @@ public class KBTemplateUtil {
 	*
 	* @param kbTemplateId the primary key of the k b template
 	* @return the k b template that was removed
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate remove(
-		long kbTemplateId)
+	public static KBTemplate remove(long kbTemplateId)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().remove(kbTemplateId);
 	}
 
-	public static com.liferay.knowledgebase.model.KBTemplate updateImpl(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate) {
+	public static KBTemplate updateImpl(KBTemplate kbTemplate) {
 		return getPersistence().updateImpl(kbTemplate);
 	}
 
 	/**
-	* Returns the k b template with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchTemplateException} if it could not be found.
+	* Returns the k b template with the primary key or throws a {@link NoSuchTemplateException} if it could not be found.
 	*
 	* @param kbTemplateId the primary key of the k b template
 	* @return the k b template
-	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
+	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate findByPrimaryKey(
-		long kbTemplateId)
+	public static KBTemplate findByPrimaryKey(long kbTemplateId)
 		throws com.liferay.knowledgebase.NoSuchTemplateException {
 		return getPersistence().findByPrimaryKey(kbTemplateId);
 	}
@@ -751,12 +722,11 @@ public class KBTemplateUtil {
 	* @param kbTemplateId the primary key of the k b template
 	* @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBTemplate fetchByPrimaryKey(
-		long kbTemplateId) {
+	public static KBTemplate fetchByPrimaryKey(long kbTemplateId) {
 		return getPersistence().fetchByPrimaryKey(kbTemplateId);
 	}
 
-	public static java.util.Map<java.io.Serializable, com.liferay.knowledgebase.model.KBTemplate> fetchByPrimaryKeys(
+	public static java.util.Map<java.io.Serializable, KBTemplate> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys) {
 		return getPersistence().fetchByPrimaryKeys(primaryKeys);
 	}
@@ -766,7 +736,7 @@ public class KBTemplateUtil {
 	*
 	* @return the k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findAll() {
+	public static List<KBTemplate> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -774,15 +744,14 @@ public class KBTemplateUtil {
 	* Returns a range of all the k b templates.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of k b templates
 	* @param end the upper bound of the range of k b templates (not inclusive)
 	* @return the range of k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findAll(
-		int start, int end) {
+	public static List<KBTemplate> findAll(int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -790,7 +759,7 @@ public class KBTemplateUtil {
 	* Returns an ordered range of all the k b templates.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of k b templates
@@ -798,9 +767,8 @@ public class KBTemplateUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of k b templates
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBTemplate> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
+	public static List<KBTemplate> findAll(int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

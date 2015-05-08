@@ -14,12 +14,15 @@
 
 package com.liferay.words.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class WordsServiceClp implements WordsService {
 	public WordsServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

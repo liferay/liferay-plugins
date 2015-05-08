@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.StagedModelType;
@@ -41,6 +43,7 @@ import java.util.Map;
 /**
  * @author Mate Thurzo
  */
+@ProviderType
 public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 	implements SampleLARBooking {
 	public SampleLARBookingClp() {
@@ -611,7 +614,7 @@ public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 	private Date _modifiedDate;
 	private String _bookingNumber;
 	private BaseModel<?> _sampleLARBookingRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.samplelar.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

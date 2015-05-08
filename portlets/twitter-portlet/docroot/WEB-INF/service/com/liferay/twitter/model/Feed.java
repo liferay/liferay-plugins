@@ -14,6 +14,8 @@
 
 package com.liferay.twitter.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.twitter.model.impl.FeedModelImpl
  * @generated
  */
+@ProviderType
 public interface Feed extends FeedModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

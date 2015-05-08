@@ -549,7 +549,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	private String _body;
 	private String _jiraGroupName;
 	private BaseModel<?> _jiraActionRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

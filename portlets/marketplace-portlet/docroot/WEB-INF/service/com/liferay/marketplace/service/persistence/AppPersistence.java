@@ -28,7 +28,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * </p>
  *
  * @author Ryan Park
- * @see AppPersistenceImpl
+ * @see com.liferay.marketplace.service.persistence.impl.AppPersistenceImpl
  * @see AppUtil
  * @generated
  */
@@ -46,14 +46,13 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param uuid the uuid
 	* @return the matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByUuid(
-		java.lang.String uuid);
+	public java.util.List<App> findByUuid(java.lang.String uuid);
 
 	/**
 	* Returns a range of all the apps where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -61,14 +60,14 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param end the upper bound of the range of apps (not inclusive)
 	* @return the range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByUuid(
-		java.lang.String uuid, int start, int end);
+	public java.util.List<App> findByUuid(java.lang.String uuid, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the apps where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -77,9 +76,9 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByUuid(
-		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public java.util.List<App> findByUuid(java.lang.String uuid, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the first app in the ordered set where uuid = &#63;.
@@ -87,11 +86,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByUuid_First(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -101,9 +99,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByUuid_First(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the last app in the ordered set where uuid = &#63;.
@@ -111,11 +108,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByUuid_Last(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -125,9 +121,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByUuid_Last(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the apps before and after the current app in the ordered set where uuid = &#63;.
@@ -136,11 +131,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next app
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws NoSuchAppException if a app with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.App[] findByUuid_PrevAndNext(
-		long appId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App[] findByUuid_PrevAndNext(long appId, java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -165,14 +159,14 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @return the matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByUuid_C(
-		java.lang.String uuid, long companyId);
+	public java.util.List<App> findByUuid_C(java.lang.String uuid,
+		long companyId);
 
 	/**
 	* Returns a range of all the apps where uuid = &#63; and companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -181,14 +175,14 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param end the upper bound of the range of apps (not inclusive)
 	* @return the range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end);
+	public java.util.List<App> findByUuid_C(java.lang.String uuid,
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the apps where uuid = &#63; and companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -198,9 +192,9 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public java.util.List<App> findByUuid_C(java.lang.String uuid,
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the first app in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -209,11 +203,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByUuid_C_First(java.lang.String uuid, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -224,9 +217,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByUuid_C_First(java.lang.String uuid, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the last app in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -235,11 +227,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByUuid_C_Last(java.lang.String uuid, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -250,9 +241,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByUuid_C_Last(java.lang.String uuid, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the apps before and after the current app in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -262,11 +252,11 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next app
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws NoSuchAppException if a app with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.App[] findByUuid_C_PrevAndNext(
-		long appId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App[] findByUuid_C_PrevAndNext(long appId, java.lang.String uuid,
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -292,14 +282,13 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @return the matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByCompanyId(
-		long companyId);
+	public java.util.List<App> findByCompanyId(long companyId);
 
 	/**
 	* Returns a range of all the apps where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -307,14 +296,14 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param end the upper bound of the range of apps (not inclusive)
 	* @return the range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByCompanyId(
-		long companyId, int start, int end);
+	public java.util.List<App> findByCompanyId(long companyId, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the apps where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -323,9 +312,9 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByCompanyId(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public java.util.List<App> findByCompanyId(long companyId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the first app in the ordered set where companyId = &#63;.
@@ -333,11 +322,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByCompanyId_First(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -347,9 +335,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByCompanyId_First(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the last app in the ordered set where companyId = &#63;.
@@ -357,11 +344,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByCompanyId_Last(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -371,9 +357,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByCompanyId_Last(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the apps before and after the current app in the ordered set where companyId = &#63;.
@@ -382,11 +367,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next app
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws NoSuchAppException if a app with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.App[] findByCompanyId_PrevAndNext(
-		long appId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App[] findByCompanyId_PrevAndNext(long appId, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -405,13 +389,13 @@ public interface AppPersistence extends BasePersistence<App> {
 	public int countByCompanyId(long companyId);
 
 	/**
-	* Returns the app where remoteAppId = &#63; or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
+	* Returns the app where remoteAppId = &#63; or throws a {@link NoSuchAppException} if it could not be found.
 	*
 	* @param remoteAppId the remote app ID
 	* @return the matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByRemoteAppId(long remoteAppId)
+	public App findByRemoteAppId(long remoteAppId)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -420,8 +404,7 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param remoteAppId the remote app ID
 	* @return the matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByRemoteAppId(
-		long remoteAppId);
+	public App fetchByRemoteAppId(long remoteAppId);
 
 	/**
 	* Returns the app where remoteAppId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -430,8 +413,7 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByRemoteAppId(
-		long remoteAppId, boolean retrieveFromCache);
+	public App fetchByRemoteAppId(long remoteAppId, boolean retrieveFromCache);
 
 	/**
 	* Removes the app where remoteAppId = &#63; from the database.
@@ -439,8 +421,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param remoteAppId the remote app ID
 	* @return the app that was removed
 	*/
-	public com.liferay.marketplace.model.App removeByRemoteAppId(
-		long remoteAppId) throws com.liferay.marketplace.NoSuchAppException;
+	public App removeByRemoteAppId(long remoteAppId)
+		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
 	* Returns the number of apps where remoteAppId = &#63;.
@@ -456,14 +438,13 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param category the category
 	* @return the matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByCategory(
-		java.lang.String category);
+	public java.util.List<App> findByCategory(java.lang.String category);
 
 	/**
 	* Returns a range of all the apps where category = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param category the category
@@ -471,14 +452,14 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param end the upper bound of the range of apps (not inclusive)
 	* @return the range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByCategory(
-		java.lang.String category, int start, int end);
+	public java.util.List<App> findByCategory(java.lang.String category,
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the apps where category = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param category the category
@@ -487,9 +468,9 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findByCategory(
-		java.lang.String category, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public java.util.List<App> findByCategory(java.lang.String category,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the first app in the ordered set where category = &#63;.
@@ -497,11 +478,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param category the category
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByCategory_First(
-		java.lang.String category,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByCategory_First(java.lang.String category,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -511,9 +491,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByCategory_First(
-		java.lang.String category,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByCategory_First(java.lang.String category,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the last app in the ordered set where category = &#63;.
@@ -521,11 +500,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param category the category
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app
-	* @throws com.liferay.marketplace.NoSuchAppException if a matching app could not be found
+	* @throws NoSuchAppException if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App findByCategory_Last(
-		java.lang.String category,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App findByCategory_Last(java.lang.String category,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -535,9 +513,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching app, or <code>null</code> if a matching app could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByCategory_Last(
-		java.lang.String category,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public App fetchByCategory_Last(java.lang.String category,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Returns the apps before and after the current app in the ordered set where category = &#63;.
@@ -546,11 +523,11 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param category the category
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next app
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws NoSuchAppException if a app with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.App[] findByCategory_PrevAndNext(
-		long appId, java.lang.String category,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator)
+	public App[] findByCategory_PrevAndNext(long appId,
+		java.lang.String category,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -573,15 +550,14 @@ public interface AppPersistence extends BasePersistence<App> {
 	*
 	* @param app the app
 	*/
-	public void cacheResult(com.liferay.marketplace.model.App app);
+	public void cacheResult(App app);
 
 	/**
 	* Caches the apps in the entity cache if it is enabled.
 	*
 	* @param apps the apps
 	*/
-	public void cacheResult(
-		java.util.List<com.liferay.marketplace.model.App> apps);
+	public void cacheResult(java.util.List<App> apps);
 
 	/**
 	* Creates a new app with the primary key. Does not add the app to the database.
@@ -589,29 +565,28 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param appId the primary key for the new app
 	* @return the new app
 	*/
-	public com.liferay.marketplace.model.App create(long appId);
+	public App create(long appId);
 
 	/**
 	* Removes the app with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param appId the primary key of the app
 	* @return the app that was removed
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws NoSuchAppException if a app with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.App remove(long appId)
+	public App remove(long appId)
 		throws com.liferay.marketplace.NoSuchAppException;
 
-	public com.liferay.marketplace.model.App updateImpl(
-		com.liferay.marketplace.model.App app);
+	public App updateImpl(App app);
 
 	/**
-	* Returns the app with the primary key or throws a {@link com.liferay.marketplace.NoSuchAppException} if it could not be found.
+	* Returns the app with the primary key or throws a {@link NoSuchAppException} if it could not be found.
 	*
 	* @param appId the primary key of the app
 	* @return the app
-	* @throws com.liferay.marketplace.NoSuchAppException if a app with the primary key could not be found
+	* @throws NoSuchAppException if a app with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.App findByPrimaryKey(long appId)
+	public App findByPrimaryKey(long appId)
 		throws com.liferay.marketplace.NoSuchAppException;
 
 	/**
@@ -620,10 +595,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param appId the primary key of the app
 	* @return the app, or <code>null</code> if a app with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.App fetchByPrimaryKey(long appId);
+	public App fetchByPrimaryKey(long appId);
 
 	@Override
-	public java.util.Map<java.io.Serializable, com.liferay.marketplace.model.App> fetchByPrimaryKeys(
+	public java.util.Map<java.io.Serializable, App> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
@@ -631,27 +606,26 @@ public interface AppPersistence extends BasePersistence<App> {
 	*
 	* @return the apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findAll();
+	public java.util.List<App> findAll();
 
 	/**
 	* Returns a range of all the apps.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of apps
 	* @param end the upper bound of the range of apps (not inclusive)
 	* @return the range of apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findAll(
-		int start, int end);
+	public java.util.List<App> findAll(int start, int end);
 
 	/**
 	* Returns an ordered range of all the apps.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AppModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of apps
@@ -659,9 +633,8 @@ public interface AppPersistence extends BasePersistence<App> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of apps
 	*/
-	public java.util.List<com.liferay.marketplace.model.App> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.App> orderByComparator);
+	public java.util.List<App> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<App> orderByComparator);
 
 	/**
 	* Removes all the apps from the database.

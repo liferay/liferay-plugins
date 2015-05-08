@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see OAuthConsumer
  * @generated
  */
+@ProviderType
 public class OAuthConsumerWrapper implements OAuthConsumer,
 	ModelWrapper<OAuthConsumer> {
 	public OAuthConsumerWrapper(OAuthConsumer oAuthConsumer) {
@@ -167,7 +170,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	* @return the create date of this o auth consumer
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _oAuthConsumer.getCreateDate();
 	}
 
@@ -207,7 +210,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	* @return the modified date of this o auth consumer
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _oAuthConsumer.getModifiedDate();
 	}
 
@@ -312,7 +315,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	* @param createDate the create date of this o auth consumer
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_oAuthConsumer.setCreateDate(createDate);
 	}
 
@@ -365,7 +368,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	* @param modifiedDate the modified date of this o auth consumer
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_oAuthConsumer.setModifiedDate(modifiedDate);
 	}
 
@@ -481,5 +484,5 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 		_oAuthConsumer.resetOriginalValues();
 	}
 
-	private OAuthConsumer _oAuthConsumer;
+	private final OAuthConsumer _oAuthConsumer;
 }

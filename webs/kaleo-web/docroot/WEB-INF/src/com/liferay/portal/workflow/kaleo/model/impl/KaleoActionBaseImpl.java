@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoActionImpl
- * @see com.liferay.portal.workflow.kaleo.model.KaleoAction
+ * @see KaleoAction
  * @generated
  */
 @ProviderType

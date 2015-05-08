@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.InvokableLocalService;
@@ -32,6 +34,7 @@ import com.liferay.portal.service.InvokableLocalService;
  * @see com.liferay.samplelar.service.impl.SampleLARBookingLocalServiceImpl
  * @generated
  */
+@ProviderType
 public class SampleLARBookingLocalServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -162,10 +165,10 @@ public class SampleLARBookingLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
@@ -173,11 +176,11 @@ public class SampleLARBookingLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
@@ -274,12 +277,29 @@ public class SampleLARBookingLocalServiceUtil {
 		return getService().getSampleLARBookings(start, end);
 	}
 
+	/**
+	* Returns all the sample l a r bookings matching the UUID and company.
+	*
+	* @param uuid the UUID of the sample l a r bookings
+	* @param companyId the primary key of the company
+	* @return the matching sample l a r bookings, or an empty list if no matches were found
+	*/
 	public static java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
 		java.lang.String uuid, long companyId) {
 		return getService()
 				   .getSampleLARBookingsByUuidAndCompanyId(uuid, companyId);
 	}
 
+	/**
+	* Returns a range of sample l a r bookings matching the UUID and company.
+	*
+	* @param uuid the UUID of the sample l a r bookings
+	* @param companyId the primary key of the company
+	* @param start the lower bound of the range of sample l a r bookings
+	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the range of matching sample l a r bookings, or an empty list if no matches were found
+	*/
 	public static java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
 		java.lang.String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.samplelar.model.SampleLARBooking> orderByComparator) {

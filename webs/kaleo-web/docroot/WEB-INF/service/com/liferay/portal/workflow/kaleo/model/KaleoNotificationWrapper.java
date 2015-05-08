@@ -206,7 +206,7 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	* @return the create date of this kaleo notification
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoNotification.getCreateDate();
 	}
 
@@ -301,7 +301,7 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	* @return the modified date of this kaleo notification
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoNotification.getModifiedDate();
 	}
 
@@ -436,7 +436,7 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	* @param createDate the create date of this kaleo notification
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoNotification.setCreateDate(createDate);
 	}
 
@@ -544,7 +544,7 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	* @param modifiedDate the modified date of this kaleo notification
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoNotification.setModifiedDate(modifiedDate);
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.so.model.impl.MemberRequestModelImpl
  * @generated
  */
+@ProviderType
 public interface MemberRequest extends MemberRequestModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -38,6 +40,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	implements FavoriteSite {
 	public FavoriteSiteClp() {
@@ -411,7 +414,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	private long _companyId;
 	private long _userId;
 	private BaseModel<?> _favoriteSiteRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.so.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

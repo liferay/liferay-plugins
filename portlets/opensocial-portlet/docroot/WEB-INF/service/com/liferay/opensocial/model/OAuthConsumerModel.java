@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -38,6 +40,7 @@ import java.util.Date;
  * @see com.liferay.opensocial.model.impl.OAuthConsumerModelImpl
  * @generated
  */
+@ProviderType
 public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -227,19 +230,20 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public Object clone();
 
 	@Override
-	public int compareTo(OAuthConsumer oAuthConsumer);
+	public int compareTo(
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<OAuthConsumer> toCacheModel();
+	public CacheModel<com.liferay.opensocial.model.OAuthConsumer> toCacheModel();
 
 	@Override
-	public OAuthConsumer toEscapedModel();
+	public com.liferay.opensocial.model.OAuthConsumer toEscapedModel();
 
 	@Override
-	public OAuthConsumer toUnescapedModel();
+	public com.liferay.opensocial.model.OAuthConsumer toUnescapedModel();
 
 	@Override
 	public String toString();

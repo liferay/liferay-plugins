@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -67,6 +69,7 @@ import javax.sql.DataSource;
  * @see com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements WSRPConsumerPortletLocalService,
 		IdentifiableBean {
@@ -190,10 +193,10 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -201,11 +204,11 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -224,7 +227,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * Returns the w s r p consumer portlet with the matching UUID and company.
 	 *
 	 * @param uuid the w s r p consumer portlet's UUID
-	 * @param  companyId the primary key of the company
+	 * @param companyId the primary key of the company
 	 * @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
 	 */
 	@Override
@@ -343,7 +346,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * Returns the w s r p consumer portlet with the matching UUID and company.
 	 *
 	 * @param uuid the w s r p consumer portlet's UUID
-	 * @param  companyId the primary key of the company
+	 * @param companyId the primary key of the company
 	 * @return the matching w s r p consumer portlet
 	 * @throws PortalException if a matching w s r p consumer portlet could not be found
 	 */
@@ -436,7 +439,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the w s r p consumer portlet local service
 	 */
-	public com.liferay.wsrp.service.WSRPConsumerPortletLocalService getWSRPConsumerPortletLocalService() {
+	public WSRPConsumerPortletLocalService getWSRPConsumerPortletLocalService() {
 		return wsrpConsumerPortletLocalService;
 	}
 
@@ -446,7 +449,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param wsrpConsumerPortletLocalService the w s r p consumer portlet local service
 	 */
 	public void setWSRPConsumerPortletLocalService(
-		com.liferay.wsrp.service.WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
+		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
 		this.wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
 	}
 
@@ -749,8 +752,8 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	protected com.liferay.wsrp.service.WSRPConsumerLocalService wsrpConsumerLocalService;
 	@BeanReference(type = WSRPConsumerPersistence.class)
 	protected WSRPConsumerPersistence wsrpConsumerPersistence;
-	@BeanReference(type = com.liferay.wsrp.service.WSRPConsumerPortletLocalService.class)
-	protected com.liferay.wsrp.service.WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService;
+	@BeanReference(type = WSRPConsumerPortletLocalService.class)
+	protected WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService;
 	@BeanReference(type = WSRPConsumerPortletPersistence.class)
 	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
 	@BeanReference(type = com.liferay.wsrp.service.WSRPProducerLocalService.class)

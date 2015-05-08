@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.microblogs.model.MicroblogsEntry" />
 	<class name="com.liferay.microblogs.model.impl.MicroblogsEntryImpl" table="MicroblogsEntry">
-		<cache usage="read-write" />
 		<id name="microblogsEntryId" type="long">
 			<generator class="assigned" />
 		</id>

@@ -193,7 +193,7 @@ public abstract class SocialOfficeServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the social office remote service
 	 */
-	public com.liferay.so.service.SocialOfficeService getSocialOfficeService() {
+	public SocialOfficeService getSocialOfficeService() {
 		return socialOfficeService;
 	}
 
@@ -202,8 +202,7 @@ public abstract class SocialOfficeServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param socialOfficeService the social office remote service
 	 */
-	public void setSocialOfficeService(
-		com.liferay.so.service.SocialOfficeService socialOfficeService) {
+	public void setSocialOfficeService(SocialOfficeService socialOfficeService) {
 		this.socialOfficeService = socialOfficeService;
 	}
 
@@ -502,8 +501,8 @@ public abstract class SocialOfficeServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.so.service.ProjectsEntryLocalService projectsEntryLocalService;
 	@BeanReference(type = ProjectsEntryPersistence.class)
 	protected ProjectsEntryPersistence projectsEntryPersistence;
-	@BeanReference(type = com.liferay.so.service.SocialOfficeService.class)
-	protected com.liferay.so.service.SocialOfficeService socialOfficeService;
+	@BeanReference(type = SocialOfficeService.class)
+	protected SocialOfficeService socialOfficeService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)

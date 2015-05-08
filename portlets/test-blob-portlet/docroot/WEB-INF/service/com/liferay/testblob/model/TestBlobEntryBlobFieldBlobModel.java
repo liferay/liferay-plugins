@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.sql.Blob;
 
 /**
@@ -23,6 +25,7 @@ import java.sql.Blob;
  * @see TestBlobEntry
  * @generated
  */
+@ProviderType
 public class TestBlobEntryBlobFieldBlobModel {
 	public TestBlobEntryBlobFieldBlobModel() {
 	}

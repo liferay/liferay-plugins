@@ -14,12 +14,15 @@
 
 package com.liferay.privatemessaging.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class UserThreadServiceClp implements UserThreadService {
 	public UserThreadServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

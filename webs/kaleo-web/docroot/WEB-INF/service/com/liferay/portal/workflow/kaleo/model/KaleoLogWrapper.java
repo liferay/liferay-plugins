@@ -314,7 +314,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @return the create date of this kaleo log
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoLog.getCreateDate();
 	}
 
@@ -354,7 +354,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @return the end date of this kaleo log
 	*/
 	@Override
-	public java.util.Date getEndDate() {
+	public Date getEndDate() {
 		return _kaleoLog.getEndDate();
 	}
 
@@ -489,7 +489,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @return the modified date of this kaleo log
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoLog.getModifiedDate();
 	}
 
@@ -554,7 +554,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @return the start date of this kaleo log
 	*/
 	@Override
-	public java.util.Date getStartDate() {
+	public Date getStartDate() {
 		return _kaleoLog.getStartDate();
 	}
 
@@ -684,7 +684,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @param createDate the create date of this kaleo log
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoLog.setCreateDate(createDate);
 	}
 
@@ -725,7 +725,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @param endDate the end date of this kaleo log
 	*/
 	@Override
-	public void setEndDate(java.util.Date endDate) {
+	public void setEndDate(Date endDate) {
 		_kaleoLog.setEndDate(endDate);
 	}
 
@@ -874,7 +874,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @param modifiedDate the modified date of this kaleo log
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoLog.setModifiedDate(modifiedDate);
 	}
 
@@ -945,7 +945,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* @param startDate the start date of this kaleo log
 	*/
 	@Override
-	public void setStartDate(java.util.Date startDate) {
+	public void setStartDate(Date startDate) {
 		_kaleoLog.setStartDate(startDate);
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see WSRPConsumer
  * @generated
  */
+@ProviderType
 public class WSRPConsumerWrapper implements WSRPConsumer,
 	ModelWrapper<WSRPConsumer> {
 	public WSRPConsumerWrapper(WSRPConsumer wsrpConsumer) {
@@ -180,7 +183,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the create date of this w s r p consumer
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _wsrpConsumer.getCreateDate();
 	}
 
@@ -225,7 +228,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the modified date of this w s r p consumer
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _wsrpConsumer.getModifiedDate();
 	}
 
@@ -370,7 +373,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param createDate the create date of this w s r p consumer
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_wsrpConsumer.setCreateDate(createDate);
 	}
 
@@ -428,7 +431,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param modifiedDate the modified date of this w s r p consumer
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_wsrpConsumer.setModifiedDate(modifiedDate);
 	}
 
@@ -613,5 +616,5 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 		_wsrpConsumer.resetOriginalValues();
 	}
 
-	private WSRPConsumer _wsrpConsumer;
+	private final WSRPConsumer _wsrpConsumer;
 }

@@ -14,7 +14,8 @@
 
 package com.liferay.samplelar.service.persistence.impl;
 
-import com.liferay.portal.kernel.cache.CacheRegistryUtil;
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -24,10 +25,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -61,9 +59,10 @@ import java.util.Set;
  *
  * @author Mate Thurzo
  * @see SampleLARBookingPersistence
- * @see SampleLARBookingUtil
+ * @see com.liferay.samplelar.service.persistence.SampleLARBookingUtil
  * @generated
  */
+@ProviderType
 public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleLARBooking>
 	implements SampleLARBookingPersistence {
 	/*
@@ -124,7 +123,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns a range of all the sample l a r bookings where uuid = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param uuid the uuid
@@ -141,7 +140,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns an ordered range of all the sample l a r bookings where uuid = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param uuid the uuid
@@ -268,7 +267,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
+	 * @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	 */
 	@Override
 	public SampleLARBooking findByUuid_First(String uuid,
@@ -318,7 +317,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
+	 * @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	 */
 	@Override
 	public SampleLARBooking findByUuid_Last(String uuid,
@@ -376,7 +375,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
+	 * @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	 */
 	@Override
 	public SampleLARBooking[] findByUuid_PrevAndNext(long sampleLARBookingId,
@@ -623,12 +622,12 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			new String[] { String.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the sample l a r booking where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.samplelar.NoSuchBookingException} if it could not be found.
+	 * Returns the sample l a r booking where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchBookingException} if it could not be found.
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the matching sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
+	 * @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	 */
 	@Override
 	public SampleLARBooking findByUUID_G(String uuid, long groupId)
@@ -908,7 +907,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns a range of all the sample l a r bookings where uuid = &#63; and companyId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param uuid the uuid
@@ -927,7 +926,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns an ordered range of all the sample l a r bookings where uuid = &#63; and companyId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param uuid the uuid
@@ -1066,7 +1065,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
+	 * @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	 */
 	@Override
 	public SampleLARBooking findByUuid_C_First(String uuid, long companyId,
@@ -1122,7 +1121,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
+	 * @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	 */
 	@Override
 	public SampleLARBooking findByUuid_C_Last(String uuid, long companyId,
@@ -1185,7 +1184,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
+	 * @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	 */
 	@Override
 	public SampleLARBooking[] findByUuid_C_PrevAndNext(
@@ -1469,7 +1468,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns a range of all the sample l a r bookings where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param groupId the group ID
@@ -1486,7 +1485,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns an ordered range of all the sample l a r bookings where groupId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param groupId the group ID
@@ -1599,7 +1598,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
+	 * @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	 */
 	@Override
 	public SampleLARBooking findByGroupId_First(long groupId,
@@ -1650,7 +1649,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
+	 * @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	 */
 	@Override
 	public SampleLARBooking findByGroupId_Last(long groupId,
@@ -1708,7 +1707,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
+	 * @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	 */
 	@Override
 	public SampleLARBooking[] findByGroupId_PrevAndNext(
@@ -1966,10 +1965,6 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 */
 	@Override
 	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(SampleLARBookingImpl.class.getName());
-		}
-
 		EntityCacheUtil.clearCache(SampleLARBookingImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
@@ -2084,7 +2079,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 *
 	 * @param sampleLARBookingId the primary key of the sample l a r booking
 	 * @return the sample l a r booking that was removed
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
+	 * @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	 */
 	@Override
 	public SampleLARBooking remove(long sampleLARBookingId)
@@ -2097,7 +2092,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 *
 	 * @param primaryKey the primary key of the sample l a r booking
 	 * @return the sample l a r booking that was removed
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
+	 * @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	 */
 	@Override
 	public SampleLARBooking remove(Serializable primaryKey)
@@ -2165,8 +2160,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	}
 
 	@Override
-	public SampleLARBooking updateImpl(
-		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking) {
+	public SampleLARBooking updateImpl(SampleLARBooking sampleLARBooking) {
 		sampleLARBooking = toUnwrappedModel(sampleLARBooking);
 
 		boolean isNew = sampleLARBooking.isNew();
@@ -2304,7 +2298,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 *
 	 * @param primaryKey the primary key of the sample l a r booking
 	 * @return the sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
+	 * @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	 */
 	@Override
 	public SampleLARBooking findByPrimaryKey(Serializable primaryKey)
@@ -2324,11 +2318,11 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	}
 
 	/**
-	 * Returns the sample l a r booking with the primary key or throws a {@link com.liferay.samplelar.NoSuchBookingException} if it could not be found.
+	 * Returns the sample l a r booking with the primary key or throws a {@link NoSuchBookingException} if it could not be found.
 	 *
 	 * @param sampleLARBookingId the primary key of the sample l a r booking
 	 * @return the sample l a r booking
-	 * @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
+	 * @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	 */
 	@Override
 	public SampleLARBooking findByPrimaryKey(long sampleLARBookingId)
@@ -2501,7 +2495,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns a range of all the sample l a r bookings.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of sample l a r bookings
@@ -2517,7 +2511,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Returns an ordered range of all the sample l a r bookings.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplelar.model.impl.SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of sample l a r bookings
@@ -2680,13 +2674,11 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	private static final String _ORDER_BY_ENTITY_ALIAS = "sampleLARBooking.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No SampleLARBooking exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SampleLARBooking exists with the key {";
-	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
-				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(SampleLARBookingPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(SampleLARBookingPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"uuid"
 			});
-	private static SampleLARBooking _nullSampleLARBooking = new SampleLARBookingImpl() {
+	private static final SampleLARBooking _nullSampleLARBooking = new SampleLARBookingImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -2698,7 +2690,8 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			}
 		};
 
-	private static CacheModel<SampleLARBooking> _nullSampleLARBookingCacheModel = new CacheModel<SampleLARBooking>() {
+	private static final CacheModel<SampleLARBooking> _nullSampleLARBookingCacheModel =
+		new CacheModel<SampleLARBooking>() {
 			@Override
 			public SampleLARBooking toEntityModel() {
 				return _nullSampleLARBooking;

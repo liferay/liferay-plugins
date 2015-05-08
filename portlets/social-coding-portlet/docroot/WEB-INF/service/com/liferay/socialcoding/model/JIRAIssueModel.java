@@ -259,19 +259,19 @@ public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 	public Object clone();
 
 	@Override
-	public int compareTo(JIRAIssue jiraIssue);
+	public int compareTo(com.liferay.socialcoding.model.JIRAIssue jiraIssue);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<JIRAIssue> toCacheModel();
+	public CacheModel<com.liferay.socialcoding.model.JIRAIssue> toCacheModel();
 
 	@Override
-	public JIRAIssue toEscapedModel();
+	public com.liferay.socialcoding.model.JIRAIssue toEscapedModel();
 
 	@Override
-	public JIRAIssue toUnescapedModel();
+	public com.liferay.socialcoding.model.JIRAIssue toUnescapedModel();
 
 	@Override
 	public String toString();

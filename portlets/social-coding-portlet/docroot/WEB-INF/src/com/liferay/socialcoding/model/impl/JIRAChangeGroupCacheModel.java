@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +40,30 @@ import java.util.Date;
 @ProviderType
 public class JIRAChangeGroupCacheModel implements CacheModel<JIRAChangeGroup>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof JIRAChangeGroupCacheModel)) {
+			return false;
+		}
+
+		JIRAChangeGroupCacheModel jiraChangeGroupCacheModel = (JIRAChangeGroupCacheModel)obj;
+
+		if (jiraChangeGroupId == jiraChangeGroupCacheModel.jiraChangeGroupId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, jiraChangeGroupId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);

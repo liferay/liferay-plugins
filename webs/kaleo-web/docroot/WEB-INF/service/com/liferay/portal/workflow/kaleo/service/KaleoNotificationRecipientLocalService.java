@@ -52,7 +52,7 @@ public interface KaleoNotificationRecipientLocalService extends BaseLocalService
 		long kaleoDefinitionId, long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Adds the kaleo notification recipient to the database. Also notifies the appropriate model listeners.
@@ -97,8 +97,7 @@ public interface KaleoNotificationRecipientLocalService extends BaseLocalService
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient deleteKaleoNotificationRecipient(
-		long kaleoNotificationRecipientId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoNotificationRecipientId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -106,7 +105,7 @@ public interface KaleoNotificationRecipientLocalService extends BaseLocalService
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -196,8 +195,7 @@ public interface KaleoNotificationRecipientLocalService extends BaseLocalService
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient getKaleoNotificationRecipient(
-		long kaleoNotificationRecipientId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoNotificationRecipientId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
@@ -229,8 +227,7 @@ public interface KaleoNotificationRecipientLocalService extends BaseLocalService
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

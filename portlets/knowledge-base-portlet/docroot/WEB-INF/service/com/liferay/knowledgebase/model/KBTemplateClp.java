@@ -653,7 +653,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	private String _title;
 	private String _content;
 	private BaseModel<?> _kbTemplateRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

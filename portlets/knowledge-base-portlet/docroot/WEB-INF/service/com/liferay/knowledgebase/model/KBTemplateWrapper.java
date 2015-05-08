@@ -166,7 +166,7 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 	* @return the create date of this k b template
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kbTemplate.getCreateDate();
 	}
 
@@ -201,7 +201,7 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 	* @return the modified date of this k b template
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kbTemplate.getModifiedDate();
 	}
 
@@ -326,7 +326,7 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 	* @param createDate the create date of this k b template
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kbTemplate.setCreateDate(createDate);
 	}
 
@@ -374,7 +374,7 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 	* @param modifiedDate the modified date of this k b template
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kbTemplate.setModifiedDate(modifiedDate);
 	}
 

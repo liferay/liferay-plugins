@@ -957,7 +957,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	private String _scriptRequiredContexts;
 	private int _priority;
 	private BaseModel<?> _kaleoActionRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

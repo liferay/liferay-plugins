@@ -25,7 +25,7 @@ import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.skinny.service.SkinnyServiceUtil} service utility. The
+ * {@link SkinnyServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -49,7 +49,7 @@ import java.rmi.RemoteException;
  *
  * @author Brian Wing Shun Chan
  * @see SkinnyServiceHttp
- * @see com.liferay.skinny.service.SkinnyServiceUtil
+ * @see SkinnyServiceUtil
  * @generated
  */
 @ProviderType

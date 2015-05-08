@@ -14,6 +14,8 @@
 
 package com.liferay.contacts.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see EntryService
  * @generated
  */
+@ProviderType
 public class EntryServiceWrapper implements EntryService,
 	ServiceWrapper<EntryService> {
 	public EntryServiceWrapper(EntryService entryService) {

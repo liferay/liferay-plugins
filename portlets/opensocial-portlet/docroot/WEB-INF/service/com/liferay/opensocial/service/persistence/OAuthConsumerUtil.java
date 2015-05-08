@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.opensocial.model.OAuthConsumer;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
@@ -25,7 +27,7 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * The persistence utility for the o auth consumer service. This utility wraps {@link OAuthConsumerPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ * The persistence utility for the o auth consumer service. This utility wraps {@link com.liferay.opensocial.service.persistence.impl.OAuthConsumerPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
@@ -33,9 +35,10 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  * @see OAuthConsumerPersistence
- * @see OAuthConsumerPersistenceImpl
+ * @see com.liferay.opensocial.service.persistence.impl.OAuthConsumerPersistenceImpl
  * @generated
  */
+@ProviderType
 public class OAuthConsumerUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -112,7 +115,7 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @return the matching o auth consumers
 	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
+	public static List<OAuthConsumer> findByGadgetKey(
 		java.lang.String gadgetKey) {
 		return getPersistence().findByGadgetKey(gadgetKey);
 	}
@@ -121,7 +124,7 @@ public class OAuthConsumerUtil {
 	* Returns a range of all the o auth consumers where gadgetKey = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param gadgetKey the gadget key
@@ -129,7 +132,7 @@ public class OAuthConsumerUtil {
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @return the range of matching o auth consumers
 	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
+	public static List<OAuthConsumer> findByGadgetKey(
 		java.lang.String gadgetKey, int start, int end) {
 		return getPersistence().findByGadgetKey(gadgetKey, start, end);
 	}
@@ -138,7 +141,7 @@ public class OAuthConsumerUtil {
 	* Returns an ordered range of all the o auth consumers where gadgetKey = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param gadgetKey the gadget key
@@ -147,9 +150,9 @@ public class OAuthConsumerUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth consumers
 	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
+	public static List<OAuthConsumer> findByGadgetKey(
 		java.lang.String gadgetKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		return getPersistence()
 				   .findByGadgetKey(gadgetKey, start, end, orderByComparator);
 	}
@@ -160,11 +163,11 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth consumer
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
+	* @throws NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_First(
+	public static OAuthConsumer findByGadgetKey_First(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
+		OrderByComparator<OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_First(gadgetKey, orderByComparator);
@@ -177,9 +180,9 @@ public class OAuthConsumerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_First(
+	public static OAuthConsumer fetchByGadgetKey_First(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByGadgetKey_First(gadgetKey, orderByComparator);
 	}
@@ -190,11 +193,11 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth consumer
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
+	* @throws NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_Last(
+	public static OAuthConsumer findByGadgetKey_Last(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
+		OrderByComparator<OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_Last(gadgetKey, orderByComparator);
@@ -207,9 +210,9 @@ public class OAuthConsumerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_Last(
+	public static OAuthConsumer fetchByGadgetKey_Last(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		return getPersistence()
 				   .fetchByGadgetKey_Last(gadgetKey, orderByComparator);
 	}
@@ -221,11 +224,11 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth consumer
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
+	* @throws NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer[] findByGadgetKey_PrevAndNext(
+	public static OAuthConsumer[] findByGadgetKey_PrevAndNext(
 		long oAuthConsumerId, java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator)
+		OrderByComparator<OAuthConsumer> orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_PrevAndNext(oAuthConsumerId, gadgetKey,
@@ -252,15 +255,15 @@ public class OAuthConsumerUtil {
 	}
 
 	/**
-	* Returns the o auth consumer where gadgetKey = &#63; and serviceName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
+	* Returns the o auth consumer where gadgetKey = &#63; and serviceName = &#63; or throws a {@link NoSuchOAuthConsumerException} if it could not be found.
 	*
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the matching o auth consumer
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
+	* @throws NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer findByG_S(
-		java.lang.String gadgetKey, java.lang.String serviceName)
+	public static OAuthConsumer findByG_S(java.lang.String gadgetKey,
+		java.lang.String serviceName)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().findByG_S(gadgetKey, serviceName);
 	}
@@ -272,8 +275,8 @@ public class OAuthConsumerUtil {
 	* @param serviceName the service name
 	* @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer fetchByG_S(
-		java.lang.String gadgetKey, java.lang.String serviceName) {
+	public static OAuthConsumer fetchByG_S(java.lang.String gadgetKey,
+		java.lang.String serviceName) {
 		return getPersistence().fetchByG_S(gadgetKey, serviceName);
 	}
 
@@ -285,9 +288,8 @@ public class OAuthConsumerUtil {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer fetchByG_S(
-		java.lang.String gadgetKey, java.lang.String serviceName,
-		boolean retrieveFromCache) {
+	public static OAuthConsumer fetchByG_S(java.lang.String gadgetKey,
+		java.lang.String serviceName, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByG_S(gadgetKey, serviceName, retrieveFromCache);
 	}
@@ -299,8 +301,8 @@ public class OAuthConsumerUtil {
 	* @param serviceName the service name
 	* @return the o auth consumer that was removed
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer removeByG_S(
-		java.lang.String gadgetKey, java.lang.String serviceName)
+	public static OAuthConsumer removeByG_S(java.lang.String gadgetKey,
+		java.lang.String serviceName)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().removeByG_S(gadgetKey, serviceName);
 	}
@@ -322,8 +324,7 @@ public class OAuthConsumerUtil {
 	*
 	* @param oAuthConsumer the o auth consumer
 	*/
-	public static void cacheResult(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
+	public static void cacheResult(OAuthConsumer oAuthConsumer) {
 		getPersistence().cacheResult(oAuthConsumer);
 	}
 
@@ -332,8 +333,7 @@ public class OAuthConsumerUtil {
 	*
 	* @param oAuthConsumers the o auth consumers
 	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.opensocial.model.OAuthConsumer> oAuthConsumers) {
+	public static void cacheResult(List<OAuthConsumer> oAuthConsumers) {
 		getPersistence().cacheResult(oAuthConsumers);
 	}
 
@@ -343,8 +343,7 @@ public class OAuthConsumerUtil {
 	* @param oAuthConsumerId the primary key for the new o auth consumer
 	* @return the new o auth consumer
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer create(
-		long oAuthConsumerId) {
+	public static OAuthConsumer create(long oAuthConsumerId) {
 		return getPersistence().create(oAuthConsumerId);
 	}
 
@@ -353,28 +352,25 @@ public class OAuthConsumerUtil {
 	*
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer that was removed
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
+	* @throws NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer remove(
-		long oAuthConsumerId)
+	public static OAuthConsumer remove(long oAuthConsumerId)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().remove(oAuthConsumerId);
 	}
 
-	public static com.liferay.opensocial.model.OAuthConsumer updateImpl(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
+	public static OAuthConsumer updateImpl(OAuthConsumer oAuthConsumer) {
 		return getPersistence().updateImpl(oAuthConsumer);
 	}
 
 	/**
-	* Returns the o auth consumer with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
+	* Returns the o auth consumer with the primary key or throws a {@link NoSuchOAuthConsumerException} if it could not be found.
 	*
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer
-	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
+	* @throws NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer findByPrimaryKey(
-		long oAuthConsumerId)
+	public static OAuthConsumer findByPrimaryKey(long oAuthConsumerId)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().findByPrimaryKey(oAuthConsumerId);
 	}
@@ -385,12 +381,11 @@ public class OAuthConsumerUtil {
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
 	*/
-	public static com.liferay.opensocial.model.OAuthConsumer fetchByPrimaryKey(
-		long oAuthConsumerId) {
+	public static OAuthConsumer fetchByPrimaryKey(long oAuthConsumerId) {
 		return getPersistence().fetchByPrimaryKey(oAuthConsumerId);
 	}
 
-	public static java.util.Map<java.io.Serializable, com.liferay.opensocial.model.OAuthConsumer> fetchByPrimaryKeys(
+	public static java.util.Map<java.io.Serializable, OAuthConsumer> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys) {
 		return getPersistence().fetchByPrimaryKeys(primaryKeys);
 	}
@@ -400,7 +395,7 @@ public class OAuthConsumerUtil {
 	*
 	* @return the o auth consumers
 	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll() {
+	public static List<OAuthConsumer> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -408,15 +403,14 @@ public class OAuthConsumerUtil {
 	* Returns a range of all the o auth consumers.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of o auth consumers
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @return the range of o auth consumers
 	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll(
-		int start, int end) {
+	public static List<OAuthConsumer> findAll(int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -424,7 +418,7 @@ public class OAuthConsumerUtil {
 	* Returns an ordered range of all the o auth consumers.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of o auth consumers
@@ -432,9 +426,8 @@ public class OAuthConsumerUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth consumers
 	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.opensocial.model.OAuthConsumer> orderByComparator) {
+	public static List<OAuthConsumer> findAll(int start, int end,
+		OrderByComparator<OAuthConsumer> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

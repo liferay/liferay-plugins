@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see OAuthToken
  * @generated
  */
+@ProviderType
 public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	public OAuthTokenWrapper(OAuthToken oAuthToken) {
 		_oAuthToken = oAuthToken;
@@ -190,7 +193,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	* @return the create date of this o auth token
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _oAuthToken.getCreateDate();
 	}
 
@@ -225,7 +228,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	* @return the modified date of this o auth token
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _oAuthToken.getModifiedDate();
 	}
 
@@ -390,7 +393,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	* @param createDate the create date of this o auth token
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_oAuthToken.setCreateDate(createDate);
 	}
 
@@ -438,7 +441,7 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 	* @param modifiedDate the modified date of this o auth token
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_oAuthToken.setModifiedDate(modifiedDate);
 	}
 
@@ -624,5 +627,5 @@ public class OAuthTokenWrapper implements OAuthToken, ModelWrapper<OAuthToken> {
 		_oAuthToken.resetOriginalValues();
 	}
 
-	private OAuthToken _oAuthToken;
+	private final OAuthToken _oAuthToken;
 }

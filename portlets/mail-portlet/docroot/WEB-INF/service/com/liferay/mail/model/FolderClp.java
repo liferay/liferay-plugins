@@ -642,7 +642,7 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	private String _displayName;
 	private int _remoteMessageCount;
 	private BaseModel<?> _folderRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.mail.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

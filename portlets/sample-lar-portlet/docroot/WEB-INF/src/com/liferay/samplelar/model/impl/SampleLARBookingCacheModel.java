@@ -14,6 +14,9 @@
 
 package com.liferay.samplelar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,8 +37,33 @@ import java.util.Date;
  * @see SampleLARBooking
  * @generated
  */
+@ProviderType
 public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof SampleLARBookingCacheModel)) {
+			return false;
+		}
+
+		SampleLARBookingCacheModel sampleLARBookingCacheModel = (SampleLARBookingCacheModel)obj;
+
+		if (sampleLARBookingId == sampleLARBookingCacheModel.sampleLARBookingId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, sampleLARBookingId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);

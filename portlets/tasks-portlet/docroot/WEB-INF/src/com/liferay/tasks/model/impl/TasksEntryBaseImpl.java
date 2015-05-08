@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
  *
  * @author Ryan Park
  * @see TasksEntryImpl
- * @see com.liferay.tasks.model.TasksEntry
+ * @see TasksEntry
  * @generated
  */
+@ProviderType
 public abstract class TasksEntryBaseImpl extends TasksEntryModelImpl
 	implements TasksEntry {
 	/*

@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoConditionImpl
- * @see com.liferay.portal.workflow.kaleo.model.KaleoCondition
+ * @see KaleoCondition
  * @generated
  */
 @ProviderType

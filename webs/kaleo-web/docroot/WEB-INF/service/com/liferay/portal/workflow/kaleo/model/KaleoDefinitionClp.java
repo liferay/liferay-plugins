@@ -1011,7 +1011,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	private boolean _active;
 	private long _startKaleoNodeId;
 	private BaseModel<?> _kaleoDefinitionRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -77,7 +77,7 @@ public abstract class TasksEntryServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the tasks entry remote service
 	 */
-	public com.liferay.tasks.service.TasksEntryService getTasksEntryService() {
+	public TasksEntryService getTasksEntryService() {
 		return tasksEntryService;
 	}
 
@@ -86,8 +86,7 @@ public abstract class TasksEntryServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param tasksEntryService the tasks entry remote service
 	 */
-	public void setTasksEntryService(
-		com.liferay.tasks.service.TasksEntryService tasksEntryService) {
+	public void setTasksEntryService(TasksEntryService tasksEntryService) {
 		this.tasksEntryService = tasksEntryService;
 	}
 
@@ -363,8 +362,8 @@ public abstract class TasksEntryServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.liferay.tasks.service.TasksEntryLocalService.class)
 	protected com.liferay.tasks.service.TasksEntryLocalService tasksEntryLocalService;
-	@BeanReference(type = com.liferay.tasks.service.TasksEntryService.class)
-	protected com.liferay.tasks.service.TasksEntryService tasksEntryService;
+	@BeanReference(type = TasksEntryService.class)
+	protected TasksEntryService tasksEntryService;
 	@BeanReference(type = TasksEntryPersistence.class)
 	protected TasksEntryPersistence tasksEntryPersistence;
 	@BeanReference(type = TasksEntryFinder.class)

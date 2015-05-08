@@ -270,7 +270,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	* @return the create date of this kaleo task assignment
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoTaskAssignment.getCreateDate();
 	}
 
@@ -345,7 +345,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	* @return the modified date of this kaleo task assignment
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoTaskAssignment.getModifiedDate();
 	}
 
@@ -502,7 +502,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	* @param createDate the create date of this kaleo task assignment
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoTaskAssignment.setCreateDate(createDate);
 	}
 
@@ -590,7 +590,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	* @param modifiedDate the modified date of this kaleo task assignment
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoTaskAssignment.setModifiedDate(modifiedDate);
 	}
 

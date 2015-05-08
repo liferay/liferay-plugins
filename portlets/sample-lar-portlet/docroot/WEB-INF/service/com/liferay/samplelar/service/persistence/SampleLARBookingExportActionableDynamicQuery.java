@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
@@ -27,10 +29,11 @@ import com.liferay.samplelar.model.SampleLARBooking;
 
 /**
  * @author Mate Thurzo
- * @deprecated As of 7.0.0, replaced by {@link com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil#getExportActionableDynamicQuery(PortletDataContext)}
  * @generated
  */
 @Deprecated
+@ProviderType
 public class SampleLARBookingExportActionableDynamicQuery
 	extends SampleLARBookingActionableDynamicQuery {
 	public SampleLARBookingExportActionableDynamicQuery(

@@ -14,12 +14,15 @@
 
 package com.liferay.tasks.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Ryan Park
  * @generated
  */
+@ProviderType
 public class TasksEntryServiceClp implements TasksEntryService {
 	public TasksEntryServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
@@ -24,6 +26,7 @@ import com.liferay.sampleservicebuilder.service.FooServiceUtil;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();

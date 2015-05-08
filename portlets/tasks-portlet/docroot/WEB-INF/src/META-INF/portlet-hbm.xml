@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.tasks.model.TasksEntry" />
 	<class name="com.liferay.tasks.model.impl.TasksEntryImpl" table="TMS_TasksEntry">
-		<cache usage="read-write" />
 		<id name="tasksEntryId" type="long">
 			<generator class="assigned" />
 		</id>

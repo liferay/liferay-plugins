@@ -28,7 +28,7 @@ import com.liferay.mail.service.AttachmentLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see AttachmentImpl
- * @see com.liferay.mail.model.Attachment
+ * @see Attachment
  * @generated
  */
 @ProviderType

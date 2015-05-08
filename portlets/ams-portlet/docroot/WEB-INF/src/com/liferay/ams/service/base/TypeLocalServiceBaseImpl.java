@@ -14,6 +14,8 @@
 
 package com.liferay.ams.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Type;
 import com.liferay.ams.service.TypeLocalService;
 import com.liferay.ams.service.persistence.AssetPersistence;
@@ -62,6 +64,7 @@ import javax.sql.DataSource;
  * @see com.liferay.ams.service.TypeLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements TypeLocalService, IdentifiableBean {
 	/*
@@ -178,10 +181,10 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -189,11 +192,11 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -410,7 +413,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the type local service
 	 */
-	public com.liferay.ams.service.TypeLocalService getTypeLocalService() {
+	public TypeLocalService getTypeLocalService() {
 		return typeLocalService;
 	}
 
@@ -419,8 +422,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param typeLocalService the type local service
 	 */
-	public void setTypeLocalService(
-		com.liferay.ams.service.TypeLocalService typeLocalService) {
+	public void setTypeLocalService(TypeLocalService typeLocalService) {
 		this.typeLocalService = typeLocalService;
 	}
 
@@ -692,8 +694,8 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.ams.service.DefinitionLocalService definitionLocalService;
 	@BeanReference(type = DefinitionPersistence.class)
 	protected DefinitionPersistence definitionPersistence;
-	@BeanReference(type = com.liferay.ams.service.TypeLocalService.class)
-	protected com.liferay.ams.service.TypeLocalService typeLocalService;
+	@BeanReference(type = TypeLocalService.class)
+	protected TypeLocalService typeLocalService;
 	@BeanReference(type = TypePersistence.class)
 	protected TypePersistence typePersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

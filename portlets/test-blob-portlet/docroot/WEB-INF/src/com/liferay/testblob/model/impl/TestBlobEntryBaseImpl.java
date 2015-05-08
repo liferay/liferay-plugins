@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.testblob.model.TestBlobEntry;
 import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see TestBlobEntryImpl
- * @see com.liferay.testblob.model.TestBlobEntry
+ * @see TestBlobEntry
  * @generated
  */
+@ProviderType
 public abstract class TestBlobEntryBaseImpl extends TestBlobEntryModelImpl
 	implements TestBlobEntry {
 	/*

@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.ams.model.impl.AssetModelImpl
  * @generated
  */
+@ProviderType
 public interface AssetModel extends AuditedModel, BaseModel<Asset> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -272,19 +275,19 @@ public interface AssetModel extends AuditedModel, BaseModel<Asset> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Asset asset);
+	public int compareTo(com.liferay.ams.model.Asset asset);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Asset> toCacheModel();
+	public CacheModel<com.liferay.ams.model.Asset> toCacheModel();
 
 	@Override
-	public Asset toEscapedModel();
+	public com.liferay.ams.model.Asset toEscapedModel();
 
 	@Override
-	public Asset toUnescapedModel();
+	public com.liferay.ams.model.Asset toUnescapedModel();
 
 	@Override
 	public String toString();

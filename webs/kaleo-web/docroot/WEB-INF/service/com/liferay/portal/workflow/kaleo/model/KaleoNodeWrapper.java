@@ -184,7 +184,7 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	* @return the create date of this kaleo node
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoNode.getCreateDate();
 	}
 
@@ -277,7 +277,7 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	* @return the modified date of this kaleo node
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoNode.getModifiedDate();
 	}
 
@@ -427,7 +427,7 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	* @param createDate the create date of this kaleo node
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoNode.setCreateDate(createDate);
 	}
 
@@ -515,7 +515,7 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	* @param modifiedDate the modified date of this kaleo node
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoNode.setModifiedDate(modifiedDate);
 	}
 

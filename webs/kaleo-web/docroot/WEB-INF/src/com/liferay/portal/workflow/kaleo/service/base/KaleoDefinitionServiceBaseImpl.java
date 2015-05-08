@@ -167,7 +167,7 @@ public abstract class KaleoDefinitionServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the kaleo definition remote service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService getKaleoDefinitionService() {
+	public KaleoDefinitionService getKaleoDefinitionService() {
 		return kaleoDefinitionService;
 	}
 
@@ -177,7 +177,7 @@ public abstract class KaleoDefinitionServiceBaseImpl extends BaseServiceImpl
 	 * @param kaleoDefinitionService the kaleo definition remote service
 	 */
 	public void setKaleoDefinitionService(
-		com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService kaleoDefinitionService) {
+		KaleoDefinitionService kaleoDefinitionService) {
 		this.kaleoDefinitionService = kaleoDefinitionService;
 	}
 
@@ -955,8 +955,8 @@ public abstract class KaleoDefinitionServiceBaseImpl extends BaseServiceImpl
 	protected KaleoConditionPersistence kaleoConditionPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService.class)
 	protected com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService kaleoDefinitionLocalService;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService kaleoDefinitionService;
+	@BeanReference(type = KaleoDefinitionService.class)
+	protected KaleoDefinitionService kaleoDefinitionService;
 	@BeanReference(type = KaleoDefinitionPersistence.class)
 	protected KaleoDefinitionPersistence kaleoDefinitionPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService.class)

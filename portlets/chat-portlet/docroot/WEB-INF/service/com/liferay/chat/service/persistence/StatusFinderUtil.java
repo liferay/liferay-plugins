@@ -14,12 +14,16 @@
 
 package com.liferay.chat.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
+@ProviderType
 public class StatusFinderUtil {
 	public static java.util.List<java.lang.Object[]> findByModifiedDate(
 		long companyId, long userId, long modifiedDate, int start, int end) {

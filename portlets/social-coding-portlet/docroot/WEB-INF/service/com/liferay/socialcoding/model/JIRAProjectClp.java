@@ -356,7 +356,7 @@ public class JIRAProjectClp extends BaseModelImpl<JIRAProject>
 	private String _key;
 	private String _name;
 	private BaseModel<?> _jiraProjectRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

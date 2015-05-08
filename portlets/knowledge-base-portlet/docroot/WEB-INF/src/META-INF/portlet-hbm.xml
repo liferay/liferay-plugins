@@ -7,7 +7,6 @@
 	<import class="com.liferay.knowledgebase.model.KBFolder" />
 	<import class="com.liferay.knowledgebase.model.KBTemplate" />
 	<class name="com.liferay.knowledgebase.model.impl.KBArticleImpl" table="KBArticle">
-		<cache usage="read-write" />
 		<id name="kbArticleId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -40,7 +39,6 @@
 		<property name="statusDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.KBCommentImpl" table="KBComment">
-		<cache usage="read-write" />
 		<id name="kbCommentId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -58,7 +56,6 @@
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.KBFolderImpl" table="KBFolder">
-		<cache usage="read-write" />
 		<id name="kbFolderId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -75,7 +72,6 @@
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.KBTemplateImpl" table="KBTemplate">
-		<cache usage="read-write" />
 		<id name="kbTemplateId" type="long">
 			<generator class="assigned" />
 		</id>

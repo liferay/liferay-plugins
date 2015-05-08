@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -69,6 +71,7 @@ import javax.sql.DataSource;
  * @see com.liferay.wsrp.service.WSRPProducerLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class WSRPProducerLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements WSRPProducerLocalService,
 		IdentifiableBean {
@@ -190,10 +193,10 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -201,11 +204,11 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -335,12 +338,29 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 		return wsrpProducerPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
+	/**
+	 * Returns all the w s r p producers matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the w s r p producers
+	 * @param companyId the primary key of the company
+	 * @return the matching w s r p producers, or an empty list if no matches were found
+	 */
 	@Override
 	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
 		long companyId) {
 		return wsrpProducerPersistence.findByUuid_C(uuid, companyId);
 	}
 
+	/**
+	 * Returns a range of w s r p producers matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the w s r p producers
+	 * @param companyId the primary key of the company
+	 * @param start the lower bound of the range of w s r p producers
+	 * @param end the upper bound of the range of w s r p producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the range of matching w s r p producers, or an empty list if no matches were found
+	 */
 	@Override
 	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
 		long companyId, int start, int end,
@@ -482,7 +502,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 *
 	 * @return the w s r p producer local service
 	 */
-	public com.liferay.wsrp.service.WSRPProducerLocalService getWSRPProducerLocalService() {
+	public WSRPProducerLocalService getWSRPProducerLocalService() {
 		return wsrpProducerLocalService;
 	}
 
@@ -492,7 +512,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	 * @param wsrpProducerLocalService the w s r p producer local service
 	 */
 	public void setWSRPProducerLocalService(
-		com.liferay.wsrp.service.WSRPProducerLocalService wsrpProducerLocalService) {
+		WSRPProducerLocalService wsrpProducerLocalService) {
 		this.wsrpProducerLocalService = wsrpProducerLocalService;
 	}
 
@@ -873,8 +893,8 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	protected com.liferay.wsrp.service.WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService;
 	@BeanReference(type = WSRPConsumerPortletPersistence.class)
 	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
-	@BeanReference(type = com.liferay.wsrp.service.WSRPProducerLocalService.class)
-	protected com.liferay.wsrp.service.WSRPProducerLocalService wsrpProducerLocalService;
+	@BeanReference(type = WSRPProducerLocalService.class)
+	protected WSRPProducerLocalService wsrpProducerLocalService;
 	@BeanReference(type = WSRPProducerPersistence.class)
 	protected WSRPProducerPersistence wsrpProducerPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

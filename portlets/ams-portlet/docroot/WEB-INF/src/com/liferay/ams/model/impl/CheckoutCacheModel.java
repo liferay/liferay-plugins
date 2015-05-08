@@ -14,8 +14,11 @@
 
 package com.liferay.ams.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Checkout;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,7 +37,32 @@ import java.util.Date;
  * @see Checkout
  * @generated
  */
+@ProviderType
 public class CheckoutCacheModel implements CacheModel<Checkout>, Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof CheckoutCacheModel)) {
+			return false;
+		}
+
+		CheckoutCacheModel checkoutCacheModel = (CheckoutCacheModel)obj;
+
+		if (checkoutId == checkoutCacheModel.checkoutId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, checkoutId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);

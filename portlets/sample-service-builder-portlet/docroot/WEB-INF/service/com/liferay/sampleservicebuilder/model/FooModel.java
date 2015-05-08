@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.sampleservicebuilder.model.impl.FooModelImpl
  * @generated
  */
+@ProviderType
 public interface FooModel extends BaseModel<Foo>, StagedGroupedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -320,19 +323,19 @@ public interface FooModel extends BaseModel<Foo>, StagedGroupedModel {
 	public Object clone();
 
 	@Override
-	public int compareTo(Foo foo);
+	public int compareTo(com.liferay.sampleservicebuilder.model.Foo foo);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Foo> toCacheModel();
+	public CacheModel<com.liferay.sampleservicebuilder.model.Foo> toCacheModel();
 
 	@Override
-	public Foo toEscapedModel();
+	public com.liferay.sampleservicebuilder.model.Foo toEscapedModel();
 
 	@Override
-	public Foo toUnescapedModel();
+	public com.liferay.sampleservicebuilder.model.Foo toUnescapedModel();
 
 	@Override
 	public String toString();

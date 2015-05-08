@@ -14,6 +14,8 @@
 
 package com.liferay.testpacl.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -61,6 +63,7 @@ import javax.sql.DataSource;
  * @see com.liferay.testpacl.service.FooLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements FooLocalService, IdentifiableBean {
 	/*
@@ -177,10 +180,10 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -188,11 +191,11 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -297,7 +300,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the foo local service
 	 */
-	public com.liferay.testpacl.service.FooLocalService getFooLocalService() {
+	public FooLocalService getFooLocalService() {
 		return fooLocalService;
 	}
 
@@ -306,8 +309,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param fooLocalService the foo local service
 	 */
-	public void setFooLocalService(
-		com.liferay.testpacl.service.FooLocalService fooLocalService) {
+	public void setFooLocalService(FooLocalService fooLocalService) {
 		this.fooLocalService = fooLocalService;
 	}
 
@@ -717,8 +719,8 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.testpacl.service.FooLocalService.class)
-	protected com.liferay.testpacl.service.FooLocalService fooLocalService;
+	@BeanReference(type = FooLocalService.class)
+	protected FooLocalService fooLocalService;
 	@BeanReference(type = FooPersistence.class)
 	protected FooPersistence fooPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

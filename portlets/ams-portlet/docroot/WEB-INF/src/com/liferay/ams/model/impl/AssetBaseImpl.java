@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Asset;
 import com.liferay.ams.service.AssetLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.ams.service.AssetLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see AssetImpl
- * @see com.liferay.ams.model.Asset
+ * @see Asset
  * @generated
  */
+@ProviderType
 public abstract class AssetBaseImpl extends AssetModelImpl implements Asset {
 	/*
 	 * NOTE FOR DEVELOPERS:

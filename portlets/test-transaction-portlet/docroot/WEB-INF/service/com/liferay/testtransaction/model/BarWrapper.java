@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -29,6 +31,7 @@ import java.util.Map;
  * @see Bar
  * @generated
  */
+@ProviderType
 public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	public BarWrapper(Bar bar) {
 		_bar = bar;
@@ -279,5 +282,5 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		_bar.resetOriginalValues();
 	}
 
-	private Bar _bar;
+	private final Bar _bar;
 }

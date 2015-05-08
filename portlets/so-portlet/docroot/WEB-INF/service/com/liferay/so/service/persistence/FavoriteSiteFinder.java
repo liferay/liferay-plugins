@@ -14,9 +14,13 @@
 
 package com.liferay.so.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
+@ProviderType
 public interface FavoriteSiteFinder {
 	public int countByU_N(long userId, java.lang.String name,
 		java.lang.String groupRealName);

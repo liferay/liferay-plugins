@@ -14,6 +14,8 @@
 
 package com.liferay.so.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see SocialOfficeService
  * @generated
  */
+@ProviderType
 public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	ServiceWrapper<SocialOfficeService> {
 	public SocialOfficeServiceWrapper(SocialOfficeService socialOfficeService) {

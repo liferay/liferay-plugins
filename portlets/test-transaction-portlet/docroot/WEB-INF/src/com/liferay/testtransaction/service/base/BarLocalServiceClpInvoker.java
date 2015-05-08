@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.testtransaction.service.BarLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class BarLocalServiceClpInvoker {
 	public BarLocalServiceClpInvoker() {
 		_methodName0 = "addBar";

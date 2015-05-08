@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.testblob.model.TestBlobEntry" />
 	<class name="com.liferay.testblob.model.impl.TestBlobEntryImpl" table="TestBlob_TestBlobEntry">
-		<cache usage="read-write" />
 		<id name="testBlobEntryId" type="long">
 			<generator class="assigned" />
 		</id>

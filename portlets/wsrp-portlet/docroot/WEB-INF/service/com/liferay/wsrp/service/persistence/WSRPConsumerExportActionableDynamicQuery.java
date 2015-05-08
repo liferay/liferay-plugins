@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
@@ -27,10 +29,11 @@ import com.liferay.wsrp.model.WSRPConsumer;
 
 /**
  * @author Brian Wing Shun Chan
- * @deprecated As of 7.0.0, replaced by {@link com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil#getExportActionableDynamicQuery()}
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil#getExportActionableDynamicQuery(PortletDataContext)}
  * @generated
  */
 @Deprecated
+@ProviderType
 public class WSRPConsumerExportActionableDynamicQuery
 	extends WSRPConsumerActionableDynamicQuery {
 	public WSRPConsumerExportActionableDynamicQuery(

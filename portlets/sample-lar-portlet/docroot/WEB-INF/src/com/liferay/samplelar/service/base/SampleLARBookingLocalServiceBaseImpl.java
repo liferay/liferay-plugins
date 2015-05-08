@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -65,6 +67,7 @@ import javax.sql.DataSource;
  * @see com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class SampleLARBookingLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements SampleLARBookingLocalService,
 		IdentifiableBean {
@@ -186,10 +189,10 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -197,11 +200,11 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -333,12 +336,29 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 		return sampleLARBookingPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
+	/**
+	 * Returns all the sample l a r bookings matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the sample l a r bookings
+	 * @param companyId the primary key of the company
+	 * @return the matching sample l a r bookings, or an empty list if no matches were found
+	 */
 	@Override
 	public List<SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
 		String uuid, long companyId) {
 		return sampleLARBookingPersistence.findByUuid_C(uuid, companyId);
 	}
 
+	/**
+	 * Returns a range of sample l a r bookings matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the sample l a r bookings
+	 * @param companyId the primary key of the company
+	 * @param start the lower bound of the range of sample l a r bookings
+	 * @param end the upper bound of the range of sample l a r bookings (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the range of matching sample l a r bookings, or an empty list if no matches were found
+	 */
 	@Override
 	public List<SampleLARBooking> getSampleLARBookingsByUuidAndCompanyId(
 		String uuid, long companyId, int start, int end,
@@ -405,7 +425,7 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	 *
 	 * @return the sample l a r booking local service
 	 */
-	public com.liferay.samplelar.service.SampleLARBookingLocalService getSampleLARBookingLocalService() {
+	public SampleLARBookingLocalService getSampleLARBookingLocalService() {
 		return sampleLARBookingLocalService;
 	}
 
@@ -415,7 +435,7 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	 * @param sampleLARBookingLocalService the sample l a r booking local service
 	 */
 	public void setSampleLARBookingLocalService(
-		com.liferay.samplelar.service.SampleLARBookingLocalService sampleLARBookingLocalService) {
+		SampleLARBookingLocalService sampleLARBookingLocalService) {
 		this.sampleLARBookingLocalService = sampleLARBookingLocalService;
 	}
 
@@ -676,8 +696,8 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.samplelar.service.SampleLARBookingLocalService.class)
-	protected com.liferay.samplelar.service.SampleLARBookingLocalService sampleLARBookingLocalService;
+	@BeanReference(type = SampleLARBookingLocalService.class)
+	protected SampleLARBookingLocalService sampleLARBookingLocalService;
 	@BeanReference(type = SampleLARBookingPersistence.class)
 	protected SampleLARBookingPersistence sampleLARBookingPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

@@ -14,6 +14,8 @@
 
 package com.liferay.words.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.words.service.WordsServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class WordsServiceClpInvoker {
 	public WordsServiceClpInvoker() {
 		_methodName20 = "getBeanIdentifier";

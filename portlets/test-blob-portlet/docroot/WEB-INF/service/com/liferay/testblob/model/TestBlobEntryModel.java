@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -38,6 +40,7 @@ import java.sql.Blob;
  * @see com.liferay.testblob.model.impl.TestBlobEntryModelImpl
  * @generated
  */
+@ProviderType
 public interface TestBlobEntryModel extends BaseModel<TestBlobEntry> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -139,19 +142,19 @@ public interface TestBlobEntryModel extends BaseModel<TestBlobEntry> {
 	public Object clone();
 
 	@Override
-	public int compareTo(TestBlobEntry testBlobEntry);
+	public int compareTo(com.liferay.testblob.model.TestBlobEntry testBlobEntry);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<TestBlobEntry> toCacheModel();
+	public CacheModel<com.liferay.testblob.model.TestBlobEntry> toCacheModel();
 
 	@Override
-	public TestBlobEntry toEscapedModel();
+	public com.liferay.testblob.model.TestBlobEntry toEscapedModel();
 
 	@Override
-	public TestBlobEntry toUnescapedModel();
+	public com.liferay.testblob.model.TestBlobEntry toUnescapedModel();
 
 	@Override
 	public String toString();

@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.samplelar.model.SampleLARBooking" />
 	<class name="com.liferay.samplelar.model.impl.SampleLARBookingImpl" table="SampleLARBooking">
-		<cache usage="read-write" />
 		<id name="sampleLARBookingId" type="long">
 			<generator class="assigned" />
 		</id>

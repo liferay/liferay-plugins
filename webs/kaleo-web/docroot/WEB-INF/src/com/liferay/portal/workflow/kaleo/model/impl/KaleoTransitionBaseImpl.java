@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalServiceUtil
  *
  * @author Brian Wing Shun Chan
  * @see KaleoTransitionImpl
- * @see com.liferay.portal.workflow.kaleo.model.KaleoTransition
+ * @see KaleoTransition
  * @generated
  */
 @ProviderType

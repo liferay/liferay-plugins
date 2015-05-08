@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.opensocial.service.GadgetServiceUtil;
 
 import com.liferay.portal.kernel.log.Log;
@@ -23,7 +25,7 @@ import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.opensocial.service.GadgetServiceUtil} service utility. The
+ * {@link GadgetServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -58,9 +60,10 @@ import java.rmi.RemoteException;
  * @author Brian Wing Shun Chan
  * @see GadgetServiceHttp
  * @see com.liferay.opensocial.model.GadgetSoap
- * @see com.liferay.opensocial.service.GadgetServiceUtil
+ * @see GadgetServiceUtil
  * @generated
  */
+@ProviderType
 public class GadgetServiceSoap {
 	public static com.liferay.opensocial.model.GadgetSoap addGadget(
 		long companyId, java.lang.String url,

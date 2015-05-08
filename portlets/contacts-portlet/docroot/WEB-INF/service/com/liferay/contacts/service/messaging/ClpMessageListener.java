@@ -14,6 +14,8 @@
 
 package com.liferay.contacts.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.contacts.service.ClpSerializer;
 import com.liferay.contacts.service.EntryLocalServiceUtil;
 import com.liferay.contacts.service.EntryServiceUtil;
@@ -24,6 +26,7 @@ import com.liferay.portal.kernel.messaging.Message;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();

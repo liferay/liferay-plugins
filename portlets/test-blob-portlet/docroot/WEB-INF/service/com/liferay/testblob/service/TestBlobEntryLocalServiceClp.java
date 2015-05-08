@@ -14,12 +14,15 @@
 
 package com.liferay.testblob.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
 	public TestBlobEntryLocalServiceClp(
 		InvokableLocalService invokableLocalService) {

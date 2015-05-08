@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Mate Thurzo
  * @generated
  */
+@ProviderType
 public class SampleLARBookingLocalServiceClpInvoker {
 	public SampleLARBookingLocalServiceClpInvoker() {
 		_methodName0 = "addSampleLARBooking";

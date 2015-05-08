@@ -14,12 +14,15 @@
 
 package com.liferay.tasks.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Ryan Park
  * @generated
  */
+@ProviderType
 public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	public TasksEntryLocalServiceClp(
 		InvokableLocalService invokableLocalService) {

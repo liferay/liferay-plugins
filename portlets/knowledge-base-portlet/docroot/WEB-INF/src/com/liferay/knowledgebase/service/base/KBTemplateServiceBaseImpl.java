@@ -271,7 +271,7 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the k b template remote service
 	 */
-	public com.liferay.knowledgebase.service.KBTemplateService getKBTemplateService() {
+	public KBTemplateService getKBTemplateService() {
 		return kbTemplateService;
 	}
 
@@ -280,8 +280,7 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param kbTemplateService the k b template remote service
 	 */
-	public void setKBTemplateService(
-		com.liferay.knowledgebase.service.KBTemplateService kbTemplateService) {
+	public void setKBTemplateService(KBTemplateService kbTemplateService) {
 		this.kbTemplateService = kbTemplateService;
 	}
 
@@ -673,8 +672,8 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	protected KBFolderPersistence kbFolderPersistence;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBTemplateLocalService.class)
 	protected com.liferay.knowledgebase.service.KBTemplateLocalService kbTemplateLocalService;
-	@BeanReference(type = com.liferay.knowledgebase.service.KBTemplateService.class)
-	protected com.liferay.knowledgebase.service.KBTemplateService kbTemplateService;
+	@BeanReference(type = KBTemplateService.class)
+	protected KBTemplateService kbTemplateService;
 	@BeanReference(type = KBTemplatePersistence.class)
 	protected KBTemplatePersistence kbTemplatePersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

@@ -78,7 +78,7 @@ public abstract class GadgetServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the gadget remote service
 	 */
-	public com.liferay.opensocial.service.GadgetService getGadgetService() {
+	public GadgetService getGadgetService() {
 		return gadgetService;
 	}
 
@@ -87,8 +87,7 @@ public abstract class GadgetServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param gadgetService the gadget remote service
 	 */
-	public void setGadgetService(
-		com.liferay.opensocial.service.GadgetService gadgetService) {
+	public void setGadgetService(GadgetService gadgetService) {
 		this.gadgetService = gadgetService;
 	}
 
@@ -421,8 +420,8 @@ public abstract class GadgetServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.liferay.opensocial.service.GadgetLocalService.class)
 	protected com.liferay.opensocial.service.GadgetLocalService gadgetLocalService;
-	@BeanReference(type = com.liferay.opensocial.service.GadgetService.class)
-	protected com.liferay.opensocial.service.GadgetService gadgetService;
+	@BeanReference(type = GadgetService.class)
+	protected GadgetService gadgetService;
 	@BeanReference(type = GadgetPersistence.class)
 	protected GadgetPersistence gadgetPersistence;
 	@BeanReference(type = com.liferay.opensocial.service.OAuthConsumerLocalService.class)

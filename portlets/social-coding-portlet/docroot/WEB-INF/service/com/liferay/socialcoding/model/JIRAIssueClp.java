@@ -683,7 +683,7 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	private String _resolution;
 	private String _status;
 	private BaseModel<?> _jiraIssueRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

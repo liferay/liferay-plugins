@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -34,6 +36,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	public BarClp() {
 	}
@@ -312,7 +315,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	private long _barId;
 	private String _text;
 	private BaseModel<?> _barRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.testtransaction.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

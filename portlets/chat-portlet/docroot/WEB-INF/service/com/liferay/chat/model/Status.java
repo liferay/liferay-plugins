@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.chat.model.impl.StatusModelImpl
  * @generated
  */
+@ProviderType
 public interface Status extends StatusModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

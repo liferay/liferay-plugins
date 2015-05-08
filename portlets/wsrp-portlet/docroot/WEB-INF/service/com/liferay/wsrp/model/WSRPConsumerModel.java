@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.wsrp.model.impl.WSRPConsumerModelImpl
  * @generated
  */
+@ProviderType
 public interface WSRPConsumerModel extends BaseModel<WSRPConsumer>, StagedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -297,19 +300,19 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer>, StagedModel 
 	public Object clone();
 
 	@Override
-	public int compareTo(WSRPConsumer wsrpConsumer);
+	public int compareTo(com.liferay.wsrp.model.WSRPConsumer wsrpConsumer);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<WSRPConsumer> toCacheModel();
+	public CacheModel<com.liferay.wsrp.model.WSRPConsumer> toCacheModel();
 
 	@Override
-	public WSRPConsumer toEscapedModel();
+	public com.liferay.wsrp.model.WSRPConsumer toEscapedModel();
 
 	@Override
-	public WSRPConsumer toUnescapedModel();
+	public com.liferay.wsrp.model.WSRPConsumer toUnescapedModel();
 
 	@Override
 	public String toString();

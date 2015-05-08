@@ -927,7 +927,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 *
 	 * @return the kaleo transition local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService getKaleoTransitionLocalService() {
+	public KaleoTransitionLocalService getKaleoTransitionLocalService() {
 		return kaleoTransitionLocalService;
 	}
 
@@ -937,7 +937,7 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	 * @param kaleoTransitionLocalService the kaleo transition local service
 	 */
 	public void setKaleoTransitionLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService kaleoTransitionLocalService) {
+		KaleoTransitionLocalService kaleoTransitionLocalService) {
 		this.kaleoTransitionLocalService = kaleoTransitionLocalService;
 	}
 
@@ -1262,8 +1262,8 @@ public abstract class KaleoTransitionLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService;
 	@BeanReference(type = KaleoTimerInstanceTokenPersistence.class)
 	protected KaleoTimerInstanceTokenPersistence kaleoTimerInstanceTokenPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService kaleoTransitionLocalService;
+	@BeanReference(type = KaleoTransitionLocalService.class)
+	protected KaleoTransitionLocalService kaleoTransitionLocalService;
 	@BeanReference(type = KaleoTransitionPersistence.class)
 	protected KaleoTransitionPersistence kaleoTransitionPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

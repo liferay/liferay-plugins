@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Ryan Park
  * @generated
  */
+@ProviderType
 public class TasksEntryLocalServiceClpInvoker {
 	public TasksEntryLocalServiceClpInvoker() {
 		_methodName0 = "addTasksEntry";

@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see KaleoTimerImpl
- * @see com.liferay.portal.workflow.kaleo.model.KaleoTimer
+ * @see KaleoTimer
  * @generated
  */
 @ProviderType

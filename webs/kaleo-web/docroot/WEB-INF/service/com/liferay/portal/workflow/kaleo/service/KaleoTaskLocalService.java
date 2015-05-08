@@ -52,7 +52,7 @@ public interface KaleoTaskLocalService extends BaseLocalService,
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Task task,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Adds the kaleo task to the database. Also notifies the appropriate model listeners.
@@ -96,8 +96,7 @@ public interface KaleoTaskLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask deleteKaleoTask(
-		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoTaskId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -105,7 +104,7 @@ public interface KaleoTaskLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -188,8 +187,7 @@ public interface KaleoTaskLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoNodeKaleoTask(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoNodeId) throws PortalException;
 
 	/**
 	* Returns the kaleo task with the primary key.
@@ -200,8 +198,7 @@ public interface KaleoTaskLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask getKaleoTask(
-		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoTaskId) throws PortalException;
 
 	/**
 	* Returns a range of all the kaleo tasks.
@@ -229,8 +226,7 @@ public interface KaleoTaskLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

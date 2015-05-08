@@ -14,6 +14,8 @@
 
 package com.liferay.chat.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.EntryLocalService;
 import com.liferay.chat.service.persistence.EntryFinder;
@@ -62,6 +64,7 @@ import javax.sql.DataSource;
  * @see com.liferay.chat.service.EntryLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements EntryLocalService, IdentifiableBean {
 	/*
@@ -178,10 +181,10 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -189,11 +192,11 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -298,7 +301,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the entry local service
 	 */
-	public com.liferay.chat.service.EntryLocalService getEntryLocalService() {
+	public EntryLocalService getEntryLocalService() {
 		return entryLocalService;
 	}
 
@@ -307,8 +310,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param entryLocalService the entry local service
 	 */
-	public void setEntryLocalService(
-		com.liferay.chat.service.EntryLocalService entryLocalService) {
+	public void setEntryLocalService(EntryLocalService entryLocalService) {
 		this.entryLocalService = entryLocalService;
 	}
 
@@ -641,8 +643,8 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.chat.service.EntryLocalService.class)
-	protected com.liferay.chat.service.EntryLocalService entryLocalService;
+	@BeanReference(type = EntryLocalService.class)
+	protected EntryLocalService entryLocalService;
 	@BeanReference(type = EntryPersistence.class)
 	protected EntryPersistence entryPersistence;
 	@BeanReference(type = EntryFinder.class)

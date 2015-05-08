@@ -61,8 +61,7 @@ public interface FolderLocalService extends BaseLocalService,
 
 	public com.liferay.mail.model.Folder addFolder(long userId, long accountId,
 		java.lang.String fullName, java.lang.String displayName,
-		int remoteMessageCount)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		int remoteMessageCount) throws PortalException;
 
 	/**
 	* Creates a new folder with the primary key. Does not add the folder to the database.
@@ -81,8 +80,7 @@ public interface FolderLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.mail.model.Folder deleteFolder(
-		com.liferay.mail.model.Folder folder)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		com.liferay.mail.model.Folder folder) throws PortalException;
 
 	/**
 	* Deletes the folder with the primary key from the database. Also notifies the appropriate model listeners.
@@ -93,10 +91,9 @@ public interface FolderLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.mail.model.Folder deleteFolder(long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
-	public void deleteFolders(long accountId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void deleteFolders(long accountId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -104,7 +101,7 @@ public interface FolderLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -186,8 +183,7 @@ public interface FolderLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Folder getFolder(long accountId,
-		java.lang.String fullName)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String fullName) throws PortalException;
 
 	/**
 	* Returns the folder with the primary key.
@@ -198,7 +194,7 @@ public interface FolderLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Folder getFolder(long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.mail.model.Folder> getFolders(
@@ -231,18 +227,16 @@ public interface FolderLocalService extends BaseLocalService,
 	public int getLocalPageCount(long folderId, int messagesPerPage);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPercentDownloaded(long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public int getPercentDownloaded(long folderId) throws PortalException;
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getRemotePageCount(long folderId, int messagesPerPage)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -268,6 +262,5 @@ public interface FolderLocalService extends BaseLocalService,
 
 	public com.liferay.mail.model.Folder updateFolder(long folderId,
 		java.lang.String fullName, java.lang.String displayName,
-		int remoteMessageCount)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		int remoteMessageCount) throws PortalException;
 }

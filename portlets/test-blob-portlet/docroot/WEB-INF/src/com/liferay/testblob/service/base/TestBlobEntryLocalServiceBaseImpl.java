@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -61,6 +63,7 @@ import javax.sql.DataSource;
  * @see com.liferay.testblob.service.TestBlobEntryLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class TestBlobEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements TestBlobEntryLocalService,
 		IdentifiableBean {
@@ -180,10 +183,10 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -191,11 +194,11 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -305,7 +308,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 		try {
 			session = testBlobEntryPersistence.openSession();
 
-			return (com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel)session.get(TestBlobEntryBlobFieldBlobModel.class,
+			return (TestBlobEntryBlobFieldBlobModel)session.get(TestBlobEntryBlobFieldBlobModel.class,
 				primaryKey);
 		}
 		catch (Exception e) {
@@ -321,7 +324,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 *
 	 * @return the test blob entry local service
 	 */
-	public com.liferay.testblob.service.TestBlobEntryLocalService getTestBlobEntryLocalService() {
+	public TestBlobEntryLocalService getTestBlobEntryLocalService() {
 		return testBlobEntryLocalService;
 	}
 
@@ -331,7 +334,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @param testBlobEntryLocalService the test blob entry local service
 	 */
 	public void setTestBlobEntryLocalService(
-		com.liferay.testblob.service.TestBlobEntryLocalService testBlobEntryLocalService) {
+		TestBlobEntryLocalService testBlobEntryLocalService) {
 		this.testBlobEntryLocalService = testBlobEntryLocalService;
 	}
 
@@ -592,8 +595,8 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.testblob.service.TestBlobEntryLocalService.class)
-	protected com.liferay.testblob.service.TestBlobEntryLocalService testBlobEntryLocalService;
+	@BeanReference(type = TestBlobEntryLocalService.class)
+	protected TestBlobEntryLocalService testBlobEntryLocalService;
 	@BeanReference(type = TestBlobEntryPersistence.class)
 	protected TestBlobEntryPersistence testBlobEntryPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

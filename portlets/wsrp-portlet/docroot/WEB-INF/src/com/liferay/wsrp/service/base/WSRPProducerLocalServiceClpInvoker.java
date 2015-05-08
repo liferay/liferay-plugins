@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class WSRPProducerLocalServiceClpInvoker {
 	public WSRPProducerLocalServiceClpInvoker() {
 		_methodName0 = "addWSRPProducer";

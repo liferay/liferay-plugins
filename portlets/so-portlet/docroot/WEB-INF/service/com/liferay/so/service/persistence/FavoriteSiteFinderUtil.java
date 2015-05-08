@@ -14,12 +14,16 @@
 
 package com.liferay.so.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
+@ProviderType
 public class FavoriteSiteFinderUtil {
 	public static int countByU_N(long userId, java.lang.String name,
 		java.lang.String groupRealName) {

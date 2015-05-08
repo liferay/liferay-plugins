@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Checkout;
 import com.liferay.ams.service.CheckoutLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.ams.service.CheckoutLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see CheckoutImpl
- * @see com.liferay.ams.model.Checkout
+ * @see Checkout
  * @generated
  */
+@ProviderType
 public abstract class CheckoutBaseImpl extends CheckoutModelImpl
 	implements Checkout {
 	/*

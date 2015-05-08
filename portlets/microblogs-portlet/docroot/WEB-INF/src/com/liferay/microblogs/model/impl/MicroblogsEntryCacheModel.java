@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +40,30 @@ import java.util.Date;
 @ProviderType
 public class MicroblogsEntryCacheModel implements CacheModel<MicroblogsEntry>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof MicroblogsEntryCacheModel)) {
+			return false;
+		}
+
+		MicroblogsEntryCacheModel microblogsEntryCacheModel = (MicroblogsEntryCacheModel)obj;
+
+		if (microblogsEntryId == microblogsEntryCacheModel.microblogsEntryId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, microblogsEntryId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);

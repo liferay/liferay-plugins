@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see SampleLARBooking
  * @generated
  */
+@ProviderType
 public class SampleLARBookingWrapper implements SampleLARBooking,
 	ModelWrapper<SampleLARBooking> {
 	public SampleLARBookingWrapper(SampleLARBooking sampleLARBooking) {
@@ -158,7 +161,7 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	* @return the create date of this sample l a r booking
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _sampleLARBooking.getCreateDate();
 	}
 
@@ -183,7 +186,7 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	* @return the modified date of this sample l a r booking
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _sampleLARBooking.getModifiedDate();
 	}
 
@@ -308,7 +311,7 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	* @param createDate the create date of this sample l a r booking
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_sampleLARBooking.setCreateDate(createDate);
 	}
 
@@ -346,7 +349,7 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	* @param modifiedDate the modified date of this sample l a r booking
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_sampleLARBooking.setModifiedDate(modifiedDate);
 	}
 
@@ -498,5 +501,5 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 		_sampleLARBooking.resetOriginalValues();
 	}
 
-	private SampleLARBooking _sampleLARBooking;
+	private final SampleLARBooking _sampleLARBooking;
 }

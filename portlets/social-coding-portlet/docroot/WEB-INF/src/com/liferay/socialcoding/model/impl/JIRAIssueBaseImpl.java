@@ -28,7 +28,7 @@ import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see JIRAIssueImpl
- * @see com.liferay.socialcoding.model.JIRAIssue
+ * @see JIRAIssue
  * @generated
  */
 @ProviderType

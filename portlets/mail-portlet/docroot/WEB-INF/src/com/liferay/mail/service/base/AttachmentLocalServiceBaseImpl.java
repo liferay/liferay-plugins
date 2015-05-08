@@ -343,7 +343,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @return the attachment local service
 	 */
-	public com.liferay.mail.service.AttachmentLocalService getAttachmentLocalService() {
+	public AttachmentLocalService getAttachmentLocalService() {
 		return attachmentLocalService;
 	}
 
@@ -353,7 +353,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param attachmentLocalService the attachment local service
 	 */
 	public void setAttachmentLocalService(
-		com.liferay.mail.service.AttachmentLocalService attachmentLocalService) {
+		AttachmentLocalService attachmentLocalService) {
 		this.attachmentLocalService = attachmentLocalService;
 	}
 
@@ -692,8 +692,8 @@ public abstract class AttachmentLocalServiceBaseImpl
 	protected com.liferay.mail.service.AccountLocalService accountLocalService;
 	@BeanReference(type = AccountPersistence.class)
 	protected AccountPersistence accountPersistence;
-	@BeanReference(type = com.liferay.mail.service.AttachmentLocalService.class)
-	protected com.liferay.mail.service.AttachmentLocalService attachmentLocalService;
+	@BeanReference(type = AttachmentLocalService.class)
+	protected AttachmentLocalService attachmentLocalService;
 	@BeanReference(type = AttachmentPersistence.class)
 	protected AttachmentPersistence attachmentPersistence;
 	@BeanReference(type = com.liferay.mail.service.FolderLocalService.class)

@@ -14,6 +14,8 @@
 
 package com.liferay.testpacl.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Foo
  * @generated
  */
+@ProviderType
 public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	public FooWrapper(Foo foo) {
 		_foo = foo;
@@ -166,7 +169,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* @return the create date of this foo
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _foo.getCreateDate();
 	}
 
@@ -211,7 +214,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* @return the field4 of this foo
 	*/
 	@Override
-	public java.util.Date getField4() {
+	public Date getField4() {
 		return _foo.getField4();
 	}
 
@@ -251,7 +254,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* @return the modified date of this foo
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _foo.getModifiedDate();
 	}
 
@@ -356,7 +359,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* @param createDate the create date of this foo
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_foo.setCreateDate(createDate);
 	}
 
@@ -414,7 +417,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* @param field4 the field4 of this foo
 	*/
 	@Override
-	public void setField4(java.util.Date field4) {
+	public void setField4(Date field4) {
 		_foo.setField4(field4);
 	}
 
@@ -454,7 +457,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* @param modifiedDate the modified date of this foo
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_foo.setModifiedDate(modifiedDate);
 	}
 
@@ -580,5 +583,5 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 		_foo.resetOriginalValues();
 	}
 
-	private Foo _foo;
+	private final Foo _foo;
 }

@@ -895,7 +895,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 *
 	 * @return the kaleo timer instance token local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService getKaleoTimerInstanceTokenLocalService() {
+	public KaleoTimerInstanceTokenLocalService getKaleoTimerInstanceTokenLocalService() {
 		return kaleoTimerInstanceTokenLocalService;
 	}
 
@@ -905,7 +905,7 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	 * @param kaleoTimerInstanceTokenLocalService the kaleo timer instance token local service
 	 */
 	public void setKaleoTimerInstanceTokenLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService) {
+		KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService) {
 		this.kaleoTimerInstanceTokenLocalService = kaleoTimerInstanceTokenLocalService;
 	}
 
@@ -1264,8 +1264,8 @@ public abstract class KaleoTimerInstanceTokenLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService kaleoTimerLocalService;
 	@BeanReference(type = KaleoTimerPersistence.class)
 	protected KaleoTimerPersistence kaleoTimerPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService;
+	@BeanReference(type = KaleoTimerInstanceTokenLocalService.class)
+	protected KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService;
 	@BeanReference(type = KaleoTimerInstanceTokenPersistence.class)
 	protected KaleoTimerInstanceTokenPersistence kaleoTimerInstanceTokenPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService.class)

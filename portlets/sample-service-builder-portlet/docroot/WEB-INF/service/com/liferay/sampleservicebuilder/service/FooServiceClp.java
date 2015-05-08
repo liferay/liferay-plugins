@@ -14,12 +14,15 @@
 
 package com.liferay.sampleservicebuilder.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class FooServiceClp implements FooService {
 	public FooServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

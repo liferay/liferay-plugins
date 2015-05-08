@@ -28,7 +28,7 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * </p>
  *
  * @author Ryan Park
- * @see ModulePersistenceImpl
+ * @see com.liferay.marketplace.service.persistence.impl.ModulePersistenceImpl
  * @see ModuleUtil
  * @generated
  */
@@ -46,14 +46,13 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param uuid the uuid
 	* @return the matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByUuid(
-		java.lang.String uuid);
+	public java.util.List<Module> findByUuid(java.lang.String uuid);
 
 	/**
 	* Returns a range of all the modules where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -61,14 +60,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByUuid(
-		java.lang.String uuid, int start, int end);
+	public java.util.List<Module> findByUuid(java.lang.String uuid, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the modules where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -77,9 +76,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByUuid(
-		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public java.util.List<Module> findByUuid(java.lang.String uuid, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where uuid = &#63;.
@@ -87,11 +86,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module findByUuid_First(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -101,9 +99,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public Module fetchByUuid_First(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where uuid = &#63;.
@@ -111,11 +108,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module findByUuid_Last(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -125,9 +121,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public Module fetchByUuid_Last(java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where uuid = &#63;.
@@ -136,11 +131,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws NoSuchModuleException if a module with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.Module[] findByUuid_PrevAndNext(
-		long moduleId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module[] findByUuid_PrevAndNext(long moduleId,
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -164,14 +159,13 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @return the matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByAppId(
-		long appId);
+	public java.util.List<Module> findByAppId(long appId);
 
 	/**
 	* Returns a range of all the modules where appId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param appId the app ID
@@ -179,14 +173,13 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByAppId(
-		long appId, int start, int end);
+	public java.util.List<Module> findByAppId(long appId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules where appId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param appId the app ID
@@ -195,9 +188,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByAppId(
-		long appId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public java.util.List<Module> findByAppId(long appId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where appId = &#63;.
@@ -205,10 +197,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByAppId_First(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module findByAppId_First(long appId,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -218,8 +210,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByAppId_First(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public Module fetchByAppId_First(long appId,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where appId = &#63;.
@@ -227,10 +219,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByAppId_Last(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module findByAppId_Last(long appId,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -240,8 +232,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByAppId_Last(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public Module fetchByAppId_Last(long appId,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where appId = &#63;.
@@ -250,11 +242,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws NoSuchModuleException if a module with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.Module[] findByAppId_PrevAndNext(
-		long moduleId, long appId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module[] findByAppId_PrevAndNext(long moduleId, long appId,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -278,14 +269,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param bundleSymbolicName the bundle symbolic name
 	* @return the matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByBundleSymbolicName(
+	public java.util.List<Module> findByBundleSymbolicName(
 		java.lang.String bundleSymbolicName);
 
 	/**
 	* Returns a range of all the modules where bundleSymbolicName = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param bundleSymbolicName the bundle symbolic name
@@ -293,14 +284,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByBundleSymbolicName(
+	public java.util.List<Module> findByBundleSymbolicName(
 		java.lang.String bundleSymbolicName, int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules where bundleSymbolicName = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param bundleSymbolicName the bundle symbolic name
@@ -309,9 +300,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByBundleSymbolicName(
+	public java.util.List<Module> findByBundleSymbolicName(
 		java.lang.String bundleSymbolicName, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where bundleSymbolicName = &#63;.
@@ -319,11 +310,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param bundleSymbolicName the bundle symbolic name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByBundleSymbolicName_First(
+	public Module findByBundleSymbolicName_First(
 		java.lang.String bundleSymbolicName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -333,9 +324,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByBundleSymbolicName_First(
+	public Module fetchByBundleSymbolicName_First(
 		java.lang.String bundleSymbolicName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where bundleSymbolicName = &#63;.
@@ -343,11 +334,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param bundleSymbolicName the bundle symbolic name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByBundleSymbolicName_Last(
+	public Module findByBundleSymbolicName_Last(
 		java.lang.String bundleSymbolicName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -357,9 +348,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByBundleSymbolicName_Last(
+	public Module fetchByBundleSymbolicName_Last(
 		java.lang.String bundleSymbolicName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where bundleSymbolicName = &#63;.
@@ -368,11 +359,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param bundleSymbolicName the bundle symbolic name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws NoSuchModuleException if a module with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.Module[] findByBundleSymbolicName_PrevAndNext(
-		long moduleId, java.lang.String bundleSymbolicName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module[] findByBundleSymbolicName_PrevAndNext(long moduleId,
+		java.lang.String bundleSymbolicName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -396,14 +387,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @return the matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByContextName(
+	public java.util.List<Module> findByContextName(
 		java.lang.String contextName);
 
 	/**
 	* Returns a range of all the modules where contextName = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param contextName the context name
@@ -411,14 +402,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByContextName(
+	public java.util.List<Module> findByContextName(
 		java.lang.String contextName, int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules where contextName = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param contextName the context name
@@ -427,9 +418,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findByContextName(
+	public java.util.List<Module> findByContextName(
 		java.lang.String contextName, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where contextName = &#63;.
@@ -437,11 +428,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByContextName_First(
-		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module findByContextName_First(java.lang.String contextName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -451,9 +441,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByContextName_First(
-		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public Module fetchByContextName_First(java.lang.String contextName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where contextName = &#63;.
@@ -461,11 +450,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByContextName_Last(
-		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module findByContextName_Last(java.lang.String contextName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -475,9 +463,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByContextName_Last(
-		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public Module fetchByContextName_Last(java.lang.String contextName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where contextName = &#63;.
@@ -486,11 +473,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws NoSuchModuleException if a module with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.Module[] findByContextName_PrevAndNext(
-		long moduleId, java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator)
+	public Module[] findByContextName_PrevAndNext(long moduleId,
+		java.lang.String contextName,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -509,15 +496,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	public int countByContextName(java.lang.String contextName);
 
 	/**
-	* Returns the module where appId = &#63; and contextName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	* Returns the module where appId = &#63; and contextName = &#63; or throws a {@link NoSuchModuleException} if it could not be found.
 	*
 	* @param appId the app ID
 	* @param contextName the context name
 	* @return the matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByA_CN(long appId,
-		java.lang.String contextName)
+	public Module findByA_CN(long appId, java.lang.String contextName)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -527,8 +513,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @return the matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByA_CN(long appId,
-		java.lang.String contextName);
+	public Module fetchByA_CN(long appId, java.lang.String contextName);
 
 	/**
 	* Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -538,8 +523,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByA_CN(long appId,
-		java.lang.String contextName, boolean retrieveFromCache);
+	public Module fetchByA_CN(long appId, java.lang.String contextName,
+		boolean retrieveFromCache);
 
 	/**
 	* Removes the module where appId = &#63; and contextName = &#63; from the database.
@@ -548,8 +533,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @return the module that was removed
 	*/
-	public com.liferay.marketplace.model.Module removeByA_CN(long appId,
-		java.lang.String contextName)
+	public Module removeByA_CN(long appId, java.lang.String contextName)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -562,15 +546,15 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	public int countByA_CN(long appId, java.lang.String contextName);
 
 	/**
-	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	* Returns the module where appId = &#63; and bundleSymbolicName = &#63; and bundleVersion = &#63; or throws a {@link NoSuchModuleException} if it could not be found.
 	*
 	* @param appId the app ID
 	* @param bundleSymbolicName the bundle symbolic name
 	* @param bundleVersion the bundle version
 	* @return the matching module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
+	* @throws NoSuchModuleException if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByA_BSN_BV(long appId,
+	public Module findByA_BSN_BV(long appId,
 		java.lang.String bundleSymbolicName, java.lang.String bundleVersion)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
@@ -582,7 +566,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param bundleVersion the bundle version
 	* @return the matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByA_BSN_BV(long appId,
+	public Module fetchByA_BSN_BV(long appId,
 		java.lang.String bundleSymbolicName, java.lang.String bundleVersion);
 
 	/**
@@ -594,7 +578,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching module, or <code>null</code> if a matching module could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByA_BSN_BV(long appId,
+	public Module fetchByA_BSN_BV(long appId,
 		java.lang.String bundleSymbolicName, java.lang.String bundleVersion,
 		boolean retrieveFromCache);
 
@@ -606,7 +590,7 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param bundleVersion the bundle version
 	* @return the module that was removed
 	*/
-	public com.liferay.marketplace.model.Module removeByA_BSN_BV(long appId,
+	public Module removeByA_BSN_BV(long appId,
 		java.lang.String bundleSymbolicName, java.lang.String bundleVersion)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
@@ -626,15 +610,14 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*
 	* @param module the module
 	*/
-	public void cacheResult(com.liferay.marketplace.model.Module module);
+	public void cacheResult(Module module);
 
 	/**
 	* Caches the modules in the entity cache if it is enabled.
 	*
 	* @param modules the modules
 	*/
-	public void cacheResult(
-		java.util.List<com.liferay.marketplace.model.Module> modules);
+	public void cacheResult(java.util.List<Module> modules);
 
 	/**
 	* Creates a new module with the primary key. Does not add the module to the database.
@@ -642,29 +625,28 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param moduleId the primary key for the new module
 	* @return the new module
 	*/
-	public com.liferay.marketplace.model.Module create(long moduleId);
+	public Module create(long moduleId);
 
 	/**
 	* Removes the module with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param moduleId the primary key of the module
 	* @return the module that was removed
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws NoSuchModuleException if a module with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.Module remove(long moduleId)
+	public Module remove(long moduleId)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
-	public com.liferay.marketplace.model.Module updateImpl(
-		com.liferay.marketplace.model.Module module);
+	public Module updateImpl(Module module);
 
 	/**
-	* Returns the module with the primary key or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
+	* Returns the module with the primary key or throws a {@link NoSuchModuleException} if it could not be found.
 	*
 	* @param moduleId the primary key of the module
 	* @return the module
-	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
+	* @throws NoSuchModuleException if a module with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.Module findByPrimaryKey(long moduleId)
+	public Module findByPrimaryKey(long moduleId)
 		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
@@ -673,10 +655,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param moduleId the primary key of the module
 	* @return the module, or <code>null</code> if a module with the primary key could not be found
 	*/
-	public com.liferay.marketplace.model.Module fetchByPrimaryKey(long moduleId);
+	public Module fetchByPrimaryKey(long moduleId);
 
 	@Override
-	public java.util.Map<java.io.Serializable, com.liferay.marketplace.model.Module> fetchByPrimaryKeys(
+	public java.util.Map<java.io.Serializable, Module> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
@@ -684,27 +666,26 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*
 	* @return the modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findAll();
+	public java.util.List<Module> findAll();
 
 	/**
 	* Returns a range of all the modules.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of modules
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findAll(
-		int start, int end);
+	public java.util.List<Module> findAll(int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.marketplace.model.impl.ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ModuleModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of modules
@@ -712,9 +693,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of modules
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.marketplace.model.Module> orderByComparator);
+	public java.util.List<Module> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Module> orderByComparator);
 
 	/**
 	* Removes all the modules from the database.

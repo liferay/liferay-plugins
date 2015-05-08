@@ -28,7 +28,7 @@ import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see KBCommentImpl
- * @see com.liferay.knowledgebase.model.KBComment
+ * @see KBComment
  * @generated
  */
 @ProviderType

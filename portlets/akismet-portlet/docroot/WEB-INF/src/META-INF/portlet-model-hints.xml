@@ -7,18 +7,10 @@
 		<field name="classNameId" type="long" />
 		<field name="classPK" type="long" />
 		<field name="type" type="String" />
-		<field name="permalink" type="String">
-			<hint-collection name="URL" />
-		</field>
-		<field name="referrer" type="String">
-			<hint-collection name="TEXTAREA" />
-		</field>
-		<field name="userAgent" type="String">
-			<hint-collection name="TEXTAREA" />
-		</field>
+		<field name="permalink" type="String" />
+		<field name="referrer" type="String" />
+		<field name="userAgent" type="String" />
 		<field name="userIP" type="String" />
-		<field name="userURL" type="String">
-			<hint-collection name="URL" />
-		</field>
+		<field name="userURL" type="String" />
 	</model>
 </model-hints>

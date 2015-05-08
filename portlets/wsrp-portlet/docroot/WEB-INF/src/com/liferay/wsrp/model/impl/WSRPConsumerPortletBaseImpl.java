@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see WSRPConsumerPortletImpl
- * @see com.liferay.wsrp.model.WSRPConsumerPortlet
+ * @see WSRPConsumerPortlet
  * @generated
  */
+@ProviderType
 public abstract class WSRPConsumerPortletBaseImpl
 	extends WSRPConsumerPortletModelImpl implements WSRPConsumerPortlet {
 	/*

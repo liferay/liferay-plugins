@@ -114,8 +114,7 @@ public class KBFolderUtil {
 	* @param uuid the uuid
 	* @return the matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByUuid(
-		java.lang.String uuid) {
+	public static List<KBFolder> findByUuid(java.lang.String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -123,7 +122,7 @@ public class KBFolderUtil {
 	* Returns a range of all the k b folders where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -131,8 +130,8 @@ public class KBFolderUtil {
 	* @param end the upper bound of the range of k b folders (not inclusive)
 	* @return the range of matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByUuid(
-		java.lang.String uuid, int start, int end) {
+	public static List<KBFolder> findByUuid(java.lang.String uuid, int start,
+		int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -140,7 +139,7 @@ public class KBFolderUtil {
 	* Returns an ordered range of all the k b folders where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -149,9 +148,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByUuid(
-		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static List<KBFolder> findByUuid(java.lang.String uuid, int start,
+		int end, OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -161,11 +159,10 @@ public class KBFolderUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder findByUuid_First(java.lang.String uuid,
+		OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -177,9 +174,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByUuid_First(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static KBFolder fetchByUuid_First(java.lang.String uuid,
+		OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -189,11 +185,10 @@ public class KBFolderUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder findByUuid_Last(java.lang.String uuid,
+		OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -205,9 +200,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByUuid_Last(
-		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static KBFolder fetchByUuid_Last(java.lang.String uuid,
+		OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -218,11 +212,10 @@ public class KBFolderUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a k b folder with the primary key could not be found
+	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder[] findByUuid_PrevAndNext(
-		long kbFolderId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder[] findByUuid_PrevAndNext(long kbFolderId,
+		java.lang.String uuid, OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(kbFolderId, uuid, orderByComparator);
@@ -248,15 +241,14 @@ public class KBFolderUtil {
 	}
 
 	/**
-	* Returns the k b folder where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchFolderException} if it could not be found.
+	* Returns the k b folder where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchFolderException} if it could not be found.
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByUUID_G(
-		java.lang.String uuid, long groupId)
+	public static KBFolder findByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
@@ -268,8 +260,7 @@ public class KBFolderUtil {
 	* @param groupId the group ID
 	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByUUID_G(
-		java.lang.String uuid, long groupId) {
+	public static KBFolder fetchByUUID_G(java.lang.String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
@@ -281,8 +272,8 @@ public class KBFolderUtil {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByUUID_G(
-		java.lang.String uuid, long groupId, boolean retrieveFromCache) {
+	public static KBFolder fetchByUUID_G(java.lang.String uuid, long groupId,
+		boolean retrieveFromCache) {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
 
@@ -293,8 +284,7 @@ public class KBFolderUtil {
 	* @param groupId the group ID
 	* @return the k b folder that was removed
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder removeByUUID_G(
-		java.lang.String uuid, long groupId)
+	public static KBFolder removeByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
@@ -317,8 +307,8 @@ public class KBFolderUtil {
 	* @param companyId the company ID
 	* @return the matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByUuid_C(
-		java.lang.String uuid, long companyId) {
+	public static List<KBFolder> findByUuid_C(java.lang.String uuid,
+		long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -326,7 +316,7 @@ public class KBFolderUtil {
 	* Returns a range of all the k b folders where uuid = &#63; and companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -335,8 +325,8 @@ public class KBFolderUtil {
 	* @param end the upper bound of the range of k b folders (not inclusive)
 	* @return the range of matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end) {
+	public static List<KBFolder> findByUuid_C(java.lang.String uuid,
+		long companyId, int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -344,7 +334,7 @@ public class KBFolderUtil {
 	* Returns an ordered range of all the k b folders where uuid = &#63; and companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -354,9 +344,9 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static List<KBFolder> findByUuid_C(java.lang.String uuid,
+		long companyId, int start, int end,
+		OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -368,11 +358,10 @@ public class KBFolderUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder findByUuid_C_First(java.lang.String uuid,
+		long companyId, OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -386,9 +375,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByUuid_C_First(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static KBFolder fetchByUuid_C_First(java.lang.String uuid,
+		long companyId, OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -400,11 +388,10 @@ public class KBFolderUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder findByUuid_C_Last(java.lang.String uuid,
+		long companyId, OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -418,9 +405,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByUuid_C_Last(
-		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static KBFolder fetchByUuid_C_Last(java.lang.String uuid,
+		long companyId, OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -433,11 +419,11 @@ public class KBFolderUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a k b folder with the primary key could not be found
+	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder[] findByUuid_C_PrevAndNext(
-		long kbFolderId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder[] findByUuid_C_PrevAndNext(long kbFolderId,
+		java.lang.String uuid, long companyId,
+		OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(kbFolderId, uuid, companyId,
@@ -472,8 +458,7 @@ public class KBFolderUtil {
 	* @param parentKBFolderId the parent k b folder ID
 	* @return the matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByG_P(
-		long groupId, long parentKBFolderId) {
+	public static List<KBFolder> findByG_P(long groupId, long parentKBFolderId) {
 		return getPersistence().findByG_P(groupId, parentKBFolderId);
 	}
 
@@ -481,7 +466,7 @@ public class KBFolderUtil {
 	* Returns a range of all the k b folders where groupId = &#63; and parentKBFolderId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -490,8 +475,8 @@ public class KBFolderUtil {
 	* @param end the upper bound of the range of k b folders (not inclusive)
 	* @return the range of matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByG_P(
-		long groupId, long parentKBFolderId, int start, int end) {
+	public static List<KBFolder> findByG_P(long groupId, long parentKBFolderId,
+		int start, int end) {
 		return getPersistence().findByG_P(groupId, parentKBFolderId, start, end);
 	}
 
@@ -499,7 +484,7 @@ public class KBFolderUtil {
 	* Returns an ordered range of all the k b folders where groupId = &#63; and parentKBFolderId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -509,9 +494,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findByG_P(
-		long groupId, long parentKBFolderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static List<KBFolder> findByG_P(long groupId, long parentKBFolderId,
+		int start, int end, OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence()
 				   .findByG_P(groupId, parentKBFolderId, start, end,
 			orderByComparator);
@@ -524,11 +508,10 @@ public class KBFolderUtil {
 	* @param parentKBFolderId the parent k b folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByG_P_First(
-		long groupId, long parentKBFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder findByG_P_First(long groupId, long parentKBFolderId,
+		OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .findByG_P_First(groupId, parentKBFolderId, orderByComparator);
@@ -542,9 +525,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_First(
-		long groupId, long parentKBFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static KBFolder fetchByG_P_First(long groupId,
+		long parentKBFolderId, OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_P_First(groupId, parentKBFolderId,
 			orderByComparator);
@@ -557,11 +539,10 @@ public class KBFolderUtil {
 	* @param parentKBFolderId the parent k b folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByG_P_Last(
-		long groupId, long parentKBFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder findByG_P_Last(long groupId, long parentKBFolderId,
+		OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .findByG_P_Last(groupId, parentKBFolderId, orderByComparator);
@@ -575,9 +556,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_Last(
-		long groupId, long parentKBFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static KBFolder fetchByG_P_Last(long groupId, long parentKBFolderId,
+		OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence()
 				   .fetchByG_P_Last(groupId, parentKBFolderId, orderByComparator);
 	}
@@ -590,11 +570,11 @@ public class KBFolderUtil {
 	* @param parentKBFolderId the parent k b folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a k b folder with the primary key could not be found
+	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder[] findByG_P_PrevAndNext(
-		long kbFolderId, long groupId, long parentKBFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder[] findByG_P_PrevAndNext(long kbFolderId,
+		long groupId, long parentKBFolderId,
+		OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .findByG_P_PrevAndNext(kbFolderId, groupId,
@@ -608,8 +588,8 @@ public class KBFolderUtil {
 	* @param parentKBFolderId the parent k b folder ID
 	* @return the matching k b folders that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> filterFindByG_P(
-		long groupId, long parentKBFolderId) {
+	public static List<KBFolder> filterFindByG_P(long groupId,
+		long parentKBFolderId) {
 		return getPersistence().filterFindByG_P(groupId, parentKBFolderId);
 	}
 
@@ -617,7 +597,7 @@ public class KBFolderUtil {
 	* Returns a range of all the k b folders that the user has permission to view where groupId = &#63; and parentKBFolderId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -626,8 +606,8 @@ public class KBFolderUtil {
 	* @param end the upper bound of the range of k b folders (not inclusive)
 	* @return the range of matching k b folders that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> filterFindByG_P(
-		long groupId, long parentKBFolderId, int start, int end) {
+	public static List<KBFolder> filterFindByG_P(long groupId,
+		long parentKBFolderId, int start, int end) {
 		return getPersistence()
 				   .filterFindByG_P(groupId, parentKBFolderId, start, end);
 	}
@@ -636,7 +616,7 @@ public class KBFolderUtil {
 	* Returns an ordered range of all the k b folders that the user has permissions to view where groupId = &#63; and parentKBFolderId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param groupId the group ID
@@ -646,9 +626,9 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching k b folders that the user has permission to view
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> filterFindByG_P(
-		long groupId, long parentKBFolderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static List<KBFolder> filterFindByG_P(long groupId,
+		long parentKBFolderId, int start, int end,
+		OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence()
 				   .filterFindByG_P(groupId, parentKBFolderId, start, end,
 			orderByComparator);
@@ -662,11 +642,11 @@ public class KBFolderUtil {
 	* @param parentKBFolderId the parent k b folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a k b folder with the primary key could not be found
+	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder[] filterFindByG_P_PrevAndNext(
-		long kbFolderId, long groupId, long parentKBFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator)
+	public static KBFolder[] filterFindByG_P_PrevAndNext(long kbFolderId,
+		long groupId, long parentKBFolderId,
+		OrderByComparator<KBFolder> orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .filterFindByG_P_PrevAndNext(kbFolderId, groupId,
@@ -706,16 +686,16 @@ public class KBFolderUtil {
 	}
 
 	/**
-	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and name = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchFolderException} if it could not be found.
+	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and name = &#63; or throws a {@link NoSuchFolderException} if it could not be found.
 	*
 	* @param groupId the group ID
 	* @param parentKBFolderId the parent k b folder ID
 	* @param name the name
 	* @return the matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByG_P_N(
-		long groupId, long parentKBFolderId, java.lang.String name)
+	public static KBFolder findByG_P_N(long groupId, long parentKBFolderId,
+		java.lang.String name)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().findByG_P_N(groupId, parentKBFolderId, name);
 	}
@@ -728,8 +708,8 @@ public class KBFolderUtil {
 	* @param name the name
 	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_N(
-		long groupId, long parentKBFolderId, java.lang.String name) {
+	public static KBFolder fetchByG_P_N(long groupId, long parentKBFolderId,
+		java.lang.String name) {
 		return getPersistence().fetchByG_P_N(groupId, parentKBFolderId, name);
 	}
 
@@ -742,9 +722,8 @@ public class KBFolderUtil {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_N(
-		long groupId, long parentKBFolderId, java.lang.String name,
-		boolean retrieveFromCache) {
+	public static KBFolder fetchByG_P_N(long groupId, long parentKBFolderId,
+		java.lang.String name, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByG_P_N(groupId, parentKBFolderId, name,
 			retrieveFromCache);
@@ -758,8 +737,8 @@ public class KBFolderUtil {
 	* @param name the name
 	* @return the k b folder that was removed
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder removeByG_P_N(
-		long groupId, long parentKBFolderId, java.lang.String name)
+	public static KBFolder removeByG_P_N(long groupId, long parentKBFolderId,
+		java.lang.String name)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().removeByG_P_N(groupId, parentKBFolderId, name);
 	}
@@ -778,16 +757,16 @@ public class KBFolderUtil {
 	}
 
 	/**
-	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchFolderException} if it could not be found.
+	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63; or throws a {@link NoSuchFolderException} if it could not be found.
 	*
 	* @param groupId the group ID
 	* @param parentKBFolderId the parent k b folder ID
 	* @param urlTitle the url title
 	* @return the matching k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a matching k b folder could not be found
+	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByG_P_UT(
-		long groupId, long parentKBFolderId, java.lang.String urlTitle)
+	public static KBFolder findByG_P_UT(long groupId, long parentKBFolderId,
+		java.lang.String urlTitle)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().findByG_P_UT(groupId, parentKBFolderId, urlTitle);
 	}
@@ -800,8 +779,8 @@ public class KBFolderUtil {
 	* @param urlTitle the url title
 	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_UT(
-		long groupId, long parentKBFolderId, java.lang.String urlTitle) {
+	public static KBFolder fetchByG_P_UT(long groupId, long parentKBFolderId,
+		java.lang.String urlTitle) {
 		return getPersistence()
 				   .fetchByG_P_UT(groupId, parentKBFolderId, urlTitle);
 	}
@@ -815,9 +794,8 @@ public class KBFolderUtil {
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByG_P_UT(
-		long groupId, long parentKBFolderId, java.lang.String urlTitle,
-		boolean retrieveFromCache) {
+	public static KBFolder fetchByG_P_UT(long groupId, long parentKBFolderId,
+		java.lang.String urlTitle, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByG_P_UT(groupId, parentKBFolderId, urlTitle,
 			retrieveFromCache);
@@ -831,8 +809,8 @@ public class KBFolderUtil {
 	* @param urlTitle the url title
 	* @return the k b folder that was removed
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder removeByG_P_UT(
-		long groupId, long parentKBFolderId, java.lang.String urlTitle)
+	public static KBFolder removeByG_P_UT(long groupId, long parentKBFolderId,
+		java.lang.String urlTitle)
 		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence()
 				   .removeByG_P_UT(groupId, parentKBFolderId, urlTitle);
@@ -857,8 +835,7 @@ public class KBFolderUtil {
 	*
 	* @param kbFolder the k b folder
 	*/
-	public static void cacheResult(
-		com.liferay.knowledgebase.model.KBFolder kbFolder) {
+	public static void cacheResult(KBFolder kbFolder) {
 		getPersistence().cacheResult(kbFolder);
 	}
 
@@ -867,8 +844,7 @@ public class KBFolderUtil {
 	*
 	* @param kbFolders the k b folders
 	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.knowledgebase.model.KBFolder> kbFolders) {
+	public static void cacheResult(List<KBFolder> kbFolders) {
 		getPersistence().cacheResult(kbFolders);
 	}
 
@@ -878,8 +854,7 @@ public class KBFolderUtil {
 	* @param kbFolderId the primary key for the new k b folder
 	* @return the new k b folder
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder create(
-		long kbFolderId) {
+	public static KBFolder create(long kbFolderId) {
 		return getPersistence().create(kbFolderId);
 	}
 
@@ -888,27 +863,26 @@ public class KBFolderUtil {
 	*
 	* @param kbFolderId the primary key of the k b folder
 	* @return the k b folder that was removed
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a k b folder with the primary key could not be found
+	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder remove(
-		long kbFolderId) throws com.liferay.knowledgebase.NoSuchFolderException {
+	public static KBFolder remove(long kbFolderId)
+		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().remove(kbFolderId);
 	}
 
-	public static com.liferay.knowledgebase.model.KBFolder updateImpl(
-		com.liferay.knowledgebase.model.KBFolder kbFolder) {
+	public static KBFolder updateImpl(KBFolder kbFolder) {
 		return getPersistence().updateImpl(kbFolder);
 	}
 
 	/**
-	* Returns the k b folder with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchFolderException} if it could not be found.
+	* Returns the k b folder with the primary key or throws a {@link NoSuchFolderException} if it could not be found.
 	*
 	* @param kbFolderId the primary key of the k b folder
 	* @return the k b folder
-	* @throws com.liferay.knowledgebase.NoSuchFolderException if a k b folder with the primary key could not be found
+	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder findByPrimaryKey(
-		long kbFolderId) throws com.liferay.knowledgebase.NoSuchFolderException {
+	public static KBFolder findByPrimaryKey(long kbFolderId)
+		throws com.liferay.knowledgebase.NoSuchFolderException {
 		return getPersistence().findByPrimaryKey(kbFolderId);
 	}
 
@@ -918,12 +892,11 @@ public class KBFolderUtil {
 	* @param kbFolderId the primary key of the k b folder
 	* @return the k b folder, or <code>null</code> if a k b folder with the primary key could not be found
 	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchByPrimaryKey(
-		long kbFolderId) {
+	public static KBFolder fetchByPrimaryKey(long kbFolderId) {
 		return getPersistence().fetchByPrimaryKey(kbFolderId);
 	}
 
-	public static java.util.Map<java.io.Serializable, com.liferay.knowledgebase.model.KBFolder> fetchByPrimaryKeys(
+	public static java.util.Map<java.io.Serializable, KBFolder> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys) {
 		return getPersistence().fetchByPrimaryKeys(primaryKeys);
 	}
@@ -933,7 +906,7 @@ public class KBFolderUtil {
 	*
 	* @return the k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findAll() {
+	public static List<KBFolder> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -941,15 +914,14 @@ public class KBFolderUtil {
 	* Returns a range of all the k b folders.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of k b folders
 	* @param end the upper bound of the range of k b folders (not inclusive)
 	* @return the range of k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findAll(
-		int start, int end) {
+	public static List<KBFolder> findAll(int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -957,7 +929,7 @@ public class KBFolderUtil {
 	* Returns an ordered range of all the k b folders.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.knowledgebase.model.impl.KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBFolderModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of k b folders
@@ -965,9 +937,8 @@ public class KBFolderUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of k b folders
 	*/
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBFolder> orderByComparator) {
+	public static List<KBFolder> findAll(int start, int end,
+		OrderByComparator<KBFolder> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

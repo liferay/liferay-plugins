@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.sampleservicebuilder.service.http.FooServiceSoap
  * @generated
  */
+@ProviderType
 public class FooSoap implements Serializable {
 	public static FooSoap toSoapModel(Foo model) {
 		FooSoap soapModel = new FooSoap();

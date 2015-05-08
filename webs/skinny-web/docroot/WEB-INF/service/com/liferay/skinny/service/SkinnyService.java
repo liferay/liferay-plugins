@@ -56,12 +56,12 @@ public interface SkinnyService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getBeanIdentifier();
 
-	@com.liferay.portal.security.ac.AccessControlled(guestAccessEnabled = true)
+	@AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.skinny.model.SkinnyDDLRecord> getSkinnyDDLRecords(
 		long ddlRecordSetId) throws java.lang.Exception;
 
-	@com.liferay.portal.security.ac.AccessControlled(guestAccessEnabled = true)
+	@AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.skinny.model.SkinnyJournalArticle> getSkinnyJournalArticles(
 		long companyId, java.lang.String groupName, long ddmStructureId,

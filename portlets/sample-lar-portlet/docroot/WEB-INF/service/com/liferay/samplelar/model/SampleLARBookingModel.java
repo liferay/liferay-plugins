@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.samplelar.model.impl.SampleLARBookingModelImpl
  * @generated
  */
+@ProviderType
 public interface SampleLARBookingModel extends BaseModel<SampleLARBooking>,
 	StagedGroupedModel {
 	/*
@@ -257,19 +260,20 @@ public interface SampleLARBookingModel extends BaseModel<SampleLARBooking>,
 	public Object clone();
 
 	@Override
-	public int compareTo(SampleLARBooking sampleLARBooking);
+	public int compareTo(
+		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<SampleLARBooking> toCacheModel();
+	public CacheModel<com.liferay.samplelar.model.SampleLARBooking> toCacheModel();
 
 	@Override
-	public SampleLARBooking toEscapedModel();
+	public com.liferay.samplelar.model.SampleLARBooking toEscapedModel();
 
 	@Override
-	public SampleLARBooking toUnescapedModel();
+	public com.liferay.samplelar.model.SampleLARBooking toUnescapedModel();
 
 	@Override
 	public String toString();

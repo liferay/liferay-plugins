@@ -14,6 +14,8 @@
 
 package com.liferay.chat.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.chat.model.EntryClp;
 import com.liferay.chat.model.StatusClp;
 
@@ -37,6 +39,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpSerializer {
 	public static String getServletContextName() {
 		if (Validator.isNotNull(_servletContextName)) {

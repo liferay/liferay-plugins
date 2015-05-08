@@ -14,6 +14,8 @@
 
 package com.liferay.testpacl.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.testpacl.service.FooLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class FooLocalServiceClpInvoker {
 	public FooLocalServiceClpInvoker() {
 		_methodName0 = "addFoo";

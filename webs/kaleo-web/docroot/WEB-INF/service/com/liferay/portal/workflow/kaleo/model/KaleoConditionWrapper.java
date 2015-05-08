@@ -172,7 +172,7 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	* @return the create date of this kaleo condition
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoCondition.getCreateDate();
 	}
 
@@ -227,7 +227,7 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	* @return the modified date of this kaleo condition
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoCondition.getModifiedDate();
 	}
 
@@ -352,7 +352,7 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	* @param createDate the create date of this kaleo condition
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoCondition.setCreateDate(createDate);
 	}
 
@@ -420,7 +420,7 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	* @param modifiedDate the modified date of this kaleo condition
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoCondition.setModifiedDate(modifiedDate);
 	}
 

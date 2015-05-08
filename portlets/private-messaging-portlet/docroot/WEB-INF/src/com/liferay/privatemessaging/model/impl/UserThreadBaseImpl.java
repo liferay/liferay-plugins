@@ -14,6 +14,8 @@
 
 package com.liferay.privatemessaging.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see UserThreadImpl
- * @see com.liferay.privatemessaging.model.UserThread
+ * @see UserThread
  * @generated
  */
+@ProviderType
 public abstract class UserThreadBaseImpl extends UserThreadModelImpl
 	implements UserThread {
 	/*

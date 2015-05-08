@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.chat.service.ClpSerializer;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 
@@ -38,6 +40,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class StatusClp extends BaseModelImpl<Status> implements Status {
 	public StatusClp() {
 	}
@@ -578,7 +581,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	private String _message;
 	private boolean _playSound;
 	private BaseModel<?> _statusRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.chat.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

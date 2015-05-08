@@ -56,7 +56,7 @@ public abstract class WordsServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the words remote service
 	 */
-	public com.liferay.words.service.WordsService getWordsService() {
+	public WordsService getWordsService() {
 		return wordsService;
 	}
 
@@ -65,8 +65,7 @@ public abstract class WordsServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param wordsService the words remote service
 	 */
-	public void setWordsService(
-		com.liferay.words.service.WordsService wordsService) {
+	public void setWordsService(WordsService wordsService) {
 		this.wordsService = wordsService;
 	}
 
@@ -295,8 +294,8 @@ public abstract class WordsServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.words.service.WordsService.class)
-	protected com.liferay.words.service.WordsService wordsService;
+	@BeanReference(type = WordsService.class)
+	protected WordsService wordsService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)

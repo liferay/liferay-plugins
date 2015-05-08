@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -36,6 +38,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class TestBlobEntryClp extends BaseModelImpl<TestBlobEntry>
 	implements TestBlobEntry {
 	public TestBlobEntryClp() {
@@ -356,7 +359,7 @@ public class TestBlobEntryClp extends BaseModelImpl<TestBlobEntry>
 	private long _testBlobEntryId;
 	private Blob _blobField;
 	private BaseModel<?> _testBlobEntryRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.testblob.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

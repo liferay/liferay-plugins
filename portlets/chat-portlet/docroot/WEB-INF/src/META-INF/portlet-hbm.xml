@@ -5,7 +5,6 @@
 	<import class="com.liferay.chat.model.Entry" />
 	<import class="com.liferay.chat.model.Status" />
 	<class name="com.liferay.chat.model.impl.EntryImpl" table="Chat_Entry">
-		<cache usage="read-write" />
 		<id name="entryId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -16,7 +15,6 @@
 		<property name="flag" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.chat.model.impl.StatusImpl" table="Chat_Status">
-		<cache usage="read-write" />
 		<id name="statusId" type="long">
 			<generator class="assigned" />
 		</id>

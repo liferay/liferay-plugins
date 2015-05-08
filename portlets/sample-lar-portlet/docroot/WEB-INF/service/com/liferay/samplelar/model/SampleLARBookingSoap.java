@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
  * @author Mate Thurzo
  * @generated
  */
+@ProviderType
 public class SampleLARBookingSoap implements Serializable {
 	public static SampleLARBookingSoap toSoapModel(SampleLARBooking model) {
 		SampleLARBookingSoap soapModel = new SampleLARBookingSoap();

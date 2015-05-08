@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -60,6 +62,7 @@ import javax.sql.DataSource;
  * @see com.liferay.tasks.service.TasksEntryLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class TasksEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements TasksEntryLocalService,
 		IdentifiableBean {
@@ -181,10 +184,10 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -192,11 +195,11 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -303,7 +306,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 *
 	 * @return the tasks entry local service
 	 */
-	public com.liferay.tasks.service.TasksEntryLocalService getTasksEntryLocalService() {
+	public TasksEntryLocalService getTasksEntryLocalService() {
 		return tasksEntryLocalService;
 	}
 
@@ -313,7 +316,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	 * @param tasksEntryLocalService the tasks entry local service
 	 */
 	public void setTasksEntryLocalService(
-		com.liferay.tasks.service.TasksEntryLocalService tasksEntryLocalService) {
+		TasksEntryLocalService tasksEntryLocalService) {
 		this.tasksEntryLocalService = tasksEntryLocalService;
 	}
 
@@ -611,8 +614,8 @@ public abstract class TasksEntryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.tasks.service.TasksEntryLocalService.class)
-	protected com.liferay.tasks.service.TasksEntryLocalService tasksEntryLocalService;
+	@BeanReference(type = TasksEntryLocalService.class)
+	protected TasksEntryLocalService tasksEntryLocalService;
 	@BeanReference(type = com.liferay.tasks.service.TasksEntryService.class)
 	protected com.liferay.tasks.service.TasksEntryService tasksEntryService;
 	@BeanReference(type = TasksEntryPersistence.class)

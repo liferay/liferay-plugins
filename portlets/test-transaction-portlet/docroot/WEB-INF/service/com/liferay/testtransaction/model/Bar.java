@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.testtransaction.model.impl.BarModelImpl
  * @generated
  */
+@ProviderType
 public interface Bar extends BarModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

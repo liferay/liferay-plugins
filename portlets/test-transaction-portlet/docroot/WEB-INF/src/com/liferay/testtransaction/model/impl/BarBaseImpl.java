@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.service.BarLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.testtransaction.service.BarLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see BarImpl
- * @see com.liferay.testtransaction.model.Bar
+ * @see Bar
  * @generated
  */
+@ProviderType
 public abstract class BarBaseImpl extends BarModelImpl implements Bar {
 	/*
 	 * NOTE FOR DEVELOPERS:

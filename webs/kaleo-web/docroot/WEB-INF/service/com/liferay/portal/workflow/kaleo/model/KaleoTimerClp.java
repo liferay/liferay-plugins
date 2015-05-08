@@ -962,7 +962,7 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
 	private BaseModel<?> _kaleoTimerRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

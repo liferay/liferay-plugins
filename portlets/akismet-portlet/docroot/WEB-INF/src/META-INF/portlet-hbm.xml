@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.akismet.model.AkismetData" />
 	<class name="com.liferay.akismet.model.impl.AkismetDataImpl" table="Akismet_AkismetData">
-		<cache usage="read-write" />
 		<id name="akismetDataId" type="long">
 			<generator class="assigned" />
 		</id>

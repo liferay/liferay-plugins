@@ -897,7 +897,7 @@ public class AppClp extends BaseModelImpl<App> implements App {
 	private String _iconURL;
 	private String _version;
 	private BaseModel<?> _appRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.marketplace.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -36,6 +38,7 @@ import java.io.Serializable;
  * @see com.liferay.chat.model.impl.StatusModelImpl
  * @generated
  */
+@ProviderType
 public interface StatusModel extends BaseModel<Status> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -243,19 +246,19 @@ public interface StatusModel extends BaseModel<Status> {
 	public Object clone();
 
 	@Override
-	public int compareTo(Status status);
+	public int compareTo(com.liferay.chat.model.Status status);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<Status> toCacheModel();
+	public CacheModel<com.liferay.chat.model.Status> toCacheModel();
 
 	@Override
-	public Status toEscapedModel();
+	public com.liferay.chat.model.Status toEscapedModel();
 
 	@Override
-	public Status toUnescapedModel();
+	public com.liferay.chat.model.Status toUnescapedModel();
 
 	@Override
 	public String toString();

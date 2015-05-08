@@ -76,7 +76,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user thread remote service
 	 */
-	public com.liferay.privatemessaging.service.UserThreadService getUserThreadService() {
+	public UserThreadService getUserThreadService() {
 		return userThreadService;
 	}
 
@@ -85,8 +85,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param userThreadService the user thread remote service
 	 */
-	public void setUserThreadService(
-		com.liferay.privatemessaging.service.UserThreadService userThreadService) {
+	public void setUserThreadService(UserThreadService userThreadService) {
 		this.userThreadService = userThreadService;
 	}
 
@@ -344,8 +343,8 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadLocalService.class)
 	protected com.liferay.privatemessaging.service.UserThreadLocalService userThreadLocalService;
-	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadService.class)
-	protected com.liferay.privatemessaging.service.UserThreadService userThreadService;
+	@BeanReference(type = UserThreadService.class)
+	protected UserThreadService userThreadService;
 	@BeanReference(type = UserThreadPersistence.class)
 	protected UserThreadPersistence userThreadPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

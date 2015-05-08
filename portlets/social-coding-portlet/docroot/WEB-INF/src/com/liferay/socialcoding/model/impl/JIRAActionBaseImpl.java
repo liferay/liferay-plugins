@@ -28,7 +28,7 @@ import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see JIRAActionImpl
- * @see com.liferay.socialcoding.model.JIRAAction
+ * @see JIRAAction
  * @generated
  */
 @ProviderType

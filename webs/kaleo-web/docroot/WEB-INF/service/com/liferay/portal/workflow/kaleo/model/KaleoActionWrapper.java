@@ -214,7 +214,7 @@ public class KaleoActionWrapper implements KaleoAction,
 	* @return the create date of this kaleo action
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoAction.getCreateDate();
 	}
 
@@ -309,7 +309,7 @@ public class KaleoActionWrapper implements KaleoAction,
 	* @return the modified date of this kaleo action
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoAction.getModifiedDate();
 	}
 
@@ -454,7 +454,7 @@ public class KaleoActionWrapper implements KaleoAction,
 	* @param createDate the create date of this kaleo action
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoAction.setCreateDate(createDate);
 	}
 
@@ -562,7 +562,7 @@ public class KaleoActionWrapper implements KaleoAction,
 	* @param modifiedDate the modified date of this kaleo action
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoAction.setModifiedDate(modifiedDate);
 	}
 

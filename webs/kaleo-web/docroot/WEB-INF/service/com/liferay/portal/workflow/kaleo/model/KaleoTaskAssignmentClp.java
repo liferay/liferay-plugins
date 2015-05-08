@@ -932,7 +932,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	private String _assigneeScriptLanguage;
 	private String _assigneeScriptRequiredContexts;
 	private BaseModel<?> _kaleoTaskAssignmentRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

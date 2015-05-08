@@ -14,6 +14,8 @@
 
 package com.liferay.ams.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Type;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -26,10 +28,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see TypePersistenceImpl
+ * @see com.liferay.ams.service.persistence.impl.TypePersistenceImpl
  * @see TypeUtil
  * @generated
  */
+@ProviderType
 public interface TypePersistence extends BasePersistence<Type> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -42,14 +45,14 @@ public interface TypePersistence extends BasePersistence<Type> {
 	*
 	* @param type the type
 	*/
-	public void cacheResult(com.liferay.ams.model.Type type);
+	public void cacheResult(Type type);
 
 	/**
 	* Caches the types in the entity cache if it is enabled.
 	*
 	* @param types the types
 	*/
-	public void cacheResult(java.util.List<com.liferay.ams.model.Type> types);
+	public void cacheResult(java.util.List<Type> types);
 
 	/**
 	* Creates a new type with the primary key. Does not add the type to the database.
@@ -57,29 +60,27 @@ public interface TypePersistence extends BasePersistence<Type> {
 	* @param typeId the primary key for the new type
 	* @return the new type
 	*/
-	public com.liferay.ams.model.Type create(long typeId);
+	public Type create(long typeId);
 
 	/**
 	* Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param typeId the primary key of the type
 	* @return the type that was removed
-	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	* @throws NoSuchTypeException if a type with the primary key could not be found
 	*/
-	public com.liferay.ams.model.Type remove(long typeId)
-		throws com.liferay.ams.NoSuchTypeException;
+	public Type remove(long typeId) throws com.liferay.ams.NoSuchTypeException;
 
-	public com.liferay.ams.model.Type updateImpl(
-		com.liferay.ams.model.Type type);
+	public Type updateImpl(Type type);
 
 	/**
-	* Returns the type with the primary key or throws a {@link com.liferay.ams.NoSuchTypeException} if it could not be found.
+	* Returns the type with the primary key or throws a {@link NoSuchTypeException} if it could not be found.
 	*
 	* @param typeId the primary key of the type
 	* @return the type
-	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	* @throws NoSuchTypeException if a type with the primary key could not be found
 	*/
-	public com.liferay.ams.model.Type findByPrimaryKey(long typeId)
+	public Type findByPrimaryKey(long typeId)
 		throws com.liferay.ams.NoSuchTypeException;
 
 	/**
@@ -88,10 +89,10 @@ public interface TypePersistence extends BasePersistence<Type> {
 	* @param typeId the primary key of the type
 	* @return the type, or <code>null</code> if a type with the primary key could not be found
 	*/
-	public com.liferay.ams.model.Type fetchByPrimaryKey(long typeId);
+	public Type fetchByPrimaryKey(long typeId);
 
 	@Override
-	public java.util.Map<java.io.Serializable, com.liferay.ams.model.Type> fetchByPrimaryKeys(
+	public java.util.Map<java.io.Serializable, Type> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
@@ -99,26 +100,26 @@ public interface TypePersistence extends BasePersistence<Type> {
 	*
 	* @return the types
 	*/
-	public java.util.List<com.liferay.ams.model.Type> findAll();
+	public java.util.List<Type> findAll();
 
 	/**
 	* Returns a range of all the types.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.ams.model.impl.TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of types
 	* @param end the upper bound of the range of types (not inclusive)
 	* @return the range of types
 	*/
-	public java.util.List<com.liferay.ams.model.Type> findAll(int start, int end);
+	public java.util.List<Type> findAll(int start, int end);
 
 	/**
 	* Returns an ordered range of all the types.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.ams.model.impl.TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of types
@@ -126,9 +127,8 @@ public interface TypePersistence extends BasePersistence<Type> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of types
 	*/
-	public java.util.List<com.liferay.ams.model.Type> findAll(int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.ams.model.Type> orderByComparator);
+	public java.util.List<Type> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Type> orderByComparator);
 
 	/**
 	* Removes all the types from the database.

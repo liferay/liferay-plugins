@@ -28,7 +28,7 @@ import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see MicroblogsEntryImpl
- * @see com.liferay.microblogs.model.MicroblogsEntry
+ * @see MicroblogsEntry
  * @generated
  */
 @ProviderType

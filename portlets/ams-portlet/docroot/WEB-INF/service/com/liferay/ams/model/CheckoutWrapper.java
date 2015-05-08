@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Checkout
  * @generated
  */
+@ProviderType
 public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	public CheckoutWrapper(Checkout checkout) {
 		_checkout = checkout;
@@ -142,7 +145,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @return the actual check in date of this checkout
 	*/
 	@Override
-	public java.util.Date getActualCheckInDate() {
+	public Date getActualCheckInDate() {
 		return _checkout.getActualCheckInDate();
 	}
 
@@ -162,7 +165,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @return the check out date of this checkout
 	*/
 	@Override
-	public java.util.Date getCheckOutDate() {
+	public Date getCheckOutDate() {
 		return _checkout.getCheckOutDate();
 	}
 
@@ -192,7 +195,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @return the create date of this checkout
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _checkout.getCreateDate();
 	}
 
@@ -207,7 +210,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @return the expected check in date of this checkout
 	*/
 	@Override
-	public java.util.Date getExpectedCheckInDate() {
+	public Date getExpectedCheckInDate() {
 		return _checkout.getExpectedCheckInDate();
 	}
 
@@ -217,7 +220,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @return the modified date of this checkout
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _checkout.getModifiedDate();
 	}
 
@@ -297,7 +300,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @param actualCheckInDate the actual check in date of this checkout
 	*/
 	@Override
-	public void setActualCheckInDate(java.util.Date actualCheckInDate) {
+	public void setActualCheckInDate(Date actualCheckInDate) {
 		_checkout.setActualCheckInDate(actualCheckInDate);
 	}
 
@@ -322,7 +325,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @param checkOutDate the check out date of this checkout
 	*/
 	@Override
-	public void setCheckOutDate(java.util.Date checkOutDate) {
+	public void setCheckOutDate(Date checkOutDate) {
 		_checkout.setCheckOutDate(checkOutDate);
 	}
 
@@ -352,7 +355,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @param createDate the create date of this checkout
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_checkout.setCreateDate(createDate);
 	}
 
@@ -380,7 +383,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @param expectedCheckInDate the expected check in date of this checkout
 	*/
 	@Override
-	public void setExpectedCheckInDate(java.util.Date expectedCheckInDate) {
+	public void setExpectedCheckInDate(Date expectedCheckInDate) {
 		_checkout.setExpectedCheckInDate(expectedCheckInDate);
 	}
 
@@ -390,7 +393,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* @param modifiedDate the modified date of this checkout
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_checkout.setModifiedDate(modifiedDate);
 	}
 
@@ -516,5 +519,5 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		_checkout.resetOriginalValues();
 	}
 
-	private Checkout _checkout;
+	private final Checkout _checkout;
 }

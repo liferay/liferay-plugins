@@ -781,7 +781,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	private int _recipientRoleType;
 	private String _address;
 	private BaseModel<?> _kaleoNotificationRecipientRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

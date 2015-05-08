@@ -28,7 +28,7 @@ import com.liferay.socialcoding.service.JIRAChangeItemLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see JIRAChangeItemImpl
- * @see com.liferay.socialcoding.model.JIRAChangeItem
+ * @see JIRAChangeItem
  * @generated
  */
 @ProviderType

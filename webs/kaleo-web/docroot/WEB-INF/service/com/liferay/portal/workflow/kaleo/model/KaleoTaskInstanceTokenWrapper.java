@@ -252,7 +252,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the completion date of this kaleo task instance token
 	*/
 	@Override
-	public java.util.Date getCompletionDate() {
+	public Date getCompletionDate() {
 		return _kaleoTaskInstanceToken.getCompletionDate();
 	}
 
@@ -282,7 +282,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the create date of this kaleo task instance token
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoTaskInstanceToken.getCreateDate();
 	}
 
@@ -292,7 +292,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the due date of this kaleo task instance token
 	*/
 	@Override
-	public java.util.Date getDueDate() {
+	public Date getDueDate() {
 		return _kaleoTaskInstanceToken.getDueDate();
 	}
 
@@ -394,7 +394,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the modified date of this kaleo task instance token
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoTaskInstanceToken.getModifiedDate();
 	}
 
@@ -539,7 +539,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param completionDate the completion date of this kaleo task instance token
 	*/
 	@Override
-	public void setCompletionDate(java.util.Date completionDate) {
+	public void setCompletionDate(Date completionDate) {
 		_kaleoTaskInstanceToken.setCompletionDate(completionDate);
 	}
 
@@ -569,7 +569,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param createDate the create date of this kaleo task instance token
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoTaskInstanceToken.setCreateDate(createDate);
 	}
 
@@ -579,7 +579,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param dueDate the due date of this kaleo task instance token
 	*/
 	@Override
-	public void setDueDate(java.util.Date dueDate) {
+	public void setDueDate(Date dueDate) {
 		_kaleoTaskInstanceToken.setDueDate(dueDate);
 	}
 
@@ -677,7 +677,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param modifiedDate the modified date of this kaleo task instance token
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoTaskInstanceToken.setModifiedDate(modifiedDate);
 	}
 

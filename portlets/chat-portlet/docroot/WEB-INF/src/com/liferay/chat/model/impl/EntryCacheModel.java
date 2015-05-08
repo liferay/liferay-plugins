@@ -14,8 +14,11 @@
 
 package com.liferay.chat.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.chat.model.Entry;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -32,7 +35,32 @@ import java.io.ObjectOutput;
  * @see Entry
  * @generated
  */
+@ProviderType
 public class EntryCacheModel implements CacheModel<Entry>, Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof EntryCacheModel)) {
+			return false;
+		}
+
+		EntryCacheModel entryCacheModel = (EntryCacheModel)obj;
+
+		if (entryId == entryCacheModel.entryId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, entryId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(13);

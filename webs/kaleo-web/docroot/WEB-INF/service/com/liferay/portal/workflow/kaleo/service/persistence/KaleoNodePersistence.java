@@ -45,14 +45,13 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param companyId the company ID
 	* @return the matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByCompanyId(
-		long companyId);
+	public java.util.List<KaleoNode> findByCompanyId(long companyId);
 
 	/**
 	* Returns a range of all the kaleo nodes where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -60,14 +59,14 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param end the upper bound of the range of kaleo nodes (not inclusive)
 	* @return the range of matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByCompanyId(
-		long companyId, int start, int end);
+	public java.util.List<KaleoNode> findByCompanyId(long companyId, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the kaleo nodes where companyId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -76,9 +75,9 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByCompanyId(
-		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public java.util.List<KaleoNode> findByCompanyId(long companyId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the first kaleo node in the ordered set where companyId = &#63;.
@@ -86,11 +85,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	* @throws NoSuchNodeException if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode findByCompanyId_First(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -100,9 +98,8 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByCompanyId_First(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public KaleoNode fetchByCompanyId_First(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the last kaleo node in the ordered set where companyId = &#63;.
@@ -110,11 +107,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	* @throws NoSuchNodeException if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode findByCompanyId_Last(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -124,9 +120,8 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByCompanyId_Last(
-		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public KaleoNode fetchByCompanyId_Last(long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the kaleo nodes before and after the current kaleo node in the ordered set where companyId = &#63;.
@@ -135,11 +130,11 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	* @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByCompanyId_PrevAndNext(
-		long kaleoNodeId, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode[] findByCompanyId_PrevAndNext(long kaleoNodeId,
+		long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -163,14 +158,14 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByKaleoDefinitionId(
+	public java.util.List<KaleoNode> findByKaleoDefinitionId(
 		long kaleoDefinitionId);
 
 	/**
 	* Returns a range of all the kaleo nodes where kaleoDefinitionId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
@@ -178,14 +173,14 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param end the upper bound of the range of kaleo nodes (not inclusive)
 	* @return the range of matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByKaleoDefinitionId(
+	public java.util.List<KaleoNode> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo nodes where kaleoDefinitionId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
@@ -194,9 +189,9 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByKaleoDefinitionId(
+	public java.util.List<KaleoNode> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the first kaleo node in the ordered set where kaleoDefinitionId = &#63;.
@@ -204,11 +199,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	* @throws NoSuchNodeException if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByKaleoDefinitionId_First(
-		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode findByKaleoDefinitionId_First(long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -218,9 +212,8 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByKaleoDefinitionId_First(
-		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public KaleoNode fetchByKaleoDefinitionId_First(long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the last kaleo node in the ordered set where kaleoDefinitionId = &#63;.
@@ -228,11 +221,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	* @throws NoSuchNodeException if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByKaleoDefinitionId_Last(
-		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode findByKaleoDefinitionId_Last(long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -242,9 +234,8 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByKaleoDefinitionId_Last(
-		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public KaleoNode fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the kaleo nodes before and after the current kaleo node in the ordered set where kaleoDefinitionId = &#63;.
@@ -253,11 +244,11 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	* @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByKaleoDefinitionId_PrevAndNext(
-		long kaleoNodeId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode[] findByKaleoDefinitionId_PrevAndNext(long kaleoNodeId,
+		long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -282,14 +273,14 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByC_KDI(
-		long companyId, long kaleoDefinitionId);
+	public java.util.List<KaleoNode> findByC_KDI(long companyId,
+		long kaleoDefinitionId);
 
 	/**
 	* Returns a range of all the kaleo nodes where companyId = &#63; and kaleoDefinitionId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -298,14 +289,14 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param end the upper bound of the range of kaleo nodes (not inclusive)
 	* @return the range of matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByC_KDI(
-		long companyId, long kaleoDefinitionId, int start, int end);
+	public java.util.List<KaleoNode> findByC_KDI(long companyId,
+		long kaleoDefinitionId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo nodes where companyId = &#63; and kaleoDefinitionId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param companyId the company ID
@@ -315,9 +306,9 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findByC_KDI(
-		long companyId, long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public java.util.List<KaleoNode> findByC_KDI(long companyId,
+		long kaleoDefinitionId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the first kaleo node in the ordered set where companyId = &#63; and kaleoDefinitionId = &#63;.
@@ -326,11 +317,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	* @throws NoSuchNodeException if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByC_KDI_First(
-		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode findByC_KDI_First(long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -341,9 +331,8 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByC_KDI_First(
-		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public KaleoNode fetchByC_KDI_First(long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the last kaleo node in the ordered set where companyId = &#63; and kaleoDefinitionId = &#63;.
@@ -352,11 +341,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	* @throws NoSuchNodeException if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByC_KDI_Last(
-		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode findByC_KDI_Last(long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -367,9 +355,8 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByC_KDI_Last(
-		long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public KaleoNode fetchByC_KDI_Last(long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Returns the kaleo nodes before and after the current kaleo node in the ordered set where companyId = &#63; and kaleoDefinitionId = &#63;.
@@ -379,11 +366,11 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	* @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode[] findByC_KDI_PrevAndNext(
-		long kaleoNodeId, long companyId, long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator)
+	public KaleoNode[] findByC_KDI_PrevAndNext(long kaleoNodeId,
+		long companyId, long kaleoDefinitionId,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -408,16 +395,14 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*
 	* @param kaleoNode the kaleo node
 	*/
-	public void cacheResult(
-		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode);
+	public void cacheResult(KaleoNode kaleoNode);
 
 	/**
 	* Caches the kaleo nodes in the entity cache if it is enabled.
 	*
 	* @param kaleoNodes the kaleo nodes
 	*/
-	public void cacheResult(
-		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> kaleoNodes);
+	public void cacheResult(java.util.List<KaleoNode> kaleoNodes);
 
 	/**
 	* Creates a new kaleo node with the primary key. Does not add the kaleo node to the database.
@@ -425,32 +410,28 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoNodeId the primary key for the new kaleo node
 	* @return the new kaleo node
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode create(
-		long kaleoNodeId);
+	public KaleoNode create(long kaleoNodeId);
 
 	/**
 	* Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param kaleoNodeId the primary key of the kaleo node
 	* @return the kaleo node that was removed
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	* @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode remove(
-		long kaleoNodeId)
+	public KaleoNode remove(long kaleoNodeId)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoNode kaleoNode);
+	public KaleoNode updateImpl(KaleoNode kaleoNode);
 
 	/**
-	* Returns the kaleo node with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchNodeException} if it could not be found.
+	* Returns the kaleo node with the primary key or throws a {@link NoSuchNodeException} if it could not be found.
 	*
 	* @param kaleoNodeId the primary key of the kaleo node
 	* @return the kaleo node
-	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	* @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode findByPrimaryKey(
-		long kaleoNodeId)
+	public KaleoNode findByPrimaryKey(long kaleoNodeId)
 		throws com.liferay.portal.workflow.kaleo.NoSuchNodeException;
 
 	/**
@@ -459,11 +440,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoNodeId the primary key of the kaleo node
 	* @return the kaleo node, or <code>null</code> if a kaleo node with the primary key could not be found
 	*/
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByPrimaryKey(
-		long kaleoNodeId);
+	public KaleoNode fetchByPrimaryKey(long kaleoNodeId);
 
 	@Override
-	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoNode> fetchByPrimaryKeys(
+	public java.util.Map<java.io.Serializable, KaleoNode> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
@@ -471,27 +451,26 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*
 	* @return the kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findAll();
+	public java.util.List<KaleoNode> findAll();
 
 	/**
 	* Returns a range of all the kaleo nodes.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of kaleo nodes
 	* @param end the upper bound of the range of kaleo nodes (not inclusive)
 	* @return the range of kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findAll(
-		int start, int end);
+	public java.util.List<KaleoNode> findAll(int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo nodes.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KaleoNodeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of kaleo nodes
@@ -499,9 +478,8 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo nodes
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoNode> orderByComparator);
+	public java.util.List<KaleoNode> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<KaleoNode> orderByComparator);
 
 	/**
 	* Removes all the kaleo nodes from the database.

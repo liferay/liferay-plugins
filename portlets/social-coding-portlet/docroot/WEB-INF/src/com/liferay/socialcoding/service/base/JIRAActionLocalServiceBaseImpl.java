@@ -190,10 +190,10 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -201,11 +201,11 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -312,7 +312,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 *
 	 * @return the j i r a action local service
 	 */
-	public com.liferay.socialcoding.service.JIRAActionLocalService getJIRAActionLocalService() {
+	public JIRAActionLocalService getJIRAActionLocalService() {
 		return jiraActionLocalService;
 	}
 
@@ -322,7 +322,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	 * @param jiraActionLocalService the j i r a action local service
 	 */
 	public void setJIRAActionLocalService(
-		com.liferay.socialcoding.service.JIRAActionLocalService jiraActionLocalService) {
+		JIRAActionLocalService jiraActionLocalService) {
 		this.jiraActionLocalService = jiraActionLocalService;
 	}
 
@@ -866,8 +866,8 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.socialcoding.service.JIRAActionLocalService.class)
-	protected com.liferay.socialcoding.service.JIRAActionLocalService jiraActionLocalService;
+	@BeanReference(type = JIRAActionLocalService.class)
+	protected JIRAActionLocalService jiraActionLocalService;
 	@BeanReference(type = JIRAActionPersistence.class)
 	protected JIRAActionPersistence jiraActionPersistence;
 	@BeanReference(type = JIRAActionFinder.class)

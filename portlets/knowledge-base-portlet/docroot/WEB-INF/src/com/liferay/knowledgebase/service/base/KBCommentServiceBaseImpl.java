@@ -159,7 +159,7 @@ public abstract class KBCommentServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the k b comment remote service
 	 */
-	public com.liferay.knowledgebase.service.KBCommentService getKBCommentService() {
+	public KBCommentService getKBCommentService() {
 		return kbCommentService;
 	}
 
@@ -168,8 +168,7 @@ public abstract class KBCommentServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param kbCommentService the k b comment remote service
 	 */
-	public void setKBCommentService(
-		com.liferay.knowledgebase.service.KBCommentService kbCommentService) {
+	public void setKBCommentService(KBCommentService kbCommentService) {
 		this.kbCommentService = kbCommentService;
 	}
 
@@ -719,8 +718,8 @@ public abstract class KBCommentServiceBaseImpl extends BaseServiceImpl
 	protected KBArticleFinder kbArticleFinder;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBCommentLocalService.class)
 	protected com.liferay.knowledgebase.service.KBCommentLocalService kbCommentLocalService;
-	@BeanReference(type = com.liferay.knowledgebase.service.KBCommentService.class)
-	protected com.liferay.knowledgebase.service.KBCommentService kbCommentService;
+	@BeanReference(type = KBCommentService.class)
+	protected KBCommentService kbCommentService;
 	@BeanReference(type = KBCommentPersistence.class)
 	protected KBCommentPersistence kbCommentPersistence;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBFolderLocalService.class)

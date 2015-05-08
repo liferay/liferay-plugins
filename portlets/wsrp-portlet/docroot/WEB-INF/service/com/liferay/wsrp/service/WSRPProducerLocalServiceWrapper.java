@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see WSRPProducerLocalService
  * @generated
  */
+@ProviderType
 public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService,
 	ServiceWrapper<WSRPProducerLocalService> {
 	public WSRPProducerLocalServiceWrapper(
@@ -177,10 +180,10 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(
@@ -189,11 +192,11 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(
@@ -311,6 +314,13 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		return _wsrpProducerLocalService.getWSRPProducers(start, end);
 	}
 
+	/**
+	* Returns all the w s r p producers matching the UUID and company.
+	*
+	* @param uuid the UUID of the w s r p producers
+	* @param companyId the primary key of the company
+	* @return the matching w s r p producers, or an empty list if no matches were found
+	*/
 	@Override
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
 		java.lang.String uuid, long companyId) {
@@ -318,6 +328,16 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 			companyId);
 	}
 
+	/**
+	* Returns a range of w s r p producers matching the UUID and company.
+	*
+	* @param uuid the UUID of the w s r p producers
+	* @param companyId the primary key of the company
+	* @param start the lower bound of the range of w s r p producers
+	* @param end the upper bound of the range of w s r p producers (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the range of matching w s r p producers, or an empty list if no matches were found
+	*/
 	@Override
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
 		java.lang.String uuid, long companyId, int start, int end,

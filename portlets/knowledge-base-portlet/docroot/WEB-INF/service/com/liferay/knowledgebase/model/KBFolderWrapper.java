@@ -175,7 +175,7 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	* @return the create date of this k b folder
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kbFolder.getCreateDate();
 	}
 
@@ -220,7 +220,7 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	* @return the modified date of this k b folder
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kbFolder.getModifiedDate();
 	}
 
@@ -367,7 +367,7 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	* @param createDate the create date of this k b folder
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kbFolder.setCreateDate(createDate);
 	}
 
@@ -425,7 +425,7 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	* @param modifiedDate the modified date of this k b folder
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kbFolder.setModifiedDate(modifiedDate);
 	}
 

@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.so.model.impl.ProjectsEntryModelImpl
  * @generated
  */
+@ProviderType
 public interface ProjectsEntryModel extends AuditedModel,
 	BaseModel<ProjectsEntry> {
 	/*
@@ -282,19 +285,19 @@ public interface ProjectsEntryModel extends AuditedModel,
 	public Object clone();
 
 	@Override
-	public int compareTo(ProjectsEntry projectsEntry);
+	public int compareTo(com.liferay.so.model.ProjectsEntry projectsEntry);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<ProjectsEntry> toCacheModel();
+	public CacheModel<com.liferay.so.model.ProjectsEntry> toCacheModel();
 
 	@Override
-	public ProjectsEntry toEscapedModel();
+	public com.liferay.so.model.ProjectsEntry toEscapedModel();
 
 	@Override
-	public ProjectsEntry toUnescapedModel();
+	public com.liferay.so.model.ProjectsEntry toUnescapedModel();
 
 	@Override
 	public String toString();

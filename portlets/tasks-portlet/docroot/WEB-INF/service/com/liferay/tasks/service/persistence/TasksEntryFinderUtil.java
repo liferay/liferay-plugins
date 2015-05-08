@@ -14,12 +14,16 @@
 
 package com.liferay.tasks.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Ryan Park
+ * @generated
  */
+@ProviderType
 public class TasksEntryFinderUtil {
 	public static int countByG_U_P_A_S_T_N(long groupId, long userId,
 		int priority, long assigneeUserId, int status, long[] assetTagIds,

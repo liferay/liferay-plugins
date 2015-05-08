@@ -69,7 +69,7 @@ public interface AccountLocalService extends BaseLocalService,
 		java.lang.String signature, boolean useSignature,
 		java.lang.String folderPrefix, long inboxFolderId, long draftFolderId,
 		long sentFolderId, long trashFolderId, boolean defaultSender)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Creates a new account with the primary key. Does not add the account to the database.
@@ -88,8 +88,7 @@ public interface AccountLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.mail.model.Account deleteAccount(
-		com.liferay.mail.model.Account account)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		com.liferay.mail.model.Account account) throws PortalException;
 
 	/**
 	* Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
@@ -100,10 +99,9 @@ public interface AccountLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.mail.model.Account deleteAccount(long accountId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
-	public void deleteAccounts(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void deleteAccounts(long userId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -111,7 +109,7 @@ public interface AccountLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -190,12 +188,11 @@ public interface AccountLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Account getAccount(long accountId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Account getAccount(long userId,
-		java.lang.String address)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String address) throws PortalException;
 
 	/**
 	* Returns a range of all the accounts.
@@ -237,8 +234,7 @@ public interface AccountLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -266,10 +262,9 @@ public interface AccountLocalService extends BaseLocalService,
 		java.lang.String personalName, java.lang.String password,
 		boolean savePassword, java.lang.String signature, boolean useSignature,
 		java.lang.String folderPrefix, boolean defaultSender)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.mail.model.Account updateFolders(long accountId,
 		long inboxFolderId, long draftFolderId, long sentFolderId,
-		long trashFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long trashFolderId) throws PortalException;
 }

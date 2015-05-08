@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalService;
 import com.liferay.opensocial.service.persistence.GadgetPersistence;
@@ -67,6 +69,7 @@ import javax.sql.DataSource;
  * @see com.liferay.opensocial.service.GadgetLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements GadgetLocalService, IdentifiableBean {
 	/*
@@ -183,10 +186,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -194,11 +197,11 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -215,7 +218,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the gadget with the matching UUID and company.
 	 *
 	 * @param uuid the gadget's UUID
-	 * @param  companyId the primary key of the company
+	 * @param companyId the primary key of the company
 	 * @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	 */
 	@Override
@@ -329,7 +332,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the gadget with the matching UUID and company.
 	 *
 	 * @param uuid the gadget's UUID
-	 * @param  companyId the primary key of the company
+	 * @param companyId the primary key of the company
 	 * @return the matching gadget
 	 * @throws PortalException if a matching gadget could not be found
 	 */
@@ -382,7 +385,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the gadget local service
 	 */
-	public com.liferay.opensocial.service.GadgetLocalService getGadgetLocalService() {
+	public GadgetLocalService getGadgetLocalService() {
 		return gadgetLocalService;
 	}
 
@@ -391,8 +394,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param gadgetLocalService the gadget local service
 	 */
-	public void setGadgetLocalService(
-		com.liferay.opensocial.service.GadgetLocalService gadgetLocalService) {
+	public void setGadgetLocalService(GadgetLocalService gadgetLocalService) {
 		this.gadgetLocalService = gadgetLocalService;
 	}
 
@@ -747,8 +749,8 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.opensocial.service.GadgetLocalService.class)
-	protected com.liferay.opensocial.service.GadgetLocalService gadgetLocalService;
+	@BeanReference(type = GadgetLocalService.class)
+	protected GadgetLocalService gadgetLocalService;
 	@BeanReference(type = com.liferay.opensocial.service.GadgetService.class)
 	protected com.liferay.opensocial.service.GadgetService gadgetService;
 	@BeanReference(type = GadgetPersistence.class)

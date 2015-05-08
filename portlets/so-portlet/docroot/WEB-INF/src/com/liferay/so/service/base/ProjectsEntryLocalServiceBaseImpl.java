@@ -14,6 +14,8 @@
 
 package com.liferay.so.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -62,6 +64,7 @@ import javax.sql.DataSource;
  * @see com.liferay.so.service.ProjectsEntryLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class ProjectsEntryLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements ProjectsEntryLocalService,
 		IdentifiableBean {
@@ -181,10 +184,10 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -192,11 +195,11 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -397,7 +400,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @return the projects entry local service
 	 */
-	public com.liferay.so.service.ProjectsEntryLocalService getProjectsEntryLocalService() {
+	public ProjectsEntryLocalService getProjectsEntryLocalService() {
 		return projectsEntryLocalService;
 	}
 
@@ -407,7 +410,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param projectsEntryLocalService the projects entry local service
 	 */
 	public void setProjectsEntryLocalService(
-		com.liferay.so.service.ProjectsEntryLocalService projectsEntryLocalService) {
+		ProjectsEntryLocalService projectsEntryLocalService) {
 		this.projectsEntryLocalService = projectsEntryLocalService;
 	}
 
@@ -697,8 +700,8 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	protected com.liferay.so.service.MemberRequestLocalService memberRequestLocalService;
 	@BeanReference(type = MemberRequestPersistence.class)
 	protected MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(type = com.liferay.so.service.ProjectsEntryLocalService.class)
-	protected com.liferay.so.service.ProjectsEntryLocalService projectsEntryLocalService;
+	@BeanReference(type = ProjectsEntryLocalService.class)
+	protected ProjectsEntryLocalService projectsEntryLocalService;
 	@BeanReference(type = ProjectsEntryPersistence.class)
 	protected ProjectsEntryPersistence projectsEntryPersistence;
 	@BeanReference(type = com.liferay.so.service.SocialOfficeService.class)

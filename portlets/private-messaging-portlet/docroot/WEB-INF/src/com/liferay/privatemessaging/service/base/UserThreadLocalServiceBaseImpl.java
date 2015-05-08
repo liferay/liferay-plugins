@@ -14,6 +14,8 @@
 
 package com.liferay.privatemessaging.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -59,6 +61,7 @@ import javax.sql.DataSource;
  * @see com.liferay.privatemessaging.service.UserThreadLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class UserThreadLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements UserThreadLocalService,
 		IdentifiableBean {
@@ -178,10 +181,10 @@ public abstract class UserThreadLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -189,11 +192,11 @@ public abstract class UserThreadLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -300,7 +303,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 *
 	 * @return the user thread local service
 	 */
-	public com.liferay.privatemessaging.service.UserThreadLocalService getUserThreadLocalService() {
+	public UserThreadLocalService getUserThreadLocalService() {
 		return userThreadLocalService;
 	}
 
@@ -310,7 +313,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	 * @param userThreadLocalService the user thread local service
 	 */
 	public void setUserThreadLocalService(
-		com.liferay.privatemessaging.service.UserThreadLocalService userThreadLocalService) {
+		UserThreadLocalService userThreadLocalService) {
 		this.userThreadLocalService = userThreadLocalService;
 	}
 
@@ -590,8 +593,8 @@ public abstract class UserThreadLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadLocalService.class)
-	protected com.liferay.privatemessaging.service.UserThreadLocalService userThreadLocalService;
+	@BeanReference(type = UserThreadLocalService.class)
+	protected UserThreadLocalService userThreadLocalService;
 	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadService.class)
 	protected com.liferay.privatemessaging.service.UserThreadService userThreadService;
 	@BeanReference(type = UserThreadPersistence.class)

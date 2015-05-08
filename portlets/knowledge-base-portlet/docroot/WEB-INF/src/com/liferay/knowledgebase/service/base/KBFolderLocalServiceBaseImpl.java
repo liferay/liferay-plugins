@@ -553,7 +553,7 @@ public abstract class KBFolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the k b folder local service
 	 */
-	public com.liferay.knowledgebase.service.KBFolderLocalService getKBFolderLocalService() {
+	public KBFolderLocalService getKBFolderLocalService() {
 		return kbFolderLocalService;
 	}
 
@@ -563,7 +563,7 @@ public abstract class KBFolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbFolderLocalService the k b folder local service
 	 */
 	public void setKBFolderLocalService(
-		com.liferay.knowledgebase.service.KBFolderLocalService kbFolderLocalService) {
+		KBFolderLocalService kbFolderLocalService) {
 		this.kbFolderLocalService = kbFolderLocalService;
 	}
 
@@ -913,8 +913,8 @@ public abstract class KBFolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.knowledgebase.service.KBCommentService kbCommentService;
 	@BeanReference(type = KBCommentPersistence.class)
 	protected KBCommentPersistence kbCommentPersistence;
-	@BeanReference(type = com.liferay.knowledgebase.service.KBFolderLocalService.class)
-	protected com.liferay.knowledgebase.service.KBFolderLocalService kbFolderLocalService;
+	@BeanReference(type = KBFolderLocalService.class)
+	protected KBFolderLocalService kbFolderLocalService;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBFolderService.class)
 	protected com.liferay.knowledgebase.service.KBFolderService kbFolderService;
 	@BeanReference(type = KBFolderPersistence.class)

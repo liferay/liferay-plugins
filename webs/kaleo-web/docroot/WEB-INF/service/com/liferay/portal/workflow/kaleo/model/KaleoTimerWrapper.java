@@ -215,7 +215,7 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	* @return the create date of this kaleo timer
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoTimer.getCreateDate();
 	}
 
@@ -305,7 +305,7 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	* @return the modified date of this kaleo timer
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoTimer.getModifiedDate();
 	}
 
@@ -465,7 +465,7 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	* @param createDate the create date of this kaleo timer
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoTimer.setCreateDate(createDate);
 	}
 
@@ -563,7 +563,7 @@ public class KaleoTimerWrapper implements KaleoTimer, ModelWrapper<KaleoTimer> {
 	* @param modifiedDate the modified date of this kaleo timer
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoTimer.setModifiedDate(modifiedDate);
 	}
 

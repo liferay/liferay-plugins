@@ -14,6 +14,8 @@
 
 package com.liferay.words.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see WordsService
  * @generated
  */
+@ProviderType
 public class WordsServiceWrapper implements WordsService,
 	ServiceWrapper<WordsService> {
 	public WordsServiceWrapper(WordsService wordsService) {

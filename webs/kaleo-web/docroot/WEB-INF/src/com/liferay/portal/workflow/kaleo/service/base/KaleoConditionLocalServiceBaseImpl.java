@@ -356,7 +356,7 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 *
 	 * @return the kaleo condition local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService getKaleoConditionLocalService() {
+	public KaleoConditionLocalService getKaleoConditionLocalService() {
 		return kaleoConditionLocalService;
 	}
 
@@ -366,7 +366,7 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @param kaleoConditionLocalService the kaleo condition local service
 	 */
 	public void setKaleoConditionLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService kaleoConditionLocalService) {
+		KaleoConditionLocalService kaleoConditionLocalService) {
 		this.kaleoConditionLocalService = kaleoConditionLocalService;
 	}
 
@@ -1200,8 +1200,8 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService kaleoActionLocalService;
 	@BeanReference(type = KaleoActionPersistence.class)
 	protected KaleoActionPersistence kaleoActionPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService kaleoConditionLocalService;
+	@BeanReference(type = KaleoConditionLocalService.class)
+	protected KaleoConditionLocalService kaleoConditionLocalService;
 	@BeanReference(type = KaleoConditionPersistence.class)
 	protected KaleoConditionPersistence kaleoConditionPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService.class)

@@ -647,14 +647,13 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		Map<java.lang.String, Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		try {
 			String methodName = "getRootKaleoInstanceToken";
 
 			Class<?>[] parameterTypes = new Class<?>[] {
-					java.util.Map.class,
-					com.liferay.portal.service.ServiceContext.class
+					Map.class, com.liferay.portal.service.ServiceContext.class
 				};
 
 			Object[] parameterValues = new Object[] {
@@ -960,7 +959,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	private Date _completionDate;
 	private String _workflowContext;
 	private BaseModel<?> _kaleoInstanceRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

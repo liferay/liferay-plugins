@@ -14,6 +14,8 @@
 
 package com.liferay.chat.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.chat.model.impl.EntryModelImpl
  * @generated
  */
+@ProviderType
 public interface Entry extends EntryModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

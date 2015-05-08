@@ -1078,7 +1078,7 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	private long _remoteMessageId;
 	private String _contentType;
 	private BaseModel<?> _messageRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.mail.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -128,7 +128,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	* @return the create date of this s v n revision
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _svnRevision.getCreateDate();
 	}
 
@@ -253,7 +253,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	* @param createDate the create date of this s v n revision
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_svnRevision.setCreateDate(createDate);
 	}
 

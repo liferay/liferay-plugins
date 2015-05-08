@@ -14,6 +14,8 @@
 
 package com.liferay.testpacl.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class FooSoap implements Serializable {
 	public static FooSoap toSoapModel(Foo model) {
 		FooSoap soapModel = new FooSoap();

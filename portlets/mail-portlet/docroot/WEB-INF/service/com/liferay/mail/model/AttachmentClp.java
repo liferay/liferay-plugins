@@ -604,7 +604,7 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 	private String _fileName;
 	private long _size;
 	private BaseModel<?> _attachmentRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.mail.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

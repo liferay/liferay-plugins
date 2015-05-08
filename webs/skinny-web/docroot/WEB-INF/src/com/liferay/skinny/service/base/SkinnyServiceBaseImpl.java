@@ -61,7 +61,7 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the skinny remote service
 	 */
-	public com.liferay.skinny.service.SkinnyService getSkinnyService() {
+	public SkinnyService getSkinnyService() {
 		return skinnyService;
 	}
 
@@ -70,8 +70,7 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param skinnyService the skinny remote service
 	 */
-	public void setSkinnyService(
-		com.liferay.skinny.service.SkinnyService skinnyService) {
+	public void setSkinnyService(SkinnyService skinnyService) {
 		this.skinnyService = skinnyService;
 	}
 
@@ -527,8 +526,8 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.skinny.service.SkinnyService.class)
-	protected com.liferay.skinny.service.SkinnyService skinnyService;
+	@BeanReference(type = SkinnyService.class)
+	protected SkinnyService skinnyService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)

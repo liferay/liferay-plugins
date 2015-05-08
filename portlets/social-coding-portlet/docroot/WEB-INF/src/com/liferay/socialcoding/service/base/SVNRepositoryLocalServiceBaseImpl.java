@@ -190,10 +190,10 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -201,11 +201,11 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -557,7 +557,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	 *
 	 * @return the s v n repository local service
 	 */
-	public com.liferay.socialcoding.service.SVNRepositoryLocalService getSVNRepositoryLocalService() {
+	public SVNRepositoryLocalService getSVNRepositoryLocalService() {
 		return svnRepositoryLocalService;
 	}
 
@@ -567,7 +567,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	 * @param svnRepositoryLocalService the s v n repository local service
 	 */
 	public void setSVNRepositoryLocalService(
-		com.liferay.socialcoding.service.SVNRepositoryLocalService svnRepositoryLocalService) {
+		SVNRepositoryLocalService svnRepositoryLocalService) {
 		this.svnRepositoryLocalService = svnRepositoryLocalService;
 	}
 
@@ -892,8 +892,8 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	protected com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService;
 	@BeanReference(type = JIRAProjectPersistence.class)
 	protected JIRAProjectPersistence jiraProjectPersistence;
-	@BeanReference(type = com.liferay.socialcoding.service.SVNRepositoryLocalService.class)
-	protected com.liferay.socialcoding.service.SVNRepositoryLocalService svnRepositoryLocalService;
+	@BeanReference(type = SVNRepositoryLocalService.class)
+	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	@BeanReference(type = SVNRepositoryPersistence.class)
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
 	@BeanReference(type = com.liferay.socialcoding.service.SVNRevisionLocalService.class)

@@ -4,9 +4,9 @@ create table Akismet_AkismetData (
 	classNameId LONG,
 	classPK LONG,
 	type_ VARCHAR(75) null,
-	permalink STRING null,
-	referrer STRING null,
-	userAgent STRING null,
+	permalink VARCHAR(75) null,
+	referrer VARCHAR(75) null,
+	userAgent VARCHAR(75) null,
 	userIP VARCHAR(75) null,
-	userURL STRING null
+	userURL VARCHAR(75) null
 );

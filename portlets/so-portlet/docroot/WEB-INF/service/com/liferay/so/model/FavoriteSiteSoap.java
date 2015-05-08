@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class FavoriteSiteSoap implements Serializable {
 	public static FavoriteSiteSoap toSoapModel(FavoriteSite model) {
 		FavoriteSiteSoap soapModel = new FavoriteSiteSoap();

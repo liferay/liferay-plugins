@@ -14,6 +14,8 @@
 
 package com.liferay.so.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.so.service.MemberRequestLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see MemberRequestImpl
- * @see com.liferay.so.model.MemberRequest
+ * @see MemberRequest
  * @generated
  */
+@ProviderType
 public abstract class MemberRequestBaseImpl extends MemberRequestModelImpl
 	implements MemberRequest {
 	/*

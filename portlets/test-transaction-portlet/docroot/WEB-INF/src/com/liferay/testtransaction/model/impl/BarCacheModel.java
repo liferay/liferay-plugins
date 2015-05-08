@@ -14,6 +14,9 @@
 
 package com.liferay.testtransaction.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -32,7 +35,32 @@ import java.io.ObjectOutput;
  * @see Bar
  * @generated
  */
+@ProviderType
 public class BarCacheModel implements CacheModel<Bar>, Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof BarCacheModel)) {
+			return false;
+		}
+
+		BarCacheModel barCacheModel = (BarCacheModel)obj;
+
+		if (barId == barCacheModel.barId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, barId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(5);

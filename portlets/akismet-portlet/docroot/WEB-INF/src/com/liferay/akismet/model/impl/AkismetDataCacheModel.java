@@ -14,8 +14,11 @@
 
 package com.liferay.akismet.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.akismet.model.AkismetData;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,8 +37,33 @@ import java.util.Date;
  * @see AkismetData
  * @generated
  */
+@ProviderType
 public class AkismetDataCacheModel implements CacheModel<AkismetData>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AkismetDataCacheModel)) {
+			return false;
+		}
+
+		AkismetDataCacheModel akismetDataCacheModel = (AkismetDataCacheModel)obj;
+
+		if (akismetDataId == akismetDataCacheModel.akismetDataId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, akismetDataId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);

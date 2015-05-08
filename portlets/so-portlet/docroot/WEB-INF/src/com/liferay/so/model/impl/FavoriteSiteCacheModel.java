@@ -14,6 +14,9 @@
 
 package com.liferay.so.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.CacheModel;
 
@@ -31,8 +34,33 @@ import java.io.ObjectOutput;
  * @see FavoriteSite
  * @generated
  */
+@ProviderType
 public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof FavoriteSiteCacheModel)) {
+			return false;
+		}
+
+		FavoriteSiteCacheModel favoriteSiteCacheModel = (FavoriteSiteCacheModel)obj;
+
+		if (favoriteSiteId == favoriteSiteCacheModel.favoriteSiteId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, favoriteSiteId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);

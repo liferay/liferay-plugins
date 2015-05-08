@@ -14,9 +14,13 @@
 
 package com.liferay.chat.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
+@ProviderType
 public interface EntryFinder {
 	public java.util.List<com.liferay.chat.model.Entry> findByEmptyContent(
 		long fromUserId, long toUserId, int start, int end);

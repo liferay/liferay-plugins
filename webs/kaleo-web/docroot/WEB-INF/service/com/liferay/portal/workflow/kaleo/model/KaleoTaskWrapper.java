@@ -163,7 +163,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @return the create date of this kaleo task
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoTask.getCreateDate();
 	}
 
@@ -239,7 +239,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @return the modified date of this kaleo task
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoTask.getModifiedDate();
 	}
 
@@ -344,7 +344,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @param createDate the create date of this kaleo task
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoTask.setCreateDate(createDate);
 	}
 
@@ -422,7 +422,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @param modifiedDate the modified date of this kaleo task
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoTask.setModifiedDate(modifiedDate);
 	}
 

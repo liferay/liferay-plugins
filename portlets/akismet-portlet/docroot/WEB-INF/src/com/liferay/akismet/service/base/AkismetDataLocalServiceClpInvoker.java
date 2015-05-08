@@ -14,6 +14,8 @@
 
 package com.liferay.akismet.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class AkismetDataLocalServiceClpInvoker {
 	public AkismetDataLocalServiceClpInvoker() {
 		_methodName0 = "addAkismetData";

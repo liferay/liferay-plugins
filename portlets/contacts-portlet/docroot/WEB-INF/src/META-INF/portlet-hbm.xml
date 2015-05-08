@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.contacts.model.Entry" />
 	<class name="com.liferay.contacts.model.impl.EntryImpl" table="Contacts_Entry">
-		<cache usage="read-write" />
 		<id name="entryId" type="long">
 			<generator class="assigned" />
 		</id>

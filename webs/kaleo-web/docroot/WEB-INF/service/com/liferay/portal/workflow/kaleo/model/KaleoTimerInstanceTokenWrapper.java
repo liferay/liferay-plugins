@@ -251,7 +251,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the completion date of this kaleo timer instance token
 	*/
 	@Override
-	public java.util.Date getCompletionDate() {
+	public Date getCompletionDate() {
 		return _kaleoTimerInstanceToken.getCompletionDate();
 	}
 
@@ -281,7 +281,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the create date of this kaleo timer instance token
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoTimerInstanceToken.getCreateDate();
 	}
 
@@ -413,7 +413,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the modified date of this kaleo timer instance token
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoTimerInstanceToken.getModifiedDate();
 	}
 
@@ -558,7 +558,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param completionDate the completion date of this kaleo timer instance token
 	*/
 	@Override
-	public void setCompletionDate(java.util.Date completionDate) {
+	public void setCompletionDate(Date completionDate) {
 		_kaleoTimerInstanceToken.setCompletionDate(completionDate);
 	}
 
@@ -588,7 +588,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param createDate the create date of this kaleo timer instance token
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoTimerInstanceToken.setCreateDate(createDate);
 	}
 
@@ -716,7 +716,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param modifiedDate the modified date of this kaleo timer instance token
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoTimerInstanceToken.setModifiedDate(modifiedDate);
 	}
 

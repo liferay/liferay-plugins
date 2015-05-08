@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service.messaging;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.GadgetServiceUtil;
@@ -26,6 +28,7 @@ import com.liferay.portal.kernel.messaging.Message;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ClpMessageListener extends BaseMessageListener {
 	public static String getServletContextName() {
 		return ClpSerializer.getServletContextName();

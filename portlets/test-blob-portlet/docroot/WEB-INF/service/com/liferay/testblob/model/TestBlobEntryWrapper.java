@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see TestBlobEntry
  * @generated
  */
+@ProviderType
 public class TestBlobEntryWrapper implements TestBlobEntry,
 	ModelWrapper<TestBlobEntry> {
 	public TestBlobEntryWrapper(TestBlobEntry testBlobEntry) {
@@ -95,7 +98,7 @@ public class TestBlobEntryWrapper implements TestBlobEntry,
 	* @return the blob field of this test blob entry
 	*/
 	@Override
-	public java.sql.Blob getBlobField() {
+	public Blob getBlobField() {
 		return _testBlobEntry.getBlobField();
 	}
 
@@ -170,7 +173,7 @@ public class TestBlobEntryWrapper implements TestBlobEntry,
 	* @param blobField the blob field of this test blob entry
 	*/
 	@Override
-	public void setBlobField(java.sql.Blob blobField) {
+	public void setBlobField(Blob blobField) {
 		_testBlobEntry.setBlobField(blobField);
 	}
 
@@ -309,5 +312,5 @@ public class TestBlobEntryWrapper implements TestBlobEntry,
 		_testBlobEntry.resetOriginalValues();
 	}
 
-	private TestBlobEntry _testBlobEntry;
+	private final TestBlobEntry _testBlobEntry;
 }

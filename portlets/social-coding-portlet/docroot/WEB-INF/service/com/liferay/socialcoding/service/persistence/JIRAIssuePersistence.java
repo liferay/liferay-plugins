@@ -28,7 +28,7 @@ import com.liferay.socialcoding.model.JIRAIssue;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see JIRAIssuePersistenceImpl
+ * @see com.liferay.socialcoding.service.persistence.impl.JIRAIssuePersistenceImpl
  * @see JIRAIssueUtil
  * @generated
  */
@@ -46,14 +46,13 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByProjectId(
-		long projectId);
+	public java.util.List<JIRAIssue> findByProjectId(long projectId);
 
 	/**
 	* Returns a range of all the j i r a issues where projectId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -61,14 +60,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByProjectId(
-		long projectId, int start, int end);
+	public java.util.List<JIRAIssue> findByProjectId(long projectId, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where projectId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -77,9 +76,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByProjectId(
-		long projectId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public java.util.List<JIRAIssue> findByProjectId(long projectId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63;.
@@ -87,11 +86,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByProjectId_First(
-		long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByProjectId_First(long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -101,9 +99,8 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByProjectId_First(
-		long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByProjectId_First(long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63;.
@@ -111,11 +108,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByProjectId_Last(
-		long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByProjectId_Last(long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -125,9 +121,8 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByProjectId_Last(
-		long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByProjectId_Last(long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63;.
@@ -136,11 +131,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByProjectId_PrevAndNext(
-		long jiraIssueId, long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue[] findByProjectId_PrevAndNext(long jiraIssueId,
+		long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -164,14 +159,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByReporterJiraUserId(
+	public java.util.List<JIRAIssue> findByReporterJiraUserId(
 		java.lang.String reporterJiraUserId);
 
 	/**
 	* Returns a range of all the j i r a issues where reporterJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param reporterJiraUserId the reporter jira user ID
@@ -179,14 +174,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByReporterJiraUserId(
+	public java.util.List<JIRAIssue> findByReporterJiraUserId(
 		java.lang.String reporterJiraUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where reporterJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param reporterJiraUserId the reporter jira user ID
@@ -195,9 +190,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByReporterJiraUserId(
+	public java.util.List<JIRAIssue> findByReporterJiraUserId(
 		java.lang.String reporterJiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where reporterJiraUserId = &#63;.
@@ -205,11 +200,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByReporterJiraUserId_First(
+	public JIRAIssue findByReporterJiraUserId_First(
 		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -219,9 +214,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByReporterJiraUserId_First(
+	public JIRAIssue fetchByReporterJiraUserId_First(
 		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where reporterJiraUserId = &#63;.
@@ -229,11 +224,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByReporterJiraUserId_Last(
+	public JIRAIssue findByReporterJiraUserId_Last(
 		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -243,9 +238,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByReporterJiraUserId_Last(
+	public JIRAIssue fetchByReporterJiraUserId_Last(
 		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where reporterJiraUserId = &#63;.
@@ -254,11 +249,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByReporterJiraUserId_PrevAndNext(
-		long jiraIssueId, java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue[] findByReporterJiraUserId_PrevAndNext(long jiraIssueId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -282,14 +277,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByAssigneeJiraUserId(
+	public java.util.List<JIRAIssue> findByAssigneeJiraUserId(
 		java.lang.String assigneeJiraUserId);
 
 	/**
 	* Returns a range of all the j i r a issues where assigneeJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param assigneeJiraUserId the assignee jira user ID
@@ -297,14 +292,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByAssigneeJiraUserId(
+	public java.util.List<JIRAIssue> findByAssigneeJiraUserId(
 		java.lang.String assigneeJiraUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where assigneeJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param assigneeJiraUserId the assignee jira user ID
@@ -313,9 +308,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByAssigneeJiraUserId(
+	public java.util.List<JIRAIssue> findByAssigneeJiraUserId(
 		java.lang.String assigneeJiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
@@ -323,11 +318,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByAssigneeJiraUserId_First(
+	public JIRAIssue findByAssigneeJiraUserId_First(
 		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -337,9 +332,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByAssigneeJiraUserId_First(
+	public JIRAIssue fetchByAssigneeJiraUserId_First(
 		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
@@ -347,11 +342,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByAssigneeJiraUserId_Last(
+	public JIRAIssue findByAssigneeJiraUserId_Last(
 		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -361,9 +356,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByAssigneeJiraUserId_Last(
+	public JIRAIssue fetchByAssigneeJiraUserId_Last(
 		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
@@ -372,11 +367,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByAssigneeJiraUserId_PrevAndNext(
-		long jiraIssueId, java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue[] findByAssigneeJiraUserId_PrevAndNext(long jiraIssueId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -401,14 +396,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P(
-		java.util.Date modifiedDate, long projectId);
+	public java.util.List<JIRAIssue> findByMD_P(java.util.Date modifiedDate,
+		long projectId);
 
 	/**
 	* Returns a range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -417,14 +412,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P(
-		java.util.Date modifiedDate, long projectId, int start, int end);
+	public java.util.List<JIRAIssue> findByMD_P(java.util.Date modifiedDate,
+		long projectId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -434,9 +429,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P(
-		java.util.Date modifiedDate, long projectId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public java.util.List<JIRAIssue> findByMD_P(java.util.Date modifiedDate,
+		long projectId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
@@ -445,11 +440,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByMD_P_First(
-		java.util.Date modifiedDate, long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByMD_P_First(java.util.Date modifiedDate,
+		long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -460,9 +455,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByMD_P_First(
-		java.util.Date modifiedDate, long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByMD_P_First(java.util.Date modifiedDate,
+		long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
@@ -471,11 +466,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByMD_P_Last(
-		java.util.Date modifiedDate, long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByMD_P_Last(java.util.Date modifiedDate,
+		long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -486,9 +481,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByMD_P_Last(
-		java.util.Date modifiedDate, long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByMD_P_Last(java.util.Date modifiedDate,
+		long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
@@ -498,11 +493,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param projectId the project ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByMD_P_PrevAndNext(
-		long jiraIssueId, java.util.Date modifiedDate, long projectId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue[] findByMD_P_PrevAndNext(long jiraIssueId,
+		java.util.Date modifiedDate, long projectId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -529,14 +524,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_RJUI(
-		long projectId, java.lang.String reporterJiraUserId);
+	public java.util.List<JIRAIssue> findByP_RJUI(long projectId,
+		java.lang.String reporterJiraUserId);
 
 	/**
 	* Returns a range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -545,14 +540,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_RJUI(
-		long projectId, java.lang.String reporterJiraUserId, int start, int end);
+	public java.util.List<JIRAIssue> findByP_RJUI(long projectId,
+		java.lang.String reporterJiraUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -562,10 +557,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_RJUI(
-		long projectId, java.lang.String reporterJiraUserId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public java.util.List<JIRAIssue> findByP_RJUI(long projectId,
+		java.lang.String reporterJiraUserId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
@@ -574,11 +568,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_RJUI_First(
-		long projectId, java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_RJUI_First(long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -589,9 +583,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_RJUI_First(
-		long projectId, java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_RJUI_First(long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
@@ -600,11 +594,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_RJUI_Last(
-		long projectId, java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_RJUI_Last(long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -615,9 +609,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_RJUI_Last(
-		long projectId, java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_RJUI_Last(long projectId,
+		java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
@@ -627,11 +621,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByP_RJUI_PrevAndNext(
-		long jiraIssueId, long projectId, java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue[] findByP_RJUI_PrevAndNext(long jiraIssueId,
+		long projectId, java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -659,14 +653,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_AJUI(
-		long projectId, java.lang.String assigneeJiraUserId);
+	public java.util.List<JIRAIssue> findByP_AJUI(long projectId,
+		java.lang.String assigneeJiraUserId);
 
 	/**
 	* Returns a range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -675,14 +669,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_AJUI(
-		long projectId, java.lang.String assigneeJiraUserId, int start, int end);
+	public java.util.List<JIRAIssue> findByP_AJUI(long projectId,
+		java.lang.String assigneeJiraUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -692,10 +686,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_AJUI(
-		long projectId, java.lang.String assigneeJiraUserId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public java.util.List<JIRAIssue> findByP_AJUI(long projectId,
+		java.lang.String assigneeJiraUserId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -704,11 +697,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_AJUI_First(
-		long projectId, java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_AJUI_First(long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -719,9 +712,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_AJUI_First(
-		long projectId, java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_AJUI_First(long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -730,11 +723,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_AJUI_Last(
-		long projectId, java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_AJUI_Last(long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -745,9 +738,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_AJUI_Last(
-		long projectId, java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_AJUI_Last(long projectId,
+		java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -757,11 +750,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByP_AJUI_PrevAndNext(
-		long jiraIssueId, long projectId, java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue[] findByP_AJUI_PrevAndNext(long jiraIssueId,
+		long projectId, java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -790,7 +783,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P_RJUI(
+	public java.util.List<JIRAIssue> findByMD_P_RJUI(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId);
 
@@ -798,7 +791,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* Returns a range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -808,7 +801,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P_RJUI(
+	public java.util.List<JIRAIssue> findByMD_P_RJUI(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId, int start, int end);
 
@@ -816,7 +809,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* Returns an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -827,10 +820,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P_RJUI(
+	public java.util.List<JIRAIssue> findByMD_P_RJUI(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
@@ -840,12 +833,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByMD_P_RJUI_First(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByMD_P_RJUI_First(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -857,10 +849,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByMD_P_RJUI_First(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByMD_P_RJUI_First(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
@@ -870,12 +861,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByMD_P_RJUI_Last(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByMD_P_RJUI_Last(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -887,10 +877,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByMD_P_RJUI_Last(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByMD_P_RJUI_Last(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
@@ -901,12 +890,12 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param reporterJiraUserId the reporter jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByMD_P_RJUI_PrevAndNext(
-		long jiraIssueId, java.util.Date modifiedDate, long projectId,
+	public JIRAIssue[] findByMD_P_RJUI_PrevAndNext(long jiraIssueId,
+		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -938,7 +927,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P_AJUI(
+	public java.util.List<JIRAIssue> findByMD_P_AJUI(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId);
 
@@ -946,7 +935,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* Returns a range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -956,7 +945,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P_AJUI(
+	public java.util.List<JIRAIssue> findByMD_P_AJUI(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId, int start, int end);
 
@@ -964,7 +953,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* Returns an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -975,10 +964,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByMD_P_AJUI(
+	public java.util.List<JIRAIssue> findByMD_P_AJUI(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -988,12 +977,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByMD_P_AJUI_First(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByMD_P_AJUI_First(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1005,10 +993,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByMD_P_AJUI_First(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByMD_P_AJUI_First(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -1018,12 +1005,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByMD_P_AJUI_Last(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByMD_P_AJUI_Last(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1035,10 +1021,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByMD_P_AJUI_Last(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByMD_P_AJUI_Last(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -1049,12 +1034,12 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param assigneeJiraUserId the assignee jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByMD_P_AJUI_PrevAndNext(
-		long jiraIssueId, java.util.Date modifiedDate, long projectId,
+	public JIRAIssue[] findByMD_P_AJUI_PrevAndNext(long jiraIssueId,
+		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1086,15 +1071,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_RJUI_S(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status);
+	public java.util.List<JIRAIssue> findByP_RJUI_S(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status);
 
 	/**
 	* Returns a range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -1104,15 +1088,15 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_RJUI_S(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int start, int end);
+	public java.util.List<JIRAIssue> findByP_RJUI_S(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -1123,10 +1107,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_RJUI_S(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public java.util.List<JIRAIssue> findByP_RJUI_S(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
@@ -1136,12 +1120,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_RJUI_S_First(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_RJUI_S_First(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1153,10 +1136,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_RJUI_S_First(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_RJUI_S_First(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
@@ -1166,12 +1148,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_RJUI_S_Last(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_RJUI_S_Last(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1183,10 +1164,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_RJUI_S_Last(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_RJUI_S_Last(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
@@ -1197,12 +1177,12 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByP_RJUI_S_PrevAndNext(
-		long jiraIssueId, long projectId, java.lang.String reporterJiraUserId,
+	public JIRAIssue[] findByP_RJUI_S_PrevAndNext(long jiraIssueId,
+		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1234,15 +1214,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @return the matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_AJUI_S(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status);
+	public java.util.List<JIRAIssue> findByP_AJUI_S(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status);
 
 	/**
 	* Returns a range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -1252,15 +1231,15 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_AJUI_S(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int start, int end);
+	public java.util.List<JIRAIssue> findByP_AJUI_S(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param projectId the project ID
@@ -1271,10 +1250,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findByP_AJUI_S(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public java.util.List<JIRAIssue> findByP_AJUI_S(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
@@ -1284,12 +1263,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_AJUI_S_First(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_AJUI_S_First(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1301,10 +1279,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_AJUI_S_First(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_AJUI_S_First(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
@@ -1314,12 +1291,11 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	* @throws NoSuchJIRAIssueException if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByP_AJUI_S_Last(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+	public JIRAIssue findByP_AJUI_S_Last(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1331,10 +1307,9 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByP_AJUI_S_Last(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public JIRAIssue fetchByP_AJUI_S_Last(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Returns the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
@@ -1345,12 +1320,12 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param status the status
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue[] findByP_AJUI_S_PrevAndNext(
-		long jiraIssueId, long projectId, java.lang.String assigneeJiraUserId,
+	public JIRAIssue[] findByP_AJUI_S_PrevAndNext(long jiraIssueId,
+		long projectId, java.lang.String assigneeJiraUserId,
 		java.lang.String status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1379,15 +1354,14 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	*
 	* @param jiraIssue the j i r a issue
 	*/
-	public void cacheResult(com.liferay.socialcoding.model.JIRAIssue jiraIssue);
+	public void cacheResult(JIRAIssue jiraIssue);
 
 	/**
 	* Caches the j i r a issues in the entity cache if it is enabled.
 	*
 	* @param jiraIssues the j i r a issues
 	*/
-	public void cacheResult(
-		java.util.List<com.liferay.socialcoding.model.JIRAIssue> jiraIssues);
+	public void cacheResult(java.util.List<JIRAIssue> jiraIssues);
 
 	/**
 	* Creates a new j i r a issue with the primary key. Does not add the j i r a issue to the database.
@@ -1395,30 +1369,28 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param jiraIssueId the primary key for the new j i r a issue
 	* @return the new j i r a issue
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue create(long jiraIssueId);
+	public JIRAIssue create(long jiraIssueId);
 
 	/**
 	* Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue that was removed
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue remove(long jiraIssueId)
+	public JIRAIssue remove(long jiraIssueId)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
-	public com.liferay.socialcoding.model.JIRAIssue updateImpl(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue);
+	public JIRAIssue updateImpl(JIRAIssue jiraIssue);
 
 	/**
-	* Returns the j i r a issue with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAIssueException} if it could not be found.
+	* Returns the j i r a issue with the primary key or throws a {@link NoSuchJIRAIssueException} if it could not be found.
 	*
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue
-	* @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue findByPrimaryKey(
-		long jiraIssueId)
+	public JIRAIssue findByPrimaryKey(long jiraIssueId)
 		throws com.liferay.socialcoding.NoSuchJIRAIssueException;
 
 	/**
@@ -1427,11 +1399,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue, or <code>null</code> if a j i r a issue with the primary key could not be found
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue fetchByPrimaryKey(
-		long jiraIssueId);
+	public JIRAIssue fetchByPrimaryKey(long jiraIssueId);
 
 	@Override
-	public java.util.Map<java.io.Serializable, com.liferay.socialcoding.model.JIRAIssue> fetchByPrimaryKeys(
+	public java.util.Map<java.io.Serializable, JIRAIssue> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
@@ -1439,27 +1410,26 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	*
 	* @return the j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findAll();
+	public java.util.List<JIRAIssue> findAll();
 
 	/**
 	* Returns a range of all the j i r a issues.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of j i r a issues
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findAll(
-		int start, int end);
+	public java.util.List<JIRAIssue> findAll(int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a issues.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of j i r a issues
@@ -1467,9 +1437,8 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of j i r a issues
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.socialcoding.model.JIRAIssue> orderByComparator);
+	public java.util.List<JIRAIssue> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator);
 
 	/**
 	* Removes all the j i r a issues from the database.

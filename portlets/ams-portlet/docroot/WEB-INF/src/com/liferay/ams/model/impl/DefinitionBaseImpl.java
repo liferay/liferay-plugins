@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Definition;
 import com.liferay.ams.service.DefinitionLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.ams.service.DefinitionLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see DefinitionImpl
- * @see com.liferay.ams.model.Definition
+ * @see Definition
  * @generated
  */
+@ProviderType
 public abstract class DefinitionBaseImpl extends DefinitionModelImpl
 	implements Definition {
 	/*

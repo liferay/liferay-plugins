@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see TasksEntry
  * @generated
  */
+@ProviderType
 public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	public TasksEntryWrapper(TasksEntry tasksEntry) {
 		_tasksEntry = tasksEntry;
@@ -205,7 +208,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @return the create date of this tasks entry
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _tasksEntry.getCreateDate();
 	}
 
@@ -215,7 +218,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @return the due date of this tasks entry
 	*/
 	@Override
-	public java.util.Date getDueDate() {
+	public Date getDueDate() {
 		return _tasksEntry.getDueDate();
 	}
 
@@ -230,7 +233,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @return the finish date of this tasks entry
 	*/
 	@Override
-	public java.util.Date getFinishDate() {
+	public Date getFinishDate() {
 		return _tasksEntry.getFinishDate();
 	}
 
@@ -250,7 +253,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @return the modified date of this tasks entry
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _tasksEntry.getModifiedDate();
 	}
 
@@ -440,7 +443,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @param createDate the create date of this tasks entry
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_tasksEntry.setCreateDate(createDate);
 	}
 
@@ -450,7 +453,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @param dueDate the due date of this tasks entry
 	*/
 	@Override
-	public void setDueDate(java.util.Date dueDate) {
+	public void setDueDate(Date dueDate) {
 		_tasksEntry.setDueDate(dueDate);
 	}
 
@@ -478,7 +481,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @param finishDate the finish date of this tasks entry
 	*/
 	@Override
-	public void setFinishDate(java.util.Date finishDate) {
+	public void setFinishDate(Date finishDate) {
 		_tasksEntry.setFinishDate(finishDate);
 	}
 
@@ -498,7 +501,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* @param modifiedDate the modified date of this tasks entry
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_tasksEntry.setModifiedDate(modifiedDate);
 	}
 
@@ -684,5 +687,5 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		_tasksEntry.resetOriginalValues();
 	}
 
-	private TasksEntry _tasksEntry;
+	private final TasksEntry _tasksEntry;
 }

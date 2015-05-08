@@ -287,7 +287,7 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	* @return the create date of this account
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _account.getCreateDate();
 	}
 
@@ -382,7 +382,7 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	* @return the modified date of this account
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _account.getModifiedDate();
 	}
 
@@ -662,7 +662,7 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	* @param createDate the create date of this account
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_account.setCreateDate(createDate);
 	}
 
@@ -770,7 +770,7 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	* @param modifiedDate the modified date of this account
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_account.setModifiedDate(modifiedDate);
 	}
 

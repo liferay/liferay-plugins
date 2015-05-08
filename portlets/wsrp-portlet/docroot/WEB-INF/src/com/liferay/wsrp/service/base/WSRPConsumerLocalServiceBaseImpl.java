@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -67,6 +69,7 @@ import javax.sql.DataSource;
  * @see com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class WSRPConsumerLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements WSRPConsumerLocalService,
 		IdentifiableBean {
@@ -188,10 +191,10 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -199,11 +202,11 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -221,7 +224,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * Returns the w s r p consumer with the matching UUID and company.
 	 *
 	 * @param uuid the w s r p consumer's UUID
-	 * @param  companyId the primary key of the company
+	 * @param companyId the primary key of the company
 	 * @return the matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
 	 */
 	@Override
@@ -337,7 +340,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * Returns the w s r p consumer with the matching UUID and company.
 	 *
 	 * @param uuid the w s r p consumer's UUID
-	 * @param  companyId the primary key of the company
+	 * @param companyId the primary key of the company
 	 * @return the matching w s r p consumer
 	 * @throws PortalException if a matching w s r p consumer could not be found
 	 */
@@ -390,7 +393,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 *
 	 * @return the w s r p consumer local service
 	 */
-	public com.liferay.wsrp.service.WSRPConsumerLocalService getWSRPConsumerLocalService() {
+	public WSRPConsumerLocalService getWSRPConsumerLocalService() {
 		return wsrpConsumerLocalService;
 	}
 
@@ -400,7 +403,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	 * @param wsrpConsumerLocalService the w s r p consumer local service
 	 */
 	public void setWSRPConsumerLocalService(
-		com.liferay.wsrp.service.WSRPConsumerLocalService wsrpConsumerLocalService) {
+		WSRPConsumerLocalService wsrpConsumerLocalService) {
 		this.wsrpConsumerLocalService = wsrpConsumerLocalService;
 	}
 
@@ -737,8 +740,8 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.wsrp.service.WSRPConsumerLocalService.class)
-	protected com.liferay.wsrp.service.WSRPConsumerLocalService wsrpConsumerLocalService;
+	@BeanReference(type = WSRPConsumerLocalService.class)
+	protected WSRPConsumerLocalService wsrpConsumerLocalService;
 	@BeanReference(type = WSRPConsumerPersistence.class)
 	protected WSRPConsumerPersistence wsrpConsumerPersistence;
 	@BeanReference(type = com.liferay.wsrp.service.WSRPConsumerPortletLocalService.class)

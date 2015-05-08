@@ -14,6 +14,8 @@
 
 package com.liferay.so.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -64,6 +66,7 @@ import javax.sql.DataSource;
  * @see com.liferay.so.service.FavoriteSiteLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class FavoriteSiteLocalServiceBaseImpl
 	extends BaseLocalServiceImpl implements FavoriteSiteLocalService,
 		IdentifiableBean {
@@ -183,10 +186,10 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -194,11 +197,11 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -305,7 +308,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @return the favorite site local service
 	 */
-	public com.liferay.so.service.FavoriteSiteLocalService getFavoriteSiteLocalService() {
+	public FavoriteSiteLocalService getFavoriteSiteLocalService() {
 		return favoriteSiteLocalService;
 	}
 
@@ -315,7 +318,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param favoriteSiteLocalService the favorite site local service
 	 */
 	public void setFavoriteSiteLocalService(
-		com.liferay.so.service.FavoriteSiteLocalService favoriteSiteLocalService) {
+		FavoriteSiteLocalService favoriteSiteLocalService) {
 		this.favoriteSiteLocalService = favoriteSiteLocalService;
 	}
 
@@ -801,8 +804,8 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.so.service.FavoriteSiteLocalService.class)
-	protected com.liferay.so.service.FavoriteSiteLocalService favoriteSiteLocalService;
+	@BeanReference(type = FavoriteSiteLocalService.class)
+	protected FavoriteSiteLocalService favoriteSiteLocalService;
 	@BeanReference(type = FavoriteSitePersistence.class)
 	protected FavoriteSitePersistence favoriteSitePersistence;
 	@BeanReference(type = FavoriteSiteFinder.class)

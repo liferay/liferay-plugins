@@ -189,10 +189,10 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -200,11 +200,11 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -461,7 +461,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the j i r a issue local service
 	 */
-	public com.liferay.socialcoding.service.JIRAIssueLocalService getJIRAIssueLocalService() {
+	public JIRAIssueLocalService getJIRAIssueLocalService() {
 		return jiraIssueLocalService;
 	}
 
@@ -471,7 +471,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param jiraIssueLocalService the j i r a issue local service
 	 */
 	public void setJIRAIssueLocalService(
-		com.liferay.socialcoding.service.JIRAIssueLocalService jiraIssueLocalService) {
+		JIRAIssueLocalService jiraIssueLocalService) {
 		this.jiraIssueLocalService = jiraIssueLocalService;
 	}
 
@@ -880,8 +880,8 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.socialcoding.service.JIRAChangeItemLocalService jiraChangeItemLocalService;
 	@BeanReference(type = JIRAChangeItemPersistence.class)
 	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(type = com.liferay.socialcoding.service.JIRAIssueLocalService.class)
-	protected com.liferay.socialcoding.service.JIRAIssueLocalService jiraIssueLocalService;
+	@BeanReference(type = JIRAIssueLocalService.class)
+	protected JIRAIssueLocalService jiraIssueLocalService;
 	@BeanReference(type = JIRAIssuePersistence.class)
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	@BeanReference(type = JIRAIssueFinder.class)

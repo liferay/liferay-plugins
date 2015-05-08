@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.sampleservicebuilder.model.Foo" />
 	<class name="com.liferay.sampleservicebuilder.model.impl.FooImpl" table="SSB_Foo">
-		<cache usage="read-write" />
 		<id name="fooId" type="long">
 			<generator class="assigned" />
 		</id>

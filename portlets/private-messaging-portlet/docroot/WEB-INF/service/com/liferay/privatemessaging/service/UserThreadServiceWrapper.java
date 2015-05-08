@@ -14,6 +14,8 @@
 
 package com.liferay.privatemessaging.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see UserThreadService
  * @generated
  */
+@ProviderType
 public class UserThreadServiceWrapper implements UserThreadService,
 	ServiceWrapper<UserThreadService> {
 	public UserThreadServiceWrapper(UserThreadService userThreadService) {

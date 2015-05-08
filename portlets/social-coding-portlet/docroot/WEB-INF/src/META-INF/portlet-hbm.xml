@@ -10,7 +10,6 @@
 	<import class="com.liferay.socialcoding.model.SVNRepository" />
 	<import class="com.liferay.socialcoding.model.SVNRevision" />
 	<class name="com.liferay.socialcoding.model.impl.JIRAActionImpl" table="jiraaction">
-		<cache usage="read-write" />
 		<id name="jiraActionId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
@@ -23,7 +22,6 @@
 		<property name="jiraGroupName" type="com.liferay.portal.dao.orm.hibernate.StringType" column="actionlevel" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl" table="changegroup">
-		<cache usage="read-write" />
 		<id name="jiraChangeGroupId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
@@ -32,7 +30,6 @@
 		<property name="jiraIssueId" type="com.liferay.portal.dao.orm.hibernate.LongType" column="issueid" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.JIRAChangeItemImpl" table="changeitem">
-		<cache usage="read-write" />
 		<id name="jiraChangeItemId" column="id" type="long">
 			<generator class="assigned" />
 		</id>
@@ -66,7 +63,6 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" column="pname" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.SVNRepositoryImpl" table="SC_SVNRepository">
-		<cache usage="read-write" />
 		<id name="svnRepositoryId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -74,7 +70,6 @@
 		<property name="revisionNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.socialcoding.model.impl.SVNRevisionImpl" table="SC_SVNRevision">
-		<cache usage="read-write" />
 		<id name="svnRevisionId" type="long">
 			<generator class="assigned" />
 		</id>

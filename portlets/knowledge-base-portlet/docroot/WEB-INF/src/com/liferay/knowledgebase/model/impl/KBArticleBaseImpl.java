@@ -28,7 +28,7 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see KBArticleImpl
- * @see com.liferay.knowledgebase.model.KBArticle
+ * @see KBArticle
  * @generated
  */
 @ProviderType

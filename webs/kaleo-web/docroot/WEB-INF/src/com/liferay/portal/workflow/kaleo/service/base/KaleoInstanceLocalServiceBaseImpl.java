@@ -451,7 +451,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 *
 	 * @return the kaleo instance local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService getKaleoInstanceLocalService() {
+	public KaleoInstanceLocalService getKaleoInstanceLocalService() {
 		return kaleoInstanceLocalService;
 	}
 
@@ -461,7 +461,7 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	 * @param kaleoInstanceLocalService the kaleo instance local service
 	 */
 	public void setKaleoInstanceLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService kaleoInstanceLocalService) {
+		KaleoInstanceLocalService kaleoInstanceLocalService) {
 		this.kaleoInstanceLocalService = kaleoInstanceLocalService;
 	}
 
@@ -1210,8 +1210,8 @@ public abstract class KaleoInstanceLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoDefinitionService kaleoDefinitionService;
 	@BeanReference(type = KaleoDefinitionPersistence.class)
 	protected KaleoDefinitionPersistence kaleoDefinitionPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService kaleoInstanceLocalService;
+	@BeanReference(type = KaleoInstanceLocalService.class)
+	protected KaleoInstanceLocalService kaleoInstanceLocalService;
 	@BeanReference(type = KaleoInstancePersistence.class)
 	protected KaleoInstancePersistence kaleoInstancePersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService.class)

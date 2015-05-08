@@ -14,6 +14,8 @@
 
 package com.liferay.so.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see ProjectsEntryImpl
- * @see com.liferay.so.model.ProjectsEntry
+ * @see ProjectsEntry
  * @generated
  */
+@ProviderType
 public abstract class ProjectsEntryBaseImpl extends ProjectsEntryModelImpl
 	implements ProjectsEntry {
 	/*

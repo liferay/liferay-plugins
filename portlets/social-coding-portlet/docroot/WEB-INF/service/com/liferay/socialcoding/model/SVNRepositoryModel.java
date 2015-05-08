@@ -140,19 +140,20 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public Object clone();
 
 	@Override
-	public int compareTo(SVNRepository svnRepository);
+	public int compareTo(
+		com.liferay.socialcoding.model.SVNRepository svnRepository);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<SVNRepository> toCacheModel();
+	public CacheModel<com.liferay.socialcoding.model.SVNRepository> toCacheModel();
 
 	@Override
-	public SVNRepository toEscapedModel();
+	public com.liferay.socialcoding.model.SVNRepository toEscapedModel();
 
 	@Override
-	public SVNRepository toUnescapedModel();
+	public com.liferay.socialcoding.model.SVNRepository toUnescapedModel();
 
 	@Override
 	public String toString();

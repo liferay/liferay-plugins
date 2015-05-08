@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -40,6 +42,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	implements ProjectsEntry {
 	public ProjectsEntryClp() {
@@ -678,7 +681,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	private Date _endDate;
 	private String _data;
 	private BaseModel<?> _projectsEntryRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.so.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

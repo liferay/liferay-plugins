@@ -14,12 +14,15 @@
 
 package com.liferay.ams.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class DefinitionLocalServiceClp implements DefinitionLocalService {
 	public DefinitionLocalServiceClp(
 		InvokableLocalService invokableLocalService) {

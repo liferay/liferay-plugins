@@ -237,7 +237,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	* @return the completion date of this kaleo instance token
 	*/
 	@Override
-	public java.util.Date getCompletionDate() {
+	public Date getCompletionDate() {
 		return _kaleoInstanceToken.getCompletionDate();
 	}
 
@@ -247,7 +247,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	* @return the create date of this kaleo instance token
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoInstanceToken.getCreateDate();
 	}
 
@@ -339,7 +339,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	* @return the modified date of this kaleo instance token
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoInstanceToken.getModifiedDate();
 	}
 
@@ -495,7 +495,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	* @param completionDate the completion date of this kaleo instance token
 	*/
 	@Override
-	public void setCompletionDate(java.util.Date completionDate) {
+	public void setCompletionDate(Date completionDate) {
 		_kaleoInstanceToken.setCompletionDate(completionDate);
 	}
 
@@ -505,7 +505,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	* @param createDate the create date of this kaleo instance token
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoInstanceToken.setCreateDate(createDate);
 	}
 
@@ -600,7 +600,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	* @param modifiedDate the modified date of this kaleo instance token
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoInstanceToken.setModifiedDate(modifiedDate);
 	}
 

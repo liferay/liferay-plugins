@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see GadgetImpl
- * @see com.liferay.opensocial.model.Gadget
+ * @see Gadget
  * @generated
  */
+@ProviderType
 public abstract class GadgetBaseImpl extends GadgetModelImpl implements Gadget {
 	/*
 	 * NOTE FOR DEVELOPERS:

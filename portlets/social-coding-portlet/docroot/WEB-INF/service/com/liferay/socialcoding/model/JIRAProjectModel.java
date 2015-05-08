@@ -141,19 +141,19 @@ public interface JIRAProjectModel extends BaseModel<JIRAProject> {
 	public Object clone();
 
 	@Override
-	public int compareTo(JIRAProject jiraProject);
+	public int compareTo(com.liferay.socialcoding.model.JIRAProject jiraProject);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<JIRAProject> toCacheModel();
+	public CacheModel<com.liferay.socialcoding.model.JIRAProject> toCacheModel();
 
 	@Override
-	public JIRAProject toEscapedModel();
+	public com.liferay.socialcoding.model.JIRAProject toEscapedModel();
 
 	@Override
-	public JIRAProject toUnescapedModel();
+	public com.liferay.socialcoding.model.JIRAProject toUnescapedModel();
 
 	@Override
 	public String toString();

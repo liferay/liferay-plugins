@@ -53,7 +53,7 @@ public interface KaleoNotificationLocalService extends BaseLocalService,
 		long kaleoDefinitionId, java.lang.String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Notification notification,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Adds the kaleo notification to the database. Also notifies the appropriate model listeners.
@@ -97,8 +97,7 @@ public interface KaleoNotificationLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification deleteKaleoNotification(
-		long kaleoNotificationId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoNotificationId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -106,7 +105,7 @@ public interface KaleoNotificationLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -196,8 +195,7 @@ public interface KaleoNotificationLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification getKaleoNotification(
-		long kaleoNotificationId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoNotificationId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> getKaleoNotifications(
@@ -234,8 +232,7 @@ public interface KaleoNotificationLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

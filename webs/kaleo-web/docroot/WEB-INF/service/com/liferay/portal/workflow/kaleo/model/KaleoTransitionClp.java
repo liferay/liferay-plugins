@@ -930,7 +930,7 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	private String _targetKaleoNodeName;
 	private boolean _defaultTransition;
 	private BaseModel<?> _kaleoTransitionRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -217,7 +217,7 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	* @return the create date of this k b comment
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kbComment.getCreateDate();
 	}
 
@@ -252,7 +252,7 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	* @return the modified date of this k b comment
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kbComment.getModifiedDate();
 	}
 
@@ -412,7 +412,7 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	* @param createDate the create date of this k b comment
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kbComment.setCreateDate(createDate);
 	}
 
@@ -460,7 +460,7 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	* @param modifiedDate the modified date of this k b comment
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kbComment.setModifiedDate(modifiedDate);
 	}
 

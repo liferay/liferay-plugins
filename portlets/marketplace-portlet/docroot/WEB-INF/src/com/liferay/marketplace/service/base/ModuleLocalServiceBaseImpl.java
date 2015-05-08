@@ -355,7 +355,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the module local service
 	 */
-	public com.liferay.marketplace.service.ModuleLocalService getModuleLocalService() {
+	public ModuleLocalService getModuleLocalService() {
 		return moduleLocalService;
 	}
 
@@ -364,8 +364,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param moduleLocalService the module local service
 	 */
-	public void setModuleLocalService(
-		com.liferay.marketplace.service.ModuleLocalService moduleLocalService) {
+	public void setModuleLocalService(ModuleLocalService moduleLocalService) {
 		this.moduleLocalService = moduleLocalService;
 	}
 
@@ -631,8 +630,8 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.marketplace.service.AppService appService;
 	@BeanReference(type = AppPersistence.class)
 	protected AppPersistence appPersistence;
-	@BeanReference(type = com.liferay.marketplace.service.ModuleLocalService.class)
-	protected com.liferay.marketplace.service.ModuleLocalService moduleLocalService;
+	@BeanReference(type = ModuleLocalService.class)
+	protected ModuleLocalService moduleLocalService;
 	@BeanReference(type = ModulePersistence.class)
 	protected ModulePersistence modulePersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

@@ -28,7 +28,7 @@ import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see KBTemplateImpl
- * @see com.liferay.knowledgebase.model.KBTemplate
+ * @see KBTemplate
  * @generated
  */
 @ProviderType

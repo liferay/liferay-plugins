@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 
@@ -39,6 +41,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	implements OAuthToken {
 	public OAuthTokenClp() {
@@ -792,7 +795,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	private String _sessionHandle;
 	private long _expiration;
 	private BaseModel<?> _oAuthTokenRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.opensocial.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

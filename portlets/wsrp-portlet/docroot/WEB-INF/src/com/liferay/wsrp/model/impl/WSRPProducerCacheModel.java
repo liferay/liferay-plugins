@@ -14,6 +14,9 @@
 
 package com.liferay.wsrp.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,8 +37,33 @@ import java.util.Date;
  * @see WSRPProducer
  * @generated
  */
+@ProviderType
 public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof WSRPProducerCacheModel)) {
+			return false;
+		}
+
+		WSRPProducerCacheModel wsrpProducerCacheModel = (WSRPProducerCacheModel)obj;
+
+		if (wsrpProducerId == wsrpProducerCacheModel.wsrpProducerId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, wsrpProducerId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);

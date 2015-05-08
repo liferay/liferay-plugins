@@ -921,7 +921,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	private String _templateLanguage;
 	private String _notificationTypes;
 	private BaseModel<?> _kaleoNotificationRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

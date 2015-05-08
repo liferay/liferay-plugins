@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.opensocial.service.http.GadgetServiceSoap
  * @generated
  */
+@ProviderType
 public class GadgetSoap implements Serializable {
 	public static GadgetSoap toSoapModel(Gadget model) {
 		GadgetSoap soapModel = new GadgetSoap();

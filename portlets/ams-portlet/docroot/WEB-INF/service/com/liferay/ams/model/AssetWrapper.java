@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Asset
  * @generated
  */
+@ProviderType
 public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	public AssetWrapper(Asset asset) {
 		_asset = asset;
@@ -172,7 +175,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* @return the create date of this asset
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _asset.getCreateDate();
 	}
 
@@ -197,7 +200,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* @return the inactive date of this asset
 	*/
 	@Override
-	public java.util.Date getInactiveDate() {
+	public Date getInactiveDate() {
 		return _asset.getInactiveDate();
 	}
 
@@ -207,7 +210,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* @return the modified date of this asset
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _asset.getModifiedDate();
 	}
 
@@ -342,7 +345,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* @param createDate the create date of this asset
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_asset.setCreateDate(createDate);
 	}
 
@@ -380,7 +383,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* @param inactiveDate the inactive date of this asset
 	*/
 	@Override
-	public void setInactiveDate(java.util.Date inactiveDate) {
+	public void setInactiveDate(Date inactiveDate) {
 		_asset.setInactiveDate(inactiveDate);
 	}
 
@@ -390,7 +393,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* @param modifiedDate the modified date of this asset
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_asset.setModifiedDate(modifiedDate);
 	}
 
@@ -526,5 +529,5 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 		_asset.resetOriginalValues();
 	}
 
-	private Asset _asset;
+	private final Asset _asset;
 }

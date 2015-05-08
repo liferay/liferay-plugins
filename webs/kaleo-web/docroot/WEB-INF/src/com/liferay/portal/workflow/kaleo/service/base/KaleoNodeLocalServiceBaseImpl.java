@@ -562,7 +562,7 @@ public abstract class KaleoNodeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the kaleo node local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService getKaleoNodeLocalService() {
+	public KaleoNodeLocalService getKaleoNodeLocalService() {
 		return kaleoNodeLocalService;
 	}
 
@@ -572,7 +572,7 @@ public abstract class KaleoNodeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kaleoNodeLocalService the kaleo node local service
 	 */
 	public void setKaleoNodeLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService kaleoNodeLocalService) {
+		KaleoNodeLocalService kaleoNodeLocalService) {
 		this.kaleoNodeLocalService = kaleoNodeLocalService;
 	}
 
@@ -1220,8 +1220,8 @@ public abstract class KaleoNodeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoLogLocalService kaleoLogLocalService;
 	@BeanReference(type = KaleoLogPersistence.class)
 	protected KaleoLogPersistence kaleoLogPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoNodeLocalService kaleoNodeLocalService;
+	@BeanReference(type = KaleoNodeLocalService.class)
+	protected KaleoNodeLocalService kaleoNodeLocalService;
 	@BeanReference(type = KaleoNodePersistence.class)
 	protected KaleoNodePersistence kaleoNodePersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService.class)

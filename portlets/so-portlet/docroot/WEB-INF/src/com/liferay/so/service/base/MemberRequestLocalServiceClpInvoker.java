@@ -14,6 +14,8 @@
 
 package com.liferay.so.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class MemberRequestLocalServiceClpInvoker {
 	public MemberRequestLocalServiceClpInvoker() {
 		_methodName0 = "addMemberRequest";

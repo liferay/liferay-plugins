@@ -188,7 +188,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	* @return the create date of this microblogs entry
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _microblogsEntry.getCreateDate();
 	}
 
@@ -233,7 +233,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	* @return the modified date of this microblogs entry
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _microblogsEntry.getModifiedDate();
 	}
 
@@ -374,7 +374,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	* @param createDate the create date of this microblogs entry
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_microblogsEntry.setCreateDate(createDate);
 	}
 
@@ -432,7 +432,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	* @param modifiedDate the modified date of this microblogs entry
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_microblogsEntry.setModifiedDate(modifiedDate);
 	}
 

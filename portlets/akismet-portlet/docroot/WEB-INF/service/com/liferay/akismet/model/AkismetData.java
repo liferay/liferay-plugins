@@ -14,6 +14,8 @@
 
 package com.liferay.akismet.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.akismet.model.impl.AkismetDataModelImpl
  * @generated
  */
+@ProviderType
 public interface AkismetData extends AkismetDataModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

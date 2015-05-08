@@ -14,6 +14,8 @@
 
 package com.liferay.privatemessaging.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.privatemessaging.model.impl.UserThreadModelImpl
  * @generated
  */
+@ProviderType
 public interface UserThread extends UserThreadModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

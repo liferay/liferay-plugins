@@ -489,7 +489,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	private String _bundleVersion;
 	private String _contextName;
 	private BaseModel<?> _moduleRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.marketplace.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

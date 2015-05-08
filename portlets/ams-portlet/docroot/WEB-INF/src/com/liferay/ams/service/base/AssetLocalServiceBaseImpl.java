@@ -14,6 +14,8 @@
 
 package com.liferay.ams.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Asset;
 import com.liferay.ams.service.AssetLocalService;
 import com.liferay.ams.service.persistence.AssetPersistence;
@@ -62,6 +64,7 @@ import javax.sql.DataSource;
  * @see com.liferay.ams.service.AssetLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements AssetLocalService, IdentifiableBean {
 	/*
@@ -178,10 +181,10 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -189,11 +192,11 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -298,7 +301,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the asset local service
 	 */
-	public com.liferay.ams.service.AssetLocalService getAssetLocalService() {
+	public AssetLocalService getAssetLocalService() {
 		return assetLocalService;
 	}
 
@@ -307,8 +310,7 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param assetLocalService the asset local service
 	 */
-	public void setAssetLocalService(
-		com.liferay.ams.service.AssetLocalService assetLocalService) {
+	public void setAssetLocalService(AssetLocalService assetLocalService) {
 		this.assetLocalService = assetLocalService;
 	}
 
@@ -680,8 +682,8 @@ public abstract class AssetLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.ams.service.AssetLocalService.class)
-	protected com.liferay.ams.service.AssetLocalService assetLocalService;
+	@BeanReference(type = AssetLocalService.class)
+	protected AssetLocalService assetLocalService;
 	@BeanReference(type = AssetPersistence.class)
 	protected AssetPersistence assetPersistence;
 	@BeanReference(type = com.liferay.ams.service.CheckoutLocalService.class)

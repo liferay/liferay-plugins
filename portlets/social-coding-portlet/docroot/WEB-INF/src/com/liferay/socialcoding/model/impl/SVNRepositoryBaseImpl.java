@@ -28,7 +28,7 @@ import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see SVNRepositoryImpl
- * @see com.liferay.socialcoding.model.SVNRepository
+ * @see SVNRepository
  * @generated
  */
 @ProviderType

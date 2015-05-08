@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Definition
  * @generated
  */
+@ProviderType
 public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	public DefinitionWrapper(Definition definition) {
 		_definition = definition;
@@ -173,7 +176,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	* @return the create date of this definition
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _definition.getCreateDate();
 	}
 
@@ -228,7 +231,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	* @return the modified date of this definition
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _definition.getModifiedDate();
 	}
 
@@ -238,7 +241,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	* @return the order date of this definition
 	*/
 	@Override
-	public java.util.Date getOrderDate() {
+	public Date getOrderDate() {
 		return _definition.getOrderDate();
 	}
 
@@ -363,7 +366,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	* @param createDate the create date of this definition
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_definition.setCreateDate(createDate);
 	}
 
@@ -431,7 +434,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	* @param modifiedDate the modified date of this definition
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_definition.setModifiedDate(modifiedDate);
 	}
 
@@ -446,7 +449,7 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	* @param orderDate the order date of this definition
 	*/
 	@Override
-	public void setOrderDate(java.util.Date orderDate) {
+	public void setOrderDate(Date orderDate) {
 		_definition.setOrderDate(orderDate);
 	}
 
@@ -597,5 +600,5 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		_definition.resetOriginalValues();
 	}
 
-	private Definition _definition;
+	private final Definition _definition;
 }

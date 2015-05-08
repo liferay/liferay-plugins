@@ -14,6 +14,8 @@
 
 package com.liferay.testtransaction.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.testtransaction.model.Bar;
@@ -26,10 +28,11 @@ import com.liferay.testtransaction.model.Bar;
  * </p>
  *
  * @author Brian Wing Shun Chan
- * @see BarPersistenceImpl
+ * @see com.liferay.testtransaction.service.persistence.impl.BarPersistenceImpl
  * @see BarUtil
  * @generated
  */
+@ProviderType
 public interface BarPersistence extends BasePersistence<Bar> {
 	/*
 	 * NOTE FOR DEVELOPERS:
@@ -43,14 +46,13 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @return the matching bars
 	*/
-	public java.util.List<com.liferay.testtransaction.model.Bar> findByText(
-		java.lang.String text);
+	public java.util.List<Bar> findByText(java.lang.String text);
 
 	/**
 	* Returns a range of all the bars where text = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testtransaction.model.impl.BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param text the text
@@ -58,14 +60,14 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of matching bars
 	*/
-	public java.util.List<com.liferay.testtransaction.model.Bar> findByText(
-		java.lang.String text, int start, int end);
+	public java.util.List<Bar> findByText(java.lang.String text, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the bars where text = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testtransaction.model.impl.BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param text the text
@@ -74,9 +76,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching bars
 	*/
-	public java.util.List<com.liferay.testtransaction.model.Bar> findByText(
-		java.lang.String text, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
+	public java.util.List<Bar> findByText(java.lang.String text, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator);
 
 	/**
 	* Returns the first bar in the ordered set where text = &#63;.
@@ -84,11 +86,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching bar
-	* @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
+	* @throws NoSuchBarException if a matching bar could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar findByText_First(
-		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
+	public Bar findByText_First(java.lang.String text,
+		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
@@ -98,9 +99,8 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching bar, or <code>null</code> if a matching bar could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar fetchByText_First(
-		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
+	public Bar fetchByText_First(java.lang.String text,
+		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator);
 
 	/**
 	* Returns the last bar in the ordered set where text = &#63;.
@@ -108,11 +108,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching bar
-	* @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
+	* @throws NoSuchBarException if a matching bar could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar findByText_Last(
-		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
+	public Bar findByText_Last(java.lang.String text,
+		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
@@ -122,9 +121,8 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching bar, or <code>null</code> if a matching bar could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar fetchByText_Last(
-		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
+	public Bar fetchByText_Last(java.lang.String text,
+		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator);
 
 	/**
 	* Returns the bars before and after the current bar in the ordered set where text = &#63;.
@@ -133,11 +131,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next bar
-	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar[] findByText_PrevAndNext(
-		long barId, java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator)
+	public Bar[] findByText_PrevAndNext(long barId, java.lang.String text,
+		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
@@ -160,15 +157,14 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*
 	* @param bar the bar
 	*/
-	public void cacheResult(com.liferay.testtransaction.model.Bar bar);
+	public void cacheResult(Bar bar);
 
 	/**
 	* Caches the bars in the entity cache if it is enabled.
 	*
 	* @param bars the bars
 	*/
-	public void cacheResult(
-		java.util.List<com.liferay.testtransaction.model.Bar> bars);
+	public void cacheResult(java.util.List<Bar> bars);
 
 	/**
 	* Creates a new bar with the primary key. Does not add the bar to the database.
@@ -176,29 +172,28 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param barId the primary key for the new bar
 	* @return the new bar
 	*/
-	public com.liferay.testtransaction.model.Bar create(long barId);
+	public Bar create(long barId);
 
 	/**
 	* Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param barId the primary key of the bar
 	* @return the bar that was removed
-	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar remove(long barId)
+	public Bar remove(long barId)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
-	public com.liferay.testtransaction.model.Bar updateImpl(
-		com.liferay.testtransaction.model.Bar bar);
+	public Bar updateImpl(Bar bar);
 
 	/**
-	* Returns the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
+	* Returns the bar with the primary key or throws a {@link NoSuchBarException} if it could not be found.
 	*
 	* @param barId the primary key of the bar
 	* @return the bar
-	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar findByPrimaryKey(long barId)
+	public Bar findByPrimaryKey(long barId)
 		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
@@ -207,10 +202,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param barId the primary key of the bar
 	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
 	*/
-	public com.liferay.testtransaction.model.Bar fetchByPrimaryKey(long barId);
+	public Bar fetchByPrimaryKey(long barId);
 
 	@Override
-	public java.util.Map<java.io.Serializable, com.liferay.testtransaction.model.Bar> fetchByPrimaryKeys(
+	public java.util.Map<java.io.Serializable, Bar> fetchByPrimaryKeys(
 		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
@@ -218,27 +213,26 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*
 	* @return the bars
 	*/
-	public java.util.List<com.liferay.testtransaction.model.Bar> findAll();
+	public java.util.List<Bar> findAll();
 
 	/**
 	* Returns a range of all the bars.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testtransaction.model.impl.BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of bars
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of bars
 	*/
-	public java.util.List<com.liferay.testtransaction.model.Bar> findAll(
-		int start, int end);
+	public java.util.List<Bar> findAll(int start, int end);
 
 	/**
 	* Returns an ordered range of all the bars.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testtransaction.model.impl.BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of bars
@@ -246,9 +240,8 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of bars
 	*/
-	public java.util.List<com.liferay.testtransaction.model.Bar> findAll(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.testtransaction.model.Bar> orderByComparator);
+	public java.util.List<Bar> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator);
 
 	/**
 	* Removes all the bars from the database.

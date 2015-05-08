@@ -14,6 +14,8 @@
 
 package com.liferay.contacts.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.contacts.service.EntryLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class EntryLocalServiceClpInvoker {
 	public EntryLocalServiceClpInvoker() {
 		_methodName0 = "addEntry";

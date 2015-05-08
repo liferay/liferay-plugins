@@ -28,7 +28,7 @@ import com.liferay.mail.service.AccountLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see AccountImpl
- * @see com.liferay.mail.model.Account
+ * @see Account
  * @generated
  */
 @ProviderType

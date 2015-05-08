@@ -5,7 +5,6 @@
 	<import class="com.liferay.marketplace.model.App" />
 	<import class="com.liferay.marketplace.model.Module" />
 	<class name="com.liferay.marketplace.model.impl.AppImpl" table="Marketplace_App">
-		<cache usage="read-write" />
 		<id name="appId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -23,7 +22,6 @@
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.marketplace.model.impl.ModuleImpl" table="Marketplace_Module">
-		<cache usage="read-write" />
 		<id name="moduleId" type="long">
 			<generator class="assigned" />
 		</id>

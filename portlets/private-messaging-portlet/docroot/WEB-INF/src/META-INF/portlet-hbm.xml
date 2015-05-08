@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.privatemessaging.model.UserThread" />
 	<class name="com.liferay.privatemessaging.model.impl.UserThreadImpl" table="PM_UserThread">
-		<cache usage="read-write" />
 		<id name="userThreadId" type="long">
 			<generator class="assigned" />
 		</id>

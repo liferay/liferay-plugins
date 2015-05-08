@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see WSRPProducerImpl
- * @see com.liferay.wsrp.model.WSRPProducer
+ * @see WSRPProducer
  * @generated
  */
+@ProviderType
 public abstract class WSRPProducerBaseImpl extends WSRPProducerModelImpl
 	implements WSRPProducer {
 	/*

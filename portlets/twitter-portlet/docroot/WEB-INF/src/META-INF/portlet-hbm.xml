@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.twitter.model.Feed" />
 	<class name="com.liferay.twitter.model.impl.FeedImpl" table="Twitter_Feed">
-		<cache usage="read-write" />
 		<id name="feedId" type="long">
 			<generator class="assigned" />
 		</id>

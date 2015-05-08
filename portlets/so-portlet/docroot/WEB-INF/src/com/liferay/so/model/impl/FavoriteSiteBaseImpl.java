@@ -14,6 +14,8 @@
 
 package com.liferay.so.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.so.model.FavoriteSite;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see FavoriteSiteImpl
- * @see com.liferay.so.model.FavoriteSite
+ * @see FavoriteSite
  * @generated
  */
+@ProviderType
 public abstract class FavoriteSiteBaseImpl extends FavoriteSiteModelImpl
 	implements FavoriteSite {
 	/*

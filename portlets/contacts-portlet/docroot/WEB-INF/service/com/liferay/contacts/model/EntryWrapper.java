@@ -14,6 +14,8 @@
 
 package com.liferay.contacts.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Entry
  * @generated
  */
+@ProviderType
 public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	public EntryWrapper(Entry entry) {
 		_entry = entry;
@@ -162,7 +165,7 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	* @return the create date of this entry
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _entry.getCreateDate();
 	}
 
@@ -217,7 +220,7 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	* @return the modified date of this entry
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _entry.getModifiedDate();
 	}
 
@@ -322,7 +325,7 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	* @param createDate the create date of this entry
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_entry.setCreateDate(createDate);
 	}
 
@@ -390,7 +393,7 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	* @param modifiedDate the modified date of this entry
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_entry.setModifiedDate(modifiedDate);
 	}
 
@@ -516,5 +519,5 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 		_entry.resetOriginalValues();
 	}
 
-	private Entry _entry;
+	private final Entry _entry;
 }

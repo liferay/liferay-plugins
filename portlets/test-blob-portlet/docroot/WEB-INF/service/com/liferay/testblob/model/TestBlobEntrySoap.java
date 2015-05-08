@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.sql.Blob;
@@ -27,6 +29,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class TestBlobEntrySoap implements Serializable {
 	public static TestBlobEntrySoap toSoapModel(TestBlobEntry model) {
 		TestBlobEntrySoap soapModel = new TestBlobEntrySoap();

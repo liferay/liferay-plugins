@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see MemberRequest
  * @generated
  */
+@ProviderType
 public class MemberRequestWrapper implements MemberRequest,
 	ModelWrapper<MemberRequest> {
 	public MemberRequestWrapper(MemberRequest memberRequest) {
@@ -167,7 +170,7 @@ public class MemberRequestWrapper implements MemberRequest,
 	* @return the create date of this member request
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _memberRequest.getCreateDate();
 	}
 
@@ -232,7 +235,7 @@ public class MemberRequestWrapper implements MemberRequest,
 	* @return the modified date of this member request
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _memberRequest.getModifiedDate();
 	}
 
@@ -357,7 +360,7 @@ public class MemberRequestWrapper implements MemberRequest,
 	* @param createDate the create date of this member request
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_memberRequest.setCreateDate(createDate);
 	}
 
@@ -435,7 +438,7 @@ public class MemberRequestWrapper implements MemberRequest,
 	* @param modifiedDate the modified date of this member request
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_memberRequest.setModifiedDate(modifiedDate);
 	}
 
@@ -591,5 +594,5 @@ public class MemberRequestWrapper implements MemberRequest,
 		_memberRequest.resetOriginalValues();
 	}
 
-	private MemberRequest _memberRequest;
+	private final MemberRequest _memberRequest;
 }

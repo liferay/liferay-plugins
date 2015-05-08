@@ -7,7 +7,6 @@
 	<import class="com.liferay.mail.model.Folder" />
 	<import class="com.liferay.mail.model.Message" />
 	<class name="com.liferay.mail.model.impl.AccountImpl" table="Mail_Account">
-		<cache usage="read-write" />
 		<id name="accountId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -38,7 +37,6 @@
 		<property name="defaultSender" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.liferay.mail.model.impl.AttachmentImpl" table="Mail_Attachment">
-		<cache usage="read-write" />
 		<id name="attachmentId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -52,7 +50,6 @@
 		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
 	</class>
 	<class name="com.liferay.mail.model.impl.FolderImpl" table="Mail_Folder">
-		<cache usage="read-write" />
 		<id name="folderId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -67,7 +64,6 @@
 		<property name="remoteMessageCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.mail.model.impl.MessageImpl" table="Mail_Message">
-		<cache usage="read-write" />
 		<id name="messageId" type="long">
 			<generator class="assigned" />
 		</id>

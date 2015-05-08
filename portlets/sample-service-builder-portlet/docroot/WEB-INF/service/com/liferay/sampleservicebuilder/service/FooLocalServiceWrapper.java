@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see FooLocalService
  * @generated
  */
+@ProviderType
 public class FooLocalServiceWrapper implements FooLocalService,
 	ServiceWrapper<FooLocalService> {
 	public FooLocalServiceWrapper(FooLocalService fooLocalService) {
@@ -155,10 +158,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(
@@ -167,11 +170,11 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
 	public long dynamicQueryCount(
@@ -277,12 +280,29 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		return _fooLocalService.getFoos(start, end, obc);
 	}
 
+	/**
+	* Returns all the foos matching the UUID and company.
+	*
+	* @param uuid the UUID of the foos
+	* @param companyId the primary key of the company
+	* @return the matching foos, or an empty list if no matches were found
+	*/
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
 		java.lang.String uuid, long companyId) {
 		return _fooLocalService.getFoosByUuidAndCompanyId(uuid, companyId);
 	}
 
+	/**
+	* Returns a range of foos matching the UUID and company.
+	*
+	* @param uuid the UUID of the foos
+	* @param companyId the primary key of the company
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the range of matching foos, or an empty list if no matches were found
+	*/
 	@Override
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoosByUuidAndCompanyId(
 		java.lang.String uuid, long companyId, int start, int end,

@@ -141,7 +141,7 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	* @return the create date of this j i r a action
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _jiraAction.getCreateDate();
 	}
 
@@ -196,7 +196,7 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	* @return the modified date of this j i r a action
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _jiraAction.getModifiedDate();
 	}
 
@@ -271,7 +271,7 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	* @param createDate the create date of this j i r a action
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_jiraAction.setCreateDate(createDate);
 	}
 
@@ -339,7 +339,7 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	* @param modifiedDate the modified date of this j i r a action
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_jiraAction.setModifiedDate(modifiedDate);
 	}
 

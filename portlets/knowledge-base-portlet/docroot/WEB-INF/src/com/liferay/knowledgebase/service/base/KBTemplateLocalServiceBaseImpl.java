@@ -618,7 +618,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 *
 	 * @return the k b template local service
 	 */
-	public com.liferay.knowledgebase.service.KBTemplateLocalService getKBTemplateLocalService() {
+	public KBTemplateLocalService getKBTemplateLocalService() {
 		return kbTemplateLocalService;
 	}
 
@@ -628,7 +628,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	 * @param kbTemplateLocalService the k b template local service
 	 */
 	public void setKBTemplateLocalService(
-		com.liferay.knowledgebase.service.KBTemplateLocalService kbTemplateLocalService) {
+		KBTemplateLocalService kbTemplateLocalService) {
 		this.kbTemplateLocalService = kbTemplateLocalService;
 	}
 
@@ -1042,8 +1042,8 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	protected com.liferay.knowledgebase.service.KBFolderService kbFolderService;
 	@BeanReference(type = KBFolderPersistence.class)
 	protected KBFolderPersistence kbFolderPersistence;
-	@BeanReference(type = com.liferay.knowledgebase.service.KBTemplateLocalService.class)
-	protected com.liferay.knowledgebase.service.KBTemplateLocalService kbTemplateLocalService;
+	@BeanReference(type = KBTemplateLocalService.class)
+	protected KBTemplateLocalService kbTemplateLocalService;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBTemplateService.class)
 	protected com.liferay.knowledgebase.service.KBTemplateService kbTemplateService;
 	@BeanReference(type = KBTemplatePersistence.class)

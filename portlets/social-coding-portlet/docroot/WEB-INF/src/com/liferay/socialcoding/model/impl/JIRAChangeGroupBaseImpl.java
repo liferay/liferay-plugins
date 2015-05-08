@@ -28,7 +28,7 @@ import com.liferay.socialcoding.service.JIRAChangeGroupLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see JIRAChangeGroupImpl
- * @see com.liferay.socialcoding.model.JIRAChangeGroup
+ * @see JIRAChangeGroup
  * @generated
  */
 @ProviderType

@@ -28,7 +28,7 @@ import com.liferay.mail.service.MessageLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see MessageImpl
- * @see com.liferay.mail.model.Message
+ * @see Message
  * @generated
  */
 @ProviderType

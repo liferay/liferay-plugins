@@ -191,10 +191,10 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -202,11 +202,11 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -370,7 +370,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 *
 	 * @return the j i r a change group local service
 	 */
-	public com.liferay.socialcoding.service.JIRAChangeGroupLocalService getJIRAChangeGroupLocalService() {
+	public JIRAChangeGroupLocalService getJIRAChangeGroupLocalService() {
 		return jiraChangeGroupLocalService;
 	}
 
@@ -380,7 +380,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	 * @param jiraChangeGroupLocalService the j i r a change group local service
 	 */
 	public void setJIRAChangeGroupLocalService(
-		com.liferay.socialcoding.service.JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
+		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
 		this.jiraChangeGroupLocalService = jiraChangeGroupLocalService;
 	}
 
@@ -874,8 +874,8 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	protected JIRAActionPersistence jiraActionPersistence;
 	@BeanReference(type = JIRAActionFinder.class)
 	protected JIRAActionFinder jiraActionFinder;
-	@BeanReference(type = com.liferay.socialcoding.service.JIRAChangeGroupLocalService.class)
-	protected com.liferay.socialcoding.service.JIRAChangeGroupLocalService jiraChangeGroupLocalService;
+	@BeanReference(type = JIRAChangeGroupLocalService.class)
+	protected JIRAChangeGroupLocalService jiraChangeGroupLocalService;
 	@BeanReference(type = JIRAChangeGroupPersistence.class)
 	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
 	@BeanReference(type = JIRAChangeGroupFinder.class)

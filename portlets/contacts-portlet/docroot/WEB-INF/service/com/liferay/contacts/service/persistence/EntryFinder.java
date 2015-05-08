@@ -14,9 +14,13 @@
 
 package com.liferay.contacts.service.persistence;
 
+import aQute.bnd.annotation.ProviderType;
+
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
+@ProviderType
 public interface EntryFinder {
 	public int countByKeywords(long companyId, long userId,
 		java.lang.String keywords);

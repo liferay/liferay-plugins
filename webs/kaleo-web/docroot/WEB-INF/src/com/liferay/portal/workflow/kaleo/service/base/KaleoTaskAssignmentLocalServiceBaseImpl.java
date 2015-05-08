@@ -724,7 +724,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 *
 	 * @return the kaleo task assignment local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService getKaleoTaskAssignmentLocalService() {
+	public KaleoTaskAssignmentLocalService getKaleoTaskAssignmentLocalService() {
 		return kaleoTaskAssignmentLocalService;
 	}
 
@@ -734,7 +734,7 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	 * @param kaleoTaskAssignmentLocalService the kaleo task assignment local service
 	 */
 	public void setKaleoTaskAssignmentLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService) {
+		KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService) {
 		this.kaleoTaskAssignmentLocalService = kaleoTaskAssignmentLocalService;
 	}
 
@@ -1302,8 +1302,8 @@ public abstract class KaleoTaskAssignmentLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService kaleoTaskLocalService;
 	@BeanReference(type = KaleoTaskPersistence.class)
 	protected KaleoTaskPersistence kaleoTaskPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService;
+	@BeanReference(type = KaleoTaskAssignmentLocalService.class)
+	protected KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService;
 	@BeanReference(type = KaleoTaskAssignmentPersistence.class)
 	protected KaleoTaskAssignmentPersistence kaleoTaskAssignmentPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalService.class)

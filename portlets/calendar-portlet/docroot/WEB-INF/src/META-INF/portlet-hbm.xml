@@ -8,7 +8,6 @@
 	<import class="com.liferay.calendar.model.CalendarNotificationTemplate" />
 	<import class="com.liferay.calendar.model.CalendarResource" />
 	<class name="com.liferay.calendar.model.impl.CalendarImpl" table="Calendar">
-		<cache usage="read-write" />
 		<id name="calendarId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -30,7 +29,6 @@
 		<property name="enableRatings" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.liferay.calendar.model.impl.CalendarBookingImpl" table="CalendarBooking">
-		<cache usage="read-write" />
 		<id name="calendarBookingId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -63,7 +61,6 @@
 		<property name="statusDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl" table="CalendarNotificationTemplate">
-		<cache usage="read-write" />
 		<id name="calendarNotificationTemplateId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -82,7 +79,6 @@
 		<property name="body" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.calendar.model.impl.CalendarResourceImpl" table="CalendarResource">
-		<cache usage="read-write" />
 		<id name="calendarResourceId" type="long">
 			<generator class="assigned" />
 		</id>

@@ -14,13 +14,14 @@
 
 package com.liferay.ams.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.NoSuchTypeException;
 import com.liferay.ams.model.Type;
 import com.liferay.ams.model.impl.TypeImpl;
 import com.liferay.ams.model.impl.TypeModelImpl;
 import com.liferay.ams.service.persistence.TypePersistence;
 
-import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -29,10 +30,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -57,9 +55,10 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see TypePersistence
- * @see TypeUtil
+ * @see com.liferay.ams.service.persistence.TypeUtil
  * @generated
  */
+@ProviderType
 public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	implements TypePersistence {
 	/*
@@ -126,10 +125,6 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 */
 	@Override
 	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(TypeImpl.class.getName());
-		}
-
 		EntityCacheUtil.clearCache(TypeImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
@@ -185,7 +180,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 *
 	 * @param typeId the primary key of the type
 	 * @return the type that was removed
-	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	 * @throws NoSuchTypeException if a type with the primary key could not be found
 	 */
 	@Override
 	public Type remove(long typeId) throws NoSuchTypeException {
@@ -197,7 +192,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 *
 	 * @param primaryKey the primary key of the type
 	 * @return the type that was removed
-	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	 * @throws NoSuchTypeException if a type with the primary key could not be found
 	 */
 	@Override
 	public Type remove(Serializable primaryKey) throws NoSuchTypeException {
@@ -262,7 +257,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	}
 
 	@Override
-	public Type updateImpl(com.liferay.ams.model.Type type) {
+	public Type updateImpl(Type type) {
 		type = toUnwrappedModel(type);
 
 		boolean isNew = type.isNew();
@@ -324,7 +319,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 *
 	 * @param primaryKey the primary key of the type
 	 * @return the type
-	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	 * @throws NoSuchTypeException if a type with the primary key could not be found
 	 */
 	@Override
 	public Type findByPrimaryKey(Serializable primaryKey)
@@ -344,11 +339,11 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	}
 
 	/**
-	 * Returns the type with the primary key or throws a {@link com.liferay.ams.NoSuchTypeException} if it could not be found.
+	 * Returns the type with the primary key or throws a {@link NoSuchTypeException} if it could not be found.
 	 *
 	 * @param typeId the primary key of the type
 	 * @return the type
-	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	 * @throws NoSuchTypeException if a type with the primary key could not be found
 	 */
 	@Override
 	public Type findByPrimaryKey(long typeId) throws NoSuchTypeException {
@@ -517,7 +512,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * Returns a range of all the types.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.ams.model.impl.TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of types
@@ -533,7 +528,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 * Returns an ordered range of all the types.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.ams.model.impl.TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of types
@@ -688,10 +683,8 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	private static final String _SQL_COUNT_TYPE = "SELECT COUNT(type) FROM Type type";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "type.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Type exists with the primary key ";
-	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
-				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(TypePersistenceImpl.class);
-	private static Type _nullType = new TypeImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(TypePersistenceImpl.class);
+	private static final Type _nullType = new TypeImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -703,7 +696,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			}
 		};
 
-	private static CacheModel<Type> _nullTypeCacheModel = new CacheModel<Type>() {
+	private static final CacheModel<Type> _nullTypeCacheModel = new CacheModel<Type>() {
 			@Override
 			public Type toEntityModel() {
 				return _nullType;

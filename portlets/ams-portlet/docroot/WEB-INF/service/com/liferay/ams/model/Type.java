@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -25,6 +27,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.ams.model.impl.TypeModelImpl
  * @generated
  */
+@ProviderType
 public interface Type extends TypeModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:

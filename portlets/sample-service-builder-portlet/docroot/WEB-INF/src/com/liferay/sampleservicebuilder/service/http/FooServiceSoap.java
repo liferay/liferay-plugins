@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservicebuilder.service.http;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -23,7 +25,7 @@ import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.sampleservicebuilder.service.FooServiceUtil} service utility. The
+ * {@link FooServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -58,9 +60,10 @@ import java.rmi.RemoteException;
  * @author Brian Wing Shun Chan
  * @see FooServiceHttp
  * @see com.liferay.sampleservicebuilder.model.FooSoap
- * @see com.liferay.sampleservicebuilder.service.FooServiceUtil
+ * @see FooServiceUtil
  * @generated
  */
+@ProviderType
 public class FooServiceSoap {
 	public static com.liferay.portal.model.User getUser(long userId)
 		throws RemoteException {

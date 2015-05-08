@@ -1643,7 +1643,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private String _statusByUserName;
 	private Date _statusDate;
 	private BaseModel<?> _kbArticleRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceU
  *
  * @author Brian Wing Shun Chan
  * @see KaleoInstanceTokenImpl
- * @see com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken
+ * @see KaleoInstanceToken
  * @generated
  */
 @ProviderType

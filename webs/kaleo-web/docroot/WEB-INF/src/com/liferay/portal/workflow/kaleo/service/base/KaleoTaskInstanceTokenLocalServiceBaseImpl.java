@@ -800,7 +800,7 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 	 *
 	 * @return the kaleo task instance token local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService getKaleoTaskInstanceTokenLocalService() {
+	public KaleoTaskInstanceTokenLocalService getKaleoTaskInstanceTokenLocalService() {
 		return kaleoTaskInstanceTokenLocalService;
 	}
 
@@ -810,7 +810,7 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 	 * @param kaleoTaskInstanceTokenLocalService the kaleo task instance token local service
 	 */
 	public void setKaleoTaskInstanceTokenLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService) {
+		KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService) {
 		this.kaleoTaskInstanceTokenLocalService = kaleoTaskInstanceTokenLocalService;
 	}
 
@@ -1254,8 +1254,8 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalService kaleoTaskAssignmentInstanceLocalService;
 	@BeanReference(type = KaleoTaskAssignmentInstancePersistence.class)
 	protected KaleoTaskAssignmentInstancePersistence kaleoTaskAssignmentInstancePersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService;
+	@BeanReference(type = KaleoTaskInstanceTokenLocalService.class)
+	protected KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService;
 	@BeanReference(type = KaleoTaskInstanceTokenPersistence.class)
 	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
 	@BeanReference(type = KaleoTaskInstanceTokenFinder.class)

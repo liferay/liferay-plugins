@@ -232,7 +232,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the completion date of this kaleo instance
 	*/
 	@Override
-	public java.util.Date getCompletionDate() {
+	public Date getCompletionDate() {
 		return _kaleoInstance.getCompletionDate();
 	}
 
@@ -242,7 +242,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the create date of this kaleo instance
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoInstance.getCreateDate();
 	}
 
@@ -313,7 +313,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the modified date of this kaleo instance
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoInstance.getModifiedDate();
 	}
 
@@ -341,7 +341,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken getRootKaleoInstanceToken(
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstance.getRootKaleoInstanceToken(workflowContext,
@@ -484,7 +484,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param completionDate the completion date of this kaleo instance
 	*/
 	@Override
-	public void setCompletionDate(java.util.Date completionDate) {
+	public void setCompletionDate(Date completionDate) {
 		_kaleoInstance.setCompletionDate(completionDate);
 	}
 
@@ -494,7 +494,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param createDate the create date of this kaleo instance
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoInstance.setCreateDate(createDate);
 	}
 
@@ -572,7 +572,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param modifiedDate the modified date of this kaleo instance
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoInstance.setModifiedDate(modifiedDate);
 	}
 

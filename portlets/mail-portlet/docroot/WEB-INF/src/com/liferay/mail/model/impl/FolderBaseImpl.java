@@ -28,7 +28,7 @@ import com.liferay.mail.service.FolderLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see FolderImpl
- * @see com.liferay.mail.model.Folder
+ * @see Folder
  * @generated
  */
 @ProviderType

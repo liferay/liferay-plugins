@@ -162,7 +162,7 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	* @return the create date of this j i r a issue
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _jiraIssue.getCreateDate();
 	}
 
@@ -212,7 +212,7 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	* @return the modified date of this j i r a issue
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _jiraIssue.getModifiedDate();
 	}
 
@@ -327,7 +327,7 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	* @param createDate the create date of this j i r a issue
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_jiraIssue.setCreateDate(createDate);
 	}
 
@@ -385,7 +385,7 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	* @param modifiedDate the modified date of this j i r a issue
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_jiraIssue.setModifiedDate(modifiedDate);
 	}
 

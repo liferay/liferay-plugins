@@ -14,8 +14,11 @@
 
 package com.liferay.ams.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Definition;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,8 +37,33 @@ import java.util.Date;
  * @see Definition
  * @generated
  */
+@ProviderType
 public class DefinitionCacheModel implements CacheModel<Definition>,
 	Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof DefinitionCacheModel)) {
+			return false;
+		}
+
+		DefinitionCacheModel definitionCacheModel = (DefinitionCacheModel)obj;
+
+		if (definitionId == definitionCacheModel.definitionId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, definitionId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);

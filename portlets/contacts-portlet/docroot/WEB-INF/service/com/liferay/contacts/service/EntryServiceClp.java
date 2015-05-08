@@ -14,12 +14,15 @@
 
 package com.liferay.contacts.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class EntryServiceClp implements EntryService {
 	public EntryServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

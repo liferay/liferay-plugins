@@ -14,13 +14,14 @@
 
 package com.liferay.ams.service.persistence.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.NoSuchAssetException;
 import com.liferay.ams.model.Asset;
 import com.liferay.ams.model.impl.AssetImpl;
 import com.liferay.ams.model.impl.AssetModelImpl;
 import com.liferay.ams.service.persistence.AssetPersistence;
 
-import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -29,10 +30,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -58,9 +56,10 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see AssetPersistence
- * @see AssetUtil
+ * @see com.liferay.ams.service.persistence.AssetUtil
  * @generated
  */
+@ProviderType
 public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	implements AssetPersistence {
 	/*
@@ -127,10 +126,6 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	@Override
 	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(AssetImpl.class.getName());
-		}
-
 		EntityCacheUtil.clearCache(AssetImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
@@ -186,7 +181,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 *
 	 * @param assetId the primary key of the asset
 	 * @return the asset that was removed
-	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws NoSuchAssetException if a asset with the primary key could not be found
 	 */
 	@Override
 	public Asset remove(long assetId) throws NoSuchAssetException {
@@ -198,7 +193,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 *
 	 * @param primaryKey the primary key of the asset
 	 * @return the asset that was removed
-	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws NoSuchAssetException if a asset with the primary key could not be found
 	 */
 	@Override
 	public Asset remove(Serializable primaryKey) throws NoSuchAssetException {
@@ -264,7 +259,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	@Override
-	public Asset updateImpl(com.liferay.ams.model.Asset asset) {
+	public Asset updateImpl(Asset asset) {
 		asset = toUnwrappedModel(asset);
 
 		boolean isNew = asset.isNew();
@@ -333,7 +328,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 *
 	 * @param primaryKey the primary key of the asset
 	 * @return the asset
-	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws NoSuchAssetException if a asset with the primary key could not be found
 	 */
 	@Override
 	public Asset findByPrimaryKey(Serializable primaryKey)
@@ -353,11 +348,11 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	/**
-	 * Returns the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
+	 * Returns the asset with the primary key or throws a {@link NoSuchAssetException} if it could not be found.
 	 *
 	 * @param assetId the primary key of the asset
 	 * @return the asset
-	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws NoSuchAssetException if a asset with the primary key could not be found
 	 */
 	@Override
 	public Asset findByPrimaryKey(long assetId) throws NoSuchAssetException {
@@ -526,7 +521,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * Returns a range of all the assets.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.ams.model.impl.AssetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AssetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of assets
@@ -542,7 +537,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * Returns an ordered range of all the assets.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.ams.model.impl.AssetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AssetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of assets
@@ -702,13 +697,11 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	private static final String _SQL_COUNT_ASSET = "SELECT COUNT(asset) FROM Asset asset";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "asset.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Asset exists with the primary key ";
-	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
-				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(AssetPersistenceImpl.class);
-	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+	private static final Log _log = LogFactoryUtil.getLog(AssetPersistenceImpl.class);
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
 				"active"
 			});
-	private static Asset _nullAsset = new AssetImpl() {
+	private static final Asset _nullAsset = new AssetImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -720,7 +713,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			}
 		};
 
-	private static CacheModel<Asset> _nullAssetCacheModel = new CacheModel<Asset>() {
+	private static final CacheModel<Asset> _nullAssetCacheModel = new CacheModel<Asset>() {
 			@Override
 			public Asset toEntityModel() {
 				return _nullAsset;

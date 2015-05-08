@@ -14,8 +14,11 @@
 
 package com.liferay.ams.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.model.Asset;
 
+import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -34,7 +37,32 @@ import java.util.Date;
  * @see Asset
  * @generated
  */
+@ProviderType
 public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (!(obj instanceof AssetCacheModel)) {
+			return false;
+		}
+
+		AssetCacheModel assetCacheModel = (AssetCacheModel)obj;
+
+		if (assetId == assetCacheModel.assetId) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return HashUtil.hash(0, assetId);
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);

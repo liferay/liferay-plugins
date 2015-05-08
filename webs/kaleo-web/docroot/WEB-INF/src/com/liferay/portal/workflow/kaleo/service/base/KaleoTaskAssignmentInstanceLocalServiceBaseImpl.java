@@ -762,7 +762,7 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 *
 	 * @return the kaleo task assignment instance local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalService getKaleoTaskAssignmentInstanceLocalService() {
+	public KaleoTaskAssignmentInstanceLocalService getKaleoTaskAssignmentInstanceLocalService() {
 		return kaleoTaskAssignmentInstanceLocalService;
 	}
 
@@ -772,7 +772,7 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * @param kaleoTaskAssignmentInstanceLocalService the kaleo task assignment instance local service
 	 */
 	public void setKaleoTaskAssignmentInstanceLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalService kaleoTaskAssignmentInstanceLocalService) {
+		KaleoTaskAssignmentInstanceLocalService kaleoTaskAssignmentInstanceLocalService) {
 		this.kaleoTaskAssignmentInstanceLocalService = kaleoTaskAssignmentInstanceLocalService;
 	}
 
@@ -1250,8 +1250,8 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService;
 	@BeanReference(type = KaleoTaskAssignmentPersistence.class)
 	protected KaleoTaskAssignmentPersistence kaleoTaskAssignmentPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalService kaleoTaskAssignmentInstanceLocalService;
+	@BeanReference(type = KaleoTaskAssignmentInstanceLocalService.class)
+	protected KaleoTaskAssignmentInstanceLocalService kaleoTaskAssignmentInstanceLocalService;
 	@BeanReference(type = KaleoTaskAssignmentInstancePersistence.class)
 	protected KaleoTaskAssignmentInstancePersistence kaleoTaskAssignmentInstancePersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService.class)

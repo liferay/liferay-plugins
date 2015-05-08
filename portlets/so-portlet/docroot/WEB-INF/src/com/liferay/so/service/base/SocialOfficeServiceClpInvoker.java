@@ -14,6 +14,8 @@
 
 package com.liferay.so.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.so.service.SocialOfficeServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SocialOfficeServiceClpInvoker {
 	public SocialOfficeServiceClpInvoker() {
 		_methodName40 = "getBeanIdentifier";

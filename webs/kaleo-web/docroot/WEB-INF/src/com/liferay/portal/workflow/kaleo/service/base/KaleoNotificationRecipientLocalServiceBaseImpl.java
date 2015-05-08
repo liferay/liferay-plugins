@@ -649,7 +649,7 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	 *
 	 * @return the kaleo notification recipient local service
 	 */
-	public com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService getKaleoNotificationRecipientLocalService() {
+	public KaleoNotificationRecipientLocalService getKaleoNotificationRecipientLocalService() {
 		return kaleoNotificationRecipientLocalService;
 	}
 
@@ -659,7 +659,7 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	 * @param kaleoNotificationRecipientLocalService the kaleo notification recipient local service
 	 */
 	public void setKaleoNotificationRecipientLocalService(
-		com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService) {
+		KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService) {
 		this.kaleoNotificationRecipientLocalService = kaleoNotificationRecipientLocalService;
 	}
 
@@ -1295,8 +1295,8 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 	protected com.liferay.portal.workflow.kaleo.service.KaleoNotificationLocalService kaleoNotificationLocalService;
 	@BeanReference(type = KaleoNotificationPersistence.class)
 	protected KaleoNotificationPersistence kaleoNotificationPersistence;
-	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService.class)
-	protected com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService;
+	@BeanReference(type = KaleoNotificationRecipientLocalService.class)
+	protected KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService;
 	@BeanReference(type = KaleoNotificationRecipientPersistence.class)
 	protected KaleoNotificationRecipientPersistence kaleoNotificationRecipientPersistence;
 	@BeanReference(type = com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService.class)

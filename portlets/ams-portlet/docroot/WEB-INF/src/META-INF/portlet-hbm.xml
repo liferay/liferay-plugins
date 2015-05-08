@@ -7,7 +7,6 @@
 	<import class="com.liferay.ams.model.Definition" />
 	<import class="com.liferay.ams.model.Type" />
 	<class name="com.liferay.ams.model.impl.AssetImpl" table="AMS_Asset">
-		<cache usage="read-write" />
 		<id name="assetId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -22,7 +21,6 @@
 		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
 	</class>
 	<class name="com.liferay.ams.model.impl.CheckoutImpl" table="AMS_Checkout">
-		<cache usage="read-write" />
 		<id name="checkoutId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -37,7 +35,6 @@
 		<property name="actualCheckInDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.ams.model.impl.DefinitionImpl" table="AMS_Definition">
-		<cache usage="read-write" />
 		<id name="definitionId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -55,7 +52,6 @@
 		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 	</class>
 	<class name="com.liferay.ams.model.impl.TypeImpl" table="AMS_Type">
-		<cache usage="read-write" />
 		<id name="typeId" type="long">
 			<generator class="assigned" />
 		</id>

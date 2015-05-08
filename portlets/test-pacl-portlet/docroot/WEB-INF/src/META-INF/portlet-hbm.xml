@@ -4,7 +4,6 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.testpacl.model.Foo" />
 	<class name="com.liferay.testpacl.model.impl.FooImpl" table="TestPACL_Foo">
-		<cache usage="read-write" />
 		<id name="fooId" type="long">
 			<generator class="assigned" />
 		</id>

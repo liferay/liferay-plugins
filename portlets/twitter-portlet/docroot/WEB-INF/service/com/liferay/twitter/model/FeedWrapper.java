@@ -14,6 +14,8 @@
 
 package com.liferay.twitter.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see Feed
  * @generated
  */
+@ProviderType
 public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	public FeedWrapper(Feed feed) {
 		_feed = feed;
@@ -145,7 +148,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* @return the create date of this feed
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _feed.getCreateDate();
 	}
 
@@ -180,7 +183,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* @return the modified date of this feed
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _feed.getModifiedDate();
 	}
 
@@ -305,7 +308,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* @param createDate the create date of this feed
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_feed.setCreateDate(createDate);
 	}
 
@@ -353,7 +356,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* @param modifiedDate the modified date of this feed
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_feed.setModifiedDate(modifiedDate);
 	}
 
@@ -509,5 +512,5 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		_feed.resetOriginalValues();
 	}
 
-	private Feed _feed;
+	private final Feed _feed;
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.twitter.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -59,6 +61,7 @@ import javax.sql.DataSource;
  * @see com.liferay.twitter.service.FeedLocalServiceUtil
  * @generated
  */
+@ProviderType
 public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	implements FeedLocalService, IdentifiableBean {
 	/*
@@ -175,10 +178,10 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -186,11 +189,11 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -295,7 +298,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the feed local service
 	 */
-	public com.liferay.twitter.service.FeedLocalService getFeedLocalService() {
+	public FeedLocalService getFeedLocalService() {
 		return feedLocalService;
 	}
 
@@ -304,8 +307,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param feedLocalService the feed local service
 	 */
-	public void setFeedLocalService(
-		com.liferay.twitter.service.FeedLocalService feedLocalService) {
+	public void setFeedLocalService(FeedLocalService feedLocalService) {
 		this.feedLocalService = feedLocalService;
 	}
 
@@ -565,8 +567,8 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.twitter.service.FeedLocalService.class)
-	protected com.liferay.twitter.service.FeedLocalService feedLocalService;
+	@BeanReference(type = FeedLocalService.class)
+	protected FeedLocalService feedLocalService;
 	@BeanReference(type = FeedPersistence.class)
 	protected FeedPersistence feedPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

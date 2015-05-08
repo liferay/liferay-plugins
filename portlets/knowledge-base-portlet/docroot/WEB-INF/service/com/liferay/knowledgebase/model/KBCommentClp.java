@@ -787,7 +787,7 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	private int _userRating;
 	private int _status;
 	private BaseModel<?> _kbCommentRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

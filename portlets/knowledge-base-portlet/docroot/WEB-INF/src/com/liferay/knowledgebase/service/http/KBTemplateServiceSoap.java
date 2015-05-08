@@ -25,7 +25,7 @@ import java.rmi.RemoteException;
 
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.knowledgebase.service.KBTemplateServiceUtil} service utility. The
+ * {@link KBTemplateServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -60,7 +60,7 @@ import java.rmi.RemoteException;
  * @author Brian Wing Shun Chan
  * @see KBTemplateServiceHttp
  * @see com.liferay.knowledgebase.model.KBTemplateSoap
- * @see com.liferay.knowledgebase.service.KBTemplateServiceUtil
+ * @see KBTemplateServiceUtil
  * @generated
  */
 @ProviderType

@@ -190,10 +190,10 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
@@ -201,11 +201,11 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the number of rows that match the dynamic query.
+	 * Returns the number of rows matching the dynamic query.
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
-	 * @return the number of rows that match the dynamic query
+	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
@@ -519,7 +519,7 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	 *
 	 * @return the j i r a project local service
 	 */
-	public com.liferay.socialcoding.service.JIRAProjectLocalService getJIRAProjectLocalService() {
+	public JIRAProjectLocalService getJIRAProjectLocalService() {
 		return jiraProjectLocalService;
 	}
 
@@ -529,7 +529,7 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	 * @param jiraProjectLocalService the j i r a project local service
 	 */
 	public void setJIRAProjectLocalService(
-		com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService) {
+		JIRAProjectLocalService jiraProjectLocalService) {
 		this.jiraProjectLocalService = jiraProjectLocalService;
 	}
 
@@ -888,8 +888,8 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	@BeanReference(type = JIRAIssueFinder.class)
 	protected JIRAIssueFinder jiraIssueFinder;
-	@BeanReference(type = com.liferay.socialcoding.service.JIRAProjectLocalService.class)
-	protected com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService;
+	@BeanReference(type = JIRAProjectLocalService.class)
+	protected JIRAProjectLocalService jiraProjectLocalService;
 	@BeanReference(type = JIRAProjectPersistence.class)
 	protected JIRAProjectPersistence jiraProjectPersistence;
 	@BeanReference(type = com.liferay.socialcoding.service.SVNRepositoryLocalService.class)

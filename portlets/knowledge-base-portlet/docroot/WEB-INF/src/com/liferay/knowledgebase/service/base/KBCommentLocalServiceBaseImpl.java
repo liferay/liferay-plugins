@@ -516,7 +516,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the k b comment local service
 	 */
-	public com.liferay.knowledgebase.service.KBCommentLocalService getKBCommentLocalService() {
+	public KBCommentLocalService getKBCommentLocalService() {
 		return kbCommentLocalService;
 	}
 
@@ -526,7 +526,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbCommentLocalService the k b comment local service
 	 */
 	public void setKBCommentLocalService(
-		com.liferay.knowledgebase.service.KBCommentLocalService kbCommentLocalService) {
+		KBCommentLocalService kbCommentLocalService) {
 		this.kbCommentLocalService = kbCommentLocalService;
 	}
 
@@ -1098,8 +1098,8 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected KBArticlePersistence kbArticlePersistence;
 	@BeanReference(type = KBArticleFinder.class)
 	protected KBArticleFinder kbArticleFinder;
-	@BeanReference(type = com.liferay.knowledgebase.service.KBCommentLocalService.class)
-	protected com.liferay.knowledgebase.service.KBCommentLocalService kbCommentLocalService;
+	@BeanReference(type = KBCommentLocalService.class)
+	protected KBCommentLocalService kbCommentLocalService;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBCommentService.class)
 	protected com.liferay.knowledgebase.service.KBCommentService kbCommentService;
 	@BeanReference(type = KBCommentPersistence.class)

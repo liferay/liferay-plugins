@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoNotificationRecipientLocal
  *
  * @author Brian Wing Shun Chan
  * @see KaleoNotificationRecipientImpl
- * @see com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient
+ * @see KaleoNotificationRecipient
  * @generated
  */
 @ProviderType

@@ -185,19 +185,19 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public Object clone();
 
 	@Override
-	public int compareTo(SVNRevision svnRevision);
+	public int compareTo(com.liferay.socialcoding.model.SVNRevision svnRevision);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<SVNRevision> toCacheModel();
+	public CacheModel<com.liferay.socialcoding.model.SVNRevision> toCacheModel();
 
 	@Override
-	public SVNRevision toEscapedModel();
+	public com.liferay.socialcoding.model.SVNRevision toEscapedModel();
 
 	@Override
-	public SVNRevision toUnescapedModel();
+	public com.liferay.socialcoding.model.SVNRevision toUnescapedModel();
 
 	@Override
 	public String toString();

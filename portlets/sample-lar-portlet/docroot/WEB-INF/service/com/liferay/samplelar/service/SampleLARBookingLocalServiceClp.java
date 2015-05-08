@@ -14,12 +14,15 @@
 
 package com.liferay.samplelar.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Mate Thurzo
  * @generated
  */
+@ProviderType
 public class SampleLARBookingLocalServiceClp
 	implements SampleLARBookingLocalService {
 	public SampleLARBookingLocalServiceClp(

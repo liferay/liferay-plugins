@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -39,6 +41,7 @@ import java.util.Date;
  * @see com.liferay.so.model.impl.MemberRequestModelImpl
  * @generated
  */
+@ProviderType
 public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	GroupedModel {
 	/*
@@ -310,19 +313,19 @@ public interface MemberRequestModel extends BaseModel<MemberRequest>,
 	public Object clone();
 
 	@Override
-	public int compareTo(MemberRequest memberRequest);
+	public int compareTo(com.liferay.so.model.MemberRequest memberRequest);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<MemberRequest> toCacheModel();
+	public CacheModel<com.liferay.so.model.MemberRequest> toCacheModel();
 
 	@Override
-	public MemberRequest toEscapedModel();
+	public com.liferay.so.model.MemberRequest toEscapedModel();
 
 	@Override
-	public MemberRequest toUnescapedModel();
+	public com.liferay.so.model.MemberRequest toUnescapedModel();
 
 	@Override
 	public String toString();

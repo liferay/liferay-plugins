@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
@@ -31,6 +33,7 @@ import java.util.Map;
  * @see Gadget
  * @generated
  */
+@ProviderType
 public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	public GadgetWrapper(Gadget gadget) {
 		_gadget = gadget;
@@ -140,7 +143,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	* @return the create date of this gadget
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _gadget.getCreateDate();
 	}
 
@@ -165,7 +168,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	* @return the modified date of this gadget
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _gadget.getModifiedDate();
 	}
 
@@ -270,7 +273,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	* @param createDate the create date of this gadget
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_gadget.setCreateDate(createDate);
 	}
 
@@ -308,7 +311,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	* @param modifiedDate the modified date of this gadget
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_gadget.setModifiedDate(modifiedDate);
 	}
 
@@ -449,5 +452,5 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 		_gadget.resetOriginalValues();
 	}
 
-	private Gadget _gadget;
+	private final Gadget _gadget;
 }

@@ -6,7 +6,6 @@
 	<import class="com.liferay.wsrp.model.WSRPConsumerPortlet" />
 	<import class="com.liferay.wsrp.model.WSRPProducer" />
 	<class name="com.liferay.wsrp.model.impl.WSRPConsumerImpl" table="WSRP_WSRPConsumer">
-		<cache usage="read-write" />
 		<id name="wsrpConsumerId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -24,7 +23,6 @@
 		<property name="markupCharacterSets" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl" table="WSRP_WSRPConsumerPortlet">
-		<cache usage="read-write" />
 		<id name="wsrpConsumerPortletId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -37,7 +35,6 @@
 		<property name="portletHandle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wsrp.model.impl.WSRPProducerImpl" table="WSRP_WSRPProducer">
-		<cache usage="read-write" />
 		<id name="wsrpProducerId" type="long">
 			<generator class="assigned" />
 		</id>

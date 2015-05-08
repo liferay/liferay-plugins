@@ -14,6 +14,8 @@
 
 package com.liferay.ams.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.ams.service.ClpSerializer;
 import com.liferay.ams.service.TypeLocalServiceUtil;
 
@@ -34,6 +36,7 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
+@ProviderType
 public class TypeClp extends BaseModelImpl<Type> implements Type {
 	public TypeClp() {
 	}
@@ -350,7 +353,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	private long _groupId;
 	private String _name;
 	private BaseModel<?> _typeRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.ams.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

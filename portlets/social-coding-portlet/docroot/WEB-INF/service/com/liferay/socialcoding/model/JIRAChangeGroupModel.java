@@ -156,19 +156,20 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public Object clone();
 
 	@Override
-	public int compareTo(JIRAChangeGroup jiraChangeGroup);
+	public int compareTo(
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<JIRAChangeGroup> toCacheModel();
+	public CacheModel<com.liferay.socialcoding.model.JIRAChangeGroup> toCacheModel();
 
 	@Override
-	public JIRAChangeGroup toEscapedModel();
+	public com.liferay.socialcoding.model.JIRAChangeGroup toEscapedModel();
 
 	@Override
-	public JIRAChangeGroup toUnescapedModel();
+	public com.liferay.socialcoding.model.JIRAChangeGroup toUnescapedModel();
 
 	@Override
 	public String toString();

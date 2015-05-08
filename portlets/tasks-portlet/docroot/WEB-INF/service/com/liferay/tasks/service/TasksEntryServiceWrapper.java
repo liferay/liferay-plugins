@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.ServiceWrapper;
 
 /**
@@ -23,6 +25,7 @@ import com.liferay.portal.service.ServiceWrapper;
  * @see TasksEntryService
  * @generated
  */
+@ProviderType
 public class TasksEntryServiceWrapper implements TasksEntryService,
 	ServiceWrapper<TasksEntryService> {
 	public TasksEntryServiceWrapper(TasksEntryService tasksEntryService) {

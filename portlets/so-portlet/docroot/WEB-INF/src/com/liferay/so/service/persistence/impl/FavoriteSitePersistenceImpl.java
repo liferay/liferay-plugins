@@ -14,7 +14,8 @@
 
 package com.liferay.so.service.persistence.impl;
 
-import com.liferay.portal.kernel.cache.CacheRegistryUtil;
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -24,10 +25,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -58,9 +56,10 @@ import java.util.Set;
  *
  * @author Brian Wing Shun Chan
  * @see FavoriteSitePersistence
- * @see FavoriteSiteUtil
+ * @see com.liferay.so.service.persistence.FavoriteSiteUtil
  * @generated
  */
+@ProviderType
 public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSite>
 	implements FavoriteSitePersistence {
 	/*
@@ -117,7 +116,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 * Returns a range of all the favorite sites where userId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -134,7 +133,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 * Returns an ordered range of all the favorite sites where userId = &#63;.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param userId the user ID
@@ -247,7 +246,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
+	 * @throws NoSuchFavoriteSiteException if a matching favorite site could not be found
 	 */
 	@Override
 	public FavoriteSite findByUserId_First(long userId,
@@ -297,7 +296,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
+	 * @throws NoSuchFavoriteSiteException if a matching favorite site could not be found
 	 */
 	@Override
 	public FavoriteSite findByUserId_Last(long userId,
@@ -354,7 +353,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
+	 * @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	 */
 	@Override
 	public FavoriteSite[] findByUserId_PrevAndNext(long favoriteSiteId,
@@ -570,12 +569,12 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the favorite site where groupId = &#63; and userId = &#63; or throws a {@link com.liferay.so.NoSuchFavoriteSiteException} if it could not be found.
+	 * Returns the favorite site where groupId = &#63; and userId = &#63; or throws a {@link NoSuchFavoriteSiteException} if it could not be found.
 	 *
 	 * @param groupId the group ID
 	 * @param userId the user ID
 	 * @return the matching favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
+	 * @throws NoSuchFavoriteSiteException if a matching favorite site could not be found
 	 */
 	@Override
 	public FavoriteSite findByG_U(long groupId, long userId)
@@ -833,10 +832,6 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 */
 	@Override
 	public void clearCache() {
-		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
-			CacheRegistryUtil.clear(FavoriteSiteImpl.class.getName());
-		}
-
 		EntityCacheUtil.clearCache(FavoriteSiteImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
@@ -946,7 +941,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 *
 	 * @param favoriteSiteId the primary key of the favorite site
 	 * @return the favorite site that was removed
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
+	 * @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	 */
 	@Override
 	public FavoriteSite remove(long favoriteSiteId)
@@ -959,7 +954,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 *
 	 * @param primaryKey the primary key of the favorite site
 	 * @return the favorite site that was removed
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
+	 * @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	 */
 	@Override
 	public FavoriteSite remove(Serializable primaryKey)
@@ -1027,8 +1022,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	@Override
-	public FavoriteSite updateImpl(
-		com.liferay.so.model.FavoriteSite favoriteSite) {
+	public FavoriteSite updateImpl(FavoriteSite favoriteSite) {
 		favoriteSite = toUnwrappedModel(favoriteSite);
 
 		boolean isNew = favoriteSite.isNew();
@@ -1116,7 +1110,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 *
 	 * @param primaryKey the primary key of the favorite site
 	 * @return the favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
+	 * @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	 */
 	@Override
 	public FavoriteSite findByPrimaryKey(Serializable primaryKey)
@@ -1136,11 +1130,11 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	/**
-	 * Returns the favorite site with the primary key or throws a {@link com.liferay.so.NoSuchFavoriteSiteException} if it could not be found.
+	 * Returns the favorite site with the primary key or throws a {@link NoSuchFavoriteSiteException} if it could not be found.
 	 *
 	 * @param favoriteSiteId the primary key of the favorite site
 	 * @return the favorite site
-	 * @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
+	 * @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	 */
 	@Override
 	public FavoriteSite findByPrimaryKey(long favoriteSiteId)
@@ -1311,7 +1305,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 * Returns a range of all the favorite sites.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of favorite sites
@@ -1327,7 +1321,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	 * Returns an ordered range of all the favorite sites.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FavoriteSiteModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of favorite sites
@@ -1485,10 +1479,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	private static final String _ORDER_BY_ENTITY_ALIAS = "favoriteSite.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No FavoriteSite exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No FavoriteSite exists with the key {";
-	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
-				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
-	private static Log _log = LogFactoryUtil.getLog(FavoriteSitePersistenceImpl.class);
-	private static FavoriteSite _nullFavoriteSite = new FavoriteSiteImpl() {
+	private static final Log _log = LogFactoryUtil.getLog(FavoriteSitePersistenceImpl.class);
+	private static final FavoriteSite _nullFavoriteSite = new FavoriteSiteImpl() {
 			@Override
 			public Object clone() {
 				return this;
@@ -1500,7 +1492,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			}
 		};
 
-	private static CacheModel<FavoriteSite> _nullFavoriteSiteCacheModel = new CacheModel<FavoriteSite>() {
+	private static final CacheModel<FavoriteSite> _nullFavoriteSiteCacheModel = new CacheModel<FavoriteSite>() {
 			@Override
 			public FavoriteSite toEntityModel() {
 				return _nullFavoriteSite;

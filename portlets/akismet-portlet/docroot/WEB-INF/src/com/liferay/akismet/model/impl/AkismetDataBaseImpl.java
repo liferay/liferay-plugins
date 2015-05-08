@@ -14,6 +14,8 @@
 
 package com.liferay.akismet.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see AkismetDataImpl
- * @see com.liferay.akismet.model.AkismetData
+ * @see AkismetData
  * @generated
  */
+@ProviderType
 public abstract class AkismetDataBaseImpl extends AkismetDataModelImpl
 	implements AkismetData {
 	/*

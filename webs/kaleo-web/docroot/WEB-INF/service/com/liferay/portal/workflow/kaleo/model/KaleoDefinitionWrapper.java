@@ -210,7 +210,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @return the create date of this kaleo definition
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoDefinition.getCreateDate();
 	}
 
@@ -266,7 +266,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @return the modified date of this kaleo definition
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoDefinition.getModifiedDate();
 	}
 
@@ -378,7 +378,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @return the locales and localized titles of this kaleo definition
 	*/
 	@Override
-	public java.util.Map<java.util.Locale, java.lang.String> getTitleMap() {
+	public Map<java.util.Locale, java.lang.String> getTitleMap() {
 		return _kaleoDefinition.getTitleMap();
 	}
 
@@ -516,7 +516,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param createDate the create date of this kaleo definition
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoDefinition.setCreateDate(createDate);
 	}
 
@@ -574,7 +574,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param modifiedDate the modified date of this kaleo definition
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoDefinition.setModifiedDate(modifiedDate);
 	}
 
@@ -663,8 +663,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param titleMap the locales and localized titles of this kaleo definition
 	*/
 	@Override
-	public void setTitleMap(
-		java.util.Map<java.util.Locale, java.lang.String> titleMap) {
+	public void setTitleMap(Map<java.util.Locale, java.lang.String> titleMap) {
 		_kaleoDefinition.setTitleMap(titleMap);
 	}
 
@@ -675,8 +674,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setTitleMap(
-		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+	public void setTitleMap(Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Locale defaultLocale) {
 		_kaleoDefinition.setTitleMap(titleMap, defaultLocale);
 	}

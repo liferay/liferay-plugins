@@ -275,7 +275,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	* @return the create date of this message
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _message.getCreateDate();
 	}
 
@@ -326,7 +326,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	* @return the modified date of this message
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _message.getModifiedDate();
 	}
 
@@ -381,7 +381,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	* @return the sent date of this message
 	*/
 	@Override
-	public java.util.Date getSentDate() {
+	public Date getSentDate() {
 		return _message.getSentDate();
 	}
 
@@ -551,7 +551,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	* @param createDate the create date of this message
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_message.setCreateDate(createDate);
 	}
 
@@ -609,7 +609,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	* @param modifiedDate the modified date of this message
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_message.setModifiedDate(modifiedDate);
 	}
 
@@ -669,7 +669,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	* @param sentDate the sent date of this message
 	*/
 	@Override
-	public void setSentDate(java.util.Date sentDate) {
+	public void setSentDate(Date sentDate) {
 		_message.setSentDate(sentDate);
 	}
 

@@ -14,12 +14,15 @@
 
 package com.liferay.so.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class SocialOfficeServiceClp implements SocialOfficeService {
 	public SocialOfficeServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;

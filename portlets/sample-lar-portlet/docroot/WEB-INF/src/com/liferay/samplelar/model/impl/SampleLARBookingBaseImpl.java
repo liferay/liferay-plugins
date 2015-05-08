@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.model.impl;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
 
@@ -26,9 +28,10 @@ import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
  *
  * @author Mate Thurzo
  * @see SampleLARBookingImpl
- * @see com.liferay.samplelar.model.SampleLARBooking
+ * @see SampleLARBooking
  * @generated
  */
+@ProviderType
 public abstract class SampleLARBookingBaseImpl extends SampleLARBookingModelImpl
 	implements SampleLARBooking {
 	/*

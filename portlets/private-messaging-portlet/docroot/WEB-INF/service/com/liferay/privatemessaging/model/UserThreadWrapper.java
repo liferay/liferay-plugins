@@ -14,6 +14,8 @@
 
 package com.liferay.privatemessaging.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see UserThread
  * @generated
  */
+@ProviderType
 public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	public UserThreadWrapper(UserThread userThread) {
 		_userThread = userThread;
@@ -153,7 +156,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @return the create date of this user thread
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _userThread.getCreateDate();
 	}
 
@@ -188,7 +191,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @return the modified date of this user thread
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _userThread.getModifiedDate();
 	}
 
@@ -333,7 +336,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @param createDate the create date of this user thread
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_userThread.setCreateDate(createDate);
 	}
 
@@ -381,7 +384,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @param modifiedDate the modified date of this user thread
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_userThread.setModifiedDate(modifiedDate);
 	}
 
@@ -537,5 +540,5 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 		_userThread.resetOriginalValues();
 	}
 
-	private UserThread _userThread;
+	private final UserThread _userThread;
 }

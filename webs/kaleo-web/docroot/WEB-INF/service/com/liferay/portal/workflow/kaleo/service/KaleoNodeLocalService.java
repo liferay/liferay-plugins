@@ -52,7 +52,7 @@ public interface KaleoNodeLocalService extends BaseLocalService,
 		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Node node,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Adds the kaleo node to the database. Also notifies the appropriate model listeners.
@@ -96,8 +96,7 @@ public interface KaleoNodeLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode deleteKaleoNode(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoNodeId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -105,7 +104,7 @@ public interface KaleoNodeLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -199,8 +198,7 @@ public interface KaleoNodeLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode getKaleoNode(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long kaleoNodeId) throws PortalException;
 
 	/**
 	* Returns a range of all the kaleo nodes.
@@ -228,8 +226,7 @@ public interface KaleoNodeLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

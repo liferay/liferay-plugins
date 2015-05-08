@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -37,6 +39,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * @see com.liferay.opensocial.service.impl.GadgetLocalServiceImpl
  * @generated
  */
+@ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface GadgetLocalService extends BaseLocalService,
@@ -49,7 +52,7 @@ public interface GadgetLocalService extends BaseLocalService,
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Adds the gadget to the database. Also notifies the appropriate model listeners.
@@ -89,7 +92,7 @@ public interface GadgetLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public void deleteGadgets(long companyId);
 
@@ -99,7 +102,7 @@ public interface GadgetLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	@com.liferay.portal.kernel.cluster.Clusterable
 	public void destroyGadget(java.lang.String uuid, long companyId);
@@ -152,20 +155,20 @@ public interface GadgetLocalService extends BaseLocalService,
 		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
-	* Returns the number of rows that match the dynamic query.
+	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
-	* @return the number of rows that match the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
@@ -205,8 +208,7 @@ public interface GadgetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.Gadget getGadget(long companyId,
-		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String url) throws PortalException;
 
 	/**
 	* Returns the gadget with the primary key.
@@ -217,12 +219,11 @@ public interface GadgetLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.Gadget getGadget(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String uuid, long companyId) throws PortalException;
 
 	/**
 	* Returns the gadget with the matching UUID and company.
@@ -234,8 +235,7 @@ public interface GadgetLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.Gadget getGadgetByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String uuid, long companyId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
@@ -270,17 +270,14 @@ public interface GadgetLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@com.liferay.portal.kernel.cluster.Clusterable
 	public void initGadget(java.lang.String uuid, long companyId,
 		long gadgetId, java.lang.String name,
-		java.lang.String portletCategoryNames)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String portletCategoryNames) throws PortalException;
 
-	public void initGadgets()
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void initGadgets() throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -305,6 +302,5 @@ public interface GadgetLocalService extends BaseLocalService,
 		com.liferay.opensocial.model.Gadget gadget);
 
 	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
-		java.lang.String portletCategoryNames)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String portletCategoryNames) throws PortalException;
 }

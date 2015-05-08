@@ -241,7 +241,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	* @return the completion date of this kaleo task assignment instance
 	*/
 	@Override
-	public java.util.Date getCompletionDate() {
+	public Date getCompletionDate() {
 		return _kaleoTaskAssignmentInstance.getCompletionDate();
 	}
 
@@ -251,7 +251,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	* @return the create date of this kaleo task assignment instance
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _kaleoTaskAssignmentInstance.getCreateDate();
 	}
 
@@ -346,7 +346,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	* @return the modified date of this kaleo task assignment instance
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _kaleoTaskAssignmentInstance.getModifiedDate();
 	}
 
@@ -481,7 +481,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	* @param completionDate the completion date of this kaleo task assignment instance
 	*/
 	@Override
-	public void setCompletionDate(java.util.Date completionDate) {
+	public void setCompletionDate(Date completionDate) {
 		_kaleoTaskAssignmentInstance.setCompletionDate(completionDate);
 	}
 
@@ -491,7 +491,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	* @param createDate the create date of this kaleo task assignment instance
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_kaleoTaskAssignmentInstance.setCreateDate(createDate);
 	}
 
@@ -600,7 +600,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	* @param modifiedDate the modified date of this kaleo task assignment instance
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_kaleoTaskAssignmentInstance.setModifiedDate(modifiedDate);
 	}
 

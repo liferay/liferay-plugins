@@ -79,7 +79,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the foo remote service
 	 */
-	public com.liferay.sampleservicebuilder.service.FooService getFooService() {
+	public FooService getFooService() {
 		return fooService;
 	}
 
@@ -88,8 +88,7 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param fooService the foo remote service
 	 */
-	public void setFooService(
-		com.liferay.sampleservicebuilder.service.FooService fooService) {
+	public void setFooService(FooService fooService) {
 		this.fooService = fooService;
 	}
 
@@ -459,8 +458,8 @@ public abstract class FooServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.liferay.sampleservicebuilder.service.FooLocalService.class)
 	protected com.liferay.sampleservicebuilder.service.FooLocalService fooLocalService;
-	@BeanReference(type = com.liferay.sampleservicebuilder.service.FooService.class)
-	protected com.liferay.sampleservicebuilder.service.FooService fooService;
+	@BeanReference(type = FooService.class)
+	protected FooService fooService;
 	@BeanReference(type = FooPersistence.class)
 	protected FooPersistence fooPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

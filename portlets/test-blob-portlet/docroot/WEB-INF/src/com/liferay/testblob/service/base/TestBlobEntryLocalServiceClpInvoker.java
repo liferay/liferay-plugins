@@ -14,6 +14,8 @@
 
 package com.liferay.testblob.service.base;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
 import java.util.Arrays;
@@ -22,6 +24,7 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class TestBlobEntryLocalServiceClpInvoker {
 	public TestBlobEntryLocalServiceClpInvoker() {
 		_methodName0 = "addTestBlobEntry";

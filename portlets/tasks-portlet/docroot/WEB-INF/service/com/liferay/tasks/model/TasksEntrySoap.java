@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.List;
  * @see com.liferay.tasks.service.http.TasksEntryServiceSoap
  * @generated
  */
+@ProviderType
 public class TasksEntrySoap implements Serializable {
 	public static TasksEntrySoap toSoapModel(TasksEntry model) {
 		TasksEntrySoap soapModel = new TasksEntrySoap();

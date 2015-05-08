@@ -28,7 +28,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService
  *
  * @author Brian Wing Shun Chan
  * @see KaleoTaskAssignmentImpl
- * @see com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment
+ * @see KaleoTaskAssignment
  * @generated
  */
 @ProviderType

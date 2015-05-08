@@ -92,7 +92,7 @@ public abstract class KBArticleServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the k b article remote service
 	 */
-	public com.liferay.knowledgebase.service.KBArticleService getKBArticleService() {
+	public KBArticleService getKBArticleService() {
 		return kbArticleService;
 	}
 
@@ -101,8 +101,7 @@ public abstract class KBArticleServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param kbArticleService the k b article remote service
 	 */
-	public void setKBArticleService(
-		com.liferay.knowledgebase.service.KBArticleService kbArticleService) {
+	public void setKBArticleService(KBArticleService kbArticleService) {
 		this.kbArticleService = kbArticleService;
 	}
 
@@ -1076,8 +1075,8 @@ public abstract class KBArticleServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.liferay.knowledgebase.service.KBArticleLocalService.class)
 	protected com.liferay.knowledgebase.service.KBArticleLocalService kbArticleLocalService;
-	@BeanReference(type = com.liferay.knowledgebase.service.KBArticleService.class)
-	protected com.liferay.knowledgebase.service.KBArticleService kbArticleService;
+	@BeanReference(type = KBArticleService.class)
+	protected KBArticleService kbArticleService;
 	@BeanReference(type = KBArticlePersistence.class)
 	protected KBArticlePersistence kbArticlePersistence;
 	@BeanReference(type = KBArticleFinder.class)

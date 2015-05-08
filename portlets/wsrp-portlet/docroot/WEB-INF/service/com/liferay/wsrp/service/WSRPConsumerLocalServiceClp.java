@@ -14,12 +14,15 @@
 
 package com.liferay.wsrp.service;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
+@ProviderType
 public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public WSRPConsumerLocalServiceClp(
 		InvokableLocalService invokableLocalService) {

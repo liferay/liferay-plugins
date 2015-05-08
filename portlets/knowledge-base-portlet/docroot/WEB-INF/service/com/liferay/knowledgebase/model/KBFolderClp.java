@@ -784,7 +784,7 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	private String _urlTitle;
 	private String _description;
 	private BaseModel<?> _kbFolderRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

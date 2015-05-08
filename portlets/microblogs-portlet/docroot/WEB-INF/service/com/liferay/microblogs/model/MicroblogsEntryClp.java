@@ -768,7 +768,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	private long _parentMicroblogsEntryId;
 	private int _socialRelationType;
 	private BaseModel<?> _microblogsEntryRemoteModel;
-	private Class<?> _clpSerializerClass = com.liferay.microblogs.service.ClpSerializer.class;
+	private Class<?> _clpSerializerClass = ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

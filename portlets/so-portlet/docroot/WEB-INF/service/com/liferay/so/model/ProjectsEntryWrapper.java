@@ -14,6 +14,8 @@
 
 package com.liferay.so.model;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @see ProjectsEntry
  * @generated
  */
+@ProviderType
 public class ProjectsEntryWrapper implements ProjectsEntry,
 	ModelWrapper<ProjectsEntry> {
 	public ProjectsEntryWrapper(ProjectsEntry projectsEntry) {
@@ -160,7 +163,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @return the create date of this projects entry
 	*/
 	@Override
-	public java.util.Date getCreateDate() {
+	public Date getCreateDate() {
 		return _projectsEntry.getCreateDate();
 	}
 
@@ -190,7 +193,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @return the end date of this projects entry
 	*/
 	@Override
-	public java.util.Date getEndDate() {
+	public Date getEndDate() {
 		return _projectsEntry.getEndDate();
 	}
 
@@ -205,7 +208,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @return the modified date of this projects entry
 	*/
 	@Override
-	public java.util.Date getModifiedDate() {
+	public Date getModifiedDate() {
 		return _projectsEntry.getModifiedDate();
 	}
 
@@ -240,7 +243,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @return the start date of this projects entry
 	*/
 	@Override
-	public java.util.Date getStartDate() {
+	public Date getStartDate() {
 		return _projectsEntry.getStartDate();
 	}
 
@@ -330,7 +333,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @param createDate the create date of this projects entry
 	*/
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setCreateDate(Date createDate) {
 		_projectsEntry.setCreateDate(createDate);
 	}
 
@@ -360,7 +363,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @param endDate the end date of this projects entry
 	*/
 	@Override
-	public void setEndDate(java.util.Date endDate) {
+	public void setEndDate(Date endDate) {
 		_projectsEntry.setEndDate(endDate);
 	}
 
@@ -388,7 +391,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @param modifiedDate the modified date of this projects entry
 	*/
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		_projectsEntry.setModifiedDate(modifiedDate);
 	}
 
@@ -428,7 +431,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* @param startDate the start date of this projects entry
 	*/
 	@Override
-	public void setStartDate(java.util.Date startDate) {
+	public void setStartDate(Date startDate) {
 		_projectsEntry.setStartDate(startDate);
 	}
 
@@ -544,5 +547,5 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 		_projectsEntry.resetOriginalValues();
 	}
 
-	private ProjectsEntry _projectsEntry;
+	private final ProjectsEntry _projectsEntry;
 }

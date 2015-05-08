@@ -7,7 +7,6 @@
 	<import class="com.liferay.so.model.ProjectsEntry" />
 	<import class="com.liferay.so.model.SocialOffice" />
 	<class name="com.liferay.so.model.impl.FavoriteSiteImpl" table="SO_FavoriteSite">
-		<cache usage="read-write" />
 		<id name="favoriteSiteId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -16,7 +15,6 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 	<class name="com.liferay.so.model.impl.MemberRequestImpl" table="SO_MemberRequest">
-		<cache usage="read-write" />
 		<id name="memberRequestId" type="long">
 			<generator class="assigned" />
 		</id>
@@ -33,7 +31,6 @@
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.so.model.impl.ProjectsEntryImpl" table="SO_ProjectsEntry">
-		<cache usage="read-write" />
 		<id name="projectsEntryId" type="long">
 			<generator class="assigned" />
 		</id>

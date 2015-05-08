@@ -64,8 +64,7 @@ public interface MessageLocalService extends BaseLocalService,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
 		java.lang.String flags, long remoteMessageId,
-		java.lang.String contentType)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String contentType) throws PortalException;
 
 	/**
 	* Creates a new message with the primary key. Does not add the message to the database.
@@ -84,8 +83,7 @@ public interface MessageLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.mail.model.Message deleteMessage(
-		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		com.liferay.mail.model.Message message) throws PortalException;
 
 	/**
 	* Deletes the message with the primary key from the database. Also notifies the appropriate model listeners.
@@ -96,10 +94,9 @@ public interface MessageLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.mail.model.Message deleteMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
-	public void deleteMessages(long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+	public void deleteMessages(long folderId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -107,7 +104,7 @@ public interface MessageLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -209,8 +206,7 @@ public interface MessageLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Message getMessage(long folderId,
-		long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		long remoteMessageId) throws PortalException;
 
 	/**
 	* Returns the message with the primary key.
@@ -221,7 +217,7 @@ public interface MessageLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Message getMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	/**
 	* Returns a range of all the messages.
@@ -249,13 +245,11 @@ public interface MessageLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.io.Serializable primaryKeyObj) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Message getRemoteMessage(long folderId,
-		boolean oldest)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		boolean oldest) throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -276,11 +270,10 @@ public interface MessageLocalService extends BaseLocalService,
 
 	public com.liferay.mail.model.Message updateContent(long messageId,
 		java.lang.String body, java.lang.String flags)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		throws PortalException;
 
 	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
-		boolean value)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		boolean value) throws PortalException;
 
 	/**
 	* Updates the message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -296,6 +289,5 @@ public interface MessageLocalService extends BaseLocalService,
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
 		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.PortalException;
+		java.lang.String flags, long remoteMessageId) throws PortalException;
 }

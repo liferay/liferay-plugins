@@ -28,7 +28,7 @@ import com.liferay.marketplace.service.ModuleLocalServiceUtil;
  *
  * @author Ryan Park
  * @see ModuleImpl
- * @see com.liferay.marketplace.model.Module
+ * @see Module
  * @generated
  */
 @ProviderType

@@ -28,7 +28,7 @@ import com.liferay.socialcoding.service.JIRAProjectLocalServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see JIRAProjectImpl
- * @see com.liferay.socialcoding.model.JIRAProject
+ * @see JIRAProject
  * @generated
  */
 @ProviderType
