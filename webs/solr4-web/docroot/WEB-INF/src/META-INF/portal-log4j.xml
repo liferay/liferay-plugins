@@ -2,7 +2,56 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Basic Configuration -->
+
 	<logger name="com.liferay.portal.search.solr">
 		<level value="WARN" />
 	</logger>
+
+	<!-- Advanced Configuration -->
+
+	<!--
+	This configuration mode requires some additional changes in the plugin:
+	- Stop server
+	- Delete log4j.jar and log4j-extras.jar from the plugin's WEB-NF/lib folder
+	- Edit the liferay-plugin-package.properties descriptor file inside the plugin's WEB-INF folder and remove log4j.jar from the portal-dependency-jars
+	- Comment out the basic configuration
+	- Uncomment the advanced configuration below
+	- [optional] Delete your application server's temp folder
+	- Start server
+	-->
+
+	<!--
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%t][%c{1}:%L] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="TEXT_FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="@liferay.home@/logs/solr-adapter.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%t][%c{1}:%L] %m%n" />
+		</layout>
+	</appender>
+
+	<category name="com.liferay.portal.search.solr">
+		<priority value="WARN" />
+	</category>
+
+	<category name="org.apache">
+		<priority value="WARN" />
+	</category>
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="TEXT_FILE" />
+	</root>
+	-->
+
 </log4j:configuration>
