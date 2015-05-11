@@ -915,22 +915,18 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long[] calendarIds = ParamUtil.getLongValues(
 			resourceRequest, "calendarIds");
-
 		java.util.Calendar endTimeJCalendar = getJCalendar(
 			resourceRequest, "endTime");
-		long endTime = endTimeJCalendar.getTimeInMillis();
-
 		java.util.Calendar startTimeJCalendar = getJCalendar(
 			resourceRequest, "startTime");
-		long startTime = startTimeJCalendar.getTimeInMillis();
-
 		int[] statuses = ParamUtil.getIntegerValues(
 			resourceRequest, "statuses");
 
 		List<CalendarBooking> calendarBookings =
 			CalendarBookingServiceUtil.search(
 				themeDisplay.getCompanyId(), new long[0], calendarIds,
-				new long[0], -1, null, startTime, endTime, true, statuses,
+				new long[0], -1, null, startTimeJCalendar.getTimeInMillis(),
+				endTimeJCalendar.getTimeInMillis(), true, statuses,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		JSONArray jsonArray = CalendarUtil.toCalendarBookingsJSONArray(
