@@ -2517,7 +2517,7 @@ Please find a solution that does not require portal-impl.jar.
 						<then>
 							<junit dir="@{module.dir}" fork="on" forkmode="@{junit.forkmode}" jvm="${junit.jvm}" outputtoformatters="false" printsummary="on" showoutput="true">
 								<sysproperty key="app.server.tomcat.dir" value="${app.server.tomcat.dir}" />
-								<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/cobertura.ser" />
+								<sysproperty key="whip.datafile" file="@{module.dir}/test-coverage/whip.dat" />
 								<jvmarg line="${junit.debug.jpda}" />
 								<jvmarg value="-Xmx${junit.java.mx}" />
 								<jvmarg value="-XX:MaxPermSize=${junit.java.maxpermsize}" />
