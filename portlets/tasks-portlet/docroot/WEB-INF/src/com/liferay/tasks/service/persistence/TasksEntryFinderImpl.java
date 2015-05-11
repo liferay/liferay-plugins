@@ -69,7 +69,6 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
-
 			sql = StringUtil.replace(
 				sql, "[$ASSET_TAG_TAG_IDS$]",
 				getAssetTagTagIds(assetTagIds, notAssetTagIds));
@@ -100,7 +99,6 @@ public class TasksEntryFinderImpl
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
 				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
-
 				qPos.add(assetTagIds);
 				qPos.add(notAssetTagIds);
 			}
@@ -158,7 +156,6 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
-
 			sql = StringUtil.replace(
 				sql, "[$ASSET_TAG_TAG_IDS$]",
 				getAssetTagTagIds(assetTagIds, notAssetTagIds));
@@ -189,7 +186,6 @@ public class TasksEntryFinderImpl
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
 				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
-
 				qPos.add(assetTagIds);
 				qPos.add(notAssetTagIds);
 			}
