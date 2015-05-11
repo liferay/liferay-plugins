@@ -1964,6 +1964,15 @@ Please find a solution that does not require portal-impl.jar.
 						/>
 					</jar>
 				</then>
+				<elseif>
+					<available file="docroot" />
+					<then>
+						<jar
+							basedir="docroot"
+							jarfile="${plugin.sources.file}"
+						/>
+					</then>
+				</elseif>
 				<else>
 					<jar
 						basedir="src"
