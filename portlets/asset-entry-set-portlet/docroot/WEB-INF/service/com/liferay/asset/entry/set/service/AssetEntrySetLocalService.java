@@ -270,25 +270,10 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.asset.entry.set.model.AssetEntrySet fetchAssetEntrySet(
-		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit, int start, int end)
+		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -304,8 +289,7 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long createTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
-		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit, int start, int end)
+		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -318,14 +302,12 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
-		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
+		long userId, long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet unlikeAssetEntrySet(
-		long userId, long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
+		long userId, long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

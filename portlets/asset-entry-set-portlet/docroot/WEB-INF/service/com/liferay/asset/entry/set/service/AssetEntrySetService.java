@@ -84,23 +84,20 @@ public interface AssetEntrySetService extends BaseService, InvokableService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.asset.entry.set.model.AssetEntrySet fetchAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
+		long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.asset.entry.set.model.AssetEntrySet getAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
+		long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit, int start, int end)
+		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -114,8 +111,7 @@ public interface AssetEntrySetService extends BaseService, InvokableService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit, int start, int end)
+		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -127,14 +123,12 @@ public interface AssetEntrySetService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet likeAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
+		long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.asset.entry.set.model.AssetEntrySet unlikeAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit)
+		long assetEntrySetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

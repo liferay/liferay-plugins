@@ -255,6 +255,11 @@ public interface AssetEntrySetLikeLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike> getAssetEntrySetLikes(
+		long assetEntrySetId, long classNameId, long classPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.json.JSONArray getLikedParticipantFullNames(
 		long userId, long assetEntrySetId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -517,18 +517,14 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
-	public void setChildAssetEntrySets(long userId, long createTime,
-		int childAssetEntrySetsLimit) {
+	public void setChildAssetEntrySets(
+		java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> childAssetEntrySets) {
 		try {
 			String methodName = "setChildAssetEntrySets";
 
-			Class<?>[] parameterTypes = new Class<?>[] {
-					long.class, long.class, int.class
-				};
+			Class<?>[] parameterTypes = new Class<?>[] { java.util.List.class };
 
-			Object[] parameterValues = new Object[] {
-					userId, createTime, childAssetEntrySetsLimit
-				};
+			Object[] parameterValues = new Object[] { childAssetEntrySets };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}

@@ -290,6 +290,14 @@ public class AssetEntrySetLikeLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike> getAssetEntrySetLikes(
+		long assetEntrySetId, long classNameId, long classPK, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLikeLocalService.getAssetEntrySetLikes(assetEntrySetId,
+			classNameId, classPK, start, end);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.json.JSONArray getLikedParticipantFullNames(
 		long userId, long assetEntrySetId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,

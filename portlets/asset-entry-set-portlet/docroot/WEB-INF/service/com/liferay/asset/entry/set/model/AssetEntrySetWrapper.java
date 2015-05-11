@@ -574,12 +574,11 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	}
 
 	@Override
-	public void setChildAssetEntrySets(long userId, long createTime,
-		int childAssetEntrySetsLimit)
+	public void setChildAssetEntrySets(
+		java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> childAssetEntrySets)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_assetEntrySet.setChildAssetEntrySets(userId, createTime,
-			childAssetEntrySetsLimit);
+		_assetEntrySet.setChildAssetEntrySets(childAssetEntrySets);
 	}
 
 	@Override

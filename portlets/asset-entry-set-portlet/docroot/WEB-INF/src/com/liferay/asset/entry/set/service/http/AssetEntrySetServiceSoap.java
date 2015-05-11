@@ -95,11 +95,9 @@ public class AssetEntrySetServiceSoap {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap fetchAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit) throws RemoteException {
+		long assetEntrySetId) throws RemoteException {
 		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.fetchAssetEntrySet(assetEntrySetId,
-					childAssetEntrySetsLimit, likedParticipantsLimit);
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.fetchAssetEntrySet(assetEntrySetId);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}
@@ -111,11 +109,9 @@ public class AssetEntrySetServiceSoap {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap getAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit) throws RemoteException {
+		long assetEntrySetId) throws RemoteException {
 		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.getAssetEntrySet(assetEntrySetId,
-					childAssetEntrySetsLimit, likedParticipantsLimit);
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.getAssetEntrySet(assetEntrySetId);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}
@@ -128,14 +124,12 @@ public class AssetEntrySetServiceSoap {
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap[] getNewAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit, int start, int end)
+		java.lang.String[] assetTagNames, int start, int end)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> returnValue =
 				AssetEntrySetServiceUtil.getNewAssetEntrySets(createTime,
-					parentAssetEntrySetId, sharedTo, assetTagNames,
-					childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
+					parentAssetEntrySetId, sharedTo, assetTagNames, start, end);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModels(returnValue);
 		}
@@ -166,14 +160,12 @@ public class AssetEntrySetServiceSoap {
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap[] getOldAssetEntrySets(
 		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit, int start, int end)
+		java.lang.String[] assetTagNames, int start, int end)
 		throws RemoteException {
 		try {
 			java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> returnValue =
 				AssetEntrySetServiceUtil.getOldAssetEntrySets(createTime,
-					parentAssetEntrySetId, sharedTo, assetTagNames,
-					childAssetEntrySetsLimit, likedParticipantsLimit, start, end);
+					parentAssetEntrySetId, sharedTo, assetTagNames, start, end);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModels(returnValue);
 		}
@@ -203,11 +195,9 @@ public class AssetEntrySetServiceSoap {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap likeAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit) throws RemoteException {
+		long assetEntrySetId) throws RemoteException {
 		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.likeAssetEntrySet(assetEntrySetId,
-					childAssetEntrySetsLimit, likedParticipantsLimit);
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.likeAssetEntrySet(assetEntrySetId);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}
@@ -219,11 +209,9 @@ public class AssetEntrySetServiceSoap {
 	}
 
 	public static com.liferay.asset.entry.set.model.AssetEntrySetSoap unlikeAssetEntrySet(
-		long assetEntrySetId, int childAssetEntrySetsLimit,
-		int likedParticipantsLimit) throws RemoteException {
+		long assetEntrySetId) throws RemoteException {
 		try {
-			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.unlikeAssetEntrySet(assetEntrySetId,
-					childAssetEntrySetsLimit, likedParticipantsLimit);
+			com.liferay.asset.entry.set.model.AssetEntrySet returnValue = AssetEntrySetServiceUtil.unlikeAssetEntrySet(assetEntrySetId);
 
 			return com.liferay.asset.entry.set.model.AssetEntrySetSoap.toSoapModel(returnValue);
 		}
