@@ -298,6 +298,7 @@ public class CalendarImporterLocalServiceImpl
 		calendarBooking.setCalendarId(calendarId);
 		calendarBooking.setCalendarResourceId(calendarResourceId);
 		calendarBooking.setParentCalendarBookingId(calendarBookingId);
+		calendarBooking.setVEventUid(uuid);
 		calendarBooking.setTitle(title);
 		calendarBooking.setDescription(description);
 		calendarBooking.setLocation(location);
@@ -313,7 +314,6 @@ public class CalendarImporterLocalServiceImpl
 		calendarBooking.setStatusByUserId(userId);
 		calendarBooking.setStatusByUserName(userName);
 		calendarBooking.setStatusDate(createDate);
-		calendarBooking.setVEventUid(uuid);
 
 		calendarBookingPersistence.update(calendarBooking);
 	}
