@@ -15,7 +15,6 @@
 package com.liferay.calendar.hook.listeners;
 
 import com.liferay.calendar.model.CalendarBooking;
-import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.calendar.service.CalEventLocalServiceUtil;
@@ -27,9 +26,7 @@ public class CalendarBookingModelListener
 	extends BaseModelListener<CalendarBooking> {
 
 	@Override
-	public void onAfterRemove(CalendarBooking calendarBooking)
-		throws ModelListenerException {
-
+	public void onAfterRemove(CalendarBooking calendarBooking) {
 		CalEvent calEvent =
 			CalEventLocalServiceUtil.fetchCalEventByUuidAndGroupId(
 				calendarBooking.getUuid(), calendarBooking.getGroupId());
