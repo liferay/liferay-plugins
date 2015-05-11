@@ -524,8 +524,16 @@ AUI.add(
 					'calendarBookings',
 					{
 						calendarIds: calendarIds.join(','),
-						endTime: endDate.getTime(),
-						startTime: startDate.getTime(),
+						endTimeDay: endDate.getDate(),
+						endTimeHour: endDate.getHours(),
+						endTimeMinute: endDate.getMinutes(),
+						endTimeMonth: endDate.getMonth(),
+						endTimeYear: endDate.getFullYear(),
+						startTimeDay: startDate.getDate(),
+						startTimeHour: startDate.getHours(),
+						startTimeMinute: startDate.getMinutes(),
+						startTimeMonth: startDate.getMonth(),
+						startTimeYear: startDate.getFullYear(),
 						statuses: status.join(',')
 					},
 					callback

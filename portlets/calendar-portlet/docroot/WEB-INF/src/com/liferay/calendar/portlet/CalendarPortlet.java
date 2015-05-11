@@ -915,8 +915,15 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long[] calendarIds = ParamUtil.getLongValues(
 			resourceRequest, "calendarIds");
-		long endTime = ParamUtil.getLong(resourceRequest, "endTime");
-		long startTime = ParamUtil.getLong(resourceRequest, "startTime");
+
+		java.util.Calendar endTimeJCalendar = getJCalendar(
+			resourceRequest, "endTime");
+		long endTime = endTimeJCalendar.getTimeInMillis();
+
+		java.util.Calendar startTimeJCalendar = getJCalendar(
+			resourceRequest, "startTime");
+		long startTime = startTimeJCalendar.getTimeInMillis();
+
 		int[] statuses = ParamUtil.getIntegerValues(
 			resourceRequest, "statuses");
 
