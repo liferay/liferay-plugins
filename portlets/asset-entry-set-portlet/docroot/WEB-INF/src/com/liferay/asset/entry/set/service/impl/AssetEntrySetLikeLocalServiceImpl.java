@@ -34,6 +34,16 @@ public class AssetEntrySetLikeLocalServiceImpl
 	extends AssetEntrySetLikeLocalServiceBaseImpl {
 
 	@Override
+	public List<AssetEntrySetLike> getAssetEntrySetLikes(
+			long assetEntrySetId, long classNameId, long classPK, int start,
+			int end)
+		throws SystemException {
+
+		return assetEntrySetLikeFinder.findByAESI_NotC_C(
+			assetEntrySetId, classNameId, classPK, start, end);
+	}
+
+	@Override
 	public JSONArray getLikedParticipantFullNames(
 			long userId, long assetEntrySetId, int start, int end)
 		throws PortalException, SystemException {
