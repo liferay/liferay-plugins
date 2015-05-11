@@ -810,6 +810,8 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		<var name="patched.file.available" unset="true" />
 	</target>
 
+	<target name="install" depends="publish-local-m2-release" />
+
 	<target name="publish-local-m2-release" depends="jar-javadoc,jar-source,war">
 		<antcall target="build-common-ivy.publish">
 			<param name="ivy.publish.resolver" value="local-m2" />

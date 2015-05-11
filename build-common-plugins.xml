@@ -52,6 +52,16 @@
 		</for>
 	</target>
 
+	<target name="install">
+		<multiroot-subant
+			build.file="build.xml"
+			root.dir="${basedir}"
+			excludes="${plugins.excludes}"
+			includes="${plugins.includes}"
+			target="install"
+		/>
+	</target>
+
 	<target name="setup-eclipse">
 		<multiroot-subant
 			build.file="build.xml"
