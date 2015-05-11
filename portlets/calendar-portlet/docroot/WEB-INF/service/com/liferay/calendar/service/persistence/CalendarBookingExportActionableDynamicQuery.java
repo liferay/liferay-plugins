@@ -16,9 +16,12 @@ package com.liferay.calendar.service.persistence;
 
 import com.liferay.calendar.model.CalendarBooking;
 
+import com.liferay.portal.kernel.dao.orm.Criterion;
+import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
@@ -67,7 +70,19 @@ public class CalendarBookingExportActionableDynamicQuery
 
 	@Override
 	protected void addCriteria(DynamicQuery dynamicQuery) {
-		_portletDataContext.addDateRangeCriteria(dynamicQuery, "modifiedDate");
+		Criterion modifiedDateCriterion = _portletDataContext.getDateRangeCriteria(
+				"modifiedDate");
+		Criterion statusDateCriterion = _portletDataContext.getDateRangeCriteria(
+				"statusDate");
+
+		if ((modifiedDateCriterion != null) && (statusDateCriterion != null)) {
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			disjunction.add(modifiedDateCriterion);
+			disjunction.add(statusDateCriterion);
+
+			dynamicQuery.add(disjunction);
+		}
 
 		StagedModelDataHandler<?> stagedModelDataHandler = StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(CalendarBooking.class.getName());
 

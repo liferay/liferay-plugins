@@ -27,6 +27,7 @@
 			<basic name="calendarResourceId" />
 			<basic name="name" />
 			<basic name="description" />
+			<basic name="timeZoneId" />
 			<basic name="color" />
 			<basic name="defaultCalendar" />
 			<basic name="enableComments" />

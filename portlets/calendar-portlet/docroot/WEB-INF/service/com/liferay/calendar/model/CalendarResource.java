@@ -41,6 +41,14 @@ public interface CalendarResource extends CalendarResourceModel,
 	public long getDefaultCalendarId()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.TimeZone getTimeZone()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public java.lang.String getTimeZoneId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public boolean isGroup();
 
 	public boolean isUser();

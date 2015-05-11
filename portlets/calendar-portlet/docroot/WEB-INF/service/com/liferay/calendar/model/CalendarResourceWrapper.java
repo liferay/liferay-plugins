@@ -946,6 +946,20 @@ public class CalendarResourceWrapper implements CalendarResource,
 	}
 
 	@Override
+	public java.util.TimeZone getTimeZone()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResource.getTimeZone();
+	}
+
+	@Override
+	public java.lang.String getTimeZoneId()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResource.getTimeZoneId();
+	}
+
+	@Override
 	public boolean isGroup() {
 		return _calendarResource.isGroup();
 	}

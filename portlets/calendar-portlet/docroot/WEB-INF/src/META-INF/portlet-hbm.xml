@@ -23,6 +23,7 @@
 		<property name="calendarResourceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="timeZoneId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="color" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="defaultCalendar" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="enableComments" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />

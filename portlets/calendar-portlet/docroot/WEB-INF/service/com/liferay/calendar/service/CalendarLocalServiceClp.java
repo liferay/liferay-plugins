@@ -133,8 +133,8 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		_methodName23 = "addCalendar";
 
 		_methodParameterTypes23 = new String[] {
-				"long", "long", "long", "java.util.Map", "java.util.Map", "int",
-				"boolean", "boolean", "boolean",
+				"long", "long", "long", "java.util.Map", "java.util.Map",
+				"java.lang.String", "int", "boolean", "boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -191,15 +191,15 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		_methodName33 = "updateCalendar";
 
 		_methodParameterTypes33 = new String[] {
-				"long", "java.util.Map", "java.util.Map", "int", "boolean",
-				"boolean", "boolean",
+				"long", "java.util.Map", "java.util.Map", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName34 = "updateCalendar";
 
 		_methodParameterTypes34 = new String[] {
-				"long", "java.util.Map", "java.util.Map", "int",
+				"long", "java.util.Map", "java.util.Map", "java.lang.String",
+				"int", "boolean", "boolean", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
@@ -896,8 +896,8 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		long groupId, long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar, boolean enableComments,
-		boolean enableRatings,
+		java.lang.String timeZoneId, int color, boolean defaultCalendar,
+		boolean enableComments, boolean enableRatings,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -916,6 +916,8 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 					ClpSerializer.translateInput(nameMap),
 						
 					ClpSerializer.translateInput(descriptionMap),
+						
+					ClpSerializer.translateInput(timeZoneId),
 						
 					color,
 						
@@ -1289,9 +1291,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, boolean defaultCalendar, boolean enableComments,
-		boolean enableRatings,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		int color, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1307,12 +1307,6 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 					ClpSerializer.translateInput(descriptionMap),
 						
 					color,
-						
-					defaultCalendar,
-						
-					enableComments,
-						
-					enableRatings,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
@@ -1344,7 +1338,9 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 	public com.liferay.calendar.model.Calendar updateCalendar(long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int color, com.liferay.portal.service.ServiceContext serviceContext)
+		java.lang.String timeZoneId, int color, boolean defaultCalendar,
+		boolean enableComments, boolean enableRatings,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1359,7 +1355,15 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 						
 					ClpSerializer.translateInput(descriptionMap),
 						
+					ClpSerializer.translateInput(timeZoneId),
+						
 					color,
+						
+					defaultCalendar,
+						
+					enableComments,
+						
+					enableRatings,
 						
 					ClpSerializer.translateInput(serviceContext)
 					});
