@@ -38,7 +38,6 @@ import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarNotificationTemplateServiceUtil;
-import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceServiceUtil;
 import com.liferay.calendar.service.CalendarServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
@@ -1026,11 +1025,10 @@ public class CalendarPortlet extends MVCPortlet {
 		for (Document document : hits.getDocs()) {
 			long calendarId = GetterUtil.getLong(
 				document.get(Field.ENTRY_CLASS_PK));
+
 			Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
 
-			CalendarResource calendarResource =
-				CalendarResourceLocalServiceUtil.getCalendarResource(
-					calendar.getCalendarResourceId());
+			CalendarResource calendarResource = calendar.getCalendarResource();
 
 			if (calendarResource.isActive()) {
 				calendarsSet.add(calendar);
