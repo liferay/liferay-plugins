@@ -406,6 +406,6 @@ public class AlloyControllerInvokerManager {
 		new ConcurrentHashMap<String, AlloyControllerInvoker>();
 	private String _contextPath;
 	private AtomicInteger _counter = new AtomicInteger(0);
-	private boolean _locked = false;
+	private boolean _locked;
 
 }
