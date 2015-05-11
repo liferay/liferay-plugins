@@ -16,7 +16,6 @@ package com.liferay.calendar.hook.listeners;
 
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.calendar.service.CalEventLocalServiceUtil;
@@ -35,7 +34,7 @@ public class CalendarBookingModelListener
 			CalEventLocalServiceUtil.fetchCalEventByUuidAndGroupId(
 				calendarBooking.getUuid(), calendarBooking.getGroupId());
 
-		if (Validator.isNotNull(calEvent)) {
+		if (calEvent != null) {
 			CalEventLocalServiceUtil.deleteCalEvent(calEvent);
 		}
 	}
