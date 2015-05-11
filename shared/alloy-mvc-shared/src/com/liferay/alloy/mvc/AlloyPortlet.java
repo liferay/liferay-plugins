@@ -213,32 +213,32 @@ public class AlloyPortlet extends GenericPortlet {
 	}
 
 	protected void registerAlloyController(AlloyController alloyController) {
-		BaseAlloyControllerImpl baseAlloyControllerImpl =
+		BaseAlloyControllerImpl newBaseAlloyControllerImpl =
 			(BaseAlloyControllerImpl)alloyController;
 
-		String controller = baseAlloyControllerImpl.controllerPath;
+		String controller = newBaseAlloyControllerImpl.controllerPath;
 
-		BaseAlloyControllerImpl otherBaseAlloyControllerImpl =
+		BaseAlloyControllerImpl oldBaseAlloyControllerImpl =
 			_alloyControllers.get(controller);
 
-		if ((otherBaseAlloyControllerImpl == null) ||
-			(baseAlloyControllerImpl.getClass() !=
-				otherBaseAlloyControllerImpl.getClass())) {
+		if ((oldBaseAlloyControllerImpl == null) ||
+			(newBaseAlloyControllerImpl.getClass() !=
+				oldBaseAlloyControllerImpl.getClass())) {
 
 			synchronized (controller.intern()) {
-				otherBaseAlloyControllerImpl = _alloyControllers.get(
-					controller);
+				oldBaseAlloyControllerImpl = _alloyControllers.get(controller);
 
-				if ((otherBaseAlloyControllerImpl == null) ||
-					(baseAlloyControllerImpl.getClass() !=
-						otherBaseAlloyControllerImpl.getClass())) {
+				if ((oldBaseAlloyControllerImpl == null) ||
+					(newBaseAlloyControllerImpl.getClass() !=
+						oldBaseAlloyControllerImpl.getClass())) {
 
-					_alloyControllers.put(controller, baseAlloyControllerImpl);
+					_alloyControllers.put(
+						controller, newBaseAlloyControllerImpl);
 
 					_alloyControllerInvokerManager.registerController(
-						baseAlloyControllerImpl.getThemeDisplay(), this,
-						baseAlloyControllerImpl.portlet, controller,
-						baseAlloyControllerImpl.getClass());
+						newBaseAlloyControllerImpl.getThemeDisplay(), this,
+						newBaseAlloyControllerImpl.portlet, controller,
+						newBaseAlloyControllerImpl.getClass());
 				}
 			}
 		}
