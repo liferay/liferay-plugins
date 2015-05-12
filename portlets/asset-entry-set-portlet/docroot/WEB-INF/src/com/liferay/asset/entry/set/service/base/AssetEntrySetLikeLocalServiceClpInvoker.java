@@ -122,15 +122,19 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 
 		_methodParameterTypes51 = new String[] { "java.lang.String" };
 
-		_methodName56 = "getAssetEntrySetLikes";
+		_methodName56 = "fetchAssetEntrySetLike";
 
-		_methodParameterTypes56 = new String[] {
+		_methodParameterTypes56 = new String[] { "long", "long", "long" };
+
+		_methodName57 = "getAssetEntrySetLikes";
+
+		_methodParameterTypes57 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
 
-		_methodName57 = "getLikedParticipantFullNames";
+		_methodName58 = "getLikedParticipantFullNames";
 
-		_methodParameterTypes57 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes58 = new String[] { "long", "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -236,6 +240,13 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return AssetEntrySetLikeLocalServiceUtil.fetchAssetEntrySetLike(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return AssetEntrySetLikeLocalServiceUtil.getAssetEntrySetLikes(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -243,8 +254,8 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return AssetEntrySetLikeLocalServiceUtil.getLikedParticipantFullNames(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -294,4 +305,6 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 }
