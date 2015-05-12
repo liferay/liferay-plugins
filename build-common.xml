@@ -259,25 +259,19 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<set-build-xml-var
-				build.xml.var.name="module.name"
-				module.dir="@{module.dir}"
-			/>
+			<path id="upgrade.table.builder.classpath">
+				<fileset dir="${sdk.dir}/dependencies/com.liferay.portal.tools.upgrade.table.builder/lib" includes="*.jar" />
+			</path>
 
-			<if>
-				<isset property="set-build-xml-var.return" />
-				<then>
-					<java
-						classname="com.liferay.portal.tools.UpgradeTableBuilder"
-						classpathref="portal.classpath"
-						fork="true"
-						newenvironment="true"
-					>
-						<arg value="${upgrade.table.dir}" />
-						<arg value="${set-build-xml-var.return}" />
-					</java>
-				</then>
-			</if>
+			<java
+				classname="com.liferay.portal.tools.upgrade.table.builder.UpgradeTableBuilder"
+				classpathref="upgrade.table.builder.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+				<arg value="upgrade.base.dir=@{module.dir}" />
+				<arg value="upgrade.table.dir=${upgrade.table.dir}" />
+			</java>
 		</sequential>
 	</macrodef>
 
