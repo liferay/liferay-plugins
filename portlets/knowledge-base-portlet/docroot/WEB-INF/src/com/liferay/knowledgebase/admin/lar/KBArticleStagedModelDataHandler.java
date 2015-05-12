@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -57,6 +58,15 @@ public class KBArticleStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {KBArticle.class.getName()};
 
 	@Override
+	public void deleteStagedModel(StagedModel stagedModel)
+		throws PortalException {
+
+		if (stagedModel instanceof KBArticle) {
+			KBArticleLocalServiceUtil.deleteKBArticle((KBArticle)stagedModel);
+		}
+	}
+
+	@Override
 	public void deleteStagedModel(
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
@@ -64,7 +74,7 @@ public class KBArticleStagedModelDataHandler
 		KBArticle kbArticle = fetchStagedModelByUuidAndGroupId(uuid, groupId);
 
 		if (kbArticle != null) {
-			KBArticleLocalServiceUtil.deleteKBArticle(kbArticle);
+			deleteStagedModel(kbArticle);
 		}
 	}
 

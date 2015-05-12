@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
@@ -36,6 +37,16 @@ public class WSRPProducerStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {WSRPProducer.class.getName()};
 
 	@Override
+	public void deleteStagedModel(StagedModel stagedModel)
+		throws PortalException {
+
+		if (stagedModel instanceof WSRPProducer) {
+			WSRPProducerLocalServiceUtil.deleteWSRPProducer(
+				(WSRPProducer)stagedModel);
+		}
+	}
+
+	@Override
 	public void deleteStagedModel(
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
@@ -44,7 +55,7 @@ public class WSRPProducerStagedModelDataHandler
 			uuid, groupId);
 
 		if (wsrpProducer != null) {
-			WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducer);
+			deleteStagedModel(wsrpProducer);
 		}
 	}
 

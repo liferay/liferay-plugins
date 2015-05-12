@@ -21,6 +21,7 @@ import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
@@ -29,6 +30,7 @@ import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -45,16 +47,26 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		{CalendarNotificationTemplate.class.getName()};
 
 	@Override
+	public void deleteStagedModel(StagedModel stagedModel)
+		throws PortalException {
+
+		if (stagedModel instanceof CalendarNotificationTemplate) {
+			CalendarNotificationTemplateLocalServiceUtil.
+				deleteCalendarNotificationTemplate(
+					(CalendarNotificationTemplate)stagedModel);
+		}
+	}
+
+	@Override
 	public void deleteStagedModel(
-		String uuid, long groupId, String className, String extraData) {
+			String uuid, long groupId, String className, String extraData)
+		throws PortalException {
 
 		CalendarNotificationTemplate calendarNotificationTemplate =
 			fetchStagedModelByUuidAndGroupId(uuid, groupId);
 
 		if (calendarNotificationTemplate != null) {
-			CalendarNotificationTemplateLocalServiceUtil.
-				deleteCalendarNotificationTemplate(
-					calendarNotificationTemplate);
+			deleteStagedModel(calendarNotificationTemplate);
 		}
 	}
 

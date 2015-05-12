@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.wsrp.model.WSRPConsumer;
@@ -43,6 +44,16 @@ public class WSRPConsumerPortletStagedModelDataHandler
 		{WSRPConsumerPortlet.class.getName()};
 
 	@Override
+	public void deleteStagedModel(StagedModel stagedModel)
+		throws PortalException {
+
+		if (stagedModel instanceof WSRPConsumerPortlet) {
+			WSRPConsumerPortletLocalServiceUtil.deleteWSRPConsumerPortlet(
+				(WSRPConsumerPortlet)stagedModel);
+		}
+	}
+
+	@Override
 	public void deleteStagedModel(
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
@@ -55,8 +66,7 @@ public class WSRPConsumerPortletStagedModelDataHandler
 					uuid, group.getCompanyId());
 
 		if (wsrpConsumerPortlet != null) {
-			WSRPConsumerPortletLocalServiceUtil.deleteWSRPConsumerPortlet(
-				wsrpConsumerPortlet);
+			deleteStagedModel(wsrpConsumerPortlet);
 		}
 	}
 

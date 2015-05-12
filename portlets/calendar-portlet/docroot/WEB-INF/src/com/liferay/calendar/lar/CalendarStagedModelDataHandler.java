@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 
@@ -46,6 +47,15 @@ public class CalendarStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {Calendar.class.getName()};
 
 	@Override
+	public void deleteStagedModel(StagedModel stagedModel)
+		throws PortalException {
+
+		if (stagedModel instanceof Calendar) {
+			CalendarLocalServiceUtil.deleteCalendar((Calendar)stagedModel);
+		}
+	}
+
+	@Override
 	public void deleteStagedModel(
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
@@ -53,7 +63,7 @@ public class CalendarStagedModelDataHandler
 		Calendar calendar = fetchStagedModelByUuidAndGroupId(uuid, groupId);
 
 		if (calendar != null) {
-			CalendarLocalServiceUtil.deleteCalendar(calendar);
+			deleteStagedModel(calendar);
 		}
 	}
 

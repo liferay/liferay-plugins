@@ -15,11 +15,13 @@
 package com.liferay.samplelar.lar;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
@@ -36,15 +38,25 @@ public class SampleLARBookingStagedModelDataHandler
 		{SampleLARBooking.class.getName()};
 
 	@Override
+	public void deleteStagedModel(StagedModel stagedModel)
+		throws PortalException {
+
+		if (stagedModel instanceof SampleLARBooking) {
+			SampleLARBookingLocalServiceUtil.deleteSampleLARBooking(
+				(SampleLARBooking)stagedModel);
+		}
+	}
+
+	@Override
 	public void deleteStagedModel(
-		String uuid, long groupId, String className, String extraData) {
+			String uuid, long groupId, String className, String extraData)
+		throws PortalException {
 
 		SampleLARBooking sampleLARBooking = fetchStagedModelByUuidAndGroupId(
 			uuid, groupId);
 
 		if (sampleLARBooking != null) {
-			SampleLARBookingLocalServiceUtil.deleteSampleLARBooking(
-				sampleLARBooking);
+			deleteStagedModel(sampleLARBooking);
 		}
 	}
 
