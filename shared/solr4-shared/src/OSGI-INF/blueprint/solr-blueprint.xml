@@ -115,7 +115,6 @@
 
 	<!-- References -->
 
-	<reference id="com.liferay.portal.kernel.messaging.MessageBus" interface="com.liferay.portal.kernel.messaging.MessageBus" timeout="30000" />
 	<reference availability="optional" id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" interface="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" />
 
 	<!-- Configurator -->
@@ -124,7 +123,6 @@
 		<bean class="com.liferay.portal.search.solr.osgi.OSGIPluginSearchEngineConfigurator">
 			<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcher" />
 			<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
-			<property name="messageBus" ref="com.liferay.portal.kernel.messaging.MessageBus" />
 			<property name="searchEngines">
 				<map>
 					<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
