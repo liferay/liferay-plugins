@@ -16,6 +16,7 @@ package com.liferay.asset.entry.set.service.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySetLike;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLikeLocalServiceBaseImpl;
+import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -32,6 +33,18 @@ import java.util.List;
  */
 public class AssetEntrySetLikeLocalServiceImpl
 	extends AssetEntrySetLikeLocalServiceBaseImpl {
+
+	@Override
+	public AssetEntrySetLike fetchAssetEntrySetLike(
+			long assetEntrySetId, long classNameId, long classPK)
+		throws SystemException {
+
+		AssetEntrySetLikePK assetEntrySetLikePK = new AssetEntrySetLikePK(
+			assetEntrySetId, classNameId, classPK);
+
+		return assetEntrySetLikePersistence.fetchByPrimaryKey(
+			assetEntrySetLikePK);
+	}
 
 	@Override
 	public List<AssetEntrySetLike> getAssetEntrySetLikes(
