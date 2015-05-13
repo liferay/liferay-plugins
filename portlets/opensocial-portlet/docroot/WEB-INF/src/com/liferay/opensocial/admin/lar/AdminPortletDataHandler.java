@@ -15,6 +15,7 @@
 package com.liferay.opensocial.admin.lar;
 
 import com.liferay.opensocial.model.Gadget;
+import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
@@ -23,6 +24,7 @@ import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.lar.xstream.XStreamAliasRegistryUtil;
 import com.liferay.portal.kernel.xml.Element;
 
 import java.util.List;
@@ -39,6 +41,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		setDeletionSystemEventStagedModelTypes(
 			new StagedModelType(Gadget.class));
 		setPublishToLiveByDefault(true);
+
+		XStreamAliasRegistryUtil.register(GadgetImpl.class, "Gadget");
 	}
 
 	@Override
