@@ -1900,77 +1900,77 @@ Please find a solution that does not require portal-impl.jar.
 								bndRootFile="${sdk.dir}/common.bnd"
 								newJarFile="${plugin.file}"
 							/>
-						</then>
-					</if>
-
-					<if>
-						<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />
-						<then>
-							<set-build-xml-var
-								build.xml.var.name="osgi.auto.update.xml"
-								module.dir="@{module.dir}"
-							/>
 
 							<if>
-								<or>
-									<not>
-										<isset property="set-build-xml-var.return" />
-									</not>
-									<and>
-										<isset property="set-build-xml-var.return" />
-										<equals arg1="${set-build-xml-var.return}" arg2="true" />
-									</and>
-								</or>
+								<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />
 								<then>
-									<tstamp>
-										<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-									</tstamp>
-
-									<move file="${plugin.file}" tofile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" />
-
-									<direct-deploy-portlet-cmd
-										direct.deploy.dir="${tstamp.value}"
+									<set-build-xml-var
+										build.xml.var.name="osgi.auto.update.xml"
+										module.dir="@{module.dir}"
 									/>
 
-									<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}-${plugin.full.version}" />
-
 									<if>
-										<not>
-											<available file="${temp.deployed.plugin.dir}" />
-										</not>
+										<or>
+											<not>
+												<isset property="set-build-xml-var.return" />
+											</not>
+											<and>
+												<isset property="set-build-xml-var.return" />
+												<equals arg1="${set-build-xml-var.return}" arg2="true" />
+											</and>
+										</or>
 										<then>
-											<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}" />
+											<tstamp>
+												<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+											</tstamp>
+
+											<move file="${plugin.file}" tofile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" />
+
+											<direct-deploy-portlet-cmd
+												direct.deploy.dir="${tstamp.value}"
+											/>
+
+											<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}-${plugin.full.version}" />
+
+											<if>
+												<not>
+													<available file="${temp.deployed.plugin.dir}" />
+												</not>
+												<then>
+													<var name="temp.deployed.plugin.dir" value="${tstamp.value}/${plugin.name}" />
+												</then>
+											</if>
+
+											<if>
+												<available file="${temp.deployed.plugin.dir}" />
+												<then>
+													<jar destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" duplicate="preserve" update="true">
+														<fileset
+															dir="${app.server.portal.dir}"
+															includes="WEB-INF/tld/c.tld"
+														/>
+														<fileset
+															dir="${temp.deployed.plugin.dir}"
+															includes="WEB-INF/liferay-web.xml,WEB-INF/web.xml"
+														/>
+														<fileset
+															dir="${temp.deployed.plugin.dir}"
+															includes="WEB-INF/tld/*"
+														/>
+													</jar>
+												</then>
+												<else>
+													<echo>Unable to automatically update web.xml in ${plugin.file}.</echo>
+												</else>
+											</if>
+
+											<var name="temp.deployed.plugin.dir" unset="true" />
+
+											<move file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" tofile="${plugin.file}" />
+
+											<delete dir="${tstamp.value}" />
 										</then>
 									</if>
-
-									<if>
-										<available file="${temp.deployed.plugin.dir}" />
-										<then>
-											<jar destfile="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" duplicate="preserve" update="true">
-												<fileset
-													dir="${app.server.portal.dir}"
-													includes="WEB-INF/tld/c.tld"
-												/>
-												<fileset
-													dir="${temp.deployed.plugin.dir}"
-													includes="WEB-INF/liferay-web.xml,WEB-INF/web.xml"
-												/>
-												<fileset
-													dir="${temp.deployed.plugin.dir}"
-													includes="WEB-INF/tld/*"
-												/>
-											</jar>
-										</then>
-										<else>
-											<echo>Unable to automatically update web.xml in ${plugin.file}.</echo>
-										</else>
-									</if>
-
-									<var name="temp.deployed.plugin.dir" unset="true" />
-
-									<move file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.war" tofile="${plugin.file}" />
-
-									<delete dir="${tstamp.value}" />
 								</then>
 							</if>
 						</then>
