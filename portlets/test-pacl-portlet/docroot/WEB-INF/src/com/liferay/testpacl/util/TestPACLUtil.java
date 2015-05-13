@@ -131,17 +131,7 @@ public class TestPACLUtil {
 
 			fileName = StringUtil.replace(fileName, "../webapps", installedDir);
 
-			if (ServerDetector.isGeronimo()) {
-				String geronimoHome = System.getProperty(
-					"org.apache.geronimo.home.dir");
-				String version = ReleaseInfo.getVersion();
-
-				fileName = StringUtil.replace(
-					fileName, installedDir + "/chat-portlet/",
-					geronimoHome + "/repository/liferay/chat-portlet/" +
-						version + ".1/chat-portlet-" + version + ".1.car/");
-			}
-			else if (ServerDetector.isGlassfish()) {
+			if (ServerDetector.isGlassfish()) {
 				fileName = StringUtil.replace(
 					fileName, "autodeploy", "applications");
 			}
