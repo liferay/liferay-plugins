@@ -148,6 +148,10 @@ public class AssetEntrySetLocalServiceImpl
 				assetEntrySet.getParentAssetEntrySetId());
 
 			updateAssetSharingEntries(parentAssetEntrySet);
+
+			updateChildAssetEntrySetsCount(
+				parentAssetEntrySet.getAssetEntrySetId()
+			);
 		}
 
 		assetEntrySetPersistence.remove(assetEntrySet);
