@@ -1798,103 +1798,110 @@ Please find a solution that does not require portal-impl.jar.
 					substring="/build-common-osgi-plugin.xml&quot;"
 				/>
 				<then>
-					<delete file="${plugin.file}" />
-
 					<if>
-						<and>
-							<available file="@{module.dir}/docroot" />
-							<resourcecount count="0" when="gt">
-								<fileset dir="@{module.dir}/docroot" includes="**/*.css" />
-							</resourcecount>
-						</and>
+						<not>
+							<uptodate targetfile="${plugin.file}">
+								<srcfiles dir="${plugin.classes.dir}" includes="**/*.*" />
+							</uptodate>
+						</not>
 						<then>
-							<build-css
+							<if>
+								<and>
+									<available file="@{module.dir}/docroot" />
+									<resourcecount count="0" when="gt">
+										<fileset dir="@{module.dir}/docroot" includes="**/*.css" />
+									</resourcecount>
+								</and>
+								<then>
+									<build-css
+										module.dir="@{module.dir}"
+										sass.docroot.dir="${module.dir.unix}/docroot"
+									/>
+								</then>
+							</if>
+
+							<if>
+								<and>
+									<available file="@{module.dir}/src/META-INF/resources" />
+									<resourcecount count="0" when="gt">
+										<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.css" />
+									</resourcecount>
+								</and>
+								<then>
+									<build-css
+										module.dir="@{module.dir}"
+										sass.docroot.dir="${module.dir.unix}/src/META-INF/resources"
+									/>
+								</then>
+							</if>
+
+							<build-wsdl
 								module.dir="@{module.dir}"
-								sass.docroot.dir="${module.dir.unix}/docroot"
+							/>
+
+							<build-xsd
+								module.dir="@{module.dir}"
+							/>
+
+							<set-build-xml-var
+								build.xml.var.name="original.lib.name"
+								module.dir="@{module.dir}"
+							/>
+
+							<if>
+								<isset property="set-build-xml-var.return" />
+								<then>
+									<var name="original.lib.name" value="${set-build-xml-var.return}" />
+								</then>
+							</if>
+
+							<set-build-xml-var
+								build.xml.var.name="original.lib.url"
+								module.dir="@{module.dir}"
+							/>
+
+							<if>
+								<isset property="set-build-xml-var.return" />
+								<then>
+									<var name="original.lib.url" value="${set-build-xml-var.return}" />
+								</then>
+							</if>
+
+							<set-build-xml-var
+								build.xml.var.name="original.lib.version"
+								module.dir="@{module.dir}"
+							/>
+
+							<if>
+								<isset property="set-build-xml-var.return" />
+								<then>
+									<var name="original.lib.version" value="${set-build-xml-var.return}" />
+								</then>
+							</if>
+
+							<manifest-helper />
+
+							<bndexpand propertyfile="${sdk.dir}/common.bnd" />
+
+							<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.file}">
+								<bndfiles>
+									<fileset dir="@{module.dir}">
+										<include name="bnd.bnd" />
+									</fileset>
+								</bndfiles>
+								<classpath>
+									<pathelement location="${plugin.classes.dir}" />
+								</classpath>
+								<property name="-sourcepath" value="@{module.dir}" />
+							</bnd>
+
+							<baseline-jar
+								bndFile="@{module.dir}/bnd.bnd"
+								bndRootFile="${sdk.dir}/common.bnd"
+								newJarFile="${plugin.file}"
 							/>
 						</then>
 					</if>
-
-					<if>
-						<and>
-							<available file="@{module.dir}/src/META-INF/resources" />
-							<resourcecount count="0" when="gt">
-								<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.css" />
-							</resourcecount>
-						</and>
-						<then>
-							<build-css
-								module.dir="@{module.dir}"
-								sass.docroot.dir="${module.dir.unix}/src/META-INF/resources"
-							/>
-						</then>
-					</if>
-
-					<build-wsdl
-						module.dir="@{module.dir}"
-					/>
-
-					<build-xsd
-						module.dir="@{module.dir}"
-					/>
-
-					<set-build-xml-var
-						build.xml.var.name="original.lib.name"
-						module.dir="@{module.dir}"
-					/>
-
-					<if>
-						<isset property="set-build-xml-var.return" />
-						<then>
-							<var name="original.lib.name" value="${set-build-xml-var.return}" />
-						</then>
-					</if>
-
-					<set-build-xml-var
-						build.xml.var.name="original.lib.url"
-						module.dir="@{module.dir}"
-					/>
-
-					<if>
-						<isset property="set-build-xml-var.return" />
-						<then>
-							<var name="original.lib.url" value="${set-build-xml-var.return}" />
-						</then>
-					</if>
-
-					<set-build-xml-var
-						build.xml.var.name="original.lib.version"
-						module.dir="@{module.dir}"
-					/>
-
-					<if>
-						<isset property="set-build-xml-var.return" />
-						<then>
-							<var name="original.lib.version" value="${set-build-xml-var.return}" />
-						</then>
-					</if>
-
-					<manifest-helper />
-
-					<bndexpand propertyfile="${sdk.dir}/common.bnd" />
-
-					<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.file}">
-						<bndfiles>
-							<fileset dir="@{module.dir}">
-								<include name="bnd.bnd" />
-							</fileset>
-						</bndfiles>
-						<classpath>
-							<pathelement location="${plugin.classes.dir}" />
-						</classpath>
-						<property name="-sourcepath" value="@{module.dir}" />
-					</bnd>
-
-					<baseline-jar
-						bndFile="@{module.dir}/bnd.bnd"
-						bndRootFile="${sdk.dir}/common.bnd"
-						newJarFile="${plugin.file}"
-					/>
 
 					<if>
 						<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />
