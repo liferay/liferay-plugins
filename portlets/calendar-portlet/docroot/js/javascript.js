@@ -1075,6 +1075,26 @@ AUI.add(
 						instance._uiSetStatus(instance.get('status'));
 					},
 
+					syncWithServer: function() {
+						var instance = this;
+
+						var calendarBookingId = instance.get('calendarBookingId');
+						var scheduler = instance.get('scheduler');
+						var schedulerEvents = scheduler.getEventsByCalendarBookingId(calendarBookingId);
+
+						CalendarUtil.getEvent(
+							calendarBookingId,
+							function(calendarBooking) {
+								A.each(
+									schedulerEvents,
+									function(schedulerEvent) {
+										schedulerEvent.set('status', calendarBooking.status);
+									}
+								);
+							}
+						);
+					},
+
 					_onLoadingChange: function(event) {
 						var instance = this;
 
