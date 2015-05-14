@@ -32,14 +32,44 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Matthew Kong
  */
 public class AssetEntrySetParticipantInfoImpl
 	implements AssetEntrySetParticipantInfo {
+
+	public JSONArray getAssetTagsJSONArray(long userId, String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		Group group = GroupLocalServiceUtil.getCompanyGroup(
+			user.getCompanyId());
+
+		AssetTagLocalServiceUtil.checkTags(userId, group, assetTagNames);
+
+		for (String assetTagName : assetTagNames) {
+			AssetTag assetTag = AssetTagLocalServiceUtil.getTag(
+				group.getGroupId(), assetTagName);
+
+			if (assetTag == null) {
+				throw new SystemException(
+					"Asset tag does not exist for name " + assetTagName);
+			}
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			jsonObject.put("classNameId", _ASSET_TAG_CLASS_NAME_ID);
+			jsonObject.put("classPK", assetTag.getTagId());
+			jsonObject.put("name", assetTagName);
+
+			jsonArray.put(jsonObject);
+		}
+
+		return jsonArray;
+	}
 
 	public ObjectValuePair<Long, Long> getClassNameIdAndClassPKOVP(long userId)
 		throws SystemException {
@@ -107,63 +137,6 @@ public class AssetEntrySetParticipantInfoImpl
 		}
 
 		return false;
-	}
-
-	public JSONObject processAssetTagNames(
-			long companyId, long userId, String[] assetTagNames,
-			JSONObject payloadJSONObject)
-		throws PortalException, SystemException {
-
-		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
-
-		AssetTagLocalServiceUtil.checkTags(userId, group, assetTagNames);
-
-		JSONArray payloadSharedToJSONArray =
-			payloadJSONObject.getJSONArray(
-				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
-
-		List<Long> assetTagIds = new ArrayList<Long>();
-
-		for (int i = 0; i < payloadSharedToJSONArray.length(); i++) {
-			JSONObject sharedToJSONObject =
-				payloadSharedToJSONArray.getJSONObject(i);
-
-			if (sharedToJSONObject.getLong("classNameId") !=
-					_ASSET_TAG_CLASS_NAME_ID) {
-
-				continue;
-			}
-
-			assetTagIds.add(sharedToJSONObject.getLong("classPK"));
-		}
-
-		for (String assetTagName : assetTagNames) {
-			AssetTag assetTag = AssetTagLocalServiceUtil.getTag(
-				group.getGroupId(), assetTagName);
-
-			if (assetTag == null) {
-				throw new SystemException(
-					"Loop topic does not exist for name " + assetTagName);
-			}
-
-			if (assetTagIds.contains(assetTag.getTagId())) {
-				continue;
-			}
-
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-			jsonObject.put("classNameId", _ASSET_TAG_CLASS_NAME_ID);
-			jsonObject.put("classPK", assetTag.getTagId());
-			jsonObject.put("name", assetTagName);
-
-			payloadSharedToJSONArray.put(jsonObject);
-		}
-
-		payloadJSONObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
-			payloadSharedToJSONArray);
-
-		return payloadJSONObject;
 	}
 
 	private static final long _ASSET_TAG_CLASS_NAME_ID =

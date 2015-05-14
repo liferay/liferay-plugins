@@ -16,6 +16,7 @@ package com.liferay.asset.entry.set.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 
@@ -28,6 +29,14 @@ public class AssetEntrySetParticipantInfoUtil {
 		getAssetEntrySetParticipantInfo() {
 
 		return _assetEntrySetParticipantInfo;
+	}
+
+	public static JSONArray getAssetTagsJSONArray(
+			long userId, String[] assetTagNames)
+		throws PortalException, SystemException {
+
+		return getAssetEntrySetParticipantInfo().getAssetTagsJSONArray(
+			userId, assetTagNames);
 	}
 
 	public static ObjectValuePair<Long, Long> getClassNameIdAndClassPKOVP(
@@ -54,15 +63,6 @@ public class AssetEntrySetParticipantInfoUtil {
 
 		return getAssetEntrySetParticipantInfo().isMember(
 			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
-	}
-
-	public static JSONObject processAssetTagNames(
-			long companyId, long userId, String[] assetTagNames,
-			JSONObject payloadJSONObject)
-		throws PortalException, SystemException {
-
-		return getAssetEntrySetParticipantInfo().processAssetTagNames(
-			companyId, userId, assetTagNames, payloadJSONObject);
 	}
 
 	public void setAssetEntrySetParticipantInfo(

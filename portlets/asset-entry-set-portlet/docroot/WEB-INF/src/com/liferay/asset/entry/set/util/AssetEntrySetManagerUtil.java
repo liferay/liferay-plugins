@@ -15,7 +15,6 @@
 package com.liferay.asset.entry.set.util;
 
 import com.liferay.asset.entry.set.handler.AssetEntrySetHandler;
-import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -91,7 +90,7 @@ public class AssetEntrySetManagerUtil {
 	}
 
 	public static JSONObject interpret(
-			JSONObject jsonObject, AssetEntrySet assetEntrySet)
+			JSONObject jsonObject, long assetEntrySetId, long userId)
 		throws PortalException, SystemException {
 
 		String type = jsonObject.getString("type");
@@ -105,7 +104,8 @@ public class AssetEntrySetManagerUtil {
 			return null;
 		}
 
-		return assetEntrySetHandler.interpret(jsonObject, assetEntrySet);
+		return assetEntrySetHandler.interpret(
+			jsonObject, assetEntrySetId, userId);
 	}
 
 	private static Map<String, AssetEntrySetHandler> _assetEntrySetHandlers =
