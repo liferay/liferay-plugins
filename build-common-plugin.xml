@@ -843,10 +843,15 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			<arg line="rev-parse HEAD" />
 		</exec>
 
-		<echo file="snapshot.properties">
-			snapshot.git.id=${git.commit.module.rev.parse}
-			snapshot.url=${sonatype.snapshot.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-SNAPSHOT.jar
-		</echo>
+		<propertyregex
+			input="${sonatype.snapshot.url}"
+			property="cdn.sonatype.snapshot.url"
+			regexp="https://"
+			replace="https://cdn."
+		/>
+
+		<echo file="snapshot.properties">snapshot.git.id=${git.commit.module.rev.parse}
+snapshot.url=${cdn.sonatype.snapshot.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-SNAPSHOT.jar</echo>
 	</target>
 
 	<target name="shrink-zip-cmd">
