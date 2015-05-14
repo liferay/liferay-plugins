@@ -36,8 +36,9 @@ public interface AssetEntrySetParticipantInfo {
 		long classNameId, long classPK, long sharedToClassNameId,
 		long sharedToClassPK);
 
-	public String processAssetTagNames(
-			long companyId, long userId, String payload)
+	public JSONObject processAssetTagNames(
+			long companyId, long userId, String[] assetTagNames,
+			JSONObject payloadJSONObject)
 		throws PortalException, SystemException;
 
 }

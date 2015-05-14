@@ -103,14 +103,9 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
-					payloadJSONObject, assetEntrySetId)));
+					payloadJSONObject, assetEntrySet)));
+
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
-
-		String payload = AssetEntrySetParticipantInfoUtil.processAssetTagNames(
-			assetEntrySet.getCompanyId(), assetEntrySet.getUserId(),
-			assetEntrySet.getPayload());
-
-		assetEntrySet.setPayload(payload);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -289,14 +284,9 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
-					payloadJSONObject, assetEntrySetId)));
+					payloadJSONObject, assetEntrySet)));
+
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
-
-		String payload = AssetEntrySetParticipantInfoUtil.processAssetTagNames(
-			assetEntrySet.getCompanyId(), assetEntrySet.getUserId(),
-			assetEntrySet.getPayload());
-
-		assetEntrySet.setPayload(payload);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 

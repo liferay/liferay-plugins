@@ -15,12 +15,13 @@
 package com.liferay.asset.entry.set.handler;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
-import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
+import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Iterator;
@@ -41,13 +42,10 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 
 	@Override
 	public JSONObject interpret(
-			JSONObject payloadJSONObject, long assetEntrySetId)
+			JSONObject payloadJSONObject, AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		AssetEntrySet assetEntrySet =
-			AssetEntrySetLocalServiceUtil.fetchAssetEntrySet(assetEntrySetId);
 
 		if ((assetEntrySet != null) &&
 			isContentModified(
@@ -62,15 +60,17 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		jsonObject.put("type", payloadJSONObject.getString("type"));
 
 		jsonObject.put(
-			AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES,
-			payloadJSONObject.getString(
-				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
-		jsonObject.put(
 			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
 			payloadJSONObject.getJSONArray(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
-		return jsonObject;
+		String[] assetTagNames = StringUtil.split(
+			payloadJSONObject.getString(
+				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
+
+		return AssetEntrySetParticipantInfoUtil.processAssetTagNames(
+			assetEntrySet.getCompanyId(), assetEntrySet.getUserId(),
+			assetTagNames, jsonObject);
 	}
 
 	protected boolean isContentModified(

@@ -56,12 +56,13 @@ public class AssetEntrySetParticipantInfoUtil {
 			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
 	}
 
-	public static String processAssetTagNames(
-			long companyId, long userId, String payload)
+	public static JSONObject processAssetTagNames(
+			long companyId, long userId, String[] assetTagNames,
+			JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySetParticipantInfo().processAssetTagNames(
-			companyId, userId, payload);
+			companyId, userId, assetTagNames, payloadJSONObject);
 	}
 
 	public void setAssetEntrySetParticipantInfo(

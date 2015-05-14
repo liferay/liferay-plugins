@@ -14,6 +14,7 @@
 
 package com.liferay.asset.entry.set.handler;
 
+import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -26,7 +27,7 @@ public interface AssetEntrySetHandler {
 	public String getPortletId();
 
 	public JSONObject interpret(
-			JSONObject payloadJSONObject, long assetEntrySetId)
+			JSONObject payloadJSONObject, AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException;
 
 }

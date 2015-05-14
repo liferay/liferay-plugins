@@ -14,7 +14,6 @@
 
 package com.liferay.asset.entry.set.util;
 
-import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -110,16 +109,10 @@ public class AssetEntrySetParticipantInfoImpl
 		return false;
 	}
 
-	public String processAssetTagNames(
-			long companyId, long userId, String payload)
+	public JSONObject processAssetTagNames(
+			long companyId, long userId, String[] assetTagNames,
+			JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
-
-		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
-			payload);
-
-		String[] assetTagNames = StringUtil.split(
-			payloadJSONObject.getString(
-				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
 
 		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
 
@@ -166,7 +159,11 @@ public class AssetEntrySetParticipantInfoImpl
 			payloadSharedToJSONArray.put(jsonObject);
 		}
 
-		return payload;
+		payloadJSONObject.put(
+			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO,
+			payloadSharedToJSONArray);
+
+		return payloadJSONObject;
 	}
 
 	private static final long _ASSET_TAG_CLASS_NAME_ID =
