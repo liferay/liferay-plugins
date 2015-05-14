@@ -56,6 +56,14 @@ public class AssetEntrySetParticipantInfoUtil {
 			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
 	}
 
+	public static String processAssetTagNames(
+			long companyId, long userId, String payload)
+		throws PortalException, SystemException {
+
+		return getAssetEntrySetParticipantInfo().processAssetTagNames(
+			companyId, userId, payload);
+	}
+
 	public void setAssetEntrySetParticipantInfo(
 		AssetEntrySetParticipantInfo assetEntrySetParticipantInfo) {
 

@@ -14,8 +14,11 @@
 
 package com.liferay.asset.entry.set.util;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -27,6 +30,11 @@ import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.asset.model.AssetTag;
+import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Matthew Kong
@@ -101,6 +109,68 @@ public class AssetEntrySetParticipantInfoImpl
 
 		return false;
 	}
+
+	public String processAssetTagNames(
+			long companyId, long userId, String payload)
+		throws PortalException, SystemException {
+
+		JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject(
+			payload);
+
+		String[] assetTagNames = StringUtil.split(
+			payloadJSONObject.getString(
+				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
+
+		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+
+		AssetTagLocalServiceUtil.checkTags(userId, group, assetTagNames);
+
+		JSONArray payloadSharedToJSONArray =
+			payloadJSONObject.getJSONArray(
+				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO);
+
+		List<Long> assetTagIds = new ArrayList<Long>();
+
+		for (int i = 0; i < payloadSharedToJSONArray.length(); i++) {
+			JSONObject sharedToJSONObject =
+				payloadSharedToJSONArray.getJSONObject(i);
+
+			if (sharedToJSONObject.getLong("classNameId") !=
+					_ASSET_TAG_CLASS_NAME_ID) {
+
+				continue;
+			}
+
+			assetTagIds.add(sharedToJSONObject.getLong("classPK"));
+		}
+
+		for (String assetTagName : assetTagNames) {
+			AssetTag assetTag = AssetTagLocalServiceUtil.getTag(
+				group.getGroupId(), assetTagName);
+
+			if (assetTag == null) {
+				throw new SystemException(
+					"Loop topic does not exist for name " + assetTagName);
+			}
+
+			if (assetTagIds.contains(assetTag.getTagId())) {
+				continue;
+			}
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			jsonObject.put("classNameId", _ASSET_TAG_CLASS_NAME_ID);
+			jsonObject.put("classPK", assetTag.getTagId());
+			jsonObject.put("name", assetTagName);
+
+			payloadSharedToJSONArray.put(jsonObject);
+		}
+
+		return payload;
+	}
+
+	private static final long _ASSET_TAG_CLASS_NAME_ID =
+		ClassNameLocalServiceUtil.getClassNameId(AssetTag.class);
 
 	private static final long _GROUP_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(Group.class);

@@ -106,6 +106,12 @@ public class AssetEntrySetLocalServiceImpl
 					payloadJSONObject, assetEntrySetId)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
+		String payload = AssetEntrySetParticipantInfoUtil.processAssetTagNames(
+			assetEntrySet.getCompanyId(), assetEntrySet.getUserId(),
+			assetEntrySet.getPayload());
+
+		assetEntrySet.setPayload(payload);
+
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
@@ -285,6 +291,12 @@ public class AssetEntrySetLocalServiceImpl
 				AssetEntrySetManagerUtil.interpret(
 					payloadJSONObject, assetEntrySetId)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
+
+		String payload = AssetEntrySetParticipantInfoUtil.processAssetTagNames(
+			assetEntrySet.getCompanyId(), assetEntrySet.getUserId(),
+			assetEntrySet.getPayload());
+
+		assetEntrySet.setPayload(payload);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
