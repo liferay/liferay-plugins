@@ -831,14 +831,12 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		</antcall>
 	</target>
 
-	<target name="publish-remote-m2-snapshot" depends="jar-javadoc,jar-source,record-git-commit-snapshot,war">
+	<target name="publish-remote-m2-snapshot" depends="jar-javadoc,jar-source,war">
 		<antcall target="build-common-ivy.publish">
 			<param name="ivy.publish.resolver" value="sonatype-m2-snapshot" />
 			<param name="plugin.release.qualifier" value="-SNAPSHOT" />
 		</antcall>
-	</target>
 
-	<target name="record-git-commit-snapshot">
 		<property file="bnd.bnd" prefix="bnd." />
 
 		<exec dir="${basedir}" executable="git" outputproperty="git.commit.module.rev.parse">
@@ -846,8 +844,8 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		</exec>
 
 		<echo file="snapshot.properties">
-snapshot.git.id=${git.commit.module.rev.parse}
-snapshot.url=${sonatype.snapshot.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-SNAPSHOT.jar
+			snapshot.git.id=${git.commit.module.rev.parse}
+			snapshot.url=${sonatype.snapshot.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-SNAPSHOT.jar
 		</echo>
 	</target>
 
