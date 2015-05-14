@@ -863,6 +863,15 @@ AUI.add(
 						}
 					}
 				);
+			},
+
+			updateSchedulerEvents: function(schedulerEvents, calendarBooking) {
+				A.each(
+					schedulerEvents,
+					function(schedulerEvent) {
+						schedulerEvent.set('status', calendarBooking.status);
+					}
+				);
 			}
 		};
 
@@ -1084,14 +1093,7 @@ AUI.add(
 
 						CalendarUtil.getEvent(
 							calendarBookingId,
-							function(calendarBooking) {
-								A.each(
-									schedulerEvents,
-									function(schedulerEvent) {
-										schedulerEvent.set('status', calendarBooking.status);
-									}
-								);
-							}
+							A.bind(CalendarUtil.updateSchedulerEvents, CalendarUtil, schedulerEvents)
 						);
 					},
 
