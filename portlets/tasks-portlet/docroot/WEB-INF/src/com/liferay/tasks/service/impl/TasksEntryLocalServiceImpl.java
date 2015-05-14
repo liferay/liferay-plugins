@@ -18,6 +18,7 @@
 package com.liferay.tasks.service.impl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -31,7 +32,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
-import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.tasks.TasksEntryDueDateException;
 import com.liferay.tasks.TasksEntryTitleException;
@@ -146,9 +146,9 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		AssetEntryLocalServiceUtil.deleteEntry(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 
-		// Message boards
+		// Discussions
 
-		MBMessageLocalServiceUtil.deleteDiscussionMessages(
+		CommentManagerUtil.deleteDiscussion(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 
 		// Social
