@@ -1384,6 +1384,16 @@ AUI.add(
 						Scheduler.superclass.bindUI.apply(this, arguments);
 					},
 
+					getEventsByCalendarBookingId: function(calendarBookingId) {
+						var instance = this;
+
+						return instance.getEvents(
+							function(schedulerEvent) {
+								return schedulerEvent.get('calendarBookingId') === calendarBookingId;
+							}
+						);
+					},
+
 					load: function() {
 						var instance = this;
 
