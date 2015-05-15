@@ -2,14 +2,15 @@
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
 	<!--
-	This configuration mode requires some additional changes to the plugin:
-	- Stop server
-	- Delete log4j.jar and log4j-extras.jar from the plugin's WEB-NF/lib folder
-	- Edit the liferay-plugin-package.properties descriptor file inside the 
-	  plugin's WEB-INF folder and remove log4j.jar from portal-dependency-jars
-	- [optional] Delete your application server's temp folder
-	- Start server
+	This configuration requires additional changes to the plugin.
+
+	First, stop the server. Then delete log4j.jar and log4j-extras.jar from the
+	plugin's WEB-NF/lib directory. Edit liferay-plugin-package.properties inside
+	the  plugin's WEB-INF directory and remove log4j.jar from the property
+	"portal-dependency-jars". Optionally, delete your application server's temp
+	directory. Start the server.
 	-->
 
 	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
