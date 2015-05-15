@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.mobilewidgets.service.impl;
+package com.liferay.screens.service.impl;
 
-import com.liferay.mobilewidgets.service.base.MobileWidgetsDDLRecordServiceBaseImpl;
+import com.liferay.screens.service.base.ScreensDDLRecordServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -35,8 +35,8 @@ import java.util.Set;
 /**
  * @author José Manuel Navarro
  */
-public class MobileWidgetsDDLRecordServiceImpl
-	extends MobileWidgetsDDLRecordServiceBaseImpl {
+public class ScreensDDLRecordServiceImpl
+	extends ScreensDDLRecordServiceBaseImpl {
 
 	@Override
 	public JSONObject getDDLRecord(long ddlRecordId, Locale locale)

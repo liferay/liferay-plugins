@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.mobilewidgets.service.impl;
+package com.liferay.screens.service.impl;
 
-import com.liferay.mobilewidgets.service.base.MobileWidgetsUserServiceBaseImpl;
+import com.liferay.screens.service.base.ScreensUserServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Company;
@@ -30,8 +30,8 @@ import com.liferay.portal.util.PortalUtil;
 /**
  * @author José Manuel Navarro
  */
-public class MobileWidgetsUserServiceImpl
-	extends MobileWidgetsUserServiceBaseImpl {
+public class ScreensUserServiceImpl
+	extends ScreensUserServiceBaseImpl {
 
 	@Override
 	public boolean sendPasswordByEmailAddress(

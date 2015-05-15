@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.mobilewidgets.service.impl;
+package com.liferay.screens.service.impl;
 
-import com.liferay.mobilewidgets.service.base.MobileWidgetsAssetEntryServiceBaseImpl;
+import com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -29,8 +29,8 @@ import java.util.Locale;
 /**
  * @author José Manuel Navarro
  */
-public class MobileWidgetsAssetEntryServiceImpl
-	extends MobileWidgetsAssetEntryServiceBaseImpl {
+public class ScreensAssetEntryServiceImpl
+	extends ScreensAssetEntryServiceBaseImpl {
 
 	@Override
 	public JSONArray getAssetEntries(
