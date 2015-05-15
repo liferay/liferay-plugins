@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_Screens_ScreensDDLRecordService" provider="java:RPC" style="rpc" use="encoded">
+		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecord" qname="operNS:getDDLRecord" returnQName="getDDLRecordReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecordsCount" qname="operNS:getDDLRecordsCount" returnQName="getDDLRecordsCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecordsCount" qname="operNS:getDDLRecordsCount" returnQName="getDDLRecordsCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecords" qname="operNS:getDDLRecords" returnQName="getDDLRecordsReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecords" qname="operNS:getDDLRecords" returnQName="getDDLRecordsReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordSetId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getDDLRecord getDDLRecords getDDLRecordsCount" />
+		<parameter name="className" value="com.liferay.screens.service.http.ScreensDDLRecordServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ScreensDDLRecordServiceSoap" />
+		<parameter name="wsdlServiceElement" value="ScreensDDLRecordServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Screens_ScreensDDLRecordService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.screens.liferay.com" />
+	</service>
+</deployment>
