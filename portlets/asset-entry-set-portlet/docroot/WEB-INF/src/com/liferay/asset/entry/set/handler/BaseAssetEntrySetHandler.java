@@ -48,7 +48,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 
 	@Override
 	public JSONObject interpret(
-			JSONObject payloadJSONObject, long assetEntrySetId, long userId)
+			long userId, long assetEntrySetId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();

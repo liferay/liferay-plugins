@@ -26,7 +26,7 @@ public interface AssetEntrySetHandler {
 	public String getPortletId();
 
 	public JSONObject interpret(
-			JSONObject payloadJSONObject, long assetEntrySetId, long userId)
+			long userId, long assetEntrySetId, JSONObject payloadJSONObject)
 		throws PortalException, SystemException;
 
 }

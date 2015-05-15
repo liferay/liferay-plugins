@@ -103,8 +103,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
-					payloadJSONObject, assetEntrySetId, user.getUserId())));
-
+					user.getUserId(), assetEntrySetId, payloadJSONObject)));
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
 		assetEntrySetPersistence.update(assetEntrySet);
@@ -284,8 +283,8 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setPayload(
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
-					payloadJSONObject, assetEntrySetId,
-					assetEntrySet.getUserId())));
+					assetEntrySet.getUserId(), assetEntrySetId,
+					payloadJSONObject)));
 
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
