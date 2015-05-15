@@ -428,12 +428,12 @@
 
 	<target name="build-lang-cmd">
 		<path id="lang.builder.classpath">
-			<fileset dir="${sdk.dir}/dependencies/com.liferay.portal.tools.lang.builder/lib" includes="*.jar" />
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.lang.builder/lib" includes="*.jar" />
 			<path refid="portal.classpath" />
 		</path>
 
 		<java
-			classname="com.liferay.portal.tools.lang.builder.LangBuilder"
+			classname="com.liferay.lang.builder.LangBuilder"
 			classpathref="lang.builder.classpath"
 			fork="true"
 			newenvironment="true"
