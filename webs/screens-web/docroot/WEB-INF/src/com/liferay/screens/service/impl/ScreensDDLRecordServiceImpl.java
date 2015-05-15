@@ -14,7 +14,6 @@
 
 package com.liferay.screens.service.impl;
 
-import com.liferay.screens.service.base.ScreensDDLRecordServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -25,6 +24,7 @@ import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
+import com.liferay.screens.service.base.ScreensDDLRecordServiceBaseImpl;
 
 import java.util.HashMap;
 import java.util.List;

@@ -14,7 +14,6 @@
 
 package com.liferay.screens.service.impl;
 
-import com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -22,6 +21,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
+import com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl;
 
 import java.util.List;
 import java.util.Locale;

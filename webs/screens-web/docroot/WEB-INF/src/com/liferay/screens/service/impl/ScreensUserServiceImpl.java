@@ -14,7 +14,6 @@
 
 package com.liferay.screens.service.impl;
 
-import com.liferay.screens.service.base.ScreensUserServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Company;
@@ -26,12 +25,12 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.screens.service.base.ScreensUserServiceBaseImpl;
 
 /**
  * @author José Manuel Navarro
  */
-public class ScreensUserServiceImpl
-	extends ScreensUserServiceBaseImpl {
+public class ScreensUserServiceImpl extends ScreensUserServiceBaseImpl {
 
 	@Override
 	public boolean sendPasswordByEmailAddress(
