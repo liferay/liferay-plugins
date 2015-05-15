@@ -107,7 +107,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 				classPKs = new ArrayList<Long>();
 			}
 
-			long classPK = sharedToJSONObject.getLong("classNamePK");
+			long classPK = sharedToJSONObject.getLong("classPK");
 
 			if (classPKs.contains(classPK)) {
 				continue;
