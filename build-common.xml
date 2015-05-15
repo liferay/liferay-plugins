@@ -1799,11 +1799,21 @@ Please find a solution that does not require portal-impl.jar.
 				/>
 				<then>
 					<if>
-						<not>
-							<uptodate targetfile="${plugin.file}">
-								<srcfiles dir="${plugin.classes.dir}" includes="**/*.*" />
-							</uptodate>
-						</not>
+						<or>
+							<not>
+								<uptodate targetfile="${plugin.file}">
+									<srcfiles dir="${plugin.classes.dir}" includes="**/*.*" />
+								</uptodate>
+							</not>
+							<and>
+								<available file="@{module.dir}/tmp" />
+								<not>
+									<uptodate targetfile="${plugin.file}">
+										<srcfiles dir="@{module.dir}/tmp" includes="**/*.*" />
+									</uptodate>
+								</not>
+							</and>
+						</or>
 						<then>
 							<if>
 								<and>
