@@ -34,15 +34,21 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
  */
 public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 
-	public BasicAuthPoolingHttpClientFactory(
-		PoolingClientConnectionManager poolingClientConnectionManager) {
+	@Override
+	public HttpClient createInstance() {
+		PoolingClientConnectionManager poolingClientConnectionManager =
+			createPoolingClientConnectionManager();
 
 		_basePoolingHttpClientFactory = new BasePoolingHttpClientFactory(
 			poolingClientConnectionManager);
-	}
 
-	@Override
-	public HttpClient createInstance() {
+		_basePoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
+			_defaultMaxConnectionsPerRoute);
+		_basePoolingHttpClientFactory.setHttpRequestInterceptors(
+			_httpRequestInterceptors);
+		_basePoolingHttpClientFactory.setMaxTotalConnections(
+			_maxTotalConnections);
+
 		DefaultHttpClient defaultHttpClient =
 			_basePoolingHttpClientFactory.createInstance();
 
@@ -58,20 +64,17 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
-		_basePoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
-			defaultMaxConnectionsPerRoute);
+		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
 	}
 
 	public void setHttpRequestInterceptors(
 		List<HttpRequestInterceptor> httpRequestInterceptors) {
 
-		_basePoolingHttpClientFactory.setHttpRequestInterceptors(
-			httpRequestInterceptors);
+		_httpRequestInterceptors = httpRequestInterceptors;
 	}
 
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
-		_basePoolingHttpClientFactory.setMaxTotalConnections(
-			maxTotalConnections);
+		_maxTotalConnections = maxTotalConnections;
 	}
 
 	public void setPassword(String password) {
@@ -108,8 +111,17 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 			new UsernamePasswordCredentials(_username, _password));
 	}
 
+	protected PoolingClientConnectionManager
+		createPoolingClientConnectionManager() {
+
+		return new PoolingClientConnectionManager();
+	}
+
 	private AuthScope _authScope;
-	private final BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
+	private BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
+	private Integer _defaultMaxConnectionsPerRoute;
+	private List<HttpRequestInterceptor> _httpRequestInterceptors;
+	private Integer _maxTotalConnections;
 	private String _password;
 	private String _username;
 

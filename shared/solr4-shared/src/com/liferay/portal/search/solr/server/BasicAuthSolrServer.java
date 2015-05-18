@@ -24,7 +24,6 @@ import java.util.List;
 
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.auth.AuthScope;
-import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 
 /**
@@ -43,12 +42,8 @@ public class BasicAuthSolrServer extends BaseHttpSolrServer {
 					getName());
 		}
 
-		PoolingClientConnectionManager poolingClientConnectionManager =
-			new PoolingClientConnectionManager();
-
 		BasicAuthPoolingHttpClientFactory basicAuthPoolingHttpClientFactory =
-			new BasicAuthPoolingHttpClientFactory(
-				poolingClientConnectionManager);
+			new BasicAuthPoolingHttpClientFactory();
 
 		basicAuthPoolingHttpClientFactory.setAuthScope(_authScope);
 		basicAuthPoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
