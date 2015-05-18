@@ -14,12 +14,14 @@
 
 package com.liferay.asset.entry.set.service.impl;
 
+import com.liferay.asset.entry.set.model.AssetEntrySetLike;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLikeServiceBaseImpl;
 import com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.security.permission.ActionKeys;
+
+import java.util.List;
 
 /**
  * @author Sherry Yang
@@ -28,15 +30,16 @@ public class AssetEntrySetLikeServiceImpl
 	extends AssetEntrySetLikeServiceBaseImpl {
 
 	@Override
-	public JSONArray getLikedParticipantFullNames(
-			long assetEntrySetId, int start, int end)
+	public List<AssetEntrySetLike> getAssetEntrySetLikes(
+			long assetEntrySetId, long classNameId, long classPK, int start,
+			int end)
 		throws PortalException, SystemException {
 
 		AssetEntrySetPermissionUtil.check(
 			getPermissionChecker(), assetEntrySetId, ActionKeys.VIEW);
 
-		return assetEntrySetLikeLocalService.getLikedParticipantFullNames(
-			getUserId(), assetEntrySetId, start, end);
+		return assetEntrySetLikeLocalService.getAssetEntrySetLikes(
+			assetEntrySetId, classNameId, classPK, start, end);
 	}
 
 }

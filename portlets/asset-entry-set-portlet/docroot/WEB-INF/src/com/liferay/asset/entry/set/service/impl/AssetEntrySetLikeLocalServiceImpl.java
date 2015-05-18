@@ -17,14 +17,7 @@ package com.liferay.asset.entry.set.service.impl;
 import com.liferay.asset.entry.set.model.AssetEntrySetLike;
 import com.liferay.asset.entry.set.service.base.AssetEntrySetLikeLocalServiceBaseImpl;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
-import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
-import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.ObjectValuePair;
 
 import java.util.List;
 
@@ -54,40 +47,6 @@ public class AssetEntrySetLikeLocalServiceImpl
 
 		return assetEntrySetLikeFinder.findByAESI_NotC_C(
 			assetEntrySetId, classNameId, classPK, start, end);
-	}
-
-	@Override
-	public JSONArray getLikedParticipantFullNames(
-			long userId, long assetEntrySetId, int start, int end)
-		throws PortalException, SystemException {
-
-		JSONArray likedParticipantFullNamesJSONArray =
-			JSONFactoryUtil.createJSONArray();
-
-		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
-			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
-				userId);
-
-		List<AssetEntrySetLike> assetEntrySetLikes =
-			assetEntrySetLikeFinder.findByAESI_NotC_C(
-				assetEntrySetId, classNameIdAndClassPKOVP.getKey(),
-				classNameIdAndClassPKOVP.getValue(), start, end);
-
-		for (AssetEntrySetLike assetEntrySetLike : assetEntrySetLikes) {
-			JSONObject participantJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			AssetEntrySetParticipantInfoUtil.getParticipantJSONObject(
-				participantJSONObject, assetEntrySetLike.getClassNameId(),
-				assetEntrySetLike.getClassPK(), false);
-
-			String participantFullName = participantJSONObject.getString(
-				AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME);
-
-			likedParticipantFullNamesJSONArray.put(participantFullName);
-		}
-
-		return likedParticipantFullNamesJSONArray;
 	}
 
 }

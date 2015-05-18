@@ -24,11 +24,9 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserConstants;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 
@@ -75,40 +73,6 @@ public class AssetEntrySetParticipantInfoImpl
 		throws SystemException {
 
 		return new ObjectValuePair<Long, Long>(_USER_CLASS_NAME_ID, userId);
-	}
-
-	public JSONObject getParticipantJSONObject(
-			JSONObject participantJSONObject, long classNameId, long classPK,
-			boolean includeProfileImageURL)
-		throws PortalException, SystemException {
-
-		if (classNameId != _USER_CLASS_NAME_ID) {
-			return participantJSONObject;
-		}
-
-		User user = UserLocalServiceUtil.getUser(classPK);
-
-		participantJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_FULL_NAME,
-			user.getFullName());
-		participantJSONObject.put(
-			AssetEntrySetConstants.
-				ASSET_ENTRY_KEY_PARTICIPANT_PROFILE_IMAGE_URL,
-			UserConstants.getPortraitURL(
-				PortalUtil.getPathImage(), user.isMale(),
-				user.getPortraitId()));
-
-		Group group = user.getGroup();
-
-		participantJSONObject.put(
-			AssetEntrySetConstants.ASSET_ENTRY_KEY_PARTICIPANT_URL,
-			_LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
-				group.getFriendlyURL());
-
-		participantJSONObject.put("classNameId", classNameId);
-		participantJSONObject.put("classPK", classPK);
-
-		return participantJSONObject;
 	}
 
 	public boolean isMember(
