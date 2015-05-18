@@ -32,6 +32,7 @@ import java.util.List;
 
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -165,7 +166,7 @@ public class KBSuggestionListDisplayContext {
 	private long _groupId;
 	private KBArticle _kbArticle;
 	private final HttpServletRequest _request;
-	private String _selectedNavItem;
+	private final String _selectedNavItem;
 	private final String _templatePath;
 
 }
