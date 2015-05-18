@@ -82,9 +82,9 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 		XStreamAliasRegistryUtil.register(CalendarImpl.class, "Calendar");
 		XStreamAliasRegistryUtil.register(
-			CalendarResourceImpl.class, "CalendarResource");
-		XStreamAliasRegistryUtil.register(
 			CalendarBookingImpl.class, "CalendarBooking");
+		XStreamAliasRegistryUtil.register(
+			CalendarResourceImpl.class, "CalendarResource");
 		XStreamAliasRegistryUtil.register(
 			CalendarNotificationTemplateImpl.class,
 			"CalendarNotificationTemplate");

@@ -68,8 +68,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 				KBComment.class.getName()));
 
 		XStreamAliasRegistryUtil.register(KBArticleImpl.class, "KBArticle");
-		XStreamAliasRegistryUtil.register(KBTemplateImpl.class, "KBTemplate");
 		XStreamAliasRegistryUtil.register(KBCommentImpl.class, "KBComment");
+		XStreamAliasRegistryUtil.register(KBTemplateImpl.class, "KBTemplate");
 	}
 
 	@Override
