@@ -34,7 +34,7 @@ import org.apache.solr.client.solrj.impl.HttpSolrServer;
 @Deprecated
 public class BasicAuthSolrServer extends BaseHttpSolrServer {
 
-	public void afterPropertiesSet() {
+	public void afterPropertiesSet() throws Exception {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
 				ClassUtil.getClassName(this) + " is deprecated in favor of " +

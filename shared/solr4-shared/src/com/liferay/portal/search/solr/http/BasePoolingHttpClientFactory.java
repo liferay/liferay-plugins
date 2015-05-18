@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.http.HttpRequestInterceptor;
+import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.pool.PoolStats;
@@ -30,28 +31,26 @@ import org.apache.http.pool.PoolStats;
  * @author Bruno Farache
  * @author André de Oliveira
  */
-public class BasePoolingHttpClientFactory implements HttpClientFactory {
-
-	public BasePoolingHttpClientFactory(
-		PoolingClientConnectionManager poolingClientConnectionManager) {
-
-		_poolingClientConnectionManager = poolingClientConnectionManager;
-	}
+public abstract class BasePoolingHttpClientFactory
+	implements HttpClientFactory {
 
 	@Override
-	public DefaultHttpClient createInstance() {
+	public HttpClient createInstance() throws Exception {
 		if (_log.isDebugEnabled()) {
 			_log.debug("Create instance");
 		}
 
+		_poolingClientConnectionManager =
+			createPoolingClientConnectionManager();
+
+		applyProperties(_poolingClientConnectionManager);
+
 		DefaultHttpClient defaultHttpClient = new DefaultHttpClient(
 			_poolingClientConnectionManager);
 
-		for (HttpRequestInterceptor httpRequestInterceptor :
-				_httpRequestInterceptors) {
+		applyProperties(defaultHttpClient);
 
-			defaultHttpClient.addRequestInterceptor(httpRequestInterceptor, 0);
-		}
+		configure(defaultHttpClient);
 
 		return defaultHttpClient;
 	}
@@ -59,10 +58,7 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
-		if (defaultMaxConnectionsPerRoute != null) {
-			_poolingClientConnectionManager.setDefaultMaxPerRoute(
-				defaultMaxConnectionsPerRoute.intValue());
-		}
+		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
 	}
 
 	public void setHttpRequestInterceptors(
@@ -72,16 +68,17 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 	}
 
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
-		if (maxTotalConnections != null) {
-			_poolingClientConnectionManager.setMaxTotal(
-				maxTotalConnections.intValue());
-		}
+		_maxTotalConnections = maxTotalConnections;
 	}
 
 	@Override
 	public void shutdown() {
 		if (_log.isDebugEnabled()) {
 			_log.debug("Shut down");
+		}
+
+		if (_poolingClientConnectionManager == null) {
+			return;
 		}
 
 		int retry = 0;
@@ -116,15 +113,46 @@ public class BasePoolingHttpClientFactory implements HttpClientFactory {
 
 		_poolingClientConnectionManager.shutdown();
 
+		_poolingClientConnectionManager = null;
+
 		if (_log.isDebugEnabled()) {
 			_log.debug(toString() + " was shut down");
 		}
 	}
 
+	protected void applyProperties(DefaultHttpClient defaultHttpClient) {
+		for (HttpRequestInterceptor httpRequestInterceptor :
+				_httpRequestInterceptors) {
+
+			defaultHttpClient.addRequestInterceptor(httpRequestInterceptor, 0);
+		}
+	}
+
+	protected void applyProperties(
+		PoolingClientConnectionManager poolingClientConnectionManager) {
+
+		if (_defaultMaxConnectionsPerRoute != null) {
+			poolingClientConnectionManager.setDefaultMaxPerRoute(
+				_defaultMaxConnectionsPerRoute.intValue());
+		}
+
+		if (_maxTotalConnections != null) {
+			poolingClientConnectionManager.setMaxTotal(
+				_maxTotalConnections.intValue());
+		}
+	}
+
+	protected abstract void configure(DefaultHttpClient defaultHttpClient);
+
+	protected abstract PoolingClientConnectionManager
+		createPoolingClientConnectionManager() throws Exception;
+
 	private static Log _log = LogFactoryUtil.getLog(
 		BasePoolingHttpClientFactory.class);
 
+	private Integer _defaultMaxConnectionsPerRoute;
 	private List<HttpRequestInterceptor> _httpRequestInterceptors;
-	private final PoolingClientConnectionManager _poolingClientConnectionManager;
+	private Integer _maxTotalConnections;
+	private PoolingClientConnectionManager _poolingClientConnectionManager;
 
 }
