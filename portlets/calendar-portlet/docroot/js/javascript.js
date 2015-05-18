@@ -709,8 +709,7 @@ AUI.add(
 				var visibleCalendars = instance.visibleCalendars = {};
 				var availableCalendars = instance.availableCalendars = {};
 
-				AArray.each(
-					calendarLists,
+				calendarLists.forEach(
 					function(calendarList) {
 						var calendars = calendarList.get('calendars');
 
@@ -1399,8 +1398,7 @@ AUI.add(
 						var events = [];
 						var calendarEvents = {};
 
-						AArray.each(
-							calendarBookings,
+						calendarBookings.forEach(
 							function(item, index) {
 								var calendarId = item.calendarId;
 

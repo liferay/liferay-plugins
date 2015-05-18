@@ -586,8 +586,7 @@ for (long otherCalendarId : otherCalendarIds) {
 	<c:if test="<%= invitable %>">
 		var manageableCalendars = {};
 
-		A.Array.each(
-			<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>,
+		<%= CalendarUtil.toCalendarsJSONArray(themeDisplay, manageableCalendars) %>.forEach(
 			function(item, index) {
 				manageableCalendars[item.calendarId] = item;
 			}
@@ -600,16 +599,15 @@ for (long otherCalendarId : otherCalendarIds) {
 
 				var calendar = manageableCalendars[calendarId];
 
-				A.Array.each(
-					[
-						<portlet:namespace />calendarListAccepted,
+				[
+					<portlet:namespace />calendarListAccepted,
 
-						<c:if test="<%= calendarBooking != null %>">
-							<portlet:namespace />calendarListDeclined, <portlet:namespace />calendarListMaybe,
-						</c:if>
+					<c:if test="<%= calendarBooking != null %>">
+						<portlet:namespace />calendarListDeclined, <portlet:namespace />calendarListMaybe,
+					</c:if>
 
-						<portlet:namespace />calendarListPending
-					],
+					<portlet:namespace />calendarListPending
+				].forEach(
 					function(calendarList) {
 						calendarList.remove(calendarList.getCalendar(calendarId));
 						calendarList.remove(calendarList.getCalendar(defaultCalendarId));

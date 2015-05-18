@@ -2,7 +2,6 @@ AUI.add(
 	'gadget-editor-tree',
 	function(A) {
 		var Lang = A.Lang;
-		var AArray = A.Array;
 		var isString = Lang.isString;
 		var isValue = Lang.isValue;
 
@@ -154,8 +153,7 @@ AUI.add(
 						var fileEntryChildren = [];
 						var folderChildren = [];
 
-						AArray.each(
-							children,
+						children.forEach(
 							function(item, index) {
 								if (item.isLeaf()) {
 									fileEntryChildren.push(item);
@@ -169,8 +167,7 @@ AUI.add(
 						fileEntryChildren.sort(arraySort);
 						folderChildren.sort(arraySort);
 
-						AArray.each(
-							folderChildren,
+						folderChildren.forEach(
 							function(item, index, collection) {
 								if (index != 0) {
 									instance.insertAfter(item, collection[index - 1]);
@@ -178,8 +175,7 @@ AUI.add(
 							}
 						);
 
-						AArray.each(
-							fileEntryChildren,
+						fileEntryChildren.forEach(
 							function(item, index, collection) {
 								if (index === 0) {
 									if (folderChildren.length > 0) {
@@ -285,8 +281,7 @@ AUI.add(
 
 							var ownerTree = instance.get(OWNER_TREE);
 
-							AArray.each(
-								siblings,
+							siblings.forEach(
 								function(sibling) {
 									if (sibling.isLeaf() === isLeaf) {
 										filteredSiblings.push(sibling);
@@ -337,8 +332,7 @@ AUI.add(
 
 						var ownerTree = instance.get(OWNER_TREE);
 
-						AArray.each(
-							children,
+						children.forEach(
 							function(item, index) {
 								if (item.isLeaf()) {
 									fileEntryChildren.push(item);
@@ -352,8 +346,7 @@ AUI.add(
 						fileEntryChildren.sort(arraySort);
 						folderChildren.sort(arraySort);
 
-						AArray.each(
-							folderChildren,
+						folderChildren.forEach(
 							function(item, index, collection) {
 								if (index != 0) {
 									ownerTree.insertAfter(item, collection[index - 1]);
@@ -361,8 +354,7 @@ AUI.add(
 							}
 						);
 
-						AArray.each(
-							fileEntryChildren,
+						fileEntryChildren.forEach(
 							function(item, index, collection) {
 								if (index === 0) {
 									if (folderChildren.length > 0) {
@@ -539,8 +531,7 @@ AUI.add(
 										if (!overlayContext.get(RENDERED)) {
 											contextMenu.render();
 
-											AArray.each(
-												contextMenu.get('children')[0],
+											contextMenu.get('children')[0].forEach(
 												function(item, index) {
 													if (A.instanceOf(item, A.Button)) {
 														item.render();

@@ -178,8 +178,7 @@
 
 							instance.items = A.NodeList.create();
 
-							AArray.each(
-								items,
+							items.forEach(
 								function(item, index) {
 									var caption = item.caption;
 
@@ -606,8 +605,7 @@
 
 							var scheduler = instance.get('scheduler');
 
-							AArray.each(
-								val,
+							val.forEach(
 								function(item, index) {
 									var calendar = item;
 

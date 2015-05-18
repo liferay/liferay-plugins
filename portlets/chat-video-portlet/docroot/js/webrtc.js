@@ -813,7 +813,7 @@ AUI().use(
 				if (instance._isWebRtcStarted()) {
 					Liferay.Chat.WebRtcManager.debugMsg('flushing ICE candidates buffer (length=' + instance._iceCandidatesBuffer.length + ')');
 
-					A.Array.each(instance._iceCandidatesBuffer, instance._addIceCandidate, instance);
+					instance._iceCandidatesBuffer.forEach(instance._addIceCandidate, instance);
 
 					instance._iceCandidatesBuffer.length = 0;
 				}

@@ -529,8 +529,7 @@ AUI.add(
 						else {
 							var treeViewEditor = instance._treeViewEditor;
 
-							AArray.each(
-								data,
+							data.forEach(
 								function(item, index) {
 									var node = new A.TreeNodeEditor(
 										{
@@ -962,8 +961,7 @@ AUI.add(
 								else {
 									var children = node.getChildren(true);
 
-									AArray.each(
-										children,
+									children.forEach(
 										function(item, index) {
 											if (item.isLeaf()) {
 												instance.fire(

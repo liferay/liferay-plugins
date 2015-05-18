@@ -180,8 +180,7 @@ portletURL.setParameter("tabs1", tabs1);
 								if (responseData) {
 									commentsList.empty();
 
-									A.Array.each(
-										responseData.comments,
+									responseData.comments.forEach(
 										function(item, index) {
 											Liferay.SO.Activities.addNewComment(commentsList, item);
 										}

@@ -1248,8 +1248,7 @@ AUI().use(
 
 				var minimizedPanelIds = instance._minimizedPanelIds;
 
-				A.Array.each(
-					minimized,
+				minimized.forEach(
 					function(item, index) {
 						minimizedPanelIds[item] = true;
 
