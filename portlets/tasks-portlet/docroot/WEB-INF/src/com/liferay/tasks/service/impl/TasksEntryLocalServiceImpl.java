@@ -146,7 +146,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		AssetEntryLocalServiceUtil.deleteEntry(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 
-		// Discussions
+		// Comment
 
 		CommentManagerUtil.deleteDiscussion(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
