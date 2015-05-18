@@ -1763,10 +1763,10 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<if>
-				<available file="javadoc" />
+				<available file="@{module.dir}/javadoc" />
 				<then>
 					<jar
-						basedir="javadoc"
+						basedir="@{module.dir}/javadoc"
 						jarfile="${plugin.javadoc.file}"
 					/>
 				</then>
@@ -2013,28 +2013,28 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<if>
-				<available file="patches" />
+				<available file="@{module.dir}/patches" />
 				<then>
 					<jar jarfile="${plugin.sources.file}">
-						<fileset dir="src" />
+						<fileset dir="@{module.dir}/src" />
 						<zipfileset
-							dir="patches"
+							dir="@{module.dir}/patches"
 							prefix="META-INF/patches"
 						/>
 					</jar>
 				</then>
 				<elseif>
-					<available file="docroot" />
+					<available file="@{module.dir}/docroot" />
 					<then>
 						<jar
-							basedir="docroot"
+							basedir="@{module.dir}/docroot"
 							jarfile="${plugin.sources.file}"
 						/>
 					</then>
 				</elseif>
 				<else>
 					<jar
-						basedir="src"
+						basedir="@{module.dir}/src"
 						jarfile="${plugin.sources.file}"
 					/>
 				</else>
@@ -2061,11 +2061,13 @@ Please find a solution that does not require portal-impl.jar.
 				<then>
 					<javadoc
 						classpathref="plugin.classpath"
-						destdir="javadoc"
+						destdir="@{module.dir}/javadoc"
 						sourcepath="${plugin.source.dir}"
 					/>
 				</then>
 			</if>
+
+			<var name="module.java.count" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -3150,6 +3152,27 @@ for (String path : paths) {
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="jar"
+		/>
+	</target>
+
+	<target name="jar-javadoc" depends="javadoc">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="jar-javadoc"
+		/>
+	</target>
+
+	<target name="jar-source">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="jar-source"
+		/>
+	</target>
+
+	<target name="javadoc">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="javadoc"
 		/>
 	</target>
 
