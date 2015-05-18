@@ -14,6 +14,9 @@
 
 package com.liferay.portal.search.solr.http;
 
+import java.util.List;
+
+import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.client.HttpClient;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
@@ -22,7 +25,7 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
  * @author André de Oliveira
  */
 public class CertAuthPoolingDelegatingHttpClientFactory
-	extends DelegatingHttpClientFactory {
+	implements HttpClientFactory {
 
 	@Override
 	public HttpClient createInstance() throws Exception {
@@ -32,14 +35,29 @@ public class CertAuthPoolingDelegatingHttpClientFactory
 			new CertAuthPoolingHttpClientFactory(sslSocketFactory);
 
 		httpClientFactory.setDefaultMaxConnectionsPerRoute(
-			getDefaultMaxConnectionsPerRoute());
-		httpClientFactory.setHttpRequestInterceptors(
-			getHttpRequestInterceptors());
-		httpClientFactory.setMaxTotalConnections(getMaxTotalConnections());
+			_defaultMaxConnectionsPerRoute);
+		httpClientFactory.setHttpRequestInterceptors(_httpRequestInterceptors);
+		httpClientFactory.setMaxTotalConnections(_maxTotalConnections);
 
-		setHttpClientFactory(httpClientFactory);
+		_httpClientFactory = httpClientFactory;
 
-		return super.createInstance();
+		return _httpClientFactory.createInstance();
+	}
+
+	public void setDefaultMaxConnectionsPerRoute(
+		Integer defaultMaxConnectionsPerRoute) {
+
+		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
+	}
+
+	public void setHttpRequestInterceptors(
+		List<HttpRequestInterceptor> httpRequestInterceptors) {
+
+		_httpRequestInterceptors = httpRequestInterceptors;
+	}
+
+	public void setMaxTotalConnections(Integer maxTotalConnections) {
+		_maxTotalConnections = maxTotalConnections;
 	}
 
 	public void setSslSocketFactoryBuilder(
@@ -48,6 +66,15 @@ public class CertAuthPoolingDelegatingHttpClientFactory
 		_sslSocketFactoryBuilder = sslSocketFactoryBuilder;
 	}
 
+	@Override
+	public void shutdown() {
+		_httpClientFactory.shutdown();
+	}
+
+	private Integer _defaultMaxConnectionsPerRoute;
+	private HttpClientFactory _httpClientFactory;
+	private List<HttpRequestInterceptor> _httpRequestInterceptors;
+	private Integer _maxTotalConnections;
 	private SSLSocketFactoryBuilder _sslSocketFactoryBuilder;
 
 }
