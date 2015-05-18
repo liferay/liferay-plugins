@@ -46,22 +46,7 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 		DefaultHttpClient defaultHttpClient =
 			_basePoolingHttpClientFactory.createInstance();
 
-		if (!Validator.isBlank(_username)) {
-			if (_authScope == null) {
-				_authScope = AuthScope.ANY;
-			}
-
-			CredentialsProvider credentialsProvider =
-				defaultHttpClient.getCredentialsProvider();
-
-			if (Validator.isNull(_password)) {
-				_password = StringPool.BLANK;
-			}
-
-			credentialsProvider.setCredentials(
-				_authScope,
-				new UsernamePasswordCredentials(_username, _password));
-		}
+		configure(defaultHttpClient);
 
 		return defaultHttpClient;
 	}
@@ -100,6 +85,27 @@ public class BasicAuthPoolingHttpClientFactory implements HttpClientFactory {
 	@Override
 	public void shutdown() {
 		_basePoolingHttpClientFactory.shutdown();
+	}
+
+	protected void configure(DefaultHttpClient defaultHttpClient) {
+		if (Validator.isBlank(_username)) {
+			return;
+		}
+
+		if (_authScope == null) {
+			_authScope = AuthScope.ANY;
+		}
+
+		if (Validator.isNull(_password)) {
+			_password = StringPool.BLANK;
+		}
+
+		CredentialsProvider credentialsProvider =
+			defaultHttpClient.getCredentialsProvider();
+
+		credentialsProvider.setCredentials(
+			_authScope,
+			new UsernamePasswordCredentials(_username, _password));
 	}
 
 	private AuthScope _authScope;

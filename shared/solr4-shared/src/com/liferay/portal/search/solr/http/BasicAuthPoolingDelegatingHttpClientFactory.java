@@ -14,6 +14,9 @@
 
 package com.liferay.portal.search.solr.http;
 
+import java.util.List;
+
+import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
@@ -24,7 +27,7 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
  * @author André de Oliveira
  */
 public class BasicAuthPoolingDelegatingHttpClientFactory
-	extends DelegatingHttpClientFactory {
+	implements HttpClientFactory {
 
 	@Override
 	public HttpClient createInstance() throws Exception {
@@ -37,21 +40,37 @@ public class BasicAuthPoolingDelegatingHttpClientFactory
 
 		basicAuthPoolingHttpClientFactory.setAuthScope(_authScope);
 		basicAuthPoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
-			getDefaultMaxConnectionsPerRoute());
+			_defaultMaxConnectionsPerRoute);
 		basicAuthPoolingHttpClientFactory.setHttpRequestInterceptors(
-			getHttpRequestInterceptors());
+			_httpRequestInterceptors);
 		basicAuthPoolingHttpClientFactory.setMaxTotalConnections(
-			getMaxTotalConnections());
+			_maxTotalConnections);
 		basicAuthPoolingHttpClientFactory.setPassword(_password);
 		basicAuthPoolingHttpClientFactory.setUsername(_username);
 
-		setHttpClientFactory(basicAuthPoolingHttpClientFactory);
+		_httpClientFactory = basicAuthPoolingHttpClientFactory;
 
-		return super.createInstance();
+		return _httpClientFactory.createInstance();
 	}
 
 	public void setAuthScope(AuthScope authScope) {
 		_authScope = authScope;
+	}
+
+	public void setDefaultMaxConnectionsPerRoute(
+		Integer defaultMaxConnectionsPerRoute) {
+
+		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
+	}
+
+	public void setHttpRequestInterceptors(
+		List<HttpRequestInterceptor> httpRequestInterceptors) {
+
+		_httpRequestInterceptors = httpRequestInterceptors;
+	}
+
+	public void setMaxTotalConnections(Integer maxTotalConnections) {
+		_maxTotalConnections = maxTotalConnections;
 	}
 
 	public void setPassword(String password) {
@@ -62,7 +81,16 @@ public class BasicAuthPoolingDelegatingHttpClientFactory
 		_username = username;
 	}
 
+	@Override
+	public void shutdown() {
+		_httpClientFactory.shutdown();
+	}
+
 	private AuthScope _authScope;
+	private Integer _defaultMaxConnectionsPerRoute;
+	private HttpClientFactory _httpClientFactory;
+	private List<HttpRequestInterceptor> _httpRequestInterceptors;
+	private Integer _maxTotalConnections;
 	private String _password;
 	private String _username;
 

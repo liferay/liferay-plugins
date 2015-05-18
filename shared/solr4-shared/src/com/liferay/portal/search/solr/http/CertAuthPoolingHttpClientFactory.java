@@ -32,13 +32,8 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
 public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 
 	public CertAuthPoolingHttpClientFactory(SSLSocketFactory sslSocketFactory) {
-		SchemeRegistry schemeRegistry = createSchemeRegistry(sslSocketFactory);
-
-		PoolingClientConnectionManager poolingClientConnectionManager =
-			new PoolingClientConnectionManager(schemeRegistry);
-
 		_basePoolingHttpClientFactory = new BasePoolingHttpClientFactory(
-			poolingClientConnectionManager);
+			createPoolingClientConnectionManager(sslSocketFactory));
 	}
 
 	@Override
@@ -68,6 +63,15 @@ public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 	@Override
 	public void shutdown() {
 		_basePoolingHttpClientFactory.shutdown();
+	}
+
+	protected PoolingClientConnectionManager
+		createPoolingClientConnectionManager(
+			SSLSocketFactory sslSocketFactory) {
+
+		SchemeRegistry schemeRegistry = createSchemeRegistry(sslSocketFactory);
+
+		return new PoolingClientConnectionManager(schemeRegistry);
 	}
 
 	protected SchemeRegistry createSchemeRegistry(
