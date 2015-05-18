@@ -85,7 +85,7 @@ if (recurrence != null) {
 						for (Frequency curFrequency : Frequency.values()) {
 						%>
 
-							<aui:option selected="<%= (frequency == curFrequency) %>" value="<%= curFrequency.getValue() %>"><%= LanguageUtil.get(locale, StringUtil.toLowerCase(curFrequency.getValue())) %></aui:option>
+							<aui:option selected="<%= (frequency == curFrequency) %>" value="<%= curFrequency.getValue() %>"><%= LanguageUtil.get(request, StringUtil.toLowerCase(curFrequency.getValue())) %></aui:option>
 
 						<%
 						}
