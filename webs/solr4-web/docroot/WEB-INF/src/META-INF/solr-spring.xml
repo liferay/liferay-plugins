@@ -36,7 +36,7 @@
 
 	<!-- Solr search engine client -->
 
-	<bean id="com.liferay.portal.search.solr.http.HttpClientFactory" class="com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory" destroy-method="shutdown">
+	<bean class="com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory" id="com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory">
 		<property name="defaultMaxConnectionsPerRoute" value="20" />
 		<property name="httpRequestInterceptors">
 			<list>
@@ -70,6 +70,15 @@
 				<property name="verifyServerHostname" value="true" />
 			</bean>
 		</property>
+	</bean>
+	<bean class="com.liferay.portal.search.solr.http.HttpClientFactoryImpl" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory">
+		<property name="httpClientFactories">
+			<map>
+				<entry key="BASIC" value-ref="com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory" />
+				<entry key="CERT" value-ref="com.liferay.portal.search.solr.http.CertAuthPoolingHttpClientFactory" />
+			</map>
+		</property>
+		<property name="auth" value="${server.http.client.factory.auth}" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.server.HttpSolrServer" class="com.liferay.portal.search.solr.server.HttpSolrServer">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
