@@ -83,7 +83,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			sharedToJSONArray.put(assetTagsJSONArray.getJSONObject(i));
 		}
 
-		sharedToJSONArray = dedupeSharedToJSONArray(sharedToJSONArray);
+		sharedToJSONArray = processSharedToJSONArray(sharedToJSONArray);
 
 		jsonObject.put(
 			AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO, sharedToJSONArray);
@@ -123,6 +123,28 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		return newSharedToJSONArray;
 	}
 
+	protected JSONArray filterSharedToJSONArray(
+		JSONArray sharedToJSONArray, String[] names) {
+
+		JSONArray newSharedToJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (int i = 0; i < sharedToJSONArray.length(); i++) {
+			JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(i);
+
+			JSONObject newSharedToJSONObject =
+				JSONFactoryUtil.createJSONObject();
+
+			for (String name : names) {
+				newSharedToJSONObject.put(
+					name, sharedToJSONObject.getString(name));
+			}
+
+			newSharedToJSONArray.put(newSharedToJSONObject);
+		}
+
+		return newSharedToJSONArray;
+	}
+
 	protected boolean isContentModified(
 		JSONObject oldPayloadJSONObject, JSONObject newPayloadJSONObject) {
 
@@ -147,6 +169,17 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		}
 
 		return false;
+	}
+
+	protected JSONArray processSharedToJSONArray(JSONArray sharedToJSONArray) {
+		JSONArray newSharedToJSONArray = dedupeSharedToJSONArray(
+			sharedToJSONArray);
+
+		newSharedToJSONArray = filterSharedToJSONArray(
+			newSharedToJSONArray,
+			new String[] {"classPK", "classNameId", "name", "removable"});
+
+		return newSharedToJSONArray;
 	}
 
 	protected void setPortletId(String portletId) {
