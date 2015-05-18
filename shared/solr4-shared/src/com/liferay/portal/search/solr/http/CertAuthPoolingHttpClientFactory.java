@@ -31,33 +31,43 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
  */
 public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 
-	public CertAuthPoolingHttpClientFactory(SSLSocketFactory sslSocketFactory) {
+	@Override
+	public HttpClient createInstance() throws Exception {
+		SSLSocketFactory sslSocketFactory = _sslSocketFactoryBuilder.build();
+
 		_basePoolingHttpClientFactory = new BasePoolingHttpClientFactory(
 			createPoolingClientConnectionManager(sslSocketFactory));
-	}
 
-	@Override
-	public HttpClient createInstance() {
+		_basePoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
+			_defaultMaxConnectionsPerRoute);
+		_basePoolingHttpClientFactory.setHttpRequestInterceptors(
+			_httpRequestInterceptors);
+		_basePoolingHttpClientFactory.setMaxTotalConnections(
+			_maxTotalConnections);
+
 		return _basePoolingHttpClientFactory.createInstance();
 	}
 
 	public void setDefaultMaxConnectionsPerRoute(
 		Integer defaultMaxConnectionsPerRoute) {
 
-		_basePoolingHttpClientFactory.setDefaultMaxConnectionsPerRoute(
-			defaultMaxConnectionsPerRoute);
+		_defaultMaxConnectionsPerRoute = defaultMaxConnectionsPerRoute;
 	}
 
 	public void setHttpRequestInterceptors(
 		List<HttpRequestInterceptor> httpRequestInterceptors) {
 
-		_basePoolingHttpClientFactory.setHttpRequestInterceptors(
-			httpRequestInterceptors);
+		_httpRequestInterceptors = httpRequestInterceptors;
 	}
 
 	public void setMaxTotalConnections(Integer maxTotalConnections) {
-		_basePoolingHttpClientFactory.setMaxTotalConnections(
-			maxTotalConnections);
+		_maxTotalConnections = maxTotalConnections;
+	}
+
+	public void setSslSocketFactoryBuilder(
+		SSLSocketFactoryBuilder sslSocketFactoryBuilder) {
+
+		_sslSocketFactoryBuilder = sslSocketFactoryBuilder;
 	}
 
 	@Override
@@ -87,6 +97,10 @@ public class CertAuthPoolingHttpClientFactory implements HttpClientFactory {
 		return schemeRegistry;
 	}
 
-	private final BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
+	private BasePoolingHttpClientFactory _basePoolingHttpClientFactory;
+	private Integer _defaultMaxConnectionsPerRoute;
+	private List<HttpRequestInterceptor> _httpRequestInterceptors;
+	private Integer _maxTotalConnections;
+	private SSLSocketFactoryBuilder _sslSocketFactoryBuilder;
 
 }
