@@ -141,30 +141,31 @@ public class TasksPortlet extends MVCPortlet {
 			CommentManagerUtil.getDiscussionPermission(
 				themeDisplay.getPermissionChecker());
 
-		User user = themeDisplay.getUser();
-
 		if (cmd.equals(Constants.DELETE)) {
 			discussionPermission.checkDeletePermission(
-				className, classPK, messageId, user.getUserId());
+				className, classPK, messageId, themeDisplay.getUserId());
 
 			CommentManagerUtil.deleteComment(messageId);
 		}
 		else if (messageId <= 0) {
 			discussionPermission.checkAddPermission(
 				themeDisplay.getCompanyId(), groupId, className, classPK,
-				user.getUserId());
+				themeDisplay.getUserId());
+
+			User user = themeDisplay.getUser();
 
 			CommentManagerUtil.addComment(
-				user.getUserId(), className, classPK, user.getFullName(),
-				parentMessageId, subject, body, serviceContextFunction);
+				themeDisplay.getUserId(), className, classPK,
+				user.getFullName(), parentMessageId, subject, body,
+				serviceContextFunction);
 		}
 		else {
 			discussionPermission.checkUpdatePermission(
-				className, classPK, messageId, user.getUserId());
+				className, classPK, messageId, themeDisplay.getUserId());
 
 			CommentManagerUtil.updateComment(
-				user.getUserId(), className, classPK, messageId, subject, body,
-				serviceContextFunction);
+				themeDisplay.getUserId(), className, classPK, messageId,
+				subject, body, serviceContextFunction);
 		}
 	}
 
