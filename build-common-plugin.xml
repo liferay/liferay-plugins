@@ -818,48 +818,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		<var name="patched.file.available" unset="true" />
 	</target>
 
-	<target name="publish-local-m2-release" depends="jar-javadoc,jar-source,war">
-		<antcall target="build-common-ivy.publish">
-			<param name="ivy.publish.resolver" value="local-m2" />
-		</antcall>
-	</target>
-
-	<target name="publish-local-m2-snapshot" depends="jar-javadoc,jar-source,war">
-		<antcall target="build-common-ivy.publish">
-			<param name="ivy.publish.resolver" value="local-m2" />
-			<param name="plugin.release.qualifier" value="-SNAPSHOT" />
-		</antcall>
-	</target>
-
-	<target name="publish-remote-m2-release" depends="jar-javadoc,jar-source,war">
-		<antcall target="build-common-ivy.publish">
-			<param name="ivy.publish.resolver" value="sonatype-m2-release" />
-		</antcall>
-	</target>
-
-	<target name="publish-remote-m2-snapshot" depends="jar-javadoc,jar-source,war">
-		<antcall target="build-common-ivy.publish">
-			<param name="ivy.publish.resolver" value="sonatype-m2-snapshot" />
-			<param name="plugin.release.qualifier" value="-SNAPSHOT" />
-		</antcall>
-
-		<property file="bnd.bnd" prefix="bnd." />
-
-		<exec dir="${basedir}" executable="git" outputproperty="git.commit.module.rev.parse">
-			<arg line="rev-parse HEAD" />
-		</exec>
-
-		<propertyregex
-			input="${sonatype.snapshot.url}"
-			property="cdn.sonatype.snapshot.url"
-			regexp="https://"
-			replace="https://cdn."
-		/>
-
-		<echo file="snapshot.properties">snapshot.git.id=${git.commit.module.rev.parse}
-snapshot.url=${cdn.sonatype.snapshot.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-SNAPSHOT.jar</echo>
-	</target>
-
 	<target name="shrink-zip-cmd">
 		<tstamp>
 			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
