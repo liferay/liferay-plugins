@@ -26,13 +26,14 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.theme.PortletDisplay;
+import com.liferay.portal.theme.ThemeDisplay;
 
 import java.util.List;
 
 import javax.portlet.PortletURL;
-import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Adolfo Pérez
@@ -40,20 +41,20 @@ import javax.portlet.RenderResponse;
 public class KBSuggestionListDisplayContext {
 
 	public KBSuggestionListDisplayContext(
-		RenderRequest renderRequest, String templatePath, KBArticle kbArticle,
+		HttpServletRequest request, String templatePath, KBArticle kbArticle,
 		String selectedNavItem) {
 
-		_renderRequest = renderRequest;
+		_request = request;
 		_templatePath = templatePath;
 		_kbArticle = kbArticle;
 		_selectedNavItem = selectedNavItem;
 	}
 
 	public KBSuggestionListDisplayContext(
-		RenderRequest renderRequest, String templatePath, long groupId,
+		HttpServletRequest request, String templatePath, long groupId,
 		String selectedNavItem) {
 
-		_renderRequest = renderRequest;
+		_request = request;
 		_templatePath = templatePath;
 		_groupId = groupId;
 		_selectedNavItem = selectedNavItem;
@@ -112,7 +113,12 @@ public class KBSuggestionListDisplayContext {
 	public String getViewSuggestionURL(PortletURL portletURL, String navItem)
 		throws PortalException, SystemException {
 
-		String portletId = PortalUtil.getPortletId(_renderRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		String portletId = portletDisplay.getId();
 
 		portletURL.setParameter("navItem", navItem);
 		portletURL.setParameter("expanded", Boolean.TRUE.toString());
@@ -165,7 +171,7 @@ public class KBSuggestionListDisplayContext {
 
 	private long _groupId;
 	private KBArticle _kbArticle;
-	private final RenderRequest _renderRequest;
+	private final HttpServletRequest _request;
 	private String _selectedNavItem;
 	private final String _templatePath;
 
