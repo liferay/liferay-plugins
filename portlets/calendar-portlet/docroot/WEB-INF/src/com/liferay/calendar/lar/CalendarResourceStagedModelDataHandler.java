@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -53,13 +52,11 @@ public class CalendarResourceStagedModelDataHandler
 		{CalendarResource.class.getName()};
 
 	@Override
-	public void deleteStagedModel(StagedModel stagedModel)
+	public void deleteStagedModel(CalendarResource calendarResource)
 		throws PortalException {
 
-		if (stagedModel instanceof CalendarResource) {
-			CalendarResourceLocalServiceUtil.deleteCalendarResource(
-				(CalendarResource)stagedModel);
-		}
+		CalendarResourceLocalServiceUtil.deleteCalendarResource(
+			calendarResource);
 	}
 
 	@Override

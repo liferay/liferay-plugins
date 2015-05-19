@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 
@@ -38,12 +37,8 @@ public class GadgetStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {Gadget.class.getName()};
 
 	@Override
-	public void deleteStagedModel(StagedModel stagedModel)
-		throws PortalException {
-
-		if (stagedModel instanceof Gadget) {
-			GadgetLocalServiceUtil.deleteGadget((Gadget)stagedModel);
-		}
+	public void deleteStagedModel(Gadget gadget) throws PortalException {
+		GadgetLocalServiceUtil.deleteGadget(gadget);
 	}
 
 	@Override

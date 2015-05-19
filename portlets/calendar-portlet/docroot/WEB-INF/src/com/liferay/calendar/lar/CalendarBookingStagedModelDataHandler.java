@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
@@ -50,13 +49,10 @@ public class CalendarBookingStagedModelDataHandler
 		{CalendarBooking.class.getName()};
 
 	@Override
-	public void deleteStagedModel(StagedModel stagedModel)
+	public void deleteStagedModel(CalendarBooking calendarBooking)
 		throws PortalException {
 
-		if (stagedModel instanceof CalendarBooking) {
-			CalendarBookingLocalServiceUtil.deleteCalendarBooking(
-				(CalendarBooking)stagedModel);
-		}
+		CalendarBookingLocalServiceUtil.deleteCalendarBooking(calendarBooking);
 	}
 
 	@Override

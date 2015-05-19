@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -37,13 +36,10 @@ public class KBTemplateStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {KBTemplate.class.getName()};
 
 	@Override
-	public void deleteStagedModel(StagedModel stagedModel)
+	public void deleteStagedModel(KBTemplate kbTemplate)
 		throws PortalException {
 
-		if (stagedModel instanceof KBTemplate) {
-			KBTemplateLocalServiceUtil.deleteKBTemplate(
-				(KBTemplate)stagedModel);
-		}
+		KBTemplateLocalServiceUtil.deleteKBTemplate(kbTemplate);
 	}
 
 	@Override

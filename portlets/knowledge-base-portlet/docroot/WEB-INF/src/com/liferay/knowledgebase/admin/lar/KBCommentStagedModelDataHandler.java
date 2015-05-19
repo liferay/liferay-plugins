@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -39,12 +38,8 @@ public class KBCommentStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {KBComment.class.getName()};
 
 	@Override
-	public void deleteStagedModel(StagedModel stagedModel)
-		throws PortalException {
-
-		if (stagedModel instanceof KBComment) {
-			KBCommentLocalServiceUtil.deleteKBComment((KBComment)stagedModel);
-		}
+	public void deleteStagedModel(KBComment kbComment) throws PortalException {
+		KBCommentLocalServiceUtil.deleteKBComment(kbComment);
 	}
 
 	@Override

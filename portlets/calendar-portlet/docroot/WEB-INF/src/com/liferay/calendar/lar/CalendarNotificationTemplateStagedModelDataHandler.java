@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelModifiedDateComparator;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -47,14 +46,12 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		{CalendarNotificationTemplate.class.getName()};
 
 	@Override
-	public void deleteStagedModel(StagedModel stagedModel)
+	public void deleteStagedModel(
+			CalendarNotificationTemplate calendarNotificationTemplate)
 		throws PortalException {
 
-		if (stagedModel instanceof CalendarNotificationTemplate) {
-			CalendarNotificationTemplateLocalServiceUtil.
-				deleteCalendarNotificationTemplate(
-					(CalendarNotificationTemplate)stagedModel);
-		}
+		CalendarNotificationTemplateLocalServiceUtil.
+			deleteCalendarNotificationTemplate(calendarNotificationTemplate);
 	}
 
 	@Override
