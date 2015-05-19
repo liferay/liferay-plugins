@@ -40,37 +40,5 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.google.ical.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/joda-time.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.core/arquillian-core-api/jars/arquillian-core-api-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.core/arquillian-core-spi/jars/arquillian-core-spi-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.test/arquillian-test-api/jars/arquillian-test-api-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.test/arquillian-test-spi/jars/arquillian-test-spi-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.junit/arquillian-junit-core/jars/arquillian-junit-core-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-api/jars/shrinkwrap-api-1.2.1.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.container/arquillian-container-test-api/jars/arquillian-container-test-api-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.shrinkwrap.descriptors/shrinkwrap-descriptors-api-base/jars/shrinkwrap-descriptors-api-base-2.0.0-alpha-5.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.config/arquillian-config-api/jars/arquillian-config-api-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.easytesting/fest-util/jars/fest-util-1.1.6.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.easytesting/fest-assert/jars/fest-assert-1.4.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.shrinkwrap.descriptors/shrinkwrap-descriptors-spi/jars/shrinkwrap-descriptors-spi-2.0.0-alpha-5.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.config/arquillian-config-impl-base/jars/arquillian-config-impl-base-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.container/arquillian-container-spi/jars/arquillian-container-spi-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.container/arquillian-container-test-spi/jars/arquillian-container-test-spi-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.core/arquillian-core-impl-base/jars/arquillian-core-impl-base-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.test/arquillian-test-impl-base/jars/arquillian-test-impl-base-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.container/arquillian-container-impl-base/jars/arquillian-container-impl-base-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.container/arquillian-container-test-impl-base/jars/arquillian-container-test-impl-base-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-spi/jars/shrinkwrap-spi-1.2.1.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-impl-base/jars/shrinkwrap-impl-base-1.2.1.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.junit/arquillian-junit-container/jars/arquillian-junit-container-1.1.3.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.container/arquillian-tomcat-common/jars/arquillian-tomcat-common-1.0.0.CR6.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.protocol/arquillian-protocol-servlet/jars/arquillian-protocol-servlet-1.0.0.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.testenricher/arquillian-testenricher-cdi/jars/arquillian-testenricher-cdi-1.0.0.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.testenricher/arquillian-testenricher-resource/jars/arquillian-testenricher-resource-1.0.0.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.testenricher/arquillian-testenricher-initialcontext/jars/arquillian-testenricher-initialcontext-1.0.0.Final.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.jboss.arquillian.container/arquillian-tomcat-remote-7/jars/arquillian-tomcat-remote-7-1.0.0.CR6.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.apache.ant/ant-launcher/jars/ant-launcher-1.9.3.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.apache.ant/ant/jars/ant-1.9.3.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/org.apache.ant/ant-apache-log4j/jars/ant-apache-log4j-1.9.3.jar" />
-	<classpathentry kind="lib" path="../../.ivy/cache/com.liferay/com.liferay.ant.arquillian/jars/com.liferay.ant.arquillian-1.0.0.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
