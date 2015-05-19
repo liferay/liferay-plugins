@@ -115,7 +115,7 @@
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
-	
+
 	<!-- References -->
 
 	<bean id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" class="com.liferay.portal.search.QueryPreProcessConfigurationImpl">
