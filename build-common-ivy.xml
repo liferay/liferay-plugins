@@ -734,14 +734,14 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 		<if>
 			<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
 			<then>
+				<property name="sonatype.password" value="${sonatype.snapshot.password}" />
 				<property name="sonatype.url" value="${sonatype.snapshot.url}" />
 				<property name="sonatype.username" value="${sonatype.snapshot.username}" />
-				<property name="sonatype.password" value="${sonatype.snapshot.password}" />
 			</then>
 			<else>
+				<property name="sonatype.password" value="${sonatype.release.password}" />
 				<property name="sonatype.url" value="${sonatype.release.url}" />
 				<property name="sonatype.username" value="${sonatype.release.username}" />
-				<property name="sonatype.password" value="${sonatype.release.password}" />
 			</else>
 		</if>
 
