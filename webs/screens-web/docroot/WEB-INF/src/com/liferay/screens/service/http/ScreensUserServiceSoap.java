@@ -51,6 +51,20 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class ScreensUserServiceSoap {
+	public static com.liferay.portal.model.User getCurrentUser()
+		throws RemoteException {
+		try {
+			com.liferay.portal.model.User returnValue = ScreensUserServiceUtil.getCurrentUser();
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static boolean sendPasswordByEmailAddress(long companyId,
 		java.lang.String emailAddress) throws RemoteException {
 		try {

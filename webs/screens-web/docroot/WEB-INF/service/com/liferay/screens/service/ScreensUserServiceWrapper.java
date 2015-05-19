@@ -57,6 +57,13 @@ public class ScreensUserServiceWrapper implements ScreensUserService,
 	}
 
 	@Override
+	public com.liferay.portal.model.User getCurrentUser()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _screensUserService.getCurrentUser();
+	}
+
+	@Override
 	public boolean sendPasswordByEmailAddress(long companyId,
 		java.lang.String emailAddress)
 		throws com.liferay.portal.kernel.exception.PortalException,

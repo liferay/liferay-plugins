@@ -63,6 +63,12 @@ public class ScreensUserServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.liferay.portal.model.User getCurrentUser()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getCurrentUser();
+	}
+
 	public static boolean sendPasswordByEmailAddress(long companyId,
 		java.lang.String emailAddress)
 		throws com.liferay.portal.kernel.exception.PortalException,
