@@ -37,7 +37,7 @@ public class GadgetStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {Gadget.class.getName()};
 
 	@Override
-	public void deleteStagedModel(Gadget gadget) throws PortalException {
+	public void deleteStagedModel(Gadget gadget) {
 		GadgetLocalServiceUtil.deleteGadget(gadget);
 	}
 

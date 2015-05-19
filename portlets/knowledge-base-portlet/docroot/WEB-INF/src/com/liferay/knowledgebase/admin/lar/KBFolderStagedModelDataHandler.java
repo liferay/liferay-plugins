@@ -19,7 +19,6 @@ import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.KBFolderUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -40,14 +39,13 @@ public class KBFolderStagedModelDataHandler
 	public static final String[] CLASS_NAMES = {KBFolder.class.getName()};
 
 	@Override
-	public void deleteStagedModel(KBFolder kbFolder) throws PortalException {
+	public void deleteStagedModel(KBFolder kbFolder) {
 		KBFolderLocalServiceUtil.deleteKBFolder(kbFolder);
 	}
 
 	@Override
 	public void deleteStagedModel(
-			String uuid, long groupId, String className, String extraData)
-		throws PortalException {
+		String uuid, long groupId, String className, String extraData) {
 
 		KBFolder kbFolder =
 			KBFolderLocalServiceUtil.fetchKBFolderByUuidAndGroupId(
