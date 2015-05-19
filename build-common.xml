@@ -2231,7 +2231,7 @@ Please find a solution that does not require portal-impl.jar.
 
 		<sequential>
 			<ant dir="@{module.dir}" target="publish">
-				<property name="ivy.publish.resolver" value="local-m2" />
+				<property name="publish.target" value="local" />
 			</ant>
 		</sequential>
 	</macrodef>
@@ -2241,7 +2241,7 @@ Please find a solution that does not require portal-impl.jar.
 
 		<sequential>
 			<ant dir="@{module.dir}" target="publish">
-				<property name="ivy.publish.resolver" value="local-m2" />
+				<property name="publish.target" value="local" />
 				<property name="plugin.release.qualifier" value="-SNAPSHOT" />
 			</ant>
 		</sequential>
@@ -2252,7 +2252,7 @@ Please find a solution that does not require portal-impl.jar.
 
 		<sequential>
 			<ant dir="@{module.dir}" target="publish">
-				<property name="ivy.publish.resolver" value="sonatype-m2-release" />
+				<property name="publish.target" value="remote" />
 			</ant>
 		</sequential>
 	</macrodef>
@@ -2262,25 +2262,9 @@ Please find a solution that does not require portal-impl.jar.
 
 		<sequential>
 			<ant dir="@{module.dir}" target="publish">
-				<property name="ivy.publish.resolver" value="sonatype-m2-snapshot" />
+				<property name="publish.target" value="remote" />
 				<property name="plugin.release.qualifier" value="-SNAPSHOT" />
 			</ant>
-
-			<property file="bnd.bnd" prefix="bnd." />
-
-			<exec dir="${basedir}" executable="git" outputproperty="git.commit.module.rev.parse">
-				<arg line="rev-parse HEAD" />
-			</exec>
-
-			<propertyregex
-				input="${sonatype.snapshot.url}"
-				property="cdn.sonatype.snapshot.url"
-				regexp="https://"
-				replace="https://cdn."
-			/>
-
-			<echo file="snapshot.properties">snapshot.git.id=${git.commit.module.rev.parse}
-snapshot.url=${cdn.sonatype.snapshot.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-SNAPSHOT.jar</echo>
 		</sequential>
 	</macrodef>
 
