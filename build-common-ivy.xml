@@ -172,6 +172,40 @@
 
 	<pathconvert pathsep="," property="sdk.dependencies.path" refid="sdk.dependencies.path" targetos="unix" />
 
+	<macrodef name="record-git-commit-snapshot">
+		<sequential>
+			<loadfile srcfile="maven.deploy.log" property="maven.deploy.log.content" />
+
+			<propertyregex
+				input="${maven.deploy.log.content}"
+				override="true"
+				property="snapshot.tstamp"
+				regexp="${plugin.name}-${plugin.full.version}-([\d.-]+)\.jar"
+				select="\1"
+			/>
+
+			<property file="bnd.bnd" prefix="bnd." />
+
+			<exec executable="git" outputproperty="git.commit.module.rev.parse">
+				<arg line="rev-parse HEAD" />
+			</exec>
+
+			<propertyregex
+				input="${sonatype.url}"
+				property="cdn.sonatype.url"
+				regexp="https://"
+				replace="https://cdn."
+			/>
+
+			<echo file="snapshot.properties">
+module.snapshot.git.id=${git.commit.module.rev.parse}
+module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-${snapshot.tstamp}.jar
+			</echo>
+
+			<var name="maven.deploy.log.content" unset="true" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="set-build-xml-var">
 		<attribute name="bnd.property.key" default="" />
 		<attribute name="build.xml.var.name" />
@@ -697,6 +731,20 @@
 
 		<property name="plugin.release.qualifier" value="" />
 
+		<if>
+			<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
+			<then>
+				<property name="sonatype.url" value="${sonatype.snapshot.url}" />
+				<property name="sonatype.username" value="${sonatype.snapshot.username}" />
+				<property name="sonatype.password" value="${sonatype.snapshot.password}" />
+			</then>
+			<else>
+				<property name="sonatype.url" value="${sonatype.release.url}" />
+				<property name="sonatype.username" value="${sonatype.release.username}" />
+				<property name="sonatype.password" value="${sonatype.release.password}" />
+			</else>
+		</if>
+
 		<property name="ivy.pom.version" value="${plugin.full.version}${plugin.release.qualifier}" />
 
 		<ivy:makepom
@@ -710,14 +758,45 @@
 			<mapping conf="runtime" scope="runtime" />
 		</ivy:makepom>
 
-		<ivy:publish
-			forcedeliver="true"
-			overwrite="true"
-			publishivy="false"
-			pubrevision="${ivy.pom.version}"
-			resolver="${ivy.publish.resolver}"
-		>
-			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}(-[classifier]).[ext]" />
-		</ivy:publish>
+		<artifact:pom file="${plugin.pom.file}" id="${plugin.name}" />
+
+		<if>
+			<equals arg1="${publish.target}" arg2="local" />
+			<then>
+				<artifact:install file="${plugin.file}">
+					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" classifier="javadoc"/>
+					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.jar" classifier="sources"/>
+					<pom refid="${plugin.name}"/>
+				</artifact:install>
+			</then>
+			<else>
+				<if>
+					<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
+					<then>
+						<record action="start" name="maven.deploy.log" />
+					</then>
+				</if>
+
+				<artifact:deploy file="${plugin.file}">
+					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" classifier="javadoc"/>
+					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.jar" classifier="sources"/>
+					<pom refid="${plugin.name}"/>
+					<remoteRepository url="${sonatype.url}">
+						<authentication username="${sonatype.username}" password="${sonatype.password}"/>
+					</remoteRepository>
+				</artifact:deploy>
+
+				<if>
+					<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
+					<then>
+						<record action="stop" name="maven.deploy.log" />
+
+						<record-git-commit-snapshot />
+
+						<delete file="maven.deploy.log" />
+					</then>
+				</if>
+			</else>
+		</if>
 	</target>
 </project>
