@@ -115,18 +115,8 @@
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
-
-	<!-- Configurator -->
-
-	<bean id="searchEngineConfigurator.solr" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
-		<property name="searchEngines">
-			<util:map>
-				<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
-			</util:map>
-		</property>
-	</bean>
 	
-	<!-- Portal Search configuration -->
+	<!-- References -->
 
 	<bean id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" class="com.liferay.portal.search.QueryPreProcessConfigurationImpl">
 		<property name="fieldNames">
@@ -144,6 +134,16 @@
 				<value>treePath</value>
 				<value>userName</value>
 			</util:set>
+		</property>
+	</bean>
+
+	<!-- Configurator -->
+
+	<bean id="searchEngineConfigurator.solr" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
+		<property name="searchEngines">
+			<util:map>
+				<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
+			</util:map>
 		</property>
 	</bean>
 </beans>
