@@ -41,7 +41,7 @@ AUI.add(
 		var STR_SPACE = ' ';
 
 		var TPL_ICON_ADD_EVENT_NODE = '<div class="btn-group">' +
-				'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
+				'<button class="btn btn-primary calendar-add-event-btn" type="button">' +
 					Liferay.Language.get('add-calendar-booking') +
 				'</button>' +
 			'</div>';
@@ -994,7 +994,7 @@ AUI.add(
 						getter: function() {
 							var instance = this;
 
-							return (instance.get('firstReminder') > 0) || (instance.get('secondReminder') > 0);
+							return instance.get('firstReminder') > 0 || instance.get('secondReminder') > 0;
 						}
 					},
 
@@ -1071,7 +1071,7 @@ AUI.add(
 						if (scheduler && !instance.get('editingEvent')) {
 							var activeViewName = scheduler.get('activeView').get('name');
 
-							if ((activeViewName === 'month') && !instance.get('allDay')) {
+							if (activeViewName === 'month' && !instance.get('allDay')) {
 								node.setStyles(
 									{
 										backgroundColor: instance.get('color'),
@@ -1958,7 +1958,7 @@ AUI.add(
 								);
 							}
 
-							if ((schedulerEventCreated === true) && permissions.VIEW_BOOKING_DETAILS) {
+							if (schedulerEventCreated === true && permissions.VIEW_BOOKING_DETAILS) {
 								editGroup.push(
 									{
 										icon: 'icon-eye-open',
@@ -2133,7 +2133,7 @@ AUI.add(
 
 							var status = schedulerEvent.get('status');
 
-							hasPermission = permissions.MANAGE_BOOKINGS && (status !== newStatus) && (status !== CalendarWorkflow.STATUS_DRAFT);
+							hasPermission = permissions.MANAGE_BOOKINGS && status !== newStatus && status !== CalendarWorkflow.STATUS_DRAFT;
 						}
 
 						return hasPermission;
