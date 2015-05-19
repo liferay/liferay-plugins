@@ -73,6 +73,24 @@
 	<bean id="com.liferay.portal.search.solr.SolrIndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcher">
 		<property name="facetProcessor" ref="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" />
 		<property name="querySuggester" ref="com.liferay.portal.search.solr.SolrQuerySuggester" />
+		<property name="queryTranslator">
+			<bean class="com.liferay.portal.search.solr.internal.query.SolrQueryTranslator">
+				<property name="booleanQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.BooleanQueryTranslatorImpl" />
+				</property>
+				<property name="termQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.TermQueryTranslatorImpl">
+						<property name="queryPreProcessConfiguration" ref="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" />
+					</bean>
+				</property>
+				<property name="termRangeQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.TermRangeQueryTranslatorImpl" />
+				</property>
+				<property name="wildcardQueryTranslator">
+					<bean class="com.liferay.portal.search.solr.internal.query.WildcardQueryTranslatorImpl" />
+				</property>
+			</bean>
+		</property>
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 		<property name="swallowException" value="true" />
 	</bean>
@@ -105,6 +123,27 @@
 			<util:map>
 				<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
 			</util:map>
+		</property>
+	</bean>
+	
+	<!-- Portal Search configuration -->
+
+	<bean id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" class="com.liferay.portal.search.QueryPreProcessConfigurationImpl">
+		<property name="fieldNames">
+			<util:set>
+				<value>assetCategoryTitles?(_.+)?</value>
+				<value>assetTagNames</value>
+				<value>emailAddress</value>
+				<value>firstName</value>
+				<value>lastName</value>
+				<value>license</value>
+				<value>middleName</value>
+				<value>path</value>
+				<value>screenName</value>
+				<value>tag</value>
+				<value>treePath</value>
+				<value>userName</value>
+			</util:set>
 		</property>
 	</bean>
 </beans>
