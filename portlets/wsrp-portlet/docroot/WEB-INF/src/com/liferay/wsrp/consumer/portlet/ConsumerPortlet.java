@@ -1137,14 +1137,16 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		String[] modes = {
 			getWSRPMode(PortletMode.EDIT), getWSRPMode(PortletMode.HELP),
-			getWSRPMode(PortletMode.VIEW)};
+			getWSRPMode(PortletMode.VIEW)
+		};
 
 		mimeRequest.setValidNewModes(modes);
 
 		String[] windowStates = {
 			getWSRPWindowState(WindowState.MAXIMIZED),
 			getWSRPWindowState(WindowState.MINIMIZED),
-			getWSRPWindowState(WindowState.NORMAL)};
+			getWSRPWindowState(WindowState.NORMAL)
+		};
 
 		mimeRequest.setValidNewWindowStates(windowStates);
 

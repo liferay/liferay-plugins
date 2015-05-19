@@ -32,6 +32,6 @@ public class HttpServletRequestThreadLocal {
 	}
 
 	private static ThreadLocal<HttpServletRequest> _httpServletRequest =
-		new ThreadLocal<HttpServletRequest>();
+		new ThreadLocal<>();
 
 }

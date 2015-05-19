@@ -226,7 +226,8 @@ public class ShindigUtil {
 			serviceContext.setGroupPermissions(
 				new String[] {
 					ActionKeys.ADD_DOCUMENT, ActionKeys.DELETE,
-					ActionKeys.UPDATE, ActionKeys.VIEW});
+					ActionKeys.UPDATE, ActionKeys.VIEW
+				});
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
 			serviceContext.setScopeGroupId(repositoryId);
 
@@ -470,7 +471,7 @@ public class ShindigUtil {
 	private static ContainerConfig _containerConfig;
 
 	private static AutoResetThreadLocal<String> _host =
-		new AutoResetThreadLocal<String>(
+		new AutoResetThreadLocal<>(
 			ShindigUtil.class + "._host", StringPool.BLANK);
 	private static Set<String> _ignoreGadgetSpecCache =
 		new ConcurrentHashSet<>();
@@ -479,7 +480,7 @@ public class ShindigUtil {
 	private static Processor _processor;
 
 	private static AutoResetThreadLocal<String> _scheme =
-		new AutoResetThreadLocal<String>(
+		new AutoResetThreadLocal<>(
 			ShindigUtil.class + "._scheme", StringPool.BLANK);
 
 }

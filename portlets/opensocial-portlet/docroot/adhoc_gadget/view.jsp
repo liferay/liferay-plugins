@@ -22,7 +22,7 @@ Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 
 <c:choose>
 	<c:when test="<%= gadget == null %>">
-		<div class="portlet-configuration alert alert-info">
+		<div class="alert alert-info portlet-configuration">
 			<a href="<%= portletDisplay.getURLConfiguration() %>" onClick="<%= portletDisplay.getURLConfigurationJS() %>">
 				<liferay-ui:message key="configure-a-gadget-to-be-displayed-in-this-portlet" />
 			</a>
