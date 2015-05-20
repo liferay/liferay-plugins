@@ -18,11 +18,11 @@
 
 	<!-- Solr document -->
 
-	<bean id="com.liferay.portal.search.solr.document.SolrDocumentFactory" class="com.liferay.portal.search.solr.document.DefaultSolrDocumentFactory" />
+	<bean class="com.liferay.portal.search.solr.document.SolrDocumentFactory" id="com.liferay.portal.search.solr.document.DefaultSolrDocumentFactory" />
 
 	<!-- Solr facet -->
 
-	<bean id="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" class="com.liferay.portal.search.solr.facet.CompositeFacetProcessor">
+	<bean class="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" id="com.liferay.portal.search.solr.facet.CompositeFacetProcessor">
 		<property name="defaultFacetProcessor" ref="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
 		<property name="facetProcessors">
 			<map>
@@ -31,8 +31,8 @@
 			</map>
 		</property>
 	</bean>
-	<bean id="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" class="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
-	<bean id="com.liferay.portal.search.solr.facet.RangeFacetProcessor" class="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
+	<bean class="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" id="com.liferay.portal.search.solr.facet.DefaultFacetProcessor" />
+	<bean class="com.liferay.portal.search.solr.facet.RangeFacetProcessor" id="com.liferay.portal.search.solr.facet.RangeFacetProcessor" />
 
 	<!-- Solr search engine client -->
 
@@ -80,15 +80,15 @@
 			</map>
 		</property>
 	</bean>
-	<bean id="com.liferay.portal.search.solr.server.HttpSolrServer" class="com.liferay.portal.search.solr.server.HttpSolrServer">
+	<bean class="com.liferay.portal.search.solr.server.HttpSolrServer" id="com.liferay.portal.search.solr.server.HttpSolrServer">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
 		<property name="url" value="${server.http.url}" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.server.LiveServerChecker" class="com.liferay.portal.search.solr.server.LiveServerChecker">
+	<bean class="com.liferay.portal.search.solr.server.LiveServerChecker" id="com.liferay.portal.search.solr.server.LiveServerChecker">
 		<property name="delay" value="10" />
 		<property name="solrServerFactory" ref="com.liferay.portal.search.solr.server.SolrServerFactory" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.server.SolrServerFactory" class="com.liferay.portal.search.solr.server.SolrServerFactory">
+	<bean class="com.liferay.portal.search.solr.server.SolrServerFactory" id="com.liferay.portal.search.solr.server.SolrServerFactory">
 		<property name="solrServers">
 			<map key-type="java.lang.String" value-type="org.apache.solr.client.solrj.SolrServer">
 				<entry key="node1">
@@ -103,7 +103,7 @@
 
 	<!-- Solr search engine adapter -->
 
-	<bean id="com.liferay.portal.search.solr.SolrIndexSearcher" class="com.liferay.portal.search.solr.SolrIndexSearcher">
+	<bean class="com.liferay.portal.search.solr.SolrIndexSearcher" id="com.liferay.portal.search.solr.SolrIndexSearcher">
 		<property name="facetProcessor" ref="com.liferay.portal.search.solr.facet.CompositeFacetProcessor" />
 		<property name="querySuggester" ref="com.liferay.portal.search.solr.SolrQuerySuggester" />
 		<property name="queryTranslator">
@@ -127,31 +127,31 @@
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 		<property name="swallowException" value="true" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.SolrIndexWriter" class="com.liferay.portal.search.solr.SolrIndexWriter">
+	<bean class="com.liferay.portal.search.solr.SolrIndexWriter" id="com.liferay.portal.search.solr.SolrIndexWriter">
 		<property name="solrDocumentFactory" ref="com.liferay.portal.search.solr.document.SolrDocumentFactory" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 		<property name="spellCheckIndexWriter" ref="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.SolrQuerySuggester" class="com.liferay.portal.search.solr.SolrQuerySuggester">
+	<bean class="com.liferay.portal.search.solr.SolrQuerySuggester" id="com.liferay.portal.search.solr.SolrQuerySuggester">
 		<property name="distanceThreshold" value="0.6f" />
 		<property name="NGramQueryBuilder">
 			<bean class="com.liferay.portal.search.solr.NGramQueryBuilderImpl" />
 		</property>
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.SolrSearchEngineImpl" class="com.liferay.portal.kernel.search.BaseSearchEngine">
+	<bean class="com.liferay.portal.search.solr.SolrSearchEngineImpl" id="com.liferay.portal.kernel.search.BaseSearchEngine">
 		<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcher" />
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
 		<property name="vendor" value="SOLR" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" class="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter">
+	<bean class="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" id="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter">
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
 
 	<!-- References -->
 
-	<bean id="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" class="com.liferay.portal.search.QueryPreProcessConfigurationImpl">
+	<bean class="com.liferay.portal.kernel.search.QueryPreProcessConfiguration" id="com.liferay.portal.search.QueryPreProcessConfigurationImpl">
 		<property name="fieldNames">
 			<util:set>
 				<value>assetCategoryTitles?(_.+)?</value>
@@ -172,7 +172,7 @@
 
 	<!-- Configurator -->
 
-	<bean id="searchEngineConfigurator.solr" class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
+	<bean class="searchEngineConfigurator.solr" id="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator">
 		<property name="searchEngines">
 			<util:map>
 				<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
