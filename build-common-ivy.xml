@@ -764,9 +764,9 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 			<equals arg1="${publish.target}" arg2="local" />
 			<then>
 				<artifact:install file="${plugin.file}">
-					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" classifier="javadoc"/>
-					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.jar" classifier="sources"/>
-					<pom refid="${plugin.name}"/>
+					<attach classifier="javadoc" file="${plugin.javadoc.file}" />
+					<attach classifier="sources" file="${plugin.source.file}" />
+					<pom refid="${plugin.name}" />
 				</artifact:install>
 			</then>
 			<else>
@@ -778,11 +778,11 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 				</if>
 
 				<artifact:deploy file="${plugin.file}">
-					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" classifier="javadoc"/>
-					<attach file="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.jar" classifier="sources"/>
-					<pom refid="${plugin.name}"/>
+					<attach classifier="javadoc" file="${plugin.javadoc.file}" />
+					<attach classifier="sources" file="${plugin.source.file}" />
+					<pom refid="${plugin.name}" />
 					<remoteRepository url="${sonatype.url}">
-						<authentication username="${sonatype.username}" password="${sonatype.password}"/>
+						<authentication password="${sonatype.password}" username="${sonatype.username}" />
 					</remoteRepository>
 				</artifact:deploy>
 
