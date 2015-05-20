@@ -410,6 +410,43 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="check-snapshot">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<var name="snapshot.uptodate" value="false" />
+
+			<exec dir="${module.dir}" executable="git" outputproperty="module.git.log">
+				<arg value="log" />
+				<arg value="-1" />
+				<arg value="--pretty=format:%H" />
+				<arg value="--" />
+				<arg value="." />
+				<arg value=":!snapshot.properties" />
+			</exec>
+
+			<exec dir="${module.dir}" executable="git" outputproperty="module.git.status">
+				<arg value="status" />
+				<arg value="--short" />
+				<arg value="--" />
+				<arg value="." />
+			</exec>
+
+			<if>
+				<and>
+					<equals arg1="${module.git.log}" arg2="${module.snapshot.git.id}" />
+					<equals arg1="${module.git.status}" arg2="" />
+				</and>
+				<then>
+					<var name="snapshot.uptodate" value="true" />
+				</then>
+			</if>
+
+			<var name="module.git.log" unset="true" />
+			<var name="module.git.status" unset="true" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="clean">
 		<attribute name="module.dir" />
 
@@ -1363,105 +1400,126 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<if>
-				<and>
-					<or>
-						<antelope:endswith string="${plugin.name}" with="-hook" />
-						<antelope:endswith string="${plugin.name}" with="-layouttpl" />
-						<antelope:endswith string="${plugin.name}" with="-portlet" />
-						<antelope:endswith string="${plugin.name}" with="-theme" />
-						<antelope:endswith string="${plugin.name}" with="-web" />
-					</or>
-					<not>
-						<resourcecontains
-							resource="${module.dir.unix}/build.xml"
-							substring="/build-common-osgi-plugin.xml&quot;"
-						/>
-					</not>
-				</and>
-				<then>
-					<loop-macrodef-or-target
-						module.dirs="@{module.dir}"
-						target.name="war"
-					/>
+			<property file="@{module.dir}/snapshot.properties" />
 
-					<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
+			<check-snapshot
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<equals arg1="${snapshot.uptodate}" arg2="true" />
+				<then>
+					<get
+						dest="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
+						src="${module.snapshot.url}"
+					/>
 				</then>
 				<else>
-					<loop-macrodef-or-target
-						module.dirs="@{module.dir}"
-						target.name="jar"
-					/>
-
 					<if>
-						<resourcecontains
-							resource="${module.dir.unix}/build.xml"
-							substring="/build-common-osgi-plugin.xml&quot;"
-						/>
+						<and>
+							<or>
+								<antelope:endswith string="${plugin.name}" with="-hook" />
+								<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+								<antelope:endswith string="${plugin.name}" with="-portlet" />
+								<antelope:endswith string="${plugin.name}" with="-theme" />
+								<antelope:endswith string="${plugin.name}" with="-web" />
+							</or>
+							<not>
+								<resourcecontains
+									resource="${module.dir.unix}/build.xml"
+									substring="/build-common-osgi-plugin.xml&quot;"
+								/>
+							</not>
+						</and>
 						<then>
-							<set-build-xml-var
-								build.xml.var.name="auto.deploy.dir"
-								module.dir="@{module.dir}"
+							<loop-macrodef-or-target
+								module.dirs="@{module.dir}"
+								target.name="war"
 							/>
 
-							<if>
-								<isset property="set-build-xml-var.return" />
-								<then>
-									<var name="module.auto.deploy.dir" value="${set-build-xml-var.return}" />
-								</then>
-								<else>
-									<var name="module.auto.deploy.dir" value="${auto.deploy.dir}" />
-								</else>
-							</if>
-
-							<mkdir dir="${module.auto.deploy.dir}" />
-
-							<set-build-xml-var
-								build.xml.var.name="osgi.runtime.dependencies"
-								module.dir="@{module.dir}"
-							/>
-
-							<if>
-								<isset property="set-build-xml-var.return" />
-								<then>
-									<if>
-										<available file="@{module.dir}/docroot/WEB-INF/lib" />
-										<then>
-											<copy failonerror="false" todir="${module.auto.deploy.dir}">
-												<fileset dir="@{module.dir}/docroot/WEB-INF/lib" includes="${set-build-xml-var.return}" />
-											</copy>
-										</then>
-									</if>
-
-									<if>
-										<available file="@{module.dir}/lib" />
-										<then>
-											<copy failonerror="false" todir="${module.auto.deploy.dir}">
-												<fileset dir="@{module.dir}/lib" includes="${set-build-xml-var.return}" />
-											</copy>
-										</then>
-									</if>
-								</then>
-							</if>
-
-							<copy
-								file="${plugin.file}"
-								tofile="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
-							/>
-
-							<if>
-								<available file="${plugin.wsdd.file}" />
-								<then>
-									<copy
-										file="${plugin.wsdd.file}"
-										tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.jar"
-									/>
-								</then>
-							</if>
+							<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 						</then>
+						<else>
+							<loop-macrodef-or-target
+								module.dirs="@{module.dir}"
+								target.name="jar"
+							/>
+
+							<if>
+								<resourcecontains
+									resource="${module.dir.unix}/build.xml"
+									substring="/build-common-osgi-plugin.xml&quot;"
+								/>
+								<then>
+									<set-build-xml-var
+										build.xml.var.name="auto.deploy.dir"
+										module.dir="@{module.dir}"
+									/>
+
+									<if>
+										<isset property="set-build-xml-var.return" />
+										<then>
+											<var name="module.auto.deploy.dir" value="${set-build-xml-var.return}" />
+										</then>
+										<else>
+											<var name="module.auto.deploy.dir" value="${auto.deploy.dir}" />
+										</else>
+									</if>
+
+									<mkdir dir="${module.auto.deploy.dir}" />
+
+									<set-build-xml-var
+										build.xml.var.name="osgi.runtime.dependencies"
+										module.dir="@{module.dir}"
+									/>
+
+									<if>
+										<isset property="set-build-xml-var.return" />
+										<then>
+											<if>
+												<available file="@{module.dir}/docroot/WEB-INF/lib" />
+												<then>
+													<copy failonerror="false" todir="${module.auto.deploy.dir}">
+														<fileset dir="@{module.dir}/docroot/WEB-INF/lib" includes="${set-build-xml-var.return}" />
+													</copy>
+												</then>
+											</if>
+
+											<if>
+												<available file="@{module.dir}/lib" />
+												<then>
+													<copy failonerror="false" todir="${module.auto.deploy.dir}">
+														<fileset dir="@{module.dir}/lib" includes="${set-build-xml-var.return}" />
+													</copy>
+												</then>
+											</if>
+										</then>
+									</if>
+
+									<copy
+										file="${plugin.file}"
+										tofile="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
+									/>
+
+									<if>
+										<available file="${plugin.wsdd.file}" />
+										<then>
+											<copy
+												file="${plugin.wsdd.file}"
+												tofile="${module.auto.deploy.dir}/${plugin.name}-wsdd.jar"
+											/>
+										</then>
+									</if>
+								</then>
+							</if>
+						</else>
 					</if>
 				</else>
 			</if>
+
+			<var name="module.snapshot.git.id" unset="true" />
+			<var name="module.snapshot.url" unset="true" />
+			<var name="snapshot.uptodate" unset="true" />
 		</sequential>
 	</macrodef>
 
