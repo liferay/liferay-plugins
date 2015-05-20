@@ -302,6 +302,7 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 				<path location="@{module.dir}" />
 			</pathconvert>
 
+			<var name="module.auto.deploy.dir" unset="true" />
 			<var name="original.lib.name" unset="true" />
 			<var name="original.lib.version" unset="true" />
 			<var name="original.lib.url" unset="true" />
@@ -310,6 +311,21 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 			<var name="plugin.required.contexts" unset="true" />
 			<var name="plugin.tlds" unset="true" />
 			<var name="plugin.version" unset="true" />
+
+			<set-build-xml-var
+				build.xml.var.name="auto.deploy.dir"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="module.auto.deploy.dir" value="${set-build-xml-var.return}" />
+				</then>
+				<else>
+					<var name="module.auto.deploy.dir" value="${auto.deploy.dir}" />
+				</else>
+			</if>
 
 			<set-build-xml-var
 				build.xml.var.name="original.lib.name"
