@@ -185,7 +185,7 @@
 				input="${sonatype.url}"
 				property="cdn.sonatype.url"
 				regexp="https://"
-				replace="https://cdn."
+				replace="http://cdn."
 			/>
 
 			<echo file="snapshot.properties">
