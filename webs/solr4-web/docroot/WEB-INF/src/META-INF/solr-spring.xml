@@ -72,13 +72,13 @@
 		</property>
 	</bean>
 	<bean class="com.liferay.portal.search.solr.http.HttpClientFactoryImpl" destroy-method="shutdown" id="com.liferay.portal.search.solr.http.HttpClientFactory">
+		<property name="auth" value="${server.http.client.factory.auth}" />
 		<property name="httpClientFactories">
 			<map>
 				<entry key="BASIC" value-ref="com.liferay.portal.search.solr.http.BasicAuthPoolingHttpClientFactory" />
 				<entry key="CERT" value-ref="com.liferay.portal.search.solr.http.CertAuthPoolingHttpClientFactory" />
 			</map>
 		</property>
-		<property name="auth" value="${server.http.client.factory.auth}" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.server.HttpSolrServer" class="com.liferay.portal.search.solr.server.HttpSolrServer">
 		<property name="httpClientFactory" ref="com.liferay.portal.search.solr.http.HttpClientFactory" />
