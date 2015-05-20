@@ -416,7 +416,7 @@ Error-Prone was automatically installed. Please rerun your task.
 		<sequential>
 			<var name="snapshot.uptodate" value="false" />
 
-			<exec dir="${module.dir}" executable="git" outputproperty="module.git.log">
+			<exec dir="@{module.dir}" executable="git" outputproperty="module.git.log">
 				<arg value="log" />
 				<arg value="-1" />
 				<arg value="--pretty=format:%H" />
@@ -425,7 +425,7 @@ Error-Prone was automatically installed. Please rerun your task.
 				<arg value=":!snapshot.properties" />
 			</exec>
 
-			<exec dir="${module.dir}" executable="git" outputproperty="module.git.status">
+			<exec dir="@{module.dir}" executable="git" outputproperty="module.git.status">
 				<arg value="status" />
 				<arg value="--short" />
 				<arg value="--" />
