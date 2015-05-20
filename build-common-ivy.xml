@@ -172,8 +172,13 @@
 
 			<property file="bnd.bnd" prefix="bnd." />
 
-			<exec executable="git" outputproperty="git.commit.module.rev.parse">
-				<arg line="rev-parse HEAD" />
+			<exec executable="git" outputproperty="git.commit.module.log">
+				<arg value="log" />
+				<arg value="-1" />
+				<arg value="--pretty=format:%H" />
+				<arg value="--" />
+				<arg value="." />
+				<arg value=":!snapshot.properties" />
 			</exec>
 
 			<propertyregex
@@ -184,7 +189,7 @@
 			/>
 
 			<echo file="snapshot.properties">
-module.snapshot.git.id=${git.commit.module.rev.parse}
+module.snapshot.git.id=${git.commit.module.log}
 module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-${snapshot.tstamp}.jar
 			</echo>
 
