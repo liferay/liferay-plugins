@@ -1409,6 +1409,8 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<equals arg1="${snapshot.uptodate}" arg2="true" />
 				<then>
+					<mkdir dir="${module.auto.deploy.dir}" />
+
 					<get
 						dest="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
 						src="${module.snapshot.url}"
@@ -1451,20 +1453,6 @@ Please find a solution that does not require portal-impl.jar.
 									substring="/build-common-osgi-plugin.xml&quot;"
 								/>
 								<then>
-									<set-build-xml-var
-										build.xml.var.name="auto.deploy.dir"
-										module.dir="@{module.dir}"
-									/>
-
-									<if>
-										<isset property="set-build-xml-var.return" />
-										<then>
-											<var name="module.auto.deploy.dir" value="${set-build-xml-var.return}" />
-										</then>
-										<else>
-											<var name="module.auto.deploy.dir" value="${auto.deploy.dir}" />
-										</else>
-									</if>
 
 									<mkdir dir="${module.auto.deploy.dir}" />
 
