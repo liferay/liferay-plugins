@@ -55,8 +55,7 @@ public class HttpClientFactoryImpl implements HttpClientFactory {
 
 		if (httpClientFactory == null) {
 			throw new SystemException(
-				"Invalid auth: " + _auth + ". Valid property values: " +
-					_httpClientFactories.keySet());
+				"No HTTP client factory found for " + _auth);
 		}
 
 		return httpClientFactory;
