@@ -1409,13 +1409,24 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<equals arg1="${snapshot.uptodate}" arg2="true" />
 				<then>
-					<mkdir dir="${module.auto.deploy.dir}" />
+					<trycatch>
+						<try>
+							<mkdir dir="${module.auto.deploy.dir}" />
 
-					<get
-						dest="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
-						src="${module.snapshot.url}"
-					/>
+							<mirrors-get
+								dest="${module.auto.deploy.dir}/${plugin.name}.${plugin.packaging}"
+								src="${module.snapshot.url}"
+							/>
+						</try>
+						<catch>
+							<var name="snapshot.uptodate" value="false" />
+						</catch>
+					</trycatch>
 				</then>
+			</if>
+
+			<if>
+				<equals arg1="${snapshot.uptodate}" arg2="false" />
 				<else>
 					<if>
 						<and>
@@ -1453,7 +1464,6 @@ Please find a solution that does not require portal-impl.jar.
 									substring="/build-common-osgi-plugin.xml&quot;"
 								/>
 								<then>
-
 									<mkdir dir="${module.auto.deploy.dir}" />
 
 									<set-build-xml-var
