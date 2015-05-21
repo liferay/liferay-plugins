@@ -18,11 +18,13 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
+import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -123,20 +125,28 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		return newSharedToJSONArray;
 	}
 
-	protected JSONArray filterSharedToJSONArray(
-		JSONArray sharedToJSONArray, String[] names) {
+	protected JSONArray filterSharedToJSONArray(JSONArray sharedToJSONArray)
+		throws PortalException {
 
 		JSONArray newSharedToJSONArray = JSONFactoryUtil.createJSONArray();
+
+		List<String> keys = ListUtil.toList(
+			PortletPropsValues.ASSET_ENTRY_SET_SHARED_TO_JSON_OBJECT_KEYS);
 
 		for (int i = 0; i < sharedToJSONArray.length(); i++) {
 			JSONObject sharedToJSONObject = sharedToJSONArray.getJSONObject(i);
 
-			JSONObject newSharedToJSONObject =
-				JSONFactoryUtil.createJSONObject();
+			JSONObject newSharedToJSONObject = JSONFactoryUtil.createJSONObject(
+				sharedToJSONObject.toString());
 
-			for (String name : names) {
-				newSharedToJSONObject.put(
-					name, sharedToJSONObject.getString(name));
+			Iterator<String> itr = sharedToJSONObject.keys();
+
+			while (itr.hasNext()) {
+				String key = itr.next();
+
+				if (!keys.contains(key)) {
+					newSharedToJSONObject.remove(key);
+				}
 			}
 
 			newSharedToJSONArray.put(newSharedToJSONObject);
@@ -171,13 +181,13 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		return false;
 	}
 
-	protected JSONArray processSharedToJSONArray(JSONArray sharedToJSONArray) {
+	protected JSONArray processSharedToJSONArray(JSONArray sharedToJSONArray)
+		throws PortalException {
+
 		JSONArray newSharedToJSONArray = dedupeSharedToJSONArray(
 			sharedToJSONArray);
 
-		newSharedToJSONArray = filterSharedToJSONArray(
-			newSharedToJSONArray,
-			new String[] {"classPK", "classNameId", "name", "removable"});
+		newSharedToJSONArray = filterSharedToJSONArray(newSharedToJSONArray);
 
 		return newSharedToJSONArray;
 	}
