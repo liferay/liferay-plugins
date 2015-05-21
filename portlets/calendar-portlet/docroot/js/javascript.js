@@ -220,8 +220,7 @@ AUI.add(
 						maxResults: 20,
 						requestTemplate: '&' + instance.PORTLET_NAMESPACE + 'keywords={query}',
 						resultFilters: function(query, results) {
-							return AArray.filter(
-								results,
+							return results.filter(
 								function(item, index) {
 									return !instance.availableCalendars[item.raw.calendarId];
 								}
@@ -1315,7 +1314,7 @@ AUI.add(
 						[CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING],
 						function(calendarBookings) {
 							if (filterCalendarBookings) {
-								calendarBookings = AArray.filter(calendarBookings, filterCalendarBookings);
+								calendarBookings = calendarBookings.filter(filterCalendarBookings);
 							}
 
 							callback(null, calendarBookings);

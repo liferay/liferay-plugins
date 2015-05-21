@@ -310,8 +310,7 @@ AUI().use(
 			_setDefaultCodec: function(mLine, payload) {
 				var elements = mLine.split(' ');
 
-				var newLine = A.Array.filter(
-					elements,
+				var newLine = elements.filter(
 					function(item, index, collection) {
 						return item !== payload;
 					}
