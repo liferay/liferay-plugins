@@ -1039,6 +1039,17 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected AlloySearchResult search(
 			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
 			HttpServletRequest request, PortletRequest portletRequest,
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
+		throws Exception {
+
+		return search(
+			indexer, alloyServiceInvoker, request, portletRequest, null,
+			attributes, keywords, sorts);
+	}
+
+	protected AlloySearchResult search(
+			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
+			HttpServletRequest request, PortletRequest portletRequest,
 			Map<String, Serializable> attributes, String keywords, Sort[] sorts,
 			int start, int end)
 		throws Exception {
