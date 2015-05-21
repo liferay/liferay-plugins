@@ -290,15 +290,6 @@ public class AssetEntrySetLikeLocalServiceUtil {
 			classPK, start, end);
 	}
 
-	public static com.liferay.portal.kernel.json.JSONArray getLikedParticipantFullNames(
-		long userId, long assetEntrySetId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getLikedParticipantFullNames(userId, assetEntrySetId,
-			start, end);
-	}
-
 	public static void clearService() {
 		_service = null;
 	}

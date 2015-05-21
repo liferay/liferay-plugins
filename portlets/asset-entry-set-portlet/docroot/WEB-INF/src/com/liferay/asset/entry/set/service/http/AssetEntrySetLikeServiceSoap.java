@@ -62,13 +62,15 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class AssetEntrySetLikeServiceSoap {
-	public static java.lang.String getLikedParticipantFullNames(
-		long assetEntrySetId, int start, int end) throws RemoteException {
+	public static com.liferay.asset.entry.set.model.AssetEntrySetLikeSoap[] getAssetEntrySetLikes(
+		long assetEntrySetId, long classNameId, long classPK, int start, int end)
+		throws RemoteException {
 		try {
-			com.liferay.portal.kernel.json.JSONArray returnValue = AssetEntrySetLikeServiceUtil.getLikedParticipantFullNames(assetEntrySetId,
-					start, end);
+			java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike> returnValue =
+				AssetEntrySetLikeServiceUtil.getAssetEntrySetLikes(assetEntrySetId,
+					classNameId, classPK, start, end);
 
-			return returnValue.toString();
+			return com.liferay.asset.entry.set.model.AssetEntrySetLikeSoap.toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

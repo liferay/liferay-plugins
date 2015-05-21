@@ -32,9 +32,11 @@ public class AssetEntrySetLikeServiceClpInvoker {
 
 		_methodParameterTypes35 = new String[] { "java.lang.String" };
 
-		_methodName40 = "getLikedParticipantFullNames";
+		_methodName40 = "getAssetEntrySetLikes";
 
-		_methodParameterTypes40 = new String[] { "long", "int", "int" };
+		_methodParameterTypes40 = new String[] {
+				"long", "long", "long", "int", "int"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -53,9 +55,11 @@ public class AssetEntrySetLikeServiceClpInvoker {
 
 		if (_methodName40.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
-			return AssetEntrySetLikeServiceUtil.getLikedParticipantFullNames(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
+			return AssetEntrySetLikeServiceUtil.getAssetEntrySetLikes(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue());
 		}
 
 		throw new UnsupportedOperationException();

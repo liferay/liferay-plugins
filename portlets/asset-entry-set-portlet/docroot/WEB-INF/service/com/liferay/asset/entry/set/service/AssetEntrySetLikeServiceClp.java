@@ -32,9 +32,11 @@ public class AssetEntrySetLikeServiceClp implements AssetEntrySetLikeService {
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "getLikedParticipantFullNames";
+		_methodName3 = "getAssetEntrySetLikes";
 
-		_methodParameterTypes3 = new String[] { "long", "int", "int" };
+		_methodParameterTypes3 = new String[] {
+				"long", "long", "long", "int", "int"
+			};
 	}
 
 	@Override
@@ -88,8 +90,8 @@ public class AssetEntrySetLikeServiceClp implements AssetEntrySetLikeService {
 	}
 
 	@Override
-	public com.liferay.portal.kernel.json.JSONArray getLikedParticipantFullNames(
-		long assetEntrySetId, int start, int end)
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike> getAssetEntrySetLikes(
+		long assetEntrySetId, long classNameId, long classPK, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -97,7 +99,17 @@ public class AssetEntrySetLikeServiceClp implements AssetEntrySetLikeService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] { assetEntrySetId, start, end });
+					new Object[] {
+						assetEntrySetId,
+						
+					classNameId,
+						
+					classPK,
+						
+					start,
+						
+					end
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -119,7 +131,7 @@ public class AssetEntrySetLikeServiceClp implements AssetEntrySetLikeService {
 			}
 		}
 
-		return (com.liferay.portal.kernel.json.JSONArray)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.asset.entry.set.model.AssetEntrySetLike>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	private InvokableService _invokableService;

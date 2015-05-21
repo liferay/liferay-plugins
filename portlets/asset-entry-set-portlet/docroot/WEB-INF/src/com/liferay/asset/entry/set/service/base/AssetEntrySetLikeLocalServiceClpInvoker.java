@@ -131,10 +131,6 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 		_methodParameterTypes57 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
-
-		_methodName58 = "getLikedParticipantFullNames";
-
-		_methodParameterTypes58 = new String[] { "long", "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -254,14 +250,6 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return AssetEntrySetLikeLocalServiceUtil.getLikedParticipantFullNames(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue());
-		}
-
 		throw new UnsupportedOperationException();
 	}
 
@@ -305,6 +293,4 @@ public class AssetEntrySetLikeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
 }
