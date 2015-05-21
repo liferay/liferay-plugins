@@ -1427,7 +1427,7 @@ Please find a solution that does not require portal-impl.jar.
 
 			<if>
 				<equals arg1="${snapshot.uptodate}" arg2="false" />
-				<else>
+				<then>
 					<if>
 						<and>
 							<or>
@@ -1512,7 +1512,7 @@ Please find a solution that does not require portal-impl.jar.
 							</if>
 						</else>
 					</if>
-				</else>
+				</then>
 			</if>
 
 			<var name="module.snapshot.git.id" unset="true" />
