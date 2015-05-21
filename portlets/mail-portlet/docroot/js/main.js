@@ -76,7 +76,7 @@ AUI.add(
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
 
-								if ((responseData.status != 'success') || (responseData.value == 'false')) {
+								if (responseData.status != 'success' || responseData.value == 'false') {
 									return;
 								}
 
@@ -551,8 +551,8 @@ AUI.add(
 
 										var currentTarget = event.currentTarget;
 
-										var flagType = currentTarget.getData('flagType');
 										var flagToggle = currentTarget.getData('flagToggle');
+										var flagType = currentTarget.getData('flagType');
 
 										instance.flagMessages(flagType, flagToggle, messageIds);
 									}
@@ -609,10 +609,10 @@ AUI.add(
 
 						if (!li || !li.hasClass('disabled')) {
 							var folderId = link.getData('folderId');
+							var keywords = link.getData('keywords');
 							var messageNumber = link.getData('messageNumber');
 							var orderByField = link.getData('orderByField');
 							var orderByType = link.getData('orderByType');
-							var keywords = link.getData('keywords');
 
 							instance.loadMessage(folderId, messageNumber, orderByField, orderByType, keywords);
 						}
@@ -657,10 +657,10 @@ AUI.add(
 
 						if (!li || !li.hasClass('disabled')) {
 							var folderId = link.getData('folderId');
-							var pageNumber = link.getData('pageNumber');
+							var keywords = link.getData('keywords');
 							var orderByField = link.getData('orderByField');
 							var orderByType = link.getData('orderByType');
-							var keywords = link.getData('keywords');
+							var pageNumber = link.getData('pageNumber');
 
 							instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
 						}

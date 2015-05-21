@@ -150,8 +150,8 @@ AUI.add(
 				_syncFields: function(form) {
 					var instance = this;
 
-					var userIds = [];
 					var emailAddresses = [];
+					var userIds = [];
 
 					instance._invitedMembersList.all('.user').each(
 						function(item, index) {
