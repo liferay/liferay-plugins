@@ -43,8 +43,7 @@
 				function(id, items) {
 					var found = null;
 
-					AArray.some(
-						items,
+					items.some(
 						function(item, index) {
 							if (item.id === id) {
 								found = item;

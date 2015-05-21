@@ -64,8 +64,9 @@ AUI.add(
 				var value = 0;
 
 				if (milliseconds > 0) {
-					AArray.some(
-						[Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE],
+					var timeArray = [Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE];
+
+					timeArray.some(
 						function(item, index) {
 							value = milliseconds / item;
 							desc = Time.TIME_DESC[index];
