@@ -91,7 +91,7 @@ boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX,
 			Liferay.Service(
 				'/push-notifications-portlet.pushnotificationsdevice/send-push-notification',
 				{
-					payload: A.JSON.stringify(
+					payload: JSON.stringify(
 						{
 							body: message
 						}

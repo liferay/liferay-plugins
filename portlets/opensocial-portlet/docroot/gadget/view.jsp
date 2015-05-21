@@ -83,7 +83,7 @@ if (userPrefsJSONObject != null) {
 					userPrefsKey: '<%= userPrefsKey %>'
 				}
 			),
-			userPrefs: A.JSON.parse('<%= userPrefsJSON %>'),
+			userPrefs: JSON.parse('<%= userPrefsJSON %>'),
 			view: '<%= view %>',
 			viewParams: '<%= ParamUtil.getString(renderRequest, "viewParams") %>'
 		}

@@ -58,7 +58,7 @@ AUI().use(
 			},
 
 			debugJsonIO: function(msgType, msgObj, dir) {
-				Liferay.Chat.WebRtcManager.debugIO(msgType, A.JSON.stringify(msgObj), dir);
+				Liferay.Chat.WebRtcManager.debugIO(msgType, JSON.stringify(msgObj), dir);
 			},
 
 			debugMsg: function(msg) {
@@ -644,7 +644,7 @@ AUI().use(
 				var instance = this;
 
 				if (instance._isWebRtcStarted()) {
-					var iceCandidate = A.JSON.parse(msg.candidate);
+					var iceCandidate = JSON.parse(msg.candidate);
 
 					var RTCIceCandidate = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCIceCandidate;
 
@@ -667,7 +667,7 @@ AUI().use(
 			onMsgNewSdp: function(msg) {
 				var instance = this;
 
-				var description = A.JSON.parse(msg.description);
+				var description = JSON.parse(msg.description);
 
 				if (instance._isWebRtcStarted()) {
 					if (instance._caller) {
@@ -1004,7 +1004,7 @@ AUI().use(
 			_sendIceMsg: function(ice) {
 				var instance = this;
 
-				var jsonIce = A.JSON.stringify(ice);
+				var jsonIce = JSON.stringify(ice);
 
 				var msg = {
 					candidate: jsonIce,
@@ -1017,7 +1017,7 @@ AUI().use(
 			_sendSdpMsg: function(desc) {
 				var instance = this;
 
-				var jsonDesc = A.JSON.stringify(desc);
+				var jsonDesc = JSON.stringify(desc);
 
 				var msg = {
 					description: jsonDesc,

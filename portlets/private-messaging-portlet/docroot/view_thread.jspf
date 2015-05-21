@@ -331,7 +331,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							complete: function(event, id, obj) {
 								var responseText = obj.responseText;
 
-								var responseData = A.JSON.parse(responseText);
+								var responseData = JSON.parse(responseText);
 
 								if (responseData.success) {
 									document.location.href = '<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>';

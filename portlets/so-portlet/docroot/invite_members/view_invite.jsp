@@ -274,7 +274,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 	}
 
 	var updateInviteMembersList = function(event) {
-		var responseData = A.JSON.parse(event.data.responseText);
+		var responseData = JSON.parse(event.data.responseText);
 
 		searchList.html(renderResults(responseData).join(''));
 	}

@@ -874,7 +874,7 @@ AUI.add(
 					_updateContactsResult: function(event) {
 						var instance = this;
 
-						var data = A.JSON.parse(event.data.responseText);
+						var data = JSON.parse(event.data.responseText);
 
 						var buffer = instance._renderResult(data, true, ' ');
 

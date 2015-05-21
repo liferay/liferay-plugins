@@ -1076,7 +1076,7 @@ AUI().use(
 				};
 
 				return {
-					activePanelIds: A.JSON.stringify(activePanelIds),
+					activePanelIds: JSON.stringify(activePanelIds),
 					online: instance._online,
 					playSound: instance._playSound,
 					statusMessage: instance._statusMessage
@@ -1089,7 +1089,7 @@ AUI().use(
 				var activePanelIds = A.one('#activePanelIds').val() || '';
 
 				try {
-					activePanelIds = A.JSON.parse(activePanelIds);
+					activePanelIds = JSON.parse(activePanelIds);
 				}
 				catch (e) {
 					activePanelIds = {

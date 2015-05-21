@@ -146,7 +146,7 @@ else {
 					on: {
 						complete: function(event, id, obj) {
 							try {
-								var responseData = A.JSON.parse(obj.responseText);
+								var responseData = JSON.parse(obj.responseText);
 
 								Liferay.Mail.setStatus(responseData.status, responseData.message);
 

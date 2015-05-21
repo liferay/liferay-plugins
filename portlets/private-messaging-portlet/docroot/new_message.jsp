@@ -161,7 +161,7 @@ to = sb.toString() + to;
 						complete: function(event, id, obj) {
 							var responseText = obj.responseText;
 
-							var responseData = A.JSON.parse(responseText);
+							var responseData = JSON.parse(responseText);
 
 							if (responseData.success) {
 								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();

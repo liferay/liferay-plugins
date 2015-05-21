@@ -134,7 +134,7 @@ else {
 	directoryList.sendRequest();
 
 	var updateDirectoryList = function(event) {
-		var data = A.JSON.parse(event.data.responseText);
+		var data = JSON.parse(event.data.responseText);
 
 		var results = data.sites;
 		var count = data.count;

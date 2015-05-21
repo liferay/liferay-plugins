@@ -546,7 +546,7 @@ AUI.add(
 
 				map[themeDisplay.getLanguageId()] = value;
 
-				return A.JSON.stringify(map);
+				return JSON.stringify(map);
 			},
 
 			getResourceCalendars: function(calendarResourceId, callback) {
@@ -593,7 +593,7 @@ AUI.add(
 					{
 						cache: false,
 						data: {
-							cmd: A.JSON.stringify(payload),
+							cmd: JSON.stringify(payload),
 							p_auth: Liferay.authToken
 						},
 						dataType: 'JSON',

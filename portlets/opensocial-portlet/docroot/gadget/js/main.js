@@ -366,7 +366,7 @@ AUI.add(
 						var parentUrl = instance.get('parentUrl');
 
 						if (parentUrl) {
-							instance._refreshSrcParameter('view-params', encodeURIComponent(A.JSON.stringify(viewParams)));
+							instance._refreshSrcParameter('view-params', encodeURIComponent(JSON.stringify(viewParams)));
 						}
 					},
 
@@ -431,7 +431,7 @@ AUI.add(
 						var viewParams = instance.get('viewParams');
 
 						if (viewParams) {
-							url += '&view-params=' + encodeURIComponent(A.JSON.stringify(viewParams));
+							url += '&view-params=' + encodeURIComponent(JSON.stringify(viewParams));
 						}
 
 						return url;
@@ -582,7 +582,7 @@ AUI.add(
 								classPK: themeDisplay.getPlid(),
 								columnName: instance.get('userPrefsKey'),
 								companyId: themeDisplay.getCompanyId(),
-								data: A.JSON.stringify(gadget.get('userPrefs')),
+								data: JSON.stringify(gadget.get('userPrefs')),
 								tableName: instance._TABLE_NAME
 							}
 						);
