@@ -36,7 +36,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(assetEntrySetId);
@@ -56,6 +56,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(creatorClassNameId);
 		sb.append(", creatorClassPK=");
 		sb.append(creatorClassPK);
+		sb.append(", creatorName=");
+		sb.append(creatorName);
 		sb.append(", payload=");
 		sb.append(payload);
 		sb.append(", childAssetEntrySetsCount=");
@@ -82,6 +84,13 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		assetEntrySetImpl.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySetImpl.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySetImpl.setCreatorClassPK(creatorClassPK);
+
+		if (creatorName == null) {
+			assetEntrySetImpl.setCreatorName(StringPool.BLANK);
+		}
+		else {
+			assetEntrySetImpl.setCreatorName(creatorName);
+		}
 
 		if (payload == null) {
 			assetEntrySetImpl.setPayload(StringPool.BLANK);
@@ -110,6 +119,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		parentAssetEntrySetId = objectInput.readLong();
 		creatorClassNameId = objectInput.readLong();
 		creatorClassPK = objectInput.readLong();
+		creatorName = objectInput.readUTF();
 		payload = objectInput.readUTF();
 		childAssetEntrySetsCount = objectInput.readInt();
 		assetEntrySetLikesCount = objectInput.readInt();
@@ -128,6 +138,13 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		objectOutput.writeLong(parentAssetEntrySetId);
 		objectOutput.writeLong(creatorClassNameId);
 		objectOutput.writeLong(creatorClassPK);
+
+		if (creatorName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(creatorName);
+		}
 
 		if (payload == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -150,6 +167,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public long parentAssetEntrySetId;
 	public long creatorClassNameId;
 	public long creatorClassPK;
+	public String creatorName;
 	public String payload;
 	public int childAssetEntrySetsCount;
 	public int assetEntrySetLikesCount;

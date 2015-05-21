@@ -83,6 +83,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
+		attributes.put("creatorName", getCreatorName());
 		attributes.put("payload", getPayload());
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
@@ -146,6 +147,12 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 		if (creatorClassPK != null) {
 			setCreatorClassPK(creatorClassPK);
+		}
+
+		String creatorName = (String)attributes.get("creatorName");
+
+		if (creatorName != null) {
+			setCreatorName(creatorName);
 		}
 
 		String payload = (String)attributes.get("payload");
@@ -396,6 +403,29 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
+	public String getCreatorName() {
+		return _creatorName;
+	}
+
+	@Override
+	public void setCreatorName(String creatorName) {
+		_creatorName = creatorName;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setCreatorName", String.class);
+
+				method.invoke(_assetEntrySetRemoteModel, creatorName);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public String getPayload() {
 		return _payload;
 	}
@@ -612,6 +642,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setParentAssetEntrySetId(getParentAssetEntrySetId());
 		clone.setCreatorClassNameId(getCreatorClassNameId());
 		clone.setCreatorClassPK(getCreatorClassPK());
+		clone.setCreatorName(getCreatorName());
 		clone.setPayload(getPayload());
 		clone.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
 		clone.setAssetEntrySetLikesCount(getAssetEntrySetLikesCount());
@@ -676,7 +707,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -696,6 +727,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassNameId());
 		sb.append(", creatorClassPK=");
 		sb.append(getCreatorClassPK());
+		sb.append(", creatorName=");
+		sb.append(getCreatorName());
 		sb.append(", payload=");
 		sb.append(getPayload());
 		sb.append(", childAssetEntrySetsCount=");
@@ -711,7 +744,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -754,6 +787,10 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>creatorName</column-name><column-value><![CDATA[");
+		sb.append(getCreatorName());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>payload</column-name><column-value><![CDATA[");
 		sb.append(getPayload());
 		sb.append("]]></column-value></column>");
@@ -785,6 +822,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private long _parentAssetEntrySetId;
 	private long _creatorClassNameId;
 	private long _creatorClassPK;
+	private String _creatorName;
 	private String _payload;
 	private int _childAssetEntrySetsCount;
 	private int _assetEntrySetLikesCount;

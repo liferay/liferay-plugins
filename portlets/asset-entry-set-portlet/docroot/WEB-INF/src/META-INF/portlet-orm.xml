@@ -18,6 +18,7 @@
 			<basic name="parentAssetEntrySetId" />
 			<basic name="creatorClassNameId" />
 			<basic name="creatorClassPK" />
+			<basic name="creatorName" />
 			<basic name="payload" />
 			<basic name="childAssetEntrySetsCount" />
 			<basic name="assetEntrySetLikesCount" />

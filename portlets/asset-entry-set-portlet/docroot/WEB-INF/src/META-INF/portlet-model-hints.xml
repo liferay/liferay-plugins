@@ -11,6 +11,7 @@
 		<field name="parentAssetEntrySetId" type="long" />
 		<field name="creatorClassNameId" type="long" />
 		<field name="creatorClassPK" type="long" />
+		<field name="creatorName" type="String" />
 		<field name="payload" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>

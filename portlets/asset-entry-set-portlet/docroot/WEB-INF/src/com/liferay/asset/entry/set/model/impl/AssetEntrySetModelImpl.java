@@ -74,12 +74,13 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 			{ "parentAssetEntrySetId", Types.BIGINT },
 			{ "creatorClassNameId", Types.BIGINT },
 			{ "creatorClassPK", Types.BIGINT },
+			{ "creatorName", Types.VARCHAR },
 			{ "payload", Types.VARCHAR },
 			{ "childAssetEntrySetsCount", Types.INTEGER },
 			{ "assetEntrySetLikesCount", Types.INTEGER },
 			{ "privateAssetEntrySet", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,createTime LONG,modifiedTime LONG,assetEntryId LONG,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,payload STRING null,childAssetEntrySetsCount INTEGER,assetEntrySetLikesCount INTEGER,privateAssetEntrySet BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table AssetEntrySet (assetEntrySetId LONG not null primary key,companyId LONG,userId LONG,createTime LONG,modifiedTime LONG,assetEntryId LONG,parentAssetEntrySetId LONG,creatorClassNameId LONG,creatorClassPK LONG,creatorName VARCHAR(75) null,payload STRING null,childAssetEntrySetsCount INTEGER,assetEntrySetLikesCount INTEGER,privateAssetEntrySet BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table AssetEntrySet";
 	public static final String ORDER_BY_JPQL = " ORDER BY assetEntrySet.createTime DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY AssetEntrySet.createTime DESC";
@@ -122,6 +123,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		model.setParentAssetEntrySetId(soapModel.getParentAssetEntrySetId());
 		model.setCreatorClassNameId(soapModel.getCreatorClassNameId());
 		model.setCreatorClassPK(soapModel.getCreatorClassPK());
+		model.setCreatorName(soapModel.getCreatorName());
 		model.setPayload(soapModel.getPayload());
 		model.setChildAssetEntrySetsCount(soapModel.getChildAssetEntrySetsCount());
 		model.setAssetEntrySetLikesCount(soapModel.getAssetEntrySetLikesCount());
@@ -199,6 +201,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
+		attributes.put("creatorName", getCreatorName());
 		attributes.put("payload", getPayload());
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
@@ -262,6 +265,12 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 		if (creatorClassPK != null) {
 			setCreatorClassPK(creatorClassPK);
+		}
+
+		String creatorName = (String)attributes.get("creatorName");
+
+		if (creatorName != null) {
+			setCreatorName(creatorName);
 		}
 
 		String payload = (String)attributes.get("payload");
@@ -451,6 +460,22 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@JSON
 	@Override
+	public String getCreatorName() {
+		if (_creatorName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _creatorName;
+		}
+	}
+
+	@Override
+	public void setCreatorName(String creatorName) {
+		_creatorName = creatorName;
+	}
+
+	@JSON
+	@Override
 	public String getPayload() {
 		if (_payload == null) {
 			return StringPool.BLANK;
@@ -543,6 +568,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		assetEntrySetImpl.setParentAssetEntrySetId(getParentAssetEntrySetId());
 		assetEntrySetImpl.setCreatorClassNameId(getCreatorClassNameId());
 		assetEntrySetImpl.setCreatorClassPK(getCreatorClassPK());
+		assetEntrySetImpl.setCreatorName(getCreatorName());
 		assetEntrySetImpl.setPayload(getPayload());
 		assetEntrySetImpl.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
 		assetEntrySetImpl.setAssetEntrySetLikesCount(getAssetEntrySetLikesCount());
@@ -648,6 +674,14 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 		assetEntrySetCacheModel.creatorClassPK = getCreatorClassPK();
 
+		assetEntrySetCacheModel.creatorName = getCreatorName();
+
+		String creatorName = assetEntrySetCacheModel.creatorName;
+
+		if ((creatorName != null) && (creatorName.length() == 0)) {
+			assetEntrySetCacheModel.creatorName = null;
+		}
+
 		assetEntrySetCacheModel.payload = getPayload();
 
 		String payload = assetEntrySetCacheModel.payload;
@@ -667,7 +701,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -687,6 +721,8 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(getCreatorClassNameId());
 		sb.append(", creatorClassPK=");
 		sb.append(getCreatorClassPK());
+		sb.append(", creatorName=");
+		sb.append(getCreatorName());
 		sb.append(", payload=");
 		sb.append(getPayload());
 		sb.append(", childAssetEntrySetsCount=");
@@ -702,7 +738,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -743,6 +779,10 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 		sb.append(
 			"<column><column-name>creatorClassPK</column-name><column-value><![CDATA[");
 		sb.append(getCreatorClassPK());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>creatorName</column-name><column-value><![CDATA[");
+		sb.append(getCreatorName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>payload</column-name><column-value><![CDATA[");
@@ -788,6 +828,7 @@ public class AssetEntrySetModelImpl extends BaseModelImpl<AssetEntrySet>
 	private long _creatorClassPK;
 	private long _originalCreatorClassPK;
 	private boolean _setOriginalCreatorClassPK;
+	private String _creatorName;
 	private String _payload;
 	private int _childAssetEntrySetsCount;
 	private int _assetEntrySetLikesCount;

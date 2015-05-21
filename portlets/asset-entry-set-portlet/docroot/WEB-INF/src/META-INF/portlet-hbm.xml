@@ -17,6 +17,7 @@
 		<property name="parentAssetEntrySetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorClassNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="creatorClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="creatorName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="payload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="childAssetEntrySetsCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="assetEntrySetLikesCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />

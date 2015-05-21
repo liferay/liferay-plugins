@@ -200,6 +200,21 @@ public interface AssetEntrySetModel extends BaseModel<AssetEntrySet> {
 	public void setCreatorClassPK(long creatorClassPK);
 
 	/**
+	 * Returns the creator name of this asset entry set.
+	 *
+	 * @return the creator name of this asset entry set
+	 */
+	@AutoEscape
+	public String getCreatorName();
+
+	/**
+	 * Sets the creator name of this asset entry set.
+	 *
+	 * @param creatorName the creator name of this asset entry set
+	 */
+	public void setCreatorName(String creatorName);
+
+	/**
 	 * Returns the payload of this asset entry set.
 	 *
 	 * @return the payload of this asset entry set

@@ -8,6 +8,7 @@ create table AssetEntrySet (
 	parentAssetEntrySetId LONG,
 	creatorClassNameId LONG,
 	creatorClassPK LONG,
+	creatorName VARCHAR(75) null,
 	payload STRING null,
 	childAssetEntrySetsCount INTEGER,
 	assetEntrySetLikesCount INTEGER,

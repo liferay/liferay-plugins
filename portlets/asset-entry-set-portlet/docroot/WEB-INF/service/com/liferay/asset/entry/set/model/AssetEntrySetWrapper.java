@@ -58,6 +58,7 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("parentAssetEntrySetId", getParentAssetEntrySetId());
 		attributes.put("creatorClassNameId", getCreatorClassNameId());
 		attributes.put("creatorClassPK", getCreatorClassPK());
+		attributes.put("creatorName", getCreatorName());
 		attributes.put("payload", getPayload());
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
@@ -121,6 +122,12 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 
 		if (creatorClassPK != null) {
 			setCreatorClassPK(creatorClassPK);
+		}
+
+		String creatorName = (String)attributes.get("creatorName");
+
+		if (creatorName != null) {
+			setCreatorName(creatorName);
 		}
 
 		String payload = (String)attributes.get("payload");
@@ -371,6 +378,26 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	@Override
 	public void setCreatorClassPK(long creatorClassPK) {
 		_assetEntrySet.setCreatorClassPK(creatorClassPK);
+	}
+
+	/**
+	* Returns the creator name of this asset entry set.
+	*
+	* @return the creator name of this asset entry set
+	*/
+	@Override
+	public java.lang.String getCreatorName() {
+		return _assetEntrySet.getCreatorName();
+	}
+
+	/**
+	* Sets the creator name of this asset entry set.
+	*
+	* @param creatorName the creator name of this asset entry set
+	*/
+	@Override
+	public void setCreatorName(java.lang.String creatorName) {
+		_assetEntrySet.setCreatorName(creatorName);
 	}
 
 	/**
