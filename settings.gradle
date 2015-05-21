@@ -1,20 +1,4 @@
-def loadProperties = {
-	Properties properties, String fileName ->
-
-	File file = file(fileName)
-
-	if (file.exists()) {
-		properties.load(new FileInputStream(file))
-	}
-}
-
-Properties antProperties = new Properties()
-
-loadProperties(antProperties, "build.properties")
-loadProperties(antProperties, "build." + System.properties["user.name"] + ".properties")
-loadProperties(antProperties, "build." + System.properties["COMPUTERNAME"] + ".properties")
-loadProperties(antProperties, "build." + System.properties["HOST"] + ".properties")
-loadProperties(antProperties, "build." + System.properties["HOSTNAME"] + ".properties")
+apply from: "./ant-properties.gradle"
 
 if (!hasProperty("lfrPluginsExcludes")) {
 	ext.lfrPluginsExcludes = antProperties["plugins.excludes"]
@@ -36,7 +20,7 @@ FileTree fileTree = fileTree(rootDir) {
 				"**/" + it + "/build.gradle"
 			}
 		)
- 
+
 		lfrPluginsIncludesArray.each(
 			{
 				include(it)
@@ -46,7 +30,7 @@ FileTree fileTree = fileTree(rootDir) {
 	else {
 		include("**/build.gradle")
 	}
- 
+
 	if ((lfrPluginsExcludes != "") && (lfrPluginsExcludes != "*")) {
 		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(" ", "")
 		lfrPluginsExcludes = lfrPluginsExcludes.replaceAll(",+", ",")
@@ -58,7 +42,7 @@ FileTree fileTree = fileTree(rootDir) {
 				"**/" + it + "/build.gradle"
 			}
 		)
- 
+
 		lfrPluginsExcludesArray.each(
 			{
 				exclude(it)
@@ -92,3 +76,4 @@ fileTree.each(
 include(":shared:portal-compat-shared")
 
 gradle.ext.lfrSdkDir = file(".")
+gradle.ext.lfrDepVersion =  antProperties["lp.dependencies.version"]

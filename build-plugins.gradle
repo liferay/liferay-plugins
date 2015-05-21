@@ -1,12 +1,15 @@
+
+
 import com.liferay.portal.kernel.util.ReleaseInfo
 
 import org.gradle.api.internal.file.copy.CopySpecResolver
+
 
 apply plugin: "war"
 
 buildscript {
 	dependencies {
-		classpath group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"
+		classpath group: "com.liferay.portal", name: "portal-service", version: "${lfrDepVersion}"
 	}
 
 	repositories {
@@ -53,17 +56,17 @@ dependencies {
 	)
 
 	pluginRequiredLibraries(
-		[group: "com.liferay.portal", name: "util-bridges", version: "7.0.0-SNAPSHOT"],
-		[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
-		[group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "util-bridges", version: "${lfrDepVersion}"],
+		[group: "com.liferay.portal", name: "util-java", version: "${lfrDepVersion}"],
+		[group: "com.liferay.portal", name: "util-taglib", version: "${lfrDepVersion}"],
 		[group: "commons-logging", name: "commons-logging", version: "1.1.1"],
 		[group: "log4j", name: "log4j", version: "1.2.16"]
 	)
 
 	portalTools(
-		[group: "com.liferay.portal", name: "portal-impl", version: "7.0.0-SNAPSHOT"],
-		[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
-		[group: "com.liferay.portal", name: "util-java", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "portal-impl", version: "${lfrDepVersion}"],
+		[group: "com.liferay.portal", name: "portal-service", version: "${lfrDepVersion}"],
+		[group: "com.liferay.portal", name: "util-java", version: "${lfrDepVersion}"],
 		[group: "com.thoughtworks.xstream", name: "xstream", version: "1.4.3"],
 		[group: "commons-configuration", name: "commons-configuration", version: "1.6"],
 		[group: "commons-lang", name: "commons-lang", version: "2.6"],
@@ -92,11 +95,11 @@ dependencies {
 		[group: "xerces", name: "xercesImpl", version: "2.11.0"]
 	)
 
-	portalWeb group: "com.liferay.portal", name: "portal-web", version: "7.0.0-SNAPSHOT"
+	portalWeb group: "com.liferay.portal", name: "portal-web", version: "${lfrDepVersion}"
 
 	providedCompile(
 		[group: "biz.aQute.bnd", name: "biz.aQute.bnd", version: "2.4.1"],
-		[group: "com.liferay.portal", name: "portal-service", version: "7.0.0-SNAPSHOT"],
+		[group: "com.liferay.portal", name: "portal-service", version: "${lfrDepVersion}"],
 		[group: "hsqldb", name: "hsqldb", version: "1.8.0.7"],
 		[group: "javax.activation", name: "activation", version: "1.1"],
 		[group: "javax.ccpp", name: "ccpp", version: "1.0"],

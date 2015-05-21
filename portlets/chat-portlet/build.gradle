@@ -7,6 +7,6 @@ dependencies {
 		[group: "javax.servlet.jsp.jstl", name: "jstl-api", version: "1.2"],
 		[group: "org.glassfish.web", name: "jstl-impl", version: "1.2"],
 		[group: "org.slf4j", name: "slf4j-api", version: "1.7.2"],
-		[group: "com.liferay.portal", name: "util-slf4j", version: "7.0.0-SNAPSHOT"]
+		[group: "com.liferay.portal", name: "util-slf4j", version: "${lfrDepVersion}"]
 	)
 }

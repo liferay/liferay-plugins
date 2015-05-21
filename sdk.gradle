@@ -21,7 +21,7 @@ configurations {
 }
 
 dependencies {
-	portalTaglib group: "com.liferay.portal", name: "util-taglib", version: "7.0.0-SNAPSHOT"
+	portalTaglib group: "com.liferay.portal", name: "util-taglib", version: "${ext.lfrDepVersion}"
 }
 
 repositories {

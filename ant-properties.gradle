@@ -1,0 +1,19 @@
+def loadProperties = {
+	Properties properties, String fileName ->
+
+	File file = file(fileName)
+
+	if (file.exists()) {
+		properties.load(new FileInputStream(file))
+	}
+}
+
+Properties antProperties = new Properties()
+
+loadProperties(antProperties, "${rootDir}/build.properties")
+loadProperties(antProperties, "${rootDir}/build." + System.properties["user.name"] + ".properties")
+loadProperties(antProperties, "${rootDir}/build." + System.properties["COMPUTERNAME"] + ".properties")
+loadProperties(antProperties, "${rootDir}/build." + System.properties["HOST"] + ".properties")
+loadProperties(antProperties, "${rootDir}/build." + System.properties["HOSTNAME"] + ".properties")
+
+ext.antProperties = antProperties

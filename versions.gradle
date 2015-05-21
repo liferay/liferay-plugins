@@ -1,3 +1,8 @@
+apply from: "${gradle.lfrSdkDir}/ant-properties.gradle"
+
+if (!hasProperty("lfrDepVersion")) {
+	ext.lfrDepVersion = antProperties["lp.dependencies.version"]
+}
 Map<String, Map<String, String>> portalDependencies = [
 	antlr2: [
 		group: "antlr",
@@ -197,7 +202,7 @@ Map<String, Map<String, String>> portalDependencies = [
 	utilSlf4j: [
 		group: "com.liferay.portal",
 		name: "util-slf4j",
-		version: "7.0.0-SNAPSHOT"
+		version: "${lfrDepVersion}"
 	],
 	wsdl4j: [
 		group: "wsdl4j",
