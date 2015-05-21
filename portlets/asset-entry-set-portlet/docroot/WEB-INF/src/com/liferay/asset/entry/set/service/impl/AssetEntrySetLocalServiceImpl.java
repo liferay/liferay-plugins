@@ -100,6 +100,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 
 		updateChildAssetEntrySetsCount(parentAssetEntrySetId);
+		updateModifiedTime(parentAssetEntrySetId, now.getTime());
 
 		updateAssetEntry(
 			assetEntrySet,
@@ -526,21 +527,36 @@ public class AssetEntrySetLocalServiceImpl
 		}
 	}
 
-	protected void updateChildAssetEntrySetsCount(long parentAssetEntrySetId)
+	protected void updateChildAssetEntrySetsCount(long assetEntrySetId)
 		throws PortalException, SystemException {
 
-		if (parentAssetEntrySetId == 0) {
+		if (assetEntrySetId == 0) {
 			return;
 		}
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
-			parentAssetEntrySetId);
+			assetEntrySetId);
 
 		int childAssetEntrySetsCount =
 			assetEntrySetPersistence.countByParentAssetEntrySetId(
-				parentAssetEntrySetId);
+				assetEntrySetId);
 
 		assetEntrySet.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
+
+		assetEntrySetPersistence.update(assetEntrySet);
+	}
+
+	protected void updateModifiedTime(long assetEntrySetId, long modifiedTime)
+		throws PortalException, SystemException {
+
+		if (assetEntrySetId == 0) {
+			return;
+		}
+
+		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
+			assetEntrySetId);
+
+		assetEntrySet.setModifiedTime(modifiedTime);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 	}
