@@ -228,8 +228,7 @@ AUI.add(
 							);
 						},
 						resultFormatter: function(query, results) {
-							return AArray.map(
-								results,
+							return results.map(
 								function(result) {
 									var calendar = result.raw;
 									var calendarResourceName = calendar.calendarResourceName;
@@ -2253,8 +2252,7 @@ AUI.add(
 					_syncInviteesContent: function(contentNode, calendarResources) {
 						var instance = this;
 
-						var values = AArray.map(
-							calendarResources,
+						var values = calendarResources.map(
 							function(item) {
 								return item.name;
 							}

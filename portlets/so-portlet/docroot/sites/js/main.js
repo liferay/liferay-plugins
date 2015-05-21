@@ -352,8 +352,7 @@ AUI().use(
 						'</li>';
 
 					buffer.push(
-						A.Array.map(
-							results,
+						results.map(
 							function(result) {
 								var classNames = [];
 

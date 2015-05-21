@@ -212,8 +212,7 @@ AUI.add(
 
 						var contacts = data.contacts;
 
-						AArray.map(
-							contacts,
+						contacts.map(
 							function(contact) {
 								instance.addContactResult(contact);
 							}
@@ -255,8 +254,7 @@ AUI.add(
 					deleteContactResults: function(userIds) {
 						var instance = this;
 
-						AArray.map(
-							userIds,
+						userIds.map(
 							function(userId) {
 								instance.deleteContactResult(userId);
 							}
@@ -329,8 +327,7 @@ AUI.add(
 							else {
 								instance._clearContactResult();
 
-								AArray.map(
-									contacts,
+								contacts.map(
 									function(contact) {
 										instance.addContactResult(contact);
 									}
@@ -762,8 +759,7 @@ AUI.add(
 							}
 
 							buffer.push(
-								AArray.map(
-									results,
+								results.map(
 									function(result) {
 										var displayLastNameAnchor = false;
 

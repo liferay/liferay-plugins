@@ -178,8 +178,7 @@ else {
 				'</li>';
 
 			buffer.push(
-				A.Array.map(
-					results,
+				results.map(
 					function(result, index) {
 						var classNames = [];
 						var joinHTML = '';
