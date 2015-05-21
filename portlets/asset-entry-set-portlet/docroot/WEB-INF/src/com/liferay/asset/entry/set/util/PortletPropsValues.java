@@ -31,6 +31,10 @@ public class PortletPropsValues {
 	public static final String[] ASSET_ENTRY_SET_PORTLET_IDS =
 		PortletProps.getArray(PortletPropsKeys.ASSET_ENTRY_SET_PORTLET_IDS);
 
+	public static final String[] ASSET_ENTRY_SET_SHARED_TO_JSON_OBJECT_KEYS =
+		PortletProps.getArray(
+			PortletPropsKeys.ASSET_ENTRY_SET_SHARED_TO_JSON_OBJECT_KEYS);
+
 	public static final String[] ASSET_ENTRY_SET_TYPES = PortletProps.getArray(
 		PortletPropsKeys.ASSET_ENTRY_SET_TYPES);
 

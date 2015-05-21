@@ -37,6 +37,9 @@ public interface PortletPropsKeys {
 	public static final String ASSET_ENTRY_SET_PORTLET_IDS =
 		"asset.entry.set.portlet.ids";
 
+	public static final String ASSET_ENTRY_SET_SHARED_TO_JSON_OBJECT_KEYS =
+		"asset.entry.set.shared.to.json.object.keys";
+
 	public static final String ASSET_ENTRY_SET_TYPES = "asset.entry.set.types";
 
 }
