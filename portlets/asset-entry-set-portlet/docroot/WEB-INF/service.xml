@@ -22,6 +22,7 @@
 		<column name="parentAssetEntrySetId" type="long" />
 		<column name="creatorClassNameId" type="long" />
 		<column name="creatorClassPK" type="long" />
+		<column name="creatorName" type="String" />
 		<column name="payload" type="String" />
 		<column name="childAssetEntrySetsCount" type="int" />
 		<column name="assetEntrySetLikesCount" type="int" />
