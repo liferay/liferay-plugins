@@ -41,13 +41,34 @@
 					<available file="${mirrors.cache.dir}/${mirrors.cache.file}" />
 				</not>
 				<then>
-					<mirrors-get-cmd
-						dest="${mirrors.cache.dir}/${mirrors.cache.file}"
-						ignoreerrors="@{ignoreerrors}"
-						skipexisting="@{skipexisting}"
-						src="@{src}"
-						verbose="@{verbose}"
+					<propertyregex
+						input="@{src}"
+						override="true"
+						property="mirrors.src"
+						regexp="http://"
+						replace="http://mirrors/"
 					/>
+
+					<trycatch>
+						<try>
+							<get
+								dest="${mirrors.cache.dir}/${mirrors.cache.file}"
+								ignoreerrors="@{ignoreerrors}"
+								skipexisting="@{skipexisting}"
+								src="${mirrors.src}"
+								verbose="@{verbose}"
+							/>
+						</try>
+						<catch>
+							<get
+								dest="${mirrors.cache.dir}/${mirrors.cache.file}"
+								ignoreerrors="@{ignoreerrors}"
+								skipexisting="@{skipexisting}"
+								src="@{src}"
+								verbose="@{verbose}"
+							/>
+						</catch>
+					</trycatch>
 				</then>
 			</if>
 
@@ -79,45 +100,6 @@
 			</if>
 
 			<var name="mirrors.cache.file" unset="true" />
-		</sequential>
-	</macrodef>
-
-	<macrodef name="mirrors-get-cmd">
-		<attribute name="dest" />
-		<attribute default="false" name="ignoreerrors" />
-		<attribute default="false" name="skipexisting" />
-		<attribute name="src" />
-		<attribute default="false" name="verbose" />
-
-		<sequential>
-			<propertyregex
-				input="@{src}"
-				override="true"
-				property="mirrors.src"
-				regexp="http://"
-				replace="http://mirrors/"
-			/>
-
-			<trycatch>
-				<try>
-					<get
-						dest="@{dest}"
-						ignoreerrors="@{ignoreerrors}"
-						skipexisting="@{skipexisting}"
-						src="${mirrors.src}"
-						verbose="@{verbose}"
-					/>
-				</try>
-				<catch>
-					<get
-						dest="@{dest}"
-						ignoreerrors="@{ignoreerrors}"
-						skipexisting="@{skipexisting}"
-						src="@{src}"
-						verbose="@{verbose}"
-					/>
-				</catch>
-			</trycatch>
 		</sequential>
 	</macrodef>
 
