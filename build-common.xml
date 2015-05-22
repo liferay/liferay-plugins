@@ -1291,6 +1291,38 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 			</if>
 
+			<pathconvert property="frontend.css.jar">
+				<path>
+					<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*jar" />
+				</path>
+			</pathconvert>
+
+			<condition property="frontend.css.jar.exists">
+				<resourcecount when="eq" count="1">
+					<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*jar" />
+				</resourcecount>
+			</condition>
+
+			<if>
+				<istrue value="${frontend.css.jar.exists}" />
+				<then>
+					<unzip
+						src="${frontend.css.jar}"
+						dest="${app.server.portal.dir}"
+					>
+						<patternset>
+							<include name="**/html/themes/**" />
+						</patternset>
+						<mapper>
+							<globmapper from="META-INF/resources/html/*" to="html/*" />
+						</mapper>
+					</unzip>
+				</then>
+				<else>
+					<echo>com.liferay.frotnend.css.web.jar does not exist.</echo>
+				</else>
+			</if>
+
 			<if>
 				<equals arg1="${theme.parent}" arg2="_unstyled" />
 				<then>
