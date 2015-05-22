@@ -1827,20 +1827,20 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<if>
-				<matches pattern=".*-test" string="@{module.dir}" />
+				<equals arg1="${snapshot.uptodate}" arg2="true" />
 				<then>
 					<loop-macrodef-or-target
 						module.dirs="@{module.dir}"
-						target.name="compile-test"
+						target.name="compile-import-shared"
 					/>
 				</then>
 				<else>
 					<if>
-						<equals arg1="${snapshot.uptodate}" arg2="true" />
+						<matches pattern=".*-test" string="@{module.dir}" />
 						<then>
 							<loop-macrodef-or-target
 								module.dirs="@{module.dir}"
-								target.name="compile-import-shared"
+								target.name="compile-test"
 							/>
 						</then>
 						<else>
@@ -1852,6 +1852,10 @@ Please find a solution that does not require portal-impl.jar.
 					</if>
 				</else>
 			</if>
+
+			<check-snapshot
+				module.dir="@{module.dir}"
+			/>
 
 			<if>
 				<equals arg1="${snapshot.uptodate}" arg2="false" />
