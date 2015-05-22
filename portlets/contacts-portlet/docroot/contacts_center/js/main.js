@@ -797,7 +797,7 @@ AUI.add(
 											str = Lang.sub(
 												TPL_USER_DATA,
 												{
-													checked: AArray.indexOf(selectedUsersIds, result.userId) != -1 ? 'checked="true"' : '',
+													checked: selectedUsersIds.indexOf(result.userId) != -1 ? 'checked="true"' : '',
 													disabled: themeDisplay.getUserId() == result.userId ? 'disabled="true"' : '',
 													emailAddress: result.emailAddress ? result.emailAddress : '',
 													firstName: result.firstName ? result.firstName : '',
