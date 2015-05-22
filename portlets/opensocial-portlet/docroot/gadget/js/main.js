@@ -9,7 +9,7 @@ AUI.add(
 
 		var getClassName = A.getClassName;
 
-		var isArray = Lang.isArray;
+		var isArray = Array.isArray;
 
 		var isString = Lang.isString;
 
