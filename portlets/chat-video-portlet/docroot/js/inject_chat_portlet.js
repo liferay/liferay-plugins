@@ -450,7 +450,7 @@ AUI().use(
 
 				instance.reset();
 
-				instance._beginMs = A.Lang.now();
+				instance._beginMs = Date.now();
 
 				instance._timer = setInterval(
 					function() {
@@ -463,7 +463,7 @@ AUI().use(
 			_onTick: function() {
 				var instance = this;
 
-				var curTimeMs = A.Lang.now();
+				var curTimeMs = Date.now();
 				var elapsedMsTotal = curTimeMs - instance._beginMs;
 				var elapsedSeconds = parseInt(elapsedMsTotal / 1000, 10);
 				var elapsedHours = parseInt(elapsedSeconds / 3600, 10);

@@ -14,7 +14,7 @@ AUI().use(
 		var LString = Lang.String;
 		var Notification = A.config.win.Notification;
 
-		var now = Lang.now;
+		var now = Date.now;
 
 		var DOC = A.config.doc;
 
