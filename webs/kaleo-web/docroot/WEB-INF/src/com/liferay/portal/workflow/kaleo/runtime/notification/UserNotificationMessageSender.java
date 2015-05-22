@@ -52,7 +52,7 @@ public class UserNotificationMessageSender
 				UserNotificationEventLocalServiceUtil.
 					sendUserNotificationEvents(
 						notificationRecipient.getUserId(),
-						PortletKeys.MY_WORKFLOW_TASKS,
+						PortletKeys.MY_WORKFLOW_TASK,
 						UserNotificationDeliveryConstants.TYPE_WEBSITE,
 						jsonObject);
 			}
