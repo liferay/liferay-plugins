@@ -810,7 +810,7 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 				<if>
 					<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
 					<then>
-						<record action="start" name="maven.deploy.log" />
+						<record action="start" name="${basedir}/maven.deploy.log" />
 					</then>
 				</if>
 
@@ -866,7 +866,7 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 				<if>
 					<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
 					<then>
-						<record action="stop" name="maven.deploy.log" />
+						<record action="stop" name="${basedir}/maven.deploy.log" />
 
 						<record-git-commit-snapshot />
 
