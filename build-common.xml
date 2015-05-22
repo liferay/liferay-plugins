@@ -447,6 +447,7 @@ Error-Prone was automatically installed. Please rerun your task.
 						<try>
 							<mirrors-get
 								dest="${plugin.file}"
+								trylocalnetwork="false"
 								src="${module.snapshot.url}"
 							/>
 						</try>
@@ -1835,13 +1836,19 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 				<else>
 					<if>
-						<equals arg1="${snapshot.uptodate}" arg2="false" />
+						<equals arg1="${snapshot.uptodate}" arg2="true" />
 						<then>
+							<loop-macrodef-or-target
+								module.dirs="@{module.dir}"
+								target.name="compile-import-shared"
+							/>
+						</then>
+						<else>
 							<loop-macrodef-or-target
 								module.dirs="@{module.dir}"
 								target.name="compile"
 							/>
-						</then>
+						</else>
 					</if>
 				</else>
 			</if>
