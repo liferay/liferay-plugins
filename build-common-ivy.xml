@@ -24,6 +24,7 @@
 		<attribute default="false" name="ignoreerrors" />
 		<attribute default="false" name="skipexisting" />
 		<attribute name="src" />
+		<attribute default="true" name="trylocalnetwork" />
 		<attribute default="false" name="verbose" />
 
 		<sequential>
@@ -49,17 +50,31 @@
 						replace="http://mirrors/"
 					/>
 
-					<trycatch>
-						<try>
-							<get
-								dest="${mirrors.cache.dir}/${mirrors.cache.file}"
-								ignoreerrors="@{ignoreerrors}"
-								skipexisting="@{skipexisting}"
-								src="${mirrors.src}"
-								verbose="@{verbose}"
-							/>
-						</try>
-						<catch>
+					<if>
+						<equals arg1="@{trylocalnetwork}" arg2="true" />
+						<then>
+							<trycatch>
+								<try>
+									<get
+										dest="${mirrors.cache.dir}/${mirrors.cache.file}"
+										ignoreerrors="@{ignoreerrors}"
+										skipexisting="@{skipexisting}"
+										src="${mirrors.src}"
+										verbose="@{verbose}"
+									/>
+								</try>
+								<catch>
+									<get
+										dest="${mirrors.cache.dir}/${mirrors.cache.file}"
+										ignoreerrors="@{ignoreerrors}"
+										skipexisting="@{skipexisting}"
+										src="@{src}"
+										verbose="@{verbose}"
+									/>
+								</catch>
+							</trycatch>
+						</then>
+						<else>
 							<get
 								dest="${mirrors.cache.dir}/${mirrors.cache.file}"
 								ignoreerrors="@{ignoreerrors}"
@@ -67,8 +82,8 @@
 								src="@{src}"
 								verbose="@{verbose}"
 							/>
-						</catch>
-					</trycatch>
+						</else>
+					</if>
 				</then>
 			</if>
 
