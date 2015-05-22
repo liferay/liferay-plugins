@@ -177,13 +177,13 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 							<portlet:namespace />end: data.<portlet:namespace />end || pageDelta,
 							<portlet:namespace />keywords: data.<portlet:namespace />keywords || '',
 							<portlet:namespace />start: data.<portlet:namespace />start || 0
-						}
+						};
 					}
 				},
 				source: url
 			}
 		);
-	}
+	};
 
 	var inviteMembersList = new Liferay.SO.InviteMembersList(
 		{
@@ -195,7 +195,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 					<portlet:namespace />end: pageDelta,
 					<portlet:namespace />keywords: query,
 					<portlet:namespace />start: 0
-				}
+				};
 			},
 			resultTextLocator: function(response) {
 				var result = '';
@@ -234,16 +234,17 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 					function(result) {
 						var userTemplate =
 							'<div class="{cssClass}" data-userId="{userId}">' +
-								'<span class="name">{userFullName}</span>'+
+								'<span class="name">{userFullName}</span>' +
 								'<span class="email">{userEmailAddress}</span>' +
 							'</div>';
 
 						var invited = invitedMembersList.one('[data-userId="' + result.userId + '"]');
+						var invitedUser = invited ? 'invited user' : 'user';
 
 						return A.Lang.sub(
 							userTemplate,
 							{
-								cssClass: result.hasPendingMemberRequest ? "pending-member-request user" : (invited ? "invited user" : "user"),
+								cssClass: result.hasPendingMemberRequest ? 'pending-member-request user' : invitedUser,
 								userEmailAddress: result.userEmailAddress,
 								userFullName: result.userFullName,
 								userId: result.userId
@@ -256,14 +257,14 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 			if (count > results.length) {
 				buffer.push(
 					'<div class="more-results">' +
-						'<a href="javascript:;" data-end="' + options.end + '"><liferay-ui:message key="view-more" unicode="<%= true %>" /></a>' +
+						'<a data-end="' + options.end + '" href="javascript:;"><liferay-ui:message key="view-more" unicode="<%= true %>" /></a>' +
 					'</div>'
 				);
 			}
 		}
 
 		return buffer;
-	}
+	};
 
 	var showMoreResults = function(responseData) {
 		var moreResults = searchList.one('.more-results');
@@ -271,13 +272,13 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		moreResults.remove();
 
 		searchList.append(renderResults(responseData).join(''));
-	}
+	};
 
 	var updateInviteMembersList = function(event) {
 		var responseData = JSON.parse(event.data.responseText);
 
 		searchList.html(renderResults(responseData).join(''));
-	}
+	};
 
 	inviteMembersList.on('results', updateInviteMembersList);
 

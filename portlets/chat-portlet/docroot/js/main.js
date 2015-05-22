@@ -142,7 +142,7 @@ AUI().use(
 				return offset;
 			},
 
-			TIMESTAMP_24: (24 * 60 * 60 * 1000)
+			TIMESTAMP_24: 24 * 60 * 60 * 1000
 		};
 
 		var Panel = function(options) {
@@ -524,9 +524,9 @@ AUI().use(
 						instance._lastHeight = height;
 
 						chatInputEl.style.height = height + 'px';
-						chatInputEl.style.overflowY = (height == 64) ? 'scroll' : 'hidden';
+						chatInputEl.style.overflowY = height == 64 ? 'scroll' : 'hidden';
 
-						chatInputEl.parentNode.style.height = (height + 5) + 'px';
+						chatInputEl.parentNode.style.height = height + 5 + 'px';
 					}
 				},
 
@@ -621,8 +621,8 @@ AUI().use(
 				_updateMessageWindow: function(entry) {
 					var instance = this;
 
-					var output = instance._chatOutput;
 					var cssClass = 'outgoing';
+					var output = instance._chatOutput;
 
 					var content = entry.content;
 					var incoming = entry.incoming;
@@ -753,9 +753,9 @@ AUI().use(
 			registerBuddyService: function(options) {
 				var instance = this;
 
-				var name = options.name;
 				var fn = options.fn;
 				var icon = options.icon;
+				var name = options.name;
 
 				instance._buddyServices[name] = fn;
 
@@ -900,8 +900,8 @@ AUI().use(
 			_createChatFromUser: function(user) {
 				var instance = this;
 
-				var buddy;
 				var buddies = instance._buddies;
+				var buddy;
 				var userId = user;
 
 				user = A.one(user);
@@ -950,7 +950,7 @@ AUI().use(
 					for (var i in entries) {
 						var entry = entries[i];
 
-						var incomingEntry = (entry.fromUserId == userId);
+						var incomingEntry = entry.fromUserId == userId;
 
 						chat.update(
 							{
@@ -1029,7 +1029,7 @@ AUI().use(
 					var notifyPermission = instance._notifyPermission;
 
 					var attrs = {
-						checked: (notifyPermission === NOTIFICATIONS_PERMISSION_GRANTED)
+						checked: notifyPermission === NOTIFICATIONS_PERMISSION_GRANTED
 					};
 
 					if (notifyPermission === NOTIFICATIONS_PERMISSION_DEFAULT) {
@@ -1143,7 +1143,7 @@ AUI().use(
 
 					var entryId = entry.entryId;
 
-					var entryProcessed = (entryIds.indexOf('|' + entryId) > -1);
+					var entryProcessed = entryIds.indexOf('|' + entryId) > -1;
 
 					if (!entryProcessed) {
 						userEntryCache.entries[entryId] = entry;
@@ -1370,11 +1370,11 @@ AUI().use(
 				for (var i = 0; i < entriesLength; i++) {
 					var entry = entries[i];
 
-					var entryProcessed = (entryIds.indexOf('|' + entry.entryId) > -1);
+					var entryProcessed = entryIds.indexOf('|' + entry.entryId) > -1;
 
 					if (!entryProcessed) {
-						var userId = entry.toUserId;
 						var incoming = false;
+						var userId = entry.toUserId;
 
 						if (entry.fromUserId != currentUserId) {
 							userId = entry.fromUserId;
@@ -1439,12 +1439,12 @@ AUI().use(
 
 				var showNotificationsObj = instance._showNotificationsObj;
 
-				if (showNotificationsObj.attr('checked') && (instance._notifyPermission === NOTIFICATIONS_PERMISSION_DEFAULT)) {
+				if (showNotificationsObj.attr('checked') && instance._notifyPermission === NOTIFICATIONS_PERMISSION_DEFAULT) {
 					var notification = A.config.win.webkitNotifications || Notification;
 
 					notification.requestPermission(
 						function(notifyPermission) {
-							var allowed = (notifyPermission == NOTIFICATIONS_PERMISSION_GRANTED);
+							var allowed = notifyPermission == NOTIFICATIONS_PERMISSION_GRANTED;
 
 							showNotificationsObj.attr(
 								{

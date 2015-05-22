@@ -62,21 +62,20 @@ AUI().use(
 			},
 
 			debugMsg: function(msg) {
-				//console.debug('WebRTC: ' + msg);
+				// console.debug('WebRTC: ' + msg);
 			},
 
 			debugObj: function(obj) {
-				//console.debug(obj);
+				// console.debug(obj);
 			},
 
 			errorMsg: function(msg) {
-				//console.error('WebRTC: ' + msg);
+				// console.error('WebRTC: ' + msg);
 			},
 
 			getConversationsGlobalState: function() {
 				var instance = this;
 
-				var State = Liferay.Chat.WebRtcConversation.State;
 				var ret = {
 					active: false,
 					communicationRequired: false,
@@ -84,6 +83,7 @@ AUI().use(
 					outRinging: false,
 					waiting: false
 				};
+				var State = Liferay.Chat.WebRtcConversation.State;
 
 				for (var userId in instance._conversations) {
 					var conversation = instance._conversations[userId];
@@ -211,8 +211,8 @@ AUI().use(
 
 				for (var i = 0; i < mails.length; ++i) {
 					var mail = mails[i];
-					var msg = mail.message;
 					var mailType = mail.type;
+					var msg = mail.message;
 					var msgType = msg.type;
 
 					var ensurePanel = !(mailType === 'conn' && msgType === 'status');
@@ -287,10 +287,10 @@ AUI().use(
 			sendSetAvailabilityMsg: function(available) {
 				var instance = this;
 
-				var msgType = 'setAvailability';
 				var msg = {
 					available: available
 				};
+				var msgType = 'setAvailability';
 
 				instance.sendMsg(msgType, msg);
 			},
@@ -526,8 +526,8 @@ AUI().use(
 			REMOTEPEERRESET: 'remotePeerReset'
 		};
 
-		var State = Liferay.Chat.WebRtcConversation.State;
 		var ConversationError = Liferay.Chat.WebRtcConversation.Error;
+		var State = Liferay.Chat.WebRtcConversation.State;
 
 		Liferay.Chat.WebRtcConversation.prototype = {
 			getState: function() {

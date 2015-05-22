@@ -318,8 +318,8 @@ AUI().use(
 
 				var data = JSON.parse(event.data.responseText);
 
-				var results = data.sites;
 				var count = data.count;
+				var results = data.sites;
 
 				var buffer = [];
 

@@ -111,7 +111,7 @@ else {
 					<portlet:namespace />keywords: query,
 					<portlet:namespace />searchTab: sitesTabsSelect.get('value'),
 					<portlet:namespace />start: 0
-				}
+				};
 			},
 			resultTextLocator: function(response) {
 				var result = '';
@@ -136,8 +136,8 @@ else {
 	var updateDirectoryList = function(event) {
 		var data = JSON.parse(event.data.responseText);
 
-		var results = data.sites;
 		var count = data.count;
+		var results = data.sites;
 
 		var options = data.options;
 
@@ -176,7 +176,7 @@ else {
 					'{requestedHTML}' +
 					'{deleteHTML}' +
 					'<span class="name">{siteName}</span>' +
-					'<span class="description">{siteDescription}</span>'
+					'<span class="description">{siteDescription}</span>' +
 				'</li>';
 
 			buffer.push(
@@ -194,7 +194,7 @@ else {
 							classNames.push('member');
 						}
 
-						if ((index % 2) == 1) {
+						if (index % 2 == 1) {
 							classNames.push('alt');
 						}
 
@@ -202,7 +202,7 @@ else {
 
 						if (result.deleteURL) {
 							if (result.deleteURL == '<%= StringPool.FALSE %>') {
-								deleteHTML = getSiteActionHtml('delete', 'disabled', '<liferay-ui:message key="you-cannot-delete-the-current-site" />', '#')
+								deleteHTML = getSiteActionHtml('delete', 'disabled', '<liferay-ui:message key="you-cannot-delete-the-current-site" />', '#');
 							}
 							else {
 								deleteHTML = getSiteActionHtml('action delete', 'delete-site', '<liferay-ui:message key="delete-site" />', result.deleteURL);
@@ -214,13 +214,11 @@ else {
 						if (result.favoriteURL == '<%= StringPool.BLANK %>') {
 							favoriteHTML = getSiteActionHtml('favorite', 'disabled', '<liferay-ui:message key="you-must-be-a-member-of-the-site-to-add-to-favorites" />', '#');
 						}
+						else if (result.favoriteURL) {
+							favoriteHTML = getSiteActionHtml('action favorite', '', '<liferay-ui:message key="add-to-favorites" />', result.favoriteURL);
+						}
 						else {
-							if (result.favoriteURL) {
-								favoriteHTML = getSiteActionHtml('action favorite', '', '<liferay-ui:message key="add-to-favorites" />', result.favoriteURL);
-							}
-							else {
-								favoriteHTML = getSiteActionHtml('action unfavorite', '', '<liferay-ui:message key="remove-from-favorites" />', result.unfavoriteURL);
-							}
+							favoriteHTML = getSiteActionHtml('action unfavorite', '', '<liferay-ui:message key="remove-from-favorites" />', result.unfavoriteURL);
 						}
 
 						var name = result.name;
@@ -242,7 +240,7 @@ else {
 
 						if (leaveURLOnly) {
 							if (result.leaveURL) {
-								leaveHTML = getSiteActionHtml('action leave', 'leave-site', '<liferay-ui:message key="leave-site" />', result.leaveURL)
+								leaveHTML = getSiteActionHtml('action leave', 'leave-site', '<liferay-ui:message key="leave-site" />', result.leaveURL);
 							}
 							else {
 								leaveHTML = getSiteActionHtml('action leave', 'disabled', '<liferay-ui:message key="you-cannot-leave-the-site-as-a-user-group-member-or-organization-member" />', '#');
@@ -255,10 +253,10 @@ else {
 								classNames: classNames.join(' '),
 								deleteHTML: deleteHTML,
 								favoriteHTML: favoriteHTML,
-								joinHTML: (result.joinURL ? getSiteActionHtml('action join', 'join-site', '<liferay-ui:message key="join-site" />', result.joinURL) : ''),
+								joinHTML: result.joinURL ? getSiteActionHtml('action join', 'join-site', '<liferay-ui:message key="join-site" />', result.joinURL) : '',
 								leaveHTML: leaveHTML,
-								requestedHTML: (result.membershipRequested ? getSiteActionHtml('action requested', '', '<liferay-ui:message key="membership-requested" />', '#') : ''),
-								requestHTML: (result.requestUrl ? getSiteActionHtml('action request', 'request-site', '<liferay-ui:message key="request-membership" />', result.requestUrl) : ''),
+								requestedHTML: result.membershipRequested ? getSiteActionHtml('action requested', '', '<liferay-ui:message key="membership-requested" />', '#') : '',
+								requestHTML: result.requestUrl ? getSiteActionHtml('action request', 'request-site', '<liferay-ui:message key="request-membership" />', result.requestUrl) : '',
 								siteDescription: result.description,
 								siteName: name
 							}
@@ -304,7 +302,7 @@ else {
 				<portlet:namespace />keywords: query,
 				<portlet:namespace />searchTab: sitesTabsSelect.get('value'),
 				<portlet:namespace />start: start
-			}
+			};
 		};
 	};
 
@@ -355,7 +353,7 @@ else {
 
 			var currentTargetClass = event.currentTarget.getAttribute('class');
 
-			if ((currentTargetClass == 'delete-site') || (currentTargetClass == 'leave-site') || (currentTargetClass == 'join-site') || (currentTargetClass == 'request-site')) {
+			if (currentTargetClass == 'delete-site' || currentTargetClass == 'leave-site' || currentTargetClass == 'join-site' || currentTargetClass == 'request-site') {
 				var confirmMessage = '';
 
 				var siteAction = '';
@@ -397,7 +395,7 @@ else {
 
 									var updateSites = function() {
 										Liferay.SO.Sites.updateSites(false, keywordsInput.get('value'), getRequestTemplate(currentPage));
-									}
+									};
 
 									setTimeout(updateSites, 2000);
 

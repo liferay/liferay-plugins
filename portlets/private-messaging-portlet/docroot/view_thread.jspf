@@ -362,8 +362,8 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 			caption: '<%= HtmlUtil.escapeJS(subject) %>',
 			delay: 2000,
 			links: '.body .image-thumbnail a',
-			maxHeight: (viewportRegion.height * 0.7),
-			maxWidth: (viewportRegion.width * 0.7)
+			maxHeight: viewportRegion.height * 0.7,
+			maxWidth: viewportRegion.width * 0.7
 		}
 	).render();
 </aui:script>

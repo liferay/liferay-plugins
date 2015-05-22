@@ -204,11 +204,11 @@ AUI.add(
 							var iframe = Lang.sub(
 								TPL_IFRAME,
 								{
-									height: (height ? 'height="' + height + '"' : STR_EMPTY),
+									height: height ? 'height="' + height + '"' : STR_EMPTY,
 									iframeId: iframeId,
 									scrolling: scrolling,
 									src: instance.get('iframeUrl'),
-									width: (width ? 'width="' + width + '"' : STR_EMPTY)
+									width: width ? 'width="' + width + '"' : STR_EMPTY
 								}
 							);
 
@@ -627,8 +627,8 @@ AUI.add(
 		Liferay._onInitialFn = Liferay.on;
 
 		Liferay.detach = function(topic, fn) {
-			var handle = topic;
 			var gadgetTopic = topic;
+			var handle = topic;
 			var subscriptionId;
 
 			if (handle && !handle.detach) {
@@ -653,8 +653,8 @@ AUI.add(
 		};
 
 		Liferay.on = function(topic, fn) {
-			var handle;
 			var gadgetTopic;
+			var handle;
 			var subscriptionId;
 
 			if (isArray(topic)) {
@@ -707,7 +707,7 @@ AUI.add(
 
 				var eventMap = MAP[eventType];
 
-				var allIds = (!fn);
+				var allIds = !fn;
 
 				if (allIds) {
 					subscriptionId = [];
