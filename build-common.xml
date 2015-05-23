@@ -412,56 +412,61 @@ Error-Prone was automatically installed. Please rerun your task.
 
 			<var name="snapshot.uptodate" value="false" />
 
-			<exec dir="@{module.dir}" executable="git" outputproperty="module.git.log">
-				<arg value="log" />
-				<arg value="-1" />
-				<arg value="--pretty=format:%H" />
-				<arg value="--" />
-				<arg value="." />
-				<arg value=":!snapshot.properties" />
-			</exec>
-
-			<exec dir="@{module.dir}" executable="git" outputproperty="module.git.status">
-				<arg value="status" />
-				<arg value="--short" />
-				<arg value="--" />
-				<arg value="." />
-			</exec>
-
-			<property file="@{module.dir}/snapshot.properties" />
-
 			<if>
-				<and>
-					<equals arg1="${module.git.log}" arg2="${module.snapshot.git.id}" />
-					<equals arg1="${module.git.status}" arg2="" />
-				</and>
+				<available file="@{module.dir}/snapshot.properties" />
 				<then>
-					<var name="snapshot.uptodate" value="true" />
+					<property file="@{module.dir}/snapshot.properties" />
+
+					<exec dir="@{module.dir}" executable="git" outputproperty="module.git.log">
+						<arg value="log" />
+						<arg value="-1" />
+						<arg value="--pretty=format:%H" />
+						<arg value="--" />
+						<arg value="." />
+						<arg value=":!snapshot.properties" />
+					</exec>
+
+					<exec dir="@{module.dir}" executable="git" outputproperty="module.git.status">
+						<arg value="status" />
+						<arg value="--short" />
+						<arg value="--" />
+						<arg value="." />
+					</exec>
+
+					<if>
+						<and>
+							<equals arg1="${module.git.log}" arg2="${module.snapshot.git.id}" />
+							<equals arg1="${module.git.status}" arg2="" />
+						</and>
+						<then>
+							<var name="snapshot.uptodate" value="true" />
+						</then>
+					</if>
+
+					<if>
+						<equals arg1="${snapshot.uptodate}" arg2="true" />
+						<then>
+							<trycatch>
+								<try>
+									<mirrors-get
+										dest="${plugin.file}"
+										trylocalnetwork="false"
+										src="${module.snapshot.url}"
+									/>
+								</try>
+								<catch>
+									<var name="snapshot.uptodate" value="false" />
+								</catch>
+							</trycatch>
+						</then>
+					</if>
+
+					<var name="module.git.log" unset="true" />
+					<var name="module.git.status" unset="true" />
+					<var name="module.snapshot.git.id" unset="true" />
+					<var name="module.snapshot.url" unset="true" />
 				</then>
 			</if>
-
-			<if>
-				<equals arg1="${snapshot.uptodate}" arg2="true" />
-				<then>
-					<trycatch>
-						<try>
-							<mirrors-get
-								dest="${plugin.file}"
-								trylocalnetwork="false"
-								src="${module.snapshot.url}"
-							/>
-						</try>
-						<catch>
-							<var name="snapshot.uptodate" value="false" />
-						</catch>
-					</trycatch>
-				</then>
-			</if>
-
-			<var name="module.git.log" unset="true" />
-			<var name="module.git.status" unset="true" />
-			<var name="module.snapshot.git.id" unset="true" />
-			<var name="module.snapshot.url" unset="true" />
 		</sequential>
 	</macrodef>
 
