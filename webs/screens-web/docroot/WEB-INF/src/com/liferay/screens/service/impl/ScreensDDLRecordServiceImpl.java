@@ -133,6 +133,7 @@ public class ScreensDDLRecordServiceImpl
 		if (fieldValueString == null) {
 			return null;
 		}
+
 		if (fieldValueString.isEmpty()) {
 			return null;
 		}
