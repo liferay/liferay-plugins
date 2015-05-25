@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
@@ -128,9 +128,12 @@ public class ScreensDDLRecordServiceImpl
 	protected Object getFieldValue(Field field, Locale locale)
 		throws PortalException, SystemException {
 
-		String fieldValueString = GetterUtil.getString(field.getValue(locale));
+		String fieldValueString = StringUtil.valueOf(field.getValue(locale));
 
-		if (fieldValueString.equals("null")) {
+		if (fieldValueString == null) {
+			return null;
+		}
+		if (fieldValueString.isEmpty()) {
 			return null;
 		}
 
@@ -143,10 +146,6 @@ public class ScreensDDLRecordServiceImpl
 			return field.getRenderedValue(locale);
 		}
 		else if (dataType.equals(FieldConstants.DOCUMENT_LIBRARY)) {
-			if (fieldValueString.equals("")) {
-				return null;
-			}
-
 			return JSONFactoryUtil.looseSerialize(
 				JSONFactoryUtil.looseDeserialize(fieldValueString));
 		}
