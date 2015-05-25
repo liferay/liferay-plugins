@@ -107,19 +107,15 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 			new ObjectValuePair<String, Long>(
 				_MB_THREAD_CLASS_NAME, mbMessage.getThreadId()));
 
-		long categoryId = mbMessage.getCategoryId();
-
-		if (categoryId <= 0) {
-			categoryId = mbMessage.getGroupId();
-		}
-
 		List<Long> categoryIds = new ArrayList<Long>();
 
-		categoryIds.add(categoryId);
+		categoryIds.add(mbMessage.getGroupId());
 
-		MBCategory category = mbMessage.getCategory();
+		long categoryId = mbMessage.getCategoryId();
 
 		if (categoryId != MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
+			MBCategory category = mbMessage.getCategory();
+
 			categoryIds.addAll(category.getAncestorCategoryIds());
 		}
 
