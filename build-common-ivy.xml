@@ -31,27 +31,27 @@
 			<propertyregex
 				input="@{src}"
 				override="true"
-				property="mirrors.cache.subdir.module"
-				regexp="http://(.+/).+"
+				property="mirrors.cache.artifact.subdir"
+				regexp="https?://(.+/).+"
 				replace="\1"
 			/>
+
+			<property name="mirrors.cache.artifact.dir" value="${mirrors.cache.dir}/${mirrors.cache.artifact.subdir}" />
 
 			<propertyregex
 				input="@{src}"
 				override="true"
-				property="mirrors.cache.file.name"
+				property="mirrors.cache.artifact.file.name"
 				regexp=".+/(.+)"
 				replace="\1"
 			/>
 
-			<property name="mirrors.cache.dir.module" value="${mirrors.cache.dir}/${mirrors.cache.subdir.module}" />
-
 			<if>
 				<not>
-					<available file="${mirrors.cache.dir.module}/${mirrors.cache.file.name}" />
+					<available file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}" />
 				</not>
 				<then>
-					<mkdir dir="${mirrors.cache.dir.module}" />
+					<mkdir dir="${mirrors.cache.artifact.dir}" />
 
 					<propertyregex
 						input="@{src}"
@@ -67,7 +67,7 @@
 							<trycatch>
 								<try>
 									<get
-										dest="${mirrors.cache.dir.module}"
+										dest="${mirrors.cache.artifact.dir}"
 										ignoreerrors="@{ignoreerrors}"
 										skipexisting="@{skipexisting}"
 										src="${mirrors.src}"
@@ -76,7 +76,7 @@
 								</try>
 								<catch>
 									<get
-										dest="${mirrors.cache.dir.module}"
+										dest="${mirrors.cache.artifact.dir}"
 										ignoreerrors="@{ignoreerrors}"
 										skipexisting="@{skipexisting}"
 										src="@{src}"
@@ -87,7 +87,7 @@
 						</then>
 						<else>
 							<get
-								dest="${mirrors.cache.dir.module}"
+								dest="${mirrors.cache.artifact.dir}"
 								ignoreerrors="@{ignoreerrors}"
 								skipexisting="@{skipexisting}"
 								src="@{src}"
@@ -102,24 +102,24 @@
 				<available file="@{dest}" type="dir" />
 				<then>
 					<copy
-						file="${mirrors.cache.dir.module}/${mirrors.cache.file.name}"
+						file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}"
 						overwrite="true"
-						tofile="@{dest}/${mirrors.cache.file.name}"
+						tofile="@{dest}/${mirrors.cache.artifact.file.name}"
 					/>
 
-					<var name="mirrors.cache.file.name" unset="true" />
+					<var name="mirrors.cache.artifact.file.name" unset="true" />
 				</then>
 				<else>
 					<copy
-						file="${mirrors.cache.dir.module}/${mirrors.cache.file.name}"
+						file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}"
 						overwrite="true"
 						tofile="@{dest}"
 					/>
 				</else>
 			</if>
 
-			<var name="mirrors.cache.dir.module" unset="true" />
-			<var name="mirrors.cache.file.name" unset="true" />
+			<var name="mirrors.cache.artifact.dir" unset="true" />
+			<var name="mirrors.cache.artifact.file.name" unset="true" />
 		</sequential>
 	</macrodef>
 
