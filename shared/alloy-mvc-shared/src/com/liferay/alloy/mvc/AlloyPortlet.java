@@ -117,21 +117,6 @@ public class AlloyPortlet extends GenericPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		String actionName = ParamUtil.getString(
-			actionRequest, ActionRequest.ACTION_NAME);
-
-		if (actionName.equals("alloyDataRequest")) {
-			try {
-				AlloyDataRequestProcessor.process(
-					actionRequest, actionResponse, _alloyControllers);
-			}
-			catch (Exception e) {
-				throw new IOException(e);
-			}
-
-			return;
-		}
-
 		String path = getPath(actionRequest);
 
 		include(path, actionRequest, actionResponse);
