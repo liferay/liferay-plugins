@@ -142,15 +142,13 @@ public class TasksPortlet extends MVCPortlet {
 				themeDisplay.getPermissionChecker());
 
 		if (cmd.equals(Constants.DELETE)) {
-			discussionPermission.checkDeletePermission(
-				className, classPK, messageId, themeDisplay.getUserId());
+			discussionPermission.checkDeletePermission(messageId);
 
 			CommentManagerUtil.deleteComment(messageId);
 		}
 		else if (messageId <= 0) {
 			discussionPermission.checkAddPermission(
-				themeDisplay.getCompanyId(), groupId, className, classPK,
-				themeDisplay.getUserId());
+				themeDisplay.getCompanyId(), groupId, className, classPK);
 
 			User user = themeDisplay.getUser();
 
@@ -160,8 +158,7 @@ public class TasksPortlet extends MVCPortlet {
 				serviceContextFunction);
 		}
 		else {
-			discussionPermission.checkUpdatePermission(
-				className, classPK, messageId, themeDisplay.getUserId());
+			discussionPermission.checkUpdatePermission(messageId);
 
 			CommentManagerUtil.updateComment(
 				themeDisplay.getUserId(), className, classPK, messageId,

@@ -1204,12 +1204,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		String permissionClassName = ParamUtil.getString(
-			actionRequest, "permissionClassName");
-		long permissionClassPK = ParamUtil.getLong(
-			actionRequest, "permissionClassPK");
-		long permissionOwnerId = ParamUtil.getLong(
-			actionRequest, "permissionOwnerId");
 
 		long messageId = ParamUtil.getLong(actionRequest, "messageId");
 
@@ -1226,14 +1220,12 @@ public class CalendarPortlet extends MVCPortlet {
 
 		if (messageId <= 0) {
 			message = MBMessageServiceUtil.addDiscussionMessage(
-				serviceContext.getScopeGroupId(), className, classPK,
-				permissionClassName, permissionClassPK, permissionOwnerId,
-				threadId, parentMessageId, subject, body, serviceContext);
+				serviceContext.getScopeGroupId(), className, classPK, threadId,
+				parentMessageId, subject, body, serviceContext);
 		}
 		else {
 			message = MBMessageServiceUtil.updateDiscussionMessage(
-				className, classPK, permissionClassName, permissionClassPK,
-				permissionOwnerId, messageId, subject, body, serviceContext);
+				className, classPK, messageId, subject, body, serviceContext);
 		}
 
 		// Subscription
