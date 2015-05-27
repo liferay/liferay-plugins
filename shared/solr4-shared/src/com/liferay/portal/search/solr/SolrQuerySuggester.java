@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.search.TokenizerUtil;
+import com.liferay.portal.kernel.search.analysis.TokenizerUtil;
 import com.liferay.portal.kernel.search.suggest.BaseQuerySuggester;
 import com.liferay.portal.kernel.search.suggest.SuggestionConstants;
 import com.liferay.portal.kernel.search.suggest.WeightedWord;
