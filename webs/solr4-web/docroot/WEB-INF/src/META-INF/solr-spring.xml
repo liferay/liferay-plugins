@@ -139,7 +139,7 @@
 		</property>
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.HttpSolrServer" />
 	</bean>
-	<bean class="com.liferay.portal.kernel.search.BaseSearchEngine" id="com.liferay.portal.search.solr.SolrSearchEngineImpl">
+	<bean class="com.liferay.portal.kernel.search.BaseSearchEngine" id="com.liferay.portal.kernel.search.BaseSearchEngine">
 		<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcher" />
 		<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
 		<property name="vendor" value="SOLR" />
@@ -175,7 +175,7 @@
 	<bean class="com.liferay.portal.kernel.search.PluginSearchEngineConfigurator" id="searchEngineConfigurator.solr">
 		<property name="searchEngines">
 			<util:map>
-				<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
+				<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.kernel.search.BaseSearchEngine" />
 			</util:map>
 		</property>
 	</bean>
