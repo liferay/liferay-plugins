@@ -282,8 +282,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		setModel(baseModel, properties);
 
 		persistModel(baseModel);
-
-		indexModel(baseModel);
 	}
 
 	protected void addOpenerSuccessMessage() {
