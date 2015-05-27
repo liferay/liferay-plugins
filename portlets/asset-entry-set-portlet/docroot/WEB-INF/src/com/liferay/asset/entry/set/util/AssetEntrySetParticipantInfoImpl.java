@@ -20,8 +20,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ObjectValuePair;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
@@ -79,7 +78,7 @@ public class AssetEntrySetParticipantInfoImpl
 		throws PortalException, SystemException {
 
 		if (classNameId != _USER_CLASS_NAME_ID) {
-			return null;
+			return StringPool.BLANK;
 		}
 
 		User user = UserLocalServiceUtil.getUser(classPK);
@@ -120,9 +119,6 @@ public class AssetEntrySetParticipantInfoImpl
 
 	private static final long _GROUP_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(Group.class);
-
-	private static final String _LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING =
-		PropsUtil.get(PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
 
 	private static final long _USER_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(User.class);
