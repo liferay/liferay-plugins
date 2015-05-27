@@ -425,13 +425,13 @@ Error-Prone was automatically installed. Please rerun your task.
 
 					<git-head-hash
 						path="@{module.dir}"
-						property="module.git.log"
+						property="module.git.head.hash"
 						ignoreFileName="snapshot.properties"
 					/>
 
 					<if>
 						<and>
-							<equals arg1="${module.git.log}" arg2="${module.snapshot.git.id}" />
+							<equals arg1="${module.git.head.hash}" arg2="${module.snapshot.git.hash}" />
 							<git-is-clean path="@{module.dir}" />
 						</and>
 						<then>
@@ -457,8 +457,8 @@ Error-Prone was automatically installed. Please rerun your task.
 						</then>
 					</if>
 
-					<var name="module.git.log" unset="true" />
-					<var name="module.snapshot.git.id" unset="true" />
+					<var name="module.git.head.hash" unset="true" />
+					<var name="module.snapshot.git.hash" unset="true" />
 					<var name="module.snapshot.url" unset="true" />
 				</then>
 			</if>

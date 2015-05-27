@@ -176,7 +176,7 @@
 
 			<git-head-hash
 				path="${basedir}"
-				property="git.commit.module.log"
+				property="module.snapshot.git.hash"
 				ignoreFileName="snapshot.properties"
 			/>
 
@@ -188,12 +188,12 @@
 			/>
 
 			<echo file="snapshot.properties">
-module.snapshot.git.id=${git.commit.module.log}
+module.snapshot.git.hash=${module.snapshot.git.hash}
 module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-${snapshot.tstamp}.jar
 			</echo>
 
-			<var name="git.commit.module.log" unset="true" />
 			<var name="maven.deploy.log.content" unset="true" />
+			<var name="module.snapshot.git.hash" unset="true" />
 			<var name="snapshot.tstamp" unset="true" />
 		</sequential>
 	</macrodef>
