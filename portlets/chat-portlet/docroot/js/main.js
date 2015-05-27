@@ -1012,6 +1012,7 @@ AUI().use(
 				instance._addPanel('settings', settings);
 
 				var settingsPanel = settings.getPanel();
+
 				var saveSettings = settingsPanel.one('#saveSettings');
 
 				instance._statusMessageObj = settingsPanel.one('#statusMessage');
@@ -1279,6 +1280,7 @@ AUI().use(
 				var instance = this;
 
 				var searchBuddiesField = instance._searchBuddiesField;
+
 				var search = searchBuddiesField.val().toLowerCase();
 
 				var buddyList = buddies || [];

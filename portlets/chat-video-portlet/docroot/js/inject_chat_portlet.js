@@ -151,7 +151,6 @@ AUI().use(
 
 					playSoundLabelTextEl.nodeValue = ' ' + Liferay.Language.get('play-a-sound');
 
-					var showOnlineSettingNode = A.one('#onlineStatus').ancestor('li');
 					var availableForChatVideoSettingHtml = A.Lang.sub(
 						TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI,
 						{
@@ -159,6 +158,7 @@ AUI().use(
 						}
 					);
 					var availableForChatVideoSettingNode = A.Node.create(availableForChatVideoSettingHtml);
+					var showOnlineSettingNode = A.one('#onlineStatus').ancestor('li');
 
 					showOnlineSettingNode.placeAfter(availableForChatVideoSettingNode);
 					instance._availableForChatVideoSettingCheckboxNode = A.one('#availableForChatVideo');
@@ -413,9 +413,7 @@ AUI().use(
 					el.currentTime = 0;
 				}
 				catch (e) {
-
 					// Probably not ready yet: not playing anyway
-
 				}
 			},
 
@@ -466,6 +464,7 @@ AUI().use(
 				var curTimeMs = Date.now();
 				var elapsedMsTotal = curTimeMs - instance._beginMs;
 				var elapsedSeconds = parseInt(elapsedMsTotal / 1000, 10);
+
 				var elapsedHours = parseInt(elapsedSeconds / 3600, 10);
 
 				elapsedSeconds -= elapsedHours * 3600;
