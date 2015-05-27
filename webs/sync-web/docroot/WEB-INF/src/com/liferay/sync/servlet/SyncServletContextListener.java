@@ -22,13 +22,13 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.SerialDestination;
-import com.liferay.portal.kernel.scheduler.CronText;
-import com.liferay.portal.kernel.scheduler.CronTrigger;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
+import com.liferay.portal.kernel.scheduler.SchedulerEntry;
+import com.liferay.portal.kernel.scheduler.SchedulerEntryImpl;
 import com.liferay.portal.kernel.scheduler.StorageType;
-import com.liferay.portal.kernel.scheduler.Trigger;
+import com.liferay.portal.kernel.scheduler.TimeUnit;
+import com.liferay.portal.kernel.scheduler.TriggerType;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
-import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
@@ -44,7 +44,6 @@ import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +122,10 @@ public class SyncServletContextListener
 			MessageBusUtil.unregisterMessageListener(
 				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME,
 				_syncDLFileVersionDiffMessageListener);
+
+			SchedulerEngineHelperUtil.unschedule(
+				SyncDLFileVersionDiffMessageListener.class.getName(),
+				StorageType.MEMORY_CLUSTERED);
 		}
 	}
 
@@ -208,19 +211,17 @@ public class SyncServletContextListener
 
 	protected void scheduleDLFileVersionDiffMessageListener() {
 		try {
-			Calendar calendar = CalendarFactoryUtil.getCalendar();
+			SchedulerEntry schedulerEntry = new SchedulerEntryImpl();
 
-			CronText cronText = new CronText(
-				calendar, CronText.HOURLY_FREQUENCY,
+			schedulerEntry.setEventListenerClass(
+				SyncDLFileVersionDiffMessageListener.class.getName());
+			schedulerEntry.setTimeUnit(TimeUnit.HOUR);
+			schedulerEntry.setTriggerType(TriggerType.SIMPLE);
+			schedulerEntry.setTriggerValue(
 				PortletPropsValues.SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL);
 
-			Trigger trigger = new CronTrigger(
-				SyncDLFileVersionDiffMessageListener.class.getName(),
-				SyncDLFileVersionDiffMessageListener.class.getName(),
-				cronText.toString());
-
 			SchedulerEngineHelperUtil.schedule(
-				trigger, StorageType.MEMORY_CLUSTERED, null,
+				schedulerEntry.getTrigger(), StorageType.MEMORY_CLUSTERED, null,
 				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME, null, 0);
 		}
 		catch (Exception e) {
