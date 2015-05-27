@@ -15,9 +15,9 @@
 package com.liferay.portal.search.solr;
 
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.NGramHolder;
-import com.liferay.portal.kernel.search.NGramHolderBuilderUtil;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.suggest.NGramHolder;
+import com.liferay.portal.kernel.search.suggest.NGramHolderBuilderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 

@@ -33,8 +33,8 @@ import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.RangeFacet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
-import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.kernel.search.highlight.HighlightUtil;
+import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -314,7 +314,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 		}
 
-		HighlightUtil.addSnippet(document, queryTerms, snippet, snippetFieldName);
+		HighlightUtil.addSnippet(
+			document, queryTerms, snippet, snippetFieldName);
 	}
 
 	protected void addSort(SolrQuery solrQuery, Sort[] sorts) {
