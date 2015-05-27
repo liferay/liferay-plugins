@@ -423,26 +423,16 @@ Error-Prone was automatically installed. Please rerun your task.
 				<then>
 					<property file="@{module.dir}/snapshot.properties" />
 
-					<exec dir="@{module.dir}" executable="git" outputproperty="module.git.log">
-						<arg value="log" />
-						<arg value="-1" />
-						<arg value="--pretty=format:%H" />
-						<arg value="--" />
-						<arg value="." />
-						<arg value=":!snapshot.properties" />
-					</exec>
-
-					<exec dir="@{module.dir}" executable="git" outputproperty="module.git.status">
-						<arg value="status" />
-						<arg value="--short" />
-						<arg value="--" />
-						<arg value="." />
-					</exec>
+					<git-head-hash
+						path="@{module.dir}"
+						property="module.git.log"
+						ignoreFileName="snapshot.properties"
+					/>
 
 					<if>
 						<and>
 							<equals arg1="${module.git.log}" arg2="${module.snapshot.git.id}" />
-							<equals arg1="${module.git.status}" arg2="" />
+							<git-is-clean path="@{module.dir}" />
 						</and>
 						<then>
 							<var name="snapshot.uptodate" value="true" />
@@ -468,7 +458,6 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 
 					<var name="module.git.log" unset="true" />
-					<var name="module.git.status" unset="true" />
 					<var name="module.snapshot.git.id" unset="true" />
 					<var name="module.snapshot.url" unset="true" />
 				</then>

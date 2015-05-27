@@ -174,14 +174,11 @@
 
 			<property file="bnd.bnd" prefix="bnd." />
 
-			<exec executable="git" outputproperty="git.commit.module.log">
-				<arg value="log" />
-				<arg value="-1" />
-				<arg value="--pretty=format:%H" />
-				<arg value="--" />
-				<arg value="." />
-				<arg value=":!snapshot.properties" />
-			</exec>
+			<git-head-hash
+				path="${basedir}"
+				property="git.commit.module.log"
+				ignoreFileName="snapshot.properties"
+			/>
 
 			<propertyregex
 				input="${sonatype.url}"
