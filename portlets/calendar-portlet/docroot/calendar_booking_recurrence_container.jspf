@@ -257,7 +257,7 @@ if (recurrence != null) {
 	var getRecurrenceDialogTitle = function() {
 		var summary = window.<portlet:namespace />getSummary();
 
-		return '<liferay-ui:message key="repeat" /> ' + (summary.charAt(0).toLowerCase() + summary.slice(1));
+		return '<liferay-ui:message key="repeat" /> ' + (summary[0].toLowerCase() + summary.slice(1));
 	};
 
 	window.<portlet:namespace />recurrenceDialog;
