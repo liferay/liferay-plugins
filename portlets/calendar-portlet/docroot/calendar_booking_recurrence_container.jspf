@@ -246,8 +246,8 @@ if (recurrence != null) {
 	var countNode = A.one('#<portlet:namespace />count');
 	var endsRadioNodes = A.all('[name=<portlet:namespace />ends]');
 	var frequencyNode = A.one('#<portlet:namespace />frequency');
-	var positionInMonthNode = A.one('#<portlet:namespace />viewPositionInMonth');
 	var positionalWeekdayNode = A.one('#<portlet:namespace />viewPositionalWeekday');
+	var positionInMonthNode = A.one('#<portlet:namespace />viewPositionInMonth');
 	var recurrenceContainerNode = A.one('#<portlet:namespace />recurrenceContainer');
 	var repeatCheckboxNode = A.one('#<portlet:namespace />repeat');
 	var summaryNode = A.one('#<portlet:namespace />summary');
@@ -268,7 +268,7 @@ if (recurrence != null) {
 		window.<portlet:namespace />recurrenceDialog = Liferay.Util.Window.getWindow(
 			{
 				dialog: {
-					after:{
+					after: {
 						visibleChange: function(event) {
 							recurrenceContainerNode.toggle(event.newVal);
 
@@ -307,8 +307,8 @@ if (recurrence != null) {
 		var value = target.val();
 
 		if (target.test('#<portlet:namespace />frequency')) {
-			window.<portlet:namespace />toggleView('<%= Frequency.WEEKLY %>', (value == '<%= Frequency.WEEKLY %>'));
-			window.<portlet:namespace />toggleView('PositionInMonth', ((value === '<%= Frequency.MONTHLY %>') || (value === '<%= Frequency.YEARLY %>')));
+			window.<portlet:namespace />toggleView('<%= Frequency.WEEKLY %>', value == '<%= Frequency.WEEKLY %>');
+			window.<portlet:namespace />toggleView('PositionInMonth', value === '<%= Frequency.MONTHLY %>' || value === '<%= Frequency.YEARLY %>');
 		}
 
 		if (target.get('name') == '<portlet:namespace />repeatOnWeekday') {
@@ -317,7 +317,7 @@ if (recurrence != null) {
 
 		var endValue = endsRadioNodes.filter(':checked').val()[0];
 
-		if ((endValue == 'never') || (endValue == 'on')) {
+		if (endValue == 'never' || endValue == 'on') {
 			countNode.set('disabled', true);
 		}
 		else {
@@ -326,7 +326,7 @@ if (recurrence != null) {
 
 		countNode.selectText();
 
-		if ((endValue == 'never') || (endValue == 'after')) {
+		if (endValue == 'never' || endValue == 'after') {
 			untilDateDatePicker.set('disabled', true);
 		}
 		else {
@@ -381,7 +381,7 @@ if (recurrence != null) {
 
 		var positionalWeekday = null;
 
-		if ((frequency == '<%= Frequency.MONTHLY %>') || (frequency == '<%= Frequency.YEARLY %>')) {
+		if (frequency == '<%= Frequency.MONTHLY %>' || frequency == '<%= Frequency.YEARLY %>') {
 			if (positionInMonthNode.one('input:checked').val() == 'true') {
 				positionalWeekday = {
 					month: parseInt(A.one('#<portlet:namespace />startTimeMonth').val(), 10),
@@ -401,7 +401,7 @@ if (recurrence != null) {
 			positionalWeekday: positionalWeekday,
 			untilDate: untilDateDatePicker.getDate(),
 			weekdays: selectedWeekdays
-		}
+		};
 
 		return Liferay.RecurrenceUtil.getSummary(recurrence);
 	};
@@ -431,7 +431,7 @@ if (recurrence != null) {
 
 			window.<portlet:namespace />recurrenceDialog.fillHeight(window.<portlet:namespace />recurrenceDialog.bodyNode);
 		}
-	}
+	};
 
 	<c:if test="<%= recurring %>">
 		window.<portlet:namespace />updateSummaries();
