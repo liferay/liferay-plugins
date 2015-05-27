@@ -76,7 +76,7 @@ AUI.add(
 							success: function(event, id, obj) {
 								var responseData = this.get('responseData');
 
-								if ((responseData.status != 'success') || (responseData.value == 'false')) {
+								if (responseData.status != 'success' || responseData.value == 'false') {
 									return;
 								}
 
