@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.search.facet.RangeFacet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.search.query.QueryTranslator;
-import com.liferay.portal.kernel.search.util.SearchUtil;
+import com.liferay.portal.kernel.search.highlight.HighlightUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -227,8 +227,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setHighlight(true);
 		solrQuery.setHighlightFragsize(queryConfig.getHighlightFragmentSize());
-		solrQuery.setHighlightSimplePost(SearchUtil.HIGHLIGHT_TAG_CLOSE);
-		solrQuery.setHighlightSimplePre(SearchUtil.HIGHLIGHT_TAG_OPEN);
+		solrQuery.setHighlightSimplePost(HighlightUtil.HIGHLIGHT_TAG_CLOSE);
+		solrQuery.setHighlightSimplePre(HighlightUtil.HIGHLIGHT_TAG_OPEN);
 		solrQuery.setHighlightSnippets(queryConfig.getHighlightSnippetSize());
 
 		for (String highlightFieldName : queryConfig.getHighlightFieldNames()) {
@@ -314,7 +314,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			}
 		}
 
-		SearchUtil.addSnippet(document, queryTerms, snippet, snippetFieldName);
+		HighlightUtil.addSnippet(document, queryTerms, snippet, snippetFieldName);
 	}
 
 	protected void addSort(SolrQuery solrQuery, Sort[] sorts) {
