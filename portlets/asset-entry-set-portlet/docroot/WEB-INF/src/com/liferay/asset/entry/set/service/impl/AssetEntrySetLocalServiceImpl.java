@@ -97,6 +97,9 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setParentAssetEntrySetId(parentAssetEntrySetId);
 		assetEntrySet.setCreatorClassNameId(creatorClassNameId);
 		assetEntrySet.setCreatorClassPK(creatorClassPK);
+		assetEntrySet.setCreatorName(
+			AssetEntrySetParticipantInfoUtil.getParticipantName(
+				creatorClassNameId, creatorClassPK));
 
 		filterAssetTagNames(payloadJSONObject);
 

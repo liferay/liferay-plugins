@@ -30,6 +30,9 @@ public interface AssetEntrySetParticipantInfo {
 	public ObjectValuePair<Long, Long> getClassNameIdAndClassPKOVP(long userId)
 		throws SystemException;
 
+	public String getParticipantName(long classNameId, long classPK)
+		throws PortalException, SystemException;
+
 	public boolean isMember(
 		long classNameId, long classPK, long sharedToClassNameId,
 		long sharedToClassPK);

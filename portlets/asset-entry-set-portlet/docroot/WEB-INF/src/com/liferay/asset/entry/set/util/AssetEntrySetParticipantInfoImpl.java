@@ -75,6 +75,18 @@ public class AssetEntrySetParticipantInfoImpl
 		return new ObjectValuePair<Long, Long>(_USER_CLASS_NAME_ID, userId);
 	}
 
+	public String getParticipantName(long classNameId, long classPK)
+		throws PortalException, SystemException {
+
+		if (classNameId != _USER_CLASS_NAME_ID) {
+			return null;
+		}
+
+		User user = UserLocalServiceUtil.getUser(classPK);
+
+		return user.getFullName();
+	}
+
 	public boolean isMember(
 		long classNameId, long classPK, long sharedToClassNameId,
 		long sharedToClassPK) {

@@ -46,6 +46,13 @@ public class AssetEntrySetParticipantInfoUtil {
 			userId);
 	}
 
+	public static String getParticipantName(long classNameId, long classPK)
+		throws PortalException, SystemException {
+
+		return getAssetEntrySetParticipantInfo().getParticipantName(
+			classNameId, classPK);
+	}
+
 	public static boolean isMember(
 		long classNameId, long classPK, long sharedToClassNameId,
 		long sharedToClassPK) {
