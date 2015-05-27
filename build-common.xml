@@ -436,7 +436,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					<if>
 						<and>
 							<equals arg1="${module.git.head.hash}" arg2="${module.snapshot.git.hash}" />
-							<git-is-clean path="@{module.dir}" />
+							<git-is-clean path="${module.dir.unix}" />
 						</and>
 						<then>
 							<var name="snapshot.uptodate" value="true" />
