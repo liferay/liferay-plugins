@@ -414,6 +414,10 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
 			<mkdir dir="${sdk.dir}/dist" />
 
 			<var name="snapshot.uptodate" value="false" />
@@ -424,7 +428,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					<property file="@{module.dir}/snapshot.properties" />
 
 					<git-head-hash
-						path="@{module.dir}"
+						path="${module.dir.unix}"
 						property="module.git.head.hash"
 						ignoreFileName="snapshot.properties"
 					/>
@@ -1818,10 +1822,6 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
 			<check-snapshot
 				module.dir="@{module.dir}"
 			/>
