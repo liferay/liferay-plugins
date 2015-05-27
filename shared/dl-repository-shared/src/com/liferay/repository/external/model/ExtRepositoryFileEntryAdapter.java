@@ -19,6 +19,9 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.repository.Repository;
+import com.liferay.portal.kernel.repository.RepositoryProviderUtil;
+import com.liferay.portal.kernel.repository.capabilities.Capability;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileShortcut;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -59,6 +62,15 @@ public class ExtRepositoryFileEntryAdapter
 			extRepositoryFileEntry);
 
 		_extRepositoryFileEntry = extRepositoryFileEntry;
+	}
+
+	@Override
+	public <T extends Capability> boolean isRepositoryCapabilityProvided(
+		Class<T> capabilityClass) {
+
+		Repository repository = getRepository();
+
+		return repository.isCapabilityProvided(capabilityClass);
 	}
 
 	@Override
@@ -285,6 +297,15 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public int getReadCount() {
 		return 0;
+	}
+
+	@Override
+	public <T extends Capability> T getRepositoryCapability(
+		Class<T> capabilityClass) {
+
+		Repository repository = getRepository();
+
+		return repository.getCapability(capabilityClass);
 	}
 
 	@Override
