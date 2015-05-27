@@ -629,6 +629,7 @@ AUI.add(
 		Liferay.detach = function(topic, fn) {
 			var gadgetTopic = topic;
 			var handle = topic;
+
 			var subscriptionId;
 
 			if (handle && !handle.detach) {

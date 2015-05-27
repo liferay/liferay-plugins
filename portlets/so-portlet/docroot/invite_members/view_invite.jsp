@@ -232,8 +232,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				A.Array.map(
 					results,
 					function(result) {
-						var userTemplate =
-							'<div class="{cssClass}" data-userId="{userId}">' +
+						var userTemplate ='<div class="{cssClass}" data-userId="{userId}">' +
 								'<span class="name">{userFullName}</span>' +
 								'<span class="email">{userEmailAddress}</span>' +
 							'</div>';
