@@ -240,7 +240,7 @@
 									function(item, index) {
 										var id = item.attr('data-id');
 
-										item.toggleClass(CSS_SIMPLE_MENU_ITEM_HIDDEN, (val.indexOf(id) > -1));
+										item.toggleClass(CSS_SIMPLE_MENU_ITEM_HIDDEN, val.indexOf(id) > -1);
 									}
 								);
 							}

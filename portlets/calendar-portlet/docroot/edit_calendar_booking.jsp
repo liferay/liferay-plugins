@@ -426,7 +426,7 @@ for (long otherCalendarId : otherCalendarIds) {
 				item.set('disabled', true);
 			}
 		);
-	}
+	};
 
 	var calendarsMenu = Liferay.CalendarUtil.getCalendarsMenu(
 		{
