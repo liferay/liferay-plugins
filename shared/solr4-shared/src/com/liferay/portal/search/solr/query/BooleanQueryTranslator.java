@@ -15,7 +15,7 @@
 package com.liferay.portal.search.solr.query;
 
 import com.liferay.portal.kernel.search.BooleanQuery;
-import com.liferay.portal.kernel.search.QueryVisitor;
+import com.liferay.portal.kernel.search.query.QueryVisitor;
 
 /**
  * @author André de Oliveira
