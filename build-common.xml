@@ -91,6 +91,12 @@
 	<taskdef classname="com.liferay.ant.bnd.ReleaseToRepoTask" classpathref="classpath.com.liferay.ant.bnd" name="release-to-repo" />
 	<taskdef classpathref="classpath.com.liferay.ant.bnd" resource="aQute/bnd/ant/taskdef.properties" />
 
+	<path id="classpath.com.liferay.ant.jgit">
+		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.jgit/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classpathref="classpath.com.liferay.ant.jgit" resource="com/liferay/ant/jgit/ant-jgit-tasks.properties" />
+
 	<path id="classpath.net.sourceforge.pmd">
 		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.pmd/lib" includes="*.jar" />
 	</path>
