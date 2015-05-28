@@ -41,6 +41,10 @@ public class BooleanQueryTranslatorImpl implements BooleanQueryTranslator {
 			_addClause(booleanClause, luceneBooleanQuery, queryVisitor);
 		}
 
+		if (!booleanQuery.isDefaultBoost()) {
+			luceneBooleanQuery.setBoost(booleanQuery.getBoost());
+		}
+
 		return luceneBooleanQuery;
 	}
 
