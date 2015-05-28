@@ -24,7 +24,6 @@
 	<macrodef name="mirrors-get">
 		<attribute name="dest" />
 		<attribute default="false" name="ignoreerrors" />
-		<attribute default="false" name="skipexisting" />
 		<attribute name="src" />
 		<attribute default="true" name="trylocalnetwork" />
 		<attribute default="false" name="verbose" />
@@ -71,7 +70,6 @@
 									<get
 										dest="${mirrors.cache.artifact.dir}"
 										ignoreerrors="@{ignoreerrors}"
-										skipexisting="@{skipexisting}"
 										src="${mirrors.src}"
 										verbose="@{verbose}"
 									/>
@@ -80,7 +78,6 @@
 									<get
 										dest="${mirrors.cache.artifact.dir}"
 										ignoreerrors="@{ignoreerrors}"
-										skipexisting="@{skipexisting}"
 										src="@{src}"
 										verbose="@{verbose}"
 									/>
@@ -91,7 +88,6 @@
 							<get
 								dest="${mirrors.cache.artifact.dir}"
 								ignoreerrors="@{ignoreerrors}"
-								skipexisting="@{skipexisting}"
 								src="@{src}"
 								verbose="@{verbose}"
 							/>
