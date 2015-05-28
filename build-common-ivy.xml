@@ -99,16 +99,12 @@
 				<then>
 					<copy
 						file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}"
-						overwrite="true"
 						tofile="@{dest}/${mirrors.cache.artifact.file.name}"
 					/>
-
-					<var name="mirrors.cache.artifact.file.name" unset="true" />
 				</then>
 				<else>
 					<copy
 						file="${mirrors.cache.artifact.dir}/${mirrors.cache.artifact.file.name}"
-						overwrite="true"
 						tofile="@{dest}"
 					/>
 				</else>
@@ -116,6 +112,7 @@
 
 			<var name="mirrors.cache.artifact.dir" unset="true" />
 			<var name="mirrors.cache.artifact.file.name" unset="true" />
+			<var name="mirrors.cache.artifact.subdir" unset="true" />
 		</sequential>
 	</macrodef>
 
