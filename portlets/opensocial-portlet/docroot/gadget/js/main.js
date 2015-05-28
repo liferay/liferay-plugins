@@ -23,7 +23,7 @@ AUI.add(
 
 		var STR_EMPTY = '';
 
-		var TPL_IFRAME = '<iframe id="{iframeId}" name="{iframeId}" class="' + CSS_CLASS_GADGET + '" src="{src}" frameborder="no" scrolling="{scrolling}" {height} {width}></iframe>';
+		var TPL_IFRAME = '<iframe class="' + CSS_CLASS_GADGET + '" frameborder="no" {height} id="{iframeId}" name="{iframeId}" scrolling="{scrolling}" src="{src}" {width}></iframe>';
 
 		var Gadget = A.Component.create(
 			{
@@ -760,15 +760,18 @@ AUI.add(
 		var unsubscribeTopic = function(topic, subscriptionId, fn) {
 			var i;
 
-			if (isString(topic) && isString(subscriptionId)) {
+			var arraySubscriptionId = isArray(subscriptionId);
+			var stringTopic = isString(topic);
+
+			if (stringTopic && isString(subscriptionId)) {
 				unsubscribeGadgetEvent(topic, subscriptionId, fn);
 			}
-			else if (isString(topic) && isArray(subscriptionId)) {
+			else if (stringTopic && arraySubscriptionId) {
 				for (i = 0; i < subscriptionId.length; i++) {
 					unsubscribeGadgetEvent(topic, subscriptionId[i], fn);
 				}
 			}
-			else if (isArray(topic) && isArray(subscriptionId)) {
+			else if (isArray(topic) && arraySubscriptionId) {
 				for (i = 0; i < subscriptionId.length; i++) {
 					unsubscribeGadgetEvent(topic[i], subscriptionId[i]);
 				}
@@ -786,7 +789,6 @@ AUI.add(
 
 					return true;
 				},
-
 				onSubscribe: Lang.emptyFnTrue,
 				onUnsubscribe: Lang.emptyFn
 			}
