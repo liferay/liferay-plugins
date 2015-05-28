@@ -4,6 +4,8 @@ AUI().use(
 	'aui-base',
 	'liferay-poller',
 	function(A) {
+		var Lang = A.Lang;
+
 		Liferay.namespace('Chat');
 
 		var TPL_CHAT_PANEL = '<li class="user user_{panelId}" panelId="{panelId}">' +
@@ -12,21 +14,21 @@ AUI().use(
 					'<div class="typing-status"></div>' +
 				'</div>' +
 				'<div class="chat-panel">' +
-					'<div class="remote-video-container hide">' +
+					'<div class="hide remote-video-container">' +
 						'<div class="remote-video">' +
 							'<video autoplay="autoplay" class="remote"></video>' +
 						'</div>' +
 					'</div>' +
 					'<div class="panel-window">' +
-						'<div class="panel-button minimize"></div>' +
-						'<div class="panel-button close"></div>' +
+						'<div class="minimize panel-button"></div>' +
+						'<div class="close panel-button"></div>' +
 						'<div class="panel-self-view">' +
 							'<img alt="" src="{userImagePath}" />' +
 							'<video autoplay="autoplay" class="local hide" muted="muted"></video>' +
 						'</div>' +
 						'<div class="panel-title">{panelTitle}</div>' +
 						'<div class="panel-profile">...</div>' +
-						'<div class="hide chat-video-ctrl">' +
+						'<div class="chat-video-ctrl hide">' +
 							'<div class="chat-video-msg">' +
 								'<div class="msg"></div>' +
 								'<div class="working"></div>' +
@@ -63,12 +65,14 @@ AUI().use(
 				instance._chatManager = chatManager;
 
 				instance._buddies = {};
+
 				instance._portletId = A.one('#chatVideoPortletId').val();
+
 				instance._webRtcManager = Liferay.Chat.WebRtcManager;
 
 				if (instance._webRtcManager.isSupported()) {
-					var pollerNotificationsTimeout = A.Lang.toInt(A.one('#chatVideoPortletPollerNotificationsTimeout').val());
-					var pollerRequestTimeout = A.Lang.toInt(A.one('#chatVideoPortletPollerRequestTimeout').val());
+					var pollerNotificationsTimeout = Lang.toInt(A.one('#chatVideoPortletPollerNotificationsTimeout').val());
+					var pollerRequestTimeout = Lang.toInt(A.one('#chatVideoPortletPollerRequestTimeout').val());
 
 					instance._fastPollingRate = false;
 					instance._fastPollingRateDelayMs = pollerNotificationsTimeout + pollerRequestTimeout + 100;
@@ -76,6 +80,7 @@ AUI().use(
 					instance._increasedPollingMaxCountMs = 30000;
 
 					Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
+
 					Liferay.on(
 						'sessionExpired',
 						function(event) {
@@ -88,21 +93,19 @@ AUI().use(
 						{
 							cb: {
 								disableInRinging: A.bind('disableInRinging', instance),
-
 								disableOutRinging: A.bind('disableOutRinging', instance),
-
 								enableInRinging: A.bind('enableInRinging', instance),
-
 								enableOutRinging: A.bind('enableOutRinging', instance),
-
 								ensurePanel: function(userId) {
-									var buddy = instance._chatManager._buddies[userId];
+									var chatManager = instance._chatManager;
+
+									var buddy = chatManager._buddies[userId];
 
 									if (buddy) {
-										var chat = instance._chatManager._chatSessions[userId];
+										var chat = chatManager._chatSessions[userId];
 
 										if (!chat) {
-											chat = instance._chatManager._createChatSession(
+											chat = chatManager._createChatSession(
 												{
 													fullName: buddy.fullName,
 													portraitURL: buddy.portraitURL,
@@ -113,19 +116,15 @@ AUI().use(
 										}
 									}
 								},
-
 								isUserAvailable: function(userId) {
 									return instance.isUserAvailable(userId);
 								},
-
 								onMediaDisabled: function() {
 									instance.unmute();
 								},
-
 								onMediaEnabled: function() {
 									instance.unmute();
 								},
-
 								send: function(payload) {
 									instance._send(payload);
 								}
@@ -133,34 +132,44 @@ AUI().use(
 						}
 					);
 
+					var chatVideoOverlayNode = A.one('#chatVideoOverlay');
+
 					instance._inRingingEl = A.one('#chatVideoInRingtone').getDOM();
 					instance._outRingingEl = A.one('#chatVideoOutRingtone').getDOM();
-					instance._chatVideoOverlayNode = A.one('#chatVideoOverlay');
-					instance._chatVideoOverlayEl = instance._chatVideoOverlayNode.getDOM();
-					instance._overlayVideoCallTimeNode = instance._chatVideoOverlayNode.one('.call-time');
 
-					instance._chatVideoOverlayEl.addEventListener('animationend', A.bind('_onOverlayAnimationEnd', instance));
-					instance._chatVideoOverlayEl.addEventListener('webkitAnimationEnd', A.bind('_onOverlayAnimationEnd', instance));
+					instance._overlayVideoCallTimeNode = chatVideoOverlayNode.one('.call-time');
+
+					var chatVideoOverlayNodeDom = chatVideoOverlayNode.getDOM();
+
+					instance._chatVideoOverlayNode = chatVideoOverlayNode;
+					instance._chatVideoOverlayEl = chatVideoOverlayNodeDom;
+
+					chatVideoOverlayNodeDom.addEventListener('animationend', A.bind('_onOverlayAnimationEnd', instance));
+					chatVideoOverlayNodeDom.addEventListener('webkitAnimationEnd', A.bind('_onOverlayAnimationEnd', instance));
 
 					/* Modify the "Play sound..." setting checkbox text to include sounds of
 					 * video calls. This is hackish using plain DOM elements because we need
 					 * to modify a text node without touching the checkbox node.
 					 */
 					var playSoundLabelEl = A.one('#playSound').ancestor().getDOM();
+
 					var playSoundLabelTextEl = playSoundLabelEl.childNodes[1];
 
 					playSoundLabelTextEl.nodeValue = ' ' + Liferay.Language.get('play-a-sound');
 
-					var availableForChatVideoSettingHtml = A.Lang.sub(
+					var availableForChatVideoSettingHtml = Lang.sub(
 						TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI,
 						{
 							showMeAsAvailableText: Liferay.Language.get('show-me-as-available')
 						}
 					);
+
 					var availableForChatVideoSettingNode = A.Node.create(availableForChatVideoSettingHtml);
+
 					var showOnlineSettingNode = A.one('#onlineStatus').ancestor('li');
 
 					showOnlineSettingNode.placeAfter(availableForChatVideoSettingNode);
+
 					instance._availableForChatVideoSettingCheckboxNode = A.one('#availableForChatVideo');
 
 					instance._afterUpdateSettings();
@@ -204,8 +213,10 @@ AUI().use(
 			hideOverlay: function() {
 				var instance = this;
 
-				if (instance._chatVideoOverlayNode.hasClass('chat-video-fade-in')) {
-					instance._chatVideoOverlayNode.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
+				var chatVideoOverlayNode = instance._chatVideoOverlayNode;
+
+				if (chatVideoOverlayNode.hasClass('chat-video-fade-in')) {
+					chatVideoOverlayNode.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
 				}
 			},
 
@@ -214,8 +225,10 @@ AUI().use(
 
 				var available = false;
 
-				if (!A.Lang.isUndefined(instance._availableForChatVideoSettingCheckboxNode)) {
-					available = instance._availableForChatVideoSettingCheckboxNode.attr('checked');
+				var availableForChatVideoSettingCheckboxNode = instance._availableForChatVideoSettingCheckboxNode;
+
+				if (!Lang.isUndefined(availableForChatVideoSettingCheckboxNode)) {
+					available = availableForChatVideoSettingCheckboxNode.attr('checked');
 				}
 
 				return available;
@@ -224,13 +237,14 @@ AUI().use(
 			isUserAvailable: function(userId) {
 				var instance = this;
 
-				return A.Lang.isValue(userId) && !A.Lang.isUndefined(instance._buddies[userId]);
+				return Lang.isValue(userId) && !Lang.isUndefined(instance._buddies[userId]);
 			},
 
 			mute: function() {
 				var instance = this;
 
 				instance._webRtcManager.muteMike();
+
 				instance._updateMikeButtons('muted');
 			},
 
@@ -256,14 +270,18 @@ AUI().use(
 			showOverlay: function() {
 				var instance = this;
 
-				instance._chatVideoOverlayNode.replaceClass('chat-video-fade-out', 'chat-video-fade-in');
-				instance._chatVideoOverlayNode.show();
+				var chatVideoOverlayNode = instance._chatVideoOverlayNode;
+
+				chatVideoOverlayNode.replaceClass('chat-video-fade-out', 'chat-video-fade-in');
+
+				chatVideoOverlayNode.show();
 			},
 
 			unmute: function() {
 				var instance = this;
 
 				instance._webRtcManager.unmuteMike();
+
 				instance._updateMikeButtons('unmuted');
 			},
 
@@ -287,9 +305,12 @@ AUI().use(
 			_afterUpdateSettings: function() {
 				var instance = this;
 
-				var globalState = instance._webRtcManager.getConversationsGlobalState();
+				var chatManager = instance._chatManager;
+				var webRtcManager = instance._webRtcManager;
 
-				if (!instance._chatManager._playSound) {
+				var globalState = webRtcManager.getConversationsGlobalState();
+
+				if (!chatManager._playSound) {
 					instance.disableOutRinging();
 					instance.disableInRinging();
 				}
@@ -303,13 +324,13 @@ AUI().use(
 					}
 				}
 
-				if (!A.Lang.isUndefined(instance._availableForChatVideoSettingCheckboxNode)) {
+				if (!Lang.isUndefined(instance._availableForChatVideoSettingCheckboxNode)) {
 					var available = instance.isAvailable();
 
-					instance._webRtcManager.sendSetAvailabilityMsg(available);
+					webRtcManager.sendSetAvailabilityMsg(available);
 
 					if (!available) {
-						var chatSessions = instance._chatManager._chatSessions;
+						var chatSessions = chatManager._chatSessions;
 
 						for (var id in chatSessions) {
 							var session = chatSessions[id];
@@ -332,6 +353,7 @@ AUI().use(
 				var instance = this;
 
 				var panel = event.target;
+
 				var userId = panel._panelId;
 
 				if (panel instanceof Liferay.Chat.Conversation) {
@@ -390,7 +412,9 @@ AUI().use(
 				var instance = this;
 
 				instance._increasedPollingCountMs = 0;
+
 				instance._setFastPollingRate(true);
+
 				Liferay.Poller.setCustomDelay(instance._fastPollingRateDelayMs);
 			},
 
@@ -398,6 +422,7 @@ AUI().use(
 				var instance = this;
 
 				instance._setFastPollingRate(false);
+
 				Liferay.Poller.cancelCustomDelay();
 			},
 
@@ -430,6 +455,7 @@ AUI().use(
 			var instance = this;
 
 			instance._onTimeChange = onTimeChange;
+
 			instance._timer = null;
 		};
 
@@ -439,6 +465,7 @@ AUI().use(
 
 				if (instance._timer !== null) {
 					clearInterval(instance._timer);
+
 					instance._timer = null;
 				}
 			},
@@ -462,7 +489,9 @@ AUI().use(
 				var instance = this;
 
 				var curTimeMs = Date.now();
+
 				var elapsedMsTotal = curTimeMs - instance._beginMs;
+
 				var elapsedSeconds = parseInt(elapsedMsTotal / 1000, 10);
 
 				var elapsedHours = parseInt(elapsedSeconds / 3600, 10);
@@ -497,10 +526,12 @@ AUI().use(
 			var instance = this;
 
 			instance._destroyed = false;
+			instance._errorTimeout = null;
+
 			instance._node = node;
+
 			instance._msgNode = node.one('.msg');
 			instance._workingNode = node.one('.working');
-			instance._errorTimeout = null;
 
 			instance.hide();
 		};
@@ -520,8 +551,10 @@ AUI().use(
 				var instance = this;
 
 				if (!instance._destroyed && instance._errorTimeout === null) {
-					if (instance._node.hasClass('chat-video-fade-in')) {
-						instance._node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
+					var node = instance._node;
+
+					if (node.hasClass('chat-video-fade-in')) {
+						node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
 					}
 				}
 			},
@@ -532,15 +565,21 @@ AUI().use(
 				if (!instance._destroyed) {
 					instance._stopErrorMessage();
 
-					instance._node.replaceClass('in-call', 'error');
+					var node = instance._node;
+
+					node.replaceClass('in-call', 'error');
+
 					instance._workingNode.hide();
+
 					instance._msgNode.html(msg);
+
 					instance.show();
 
 					instance._errorTimeout = setTimeout(
 						function() {
 							instance._errorTimeout = null;
-							instance._node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
+
+							node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
 						},
 						3000
 					);
@@ -554,7 +593,9 @@ AUI().use(
 					instance._stopErrorMessage();
 
 					instance._node.replaceClass('error', 'in-call');
+
 					instance._workingNode.hide();
+
 					instance._msgNode.html(msg);
 
 					instance.show();
@@ -565,14 +606,16 @@ AUI().use(
 				var instance = this;
 
 				if (!instance._destroyed) {
-					if (A.Lang.isUndefined(working)) {
+					if (Lang.isUndefined(working)) {
 						working = false;
 					}
 
 					instance._stopErrorMessage();
 
-					instance._node.removeClass('in-call');
-					instance._node.removeClass('error');
+					var node = instance._node;
+
+					node.removeClass('in-call');
+					node.removeClass('error');
 
 					instance._msgNode.html(msg);
 
@@ -586,17 +629,23 @@ AUI().use(
 				var instance = this;
 
 				if (!instance._destroyed) {
-					instance._node.show();
-					instance._node.replaceClass('chat-video-fade-out', 'chat-video-fade-in');
+					var node = instance._node;
+
+					node.show();
+					node.replaceClass('chat-video-fade-out', 'chat-video-fade-in');
 				}
 			},
 
 			_stopErrorMessage: function() {
 				var instance = this;
 
-				if (instance._errorTimeout !== null) {
-					clearTimeout(instance._errorTimeout);
+				var errorTimeout = instance._errorTimeout;
+
+				if (errorTimeout !== null) {
+					clearTimeout(errorTimeout);
+
 					instance._errorTimeout = null;
+
 					instance.hide();
 				}
 			}
@@ -614,9 +663,9 @@ AUI().use(
 					function(options) {
 						var instance = this;
 
-						Liferay.Chat.VideoManager.init(instance);
+						videoManager.init(instance);
 					},
-					Liferay.Chat.Manager,
+					chatManager,
 					'init'
 				);
 
@@ -640,14 +689,14 @@ AUI().use(
 
 						var panel = instance._panel;
 
+						instance._ctrlButtonsContainerNode = panel.one('.chat-video-ctrl');
 						instance._ctrlButtonsNode = panel.one('.chat-video-ctrl-buttons');
 						instance._localVideoNode = panel.one('.panel-self-view video.local');
 						instance._remoteVideoContainerNode = panel.one('.remote-video-container');
 						instance._remoteVideoOuterNode = panel.one('.remote-video');
 						instance._remoteVideoNode = instance._remoteVideoOuterNode.one('video.remote');
-						instance._selfViewNode = panel.one('.panel-self-view');
 						instance._selfViewImgNode = panel.one('.panel-self-view img');
-						instance._ctrlButtonsContainerNode = panel.one('.chat-video-ctrl');
+						instance._selfViewNode = panel.one('.panel-self-view');
 
 						var ctrlButtonsContainerNode = instance._ctrlButtonsContainerNode;
 
@@ -691,11 +740,23 @@ AUI().use(
 									onStateChange: function(state) {
 										var State = Liferay.Chat.WebRtcConversation.State;
 
-										Liferay.Chat.VideoManager.onChatVideoConversationStateChange();
+										videoManager.onChatVideoConversationStateChange();
+
+										var acceptingCall = State.ACCEPTINGCALL;
+										var answered = State.ANSWERED;
+										var called = State.CALLED;
+										var calling = State.CALLING;
+										var connected = State.CONNECTED;
+										var deleted = State.DELETED;
+										var deleting = State.DELETING;
+										var gotAnswer = State.GOTANSWER;
+										var gotCall = State.GOTCALL;
+										var stopped = State.STOPPED;
+										var stopping = State.STOPPING;
 
 										// Accept control button
 
-										if (state === State.GOTCALL) {
+										if (state === gotCall) {
 											instance._showCtrlButton('accept');
 										}
 										else {
@@ -704,9 +765,7 @@ AUI().use(
 
 										// Hang up control button
 
-										if (state === State.STOPPED || state === State.STOPPING ||
-											state === State.DELETED || state === State.DELETING) {
-
+										if (state === stopped || state === stopping || state === deleted || state === deleting) {
 											instance._hideCtrlButton('hangUp');
 										}
 										else {
@@ -715,7 +774,7 @@ AUI().use(
 
 										// Call control button
 
-										if (state === State.STOPPED) {
+										if (state === stopped) {
 											instance._showCtrlButton('call');
 										}
 										else {
@@ -729,53 +788,50 @@ AUI().use(
 
 										// Status messages
 
-										if (state === State.DELETED || state === State.STOPPED) {
-											instance._status.hide();
+										var status = instance._status;
+
+										if (state === deleted || state === stopped) {
+											status.hide();
 										}
 										else if (state === State.CALLINGWAITING || state === State.GOTCALLWAITING) {
-											instance._status.setRegularMessage(Liferay.Language.get('please-share-your-camera'), true);
+											status.setRegularMessage(Liferay.Language.get('please-share-your-camera'), true);
 										}
-										else if (state === State.CALLING || state === State.CALLED) {
-											instance._status.setRegularMessage(Liferay.Language.get('calling-friend'), true);
+										else if (state === calling || state === called) {
+											status.setRegularMessage(Liferay.Language.get('calling-friend'), true);
 										}
-										else if (state === State.GOTCALL) {
-											instance._status.setRegularMessage(Liferay.Language.get('incoming-video-call'), true);
+										else if (state === gotCall) {
+											status.setRegularMessage(Liferay.Language.get('incoming-video-call'), true);
 										}
-										else if (state === State.GOTANSWER || state === State.ANSWERED || state === State.ACCEPTINGCALL) {
-											instance._status.setRegularMessage(Liferay.Language.get('establishing-connection'), true);
+										else if (state === gotAnswer || state === answered || state === acceptingCall) {
+											status.setRegularMessage(Liferay.Language.get('establishing-connection'), true);
 										}
-										else if (state === State.STOPPING || state === State.DELETING) {
-											instance._status.setRegularMessage(Liferay.Language.get('stopping-video-call'), true);
+										else if (state === stopping || state === deleting) {
+											status.setRegularMessage(Liferay.Language.get('stopping-video-call'), true);
 										}
-										else if (state === State.CONNECTED) {
+										else if (state === connected) {
 											instance._videoCallTimeStr = '0:00';
-											instance._status.setInCallMessage(instance._videoCallTimeStr);
+
+											status.setInCallMessage(instance._videoCallTimeStr);
 										}
 
 										// Fullscreen hiding
 
-										if (state === State.DELETED || state === State.DELETING ||
-											state === State.STOPPED || state === State.STOPPING) {
-
+										if (state === deleted || state === deleting || state === stopped || state === stopping) {
 											instance._disableVideoFullScreen();
 										}
 
 										// Remote video hiding
 
-										if (state === State.DELETED || state === State.DELETING) {
+										if (state === deleted || state === deleting) {
 											instance._remoteVideoContainerNode.hide();
 										}
-										else if (state === State.STOPPED || state === State.STOPPING) {
+										else if (state === stopped || state === stopping) {
 											instance._hideRemoteVideo();
 										}
 
 										// Local video
 
-										if (state === State.CALLING || state === State.CALLED ||
-											state === State.GOTCALL || state === State.ANSWERED ||
-											state === State.GOTANSWER || state === State.ACCEPTINGCALL ||
-											state === State.DENYINGCALL || state === State.CONNECTED) {
-
+										if (state === acceptingCall || state === answered || state === called || state === calling || state === connected || state === gotAnswer || state === gotCall || state === State.DENYINGCALL) {
 											instance._showLocalVideo();
 										}
 										else {
@@ -784,15 +840,13 @@ AUI().use(
 
 										// Video call timer
 
-										if (state === State.DELETED || state === State.DELETING ||
-											state === State.STOPPED || state === State.STOPPING) {
-
+										if (state === deleted || state === deleting || state === stopped || state === stopping) {
 											instance._videoCallTimer.reset();
 										}
 
 										// Special handler for connected state
 
-										if (state === State.CONNECTED) {
+										if (state === connected) {
 											instance._waitForRemoteStreamFlowing();
 										}
 									},
@@ -811,47 +865,50 @@ AUI().use(
 							}
 						);
 
-						instance._chatVideoCtrlButtonsNodes.accept.on(
+						var chatVideoCtrlButtonsNodes = instance._chatVideoCtrlButtonsNodes;
+						var webRtc = instance._webRtc;
+
+						chatVideoCtrlButtonsNodes.accept.on(
 							'click',
 							function() {
-								instance._webRtc.onPressAccept();
+								webRtc.onPressAccept();
 							}
 						);
 
-						instance._chatVideoCtrlButtonsNodes.hangUp.on(
+						chatVideoCtrlButtonsNodes.hangUp.on(
 							'click',
 							function() {
 								instance._disableVideoFullScreen();
-								instance._webRtc.onPressHangUp();
+								webRtc.onPressHangUp();
 							}
 						);
 
-						instance._chatVideoCtrlButtonsNodes.call.on(
+						chatVideoCtrlButtonsNodes.call.on(
 							'click',
 							function() {
-								if (Liferay.Chat.VideoManager.isUserAvailable(instance._panelId)) {
-									instance._webRtc.onPressCall();
+								if (videoManager.isUserAvailable(instance._panelId)) {
+									webRtc.onPressCall();
 								}
 							}
 						);
 
-						instance._chatVideoCtrlButtonsNodes.fullScreen.on(
+						chatVideoCtrlButtonsNodes.fullScreen.on(
 							'click',
 							function() {
 								instance._toggleFullScreen();
 							}
 						);
 
-						instance._chatVideoCtrlButtonsNodes.mike.on(
+						chatVideoCtrlButtonsNodes.mike.on(
 							'click',
 							function(event) {
 								var currentTarget = event.currentTarget;
 
 								if (currentTarget.hasClass('muted')) {
-									Liferay.Chat.VideoManager.unmute();
+									videoManager.unmute();
 								}
 								else {
-									Liferay.Chat.VideoManager.mute();
+									videoManager.mute();
 								}
 							}
 						);
@@ -893,10 +950,13 @@ AUI().use(
 							var instance = this;
 
 							instance._videoCallTimer.reset();
+
 							instance._status.destroy();
 
-							if (instance.getWebRtc()) {
-								instance.getWebRtc().onDelete();
+							var webRtc = instance.getWebRtc();
+
+							if (webRtc) {
+								webRtc.onDelete();
 							}
 						},
 
@@ -941,10 +1001,15 @@ AUI().use(
 							var instance = this;
 
 							Liferay.Chat.VideoManager.hideOverlay();
+
 							instance._remoteVideoOuterNode.appendTo(instance._remoteVideoContainerNode);
+
 							instance._localVideoNode.appendTo(instance._selfViewNode);
+
 							instance._ctrlButtonsNode.appendTo(instance._ctrlButtonsContainerNode);
+
 							instance._chatVideoCtrlButtonsNodes.fullScreen.replaceClass('on', 'off');
+
 							instance._playVideos();
 						},
 
@@ -954,13 +1019,18 @@ AUI().use(
 							// Only allow this if we're connected
 
 							if (instance._webRtc.getState() === Liferay.Chat.WebRtcConversation.State.CONNECTED) {
-								Liferay.Chat.VideoManager.setOverlayVideoCallTime(instance._videoCallTimeStr);
+								videoManager.setOverlayVideoCallTime(instance._videoCallTimeStr);
 
-								Liferay.Chat.VideoManager.appendNodeToOverlay(instance._remoteVideoOuterNode);
+								videoManager.appendNodeToOverlay(instance._remoteVideoOuterNode);
+
 								instance._localVideoNode.appendTo(instance._remoteVideoOuterNode);
-								Liferay.Chat.VideoManager.appendNodeToOverlay(instance._ctrlButtonsNode);
+
+								videoManager.appendNodeToOverlay(instance._ctrlButtonsNode);
+
 								instance._chatVideoCtrlButtonsNodes.fullScreen.replaceClass('off', 'on');
-								Liferay.Chat.VideoManager.showOverlay();
+
+								videoManager.showOverlay();
+
 								instance._playVideos();
 							}
 						},
@@ -981,8 +1051,10 @@ AUI().use(
 						_hideRemoteVideo: function() {
 							var instance = this;
 
-							if (instance._remoteVideoContainerNode.hasClass('chat-video-show-remote-video')) {
-								instance._remoteVideoContainerNode.replaceClass('chat-video-show-remote-video', 'chat-video-hide-remote-video');
+							var remoteVideoContainerNode = instance._remoteVideoContainerNode;
+
+							if (remoteVideoContainerNode.hasClass('chat-video-show-remote-video')) {
+								remoteVideoContainerNode.replaceClass('chat-video-show-remote-video', 'chat-video-hide-remote-video');
 							}
 						},
 
@@ -991,11 +1063,13 @@ AUI().use(
 
 							instance._hideCtrlButton('accept');
 							instance._hideCtrlButton('call');
+
 							instance._showCtrlButton('fullScreen');
 							instance._showCtrlButton('hangUp');
 							instance._showCtrlButton('mike');
 
 							instance._disableVideoFullScreen();
+
 							instance._showRemoteVideo();
 
 							instance._videoCallTimer.start();
@@ -1007,13 +1081,15 @@ AUI().use(
 							instance._videoCallTimeStr = timeStr;
 
 							instance._status.setInCallMessage(timeStr);
-							Liferay.Chat.VideoManager.setOverlayVideoCallTime(timeStr);
+
+							videoManager.setOverlayVideoCallTime(timeStr);
 						},
 
 						_playVideos: function() {
 							var instance = this;
 
 							instance._remoteVideoNode.getDOM().play();
+
 							instance._localVideoNode.getDOM().play();
 						},
 
@@ -1024,7 +1100,7 @@ AUI().use(
 
 							// Custom HTML with integrated chat video elements
 
-							var html = A.Lang.sub(
+							var html = Lang.sub(
 								TPL_CHAT_PANEL,
 								{
 									acceptTitle: Liferay.Language.get('accept-title'),
@@ -1051,17 +1127,22 @@ AUI().use(
 							var instance = this;
 
 							instance._selfViewImgNode.hide();
+
 							instance._localVideoNode.show();
+
 							instance._localVideoNode.getDOM().play();
 						},
 
 						_showRemoteVideo: function() {
 							var instance = this;
 
-							instance._remoteVideoContainerNode.height(0);
-							instance._remoteVideoContainerNode.show();
+							var remoteVideoContainerNode = instance._remoteVideoContainerNode;
 
-							instance._remoteVideoContainerNode.replaceClass('chat-video-hide-remote-video', 'chat-video-show-remote-video');
+							remoteVideoContainerNode.height(0);
+
+							remoteVideoContainerNode.show();
+
+							remoteVideoContainerNode.replaceClass('chat-video-hide-remote-video', 'chat-video-show-remote-video');
 						},
 
 						_toggleFullScreen: function() {
@@ -1098,10 +1179,12 @@ AUI().use(
 
 						updateChatVideoMikeButton: function(newClass) {
 							var instance = this;
+
 							var node = instance._chatVideoCtrlButtonsNodes.mike;
 
 							node.removeClass('muted');
 							node.removeClass('unmuted');
+
 							node.addClass(newClass);
 						}
 					}
