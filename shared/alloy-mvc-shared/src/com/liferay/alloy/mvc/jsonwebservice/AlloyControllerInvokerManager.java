@@ -63,7 +63,6 @@ public class AlloyControllerInvokerManager {
 			liferayPortletConfig.getPortletContext();
 
 		_contextName = portletContext.getPortletContextName();
-
 		_contextPath =
 			StringPool.SLASH + portletContext.getPortletContextName();
 	}
