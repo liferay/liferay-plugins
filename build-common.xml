@@ -1163,7 +1163,7 @@ Please find a solution that does not require portal-impl.jar.
 					<ivy:resolve
 						conf="test"
 						file="${sdk.dir}/ivy.xml"
-						log="download-only"
+						log="${ivy.log.level}"
 						transitive="${ivy.resolve.transitive.dependencies.test}"
 					/>
 
@@ -1173,7 +1173,7 @@ Please find a solution that does not require portal-impl.jar.
 							<ivy:resolve
 								conf="test"
 								file="@{module.dir}/ivy.xml"
-								log="download-only"
+								log="${ivy.log.level}"
 								transitive="${ivy.resolve.transitive.dependencies.test}"
 							/>
 						</then>
