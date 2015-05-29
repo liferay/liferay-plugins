@@ -62,6 +62,8 @@ public class AlloyControllerInvokerManager {
 		PortletContext portletContext =
 			liferayPortletConfig.getPortletContext();
 
+		_contextName = portletContext.getPortletContextName();
+
 		_contextPath =
 			StringPool.SLASH + portletContext.getPortletContextName();
 	}
@@ -111,7 +113,7 @@ public class AlloyControllerInvokerManager {
 
 		for (Method method : alloyControllerInvokerClass.getDeclaredMethods()) {
 			JSONWebServiceActionsManagerUtil.registerJSONWebServiceAction(
-				_contextPath, alloyControllerInvoker,
+				_contextName, _contextPath, alloyControllerInvoker,
 				alloyControllerInvokerClass, method,
 				getAPIPath(controller, method), "GET");
 		}
@@ -403,7 +405,8 @@ public class AlloyControllerInvokerManager {
 	private static final String _BASE_CLASS_NAME = "AlloyControllerInvokerImpl";
 
 	private Map<String, AlloyControllerInvoker> _alloyControllerInvokers =
-		new ConcurrentHashMap<String, AlloyControllerInvoker>();
+		new ConcurrentHashMap<>();
+	private String _contextName;
 	private String _contextPath;
 	private AtomicInteger _counter = new AtomicInteger(0);
 	private boolean _locked;

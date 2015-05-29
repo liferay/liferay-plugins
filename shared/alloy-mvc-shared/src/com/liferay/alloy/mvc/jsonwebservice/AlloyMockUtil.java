@@ -16,6 +16,7 @@ package com.liferay.alloy.mvc.jsonwebservice;
 
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portal.model.Portlet;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -521,8 +522,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		protected Map<String, Object> attributeMap =
-			new HashMap<String, Object>();
+		protected Map<String, Object> attributeMap = new HashMap<>();
 
 	}
 
@@ -805,8 +805,7 @@ public class AlloyMockUtil {
 			throw new UnsupportedOperationException();
 		}
 
-		protected Map<String, Object> attributeMap =
-			new HashMap<String, Object>();
+		protected Map<String, Object> attributeMap = new HashMap<>();
 
 	}
 
@@ -1009,7 +1008,7 @@ public class AlloyMockUtil {
 
 		@Override
 		public Map<String, String[]> getParameterMap() {
-			return new HashMap<String, String[]>(parameterMap);
+			return new HashMap<>(parameterMap);
 		}
 
 		@Override
@@ -1157,10 +1156,8 @@ public class AlloyMockUtil {
 			attributeMap.put(name, o);
 		}
 
-		protected Map<String, Object> attributeMap =
-			new HashMap<String, Object>();
-		protected Map<String, String[]> parameterMap =
-			new HashMap<String, String[]>();
+		protected Map<String, Object> attributeMap = new HashMap<>();
+		protected Map<String, String[]> parameterMap = new HashMap<>();
 
 	}
 
@@ -1270,6 +1267,11 @@ public class AlloyMockUtil {
 
 		@Override
 		public String getNamespace() {
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public Portlet getPortlet() {
 			throw new UnsupportedOperationException();
 		}
 

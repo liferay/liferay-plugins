@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="lib/asm-tree.jar" />
 	<classpathentry kind="lib" path="lib/asm-util.jar" />
 	<classpathentry kind="lib" path="lib/asm.jar" />
+	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
