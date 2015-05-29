@@ -457,8 +457,14 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
@@ -707,6 +713,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 		kbCommentModelImpl._setOriginalUserId = false;
 
+		kbCommentModelImpl._setModifiedDate = false;
+
 		kbCommentModelImpl._originalClassNameId = kbCommentModelImpl._classNameId;
 
 		kbCommentModelImpl._setOriginalClassNameId = false;
@@ -907,6 +915,7 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _classNameId;
 	private long _originalClassNameId;
 	private boolean _setOriginalClassNameId;

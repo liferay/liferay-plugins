@@ -367,8 +367,14 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -652,6 +658,8 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 		kaleoTransitionModelImpl._setOriginalCompanyId = false;
 
+		kaleoTransitionModelImpl._setModifiedDate = false;
+
 		kaleoTransitionModelImpl._originalKaleoDefinitionId = kaleoTransitionModelImpl._kaleoDefinitionId;
 
 		kaleoTransitionModelImpl._setOriginalKaleoDefinitionId = false;
@@ -886,6 +894,7 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _kaleoDefinitionId;
 	private long _originalKaleoDefinitionId;
 	private boolean _setOriginalKaleoDefinitionId;

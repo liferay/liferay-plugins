@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.socialcoding.NoSuchJIRAIssueException;
@@ -6071,6 +6073,28 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		boolean isNew = jiraIssue.isNew();
 
 		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssue;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (jiraIssue.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				jiraIssue.setCreateDate(now);
+			}
+			else {
+				jiraIssue.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!jiraIssueModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				jiraIssue.setModifiedDate(now);
+			}
+			else {
+				jiraIssue.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

@@ -37,11 +37,14 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1056,6 +1059,28 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		boolean isNew = entry.isNew();
 
 		EntryModelImpl entryModelImpl = (EntryModelImpl)entry;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (entry.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				entry.setCreateDate(now);
+			}
+			else {
+				entry.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!entryModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				entry.setModifiedDate(now);
+			}
+			else {
+				entry.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

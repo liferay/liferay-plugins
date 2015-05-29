@@ -32,6 +32,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.wsrp.NoSuchProducerException;
@@ -43,6 +45,7 @@ import com.liferay.wsrp.service.persistence.WSRPProducerPersistence;
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2156,6 +2159,28 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			String uuid = PortalUUIDUtil.generate();
 
 			wsrpProducer.setUuid(uuid);
+		}
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (wsrpProducer.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				wsrpProducer.setCreateDate(now);
+			}
+			else {
+				wsrpProducer.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!wsrpProducerModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				wsrpProducer.setModifiedDate(now);
+			}
+			else {
+				wsrpProducer.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
 		}
 
 		Session session = null;

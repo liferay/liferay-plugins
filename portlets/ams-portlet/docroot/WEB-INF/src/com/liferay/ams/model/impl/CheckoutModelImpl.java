@@ -286,8 +286,14 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -428,6 +434,9 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 
 	@Override
 	public void resetOriginalValues() {
+		CheckoutModelImpl checkoutModelImpl = this;
+
+		checkoutModelImpl._setModifiedDate = false;
 	}
 
 	@Override
@@ -591,6 +600,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _assetId;
 	private Date _checkOutDate;
 	private Date _expectedCheckInDate;

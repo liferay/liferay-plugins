@@ -346,8 +346,14 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -580,6 +586,8 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 
 		kaleoNodeModelImpl._setOriginalCompanyId = false;
 
+		kaleoNodeModelImpl._setModifiedDate = false;
+
 		kaleoNodeModelImpl._originalKaleoDefinitionId = kaleoNodeModelImpl._kaleoDefinitionId;
 
 		kaleoNodeModelImpl._setOriginalKaleoDefinitionId = false;
@@ -786,6 +794,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _kaleoDefinitionId;
 	private long _originalKaleoDefinitionId;
 	private boolean _setOriginalKaleoDefinitionId;

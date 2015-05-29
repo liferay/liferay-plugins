@@ -248,8 +248,14 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
@@ -436,6 +442,8 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 		jiraActionModelImpl._originalJiraUserId = jiraActionModelImpl._jiraUserId;
 
+		jiraActionModelImpl._setModifiedDate = false;
+
 		jiraActionModelImpl._originalJiraIssueId = jiraActionModelImpl._jiraIssueId;
 
 		jiraActionModelImpl._setOriginalJiraIssueId = false;
@@ -586,6 +594,7 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	private String _originalJiraUserId;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _jiraIssueId;
 	private long _originalJiraIssueId;
 	private boolean _setOriginalJiraIssueId;

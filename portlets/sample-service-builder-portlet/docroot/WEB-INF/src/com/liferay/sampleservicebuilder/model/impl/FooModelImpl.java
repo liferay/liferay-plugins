@@ -439,8 +439,14 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -648,6 +654,8 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 		fooModelImpl._setOriginalCompanyId = false;
 
+		fooModelImpl._setModifiedDate = false;
+
 		fooModelImpl._originalField2 = fooModelImpl._field2;
 
 		fooModelImpl._setOriginalField2 = false;
@@ -851,6 +859,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _field1;
 	private boolean _field2;
 	private boolean _originalField2;

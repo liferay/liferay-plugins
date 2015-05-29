@@ -338,8 +338,14 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -606,6 +612,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 		oAuthTokenModelImpl._setOriginalUserId = false;
 
+		oAuthTokenModelImpl._setModifiedDate = false;
+
 		oAuthTokenModelImpl._originalGadgetKey = oAuthTokenModelImpl._gadgetKey;
 
 		oAuthTokenModelImpl._originalServiceName = oAuthTokenModelImpl._serviceName;
@@ -829,6 +837,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _gadgetKey;
 	private String _originalGadgetKey;
 	private String _serviceName;

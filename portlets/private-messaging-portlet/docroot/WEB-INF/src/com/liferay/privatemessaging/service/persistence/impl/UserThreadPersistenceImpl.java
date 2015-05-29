@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.privatemessaging.NoSuchUserThreadException;
@@ -42,6 +44,7 @@ import com.liferay.privatemessaging.service.persistence.UserThreadPersistence;
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2588,6 +2591,28 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		boolean isNew = userThread.isNew();
 
 		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (userThread.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				userThread.setCreateDate(now);
+			}
+			else {
+				userThread.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!userThreadModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				userThread.setModifiedDate(now);
+			}
+			else {
+				userThread.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

@@ -391,8 +391,14 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -695,6 +701,8 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 
 		kaleoTaskAssignmentInstanceModelImpl._setOriginalCompanyId = false;
 
+		kaleoTaskAssignmentInstanceModelImpl._setModifiedDate = false;
+
 		kaleoTaskAssignmentInstanceModelImpl._originalKaleoDefinitionId = kaleoTaskAssignmentInstanceModelImpl._kaleoDefinitionId;
 
 		kaleoTaskAssignmentInstanceModelImpl._setOriginalKaleoDefinitionId = false;
@@ -938,6 +946,7 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _kaleoDefinitionId;
 	private long _originalKaleoDefinitionId;
 	private boolean _setOriginalKaleoDefinitionId;

@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchInstanceTokenException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -2901,6 +2903,30 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		boolean isNew = kaleoInstanceToken.isNew();
 
 		KaleoInstanceTokenModelImpl kaleoInstanceTokenModelImpl = (KaleoInstanceTokenModelImpl)kaleoInstanceToken;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kaleoInstanceToken.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kaleoInstanceToken.setCreateDate(now);
+			}
+			else {
+				kaleoInstanceToken.setCreateDate(serviceContext.getCreateDate(
+						now));
+			}
+		}
+
+		if (!kaleoInstanceTokenModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kaleoInstanceToken.setModifiedDate(now);
+			}
+			else {
+				kaleoInstanceToken.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

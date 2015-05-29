@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.security.ac.AccessControlled;
+import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl;
 import com.liferay.pushnotifications.service.permission.PushNotificationsPermission;

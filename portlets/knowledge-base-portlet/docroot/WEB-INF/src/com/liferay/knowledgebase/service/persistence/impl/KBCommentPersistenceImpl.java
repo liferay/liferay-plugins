@@ -40,11 +40,14 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -5076,6 +5079,28 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			String uuid = PortalUUIDUtil.generate();
 
 			kbComment.setUuid(uuid);
+		}
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kbComment.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kbComment.setCreateDate(now);
+			}
+			else {
+				kbComment.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!kbCommentModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kbComment.setModifiedDate(now);
+			}
+			else {
+				kbComment.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
 		}
 
 		Session session = null;

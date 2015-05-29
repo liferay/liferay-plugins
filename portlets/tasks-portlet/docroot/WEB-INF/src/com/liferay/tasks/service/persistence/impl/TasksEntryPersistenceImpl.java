@@ -33,6 +33,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.tasks.NoSuchTasksEntryException;
@@ -44,6 +46,7 @@ import com.liferay.tasks.service.persistence.TasksEntryPersistence;
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -9684,6 +9687,28 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		boolean isNew = tasksEntry.isNew();
 
 		TasksEntryModelImpl tasksEntryModelImpl = (TasksEntryModelImpl)tasksEntry;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (tasksEntry.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				tasksEntry.setCreateDate(now);
+			}
+			else {
+				tasksEntry.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!tasksEntryModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				tasksEntry.setModifiedDate(now);
+			}
+			else {
+				tasksEntry.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

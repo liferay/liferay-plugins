@@ -458,8 +458,14 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -711,6 +717,8 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 
 		calendarNotificationTemplateModelImpl._setOriginalCompanyId = false;
 
+		calendarNotificationTemplateModelImpl._setModifiedDate = false;
+
 		calendarNotificationTemplateModelImpl._originalCalendarId = calendarNotificationTemplateModelImpl._calendarId;
 
 		calendarNotificationTemplateModelImpl._setOriginalCalendarId = false;
@@ -940,6 +948,7 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _calendarId;
 	private long _originalCalendarId;
 	private boolean _setOriginalCalendarId;

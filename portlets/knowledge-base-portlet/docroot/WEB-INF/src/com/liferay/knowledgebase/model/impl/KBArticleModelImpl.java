@@ -616,8 +616,14 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
@@ -1216,6 +1222,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		kbArticleModelImpl._setOriginalCompanyId = false;
 
+		kbArticleModelImpl._setModifiedDate = false;
+
 		kbArticleModelImpl._originalParentResourcePrimKey = kbArticleModelImpl._parentResourcePrimKey;
 
 		kbArticleModelImpl._setOriginalParentResourcePrimKey = false;
@@ -1596,6 +1604,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _rootResourcePrimKey;
 	private long _parentResourceClassNameId;
 	private long _parentResourcePrimKey;

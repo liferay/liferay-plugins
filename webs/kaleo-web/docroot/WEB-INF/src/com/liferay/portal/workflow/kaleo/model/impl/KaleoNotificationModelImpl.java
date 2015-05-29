@@ -373,8 +373,14 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -682,6 +688,8 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 
 		kaleoNotificationModelImpl._setOriginalCompanyId = false;
 
+		kaleoNotificationModelImpl._setModifiedDate = false;
+
 		kaleoNotificationModelImpl._originalKaleoClassName = kaleoNotificationModelImpl._kaleoClassName;
 
 		kaleoNotificationModelImpl._originalKaleoClassPK = kaleoNotificationModelImpl._kaleoClassPK;
@@ -944,6 +952,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _kaleoClassName;
 	private String _originalKaleoClassName;
 	private long _kaleoClassPK;

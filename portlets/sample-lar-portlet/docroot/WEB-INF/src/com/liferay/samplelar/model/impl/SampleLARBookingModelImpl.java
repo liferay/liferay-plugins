@@ -343,8 +343,14 @@ public class SampleLARBookingModelImpl extends BaseModelImpl<SampleLARBooking>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -480,6 +486,8 @@ public class SampleLARBookingModelImpl extends BaseModelImpl<SampleLARBooking>
 		sampleLARBookingModelImpl._originalCompanyId = sampleLARBookingModelImpl._companyId;
 
 		sampleLARBookingModelImpl._setOriginalCompanyId = false;
+
+		sampleLARBookingModelImpl._setModifiedDate = false;
 
 		sampleLARBookingModelImpl._columnBitmask = 0;
 	}
@@ -635,6 +643,7 @@ public class SampleLARBookingModelImpl extends BaseModelImpl<SampleLARBooking>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _bookingNumber;
 	private long _columnBitmask;
 	private SampleLARBooking _escapedModel;

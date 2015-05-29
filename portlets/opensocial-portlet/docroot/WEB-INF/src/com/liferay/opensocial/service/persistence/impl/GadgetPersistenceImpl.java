@@ -40,11 +40,14 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -3306,6 +3309,28 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			String uuid = PortalUUIDUtil.generate();
 
 			gadget.setUuid(uuid);
+		}
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (gadget.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				gadget.setCreateDate(now);
+			}
+			else {
+				gadget.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!gadgetModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				gadget.setModifiedDate(now);
+			}
+			else {
+				gadget.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
 		}
 
 		Session session = null;

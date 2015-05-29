@@ -320,8 +320,14 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -495,6 +501,9 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 
 	@Override
 	public void resetOriginalValues() {
+		DefinitionModelImpl definitionModelImpl = this;
+
+		definitionModelImpl._setModifiedDate = false;
 	}
 
 	@Override
@@ -681,6 +690,7 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _typeId;
 	private String _manufacturer;
 	private String _model;

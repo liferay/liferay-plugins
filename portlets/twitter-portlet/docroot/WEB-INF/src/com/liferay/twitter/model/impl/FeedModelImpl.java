@@ -294,8 +294,14 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -466,6 +472,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 		feedModelImpl._setOriginalUserId = false;
 
+		feedModelImpl._setModifiedDate = false;
+
 		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
 
 		feedModelImpl._columnBitmask = 0;
@@ -611,6 +619,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _twitterUserId;
 	private String _twitterScreenName;
 	private String _originalTwitterScreenName;

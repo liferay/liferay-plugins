@@ -416,8 +416,14 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -652,6 +658,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 		appModelImpl._setOriginalCompanyId = false;
 
+		appModelImpl._setModifiedDate = false;
+
 		appModelImpl._originalRemoteAppId = appModelImpl._remoteAppId;
 
 		appModelImpl._setOriginalRemoteAppId = false;
@@ -865,6 +873,7 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _remoteAppId;
 	private long _originalRemoteAppId;
 	private boolean _setOriginalRemoteAppId;

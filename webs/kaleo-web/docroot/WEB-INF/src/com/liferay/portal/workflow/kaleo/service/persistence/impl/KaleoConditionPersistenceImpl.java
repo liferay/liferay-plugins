@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
@@ -40,6 +42,7 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoConditionPersi
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1508,6 +1511,29 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		boolean isNew = kaleoCondition.isNew();
 
 		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoCondition;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kaleoCondition.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kaleoCondition.setCreateDate(now);
+			}
+			else {
+				kaleoCondition.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!kaleoConditionModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kaleoCondition.setModifiedDate(now);
+			}
+			else {
+				kaleoCondition.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

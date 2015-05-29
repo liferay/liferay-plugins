@@ -37,11 +37,14 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1062,6 +1065,28 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		boolean isNew = folder.isNew();
 
 		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (folder.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				folder.setCreateDate(now);
+			}
+			else {
+				folder.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!folderModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				folder.setModifiedDate(now);
+			}
+			else {
+				folder.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

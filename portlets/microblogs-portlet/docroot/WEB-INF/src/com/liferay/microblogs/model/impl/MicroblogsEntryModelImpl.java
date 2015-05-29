@@ -411,8 +411,14 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -663,6 +669,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 		microblogsEntryModelImpl._originalCreateDate = microblogsEntryModelImpl._createDate;
 
+		microblogsEntryModelImpl._setModifiedDate = false;
+
 		microblogsEntryModelImpl._originalCreatorClassNameId = microblogsEntryModelImpl._creatorClassNameId;
 
 		microblogsEntryModelImpl._setOriginalCreatorClassNameId = false;
@@ -853,6 +861,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	private Date _createDate;
 	private Date _originalCreateDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _creatorClassNameId;
 	private long _originalCreatorClassNameId;
 	private boolean _setOriginalCreatorClassNameId;

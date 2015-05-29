@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchTransitionException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
@@ -41,6 +43,7 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPers
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2345,6 +2348,29 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		boolean isNew = kaleoTransition.isNew();
 
 		KaleoTransitionModelImpl kaleoTransitionModelImpl = (KaleoTransitionModelImpl)kaleoTransition;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kaleoTransition.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kaleoTransition.setCreateDate(now);
+			}
+			else {
+				kaleoTransition.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!kaleoTransitionModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kaleoTransition.setModifiedDate(now);
+			}
+			else {
+				kaleoTransition.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

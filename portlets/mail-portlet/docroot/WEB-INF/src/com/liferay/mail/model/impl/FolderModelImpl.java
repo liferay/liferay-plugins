@@ -291,8 +291,14 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -469,6 +475,8 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	public void resetOriginalValues() {
 		FolderModelImpl folderModelImpl = this;
 
+		folderModelImpl._setModifiedDate = false;
+
 		folderModelImpl._originalAccountId = folderModelImpl._accountId;
 
 		folderModelImpl._setOriginalAccountId = false;
@@ -630,6 +638,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _accountId;
 	private long _originalAccountId;
 	private boolean _setOriginalAccountId;

@@ -313,8 +313,14 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -557,6 +563,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 		wsrpConsumerModelImpl._setOriginalCompanyId = false;
 
+		wsrpConsumerModelImpl._setModifiedDate = false;
+
 		wsrpConsumerModelImpl._columnBitmask = 0;
 	}
 
@@ -777,6 +785,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private boolean _setOriginalCompanyId;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _name;
 	private String _url;
 	private String _wsdl;

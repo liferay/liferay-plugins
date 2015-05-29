@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
@@ -40,6 +42,7 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerPersisten
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1452,6 +1455,28 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		boolean isNew = kaleoTimer.isNew();
 
 		KaleoTimerModelImpl kaleoTimerModelImpl = (KaleoTimerModelImpl)kaleoTimer;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kaleoTimer.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kaleoTimer.setCreateDate(now);
+			}
+			else {
+				kaleoTimer.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!kaleoTimerModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kaleoTimer.setModifiedDate(now);
+			}
+			else {
+				kaleoTimer.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

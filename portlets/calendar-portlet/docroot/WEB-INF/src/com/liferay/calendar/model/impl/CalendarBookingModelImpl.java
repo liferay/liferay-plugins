@@ -598,8 +598,14 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -1574,6 +1580,8 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		calendarBookingModelImpl._setOriginalCompanyId = false;
 
+		calendarBookingModelImpl._setModifiedDate = false;
+
 		calendarBookingModelImpl._originalResourceBlockId = calendarBookingModelImpl._resourceBlockId;
 
 		calendarBookingModelImpl._setOriginalResourceBlockId = false;
@@ -1951,6 +1959,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _resourceBlockId;
 	private long _originalResourceBlockId;
 	private boolean _setOriginalResourceBlockId;

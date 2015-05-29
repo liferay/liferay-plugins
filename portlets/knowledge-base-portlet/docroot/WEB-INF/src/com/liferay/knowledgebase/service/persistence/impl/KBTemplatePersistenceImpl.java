@@ -40,11 +40,14 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2508,6 +2511,28 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			String uuid = PortalUUIDUtil.generate();
 
 			kbTemplate.setUuid(uuid);
+		}
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kbTemplate.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kbTemplate.setCreateDate(now);
+			}
+			else {
+				kbTemplate.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!kbTemplateModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kbTemplate.setModifiedDate(now);
+			}
+			else {
+				kbTemplate.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
 		}
 
 		Session session = null;

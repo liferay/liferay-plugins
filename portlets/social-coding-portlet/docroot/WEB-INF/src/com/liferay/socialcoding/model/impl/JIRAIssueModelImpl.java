@@ -248,8 +248,14 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_columnBitmask = -1L;
 
 		if (_originalModifiedDate == null) {
@@ -522,6 +528,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 		jiraIssueModelImpl._originalModifiedDate = jiraIssueModelImpl._modifiedDate;
 
+		jiraIssueModelImpl._setModifiedDate = false;
+
 		jiraIssueModelImpl._originalProjectId = jiraIssueModelImpl._projectId;
 
 		jiraIssueModelImpl._setOriginalProjectId = false;
@@ -711,6 +719,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private Date _originalModifiedDate;
+	private boolean _setModifiedDate;
 	private long _projectId;
 	private long _originalProjectId;
 	private boolean _setOriginalProjectId;

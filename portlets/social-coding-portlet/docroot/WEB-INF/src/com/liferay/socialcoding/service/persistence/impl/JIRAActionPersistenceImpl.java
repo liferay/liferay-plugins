@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.socialcoding.NoSuchJIRAActionException;
@@ -42,6 +44,7 @@ import com.liferay.socialcoding.service.persistence.JIRAActionPersistence;
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1798,6 +1801,28 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		boolean isNew = jiraAction.isNew();
 
 		JIRAActionModelImpl jiraActionModelImpl = (JIRAActionModelImpl)jiraAction;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (jiraAction.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				jiraAction.setCreateDate(now);
+			}
+			else {
+				jiraAction.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!jiraActionModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				jiraAction.setModifiedDate(now);
+			}
+			else {
+				jiraAction.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

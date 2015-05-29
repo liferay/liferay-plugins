@@ -44,7 +44,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
-import com.liferay.portal.security.ac.AccessControlled;
+import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;

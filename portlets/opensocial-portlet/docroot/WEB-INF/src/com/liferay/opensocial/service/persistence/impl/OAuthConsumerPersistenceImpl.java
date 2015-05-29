@@ -37,11 +37,14 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -1156,6 +1159,29 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		boolean isNew = oAuthConsumer.isNew();
 
 		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (oAuthConsumer.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				oAuthConsumer.setCreateDate(now);
+			}
+			else {
+				oAuthConsumer.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!oAuthConsumerModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				oAuthConsumer.setModifiedDate(now);
+			}
+			else {
+				oAuthConsumer.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

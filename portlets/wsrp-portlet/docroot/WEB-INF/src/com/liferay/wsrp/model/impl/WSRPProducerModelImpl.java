@@ -299,8 +299,14 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -467,6 +473,8 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 		wsrpProducerModelImpl._setOriginalCompanyId = false;
 
+		wsrpProducerModelImpl._setModifiedDate = false;
+
 		wsrpProducerModelImpl._columnBitmask = 0;
 	}
 
@@ -625,6 +633,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private boolean _setOriginalCompanyId;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _name;
 	private String _version;
 	private String _portletIds;

@@ -39,11 +39,14 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2618,6 +2621,30 @@ public class CalendarNotificationTemplatePersistenceImpl
 			String uuid = PortalUUIDUtil.generate();
 
 			calendarNotificationTemplate.setUuid(uuid);
+		}
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (calendarNotificationTemplate.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				calendarNotificationTemplate.setCreateDate(now);
+			}
+			else {
+				calendarNotificationTemplate.setCreateDate(serviceContext.getCreateDate(
+						now));
+			}
+		}
+
+		if (!calendarNotificationTemplateModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				calendarNotificationTemplate.setModifiedDate(now);
+			}
+			else {
+				calendarNotificationTemplate.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
 		}
 
 		Session session = null;

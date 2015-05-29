@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchNotificationException;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
@@ -40,6 +42,7 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoNotificationPe
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2492,6 +2495,30 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		boolean isNew = kaleoNotification.isNew();
 
 		KaleoNotificationModelImpl kaleoNotificationModelImpl = (KaleoNotificationModelImpl)kaleoNotification;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kaleoNotification.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kaleoNotification.setCreateDate(now);
+			}
+			else {
+				kaleoNotification.setCreateDate(serviceContext.getCreateDate(
+						now));
+			}
+		}
+
+		if (!kaleoNotificationModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kaleoNotification.setModifiedDate(now);
+			}
+			else {
+				kaleoNotification.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

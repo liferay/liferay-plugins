@@ -385,8 +385,14 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -716,6 +722,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 		messageModelImpl._setOriginalCompanyId = false;
 
+		messageModelImpl._setModifiedDate = false;
+
 		messageModelImpl._originalFolderId = messageModelImpl._folderId;
 
 		messageModelImpl._setOriginalFolderId = false;
@@ -1010,6 +1018,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _accountId;
 	private long _folderId;
 	private long _originalFolderId;

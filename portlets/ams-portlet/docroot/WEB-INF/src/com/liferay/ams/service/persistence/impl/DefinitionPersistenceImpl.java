@@ -34,11 +34,14 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -266,6 +269,30 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		definition = toUnwrappedModel(definition);
 
 		boolean isNew = definition.isNew();
+
+		DefinitionModelImpl definitionModelImpl = (DefinitionModelImpl)definition;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (definition.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				definition.setCreateDate(now);
+			}
+			else {
+				definition.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!definitionModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				definition.setModifiedDate(now);
+			}
+			else {
+				definition.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

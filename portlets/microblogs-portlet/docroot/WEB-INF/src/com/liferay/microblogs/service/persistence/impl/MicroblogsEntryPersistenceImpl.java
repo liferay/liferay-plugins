@@ -41,6 +41,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -8644,6 +8646,29 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		boolean isNew = microblogsEntry.isNew();
 
 		MicroblogsEntryModelImpl microblogsEntryModelImpl = (MicroblogsEntryModelImpl)microblogsEntry;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (microblogsEntry.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				microblogsEntry.setCreateDate(now);
+			}
+			else {
+				microblogsEntry.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!microblogsEntryModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				microblogsEntry.setModifiedDate(now);
+			}
+			else {
+				microblogsEntry.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

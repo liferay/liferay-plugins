@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
@@ -41,6 +43,7 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTo
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -2636,6 +2639,30 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		boolean isNew = kaleoTaskInstanceToken.isNew();
 
 		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = (KaleoTaskInstanceTokenModelImpl)kaleoTaskInstanceToken;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (kaleoTaskInstanceToken.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				kaleoTaskInstanceToken.setCreateDate(now);
+			}
+			else {
+				kaleoTaskInstanceToken.setCreateDate(serviceContext.getCreateDate(
+						now));
+			}
+		}
+
+		if (!kaleoTaskInstanceTokenModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				kaleoTaskInstanceToken.setModifiedDate(now);
+			}
+			else {
+				kaleoTaskInstanceToken.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

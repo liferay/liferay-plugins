@@ -417,8 +417,14 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -821,6 +827,8 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 
 		kaleoDefinitionModelImpl._setOriginalCompanyId = false;
 
+		kaleoDefinitionModelImpl._setModifiedDate = false;
+
 		kaleoDefinitionModelImpl._originalName = kaleoDefinitionModelImpl._name;
 
 		kaleoDefinitionModelImpl._originalVersion = kaleoDefinitionModelImpl._version;
@@ -1033,6 +1041,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _name;
 	private String _originalName;
 	private String _title;

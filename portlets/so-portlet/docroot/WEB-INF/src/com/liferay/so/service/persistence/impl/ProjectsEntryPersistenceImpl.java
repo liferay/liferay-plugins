@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.so.NoSuchProjectsEntryException;
@@ -41,6 +43,7 @@ import com.liferay.so.service.persistence.ProjectsEntryPersistence;
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -752,6 +755,29 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		boolean isNew = projectsEntry.isNew();
 
 		ProjectsEntryModelImpl projectsEntryModelImpl = (ProjectsEntryModelImpl)projectsEntry;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (projectsEntry.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				projectsEntry.setCreateDate(now);
+			}
+			else {
+				projectsEntry.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!projectsEntryModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				projectsEntry.setModifiedDate(now);
+			}
+			else {
+				projectsEntry.setModifiedDate(serviceContext.getModifiedDate(
+						now));
+			}
+		}
 
 		Session session = null;
 

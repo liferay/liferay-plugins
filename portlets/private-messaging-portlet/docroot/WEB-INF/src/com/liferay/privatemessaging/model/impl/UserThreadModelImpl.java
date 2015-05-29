@@ -365,8 +365,14 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
@@ -570,6 +576,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 		userThreadModelImpl._setOriginalUserId = false;
 
+		userThreadModelImpl._setModifiedDate = false;
+
 		userThreadModelImpl._originalMbThreadId = userThreadModelImpl._mbThreadId;
 
 		userThreadModelImpl._setOriginalMbThreadId = false;
@@ -727,6 +735,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _mbThreadId;
 	private long _originalMbThreadId;
 	private boolean _setOriginalMbThreadId;

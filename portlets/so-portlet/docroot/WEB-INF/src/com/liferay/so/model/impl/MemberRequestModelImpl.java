@@ -334,8 +334,14 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -554,6 +560,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 		memberRequestModelImpl._setOriginalGroupId = false;
 
+		memberRequestModelImpl._setModifiedDate = false;
+
 		memberRequestModelImpl._originalKey = memberRequestModelImpl._key;
 
 		memberRequestModelImpl._originalReceiverUserId = memberRequestModelImpl._receiverUserId;
@@ -732,6 +740,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _key;
 	private String _originalKey;
 	private long _receiverUserId;

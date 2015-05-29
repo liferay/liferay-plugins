@@ -238,8 +238,14 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -438,6 +444,8 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	public void resetOriginalValues() {
 		OAuthConsumerModelImpl oAuthConsumerModelImpl = this;
 
+		oAuthConsumerModelImpl._setModifiedDate = false;
+
 		oAuthConsumerModelImpl._originalGadgetKey = oAuthConsumerModelImpl._gadgetKey;
 
 		oAuthConsumerModelImpl._originalServiceName = oAuthConsumerModelImpl._serviceName;
@@ -599,6 +607,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _gadgetKey;
 	private String _originalGadgetKey;
 	private String _serviceName;

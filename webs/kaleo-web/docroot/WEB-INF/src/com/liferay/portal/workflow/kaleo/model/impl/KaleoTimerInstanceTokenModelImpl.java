@@ -388,8 +388,14 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -743,6 +749,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	public void resetOriginalValues() {
 		KaleoTimerInstanceTokenModelImpl kaleoTimerInstanceTokenModelImpl = this;
 
+		kaleoTimerInstanceTokenModelImpl._setModifiedDate = false;
+
 		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTimerInstanceTokenModelImpl._kaleoInstanceId;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
@@ -1013,6 +1021,7 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _kaleoClassName;
 	private long _kaleoClassPK;
 	private long _kaleoDefinitionId;

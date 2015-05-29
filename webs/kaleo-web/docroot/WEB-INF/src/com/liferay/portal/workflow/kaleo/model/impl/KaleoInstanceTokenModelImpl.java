@@ -368,8 +368,14 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -643,6 +649,8 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 		kaleoInstanceTokenModelImpl._setOriginalCompanyId = false;
 
+		kaleoInstanceTokenModelImpl._setModifiedDate = false;
+
 		kaleoInstanceTokenModelImpl._originalKaleoDefinitionId = kaleoInstanceTokenModelImpl._kaleoDefinitionId;
 
 		kaleoInstanceTokenModelImpl._setOriginalKaleoDefinitionId = false;
@@ -871,6 +879,7 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _kaleoDefinitionId;
 	private long _originalKaleoDefinitionId;
 	private boolean _setOriginalKaleoDefinitionId;

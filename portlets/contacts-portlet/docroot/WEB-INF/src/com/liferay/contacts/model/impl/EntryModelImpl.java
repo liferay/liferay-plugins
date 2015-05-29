@@ -372,8 +372,14 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -542,6 +548,8 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 		entryModelImpl._setOriginalUserId = false;
 
+		entryModelImpl._setModifiedDate = false;
+
 		entryModelImpl._originalEmailAddress = entryModelImpl._emailAddress;
 
 		entryModelImpl._columnBitmask = 0;
@@ -708,6 +716,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _fullName;
 	private String _emailAddress;
 	private String _originalEmailAddress;

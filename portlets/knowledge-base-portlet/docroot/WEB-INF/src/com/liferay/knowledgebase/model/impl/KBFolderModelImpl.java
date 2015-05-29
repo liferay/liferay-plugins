@@ -433,8 +433,14 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -650,6 +656,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 		kbFolderModelImpl._setOriginalCompanyId = false;
 
+		kbFolderModelImpl._setModifiedDate = false;
+
 		kbFolderModelImpl._originalParentKBFolderId = kbFolderModelImpl._parentKBFolderId;
 
 		kbFolderModelImpl._setOriginalParentKBFolderId = false;
@@ -848,6 +856,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private long _parentKBFolderId;
 	private long _originalParentKBFolderId;
 	private boolean _setOriginalParentKBFolderId;

@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.twitter.NoSuchFeedException;
@@ -42,6 +44,7 @@ import com.liferay.twitter.service.persistence.FeedPersistence;
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -584,6 +587,30 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		feed = toUnwrappedModel(feed);
 
 		boolean isNew = feed.isNew();
+
+		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (feed.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				feed.setCreateDate(now);
+			}
+			else {
+				feed.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!feedModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				feed.setModifiedDate(now);
+			}
+			else {
+				feed.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

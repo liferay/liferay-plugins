@@ -311,8 +311,14 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -488,6 +494,8 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		projectsEntryModelImpl._originalUserId = projectsEntryModelImpl._userId;
 
 		projectsEntryModelImpl._setOriginalUserId = false;
+
+		projectsEntryModelImpl._setModifiedDate = false;
 
 		projectsEntryModelImpl._columnBitmask = 0;
 	}
@@ -674,6 +682,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _title;
 	private String _description;
 	private Date _startDate;

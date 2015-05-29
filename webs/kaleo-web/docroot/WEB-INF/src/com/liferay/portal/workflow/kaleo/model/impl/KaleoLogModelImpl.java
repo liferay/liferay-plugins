@@ -488,8 +488,14 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -991,6 +997,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 		kaleoLogModelImpl._setOriginalCompanyId = false;
 
+		kaleoLogModelImpl._setModifiedDate = false;
+
 		kaleoLogModelImpl._originalKaleoClassName = kaleoLogModelImpl._kaleoClassName;
 
 		kaleoLogModelImpl._originalKaleoClassPK = kaleoLogModelImpl._kaleoClassPK;
@@ -1399,6 +1407,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _kaleoClassName;
 	private String _originalKaleoClassName;
 	private long _kaleoClassPK;

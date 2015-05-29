@@ -34,11 +34,14 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -265,6 +268,30 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		checkout = toUnwrappedModel(checkout);
 
 		boolean isNew = checkout.isNew();
+
+		CheckoutModelImpl checkoutModelImpl = (CheckoutModelImpl)checkout;
+
+		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+		Date now = new Date();
+
+		if (isNew && (checkout.getCreateDate() == null)) {
+			if (serviceContext == null) {
+				checkout.setCreateDate(now);
+			}
+			else {
+				checkout.setCreateDate(serviceContext.getCreateDate(now));
+			}
+		}
+
+		if (!checkoutModelImpl.hasSetModifiedDate()) {
+			if (serviceContext == null) {
+				checkout.setModifiedDate(now);
+			}
+			else {
+				checkout.setModifiedDate(serviceContext.getModifiedDate(now));
+			}
+		}
 
 		Session session = null;
 

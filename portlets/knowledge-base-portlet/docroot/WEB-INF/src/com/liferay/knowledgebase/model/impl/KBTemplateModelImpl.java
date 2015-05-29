@@ -413,8 +413,14 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_columnBitmask = -1L;
 
 		_modifiedDate = modifiedDate;
@@ -571,6 +577,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		kbTemplateModelImpl._originalCompanyId = kbTemplateModelImpl._companyId;
 
 		kbTemplateModelImpl._setOriginalCompanyId = false;
+
+		kbTemplateModelImpl._setModifiedDate = false;
 
 		kbTemplateModelImpl._columnBitmask = 0;
 	}
@@ -740,6 +748,7 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _title;
 	private String _content;
 	private long _columnBitmask;

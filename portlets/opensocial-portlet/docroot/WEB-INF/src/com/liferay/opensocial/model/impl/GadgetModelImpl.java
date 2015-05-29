@@ -326,8 +326,14 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return _modifiedDate;
 	}
 
+	public boolean hasSetModifiedDate() {
+		return _setModifiedDate;
+	}
+
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
+		_setModifiedDate = true;
+
 		_modifiedDate = modifiedDate;
 	}
 
@@ -502,6 +508,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 		gadgetModelImpl._setOriginalCompanyId = false;
 
+		gadgetModelImpl._setModifiedDate = false;
+
 		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
 
 		gadgetModelImpl._columnBitmask = 0;
@@ -652,6 +660,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private boolean _setOriginalCompanyId;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private boolean _setModifiedDate;
 	private String _name;
 	private String _url;
 	private String _originalUrl;
