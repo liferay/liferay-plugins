@@ -148,20 +148,19 @@ AUI().use(
 		var Panel = function(options) {
 			var instance = this;
 
-			instance._tabsContainer = Liferay.Chat.Manager.getContainer();
-
-			if (options.container) {
+			if (!options.container) {
+				instance._tabsContainer = Liferay.Chat.Manager.getContainer();
+			}
+			else {
 				instance._tabsContainer = A.one(options.container);
 			}
 
 			instance._chatProperties = {};
 			instance._eventsSuspended = false;
 
-			var panelTitle = options.panelTitle;
-
-			instance._panelIcon = options.panelIcon;
 			instance._panelId = options.panelId;
-			instance._panelTitle = panelTitle;
+			instance._panelTitle = options.panelTitle;
+			instance._panelIcon = options.panelIcon;
 
 			var panelHTML = instance._setPanelHTML(options.panelHTML);
 
@@ -169,8 +168,8 @@ AUI().use(
 
 			instance._createPanel(options.fromMarkup);
 
-			if (panelTitle) {
-				instance.setTitle(panelTitle);
+			if (options.panelTitle) {
+				instance.setTitle(options.panelTitle);
 			}
 
 			instance._popupTrigger.unselectable();
@@ -248,16 +247,19 @@ AUI().use(
 			_createPanel: function(fromMarkup) {
 				var instance = this;
 
-				var panel = A.Node.create(instance.get('panelHTML'));
+				var panel;
 
 				if (fromMarkup) {
 					panel = A.one(fromMarkup);
 				}
+				else {
+					panel = A.Node.create(instance.get('panelHTML'));
+				}
 
 				instance._popup = panel.one('.chat-panel');
 				instance._popupTitle = panel.one('.panel-title');
-				instance._popupTrigger = panel.one('.panel-trigger');
 				instance._textBox = panel.one('textarea');
+				instance._popupTrigger = panel.one('.panel-trigger');
 
 				instance._popupTrigger.on('click', instance.toggle, instance);
 
@@ -288,7 +290,7 @@ AUI().use(
 						'<div class="panel-trigger"><span class="trigger-name"></span></div>' +
 						'<div class="chat-panel">' +
 							'<div class="panel-window">' +
-								'<div class="minimize panel-button "></div>' +
+								'<div class="panel-button minimize"></div>' +
 								'<div class="panel-title"></div>' +
 								'<div class="search-buddies"><input class="search-buddies" type="text" /></div>' +
 								'<div class="panel-content"></div>' +
@@ -316,30 +318,26 @@ AUI().use(
 			instance._lastTypedTime = 0;
 			instance._typingDelay = 5000;
 			instance._unreadMessages = 0;
-
 			instance._originalPageTitle = DOC.title;
 
 			instance._stopTypingTask = A.debounce(instance.setTyping, instance._typingDelay, instance, false);
 
 			instance._heightMonitor = A.Node.create('<pre class="chat-height-monitor" />');
-
 			instance._heightMonitor.appendTo(DOC.body);
 
 			instance._unreadMessagesContainer = instance._panel.one('.unread');
 
 			if (!instance._unreadMessagesContainer) {
 				instance._unreadMessagesContainer = A.Node.create('<div class="hide unread" />');
-
 				instance._popupTrigger.append(instance._unreadMessagesContainer);
 			}
 
-			var statusMessage = options.statusMessage;
-
-			if (statusMessage) {
-				instance._statusMessage.text(statusMessage);
+			if (options.statusMessage) {
+				instance._statusMessage.text(options.statusMessage);
 			}
 
-			instance._chatInput.on(['focus', 'keyup'], instance._keystroke, instance);
+			instance._chatInput.on('keyup', instance._keystroke, instance);
+			instance._chatInput.on('focus', instance._keystroke, instance);
 		};
 
 		A.extend(
@@ -362,7 +360,6 @@ AUI().use(
 					instance._unreadMessages = 0;
 
 					instance.set('lastReadTime', Liferay.Chat.Util.getCurrentTimestamp());
-
 					DOC.title = instance._originalPageTitle;
 				},
 
@@ -370,22 +367,17 @@ AUI().use(
 					var instance = this;
 
 					if (!instance.get('selected')) {
-						var unreadMessages = instance._unreadMessages;
-						var unreadMessagesContainer = instance._unreadMessagesContainer;
-
-						if (unreadMessages > 1) {
-							unreadMessagesContainer.text(unreadMessages);
-							unreadMessagesContainer.show();
+						if (instance._unreadMessages > 1) {
+							instance._unreadMessagesContainer.text(instance._unreadMessages);
+							instance._unreadMessagesContainer.show();
 						}
 						else {
 							Liferay.Chat.Manager.triggerSound();
-
 							instance.setWaiting(true);
-
-							unreadMessagesContainer.hide();
+							instance._unreadMessagesContainer.hide();
 						}
 
-						DOC.title = instance._originalPageTitle + ' - Unread messages (' + unreadMessages + ')';
+						DOC.title = instance._originalPageTitle + ' - Unread messages (' + instance._unreadMessages + ')';
 					}
 				},
 
@@ -444,7 +436,6 @@ AUI().use(
 					var instance = this;
 
 					Liferay.Chat.Panel.prototype.show.call(instance);
-
 					instance.setAsRead();
 
 					var outputEl = instance._chatOutput.getDOM();
@@ -482,7 +473,6 @@ AUI().use(
 
 					if (entry.content.length) {
 						instance._updateMessageWindow(entry);
-
 						instance.setTyping(false);
 					}
 
@@ -528,16 +518,13 @@ AUI().use(
 					var height = Math.max(heightMonitorEl.offsetHeight, 14);
 
 					height = Math.min(height, 64);
-
-					var chatInputElStyle = chatInputEl.style;
-
-					chatInputElStyle.overflowY = 'auto';
+					chatInputEl.style.overflowY = 'auto';
 
 					if (height != instance._lastHeight) {
 						instance._lastHeight = height;
 
-						chatInputElStyle.height = height + 'px';
-						chatInputElStyle.overflowY = height == 64 ? 'scroll' : 'hidden';
+						chatInputEl.style.height = height + 'px';
+						chatInputEl.style.overflowY = height == 64 ? 'scroll' : 'hidden';
 
 						chatInputEl.parentNode.style.height = height + 5 + 'px';
 					}
@@ -550,7 +537,6 @@ AUI().use(
 					var userId = instance._panelId;
 
 					var chatInputEl = chatInput.getDOM();
-
 					var content = chatInputEl.value.replace(/\n|\r/gim, '');
 
 					if (event.type == 'keyup') {
@@ -585,7 +571,6 @@ AUI().use(
 					var instance = this;
 
 					var createDate = Liferay.Chat.Util.getCurrentTimestamp();
-
 					var userId = instance._panelId;
 
 					var escapedHTML = LString.escapeHTML(content);
@@ -617,8 +602,8 @@ AUI().use(
 							'</div>' +
 							'<div class="chat-panel">' +
 								'<div class="panel-window">' +
-									'<div class="minimize panel-button "></div>' +
-									'<div class="close panel-button"></div>' +
+									'<div class="panel-button minimize"></div>' +
+									'<div class="panel-button close"></div>' +
 									'<img alt="" class="panel-icon" src="' + userImagePath + '" />' +
 									'<div class="panel-title">' + LString.escapeHTML(instance._panelTitle) + '</div>' +
 									'<div class="panel-profile">...</div>' +
@@ -637,17 +622,14 @@ AUI().use(
 					var instance = this;
 
 					var cssClass = 'outgoing';
-
 					var output = instance._chatOutput;
 
 					var content = entry.content;
 					var incoming = entry.incoming;
-
 					var userName = themeDisplay.getUserName();
 
 					if (incoming) {
 						cssClass = 'incoming';
-
 						userName = instance._panelTitle;
 					}
 
@@ -864,15 +846,16 @@ AUI().use(
 				var buddyListNode = buddyListPanel.getPanel();
 
 				var buddyList = buddyListNode.one('.online-users');
+
 				var searchBuddiesField = buddyListNode.one('.search-buddies');
 
 				var liveSearch = new A.LiveSearch(
 					{
+						input: searchBuddiesField,
+						nodes: '#chatBar .buddy-list .online-users li',
 						data: function(node) {
 							return node.one('.name').text();
-						},
-						input: searchBuddiesField,
-						nodes: '#chatBar .buddy-list .online-users li'
+						}
 					}
 				);
 
@@ -908,18 +891,17 @@ AUI().use(
 					);
 				}
 
-				instance._liveSearch = liveSearch;
-				instance._onlineBuddies = buddyList;
 				instance._searchBuddiesField = searchBuddiesField;
+				instance._liveSearch = liveSearch;
+
+				instance._onlineBuddies = buddyList;
 			},
 
 			_createChatFromUser: function(user) {
 				var instance = this;
 
-				var buddy;
-
 				var buddies = instance._buddies;
-
+				var buddy;
 				var userId = user;
 
 				user = A.one(user);
@@ -1030,17 +1012,16 @@ AUI().use(
 				instance._addPanel('settings', settings);
 
 				var settingsPanel = settings.getPanel();
-
 				var saveSettings = settingsPanel.one('#saveSettings');
 
-				instance._showNotificationsObj = settingsPanel.one('#showNotifications');
 				instance._statusMessageObj = settingsPanel.one('#statusMessage');
 				instance._onlineObj = settingsPanel.one('#onlineStatus');
 				instance._playSoundObj = settingsPanel.one('#playSound');
+				instance._showNotificationsObj = settingsPanel.one('#showNotifications');
 
+				instance._statusMessage = instance._statusMessageObj.val() || '';
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
-				instance._statusMessage = instance._statusMessageObj.val() || '';
 
 				if (Notification) {
 					var showNotificationsObj = instance._showNotificationsObj;
@@ -1138,16 +1119,16 @@ AUI().use(
 
 				var currentUserId = themeDisplay.getUserId();
 
-				for (var i = 0; i < entries.length; i++) {
+				var entriesLength = entries.length;
+
+				for (var i = 0; i < entriesLength; i++) {
 					var entry = entries[i];
 
 					var incoming = false;
-
 					var userId = entry.toUserId;
 
 					if (userId == currentUserId) {
 						incoming = true;
-
 						userId = entry.fromUserId;
 					}
 
@@ -1158,11 +1139,11 @@ AUI().use(
 						};
 					}
 
+					var userEntryCache = entryCache[userId];
+
 					var entryId = entry.entryId;
 
 					var entryProcessed = entryIds.indexOf('|' + entryId) > -1;
-
-					var userEntryCache = entryCache[userId];
 
 					if (!entryProcessed) {
 						userEntryCache.entries[entryId] = entry;
@@ -1297,8 +1278,10 @@ AUI().use(
 			_updateBuddies: function(buddies) {
 				var instance = this;
 
-				var buddyList = buddies || [];
+				var searchBuddiesField = instance._searchBuddiesField;
+				var search = searchBuddiesField.val().toLowerCase();
 
+				var buddyList = buddies || [];
 				var numBuddies = buddyList.length;
 
 				var currentBuddies = instance._buddies;
@@ -1345,13 +1328,11 @@ AUI().use(
 
 				instance._onlineBuddies.html(buffer.join(''));
 
-				var searchBuddiesField = instance._searchBuddiesField;
+				if (
+					searchBuddiesField.test(':visible') &&
+					(search.length > 2 || searchBuddiesField.compareTo(DOC.activeElement))) {
 
-				var search = searchBuddiesField.val().toLowerCase();
-
-				if (searchBuddiesField.test(':visible') && search.length > 2 || searchBuddiesField.compareTo(DOC.activeElement)) {
 					instance._liveSearch.refreshIndex();
-
 					instance._liveSearch.fire(
 						'search',
 						{
@@ -1380,23 +1361,23 @@ AUI().use(
 			_updateConversations: function(entries) {
 				var instance = this;
 
+				var entriesLength = entries.length;
+
 				var currentUserId = themeDisplay.getUserId();
 
 				var entryIds = instance._entryIds.join('|');
 
-				for (var i = 0; i < entries.length; i++) {
+				for (var i = 0; i < entriesLength; i++) {
 					var entry = entries[i];
 
 					var entryProcessed = entryIds.indexOf('|' + entry.entryId) > -1;
 
 					if (!entryProcessed) {
 						var incoming = false;
-
 						var userId = entry.toUserId;
 
 						if (entry.fromUserId != currentUserId) {
 							userId = entry.fromUserId;
-
 							incoming = true;
 						}
 
@@ -1450,12 +1431,11 @@ AUI().use(
 				var instance = this;
 
 				var settings = instance._panels.settings;
-
 				var settingsPanel = settings.getPanel();
 
+				instance._statusMessage = instance._statusMessageObj.val();
 				instance._online = instance._onlineObj.get('checked') ? 1 : 0;
 				instance._playSound = instance._playSoundObj.get('checked') ? 1 : 0;
-				instance._statusMessage = instance._statusMessageObj.val();
 
 				var showNotificationsObj = instance._showNotificationsObj;
 
