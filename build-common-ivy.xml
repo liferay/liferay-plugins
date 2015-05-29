@@ -170,7 +170,6 @@
 			<git-head-hash
 				path="${basedir}"
 				property="module.snapshot.git.hash"
-				ignoreFileName="snapshot.properties"
 			/>
 
 			<propertyregex
