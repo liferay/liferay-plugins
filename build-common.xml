@@ -423,7 +423,10 @@ Error-Prone was automatically installed. Please rerun your task.
 			<var name="snapshot.uptodate" value="false" />
 
 			<if>
-				<available file="@{module.dir}/snapshot.properties" />
+				<and>
+					<equals arg1="${snapshot.check.enabled}" arg2="true" />
+					<available file="@{module.dir}/snapshot.properties" />
+				</and>
 				<then>
 					<property file="@{module.dir}/snapshot.properties" />
 
