@@ -145,7 +145,7 @@ else {
 
 		if (results.length == 0) {
 			buffer.push(
-				'<li class="empty"><liferay-ui:message key="there-are-no-results" unicode="<%= true %>" /></li>'
+				'<li class="empty"><liferay-ui:message key="there-are-no-results" /></li>'
 			);
 		}
 		else {
@@ -368,20 +368,20 @@ else {
 				var unescapedSiteName = Lang.String.unescapeHTML(siteName.getContent());
 
 				if (currentTargetClass == 'leave-site') {
-					confirmMessage = Lang.sub('<liferay-ui:message key="are-you-sure-you-want-to-leave-x" unicode="<%= true %>" />', [unescapedSiteName]);
-					siteAction = Lang.sub('<liferay-ui:message key="you-left-x" unicode="<%= true %>" />', [unescapedSiteName]);
+					confirmMessage = Lang.sub('<liferay-ui:message key="are-you-sure-you-want-to-leave-x" />', [unescapedSiteName]);
+					siteAction = Lang.sub('<liferay-ui:message key="you-left-x" />', [unescapedSiteName]);
 				}
 				else if (currentTargetClass == 'join-site') {
-					confirmMessage = Lang.sub('<liferay-ui:message key="are-you-sure-you-want-to-join-x" unicode="<%= true %>" />', [unescapedSiteName]);
-					siteAction = Lang.sub('<liferay-ui:message key="you-joined-x" unicode="<%= true %>" />', [unescapedSiteName]);
+					confirmMessage = Lang.sub('<liferay-ui:message key="are-you-sure-you-want-to-join-x" />', [unescapedSiteName]);
+					siteAction = Lang.sub('<liferay-ui:message key="you-joined-x" />', [unescapedSiteName]);
 				}
 				else if (currentTargetClass == 'request-site') {
-					confirmMessage = Lang.sub('<liferay-ui:message key="this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x" unicode="<%= true %>" />', [unescapedSiteName]);
-					siteAction = '<liferay-ui:message key="your-membership-request-has-been-sent" unicode="<%= true %>" />';
+					confirmMessage = Lang.sub('<liferay-ui:message key="this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x" />', [unescapedSiteName]);
+					siteAction = '<liferay-ui:message key="your-membership-request-has-been-sent" />';
 				}
 				else {
-					confirmMessage = Lang.sub('<liferay-ui:message key="are-you-sure-you-want-to-delete-x" unicode="<%= true %>" />', [unescapedSiteName]);
-					siteAction = Lang.sub('<liferay-ui:message key="you-deleted-x" unicode="<%= true %>" />', [unescapedSiteName]);
+					confirmMessage = Lang.sub('<liferay-ui:message key="are-you-sure-you-want-to-delete-x" />', [unescapedSiteName]);
+					siteAction = Lang.sub('<liferay-ui:message key="you-deleted-x" />', [unescapedSiteName]);
 				}
 
 				if (confirm(confirmMessage)) {
