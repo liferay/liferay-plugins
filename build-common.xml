@@ -412,6 +412,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 	<macrodef name="check-snapshot">
 		<attribute name="module.dir" />
+		<attribute default="true" name="snapshot.download.enabled" />
 
 		<sequential>
 			<set-module-properties
@@ -447,20 +448,25 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 
 					<if>
-						<equals arg1="${snapshot.uptodate}" arg2="true" />
+						<equals arg1="@{snapshot.download.enabled}" arg2="true" />
 						<then>
-							<trycatch>
-								<try>
-									<mirrors-get
-										dest="${plugin.file}"
-										trylocalnetwork="false"
-										src="${module.snapshot.url}"
-									/>
-								</try>
-								<catch>
-									<var name="snapshot.uptodate" value="false" />
-								</catch>
-							</trycatch>
+							<if>
+								<equals arg1="${snapshot.uptodate}" arg2="true" />
+								<then>
+									<trycatch>
+										<try>
+											<mirrors-get
+												dest="${plugin.file}"
+												trylocalnetwork="false"
+												src="${module.snapshot.url}"
+											/>
+										</try>
+										<catch>
+											<var name="snapshot.uptodate" value="false" />
+										</catch>
+									</trycatch>
+								</then>
+							</if>
 						</then>
 					</if>
 
@@ -2291,6 +2297,24 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="print-stale-snapshot">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<check-snapshot
+				module.dir="@{module.dir}"
+				snapshot.download.enabled="false"
+			/>
+
+			<if>
+				<equals arg1="${snapshot.uptodate}" arg2="false" />
+				<then>
+					<echo>@{module.dir}</echo>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="publish-local-m2-release">
 		<attribute name="module.dir" />
 
@@ -3349,6 +3373,13 @@ for (String path : paths) {
 		</tstamp>
 
 		<echo message="${current.time}" />
+	</target>
+
+	<target name="print-stale-snapshot">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="print-stale-snapshot"
+		/>
 	</target>
 
 	<target name="publish-local-m2-release" depends="jar-javadoc,jar-source,war">
