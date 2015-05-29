@@ -180,9 +180,9 @@ public class DownloadServlet extends HttpServlet {
 			repositoryId, folderId);
 
 		for (FileEntry fileEntry : fileEntries) {
-			FileVersion fileVersion = fileEntry.getLatestFileVersion();
-
-			InputStream inputStream = fileVersion.getContentStream(false);
+			InputStream inputStream =
+				DLFileEntryLocalServiceUtil.getFileAsStream(
+					fileEntry.getFileEntryId(), fileEntry.getVersion(), false);
 
 			String filePath = folderPath + fileEntry.getTitle();
 
@@ -203,12 +203,19 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected File getDeltaFile(
-			long userId, long fileEntryId, DLFileVersion sourceDLFileVersion,
-			DLFileVersion targetDLFileVersion)
+			long userId, long fileEntryId, long sourceVersionId,
+			long targetVersionId)
 		throws PortalException {
+
+		DLFileVersion sourceDLFileVersion =
+			DLFileVersionLocalServiceUtil.getDLFileVersion(sourceVersionId);
 
 		File sourceFile = DLFileEntryLocalServiceUtil.getFile(
 			userId, fileEntryId, sourceDLFileVersion.getVersion(), false);
+
+		DLFileVersion targetDLFileVersion =
+			DLFileVersionLocalServiceUtil.getDLFileVersion(targetVersionId);
+
 		File targetFile = DLFileEntryLocalServiceUtil.getFile(
 			userId, fileEntryId, targetDLFileVersion.getVersion(), false);
 
@@ -227,15 +234,20 @@ public class DownloadServlet extends HttpServlet {
 		}
 
 		if (Validator.isNull(version)) {
-			version = fileEntry.getVersion();
+			InputStream inputStream =
+				DLFileEntryLocalServiceUtil.getFileAsStream(
+					fileEntry.getFileEntryId(), fileEntry.getVersion(), false);
+
+			return new DownloadServletInputStream(
+				inputStream, fileEntry.getMimeType(), fileEntry.getSize());
 		}
+		else {
+			FileVersion fileVersion = fileEntry.getFileVersion(version);
 
-		FileVersion fileVersion = fileEntry.getFileVersion(version);
-
-		InputStream inputStream = fileVersion.getContentStream(false);
-
-		return new DownloadServletInputStream(
-			inputStream, fileVersion.getMimeType(), fileVersion.getSize());
+			return new DownloadServletInputStream(
+				fileVersion.getContentStream(false), fileVersion.getMimeType(),
+				fileVersion.getSize());
+		}
 	}
 
 	protected DownloadServletInputStream getPatchDownloadServletInputStream(
@@ -250,18 +262,13 @@ public class DownloadServlet extends HttpServlet {
 			throw new NoSuchFileEntryException();
 		}
 
-		DLFileVersion sourceDLFileVersion =
-			DLFileVersionLocalServiceUtil.getDLFileVersion(sourceVersionId);
-		DLFileVersion targetDLFileVersion =
-			DLFileVersionLocalServiceUtil.getDLFileVersion(targetVersionId);
-
 		if (!PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
 			File deltaFile = null;
 
 			try {
 				deltaFile = getDeltaFile(
 					user.getUserId(), fileEntry.getFileEntryId(),
-					sourceDLFileVersion, targetDLFileVersion);
+					sourceVersionId, targetVersionId);
 
 				return new DownloadServletInputStream(
 					new FileInputStream(deltaFile), deltaFile.length());
@@ -292,7 +299,7 @@ public class DownloadServlet extends HttpServlet {
 			try {
 				deltaFile = getDeltaFile(
 					user.getUserId(), fileEntry.getFileEntryId(),
-					sourceDLFileVersion, targetDLFileVersion);
+					sourceVersionId, targetVersionId);
 
 				try {
 					SyncDLFileVersionDiffLocalServiceUtil.
