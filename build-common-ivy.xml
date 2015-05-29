@@ -677,32 +677,32 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 										</not>
 										<then>
 											<ivy:retrieve
+												log="${ivy.log.level}"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
 												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
-												log="${ivy.log.level}"
 											/>
 
 											<ivy:retrieve
+												log="${ivy.log.level}"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/lib/[artifact]-[type]s.[ext]"
 												type="source"
-												log="${ivy.log.level}"
 											/>
 										</then>
 										<else>
 											<ivy:retrieve
+												log="${ivy.log.level}"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
 												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
-												log="${ivy.log.level}"
 											/>
 
 											<ivy:retrieve
+												log="${ivy.log.level}"
 												overwriteMode="always"
 												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact]-[type]s.[ext]"
 												type="source"
-												log="${ivy.log.level}"
 											/>
 										</else>
 									</if>
