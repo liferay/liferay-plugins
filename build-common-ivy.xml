@@ -665,7 +665,7 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 									<ivy:resolve
 										conf="default,internal,provided"
 										file="@{ivy.xml.dir}/ivy.xml"
-										log="download-only"
+										log="${ivy.log.level}"
 										transitive="${plugin.ivy.resolve.transitive.dependencies}"
 									/>
 
@@ -722,7 +722,7 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 
 		<ivy:resolve
 			conf="default,provided"
-			log="download-only"
+			log="${ivy.log.level}"
 			transitive="${ivy.resolve.transitive.dependencies}"
 		/>
 
