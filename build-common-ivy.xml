@@ -701,11 +701,9 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 		</sequential>
 	</macrodef>
 
-	<macrodef name="process-ivy">
-		<attribute default="${basedir}" name="module.dir" />
-
+	<macrodef name="process-ivy-sdk-dependencies">
 		<sequential>
-			<for list="@{module.dir},${sdk.dir},${sdk.dependencies.path}" param="ivy.xml.dir">
+			<for list="${sdk.dir},${sdk.dependencies.path}" param="ivy.xml.dir">
 				<sequential>
 					<if>
 						<available file="@{ivy.xml.dir}/ivy.xml" />
@@ -724,6 +722,41 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 					</if>
 				</sequential>
 			</for>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="process-ivy-module-dir">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<for list="@{module.dir}" param="ivy.xml.dir">
+				<sequential>
+					<if>
+						<available file="@{module.dir}/ivy.xml" />
+						<then>
+							<checksum file="@{module.dir}/ivy.xml" verifyproperty="ivy.xml.unmodified" />
+
+							<if>
+								<isfalse value="${ivy.xml.unmodified}" />
+								<then>
+									<process-ivy-cmd ivy.xml.dir="@{module.dir}" />
+								</then>
+							</if>
+
+							<var name="ivy.xml.unmodified" unset="true" />
+						</then>
+					</if>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="process-ivy">
+		<attribute default="${basedir}" name="module.dir" />
+
+		<sequential>
+			<process-ivy-module-dir module.dir="@{module.dir}" />
+			<process-ivy-sdk-dependencies />
 		</sequential>
 	</macrodef>
 
