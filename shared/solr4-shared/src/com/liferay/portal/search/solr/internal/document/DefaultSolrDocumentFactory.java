@@ -17,7 +17,6 @@ package com.liferay.portal.search.solr.internal.document;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.solr.document.SolrDocumentFactory;
@@ -40,11 +39,6 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 
 		for (Field field : fields.values()) {
 			String name = field.getName();
-			float boost = field.getBoost();
-
-			if (ArrayUtil.contains(Field.UNSCORED_FIELD_NAMES, name)) {
-				boost = _UNSCORED_FIELDS_BOOST;
-			}
 
 			if (!field.isLocalized()) {
 				for (String value : field.getValues()) {
@@ -54,7 +48,7 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 
 					value = value.trim();
 
-					addField(solrInputDocument, field, boost, value, name);
+					addField(solrInputDocument, field, value, name);
 				}
 			}
 			else {
@@ -80,14 +74,14 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 						LocaleUtil.getDefault());
 
 					if (languageId.equals(defaultLanguageId)) {
-						solrInputDocument.addField(name, value, boost);
+						solrInputDocument.addField(name, value);
 					}
 
 					String localizedName = DocumentImpl.getLocalizedName(
 						locale, name);
 
 					addField(
-						solrInputDocument, field, boost, value, localizedName);
+						solrInputDocument, field, value, localizedName);
 				}
 			}
 		}
@@ -96,19 +90,17 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 	}
 
 	protected void addField(
-		SolrInputDocument solrInputDocument, Field field, float boost,
-		String value, String localizedName) {
+		SolrInputDocument solrInputDocument, Field field, String value,
+		String localizedName) {
 
-		solrInputDocument.addField(localizedName, value, boost);
+		solrInputDocument.addField(localizedName, value);
 
 		if (field.isSortable()) {
 			String sortableFieldName = DocumentImpl.getSortableFieldName(
 				localizedName);
 
-			solrInputDocument.addField(sortableFieldName, value, boost);
+			solrInputDocument.addField(sortableFieldName, value);
 		}
 	}
-
-	private static final float _UNSCORED_FIELDS_BOOST = 1;
 
 }
