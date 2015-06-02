@@ -12,17 +12,17 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.server;
+package com.liferay.portal.search.solr.suggest;
 
-import com.liferay.portal.search.solr.internal.server.SolrServerWrapper;
+import com.liferay.portal.kernel.search.SearchException;
 
-import java.util.List;
+import org.apache.solr.client.solrj.SolrQuery;
 
 /**
  * @author Michael C. Han
  */
-public interface SolrServerSelector {
+public interface NGramQueryBuilder {
 
-	public SolrServerWrapper select(List<SolrServerWrapper> solrServerWrappers);
+	public SolrQuery getNGramQuery(String input) throws SearchException;
 
 }

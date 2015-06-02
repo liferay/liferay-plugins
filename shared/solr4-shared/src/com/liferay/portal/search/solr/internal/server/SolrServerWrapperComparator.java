@@ -12,17 +12,33 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.server;
+package com.liferay.portal.search.solr.internal.server;
 
-import com.liferay.portal.search.solr.internal.server.SolrServerWrapper;
-
-import java.util.List;
+import java.util.Comparator;
 
 /**
  * @author Michael C. Han
  */
-public interface SolrServerSelector {
+public class SolrServerWrapperComparator
+	implements Comparator<SolrServerWrapper> {
 
-	public SolrServerWrapper select(List<SolrServerWrapper> solrServerWrappers);
+	@Override
+	public int compare(
+		SolrServerWrapper solrServerWrapper1,
+		SolrServerWrapper solrServerWrapper2) {
+
+		if (solrServerWrapper1.getInvocationCount() >
+				solrServerWrapper2.getInvocationCount()) {
+
+			return 1;
+		}
+		else if (solrServerWrapper1.getInvocationCount() <
+					solrServerWrapper2.getInvocationCount()) {
+
+			return -1;
+		}
+
+		return 0;
+	}
 
 }

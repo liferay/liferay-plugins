@@ -3,7 +3,7 @@
 <javadocs>
 	<javadoc>
 		<name>NGramQueryBuilder</name>
-		<type>com.liferay.portal.search.solr.NGramQueryBuilder</type>
+		<type>com.liferay.portal.search.solr.suggest.NGramQueryBuilder</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>getNGramQuery</name>
@@ -24,7 +24,7 @@
 	</javadoc>
 	<javadoc>
 		<name>NGramQueryBuilderImpl</name>
-		<type>com.liferay.portal.search.solr.NGramQueryBuilderImpl</type>
+		<type>com.liferay.portal.search.solr.internal.suggest.NGramQueryBuilderImpl</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>getNGramQuery</name>
@@ -100,7 +100,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrIndexSearcher</name>
-		<type>com.liferay.portal.search.solr.SolrIndexSearcher</type>
+		<type>com.liferay.portal.search.solr.internal.SolrIndexSearcher</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<author><![CDATA[Zsolt Berentey]]></author>
 		<author><![CDATA[Raymond Augé]]></author>
@@ -318,7 +318,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrIndexWriter</name>
-		<type>com.liferay.portal.search.solr.SolrIndexWriter</type>
+		<type>com.liferay.portal.search.solr.internal.SolrIndexWriter</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>addDocument</name>
@@ -499,7 +499,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrQuerySuggester</name>
-		<type>com.liferay.portal.search.solr.SolrQuerySuggester</type>
+		<type>com.liferay.portal.search.solr.internal.SolrQuerySuggester</type>
 		<author><![CDATA[Daniela Zapata Riesco]]></author>
 		<author><![CDATA[David Gonzalez]]></author>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -715,7 +715,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrSpellCheckIndexWriter</name>
-		<type>com.liferay.portal.search.solr.SolrSpellCheckIndexWriter</type>
+		<type>com.liferay.portal.search.solr.internal.SolrSpellCheckIndexWriter</type>
 		<author><![CDATA[Daniela Zapata Riesco]]></author>
 		<author><![CDATA[David Gonzalez]]></author>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -810,7 +810,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrFacetFieldCollector</name>
-		<type>com.liferay.portal.search.solr.facet.SolrFacetFieldCollector</type>
+		<type>com.liferay.portal.search.solr.internal.facet.SolrFacetFieldCollector</type>
 		<author><![CDATA[Raymond Augé]]></author>
 		<method>
 			<name>SolrFacetFieldCollector</name>
@@ -860,7 +860,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrFacetQueryCollector</name>
-		<type>com.liferay.portal.search.solr.facet.SolrFacetQueryCollector</type>
+		<type>com.liferay.portal.search.solr.internal.facet.SolrFacetQueryCollector</type>
 		<author><![CDATA[Raymond Augé]]></author>
 		<method>
 			<name>SolrFacetQueryCollector</name>
@@ -921,7 +921,7 @@
 	</javadoc>
 	<javadoc>
 		<name>BaseDelegatedSolrServer</name>
-		<type>com.liferay.portal.search.solr.server.BaseDelegatedSolrServer</type>
+		<type>com.liferay.portal.search.solr.internal.server.BaseDelegatedSolrServer</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>BaseDelegatedSolrServer</name>
@@ -940,7 +940,7 @@
 	</javadoc>
 	<javadoc>
 		<name>BasicAuthSolrServer</name>
-		<type>com.liferay.portal.search.solr.server.BasicAuthSolrServer</type>
+		<type>com.liferay.portal.search.solr.internal.server.BasicAuthSolrServer</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>BasicAuthSolrServer</name>
@@ -1158,7 +1158,7 @@
 	</javadoc>
 	<javadoc>
 		<name>BroadcastWriterSolrServer</name>
-		<type>com.liferay.portal.search.solr.server.BroadcastWriterSolrServer</type>
+		<type>com.liferay.portal.search.solr.internal.server.BroadcastWriterSolrServer</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>BroadcastWriterSolrServer</name>
@@ -1190,7 +1190,7 @@
 	</javadoc>
 	<javadoc>
 		<name>LiveServerChecker</name>
-		<type>com.liferay.portal.search.solr.server.LiveServerChecker</type>
+		<type>com.liferay.portal.search.solr.internal.server.LiveServerChecker</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<author><![CDATA[Zsigmond Rab]]></author>
 		<method>
@@ -1221,7 +1221,7 @@
 	</javadoc>
 	<javadoc>
 		<name>LoadBalancedSolrServerSelector</name>
-		<type>com.liferay.portal.search.solr.server.LoadBalancedSolrServerSelector</type>
+		<type>com.liferay.portal.search.solr.internal.server.LoadBalancedSolrServerSelector</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>select</name>
@@ -1237,7 +1237,7 @@
 	</javadoc>
 	<javadoc>
 		<name>LoadBalancerSolrServer</name>
-		<type>com.liferay.portal.search.solr.server.LoadBalancerSolrServer</type>
+		<type>com.liferay.portal.search.solr.internal.server.LoadBalancerSolrServer</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>LoadBalancerSolrServer</name>
@@ -1266,7 +1266,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrServerFactory</name>
-		<type>com.liferay.portal.search.solr.server.SolrServerFactory</type>
+		<type>com.liferay.portal.search.solr.internal.server.SolrServerFactory</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>SolrServerFactory</name>
@@ -1351,7 +1351,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrServerWrapper</name>
-		<type>com.liferay.portal.search.solr.server.SolrServerWrapper</type>
+		<type>com.liferay.portal.search.solr.internal.server.SolrServerWrapper</type>
 		<author><![CDATA[Bruno Farache]]></author>
 		<method>
 			<name>SolrServerWrapper</name>
@@ -1453,7 +1453,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrServerWrapperComparator</name>
-		<type>com.liferay.portal.search.solr.server.SolrServerWrapperComparator</type>
+		<type>com.liferay.portal.search.solr.internal.server.SolrServerWrapperComparator</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>compare</name>
@@ -1474,13 +1474,13 @@
 	</javadoc>
 	<javadoc>
 		<name>SolrServletContextListener</name>
-		<type>com.liferay.portal.search.solr.servlet.SolrServletContextListener</type>
+		<type>com.liferay.portal.search.solr.internal.servlet.SolrServletContextListener</type>
 		<author><![CDATA[Zsigmond Rab]]></author>
 		<method>
 			<name>registerLiveServerChecker</name>
 			<param>
 				<name>liveServerChecker</name>
-				<type>com.liferay.portal.search.solr.server.LiveServerChecker</type>
+				<type>com.liferay.portal.search.solr.internal.server.LiveServerChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 		</method>

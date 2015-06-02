@@ -12,17 +12,24 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.server;
+package com.liferay.portal.search.solr.internal.facet;
 
-import com.liferay.portal.search.solr.internal.server.SolrServerWrapper;
+import com.liferay.portal.kernel.search.facet.Facet;
+import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
+import com.liferay.portal.search.solr.facet.FacetProcessor;
 
-import java.util.List;
+import org.apache.solr.client.solrj.SolrQuery;
 
 /**
  * @author Michael C. Han
  */
-public interface SolrServerSelector {
+public class DefaultFacetProcessor implements FacetProcessor<SolrQuery> {
 
-	public SolrServerWrapper select(List<SolrServerWrapper> solrServerWrappers);
+	@Override
+	public void processFacet(SolrQuery solrQuery, Facet facet) {
+		FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
+
+		solrQuery.addFacetField(facetConfiguration.getFieldName());
+	}
 
 }

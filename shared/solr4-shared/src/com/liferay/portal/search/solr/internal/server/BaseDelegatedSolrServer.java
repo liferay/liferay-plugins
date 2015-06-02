@@ -12,17 +12,33 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.server;
-
-import com.liferay.portal.search.solr.internal.server.SolrServerWrapper;
+package com.liferay.portal.search.solr.internal.server;
 
 import java.util.List;
+
+import org.apache.solr.client.solrj.SolrServer;
 
 /**
  * @author Michael C. Han
  */
-public interface SolrServerSelector {
+public abstract class BaseDelegatedSolrServer extends SolrServer {
 
-	public SolrServerWrapper select(List<SolrServerWrapper> solrServerWrappers);
+	public void setSolrServerFactory(SolrServerFactory solrServerFactory) {
+		this.solrServerFactory = solrServerFactory;
+	}
+
+	@Override
+	public void shutdown() {
+		List<SolrServerWrapper> solrServerWrappers =
+			solrServerFactory.getLiveServers();
+
+		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
+			SolrServer solrServer = solrServerWrapper.getServer();
+
+			solrServer.shutdown();
+		}
+	}
+
+	protected SolrServerFactory solrServerFactory;
 
 }

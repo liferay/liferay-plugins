@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.solr;
 
+import com.liferay.portal.search.solr.internal.SolrPostProcesor;
+
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.kernel.search.query.QueryVisitor;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.search.solr.SolrPostProcesor;
+import com.liferay.portal.search.solr.internal.SolrPostProcesor;
 import com.liferay.portal.search.solr.query.BooleanQueryTranslator;
 import com.liferay.portal.search.solr.query.TermQueryTranslator;
 import com.liferay.portal.search.solr.query.TermRangeQueryTranslator;

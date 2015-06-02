@@ -12,17 +12,24 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.server;
+package com.liferay.portal.search.solr.internal.server;
 
-import com.liferay.portal.search.solr.internal.server.SolrServerWrapper;
-
-import java.util.List;
+import com.liferay.portal.search.solr.http.HttpClientFactory;
 
 /**
- * @author Michael C. Han
+ * @author László Csontos
+ * @author André de Oliveira
  */
-public interface SolrServerSelector {
+public class HttpSolrServer extends BaseHttpSolrServer {
 
-	public SolrServerWrapper select(List<SolrServerWrapper> solrServerWrappers);
+	public void afterPropertiesSet() throws Exception {
+		initHttpSolrServer(_httpClientFactory.createInstance());
+	}
+
+	public void setHttpClientFactory(HttpClientFactory httpClientFactory) {
+		_httpClientFactory = httpClientFactory;
+	}
+
+	private HttpClientFactory _httpClientFactory;
 
 }
