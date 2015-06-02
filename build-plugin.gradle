@@ -1,0 +1,91 @@
+apply plugin: "com.liferay.plugin"
+
+File appServerClassesPortalDir = new File(liferay.appServerPortalDir, "WEB-INF/classes")
+File appServerLibPortalDir = new File(liferay.appServerPortalDir, "WEB-INF/lib")
+
+afterEvaluate {
+	project.ext.set("app.server.lib.portal.dir", project.relativePath(appServerLibPortalDir))
+	project.ext.set("app.server.portal.dir", project.relativePath(liferay.appServerPortalDir))
+	project.ext.set("plugin.full.version", project.version.toString())
+}
+
+if (hasProperty("bundle")) {
+	bundle {
+		instruction "-jsp", "*.jsp"
+		instruction "-jsp", "*.jspf"
+		instruction "-metatype", "*"
+		instruction "-plugin", "com.liferay.ant.bnd.plugin.JspAnalyzerPlugin"
+		instruction "-plugin", "com.liferay.ant.bnd.plugin.SassAnalyzerPlugin"
+		instruction "-sass", "*"
+	}
+}
+
+configurations {
+	portal
+
+	portalTest {
+		extendsFrom portal
+	}
+
+	testCompile {
+		extendsFrom portalTest
+	}
+
+	testIntegrationCompile {
+		extendsFrom portalTest
+	}
+}
+
+dependencies {
+	portal files(appServerClassesPortalDir)
+	portal fileTree(dir: appServerLibPortalDir, include: "*.jar")
+	portal fileTree(dir: liferay.appServerLibGlobalDir, include: "*.jar")
+	portal group: "com.liferay", name: "net.sf.jargs", version: "1.0"
+	portal group: "com.thoughtworks.qdox", name: "qdox", version: "1.12.1"
+	portal group: "javax.activation", name: "activation", version: "1.1"
+	portal group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
+	portal group: "javax.servlet.jsp", name: "jsp-api", version: "2.1"
+
+	portalTest fileTree(dir: new File(liferay.liferayHome, "osgi/test"), include: "portal-test*.jar")
+
+	if (isPortalCompatSharedRequired(project)) {
+		runtime project(":shared:portal-compat-shared")
+	}
+}
+
+jar {
+	destinationDir = new File(rootDir, "dist2")
+}
+
+repositories {
+	mavenLocal()
+}
+
+plugins.withType(WarPlugin) {
+	war {
+		destinationDir = jar.destinationDir
+	}
+}
+
+boolean isPortalCompatSharedRequired(Project project) {
+	if (project.name == "portal-compat-shared") {
+		return false
+	}
+
+	if (project.name.endsWith("-layouttpl")) {
+		return false
+	}
+
+	if (project.name.endsWith("-theme")) {
+		File srcDir = project.file("docroot/WEB-INF/src")
+
+		if (srcDir.exists()) {
+			return true
+		}
+		else {
+			return false
+		}
+	}
+
+	return true
+}

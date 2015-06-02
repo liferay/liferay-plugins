@@ -21,6 +21,7 @@ _sass_cache_*.css
 /.ivy
 
 /*/*/bin
+/*/*/build
 /*/*/classes
 /*/*/javadoc
 /*/*/temp

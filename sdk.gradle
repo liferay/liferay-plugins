@@ -1,7 +1,6 @@
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.tools.ant.filters.ReplaceTokens
 
-apply from: "app-servers.gradle"
 apply from: "util.gradle"
 
 buildscript {
@@ -236,11 +235,11 @@ createHook << {
 		filter(
 			ReplaceTokens,
 			tokens: [
-				"app.server.tomcat.manager.password": appServers.tomcat.managerPassword,
-				"app.server.tomcat.manager.user": appServers.tomcat.managerUser,
+				"app.server.tomcat.manager.password": project.properties["app.server.tomcat.manager.user"],
+				"app.server.tomcat.manager.user": project.properties["app.server.tomcat.manager.password"],
 				"hook.display.name": hookDisplayName,
 				"hook.name": hookName,
-				"jmx.remote.port": jmxRemotePort,
+				"jmx.remote.port": project.properties["jmx.remote.port"],
 				"plugin.type.dir": ".."
 		])
 
@@ -500,9 +499,9 @@ createPortlet << {
 
 	processTokens = {
 		ant.replace(dir: portletDir) {
-			ant.replacefilter(token: "@app.server.tomcat.manager.password@", value: appServers.tomcat.managerPassword)
-			ant.replacefilter(token: "@app.server.tomcat.manager.user@", value: appServers.tomcat.managerUser)
-			ant.replacefilter(token: "@jmx.remote.port@", value: jmxRemotePort)
+			ant.replacefilter(token: "@app.server.tomcat.manager.password@", value: project.properties["app.server.tomcat.manager.password"])
+			ant.replacefilter(token: "@app.server.tomcat.manager.user@", value: project.properties["app.server.tomcat.manager.user"])
+			ant.replacefilter(token: "@jmx.remote.port@", value: project.properties["jmx.remote.port"])
 			ant.replacefilter(token: "@plugin.type.dir@", value: "..")
 			ant.replacefilter(token: "@portlet.display.name@", value: portletDisplayName)
 			ant.replacefilter(token: "@portlet.java.class.name@", value: portletJavaClassName)
