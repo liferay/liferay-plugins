@@ -17,10 +17,11 @@ package com.liferay.repository.external.model;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.lock.Lock;
+import com.liferay.portal.kernel.lock.LockHelperUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.Repository;
-import com.liferay.portal.kernel.repository.RepositoryProviderUtil;
 import com.liferay.portal.kernel.repository.capabilities.Capability;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileShortcut;
@@ -30,10 +31,8 @@ import com.liferay.portal.kernel.repository.model.RepositoryModelOperation;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Lock;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
-import com.liferay.portal.service.persistence.LockUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
@@ -43,7 +42,6 @@ import com.liferay.repository.external.ExtRepositoryFileEntry;
 import java.io.InputStream;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,15 +60,6 @@ public class ExtRepositoryFileEntryAdapter
 			extRepositoryFileEntry);
 
 		_extRepositoryFileEntry = extRepositoryFileEntry;
-	}
-
-	@Override
-	public <T extends Capability> boolean isRepositoryCapabilityProvided(
-		Class<T> capabilityClass) {
-
-		Repository repository = getRepository();
-
-		return repository.isCapabilityProvided(capabilityClass);
 	}
 
 	@Override
@@ -224,18 +213,15 @@ public class ExtRepositoryFileEntryAdapter
 
 		User user = getUser(checkedOutBy);
 
-		Lock lock = LockUtil.create(0);
-
-		lock.setCompanyId(getCompanyId());
+		long userId = 0;
+		String userName = null;
 
 		if (user != null) {
-			lock.setUserId(user.getUserId());
-			lock.setUserName(user.getFullName());
+			userId = user.getUserId();
+			userName = user.getFullName();
 		}
 
-		lock.setCreateDate(new Date());
-
-		return lock;
+		return LockHelperUtil.createLock(0, getCompanyId(), userId, userName);
 	}
 
 	@Override
@@ -377,6 +363,15 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public boolean isManualCheckInRequired() {
 		return true;
+	}
+
+	@Override
+	public <T extends Capability> boolean isRepositoryCapabilityProvided(
+		Class<T> capabilityClass) {
+
+		Repository repository = getRepository();
+
+		return repository.isCapabilityProvided(capabilityClass);
 	}
 
 	@Override
