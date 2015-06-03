@@ -1317,7 +1317,7 @@ Please find a solution that does not require portal-impl.jar.
 					</unzip>
 				</then>
 				<else>
-					<echo>The module com.liferay.frotnend.css.web.jar does not exist.</echo>
+					<fail>The module com.liferay.frotnend.css.web.jar does not exist.</fail>
 				</else>
 			</if>
 
