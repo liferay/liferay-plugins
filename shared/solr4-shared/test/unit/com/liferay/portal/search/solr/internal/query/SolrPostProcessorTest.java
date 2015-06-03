@@ -12,9 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.solr;
-
-import com.liferay.portal.search.solr.internal.SolrPostProcesor;
+package com.liferay.portal.search.solr.internal.query;
 
 import org.junit.Assert;
 import org.junit.Test;
