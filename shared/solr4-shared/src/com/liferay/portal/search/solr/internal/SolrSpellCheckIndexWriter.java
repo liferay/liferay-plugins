@@ -17,20 +17,23 @@ package com.liferay.portal.search.solr.internal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.suggest.BaseGenericSpellCheckIndexWriter;
 import com.liferay.portal.kernel.search.suggest.SuggestionConstants;
-import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.search.solr.document.SolrUpdateDocumentCommand;
+import com.liferay.portal.search.solr.internal.util.LogUtil;
 
 import java.util.Collection;
 import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.response.UpdateResponse;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -41,10 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author David Gonzalez
  * @author Michael C. Han
  */
-@Component(
-	immediate = true, property = { "commit=false" },
-	service = SolrSpellCheckIndexWriter.class
-)
+@Component(immediate = true, service = SolrSpellCheckIndexWriter.class)
 public class SolrSpellCheckIndexWriter
 	extends BaseGenericSpellCheckIndexWriter {
 
@@ -56,20 +56,7 @@ public class SolrSpellCheckIndexWriter
 		String deleteQuery = buildDeleteQuery(
 			searchContext, SuggestionConstants.TYPE_QUERY_SUGGESTION);
 
-		try {
-			_solrServer.deleteByQuery(deleteQuery);
-
-			if (_commit) {
-				_solrServer.commit();
-			}
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
-			}
-
-			throw new SearchException(e.getMessage(), e);
-		}
+		deleteByQuery(searchContext, deleteQuery);
 	}
 
 	@Override
@@ -79,25 +66,12 @@ public class SolrSpellCheckIndexWriter
 		String deleteQuery = buildDeleteQuery(
 			searchContext, SuggestionConstants.TYPE_SPELL_CHECKER);
 
-		try {
-			_solrServer.deleteByQuery(deleteQuery);
-
-			if (_commit) {
-				_solrServer.commit();
-			}
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
-			}
-
-			throw new SearchException(e.getMessage(), e);
-		}
+		deleteByQuery(searchContext, deleteQuery);
 	}
 
 	@Activate
 	protected void activate(Map<String, Object> properties) {
-		_commit = MapUtil.getBoolean(properties, "commit", false);
+		setDocumentPrototype(new DocumentImpl());
 	}
 
 	@Override
@@ -105,7 +79,8 @@ public class SolrSpellCheckIndexWriter
 			String documentType, SearchContext searchContext, Document document)
 		throws SearchException {
 
-		_indexWriter.addDocument(searchContext, document);
+		_solrUpdateDocumentCommand.updateDocument(
+			searchContext, document, false);
 	}
 
 	@Override
@@ -114,7 +89,8 @@ public class SolrSpellCheckIndexWriter
 			Collection<Document> documents)
 		throws SearchException {
 
-		_indexWriter.addDocuments(searchContext, documents);
+		_solrUpdateDocumentCommand.updateDocuments(
+			searchContext, documents, false);
 	}
 
 	protected void addQuerySeparator(StringBundler sb) {
@@ -151,9 +127,29 @@ public class SolrSpellCheckIndexWriter
 		return sb.toString();
 	}
 
-	@Reference(service = SolrIndexWriter.class, unbind = "-")
-	protected void setIndexWriter(IndexWriter indexWriter) {
-		_indexWriter = indexWriter;
+	protected void deleteByQuery(
+			SearchContext searchContext, String deleteQuery)
+		throws SearchException {
+
+		try {
+			UpdateResponse updateResponse = _solrServer.deleteByQuery(
+				deleteQuery);
+
+			if (PortalRunMode.isTestMode() ||
+				searchContext.isCommitImmediately()) {
+
+				_solrServer.commit();
+			}
+
+			LogUtil.logSolrResponseBase(_log, updateResponse);
+		}
+		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
+
+			throw new SearchException(e.getMessage(), e);
+		}
 	}
 
 	@Reference(unbind = "-")
@@ -161,11 +157,17 @@ public class SolrSpellCheckIndexWriter
 		_solrServer = solrServer;
 	}
 
+	@Reference(unbind = "-")
+	protected void setSolrUpdateDocumentCommand(
+		SolrUpdateDocumentCommand solrUpdateDocumentCommand) {
+
+		_solrUpdateDocumentCommand = solrUpdateDocumentCommand;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SolrSpellCheckIndexWriter.class);
 
-	private boolean _commit;
-	private IndexWriter _indexWriter;
 	private SolrServer _solrServer;
+	private SolrUpdateDocumentCommand _solrUpdateDocumentCommand;
 
 }
