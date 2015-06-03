@@ -1291,13 +1291,13 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 			</if>
 
-			<mkdir dir="${java.io.tmpdir}/theme" />
-
 			<if>
 				<resourcecount count="1" when="eq">
 					<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*.jar" />
 				</resourcecount>
 				<then>
+					<mkdir dir="${java.io.tmpdir}/theme" />
+
 					<pathconvert property="frontend.css.jar">
 						<path>
 							<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*.jar" />
