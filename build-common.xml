@@ -1305,8 +1305,8 @@ Please find a solution that does not require portal-impl.jar.
 					</pathconvert>
 
 					<unzip
-						src="${frontend.css.jar}"
 						dest="${java.io.tmpdir}/theme"
+						src="${frontend.css.jar}"
 					>
 						<patternset>
 							<include name="**/html/themes/**" />
