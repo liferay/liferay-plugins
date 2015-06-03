@@ -3,7 +3,7 @@
 <javadocs>
 	<javadoc>
 		<name>SampleAuthVerifier</name>
-		<type>com.liferay.sampleauthverifier.hook.security.auth.SampleAuthVerifier</type>
+		<type>com.liferay.sampleauthverifier.hook.security.auth.verifier.SampleAuthVerifier</type>
 		<author><![CDATA[Tomas Polesovsky]]></author>
 		<method>
 			<name>getAuthType</name>

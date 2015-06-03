@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.hook.security.auth;
+package com.liferay.sync.hook.security.auth.verifier;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;

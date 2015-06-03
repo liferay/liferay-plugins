@@ -322,7 +322,7 @@
 	</javadoc>
 	<javadoc>
 		<name>GoogleAutoLogin</name>
-		<type>com.liferay.google.login.hook.security.auth.GoogleAutoLogin</type>
+		<type>com.liferay.google.login.hook.security.auto.login.GoogleAutoLogin</type>
 		<author><![CDATA[Sergio González]]></author>
 		<method>
 			<name>doLogin</name>

@@ -47,7 +47,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SyncAuthVerifier</name>
-		<type>com.liferay.sync.hook.security.auth.SyncAuthVerifier</type>
+		<type>com.liferay.sync.hook.security.auth.verifier.SyncAuthVerifier</type>
 		<author><![CDATA[Michael Young]]></author>
 		<author><![CDATA[Dennis Ju]]></author>
 		<method>

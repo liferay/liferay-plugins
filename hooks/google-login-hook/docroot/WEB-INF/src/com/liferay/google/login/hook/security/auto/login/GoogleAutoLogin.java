@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.google.login.hook.security.auth;
+package com.liferay.google.login.hook.security.auto.login;
 
 import com.liferay.google.login.util.WebKeys;
 import com.liferay.portal.kernel.security.auto.login.BaseAutoLogin;
