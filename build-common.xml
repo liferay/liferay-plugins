@@ -91,6 +91,12 @@
 	<taskdef classname="com.liferay.ant.bnd.ReleaseToRepoTask" classpathref="classpath.com.liferay.ant.bnd" name="release-to-repo" />
 	<taskdef classpathref="classpath.com.liferay.ant.bnd" resource="aQute/bnd/ant/taskdef.properties" />
 
+	<path id="classpath.com.liferay.ant.heap.dump">
+		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.heap.dump/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classname="com.liferay.ant.heap.dump.HeapDumpTask" classpathref="classpath.com.liferay.ant.heap.dump" name="heap-dump" />
+
 	<path id="classpath.com.liferay.ant.jgit">
 		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.jgit/lib" includes="*.jar" />
 	</path>
