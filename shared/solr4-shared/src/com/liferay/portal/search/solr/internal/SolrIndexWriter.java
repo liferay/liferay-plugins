@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexWriter;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.suggest.SpellCheckIndexWriter;
@@ -43,7 +44,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Bruno Farache
  * @author Michael C. Han
  */
-@Component(immediate = true, service = SolrIndexWriter.class)
+@Component(
+	immediate = true, property = {"search.engine.impl=Solr"},
+	service = IndexWriter.class
+)
 public class SolrIndexWriter extends BaseIndexWriter {
 
 	@Override
@@ -143,7 +147,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 	}
 
 	@Override
-	@Reference(service = SolrSpellCheckIndexWriter.class, unbind = "-")
+	@Reference(target = "(search.engine.impl=Solr)", unbind = "-")
 	public void setSpellCheckIndexWriter(
 		SpellCheckIndexWriter spellCheckIndexWriter) {
 

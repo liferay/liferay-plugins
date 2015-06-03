@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.suggest.BaseGenericSpellCheckIndexWriter;
+import com.liferay.portal.kernel.search.suggest.SpellCheckIndexWriter;
 import com.liferay.portal.kernel.search.suggest.SuggestionConstants;
 import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -44,7 +45,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author David Gonzalez
  * @author Michael C. Han
  */
-@Component(immediate = true, service = SolrSpellCheckIndexWriter.class)
+@Component(
+	immediate = true, property = {"search.engine.impl=Solr"},
+	service = SpellCheckIndexWriter.class
+)
 public class SolrSpellCheckIndexWriter
 	extends BaseGenericSpellCheckIndexWriter {
 

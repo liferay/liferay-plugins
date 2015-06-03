@@ -33,7 +33,10 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = SearchEngineConfigurator.class)
+@Component(
+	immediate = true, property = {"search.engine.impl=Solr"},
+	service = SearchEngineConfigurator.class
+)
 public class SolrSearchEngineConfigurator
 	extends AbstractSearchEngineConfigurator {
 
@@ -69,17 +72,19 @@ public class SolrSearchEngineConfigurator
 		return clazz.getClassLoader();
 	}
 
-	@Reference(unbind = "-")
+	@Reference(target = "(!(search.engine.impl=*))", unbind = "-")
 	protected void setIndexSearcher(IndexSearcher indexSearcher) {
 		_indexSearcher = indexSearcher;
 	}
 
-	@Reference(unbind = "-")
+	@Reference(target = "(!(search.engine.impl=*))", unbind = "-")
 	protected void setIndexWriter(IndexWriter indexWriter) {
 		_indexWriter = indexWriter;
 	}
 
-	@Reference(target = "(search.engine.id=SYSTEM_ENGINE)")
+	@Reference(
+		target = "(&(search.engine.id=SYSTEM_ENGINE)(search.engine.impl=Solr))"
+	)
 	protected void setSearchEngine(
 		SearchEngine searchEngine, Map<String, Object> properties) {
 

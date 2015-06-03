@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = {"search.engine.id=SYSTEM_ENGINE", "vendor=Solr"},
+	property = {"search.engine.id=SYSTEM_ENGINE", "search.engine.impl=Solr"},
 	service = {SolrSearchEngine.class, SearchEngine.class}
 )
 public class SolrSearchEngine extends BaseSearchEngine {
@@ -66,20 +66,20 @@ public class SolrSearchEngine extends BaseSearchEngine {
 	}
 
 	@Override
-	@Reference(service = SolrIndexSearcher.class, unbind = "-")
+	@Reference(target = "(search.engine.impl=Solr)", unbind = "-")
 	public void setIndexSearcher(IndexSearcher indexSearcher) {
 		super.setIndexSearcher(indexSearcher);
 	}
 
 	@Override
-	@Reference(service = SolrIndexWriter.class, unbind = "-")
+	@Reference(target = "(search.engine.impl=Solr)", unbind = "-")
 	public void setIndexWriter(IndexWriter indexWriter) {
 		super.setIndexWriter(indexWriter);
 	}
 
 	@Activate
 	protected void activate(Map<String, Object> properties) {
-		setVendor(MapUtil.getString(properties, "vendor"));
+		setVendor(MapUtil.getString(properties, "search.engine.impl"));
 	}
 
 }

@@ -33,7 +33,10 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = FilterTranslator.class)
+@Component(
+	immediate = true, property = {"search.engine.impl=Solr"},
+	service = FilterTranslator.class
+)
 public class SolrFilterTranslator
 	implements FilterTranslator<String>, FilterVisitor<String> {
 

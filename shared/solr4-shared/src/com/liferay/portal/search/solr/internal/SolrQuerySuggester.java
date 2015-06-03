@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.analysis.TokenizerUtil;
 import com.liferay.portal.kernel.search.suggest.BaseQuerySuggester;
+import com.liferay.portal.kernel.search.suggest.QuerySuggester;
 import com.liferay.portal.kernel.search.suggest.SuggestionConstants;
 import com.liferay.portal.kernel.search.suggest.WeightedWord;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -62,8 +63,9 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true, property = {"distance.threshold=0.6f"},
-	service = SolrQuerySuggester.class
+	immediate = true,
+	property = {"distance.threshold=0.6f", "search.engine.impl=Solr"},
+	service = QuerySuggester.class
 )
 public class SolrQuerySuggester extends BaseQuerySuggester {
 

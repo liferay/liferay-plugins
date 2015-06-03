@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
+import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
@@ -80,8 +81,9 @@ import org.osgi.service.component.annotations.Reference;
  * @author Raymond Augé
  */
 @Component(
-	immediate = true, property = {"swallow.exception=true"},
-	service = SolrIndexSearcher.class
+	immediate = true,
+	property = {"search.engine.impl=Solr", "swallow.exception=true"},
+	service = IndexSearcher.class
 )
 public class SolrIndexSearcher extends BaseIndexSearcher {
 
@@ -176,7 +178,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	@Override
-	@Reference(service = SolrQuerySuggester.class, unbind = "-")
+	@Reference(target = "(search.engine.impl=Solr)", unbind = "-")
 	public void setQuerySuggester(QuerySuggester querySuggester) {
 		super.setQuerySuggester(querySuggester);
 	}
@@ -385,6 +387,15 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setQuery(queryString);
 
+		if (query.getPreBooleanFilter() != null) {
+			String filterQuery = _filterTranslator.translate(
+				query.getPreBooleanFilter());
+
+			if (Validator.isNotNull(filterQuery)) {
+				solrQuery.setFilterQueries(filterQuery);
+			}
+		}
+
 		QueryResponse queryResponse = executeSearchRequest(solrQuery);
 
 		if (_log.isInfoEnabled()) {
@@ -499,14 +510,14 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		_facetProcessor = facetProcessor;
 	}
 
-	@Reference(unbind = "-")
+	@Reference(target = "(search.engine.impl=Solr)", unbind = "-")
 	protected void setFilterTranslator(
 		FilterTranslator<String> filterTranslator) {
 
 		_filterTranslator = filterTranslator;
 	}
 
-	@Reference(unbind = "-")
+	@Reference(target = "(search.engine.impl=Solr)", unbind = "-")
 	protected void setQueryTranslator(QueryTranslator<String> queryTranslator) {
 		_queryTranslator = queryTranslator;
 	}
