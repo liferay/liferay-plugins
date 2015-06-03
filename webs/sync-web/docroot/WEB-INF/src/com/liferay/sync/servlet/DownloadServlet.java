@@ -43,6 +43,7 @@ import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ImageServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
@@ -350,6 +351,12 @@ public class DownloadServlet extends HttpServlet {
 
 	protected void sendImage(HttpServletResponse response, long imageId)
 		throws Exception {
+
+		User user = UserLocalServiceUtil.fetchUser(imageId);
+
+		if (user != null) {
+			imageId = user.getPortraitId();
+		}
 
 		Image image = ImageServiceUtil.getImage(imageId);
 
