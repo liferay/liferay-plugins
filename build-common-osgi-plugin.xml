@@ -8,7 +8,5 @@
 		<jar-macro
 			module.dir="${basedir}"
 		/>
-
-		<delete dir=".js_cache" />
 	</target>
 </project>

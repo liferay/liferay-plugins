@@ -937,28 +937,22 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="transpile-js-files">
-		<mkdir dir="temp-transpile" />
+		<delete dir=".js_cache" />
+		<mkdir dir=".js_cache" />
+		<mkdir dir="tmp/transpile" />
 
-		<copy todir="temp-transpile">
-			<fileset dir=".">
+		<copy todir="tmp/transpile">
+			<fileset dir="${plugin.source.dir}">
 				<include name="**/*.es.js" />
 			</fileset>
 		</copy>
 
-		<mkdir dir=".js_cache" />
-
-		<copy
-			file="bower.json"
-			tofile=".js_cache/bower.json"
-			overwrite="true"
-		/>
+		<copy file="bower.json" overwrite="true" tofile=".js_cache/bower.json" />
 
 		<ant antfile="${sdk.dir}/build-node.xml" target="transpile-js-files">
-			<property name="transpiler.input.dir" value="${user.dir}/temp-transpile" />
-			<property name="transpiler.output.dir" value="${user.dir}/.js_cache" />
+			<property name="transpiler.input.dir" value="${basedir}/tmp/transpile" />
+			<property name="transpiler.output.dir" value="${basedir}/.js_cache" />
 		</ant>
-
-		<delete dir="temp-transpile" />
 	</target>
 
 	<target name="generate-modules-config">
@@ -966,12 +960,12 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			<property name="config.generator.config.variable" value="" />
 			<property name="config.generator.file.extension" value="" />
 			<property name="config.generator.file.pattern" value="**/*.es.js" />
-			<property name="config.generator.input.dir" value="${user.dir}/.js_cache" />
-			<property name="config.generator.module.config" value="${user.dir}/.js_cache/bower.json" />
+			<property name="config.generator.input.dir" value="${basedir}/.js_cache" />
+			<property name="config.generator.module.config" value="${basedir}/.js_cache/bower.json" />
 			<property name="config.generator.module.format" value="/_/g,-" />
-			<property name="config.generator.output.file" value="${user.dir}/config.json" />
+			<property name="config.generator.output.file" value="${basedir}/config.json" />
 			<property name="config.generator.path.ignore" value="true" />
-			<property name="config.generator.root.dir" value="${user.dir}/.js_cache/src/META-INF/resources" />
+			<property name="config.generator.root.dir" value="${basedir}/.js_cache/META-INF/resources" />
 		</ant>
 	</target>
 
