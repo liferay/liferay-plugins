@@ -1296,17 +1296,19 @@ Please find a solution that does not require portal-impl.jar.
 					<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*.jar" />
 				</resourcecount>
 				<then>
-					<mkdir dir="${java.io.tmpdir}/theme" />
+					<property name="front.css.web.dir" value="${sdk.dir}/tmp/com.liferay.frontend.css.web" />
 
-					<pathconvert property="frontend.css.jar">
+					<mkdir dir="${frontend.css.web.dir}" />
+
+					<pathconvert property="frontend.css.web.file">
 						<path>
 							<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*.jar" />
 						</path>
 					</pathconvert>
 
 					<unzip
-						dest="${java.io.tmpdir}/theme"
-						src="${frontend.css.jar}"
+						dest="${frontend.css.web.dir}"
+						src="${frontend.css.web.file}"
 					>
 						<patternset>
 							<include name="**/html/themes/**" />
@@ -1326,14 +1328,14 @@ Please find a solution that does not require portal-impl.jar.
 				<then>
 					<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 						<fileset
-							dir="${java.io.tmpdir}/theme/html/themes/_unstyled"
+							dir="${frontend.css.web.dir}/html/themes/_unstyled"
 							excludes="templates/**"
 						/>
 					</copy>
 
 					<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 						<fileset
-							dir="${java.io.tmpdir}/theme/html/themes/_unstyled/templates"
+							dir="${frontend.css.web.dir}/html/themes/_unstyled/templates"
 							excludes="init.${theme.type}"
 							includes="*.${theme.type}"
 						/>
@@ -1344,14 +1346,14 @@ Please find a solution that does not require portal-impl.jar.
 					<then>
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
-								dir="${java.io.tmpdir}/theme/html/themes/_unstyled"
+								dir="${frontend.css.web.dir}/html/themes/_unstyled"
 								excludes="templates/**"
 							/>
 						</copy>
 
 						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 							<fileset
-								dir="${java.io.tmpdir}/theme/html/themes/_unstyled/templates"
+								dir="${frontend.css.web.dir}/html/themes/_unstyled/templates"
 								excludes="init.${theme.type}"
 								includes="*.${theme.type}"
 							/>
@@ -1359,7 +1361,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
-								dir="${java.io.tmpdir}/theme/html/themes/_styled"
+								dir="${frontend.css.web.dir}/html/themes/_styled"
 							/>
 						</copy>
 					</then>
@@ -1369,14 +1371,14 @@ Please find a solution that does not require portal-impl.jar.
 					<then>
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
-								dir="${java.io.tmpdir}/theme/html/themes/classic"
+								dir="${frontend.css.web.dir}/html/themes/classic"
 								excludes="**/.sass-cache/**,_diffs/**,templates/**"
 							/>
 						</copy>
 
 						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 							<fileset
-								dir="${java.io.tmpdir}/theme/html/themes/classic/templates"
+								dir="${frontend.css.web.dir}/html/themes/classic/templates"
 								includes="*.${theme.type}"
 							/>
 						</copy>
@@ -1387,14 +1389,14 @@ Please find a solution that does not require portal-impl.jar.
 					<then>
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
-								dir="${java.io.tmpdir}/theme/html/themes/control_panel"
+								dir="${frontend.css.web.dir}/html/themes/control_panel"
 								excludes="**/.sass-cache/**,_diffs/**,templates/**"
 							/>
 						</copy>
 
 						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 							<fileset
-								dir="${java.io.tmpdir}/theme/html/themes/control_panel/templates"
+								dir="${frontend.css.web.dir}/html/themes/control_panel/templates"
 								includes="*.${theme.type}"
 							/>
 						</copy>
