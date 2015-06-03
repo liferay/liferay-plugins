@@ -43,8 +43,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	property = {
-		"auth=BASIC", "default.max.connections.per.route=20",
-		"max.total.connections=20", "password=solr", "username=solr"
+		"default.max.connections.per.route=20", "max.total.connections=20",
+		"password=solr", "type=BASIC", "username=solr"
 	},
 	service = HttpClientFactory.class
 )

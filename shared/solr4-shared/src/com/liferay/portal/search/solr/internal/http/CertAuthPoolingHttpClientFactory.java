@@ -42,8 +42,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	property = {
-		"auth=CERT", "default.max.connections.per.route=20",
-		"max.total.connections=20"
+		"default.max.connections.per.route=20", "max.total.connections=20",
+		"type=CERT"
 	},
 	service = HttpClientFactory.class
 )
