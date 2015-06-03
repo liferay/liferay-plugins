@@ -14,6 +14,8 @@
 
 package com.liferay.portal.search.solr.internal.server;
 
+import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.solr.server.SolrServerSelector;
 
 import java.util.ArrayList;
@@ -24,9 +26,16 @@ import java.util.Map;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+
 /**
  * @author Bruno Farache
  */
+@Component(immediate = true, service = SolrServerFactory.class)
 public class SolrServerFactory {
 
 	public List<SolrServerWrapper> getDeadServers() {
@@ -65,24 +74,6 @@ public class SolrServerFactory {
 		}
 	}
 
-	public void setSolrServers(Map<String, SolrServer> solrServers) {
-		for (Map.Entry<String, SolrServer> entry : solrServers.entrySet()) {
-			String id = entry.getKey();
-			SolrServer solrServer = entry.getValue();
-
-			SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
-				id, solrServer);
-
-			solrServerWrapper.setSolrServerFactory(this);
-
-			_liveServers.put(id, solrServerWrapper);
-		}
-	}
-
-	public void setSolrServerSelector(SolrServerSelector solrServerSelector) {
-		_solrServerSelector = solrServerSelector;
-	}
-
 	public void startServer(SolrServerWrapper solrServerWrapper) {
 		synchronized (this) {
 			if (_liveServers.containsKey(solrServerWrapper.getId())) {
@@ -94,6 +85,55 @@ public class SolrServerFactory {
 
 			solrServerWrapper.resetInvocationCount();
 		}
+	}
+
+	@Reference(
+		cardinality = ReferenceCardinality.AT_LEAST_ONE,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	protected void setSolrServers(
+		SolrServer solrServer, Map<String, Object> properties) {
+
+		String url = MapUtil.getString(properties, "url");
+
+		if (Validator.isNull(url)) {
+			throw new IllegalArgumentException("Solr server must have a url");
+		}
+
+		SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
+			url, solrServer);
+
+		solrServerWrapper.setSolrServerFactory(this);
+
+		_liveServers.put(url, solrServerWrapper);
+	}
+
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+
+	)
+	protected void setSolrServerSelector(
+		SolrServerSelector solrServerSelector) {
+
+		_solrServerSelector = solrServerSelector;
+	}
+
+	protected void unsetSolrServers(
+		SolrServer solrServer, Map<String, Object> properties) {
+
+		String url = MapUtil.getString(properties, "url");
+
+		_liveServers.remove(url);
+		_deadServers.remove(url);
+	}
+
+	protected void unsetSolrServerSelector(
+		SolrServerSelector solrServerSelector) {
+
+		_solrServerSelector = new LoadBalancedSolrServerSelector();
 	}
 
 	private Map<String, SolrServerWrapper> _deadServers = new HashMap<>();

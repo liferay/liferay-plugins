@@ -14,19 +14,45 @@
 
 package com.liferay.portal.search.solr.internal.server;
 
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.search.solr.http.HttpClientFactory;
+
+import java.util.Map;
+
+import org.apache.solr.client.solrj.SolrServer;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author László Csontos
  * @author André de Oliveira
  */
+@Component(
+	immediate = true, property = {"url=http://localhost:8080/solr"},
+	service = SolrServer.class
+)
 public class HttpSolrServer extends BaseHttpSolrServer {
 
-	public void afterPropertiesSet() throws Exception {
+	@Activate
+	protected void activate(Map<String, Object> properties) throws Exception {
+		String url = MapUtil.getString(
+			properties, "url", "http://localhost:8080/solr");
+
+		setUrl(url);
+
 		initHttpSolrServer(_httpClientFactory.createInstance());
 	}
 
-	public void setHttpClientFactory(HttpClientFactory httpClientFactory) {
+	@Deactivate
+	protected void deactivate() {
+		shutdown();
+	}
+
+	@Reference(unbind = "-")
+	protected void setHttpClientFactory(HttpClientFactory httpClientFactory) {
 		_httpClientFactory = httpClientFactory;
 	}
 

@@ -17,7 +17,7 @@ package com.liferay.portal.search.solr.internal.suggest;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.suggest.NGramHolder;
-import com.liferay.portal.kernel.search.suggest.NGramHolderBuilderUtil;
+import com.liferay.portal.kernel.search.suggest.NGramHolderBuilder;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.search.solr.suggest.NGramQueryBuilder;
@@ -29,19 +29,29 @@ import java.util.Set;
 
 import org.apache.solr.client.solrj.SolrQuery;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+
 /**
  * @author Michael C. Han
  */
+@Component(immediate = true, service = NGramQueryBuilder.class)
 public class NGramQueryBuilderImpl implements NGramQueryBuilder {
 
 	@Override
 	public SolrQuery getNGramQuery(String input) throws SearchException {
 		SolrQuery solrQuery = new SolrQuery();
 
+		if (_nGramHolderBuilder == null) {
+			return solrQuery;
+		}
+
 		StringBundler sb = new StringBundler(10);
 
-		NGramHolder nGramHolder = NGramHolderBuilderUtil.buildNGramHolder(
-			input);
+		NGramHolder nGramHolder = _nGramHolderBuilder.buildNGramHolder(input);
 
 		Map<String, List<String>> nGrams = nGramHolder.getNGrams();
 
@@ -134,6 +144,25 @@ public class NGramQueryBuilderImpl implements NGramQueryBuilder {
 		sb.append(fieldValue);
 	}
 
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	protected void setNGramHolderBuilder(
+		NGramHolderBuilder nGramHolderBuilder) {
+
+		_nGramHolderBuilder = nGramHolderBuilder;
+	}
+
+	protected void unsetNGramHolderBuilder(
+		NGramHolderBuilder nGramHolderBuilder) {
+
+		_nGramHolderBuilder = null;
+	}
+
 	private static final String _OR_QUERY_SEPARATOR = " OR ";
+
+	private NGramHolderBuilder _nGramHolderBuilder;
 
 }

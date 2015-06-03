@@ -31,10 +31,13 @@ import java.security.cert.Certificate;
 
 import java.util.Enumeration;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author László Csontos
  * @author André de Oliveira
  */
+@Component(immediate = true, service = KeyStoreLoader.class)
 public class KeyStoreLoaderImpl implements KeyStoreLoader {
 
 	@Override

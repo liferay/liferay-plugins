@@ -16,20 +16,38 @@ package com.liferay.portal.search.solr.internal.http;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.search.solr.http.KeyStoreLoader;
 import com.liferay.portal.search.solr.http.SSLSocketFactoryBuilder;
 
 import java.security.KeyStore;
+
+import java.util.Map;
 
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * @author László Csontos
  * @author André de Oliveira
  */
+@Component(
+	immediate = true,
+	property = {
+		"key.store.password=secret", "key.store.path=classpath:/keystore.jks",
+		"key.store.type=JKS", "trust.store.password=secret",
+		"trust.store.path=classpath:/truststore.jks", "trust.store.type=JKS",
+		"verify.server.certificate=true", "verify.server.name=true"
+	},
+	service = SSLSocketFactoryBuilder.class
+)
 public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 
 	@Override
@@ -93,40 +111,36 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 		}
 	}
 
-	public void setKeyStoreLoader(KeyStoreLoader keyStoreLoader) {
+	@Activate
+	protected void activate(Map<String, Object> properties) {
+		_keyStorePassword = MapUtil.getString(
+			properties, "key.store.password", StringPool.BLANK).toCharArray();
+
+		_keyStorePath = MapUtil.getString(
+			properties, "key.store.path", "classpath:/keystore.jks");
+
+		_keyStoreType = MapUtil.getString(
+			properties, "key.store.type", KeyStore.getDefaultType());
+
+		_trustStorePassword = MapUtil.getString(
+			properties, "trust.store.password", StringPool.BLANK).toCharArray();
+
+		_trustStorePath = MapUtil.getString(
+			properties, "trust.store.path", "classpath:/truststore.jks");
+
+		_trustStoreType = MapUtil.getString(
+			properties, "trust.store.type", KeyStore.getDefaultType());
+
+		_verifyServerCertificate = MapUtil.getBoolean(
+			properties, "verify.server.certificate", true);
+
+		_verifyServerHostname = MapUtil.getBoolean(
+			properties, "verify.server.hostname", true);
+	}
+
+	@Reference(unbind = "-")
+	protected void setKeyStoreLoader(KeyStoreLoader keyStoreLoader) {
 		_keyStoreLoader = keyStoreLoader;
-	}
-
-	public void setKeyStorePassword(char[] keyStorePassword) {
-		_keyStorePassword = keyStorePassword;
-	}
-
-	public void setKeyStorePath(String keyStorePath) {
-		_keyStorePath = keyStorePath;
-	}
-
-	public void setKeyStoreType(String keyStoreType) {
-		_keyStoreType = keyStoreType;
-	}
-
-	public void setTrustStorePassword(char[] trustStorePassword) {
-		_trustStorePassword = trustStorePassword;
-	}
-
-	public void setTrustStorePath(String trustStorePath) {
-		_trustStorePath = trustStorePath;
-	}
-
-	public void setTrustStoreType(String trustStoreType) {
-		_trustStoreType = trustStoreType;
-	}
-
-	public void setVerifyServerCertificate(boolean verifyServerCertificate) {
-		_verifyServerCertificate = verifyServerCertificate;
-	}
-
-	public void setVerifyServerHostname(boolean verifyServerHostname) {
-		_verifyServerHostname = verifyServerHostname;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

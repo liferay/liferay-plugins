@@ -23,10 +23,13 @@ import com.liferay.portal.search.solr.query.BooleanQueryTranslator;
 
 import org.apache.lucene.search.BooleanClause.Occur;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author André de Oliveira
  * @author Miguel Angelo Caldas Gallindo
  */
+@Component(immediate = true, service = BooleanQueryTranslator.class)
 public class BooleanQueryTranslatorImpl implements BooleanQueryTranslator {
 
 	@Override

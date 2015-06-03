@@ -20,10 +20,13 @@ import com.liferay.portal.search.solr.query.WildcardQueryTranslator;
 
 import org.apache.lucene.index.Term;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author André de Oliveira
  * @author Miguel Angelo Caldas Gallindo
  */
+@Component(immediate = true, service = WildcardQueryTranslator.class)
 public class WildcardQueryTranslatorImpl implements WildcardQueryTranslator {
 
 	@Override

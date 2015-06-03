@@ -30,17 +30,18 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.util.Version;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+
 /**
  * @author André de Oliveira
  * @author Miguel Angelo Caldas Gallindo
  */
+@Component(immediate = true, service = TermQueryTranslator.class)
 public class TermQueryTranslatorImpl implements TermQueryTranslator {
-
-	public void setQueryPreProcessConfiguration(
-		QueryPreProcessConfiguration queryPreProcessConfiguration) {
-
-		_queryPreProcessConfiguration = queryPreProcessConfiguration;
-	}
 
 	@Override
 	public org.apache.lucene.search.Query translate(TermQuery termQuery) {
@@ -67,10 +68,15 @@ public class TermQueryTranslatorImpl implements TermQueryTranslator {
 		return luceneQuery;
 	}
 
-	public void unsetQueryPreProcessConfiguration(
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	protected void setQueryPreProcessConfiguration(
 		QueryPreProcessConfiguration queryPreProcessConfiguration) {
 
-		_queryPreProcessConfiguration = null;
+		_queryPreProcessConfiguration = queryPreProcessConfiguration;
 	}
 
 	protected org.apache.lucene.search.Query toCaseInsensitiveSubstringQuery(
@@ -104,6 +110,12 @@ public class TermQueryTranslatorImpl implements TermQueryTranslator {
 		}
 
 		throw new IllegalArgumentException();
+	}
+
+	protected void unsetQueryPreProcessConfiguration(
+		QueryPreProcessConfiguration queryPreProcessConfiguration) {
+
+		_queryPreProcessConfiguration = null;
 	}
 
 	private org.apache.lucene.search.Query _parseLuceneQuery(

@@ -12,31 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.internal.server;
+package com.liferay.portal.search.solr.internal.facet;
 
-import com.liferay.portal.search.solr.server.SolrServerSelector;
-
-import java.util.List;
-import java.util.TreeSet;
+import com.liferay.portal.search.solr.facet.FacetProcessor;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = SolrServerSelector.class)
-public class LoadBalancedSolrServerSelector implements SolrServerSelector {
-
-	@Override
-	public SolrServerWrapper select(
-		List<SolrServerWrapper> solrServerWrappers) {
-
-		TreeSet<SolrServerWrapper> sortedSolrServerWrappers = new TreeSet<>(
-			new SolrServerWrapperComparator());
-
-		sortedSolrServerWrappers.addAll(solrServerWrappers);
-
-		return sortedSolrServerWrappers.first();
-	}
-
+@Component(
+	immediate = true,
+	property = {
+		"class.name=com.liferay.portal.kernel.search.facet.ModifiedFacet"
+	},
+	service = FacetProcessor.class
+)
+public class ModifiedFacetProcessor extends RangeFacetProcessor {
 }

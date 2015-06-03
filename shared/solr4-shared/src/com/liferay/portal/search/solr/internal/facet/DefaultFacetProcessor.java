@@ -20,9 +20,12 @@ import com.liferay.portal.search.solr.facet.FacetProcessor;
 
 import org.apache.solr.client.solrj.SolrQuery;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author Michael C. Han
  */
+@Component(immediate = true, property = {"class.name=DEFAULT"})
 public class DefaultFacetProcessor implements FacetProcessor<SolrQuery> {
 
 	@Override

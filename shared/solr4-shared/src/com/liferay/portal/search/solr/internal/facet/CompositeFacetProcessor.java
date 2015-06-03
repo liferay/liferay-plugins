@@ -15,21 +15,34 @@
 package com.liferay.portal.search.solr.internal.facet;
 
 import com.liferay.portal.kernel.search.facet.Facet;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.search.solr.facet.FacetProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.solr.client.solrj.SolrQuery;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+
 /**
  * @author Michael C. Han
  */
-public class CompositeFacetProcessor<T> implements FacetProcessor<T> {
+@Component(
+	immediate = true,
+	service = {CompositeFacetProcessor.class, FacetProcessor.class}
+)
+public class CompositeFacetProcessor implements FacetProcessor<SolrQuery> {
 
 	@Override
-	public void processFacet(T searchQuery, Facet facet) {
+	public void processFacet(SolrQuery searchQuery, Facet facet) {
 		Class<?> clazz = facet.getClass();
 
-		FacetProcessor<T> facetProcessor = _facetProcessors.get(
+		FacetProcessor<SolrQuery> facetProcessor = _facetProcessors.get(
 			clazz.getName());
 
 		if (facetProcessor == null) {
@@ -39,19 +52,42 @@ public class CompositeFacetProcessor<T> implements FacetProcessor<T> {
 		facetProcessor.processFacet(searchQuery, facet);
 	}
 
-	public void setDefaultFacetProcessor(
-		FacetProcessor<T> defaultFacetProcessor) {
+	@Reference(
+		cardinality = ReferenceCardinality.MANDATORY,
+		target = "(class.name=DEFAULT)", unbind = "-"
+	)
+	protected void setDefaultFacetProcessor(
+		FacetProcessor<SolrQuery> defaultFacetProcessor) {
 
 		_defaultFacetProcessor = defaultFacetProcessor;
 	}
 
-	public void setFacetProcessors(
-		Map<String, FacetProcessor<T>> facetProcessors) {
+	@Reference(
+		cardinality = ReferenceCardinality.MULTIPLE,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(&(class.name=*)(!(class.name=DEFAULT)))"
+	)
+	protected void setFacetProcessor(
+		FacetProcessor<SolrQuery> facetProcessor,
+		Map<String, Object> properties) {
 
-		_facetProcessors = facetProcessors;
+		String className = MapUtil.getString(properties, "class.name");
+
+		_facetProcessors.put(className, facetProcessor);
 	}
 
-	private FacetProcessor<T> _defaultFacetProcessor;
-	private Map<String, FacetProcessor<T>> _facetProcessors = new HashMap<>();
+	protected void unsetFacetProcessor(
+		FacetProcessor<SolrQuery> facetProcessor,
+		Map<String, Object> properties) {
+
+		String className = MapUtil.getString(properties, "class.name");
+
+		_facetProcessors.remove(className);
+	}
+
+	private FacetProcessor<SolrQuery> _defaultFacetProcessor;
+	private Map<String, FacetProcessor<SolrQuery>> _facetProcessors =
+		new HashMap<>();
 
 }

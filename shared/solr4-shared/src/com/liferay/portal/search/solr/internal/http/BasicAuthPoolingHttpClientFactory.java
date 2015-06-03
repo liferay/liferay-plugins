@@ -14,20 +14,40 @@
 
 package com.liferay.portal.search.solr.internal.http;
 
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.search.solr.http.HttpClientFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * @author László Csontos
  * @author Bruno Farache
  * @author André de Oliveira
  */
+@Component(
+	immediate = true,
+	property = {
+		"auth=BASIC", "default.max.connections.per.route=20",
+		"max.total.connections=20", "password=solr", "username=solr"
+	},
+	service = HttpClientFactory.class
+)
 public class BasicAuthPoolingHttpClientFactory
 	extends BasePoolingHttpClientFactory {
 
@@ -41,6 +61,29 @@ public class BasicAuthPoolingHttpClientFactory
 
 	public void setUsername(String username) {
 		_username = username;
+	}
+
+	@Activate
+	protected void activate(Map<String, Object> properties) {
+		int defaultMaxConnectionsPerRoute = MapUtil.getInteger(
+			properties, "default.max.connections.per.route", 20);
+
+		setDefaultMaxConnectionsPerRoute(defaultMaxConnectionsPerRoute);
+
+		int maxTotalConnections = MapUtil.getInteger(
+			properties, "max.total.connections", 20);
+
+		setMaxTotalConnections(maxTotalConnections);
+
+		String basicAuthPassword = MapUtil.getString(
+			properties, "password", StringPool.BLANK);
+
+		setPassword(basicAuthPassword);
+
+		String basicAuthUsername = MapUtil.getString(
+			properties, "username", StringPool.BLANK);
+
+		setUsername(basicAuthUsername);
 	}
 
 	@Override
@@ -70,6 +113,23 @@ public class BasicAuthPoolingHttpClientFactory
 		createPoolingClientConnectionManager() {
 
 		return new PoolingClientConnectionManager();
+	}
+
+	@Deactivate
+	protected void deactivate() {
+		shutdown();
+	}
+
+	@Reference(unbind = "-")
+	protected void setHttpRequestInterceptor(
+		HttpRequestInterceptor httpRequestInterceptor) {
+
+		List<HttpRequestInterceptor> httpRequestInterceptors =
+			new ArrayList<>();
+
+		httpRequestInterceptors.add(httpRequestInterceptor);
+
+		setHttpRequestInterceptors(httpRequestInterceptors);
 	}
 
 	private AuthScope _authScope;

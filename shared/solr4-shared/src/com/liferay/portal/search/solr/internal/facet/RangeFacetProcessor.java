@@ -23,9 +23,15 @@ import com.liferay.portal.search.solr.facet.FacetProcessor;
 
 import org.apache.solr.client.solrj.SolrQuery;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author Michael C. Han
  */
+@Component(
+	immediate = true,
+	property = {"class.name=com.liferay.portal.kernel.search.facet.RangeFacet"}
+)
 public class RangeFacetProcessor implements FacetProcessor<SolrQuery> {
 
 	@Override

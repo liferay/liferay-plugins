@@ -26,9 +26,12 @@ import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.protocol.ExecutionContext;
 import org.apache.http.protocol.HttpContext;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author Eric Min
  */
+@Component(immediate = true, service = HttpRequestInterceptor.class)
 public class PreemptiveAuthInterceptor implements HttpRequestInterceptor {
 
 	@Override

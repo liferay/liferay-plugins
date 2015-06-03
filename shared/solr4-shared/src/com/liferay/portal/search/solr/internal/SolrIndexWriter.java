@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.suggest.SpellCheckIndexWriter;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.search.solr.document.SolrDocumentFactory;
@@ -33,9 +34,13 @@ import java.util.List;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * @author Bruno Farache
  */
+@Component(immediate = true, service = SolrIndexWriter.class)
 public class SolrIndexWriter extends BaseIndexWriter {
 
 	@Override
@@ -159,14 +164,12 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		_commit = commit;
 	}
 
-	public void setSolrDocumentFactory(
-		SolrDocumentFactory solrDocumentFactory) {
+	@Override
+	@Reference(service = SolrSpellCheckIndexWriter.class, unbind = "-")
+	public void setSpellCheckIndexWriter(
+		SpellCheckIndexWriter spellCheckIndexWriter) {
 
-		_solrDocumentFactory = solrDocumentFactory;
-	}
-
-	public void setSolrServer(SolrServer solrServer) {
-		_solrServer = solrServer;
+		super.setSpellCheckIndexWriter(spellCheckIndexWriter);
 	}
 
 	@Override
@@ -218,6 +221,18 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		}
 
 		return solrInputDocuments;
+	}
+
+	@Reference(unbind = "-")
+	protected void setSolrDocumentFactory(
+		SolrDocumentFactory solrDocumentFactory) {
+
+		_solrDocumentFactory = solrDocumentFactory;
+	}
+
+	@Reference(unbind = "-")
+	protected void setSolrServer(SolrServer solrServer) {
+		_solrServer = solrServer;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexWriter.class);

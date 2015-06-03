@@ -14,11 +14,12 @@
 
 package com.liferay.portal.search.solr.internal.server;
 
-import com.liferay.portal.search.solr.internal.servlet.SolrServletContextListener;
+import com.liferay.portal.kernel.util.MapUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -26,21 +27,15 @@ import java.util.concurrent.TimeUnit;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.SolrPingResponse;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * @author Bruno Farache
  * @author Zsigmond Rab
  */
 public class LiveServerChecker implements Runnable {
-
-	public void afterPropertiesSet() {
-		_scheduledExecutorService =
-			Executors.newSingleThreadScheduledExecutor();
-
-		_scheduledExecutorService.scheduleWithFixedDelay(
-			this, 0, _delay, TimeUnit.SECONDS);
-
-		SolrServletContextListener.registerLiveServerChecker(this);
-	}
 
 	@Override
 	public void run() {
@@ -72,15 +67,19 @@ public class LiveServerChecker implements Runnable {
 		}
 	}
 
-	public void setDelay(long delay) {
-		_delay = delay;
+	@Activate
+	protected void activate(Map<String, Object> properties) {
+		long delay = MapUtil.getLong(properties, "delay", 10);
+
+		_scheduledExecutorService =
+			Executors.newSingleThreadScheduledExecutor();
+
+		_scheduledExecutorService.scheduleWithFixedDelay(
+			this, 0, delay, TimeUnit.SECONDS);
 	}
 
-	public void setSolrServerFactory(SolrServerFactory solrServerFactory) {
-		_solrServerFactory = solrServerFactory;
-	}
-
-	public void shutdown() {
+	@Deactivate
+	protected void deactivate() {
 		List<SolrServerWrapper> allSolrServerWrappers = new ArrayList<>();
 
 		List<SolrServerWrapper> deadSolrServerWrappers =
@@ -112,7 +111,11 @@ public class LiveServerChecker implements Runnable {
 		_scheduledExecutorService.shutdownNow();
 	}
 
-	private long _delay;
+	@Reference(unbind = "-")
+	protected void setSolrServerFactory(SolrServerFactory solrServerFactory) {
+		_solrServerFactory = solrServerFactory;
+	}
+
 	private ScheduledExecutorService _scheduledExecutorService;
 	private SolrServerFactory _solrServerFactory;
 

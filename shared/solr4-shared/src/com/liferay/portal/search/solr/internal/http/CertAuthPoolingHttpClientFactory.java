@@ -15,25 +15,52 @@
 package com.liferay.portal.search.solr.internal.http;
 
 import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.search.solr.http.HttpClientFactory;
 import com.liferay.portal.search.solr.http.SSLSocketFactoryBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * @author László Csontos
  * @author André de Oliveira
  */
+@Component(
+	immediate = true,
+	property = {
+		"auth=CERT", "default.max.connections.per.route=20",
+		"max.total.connections=20"
+	},
+	service = HttpClientFactory.class
+)
 public class CertAuthPoolingHttpClientFactory
 	extends BasePoolingHttpClientFactory {
 
-	public void setSslSocketFactoryBuilder(
-		SSLSocketFactoryBuilder sslSocketFactoryBuilder) {
+	@Activate
+	protected void activate(Map<String, Object> properties) {
+		int defaultMaxConnectionsPerRoute = MapUtil.getInteger(
+			properties, "default.max.connections.per.route", 20);
 
-		_sslSocketFactoryBuilder = sslSocketFactoryBuilder;
+		setDefaultMaxConnectionsPerRoute(defaultMaxConnectionsPerRoute);
+
+		int maxTotalConnections = MapUtil.getInteger(
+			properties, "max.total.connections", 20);
+
+		setMaxTotalConnections(maxTotalConnections);
 	}
 
 	@Override
@@ -62,6 +89,30 @@ public class CertAuthPoolingHttpClientFactory
 		schemeRegistry.register(scheme);
 
 		return schemeRegistry;
+	}
+
+	@Deactivate
+	protected void deactivate() {
+		shutdown();
+	}
+
+	@Reference(unbind = "-")
+	protected void setHttpRequestInterceptor(
+		HttpRequestInterceptor httpRequestInterceptor) {
+
+		List<HttpRequestInterceptor> httpRequestInterceptors =
+			new ArrayList<>();
+
+		httpRequestInterceptors.add(httpRequestInterceptor);
+
+		setHttpRequestInterceptors(httpRequestInterceptors);
+	}
+
+	@Reference(unbind = "-")
+	protected void setSslSocketFactoryBuilder(
+		SSLSocketFactoryBuilder sslSocketFactoryBuilder) {
+
+		_sslSocketFactoryBuilder = sslSocketFactoryBuilder;
 	}
 
 	private SSLSocketFactoryBuilder _sslSocketFactoryBuilder;

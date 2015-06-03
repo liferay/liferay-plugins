@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.search.suggest.SuggestionConstants;
 import com.liferay.portal.kernel.search.suggest.WeightedWord;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -48,28 +49,23 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+
 /**
  * @author Daniela Zapata Riesco
  * @author David Gonzalez
  * @author Michael C. Han
  */
+@Component(
+	immediate = true, property = {"distance.threshold=0.6f"},
+	service = SolrQuerySuggester.class
+)
 public class SolrQuerySuggester extends BaseQuerySuggester {
-
-	public void setDistanceThreshold(float distanceThreshold) {
-		_distanceThreshold = distanceThreshold;
-	}
-
-	public void setNGramQueryBuilder(NGramQueryBuilder nGramQueryBuilder) {
-		_nGramQueryBuilder = nGramQueryBuilder;
-	}
-
-	public void setSolrServer(SolrServer solrServer) {
-		_solrServer = solrServer;
-	}
-
-	public void setStringDistance(StringDistance stringDistance) {
-		_stringDistance = stringDistance;
-	}
 
 	@Override
 	public Map<String, List<String>> spellCheckKeywords(
@@ -147,6 +143,12 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		}
 	}
 
+	@Activate
+	protected void activate(Map<String, Object> properties) {
+		_distanceThreshold = MapUtil.getDouble(
+			properties, "distance.threshold", 0.6d);
+	}
+
 	protected String[] getFilterQueries(
 		SearchContext searchContext, String type) {
 
@@ -220,6 +222,25 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		}
 
 		return ArrayUtil.append(groupIds, _GLOBAL_GROUP_ID);
+	}
+
+	@Reference(unbind = "-")
+	protected void setNGramQueryBuilder(NGramQueryBuilder nGramQueryBuilder) {
+		_nGramQueryBuilder = nGramQueryBuilder;
+	}
+
+	@Reference(unbind = "-")
+	protected void setSolrServer(SolrServer solrServer) {
+		_solrServer = solrServer;
+	}
+
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	protected void setStringDistance(StringDistance stringDistance) {
+		_stringDistance = stringDistance;
 	}
 
 	protected List<String> suggestKeywords(
@@ -332,6 +353,10 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		}
 	}
 
+	protected void unsetStringDistance(StringDistance stringDistance) {
+		_stringDistance = new LevensteinDistance();
+	}
+
 	private static final long _GLOBAL_GROUP_ID = 0;
 
 	private static final float _INFINITE_WEIGHT = 100f;
@@ -340,7 +365,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 	private static Log _log = LogFactoryUtil.getLog(SolrQuerySuggester.class);
 
-	private float _distanceThreshold;
+	private double _distanceThreshold;
 	private NGramQueryBuilder _nGramQueryBuilder;
 	private SolrServer _solrServer;
 	private StringDistance _stringDistance = new LevensteinDistance();

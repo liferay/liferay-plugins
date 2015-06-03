@@ -17,10 +17,13 @@ package com.liferay.portal.search.solr.internal.query;
 import com.liferay.portal.kernel.search.TermRangeQuery;
 import com.liferay.portal.search.solr.query.TermRangeQueryTranslator;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author André de Oliveira
  * @author Miguel Angelo Caldas Gallindo
  */
+@Component(immediate = true, service = TermRangeQueryTranslator.class)
 public class TermRangeQueryTranslatorImpl implements TermRangeQueryTranslator {
 
 	@Override

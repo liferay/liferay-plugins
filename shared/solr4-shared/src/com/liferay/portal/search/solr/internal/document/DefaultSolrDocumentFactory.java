@@ -26,9 +26,12 @@ import java.util.Map;
 
 import org.apache.solr.common.SolrInputDocument;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author Michael C. Han
  */
+@Component(immediate = true, service = SolrDocumentFactory.class)
 public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 
 	@Override
@@ -80,8 +83,7 @@ public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 					String localizedName = DocumentImpl.getLocalizedName(
 						locale, name);
 
-					addField(
-						solrInputDocument, field, value, localizedName);
+					addField(solrInputDocument, field, value, localizedName);
 				}
 			}
 		}

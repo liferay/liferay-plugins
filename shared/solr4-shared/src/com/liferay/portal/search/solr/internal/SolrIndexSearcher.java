@@ -33,8 +33,10 @@ import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.RangeFacet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
+import com.liferay.portal.kernel.search.filter.FilterTranslator;
 import com.liferay.portal.kernel.search.highlight.HighlightUtil;
 import com.liferay.portal.kernel.search.query.QueryTranslator;
+import com.liferay.portal.kernel.search.suggest.QuerySuggester;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -44,6 +46,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.solr.facet.FacetProcessor;
+import com.liferay.portal.search.solr.internal.facet.CompositeFacetProcessor;
 import com.liferay.portal.search.solr.internal.facet.SolrFacetFieldCollector;
 import com.liferay.portal.search.solr.internal.facet.SolrFacetQueryCollector;
 
@@ -67,11 +70,19 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.params.FacetParams;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 /**
  * @author Bruno Farache
  * @author Zsolt Berentey
  * @author Raymond Augé
  */
+@Component(
+	immediate = true, property = {"swallow.exception=true"},
+	service = SolrIndexSearcher.class
+)
 public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	@Override
@@ -164,20 +175,20 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	public void setFacetProcessor(FacetProcessor<SolrQuery> facetProcessor) {
-		_facetProcessor = facetProcessor;
-	}
-
-	public void setQueryTranslator(QueryTranslator<String> queryTranslator) {
-		_queryTranslator = queryTranslator;
+	@Override
+	@Reference(service = SolrQuerySuggester.class, unbind = "-")
+	public void setQuerySuggester(QuerySuggester querySuggester) {
+		super.setQuerySuggester(querySuggester);
 	}
 
 	public void setSolrServer(SolrServer solrServer) {
 		_solrServer = solrServer;
 	}
 
-	public void setSwallowException(boolean swallowException) {
-		_swallowException = swallowException;
+	@Activate
+	protected void activate(Map<String, Object> properties) {
+		_swallowException = MapUtil.getBoolean(
+			properties, "swallow.exception", true);
 	}
 
 	protected void addFacets(SolrQuery solrQuery, SearchContext searchContext) {
@@ -483,6 +494,23 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		return document;
 	}
 
+	@Reference(service = CompositeFacetProcessor.class, unbind = "-")
+	protected void setFacetProcessor(FacetProcessor<SolrQuery> facetProcessor) {
+		_facetProcessor = facetProcessor;
+	}
+
+	@Reference(unbind = "-")
+	protected void setFilterTranslator(
+		FilterTranslator<String> filterTranslator) {
+
+		_filterTranslator = filterTranslator;
+	}
+
+	@Reference(unbind = "-")
+	protected void setQueryTranslator(QueryTranslator<String> queryTranslator) {
+		_queryTranslator = queryTranslator;
+	}
+
 	protected String translateQuery(Query query, SearchContext searchContext) {
 		return _queryTranslator.translate(query, searchContext);
 	}
@@ -520,6 +548,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 		SolrIndexSearcher.class);
 
 	private FacetProcessor<SolrQuery> _facetProcessor;
+	private FilterTranslator<String> _filterTranslator;
 	private QueryTranslator<String> _queryTranslator;
 	private SolrServer _solrServer;
 	private boolean _swallowException;

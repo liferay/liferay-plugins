@@ -23,18 +23,28 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.suggest.BaseGenericSpellCheckIndexWriter;
 import com.liferay.portal.kernel.search.suggest.SuggestionConstants;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
+
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Daniela Zapata Riesco
  * @author David Gonzalez
  * @author Michael C. Han
  */
+@Component(
+	immediate = true, property = { "commit=false" },
+	service = SolrSpellCheckIndexWriter.class
+)
 public class SolrSpellCheckIndexWriter
 	extends BaseGenericSpellCheckIndexWriter {
 
@@ -85,16 +95,9 @@ public class SolrSpellCheckIndexWriter
 		}
 	}
 
-	public void setCommit(boolean commit) {
-		_commit = commit;
-	}
-
-	public void setIndexWriter(IndexWriter indexWriter) {
-		_indexWriter = indexWriter;
-	}
-
-	public void setSolrServer(SolrServer solrServer) {
-		_solrServer = solrServer;
+	@Activate
+	protected void activate(Map<String, Object> properties) {
+		_commit = MapUtil.getBoolean(properties, "commit", false);
 	}
 
 	@Override
@@ -146,6 +149,16 @@ public class SolrSpellCheckIndexWriter
 		addQueryType(sb, type);
 
 		return sb.toString();
+	}
+
+	@Reference(service = SolrIndexWriter.class, unbind = "-")
+	protected void setIndexWriter(IndexWriter indexWriter) {
+		_indexWriter = indexWriter;
+	}
+
+	@Reference(unbind = "-")
+	protected void setSolrServer(SolrServer solrServer) {
+		_solrServer = solrServer;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
