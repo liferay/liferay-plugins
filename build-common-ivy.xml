@@ -113,6 +113,7 @@
 			<var name="mirrors.cache.artifact.dir" unset="true" />
 			<var name="mirrors.cache.artifact.file.name" unset="true" />
 			<var name="mirrors.cache.artifact.subdir" unset="true" />
+			<var name="mirrors.src" unset="true" />
 		</sequential>
 	</macrodef>
 
