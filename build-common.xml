@@ -3314,6 +3314,23 @@ for (String path : paths) {
 		<delete file="ServiceBuilder.temp" />
 	</target>
 
+	<target name="format-tld">
+		<path id="tld.formatter.classpath">
+			<fileset dir="${sdk.dir}/dependencies/com.liferay.tld.formatter/lib" includes="*.jar" />
+		</path>
+
+		<java
+			classname="com.liferay.tld.formatter.TLDFormatter"
+			classpathref="tld.formatter.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<arg value="tld.plugin=true" />
+		</java>
+
+		<delete file="ServiceBuilder.temp" />
+	</target>
+
 	<target name="init-gradle">
 		<gradle-execute task="initGradle" />
 	</target>
