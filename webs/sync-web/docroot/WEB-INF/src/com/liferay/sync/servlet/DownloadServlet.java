@@ -14,7 +14,6 @@
 
 package com.liferay.sync.servlet;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -115,7 +114,7 @@ public class DownloadServlet extends HttpServlet {
 				JSONArray zipFileIdsJSONArray = JSONFactoryUtil.createJSONArray(
 					zipFileIds);
 
-				sendZipFile(response, user, zipFileIdsJSONArray);
+				sendZipFile(response, user.getUserId(), zipFileIdsJSONArray);
 			}
 			else if (pathArray[0].equals("zipfolder")) {
 				long repositoryId = ParamUtil.getLong(request, "repositoryId");
@@ -130,7 +129,8 @@ public class DownloadServlet extends HttpServlet {
 						"Missing parameter folderId");
 				}
 
-				sendZipFolder(response, repositoryId, folderId);
+				sendZipFolder(
+					response, user.getUserId(), repositoryId, folderId);
 			}
 			else {
 				long groupId = GetterUtil.getLong(pathArray[0]);
@@ -151,10 +151,12 @@ public class DownloadServlet extends HttpServlet {
 				boolean patch = ParamUtil.getBoolean(request, "patch");
 
 				if (patch) {
-					sendPatch(request, response, user, groupId, uuid);
+					sendPatch(
+						request, response, user.getUserId(), groupId, uuid);
 				}
 				else {
-					sendFile(request, response, groupId, uuid);
+					sendFile(
+						request, response, user.getUserId(), groupId, uuid);
 				}
 			}
 		}
@@ -172,7 +174,7 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected void addZipFolderEntry(
-			long repositoryId, long folderId, String folderPath,
+			long userId, long repositoryId, long folderId, String folderPath,
 			ZipWriter zipWriter)
 		throws Exception {
 
@@ -182,7 +184,8 @@ public class DownloadServlet extends HttpServlet {
 		for (FileEntry fileEntry : fileEntries) {
 			InputStream inputStream =
 				DLFileEntryLocalServiceUtil.getFileAsStream(
-					fileEntry.getFileEntryId(), fileEntry.getVersion(), false);
+					userId, fileEntry.getFileEntryId(), fileEntry.getVersion(),
+					false);
 
 			String filePath = folderPath + fileEntry.getTitle();
 
@@ -197,15 +200,15 @@ public class DownloadServlet extends HttpServlet {
 				folderPath + childFolder.getName() + StringPool.FORWARD_SLASH;
 
 			addZipFolderEntry(
-				repositoryId, childFolder.getFolderId(), childFolderPath,
-				zipWriter);
+				userId, repositoryId, childFolder.getFolderId(),
+				childFolderPath, zipWriter);
 		}
 	}
 
 	protected File getDeltaFile(
 			long userId, long fileEntryId, long sourceVersionId,
 			long targetVersionId)
-		throws PortalException {
+		throws Exception {
 
 		DLFileVersion sourceDLFileVersion =
 			DLFileVersionLocalServiceUtil.getDLFileVersion(sourceVersionId);
@@ -223,7 +226,7 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected DownloadServletInputStream getFileDownloadServletInputStream(
-			long groupId, String uuid, String version)
+			long userId, long groupId, String uuid, String version)
 		throws Exception {
 
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntryByUuidAndGroupId(
@@ -236,7 +239,8 @@ public class DownloadServlet extends HttpServlet {
 		if (Validator.isNull(version)) {
 			InputStream inputStream =
 				DLFileEntryLocalServiceUtil.getFileAsStream(
-					fileEntry.getFileEntryId(), fileEntry.getVersion(), false);
+					userId, fileEntry.getFileEntryId(), fileEntry.getVersion(),
+					false);
 
 			return new DownloadServletInputStream(
 				inputStream, fileEntry.getMimeType(), fileEntry.getSize());
@@ -251,7 +255,7 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected DownloadServletInputStream getPatchDownloadServletInputStream(
-			User user, long groupId, String uuid, long sourceVersionId,
+			long userId, long groupId, String uuid, long sourceVersionId,
 			long targetVersionId)
 		throws Exception {
 
@@ -267,8 +271,8 @@ public class DownloadServlet extends HttpServlet {
 
 			try {
 				deltaFile = getDeltaFile(
-					user.getUserId(), fileEntry.getFileEntryId(),
-					sourceVersionId, targetVersionId);
+					userId, fileEntry.getFileEntryId(), sourceVersionId,
+					targetVersionId);
 
 				return new DownloadServletInputStream(
 					new FileInputStream(deltaFile), deltaFile.length());
@@ -298,8 +302,8 @@ public class DownloadServlet extends HttpServlet {
 
 			try {
 				deltaFile = getDeltaFile(
-					user.getUserId(), fileEntry.getFileEntryId(),
-					sourceVersionId, targetVersionId);
+					userId, fileEntry.getFileEntryId(), sourceVersionId,
+					targetVersionId);
 
 				try {
 					SyncDLFileVersionDiffLocalServiceUtil.
@@ -331,13 +335,13 @@ public class DownloadServlet extends HttpServlet {
 
 	protected void sendFile(
 			HttpServletRequest request, HttpServletResponse response,
-			long groupId, String uuid)
+			long userId, long groupId, String uuid)
 		throws Exception {
 
 		String version = ParamUtil.getString(request, "version");
 
 		DownloadServletInputStream downloadServletInputStream =
-			getFileDownloadServletInputStream(groupId, uuid, version);
+			getFileDownloadServletInputStream(userId, groupId, uuid, version);
 
 		ServletResponseUtil.write(
 			response, downloadServletInputStream.getInputStream(),
@@ -361,8 +365,8 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected void sendPatch(
-			HttpServletRequest request, HttpServletResponse response, User user,
-			long groupId, String uuid)
+			HttpServletRequest request, HttpServletResponse response,
+			long userId, long groupId, String uuid)
 		throws Exception {
 
 		long sourceVersionId = ParamUtil.getLong(request, "sourceVersionId", 0);
@@ -370,7 +374,7 @@ public class DownloadServlet extends HttpServlet {
 
 		DownloadServletInputStream downloadServletInputStream =
 			getPatchDownloadServletInputStream(
-				user, groupId, uuid, sourceVersionId, targetVersionId);
+				userId, groupId, uuid, sourceVersionId, targetVersionId);
 
 		ServletResponseUtil.write(
 			response, downloadServletInputStream.getInputStream(),
@@ -378,7 +382,7 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected void sendZipFile(
-			HttpServletResponse response, User user,
+			HttpServletResponse response, long userId,
 			JSONArray zipFileIdsJSONArray)
 		throws Exception {
 
@@ -414,7 +418,7 @@ public class DownloadServlet extends HttpServlet {
 
 					DownloadServletInputStream downloadServletInputStream =
 						getPatchDownloadServletInputStream(
-							user, groupId, uuid, sourceVersionId,
+							userId, groupId, uuid, sourceVersionId,
 							targetVersionId);
 
 					zipWriter.addEntry(
@@ -423,7 +427,7 @@ public class DownloadServlet extends HttpServlet {
 				else {
 					DownloadServletInputStream downloadServletInputStream =
 						getFileDownloadServletInputStream(
-							groupId, uuid,
+							userId, groupId, uuid,
 							zipObjectJSONObject.getString("version"));
 
 					zipWriter.addEntry(
@@ -445,12 +449,14 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected void sendZipFolder(
-			HttpServletResponse response, long repositoryId, long folderId)
+			HttpServletResponse response, long userId, long repositoryId,
+			long folderId)
 		throws Exception {
 
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
-		addZipFolderEntry(repositoryId, folderId, StringPool.BLANK, zipWriter);
+		addZipFolderEntry(
+			userId, repositoryId, folderId, StringPool.BLANK, zipWriter);
 
 		File file = zipWriter.getFile();
 
