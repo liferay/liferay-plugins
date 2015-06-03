@@ -18,7 +18,7 @@ import com.liferay.portal.DuplicateLockException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.lock.Lock;
-import com.liferay.portal.kernel.lock.LockHelperUtil;
+import com.liferay.portal.kernel.lock.LockManagerUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -110,7 +110,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		Lock lock = null;
 
 		try {
-			lock = LockHelperUtil.lock(
+			lock = LockManagerUtil.lock(
 				userId, WorkflowTask.class.getName(), workflowTaskInstanceId,
 				String.valueOf(userId), false, 1000);
 		}
@@ -165,7 +165,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			throw new WorkflowException("Unable to complete task", e);
 		}
 		finally {
-			LockHelperUtil.unlock(lock.getClassName(), lock.getKey());
+			LockManagerUtil.unlock(lock.getClassName(), lock.getKey());
 		}
 	}
 

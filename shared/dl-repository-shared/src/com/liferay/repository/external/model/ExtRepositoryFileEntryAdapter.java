@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.lock.Lock;
-import com.liferay.portal.kernel.lock.LockHelperUtil;
+import com.liferay.portal.kernel.lock.LockManagerUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.Repository;
@@ -221,7 +221,7 @@ public class ExtRepositoryFileEntryAdapter
 			userName = user.getFullName();
 		}
 
-		return LockHelperUtil.createLock(0, getCompanyId(), userId, userName);
+		return LockManagerUtil.createLock(0, getCompanyId(), userId, userName);
 	}
 
 	@Override
