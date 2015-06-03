@@ -14,7 +14,7 @@
 			<openSearcher>false</openSearcher>
 		</autoCommit>
 		<autoSoftCommit>
-  			<maxTime>1000</maxTime>
+			<maxTime>1000</maxTime>
 		</autoSoftCommit>
 		<updateLog>
 			<str name="dir">${solr.data.dir:}</str>
@@ -294,11 +294,11 @@
 			<fragmentsBuilder class="solr.highlight.ScoreOrderFragmentsBuilder" name="colored">
 				<lst name="defaults">
 					<str name="hl.tag.pre"><![CDATA[
-               <b style="background:yellow">,<b style="background:lawgreen">,
-               <b style="background:aquamarine">,<b style="background:magenta">,
-               <b style="background:palegreen">,<b style="background:coral">,
-               <b style="background:wheat">,<b style="background:khaki">,
-               <b style="background:lime">,<b style="background:deepskyblue">]]></str>
+			   <b style="background:yellow">,<b style="background:lawgreen">,
+			   <b style="background:aquamarine">,<b style="background:magenta">,
+			   <b style="background:palegreen">,<b style="background:coral">,
+			   <b style="background:wheat">,<b style="background:khaki">,
+			   <b style="background:lime">,<b style="background:deepskyblue">]]></str>
 					<str name="hl.tag.post"><![CDATA[</b>]]></str>
 				</lst>
 			</fragmentsBuilder>
