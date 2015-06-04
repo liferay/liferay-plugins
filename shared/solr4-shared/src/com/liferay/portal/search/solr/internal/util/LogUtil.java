@@ -36,10 +36,10 @@ public class LogUtil {
 
 		StringBundler sb = new StringBundler(7);
 
-		sb.append("{requestURL=");
-		sb.append(solrResponseBase.getRequestUrl());
-		sb.append(", elapsedTime=");
+		sb.append("{elapsedTime=");
 		sb.append(solrResponseBase.getElapsedTime());
+		sb.append(", requestURL=");
+		sb.append(solrResponseBase.getRequestUrl());
 		sb.append(", response=");
 		sb.append(solrResponseBase);
 		sb.append("}");
