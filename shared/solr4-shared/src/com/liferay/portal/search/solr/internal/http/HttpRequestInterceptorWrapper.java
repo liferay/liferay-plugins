@@ -29,9 +29,9 @@ public class HttpRequestInterceptorWrapper
 		HttpRequestInterceptor {
 
 	public HttpRequestInterceptorWrapper(
-		HttpRequestInterceptor delegate, int sortOrder) {
+		HttpRequestInterceptor httpRequestInterceptor, int sortOrder) {
 
-		_delegate = delegate;
+		_httpRequestInterceptor = httpRequestInterceptor;
 		_sortOrder = sortOrder;
 	}
 
@@ -51,7 +51,7 @@ public class HttpRequestInterceptorWrapper
 			return true;
 		}
 
-		return _delegate.equals(obj);
+		return _httpRequestInterceptor.equals(obj);
 	}
 
 	public int getSortOrder() {
@@ -60,17 +60,17 @@ public class HttpRequestInterceptorWrapper
 
 	@Override
 	public int hashCode() {
-		return _delegate.hashCode();
+		return _httpRequestInterceptor.hashCode();
 	}
 
 	@Override
 	public void process(HttpRequest httpRequest, HttpContext httpContext)
 		throws HttpException, IOException {
 
-		_delegate.process(httpRequest, httpContext);
+		_httpRequestInterceptor.process(httpRequest, httpContext);
 	}
 
-	private HttpRequestInterceptor _delegate;
+	private HttpRequestInterceptor _httpRequestInterceptor;
 	private int _sortOrder = 0;
 
 }
