@@ -1304,25 +1304,39 @@ Please find a solution that does not require portal-impl.jar.
 				<then>
 					<property name="frontend.css.web.dir" value="${sdk.dir}/tmp/com.liferay.frontend.css.web" />
 
-					<mkdir dir="${frontend.css.web.dir}" />
-
-					<pathconvert property="frontend.css.web.file">
+					<pathconvert property="frontend.css.web.path">
 						<path>
 							<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*.jar" />
 						</path>
 					</pathconvert>
 
-					<unzip
-						dest="${frontend.css.web.dir}"
-						src="${frontend.css.web.file}"
-					>
-						<patternset>
-							<include name="**/html/themes/**" />
-						</patternset>
-						<mapper>
-							<globmapper from="META-INF/resources/html/*" to="html/*" />
-						</mapper>
-					</unzip>
+					<basename file="${frontend.css.web.path}" property="frontend.css.web.file" />
+
+					<if>
+						<not>
+							<uptodate
+								srcfile="${module.framework.base.dir}/portal/${frontend.css.web.file}"
+								targetfile="${frontend.css.web.dir}"
+							/>
+						</not>
+						<then>
+							<delete dir="${frontend.css.web.dir}" />
+
+							<mkdir dir="${frontend.css.web.dir}" />
+
+							<unzip
+								dest="${frontend.css.web.dir}"
+								src="${frontend.css.web.path}"
+							>
+								<patternset>
+									<include name="**/html/themes/**" />
+								</patternset>
+								<mapper>
+									<globmapper from="META-INF/resources/html/*" to="html/*" />
+								</mapper>
+							</unzip>
+						</then>
+					</if>
 				</then>
 				<else>
 					<fail>The module com.liferay.frotnend.css.web.jar does not exist.</fail>
