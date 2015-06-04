@@ -115,25 +115,18 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 	protected void activate(Map<String, Object> properties) {
 		_keyStorePassword = MapUtil.getString(
 			properties, "key.store.password", StringPool.BLANK).toCharArray();
-
 		_keyStorePath = MapUtil.getString(
 			properties, "key.store.path", "classpath:/keystore.jks");
-
 		_keyStoreType = MapUtil.getString(
 			properties, "key.store.type", KeyStore.getDefaultType());
-
 		_trustStorePassword = MapUtil.getString(
 			properties, "trust.store.password", StringPool.BLANK).toCharArray();
-
 		_trustStorePath = MapUtil.getString(
 			properties, "trust.store.path", "classpath:/truststore.jks");
-
 		_trustStoreType = MapUtil.getString(
 			properties, "trust.store.type", KeyStore.getDefaultType());
-
 		_verifyServerCertificate = MapUtil.getBoolean(
 			properties, "verify.server.certificate", true);
-
 		_verifyServerHostname = MapUtil.getBoolean(
 			properties, "verify.server.hostname", true);
 	}
