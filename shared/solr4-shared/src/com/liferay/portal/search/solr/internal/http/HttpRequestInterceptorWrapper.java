@@ -39,11 +39,10 @@ public class HttpRequestInterceptorWrapper
 	public int compareTo(
 		HttpRequestInterceptorWrapper httpRequestInterceptorWrapper) {
 
-		Integer toCompare = httpRequestInterceptorWrapper.getSortOrder();
+		Integer sortOrder = _sortOrder;
 
-		Integer sortOrderInteger = _sortOrder;
-
-		return sortOrderInteger.compareTo(toCompare);
+		return sortOrder.compareTo(
+			httpRequestInterceptorWrapper.getSortOrder());
 	}
 
 	@Override
