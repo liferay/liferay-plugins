@@ -75,15 +75,15 @@ public class BasicAuthPoolingHttpClientFactory
 
 		setMaxTotalConnections(maxTotalConnections);
 
-		String basicAuthPassword = MapUtil.getString(
+		String password = MapUtil.getString(
 			properties, "password", StringPool.BLANK);
 
-		setPassword(basicAuthPassword);
+		setPassword(password);
 
-		String basicAuthUsername = MapUtil.getString(
+		String username = MapUtil.getString(
 			properties, "username", StringPool.BLANK);
 
-		setUsername(basicAuthUsername);
+		setUsername(username);
 	}
 
 	@Override
