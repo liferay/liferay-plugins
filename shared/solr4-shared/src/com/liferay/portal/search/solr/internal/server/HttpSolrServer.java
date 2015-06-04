@@ -57,7 +57,7 @@ public class HttpSolrServer extends BaseHttpSolrServer {
 
 		if (httpClientFactory == null) {
 			throw new IllegalStateException(
-				"No configured HttpClientFactory for : " + authMode);
+				"No HTTP client factory for " + authMode);
 		}
 
 		HttpClient httpClient = httpClientFactory.createInstance();
@@ -97,7 +97,8 @@ public class HttpSolrServer extends BaseHttpSolrServer {
 		String auth = MapUtil.getString(properties, "type");
 
 		if (Validator.isNull(auth)) {
-			throw new IllegalArgumentException("Invalid auth: " + auth);
+			throw new IllegalArgumentException(
+				"Invalid authentication type " + auth);
 		}
 
 		_httpClientFactories.put(auth, httpClientFactory);
