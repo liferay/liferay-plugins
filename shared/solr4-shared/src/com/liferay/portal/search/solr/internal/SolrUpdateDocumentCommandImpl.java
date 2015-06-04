@@ -52,7 +52,8 @@ public class SolrUpdateDocumentCommandImpl
 		UpdateResponse updateResponse = doUpdateDocuments(
 			searchContext, Arrays.asList(document), deleteFirst);
 
-		//todo need to figure out how to get the ID
+		// TODO
+
 		return StringPool.BLANK;
 	}
 
