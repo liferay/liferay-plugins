@@ -14,8 +14,10 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.notification;
 
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -26,7 +28,8 @@ public class IMNotificationSender
 
 	@Override
 	protected void doSendNotification(
-			Set<NotificationRecipient> notificationRecipients,
+			Map<NotificationReceptionType, Set<NotificationRecipient>>
+				notificationRecipients,
 			String defaultSubject, String notificationMessage,
 			ExecutionContext executionContext)
 		throws Exception {

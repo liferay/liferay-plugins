@@ -143,7 +143,7 @@ public abstract class BaseNodeBuilder
 
 			recipient.setNotificationReceptionType(
 				NotificationReceptionType.parse(
-					kaleoNotificationRecipient.getReceiptionType()));
+					kaleoNotificationRecipient.getNotificationReceptionType()));
 
 			notification.addRecipients(recipient);
 		}

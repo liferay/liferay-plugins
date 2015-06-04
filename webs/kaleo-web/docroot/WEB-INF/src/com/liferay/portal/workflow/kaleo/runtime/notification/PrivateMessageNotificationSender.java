@@ -29,8 +29,9 @@ public class PrivateMessageNotificationSender
 	@Override
 	protected void doSendNotification(
 			Map<NotificationReceptionType, Set<NotificationRecipient>>
-				notificationRecipients, String defaultSubject,
-			String notificationMessage, ExecutionContext executionContext)
+				notificationRecipients,
+			String defaultSubject, String notificationMessage,
+			ExecutionContext executionContext)
 		throws Exception {
 	}
 

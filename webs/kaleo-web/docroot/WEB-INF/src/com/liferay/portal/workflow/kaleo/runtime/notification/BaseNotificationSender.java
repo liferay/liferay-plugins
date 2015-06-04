@@ -103,7 +103,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 			NotificationReceptionType notificationReceptionType =
 				NotificationReceptionType.parse(
-					kaleoNotificationRecipient.getReceiptionType());
+					kaleoNotificationRecipient.getNotificationReceptionType());
 
 			Set<NotificationRecipient> notificationRecipientsSet =
 				retrieveNotificationRecipients(

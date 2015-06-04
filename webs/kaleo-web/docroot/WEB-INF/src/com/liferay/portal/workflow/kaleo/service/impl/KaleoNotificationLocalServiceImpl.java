@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
+import com.liferay.portal.workflow.kaleo.definition.NotificationReceptionType;
 import com.liferay.portal.workflow.kaleo.definition.NotificationType;
 import com.liferay.portal.workflow.kaleo.definition.Recipient;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
@@ -91,7 +92,7 @@ public class KaleoNotificationLocalServiceImpl
 
 		// Kaleo notification recipients
 
-		Map<Integer, Set<Recipient>> recipientsMap =
+		Map<NotificationReceptionType, Set<Recipient>> recipientsMap =
 			notification.getRecipientsMap();
 
 		for (Set<Recipient> recipients : recipientsMap.values()) {
