@@ -46,5 +46,7 @@ _sass_cache_*.css
 /themes/*/docroot/templates
 /themes/*/docroot/WEB-INF/lib
 
+/tmp
+
 /tools/*/*/*/lib
 /tools/node*
