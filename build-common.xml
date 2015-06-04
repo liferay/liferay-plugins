@@ -1304,13 +1304,13 @@ Please find a solution that does not require portal-impl.jar.
 				<then>
 					<property name="frontend.css.web.dir" value="${sdk.dir}/tmp/com.liferay.frontend.css.web" />
 
-					<pathconvert property="frontend.css.web.path">
+					<pathconvert property="frontend.css.web.jar.path">
 						<path>
 							<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*.jar" />
 						</path>
 					</pathconvert>
 
-					<basename file="${frontend.css.web.path}" property="frontend.css.web.file" />
+					<basename file="${frontend.css.web.jar.path}" property="frontend.css.web.file" />
 
 					<if>
 						<not>
@@ -1326,7 +1326,7 @@ Please find a solution that does not require portal-impl.jar.
 
 							<unzip
 								dest="${frontend.css.web.dir}"
-								src="${frontend.css.web.path}"
+								src="${frontend.css.web.jar.path}"
 							>
 								<patternset>
 									<include name="**/html/themes/**" />
