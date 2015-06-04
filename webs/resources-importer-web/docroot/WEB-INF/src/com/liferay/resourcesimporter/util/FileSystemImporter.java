@@ -14,6 +14,7 @@
 
 package com.liferay.resourcesimporter.util;
 
+import com.liferay.dynamic.data.lists.model.DDLRecordSet;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -78,7 +79,6 @@ import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
-import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
@@ -573,7 +573,7 @@ public class FileSystemImporter extends BaseImporter {
 
 	protected void addDDMTemplates(
 			String ddmStructureKey, String fileName, InputStream inputStream)
-		throws Exception {		
+		throws Exception {
 
 		fileName = FileUtil.stripExtension(fileName);
 
