@@ -1302,7 +1302,7 @@ Please find a solution that does not require portal-impl.jar.
 					<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.css.web*.jar" />
 				</resourcecount>
 				<then>
-					<property name="front.css.web.dir" value="${sdk.dir}/tmp/com.liferay.frontend.css.web" />
+					<property name="frontend.css.web.dir" value="${sdk.dir}/tmp/com.liferay.frontend.css.web" />
 
 					<mkdir dir="${frontend.css.web.dir}" />
 
