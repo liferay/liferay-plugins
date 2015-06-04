@@ -98,7 +98,7 @@ public class SolrServerFactory {
 		String url = MapUtil.getString(properties, "url");
 
 		if (Validator.isNull(url)) {
-			throw new IllegalArgumentException("Solr server must have a url");
+			throw new IllegalArgumentException("Solr server must have a URL");
 		}
 
 		SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
@@ -126,8 +126,8 @@ public class SolrServerFactory {
 
 		String url = MapUtil.getString(properties, "url");
 
-		_liveServers.remove(url);
 		_deadServers.remove(url);
+		_liveServers.remove(url);
 	}
 
 	protected void unsetSolrServerSelector(

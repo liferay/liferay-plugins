@@ -69,10 +69,10 @@ public class LiveServerChecker implements Runnable {
 
 	@Activate
 	protected void activate(Map<String, Object> properties) {
-		long delay = MapUtil.getLong(properties, "delay", 10);
-
 		_scheduledExecutorService =
 			Executors.newSingleThreadScheduledExecutor();
+
+		long delay = MapUtil.getLong(properties, "delay", 10);
 
 		_scheduledExecutorService.scheduleWithFixedDelay(
 			this, 0, delay, TimeUnit.SECONDS);
