@@ -85,18 +85,18 @@ public class AssigneeNotificationRecipientBuilder
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 				kaleoTaskAssignmentInstances) {
 
+			RecipientType recipientType = RecipientType.ROLE;
+
 			String assigneeClassName =
 				kaleoTaskAssignmentInstance.getAssigneeClassName();
-
-			RecipientType recipientType = RecipientType.ROLE;
 
 			if (assigneeClassName.equals(User.class.getName())) {
 				recipientType = RecipientType.USER;
 			}
 
 			NotificationRecipientBuilder notificationRecipientBuilder =
-					_notificationRecipientBuilderRegistry.
-						getKaleoNotificationRecipientHandler(recipientType);
+				_notificationRecipientBuilderRegistry.
+					getKaleoNotificationRecipientHandler(recipientType);
 
 			notificationRecipientBuilder.processKaleoTaskAssignmentInstance(
 				notificationRecipients, kaleoTaskAssignmentInstance,
