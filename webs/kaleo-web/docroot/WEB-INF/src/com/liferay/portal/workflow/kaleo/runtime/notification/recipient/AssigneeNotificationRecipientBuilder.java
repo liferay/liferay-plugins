@@ -96,7 +96,7 @@ public class AssigneeNotificationRecipientBuilder
 
 			NotificationRecipientBuilder notificationRecipientBuilder =
 				_notificationRecipientBuilderRegistry.
-					getKaleoNotificationRecipientHandler(recipientType);
+					getNotificationRecipientBuilder(recipientType);
 
 			notificationRecipientBuilder.processKaleoTaskAssignmentInstance(
 				notificationRecipients, kaleoTaskAssignmentInstance,

@@ -27,29 +27,27 @@ public class DefaultNotificationRecipientBuilderRegistry
 
 	@Override
 	public NotificationRecipientBuilder
-		getKaleoNotificationRecipientHandler(RecipientType recipientType) {
+		getNotificationRecipientBuilder(RecipientType recipientType) {
 
-		NotificationRecipientBuilder kaleoNotificationRecipientHandler =
-			_kaleoNotificationRecipientHandlers.get(recipientType);
+		NotificationRecipientBuilder notificationRecipientBuilder =
+			_notificationRecipientBuilders.get(recipientType);
 
-		if (kaleoNotificationRecipientHandler == null) {
+		if (notificationRecipientBuilder == null) {
 			throw new IllegalArgumentException(
-				"No kaleo notification recipient handler found for " +
-					recipientType);
+				"No notification recipient builder found for " + recipientType);
 		}
 
-		return kaleoNotificationRecipientHandler;
+		return notificationRecipientBuilder;
 	}
 
-	public void setKaleoNotificationRecipientHandlers(
+	public void setNotificationRecipientBuilders(
 		Map<RecipientType, NotificationRecipientBuilder>
-			kaleoNotificationRecipientHandlers) {
+			notificationRecipientBuilders) {
 
-		_kaleoNotificationRecipientHandlers =
-			kaleoNotificationRecipientHandlers;
+		_notificationRecipientBuilders = notificationRecipientBuilders;
 	}
 
 	private Map<RecipientType, NotificationRecipientBuilder>
-		_kaleoNotificationRecipientHandlers = new HashMap<>();
+		_notificationRecipientBuilders = new HashMap<>();
 
 }

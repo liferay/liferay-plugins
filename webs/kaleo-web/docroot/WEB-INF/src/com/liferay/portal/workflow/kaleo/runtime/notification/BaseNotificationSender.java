@@ -89,8 +89,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 			NotificationRecipientBuilder notificationRecipientBuilder =
 				_notificationRecipientBuilderRegistry.
-					getKaleoNotificationRecipientHandler(
-						RecipientType.ASSIGNEES);
+					getNotificationRecipientBuilder(RecipientType.ASSIGNEES);
 
 			notificationRecipientBuilder.processKaleoNotificationRecipient(
 				notificationRecipients, null, NotificationReceptionType.TO,
@@ -115,7 +114,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 			NotificationRecipientBuilder notificationRecipientBuilder =
 				_notificationRecipientBuilderRegistry.
-					getKaleoNotificationRecipientHandler(recipientType);
+					getNotificationRecipientBuilder(recipientType);
 
 			notificationRecipientBuilder.processKaleoNotificationRecipient(
 				notificationRecipients, kaleoNotificationRecipient,
