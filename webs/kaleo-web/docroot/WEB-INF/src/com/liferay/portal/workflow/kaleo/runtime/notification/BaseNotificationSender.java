@@ -41,15 +41,15 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 		try {
 			Map<NotificationReceptionType, Set<NotificationRecipient>>
-				notificationRecipients = getNotificationRecipients(
+				notificationRecipientsMap = getNotificationRecipientsMap(
 					kaleoNotificationRecipients, executionContext);
 
-			if (notificationRecipients.isEmpty()) {
+			if (notificationRecipientsMap.isEmpty()) {
 				return;
 			}
 
 			doSendNotification(
-				notificationRecipients, defaultSubject, notificationMessage,
+				notificationRecipientsMap, defaultSubject, notificationMessage,
 				executionContext);
 		}
 		catch (Exception e) {
@@ -68,23 +68,24 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 	protected abstract void doSendNotification(
 			Map<NotificationReceptionType, Set<NotificationRecipient>>
-				notificationRecipients, String defaultSubject,
-			String notificationMessage, ExecutionContext executionContext)
+				notificationRecipientsMap,
+			String defaultSubject, String notificationMessage,
+			ExecutionContext executionContext)
 		throws Exception;
 
 	protected Map<NotificationReceptionType, Set<NotificationRecipient>>
-		getNotificationRecipients(
+		getNotificationRecipientsMap(
 			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
 			ExecutionContext executionContext)
 		throws Exception {
 
 		Map<NotificationReceptionType, Set<NotificationRecipient>>
-			notificationRecipients = new HashMap<>();
+			notificationRecipientsMap = new HashMap<>();
 
 		if (kaleoNotificationRecipients.isEmpty()) {
-			Set<NotificationRecipient> notificationRecipientsSet =
+			Set<NotificationRecipient> notificationRecipients =
 				retrieveNotificationRecipients(
-					notificationRecipients, NotificationReceptionType.TO);
+					notificationRecipientsMap, NotificationReceptionType.TO);
 
 			NotificationRecipientBuilder notificationRecipientBuilder =
 				_notificationRecipientBuilderRegistry.
@@ -92,10 +93,10 @@ public abstract class BaseNotificationSender implements NotificationSender {
 						RecipientType.ASSIGNEES);
 
 			notificationRecipientBuilder.processKaleoNotificationRecipient(
-				notificationRecipientsSet, null, NotificationReceptionType.TO,
+				notificationRecipients, null, NotificationReceptionType.TO,
 				executionContext);
 
-			return notificationRecipients;
+			return notificationRecipientsMap;
 		}
 
 		for (KaleoNotificationRecipient kaleoNotificationRecipient :
@@ -105,9 +106,9 @@ public abstract class BaseNotificationSender implements NotificationSender {
 				NotificationReceptionType.parse(
 					kaleoNotificationRecipient.getNotificationReceptionType());
 
-			Set<NotificationRecipient> notificationRecipientsSet =
+			Set<NotificationRecipient> notificationRecipients =
 				retrieveNotificationRecipients(
-					notificationRecipients, notificationReceptionType);
+					notificationRecipientsMap, notificationReceptionType);
 
 			RecipientType recipientType = RecipientType.parse(
 				kaleoNotificationRecipient.getRecipientClassName());
@@ -117,29 +118,29 @@ public abstract class BaseNotificationSender implements NotificationSender {
 					getKaleoNotificationRecipientHandler(recipientType);
 
 			notificationRecipientBuilder.processKaleoNotificationRecipient(
-				notificationRecipientsSet, kaleoNotificationRecipient,
+				notificationRecipients, kaleoNotificationRecipient,
 				notificationReceptionType, executionContext);
 		}
 
-		return notificationRecipients;
+		return notificationRecipientsMap;
 	}
 
 	protected Set<NotificationRecipient> retrieveNotificationRecipients(
 		Map<NotificationReceptionType, Set<NotificationRecipient>>
-			notificationRecipients,
+			notificationRecipientsMap,
 		NotificationReceptionType notificationReceptionType) {
 
-		Set<NotificationRecipient> notificationRecipientsSet =
-			notificationRecipients.get(notificationReceptionType);
+		Set<NotificationRecipient> notificationRecipients =
+			notificationRecipientsMap.get(notificationReceptionType);
 
-		if (notificationRecipientsSet == null) {
-			notificationRecipientsSet = new HashSet<>();
+		if (notificationRecipients == null) {
+			notificationRecipients = new HashSet<>();
 
-			notificationRecipients.put(
-				notificationReceptionType, notificationRecipientsSet);
+			notificationRecipientsMap.put(
+				notificationReceptionType, notificationRecipients);
 		}
 
-		return notificationRecipientsSet;
+		return notificationRecipients;
 	}
 
 	private NotificationRecipientBuilderRegistry
