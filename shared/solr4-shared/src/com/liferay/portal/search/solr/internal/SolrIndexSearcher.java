@@ -387,14 +387,10 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		solrQuery.setQuery(queryString);
 
-		if (query.getPreBooleanFilter() != null) {
-			String filterQuery = _filterTranslator.translate(
-				query.getPreBooleanFilter(), searchContext);
+		String filterQuery = _filterTranslator.translate(
+			query.getPreBooleanFilter(), searchContext);
 
-			if (Validator.isNotNull(filterQuery)) {
-				solrQuery.setFilterQueries(filterQuery);
-			}
-		}
+		solrQuery.setFilterQueries(filterQuery);
 
 		QueryResponse queryResponse = executeSearchRequest(solrQuery);
 

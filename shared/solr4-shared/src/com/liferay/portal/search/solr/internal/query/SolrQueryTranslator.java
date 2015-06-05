@@ -15,7 +15,6 @@
 package com.liferay.portal.search.solr.internal.query;
 
 import com.liferay.portal.kernel.search.BooleanQuery;
-import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.TermQuery;
@@ -23,8 +22,6 @@ import com.liferay.portal.kernel.search.TermRangeQuery;
 import com.liferay.portal.kernel.search.WildcardQuery;
 import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.kernel.search.query.QueryVisitor;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.search.solr.query.BooleanQueryTranslator;
 import com.liferay.portal.search.solr.query.TermQueryTranslator;
 import com.liferay.portal.search.solr.query.TermRangeQueryTranslator;
@@ -58,7 +55,7 @@ public class SolrQueryTranslator
 			queryString = _postProcess(query.toString(), searchContext);
 		}
 
-		return _includeCompanyId(queryString, searchContext);
+		return queryString;
 	}
 
 	@Override
@@ -113,24 +110,6 @@ public class SolrQueryTranslator
 		WildcardQueryTranslator wildcardQueryTranslator) {
 
 		_wildcardQueryTranslator = wildcardQueryTranslator;
-	}
-
-	private String _includeCompanyId(
-		String queryString, SearchContext searchContext) {
-
-		StringBundler sb = new StringBundler(9);
-
-		sb.append(StringPool.PLUS);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(queryString);
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.PLUS);
-		sb.append(Field.COMPANY_ID);
-		sb.append(StringPool.COLON);
-		sb.append(searchContext.getCompanyId());
-
-		return sb.toString();
 	}
 
 	private String _postProcess(
