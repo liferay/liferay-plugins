@@ -101,10 +101,16 @@ public class KaleoNotificationRecipientLocalServiceImpl
 
 		RecipientType recipientType = recipient.getRecipientType();
 
-		if (recipientType.equals(RecipientType.ROLE)) {
-			kaleoNotificationRecipient.setRecipientClassName(
-				Role.class.getName());
+		kaleoNotificationRecipient.setRecipientClassName(
+			recipientType.getValue());
 
+		if (recipientType.equals(RecipientType.ADDRESS)) {
+			AddressRecipient addressRecipient = (AddressRecipient)recipient;
+
+			kaleoNotificationRecipient.setAddress(
+				addressRecipient.getAddress());
+		}
+		else if (recipientType.equals(RecipientType.ROLE)) {
 			RoleRecipient roleRecipient = (RoleRecipient)recipient;
 
 			int roleType = 0;
@@ -128,9 +134,6 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			kaleoNotificationRecipient.setRecipientRoleType(roleType);
 		}
 		else if (recipientType.equals(RecipientType.SCRIPT)) {
-			kaleoNotificationRecipient.setRecipientClassName(
-				RecipientType.SCRIPT.name());
-
 			ScriptRecipient scriptRecipient = (ScriptRecipient)recipient;
 
 			kaleoNotificationRecipient.setRecipientScript(
@@ -145,9 +148,6 @@ public class KaleoNotificationRecipientLocalServiceImpl
 				scriptRecipient.getScriptRequiredContexts());
 		}
 		else if (recipientType.equals(RecipientType.USER)) {
-			kaleoNotificationRecipient.setRecipientClassName(
-				User.class.getName());
-
 			UserRecipient userRecipient = (UserRecipient)recipient;
 
 			User user = null;
@@ -169,17 +169,6 @@ public class KaleoNotificationRecipientLocalServiceImpl
 			if (user != null) {
 				kaleoNotificationRecipient.setRecipientClassPK(
 					user.getUserId());
-			}
-		}
-		else {
-			kaleoNotificationRecipient.setRecipientClassName(
-				recipientType.name());
-
-			if (recipientType.equals(RecipientType.ADDRESS)) {
-				AddressRecipient addressRecipient = (AddressRecipient)recipient;
-
-				kaleoNotificationRecipient.setAddress(
-					addressRecipient.getAddress());
 			}
 		}
 	}

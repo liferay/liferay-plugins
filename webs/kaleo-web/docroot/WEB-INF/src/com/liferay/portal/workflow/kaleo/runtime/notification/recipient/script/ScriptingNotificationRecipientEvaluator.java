@@ -45,7 +45,7 @@ public class ScriptingNotificationRecipientEvaluator
 			ScriptingContextBuilderUtil.buildScriptingContext(executionContext);
 
 		return ScriptingUtil.eval(
-				null, inputObjects, _outputNames,
+			null, inputObjects, _outputNames,
 			kaleoNotificationRecipient.getRecipientScriptLanguage(),
 			kaleoNotificationRecipient.getRecipientScript(),
 			recipientScriptRequiredContexts);

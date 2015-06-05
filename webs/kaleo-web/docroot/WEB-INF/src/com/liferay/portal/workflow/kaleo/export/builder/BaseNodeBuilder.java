@@ -106,29 +106,31 @@ public abstract class BaseNodeBuilder
 
 			Recipient recipient = null;
 
-			if (recipientClassName.equals(RecipientType.ADDRESS.name())) {
+			if (recipientClassName.equals(RecipientType.ADDRESS.getValue())) {
 				recipient = new AddressRecipient(
 					kaleoNotificationRecipient.getAddress());
 			}
 			else if (recipientClassName.equals(
-						RecipientType.ASSIGNEES.name())) {
+						RecipientType.ASSIGNEES.getValue())) {
 
 				recipient = new AssigneesRecipient();
 			}
-			else if (recipientClassName.equals(Role.class.getName())) {
+			else if (recipientClassName.equals(RecipientType.ROLE.getValue())) {
 				Role role = _roleLocalService.fetchRole(recipientClassPK);
 
 				recipient = new RoleRecipient(
 					role.getName(), role.getTypeLabel());
 			}
-			else if (recipientClassName.equals(RecipientType.SCRIPT.name())) {
+			else if (recipientClassName.equals(
+						RecipientType.SCRIPT.getValue())) {
+
 				recipient = new ScriptRecipient(
 					kaleoNotificationRecipient.getRecipientScript(),
 					kaleoNotificationRecipient.getRecipientScriptLanguage(),
 					kaleoNotificationRecipient.
 						getRecipientScriptRequiredContexts());
 			}
-			else if (recipientClassName.equals(User.class.getName())) {
+			else if (recipientClassName.equals(RecipientType.USER.getValue())) {
 				if (recipientClassPK > 0) {
 					User user = _userLocalService.getUser(recipientClassPK);
 

@@ -14,11 +14,51 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+
 /**
  * @author Michael C. Han
  */
 public enum RecipientType {
 
-	ADDRESS, ASSIGNEES, ROLE, SCRIPT, USER
+	ADDRESS("address"), ASSIGNEES("assignees"), ROLE(Role.class.getName()),
+	SCRIPT("script"), USER(User.class.getName());
+
+	public static RecipientType parse(String value) {
+		if (ADDRESS.getValue().equals(value)) {
+			return ADDRESS;
+		}
+		else if (ASSIGNEES.getValue().equals(value)) {
+			return ASSIGNEES;
+		}
+		else if (ROLE.getValue().equals(value)) {
+			return ROLE;
+		}
+		else if (SCRIPT.getValue().equals(value)) {
+			return SCRIPT;
+		}
+		else if (USER.getValue().equals(value)) {
+			return USER;
+		}
+		else {
+			throw new IllegalArgumentException("Invalid value " + value);
+		}
+	}
+
+	public String getValue() {
+		return _value;
+	}
+
+	@Override
+	public String toString() {
+		return _value;
+	}
+
+	private RecipientType(String value) {
+		_value = value;
+	}
+
+	private String _value;
 
 }
