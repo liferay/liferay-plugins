@@ -65,21 +65,21 @@ public class SolrFilterTranslator
 
 	@Override
 	public String translate(Filter filter, SearchContext searchContext) {
-		String filterQuery = StringPool.BLANK;
+		String filterString = StringPool.BLANK;
 
 		if (filter != null) {
-			org.apache.lucene.search.Query luceneFilter = filter.accept(this);
+			org.apache.lucene.search.Query luceneQuery = filter.accept(this);
 
-			if (luceneFilter != null) {
-				filterQuery = luceneFilter.toString();
+			if (luceneQuery != null) {
+				filterString = luceneQuery.toString();
 			}
 		}
 
 		if (searchContext != null) {
-			filterQuery = _includeCompanyId(filterQuery, searchContext);
+			filterString = includeCompanyId(filterString, searchContext);
 		}
 
-		return filterQuery;
+		return filterString;
 	}
 
 	@Override
@@ -251,17 +251,17 @@ public class SolrFilterTranslator
 		_termsFilterTranslator = termsFilterTranslator;
 	}
 
-	private String _includeCompanyId(
-		String filterQuery, SearchContext searchContext) {
+	protected String includeCompanyId(
+		String filterString, SearchContext searchContext) {
 
 		StringBundler sb = null;
 
-		if (Validator.isNotNull(filterQuery)) {
+		if (Validator.isNotNull(filterString)) {
 			sb = new StringBundler(11);
 
 			sb.append(StringPool.PLUS);
 			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(filterQuery);
+			sb.append(filterString);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 			sb.append(StringPool.SPACE);
 		}

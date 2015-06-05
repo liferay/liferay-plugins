@@ -50,22 +50,22 @@ public class BooleanFilterTranslatorImpl implements BooleanFilterTranslator {
 		for (BooleanClause<Filter> booleanClause :
 				booleanFilter.getMustNotBooleanClauses()) {
 
-			org.apache.lucene.search.Query luceneFilter = translate(
+			org.apache.lucene.search.Query luceneQuery = translate(
 				booleanClause, filterVisitor);
 
 			booleanQuery.add(
-				luceneFilter,
+				luceneQuery,
 				org.apache.lucene.search.BooleanClause.Occur.MUST_NOT);
 		}
 
 		for (BooleanClause<Filter> booleanClause :
 				booleanFilter.getShouldBooleanClauses()) {
 
-			org.apache.lucene.search.Query luceneFilter = translate(
+			org.apache.lucene.search.Query luceneQuery = translate(
 				booleanClause, filterVisitor);
 
 			booleanQuery.add(
-				luceneFilter,
+				luceneQuery,
 				org.apache.lucene.search.BooleanClause.Occur.SHOULD);
 		}
 

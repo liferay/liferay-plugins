@@ -46,7 +46,7 @@ public class SolrQueryTranslator
 	public String translate(Query query, SearchContext searchContext) {
 		org.apache.lucene.search.Query luceneQuery = query.accept(this);
 
-		String queryString;
+		String queryString = null;
 
 		if (luceneQuery != null) {
 			queryString = luceneQuery.toString();
