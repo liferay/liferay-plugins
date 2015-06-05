@@ -67,7 +67,8 @@ public class UserNotificationMessageSender
 	}
 
 	protected JSONObject populateJSONObject(
-		String notificationMessage, ExecutionContext executionContext) {
+			String notificationMessage, ExecutionContext executionContext)
+		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -93,21 +94,28 @@ public class UserNotificationMessageSender
 			WorkflowConstants.CONTEXT_GROUP_ID,
 			String.valueOf(
 				workflowContext.get(WorkflowConstants.CONTEXT_GROUP_ID)));
-		jsonObject.put(
-			WorkflowConstants.CONTEXT_USER_ID,
-			String.valueOf(
-				workflowContext.get(WorkflowConstants.CONTEXT_USER_ID)));
-
-		jsonObject.put("notificationMessage", notificationMessage);
 
 		KaleoInstanceToken kaleoInstanceToken =
-			executionContext.getKaleoInstanceToken();
-
-		jsonObject.put(
-			"workflowInstanceId", kaleoInstanceToken.getKaleoInstanceId());
+				executionContext.getKaleoInstanceToken();
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			executionContext.getKaleoTaskInstanceToken();
+
+		if (kaleoTaskInstanceToken != null) {
+			jsonObject.put(
+				WorkflowConstants.CONTEXT_USER_ID,
+				String.valueOf(kaleoTaskInstanceToken.getUserId()));
+		}
+		else {
+			jsonObject.put(
+				WorkflowConstants.CONTEXT_USER_ID,
+				String.valueOf(kaleoInstanceToken.getUserId()));
+		}
+
+		jsonObject.put("notificationMessage", notificationMessage);
+
+		jsonObject.put(
+			"workflowInstanceId", kaleoInstanceToken.getKaleoInstanceId());
 
 		jsonObject.put(
 			"workflowTaskId",
