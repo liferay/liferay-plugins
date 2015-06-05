@@ -34,7 +34,7 @@ public class DefaultNotificationRecipientBuilderRegistry
 
 		if (kaleoNotificationRecipientHandler == null) {
 			throw new IllegalArgumentException(
-				"No KaleoNotificationRecipientHandler configured for " +
+				"No kaleo notification recipient handler found for " +
 					recipientType);
 		}
 
