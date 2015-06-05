@@ -21,7 +21,7 @@ import com.liferay.portal.workflow.kaleo.definition.RecipientType;
  */
 public interface NotificationRecipientBuilderRegistry {
 
-	public NotificationRecipientBuilder
-		getNotificationRecipientBuilder(RecipientType recipientType);
+	public NotificationRecipientBuilder getNotificationRecipientBuilder(
+		RecipientType recipientType);
 
 }
