@@ -36,10 +36,8 @@ public class AddressNotificationRecipientBuilder
 			ExecutionContext executionContext)
 		throws Exception {
 
-		String address = kaleoNotificationRecipient.getAddress();
-
 		NotificationRecipient notificationRecipient = new NotificationRecipient(
-			address, notificationReceptionType);
+			kaleoNotificationRecipient.getAddress(), notificationReceptionType);
 
 		notificationRecipients.add(notificationRecipient);
 	}

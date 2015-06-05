@@ -41,13 +41,13 @@ public class NotificationRecipient {
 	public NotificationRecipient(
 		User user, NotificationReceptionType notificationReceptionType) {
 
+		_notificationReceptionType = notificationReceptionType;
+
 		_companyId = user.getCompanyId();
 		_emailAddress = user.getEmailAddress();
 		_fullName = user.getFullName();
 		_screenName = user.getScreenName();
 		_userId = user.getUserId();
-
-		_notificationReceptionType = notificationReceptionType;
 	}
 
 	@Override

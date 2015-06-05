@@ -47,20 +47,21 @@ public class UserNotificationMessageSender
 			notificationMessage, executionContext);
 
 		for (Map.Entry<NotificationReceptionType, Set<NotificationRecipient>>
-				notificationRecipientsEntry :
-			notificationRecipients.entrySet()) {
+				entry : notificationRecipients.entrySet()) {
 
 			for (NotificationRecipient notificationRecipient :
-					notificationRecipientsEntry.getValue()) {
+					entry.getValue()) {
 
-				if (notificationRecipient.getUserId() > 0) {
-					UserNotificationEventLocalServiceUtil.
-						sendUserNotificationEvents(
-							notificationRecipient.getUserId(),
-							PortletKeys.MY_WORKFLOW_TASK,
-							UserNotificationDeliveryConstants.TYPE_WEBSITE,
-							jsonObject);
+				if (notificationRecipient.getUserId() <= 0) {
+					continue;
 				}
+
+				UserNotificationEventLocalServiceUtil.
+					sendUserNotificationEvents(
+						notificationRecipient.getUserId(),
+						PortletKeys.MY_WORKFLOW_TASK,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE,
+						jsonObject);
 			}
 		}
 	}
