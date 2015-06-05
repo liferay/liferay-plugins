@@ -95,6 +95,16 @@ public class SyncDLObjectServiceUtil {
 		return getService().checkOutFileEntry(fileEntryId, serviceContext);
 	}
 
+	public static com.liferay.sync.model.SyncDLObject copyFileEntry(
+		long sourceFileEntryId, long repositoryId, long folderId,
+		java.lang.String sourceFileName, java.lang.String title,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .copyFileEntry(sourceFileEntryId, repositoryId, folderId,
+			sourceFileName, title, serviceContext);
+	}
+
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getAllFolderSyncDLObjects(
 		long companyId, long repositoryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
