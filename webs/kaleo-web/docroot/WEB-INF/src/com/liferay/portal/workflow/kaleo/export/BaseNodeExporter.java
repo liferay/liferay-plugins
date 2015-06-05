@@ -255,13 +255,12 @@ public abstract class BaseNodeExporter implements NodeExporter {
 		Map<NotificationReceptionType, Set<Recipient>> recipientsMap =
 			notification.getRecipientsMap();
 
-		for (Map.Entry<NotificationReceptionType, Set<Recipient>>
-				recipientsEntry :
+		for (Map.Entry<NotificationReceptionType, Set<Recipient>> entry :
 				recipientsMap.entrySet()) {
 
-			Set<Recipient> recipients = recipientsEntry.getValue();
+			Set<Recipient> recipients = entry.getValue();
 			NotificationReceptionType notificationReceptionType =
-				recipientsEntry.getKey();
+				entry.getKey();
 
 			exportRecipientsElement(
 				notificationElement, recipients, notificationReceptionType);
