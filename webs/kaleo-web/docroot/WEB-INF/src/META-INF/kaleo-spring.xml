@@ -295,7 +295,7 @@
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.RoleNotificationRecipientBuilder" class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.RoleNotificationRecipientBuilder" />
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.NotificationRecipientBuilderRegistry" class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.DefaultNotificationRecipientBuilderRegistry">
-		<property name="kaleoNotificationRecipientHandlers">
+		<property name="notificationRecipientBuilders">
 			<util:map>
 				<entry key="ADDRESS">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.AddressNotificationRecipientBuilder" />
