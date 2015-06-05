@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.solr.internal.filter;
 
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.DateRangeTermFilter;
 import com.liferay.portal.kernel.search.filter.ExistsFilter;
@@ -45,7 +46,7 @@ public class SolrFilterTranslator
 	implements FilterTranslator<String>, FilterVisitor<String> {
 
 	@Override
-	public String translate(Filter filter) {
+	public String translate(Filter filter, SearchContext searchContext) {
 		return StringPool.BLANK;
 	}
 
