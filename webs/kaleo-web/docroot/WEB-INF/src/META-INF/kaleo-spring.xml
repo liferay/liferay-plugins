@@ -294,6 +294,21 @@
 		<property name="notificationRecipientBuilderRegistry" ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.NotificationRecipientBuilderRegistry" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.RoleNotificationRecipientBuilder" class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.RoleNotificationRecipientBuilder" />
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.NotificationRecipientBuilderRegistry" class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.DefaultNotificationRecipientBuilderRegistry">
+		<property name="kaleoNotificationRecipientHandlers">
+			<util:map>
+				<entry key="ADDRESS">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.AddressNotificationRecipientBuilder" />
+				</entry>
+				<entry key="ASSIGNEES" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.AssigneeNotificationRecipientBuilder" />
+				<entry key="ROLE" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.RoleNotificationRecipientBuilder" />
+				<entry key="SCRIPT" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.ScriptNotificationRecipientBuilder" />
+				<entry key="USER">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.UserNotificationRecipientBuilder" />
+				</entry>
+			</util:map>
+		</property>
+	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.ScriptNotificationRecipientBuilder" class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.ScriptNotificationRecipientBuilder">
 		<property name="notificationRecipientEvaluator">
 			<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.script.MultiLanguageNotificationRecipientEvaluator">
@@ -322,21 +337,6 @@
 			</bean>
 		</property>
 		<property name="roleNotificationRecipientBuilder" ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.RoleNotificationRecipientBuilder" />
-	</bean>
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.NotificationRecipientBuilderRegistry" class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.DefaultNotificationRecipientBuilderRegistry">
-		<property name="kaleoNotificationRecipientHandlers">
-			<util:map>
-				<entry key="ADDRESS">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.AddressNotificationRecipientBuilder" />
-				</entry>
-				<entry key="ASSIGNEES" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.AssigneeNotificationRecipientBuilder" />
-				<entry key="ROLE" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.RoleNotificationRecipientBuilder" />
-				<entry key="SCRIPT" value-ref="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.ScriptNotificationRecipientBuilder" />
-				<entry key="USER">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.notification.recipient.UserNotificationRecipientBuilder" />
-				</entry>
-			</util:map>
-		</property>
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil" class="com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil">
 		<property name="scriptingContextBuilder">
