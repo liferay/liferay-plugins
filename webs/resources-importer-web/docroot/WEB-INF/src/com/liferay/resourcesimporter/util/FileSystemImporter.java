@@ -170,8 +170,8 @@ public class FileSystemImporter extends BaseImporter {
 			}
 			else {
 				DDMTemplateLocalServiceUtil.updateTemplate(
-					ddmTemplate.getTemplateId(), ddmTemplate.getClassPK(),
-					getMap(name), null,
+					userId, ddmTemplate.getTemplateId(),
+					ddmTemplate.getClassPK(), getMap(name), null,
 					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 					StringPool.BLANK, getDDMTemplateLanguage(file.getName()),
 					script, false, serviceContext);
@@ -528,7 +528,7 @@ public class FileSystemImporter extends BaseImporter {
 			}
 			else {
 				DDMTemplateLocalServiceUtil.updateTemplate(
-					ddmTemplate.getTemplateId(),
+					userId, ddmTemplate.getTemplateId(),
 					PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
 					null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 					language, script, false, false, null, null, serviceContext);
@@ -622,7 +622,7 @@ public class FileSystemImporter extends BaseImporter {
 			}
 			else {
 				ddmTemplate = DDMTemplateLocalServiceUtil.updateTemplate(
-					ddmTemplate.getTemplateId(),
+					userId, ddmTemplate.getTemplateId(),
 					PortalUtil.getClassNameId(DDMStructure.class), getMap(name),
 					null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 					language, replaceFileEntryURL(xsl), false, false, null,
