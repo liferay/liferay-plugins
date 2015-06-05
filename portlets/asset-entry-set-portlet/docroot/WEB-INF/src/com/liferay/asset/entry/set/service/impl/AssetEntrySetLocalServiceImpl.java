@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -475,11 +476,19 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected boolean isValidAssetTagName(String assetTagName) {
-		if (!Validator.isChar(assetTagName.charAt(0))) {
+		if (Validator.isDigit(assetTagName.charAt(0))) {
 			return false;
 		}
 
-		return Validator.isAlphanumericName(assetTagName);
+		for (char c : assetTagName.toCharArray()) {
+			if (!Validator.isChar(c) && !Validator.isDigit(c) &&
+				(c != CharPool.UNDERLINE)) {
+
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	protected void setSharedToClassPKsMap(
