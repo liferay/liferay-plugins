@@ -49,8 +49,9 @@ public class EmailNotificationSender
 	@Override
 	protected void doSendNotification(
 			Map<NotificationReceptionType, Set<NotificationRecipient>>
-				notificationRecipients, String defaultSubject,
-			String notificationMessage, ExecutionContext executionContext)
+				notificationRecipients,
+			String defaultSubject, String notificationMessage,
+			ExecutionContext executionContext)
 		throws Exception {
 
 		Map<String, Serializable> workflowContext =
@@ -105,8 +106,7 @@ public class EmailNotificationSender
 		for (NotificationRecipient notificationRecipient :
 				notificationRecipients) {
 
-				internetAddresses.add(
-					notificationRecipient.getInternetAddress());
+			internetAddresses.add(notificationRecipient.getInternetAddress());
 		}
 
 		return internetAddresses.toArray(
