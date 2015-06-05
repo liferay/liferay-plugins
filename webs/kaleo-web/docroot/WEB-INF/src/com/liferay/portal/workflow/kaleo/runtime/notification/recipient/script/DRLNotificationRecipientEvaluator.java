@@ -41,21 +41,19 @@ public class DRLNotificationRecipientEvaluator
 			ExecutionContext executionContext)
 		throws PortalException {
 
+		RulesResourceRetriever rulesResourceRetriever =
+			new RulesResourceRetriever(
+				new StringResourceRetriever(
+					kaleoNotificationRecipient.getRecipientScript()));
+		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
+			executionContext);
+		Query query = Query.createStandardQuery();
+
 		String[] recipientScriptRequiredContexts = StringUtil.split(
 			kaleoNotificationRecipient.getRecipientScriptRequiredContexts());
 
 		ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
 			recipientScriptRequiredContexts);
-
-		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
-			executionContext);
-
-		RulesResourceRetriever rulesResourceRetriever =
-			new RulesResourceRetriever(
-				new StringResourceRetriever(
-					kaleoNotificationRecipient.getRecipientScript()));
-
-		Query query = Query.createStandardQuery();
 
 		return RulesEngineUtil.execute(
 			rulesResourceRetriever, facts, query, classLoaders);
