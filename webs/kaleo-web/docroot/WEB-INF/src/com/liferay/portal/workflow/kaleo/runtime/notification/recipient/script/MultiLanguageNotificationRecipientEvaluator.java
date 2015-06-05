@@ -42,7 +42,7 @@ public class MultiLanguageNotificationRecipientEvaluator
 
 		if (notificationRecipientEvaluator == null) {
 			throw new IllegalArgumentException(
-				"No NotificationRecipientEvaluator for script language " +
+				"No notification recipient evaluator for script language " +
 					scriptLanguage);
 		}
 

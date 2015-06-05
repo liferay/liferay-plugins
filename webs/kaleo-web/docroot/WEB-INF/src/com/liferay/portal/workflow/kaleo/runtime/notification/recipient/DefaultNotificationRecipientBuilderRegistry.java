@@ -34,7 +34,7 @@ public class DefaultNotificationRecipientBuilderRegistry
 
 		if (notificationRecipientBuilder == null) {
 			throw new IllegalArgumentException(
-				"No notification recipient builder found for " + recipientType);
+				"No notification recipient builder for " + recipientType);
 		}
 
 		return notificationRecipientBuilder;
