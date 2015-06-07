@@ -437,17 +437,11 @@ Error-Prone was automatically installed. Please rerun your task.
 				<then>
 					<property file="@{module.dir}/snapshot.properties" />
 
-					<git-head-hash
-						path="${module.dir.unix}"
-						property="module.git.head.hash"
-						ignoreFileName="snapshot.properties"
-					/>
-
 					<if>
-						<and>
-							<equals arg1="${module.git.head.hash}" arg2="${module.snapshot.git.hash}" />
-							<git-is-clean path="${module.dir.unix}" />
-						</and>
+						<git-up-to-date
+							path="${module.dir.unix}"
+							since="${module.snapshot.git.hash}"
+						/>
 						<then>
 							<var name="snapshot.uptodate" value="true" />
 						</then>
@@ -476,7 +470,6 @@ Error-Prone was automatically installed. Please rerun your task.
 						</then>
 					</if>
 
-					<var name="module.git.head.hash" unset="true" />
 					<var name="module.snapshot.git.hash" unset="true" />
 					<var name="module.snapshot.url" unset="true" />
 				</then>
@@ -3253,6 +3246,8 @@ for (String path : paths) {
 	</target>
 
 	<target name="deploy">
+		<git-up-to-date-cache dir="${basedir}" />
+
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="deploy"
