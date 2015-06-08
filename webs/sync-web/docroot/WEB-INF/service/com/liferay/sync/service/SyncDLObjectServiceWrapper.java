@@ -119,6 +119,17 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
+	public com.liferay.sync.model.SyncDLObject copyFileEntry(
+		long sourceFileEntryId, long repositoryId, long folderId,
+		java.lang.String sourceFileName, java.lang.String title,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectService.copyFileEntry(sourceFileEntryId,
+			repositoryId, folderId, sourceFileName, title, serviceContext);
+	}
+
+	@Override
 	public java.util.List<com.liferay.sync.model.SyncDLObject> getAllFolderSyncDLObjects(
 		long companyId, long repositoryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
