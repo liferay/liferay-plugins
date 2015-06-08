@@ -1826,6 +1826,24 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="generate-js-config">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<ant antfile="${sdk.dir}/build-node.xml" target="generate-modules-config">
+				<property name="config.generator.config.variable" value="" />
+				<property name="config.generator.file.extension" value="" />
+				<property name="config.generator.file.pattern" value="**/*.es.js" />
+				<property name="config.generator.input.dir" value="@{module.dir}/.js_cache" />
+				<property name="config.generator.module.config" value="@{module.dir}/.js_cache/bower.json" />
+				<property name="config.generator.module.format" value="/_/g,-" />
+				<property name="config.generator.output.file" value="@{module.dir}/config.json" />
+				<property name="config.generator.path.ignore" value="true" />
+				<property name="config.generator.root.dir" value="@{module.dir}/.js_cache/META-INF/resources" />
+			</ant>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="gradle-execute">
 		<attribute default="true" name="failonerror" />
 		<attribute name="task" />
@@ -1964,6 +1982,24 @@ Please find a solution that does not require portal-impl.jar.
 											<build-css
 												module.dir="@{module.dir}"
 												sass.docroot.dir="${module.dir.unix}/src/META-INF/resources"
+											/>
+										</then>
+									</if>
+
+									<if>
+										<and>
+											<available file="@{module.dir}/src/META-INF/resources" />
+											<resourcecount count="0" when="gt">
+												<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.js" />
+											</resourcecount>
+										</and>
+										<then>
+											<transpile-js
+												module.dir="@{module.dir}"
+											/>
+
+											<generate-js-config
+												module.dir="@{module.dir}"
 											/>
 										</then>
 									</if>
@@ -2909,6 +2945,34 @@ Please find a solution that does not require portal-impl.jar.
 				test.class="**/*Test.class"
 				test.type="unit"
 			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="transpile-js">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<delete dir="@{module.dir}/.js_cache" />
+			<delete dir="@{module.dir}/tmp/transpile" />
+			<mkdir dir="@{module.dir}/.js_cache" />
+			<mkdir dir="@{module.dir}/tmp/transpile" />
+
+			<copy todir="@{module.dir}/tmp/transpile">
+				<fileset dir="@{module.dir}/src">
+					<include name="**/*.es.js" />
+				</fileset>
+			</copy>
+
+			<copy
+				file="@{module.dir}/bower.json"
+				overwrite="true"
+				tofile="@{module.dir}/.js_cache/bower.json"
+			/>
+
+			<ant antfile="${sdk.dir}/build-node.xml" target="transpile-js-files">
+				<property name="transpiler.input.dir" value="@{module.dir}/tmp/transpile" />
+				<property name="transpiler.output.dir" value="@{module.dir}/.js_cache" />
+			</ant>
 		</sequential>
 	</macrodef>
 

@@ -936,37 +936,4 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		/>
 	</target>
 
-	<target name="transpile-js-files">
-		<delete dir=".js_cache" />
-		<mkdir dir=".js_cache" />
-		<mkdir dir="tmp/transpile" />
-
-		<copy todir="tmp/transpile">
-			<fileset dir="${plugin.source.dir}">
-				<include name="**/*.es.js" />
-			</fileset>
-		</copy>
-
-		<copy file="bower.json" overwrite="true" tofile=".js_cache/bower.json" />
-
-		<ant antfile="${sdk.dir}/build-node.xml" target="transpile-js-files">
-			<property name="transpiler.input.dir" value="${basedir}/tmp/transpile" />
-			<property name="transpiler.output.dir" value="${basedir}/.js_cache" />
-		</ant>
-	</target>
-
-	<target name="generate-modules-config">
-		<ant antfile="${sdk.dir}/build-node.xml" target="generate-modules-config">
-			<property name="config.generator.config.variable" value="" />
-			<property name="config.generator.file.extension" value="" />
-			<property name="config.generator.file.pattern" value="**/*.es.js" />
-			<property name="config.generator.input.dir" value="${basedir}/.js_cache" />
-			<property name="config.generator.module.config" value="${basedir}/.js_cache/bower.json" />
-			<property name="config.generator.module.format" value="/_/g,-" />
-			<property name="config.generator.output.file" value="${basedir}/config.json" />
-			<property name="config.generator.path.ignore" value="true" />
-			<property name="config.generator.root.dir" value="${basedir}/.js_cache/META-INF/resources" />
-		</ant>
-	</target>
-
 </project>
