@@ -587,63 +587,74 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	</target>
 
 	<target name="compile-jsp">
-		<set-module-properties
-			module.dir="${basedir}"
-		/>
-
 		<if>
-			<isset property="compile.jsp.docroot.dir" />
+			<resourcecount count="0" when="gt">
+				<fileset
+					dir="${basedir}"
+					excludes="**/custom_jsps/**/*,**/dependencies/**/*"
+					includes="docroot/**/*.jsp,src/META-INF/resources/**/*.jsp,tmp/**/*.jsp"
+				/>
+			</resourcecount>
 			<then>
-				<compile
+				<set-module-properties
 					module.dir="${basedir}"
 				/>
 
-				<compile-jsp
-					compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
-				/>
-			</then>
-			<elseif>
-				<available file="bnd.bnd" type="file" />
-				<then>
-					<antcall target="jar">
-						<param name="plugins.includes.path" value="${basedir}" />
-					</antcall>
+				<if>
+					<isset property="compile.jsp.docroot.dir" />
+					<then>
+						<compile
+							module.dir="${basedir}"
+						/>
 
-					<tstamp>
-						<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-					</tstamp>
-
-					<unzip dest="${tstamp.value}" src="${plugin.file}" />
-
-					<if>
-						<available file="${tstamp.value}/META-INF/resources" type="dir" />
+						<compile-jsp
+							compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
+						/>
+					</then>
+					<elseif>
+						<available file="bnd.bnd" type="file" />
 						<then>
-							<compile-jsp
-								compile.jsp.docroot.dir="${tstamp.value}/META-INF/resources"
-								compile.jsp.temp.dir="${tstamp.value}"
-							/>
+							<antcall target="jar">
+								<param name="plugins.includes.path" value="${basedir}" />
+							</antcall>
+
+							<tstamp>
+								<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+							</tstamp>
+
+							<unzip dest="${tstamp.value}" src="${plugin.file}" />
+
+							<if>
+								<available file="${tstamp.value}/META-INF/resources" type="dir" />
+								<then>
+									<compile-jsp
+										compile.jsp.docroot.dir="${tstamp.value}/META-INF/resources"
+										compile.jsp.temp.dir="${tstamp.value}"
+									/>
+								</then>
+								<else>
+									<compile-jsp
+										compile.jsp.docroot.dir="${tstamp.value}"
+										compile.jsp.temp.dir="${tstamp.value}"
+									/>
+								</else>
+							</if>
+
+							<delete dir="${tstamp.value}" />
 						</then>
-						<else>
-							<compile-jsp
-								compile.jsp.docroot.dir="${tstamp.value}"
-								compile.jsp.temp.dir="${tstamp.value}"
-							/>
-						</else>
-					</if>
+					</elseif>
+					<else>
+						<loop-macrodef-or-target
+							module.dirs="${basedir}"
+							target.name="compile"
+						/>
 
-					<delete dir="${tstamp.value}" />
-				</then>
-			</elseif>
-			<else>
-				<loop-macrodef-or-target
-					module.dirs="${basedir}"
-					target.name="compile"
-				/>
-
-				<compile-jsp
-					compile.jsp.docroot.dir="docroot"
-				/>
-			</else>
+						<compile-jsp
+							compile.jsp.docroot.dir="docroot"
+						/>
+					</else>
+				</if>
+			</then>
 		</if>
 	</target>
 
