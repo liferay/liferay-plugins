@@ -23,7 +23,7 @@
 	</c:if>
 
 	<%
-	List<Group> groups = SOAnnouncementsUtil.getGroups(themeDisplay);
+	List<Group> groups = AnnouncementsUtil.getGroups(themeDisplay);
 	%>
 
 	<c:if test="<%= !groups.isEmpty() %>">
@@ -43,7 +43,7 @@
 	</c:if>
 
 	<%
-	List<Organization> organizations = SOAnnouncementsUtil.getOrganizations(themeDisplay);
+	List<Organization> organizations = AnnouncementsUtil.getOrganizations(themeDisplay);
 	%>
 
 	<c:if test="<%= !organizations.isEmpty() %>">
@@ -63,7 +63,7 @@
 	</c:if>
 
 	<%
-	List<Role> roles = SOAnnouncementsUtil.getRoles(themeDisplay);
+	List<Role> roles = AnnouncementsUtil.getRoles(themeDisplay);
 	%>
 
 	<c:if test="<%= !roles.isEmpty() %>">
@@ -83,7 +83,7 @@
 	</c:if>
 
 	<%
-	List<UserGroup> userGroups = SOAnnouncementsUtil.getUserGroups(themeDisplay);
+	List<UserGroup> userGroups = AnnouncementsUtil.getUserGroups(themeDisplay);
 	%>
 
 	<c:if test="<%= !userGroups.isEmpty() %>">
