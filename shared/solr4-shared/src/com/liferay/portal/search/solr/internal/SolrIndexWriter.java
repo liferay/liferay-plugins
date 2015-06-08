@@ -147,6 +147,24 @@ public class SolrIndexWriter extends BaseIndexWriter {
 	}
 
 	@Override
+	public void partialUpdateDocument(
+			SearchContext searchContext, Document document)
+		throws SearchException {
+
+		_solrUpdateDocumentCommand.updateDocument(
+			searchContext, document, false);
+	}
+
+	@Override
+	public void partialUpdateDocuments(
+			SearchContext searchContext, Collection<Document> documents)
+		throws SearchException {
+
+		_solrUpdateDocumentCommand.updateDocuments(
+			searchContext, documents, false);
+	}
+
+	@Override
 	@Reference(target = "(search.engine.impl=Solr)", unbind = "-")
 	public void setSpellCheckIndexWriter(
 		SpellCheckIndexWriter spellCheckIndexWriter) {
