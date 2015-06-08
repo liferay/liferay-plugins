@@ -34,110 +34,12 @@ import com.liferay.portal.service.permission.RolePermissionUtil;
 import com.liferay.portal.service.permission.UserGroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Lin Cui
  */
 public class SOAnnouncementsUtil {
-
-	public static List<Group> getGroups(ThemeDisplay themeDisplay)
-		throws Exception {
-
-		List<Group> filteredGroups = new ArrayList<>();
-
-		List<Group> groups = GroupLocalServiceUtil.getUserGroups(
-			themeDisplay.getUserId(), true);
-
-		if (!groups.isEmpty()) {
-			for (Group group : groups) {
-				if (((group.isOrganization() && group.isSite()) ||
-					 group.isRegularSite()) &&
-					GroupPermissionUtil.contains(
-						themeDisplay.getPermissionChecker(), group.getGroupId(),
-						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-
-					filteredGroups.add(group);
-				}
-			}
-		}
-
-		return filteredGroups;
-	}
-
-	public static List<Organization> getOrganizations(ThemeDisplay themeDisplay)
-		throws Exception {
-
-		List<Organization> filteredOrganizations = new ArrayList<>();
-
-		List<Organization> organizations =
-			OrganizationLocalServiceUtil.getUserOrganizations(
-				themeDisplay.getUserId());
-
-		for (Organization organization : organizations) {
-			if (OrganizationPermissionUtil.contains(
-					themeDisplay.getPermissionChecker(),
-					organization.getOrganizationId(),
-					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-
-				filteredOrganizations.add(organization);
-			}
-		}
-
-		return filteredOrganizations;
-	}
-
-	public static List<Role> getRoles(ThemeDisplay themeDisplay)
-		throws Exception {
-
-		List<Role> filteredRoles = new ArrayList<>();
-
-		List<Role> roles = RoleLocalServiceUtil.getRoles(
-			themeDisplay.getCompanyId());
-
-		for (Role role : roles) {
-			if (role.isTeam()) {
-				Team team = TeamLocalServiceUtil.getTeam(role.getClassPK());
-
-				if (GroupPermissionUtil.contains(
-						themeDisplay.getPermissionChecker(), team.getGroupId(),
-						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-
-					filteredRoles.add(role);
-				}
-			}
-			else if (RolePermissionUtil.contains(
-						themeDisplay.getPermissionChecker(), role.getRoleId(),
-						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-
-				filteredRoles.add(role);
-			}
-		}
-
-		return filteredRoles;
-	}
-
-	public static List<UserGroup> getUserGroups(ThemeDisplay themeDisplay)
-		throws Exception {
-
-		List<UserGroup> filteredUserGroups = new ArrayList<>();
-
-		List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(
-			themeDisplay.getCompanyId());
-
-		for (UserGroup userGroup : userGroups) {
-			if (UserGroupPermissionUtil.contains(
-					themeDisplay.getPermissionChecker(),
-					userGroup.getUserGroupId(),
-					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
-
-				filteredUserGroups.add(userGroup);
-			}
-		}
-
-		return filteredUserGroups;
-	}
 
 	public static boolean hasGroups(ThemeDisplay themeDisplay)
 		throws Exception {
