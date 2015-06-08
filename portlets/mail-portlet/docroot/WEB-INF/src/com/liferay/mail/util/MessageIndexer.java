@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.search.Summary;
+import com.liferay.portal.kernel.search.generic.BooleanQueryImpl;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -71,8 +72,7 @@ public class MessageIndexer extends BaseIndexer {
 			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
 			searchContext.setStart(QueryUtil.ALL_POS);
 
-			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
-				searchContext);
+			BooleanQuery booleanQuery = new BooleanQueryImpl();
 
 			booleanQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, CLASS_NAME);
 
@@ -100,8 +100,7 @@ public class MessageIndexer extends BaseIndexer {
 			searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
 			searchContext.setStart(QueryUtil.ALL_POS);
 
-			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(
-				searchContext);
+			BooleanQuery booleanQuery = new BooleanQueryImpl();
 
 			booleanQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, CLASS_NAME);
 
