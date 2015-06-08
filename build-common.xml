@@ -129,7 +129,7 @@ ECJ was automatically installed. Please rerun your task.
 					<resourcecount count="0" when="gt">
 						<fileset
 							dir="@{module.web.dir}"
-							excludes="**/custom_jsps/**/*"
+							excludes="**/custom_jsps/**/*,**/dependencies/**/*"
 							includes="docroot/**/*.jsp,src/META-INF/resources/**/*.jsp,tmp/**/*.jsp"
 						/>
 					</resourcecount>
