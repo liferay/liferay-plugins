@@ -935,17 +935,28 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="compile-jsp">
 		<if>
-			<isset property="compile.jsp.docroot.dir" />
+			<resourcecount count="0" when="gt">
+				<fileset
+					dir="${basedir}"
+					excludes="**/custom_jsps/**/*,**/dependencies/**/*"
+					includes="docroot/**/*.jsp,src/META-INF/resources/**/*.jsp,tmp/**/*.jsp"
+				/>
+			</resourcecount>
 			<then>
-				<compile-jsp
-					compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
-				/>
+				<if>
+					<isset property="compile.jsp.docroot.dir" />
+					<then>
+						<compile-jsp
+							compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
+						/>
+					</then>
+					<else>
+						<compile-jsp
+							compile.jsp.docroot.dir="docroot"
+						/>
+					</else>
+				</if>
 			</then>
-			<else>
-				<compile-jsp
-					compile.jsp.docroot.dir="docroot"
-				/>
-			</else>
 		</if>
 	</target>
 
