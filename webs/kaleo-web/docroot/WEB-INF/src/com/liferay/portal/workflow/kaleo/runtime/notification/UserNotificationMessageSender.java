@@ -114,9 +114,11 @@ public class UserNotificationMessageSender
 		jsonObject.put(
 			"workflowInstanceId", kaleoInstanceToken.getKaleoInstanceId());
 
-		jsonObject.put(
-			"workflowTaskId",
-			kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
+		if (kaleoTaskInstanceToken != null) {
+			jsonObject.put(
+				"workflowTaskId",
+				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
+		}
 
 		return jsonObject;
 	}
