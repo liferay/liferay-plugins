@@ -1837,7 +1837,7 @@ Please find a solution that does not require portal-impl.jar.
 				<property name="config.generator.input.dir" value="@{module.dir}/.js_cache" />
 				<property name="config.generator.module.config" value="@{module.dir}/.js_cache/bower.json" />
 				<property name="config.generator.module.format" value="/_/g,-" />
-				<property name="config.generator.output.file" value="@{module.dir}/config.json" />
+				<property name="config.generator.output.file" value="@{module.dir}/classes/META-INF/config.json" />
 				<property name="config.generator.path.ignore" value="true" />
 				<property name="config.generator.root.dir" value="@{module.dir}/.js_cache/META-INF/resources" />
 			</ant>
