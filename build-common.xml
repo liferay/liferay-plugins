@@ -515,6 +515,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
 
 			<delete dir="@{module.dir}/coverage-reports" />
+			<delete dir="@{module.dir}/.js_cache" />
 			<delete dir="@{module.dir}/javadoc" />
 			<delete dir="@{module.dir}/pmd-reports" />
 			<delete dir="@{module.dir}/test-classes" />
@@ -2930,8 +2931,6 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<delete dir="@{module.dir}/.js_cache" />
-			<delete dir="@{module.dir}/tmp/transpile" />
 			<mkdir dir="@{module.dir}/.js_cache" />
 			<mkdir dir="@{module.dir}/tmp/transpile" />
 
