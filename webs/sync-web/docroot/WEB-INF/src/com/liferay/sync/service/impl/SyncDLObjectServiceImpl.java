@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.jsonwebservice.NoSuchJSONWebServiceException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
@@ -1353,7 +1352,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return updateFolder(folderId, name, description, serviceContext);
 		}
 		else {
-			throw new NoSuchJSONWebServiceException(
+			throw new RuntimeException(
 				"No JSON web service action with path " + urlPath);
 		}
 	}
