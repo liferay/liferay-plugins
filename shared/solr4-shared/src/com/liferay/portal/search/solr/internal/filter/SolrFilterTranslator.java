@@ -160,6 +160,34 @@ public class SolrFilterTranslator
 		return _termsFilterTranslator.translate(termsFilter);
 	}
 
+	protected String includeCompanyId(
+		String filterString, SearchContext searchContext) {
+
+		StringBundler sb = null;
+
+		if (Validator.isNotNull(filterString)) {
+			sb = new StringBundler(11);
+
+			sb.append(StringPool.PLUS);
+			sb.append(StringPool.OPEN_PARENTHESIS);
+			sb.append(filterString);
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+			sb.append(StringPool.SPACE);
+		}
+		else {
+			sb = new StringBundler(6);
+		}
+
+		sb.append(StringPool.PLUS);
+		sb.append(StringPool.OPEN_PARENTHESIS);
+		sb.append(Field.COMPANY_ID);
+		sb.append(StringPool.COLON);
+		sb.append(searchContext.getCompanyId());
+		sb.append(StringPool.CLOSE_PARENTHESIS);
+
+		return sb.toString();
+	}
+
 	@Reference(unbind = "-")
 	protected void setBooleanQueryTranslator(
 		BooleanFilterTranslator booleanQueryTranslator) {
@@ -249,34 +277,6 @@ public class SolrFilterTranslator
 		TermsFilterTranslator termsFilterTranslator) {
 
 		_termsFilterTranslator = termsFilterTranslator;
-	}
-
-	protected String includeCompanyId(
-		String filterString, SearchContext searchContext) {
-
-		StringBundler sb = null;
-
-		if (Validator.isNotNull(filterString)) {
-			sb = new StringBundler(11);
-
-			sb.append(StringPool.PLUS);
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(filterString);
-			sb.append(StringPool.CLOSE_PARENTHESIS);
-			sb.append(StringPool.SPACE);
-		}
-		else {
-			sb = new StringBundler(6);
-		}
-
-		sb.append(StringPool.PLUS);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(Field.COMPANY_ID);
-		sb.append(StringPool.COLON);
-		sb.append(searchContext.getCompanyId());
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
 	}
 
 	private BooleanFilterTranslator _booleanQueryTranslator;
