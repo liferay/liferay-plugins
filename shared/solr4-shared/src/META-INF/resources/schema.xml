@@ -456,6 +456,10 @@
 				<filter class="solr.SnowballPorterFilterFactory" language="Turkish" />
 			</analyzer>
 		</fieldType>
+
+		<!-- Geo Location -->
+
+		<fieldType class="solr.LatLonType" name="location" subFieldSuffix="_coordinate" />
 	</types>
 	<fields>
 		<field indexed="true" multiValued="true" name="ancestorOrganizationIds" stored="true" type="string" />
@@ -489,6 +493,7 @@
 		<field indexed="true" name="fileEntryTypeId" stored="true" type="string" />
 		<field indexed="true" name="firstName" stored="true" type="text_lowercase" />
 		<field indexed="true" name="folderId" stored="true" type="string" />
+		<field indexed="true" name="geoLocation" stored="true" type="location" />
 		<field indexed="true" multiValued="true" name="groupId" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="groupIds" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="groupRoleId" stored="true" type="string" />
@@ -540,6 +545,7 @@
 		<field indexed="true" name="version" stored="true" type="string" />
 		<field indexed="true" name="visible" stored="true" type="string" />
 		<field indexed="true" multiValued="false" name="_version_" stored="true" type="long" />
+		<dynamicField indexed="true" name="*_coordinate" stored="false" type="tdouble" />
 		<dynamicField indexed="true" multiValued="false" name="*Date_sortable" stored="true" type="long" />
 		<dynamicField indexed="true" multiValued="false" name="*Number_sortable" stored="true" type="double" />
 		<dynamicField indexed="true" multiValued="false" name="*_sortable" stored="true" type="string" />
