@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.search.WildcardQuery;
 import com.liferay.portal.kernel.search.generic.DisMaxQuery;
 import com.liferay.portal.kernel.search.generic.FuzzyLikeThisQuery;
 import com.liferay.portal.kernel.search.generic.FuzzyQuery;
+import com.liferay.portal.kernel.search.generic.MatchAllQuery;
 import com.liferay.portal.kernel.search.generic.MatchQuery;
 import com.liferay.portal.kernel.search.generic.MoreLikeThisQuery;
 import com.liferay.portal.kernel.search.generic.MultiMatchQuery;
@@ -35,6 +36,7 @@ import com.liferay.portal.search.solr.query.DisMaxQueryTranslator;
 import com.liferay.portal.search.solr.query.FuzzyLikeThisQueryTranslator;
 import com.liferay.portal.search.solr.query.FuzzyQueryTranslator;
 import com.liferay.portal.search.solr.query.LuceneQueryConverter;
+import com.liferay.portal.search.solr.query.MatchAllQueryTranslator;
 import com.liferay.portal.search.solr.query.MatchQueryTranslator;
 import com.liferay.portal.search.solr.query.MoreLikeThisQueryTranslator;
 import com.liferay.portal.search.solr.query.MultiMatchQueryTranslator;
@@ -43,6 +45,8 @@ import com.liferay.portal.search.solr.query.StringQueryTranslator;
 import com.liferay.portal.search.solr.query.TermQueryTranslator;
 import com.liferay.portal.search.solr.query.TermRangeQueryTranslator;
 import com.liferay.portal.search.solr.query.WildcardQueryTranslator;
+
+import org.apache.lucene.search.MatchAllDocsQuery;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -102,6 +106,20 @@ public class SolrQueryTranslator
 	@Override
 	public org.apache.lucene.search.Query visitQuery(FuzzyQuery fuzzyQuery) {
 		return _fuzzyQueryTranslator.translate(fuzzyQuery);
+	}
+
+	@Override
+	public org.apache.lucene.search.Query visitQuery(
+		MatchAllQuery matchAllQuery) {
+
+		org.apache.lucene.search.MatchAllDocsQuery matchAllDocsQuery =
+			new MatchAllDocsQuery();
+
+		if (!matchAllQuery.isDefaultBoost()) {
+			matchAllDocsQuery.setBoost(matchAllQuery.getBoost());
+		}
+
+		return matchAllDocsQuery;
 	}
 
 	@Override
@@ -181,6 +199,13 @@ public class SolrQueryTranslator
 	}
 
 	@Reference(unbind = "-")
+	protected void setMatchAllQueryTranslator(
+		MatchAllQueryTranslator matchAllQueryTranslator) {
+
+		_matchAllQueryTranslator = matchAllQueryTranslator;
+	}
+
+	@Reference(unbind = "-")
 	protected void setMatchQueryTranslator(
 		MatchQueryTranslator matchQueryTranslator) {
 
@@ -249,6 +274,7 @@ public class SolrQueryTranslator
 	private DisMaxQueryTranslator _disMaxQueryTranslator;
 	private FuzzyLikeThisQueryTranslator _fuzzyLikeThisQueryTranslator;
 	private FuzzyQueryTranslator _fuzzyQueryTranslator;
+	private MatchAllQueryTranslator _matchAllQueryTranslator;
 	private MatchQueryTranslator _matchQueryTranslator;
 	private MoreLikeThisQueryTranslator _moreLikeThisQueryTranslator;
 	private MultiMatchQueryTranslator _multiMatchQueryTranslator;
