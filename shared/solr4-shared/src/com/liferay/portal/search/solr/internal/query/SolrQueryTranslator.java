@@ -34,6 +34,7 @@ import com.liferay.portal.search.solr.query.BooleanQueryTranslator;
 import com.liferay.portal.search.solr.query.DisMaxQueryTranslator;
 import com.liferay.portal.search.solr.query.FuzzyLikeThisQueryTranslator;
 import com.liferay.portal.search.solr.query.FuzzyQueryTranslator;
+import com.liferay.portal.search.solr.query.LuceneQueryConverter;
 import com.liferay.portal.search.solr.query.MatchQueryTranslator;
 import com.liferay.portal.search.solr.query.MoreLikeThisQueryTranslator;
 import com.liferay.portal.search.solr.query.MultiMatchQueryTranslator;
@@ -52,11 +53,16 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true, property = {"search.engine.impl=Solr"},
-	service = QueryTranslator.class
+	service = {LuceneQueryConverter.class, QueryTranslator.class}
 )
 public class SolrQueryTranslator
-	implements QueryTranslator<String>,
+	implements LuceneQueryConverter, QueryTranslator<String>,
 			   QueryVisitor<org.apache.lucene.search.Query> {
+
+	@Override
+	public org.apache.lucene.search.Query convert(Query query) {
+		return query.accept(this);
+	}
 
 	@Override
 	public String translate(Query query, SearchContext searchContext) {

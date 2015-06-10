@@ -15,13 +15,8 @@
 package com.liferay.portal.search.solr.internal.filter;
 
 import com.liferay.portal.kernel.search.filter.QueryFilter;
-import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.search.solr.filter.QueryFilterTranslator;
-
-import org.apache.lucene.analysis.core.KeywordAnalyzer;
-import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.util.Version;
+import com.liferay.portal.search.solr.query.LuceneQueryConverter;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -34,28 +29,16 @@ public class QueryFilterTranslatorImpl implements QueryFilterTranslator {
 
 	@Override
 	public org.apache.lucene.search.Query translate(QueryFilter queryFilter) {
-		String queryString = _queryTranslator.translate(
-			queryFilter.getQuery(), null);
-
-		QueryParser queryParser = new QueryParser(
-			Version.LUCENE_43, "uuid", new KeywordAnalyzer());
-
-		try {
-			Query query = queryParser.parse(queryString);
-
-			return query;
-		}
-		catch (Exception e) {
-			throw new IllegalStateException(
-				"Unable to parse query: " + queryString, e);
-		}
+		return _luceneQueryConverter.convert(queryFilter.getQuery());
 	}
 
 	@Reference(unbind = "-")
-	protected void setQueryTranslator(QueryTranslator<String> queryTranslator) {
-		_queryTranslator = queryTranslator;
+	protected void setLuceneQueryConverter(
+		LuceneQueryConverter luceneQueryConverter) {
+
+		_luceneQueryConverter = luceneQueryConverter;
 	}
 
-	private QueryTranslator<String> _queryTranslator;
+	private LuceneQueryConverter _luceneQueryConverter;
 
 }
