@@ -100,6 +100,10 @@ public class EmailNotificationSender
 			Set<NotificationRecipient> notificationRecipients)
 		throws AddressException, UnsupportedEncodingException {
 
+		if (notificationRecipients == null) {
+			return new InternetAddress[0];
+		}
+
 		List<InternetAddress> internetAddresses = new ArrayList<>(
 			notificationRecipients.size());
 
