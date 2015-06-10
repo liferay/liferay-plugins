@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "sync-sites");
+String tabs1 = ParamUtil.getString(request, "tabs1", "sites");
 
 String keywords = ParamUtil.getString(request, "keywords");
 
