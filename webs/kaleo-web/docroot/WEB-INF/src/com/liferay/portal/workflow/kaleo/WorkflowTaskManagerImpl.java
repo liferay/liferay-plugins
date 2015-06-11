@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.lock.LockManagerUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
@@ -45,6 +46,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler;
 import com.liferay.portal.workflow.kaleo.runtime.TaskManager;
+import com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignmentSelector;
+import com.liferay.portal.workflow.kaleo.runtime.util.ClassLoaderUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
@@ -54,6 +57,7 @@ import com.liferay.portal.workflow.kaleo.util.comparators.KaleoTaskInstanceToken
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -239,8 +243,58 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			List<KaleoTaskAssignment> kaleoTaskAssignments =
+				new ArrayList<KaleoTaskAssignment>();
+
+			List<KaleoTaskAssignment> kaleoTaskAssignmentsByRole =
 				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 					kaleoTask.getKaleoTaskId(), Role.class.getName());
+
+			kaleoTaskAssignments.addAll(kaleoTaskAssignmentsByRole);
+
+			List<KaleoTaskAssignment> kaleoTaskAssignmentsByScript =
+				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
+					kaleoTask.getKaleoTaskId(), "SCRIPT");
+
+			KaleoInstanceToken kaleoInstanceToken = 
+				kaleoTaskInstanceToken.getKaleoInstanceToken();
+
+			Map<String, Serializable> workflowContext = 
+				WorkflowContextUtil.convert(
+					kaleoInstanceToken.getKaleoInstance().
+						getWorkflowContext());
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setCompanyId(companyId);
+
+			for (KaleoTaskAssignment kaleoTaskAssignmentByScript :
+				kaleoTaskAssignmentsByScript) {
+
+				String[] assigneeScriptRequiredContexts = StringUtil.split(
+					kaleoTaskAssignmentByScript.
+						getAssigneeScriptRequiredContexts());
+
+				ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
+					assigneeScriptRequiredContexts);
+
+				ExecutionContext executionContext = new ExecutionContext(
+					kaleoInstanceToken, workflowContext, serviceContext);
+
+				Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
+					_taskAssignmentSelector.calculateTaskAssignments(
+						kaleoTaskAssignmentByScript, executionContext,
+						classLoaders);
+
+				for (KaleoTaskAssignment calculatedKaleoTaskAssignment :
+					calculatedKaleoTaskAssignments) {
+
+					if (Role.class.getName().equals(
+						calculatedKaleoTaskAssignment.getAssigneeClassName())) {
+
+						kaleoTaskAssignments.add(calculatedKaleoTaskAssignment);
+					}
+				}
+			}
 
 			Map<String, Long> pooledActors = new TreeMap<>(
 				new NaturalOrderStringComparator());
@@ -755,6 +809,12 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		_kaleoSignaler = kaleoSignaler;
 	}
 
+	public void setTaskAssignmentSelector(
+		TaskAssignmentSelector taskAssignmentSelector) {
+
+		_taskAssignmentSelector = taskAssignmentSelector;
+	}
+
 	public void setTaskManager(TaskManager taskManager) {
 		_taskManager = taskManager;
 	}
@@ -795,6 +855,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	private KaleoSignaler _kaleoSignaler;
+	private TaskAssignmentSelector _taskAssignmentSelector;
 	private TaskManager _taskManager;
 
 }
