@@ -1413,8 +1413,6 @@ AUI().use(
 						}
 
 						var incoming = false;
-						var notSameBrowserKey = false;
-
 						var userId = entry.toUserId;
 
 						if (entry.fromUserId != currentUserId) {
@@ -1422,13 +1420,9 @@ AUI().use(
 							incoming = true;
 						}
 
-						if (key != browserKey) {
-							notSameBrowserKey = true;
-						}
-
 						var buddy = instance._buddies[userId];
 
-						if (buddy && (incoming || notSameBrowserKey)) {
+						if (buddy && (incoming || key != browserKey)) {
 							var chat = instance._chatSessions[userId];
 
 							if (!chat && entry.content) {
