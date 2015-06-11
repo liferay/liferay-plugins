@@ -175,14 +175,14 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId,
+			long userId, long modifiedTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, true, parentAssetEntrySetId, sharedToJSONArray,
-			assetTagNames, start, end);
+			userId, modifiedTime, true, parentAssetEntrySetId,
+			sharedToJSONArray, assetTagNames, start, end);
 	}
 
 	@Override
@@ -201,14 +201,14 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long userId, long createTime, long parentAssetEntrySetId,
+			long userId, long modifiedTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, createTime, false, parentAssetEntrySetId, sharedToJSONArray,
-			assetTagNames, start, end);
+			userId, modifiedTime, false, parentAssetEntrySetId,
+			sharedToJSONArray, assetTagNames, start, end);
 	}
 
 	@Override
@@ -423,7 +423,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected List<AssetEntrySet> getAssetEntrySets(
-			long userId, long createTime, boolean gtCreateTime,
+			long userId, long modifiedTime, boolean gtModifiedTime,
 			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
@@ -435,9 +435,9 @@ public class AssetEntrySetLocalServiceImpl
 		List<AssetEntrySet> assetEntrySets =
 			assetEntrySetFinder.findByCT_PAESI_CNI(
 				classNameIdAndClassPKOVP.getKey(),
-				classNameIdAndClassPKOVP.getValue(), createTime, gtCreateTime,
-				parentAssetEntrySetId, sharedToJSONArray, assetTagNames, start,
-				end);
+				classNameIdAndClassPKOVP.getValue(), modifiedTime,
+				gtModifiedTime, parentAssetEntrySetId, sharedToJSONArray,
+				assetTagNames, start, end);
 
 		return assetEntrySets;
 	}

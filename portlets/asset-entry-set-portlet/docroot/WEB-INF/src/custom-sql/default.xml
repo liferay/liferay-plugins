@@ -12,7 +12,7 @@
 					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
 			[$JOIN_BY$]
 			WHERE
-				(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
+				(AssetEntrySet.modifiedTime [$MODIFIED_TIME_COMPARATOR$] ?) AND
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
 				(

@@ -94,14 +94,14 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, String sharedTo,
+			long modifiedTime, long parentAssetEntrySetId, String sharedTo,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getNewAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
+			getUserId(), modifiedTime, parentAssetEntrySetId, sharedToJSONArray,
 			assetTagNames, start, end);
 	}
 
@@ -121,14 +121,14 @@ public class AssetEntrySetServiceImpl extends AssetEntrySetServiceBaseImpl {
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long createTime, long parentAssetEntrySetId, String sharedTo,
+			long modifiedTime, long parentAssetEntrySetId, String sharedTo,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
 		JSONArray sharedToJSONArray = JSONFactoryUtil.createJSONArray(sharedTo);
 
 		return assetEntrySetLocalService.getOldAssetEntrySets(
-			getUserId(), createTime, parentAssetEntrySetId, sharedToJSONArray,
+			getUserId(), modifiedTime, parentAssetEntrySetId, sharedToJSONArray,
 			assetTagNames, start, end);
 	}
 

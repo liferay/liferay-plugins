@@ -111,8 +111,8 @@ public class AssetEntrySetFinderImpl
 	}
 
 	public List<AssetEntrySet> findByCT_PAESI_CNI(
-			long classNameId, long classPK, long createTime,
-			boolean gtCreateTime, long parentAssetEntrySetId,
+			long classNameId, long classPK, long modifiedTime,
+			boolean gtModifiedTime, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
 			int end)
 		throws SystemException {
@@ -135,13 +135,13 @@ public class AssetEntrySetFinderImpl
 				sql, "[$JOIN_BY$]",
 				getJoinBy(sharedToJSONArray, assetTagNames));
 
-			if (gtCreateTime) {
+			if (gtModifiedTime) {
 				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", ">");
+					sql, "[$MODIFIED_TIME_COMPARATOR$]", ">");
 			}
 			else {
 				sql = StringUtil.replace(
-					sql, "[$CREATE_TIME_COMPARATOR$]", "<=");
+					sql, "[$MODIFIED_TIME_COMPARATOR$]", "<=");
 			}
 
 			sql = StringUtil.replace(
@@ -158,7 +158,7 @@ public class AssetEntrySetFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			qPos.add(createTime);
+			qPos.add(modifiedTime);
 			qPos.add(parentAssetEntrySetId);
 			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
 
