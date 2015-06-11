@@ -32,11 +32,11 @@ public class MatchQueryTranslatorImpl implements MatchQueryTranslator {
 
 	@Override
 	public org.apache.lucene.search.Query translate(MatchQuery matchQuery) {
+		org.apache.lucene.search.Query query = null;
+
 		Term term = new Term(matchQuery.getField(), matchQuery.getValue());
 
 		MatchQuery.Type type = matchQuery.getType();
-
-		org.apache.lucene.search.Query query = null;
 
 		if (type == MatchQuery.Type.PHRASE) {
 			PhraseQuery phraseQuery = new PhraseQuery();

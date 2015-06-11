@@ -33,11 +33,9 @@ public class FuzzyQueryTranslatorImpl implements FuzzyQueryTranslator {
 		Term term = new Term(fuzzyQuery.getField(), fuzzyQuery.getValue());
 
 		int maxEdits = GetterUtil.getInteger(fuzzyQuery.getMaxEdits(), 0);
-
+		int prefixLength = GetterUtil.getInteger(fuzzyQuery.getPrefixLength());
 		int maxExpansions = GetterUtil.getInteger(
 			fuzzyQuery.getMaxExpansions(), 50);
-
-		int prefixLength = GetterUtil.getInteger(fuzzyQuery.getPrefixLength());
 
 		if (!fuzzyQuery.isDefaultBoost()) {
 			fuzzyQuery.setBoost(fuzzyQuery.getBoost());

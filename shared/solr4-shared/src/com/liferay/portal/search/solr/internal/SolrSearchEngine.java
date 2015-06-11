@@ -97,12 +97,12 @@ public class SolrSearchEngine extends BaseSearchEngine {
 
 		setVendor(vendor);
 
+		BundleContext bundleContext = componentContext.getBundleContext();
+
 		String versionString = GetterUtil.getString(
 			properties.get("lucene.version"), "LUCENE_43");
 
 		Version version = Version.valueOf(versionString);
-
-		BundleContext bundleContext = componentContext.getBundleContext();
 
 		Dictionary<String, Object> versionProperties =
 			new HashMapDictionary<>();
