@@ -69,6 +69,12 @@ portletURL.setParameter("tabs1", tabs1);
 		</aui:form>
 	</liferay-ui:section>
 	<liferay-ui:section>
+		<liferay-ui:success key="deviceDeletedSuccessfully" message="device-deleted-successfully" />
+
+		<div class="alert alert-danger hide" id="<portlet:namespace />error">
+			<p><liferay-ui:message key="device-could-not-be-deleted" /></p>
+		</div>
+
 		<liferay-ui:search-container
 			emptyResultsMessage="no-devices-were-found"
 			iteratorURL="<%= portletURL %>"
@@ -91,19 +97,28 @@ portletURL.setParameter("tabs1", tabs1);
 				User deviceUser = UserLocalServiceUtil.getUser(device.getUserId());
 				%>
 
-				<liferay-ui:search-container-column-text name="user-id" value="<%= String.valueOf(deviceUser.getUserId()) %>" />
 
 				<liferay-ui:search-container-column-text name="full-name" value="<%= deviceUser.getFullName() %>" />
 
 				<liferay-ui:search-container-column-text name="token" />
 
 				<liferay-ui:search-container-column-text name="platform" orderable="<%= true %>" value="<%= LanguageUtil.get(request, device.getPlatform()) %>" />
+
+				<liferay-ui:search-container-column-jsp align="right" path="/devices_action.jsp" />
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator/>
 		</liferay-ui:search-container>
 	</liferay-ui:section>
 	<liferay-ui:section>
+		<div class="alert alert-success hide" id="<portlet:namespace />success">
+			<p><liferay-ui:message key="the-push-notification-was-sent-successfully" /></p>
+		</div>
+
+		<div class="alert alert-danger hide" id="<portlet:namespace />">
+			<p></p>
+		</div>
+
 		<aui:form name="fm">
 			<aui:input label="message" name="message" rows="6" type="textarea" />
 
@@ -112,15 +127,6 @@ portletURL.setParameter("tabs1", tabs1);
 			<aui:button type="reset" value="reset" />
 		</aui:form>
 
-		<br />
-
-		<div class="alert alert-success hide" id="<portlet:namespace />success">
-			<p><liferay-ui:message key="the-push-notification-was-sent-successfully" /></p>
-		</div>
-
-		<div class="alert alert-danger hide" id="<portlet:namespace />error">
-			<p></p>
-		</div>
 	</liferay-ui:section>
 </liferay-ui:tabs>
 

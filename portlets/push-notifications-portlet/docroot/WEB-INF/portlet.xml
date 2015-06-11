@@ -22,5 +22,10 @@
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>tabs1</supported-public-render-parameter>
 	</portlet>
+	<public-render-parameter xmlns:x="http://www.liferay.com/public-render-parameters">
+		<identifier>tabs1</identifier>
+		<qname>x:tabs1</qname>
+	</public-render-parameter>
 </portlet-app>
