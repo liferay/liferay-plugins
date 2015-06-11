@@ -79,6 +79,7 @@
 	<path id="test.classpath">
 		<path refid="plugin.classpath" />
 		<path refid="plugin-test-type.classpath" />
+		<fileset dir="${ant.home}/lib" includes="ecj.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
 		<fileset dir="${module.framework.base.dir}/test" erroronmissingdir="false" includes="portal-test*.jar" />
 	</path>
