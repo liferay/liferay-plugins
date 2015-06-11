@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
-import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -226,7 +225,7 @@ public class CalendarBookingIndexer extends BaseIndexer {
 			}
 
 			@Override
-			protected void performAction(Object object) throws PortalException {
+			protected void performAction(Object object) {
 				CalendarBooking calendarBooking = (CalendarBooking)object;
 
 				try {
@@ -234,12 +233,12 @@ public class CalendarBookingIndexer extends BaseIndexer {
 
 					documents.add(document);
 				}
-				catch (SearchException e) {
+				catch (PortalException pe) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Unable to index calendar booking " +
 								calendarBooking.getCalendarBookingId(),
-							e);
+							pe);
 					}
 				}
 			}

@@ -193,7 +193,7 @@ public class MessageIndexer extends BaseIndexer {
 			new MessageActionableDynamicQuery() {
 
 			@Override
-			protected void performAction(Object object) throws PortalException {
+			protected void performAction(Object object) {
 				Message message = (Message)object;
 
 				try {
@@ -201,11 +201,11 @@ public class MessageIndexer extends BaseIndexer {
 
 					addDocument(document);
 				}
-				catch (PortalException e) {
+				catch (PortalException pe) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Unable to index message " + message.getMessageId(),
-							e);
+							pe);
 					}
 				}
 			}

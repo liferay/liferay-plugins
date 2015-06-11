@@ -221,9 +221,7 @@ public class AdminIndexer extends BaseIndexer {
 			new ActionableDynamicQuery.PerformActionMethod() {
 
 				@Override
-				public void performAction(Object object)
-					throws PortalException {
-
+				public void performAction(Object object) {
 					KBArticle kbArticle = (KBArticle)object;
 
 					try {
@@ -231,12 +229,12 @@ public class AdminIndexer extends BaseIndexer {
 
 						actionableDynamicQuery.addDocument(document);
 					}
-					catch (PortalException e) {
+					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"Unable to index knowledge base article " +
 									kbArticle.getKbArticleId(),
-								e);
+								pe);
 						}
 					}
 				}
