@@ -17,19 +17,31 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String tabs1 = ParamUtil.getString(request, "tabs1", "configuration");
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("tabs1", tabs1);
+
 String androidApiKey = PrefsPropsUtil.getString(PortletPropsKeys.ANDROID_API_KEY, PortletPropsValues.ANDROID_API_KEY);
 int androidRetries = PrefsPropsUtil.getInteger(PortletPropsKeys.ANDROID_RETRIES, PortletPropsValues.ANDROID_RETRIES);
 String appleCertificatePassword = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD, PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
 String appleCertificatePath = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CERTIFICATE_PATH, PortletPropsValues.APPLE_CERTIFICATE_PATH);
 boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX, PortletPropsValues.APPLE_SANDBOX);
+
+String orderByCol = ParamUtil.getString(request, "orderByCol", "platform");
+String orderByType = ParamUtil.getString(request, "orderByType", "asc");
+
+OrderByComparator orderByComparator = PushNotificationsUtil.getPushNotificationsDeviceOrderByComparator(orderByCol, orderByType);
 %>
 
 <liferay-portlet:actionURL name="updatePortletPreferences" var="updatePortletPreferencesURL" />
 
 <liferay-ui:tabs
-	names="configuration,test"
-	refresh="<%= false %>"
->
+	names="configuration,devices,test"
+	param="tabs1"
+	url="<%= portletURL.toString() %>">
+
 	<liferay-ui:section>
 		<aui:form action="<%= updatePortletPreferencesURL %>" method="post" name="configurationFm">
 			<aui:fieldset label="android">
@@ -56,7 +68,50 @@ boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX,
 			</aui:button-row>
 		</aui:form>
 	</liferay-ui:section>
+	<liferay-ui:section>
+		<liferay-ui:search-container
+			emptyResultsMessage="no-devices-were-found"
+			iteratorURL="<%= portletURL %>"
+			orderByCol="<%= orderByCol %>"
+			orderByComparator="<%= orderByComparator %>"
+			orderByType="<%= orderByType %>"
+			total="<%= PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevicesCount() %>"
+		>
 
+			<liferay-ui:search-container-results
+				results="<%= PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevices(searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
+			/>
+
+			<liferay-ui:search-container-row
+				className="com.liferay.pushnotifications.model.PushNotificationsDevice"
+				keyProperty="pushNotificationsDeviceId"
+				modelVar="device"
+			>
+
+				<%
+				User deviceUser = UserLocalServiceUtil.getUser(device.getUserId());
+				%>
+
+				<liferay-ui:search-container-column-text
+					name="user-id"
+					value="<%= String.valueOf(deviceUser.getUserId()) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					name="full-name"
+					value="<%= deviceUser.getFullName() %>" />
+
+				<liferay-ui:search-container-column-text
+					name="token" />
+
+				<liferay-ui:search-container-column-text
+					name="platform"
+					orderable="<%= true %>" />
+			</liferay-ui:search-container-row>
+
+			<liferay-ui:search-iterator/>
+		</liferay-ui:search-container>
+	</liferay-ui:section>
 	<liferay-ui:section>
 		<aui:form name="fm">
 			<aui:input label="message" name="message" rows="6" type="textarea" />

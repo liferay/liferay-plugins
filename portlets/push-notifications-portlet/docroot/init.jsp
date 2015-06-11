@@ -21,9 +21,17 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
+<%@ page import="com.liferay.portal.kernel.util.OrderByComparator" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
+page import="com.liferay.portal.model.User" %><%@
+page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
+page import="com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil" %><%@
 page import="com.liferay.pushnotifications.util.PortletPropsKeys" %><%@
-page import="com.liferay.pushnotifications.util.PortletPropsValues" %>
+page import="com.liferay.pushnotifications.util.PortletPropsValues" %><%@
+page import="com.liferay.pushnotifications.util.PushNotificationsUtil" %>
+
+<%@ page import="javax.portlet.PortletURL" %>
 
 <portlet:defineObjects />
 
