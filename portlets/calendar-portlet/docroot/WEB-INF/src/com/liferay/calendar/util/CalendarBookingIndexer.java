@@ -237,9 +237,8 @@ public class CalendarBookingIndexer extends BaseIndexer {
 				catch (SearchException e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to index calendar booking: " +
-								calendarBooking.getCalendarBookingId() + " - " +
-								calendarBooking.getTitle(),
+							"Unable to index calendar booking " +
+								calendarBooking.getCalendarBookingId(),
 							e);
 					}
 				}

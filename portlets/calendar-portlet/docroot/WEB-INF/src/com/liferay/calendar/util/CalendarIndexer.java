@@ -176,9 +176,8 @@ public class CalendarIndexer extends BaseIndexer {
 				catch (PortalException e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to index calendar: " +
-								calendar.getCalendarId() + " - " +
-								calendar.getName(),
+							"Unable to index calendar " +
+								calendar.getCalendarId(),
 							e);
 					}
 				}

@@ -204,7 +204,8 @@ public class MessageIndexer extends BaseIndexer {
 				catch (PortalException e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to message: " + message.getMessageId(), e);
+							"Unable to index message " + message.getMessageId(),
+							e);
 					}
 				}
 			}

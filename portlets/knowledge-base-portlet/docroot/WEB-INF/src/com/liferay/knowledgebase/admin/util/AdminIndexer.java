@@ -234,8 +234,9 @@ public class AdminIndexer extends BaseIndexer {
 					catch (PortalException e) {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
-								"Unable to index article: " +
-									kbArticle.getKbArticleId(), e);
+								"Unable to index knowledge base article " +
+									kbArticle.getKbArticleId(),
+								e);
 						}
 					}
 				}
