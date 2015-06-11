@@ -14,6 +14,8 @@ AUI().use(
 		var LString = Lang.String;
 		var Notification = A.config.win.Notification;
 
+		var browserKey = Liferay.Util.randomInt();
+
 		var now = Date.now;
 
 		var DOC = A.config.doc;
@@ -714,6 +716,33 @@ AUI().use(
 
 				instance._createBuddyListPanel();
 				instance._createSettingsPanel();
+
+				var storageFn = function(event) {
+					var newValue = JSON.parse(event.newValue);
+
+					if (newValue) {
+						var key = newValue.browserKey;
+
+						if (key && key != browserKey) {
+							var entry = newValue.entry;
+
+							if (entry) {
+								instance._updateConversations([entry], key);
+							}
+						}
+					}
+				};
+
+				AUI.Env.add(window, 'storage', storageFn);
+
+				A.getWin().on(
+					'beforeunload',
+					function(event) {
+						AUI.Env.remove(window, 'storage', storageFn);
+
+						localStorage.setItem('liferay.chat.messages', null);
+					}
+				);
 			},
 
 			getContainer: function() {
@@ -1254,7 +1283,7 @@ AUI().use(
 					instance._initialRequest = false;
 				}
 				else {
-					instance._updateConversations(entries);
+					instance._updateConversations(entries, browserKey);
 				}
 			},
 
@@ -1377,7 +1406,7 @@ AUI().use(
 				buddyList.setTitle(title);
 			},
 
-			_updateConversations: function(entries) {
+			_updateConversations: function(entries, key) {
 				var instance = this;
 
 				var currentUserId = themeDisplay.getUserId();
@@ -1390,7 +1419,20 @@ AUI().use(
 					var entryProcessed = entryIds.indexOf('|' + entry.entryId) > -1;
 
 					if (!entryProcessed) {
+						if (entry.content.length) {
+							localStorage.setItem(
+								'liferay.chat.messages',
+								JSON.stringify(
+									{
+										browserKey: browserKey,
+										entry: entry
+									}
+								)
+							);
+						}
+
 						var incoming = false;
+						var notSameBrowserKey = false;
 
 						var userId = entry.toUserId;
 
@@ -1400,9 +1442,13 @@ AUI().use(
 							incoming = true;
 						}
 
+						if (key != browserKey) {
+							notSameBrowserKey = true;
+						}
+
 						var buddy = instance._buddies[userId];
 
-						if (buddy && incoming) {
+						if (buddy && (incoming || notSameBrowserKey)) {
 							var chat = instance._chatSessions[userId];
 
 							if (!chat && entry.content) {
