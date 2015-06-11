@@ -23,10 +23,13 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -226,9 +229,20 @@ public class CalendarBookingIndexer extends BaseIndexer {
 			protected void performAction(Object object) throws PortalException {
 				CalendarBooking calendarBooking = (CalendarBooking)object;
 
-				Document document = getDocument(calendarBooking);
+				try {
+					Document document = getDocument(calendarBooking);
 
-				documents.add(document);
+					documents.add(document);
+				}
+				catch (SearchException e) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Unable to index calendar booking: " +
+								calendarBooking.getCalendarBookingId() + " - " +
+								calendarBooking.getTitle(),
+							e);
+					}
+				}
 			}
 
 		};
@@ -240,5 +254,8 @@ public class CalendarBookingIndexer extends BaseIndexer {
 		SearchEngineUtil.updateDocuments(
 			getSearchEngineId(), companyId, documents, isCommitImmediately());
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CalendarBookingIndexer.class);
 
 }

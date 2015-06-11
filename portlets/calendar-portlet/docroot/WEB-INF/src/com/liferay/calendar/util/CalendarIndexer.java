@@ -20,6 +20,8 @@ import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
@@ -166,9 +168,20 @@ public class CalendarIndexer extends BaseIndexer {
 			public void performAction(Object object) throws PortalException {
 				Calendar calendar = (Calendar)object;
 
-				Document document = getDocument(calendar);
+				try {
+					Document document = getDocument(calendar);
 
-				actionableDynamicQuery.addDocument(document);
+					actionableDynamicQuery.addDocument(document);
+				}
+				catch (PortalException e) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Unable to index calendar: " +
+								calendar.getCalendarId() + " - " +
+								calendar.getName(),
+							e);
+					}
+				}
 			}
 
 		});
@@ -177,5 +190,8 @@ public class CalendarIndexer extends BaseIndexer {
 
 		actionableDynamicQuery.performActions();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CalendarIndexer.class);
 
 }
