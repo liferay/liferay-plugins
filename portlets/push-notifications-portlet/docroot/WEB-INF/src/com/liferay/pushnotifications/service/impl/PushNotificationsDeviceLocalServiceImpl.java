@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.pushnotifications.PushNotificationsException;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
@@ -67,6 +68,13 @@ public class PushNotificationsDeviceLocalServiceImpl
 		pushNotificationsDevicePersistence.remove(pushNotificationsDevice);
 
 		return pushNotificationsDevice;
+	}
+
+	public List<PushNotificationsDevice> getPushNotificationsDevices(
+		int start, int end, OrderByComparator orderByComparator) {
+
+		return pushNotificationsDevicePersistence.findAll(
+			start, end, orderByComparator);
 	}
 
 	@Override
