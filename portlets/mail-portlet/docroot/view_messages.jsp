@@ -64,7 +64,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			</aui:nav-item>
 
 			<aui:nav-bar-search cssClass="form-search pull-right search-messages">
-				<liferay-ui:input-search id="keywords" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-messages") %>' />
+				<liferay-ui:input-search id="keywords" placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "search-messages") %>' />
 			</aui:nav-bar-search>
 		</aui:nav>
 	</aui:nav-bar>
