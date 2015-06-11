@@ -18,5 +18,8 @@
 		<entry key="sms">
 			<bean class="com.liferay.pushnotifications.sender.sms.TwilioSMSSender" />
 		</entry>
+		<entry key="microsoft">
+			<bean class="com.liferay.pushnotifications.sender.microsoft.MicrosoftPushNotificationsSender" />
+		</entry>
 	</util:map>
 </beans>
