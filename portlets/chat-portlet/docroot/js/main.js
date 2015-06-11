@@ -14,7 +14,7 @@ AUI().use(
 		var LString = Lang.String;
 		var Notification = A.config.win.Notification;
 
-		var browserKey = Liferay.Util.randomInt();
+		var windowId = Liferay.Util.randomInt();
 
 		var now = Date.now;
 
@@ -721,9 +721,9 @@ AUI().use(
 					var newValue = JSON.parse(event.newValue);
 
 					if (newValue) {
-						var key = newValue.browserKey;
+						var key = newValue.windowId;
 
-						if (key && key != browserKey) {
+						if (key && key != windowId) {
 							var entry = newValue.entry;
 
 							if (entry) {
@@ -1283,7 +1283,7 @@ AUI().use(
 					instance._initialRequest = false;
 				}
 				else {
-					instance._updateConversations(entries, browserKey);
+					instance._updateConversations(entries, windowId);
 				}
 			},
 
@@ -1424,8 +1424,8 @@ AUI().use(
 								'liferay.chat.messages',
 								JSON.stringify(
 									{
-										browserKey: browserKey,
-										entry: entry
+										entry: entry,
+										windowId: windowId
 									}
 								)
 							);
@@ -1443,7 +1443,7 @@ AUI().use(
 
 						var buddy = instance._buddies[userId];
 
-						if (buddy && (incoming || key != browserKey)) {
+						if (buddy && (incoming || key != windowId)) {
 							var chat = instance._chatSessions[userId];
 
 							if (!chat && entry.content) {
