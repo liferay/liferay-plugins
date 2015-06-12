@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="cobertura" org="net.sourceforge.cobertura" rev="2.1.1" />
+		<dependency name="cobertura" org="net.sourceforge.cobertura" rev="1.9.4.1" />
 	</dependencies>
 </ivy-module>
