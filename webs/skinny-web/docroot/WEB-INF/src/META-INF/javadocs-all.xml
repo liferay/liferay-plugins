@@ -93,7 +93,7 @@
 			<name>getSkinnyJournalArticle</name>
 			<param>
 				<name>journalArticle</name>
-				<type>com.liferay.portlet.journal.model.JournalArticle</type>
+				<type>com.liferay.journal.model.JournalArticle</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>

@@ -5,8 +5,8 @@
 	<namespace>Skinny</namespace>
 	<entity name="Skinny" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.dynamic.data.lists" entity="DDLRecordSet" />
+		<reference package-path="com.liferay.journal" entity="JournalArticle" />
 		<reference package-path="com.liferay.portal" entity="Group" />
 		<reference package-path="com.liferay.portlet.dynamicdatamapping" entity="DDMStructure" />
-		<reference package-path="com.liferay.portlet.journal" entity="JournalArticle" />
 	</entity>
 </service-builder>

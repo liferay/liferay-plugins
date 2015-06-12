@@ -25,7 +25,8 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException" %><%@
+<%@ page import="com.liferay.journal.model.JournalArticle" %><%@
+page import="com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
 page import="com.liferay.knowledgebase.InvalidKBArticleUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.InvalidKBFolderNameException" %><%@
@@ -136,7 +137,6 @@ page import="com.liferay.portlet.documentlibrary.DuplicateFileException" %><%@
 page import="com.liferay.portlet.documentlibrary.FileNameException" %><%@
 page import="com.liferay.portlet.documentlibrary.FileSizeException" %><%@
 page import="com.liferay.portlet.documentlibrary.NoSuchFileException" %><%@
-page import="com.liferay.portlet.journal.model.JournalArticle" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.taglib.search.DateSearchEntry" %><%@
 page import="com.liferay.taglib.search.ResultRow" %><%@

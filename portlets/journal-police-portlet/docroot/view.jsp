@@ -21,9 +21,9 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.journal.model.JournalArticle" %>
+<%@ page import="com.liferay.journal.service.JournalArticleLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
-<%@ page import="com.liferay.portlet.journal.model.JournalArticle" %>
-<%@ page import="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>

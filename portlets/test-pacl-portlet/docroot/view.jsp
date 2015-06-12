@@ -31,7 +31,7 @@
 		new SecurityExceptionTest(out, themeDisplay, true) {
 
 			protected void test() throws Exception {
-				JournalContentUtil.getJournalContent();
+				JournalContentUtil.getInstance();
 			}
 
 		};
