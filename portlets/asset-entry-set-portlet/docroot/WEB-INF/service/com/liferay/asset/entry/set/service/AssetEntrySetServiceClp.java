@@ -333,8 +333,9 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int start, int end)
+		long modifiedTime, long parentAssetEntrySetId,
+		java.lang.String sharedTo, java.lang.String[] assetTagNames, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -343,7 +344,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 			returnObj = _invokableService.invokeMethod(_methodName8,
 					_methodParameterTypes8,
 					new Object[] {
-						createTime,
+						modifiedTime,
 						
 					parentAssetEntrySetId,
 						
@@ -427,8 +428,9 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int start, int end)
+		long modifiedTime, long parentAssetEntrySetId,
+		java.lang.String sharedTo, java.lang.String[] assetTagNames, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -437,7 +439,7 @@ public class AssetEntrySetServiceClp implements AssetEntrySetService {
 			returnObj = _invokableService.invokeMethod(_methodName10,
 					_methodParameterTypes10,
 					new Object[] {
-						createTime,
+						modifiedTime,
 						
 					parentAssetEntrySetId,
 						

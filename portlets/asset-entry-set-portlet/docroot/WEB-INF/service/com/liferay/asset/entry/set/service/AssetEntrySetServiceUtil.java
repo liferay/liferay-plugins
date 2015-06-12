@@ -103,12 +103,13 @@ public class AssetEntrySetServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int start, int end)
+		long modifiedTime, long parentAssetEntrySetId,
+		java.lang.String sharedTo, java.lang.String[] assetTagNames, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getNewAssetEntrySets(createTime, parentAssetEntrySetId,
+				   .getNewAssetEntrySets(modifiedTime, parentAssetEntrySetId,
 			sharedTo, assetTagNames, start, end);
 	}
 
@@ -123,12 +124,13 @@ public class AssetEntrySetServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long createTime, long parentAssetEntrySetId, java.lang.String sharedTo,
-		java.lang.String[] assetTagNames, int start, int end)
+		long modifiedTime, long parentAssetEntrySetId,
+		java.lang.String sharedTo, java.lang.String[] assetTagNames, int start,
+		int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getOldAssetEntrySets(createTime, parentAssetEntrySetId,
+				   .getOldAssetEntrySets(modifiedTime, parentAssetEntrySetId,
 			sharedTo, assetTagNames, start, end);
 	}
 

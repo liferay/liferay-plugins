@@ -817,7 +817,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
+		long userId, long modifiedTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -830,7 +830,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					new Object[] {
 						userId,
 						
-					createTime,
+					modifiedTime,
 						
 					parentAssetEntrySetId,
 						
@@ -917,7 +917,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long createTime, long parentAssetEntrySetId,
+		long userId, long modifiedTime, long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -930,7 +930,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					new Object[] {
 						userId,
 						
-					createTime,
+					modifiedTime,
 						
 					parentAssetEntrySetId,
 						
