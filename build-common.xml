@@ -201,7 +201,14 @@ Error-Prone was automatically installed. Please rerun your task.
 				<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
 			</java>
 
-			<echo>${build-css.output}</echo>
+			<if>
+				<not>
+					<equals arg1="${build-css.output}" arg2="" />
+				</not>
+				<then>
+					<echo>${build-css.output}</echo>
+				</then>
+			</if>
 
 			<if>
 				<contains string="${build-css.output}" substring="Error" />
