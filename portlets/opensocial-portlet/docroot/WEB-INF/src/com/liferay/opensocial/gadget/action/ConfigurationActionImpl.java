@@ -42,14 +42,19 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 	}
 
 	@Override
-	public String render(
+	public String getJspPath(RenderRequest renderRequest) {
+		return "/gadget/configuration.jsp";
+	}
+
+	@Override
+	public void include(
 			PortletConfig portletConfig, RenderRequest renderRequest,
 			RenderResponse renderResponse)
 		throws Exception {
 
-		doRender(portletConfig, renderRequest, renderResponse);
+		doInclude(portletConfig, renderRequest, renderResponse);
 
-		return "/gadget/configuration.jsp";
+		super.include(portletConfig, renderRequest, renderResponse);
 	}
 
 	@Override

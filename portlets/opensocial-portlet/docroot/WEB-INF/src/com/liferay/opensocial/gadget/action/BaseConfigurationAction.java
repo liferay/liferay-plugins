@@ -94,7 +94,7 @@ public abstract class BaseConfigurationAction
 				SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
 	}
 
-	protected void doRender(
+	protected void doInclude(
 			PortletConfig portletConfig, RenderRequest renderRequest,
 			RenderResponse renderResponse)
 		throws Exception {

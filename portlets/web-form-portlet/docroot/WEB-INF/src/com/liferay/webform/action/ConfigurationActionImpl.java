@@ -193,11 +193,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 	}
 
 	@Override
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
+	public String getJspPath(RenderRequest renderRequest) {
 		String cmd = ParamUtil.getString(renderRequest, Constants.CMD);
 
 		if (cmd.equals(Constants.ADD)) {
