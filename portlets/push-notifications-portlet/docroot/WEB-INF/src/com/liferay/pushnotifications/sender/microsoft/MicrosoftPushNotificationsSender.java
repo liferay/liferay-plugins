@@ -86,7 +86,7 @@ public class MicrosoftPushNotificationsSender
 		while (keys.hasNext()) {
 			String key = keys.next();
 
-			mpnsParam += sep + key + "="+ payloadJSONObject.getString(key);
+			mpnsParam += sep + key + "=" + payloadJSONObject.getString(key);
 		}
 
 		return mpnsParam;
@@ -96,7 +96,6 @@ public class MicrosoftPushNotificationsSender
 		if (_mpnsService == null) {
 			MpnsServiceBuilder mpnsServiceBuilder = MPNS.newService();
 
-			//mpnsService.delegate(new MpnsDelegateImpl());
 			_mpnsService = mpnsServiceBuilder.build();
 		}
 
