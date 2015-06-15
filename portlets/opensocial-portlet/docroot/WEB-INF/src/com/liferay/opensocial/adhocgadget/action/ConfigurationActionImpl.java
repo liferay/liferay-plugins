@@ -42,6 +42,35 @@ import org.apache.shindig.gadgets.spec.OAuthService;
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	@Override
+	public String getJspPath(RenderRequest renderRequest) {
+		return "/gadget/configuration.jsp";
+	}
+
+	@Override
+	public void include(
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
+		throws Exception {
+
+		if (hasUserPrefs(portletConfig, renderRequest)) {
+			doInclude(portletConfig, renderRequest, renderResponse);
+		}
+
+		try {
+			Gadget gadget = getGadget(portletConfig, renderRequest);
+
+			Map<String, OAuthService> oAuthServices =
+				ShindigUtil.getOAuthServices(gadget.getUrl());
+
+			renderRequest.setAttribute(WebKeys.OAUTH_SERVICES, oAuthServices);
+		}
+		catch (Exception e) {
+		}
+
+		super.include(portletConfig, renderRequest, renderResponse);
+	}
+
+	@Override
 	public void processAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
@@ -83,30 +112,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 			super.processAction(portletConfig, actionRequest, actionResponse);
 		}
-	}
-
-	@Override
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		if (hasUserPrefs(portletConfig, renderRequest)) {
-			doRender(portletConfig, renderRequest, renderResponse);
-		}
-
-		try {
-			Gadget gadget = getGadget(portletConfig, renderRequest);
-
-			Map<String, OAuthService> oAuthServices =
-				ShindigUtil.getOAuthServices(gadget.getUrl());
-
-			renderRequest.setAttribute(WebKeys.OAUTH_SERVICES, oAuthServices);
-		}
-		catch (Exception e) {
-		}
-
-		return "/adhoc_gadget/configuration.jsp";
 	}
 
 	@Override
