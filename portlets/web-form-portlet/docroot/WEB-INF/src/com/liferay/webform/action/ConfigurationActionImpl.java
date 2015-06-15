@@ -38,7 +38,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  * @author Jorge Ferrer
@@ -47,6 +46,18 @@ import javax.portlet.RenderResponse;
  * @author Brian Wing Shun Chan
  */
 public class ConfigurationActionImpl extends DefaultConfigurationAction {
+
+	@Override
+	public String getJspPath(RenderRequest renderRequest) {
+		String cmd = ParamUtil.getString(renderRequest, Constants.CMD);
+
+		if (cmd.equals(Constants.ADD)) {
+			return "/edit_field.jsp";
+		}
+		else {
+			return "/configuration.jsp";
+		}
+	}
 
 	@Override
 	public void processAction(
@@ -190,18 +201,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 
 		super.processAction(portletConfig, actionRequest, actionResponse);
-	}
-
-	@Override
-	public String getJspPath(RenderRequest renderRequest) {
-		String cmd = ParamUtil.getString(renderRequest, Constants.CMD);
-
-		if (cmd.equals(Constants.ADD)) {
-			return "/edit_field.jsp";
-		}
-		else {
-			return "/configuration.jsp";
-		}
 	}
 
 	protected void updateModifiedLocales(

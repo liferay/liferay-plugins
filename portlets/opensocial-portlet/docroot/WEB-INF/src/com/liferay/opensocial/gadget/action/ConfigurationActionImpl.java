@@ -33,15 +33,6 @@ import javax.portlet.RenderResponse;
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	@Override
-	public void processAction(
-			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse)
-		throws Exception {
-
-		doProcessAction(portletConfig, actionRequest, actionResponse);
-	}
-
-	@Override
 	public String getJspPath(RenderRequest renderRequest) {
 		return "/gadget/configuration.jsp";
 	}
@@ -55,6 +46,15 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		doInclude(portletConfig, renderRequest, renderResponse);
 
 		super.include(portletConfig, renderRequest, renderResponse);
+	}
+
+	@Override
+	public void processAction(
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
+		throws Exception {
+
+		doProcessAction(portletConfig, actionRequest, actionResponse);
 	}
 
 	@Override

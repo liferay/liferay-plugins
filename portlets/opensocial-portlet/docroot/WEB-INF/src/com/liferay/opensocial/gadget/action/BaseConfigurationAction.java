@@ -45,6 +45,17 @@ import org.apache.shindig.gadgets.spec.UserPref;
 public abstract class BaseConfigurationAction
 	extends DefaultConfigurationAction {
 
+	protected void doInclude(
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
+		throws Exception {
+
+		Map<String, UserPref> userPrefs = getUserPrefs(
+			portletConfig, renderRequest);
+
+		renderRequest.setAttribute(WebKeys.USER_PREFS, userPrefs);
+	}
+
 	protected void doProcessAction(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
@@ -92,17 +103,6 @@ public abstract class BaseConfigurationAction
 			actionRequest,
 			PortalUtil.getPortletId(actionRequest) +
 				SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
-	}
-
-	protected void doInclude(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		Map<String, UserPref> userPrefs = getUserPrefs(
-			portletConfig, renderRequest);
-
-		renderRequest.setAttribute(WebKeys.USER_PREFS, userPrefs);
 	}
 
 	protected abstract Gadget getGadget(
