@@ -70,7 +70,7 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 		return builder.build();
 	}
 
-	protected Sender getSender() throws Exception {
+	protected synchronized Sender getSender() throws Exception {
 		if (_sender == null) {
 			String key = PrefsPropsUtil.getString(
 				PortletPropsKeys.ANDROID_API_KEY,

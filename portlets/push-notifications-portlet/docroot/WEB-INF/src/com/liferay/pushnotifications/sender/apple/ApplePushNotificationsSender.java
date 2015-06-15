@@ -76,7 +76,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		return builder.build();
 	}
 
-	protected ApnsService getApnsService() throws Exception {
+	protected synchronized ApnsService getApnsService() throws Exception {
 		if (_apnsService == null) {
 			ApnsServiceBuilder appleServiceBuilder = APNS.newService();
 
