@@ -95,7 +95,7 @@ public class MicrosoftPushNotificationsSender
 		return mpnsParam.toString();
 	}
 
-	protected MpnsService getMpnsService() throws Exception {
+	protected synchronized MpnsService getMpnsService() throws Exception {
 		if (_mpnsService == null) {
 			MpnsServiceBuilder mpnsServiceBuilder = MPNS.newService();
 

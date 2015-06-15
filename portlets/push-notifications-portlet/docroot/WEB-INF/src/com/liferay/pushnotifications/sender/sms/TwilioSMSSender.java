@@ -80,7 +80,9 @@ public class TwilioSMSSender implements PushNotificationsSender {
 		}
 	}
 
-	protected TwilioRestClient getTwilioRestClient() throws Exception {
+	protected synchronized TwilioRestClient getTwilioRestClient()
+			throws Exception {
+
 		if (_twilioRestClient == null) {
 			String accountSID = PrefsPropsUtil.getString(
 				PortletPropsKeys.SMS_TWILIO_ACCOUNT_SID,
