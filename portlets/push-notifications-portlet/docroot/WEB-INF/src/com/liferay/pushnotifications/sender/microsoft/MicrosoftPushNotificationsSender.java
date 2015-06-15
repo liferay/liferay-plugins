@@ -79,17 +79,20 @@ public class MicrosoftPushNotificationsSender
 	}
 
 	protected String buildToast(JSONObject payloadJSONObject) {
-		String mpnsParam = "";
+		StringBuilder mpnsParam = new StringBuilder();
 		String sep = "";
 		Iterator<String> keys = payloadJSONObject.keys();
 
 		while (keys.hasNext()) {
 			String key = keys.next();
 
-			mpnsParam += sep + key + "=" + payloadJSONObject.getString(key);
+			mpnsParam.append(sep);
+			mpnsParam.append(key);
+			mpnsParam.append('=');
+			mpnsParam.append(payloadJSONObject.getString(key));
 		}
 
-		return mpnsParam;
+		return mpnsParam.toString();
 	}
 
 	protected MpnsService getMpnsService() throws Exception {
