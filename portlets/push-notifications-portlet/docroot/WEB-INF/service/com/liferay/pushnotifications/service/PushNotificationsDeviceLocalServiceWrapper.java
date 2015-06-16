@@ -307,6 +307,15 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsDeviceLocalService.getPushNotificationsDevices(start,
+			end, orderByComparator);
+	}
+
+	@Override
 	public void resetPushNotificationSenders() {
 		_pushNotificationsDeviceLocalService.resetPushNotificationSenders();
 	}

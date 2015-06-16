@@ -293,6 +293,14 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return getService().deletePushNotificationsDevice(token);
 	}
 
+	public static java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getPushNotificationsDevices(start, end, orderByComparator);
+	}
+
 	public static void resetPushNotificationSenders() {
 		getService().resetPushNotificationSenders();
 	}
