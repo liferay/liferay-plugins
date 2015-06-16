@@ -14,9 +14,11 @@
 
 package com.liferay.portal.search.solr.internal.http;
 
-import com.liferay.portal.kernel.util.MapUtil;
+import aQute.bnd.annotation.metatype.Configurable;
+
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.search.solr.configuration.SolrConfiguration;
 import com.liferay.portal.search.solr.http.HttpClientFactory;
 
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -41,12 +44,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author André de Oliveira
  */
 @Component(
-	immediate = true,
-	property = {
-		"default.max.connections.per.route=20", "max.total.connections=20",
-		"password=solr", "type=BASIC", "username=solr"
-	},
-	service = HttpClientFactory.class
+	configurationPid = "com.liferay.portal.search.solr.configuration.SolrConfiguration",
+	immediate = true, service = HttpClientFactory.class
 )
 public class BasicAuthPoolingHttpClientFactory
 	extends BasePoolingHttpClientFactory {
@@ -64,26 +63,27 @@ public class BasicAuthPoolingHttpClientFactory
 	}
 
 	@Activate
+	@Modified
 	protected void activate(Map<String, Object> properties) {
-		int defaultMaxConnectionsPerRoute = MapUtil.getInteger(
-			properties, "default.max.connections.per.route", 20);
+		_solrConfiguration = Configurable.createConfigurable(
+			SolrConfiguration.class, properties);
+
+		int defaultMaxConnectionsPerRoute =
+			_solrConfiguration.defaultMaxConnectionsPerRoute();
 
 		setDefaultMaxConnectionsPerRoute(defaultMaxConnectionsPerRoute);
 
-		int maxTotalConnections = MapUtil.getInteger(
-			properties, "max.total.connections", 20);
+		int maxTotalConnections = _solrConfiguration.maxTotalConnections();
 
 		setMaxTotalConnections(maxTotalConnections);
 
-		String password = MapUtil.getString(
-			properties, "password", StringPool.BLANK);
+		String basicAuthPassword = _solrConfiguration.basicAuthPassword();
 
-		setPassword(password);
+		setPassword(basicAuthPassword);
 
-		String username = MapUtil.getString(
-			properties, "username", StringPool.BLANK);
+		String basicAuthUserName = _solrConfiguration.basicAuthUserName();
 
-		setUsername(username);
+		setUsername(basicAuthUserName);
 	}
 
 	@Override
@@ -134,6 +134,7 @@ public class BasicAuthPoolingHttpClientFactory
 
 	private AuthScope _authScope;
 	private String _password;
+	private volatile SolrConfiguration _solrConfiguration;
 	private String _username;
 
 }

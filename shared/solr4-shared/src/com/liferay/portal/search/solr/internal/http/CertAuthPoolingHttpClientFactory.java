@@ -14,8 +14,10 @@
 
 package com.liferay.portal.search.solr.internal.http;
 
+import aQute.bnd.annotation.metatype.Configurable;
+
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.search.solr.configuration.SolrConfiguration;
 import com.liferay.portal.search.solr.http.HttpClientFactory;
 import com.liferay.portal.search.solr.http.SSLSocketFactoryBuilder;
 
@@ -33,6 +35,7 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -40,25 +43,24 @@ import org.osgi.service.component.annotations.Reference;
  * @author André de Oliveira
  */
 @Component(
-	immediate = true,
-	property = {
-		"default.max.connections.per.route=20", "max.total.connections=20",
-		"type=CERT"
-	},
-	service = HttpClientFactory.class
+	configurationPid = "com.liferay.portal.search.solr.configuration.SolrConfiguration",
+	immediate = true, service = HttpClientFactory.class
 )
 public class CertAuthPoolingHttpClientFactory
 	extends BasePoolingHttpClientFactory {
 
 	@Activate
+	@Modified
 	protected void activate(Map<String, Object> properties) {
-		int defaultMaxConnectionsPerRoute = MapUtil.getInteger(
-			properties, "default.max.connections.per.route", 20);
+		_solrConfiguration = Configurable.createConfigurable(
+			SolrConfiguration.class, properties);
+
+		int defaultMaxConnectionsPerRoute =
+			_solrConfiguration.defaultMaxConnectionsPerRoute();
 
 		setDefaultMaxConnectionsPerRoute(defaultMaxConnectionsPerRoute);
 
-		int maxTotalConnections = MapUtil.getInteger(
-			properties, "max.total.connections", 20);
+		int maxTotalConnections = _solrConfiguration.maxTotalConnections();
 
 		setMaxTotalConnections(maxTotalConnections);
 	}
@@ -115,6 +117,7 @@ public class CertAuthPoolingHttpClientFactory
 		_sslSocketFactoryBuilder = sslSocketFactoryBuilder;
 	}
 
+	private volatile SolrConfiguration _solrConfiguration;
 	private SSLSocketFactoryBuilder _sslSocketFactoryBuilder;
 
 }

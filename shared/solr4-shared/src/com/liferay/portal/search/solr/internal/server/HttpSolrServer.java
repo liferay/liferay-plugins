@@ -14,8 +14,11 @@
 
 package com.liferay.portal.search.solr.internal.server;
 
+import aQute.bnd.annotation.metatype.Configurable;
+
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.search.solr.configuration.SolrConfiguration;
 import com.liferay.portal.search.solr.http.HttpClientFactory;
 
 import java.util.HashMap;
@@ -27,6 +30,7 @@ import org.apache.solr.client.solrj.SolrServer;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
@@ -37,6 +41,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author André de Oliveira
  */
 @Component(
+	configurationPid = "com.liferay.portal.search.solr.configuration.SolrConfiguration",
 	immediate = true,
 	property = {"auth.mode=BASIC", "url=http://localhost:8080/solr"},
 	service = SolrServer.class
@@ -44,13 +49,20 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 public class HttpSolrServer extends BaseHttpSolrServer {
 
 	@Activate
+	@Modified
 	protected void activate(Map<String, Object> properties) throws Exception {
-		String url = MapUtil.getString(
-			properties, "url", "http://localhost:8080/solr");
+		_solrConfiguration = Configurable.createConfigurable(
+			SolrConfiguration.class, properties);
+
+		if (getHttpSolrServer() != null) {
+			shutdown();
+		}
+
+		String url = _solrConfiguration.url();
 
 		setUrl(url);
 
-		String authMode = MapUtil.getString(properties, "auth.mode", "BASIC");
+		String authMode = _solrConfiguration.authenticationMode();
 
 		HttpClientFactory httpClientFactory = _httpClientFactories.get(
 			authMode);
@@ -70,14 +82,14 @@ public class HttpSolrServer extends BaseHttpSolrServer {
 		shutdown();
 	}
 
-	@Reference(target = "(type=BASIC)", unbind = "-")
+	@Reference(target = "(type=BASIC)")
 	protected void setBasicHttpClientFactory(
 		HttpClientFactory httpClientFactory) {
 
 		_httpClientFactories.put("BASIC", httpClientFactory);
 	}
 
-	@Reference(target = "(type=CERT)", unbind = "-")
+	@Reference(target = "(type=CERT)")
 	protected void setCertHttpClientFactory(
 		HttpClientFactory httpClientFactory) {
 
@@ -104,6 +116,18 @@ public class HttpSolrServer extends BaseHttpSolrServer {
 		_httpClientFactories.put(auth, httpClientFactory);
 	}
 
+	protected void unsetBasicHttpClientFactory(
+		HttpClientFactory httpClientFactory) {
+
+		_httpClientFactories.remove("BASIC");
+	}
+
+	protected void unsetCertHttpClientFactory(
+		HttpClientFactory httpClientFactory) {
+
+		_httpClientFactories.remove("CERT");
+	}
+
 	protected void unsetHttpClientFactory(
 		HttpClientFactory httpClientFactory,
 		Map<String, Object> properties) {
@@ -119,5 +143,6 @@ public class HttpSolrServer extends BaseHttpSolrServer {
 
 	private Map<String, HttpClientFactory> _httpClientFactories =
 		new HashMap<>();
+	private volatile SolrConfiguration _solrConfiguration;
 
 }

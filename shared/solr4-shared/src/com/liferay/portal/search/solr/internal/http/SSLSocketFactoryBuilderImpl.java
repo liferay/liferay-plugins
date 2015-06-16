@@ -14,10 +14,11 @@
 
 package com.liferay.portal.search.solr.internal.http;
 
+import aQute.bnd.annotation.metatype.Configurable;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.search.solr.configuration.SolrConfiguration;
 import com.liferay.portal.search.solr.http.KeyStoreLoader;
 import com.liferay.portal.search.solr.http.SSLSocketFactoryBuilder;
 
@@ -32,6 +33,7 @@ import org.apache.http.conn.ssl.X509HostnameVerifier;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -39,14 +41,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author André de Oliveira
  */
 @Component(
-	immediate = true,
-	property = {
-		"key.store.password=secret", "key.store.path=classpath:/keystore.jks",
-		"key.store.type=JKS", "trust.store.password=secret",
-		"trust.store.path=classpath:/truststore.jks", "trust.store.type=JKS",
-		"verify.server.certificate=true", "verify.server.name=true"
-	},
-	service = SSLSocketFactoryBuilder.class
+	configurationPid = "com.liferay.portal.search.solr.configuration.SolrConfiguration",
+	immediate = true, service = SSLSocketFactoryBuilder.class
 )
 public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 
@@ -112,23 +108,20 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 	}
 
 	@Activate
+	@Modified
 	protected void activate(Map<String, Object> properties) {
-		_keyStorePassword = MapUtil.getString(
-			properties, "key.store.password", StringPool.BLANK).toCharArray();
-		_keyStorePath = MapUtil.getString(
-			properties, "key.store.path", "classpath:/keystore.jks");
-		_keyStoreType = MapUtil.getString(
-			properties, "key.store.type", KeyStore.getDefaultType());
-		_trustStorePassword = MapUtil.getString(
-			properties, "trust.store.password", StringPool.BLANK).toCharArray();
-		_trustStorePath = MapUtil.getString(
-			properties, "trust.store.path", "classpath:/truststore.jks");
-		_trustStoreType = MapUtil.getString(
-			properties, "trust.store.type", KeyStore.getDefaultType());
-		_verifyServerCertificate = MapUtil.getBoolean(
-			properties, "verify.server.certificate", true);
-		_verifyServerHostname = MapUtil.getBoolean(
-			properties, "verify.server.hostname", true);
+		_solrConfiguration = Configurable.createConfigurable(
+			SolrConfiguration.class, properties);
+
+		_keyStorePassword = _solrConfiguration.keyStorePassword().toCharArray();
+		_keyStorePath = _solrConfiguration.keyStorePath();
+		_keyStoreType = _solrConfiguration.keyStoreType();
+		_trustStorePassword =
+			_solrConfiguration.trustStorePassword().toCharArray();
+		_trustStorePath = _solrConfiguration.trustStorePath();
+		_trustStoreType = _solrConfiguration.trustStoreType();
+		_verifyServerCertificate = _solrConfiguration.verifyServerCertificate();
+		_verifyServerHostname = _solrConfiguration.verifyServerName();
 	}
 
 	@Reference(unbind = "-")
@@ -143,6 +136,7 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 	private char[] _keyStorePassword;
 	private String _keyStorePath;
 	private String _keyStoreType = KeyStore.getDefaultType();
+	private volatile SolrConfiguration _solrConfiguration;
 	private char[] _trustStorePassword;
 	private String _trustStorePath;
 	private String _trustStoreType = KeyStore.getDefaultType();

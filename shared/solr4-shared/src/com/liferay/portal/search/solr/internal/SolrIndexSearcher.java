@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.solr.internal;
 
+import aQute.bnd.annotation.metatype.Configurable;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchPaginationUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -46,6 +47,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.search.solr.configuration.SolrConfiguration;
 import com.liferay.portal.search.solr.facet.FacetProcessor;
 import com.liferay.portal.search.solr.internal.facet.CompositeFacetProcessor;
 import com.liferay.portal.search.solr.internal.facet.SolrFacetFieldCollector;
@@ -73,6 +75,7 @@ import org.apache.solr.common.params.FacetParams;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -81,8 +84,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Raymond Augé
  */
 @Component(
-	immediate = true,
-	property = {"search.engine.impl=Solr", "swallow.exception=true"},
+	configurationPid = "com.liferay.portal.search.solr.configuration.SolrConfiguration",
+	immediate = true, property = {"search.engine.impl=Solr"},
 	service = IndexSearcher.class
 )
 public class SolrIndexSearcher extends BaseIndexSearcher {
@@ -128,7 +131,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 				_log.warn(e, e);
 			}
 
-			if (!_swallowException) {
+			if (!_logExceptionsOnly) {
 				throw new SearchException(e.getMessage(), e);
 			}
 
@@ -160,7 +163,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 				_log.warn(e, e);
 			}
 
-			if (!_swallowException) {
+			if (!_logExceptionsOnly) {
 				throw new SearchException(e.getMessage(), e);
 			}
 
@@ -188,9 +191,12 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	}
 
 	@Activate
+	@Modified
 	protected void activate(Map<String, Object> properties) {
-		_swallowException = MapUtil.getBoolean(
-			properties, "swallow.exception", true);
+		_solrConfiguration = Configurable.createConfigurable(
+			SolrConfiguration.class, properties);
+
+		_logExceptionsOnly = _solrConfiguration.logExceptionsOnly();
 	}
 
 	protected void addFacets(SolrQuery solrQuery, SearchContext searchContext) {
@@ -558,6 +564,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 	private FilterTranslator<String> _filterTranslator;
 	private QueryTranslator<String> _queryTranslator;
 	private SolrServer _solrServer;
-	private boolean _swallowException;
+	private boolean _logExceptionsOnly;
+	private volatile SolrConfiguration _solrConfiguration;
 
 }
