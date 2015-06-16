@@ -159,7 +159,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 		_methodName24 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes24 = new String[] {
-				"com.liferay.portal.kernel.lar.PortletDataContext"
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
 
 		_methodName25 = "getPersistedModel";
@@ -864,7 +864,7 @@ public class CalendarNotificationTemplateLocalServiceClp
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

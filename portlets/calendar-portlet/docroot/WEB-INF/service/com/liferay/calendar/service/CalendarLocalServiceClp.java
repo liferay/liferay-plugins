@@ -155,7 +155,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 		_methodName25 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes25 = new String[] {
-				"com.liferay.portal.kernel.lar.PortletDataContext"
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
 
 		_methodName26 = "getPersistedModel";
@@ -937,7 +937,7 @@ public class CalendarLocalServiceClp implements CalendarLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

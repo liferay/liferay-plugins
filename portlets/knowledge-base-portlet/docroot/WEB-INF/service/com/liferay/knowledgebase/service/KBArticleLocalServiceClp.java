@@ -218,7 +218,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		_methodName34 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes34 = new String[] {
-				"com.liferay.portal.kernel.lar.PortletDataContext"
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
 
 		_methodName35 = "getGroupKBArticles";
@@ -1480,7 +1480,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

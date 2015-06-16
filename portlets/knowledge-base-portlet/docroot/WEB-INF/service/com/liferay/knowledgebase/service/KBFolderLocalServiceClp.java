@@ -125,7 +125,7 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 		_methodName18 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes18 = new String[] {
-				"com.liferay.portal.kernel.lar.PortletDataContext"
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
 
 		_methodName19 = "getKBFolder";
@@ -707,7 +707,7 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

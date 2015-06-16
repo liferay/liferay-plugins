@@ -142,7 +142,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		_methodName21 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes21 = new String[] {
-				"com.liferay.portal.kernel.lar.PortletDataContext"
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
 
 		_methodName22 = "getPersistedModel";
@@ -806,7 +806,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

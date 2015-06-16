@@ -131,7 +131,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		_methodName20 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes20 = new String[] {
-				"com.liferay.portal.kernel.lar.PortletDataContext"
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
 
 		_methodName21 = "getGadget";
@@ -715,7 +715,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

@@ -140,7 +140,7 @@ public class AppLocalServiceClp implements AppLocalService {
 		_methodName23 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes23 = new String[] {
-				"com.liferay.portal.kernel.lar.PortletDataContext"
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
 
 		_methodName24 = "getInstalledApps";
@@ -780,7 +780,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {
