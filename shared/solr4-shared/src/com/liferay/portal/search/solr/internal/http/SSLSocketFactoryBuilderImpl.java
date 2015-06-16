@@ -113,11 +113,17 @@ public class SSLSocketFactoryBuilderImpl implements SSLSocketFactoryBuilder {
 		_solrConfiguration = Configurable.createConfigurable(
 			SolrConfiguration.class, properties);
 
-		_keyStorePassword = _solrConfiguration.keyStorePassword().toCharArray();
+		String keyStorePassword = _solrConfiguration.keyStorePassword();
+
+		_keyStorePassword = keyStorePassword.toCharArray();
+
 		_keyStorePath = _solrConfiguration.keyStorePath();
 		_keyStoreType = _solrConfiguration.keyStoreType();
-		_trustStorePassword =
-			_solrConfiguration.trustStorePassword().toCharArray();
+
+		String trustStorePassword = _solrConfiguration.trustStorePassword();
+
+		_trustStorePassword = trustStorePassword.toCharArray();
+
 		_trustStorePath = _solrConfiguration.trustStorePath();
 		_trustStoreType = _solrConfiguration.trustStoreType();
 		_verifyServerCertificate = _solrConfiguration.verifyServerCertificate();
