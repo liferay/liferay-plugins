@@ -25,8 +25,8 @@ import com.liferay.pushnotifications.util.comparator.PushNotificationsDevicePlat
 public class PushNotificationsUtil {
 
 	public static OrderByComparator<PushNotificationsDevice>
-			getPushNotificationsDeviceOrderByComparator(
-				String orderByCol, String orderByType) {
+		getPushNotificationsDeviceOrderByComparator(
+			String orderByCol, String orderByType) {
 
 		boolean orderByAsc = false;
 
@@ -34,14 +34,11 @@ public class PushNotificationsUtil {
 			orderByAsc = true;
 		}
 
-		OrderByComparator<PushNotificationsDevice> orderByComparator = null;
-
 		if (orderByCol.equals("platform")) {
-			orderByComparator = new PushNotificationsDevicePlatformComparator(
-				orderByAsc);
+			return new PushNotificationsDevicePlatformComparator(orderByAsc);
 		}
 
-		return orderByComparator;
+		return null;
 	}
 
 }

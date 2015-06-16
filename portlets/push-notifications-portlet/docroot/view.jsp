@@ -19,10 +19,6 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "configuration");
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setParameter("tabs1", tabs1);
-
 String androidApiKey = PrefsPropsUtil.getString(PortletPropsKeys.ANDROID_API_KEY, PortletPropsValues.ANDROID_API_KEY);
 int androidRetries = PrefsPropsUtil.getInteger(PortletPropsKeys.ANDROID_RETRIES, PortletPropsValues.ANDROID_RETRIES);
 String appleCertificatePassword = PrefsPropsUtil.getString(PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD, PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
@@ -33,6 +29,10 @@ String orderByCol = ParamUtil.getString(request, "orderByCol", "platform");
 String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 
 OrderByComparator orderByComparator = PushNotificationsUtil.getPushNotificationsDeviceOrderByComparator(orderByCol, orderByType);
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("tabs1", tabs1);
 %>
 
 <liferay-portlet:actionURL name="updatePortletPreferences" var="updatePortletPreferencesURL" />
@@ -40,8 +40,8 @@ OrderByComparator orderByComparator = PushNotificationsUtil.getPushNotifications
 <liferay-ui:tabs
 	names="configuration,devices,test"
 	param="tabs1"
-	url="<%= portletURL.toString() %>">
-
+	url="<%= portletURL.toString() %>"
+>
 	<liferay-ui:section>
 		<aui:form action="<%= updatePortletPreferencesURL %>" method="post" name="configurationFm">
 			<aui:fieldset label="android">
@@ -77,7 +77,6 @@ OrderByComparator orderByComparator = PushNotificationsUtil.getPushNotifications
 			orderByType="<%= orderByType %>"
 			total="<%= PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevicesCount() %>"
 		>
-
 			<liferay-ui:search-container-results
 				results="<%= PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevices(searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
 			/>
@@ -92,21 +91,13 @@ OrderByComparator orderByComparator = PushNotificationsUtil.getPushNotifications
 				User deviceUser = UserLocalServiceUtil.getUser(device.getUserId());
 				%>
 
-				<liferay-ui:search-container-column-text
-					name="user-id"
-					value="<%= String.valueOf(deviceUser.getUserId()) %>"
-				/>
+				<liferay-ui:search-container-column-text name="user-id" value="<%= String.valueOf(deviceUser.getUserId()) %>" />
 
-				<liferay-ui:search-container-column-text
-					name="full-name"
-					value="<%= deviceUser.getFullName() %>" />
+				<liferay-ui:search-container-column-text name="full-name" value="<%= deviceUser.getFullName() %>" />
 
-				<liferay-ui:search-container-column-text
-					name="token" />
+				<liferay-ui:search-container-column-text name="token" />
 
-				<liferay-ui:search-container-column-text
-					name="platform"
-					orderable="<%= true %>" />
+				<liferay-ui:search-container-column-text name="platform" orderable="<%= true %>" />
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator/>
