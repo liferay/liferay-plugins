@@ -51,12 +51,12 @@ public class HttpSolrServer extends BaseHttpSolrServer {
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) throws Exception {
-		_solrConfiguration = Configurable.createConfigurable(
-			SolrConfiguration.class, properties);
-
 		if (getHttpSolrServer() != null) {
 			shutdown();
 		}
+
+		_solrConfiguration = Configurable.createConfigurable(
+			SolrConfiguration.class, properties);
 
 		String url = _solrConfiguration.url();
 
