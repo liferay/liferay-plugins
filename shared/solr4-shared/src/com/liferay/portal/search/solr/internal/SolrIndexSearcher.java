@@ -15,6 +15,7 @@
 package com.liferay.portal.search.solr.internal;
 
 import aQute.bnd.annotation.metatype.Configurable;
+
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchPaginationUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -562,9 +563,9 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	private FacetProcessor<SolrQuery> _facetProcessor;
 	private FilterTranslator<String> _filterTranslator;
-	private QueryTranslator<String> _queryTranslator;
-	private SolrServer _solrServer;
 	private boolean _logExceptionsOnly;
+	private QueryTranslator<String> _queryTranslator;
 	private volatile SolrConfiguration _solrConfiguration;
+	private SolrServer _solrServer;
 
 }
