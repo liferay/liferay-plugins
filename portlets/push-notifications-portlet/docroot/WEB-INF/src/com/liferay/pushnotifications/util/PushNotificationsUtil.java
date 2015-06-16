@@ -32,14 +32,11 @@ public class PushNotificationsUtil {
 			orderByAsc = true;
 		}
 
-		OrderByComparator orderByComparator = null;
-
 		if (orderByCol.equals("platform")) {
-			orderByComparator = new PushNotificationsDevicePlatformComparator(
-				orderByAsc);
+			return new PushNotificationsDevicePlatformComparator(orderByAsc);
 		}
 
-		return orderByComparator;
+		return null;
 	}
 
 }
