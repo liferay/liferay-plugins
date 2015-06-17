@@ -95,7 +95,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				<liferay-ui:search-container-column-text name="full-name" value="<%= deviceUser.getFullName() %>" />
 
-				<liferay-ui:search-container-column-text name="token" />
+				<liferay-ui:search-container-column-jsp align="right" path="/devices_action.jsp" />
 
 				<liferay-ui:search-container-column-text name="platform" orderable="<%= true %>" />
 			</liferay-ui:search-container-row>
