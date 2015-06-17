@@ -23,7 +23,7 @@
 			<role-name>administrator</role-name>
 		</security-role-ref>
 	</portlet>
-	<public-render-parameter xmlns:x='http://www.liferay.com/public-render-parameters'>
+	<public-render-parameter xmlns:x="http://www.liferay.com/public-render-parameters">
 		<identifier>currentTab</identifier>
 		<qname>x:currentTab</qname>
 	</public-render-parameter>
