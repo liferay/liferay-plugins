@@ -556,6 +556,7 @@
 Bundle-Name: ${bnd.Bundle-Name} WSDD descriptors
 Bundle-Version: ${bnd.Bundle-Version}
 Fragment-Host: ${bnd.Bundle-SymbolicName}
+Import-Package: javax.servlet,javax.servlet.http
 Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				</echo>
 
