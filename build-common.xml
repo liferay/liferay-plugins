@@ -83,6 +83,12 @@
 		<fileset dir="${module.framework.base.dir}/test" erroronmissingdir="false" includes="portal-test*.jar" />
 	</path>
 
+	<path id="classpath.cobertura">
+		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.cobertura/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classpathref="classpath.cobertura" resource="tasks.properties" />
+
 	<path id="classpath.com.liferay.ant.bnd">
 		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.bnd/lib" includes="*.jar" />
 	</path>
@@ -118,12 +124,6 @@
 	</path>
 
 	<taskdef classpathref="classpath.org.codehaus.groovy" resource="org/codehaus/groovy/antlib.xml" />
-
-	<path id="classpath.cobertura">
-		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.cobertura/lib" includes="*.jar" />
-	</path>
-
-	<taskdef classpathref="classpath.cobertura" resource="tasks.properties" />
 
 	<condition property="correct.ant.version">
 		<antversion atleast="1.8.0" />
