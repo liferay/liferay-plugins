@@ -15,11 +15,11 @@
 		<entry key="apple">
 			<bean class="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" />
 		</entry>
-		<entry key="sms">
-			<bean class="com.liferay.pushnotifications.sender.sms.TwilioSMSSender" />
-		</entry>
 		<entry key="microsoft">
 			<bean class="com.liferay.pushnotifications.sender.microsoft.MicrosoftPushNotificationsSender" />
+		</entry>
+		<entry key="sms">
+			<bean class="com.liferay.pushnotifications.sender.sms.TwilioSMSSender" />
 		</entry>
 	</util:map>
 </beans>
