@@ -52,9 +52,6 @@ public class MicrosoftPushNotificationsSender
 			return;
 		}
 
-		String body = payloadJSONObject.getString(
-			PushNotificationsConstants.KEY_BODY);
-
 		String from = StringPool.BLANK;
 
 		if (payloadJSONObject.has(PushNotificationsConstants.KEY_FROM)) {
@@ -62,14 +59,17 @@ public class MicrosoftPushNotificationsSender
 				PushNotificationsConstants.KEY_FROM);
 		}
 
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_FROM);
+
+		String body = payloadJSONObject.getString(
+			PushNotificationsConstants.KEY_BODY);
+
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
 
 		String attributes = getAttributes(payloadJSONObject);
 
 		TileNotification tileNotification = buildTileNotification(
 			from, body, attributes);
-
 		ToastNotification toastNotification = buildToastNotification(
 			from, body, attributes);
 
