@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-	<context-param>
-		<param-name>portalContextConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/META-INF/messaging-spring.xml,/WEB-INF/classes/META-INF/wurfl-spring.xml</param-value>
-	</context-param>
-</web-app>
