@@ -37,7 +37,7 @@ import java.util.Map;
 public class TwilioSMSSender implements PushNotificationsSender {
 
 	@Override
-	public void reset() {
+	public synchronized void reset() {
 		_twilioRestClient = null;
 	}
 
