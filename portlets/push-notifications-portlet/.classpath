@@ -19,12 +19,24 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/apns.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-lang3.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/gcm-server.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpclient.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-annotations.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-core-asl.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-core.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-databind.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jackson-mapper-asl.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/java-mpns.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jcl-over-slf4j.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jodd-core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jodd-http.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jodd-upload.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/json-simple.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/twilio-java-sdk.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
