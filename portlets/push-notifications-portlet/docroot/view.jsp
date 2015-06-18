@@ -97,7 +97,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				<liferay-ui:search-container-column-text name="token" />
 
-				<liferay-ui:search-container-column-text name="platform" orderable="<%= true %>" />
+				<liferay-ui:search-container-column-text name="platform" orderable="<%= true %>" value="<%= LanguageUtil.get(request, device.getPlatform()) %>" />
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator/>
