@@ -81,7 +81,7 @@ public class TwilioSMSSender implements PushNotificationsSender {
 	}
 
 	protected synchronized TwilioRestClient getTwilioRestClient()
-			throws Exception {
+		throws Exception {
 
 		if (_twilioRestClient == null) {
 			String accountSID = PrefsPropsUtil.getString(
