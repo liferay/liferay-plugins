@@ -15,6 +15,8 @@
 package com.liferay.pushnotifications.sender.microsoft;
 
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
@@ -22,9 +24,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.jboss.aerogear.windows.mpns.MPNS;
-import org.jboss.aerogear.windows.mpns.MpnsNotification;
 import org.jboss.aerogear.windows.mpns.MpnsService;
 import org.jboss.aerogear.windows.mpns.MpnsServiceBuilder;
+import org.jboss.aerogear.windows.mpns.notifications.TileNotification;
+import org.jboss.aerogear.windows.mpns.notifications.ToastNotification;
 
 /**
  * @author Javier Gamarra
@@ -52,47 +55,70 @@ public class MicrosoftPushNotificationsSender
 		String body = payloadJSONObject.getString(
 			PushNotificationsConstants.KEY_BODY);
 
-		String from = "";
+		String from = StringPool.BLANK;
 
 		if (payloadJSONObject.has(PushNotificationsConstants.KEY_FROM)) {
 			from = payloadJSONObject.getString(
 				PushNotificationsConstants.KEY_FROM);
 		}
 
-		payloadJSONObject.remove(PushNotificationsConstants.KEY_FROM);
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
-		String payload = buildToast(payloadJSONObject);
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_FROM);
 
-		MpnsNotification toast = MPNS.newNotification().toast().title(from)
-				.subtitle(body)
-				.parameter(payload)
-				.build();
+		String attributes = getAttributes(payloadJSONObject);
 
-		MpnsNotification tiles = MPNS.newNotification().tile().title(from)
-				.count(1).backContent(body).callbackUri(payload)
-				.backTitle(from).build();
+		TileNotification tileNotification = buildTileNotification(
+			from, body, attributes);
+
+		ToastNotification toastNotification = buildToastNotification(
+			from, body, attributes);
 
 		for (String token : tokens) {
-			mpnsService.push(token, tiles);
-			mpnsService.push(token, toast);
+			mpnsService.push(token, tileNotification);
+			mpnsService.push(token, toastNotification);
 		}
 	}
 
-	protected String buildToast(JSONObject payloadJSONObject) {
-		StringBuilder mpnsParam = new StringBuilder();
-		String sep = "";
-		Iterator<String> keys = payloadJSONObject.keys();
+	protected TileNotification buildTileNotification(
+		String from, String body, String attributes) {
 
-		while (keys.hasNext()) {
-			String key = keys.next();
+		TileNotification.Builder builder = MPNS.newNotification().tile();
 
-			mpnsParam.append(sep);
-			mpnsParam.append(key);
-			mpnsParam.append('=');
-			mpnsParam.append(payloadJSONObject.getString(key));
+		builder.backContent(body);
+		builder.backTitle(from);
+		builder.callbackUri(attributes);
+		builder.count(1);
+		builder.title(from);
+
+		return builder.build();
+	}
+
+	protected ToastNotification buildToastNotification(
+		String from, String body, String attributes) {
+
+		ToastNotification.Builder builder = MPNS.newNotification().toast();
+
+		builder.parameter(attributes);
+		builder.subtitle(body);
+		builder.title(from);
+
+		return builder.build();
+	}
+
+	protected String getAttributes(JSONObject payloadJSONObject) {
+		StringBuilder sb = new StringBuilder();
+
+		Iterator<String> itr = payloadJSONObject.keys();
+
+		while (itr.hasNext()) {
+			String key = itr.next();
+
+			sb.append(key);
+			sb.append(CharPool.EQUAL);
+			sb.append(payloadJSONObject.getString(key));
 		}
 
-		return mpnsParam.toString();
+		return sb.toString();
 	}
 
 	protected synchronized MpnsService getMpnsService() throws Exception {
