@@ -15,6 +15,7 @@
 package com.liferay.sync.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.ResourcePermission;
@@ -23,6 +24,8 @@ import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
+
+import java.util.List;
 
 /**
  * @author Shinn Lok
@@ -37,37 +40,47 @@ public class ResourcePermissionModelListener
 		String modelName = resourcePermission.getName();
 
 		try {
+			String type = null;
+
 			if (modelName.equals(DLFileEntry.class.getName())) {
-				SyncDLObject syncDLObject =
-					SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-						SyncConstants.TYPE_FILE,
-						GetterUtil.getLong(resourcePermission.getPrimKey()));
-
-				if (syncDLObject == null) {
-					return;
-				}
-
-				syncDLObject.setModifiedTime(System.currentTimeMillis());
-
-				SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
+				type = SyncConstants.TYPE_FILE;
 			}
 			else if (modelName.equals(DLFolder.class.getName())) {
-				SyncDLObject syncDLObject =
-					SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-						SyncConstants.TYPE_FOLDER,
-						GetterUtil.getLong(resourcePermission.getPrimKey()));
+				type = SyncConstants.TYPE_FOLDER;
+			}
 
-				if (syncDLObject == null) {
-					return;
-				}
+			SyncDLObject syncDLObject =
+				SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
+					type, GetterUtil.getLong(resourcePermission.getPrimKey()));
 
-				syncDLObject.setModifiedTime(System.currentTimeMillis());
-
-				SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
+			if (syncDLObject != null) {
+				updateSyncDLObject(syncDLObject);
 			}
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
+		}
+	}
+
+	protected void updateSyncDLObject(SyncDLObject syncDLObject)
+		throws SystemException {
+
+		syncDLObject.setModifiedTime(System.currentTimeMillis());
+
+		SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
+
+		String type = syncDLObject.getType();
+
+		if (!type.equals(SyncConstants.TYPE_FOLDER)) {
+			return;
+		}
+
+		List<SyncDLObject> curSyncDLObjects =
+			SyncDLObjectLocalServiceUtil.getSyncDLObjects(
+				syncDLObject.getTypePK());
+
+		for (SyncDLObject curSyncDLObject : curSyncDLObjects) {
+			updateSyncDLObject(curSyncDLObject);
 		}
 	}
 

@@ -216,6 +216,13 @@ public class SyncDLObjectLocalServiceImpl
 		return modifiedTimes.get(0);
 	}
 
+	@Override
+	public List<SyncDLObject> getSyncDLObjects(long parentFolderId)
+		throws SystemException {
+
+		return syncDLObjectPersistence.findByParentFolderId(parentFolderId);
+	}
+
 	protected boolean isDefaultRepository(long folderId)
 		throws PortalException, SystemException {
 
