@@ -83,11 +83,11 @@
 		<fileset dir="${module.framework.base.dir}/test" erroronmissingdir="false" includes="portal-test*.jar" />
 	</path>
 
-	<path id="classpath.cobertura">
+	<path id="classpath.net.sourceforge.cobertura">
 		<fileset dir="${sdk.dir}/dependencies/net.sourceforge.cobertura/lib" includes="*.jar" />
 	</path>
 
-	<taskdef classpathref="classpath.cobertura" resource="tasks.properties" />
+	<taskdef classpathref="classpath.net.sourceforge.cobertura" resource="tasks.properties" />
 
 	<path id="classpath.com.liferay.ant.bnd">
 		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.bnd/lib" includes="*.jar" />
