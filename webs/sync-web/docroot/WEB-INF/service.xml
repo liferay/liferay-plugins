@@ -83,6 +83,9 @@
 
 		<!-- Finder methods -->
 
+		<finder name="ParentFolderId" return-type="Collection">
+			<finder-column name="parentFolderId" />
+		</finder>
 		<finder name="V_T" return-type="Collection">
 			<finder-column name="version" />
 			<finder-column name="type" />
