@@ -72,12 +72,12 @@ public class ResourcePermissionModelListener
 			return;
 		}
 
-		List<SyncDLObject> curSyncDLObjects =
+		List<SyncDLObject> childSyncDLObjects =
 			SyncDLObjectLocalServiceUtil.getSyncDLObjects(
 				syncDLObject.getTypePK());
 
-		for (SyncDLObject curSyncDLObject : curSyncDLObjects) {
-			updateSyncDLObject(curSyncDLObject);
+		for (SyncDLObject childSyncDLObject : childSyncDLObjects) {
+			updateSyncDLObject(childSyncDLObject);
 		}
 	}
 
