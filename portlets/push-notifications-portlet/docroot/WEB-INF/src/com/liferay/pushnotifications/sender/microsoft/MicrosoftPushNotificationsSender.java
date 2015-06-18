@@ -37,7 +37,7 @@ public class MicrosoftPushNotificationsSender
 	implements PushNotificationsSender {
 
 	@Override
-	public void reset() {
+	public synchronized void reset() {
 		_mpnsService = null;
 	}
 
