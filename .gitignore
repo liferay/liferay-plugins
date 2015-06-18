@@ -23,9 +23,9 @@ _sass_cache_*.css
 /*/*/bin
 /*/*/build
 /*/*/classes
+/*/*/coverage-reports
 /*/*/javadoc
 /*/*/temp
-/*/*/coverage-reports
 /*/*/test-classes
 /*/*/test-coverage
 /*/*/test-results
