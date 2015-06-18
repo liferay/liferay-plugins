@@ -114,10 +114,11 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
 	public static final long MODIFIEDTIME_COLUMN_BITMASK = 2L;
-	public static final long REPOSITORYID_COLUMN_BITMASK = 4L;
-	public static final long TYPE_COLUMN_BITMASK = 8L;
-	public static final long TYPEPK_COLUMN_BITMASK = 16L;
-	public static final long VERSION_COLUMN_BITMASK = 32L;
+	public static final long PARENTFOLDERID_COLUMN_BITMASK = 4L;
+	public static final long REPOSITORYID_COLUMN_BITMASK = 8L;
+	public static final long TYPE_COLUMN_BITMASK = 16L;
+	public static final long TYPEPK_COLUMN_BITMASK = 32L;
+	public static final long VERSION_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -548,7 +549,19 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public void setParentFolderId(long parentFolderId) {
+		_columnBitmask |= PARENTFOLDERID_COLUMN_BITMASK;
+
+		if (!_setOriginalParentFolderId) {
+			_setOriginalParentFolderId = true;
+
+			_originalParentFolderId = _parentFolderId;
+		}
+
 		_parentFolderId = parentFolderId;
+	}
+
+	public long getOriginalParentFolderId() {
+		return _originalParentFolderId;
 	}
 
 	@JSON
@@ -1010,6 +1023,10 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 		syncDLObjectModelImpl._setOriginalRepositoryId = false;
 
+		syncDLObjectModelImpl._originalParentFolderId = syncDLObjectModelImpl._parentFolderId;
+
+		syncDLObjectModelImpl._setOriginalParentFolderId = false;
+
 		syncDLObjectModelImpl._originalVersion = syncDLObjectModelImpl._version;
 
 		syncDLObjectModelImpl._originalType = syncDLObjectModelImpl._type;
@@ -1354,6 +1371,8 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	private long _originalRepositoryId;
 	private boolean _setOriginalRepositoryId;
 	private long _parentFolderId;
+	private long _originalParentFolderId;
+	private boolean _setOriginalParentFolderId;
 	private String _name;
 	private String _extension;
 	private String _mimeType;

@@ -256,6 +256,12 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 		return _syncDLObjectLocalService.getSyncDLObject(syncDLObjectId);
 	}
 
+	@Override
+	public java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
+		long parentFolderId) {
+		return _syncDLObjectLocalService.getSyncDLObjects(parentFolderId);
+	}
+
 	/**
 	* Returns a range of all the sync d l objects.
 	*
