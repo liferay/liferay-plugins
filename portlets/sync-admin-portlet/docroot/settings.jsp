@@ -57,19 +57,20 @@ if (oAuthEnabled) {
 
 	<liferay-ui:error exception="<%= OAuthPortletUndeployedException.class %>" message="oauth-publisher-is-not-deployed" />
 
+	<h4><liferay-ui:message key="general" /></h4>
+
 	<aui:fieldset>
-		<aui:input name="enabled" type="checkbox" value="<%= enabled %>" />
+		<aui:input name="allow-the-use-of-sync" type="checkbox" value="<%= enabled %>" />
+		<aui:input label="allow-users-to-sync-their-personal-sites" name="allowUserPersonalSites" type="checkbox" value="<%= allowUserPersonalSites %>" />
 	</aui:fieldset>
+
+	<h4><liferay-ui:message key="advanced" /></h4>
 
 	<c:if test='<%= DeployManagerUtil.isDeployed("oauth-portlet") %>'>
 		<aui:fieldset>
 			<aui:input helpMessage="oauth-enabled-help" label="oauth-enabled" name="oAuthEnabled" type="checkbox" value="<%= oAuthEnabled %>" />
 		</aui:fieldset>
 	</c:if>
-
-	<aui:fieldset>
-		<aui:input label="allow-user-personal-sites" name="allowUserPersonalSites" type="checkbox" value="<%= allowUserPersonalSites %>" />
-	</aui:fieldset>
 
 	<aui:input helpMessage="max-connections-help" label="max-connections" name="maxConnections" type="text" value="<%= maxConnections %>" wrapperCssClass="lfr-input-text-container">
 		<aui:validator name="digits" />

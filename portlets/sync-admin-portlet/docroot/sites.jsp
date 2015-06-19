@@ -92,17 +92,14 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				value="<%= group.getDescriptiveName() %>"
 			/>
 
-			<%
-			boolean syncSiteEnabled = GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true);
-			%>
-
 			<liferay-ui:search-container-column-text
-				name="enabled"
-				translate="true"
-				value='<%= syncSiteEnabled ? "yes" : "no" %>'
+				name="description"
+				value="<%= group.getDescription() %>"
 			/>
 
 			<%
+			boolean syncSiteEnabled = GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true);
+
 			List<String> localizedResourceActions = null;
 
 			if (syncSiteEnabled) {
@@ -130,10 +127,16 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				value="<%= ListUtil.isNotEmpty(localizedResourceActions) ? StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE) : StringPool.BLANK %>"
 			/>
 
+			<liferay-ui:search-container-column-text
+				name="active"
+				translate="true"
+				value='<%= syncSiteEnabled ? "yes" : "no" %>'
+			/>
+
 			<liferay-ui:search-container-column-jsp
 				align="right"
 				cssClass="entry-action"
-				path="/sync_sites_action.jsp"
+				path="/sites_action.jsp"
 			/>
 		</liferay-ui:search-container-row>
 
