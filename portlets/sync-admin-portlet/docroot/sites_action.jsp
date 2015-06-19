@@ -28,7 +28,7 @@ PortletURL currentURLObj = PortletURLUtil.getCurrent(liferayPortletRequest, life
 String currentURL = currentURLObj.toString();
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
 	<c:choose>
 		<c:when test='<%= GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true) %>'>
 			<portlet:actionURL name="updateSites" var="setPermissionsViewOnlyURL">
