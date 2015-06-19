@@ -490,19 +490,19 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	public Object clone();
 
 	@Override
-	public int compareTo(com.liferay.sync.model.SyncDLObject syncDLObject);
+	public int compareTo(SyncDLObject syncDLObject);
 
 	@Override
 	public int hashCode();
 
 	@Override
-	public CacheModel<com.liferay.sync.model.SyncDLObject> toCacheModel();
+	public CacheModel<SyncDLObject> toCacheModel();
 
 	@Override
-	public com.liferay.sync.model.SyncDLObject toEscapedModel();
+	public SyncDLObject toEscapedModel();
 
 	@Override
-	public com.liferay.sync.model.SyncDLObject toUnescapedModel();
+	public SyncDLObject toUnescapedModel();
 
 	@Override
 	public String toString();

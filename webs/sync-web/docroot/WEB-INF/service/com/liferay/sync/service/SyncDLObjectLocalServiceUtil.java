@@ -313,6 +313,12 @@ public class SyncDLObjectLocalServiceUtil {
 		return getService().getLatestModifiedTime();
 	}
 
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
+		long parentFolderId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getSyncDLObjects(parentFolderId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
