@@ -377,8 +377,10 @@ AUI().use(
 				for (var id in chatSessions) {
 					var session = chatSessions[id];
 
-					if (session._panelId in instance._buddies) {
-						session.setAvailableForChatVideo(instance.isUserAvailable(session._panelId));
+					var panelId = session._panelId;
+
+					if (panelId in instance._buddies) {
+						session.setAvailableForChatVideo(instance.isUserAvailable(panelId));
 					}
 					else {
 						session.setAvailableForChatVideo(false);
@@ -656,8 +658,11 @@ AUI().use(
 			function(event) {
 				var instance = this;
 
-				var chatManager = Liferay.Chat.Manager;
-				var videoManager = Liferay.Chat.VideoManager;
+				var Chat = Liferay.Chat;
+				var Lang = Liferay.Language;
+
+				var chatManager = Chat.Manager;
+				var videoManager = Chat.VideoManager;
 
 				A.on(
 					function(options) {
@@ -672,8 +677,6 @@ AUI().use(
 				A.on(videoManager._onPanelClose, chatManager, '_onPanelClose', videoManager);
 				A.after(videoManager._afterUpdateBuddies, chatManager, '_updateBuddies', videoManager);
 				A.after(videoManager._afterUpdateSettings, chatManager, '_updateSettings', videoManager);
-
-				var Chat = Liferay.Chat;
 
 				Chat.ConversationPanel = Chat.Conversation;
 
@@ -726,11 +729,11 @@ AUI().use(
 
 										var errorMessages = {};
 
-										errorMessages[ConversationError.CANNOTGETUSERMEDIA] = Liferay.Language.get('cannot-access-your-camera');
-										errorMessages[ConversationError.HANGUP] = Liferay.Language.get('video-call-ended');
-										errorMessages[ConversationError.REMOTEPEERDENIEDCALL] = Liferay.Language.get('your-friend-denied-your-call');
-										errorMessages[ConversationError.REMOTEPEERNOTAVAILABLE] = Liferay.Language.get('your-friend-is-not-available');
-										errorMessages[ConversationError.REMOTEPEERRESET] = Liferay.Language.get('your-friend-had-an-issue');
+										errorMessages[ConversationError.CANNOTGETUSERMEDIA] = Lang.get('cannot-access-your-camera');
+										errorMessages[ConversationError.HANGUP] = Lang.get('video-call-ended');
+										errorMessages[ConversationError.REMOTEPEERDENIEDCALL] = Lang.get('your-friend-denied-your-call');
+										errorMessages[ConversationError.REMOTEPEERNOTAVAILABLE] = Lang.get('your-friend-is-not-available');
+										errorMessages[ConversationError.REMOTEPEERRESET] = Lang.get('your-friend-had-an-issue');
 
 										if (error in errorMessages) {
 											instance._status.setErrorMessage(errorMessages[error]);
@@ -794,19 +797,19 @@ AUI().use(
 											status.hide();
 										}
 										else if (state === State.CALLINGWAITING || state === State.GOTCALLWAITING) {
-											status.setRegularMessage(Liferay.Language.get('please-share-your-camera'), true);
+											status.setRegularMessage(Lang.get('please-share-your-camera'), true);
 										}
 										else if (state === calling || state === called) {
-											status.setRegularMessage(Liferay.Language.get('calling-friend'), true);
+											status.setRegularMessage(Lang.get('calling-friend'), true);
 										}
 										else if (state === gotCall) {
-											status.setRegularMessage(Liferay.Language.get('incoming-video-call'), true);
+											status.setRegularMessage(Lang.get('incoming-video-call'), true);
 										}
 										else if (state === gotAnswer || state === answered || state === acceptingCall) {
-											status.setRegularMessage(Liferay.Language.get('establishing-connection'), true);
+											status.setRegularMessage(Lang.get('establishing-connection'), true);
 										}
 										else if (state === stopping || state === deleting) {
-											status.setRegularMessage(Liferay.Language.get('stopping-video-call'), true);
+											status.setRegularMessage(Lang.get('stopping-video-call'), true);
 										}
 										else if (state === connected) {
 											instance._videoCallTimeStr = '0:00';
@@ -1019,11 +1022,13 @@ AUI().use(
 							// Only allow this if we're connected
 
 							if (instance._webRtc.getState() === Liferay.Chat.WebRtcConversation.State.CONNECTED) {
+								var remoteVideoOuterNode = instance._remoteVideoOuterNode;
+
 								videoManager.setOverlayVideoCallTime(instance._videoCallTimeStr);
 
-								videoManager.appendNodeToOverlay(instance._remoteVideoOuterNode);
+								videoManager.appendNodeToOverlay(remoteVideoOuterNode);
 
-								instance._localVideoNode.appendTo(instance._remoteVideoOuterNode);
+								instance._localVideoNode.appendTo(remoteVideoOuterNode);
 
 								videoManager.appendNodeToOverlay(instance._ctrlButtonsNode);
 
@@ -1103,11 +1108,11 @@ AUI().use(
 							var html = Lang.sub(
 								TPL_CHAT_PANEL,
 								{
-									acceptTitle: Liferay.Language.get('accept-title'),
-									callTitle: Liferay.Language.get('call-title'),
-									fullScreenTitle: Liferay.Language.get('fullscreen-title'),
-									hangUpTitle: Liferay.Language.get('hangup-title'),
-									muteUnmuteTitle: Liferay.Language.get('mute-unmute-title'),
+									acceptTitle: Lang.get('accept-title'),
+									callTitle: Lang.get('call-title'),
+									fullScreenTitle: Lang.get('fullscreen-title'),
+									hangUpTitle: Lang.get('hangup-title'),
+									muteUnmuteTitle: Lang.get('mute-unmute-title'),
 									panelId: instance._panelId,
 									panelTitle: Liferay.Util.escapeHTML(instance._panelTitle),
 									userImagePath: userImagePath
@@ -1128,9 +1133,11 @@ AUI().use(
 
 							instance._selfViewImgNode.hide();
 
-							instance._localVideoNode.show();
+							var localVideoNode = instance._localVideoNode;
 
-							instance._localVideoNode.getDOM().play();
+							localVideoNode.show();
+
+							localVideoNode.getDOM().play();
 						},
 
 						_showRemoteVideo: function() {
@@ -1159,11 +1166,13 @@ AUI().use(
 						_waitForRemoteStreamFlowing: function() {
 							var instance = this;
 
-							if (instance._webRtc.getState() === Liferay.Chat.WebRtcConversation.State.CONNECTED) {
+							var webRtc = instance._webRtc;
+
+							if (webRtc.getState() === Liferay.Chat.WebRtcConversation.State.CONNECTED) {
 
 								// Wait for the remote stream to "flow"
 
-								if (!instance._webRtc.isRemoteStreamFlowing()) {
+								if (!webRtc.isRemoteStreamFlowing()) {
 									setTimeout(
 										function() {
 											instance._waitForRemoteStreamFlowing();
