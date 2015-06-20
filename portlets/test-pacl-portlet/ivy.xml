@@ -11,6 +11,8 @@
 	</info>
 
 	<dependencies defaultconf="default">
+		<dependency name="com.liferay.journal.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+		<dependency name="com.liferay.journal.service" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="jackson-core-asl" org="org.codehaus.jackson" rev="1.9.11" />
 		<dependency name="jackson-mapper-asl" org="org.codehaus.jackson" rev="1.9.11" />
 	</dependencies>

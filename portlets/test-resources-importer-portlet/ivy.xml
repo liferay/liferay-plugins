@@ -13,6 +13,7 @@
 	<dependencies defaultconf="default">
 		<dependency name="com.liferay.asset.categories.admin.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.dynamic.data.lists.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+		<dependency name="com.liferay.journal.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.wiki.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 	</dependencies>
 </ivy-module>
