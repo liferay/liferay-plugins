@@ -437,8 +437,8 @@ AUI().use(
 					el.pause();
 					el.currentTime = 0;
 				}
+				// Probably not ready yet: not playing anyway
 				catch (e) {
-					// Probably not ready yet: not playing anyway
 				}
 			},
 
