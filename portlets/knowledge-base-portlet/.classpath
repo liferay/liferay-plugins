@@ -28,6 +28,7 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-tree.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm-util.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/asm.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.journal.api.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.markdown.converter.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.portal.log.bridge.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.wiki.api.jar" />
