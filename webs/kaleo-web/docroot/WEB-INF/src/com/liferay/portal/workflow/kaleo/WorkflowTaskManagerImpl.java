@@ -37,6 +37,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
@@ -60,8 +61,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -240,67 +243,34 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
 				KaleoTaskInstanceTokenLocalServiceUtil.
 					getKaleoTaskInstanceToken(workflowTaskInstanceId);
-			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
-			List<KaleoTaskAssignment> kaleoTaskAssignments =
-				new ArrayList<KaleoTaskAssignment>();
+			Set<KaleoTaskAssignment> kaleoTaskAssignments = new HashSet<>();
 
-			List<KaleoTaskAssignment> kaleoTaskAssignmentsByRole =
+			List<KaleoTaskAssignment> roleKaleoTaskAssignments =
 				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
-					kaleoTask.getKaleoTaskId(), Role.class.getName());
+					kaleoTaskInstanceToken.getKaleoTaskId(),
+					Role.class.getName());
 
-			kaleoTaskAssignments.addAll(kaleoTaskAssignmentsByRole);
+			kaleoTaskAssignments.addAll(roleKaleoTaskAssignments);
 
-			List<KaleoTaskAssignment> kaleoTaskAssignmentsByScript =
-				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
-					kaleoTask.getKaleoTaskId(), "SCRIPT");
+			List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
+				getCalculatedKaleoTaskAssignments(
+					companyId, kaleoTaskInstanceToken);
 
-			KaleoInstanceToken kaleoInstanceToken = 
-				kaleoTaskInstanceToken.getKaleoInstanceToken();
-
-			Map<String, Serializable> workflowContext = 
-				WorkflowContextUtil.convert(
-					kaleoInstanceToken.getKaleoInstance().
-						getWorkflowContext());
-
-			ServiceContext serviceContext = new ServiceContext();
-
-			serviceContext.setCompanyId(companyId);
-
-			for (KaleoTaskAssignment kaleoTaskAssignmentByScript :
-				kaleoTaskAssignmentsByScript) {
-
-				String[] assigneeScriptRequiredContexts = StringUtil.split(
-					kaleoTaskAssignmentByScript.
-						getAssigneeScriptRequiredContexts());
-
-				ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
-					assigneeScriptRequiredContexts);
-
-				ExecutionContext executionContext = new ExecutionContext(
-					kaleoInstanceToken, workflowContext, serviceContext);
-
-				Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
-					_taskAssignmentSelector.calculateTaskAssignments(
-						kaleoTaskAssignmentByScript, executionContext,
-						classLoaders);
-
-				for (KaleoTaskAssignment calculatedKaleoTaskAssignment :
-					calculatedKaleoTaskAssignments) {
-
-					if (Role.class.getName().equals(
-						calculatedKaleoTaskAssignment.getAssigneeClassName())) {
-
-						kaleoTaskAssignments.add(calculatedKaleoTaskAssignment);
-					}
-				}
-			}
+			kaleoTaskAssignments.addAll(calculatedKaleoTaskAssignments);
 
 			Map<String, Long> pooledActors = new TreeMap<>(
 				new NaturalOrderStringComparator());
 
 			for (KaleoTaskAssignment kaleoTaskAssignment :
 					kaleoTaskAssignments) {
+
+				String assigneeClassName =
+					kaleoTaskAssignment.getAssigneeClassName();
+
+				if (!assigneeClassName.equals(Role.class.getName())) {
+					continue;
+				}
 
 				Role role = RoleLocalServiceUtil.getRole(
 					kaleoTaskAssignment.getAssigneeClassPK());
@@ -832,6 +802,58 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 		return _taskManager.updateDueDate(
 			workflowTaskInstanceId, comment, dueDate, serviceContext);
+	}
+
+	protected Collection<KaleoTaskAssignment> calculateKaleoTaskAssignments(
+			long companyId, KaleoInstanceToken kaleoInstanceToken,
+			KaleoTaskAssignment kaleoTaskAssignment)
+		throws PortalException {
+
+		KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
+
+		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
+			kaleoInstance.getWorkflowContext());
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(companyId);
+
+		String[] assigneeScriptRequiredContexts = StringUtil.split(
+			kaleoTaskAssignment.getAssigneeScriptRequiredContexts());
+
+		ClassLoader[] classLoaders = ClassLoaderUtil.getClassLoaders(
+			assigneeScriptRequiredContexts);
+
+		ExecutionContext executionContext = new ExecutionContext(
+			kaleoInstanceToken, workflowContext, serviceContext);
+
+		return _taskAssignmentSelector.calculateTaskAssignments(
+			kaleoTaskAssignment, executionContext, classLoaders);
+	}
+
+	protected List<KaleoTaskAssignment> getCalculatedKaleoTaskAssignments(
+			long companyId, KaleoTaskInstanceToken kaleoTaskInstanceToken)
+		throws PortalException {
+
+		List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
+			new ArrayList<>();
+
+		List<KaleoTaskAssignment> scriptKaleoTaskAssignments =
+			KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
+				kaleoTaskInstanceToken.getKaleoTaskId(), "SCRIPT");
+
+		for (KaleoTaskAssignment scriptKaleoTaskAssignment :
+				scriptKaleoTaskAssignments) {
+
+			Collection<KaleoTaskAssignment> kaleoTaskAssignments =
+				calculateKaleoTaskAssignments(
+					companyId, kaleoTaskInstanceToken.getKaleoInstanceToken(),
+					scriptKaleoTaskAssignment);
+
+			calculatedKaleoTaskAssignments.addAll(kaleoTaskAssignments);
+		}
+
+		return calculatedKaleoTaskAssignments;
 	}
 
 	protected List<WorkflowTask> toWorkflowTasks(
