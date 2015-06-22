@@ -28,12 +28,15 @@ import com.liferay.portal.kernel.util.PwdGenerator;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.AccessControlContext;
 import com.liferay.portal.security.auth.AuthException;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.sync.util.PortletPropsValues;
 
 import java.lang.reflect.Method;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -78,7 +81,21 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 				return null;
 			}
 
-			return userIdJsonPrimitive.getAsString();
+			long userId = userIdJsonPrimitive.getAsLong();
+
+			User user = UserLocalServiceUtil.fetchUser(userId);
+
+			Date passwordModifiedDate = user.getPasswordModifiedDate();
+
+			if (passwordModifiedDate != null) {
+				Instant instant = jsonToken.getIssuedAt();
+
+				if (instant.isBefore(passwordModifiedDate.getTime())) {
+					return null;
+				}
+			}
+
+			return String.valueOf(userId);
 		}
 		catch (Exception e) {
 			return null;
