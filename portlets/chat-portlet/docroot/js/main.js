@@ -320,8 +320,6 @@ AUI().use(
 			instance._chatOutput = panel.one('.panel-output');
 			instance._statusMessage = panel.one('.panel-profile');
 
-			var unread = panel.one('.unread');
-
 			instance._lastMessageTime = 0;
 			instance._lastTypedTime = 0;
 			instance._typingDelay = 5000;
@@ -335,10 +333,12 @@ AUI().use(
 
 			instance._heightMonitor.appendTo(DOC.body);
 
+			var unread = panel.one('.unread');
+
 			instance._unreadMessagesContainer = unread || A.Node.create('<div class="hide unread" />');
 
 			if (!unread) {
-				instance._popupTrigger.append(unread);
+				instance._popupTrigger.append(instance._unreadMessagesContainer);
 			}
 
 			var statusMessage = options.statusMessage;
