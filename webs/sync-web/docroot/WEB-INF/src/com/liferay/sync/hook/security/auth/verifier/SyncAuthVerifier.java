@@ -265,7 +265,7 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 
 	private static String[] _autoLoginClassNames = StringUtil.split(
 		PortletPropsValues.SYNC_AUTH_VERIFIER_PIPELINE);
-	private static long _expiration = 60000;
+	private static long _expiration = 3600000;
 	private static JsonTokenParser _jsonTokenParser;
 	private static String _secret = PwdGenerator.getPassword();
 	private static Signer _signer;
