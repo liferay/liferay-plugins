@@ -89,7 +89,7 @@
 	<bean id="com.liferay.portal.kernel.workflow.WorkflowLogManager" class="com.liferay.portal.workflow.kaleo.WorkflowLogManagerImpl" />
 	<bean id="com.liferay.portal.kernel.workflow.WorkflowTaskManager" class="com.liferay.portal.workflow.kaleo.WorkflowTaskManagerImpl">
 		<property name="kaleoSignaler" ref="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" />
-		<property name="taskAssignmentSelector" ref="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector" />
+		<property name="taskAssignmentSelector" ref="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" />
 		<property name="taskManager" ref="com.liferay.portal.workflow.kaleo.runtime.TaskManager" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" class="com.liferay.portal.workflow.kaleo.manager.DefaultPortalKaleoManager">
