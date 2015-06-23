@@ -198,7 +198,7 @@ ${nodejs.url[osx64]}.
 				<if>
 					<istrue value="${transpiler.force}" />
 					<then>
-						<path id="outdated-files">
+						<path id="transpiler.outdated.files.path">
 							<fileset dir="${transpiler.input.dir}">
 								<include name="**/*.js" />
 							</fileset>
@@ -206,13 +206,13 @@ ${nodejs.url[osx64]}.
 					</then>
 				</if>
 
-				<pathconvert pathsep=" " property="outdated-files-param" refid="outdated-files" setonempty="false">
+				<pathconvert pathsep=" " property="transpiler.outdated.files" refid="transpiler.outdated.files.path" setonempty="false">
 					<map from="${transpiler.input.dir}/" to="" />
 				</pathconvert>
 
 				<node-execute
 					node.command="node"
-					node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${outdated-files-param}"
+					node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${transpiler.outdated.files}"
 					node.working.dir="${transpiler.input.dir}"
 				/>
 			</sequential>
