@@ -172,10 +172,6 @@ ${nodejs.url[osx64]}.
 		</sequential>
 	</macrodef>
 
-	<target name="download-node">
-		<download-node />
-	</target>
-
 	<target name="transpile-js-files">
 		<download-node-module
 			node.module.name="babel"
