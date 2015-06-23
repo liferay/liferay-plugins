@@ -205,15 +205,16 @@ ${nodejs.url[osx64]}.
 						</path>
 					</then>
 				</if>
-				<pathconvert pathsep=" " property="outdated-files-param" setonempty="false" refid="outdated-files" >
+
+				<pathconvert pathsep=" " property="outdated-files-param" refid="outdated-files" setonempty="false">
 					<map from="${transpiler.input.dir}/" to="" />
 				</pathconvert>
 
 				<node-execute
 					node.command="node"
 					node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${outdated-files-param}"
-					node.working.dir="${transpiler.input.dir}" />
-
+					node.working.dir="${transpiler.input.dir}"
+				/>
 			</sequential>
 		</outofdate>
 	</target>
