@@ -144,6 +144,8 @@ ${nodejs.url[osx64]}.
 		<attribute default="${user.dir}" name="working.dir" />
 
 		<sequential>
+			<download-node />
+
 			<property name="node.args" value="" />
 			<exec dir="@{working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{command}">
 				<arg line="@{command.args} ${node.args}" />
@@ -239,15 +241,16 @@ ${nodejs.url[osx64]}.
 			working.dir="${sdk.tools.dir}/node-v${nodejs.version}" />
 	</target>
 
-	<target name="node-execute" depends="download-node">
+	<target name="node-execute">
 		<property name="working.dir" value="${user.dir}" />
+
 		<node-execute
 			command="node"
 			working.dir="${working.dir}"
 		/>
 	</target>
 
-	<target name="npm-execute" depends="download-node">
+	<target name="npm-execute">
 		<node-execute
 			command="npm"
 			working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
