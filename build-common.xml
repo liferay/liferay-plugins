@@ -22,9 +22,6 @@
 	<property file="${sdk.dir}/build.${env.HOST}.properties" />
 	<property file="${sdk.dir}/build.${env.HOSTNAME}.properties" />
 
-	<dirname file="${ivy.home}" property="ivy.home.dir" />
-	<property name="sdk.tools.dir" value="${ivy.home.dir}/tools" />
-
 	<if>
 		<isset property="app.server.dir" />
 		<then>
@@ -51,6 +48,8 @@
 	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
 	<property location="${app.server.portal.dir}/WEB-INF/lib" name="app.server.lib.portal.dir" />
 
+	<dirname file="${ivy.home}" property="ivy.home.dir" />
+
 	<if>
 		<not>
 			<equals arg1="${junit.debug}" arg2="true" />
@@ -59,6 +58,8 @@
 			<var name="junit.debug.jpda" value="" />
 		</then>
 	</if>
+
+	<property name="sdk.tools.dir" value="${ivy.home.dir}/tools" />
 
 	<property name="whip.agent" value="-javaagent:${sdk.dir}/dependencies/com.liferay.whip/lib/com.liferay.whip.jar=${junit.whip.includes};${junit.whip.excludes}" />
 
