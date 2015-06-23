@@ -93,7 +93,7 @@ ${nodejs.url[osx64]}.
 						<contains string="${nodejs.file}" substring=".tar.gz" />
 						<then>
 							<exec executable="tar">
-								<arg line="xfz ${sdk.tools.dir}/${nodejs.file} -C ${sdk.tools.dir}"/>
+								<arg line="xfz ${sdk.tools.dir}/${nodejs.file} -C ${sdk.tools.dir}" />
 							</exec>
 
 							<antelope:stringutil string="${nodejs.file}" property="nodejs.dir.endindex">
@@ -139,14 +139,14 @@ ${nodejs.url[osx64]}.
 	</macrodef>
 
 	<macrodef name="node-execute">
-		<attribute name="command"/>
+		<attribute name="command" />
 		<attribute default="" name="command.args" />
 		<attribute default="${user.dir}" name="working.dir" />
 
 		<sequential>
 			<property name="node.args" value="" />
 			<exec dir="@{working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{command}">
-				<arg line="@{command.args} ${node.args}"/>
+				<arg line="@{command.args} ${node.args}" />
 			</exec>
 		</sequential>
 	</macrodef>
