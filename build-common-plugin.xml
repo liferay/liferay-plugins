@@ -935,5 +935,4 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			test.type="unit"
 		/>
 	</target>
-
 </project>
