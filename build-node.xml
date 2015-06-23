@@ -162,19 +162,6 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="download-node-module-lfr-module-config-generator" depends="download-node">
-		<if>
-			<not>
-				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator" />
-			</not>
-			<then>
-				<antcall target="npm-execute">
-					<param name="node.args" value="install lfr-module-config-generator" />
-				</antcall>
-			</then>
-		</if>
-	</target>
-
 	<target name="download-node-module-lfr-amd-loader" depends="download-node">
 		<if>
 			<not>
@@ -188,7 +175,20 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="transpile-js-files" depends="download-node-module-babel,download-node-module-lfr-module-config-generator,download-node-module-lfr-amd-loader">
+	<target name="download-node-module-lfr-module-config-generator" depends="download-node">
+		<if>
+			<not>
+				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator" />
+			</not>
+			<then>
+				<antcall target="npm-execute">
+					<param name="node.args" value="install lfr-module-config-generator" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="transpile-js-files" depends="download-node-module-babel,download-node-module-lfr-amd-loader,download-node-module-lfr-module-config-generator">
 		<property name="transpiler.force" value="false" />
 
 		<outofdate outputsourcespath="outdated-files" force="${transpiler.force}">
