@@ -149,6 +149,45 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
+	<target name="download-node-babel" depends="download-node">
+		<if>
+			<not>
+				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel" />
+			</not>
+			<then>
+				<antcall target="npm-execute">
+					<param name="node.args" value="install babel" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="download-node-config-generator" depends="download-node">
+		<if>
+			<not>
+				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator" />
+			</not>
+			<then>
+				<antcall target="npm-execute">
+					<param name="node.args" value="install lfr-module-config-generator" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
+	<target name="download-node-loader" depends="download-node">
+		<if>
+			<not>
+				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-amd-loader" />
+			</not>
+			<then>
+				<antcall target="npm-execute">
+					<param name="node.args" value="install lfr-amd-loader" />
+				</antcall>
+			</then>
+		</if>
+	</target>
+
 	<target name="transpile-js-files" depends="download-node-babel,download-node-config-generator,download-node-loader">
 		<property name="transpiler.force" value="false" />
 
@@ -192,45 +231,6 @@ ${nodejs.url[osx64]}.
 			command="node"
 			command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
 			working.dir="${sdk.tools.dir}/node-v${nodejs.version}" />
-	</target>
-
-	<target name="download-node-babel" depends="download-node">
-		<if>
-			<not>
-				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel" />
-			</not>
-			<then>
-				<antcall target="npm-execute">
-					<param name="node.args" value="install babel" />
-				</antcall>
-			</then>
-		</if>
-	</target>
-
-	<target name="download-node-config-generator" depends="download-node">
-		<if>
-			<not>
-				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator" />
-			</not>
-			<then>
-				<antcall target="npm-execute">
-					<param name="node.args" value="install lfr-module-config-generator" />
-				</antcall>
-			</then>
-		</if>
-	</target>
-
-	<target name="download-node-loader" depends="download-node">
-		<if>
-			<not>
-				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-amd-loader" />
-			</not>
-			<then>
-				<antcall target="npm-execute">
-					<param name="node.args" value="install lfr-amd-loader" />
-				</antcall>
-			</then>
-		</if>
 	</target>
 
 	<target name="node-execute" depends="download-node">
