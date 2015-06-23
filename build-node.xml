@@ -148,8 +148,8 @@ ${nodejs.url[osx64]}.
 				</not>
 				<then>
 					<node-execute
-						node.command="npm"
 						node.args="install @{node.module.name}"
+						node.command="npm"
 						node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
 					/>
 				</then>
@@ -158,9 +158,9 @@ ${nodejs.url[osx64]}.
 	</macrodef>
 
 	<macrodef name="node-execute">
+		<attribute default="" name="node.args" />
 		<attribute name="node.command" />
 		<attribute default="" name="node.command.args" />
-		<attribute default="" name="node.args" />
 		<attribute default="${user.dir}" name="node.working.dir" />
 
 		<sequential>
