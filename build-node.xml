@@ -176,25 +176,19 @@ ${nodejs.url[osx64]}.
 		<download-node />
 	</target>
 
-	<target name="download-node-module-babel">
+	<target name="transpile-js-files">
 		<download-node-module
 			node.module.name="babel"
 		/>
-	</target>
 
-	<target name="download-node-module-lfr-amd-loader">
 		<download-node-module
 			node.module.name="lfr-amd-loader"
 		/>
-	</target>
 
-	<target name="download-node-module-lfr-module-config-generator">
 		<download-node-module
 			node.module.name="lfr-module-config-generator"
 		/>
-	</target>
 
-	<target name="transpile-js-files" depends="download-node-module-babel,download-node-module-lfr-amd-loader,download-node-module-lfr-module-config-generator">
 		<property name="transpiler.force" value="false" />
 
 		<outofdate outputsourcespath="outdated-files" force="${transpiler.force}">
