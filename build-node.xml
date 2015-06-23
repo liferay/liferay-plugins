@@ -218,7 +218,11 @@ ${nodejs.url[osx64]}.
 		</outofdate>
 	</target>
 
-	<target name="generate-modules-config" depends="download-node-module-lfr-module-config-generator">
+	<target name="generate-modules-config">
+		<download-node-module
+			node.module.name="lfr-module-config-generator"
+		/>
+
 		<echo>
 			${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
 		</echo>
