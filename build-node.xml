@@ -239,10 +239,4 @@ ${nodejs.url[osx64]}.
 			working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
 		/>
 	</target>
-
-	<target name="node-execute">
-		<node-execute
-			command="node"
-		/>
-	</target>
 </project>
