@@ -188,7 +188,7 @@ ${nodejs.url[osx64]}.
 		/>
 	</target>
 
-	<target name="transpile-js-files">
+	<target name="transpile-js">
 		<download-node-module
 			node.module.name="babel"
 		/>
