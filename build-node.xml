@@ -176,7 +176,7 @@ ${nodejs.url[osx64]}.
 		<download-node />
 	</target>
 
-	<target name="download-node-module-babel" depends="download-node">
+	<target name="download-node-module-babel">
 		<download-node-module
 			node.module.name="babel"
 		/>
