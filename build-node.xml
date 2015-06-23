@@ -172,6 +172,22 @@ ${nodejs.url[osx64]}.
 		</sequential>
 	</macrodef>
 
+	<target name="generate-modules-config">
+		<download-node-module
+			node.module.name="lfr-module-config-generator"
+		/>
+
+		<echo>
+			${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
+		</echo>
+
+		<node-execute
+			node.command="node"
+			node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
+			node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
+		/>
+	</target>
+
 	<target name="transpile-js-files">
 		<download-node-module
 			node.module.name="babel"
@@ -217,21 +233,5 @@ ${nodejs.url[osx64]}.
 				/>
 			</sequential>
 		</outofdate>
-	</target>
-
-	<target name="generate-modules-config">
-		<download-node-module
-			node.module.name="lfr-module-config-generator"
-		/>
-
-		<echo>
-			${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
-		</echo>
-
-		<node-execute
-			node.command="node"
-			node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
-			node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
-		/>
 	</target>
 </project>
