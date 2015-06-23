@@ -148,9 +148,9 @@ ${nodejs.url[osx64]}.
 				</not>
 				<then>
 					<node-execute
-						command="npm"
+						node.command="npm"
 						node.args="install @{node.module.name}"
-						working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
+						node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
 					/>
 				</then>
 			</if>
@@ -158,16 +158,16 @@ ${nodejs.url[osx64]}.
 	</macrodef>
 
 	<macrodef name="node-execute">
-		<attribute name="command" />
-		<attribute default="" name="command.args" />
+		<attribute name="node.command" />
+		<attribute default="" name="node.command.args" />
 		<attribute default="" name="node.args" />
-		<attribute default="${user.dir}" name="working.dir" />
+		<attribute default="${user.dir}" name="node.working.dir" />
 
 		<sequential>
 			<download-node />
 
-			<exec dir="@{working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{command}">
-				<arg line="@{command.args} @{node.args}" />
+			<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{node.command}">
+				<arg line="@{node.command.args} @{node.args}" />
 			</exec>
 		</sequential>
 	</macrodef>
@@ -220,9 +220,9 @@ ${nodejs.url[osx64]}.
 				</pathconvert>
 
 				<node-execute
-					command="node"
-					command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${outdated-files-param}"
-					working.dir="${transpiler.input.dir}" />
+					node.command="node"
+					node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${outdated-files-param}"
+					node.working.dir="${transpiler.input.dir}" />
 
 			</sequential>
 		</outofdate>
@@ -234,9 +234,9 @@ ${nodejs.url[osx64]}.
 		</echo>
 
 		<node-execute
-			command="node"
-			command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
-			working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
+			node.command="node"
+			node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
+			node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
 		/>
 	</target>
 </project>
