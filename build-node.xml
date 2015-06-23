@@ -6,13 +6,13 @@
 
 	<macrodef name="node-execute">
 		<attribute name="command"/>
-		<attribute default="" name="commandArgs" />
+		<attribute default="" name="command.args" />
 		<attribute default="${user.dir}" name="working.dir" />
 
 		<sequential>
 			<property name="node.args" value="" />
 			<exec dir="@{working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{command}">
-				<arg line="@{commandArgs} ${node.args}"/>
+				<arg line="@{command.args} ${node.args}"/>
 			</exec>
 		</sequential>
 	</macrodef>
@@ -176,7 +176,7 @@ ${nodejs.url[osx64]}.
 
 				<node-execute
 					command="node"
-					commandArgs="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${outdated-files-param}"
+					command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${outdated-files-param}"
 					working.dir="${transpiler.input.dir}" />
 
 			</sequential>
@@ -190,7 +190,7 @@ ${nodejs.url[osx64]}.
 
 		<node-execute
 			command="node"
-			commandArgs="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
+			command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
 			working.dir="${sdk.tools.dir}/node-v${nodejs.version}" />
 	</target>
 
