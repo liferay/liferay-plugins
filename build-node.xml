@@ -149,7 +149,7 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="download-node-babel" depends="download-node">
+	<target name="download-node-module-babel" depends="download-node">
 		<if>
 			<not>
 				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel" />
@@ -162,7 +162,7 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="download-node-config-generator" depends="download-node">
+	<target name="download-node-module-lfr-module-config-generator" depends="download-node">
 		<if>
 			<not>
 				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator" />
@@ -175,7 +175,7 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="download-node-loader" depends="download-node">
+	<target name="download-node-module-lfr-amd-loader" depends="download-node">
 		<if>
 			<not>
 				<available file="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-amd-loader" />
@@ -188,7 +188,7 @@ ${nodejs.url[osx64]}.
 		</if>
 	</target>
 
-	<target name="transpile-js-files" depends="download-node-babel,download-node-config-generator,download-node-loader">
+	<target name="transpile-js-files" depends="download-node-module-babel,download-node-module-lfr-module-config-generator,download-node-module-lfr-amd-loader">
 		<property name="transpiler.force" value="false" />
 
 		<outofdate outputsourcespath="outdated-files" force="${transpiler.force}">
@@ -222,7 +222,7 @@ ${nodejs.url[osx64]}.
 		</outofdate>
 	</target>
 
-	<target name="generate-modules-config" depends="download-node-config-generator">
+	<target name="generate-modules-config" depends="download-node-module-lfr-module-config-generator">
 		<echo>
 			${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -l -e '${config.generator.file.extension}' -f ${config.generator.module.format} -i ${config.generator.path.ignore} -c '${config.generator.config.variable}' -o ${config.generator.output.file} -p ${config.generator.file.pattern} -m ${config.generator.module.config} -r ${config.generator.root.dir} ${config.generator.input.dir}"
 		</echo>
