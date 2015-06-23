@@ -242,11 +242,8 @@ ${nodejs.url[osx64]}.
 	</target>
 
 	<target name="node-execute">
-		<property name="working.dir" value="${user.dir}" />
-
 		<node-execute
 			command="node"
-			working.dir="${working.dir}"
 		/>
 	</target>
 
