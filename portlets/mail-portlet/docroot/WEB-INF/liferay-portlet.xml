@@ -5,6 +5,8 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
+		<indexer-class>com.liferay.mail.util.AccountIndexer</indexer-class>
+		<indexer-class>com.liferay.mail.util.FolderIndexer</indexer-class>
 		<indexer-class>com.liferay.mail.util.MessageIndexer</indexer-class>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>mail</friendly-url-mapping>

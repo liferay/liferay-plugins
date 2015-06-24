@@ -15,7 +15,6 @@
 package com.liferay.mail.service.impl;
 
 import com.liferay.mail.model.Account;
-import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.AccountLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Indexer;
@@ -100,7 +99,8 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		// Indexer
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+		Indexer<Account> indexer = IndexerRegistryUtil.getIndexer(
+			Account.class);
 
 		indexer.delete(account);
 

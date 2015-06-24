@@ -14,36 +14,41 @@
 
 package com.liferay.mail.util;
 
-import com.liferay.mail.model.Message;
-import com.liferay.mail.service.MessageLocalServiceUtil;
-import com.liferay.mail.service.persistence.MessageActionableDynamicQuery;
+import com.liferay.mail.model.Folder;
+import com.liferay.mail.service.FolderLocalServiceUtil;
+import com.liferay.mail.service.persistence.FolderActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexer;
+import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
+import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.search.Summary;
+import com.liferay.portal.kernel.search.generic.BooleanQueryImpl;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 
 /**
- * @author Scott Lee
+ * @author Michael C. Han
  */
-public class MessageIndexer extends BaseIndexer<Message> {
+public class FolderIndexer extends BaseIndexer<Folder> {
 
-	public static final String CLASS_NAME = Message.class.getName();
+	public static final String CLASS_NAME = Folder.class.getName();
 
 	@Override
 	public String getClassName() {
@@ -51,33 +56,47 @@ public class MessageIndexer extends BaseIndexer<Message> {
 	}
 
 	@Override
-	protected void doDelete(Message message) throws Exception {
+	protected void doDelete(Folder folder) throws Exception {
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setSearchEngineId(getSearchEngineId());
 
-		Document document = new DocumentImpl();
+		searchContext.setCompanyId(folder.getCompanyId());
+		searchContext.setEnd(QueryUtil.ALL_POS);
+		searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
+		searchContext.setStart(QueryUtil.ALL_POS);
 
-		document.addUID(CLASS_NAME, message.getMessageId());
+		BooleanQuery booleanQuery = new BooleanQueryImpl();
 
-		SearchEngineUtil.deleteDocument(
-			getSearchEngineId(), message.getCompanyId(),
-			document.get(Field.UID), isCommitImmediately());
+		booleanQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, CLASS_NAME);
+
+		booleanQuery.addRequiredTerm("folderId", folder.getFolderId());
+
+		Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
+
+		List<String> uids = new ArrayList<>(hits.getLength());
+
+		for (int i = 0; i < hits.getLength(); i++) {
+			Document document = hits.doc(i);
+
+			uids.add(document.get(Field.UID));
+		}
+
+		SearchEngineUtil.deleteDocuments(
+			getSearchEngineId(), folder.getCompanyId(), uids,
+			isCommitImmediately());
 	}
 
 	@Override
-	protected Document doGetDocument(Message message) throws Exception {
-		Document document = getBaseModelDocument(CLASS_NAME, message);
+	protected Document doGetDocument(Folder folder) throws Exception {
+		Document document = getBaseModelDocument(CLASS_NAME, folder);
 
-		ExpandoBridge expandoBridge = message.getExpandoBridge();
+		ExpandoBridge expandoBridge = folder.getExpandoBridge();
 
-		document.addText(
-			Field.CONTENT, HtmlUtil.extractText(message.getBody()));
-		document.addKeyword(Field.FOLDER_ID, message.getFolderId());
-		document.addText(Field.TITLE, message.getSubject());
+		document.addKeyword(Field.FOLDER_ID, folder.getFolderId());
+		document.addText(Field.NAME, folder.getDisplayName());
 
-		document.addKeyword("accountId", message.getAccountId());
-		document.addKeyword("remoteMessageId", message.getRemoteMessageId());
+		document.addKeyword("accountId", folder.getAccountId());
 
 		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
 
@@ -93,19 +112,19 @@ public class MessageIndexer extends BaseIndexer<Message> {
 	}
 
 	@Override
-	protected void doReindex(Message message) throws Exception {
-		Document document = getDocument(message);
+	protected void doReindex(Folder folder) throws Exception {
+		Document document = getDocument(folder);
 
 		SearchEngineUtil.updateDocument(
-			getSearchEngineId(), message.getCompanyId(), document,
+			getSearchEngineId(), folder.getCompanyId(), document,
 			isCommitImmediately());
 	}
 
 	@Override
 	protected void doReindex(String className, long classPK) throws Exception {
-		Message message = MessageLocalServiceUtil.getMessage(classPK);
+		Folder folder = FolderLocalServiceUtil.getFolder(classPK);
 
-		doReindex(message);
+		doReindex(folder);
 	}
 
 	@Override
@@ -117,21 +136,21 @@ public class MessageIndexer extends BaseIndexer<Message> {
 
 	protected void reindexMessages(long companyId) throws PortalException {
 		ActionableDynamicQuery actionableDynamicQuery =
-			new MessageActionableDynamicQuery() {
+			new FolderActionableDynamicQuery() {
 
 			@Override
 			protected void performAction(Object object) {
-				Message message = (Message)object;
+				Folder folder = (Folder)object;
 
 				try {
-					Document document = getDocument(message);
+					Document document = getDocument(folder);
 
 					addDocument(document);
 				}
 				catch (PortalException pe) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to index message " + message.getMessageId(),
+							"Unable to index folder " + folder.getFolderId(),
 							pe);
 					}
 				}
@@ -145,6 +164,6 @@ public class MessageIndexer extends BaseIndexer<Message> {
 		actionableDynamicQuery.performActions();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(MessageIndexer.class);
+	private static final Log _log = LogFactoryUtil.getLog(FolderIndexer.class);
 
 }

@@ -82,7 +82,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		// Indexer
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+		Indexer<Message> indexer = IndexerRegistryUtil.getIndexer(
+			Message.class);
 
 		indexer.reindex(message);
 
@@ -110,7 +111,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		// Indexer
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+		Indexer<Message> indexer = IndexerRegistryUtil.getIndexer(
+			Message.class);
 
 		indexer.delete(message);
 
@@ -310,7 +312,8 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		// Indexer
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Message.class);
+		Indexer<Message> indexer = IndexerRegistryUtil.getIndexer(
+			Message.class);
 
 		indexer.reindex(message);
 
