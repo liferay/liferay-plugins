@@ -935,4 +935,40 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			test.type="unit"
 		/>
 	</target>
+
+	<target name="watch-css">
+		<property name="watch.css.marker.file" location="${sdk.dir}/tmp/${plugin.name}.watchcss" />
+
+		<touch file="${watch.css.marker.file}" />
+
+		<antelope:repeat count="-1" interval="2">
+			<outofdate>
+				<sourcefiles>
+					<fileset dir="${basedir}">
+						<include name="**/*.css" />
+						<include name="**/*.scss" />
+						<exclude name="**/classes/**" />
+						<exclude name="**/.sass-cache/**" />
+					</fileset>
+				</sourcefiles>
+				<targetfiles>
+					<pathelement location="${watch.css.marker.file}" />
+				</targetfiles>
+				<sequential>
+					<trycatch property="watch.css.error">
+						<try>
+							<deploy
+								module.dir="${basedir}"
+							/>
+						</try>
+						<catch>
+							<echo>${watch.css.error}</echo>
+						</catch>
+					</trycatch>
+
+					<touch file="${watch.css.marker.file}" />
+				</sequential>
+			</outofdate>
+		</antelope:repeat>
+	</target>
 </project>
