@@ -29,8 +29,7 @@ public class ScreensJournalArticleServiceImpl
 	extends ScreensJournalArticleServiceBaseImpl {
 
 	@Override
-	public String getJournalArticle(
-			Integer groupId, Integer classPK, Locale locale)
+	public String getJournalArticle(int groupId, int classPK, Locale locale)
 		throws PortalException, SystemException {
 
 		Locale currentLocale = locale;
