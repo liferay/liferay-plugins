@@ -151,8 +151,8 @@ public class ViewChartAction extends Action {
 
 		String seriesName = "";
 
-		dataset.addValue(new Integer(9), seriesName, "Coke");
-		dataset.addValue(new Integer(21), seriesName, "Pepsi");
+		dataset.addValue(Integer.valueOf(9), seriesName, "Coke");
+		dataset.addValue(Integer.valueOf(21), seriesName, "Pepsi");
 
 		return dataset;
 	}

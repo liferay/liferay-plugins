@@ -216,10 +216,10 @@ request.setAttribute("view_user.jsp-user", user2);
 								Group group = themeDisplay.getScopeGroup();
 
 								if (group.isUser()) {
-									groupParams.put("usersGroups", new Long(group.getClassPK()));
+									groupParams.put("usersGroups", Long.valueOf(group.getClassPK()));
 								}
 								else {
-									groupParams.put("usersGroups", new Long(themeDisplay.getUserId()));
+									groupParams.put("usersGroups", Long.valueOf(themeDisplay.getUserId()));
 								}
 
 								groupParams.put("active", Boolean.TRUE);

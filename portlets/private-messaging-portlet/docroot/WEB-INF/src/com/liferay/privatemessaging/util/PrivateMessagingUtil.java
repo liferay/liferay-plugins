@@ -92,7 +92,8 @@ public class PrivateMessagingUtil {
 			params.put(
 				"socialRelationType",
 				new Long[] {
-					userId, new Long(SocialRelationConstants.TYPE_BI_CONNECTION)
+					userId,
+					Long.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION)
 				});
 		}
 
@@ -102,7 +103,7 @@ public class PrivateMessagingUtil {
 
 			if (role != null) {
 				params.put("inherit", Boolean.TRUE);
-				params.put("usersRoles", new Long(role.getRoleId()));
+				params.put("usersRoles", Long.valueOf(role.getRoleId()));
 			}
 		}
 		catch (NoSuchRoleException nsre) {

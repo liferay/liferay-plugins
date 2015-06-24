@@ -22,12 +22,12 @@ import java.sql.Types;
 public class SVNRevisionTable {
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"svnRevisionId", new Integer(Types.BIGINT)},
-		{"svnUserId", new Integer(Types.VARCHAR)},
-		{"createDate", new Integer(Types.TIMESTAMP)},
-		{"svnRepositoryId", new Integer(Types.BIGINT)},
-		{"revisionNumber", new Integer(Types.BIGINT)},
-		{"comments", new Integer(Types.VARCHAR)}
+		{"svnRevisionId", Integer.valueOf(Types.BIGINT)},
+		{"svnUserId", Integer.valueOf(Types.VARCHAR)},
+		{"createDate", Integer.valueOf(Types.TIMESTAMP)},
+		{"svnRepositoryId", Integer.valueOf(Types.BIGINT)},
+		{"revisionNumber", Integer.valueOf(Types.BIGINT)},
+		{"comments", Integer.valueOf(Types.VARCHAR)}
 	};
 
 	public static final String TABLE_NAME = "SC_SVNRevision";

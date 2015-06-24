@@ -57,7 +57,7 @@ public class FoodItemUtil {
 			session.beginTransaction();
 
 			FoodItem foodItem = (FoodItem)session.get(
-				FoodItem.class, new Long(foodItemId));
+				FoodItem.class, Long.valueOf(foodItemId));
 
 			if (foodItem != null) {
 				session.delete(foodItem);
@@ -84,7 +84,7 @@ public class FoodItemUtil {
 			session.beginTransaction();
 
 			FoodItem foodItem = (FoodItem)session.get(
-				FoodItem.class, new Long(foodItemId));
+				FoodItem.class, Long.valueOf(foodItemId));
 
 			session.getTransaction().commit();
 

@@ -207,7 +207,7 @@ public class GoogleMailGroupsUtil {
 					new LinkedHashMap<>();
 
 				userParams.put("inherit", Boolean.TRUE);
-				userParams.put("usersGroups", new Long(group.getGroupId()));
+				userParams.put("usersGroups", Long.valueOf(group.getGroupId()));
 
 				List<User> users = UserLocalServiceUtil.search(
 					group.getCompanyId(), null,

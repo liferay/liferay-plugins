@@ -37,17 +37,17 @@ Object[][] jiraProjectRowsArray = new Object[][] {
 	new Object[] {
 		"open", PortalUtil.getPathContext(request) + "/jira/images/status_open.png",
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&resolution=-1",
-		new Integer(assignedIssuesOpenCount), new Integer(assignedIssuesTotalCount)
+		Integer.valueOf(assignedIssuesOpenCount), Integer.valueOf(assignedIssuesTotalCount)
 	},
 	new Object[] {
 		"closed", PortalUtil.getPathContext(request) + "/jira/images/status_closed.png",
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
-		new Integer(assignedIssuesClosedCount), new Integer(assignedIssuesTotalCount)
+		Integer.valueOf(assignedIssuesClosedCount), Integer.valueOf(assignedIssuesTotalCount)
 	},
 	new Object[] {
 		"last-week", PortalUtil.getPathContext(request) + "/jira/images/calendar.png",
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1w",
-		new Integer(assignedIssuesLastWeekCount), new Integer(assignedIssuesTotalCount)
+		Integer.valueOf(assignedIssuesLastWeekCount), Integer.valueOf(assignedIssuesTotalCount)
 	},
 	new Object[] {
 		"reported-issues",
@@ -56,17 +56,17 @@ Object[][] jiraProjectRowsArray = new Object[][] {
 	new Object[] {
 		"open", PortalUtil.getPathContext(request) + "/jira/images/status_open.png",
 		jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&resolution=-1",
-		new Integer(reporterIssuesOpenCount), new Integer(reporterIssuesTotalCount)
+		Integer.valueOf(reporterIssuesOpenCount), Integer.valueOf(reporterIssuesTotalCount)
 	},
 	new Object[] {
 		"closed", PortalUtil.getPathContext(request) + "/jira/images/status_closed.png",
 		jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
-		new Integer(reporterIssuesClosedCount), new Integer(reporterIssuesTotalCount)
+		Integer.valueOf(reporterIssuesClosedCount), Integer.valueOf(reporterIssuesTotalCount)
 	},
 	new Object[] {
 		"last-week", PortalUtil.getPathContext(request) + "/jira/images/calendar.png",
 		jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&updated:previous=-1w",
-		new Integer(reporterIssuesLastWeekCount), new Integer(reporterIssuesTotalCount)
+		Integer.valueOf(reporterIssuesLastWeekCount), Integer.valueOf(reporterIssuesTotalCount)
 	}
 };
 %>

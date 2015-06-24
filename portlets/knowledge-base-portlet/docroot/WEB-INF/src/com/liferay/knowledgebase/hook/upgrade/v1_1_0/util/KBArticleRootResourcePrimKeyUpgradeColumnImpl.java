@@ -47,7 +47,7 @@ public class KBArticleRootResourcePrimKeyUpgradeColumnImpl
 				WorkflowConstants.STATUS_ANY);
 		}
 
-		return new Long(kbArticle.getResourcePrimKey());
+		return Long.valueOf(kbArticle.getResourcePrimKey());
 	}
 
 	private UpgradeColumn _resourcePrimKeyColumn;

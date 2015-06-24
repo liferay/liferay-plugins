@@ -22,9 +22,9 @@ import java.sql.Types;
 public class SVNRepositoryTable {
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"svnRepositoryId", new Integer(Types.BIGINT)},
-		{"url", new Integer(Types.VARCHAR)},
-		{"revisionNumber", new Integer(Types.BIGINT)}
+		{"svnRepositoryId", Integer.valueOf(Types.BIGINT)},
+		{"url", Integer.valueOf(Types.VARCHAR)},
+		{"revisionNumber", Integer.valueOf(Types.BIGINT)}
 	};
 
 	public static final String TABLE_NAME = "SC_SVNRepository";
