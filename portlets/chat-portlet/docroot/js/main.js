@@ -11,6 +11,7 @@ AUI().use(
 	'stylesheet',
 	'swfobject',
 	function(A) {
+		var KeyMap = A.Event.KeyMap;
 		var Lang = A.Lang;
 		var LString = Lang.String;
 
@@ -977,7 +978,8 @@ AUI().use(
 							panelTrigger.focus();
 						}
 					},
-					'up:27', 'input, li.active.user'
+					'up:' + KeyMap.ESC,
+					'input, li.active.user'
 				);
 
 				if (buddyList) {
@@ -1006,8 +1008,8 @@ AUI().use(
 							circular: true,
 							descendants: 'li',
 							keys: {
-								next: 'down:40',
-								previous: 'down:38'
+								next: 'down:' + KeyMap.DOWN,
+								previous: 'down:' + KeyMap.UP
 							}
 						}
 					);
@@ -1174,7 +1176,8 @@ AUI().use(
 							panelTrigger.focus();
 						}
 					},
-					'up:27', 'input'
+					'up:' + KeyMap.ESC,
+					'input'
 				);
 			},
 
