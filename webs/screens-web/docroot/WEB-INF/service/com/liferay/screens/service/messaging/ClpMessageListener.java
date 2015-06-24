@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.screens.service.ClpSerializer;
 import com.liferay.screens.service.ScreensAssetEntryServiceUtil;
 import com.liferay.screens.service.ScreensDDLRecordServiceUtil;
+import com.liferay.screens.service.ScreensJournalArticleServiceUtil;
 import com.liferay.screens.service.ScreensUserServiceUtil;
 
 /**
@@ -40,6 +41,8 @@ public class ClpMessageListener extends BaseMessageListener {
 			ScreensAssetEntryServiceUtil.clearService();
 
 			ScreensDDLRecordServiceUtil.clearService();
+
+			ScreensJournalArticleServiceUtil.clearService();
 
 			ScreensUserServiceUtil.clearService();
 		}

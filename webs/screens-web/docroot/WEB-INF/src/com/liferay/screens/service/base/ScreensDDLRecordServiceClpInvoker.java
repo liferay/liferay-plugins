@@ -24,69 +24,69 @@ import java.util.Arrays;
  */
 public class ScreensDDLRecordServiceClpInvoker {
 	public ScreensDDLRecordServiceClpInvoker() {
-		_methodName24 = "getBeanIdentifier";
+		_methodName32 = "getBeanIdentifier";
 
-		_methodParameterTypes24 = new String[] {  };
+		_methodParameterTypes32 = new String[] {  };
 
-		_methodName25 = "setBeanIdentifier";
+		_methodName33 = "setBeanIdentifier";
 
-		_methodParameterTypes25 = new String[] { "java.lang.String" };
+		_methodParameterTypes33 = new String[] { "java.lang.String" };
 
-		_methodName28 = "getDDLRecord";
+		_methodName36 = "getDDLRecord";
 
-		_methodParameterTypes28 = new String[] { "long", "java.util.Locale" };
+		_methodParameterTypes36 = new String[] { "long", "java.util.Locale" };
 
-		_methodName29 = "getDDLRecords";
+		_methodName37 = "getDDLRecords";
 
-		_methodParameterTypes29 = new String[] {
+		_methodParameterTypes37 = new String[] {
 				"long", "java.util.Locale", "int", "int"
 			};
 
-		_methodName30 = "getDDLRecords";
+		_methodName38 = "getDDLRecords";
 
-		_methodParameterTypes30 = new String[] {
+		_methodParameterTypes38 = new String[] {
 				"long", "long", "java.util.Locale", "int", "int"
 			};
 
-		_methodName31 = "getDDLRecordsCount";
+		_methodName39 = "getDDLRecordsCount";
 
-		_methodParameterTypes31 = new String[] { "long" };
+		_methodParameterTypes39 = new String[] { "long" };
 
-		_methodName32 = "getDDLRecordsCount";
+		_methodName40 = "getDDLRecordsCount";
 
-		_methodParameterTypes32 = new String[] { "long", "long" };
+		_methodParameterTypes40 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName24.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName25.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			ScreensDDLRecordServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName28.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecord(((Long)arguments[0]).longValue(),
 				(java.util.Locale)arguments[1]);
 		}
 
-		if (_methodName29.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecords(((Long)arguments[0]).longValue(),
 				(java.util.Locale)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+		if (_methodName38.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecords(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.util.Locale)arguments[2],
@@ -94,13 +94,13 @@ public class ScreensDDLRecordServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+		if (_methodName39.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecordsCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return ScreensDDLRecordServiceUtil.getDDLRecordsCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
@@ -108,18 +108,18 @@ public class ScreensDDLRecordServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
-	private String _methodName29;
-	private String[] _methodParameterTypes29;
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
+	private String _methodName33;
+	private String[] _methodParameterTypes33;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
 }

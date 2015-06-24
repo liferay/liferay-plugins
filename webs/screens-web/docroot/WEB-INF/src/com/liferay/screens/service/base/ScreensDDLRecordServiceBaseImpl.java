@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.InfrastructureUtil;
 import com.liferay.portal.service.BaseServiceImpl;
+import com.liferay.portal.service.persistence.ClassNamePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.portlet.dynamicdatalists.service.persistence.DDLRecordPersistence;
@@ -88,6 +89,25 @@ public abstract class ScreensDDLRecordServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the screens journal article remote service.
+	 *
+	 * @return the screens journal article remote service
+	 */
+	public com.liferay.screens.service.ScreensJournalArticleService getScreensJournalArticleService() {
+		return screensJournalArticleService;
+	}
+
+	/**
+	 * Sets the screens journal article remote service.
+	 *
+	 * @param screensJournalArticleService the screens journal article remote service
+	 */
+	public void setScreensJournalArticleService(
+		com.liferay.screens.service.ScreensJournalArticleService screensJournalArticleService) {
+		this.screensJournalArticleService = screensJournalArticleService;
+	}
+
+	/**
 	 * Returns the screens user remote service.
 	 *
 	 * @return the screens user remote service
@@ -123,6 +143,63 @@ public abstract class ScreensDDLRecordServiceBaseImpl extends BaseServiceImpl
 	public void setCounterLocalService(
 		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
+	}
+
+	/**
+	 * Returns the class name local service.
+	 *
+	 * @return the class name local service
+	 */
+	public com.liferay.portal.service.ClassNameLocalService getClassNameLocalService() {
+		return classNameLocalService;
+	}
+
+	/**
+	 * Sets the class name local service.
+	 *
+	 * @param classNameLocalService the class name local service
+	 */
+	public void setClassNameLocalService(
+		com.liferay.portal.service.ClassNameLocalService classNameLocalService) {
+		this.classNameLocalService = classNameLocalService;
+	}
+
+	/**
+	 * Returns the class name remote service.
+	 *
+	 * @return the class name remote service
+	 */
+	public com.liferay.portal.service.ClassNameService getClassNameService() {
+		return classNameService;
+	}
+
+	/**
+	 * Sets the class name remote service.
+	 *
+	 * @param classNameService the class name remote service
+	 */
+	public void setClassNameService(
+		com.liferay.portal.service.ClassNameService classNameService) {
+		this.classNameService = classNameService;
+	}
+
+	/**
+	 * Returns the class name persistence.
+	 *
+	 * @return the class name persistence
+	 */
+	public ClassNamePersistence getClassNamePersistence() {
+		return classNamePersistence;
+	}
+
+	/**
+	 * Sets the class name persistence.
+	 *
+	 * @param classNamePersistence the class name persistence
+	 */
+	public void setClassNamePersistence(
+		ClassNamePersistence classNamePersistence) {
+		this.classNamePersistence = classNamePersistence;
 	}
 
 	/**
@@ -330,10 +407,18 @@ public abstract class ScreensDDLRecordServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.screens.service.ScreensAssetEntryService screensAssetEntryService;
 	@BeanReference(type = com.liferay.screens.service.ScreensDDLRecordService.class)
 	protected com.liferay.screens.service.ScreensDDLRecordService screensDDLRecordService;
+	@BeanReference(type = com.liferay.screens.service.ScreensJournalArticleService.class)
+	protected com.liferay.screens.service.ScreensJournalArticleService screensJournalArticleService;
 	@BeanReference(type = com.liferay.screens.service.ScreensUserService.class)
 	protected com.liferay.screens.service.ScreensUserService screensUserService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
+	protected com.liferay.portal.service.ClassNameLocalService classNameLocalService;
+	@BeanReference(type = com.liferay.portal.service.ClassNameService.class)
+	protected com.liferay.portal.service.ClassNameService classNameService;
+	@BeanReference(type = ClassNamePersistence.class)
+	protected ClassNamePersistence classNamePersistence;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
 	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
 	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)

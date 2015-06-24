@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_Screens_ScreensJournalArticleService" provider="java:RPC" style="rpc" use="encoded">
+		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getJournalArticle" qname="operNS:getJournalArticle" returnQName="getJournalArticleReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="classPK" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getJournalArticle" />
+		<parameter name="className" value="com.liferay.screens.service.http.ScreensJournalArticleServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ScreensJournalArticleServiceSoap" />
+		<parameter name="wsdlServiceElement" value="ScreensJournalArticleServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Screens_ScreensJournalArticleService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.screens.liferay.com" />
+	</service>
+</deployment>
