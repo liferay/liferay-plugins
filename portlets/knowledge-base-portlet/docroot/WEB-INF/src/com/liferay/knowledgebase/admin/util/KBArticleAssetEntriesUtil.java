@@ -134,7 +134,8 @@ public class KBArticleAssetEntriesUtil {
 				request, portletId, themeDisplay.getPlid(),
 				PortletRequest.RENDER_PHASE);
 
-			portletURL.setParameter("struts_action", "/blogs/view_entry");
+			portletURL.setParameter(
+				"mvcRenderCommandName", "/blogs/view_entry");
 			portletURL.setParameter("entryId", String.valueOf(classPK));
 		}
 		else if (className.equals(JournalArticle.class.getName())) {
