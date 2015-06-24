@@ -175,6 +175,31 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 	}
 
+	public BaseModel<?> fetchBaseModel(String modelClassName, long classPK)
+		throws Exception {
+
+		ClassLoader classLoader = clazz.getClassLoader();
+
+		int pos = modelClassName.indexOf(".model.");
+
+		String simpleClassName = modelClassName.substring(pos + 7);
+
+		String localServiceUtilClassName =
+			modelClassName.substring(0, pos) + ".service." + simpleClassName +
+			"LocalServiceUtil";
+
+		Class<?> localServiceUtilClass = classLoader.loadClass(
+			localServiceUtilClassName);
+
+		String methodName = "fetch" + simpleClassName;
+
+		Method fetchBaseModelMethod = localServiceUtilClass.getMethod(
+			methodName, new Class[] {long.class});
+
+		return (BaseModel<?>)fetchBaseModelMethod.invoke(
+			localServiceUtilClass, classPK);
+	}
+
 	@Override
 	public Portlet getPortlet() {
 		return portlet;
