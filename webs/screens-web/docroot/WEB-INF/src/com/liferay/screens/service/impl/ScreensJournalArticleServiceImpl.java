@@ -25,24 +25,21 @@ import java.util.Locale;
 /**
  * The implementation of the screens journal article remote service.
  *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.screens.service.ScreensJournalArticleService} interface.
+ * All custom service methods should be put in this class. Whenever methods are
+ * added, rerun ServiceBuilder to copy their definitions into the
+ * {@link com.liferay.screens.service.ScreensJournalArticleService} interface.
  *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
+ * This is a remote service. Methods of this service are expected to have
+ * security checks based on the propagated JAAS credentials because this
+ * service can be accessed remotely.
  *
- * @author José Manuel Navarro
+ * @author Javier Gamarra
+ *
  * @see com.liferay.screens.service.base.ScreensJournalArticleServiceBaseImpl
  * @see com.liferay.screens.service.ScreensJournalArticleServiceUtil
  */
 public class ScreensJournalArticleServiceImpl
 	extends ScreensJournalArticleServiceBaseImpl {
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.screens.service.ScreensJournalArticleServiceUtil} to access the screens journal article remote service.
-	 */
 
 	@Override
 	public String getJournalArticle(
@@ -55,9 +52,12 @@ public class ScreensJournalArticleServiceImpl
 			journalLocale = LocaleUtil.getSiteDefault();
 		}
 
-		JournalArticleResource resource = journalArticleResourceLocalService.getArticleResource(classPK);
+		JournalArticleResource resource =
+			journalArticleResourceLocalService.getArticleResource(classPK);
 
 		return journalArticleLocalService.getArticleContent(
-			groupId, resource.getArticleId(), null, journalLocale.toString(), null);
+			groupId, resource.getArticleId(), null, journalLocale.toString(),
+			null);
 	}
+
 }
