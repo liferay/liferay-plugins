@@ -1,11 +1,227 @@
 <plugins-summary>
 	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Analytics API]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Analytics Hook]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Content Targeting API]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Content Targeting]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Portal 6.2 Compatibility Hook for Audience Targeting]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[This module is needed in order for Audience Targeting to work in 6.2]]></short-description>
+		<long-description><![CDATA[This module is needed in order for Audience Targeting to work in 6.2]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Campaign Content Report]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Campaign Tracking Action Report]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[User Segment Content Report]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[content-targeting]]></artifact-id>
+		<name><![CDATA[Simulator Hook]]></name>
+		<type><![CDATA[app]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[Simulator for the Audience Targeting Apps]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[antisamy-hook]]></artifact-id>
 		<name><![CDATA[AntiSamy]]></name>
 		<type><![CDATA[hook]]></type>
 		<tags><![CDATA[antisamy, html, sanitize, sanitizer]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Sanitizers act as a filtering element that "sanitize" web content (usually HTML or JavaScript code) so that it does not contain inappropriate content like malicious JavaScript code or inappropriate words.<br /><br />This app utilizes the OWASP AntiSamy functionality to provide default sanitization of user-supplied input (such as blog posts, forum posts, and other user-generated content). The OWASP AntiSamy project is an API for ensuring user-supplied HTML/CSS is in compliance within an application's rules. It is an API that helps you make sure that clients don't supply malicious cargo code in the HTML that they supply for their profile, comments, etc., that get persisted on the server. The term "malicious code" in regards to web applications usually mean "JavaScript." Cascading Stylesheets are only considered malicious when they invoke the JavaScript engine. However, there are many situations where "normal" HTML and CSS can be used in a malicious manner.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
+		<long-description><![CDATA[Liferay's AntiSamy application protects against malicious code that users may pass intentionally or unintentionally to your portal via their content. The app filters on specific HTML/CSS code and removes suspect JavaScript from it. The application leverages the powerful OWASP AntiSamy library to enforce a content policy that's been proven effective for the online auction site eBay. The app's hook plugin adds an OWASP AntiSamy implementation to your portal's list of existing sanitizer implementations. Liferay Portal uses the AntiSamy sanitizer and any existing configured sanitizers to scrub user input to blogs entries, calendar events, message boards posts, wiki pages, and web content articles.<br /><br />This app uses OWASP AntiSamy 1.4.4 and is enabled upon the portal's redeployment.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -99,8 +315,80 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id><![CDATA[google-drive-hook]]></artifact-id>
+		<name><![CDATA[Google Drive Connector]]></name>
+		<type><![CDATA[hook]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[google-login-hook]]></artifact-id>
 		<name><![CDATA[Google Login]]></name>
+		<type><![CDATA[hook]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[Security]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[google-mail-groups-hook]]></artifact-id>
+		<name><![CDATA[Google Mail Groups]]></name>
+		<type><![CDATA[hook]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[Security]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[google-mail-users-hook]]></artifact-id>
+		<name><![CDATA[Google Mail Users]]></name>
 		<type><![CDATA[hook]]></type>
 		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
@@ -126,9 +414,9 @@
 		<artifact-id><![CDATA[localization-ja-hook]]></artifact-id>
 		<name><![CDATA[Japanese Localization]]></name>
 		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[]]></tags>
+		<tags><![CDATA[japanese, layout, localize]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
+		<long-description><![CDATA[Liferay's Japanese Localization hook customizes Liferay Portal for Japanese users and administrators. With respect to user name input fields and user name display, the hook properly lists the user's surname first and drops the use of any middle name. In addition, the hook adjusts Liferay Portal to use Japanese compatible address fields.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -139,9 +427,15 @@
 			<category><![CDATA[Utility]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
+			<icon><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
+			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<screenshot><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<screenshot><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<screenshot><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<screenshot><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/screenshots/5.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -176,7 +470,7 @@
 		<type><![CDATA[hook]]></type>
 		<tags><![CDATA[db, expando, ha, json, nosql, redundancy, sql]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app replaces the backend storage system used for Liferay's "Expando" service framework to use MongoDB instead of the default SQL database used by the rest of Liferay. Many features in Liferay make use of Expandos (such as Document Data Lists and Custom User Attributes). If you need high performance in these areas, consider using MongoDB. MongoDB is an open source, document-oriented NoSQL database. MongoDB focuses on four main things: flexibility, power, speed, and ease of use. MongoDB stores data in JSON documents and contains built-in redundancy and high availability features. For more detail on MongoDB, visit http://mongodb.org. There are multiple portlets included in this app. For details about how to use the Knowledge Base, Consult the "Knowledge Base" section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app installs as a Liferay service.]]></long-description>
+		<long-description><![CDATA[This app replaces the backend storage system used for Liferay's "Expando" service framework to use MongoDB instead of the default SQL database used by the rest of Liferay. Many features in Liferay make use of Expandos (such as Document Data Lists and Custom User Attributes). If you need high performance in these areas, consider using MongoDB. MongoDB is an open source, document-oriented NoSQL database. MongoDB focuses on four main things: flexibility, power, speed, and ease of use. MongoDB stores data in JSON documents and contains built-in redundancy and high availability features. For more detail on MongoDB, visit http://mongodb.org. There are multiple portlets included in this app.<br /><br />This app installs as a Liferay service.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -367,32 +661,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[shibboleth-hook]]></artifact-id>
-		<name><![CDATA[Shibboleth Single Sign On]]></name>
-		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[login, shibboleth, sso]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[The Shibboleth Single Sign On hook enables Liferay to use a Shibboleth Identity Provider to sign into the portal. It's completely configurable, allowing you to set a custom header attribute and a logout URL to give your users a seamless experience.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Security]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[hooks/shibboleth-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[hooks/shibboleth-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[so-activities-hook]]></artifact-id>
 		<name><![CDATA[Social Office Activities]]></name>
 		<type><![CDATA[hook]]></type>
@@ -528,7 +796,7 @@
 		<type><![CDATA[layouttpl]]></type>
 		<tags><![CDATA[layout, template, ui]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Layout Templates allow you to choose how portlets will be arranged on a page. They are simple table or CSS-based containers into which portlets can be dropped and sit within the body of the page. Liferay Portal comes with several built-in layout templates, but if you require a more complex page layout you may wish to use this custom layout template. A thumbnail is displayed when the end user clicks Layout Template from the Dock menu. Consult the "Page Creation and Management" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
+		<long-description><![CDATA[Layout Templates allow you to choose how portlets will be arranged on a page. They are simple table or CSS-based containers into which portlets can be dropped and sit within the body of the page. Liferay Portal comes with several built-in layout templates, but if you require a more complex page layout you may wish to use this custom layout template. A thumbnail is displayed when the end user clicks Layout Template from the Dock menu.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -555,7 +823,7 @@
 		<type><![CDATA[layouttpl]]></type>
 		<tags><![CDATA[layout, template, ui]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Layout Templates allow you to choose how portlets will be arranged on a page. They are simple table or CSS-based containers into which portlets can be dropped and sit within the body of the page. Liferay Portal comes with several built-in layout templates, but if you require a more complex page layout you may wish to use this custom layout template. A thumbnail is displayed when the end user clicks Layout Template from the Dock menu. Consult the "Page Creation and Management" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
+		<long-description><![CDATA[Layout Templates allow you to choose how portlets will be arranged on a page. They are simple table or CSS-based containers into which portlets can be dropped and sit within the body of the page. Liferay Portal comes with several built-in layout templates, but if you require a more complex page layout you may wish to use this custom layout template. A thumbnail is displayed when the end user clicks Layout Template from the Dock menu.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -582,7 +850,7 @@
 		<type><![CDATA[layouttpl]]></type>
 		<tags><![CDATA[layout, template, ui]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Layout Templates allow you to choose how portlets will be arranged on a page. They are simple table or CSS-based containers into which portlets can be dropped and sit within the body of the page. Liferay Portal comes with several built-in layout templates, but if you require a more complex page layout you may wish to use this custom layout template. A thumbnail is displayed when the end user clicks Layout Template from the Dock menu. Consult the "Page Creation and Management" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
+		<long-description><![CDATA[Layout Templates allow you to choose how portlets will be arranged on a page. They are simple table or CSS-based containers into which portlets can be dropped and sit within the body of the page. Liferay Portal comes with several built-in layout templates, but if you require a more complex page layout you may wish to use this custom layout template. A thumbnail is displayed when the end user clicks Layout Template from the Dock menu.<br /><br />This layout will appear in your Page Layouts once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -708,7 +976,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[calendar, calendar resources]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay's Calendar app allows users and organizations to create, track, share, and manage events. In addition, the Calendar app supports notifications, integration with Social Office, and staging. As a user, you can create as many calendars as you need. As an administrator, you are able to manage the scheduling of Calendar Resources such as rooms and projectors. All content from the old Calendar portlet is automatically imported into this new application. For details about how to use the Calendar, consult the "Managing Events and Calendar Resources with Liferay's Calendar Portlet" section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.]]></long-description>
+		<long-description><![CDATA[Liferay's Calendar app allows users and organizations to create, track, share, and manage events. In addition, the Calendar app supports notifications, integration with Social Office, and staging. As a user, you can create as many calendars as you need. As an administrator, you are able to manage the scheduling of Calendar Resources such as rooms and projectors. All content from the old Calendar portlet is automatically imported into this new application.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -735,7 +1003,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[chat, friends, im, social]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay's Chat portlet provides a convenient way of allowing users to send each other instant messages when they are logged into a Liferay site. It appears as at the bottom of every page, and displays who is logged on, their statuses, and any chats the logged-in user has open. Users can also set audio alerts, and engage in multiple chats. Consult the “Chat” section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app may appear at the bottom of the page.]]></long-description>
+		<long-description><![CDATA[Liferay's Chat portlet provides a convenient way of allowing users to send each other instant messages when they are logged into a Liferay site. It appears as at the bottom of every page, and displays who is logged on, their statuses, and any chats the logged-in user has open. Users can also set audio alerts, and engage in multiple chats.<br /><br />This app may appear at the bottom of the page.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -800,34 +1068,6 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[ddl-form-portlet]]></artifact-id>
-		<name><![CDATA[Dynamic Data List Form]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[ddl, dynamic data list, form, user form]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[A Dynamic Data List (DDL) is a user-defined collection of records, similar to a spreadsheet. The records in a Dynamic Data List are composed of various field types such as text, date, integer, check box, etc. These can be published as workflow-enabled forms that capture user information in different ways such as an RSVP, for tasks tracking, or for managing issues. This Dynamic Data List Form app allows you to display dynamic forms to users, allowing them to enter information in predefined lists.<br /><br />This app can also be configured to use a template to display the list in different ways depending on whether the user is viewing the entire list, or the details of a specific list record. Consult the "Dynamic Data Lists in Liferay" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Productivity]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -928,7 +1168,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/google-maps-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
+			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
@@ -1018,7 +1258,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[faq, knowledge, knowledge base]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay's Knowledge Base app provides a means for creating and organizing articles within a site. The knowledge base is perfect for creating and organizing information more formally than in a wiki. For example, it can be used to organize and display professional product documentation. It's easy to set up the knowledge base with a workflow that requires articles to be approved before they are published. Additionally, it allows administrators to create article templates. Templates can be used to insure that certain kinds of articles possess a common structure and include certain kinds of information. Knowledge base articles can be categorized to make them easy to find. They can also be organized hierarchically to form complete books or guides. There are multiple portlets included in this app. For details about how to use the Knowledge Base, Consult the "Knowledge Base" section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app will appear in your Application menu and Control Panel once installed.]]></long-description>
+		<long-description><![CDATA[Liferay's Knowledge Base app provides a means for creating and organizing articles within a site. The knowledge base is perfect for creating and organizing information more formally than in a wiki. For example, it can be used to hierarchically organize articles to display professional product documentation or to form complete books or guides. It even lets you import article source files written in Markdown, automatically converting them into full-fledged Knowledge Base articles. It's easy to set up the knowledge base with a workflow that requires articles to be approved before they are published. Additionally, the app lets administrators create article templates, to ensure that articles using the template follow a common structure and include certain kinds of information.<br /><br />Here are the Knowledge Base's new features:<br />- Navigation built into the Knowledge Base Display<br />- Suggestions interface for soliciting and managing article feedback<br />- Article folders<br />- Article fields for friendly URL, source URL, categorization, and related assets<br />- Edit on GitHub button can be enabled to take readers to an article's online source repository location<br />- Import article Markdown source files to create and update articles<br /><br />Once you've installed the Knowledge Base app, the Knowledge Base page is available in the Site Administration > Content section and the following portlet are available at Applications > Knowledge Base: Knowledge Base Display, Knowledge Base Article, Knowledge Base Search, and Knowledge Base Section.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -1030,13 +1270,14 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
+			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/5.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1083,35 +1324,11 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
+			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[marketplace-portlet]]></artifact-id>
-		<name><![CDATA[Marketplace]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[true]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1197,7 +1414,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[blog, feed, forum, message board, social, subscriptions, wiki]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app allows users to manage their subscriptions. Users can subscribe to various assets in Liferay, such as subscribing to a blog post, the comments of a wiki page, a message board category (or specific thread), and a host of other items. The purpose of subscriptions is to be notified when something happens related to the item you've subscribed to. For example, if you are subscribed to a message board category, you are notified when a new post or reply occurs within that category. The method of notification is configurable, but is usually in the form of an email sent to all users who have subscribed. There are multiple items that one can subscribe to in Liferay. For details about subscriptions, Consult the "Liferay Collaboration Suite" section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
+		<long-description><![CDATA[This app allows users to manage their subscriptions. Users can subscribe to various assets in Liferay, such as subscribing to a blog post, the comments of a wiki page, a message board category (or specific thread), and a host of other items. The purpose of subscriptions is to be notified when something happens related to the item you've subscribed to. For example, if you are subscribed to a message board category, you are notified when a new post or reply occurs within that category. The method of notification is configurable, but is usually in the form of an email sent to all users who have subscribed. There are multiple items that one can subscribe to in Liferay.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -1278,7 +1495,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[gadget, opensocial, social, widget]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[OpenSocial is a framework designed for creating applications, called gadgets that function on any social networking site that supports them. There are many existing gadgets available, and anyone can create their own gadgets. With this app, you can integrate any OpenSocial gadget directly into a Liferay page, and you can easily manage which gadgets are currently in use or available. You can also create your own OpenSocial Gadget using the Liferay's OpenSocial development environment. Gadgets can be integrated into your portal like a portlet to be added or removed by users as desired. The OpenSocial Gadget portlet also allows you to change the permissions for who can view or edit the portlet, as well as options to share the contents of the portlet, just like you can with any other Liferay portlet. For more details about OpenSocial and Liferay, consult the "OpenSocial Integration" section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
+		<long-description><![CDATA[OpenSocial is a framework designed for creating applications, called gadgets that function on any social networking site that supports them. There are many existing gadgets available, and anyone can create their own gadgets. With this app, you can integrate any OpenSocial gadget directly into a Liferay page, and you can easily manage which gadgets are currently in use or available. You can also create your own OpenSocial Gadget using the Liferay's OpenSocial development environment. Gadgets can be integrated into your portal like a portlet to be added or removed by users as desired. The OpenSocial Gadget portlet also allows you to change the permissions for who can view or edit the portlet, as well as options to share the contents of the portlet, just like you can with any other Liferay portlet.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -1321,6 +1538,34 @@
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[push-notifications-portlet]]></artifact-id>
+		<name><![CDATA[Liferay Push]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[android, ios, mobile, notifications, push]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[Liferay Push exposes a framework that lets developers send push notifications from Liferay Portal to native Android and iOS apps. By leveraging Liferay Push, you can ensure that your users know about the latest information on your portal no matter where they are.<br /><br />Liferay Push also includes a Control Panel portlet that can send test push notifications to ensure that it is working properly.]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[Communication]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[portlets/push-notifications-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[portlets/push-notifications-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/push-notifications-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/push-notifications-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -2003,7 +2248,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[collaboration, communication, office, so, social, social office, sync, team]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay Social Office is a dynamic team workspace solution that provides holistic enhancement to the way you and your colleagues work together. By adapting today's most innovative social technologies to the unique needs of productivity and goal-driven enterprise teams, it enables an important shift in how and why communication happens. Key features include, but are not limited to:<br /><br />Documents: shared document repository with Microsoft Office integration and single site connectivity with Sync (available separately).<br />Communication: instant notifications, team calendars, webmail, task management and contact management.<br />Collaboration: integrated threaded discussions, blogs, and wikis with related content and federated search.<br />People: searchable user profiles with user tagging, friending, and integrated chat.]]></long-description>
+		<long-description><![CDATA[Liferay Social Office is a dynamic team workspace solution that provides holistic enhancement to the way you and your colleagues work together. By adapting today's most innovative social technologies to the unique needs of productivity and goal-driven enterprise teams, it enables an important shift in how and why communication happens. Key features include, but are not limited to:<br /><br />Documents: shared document repository with Microsoft Office integration.<br />Communication: instant notifications, team calendars, webmail, task management and contact management.<br />Collaboration: integrated threaded discussions, blogs, and wikis with related assets and federated search.<br />People: searchable user profiles with user tagging, friending, integrated chat and simplified Social Office user management.<br />Mobile: responsive theme that allows your users to collaborate from any device.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -2022,6 +2267,8 @@
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/5.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/6.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -2046,38 +2293,6 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[social-networking-portlet]]></artifact-id>
-		<name><![CDATA[Social Networking]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[activites, meetups, social, social bookmarks, social networking, summary]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides numerous portlets that provide enhanced social networking capabilities for users of Liferay sites, including: The Summary portlet functions differently depending on which kind of page it is added to, but in general it displays an overview of the community that it is placed in. The Wall portlet allows users to post messages on another user's page, similar to Facebook's wall. You must be friends with a user to post on their wall. Wall posts are visible to all users who are a friend of the respected user. The Wall portlet can only be added to a user's personal page. The activities portlet displays portal wide user activity, such as posting on message boards, creating wikis, and adding documents to the document library. The Requests portlet displays pending friends requests, in which you can accept or ignore them. This portlet can only be placed on a user's personal page. The Friends portlet is a social networking portlet for creating friend relationships in Liferay. The Members portlet displays all users who are members of the Community or Organization to which the Members portlet has been added. This is a good way to allow easy access to all members' personal pages. The Meetups portlet allows you to post events for which users can register.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Communication]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/5.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/6.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/social-networking-portlet/docroot/WEB-INF/releng/screenshots/7.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -2119,6 +2334,30 @@
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[https://portlet-repository.dev.java.net/public/Download.html]]></page-url>
 		<author><![CDATA[Sun Microsystems, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[sync-admin-portlet]]></artifact-id>
+		<name><![CDATA[Sync Admin]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[document library, sync]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
 		<releng>
@@ -2874,7 +3113,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[portlet, wsrp]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[The Web Services for Remote Portlets (WSRP) specification defines a web service interface for accessing and interacting with interactive presentation-oriented web services in the form of portlets. Using this app, Liferay acts as a WSRP Producer, hosting portlets that will be consumed by other portal servers acting as WSRP Consumers. Liferay can also act as a WSRP Consumer, and host remote instances of portlets that exist on other portal servers that can act as a WSRP Producer. For details on how to use this app, visit http://www.liferay.com/community/wiki/-/wiki/Main/WSRP.<br /><br />This app will appear in your Control Panel once installed.]]></long-description>
+		<long-description><![CDATA[The Web Services for Remote Portlets (WSRP) specification defines a web service interface for accessing and interacting with interactive presentation-oriented web services in the form of portlets. Using this app, Liferay acts as a WSRP Producer, hosting portlets that will be consumed by other portal servers acting as WSRP Consumers. Liferay can also act as a WSRP Consumer, and host remote instances of portlets that exist on other portal servers that can act as a WSRP Producer.<br /><br />This app will appear in your Control Panel once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -3025,6 +3264,30 @@
 	<plugin>
 		<artifact-id><![CDATA[sample-unstyled-theme]]></artifact-id>
 		<name><![CDATA[Sample Unstyled]]></name>
+		<type><![CDATA[theme]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[sample-wap-theme]]></artifact-id>
+		<name><![CDATA[Sample WAP]]></name>
 		<type><![CDATA[theme]]></type>
 		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
@@ -3316,7 +3579,7 @@
 		<type><![CDATA[web]]></type>
 		<tags><![CDATA[authentication, cas, login, sso]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[The Central Authentication Service (CAS) is a single sign-on protocol for the web that permits a user to access multiple applications while providing their credentials (such as user id and password) only once. It also allows web applications to authenticate users without gaining access to a user's security credentials, such as a password.<br /><br />This app provides integration between Liferay and a CAS implementation, such that users can achieve Single Sign-On when visiting a Liferay site. Consult the "Managing Portal Settings" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app will install to your application server or servlet container.]]></long-description>
+		<long-description><![CDATA[The Central Authentication Service (CAS) is a single sign-on protocol for the web that permits a user to access multiple applications while providing their credentials (such as user id and password) only once. It also allows web applications to authenticate users without gaining access to a user's security credentials, such as a password. This app provides integration between Liferay and a CAS implementation, such that users can achieve Single Sign-On when visiting a Liferay site.<br /><br />This app will install to your application server or servlet container.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -3370,7 +3633,7 @@
 		<type><![CDATA[web]]></type>
 		<tags><![CDATA[bi, business intelligence, designer, kaleo, workflow]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides the Kaleo Workflow engine, for use with Liferay Portal. In Greek, Kaleo means "called ones," which is appropriate for a workflow engine that calls users to participate in a process that has been designed for them. Kaleo workflow allows a user to define any number of simple to complex business processes/workflows, deploy them, and manage them through a portal interface. Those processes have knowledge of users, groups, and roles. You don't have to write a single line of code to accomplish this: all you have to do is create a single XML document. And if you're a Liferay EE customer, you get a graphical workflow designer, which gives you a point and click interface to create workflows. Simple workflows can be managed using the default configuration and GUI tools, while more complex workflows can be created to meet the workflow management needs of almost any portal. Consult the "Workflow" section of the Liferay User Guide for details on administering this service. The Liferay User Guide can be found at http://liferay.com/documentation.<br /><br />This app installs as a Liferay service.]]></long-description>
+		<long-description><![CDATA[This app provides the Kaleo Workflow engine, for use with Liferay Portal. In Greek, Kaleo means "called ones," which is appropriate for a workflow engine that calls users to participate in a process that has been designed for them. Kaleo workflow allows a user to define any number of simple to complex business processes/workflows, deploy them, and manage them through a portal interface. Those processes have knowledge of users, groups, and roles. You don't have to write a single line of code to accomplish this: all you have to do is create a single XML document. And if you're a Liferay customer, you get a graphical workflow designer, which gives you a point and click interface to create workflows. Simple workflows can be managed using the default configuration and GUI tools, while more complex workflows can be created to meet the workflow management needs of almost any portal.<br /><br />This app installs as a Liferay service.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -3450,7 +3713,7 @@
 		<type><![CDATA[web]]></type>
 		<tags><![CDATA[debug, developer, eclipse, ide, liferay developer studio, remote, server]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides remote development and deployment support from Liferay IDE. With this app, you can build Liferay projects in Liferay IDE or Liferay Developer Studio, and deploy the projects to a remote host that has this app installed. Liferay IDE is an extension for the Eclipse platform that supports development of app projects for the Liferay Portal platform. It is available as a set of Eclipse apps installable from an update-site. The latest version supports developing 5 Liferay app types: portlets, hooks, layout templates, themes, and EXT-style plug-ins. Liferay IDE requires the Eclipse Java EE developer package using either Galileo or Helios versions. For details on using Liferay IDE or Developer Studio, visit the "Liferay IDE" chapter of the Liferay User Guide, located at http://liferay.com/documentation.<br /><br />This app installs as a Liferay service.]]></long-description>
+		<long-description><![CDATA[This app provides remote development and deployment support from Liferay IDE. With this app, you can build Liferay projects in Liferay IDE or Liferay Developer Studio, and deploy the projects to a remote host that has this app installed. This app is designed for use with Liferay IDE only.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -3462,7 +3725,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
+			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
@@ -3474,12 +3737,12 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[solr3-web]]></artifact-id>
-		<name><![CDATA[Solr 3 Search Engine]]></name>
+		<artifact-id><![CDATA[skinny-web]]></artifact-id>
+		<name><![CDATA[Skinny JSON Provider]]></name>
 		<type><![CDATA[web]]></type>
-		<tags><![CDATA[apache, lucene, search, seo, solr]]></tags>
+		<tags><![CDATA[content, ddl, json, rest, servicebuilder, services web plugin]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides integration with Apache Solr, the popular open source enterprise search platform from the Apache Lucene project. Its major features include powerful full-text search, hit highlighting, faceted search, dynamic clustering, database integration, rich document (e.g., Word, PDF) handling, and geospatial search. Solr is highly scalable, providing distributed search and index replication, and it powers the search and navigation features of many of the world's largest internet sites. With this integration, your Liferay Portal will use Solr for indexing and searching.<br /><br />This app installs as a Liferay service.]]></long-description>
+		<long-description><![CDATA[Liferay's Skinny JSON Provider app provides streamlined representations of your portal's Web Content Articles and Dynamic Data Lists. It gives you lean essential asset data that you can quickly process and analyze.<br />On installing the app, its JSON web services are available. You can invoke these services from any client that supports JSON. Liferay's page for the JSON web service API has forms that let you try the services. This page also shows you what the client code looks like in JavaScript, cURL, and URL formats.<br />That's the "skinny" on Liferay's Skinny JSON Provider!]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -3490,39 +3753,14 @@
 			<category><![CDATA[Utility]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[webs/solr3-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[false]]></labs>
+			<icon><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
+			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[webs/solr3-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[webs/solr3-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[solr4-web]]></artifact-id>
-		<name><![CDATA[Solr 4 Search Engine]]></name>
-		<type><![CDATA[web]]></type>
-		<tags><![CDATA[apache, lucene, search, seo, solr]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides integration with Apache Solr, the popular open source enterprise search platform from the Apache Lucene project. Its major features include powerful full-text search, hit highlighting, faceted search, dynamic clustering, database integration, rich document (e.g., Word, PDF) handling, and geospatial search. Solr is highly scalable, providing distributed search and index replication, and it powers the search and navigation features of many of the world's largest internet sites. With this integration, your Liferay Portal will use Solr for indexing and searching.<br /><br />This app installs as a Liferay service.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[webs/solr4-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[webs/solr4-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[webs/solr4-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -3602,34 +3840,6 @@
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[wurfl-web]]></artifact-id>
-		<name><![CDATA[Device Recognition Provider]]></name>
-		<type><![CDATA[web]]></type>
-		<tags><![CDATA[android, device, ios, mobile, tablet, rules]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app enables Liferay to detect which mobile device or operating system is being used for any given request and alters the layout/rendering of pages based on the detected device. Once installed, you can define new mobile device rules and apply them to sites and individual pages. The proportion of mobile devices users browsing the web has been steadily increasing so it's important to be able to handle different kinds of devices appropriately. For instance, you can configure the look and feel of Liferay pages accessed by smart phone or tablet users differently than those accessed by PC users. Both sites and individual pages can be configured with any number of rule groups designed to describe a group of devices. It can contain one or more rules that describe a category of devices, such as all android devices or all iOS tablets. Rule groups can be prioritized to determine which one will be applied to a given page request. You can define as many rules as you need to classify all the devices you want to take actions on.<br /><br />This app installs as a Liferay service.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[AGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[webs/wurfl-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[webs/wurfl-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[webs/wurfl-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<screenshot><![CDATA[webs/wurfl-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
