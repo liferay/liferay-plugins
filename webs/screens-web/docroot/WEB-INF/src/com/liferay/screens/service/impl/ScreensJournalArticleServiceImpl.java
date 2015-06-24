@@ -44,7 +44,7 @@ public class ScreensJournalArticleServiceImpl
 
 		return journalArticleLocalService.getArticleContent(
 			groupId, journalArticleResource.getArticleId(), null,
-			currentLocale.toString(), null);
+			LocaleUtil.toLanguageId(currentLocale), null);
 	}
 
 }
