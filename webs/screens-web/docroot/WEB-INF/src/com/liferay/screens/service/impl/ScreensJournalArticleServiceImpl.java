@@ -23,20 +23,7 @@ import com.liferay.screens.service.base.ScreensJournalArticleServiceBaseImpl;
 import java.util.Locale;
 
 /**
- * The implementation of the screens journal article remote service.
- *
- * All custom service methods should be put in this class. Whenever methods are
- * added, rerun ServiceBuilder to copy their definitions into the
- * {@link com.liferay.screens.service.ScreensJournalArticleService} interface.
- *
- * This is a remote service. Methods of this service are expected to have
- * security checks based on the propagated JAAS credentials because this
- * service can be accessed remotely.
- *
  * @author Javier Gamarra
- *
- * @see com.liferay.screens.service.base.ScreensJournalArticleServiceBaseImpl
- * @see com.liferay.screens.service.ScreensJournalArticleServiceUtil
  */
 public class ScreensJournalArticleServiceImpl
 	extends ScreensJournalArticleServiceBaseImpl {
@@ -46,18 +33,18 @@ public class ScreensJournalArticleServiceImpl
 			Integer groupId, Integer classPK, Locale locale)
 		throws PortalException, SystemException {
 
-		Locale journalLocale = locale;
+		Locale currentLocale = locale;
 
-		if (journalLocale == null) {
-			journalLocale = LocaleUtil.getSiteDefault();
+		if (currentLocale == null) {
+			currentLocale = LocaleUtil.getSiteDefault();
 		}
 
-		JournalArticleResource resource =
+		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
 		return journalArticleLocalService.getArticleContent(
-			groupId, resource.getArticleId(), null, journalLocale.toString(),
-			null);
+			groupId, journalArticleResource.getArticleId(), null,
+			currentLocale.toString(), null);
 	}
 
 }

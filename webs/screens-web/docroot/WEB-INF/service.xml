@@ -10,11 +10,11 @@
 	<entity name="ScreensDDLRecord" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecord" />
 	</entity>
-	<entity name="ScreensUser" local-service="false" remote-service="true">
-		<reference package-path="com.liferay.portal" entity="Company" />
-	</entity>
 	<entity name="ScreensJournalArticle" local-service="false" remote-service="true">
 		<reference package-path="com.liferay.portlet.journal" entity="JournalArticle" />
 		<reference package-path="com.liferay.portlet.journal" entity="JournalArticleResource" />
+	</entity>
+	<entity name="ScreensUser" local-service="false" remote-service="true">
+		<reference package-path="com.liferay.portal" entity="Company" />
 	</entity>
 </service-builder>
