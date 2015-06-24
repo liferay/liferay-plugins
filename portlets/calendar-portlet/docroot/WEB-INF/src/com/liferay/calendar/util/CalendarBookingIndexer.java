@@ -47,7 +47,7 @@ import javax.portlet.PortletResponse;
  * @author Adam Victor Brandizzi
  * @author Eduardo Lundgren
  */
-public class CalendarBookingIndexer extends BaseIndexer {
+public class CalendarBookingIndexer extends BaseIndexer<CalendarBooking> {
 
 	public static final String CLASS_NAME = CalendarBooking.class.getName();
 
@@ -64,17 +64,15 @@ public class CalendarBookingIndexer extends BaseIndexer {
 	}
 
 	@Override
-	protected void doDelete(Object obj) throws Exception {
-		CalendarBooking calendarBooking = (CalendarBooking)obj;
-
+	protected void doDelete(CalendarBooking calendarBooking) throws Exception {
 		deleteDocument(
 			calendarBooking.getCompanyId(),
 			calendarBooking.getCalendarBookingId());
 	}
 
 	@Override
-	protected Document doGetDocument(Object obj) throws Exception {
-		CalendarBooking calendarBooking = (CalendarBooking)obj;
+	protected Document doGetDocument(CalendarBooking calendarBooking)
+		throws Exception {
 
 		Document document = getBaseModelDocument(CLASS_NAME, calendarBooking);
 
@@ -144,8 +142,6 @@ public class CalendarBookingIndexer extends BaseIndexer {
 		Document document, Locale locale, String snippet,
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
-		String calendarBookingId = document.get(Field.ENTRY_CLASS_PK);
-
 		Summary summary = createSummary(
 			document, Field.TITLE, Field.DESCRIPTION);
 
@@ -155,9 +151,7 @@ public class CalendarBookingIndexer extends BaseIndexer {
 	}
 
 	@Override
-	protected void doReindex(Object obj) throws Exception {
-		CalendarBooking calendarBooking = (CalendarBooking)obj;
-
+	protected void doReindex(CalendarBooking calendarBooking) throws Exception {
 		int status = calendarBooking.getStatus();
 
 		if ((status == CalendarBookingWorkflowConstants.STATUS_APPROVED) ||

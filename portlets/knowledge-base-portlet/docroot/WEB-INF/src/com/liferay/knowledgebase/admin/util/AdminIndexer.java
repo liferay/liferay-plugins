@@ -55,7 +55,7 @@ import javax.portlet.PortletResponse;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class AdminIndexer extends BaseIndexer {
+public class AdminIndexer extends BaseIndexer<KBArticle> {
 
 	public static final String CLASS_NAME = KBArticle.class.getName();
 
@@ -111,17 +111,13 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	@Override
-	protected void doDelete(Object obj) throws Exception {
-		KBArticle kbArticle = (KBArticle)obj;
-
+	protected void doDelete(KBArticle kbArticle) throws Exception {
 		deleteDocument(
 			kbArticle.getCompanyId(), kbArticle.getResourcePrimKey());
 	}
 
 	@Override
-	protected Document doGetDocument(Object obj) throws Exception {
-		KBArticle kbArticle = (KBArticle)obj;
-
+	protected Document doGetDocument(KBArticle kbArticle) throws Exception {
 		Document document = getBaseModelDocument(CLASS_NAME, kbArticle);
 
 		document.addText(
@@ -157,9 +153,7 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	@Override
-	protected void doReindex(Object obj) throws Exception {
-		KBArticle kbArticle = (KBArticle)obj;
-
+	protected void doReindex(KBArticle kbArticle) throws Exception {
 		SearchEngineUtil.updateDocument(
 			getSearchEngineId(), kbArticle.getCompanyId(),
 			getDocument(kbArticle), isCommitImmediately());
