@@ -210,21 +210,21 @@ ${nodejs.url[osx64]}.
 				node.module.name="lfr-module-config-generator"
 			/>
 
-			<var name="transpiler.input.dir" value="@{module.dir}/tmp/transpile" />
-			<var name="transpiler.output.dir" value="@{module.dir}/.js_cache" />
+			<var name="transpile.input.dir" value="@{module.dir}/tmp/transpile" />
+			<var name="transpile.output.dir" value="@{module.dir}/.js_cache" />
 
 			<outofdate force="false" outputsourcespath="outdated-files">
 				<sourcefiles>
-					<fileset dir="${transpiler.input.dir}">
+					<fileset dir="${transpile.input.dir}">
 						<include name="**/*.js" />
 					</fileset>
 				</sourcefiles>
-				<mapper type="glob" dir="${transpiler.input.dir}" from="*.js" to="${transpiler.output.dir}/*.js" />
+				<mapper type="glob" dir="${transpile.input.dir}" from="*.js" to="${transpile.output.dir}/*.js" />
 				<sequential>
 					<node-execute
 						node.command="node"
-						node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir}"
-						node.working.dir="${transpiler.input.dir}"
+						node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpile.output.dir}"
+						node.working.dir="${transpile.input.dir}"
 					/>
 				</sequential>
 			</outofdate>
