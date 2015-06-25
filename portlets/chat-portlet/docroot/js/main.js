@@ -1356,7 +1356,7 @@ AUI().use(
 
 				var entries = response.entries;
 
-				if (instance._initialRequest) {
+				if (instance._initialRequest && response.initialRequest) {
 					instance._loadCache(entries);
 
 					var openPanelId = instance._openPanelId;
@@ -1373,7 +1373,7 @@ AUI().use(
 
 					instance._initialRequest = false;
 				}
-				else {
+				else if (!instance._initialRequest) {
 					instance._updateConversations(entries, windowId);
 				}
 			},
