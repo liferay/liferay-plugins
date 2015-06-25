@@ -211,10 +211,9 @@ ${nodejs.url[osx64]}.
 			/>
 
 			<var name="transpiler.input.dir" value="@{module.dir}/tmp/transpile" />
-			<var name="transpiler.force" value="false" />
 			<var name="transpiler.output.dir" value="@{module.dir}/.js_cache" />
 
-			<outofdate force="${transpiler.force}" outputsourcespath="outdated-files">
+			<outofdate force="false" outputsourcespath="outdated-files">
 				<sourcefiles>
 					<fileset dir="${transpiler.input.dir}">
 						<include name="**/*.js" />
@@ -222,24 +221,9 @@ ${nodejs.url[osx64]}.
 				</sourcefiles>
 				<mapper type="glob" dir="${transpiler.input.dir}" from="*.js" to="${transpiler.output.dir}/*.js" />
 				<sequential>
-					<if>
-						<istrue value="${transpiler.force}" />
-						<then>
-							<path id="transpiler.outdated.files.path">
-								<fileset dir="${transpiler.input.dir}">
-									<include name="**/*.js" />
-								</fileset>
-							</path>
-						</then>
-					</if>
-
-					<pathconvert pathsep=" " property="transpiler.outdated.files" refid="transpiler.outdated.files.path" setonempty="false">
-						<map from="${transpiler.input.dir}/" to="" />
-					</pathconvert>
-
 					<node-execute
 						node.command="node"
-						node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir} ${transpiler.outdated.files}"
+						node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d ${transpiler.output.dir}"
 						node.working.dir="${transpiler.input.dir}"
 					/>
 				</sequential>
