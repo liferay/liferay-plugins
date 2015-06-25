@@ -198,9 +198,6 @@ ${nodejs.url[osx64]}.
 				tofile="@{module.dir}/.js_cache/bower.json"
 			/>
 
-			<property name="transpiler.input.dir" value="@{module.dir}/tmp/transpile" />
-			<property name="transpiler.output.dir" value="@{module.dir}/.js_cache" />
-
 			<download-node-module
 				node.module.name="babel"
 			/>
@@ -213,7 +210,9 @@ ${nodejs.url[osx64]}.
 				node.module.name="lfr-module-config-generator"
 			/>
 
-			<property name="transpiler.force" value="false" />
+			<var name="transpiler.input.dir" value="@{module.dir}/tmp/transpile" />
+			<var name="transpiler.force" value="false" />
+			<var name="transpiler.output.dir" value="@{module.dir}/.js_cache" />
 
 			<outofdate outputsourcespath="outdated-files" force="${transpiler.force}">
 				<sourcefiles>
