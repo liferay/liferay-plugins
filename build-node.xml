@@ -214,7 +214,7 @@ ${nodejs.url[osx64]}.
 			<var name="transpiler.force" value="false" />
 			<var name="transpiler.output.dir" value="@{module.dir}/.js_cache" />
 
-			<outofdate outputsourcespath="outdated-files" force="${transpiler.force}">
+			<outofdate force="${transpiler.force}" outputsourcespath="outdated-files">
 				<sourcefiles>
 					<fileset dir="${transpiler.input.dir}">
 						<include name="**/*.js" />
