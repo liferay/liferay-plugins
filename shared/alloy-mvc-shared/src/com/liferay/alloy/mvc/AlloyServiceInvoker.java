@@ -15,6 +15,7 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -48,8 +49,11 @@ public class AlloyServiceInvoker {
 
 			deleteModelMethod = serviceClass.getMethod(
 				"delete" + simpleClassName, new Class[] {long.class});
-			dynamicQueryCountMethod = serviceClass.getMethod(
+			dynamicQueryCountMethod1 = serviceClass.getMethod(
 				"dynamicQueryCount", new Class[] {DynamicQuery.class});
+			dynamicQueryCountMethod2 = serviceClass.getMethod(
+				"dynamicQueryCount",
+				new Class[] {DynamicQuery.class, Projection.class});
 			dynamicQueryMethod1 = serviceClass.getMethod(
 				"dynamicQuery", new Class[0]);
 			dynamicQueryMethod2 = serviceClass.getMethod(
@@ -182,7 +186,15 @@ public class AlloyServiceInvoker {
 	public long executeDynamicQueryCount(DynamicQuery dynamicQuery)
 		throws Exception {
 
-		return (Long)dynamicQueryCountMethod.invoke(false, dynamicQuery);
+		return (Long)dynamicQueryCountMethod1.invoke(false, dynamicQuery);
+	}
+
+	public long executeDynamicQueryCount(
+			DynamicQuery dynamicQuery, Projection projection)
+		throws Exception {
+
+		return (Long)dynamicQueryCountMethod2.invoke(
+			false, dynamicQuery, projection);
 	}
 
 	public long executeDynamicQueryCount(Object[] properties) throws Exception {
@@ -203,7 +215,8 @@ public class AlloyServiceInvoker {
 	}
 
 	protected Method deleteModelMethod;
-	protected Method dynamicQueryCountMethod;
+	protected Method dynamicQueryCountMethod1;
+	protected Method dynamicQueryCountMethod2;
 	protected Method dynamicQueryMethod1;
 	protected Method dynamicQueryMethod2;
 	protected Method dynamicQueryMethod3;
