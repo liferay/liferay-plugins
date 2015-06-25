@@ -939,7 +939,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 	<target name="watch-css">
 		<property name="watch.css.marker.file" location="${sdk.dir}/tmp/${plugin.name}.watchcss" />
 
-		<touch file="${watch.css.marker.file}" />
+		<touch mkdirs="true" file="${watch.css.marker.file}" />
 
 		<antelope:repeat count="-1" interval="2">
 			<outofdate>
