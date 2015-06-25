@@ -115,7 +115,7 @@ public class ArticlePortlet extends BaseKBPortlet {
 			SessionErrors.contains(
 				renderRequest, NoSuchSubscriptionException.class.getName()) ||
 			SessionErrors.contains(
-				renderRequest, PrincipalException.class.getName())) {
+				renderRequest, PrincipalException.getNestedClasses())) {
 
 			include(templatePath + "error.jsp", renderRequest, renderResponse);
 		}

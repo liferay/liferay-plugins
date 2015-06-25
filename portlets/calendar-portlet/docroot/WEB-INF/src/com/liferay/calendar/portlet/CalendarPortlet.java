@@ -559,7 +559,7 @@ public class CalendarPortlet extends MVCPortlet {
 		if (SessionErrors.contains(
 				renderRequest, NoSuchResourceException.class.getName()) ||
 			SessionErrors.contains(
-				renderRequest, PrincipalException.class.getName())) {
+				renderRequest, PrincipalException.getNestedClasses())) {
 
 			include("/error.jsp", renderRequest, renderResponse);
 		}
