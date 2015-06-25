@@ -208,9 +208,11 @@ public abstract class SOSocialActivityInterpreter
 
 		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
 
-		return assetRenderer.getURLViewInContext(
+		String url = assetRenderer.getURLViewInContext(
 			serviceContext.getLiferayPortletRequest(),
 			serviceContext.getLiferayPortletResponse(), null);
+
+		return addNoSuchEntryRedirect(url, className, classPK, serviceContext);
 	}
 
 	protected String getPageTitle(
