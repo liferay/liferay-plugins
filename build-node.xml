@@ -210,9 +210,6 @@ ${nodejs.url[osx64]}.
 				node.module.name="lfr-module-config-generator"
 			/>
 
-			<var name="transpile.input.dir" value="@{module.dir}/tmp/transpile" />
-			<var name="transpile.output.dir" value="@{module.dir}/.js_cache" />
-
 			<download-node-module
 				node.module.name="lfr-module-config-generator"
 			/>
