@@ -65,7 +65,7 @@
 
 	<import file="build-common-ivy.xml" />
 
-	<import file="build-node.xml" />
+	<import file="build-common-node.xml" />
 
 	<path id="plugin.classpath">
 		<path refid="plugin-lib.classpath" />
