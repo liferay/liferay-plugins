@@ -89,46 +89,58 @@ portletURL.setParameter("delta", String.valueOf(delta));
 		>
 			<liferay-ui:search-container-column-text
 				name="name"
-				value="<%= group.getDescriptiveName() %>"
+				property="descriptiveName"
 			/>
 
 			<liferay-ui:search-container-column-text
 				name="description"
-				value="<%= group.getDescription() %>"
+				property="description"
 			/>
 
 			<%
 			boolean syncSiteEnabled = GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true);
 
-			List<String> localizedResourceActions = null;
+			String defaultFilePermissions = StringPool.BLANK;
 
 			if (syncSiteEnabled) {
 				int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
 
-				List<String> resourceActions = null;
-
-				if (permissions > 0) {
-					resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(permissions));
+				if (permissions == SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY) {
+					defaultFilePermissions = LanguageUtil.get(pageContext, "view-only");
 				}
-				else {
-					resourceActions = defaultResourceActions;
+				else if (permissions == SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) {
+					defaultFilePermissions = LanguageUtil.get(pageContext, "view-and-add-discussion");
 				}
+				else if (permissions == SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS) {
+					List<String> resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(permissions));
 
-				localizedResourceActions = new ArrayList<String>(resourceActions.size());
+					List<String> localizedResourceActions = new ArrayList<String>(resourceActions.size());
 
-				for (String resourceAction : resourceActions) {
-					localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+					for (String resourceAction : resourceActions) {
+						localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+					}
+
+					defaultFilePermissions = LanguageUtil.format(pageContext, "full-access-x", StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE));
+				}
+				else if (ListUtil.isNotEmpty(defaultResourceActions)) {
+					List<String> localizedResourceActions = new ArrayList<String>(defaultResourceActions.size());
+
+					for (String resourceAction : defaultResourceActions) {
+						localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+					}
+
+					defaultFilePermissions = StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE);
 				}
 			}
 			%>
 
 			<liferay-ui:search-container-column-text
 				name="default-file-permissions"
-				value="<%= ListUtil.isNotEmpty(localizedResourceActions) ? StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE) : StringPool.BLANK %>"
+				value="<%= defaultFilePermissions %>"
 			/>
 
 			<liferay-ui:search-container-column-text
-				name="active"
+				name="enabled"
 				translate="true"
 				value='<%= syncSiteEnabled ? "yes" : "no" %>'
 			/>

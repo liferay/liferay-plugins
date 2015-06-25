@@ -60,7 +60,7 @@ if (oAuthEnabled) {
 	<h4><liferay-ui:message key="general" /></h4>
 
 	<aui:fieldset>
-		<aui:input name="allow-the-use-of-sync" type="checkbox" value="<%= enabled %>" />
+		<aui:input label="allow-the-use-of-sync" name="enabled" type="checkbox" value="<%= enabled %>" />
 		<aui:input label="allow-users-to-sync-their-personal-sites" name="allowUserPersonalSites" type="checkbox" value="<%= allowUserPersonalSites %>" />
 	</aui:fieldset>
 
