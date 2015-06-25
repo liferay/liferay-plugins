@@ -184,6 +184,13 @@ ${nodejs.url[osx64]}.
 
 		<sequential>
 			<mkdir dir="@{module.dir}/.js_cache" />
+
+			<copy
+				file="@{module.dir}/bower.json"
+				overwrite="true"
+				tofile="@{module.dir}/.js_cache/bower.json"
+			/>
+
 			<mkdir dir="@{module.dir}/tmp/transpile" />
 
 			<copy todir="@{module.dir}/tmp/transpile">
@@ -191,12 +198,6 @@ ${nodejs.url[osx64]}.
 					<include name="**/*.es.js" />
 				</fileset>
 			</copy>
-
-			<copy
-				file="@{module.dir}/bower.json"
-				overwrite="true"
-				tofile="@{module.dir}/.js_cache/bower.json"
-			/>
 
 			<download-node-module
 				node.module.name="babel"
