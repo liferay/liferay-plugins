@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-nodejs" xmlns:antelope="antlib:ise.antelope.tasks">
-	<import file="build-common.xml" />
-
+<project name="build-node" xmlns:antelope="antlib:ise.antelope.tasks">
 	<macrodef name="download-node">
 		<sequential>
 			<if>

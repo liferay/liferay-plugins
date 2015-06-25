@@ -65,6 +65,8 @@
 
 	<import file="build-common-ivy.xml" />
 
+	<import file="build-node.xml" />
+
 	<path id="plugin.classpath">
 		<path refid="plugin-lib.classpath" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
