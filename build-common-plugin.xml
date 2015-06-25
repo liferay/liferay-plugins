@@ -936,37 +936,29 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		/>
 	</target>
 
-	<target name="watch-css">
-		<property name="watch.css.marker.file" location="${sdk.dir}/tmp/${plugin.name}.watchcss" />
-
-		<touch mkdirs="true" file="${watch.css.marker.file}" />
-
+	<target name="watch">
 		<antelope:repeat count="-1" interval="2">
-			<outofdate>
+			<outofdate verbose="true">
 				<sourcefiles>
 					<fileset dir="${basedir}">
 						<include name="**/*.css" />
+						<include name="**/*.ftl" />
+						<include name="**/*.java" />
+						<include name="**/*.jsp" />
+						<include name="**/*.jspf" />
 						<include name="**/*.scss" />
+						<include name="**/*.vm" />
 						<exclude name="**/classes/**" />
 						<exclude name="**/.sass-cache/**" />
 					</fileset>
 				</sourcefiles>
 				<targetfiles>
-					<pathelement location="${watch.css.marker.file}" />
+					<pathelement location="${plugin.file}" />
 				</targetfiles>
 				<sequential>
-					<trycatch property="watch.css.error">
-						<try>
-							<deploy
-								module.dir="${basedir}"
-							/>
-						</try>
-						<catch>
-							<echo>${watch.css.error}</echo>
-						</catch>
-					</trycatch>
-
-					<touch file="${watch.css.marker.file}" />
+					<deploy
+						module.dir="${basedir}"
+					/>
 				</sequential>
 			</outofdate>
 		</antelope:repeat>
