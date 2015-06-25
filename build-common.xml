@@ -2751,7 +2751,7 @@ Please find a solution that does not require portal-impl.jar.
 				<available file="@{module.dir}/test/integration" type="dir" />
 				<then>
 					<resourcecount property="test.integration.count">
-						<fileset dir="@{module.dir}/test-classes/integration" includes="**/@{test.class}.class" />
+						<fileset dir="@{module.dir}/test/integration" includes="**/@{test.class}.java" />
 					</resourcecount>
 				</then>
 			</if>
@@ -2760,7 +2760,7 @@ Please find a solution that does not require portal-impl.jar.
 				<available file="@{module.dir}/test/unit" type="dir" />
 				<then>
 					<resourcecount property="test.unit.count">
-						<fileset dir="@{module.dir}/test-classes/unit" includes="**/@{test.class}.class" />
+						<fileset dir="@{module.dir}/test/unit" includes="**/@{test.class}.java" />
 					</resourcecount>
 				</then>
 			</if>
