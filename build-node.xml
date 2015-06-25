@@ -170,6 +170,44 @@ ${nodejs.url[osx64]}.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="transpile-js">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<mkdir dir="@{module.dir}/.js_cache" />
+			<mkdir dir="@{module.dir}/tmp/transpile" />
+
+			<copy todir="@{module.dir}/tmp/transpile">
+				<fileset dir="@{module.dir}/src">
+					<include name="**/*.es.js" />
+				</fileset>
+			</copy>
+
+			<copy
+				file="@{module.dir}/bower.json"
+				overwrite="true"
+				tofile="@{module.dir}/.js_cache/bower.json"
+			/>
+
+			<ant antfile="${sdk.dir}/build-node.xml" target="transpile-js-files">
+				<property name="transpiler.input.dir" value="@{module.dir}/tmp/transpile" />
+				<property name="transpiler.output.dir" value="@{module.dir}/.js_cache" />
+			</ant>
+
+			<ant antfile="${sdk.dir}/build-node.xml" target="generate-modules-config">
+				<property name="config.generator.config.variable" value="" />
+				<property name="config.generator.file.extension" value="" />
+				<property name="config.generator.file.pattern" value="**/*.es.js" />
+				<property name="config.generator.input.dir" value="@{module.dir}/.js_cache" />
+				<property name="config.generator.module.config" value="@{module.dir}/.js_cache/bower.json" />
+				<property name="config.generator.module.format" value="/_/g,-" />
+				<property name="config.generator.output.file" value="@{module.dir}/classes/META-INF/config.json" />
+				<property name="config.generator.path.ignore" value="true" />
+				<property name="config.generator.root.dir" value="@{module.dir}/.js_cache/META-INF/resources" />
+			</ant>
+		</sequential>
+	</macrodef>
+
 	<target name="generate-modules-config">
 		<download-node-module
 			node.module.name="lfr-module-config-generator"
