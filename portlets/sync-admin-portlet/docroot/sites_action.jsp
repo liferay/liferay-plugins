@@ -31,43 +31,16 @@ String currentURL = currentURLObj.toString();
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
 	<c:choose>
 		<c:when test='<%= GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true) %>'>
-			<portlet:actionURL name="updateSites" var="setPermissionsViewOnlyURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="groupIds" value="<%= groupId %>" />
-				<portlet:param name="permissions" value="<%= String.valueOf(SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY) %>" />
-			</portlet:actionURL>
+
+			<%
+			String editDefaultFilePermissionsDialogURL = "javascript:" + renderResponse.getNamespace() + "editDefaultFilePermissions(" + groupId + ");";
+			%>
 
 			<liferay-ui:icon
-				iconCssClass="icon-ok-sign"
+				iconCssClass="icon-lock"
 				label="<%= true %>"
-				message="view-only"
-				url="<%= setPermissionsViewOnlyURL %>"
-			/>
-
-			<portlet:actionURL name="updateSites" var="setPermissionsViewAndAddDiscussionURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="groupIds" value="<%= groupId %>" />
-				<portlet:param name="permissions" value="<%= String.valueOf(SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) %>" />
-			</portlet:actionURL>
-
-			<liferay-ui:icon
-				iconCssClass="icon-ok-sign"
-				label="<%= true %>"
-				message="view-and-add-discussion"
-				url="<%= setPermissionsViewAndAddDiscussionURL %>"
-			/>
-
-			<portlet:actionURL name="updateSites" var="setPermissionsFullAccessURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="groupIds" value="<%= groupId %>" />
-				<portlet:param name="permissions" value="<%= String.valueOf(SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS) %>" />
-			</portlet:actionURL>
-
-			<liferay-ui:icon
-				iconCssClass="icon-ok-sign"
-				label="<%= true %>"
-				message="full-access"
-				url="<%= setPermissionsFullAccessURL %>"
+				message="default-file-permissions"
+				url="<%= editDefaultFilePermissionsDialogURL %>"
 			/>
 
 			<portlet:actionURL name="updateSites" var="disableSiteURL">
@@ -99,3 +72,41 @@ String currentURL = currentURLObj.toString();
 		</c:otherwise>
 	</c:choose>
 </liferay-ui:icon-menu>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />editDefaultFilePermissions',
+		function(groupId) {
+			var A = AUI();
+
+			Liferay.Util.openWindow(
+				{
+					dialog: {
+						destroyOnHide: true,
+						on: {
+							destroy: function() {
+								Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
+							}
+						}
+					},
+					id: '<portlet:namespace />editDefaultFilePermissionsDialog',
+					title: '<%= UnicodeLanguageUtil.get(request, "default-file-permissions") %>',
+
+					<portlet:renderURL var="editDefaultFilePermissionsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+						<portlet:param name="groupId" value="{groupId}" />
+						<portlet:param name="mvcPath" value="/edit_default_file_permissions.jsp" />
+					</portlet:renderURL>
+
+					uri: A.Lang.sub(
+						decodeURIComponent('<%= editDefaultFilePermissionsURL %>'),
+						{
+							groupId: groupId
+						}
+					)
+				}
+			);
+		},
+		['liferay-util']
+	);
+</aui:script>
