@@ -183,12 +183,12 @@ ${nodejs.url[osx64]}.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<mkdir dir="@{module.dir}/.js_cache" />
+			<mkdir dir="@{module.dir}/.js-cache" />
 
 			<copy
 				file="@{module.dir}/bower.json"
 				overwrite="true"
-				tofile="@{module.dir}/.js_cache/bower.json"
+				tofile="@{module.dir}/.js-cache/bower.json"
 			/>
 
 			<mkdir dir="@{module.dir}/tmp/transpile" />
@@ -217,7 +217,7 @@ ${nodejs.url[osx64]}.
 
 			<node-execute
 				node.command="node"
-				node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -c '' -e '' -f /_/g,- -i true -l -m @{module.dir}/.js_cache/bower.json -o @{module.dir}/classes/META-INF/config.json -p **/*.es.js -r @{module.dir}/.js_cache/META-INF/resources @{module.dir}/.js_cache"
+				node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -c '' -e '' -f /_/g,- -i true -l -m @{module.dir}/.js-cache/bower.json -o @{module.dir}/classes/META-INF/config.json -p **/*.es.js -r @{module.dir}/.js-cache/META-INF/resources @{module.dir}/.js-cache"
 				node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
 			/>
 		</sequential>
