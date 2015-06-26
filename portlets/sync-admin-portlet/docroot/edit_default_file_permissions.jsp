@@ -21,7 +21,7 @@ long groupId = ParamUtil.getLong(request, "groupId");
 
 Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
-int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
+int currentPermissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
 %>
 
 <liferay-ui:header
@@ -48,14 +48,14 @@ int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteM
 		permissionsOptions.add(SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION);
 		permissionsOptions.add(SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS);
 
-		for (Integer permissionsOption : permissionsOptions) {
+		for (Integer permissions : permissionsOptions) {
 		%>
 
 			<tr class="record-row">
 				<td>
 
 					<%
-					if (permissionsOption == SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY) {
+					if (permissions == SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY) {
 					%>
 
 						<liferay-ui:message key="view-only" />
@@ -64,7 +64,7 @@ int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteM
 
 					<%
 					}
-					else if (permissionsOption == SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) {
+					else if (permissions == SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) {
 					%>
 
 						<liferay-ui:message key="view-and-add-discussion" />
@@ -73,8 +73,8 @@ int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteM
 
 					<%
 					}
-					else if (permissionsOption == SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS) {
-						List<String> resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(permissionsOption));
+					else if (permissions == SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS) {
+						List<String> resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(permissions));
 
 						List<String> localizedResourceActions = new ArrayList<String>(resourceActions.size());
 
@@ -95,14 +95,14 @@ int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteM
 				<td>
 					<portlet:actionURL name="updateSites" var="setPermissionsURL">
 						<portlet:param name="groupIds" value="<%= String.valueOf(groupId) %>" />
-						<portlet:param name="permissions" value="<%= String.valueOf(permissionsOption) %>" />
+						<portlet:param name="permissions" value="<%= String.valueOf(permissions) %>" />
 					</portlet:actionURL>
 
 					<%
 					String setPermissions = renderResponse.getNamespace() + "setPermissions('" + setPermissionsURL + "');";
 					%>
 
-					<aui:button disabled="<%= permissions == permissionsOption %>" onClick="<%= setPermissions %>" value="choose" />
+					<aui:button disabled="<%= currentPermissions == permissions %>" onClick="<%= setPermissions %>" value="choose" />
 				</td>
 			</tr>
 
