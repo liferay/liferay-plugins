@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * @author Brian Wing Shun Chan
  */
-public abstract class BaseAlloyIndexer extends BaseIndexer {
+public abstract class BaseAlloyIndexer extends BaseIndexer<Object> {
 
 	public AlloyServiceInvoker getAlloyServiceInvoker() {
 		return alloyServiceInvoker;
