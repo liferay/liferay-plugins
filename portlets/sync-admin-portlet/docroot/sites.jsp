@@ -68,7 +68,29 @@ portletURL.setParameter("delta", String.valueOf(delta));
 
 	List<Group> groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), keywords, groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-	List<String> defaultResourceActions = ResourceActionsUtil.getModelResourceGroupDefaultActions(DLFileEntry.class.getName());
+	List<String> resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS));
+
+	List<String> localizedResourceActions = new ArrayList<String>(resourceActions.size());
+
+	for (String resourceAction : resourceActions) {
+		localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+	}
+
+	String fullAccessPermissionsDescription = LanguageUtil.format(request, "full-access-x", StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE));
+
+	resourceActions = ResourceActionsUtil.getModelResourceGroupDefaultActions(DLFileEntry.class.getName());
+
+	String defaultPermissionsDescription = null;
+
+	if (resourceActions != null) {
+		localizedResourceActions = new ArrayList<String>(resourceActions.size());
+
+		for (String resourceAction : resourceActions) {
+			localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
+		}
+
+		defaultPermissionsDescription = StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE);
+	}
 	%>
 
 	<liferay-ui:search-container
@@ -100,43 +122,29 @@ portletURL.setParameter("delta", String.valueOf(delta));
 			<%
 			boolean syncSiteEnabled = GetterUtil.getBoolean(group.getTypeSettingsProperty("syncEnabled"), true);
 
-			String defaultFilePermissions = StringPool.BLANK;
+			String permissionsDescription = StringPool.BLANK;
 
 			if (syncSiteEnabled) {
-				int permissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
+				int currentPermissions = GetterUtil.getInteger(group.getTypeSettingsProperty("syncSiteMemberFilePermissions"));
 
-				if (permissions == SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY) {
-					defaultFilePermissions = LanguageUtil.get(request, "view-only");
+				if (currentPermissions == SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY) {
+					permissionsDescription = LanguageUtil.get(request, "view-only");
 				}
-				else if (permissions == SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) {
-					defaultFilePermissions = LanguageUtil.get(request, "view-and-add-discussion");
+				else if (currentPermissions == SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) {
+					permissionsDescription = LanguageUtil.get(request, "view-and-add-discussion");
 				}
-				else if (permissions == SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS) {
-					List<String> resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(permissions));
-
-					List<String> localizedResourceActions = new ArrayList<String>(resourceActions.size());
-
-					for (String resourceAction : resourceActions) {
-						localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
-					}
-
-					defaultFilePermissions = LanguageUtil.format(request, "full-access-x", StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE));
+				else if (currentPermissions == SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS) {
+					permissionsDescription = fullAccessPermissionsDescription;
 				}
-				else if (ListUtil.isNotEmpty(defaultResourceActions)) {
-					List<String> localizedResourceActions = new ArrayList<String>(defaultResourceActions.size());
-
-					for (String resourceAction : defaultResourceActions) {
-						localizedResourceActions.add(LanguageUtil.get(locale, ResourceActionsUtil.getActionNamePrefix() + resourceAction));
-					}
-
-					defaultFilePermissions = StringUtil.merge(localizedResourceActions, StringPool.COMMA_AND_SPACE);
+				else if (Validator.isNotNull(defaultPermissionsDescription)) {
+					permissionsDescription = defaultPermissionsDescription;
 				}
 			}
 			%>
 
 			<liferay-ui:search-container-column-text
 				name="default-file-permissions"
-				value="<%= defaultFilePermissions %>"
+				value="<%= permissionsDescription %>"
 			/>
 
 			<liferay-ui:search-container-column-text
