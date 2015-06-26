@@ -61,7 +61,7 @@
 			</span>
 		</c:if>
 
-		<span class="toggle action hide">
+		<span class="action hide toggle">
 			<a class="toggle-entry" href="javascript:;">
 				<i class="icon-expand-alt"></i>
 
