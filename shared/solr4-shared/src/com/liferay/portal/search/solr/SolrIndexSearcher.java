@@ -118,8 +118,8 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			Hits hits = processQueryResponse(
 				queryResponse, searchContext, query);
 
-			hits.setStart(stopWatch.getStartTime());
 			hits.setLength(total);
+			hits.setStart(stopWatch.getStartTime());
 
 			return hits;
 		}
