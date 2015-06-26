@@ -194,7 +194,7 @@ ${nodejs.url[osx64]}.
 			<mkdir dir="@{module.dir}/tmp/transpile" />
 
 			<copy todir="@{module.dir}/tmp/transpile">
-				<fileset dir="@{module.dir}/src">
+				<fileset id="tmp-files" dir="@{module.dir}/src">
 					<include name="**/*.es.js" />
 				</fileset>
 			</copy>
@@ -211,8 +211,14 @@ ${nodejs.url[osx64]}.
 				node.module.name="lfr-module-config-generator"
 			/>
 
-			<download-node-module
-				node.module.name="lfr-module-config-generator"
+			<pathconvert pathsep=" " property="tmp-files-param" setonempty="false" refid="tmp-files" >
+				<map from="@{module.dir}/src/" to="" />
+			</pathconvert>
+
+			<node-execute
+				node.command="node"
+				node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/babel/bin/babel/index.js --modules amd -d @{module.dir}/.js-cache ${tmp-files-param}"
+				node.working.dir="@{module.dir}/tmp/transpile"
 			/>
 
 			<node-execute
