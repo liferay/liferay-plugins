@@ -26,7 +26,7 @@ public class CalendarSearcher extends BaseSearcher {
 
 	public static final String CLASS_NAME = Calendar.class.getName();
 
-	public static Indexer getInstance() {
+	public static Indexer<?> getInstance() {
 		return new CalendarSearcher();
 	}
 

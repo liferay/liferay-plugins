@@ -48,7 +48,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	searchContext.setStart(searchContainer.getStart());
 	searchContext.setSorts(KnowledgeBaseUtil.getKBArticleSorts(orderByCol, orderByType));
 
-	Indexer indexer = IndexerRegistryUtil.getIndexer(KBArticle.class);
+	Indexer<KBArticle> indexer = IndexerRegistryUtil.getIndexer(KBArticle.class);
 
 	Hits hits = indexer.search(searchContext);
 

@@ -300,7 +300,7 @@ for (String importer : importers) {
 
 		searchContext.setKeywords("Child");
 
-		Indexer indexer = FacetedSearcher.getInstance();
+		Indexer<?> indexer = FacetedSearcher.getInstance();
 
 		Hits hits = indexer.search(searchContext);
 		%>
