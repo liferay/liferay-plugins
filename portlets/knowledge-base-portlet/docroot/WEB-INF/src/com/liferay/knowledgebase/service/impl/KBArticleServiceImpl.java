@@ -283,10 +283,11 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by
-	 *             {@link #getKBArticleAndAllDescendantKBArticles(long, long,
-	 *             int, com.liferay.portal.kernel.util.OrderByComparator)}
+	 * @deprecated As of 7.0.0, replaced by {@link
+	 *             #getKBArticleAndAllDescendantKBArticles(long, long, int,
+	 *             com.liferay.portal.kernel.util.OrderByComparator)}
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> getKBArticleAndAllDescendants(
 		long groupId, long resourcePrimKey, int status,
@@ -596,6 +597,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	 *             int, int, int,
 	 *             com.liferay.portal.kernel.util.OrderByComparator)}
 	 */
+	@Deprecated
 	@Override
 	public List<KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
@@ -610,6 +612,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	 * @deprecated As of 7.0.0, replaced by {@link #getKBArticlesCount(long,
 	 *             long, int)}
 	 */
+	@Deprecated
 	@Override
 	public int getSiblingKBArticlesCount(
 		long groupId, long parentResourcePrimKey, int status) {
