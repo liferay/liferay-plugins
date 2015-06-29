@@ -97,6 +97,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -338,8 +339,7 @@ public class FileSystemImporter extends BaseImporter {
 					DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 					PortalUtil.getClassNameId(DDLRecordSet.class),
 					getKey(fileName), getMap(name), null,
-					StringUtil.read(inputStream),
-					StorageType.JSON.toString(),
+					StringUtil.read(inputStream), StorageType.JSON.toString(),
 					DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 			}
 			else {
