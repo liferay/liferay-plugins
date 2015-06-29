@@ -15,7 +15,6 @@
 		<attribute name="service.auto.namespace.tables" default="true" />
 		<attribute name="service.hbm.file.name" default="portlet-hbm.xml" />
 		<attribute name="service.model.hints.file.name" default="portlet-model-hints.xml" />
-		<attribute name="service.props.util" default="com.liferay.util.service.ServiceProps" />
 		<attribute name="service.spring.file.name" default="portlet-spring.xml" />
 		<attribute name="service.sql.dir" />
 		<attribute name="service.test.dir" />
@@ -35,11 +34,13 @@
 				<available file="bnd.bnd" />
 				<then>
 					<var name="service.osgi.module" value="true" />
+					<var name="service.props.util" value="${plugin.name}.util.ServiceProps" />
 					<var name="service.plugin.name" value="" />
 					<var name="service.spring.namespaces" value="beans,osgi" />
 				</then>
 				<else>
 					<var name="service.osgi.module" value="false" />
+					<var name="service.props.util" value="com.liferay.util.service.ServiceProps" />
 					<var name="service.plugin.name" value="${plugin.name}" />
 					<var name="service.spring.namespaces" value="beans" />
 				</else>
@@ -105,7 +106,7 @@
 				<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/@{service.model.hints.file.name}" />
 				<arg value="service.osgi.module=${service.osgi.module}" />
 				<arg value="service.plugin.name=${service.plugin.name}" />
-				<arg value="service.props.util=@{service.props.util}" />
+				<arg value="service.props.util=${service.props.util}" />
 				<arg value="service.remoting.file=" />
 				<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
 				<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/@{service.spring.file.name}" />
@@ -226,7 +227,7 @@
 										</else>
 									</if>
 
-									<var name="compile.jsp.dependency.dir" unset="true"/>
+									<var name="compile.jsp.dependency.dir" unset="true" />
 								</sequential>
 							</for>
 						</then>
@@ -237,13 +238,13 @@
 						<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 						<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
 						<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
-						<pathelement path="${compile.jsp.dependencies.classpath}"/>
+						<pathelement path="${compile.jsp.dependencies.classpath}" />
 						<fileset dir="${basedir}" includes="lib/*.jar" />
 						<fileset dir="${basedir}" includes="docroot/WEB-INF/lib/*.jar" />
 						<fileset dir="@{compile.jsp.docroot.dir}" includes="WEB-INF/lib/*.jar" />
 					</path>
 
-					<var name="compile.jsp.dependencies.classpath" unset="true"/>
+					<var name="compile.jsp.dependencies.classpath" unset="true" />
 
 					<local name="jspc.module.web" />
 
