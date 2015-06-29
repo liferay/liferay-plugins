@@ -208,8 +208,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			indexer.reindex(baseModel);
 		}
 		else {
-			Indexer<?> baseModelIndexer = IndexerRegistryUtil.getIndexer(
-				baseModel.getModelClass());
+			Indexer<BaseModel<?>> baseModelIndexer =
+				(Indexer<BaseModel<?>>)IndexerRegistryUtil.getIndexer(
+					baseModel.getModelClass());
 
 			if (baseModelIndexer != null) {
 				baseModelIndexer.reindex(baseModel);
@@ -349,7 +350,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return sb.toString();
 	}
 
-	protected Indexer buildIndexer() {
+	protected Indexer<BaseModel<?>> buildIndexer() {
 		return null;
 	}
 
@@ -1399,7 +1400,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected EventRequest eventRequest;
 	protected EventResponse eventResponse;
 	protected String format;
-	protected Indexer indexer;
+	protected Indexer<BaseModel<?>> indexer;
 	protected String indexerClassName;
 	protected String lifecycle;
 	protected LiferayPortletConfig liferayPortletConfig;
