@@ -85,7 +85,7 @@ public static class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	@Override
-	protected Indexer buildIndexer() {
+	protected Indexer<BaseModel<?>> buildIndexer() {
 		return AssetIndexer.getInstance();
 	}
 

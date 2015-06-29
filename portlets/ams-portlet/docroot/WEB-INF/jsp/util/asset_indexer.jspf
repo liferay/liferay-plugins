@@ -31,8 +31,8 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 	}
 
 	@Override
-	protected Document doGetDocument(Object obj) throws Exception {
-		Asset asset = (Asset)obj;
+	protected Document doGetDocument(BaseModel<?> baseModel) throws Exception {
+		Asset asset = (Asset)baseModel;
 
 		Document document = getBaseModelDocument(className, asset);
 
