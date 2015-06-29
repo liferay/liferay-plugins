@@ -55,11 +55,11 @@ import javax.portlet.PortletResponse;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class AdminIndexer extends BaseIndexer<KBArticle> {
+public class KBArticleIndexer extends BaseIndexer<KBArticle> {
 
 	public static final String CLASS_NAME = KBArticle.class.getName();
 
-	public AdminIndexer() {
+	public KBArticleIndexer() {
 		setDefaultSelectedFieldNames(
 			Field.COMPANY_ID, Field.CONTENT, Field.CREATE_DATE,
 			Field.DESCRIPTION, Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK,
@@ -239,6 +239,6 @@ public class AdminIndexer extends BaseIndexer<KBArticle> {
 		actionableDynamicQuery.performActions();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(AdminIndexer.class);
+	private static final Log _log = LogFactoryUtil.getLog(KBArticleIndexer.class);
 
 }

@@ -6,7 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<icon>/icons/admin.png</icon>
 		<configuration-action-class>com.liferay.knowledgebase.admin.action.ConfigurationActionImpl</configuration-action-class>
-		<indexer-class>com.liferay.knowledgebase.admin.util.AdminIndexer</indexer-class>
+		<indexer-class>com.liferay.knowledgebase.admin.util.KBArticleIndexer</indexer-class>
 		<open-search-class>com.liferay.knowledgebase.admin.util.AdminOpenSearchImpl</open-search-class>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base_admin</friendly-url-mapping>
