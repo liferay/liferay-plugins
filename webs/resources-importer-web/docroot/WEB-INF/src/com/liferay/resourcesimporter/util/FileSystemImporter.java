@@ -575,10 +575,11 @@ public class FileSystemImporter extends BaseImporter {
 			String ddmStructureKey, String fileName, InputStream inputStream)
 		throws Exception {
 
+		String language = getDDMTemplateLanguage(fileName);
+
 		fileName = FileUtil.stripExtension(fileName);
 
 		String name = getName(fileName);
-		String language = getDDMTemplateLanguage(fileName);
 
 		String xsl = StringUtil.read(inputStream);
 
