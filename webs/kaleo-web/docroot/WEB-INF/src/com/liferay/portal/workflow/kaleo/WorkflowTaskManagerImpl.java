@@ -805,10 +805,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 			new ArrayList<>();
 
-		List<KaleoTaskAssignment> configuredKaleoTaskAssignments =
-			KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
-				kaleoTaskInstanceToken.getKaleoTaskId());
-
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoTaskInstanceToken.getKaleoInstanceToken();
 
@@ -821,6 +817,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 		ExecutionContext executionContext = new ExecutionContext(
 			kaleoInstanceToken, workflowContext, workflowContextServiceContext);
+
+		List<KaleoTaskAssignment> configuredKaleoTaskAssignments =
+			KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
+				kaleoTaskInstanceToken.getKaleoTaskId());
 
 		for (KaleoTaskAssignment configuredKaleoTaskAssignment :
 				configuredKaleoTaskAssignments) {
