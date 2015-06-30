@@ -42,8 +42,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement(
-				"select assetEntrySetId, payload from AssetEntrySet");
+			ps = con.prepareStatement("select * from AssetEntrySet");
 
 			rs = ps.executeQuery();
 
