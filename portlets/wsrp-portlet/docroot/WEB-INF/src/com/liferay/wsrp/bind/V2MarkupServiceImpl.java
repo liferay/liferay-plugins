@@ -15,7 +15,6 @@
 package com.liferay.wsrp.bind;
 
 import com.liferay.portal.NoSuchLayoutException;
-import com.liferay.portal.kernel.dao.shard.ShardUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -532,41 +531,34 @@ public class V2MarkupServiceImpl
 			PortletContext portletContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
-		ShardUtil.pushCompanyService(wsrpProducer.getCompanyId());
+		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+			wsrpProducer.getGroupId(), false,
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, false, 0, 1);
 
-		try {
-			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-				wsrpProducer.getGroupId(), false,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, false, 0, 1);
-
-			if (layouts.isEmpty()) {
-				throw new NoSuchLayoutException();
-			}
-
-			Layout layout = layouts.get(0);
-
-			LayoutTypePortlet layoutTypePortlet =
-				(LayoutTypePortlet)layout.getLayoutType();
-
-			String portletId = getPortletId(portletContext);
-
-			if (!layoutTypePortlet.hasPortletId(portletId)) {
-				layoutTypePortlet.addPortletId(
-					0, portletId, "column-1", -1, false);
-
-				LayoutLocalServiceUtil.updateLayout(
-					layout.getGroupId(), layout.isPrivateLayout(),
-					layout.getLayoutId(), layout.getTypeSettings());
-
-				PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-					layout, portletId);
-			}
-
-			return layout;
+		if (layouts.isEmpty()) {
+			throw new NoSuchLayoutException();
 		}
-		finally {
-			ShardUtil.popCompanyService();
+
+		Layout layout = layouts.get(0);
+
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
+
+		String portletId = getPortletId(portletContext);
+
+		if (!layoutTypePortlet.hasPortletId(portletId)) {
+			layoutTypePortlet.addPortletId(
+				0, portletId, "column-1", -1, false);
+
+			LayoutLocalServiceUtil.updateLayout(
+				layout.getGroupId(), layout.isPrivateLayout(),
+				layout.getLayoutId(), layout.getTypeSettings());
+
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
 		}
+
+		return layout;
 	}
 
 	protected String getPortletId(PortletContext portletContext)

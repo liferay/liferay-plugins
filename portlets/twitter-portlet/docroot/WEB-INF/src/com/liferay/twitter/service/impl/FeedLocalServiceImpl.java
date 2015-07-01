@@ -15,7 +15,6 @@
 package com.liferay.twitter.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.dao.shard.ShardUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -63,30 +62,23 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	}
 
 	public void updateFeeds(long companyId) {
-		ShardUtil.pushCompanyService(companyId);
+		LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
 
-		try {
-			LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
+		userParams.put("contactTwitterSn", Boolean.TRUE);
 
-			userParams.put("contactTwitterSn", Boolean.TRUE);
+		List<User> users = userLocalService.search(
+			companyId, null, WorkflowConstants.STATUS_APPROVED, userParams,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 
-			List<User> users = userLocalService.search(
-				companyId, null, WorkflowConstants.STATUS_APPROVED, userParams,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
-
-			for (User user : users) {
-				try {
-					updateFeed(user);
-				}
-				catch (Exception e) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(e, e);
-					}
+		for (User user : users) {
+			try {
+				updateFeed(user);
+			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(e, e);
 				}
 			}
-		}
-		finally {
-			ShardUtil.popCompanyService();
 		}
 	}
 

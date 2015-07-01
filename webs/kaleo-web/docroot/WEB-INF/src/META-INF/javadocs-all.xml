@@ -3486,11 +3486,6 @@
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<param>
-				<name>shardName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
