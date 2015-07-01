@@ -47,7 +47,12 @@
 					<antelope:substring beginindex="0" endindex="${service.file.index}" />
 				</antelope:stringutil>
 
-				<ant dir="${portlet.dir}" target="build-service" inheritAll="false" />
+				<if>
+					<available file="${portlet.dir}/build.xml" />
+					<then>
+						<ant dir="${portlet.dir}" target="build-service" inheritAll="false" />
+					</then>
+				</if>
 			</sequential>
 		</for>
 	</target>
