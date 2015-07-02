@@ -32,18 +32,24 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortlet extends MVCPortlet {
 
-	public void deleteDevice(
+	public void deletePushNotificationsDevice(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		long pushNotificationsDeviceId = ParamUtil.getLong(
+			actionRequest, "pushNotificationsDeviceId");
+
 		try {
-			long pushNotificationDeviceId = ParamUtil.getLong(actionRequest, "pushNotificationDeviceId");
-			PushNotificationsDeviceLocalServiceUtil.deletePushNotificationsDevice(
-					pushNotificationDeviceId);
-			SessionMessages.add(actionRequest, "deviceDeletedSuccessfully");
-		} catch (PortalException e) {
-			SessionErrors.add(actionRequest, "error");
+			PushNotificationsDeviceLocalServiceUtil.
+				deletePushNotificationsDevice(pushNotificationsDeviceId);
+
+			SessionMessages.add(actionRequest, "deviceDeleted");
 		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass());
+		}
+
+		sendRedirect(actionRequest, actionResponse);
 	}
 
 	public void updatePortletPreferences(
