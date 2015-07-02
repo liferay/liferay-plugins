@@ -373,7 +373,23 @@ public class CalendarBookingLocalServiceImpl
 			recurrenceObj.setUntilJCalendar(startTimeJCalendar);
 		}
 		else {
-			recurrenceObj.addExceptionDate(startTimeJCalendar);
+			final int expandMax = 2;
+			final long expandStartTime = 0L; //Thu 01/01/1970 00:00:00
+			final long expandEndTime = 3155760000000L; //Wed 01/01/2070 00:00:00
+			final int expands =
+				RecurrenceUtil.expandCalendarBooking(
+						calendarBooking, expandStartTime, expandEndTime,
+						expandMax).size();
+
+			if (expands == expandMax) {
+				recurrenceObj.addExceptionDate(startTimeJCalendar);
+			}
+			else {
+				calendarBookingLocalService.deleteCalendarBooking(
+					calendarBooking);
+
+				return;
+			}
 		}
 
 		String recurrence = RecurrenceSerializer.serialize(recurrenceObj);
