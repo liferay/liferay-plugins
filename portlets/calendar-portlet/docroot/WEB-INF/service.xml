@@ -280,6 +280,7 @@
 	<exceptions>
 		<exception>CalendarBookingDuration</exception>
 		<exception>CalendarBookingEndTime</exception>
+		<exception>CalendarBookingRecurrence</exception>
 		<exception>CalendarBookingStartTime</exception>
 		<exception>CalendarBookingTitle</exception>
 		<exception>CalendarName</exception>
