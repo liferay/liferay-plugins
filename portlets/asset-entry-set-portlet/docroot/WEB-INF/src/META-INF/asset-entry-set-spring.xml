@@ -7,11 +7,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
-	<bean id="com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUtil" class="com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUtil">
-		<property name="AssetEntrySetPermission">
-			<bean class="com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionImpl" />
-		</property>
-	</bean>
 	<bean id="com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil" class="com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil">
 		<property name="AssetEntrySetParticipantInfo">
 			<bean class="com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoImpl" />
