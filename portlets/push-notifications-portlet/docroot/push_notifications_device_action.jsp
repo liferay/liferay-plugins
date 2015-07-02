@@ -19,21 +19,22 @@
 <%
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
-PushNotificationsDevice pushNotificationDevice = (PushNotificationsDevice)row.getObject();
+PushNotificationsDevice pushNotificationsDevice = (PushNotificationsDevice)row.getObject();
 
-long pushNotificationDeviceId = pushNotificationDevice.getPushNotificationsDeviceId();
-long userId = pushNotificationDevice.getUserId();
+long pushNotificationsDeviceId = pushNotificationsDevice.getPushNotificationsDeviceId();
 %>
 
 <liferay-ui:icon-menu>
-
-	<c:if test="<%= UserPermissionUtil.contains(permissionChecker, userId, ActionKeys.DELETE) %>">
-
-		<liferay-portlet:actionURL name="deleteDevice" var="deleteDeviceUrl">
-			<portlet:param name="pushNotificationDeviceId" value="<%= String.valueOf(pushNotificationDeviceId) %>" />
+	<c:if test="<%= PushNotificationsPermission.contains(permissionChecker, ActionKeys.MANAGE_DEVICES) %>">
+		<portlet:renderURL var="redirectURL">
 			<portlet:param name="tabs1" value="devices" />
+		</portlet:renderURL>
+
+		<liferay-portlet:actionURL name="deletePushNotificationsDevice" var="deleteURL">
+			<portlet:param name="redirect" value="<%= redirectURL %>" />
+			<portlet:param name="pushNotificationsDeviceId" value="<%= String.valueOf(pushNotificationsDeviceId) %>" />
 		</liferay-portlet:actionURL>
 
-		<liferay-ui:icon-delete confirmation="are-you-sure-you-want-to-delete-the-device" url="<%= deleteDeviceUrl %>"  />
+		<liferay-ui:icon-delete confirmation="are-you-sure-you-want-to-delete-this-device" url="<%= deleteURL %>"  />
 	</c:if>
 </liferay-ui:icon-menu>
