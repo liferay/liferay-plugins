@@ -16,7 +16,6 @@ package com.liferay.asset.entry.set.util;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
-import com.liferay.asset.entry.set.service.permission.AssetEntrySetPermissionUtil;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -31,7 +30,6 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.security.permission.PermissionChecker;
 
 import java.util.Locale;
 
@@ -59,16 +57,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 	@Override
 	public String getPortletId() {
 		return PORTLET_ID;
-	}
-
-	@Override
-	public boolean hasPermission(
-			PermissionChecker permissionChecker, String entryClassName,
-			long entryClassPK, String actionId)
-		throws Exception {
-
-		return AssetEntrySetPermissionUtil.contains(
-			permissionChecker, entryClassPK, ActionKeys.VIEW);
 	}
 
 	@Override
