@@ -25,7 +25,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
-import com.liferay.portlet.asset.model.BaseAssetRenderer;
+import com.liferay.portlet.asset.model.BaseJSPAssetRenderer;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.permission.TasksEntryPermission;
 import com.liferay.tasks.util.PortletKeys;
@@ -37,10 +37,13 @@ import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author Matthew Kong
  */
-public class TasksEntryAssetRenderer extends BaseAssetRenderer {
+public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer {
 
 	public TasksEntryAssetRenderer(TasksEntry entry) {
 		_entry = entry;
@@ -59,6 +62,18 @@ public class TasksEntryAssetRenderer extends BaseAssetRenderer {
 	@Override
 	public long getGroupId() {
 		return _entry.getGroupId();
+	}
+
+	@Override
+	public String getJspPath(HttpServletRequest request, String template) {
+		if (template.equals(TEMPLATE_ABSTRACT) ||
+			template.equals(TEMPLATE_FULL_CONTENT)) {
+
+			return "/tasks/asset/" + template + ".jsp";
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override
@@ -125,20 +140,14 @@ public class TasksEntryAssetRenderer extends BaseAssetRenderer {
 	}
 
 	@Override
-	public String render(
-		PortletRequest portletRequest, PortletResponse portletResponse,
-		String template) {
+	public boolean include(
+			HttpServletRequest request, HttpServletResponse response,
+			String template)
+		throws Exception {
 
-		if (template.equals(TEMPLATE_ABSTRACT) ||
-			template.equals(TEMPLATE_FULL_CONTENT)) {
+		request.setAttribute(WebKeys.TASKS_ENTRY, _entry);
 
-			portletRequest.setAttribute(WebKeys.TASKS_ENTRY, _entry);
-
-			return "/tasks/asset/" + template + ".jsp";
-		}
-		else {
-			return null;
-		}
+		return super.include(request, response, template);
 	}
 
 	private TasksEntry _entry;
