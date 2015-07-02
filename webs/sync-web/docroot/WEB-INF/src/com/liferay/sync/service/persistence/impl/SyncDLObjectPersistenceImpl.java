@@ -1972,6 +1972,1816 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	private static final String _FINDER_COLUMN_C_M_R_COMPANYID_2 = "syncDLObject.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_M_R_MODIFIEDTIME_2 = "syncDLObject.modifiedTime > ? AND ";
 	private static final String _FINDER_COLUMN_C_M_R_REPOSITORYID_2 = "syncDLObject.repositoryId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_R_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_R_T",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_R_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_R_T",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			SyncDLObjectModelImpl.COMPANYID_COLUMN_BITMASK |
+			SyncDLObjectModelImpl.REPOSITORYID_COLUMN_BITMASK |
+			SyncDLObjectModelImpl.TYPE_COLUMN_BITMASK |
+			SyncDLObjectModelImpl.MODIFIEDTIME_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_R_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_R_T",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+
+	/**
+	 * Returns all the sync d l objects where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @return the matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_R_T(long companyId, long repositoryId,
+		String type) {
+		return findByC_R_T(companyId, repositoryId, type, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the sync d l objects where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @return the range of matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_R_T(long companyId, long repositoryId,
+		String type, int start, int end) {
+		return findByC_R_T(companyId, repositoryId, type, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the sync d l objects where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_R_T(long companyId, long repositoryId,
+		String type, int start, int end,
+		OrderByComparator<SyncDLObject> orderByComparator) {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_R_T;
+			finderArgs = new Object[] { companyId, repositoryId, type };
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_R_T;
+			finderArgs = new Object[] {
+					companyId, repositoryId, type,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<SyncDLObject> list = (List<SyncDLObject>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDLObject syncDLObject : list) {
+				if ((companyId != syncDLObject.getCompanyId()) ||
+						(repositoryId != syncDLObject.getRepositoryId()) ||
+						!Validator.equals(type, syncDLObject.getType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+			query.append(_FINDER_COLUMN_C_R_T_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_R_T_REPOSITORYID_2);
+
+			boolean bindType = false;
+
+			if (type == null) {
+				query.append(_FINDER_COLUMN_C_R_T_TYPE_1);
+			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_R_T_TYPE_3);
+			}
+			else {
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_C_R_T_TYPE_2);
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(repositoryId);
+
+				if (bindType) {
+					qPos.add(type);
+				}
+
+				if (!pagination) {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object
+	 * @throws NoSuchDLObjectException if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject findByC_R_T_First(long companyId, long repositoryId,
+		String type, OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = fetchByC_R_T_First(companyId, repositoryId,
+				type, orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", repositoryId=");
+		msg.append(repositoryId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject fetchByC_R_T_First(long companyId, long repositoryId,
+		String type, OrderByComparator<SyncDLObject> orderByComparator) {
+		List<SyncDLObject> list = findByC_R_T(companyId, repositoryId, type, 0,
+				1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object
+	 * @throws NoSuchDLObjectException if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject findByC_R_T_Last(long companyId, long repositoryId,
+		String type, OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = fetchByC_R_T_Last(companyId, repositoryId,
+				type, orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(8);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", repositoryId=");
+		msg.append(repositoryId);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject fetchByC_R_T_Last(long companyId, long repositoryId,
+		String type, OrderByComparator<SyncDLObject> orderByComparator) {
+		int count = countByC_R_T(companyId, repositoryId, type);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<SyncDLObject> list = findByC_R_T(companyId, repositoryId, type,
+				count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the sync d l objects before and after the current sync d l object in the ordered set where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * @param syncDLObjectId the primary key of the current sync d l object
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next sync d l object
+	 * @throws NoSuchDLObjectException if a sync d l object with the primary key could not be found
+	 */
+	@Override
+	public SyncDLObject[] findByC_R_T_PrevAndNext(long syncDLObjectId,
+		long companyId, long repositoryId, String type,
+		OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = findByPrimaryKey(syncDLObjectId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SyncDLObject[] array = new SyncDLObjectImpl[3];
+
+			array[0] = getByC_R_T_PrevAndNext(session, syncDLObject, companyId,
+					repositoryId, type, orderByComparator, true);
+
+			array[1] = syncDLObject;
+
+			array[2] = getByC_R_T_PrevAndNext(session, syncDLObject, companyId,
+					repositoryId, type, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected SyncDLObject getByC_R_T_PrevAndNext(Session session,
+		SyncDLObject syncDLObject, long companyId, long repositoryId,
+		String type, OrderByComparator<SyncDLObject> orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+		query.append(_FINDER_COLUMN_C_R_T_COMPANYID_2);
+
+		query.append(_FINDER_COLUMN_C_R_T_REPOSITORYID_2);
+
+		boolean bindType = false;
+
+		if (type == null) {
+			query.append(_FINDER_COLUMN_C_R_T_TYPE_1);
+		}
+		else if (type.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_C_R_T_TYPE_3);
+		}
+		else {
+			bindType = true;
+
+			query.append(_FINDER_COLUMN_C_R_T_TYPE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		qPos.add(repositoryId);
+
+		if (bindType) {
+			qPos.add(type);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(syncDLObject);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SyncDLObject> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the sync d l objects where companyId = &#63; and repositoryId = &#63; and type = &#63; from the database.
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 */
+	@Override
+	public void removeByC_R_T(long companyId, long repositoryId, String type) {
+		for (SyncDLObject syncDLObject : findByC_R_T(companyId, repositoryId,
+				type, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+			remove(syncDLObject);
+		}
+	}
+
+	/**
+	 * Returns the number of sync d l objects where companyId = &#63; and repositoryId = &#63; and type = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param repositoryId the repository ID
+	 * @param type the type
+	 * @return the number of matching sync d l objects
+	 */
+	@Override
+	public int countByC_R_T(long companyId, long repositoryId, String type) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_R_T;
+
+		Object[] finderArgs = new Object[] { companyId, repositoryId, type };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_SYNCDLOBJECT_WHERE);
+
+			query.append(_FINDER_COLUMN_C_R_T_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_R_T_REPOSITORYID_2);
+
+			boolean bindType = false;
+
+			if (type == null) {
+				query.append(_FINDER_COLUMN_C_R_T_TYPE_1);
+			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_R_T_TYPE_3);
+			}
+			else {
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_C_R_T_TYPE_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(repositoryId);
+
+				if (bindType) {
+					qPos.add(type);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_C_R_T_COMPANYID_2 = "syncDLObject.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_R_T_REPOSITORYID_2 = "syncDLObject.repositoryId = ? AND ";
+	private static final String _FINDER_COLUMN_C_R_T_TYPE_1 = "syncDLObject.type IS NULL";
+	private static final String _FINDER_COLUMN_C_R_T_TYPE_2 = "syncDLObject.type = ?";
+	private static final String _FINDER_COLUMN_C_R_T_TYPE_3 = "(syncDLObject.type IS NULL OR syncDLObject.type = '')";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_M_R_P = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_M_R_P",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
+				Long.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_M_R_P = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByC_M_R_P",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
+				Long.class.getName()
+			});
+
+	/**
+	 * Returns all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @return the matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_M_R_P(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId) {
+		return findByC_M_R_P(companyId, modifiedTime, repositoryId,
+			parentFolderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @return the range of matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_M_R_P(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId, int start, int end) {
+		return findByC_M_R_P(companyId, modifiedTime, repositoryId,
+			parentFolderId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_M_R_P(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId, int start, int end,
+		OrderByComparator<SyncDLObject> orderByComparator) {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_M_R_P;
+		finderArgs = new Object[] {
+				companyId, modifiedTime, repositoryId, parentFolderId,
+				
+				start, end, orderByComparator
+			};
+
+		List<SyncDLObject> list = (List<SyncDLObject>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDLObject syncDLObject : list) {
+				if ((companyId != syncDLObject.getCompanyId()) ||
+						(modifiedTime >= syncDLObject.getModifiedTime()) ||
+						(repositoryId != syncDLObject.getRepositoryId()) ||
+						(parentFolderId != syncDLObject.getParentFolderId())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(6 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(6);
+			}
+
+			query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_MODIFIEDTIME_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_REPOSITORYID_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_PARENTFOLDERID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(modifiedTime);
+
+				qPos.add(repositoryId);
+
+				qPos.add(parentFolderId);
+
+				if (!pagination) {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object
+	 * @throws NoSuchDLObjectException if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject findByC_M_R_P_First(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId,
+		OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = fetchByC_M_R_P_First(companyId,
+				modifiedTime, repositoryId, parentFolderId, orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", modifiedTime=");
+		msg.append(modifiedTime);
+
+		msg.append(", repositoryId=");
+		msg.append(repositoryId);
+
+		msg.append(", parentFolderId=");
+		msg.append(parentFolderId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject fetchByC_M_R_P_First(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId,
+		OrderByComparator<SyncDLObject> orderByComparator) {
+		List<SyncDLObject> list = findByC_M_R_P(companyId, modifiedTime,
+				repositoryId, parentFolderId, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object
+	 * @throws NoSuchDLObjectException if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject findByC_M_R_P_Last(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId,
+		OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = fetchByC_M_R_P_Last(companyId,
+				modifiedTime, repositoryId, parentFolderId, orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", modifiedTime=");
+		msg.append(modifiedTime);
+
+		msg.append(", repositoryId=");
+		msg.append(repositoryId);
+
+		msg.append(", parentFolderId=");
+		msg.append(parentFolderId);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject fetchByC_M_R_P_Last(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId,
+		OrderByComparator<SyncDLObject> orderByComparator) {
+		int count = countByC_M_R_P(companyId, modifiedTime, repositoryId,
+				parentFolderId);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<SyncDLObject> list = findByC_M_R_P(companyId, modifiedTime,
+				repositoryId, parentFolderId, count - 1, count,
+				orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the sync d l objects before and after the current sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * @param syncDLObjectId the primary key of the current sync d l object
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next sync d l object
+	 * @throws NoSuchDLObjectException if a sync d l object with the primary key could not be found
+	 */
+	@Override
+	public SyncDLObject[] findByC_M_R_P_PrevAndNext(long syncDLObjectId,
+		long companyId, long modifiedTime, long repositoryId,
+		long parentFolderId, OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = findByPrimaryKey(syncDLObjectId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SyncDLObject[] array = new SyncDLObjectImpl[3];
+
+			array[0] = getByC_M_R_P_PrevAndNext(session, syncDLObject,
+					companyId, modifiedTime, repositoryId, parentFolderId,
+					orderByComparator, true);
+
+			array[1] = syncDLObject;
+
+			array[2] = getByC_M_R_P_PrevAndNext(session, syncDLObject,
+					companyId, modifiedTime, repositoryId, parentFolderId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected SyncDLObject getByC_M_R_P_PrevAndNext(Session session,
+		SyncDLObject syncDLObject, long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId,
+		OrderByComparator<SyncDLObject> orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+		query.append(_FINDER_COLUMN_C_M_R_P_COMPANYID_2);
+
+		query.append(_FINDER_COLUMN_C_M_R_P_MODIFIEDTIME_2);
+
+		query.append(_FINDER_COLUMN_C_M_R_P_REPOSITORYID_2);
+
+		query.append(_FINDER_COLUMN_C_M_R_P_PARENTFOLDERID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		qPos.add(modifiedTime);
+
+		qPos.add(repositoryId);
+
+		qPos.add(parentFolderId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(syncDLObject);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SyncDLObject> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63; from the database.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 */
+	@Override
+	public void removeByC_M_R_P(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId) {
+		for (SyncDLObject syncDLObject : findByC_M_R_P(companyId, modifiedTime,
+				repositoryId, parentFolderId, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(syncDLObject);
+		}
+	}
+
+	/**
+	 * Returns the number of sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param parentFolderId the parent folder ID
+	 * @return the number of matching sync d l objects
+	 */
+	@Override
+	public int countByC_M_R_P(long companyId, long modifiedTime,
+		long repositoryId, long parentFolderId) {
+		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_M_R_P;
+
+		Object[] finderArgs = new Object[] {
+				companyId, modifiedTime, repositoryId, parentFolderId
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_COUNT_SYNCDLOBJECT_WHERE);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_MODIFIEDTIME_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_REPOSITORYID_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_P_PARENTFOLDERID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(modifiedTime);
+
+				qPos.add(repositoryId);
+
+				qPos.add(parentFolderId);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_C_M_R_P_COMPANYID_2 = "syncDLObject.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_M_R_P_MODIFIEDTIME_2 = "syncDLObject.modifiedTime > ? AND ";
+	private static final String _FINDER_COLUMN_C_M_R_P_REPOSITORYID_2 = "syncDLObject.repositoryId = ? AND ";
+	private static final String _FINDER_COLUMN_C_M_R_P_PARENTFOLDERID_2 = "syncDLObject.parentFolderId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_M_R_NOTE =
+		new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_M_R_NotE",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
+				String.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_M_R_NOTE =
+		new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByC_M_R_NotE",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+
+	/**
+	 * Returns all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @return the matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_M_R_NotE(long companyId,
+		long modifiedTime, long repositoryId, String event) {
+		return findByC_M_R_NotE(companyId, modifiedTime, repositoryId, event,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @return the range of matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_M_R_NotE(long companyId,
+		long modifiedTime, long repositoryId, String event, int start, int end) {
+		return findByC_M_R_NotE(companyId, modifiedTime, repositoryId, event,
+			start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @param start the lower bound of the range of sync d l objects
+	 * @param end the upper bound of the range of sync d l objects (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching sync d l objects
+	 */
+	@Override
+	public List<SyncDLObject> findByC_M_R_NotE(long companyId,
+		long modifiedTime, long repositoryId, String event, int start, int end,
+		OrderByComparator<SyncDLObject> orderByComparator) {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_M_R_NOTE;
+		finderArgs = new Object[] {
+				companyId, modifiedTime, repositoryId, event,
+				
+				start, end, orderByComparator
+			};
+
+		List<SyncDLObject> list = (List<SyncDLObject>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDLObject syncDLObject : list) {
+				if ((companyId != syncDLObject.getCompanyId()) ||
+						(modifiedTime >= syncDLObject.getModifiedTime()) ||
+						(repositoryId != syncDLObject.getRepositoryId()) ||
+						Validator.equals(event, syncDLObject.getEvent())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(6 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(6);
+			}
+
+			query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_MODIFIEDTIME_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_REPOSITORYID_2);
+
+			boolean bindEvent = false;
+
+			if (event == null) {
+				query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_1);
+			}
+			else if (event.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_3);
+			}
+			else {
+				bindEvent = true;
+
+				query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_2);
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(modifiedTime);
+
+				qPos.add(repositoryId);
+
+				if (bindEvent) {
+					qPos.add(event);
+				}
+
+				if (!pagination) {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<SyncDLObject>)QueryUtil.list(q, getDialect(),
+							start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object
+	 * @throws NoSuchDLObjectException if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject findByC_M_R_NotE_First(long companyId,
+		long modifiedTime, long repositoryId, String event,
+		OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = fetchByC_M_R_NotE_First(companyId,
+				modifiedTime, repositoryId, event, orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", modifiedTime=");
+		msg.append(modifiedTime);
+
+		msg.append(", repositoryId=");
+		msg.append(repositoryId);
+
+		msg.append(", event=");
+		msg.append(event);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the first sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject fetchByC_M_R_NotE_First(long companyId,
+		long modifiedTime, long repositoryId, String event,
+		OrderByComparator<SyncDLObject> orderByComparator) {
+		List<SyncDLObject> list = findByC_M_R_NotE(companyId, modifiedTime,
+				repositoryId, event, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object
+	 * @throws NoSuchDLObjectException if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject findByC_M_R_NotE_Last(long companyId,
+		long modifiedTime, long repositoryId, String event,
+		OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = fetchByC_M_R_NotE_Last(companyId,
+				modifiedTime, repositoryId, event, orderByComparator);
+
+		if (syncDLObject != null) {
+			return syncDLObject;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("companyId=");
+		msg.append(companyId);
+
+		msg.append(", modifiedTime=");
+		msg.append(modifiedTime);
+
+		msg.append(", repositoryId=");
+		msg.append(repositoryId);
+
+		msg.append(", event=");
+		msg.append(event);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchDLObjectException(msg.toString());
+	}
+
+	/**
+	 * Returns the last sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
+	 */
+	@Override
+	public SyncDLObject fetchByC_M_R_NotE_Last(long companyId,
+		long modifiedTime, long repositoryId, String event,
+		OrderByComparator<SyncDLObject> orderByComparator) {
+		int count = countByC_M_R_NotE(companyId, modifiedTime, repositoryId,
+				event);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<SyncDLObject> list = findByC_M_R_NotE(companyId, modifiedTime,
+				repositoryId, event, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the sync d l objects before and after the current sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * @param syncDLObjectId the primary key of the current sync d l object
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next sync d l object
+	 * @throws NoSuchDLObjectException if a sync d l object with the primary key could not be found
+	 */
+	@Override
+	public SyncDLObject[] findByC_M_R_NotE_PrevAndNext(long syncDLObjectId,
+		long companyId, long modifiedTime, long repositoryId, String event,
+		OrderByComparator<SyncDLObject> orderByComparator)
+		throws NoSuchDLObjectException {
+		SyncDLObject syncDLObject = findByPrimaryKey(syncDLObjectId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SyncDLObject[] array = new SyncDLObjectImpl[3];
+
+			array[0] = getByC_M_R_NotE_PrevAndNext(session, syncDLObject,
+					companyId, modifiedTime, repositoryId, event,
+					orderByComparator, true);
+
+			array[1] = syncDLObject;
+
+			array[2] = getByC_M_R_NotE_PrevAndNext(session, syncDLObject,
+					companyId, modifiedTime, repositoryId, event,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected SyncDLObject getByC_M_R_NotE_PrevAndNext(Session session,
+		SyncDLObject syncDLObject, long companyId, long modifiedTime,
+		long repositoryId, String event,
+		OrderByComparator<SyncDLObject> orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
+
+		query.append(_FINDER_COLUMN_C_M_R_NOTE_COMPANYID_2);
+
+		query.append(_FINDER_COLUMN_C_M_R_NOTE_MODIFIEDTIME_2);
+
+		query.append(_FINDER_COLUMN_C_M_R_NOTE_REPOSITORYID_2);
+
+		boolean bindEvent = false;
+
+		if (event == null) {
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_1);
+		}
+		else if (event.equals(StringPool.BLANK)) {
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_3);
+		}
+		else {
+			bindEvent = true;
+
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(SyncDLObjectModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		qPos.add(modifiedTime);
+
+		qPos.add(repositoryId);
+
+		if (bindEvent) {
+			qPos.add(event);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(syncDLObject);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<SyncDLObject> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63; from the database.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 */
+	@Override
+	public void removeByC_M_R_NotE(long companyId, long modifiedTime,
+		long repositoryId, String event) {
+		for (SyncDLObject syncDLObject : findByC_M_R_NotE(companyId,
+				modifiedTime, repositoryId, event, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(syncDLObject);
+		}
+	}
+
+	/**
+	 * Returns the number of sync d l objects where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param modifiedTime the modified time
+	 * @param repositoryId the repository ID
+	 * @param event the event
+	 * @return the number of matching sync d l objects
+	 */
+	@Override
+	public int countByC_M_R_NotE(long companyId, long modifiedTime,
+		long repositoryId, String event) {
+		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_M_R_NOTE;
+
+		Object[] finderArgs = new Object[] {
+				companyId, modifiedTime, repositoryId, event
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_COUNT_SYNCDLOBJECT_WHERE);
+
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_MODIFIEDTIME_2);
+
+			query.append(_FINDER_COLUMN_C_M_R_NOTE_REPOSITORYID_2);
+
+			boolean bindEvent = false;
+
+			if (event == null) {
+				query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_1);
+			}
+			else if (event.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_3);
+			}
+			else {
+				bindEvent = true;
+
+				query.append(_FINDER_COLUMN_C_M_R_NOTE_EVENT_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(modifiedTime);
+
+				qPos.add(repositoryId);
+
+				if (bindEvent) {
+					qPos.add(event);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_C_M_R_NOTE_COMPANYID_2 = "syncDLObject.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_M_R_NOTE_MODIFIEDTIME_2 = "syncDLObject.modifiedTime > ? AND ";
+	private static final String _FINDER_COLUMN_C_M_R_NOTE_REPOSITORYID_2 = "syncDLObject.repositoryId = ? AND ";
+	private static final String _FINDER_COLUMN_C_M_R_NOTE_EVENT_1 = "syncDLObject.event IS NOT NULL";
+	private static final String _FINDER_COLUMN_C_M_R_NOTE_EVENT_2 = "syncDLObject.event != ?";
+	private static final String _FINDER_COLUMN_C_M_R_NOTE_EVENT_3 = "(syncDLObject.event IS NULL OR syncDLObject.event != '')";
 
 	public SyncDLObjectPersistenceImpl() {
 		setModelClass(SyncDLObject.class);
@@ -2284,6 +4094,29 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_V_T, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_V_T,
+					args);
+			}
+
+			if ((syncDLObjectModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_R_T.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						syncDLObjectModelImpl.getOriginalCompanyId(),
+						syncDLObjectModelImpl.getOriginalRepositoryId(),
+						syncDLObjectModelImpl.getOriginalType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_R_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_R_T,
+					args);
+
+				args = new Object[] {
+						syncDLObjectModelImpl.getCompanyId(),
+						syncDLObjectModelImpl.getRepositoryId(),
+						syncDLObjectModelImpl.getType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_R_T, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_R_T,
 					args);
 			}
 		}
@@ -2695,6 +4528,18 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	@Override
 	protected Set<String> getBadColumnNames() {
 		return _badColumnNames;
+	}
+
+	@Override
+	protected int getColumnType(String columnName) {
+		Integer type = SyncDLObjectModelImpl.TABLE_COLUMNS_MAP.get(columnName);
+
+		if (type == null) {
+			throw new IllegalArgumentException("Unknown column name " +
+				columnName + " for table " + SyncDLObjectModelImpl.TABLE_NAME);
+		}
+
+		return type;
 	}
 
 	/**

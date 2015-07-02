@@ -96,6 +96,36 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 			{ "typePK", Types.BIGINT },
 			{ "typeUuid", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("syncDLObjectId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createTime", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("modifiedTime", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("repositoryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("parentFolderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("extension", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("mimeType", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("changeLog", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("extraSettings", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("version", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("versionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("size_", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("checksum", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("event", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lockExpirationDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("lockUserId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("lockUserName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("type_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("typePK", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("typeUuid", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table SyncDLObject (syncDLObjectId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,repositoryId LONG,parentFolderId LONG,name VARCHAR(255) null,extension VARCHAR(75) null,mimeType VARCHAR(75) null,description STRING null,changeLog VARCHAR(75) null,extraSettings TEXT null,version VARCHAR(75) null,versionId LONG,size_ LONG,checksum VARCHAR(75) null,event VARCHAR(75) null,lockExpirationDate DATE null,lockUserId LONG,lockUserName VARCHAR(75) null,type_ VARCHAR(75) null,typePK LONG,typeUuid VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SyncDLObject";
 	public static final String ORDER_BY_JPQL = " ORDER BY syncDLObject.companyId ASC, syncDLObject.modifiedTime ASC, syncDLObject.repositoryId ASC";
@@ -113,12 +143,13 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 				"value.object.column.bitmask.enabled.com.liferay.sync.model.SyncDLObject"),
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
-	public static final long MODIFIEDTIME_COLUMN_BITMASK = 2L;
-	public static final long PARENTFOLDERID_COLUMN_BITMASK = 4L;
-	public static final long REPOSITORYID_COLUMN_BITMASK = 8L;
-	public static final long TYPE_COLUMN_BITMASK = 16L;
-	public static final long TYPEPK_COLUMN_BITMASK = 32L;
-	public static final long VERSION_COLUMN_BITMASK = 64L;
+	public static final long EVENT_COLUMN_BITMASK = 2L;
+	public static final long MODIFIEDTIME_COLUMN_BITMASK = 4L;
+	public static final long PARENTFOLDERID_COLUMN_BITMASK = 8L;
+	public static final long REPOSITORYID_COLUMN_BITMASK = 16L;
+	public static final long TYPE_COLUMN_BITMASK = 32L;
+	public static final long TYPEPK_COLUMN_BITMASK = 64L;
+	public static final long VERSION_COLUMN_BITMASK = 128L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -737,7 +768,17 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public void setEvent(String event) {
+		_columnBitmask |= EVENT_COLUMN_BITMASK;
+
+		if (_originalEvent == null) {
+			_originalEvent = _event;
+		}
+
 		_event = event;
+	}
+
+	public String getOriginalEvent() {
+		return GetterUtil.getString(_originalEvent);
 	}
 
 	@JSON
@@ -1028,6 +1069,8 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		syncDLObjectModelImpl._setOriginalParentFolderId = false;
 
 		syncDLObjectModelImpl._originalVersion = syncDLObjectModelImpl._version;
+
+		syncDLObjectModelImpl._originalEvent = syncDLObjectModelImpl._event;
 
 		syncDLObjectModelImpl._originalType = syncDLObjectModelImpl._type;
 
@@ -1385,6 +1428,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	private long _size;
 	private String _checksum;
 	private String _event;
+	private String _originalEvent;
 	private Date _lockExpirationDate;
 	private long _lockUserId;
 	private String _lockUserName;
