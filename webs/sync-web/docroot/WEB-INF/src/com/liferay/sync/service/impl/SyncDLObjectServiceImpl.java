@@ -48,7 +48,6 @@ import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.comparator.GroupNameComparator;
@@ -71,6 +70,7 @@ import com.liferay.sync.util.JSONWebServiceActionParametersMap;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
+import com.liferay.sync.util.comparator.SyncDLObjectTypeComparator;
 
 import java.io.File;
 import java.io.InputStream;
@@ -78,7 +78,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -312,13 +311,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			repositoryService.checkRepository(repositoryId);
 
 			List<SyncDLObject> syncDLObjects =
-				syncDLObjectFinder.filterFindByC_R(companyId, repositoryId);
+				syncDLObjectPersistence.findByC_R_T(
+					companyId, repositoryId, SyncConstants.TYPE_FOLDER);
 
-			if (!InlineSQLHelperUtil.isEnabled(repositoryId)) {
-				return checkSyncDLObjects(syncDLObjects);
-			}
-
-			return syncDLObjects;
+			return checkSyncDLObjects(syncDLObjects);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -587,13 +583,19 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			repositoryService.checkRepository(repositoryId);
 
-			List<SyncDLObject> syncDLObjects =
-				syncDLObjectFinder.filterFindByC_M_R_P(
-					companyId, lastAccessTime, repositoryId, -1);
+			String event = null;
 
-			if (!InlineSQLHelperUtil.isEnabled(repositoryId)) {
-				syncDLObjects = checkSyncDLObjects(syncDLObjects);
+			if (lastAccessTime == -1) {
+				event = SyncConstants.EVENT_DELETE;
 			}
+
+			List<SyncDLObject> syncDLObjects =
+				syncDLObjectPersistence.findByC_M_R_NotE(
+					companyId, lastAccessTime, repositoryId, event, 0,
+					PortletPropsValues.SYNC_PAGINATION_DELTA,
+					new SyncDLObjectTypeComparator());
+
+			syncDLObjects = checkSyncDLObjects(syncDLObjects);
 
 			for (SyncDLObject syncDLObject : syncDLObjects) {
 				if (syncDLObject.getModifiedTime() > lastAccessTime) {
@@ -1033,31 +1035,56 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	protected List<SyncDLObject> checkSyncDLObjects(
-		List<SyncDLObject> syncDLObjects) {
+			List<SyncDLObject> syncDLObjects)
+		throws PortalException {
 
-		Iterator<SyncDLObject> iterator = syncDLObjects.iterator();
+		PermissionChecker permissionChecker = getPermissionChecker();
 
-		while (iterator.hasNext()) {
-			SyncDLObject syncDLObject = iterator.next();
+		List<SyncDLObject> checkedSyncDLObjects = new ArrayList<>();
+
+		for (SyncDLObject syncDLObject : syncDLObjects) {
+			String event = syncDLObject.getEvent();
+
+			if (event.equals(SyncConstants.EVENT_DELETE)) {
+				continue;
+			}
 
 			String type = syncDLObject.getType();
 
-			try {
-				if (type.equals(SyncConstants.TYPE_FILE) ||
-					type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
+			if (type.equals(SyncConstants.TYPE_FILE)) {
+				if (!permissionChecker.hasPermission(
+						syncDLObject.getRepositoryId(),
+						DLFileEntryConstants.getClassName(),
+						syncDLObject.getTypePK(), ActionKeys.VIEW)) {
 
-					dlAppService.getFileEntry(syncDLObject.getTypePK());
-				}
-				else {
-					dlAppService.getFolder(syncDLObject.getTypePK());
+					continue;
 				}
 			}
-			catch (Exception e) {
-				iterator.remove();
+			else if (type.equals(SyncConstants.TYPE_FOLDER)) {
+				if (!permissionChecker.hasPermission(
+						syncDLObject.getRepositoryId(),
+						DLFolderConstants.getClassName(),
+						syncDLObject.getTypePK(), ActionKeys.VIEW)) {
+
+					continue;
+				}
 			}
+			else if (type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
+				if ((syncDLObject.getLockUserId() !=
+						permissionChecker.getUserId()) ||
+					!permissionChecker.hasPermission(
+						syncDLObject.getRepositoryId(),
+						DLFileEntryConstants.getClassName(),
+						syncDLObject.getTypePK(), ActionKeys.VIEW)) {
+
+					continue;
+				}
+			}
+
+			checkedSyncDLObjects.add(syncDLObject);
 		}
 
-		return syncDLObjects;
+		return checkedSyncDLObjects;
 	}
 
 	protected Map<String, String> getPortletPreferencesMap()
@@ -1092,12 +1119,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		List<SyncDLObject> curSyncDLObjects =
-			syncDLObjectFinder.filterFindByC_M_R_P(
+			syncDLObjectPersistence.findByC_M_R_P(
 				companyId, lastAccessTime, repositoryId, parentFolderId);
 
-		if (!InlineSQLHelperUtil.isEnabled(repositoryId)) {
-			curSyncDLObjects = checkSyncDLObjects(curSyncDLObjects);
-		}
+		curSyncDLObjects = checkSyncDLObjects(curSyncDLObjects);
 
 		syncDLObjects.addAll(curSyncDLObjects);
 
