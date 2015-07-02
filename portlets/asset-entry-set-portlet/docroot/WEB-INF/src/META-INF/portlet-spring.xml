@@ -2,11 +2,9 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.asset.entry.set.service.AssetEntrySetLocalService" class="com.liferay.asset.entry.set.service.impl.AssetEntrySetLocalServiceImpl" />
-	<bean id="com.liferay.asset.entry.set.service.AssetEntrySetService" class="com.liferay.asset.entry.set.service.impl.AssetEntrySetServiceImpl" />
 	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetPersistence" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinderImpl" parent="basePersistence" />
 	<bean id="com.liferay.asset.entry.set.service.AssetEntrySetLikeLocalService" class="com.liferay.asset.entry.set.service.impl.AssetEntrySetLikeLocalServiceImpl" />
-	<bean id="com.liferay.asset.entry.set.service.AssetEntrySetLikeService" class="com.liferay.asset.entry.set.service.impl.AssetEntrySetLikeServiceImpl" />
 	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePersistence" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinder" class="com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikeFinderImpl" parent="basePersistence" />
 </beans>

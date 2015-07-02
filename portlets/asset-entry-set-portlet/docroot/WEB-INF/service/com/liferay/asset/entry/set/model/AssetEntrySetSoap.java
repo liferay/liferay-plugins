@@ -20,10 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.liferay.asset.entry.set.service.http.AssetEntrySetServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author Brian Wing Shun Chan
- * @see com.liferay.asset.entry.set.service.http.AssetEntrySetServiceSoap
  * @generated
  */
 public class AssetEntrySetSoap implements Serializable {

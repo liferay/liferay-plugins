@@ -16,11 +16,9 @@ package com.liferay.asset.entry.set.model.impl;
 
 import com.liferay.asset.entry.set.model.AssetEntrySetLike;
 import com.liferay.asset.entry.set.model.AssetEntrySetLikeModel;
-import com.liferay.asset.entry.set.model.AssetEntrySetLikeSoap;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,9 +32,7 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,7 +48,6 @@ import java.util.Map;
  * @see com.liferay.asset.entry.set.model.AssetEntrySetLikeModel
  * @generated
  */
-@JSON(strict = true)
 public class AssetEntrySetLikeModelImpl extends BaseModelImpl<AssetEntrySetLike>
 	implements AssetEntrySetLikeModel {
 	/*
@@ -85,48 +80,6 @@ public class AssetEntrySetLikeModelImpl extends BaseModelImpl<AssetEntrySetLike>
 	public static long ASSETENTRYSETID_COLUMN_BITMASK = 1L;
 	public static long CLASSNAMEID_COLUMN_BITMASK = 2L;
 	public static long CLASSPK_COLUMN_BITMASK = 4L;
-
-	/**
-	 * Converts the soap model instance into a normal model instance.
-	 *
-	 * @param soapModel the soap model instance to convert
-	 * @return the normal model instance
-	 */
-	public static AssetEntrySetLike toModel(AssetEntrySetLikeSoap soapModel) {
-		if (soapModel == null) {
-			return null;
-		}
-
-		AssetEntrySetLike model = new AssetEntrySetLikeImpl();
-
-		model.setAssetEntrySetId(soapModel.getAssetEntrySetId());
-		model.setClassNameId(soapModel.getClassNameId());
-		model.setClassPK(soapModel.getClassPK());
-
-		return model;
-	}
-
-	/**
-	 * Converts the soap model instances into normal model instances.
-	 *
-	 * @param soapModels the soap model instances to convert
-	 * @return the normal model instances
-	 */
-	public static List<AssetEntrySetLike> toModels(
-		AssetEntrySetLikeSoap[] soapModels) {
-		if (soapModels == null) {
-			return null;
-		}
-
-		List<AssetEntrySetLike> models = new ArrayList<AssetEntrySetLike>(soapModels.length);
-
-		for (AssetEntrySetLikeSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.asset.entry.set.model.AssetEntrySetLike"));
 
@@ -197,7 +150,6 @@ public class AssetEntrySetLikeModelImpl extends BaseModelImpl<AssetEntrySetLike>
 		}
 	}
 
-	@JSON
 	@Override
 	public long getAssetEntrySetId() {
 		return _assetEntrySetId;
@@ -240,7 +192,6 @@ public class AssetEntrySetLikeModelImpl extends BaseModelImpl<AssetEntrySetLike>
 		setClassNameId(classNameId);
 	}
 
-	@JSON
 	@Override
 	public long getClassNameId() {
 		return _classNameId;
@@ -251,7 +202,6 @@ public class AssetEntrySetLikeModelImpl extends BaseModelImpl<AssetEntrySetLike>
 		_classNameId = classNameId;
 	}
 
-	@JSON
 	@Override
 	public long getClassPK() {
 		return _classPK;

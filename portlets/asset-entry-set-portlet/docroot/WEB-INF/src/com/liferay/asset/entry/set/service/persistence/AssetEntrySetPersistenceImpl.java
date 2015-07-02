@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -41,6 +42,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -526,6 +528,329 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
+	 * Returns all the asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63;.
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @return the matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByParentAssetEntrySetId(
+		long parentAssetEntrySetId) throws SystemException {
+		return filterFindByParentAssetEntrySetId(parentAssetEntrySetId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByParentAssetEntrySetId(
+		long parentAssetEntrySetId, int start, int end)
+		throws SystemException {
+		return filterFindByParentAssetEntrySetId(parentAssetEntrySetId, start,
+			end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets that the user has permissions to view where parentAssetEntrySetId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByParentAssetEntrySetId(
+		long parentAssetEntrySetId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByParentAssetEntrySetId(parentAssetEntrySetId, start,
+				end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(3 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_PARENTASSETENTRYSETID_PARENTASSETENTRYSETID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentAssetEntrySetId);
+
+			return (List<AssetEntrySet>)QueryUtil.list(q, getDialect(), start,
+				end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set of asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] filterFindByParentAssetEntrySetId_PrevAndNext(
+		long assetEntrySetId, long parentAssetEntrySetId,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByParentAssetEntrySetId_PrevAndNext(assetEntrySetId,
+				parentAssetEntrySetId, orderByComparator);
+		}
+
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = filterGetByParentAssetEntrySetId_PrevAndNext(session,
+					assetEntrySet, parentAssetEntrySetId, orderByComparator,
+					true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = filterGetByParentAssetEntrySetId_PrevAndNext(session,
+					assetEntrySet, parentAssetEntrySetId, orderByComparator,
+					false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet filterGetByParentAssetEntrySetId_PrevAndNext(
+		Session session, AssetEntrySet assetEntrySet,
+		long parentAssetEntrySetId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_PARENTASSETENTRYSETID_PARENTASSETENTRYSETID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(parentAssetEntrySetId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Removes all the asset entry sets where parentAssetEntrySetId = &#63; from the database.
 	 *
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -593,6 +918,56 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63;.
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @return the number of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByParentAssetEntrySetId(long parentAssetEntrySetId)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByParentAssetEntrySetId(parentAssetEntrySetId);
+		}
+
+		StringBundler query = new StringBundler(2);
+
+		query.append(_FILTER_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_PARENTASSETENTRYSETID_PARENTASSETENTRYSETID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentAssetEntrySetId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	private static final String _FINDER_COLUMN_PARENTASSETENTRYSETID_PARENTASSETENTRYSETID_2 =
@@ -1044,6 +1419,341 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
+	 * Returns all the asset entry sets that the user has permission to view where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @return the matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByGtCT_PAESI(long createTime,
+		long parentAssetEntrySetId) throws SystemException {
+		return filterFindByGtCT_PAESI(createTime, parentAssetEntrySetId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets that the user has permission to view where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByGtCT_PAESI(long createTime,
+		long parentAssetEntrySetId, int start, int end)
+		throws SystemException {
+		return filterFindByGtCT_PAESI(createTime, parentAssetEntrySetId, start,
+			end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets that the user has permissions to view where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByGtCT_PAESI(long createTime,
+		long parentAssetEntrySetId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByGtCT_PAESI(createTime, parentAssetEntrySetId, start,
+				end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_GTCT_PAESI_CREATETIME_2);
+
+		query.append(_FINDER_COLUMN_GTCT_PAESI_PARENTASSETENTRYSETID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createTime);
+
+			qPos.add(parentAssetEntrySetId);
+
+			return (List<AssetEntrySet>)QueryUtil.list(q, getDialect(), start,
+				end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set of asset entry sets that the user has permission to view where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] filterFindByGtCT_PAESI_PrevAndNext(
+		long assetEntrySetId, long createTime, long parentAssetEntrySetId,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByGtCT_PAESI_PrevAndNext(assetEntrySetId, createTime,
+				parentAssetEntrySetId, orderByComparator);
+		}
+
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = filterGetByGtCT_PAESI_PrevAndNext(session,
+					assetEntrySet, createTime, parentAssetEntrySetId,
+					orderByComparator, true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = filterGetByGtCT_PAESI_PrevAndNext(session,
+					assetEntrySet, createTime, parentAssetEntrySetId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet filterGetByGtCT_PAESI_PrevAndNext(Session session,
+		AssetEntrySet assetEntrySet, long createTime,
+		long parentAssetEntrySetId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_GTCT_PAESI_CREATETIME_2);
+
+		query.append(_FINDER_COLUMN_GTCT_PAESI_PARENTASSETENTRYSETID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(createTime);
+
+		qPos.add(parentAssetEntrySetId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Removes all the asset entry sets where createTime &gt; &#63; and parentAssetEntrySetId = &#63; from the database.
 	 *
 	 * @param createTime the create time
@@ -1117,6 +1827,61 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of asset entry sets that the user has permission to view where createTime &gt; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @return the number of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByGtCT_PAESI(long createTime,
+		long parentAssetEntrySetId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByGtCT_PAESI(createTime, parentAssetEntrySetId);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_GTCT_PAESI_CREATETIME_2);
+
+		query.append(_FINDER_COLUMN_GTCT_PAESI_PARENTASSETENTRYSETID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createTime);
+
+			qPos.add(parentAssetEntrySetId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	private static final String _FINDER_COLUMN_GTCT_PAESI_CREATETIME_2 = "assetEntrySet.createTime > ? AND ";
@@ -1569,6 +2334,341 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
+	 * Returns all the asset entry sets that the user has permission to view where createTime &le; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @return the matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByLtCT_PAESI(long createTime,
+		long parentAssetEntrySetId) throws SystemException {
+		return filterFindByLtCT_PAESI(createTime, parentAssetEntrySetId,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets that the user has permission to view where createTime &le; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByLtCT_PAESI(long createTime,
+		long parentAssetEntrySetId, int start, int end)
+		throws SystemException {
+		return filterFindByLtCT_PAESI(createTime, parentAssetEntrySetId, start,
+			end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets that the user has permissions to view where createTime &le; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByLtCT_PAESI(long createTime,
+		long parentAssetEntrySetId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByLtCT_PAESI(createTime, parentAssetEntrySetId, start,
+				end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_LTCT_PAESI_CREATETIME_2);
+
+		query.append(_FINDER_COLUMN_LTCT_PAESI_PARENTASSETENTRYSETID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createTime);
+
+			qPos.add(parentAssetEntrySetId);
+
+			return (List<AssetEntrySet>)QueryUtil.list(q, getDialect(), start,
+				end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set of asset entry sets that the user has permission to view where createTime &le; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] filterFindByLtCT_PAESI_PrevAndNext(
+		long assetEntrySetId, long createTime, long parentAssetEntrySetId,
+		OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByLtCT_PAESI_PrevAndNext(assetEntrySetId, createTime,
+				parentAssetEntrySetId, orderByComparator);
+		}
+
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = filterGetByLtCT_PAESI_PrevAndNext(session,
+					assetEntrySet, createTime, parentAssetEntrySetId,
+					orderByComparator, true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = filterGetByLtCT_PAESI_PrevAndNext(session,
+					assetEntrySet, createTime, parentAssetEntrySetId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet filterGetByLtCT_PAESI_PrevAndNext(Session session,
+		AssetEntrySet assetEntrySet, long createTime,
+		long parentAssetEntrySetId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_LTCT_PAESI_CREATETIME_2);
+
+		query.append(_FINDER_COLUMN_LTCT_PAESI_PARENTASSETENTRYSETID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(createTime);
+
+		qPos.add(parentAssetEntrySetId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Removes all the asset entry sets where createTime &le; &#63; and parentAssetEntrySetId = &#63; from the database.
 	 *
 	 * @param createTime the create time
@@ -1642,6 +2742,61 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of asset entry sets that the user has permission to view where createTime &le; &#63; and parentAssetEntrySetId = &#63;.
+	 *
+	 * @param createTime the create time
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @return the number of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByLtCT_PAESI(long createTime,
+		long parentAssetEntrySetId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByLtCT_PAESI(createTime, parentAssetEntrySetId);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_LTCT_PAESI_CREATETIME_2);
+
+		query.append(_FINDER_COLUMN_LTCT_PAESI_PARENTASSETENTRYSETID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(createTime);
+
+			qPos.add(parentAssetEntrySetId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	private static final String _FINDER_COLUMN_LTCT_PAESI_CREATETIME_2 = "assetEntrySet.createTime <= ? AND ";
@@ -2111,6 +3266,342 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	}
 
 	/**
+	 * Returns all the asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63; and creatorClassNameId = &#63;.
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param creatorClassNameId the creator class name ID
+	 * @return the matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByPAESI_CCNI(
+		long parentAssetEntrySetId, long creatorClassNameId)
+		throws SystemException {
+		return filterFindByPAESI_CCNI(parentAssetEntrySetId,
+			creatorClassNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63; and creatorClassNameId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param creatorClassNameId the creator class name ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @return the range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByPAESI_CCNI(
+		long parentAssetEntrySetId, long creatorClassNameId, int start, int end)
+		throws SystemException {
+		return filterFindByPAESI_CCNI(parentAssetEntrySetId,
+			creatorClassNameId, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the asset entry sets that the user has permissions to view where parentAssetEntrySetId = &#63; and creatorClassNameId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.asset.entry.set.model.impl.AssetEntrySetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param creatorClassNameId the creator class name ID
+	 * @param start the lower bound of the range of asset entry sets
+	 * @param end the upper bound of the range of asset entry sets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<AssetEntrySet> filterFindByPAESI_CCNI(
+		long parentAssetEntrySetId, long creatorClassNameId, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByPAESI_CCNI(parentAssetEntrySetId, creatorClassNameId,
+				start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_PAESI_CCNI_PARENTASSETENTRYSETID_2);
+
+		query.append(_FINDER_COLUMN_PAESI_CCNI_CREATORCLASSNAMEID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentAssetEntrySetId);
+
+			qPos.add(creatorClassNameId);
+
+			return (List<AssetEntrySet>)QueryUtil.list(q, getDialect(), start,
+				end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the asset entry sets before and after the current asset entry set in the ordered set of asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63; and creatorClassNameId = &#63;.
+	 *
+	 * @param assetEntrySetId the primary key of the current asset entry set
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param creatorClassNameId the creator class name ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next asset entry set
+	 * @throws com.liferay.asset.entry.set.NoSuchAssetEntrySetException if a asset entry set with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public AssetEntrySet[] filterFindByPAESI_CCNI_PrevAndNext(
+		long assetEntrySetId, long parentAssetEntrySetId,
+		long creatorClassNameId, OrderByComparator orderByComparator)
+		throws NoSuchAssetEntrySetException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByPAESI_CCNI_PrevAndNext(assetEntrySetId,
+				parentAssetEntrySetId, creatorClassNameId, orderByComparator);
+		}
+
+		AssetEntrySet assetEntrySet = findByPrimaryKey(assetEntrySetId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			AssetEntrySet[] array = new AssetEntrySetImpl[3];
+
+			array[0] = filterGetByPAESI_CCNI_PrevAndNext(session,
+					assetEntrySet, parentAssetEntrySetId, creatorClassNameId,
+					orderByComparator, true);
+
+			array[1] = assetEntrySet;
+
+			array[2] = filterGetByPAESI_CCNI_PrevAndNext(session,
+					assetEntrySet, parentAssetEntrySetId, creatorClassNameId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected AssetEntrySet filterGetByPAESI_CCNI_PrevAndNext(Session session,
+		AssetEntrySet assetEntrySet, long parentAssetEntrySetId,
+		long creatorClassNameId, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_PAESI_CCNI_PARENTASSETENTRYSETID_2);
+
+		query.append(_FINDER_COLUMN_PAESI_CCNI_CREATORCLASSNAMEID_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(AssetEntrySetModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, AssetEntrySetImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, AssetEntrySetImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(parentAssetEntrySetId);
+
+		qPos.add(creatorClassNameId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(assetEntrySet);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<AssetEntrySet> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Removes all the asset entry sets where parentAssetEntrySetId = &#63; and creatorClassNameId = &#63; from the database.
 	 *
 	 * @param parentAssetEntrySetId the parent asset entry set ID
@@ -2186,6 +3677,61 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		}
 
 		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of asset entry sets that the user has permission to view where parentAssetEntrySetId = &#63; and creatorClassNameId = &#63;.
+	 *
+	 * @param parentAssetEntrySetId the parent asset entry set ID
+	 * @param creatorClassNameId the creator class name ID
+	 * @return the number of matching asset entry sets that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByPAESI_CCNI(long parentAssetEntrySetId,
+		long creatorClassNameId) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByPAESI_CCNI(parentAssetEntrySetId, creatorClassNameId);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_ASSETENTRYSET_WHERE);
+
+		query.append(_FINDER_COLUMN_PAESI_CCNI_PARENTASSETENTRYSETID_2);
+
+		query.append(_FINDER_COLUMN_PAESI_CCNI_CREATORCLASSNAMEID_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				AssetEntrySet.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentAssetEntrySetId);
+
+			qPos.add(creatorClassNameId);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	private static final String _FINDER_COLUMN_PAESI_CCNI_PARENTASSETENTRYSETID_2 =
@@ -3157,7 +4703,17 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	private static final String _SQL_SELECT_ASSETENTRYSET_WHERE = "SELECT assetEntrySet FROM AssetEntrySet assetEntrySet WHERE ";
 	private static final String _SQL_COUNT_ASSETENTRYSET = "SELECT COUNT(assetEntrySet) FROM AssetEntrySet assetEntrySet";
 	private static final String _SQL_COUNT_ASSETENTRYSET_WHERE = "SELECT COUNT(assetEntrySet) FROM AssetEntrySet assetEntrySet WHERE ";
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "assetEntrySet.assetEntrySetId";
+	private static final String _FILTER_SQL_SELECT_ASSETENTRYSET_WHERE = "SELECT DISTINCT {assetEntrySet.*} FROM AssetEntrySet assetEntrySet WHERE ";
+	private static final String _FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {AssetEntrySet.*} FROM (SELECT DISTINCT assetEntrySet.assetEntrySetId FROM AssetEntrySet assetEntrySet WHERE ";
+	private static final String _FILTER_SQL_SELECT_ASSETENTRYSET_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN AssetEntrySet ON TEMP_TABLE.assetEntrySetId = AssetEntrySet.assetEntrySetId";
+	private static final String _FILTER_SQL_COUNT_ASSETENTRYSET_WHERE = "SELECT COUNT(DISTINCT assetEntrySet.assetEntrySetId) AS COUNT_VALUE FROM AssetEntrySet assetEntrySet WHERE ";
+	private static final String _FILTER_ENTITY_ALIAS = "assetEntrySet";
+	private static final String _FILTER_ENTITY_TABLE = "AssetEntrySet";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "assetEntrySet.";
+	private static final String _ORDER_BY_ENTITY_TABLE = "AssetEntrySet.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No AssetEntrySet exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No AssetEntrySet exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
