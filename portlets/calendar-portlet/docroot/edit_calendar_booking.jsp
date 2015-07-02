@@ -167,6 +167,8 @@ for (long otherCalendarId : otherCalendarIds) {
 
 	<liferay-ui:error exception="<%= CalendarBookingDurationException.class %>" message="please-enter-a-start-date-that-comes-before-the-end-date" />
 
+	<liferay-ui:error exception="<%= CalendarBookingRecurrenceException.class %>" message="please-enter-a-start-date-that-comes-before-the-repeat-until-date" />
+
 	<liferay-ui:asset-categories-error />
 
 	<liferay-ui:asset-tags-error />

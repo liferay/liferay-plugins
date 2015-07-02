@@ -15,6 +15,7 @@
 package com.liferay.calendar.portlet;
 
 import com.liferay.calendar.CalendarBookingDurationException;
+import com.liferay.calendar.CalendarBookingRecurrenceException;
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.CalendarResourceCodeException;
 import com.liferay.calendar.CalendarResourceNameException;
@@ -853,6 +854,7 @@ public class CalendarPortlet extends MVCPortlet {
 	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof CalendarBookingDurationException ||
+			cause instanceof CalendarBookingRecurrenceException ||
 			cause instanceof CalendarNameException ||
 			cause instanceof CalendarResourceCodeException ||
 			cause instanceof CalendarResourceNameException ||
