@@ -15,7 +15,6 @@
 package com.liferay.asset.sharing.service.messaging;
 
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
-import com.liferay.asset.sharing.service.AssetSharingEntryServiceUtil;
 import com.liferay.asset.sharing.service.ClpSerializer;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -37,8 +36,6 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			AssetSharingEntryLocalServiceUtil.clearService();
-
-			AssetSharingEntryServiceUtil.clearService();
 		}
 	}
 }

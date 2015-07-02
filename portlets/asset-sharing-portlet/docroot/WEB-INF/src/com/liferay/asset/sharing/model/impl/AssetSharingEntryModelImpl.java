@@ -16,11 +16,9 @@ package com.liferay.asset.sharing.model.impl;
 
 import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.model.AssetSharingEntryModel;
-import com.liferay.asset.sharing.model.AssetSharingEntrySoap;
 import com.liferay.asset.sharing.service.persistence.AssetSharingEntryPK;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,9 +32,7 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,7 +48,6 @@ import java.util.Map;
  * @see com.liferay.asset.sharing.model.AssetSharingEntryModel
  * @generated
  */
-@JSON(strict = true)
 public class AssetSharingEntryModelImpl extends BaseModelImpl<AssetSharingEntry>
 	implements AssetSharingEntryModel {
 	/*
@@ -87,49 +82,6 @@ public class AssetSharingEntryModelImpl extends BaseModelImpl<AssetSharingEntry>
 	public static long CLASSPK_COLUMN_BITMASK = 2L;
 	public static long SHAREDTOCLASSNAMEID_COLUMN_BITMASK = 4L;
 	public static long SHAREDTOCLASSPK_COLUMN_BITMASK = 8L;
-
-	/**
-	 * Converts the soap model instance into a normal model instance.
-	 *
-	 * @param soapModel the soap model instance to convert
-	 * @return the normal model instance
-	 */
-	public static AssetSharingEntry toModel(AssetSharingEntrySoap soapModel) {
-		if (soapModel == null) {
-			return null;
-		}
-
-		AssetSharingEntry model = new AssetSharingEntryImpl();
-
-		model.setClassNameId(soapModel.getClassNameId());
-		model.setClassPK(soapModel.getClassPK());
-		model.setSharedToClassNameId(soapModel.getSharedToClassNameId());
-		model.setSharedToClassPK(soapModel.getSharedToClassPK());
-
-		return model;
-	}
-
-	/**
-	 * Converts the soap model instances into normal model instances.
-	 *
-	 * @param soapModels the soap model instances to convert
-	 * @return the normal model instances
-	 */
-	public static List<AssetSharingEntry> toModels(
-		AssetSharingEntrySoap[] soapModels) {
-		if (soapModels == null) {
-			return null;
-		}
-
-		List<AssetSharingEntry> models = new ArrayList<AssetSharingEntry>(soapModels.length);
-
-		for (AssetSharingEntrySoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.asset.sharing.model.AssetSharingEntry"));
 
@@ -230,7 +182,6 @@ public class AssetSharingEntryModelImpl extends BaseModelImpl<AssetSharingEntry>
 		setClassNameId(classNameId);
 	}
 
-	@JSON
 	@Override
 	public long getClassNameId() {
 		return _classNameId;
@@ -253,7 +204,6 @@ public class AssetSharingEntryModelImpl extends BaseModelImpl<AssetSharingEntry>
 		return _originalClassNameId;
 	}
 
-	@JSON
 	@Override
 	public long getClassPK() {
 		return _classPK;
@@ -276,7 +226,6 @@ public class AssetSharingEntryModelImpl extends BaseModelImpl<AssetSharingEntry>
 		return _originalClassPK;
 	}
 
-	@JSON
 	@Override
 	public long getSharedToClassNameId() {
 		return _sharedToClassNameId;
@@ -299,7 +248,6 @@ public class AssetSharingEntryModelImpl extends BaseModelImpl<AssetSharingEntry>
 		return _originalSharedToClassNameId;
 	}
 
-	@JSON
 	@Override
 	public long getSharedToClassPK() {
 		return _sharedToClassPK;

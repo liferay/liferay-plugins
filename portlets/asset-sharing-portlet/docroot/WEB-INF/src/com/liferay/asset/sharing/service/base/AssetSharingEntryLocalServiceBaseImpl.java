@@ -305,25 +305,6 @@ public abstract class AssetSharingEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the asset sharing entry remote service.
-	 *
-	 * @return the asset sharing entry remote service
-	 */
-	public com.liferay.asset.sharing.service.AssetSharingEntryService getAssetSharingEntryService() {
-		return assetSharingEntryService;
-	}
-
-	/**
-	 * Sets the asset sharing entry remote service.
-	 *
-	 * @param assetSharingEntryService the asset sharing entry remote service
-	 */
-	public void setAssetSharingEntryService(
-		com.liferay.asset.sharing.service.AssetSharingEntryService assetSharingEntryService) {
-		this.assetSharingEntryService = assetSharingEntryService;
-	}
-
-	/**
 	 * Returns the asset sharing entry persistence.
 	 *
 	 * @return the asset sharing entry persistence
@@ -577,8 +558,6 @@ public abstract class AssetSharingEntryLocalServiceBaseImpl
 
 	@BeanReference(type = com.liferay.asset.sharing.service.AssetSharingEntryLocalService.class)
 	protected com.liferay.asset.sharing.service.AssetSharingEntryLocalService assetSharingEntryLocalService;
-	@BeanReference(type = com.liferay.asset.sharing.service.AssetSharingEntryService.class)
-	protected com.liferay.asset.sharing.service.AssetSharingEntryService assetSharingEntryService;
 	@BeanReference(type = AssetSharingEntryPersistence.class)
 	protected AssetSharingEntryPersistence assetSharingEntryPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
