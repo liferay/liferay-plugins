@@ -410,7 +410,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			"workflowContext");
 
 		dynamicQuery.add(
-			workflowContextProperty.like("%\"userId\":" + userId + "%"));
+			workflowContextProperty.like("%\"userId\":\"" + userId + "\"%"));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
@@ -432,7 +432,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			"workflowContext");
 
 		dynamicQuery.add(
-			workflowContextProperty.like("%\"userId\":" + userId + "%"));
+			workflowContextProperty.like("%\"userId\":\"" + userId + "\"%"));
 
 		addCompletedCriterion(dynamicQuery, completed);
 
