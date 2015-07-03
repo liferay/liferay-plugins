@@ -2,8 +2,6 @@
 <!DOCTYPE project>
 
 <project name="build-common-node" xmlns:antelope="antlib:ise.antelope.tasks">
-	<property name="transpile-file-pattern" value="*.es.js" />
-
 	<macrodef name="download-node">
 		<sequential>
 			<if>
@@ -197,7 +195,7 @@ ${nodejs.url[osx64]}.
 
 			<copy todir="@{module.dir}/tmp/transpile">
 				<fileset dir="@{module.dir}/src" id="transpile.fileset">
-					<include name="**/${transpile-file-pattern}" />
+					<include name="**/${transpile.file.pattern}" />
 				</fileset>
 			</copy>
 
