@@ -1984,7 +1984,7 @@ Please find a solution that does not require portal-impl.jar.
 											<available file="@{module.dir}/bower.json" />
 											<available file="@{module.dir}/src/META-INF/resources" />
 											<resourcecount count="0" when="gt">
-												<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.es.js,*.es.js" />
+												<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/${transpile-file-pattern},${transpile-file-pattern}" />
 											</resourcecount>
 										</and>
 										<then>
