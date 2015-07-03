@@ -64,9 +64,9 @@
 
 					<br /><br />
 
-					<liferay-util:include
-						page="<%= assetRenderer.render(renderRequest, renderResponse, AssetRenderer.TEMPLATE_FULL_CONTENT) %>"
-						portletId="<%= assetRendererFactory.getPortletId() %>"
+					<liferay-ui:asset-display
+						assetRenderer="<%= assetRenderer %>"
+						template="<%= AssetRenderer.TEMPLATE_FULL_CONTENT %>"
 					/>
 
 					<div class="separator"><!-- --></div>
