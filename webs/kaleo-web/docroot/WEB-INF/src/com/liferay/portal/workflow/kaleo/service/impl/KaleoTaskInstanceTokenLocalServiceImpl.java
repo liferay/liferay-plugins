@@ -394,10 +394,10 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 	@Override
 	public List<KaleoTaskInstanceToken>
-			getSubmittingUserKaleoTaskInstanceTokens(
-				long userId, Boolean completed, int start, int end,
-				OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
-				ServiceContext serviceContext) {
+		getSubmittingUserKaleoTaskInstanceTokens(
+			long userId, Boolean completed, int start, int end,
+			OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
+			ServiceContext serviceContext) {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			KaleoTaskInstanceToken.class, getClassLoader());
