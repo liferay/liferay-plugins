@@ -520,6 +520,7 @@ Error-Prone was automatically installed. Please rerun your task.
 				</then>
 			</if>
 
+			<delete dir="@{module.dir}/.js-cache" />
 			<delete dir="@{module.dir}/coverage-reports" />
 			<delete dir="@{module.dir}/javadoc" />
 			<delete dir="@{module.dir}/pmd-reports" />
@@ -2058,8 +2059,6 @@ Please find a solution that does not require portal-impl.jar.
 										bndRootFile="${sdk.dir}/common.bnd"
 										newJarFile="${plugin.file}"
 									/>
-
-									<delete dir="@{module.dir}/.js-cache" failonerror="false" />
 
 									<if>
 										<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />

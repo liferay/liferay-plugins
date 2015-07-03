@@ -183,6 +183,8 @@ ${nodejs.url[osx64]}.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<delete dir="@{module.dir}/.js-cache" failonerror="false" />
+
 			<mkdir dir="@{module.dir}/.js-cache" />
 
 			<copy
