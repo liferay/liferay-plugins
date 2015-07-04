@@ -2292,6 +2292,19 @@ public class KaleoNotificationRecipientPersistenceImpl
 		return count.intValue();
 	}
 
+	@Override
+	protected int getColumnType(String columnName) {
+		Integer type = KaleoNotificationRecipientModelImpl.TABLE_COLUMNS_MAP.get(columnName);
+
+		if (type == null) {
+			throw new IllegalArgumentException("Unknown column name " +
+				columnName + " for table " +
+				KaleoNotificationRecipientModelImpl.TABLE_NAME);
+		}
+
+		return type;
+	}
+
 	/**
 	 * Initializes the kaleo notification recipient persistence.
 	 */

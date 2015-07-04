@@ -82,6 +82,28 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 			{ "address", Types.VARCHAR },
 			{ "notificationReceptionType", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("kaleoNotificationRecipientId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("kaleoDefinitionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("kaleoNotificationId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("recipientClassName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("recipientClassPK", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("recipientRoleType", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("recipientScript", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("recipientScriptLanguage", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("recipientScriptRequiredContexts", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("address", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("notificationReceptionType", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table KaleoNotificationRecipient (kaleoNotificationRecipientId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNotificationId LONG,recipientClassName VARCHAR(200) null,recipientClassPK LONG,recipientRoleType INTEGER,recipientScript TEXT null,recipientScriptLanguage VARCHAR(75) null,recipientScriptRequiredContexts STRING null,address VARCHAR(255) null,notificationReceptionType VARCHAR(3) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoNotificationRecipient";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotificationRecipient.kaleoNotificationRecipientId ASC";

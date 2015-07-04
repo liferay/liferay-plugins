@@ -95,6 +95,41 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			{ "duration", Types.BIGINT },
 			{ "workflowContext", Types.CLOB }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("kaleoLogId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("kaleoClassName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("kaleoClassPK", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("kaleoDefinitionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("kaleoInstanceId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("kaleoInstanceTokenId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("kaleoTaskInstanceTokenId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("kaleoNodeName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("terminalKaleoNode", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("kaleoActionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("kaleoActionName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("kaleoActionDescription", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("previousKaleoNodeId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("previousKaleoNodeName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("previousAssigneeClassName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("previousAssigneeClassPK", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("currentAssigneeClassName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("currentAssigneeClassPK", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("type_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("comment_", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("startDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("endDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("duration", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("workflowContext", Types.CLOB);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table KaleoLog (kaleoLogId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription STRING null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment_ TEXT null,startDate DATE null,endDate DATE null,duration LONG,workflowContext TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoLog";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoLog.kaleoLogId ASC";

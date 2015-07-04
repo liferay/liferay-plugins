@@ -35,7 +35,7 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="executionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="scriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="scriptRequiredContexts" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
@@ -52,7 +52,7 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="kaleoDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="kaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="scriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="scriptRequiredContexts" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
@@ -69,7 +69,7 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
 		<property name="startKaleoNodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -92,7 +92,7 @@
 		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="completionDate" type="org.hibernate.type.TimestampType" />
-		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl" table="KaleoInstanceToken">
 		<id name="kaleoInstanceTokenId" type="long">
@@ -142,11 +142,11 @@
 		<property name="currentAssigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="currentAssigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
-		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringType" column="comment_" />
+		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringClobType" column="comment_" />
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="duration" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl" table="KaleoNode">
 		<id name="kaleoNodeId" type="long">
@@ -183,7 +183,7 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="executionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="template" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="template" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="templateLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="notificationTypes" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
@@ -202,7 +202,7 @@
 		<property name="recipientClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="recipientClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="recipientRoleType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="recipientScript" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="recipientScript" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="recipientScriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="recipientScriptRequiredContexts" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -240,7 +240,7 @@
 		<property name="assigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="assigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="assigneeActionId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="assigneeScript" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeScript" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="assigneeScriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="assigneeScriptRequiredContexts" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
@@ -286,7 +286,7 @@
 		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="completionDate" type="org.hibernate.type.TimestampType" />
 		<property name="dueDate" type="org.hibernate.type.TimestampType" />
-		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerImpl" table="KaleoTimer">
 		<id name="kaleoTimerId" type="long">
@@ -331,7 +331,7 @@
 		<property name="completionUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="completed" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="completionDate" type="org.hibernate.type.TimestampType" />
-		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowContext" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl" table="KaleoTransition">
 		<id name="kaleoTransitionId" type="long">
