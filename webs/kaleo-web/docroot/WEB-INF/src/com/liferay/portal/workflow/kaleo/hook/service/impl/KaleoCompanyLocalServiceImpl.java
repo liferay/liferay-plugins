@@ -33,10 +33,10 @@ public class KaleoCompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 	}
 
 	@Override
-	public Company checkCompany(String webId, String mx)
+	public Company checkCompany(String webId, String mx, String shardName)
 		throws PortalException {
 
-		Company company = super.checkCompany(webId, mx);
+		Company company = super.checkCompany(webId, mx, shardName);
 
 		try {
 			PortalKaleoManagerUtil.deployKaleoDefaults(company.getCompanyId());
