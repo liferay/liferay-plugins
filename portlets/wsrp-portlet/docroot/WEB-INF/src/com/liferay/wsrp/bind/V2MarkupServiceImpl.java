@@ -547,8 +547,7 @@ public class V2MarkupServiceImpl
 		String portletId = getPortletId(portletContext);
 
 		if (!layoutTypePortlet.hasPortletId(portletId)) {
-			layoutTypePortlet.addPortletId(
-				0, portletId, "column-1", -1, false);
+			layoutTypePortlet.addPortletId(0, portletId, "column-1", -1, false);
 
 			LayoutLocalServiceUtil.updateLayout(
 				layout.getGroupId(), layout.isPrivateLayout(),
