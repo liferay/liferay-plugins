@@ -33,10 +33,10 @@ public class LocalizationCompanyLocalServiceImpl
 	}
 
 	@Override
-	public Company checkCompany(String webId, String mx, String shardName)
+	public Company checkCompany(String webId, String mx)
 		throws PortalException {
 
-		Company company = super.checkCompany(webId, mx, shardName);
+		Company company = super.checkCompany(webId, mx);
 
 		InstanceUtil.initInstance(company.getCompanyId());
 
