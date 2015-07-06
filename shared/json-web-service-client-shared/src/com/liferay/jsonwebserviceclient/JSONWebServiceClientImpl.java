@@ -223,6 +223,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			Map<String, String> headers)
 		throws JSONWebServiceTransportException {
 
+		if (!isNull(_contextPath)) {
+			url = _contextPath + url;
+		}
+
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
@@ -262,6 +266,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			String url, Map<String, String> parameters,
 			Map<String, String> headers)
 		throws JSONWebServiceTransportException {
+
+		if (!isNull(_contextPath)) {
+			url = _contextPath + url;
+		}
 
 		if (_logger.isDebugEnabled()) {
 			_logger.debug(
@@ -383,6 +391,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		destroy();
 
 		afterPropertiesSet();
+	}
+
+	public void setContextPath(String contextPath) {
+		_contextPath = contextPath;
 	}
 
 	public void setHeaders(Map<String, String> headers) {
@@ -609,6 +621,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		JSONWebServiceClientImpl.class);
 
 	private CloseableHttpClient _closeableHttpClient;
+	private String _contextPath;
 	private Map<String, String> _headers = Collections.emptyMap();
 	private String _hostName;
 	private int _hostPort = 80;
