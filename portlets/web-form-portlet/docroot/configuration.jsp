@@ -135,7 +135,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<aui:input name="updateFields" type="hidden" value="<%= !fieldsEditingDisabled %>" />
 
 				<%
-				String formFieldsIndexesParam = ParamUtil.getString(renderRequest, "formFieldsIndexes") ;
+				String formFieldsIndexesParam = ParamUtil.getString(renderRequest, "formFieldsIndexes");
 
 				int[] formFieldsIndexes = null;
 

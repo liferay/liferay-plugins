@@ -37,7 +37,8 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Jorge Ferrer
@@ -48,8 +49,8 @@ import javax.portlet.RenderRequest;
 public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 	@Override
-	public String getJspPath(RenderRequest renderRequest) {
-		String cmd = ParamUtil.getString(renderRequest, Constants.CMD);
+	public String getJspPath(HttpServletRequest request) {
+		String cmd = ParamUtil.getString(request, Constants.CMD);
 
 		if (cmd.equals(Constants.ADD)) {
 			return "/edit_field.jsp";
