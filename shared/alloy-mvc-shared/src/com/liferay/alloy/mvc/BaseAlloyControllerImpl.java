@@ -625,7 +625,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		PortletBag portletBag = PortletBagPool.get(portlet.getPortletId());
 
-		List<Indexer> indexerInstances = portletBag.getIndexerInstances();
+		List<Indexer<?>> indexerInstances = portletBag.getIndexerInstances();
 
 		if (existingIndexer != null) {
 			IndexerRegistryUtil.unregister(existingIndexer);
