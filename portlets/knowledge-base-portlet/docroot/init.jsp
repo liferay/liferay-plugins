@@ -111,7 +111,6 @@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.model.Ticket" %><%@
 page import="com.liferay.portal.model.TicketConstants" %><%@
 page import="com.liferay.portal.model.User" %><%@
-page import="com.liferay.portal.security.auth.PrincipalException" %><%@
 page import="com.liferay.portal.service.ClassNameLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.ServiceContext" %><%@
 page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %><%@

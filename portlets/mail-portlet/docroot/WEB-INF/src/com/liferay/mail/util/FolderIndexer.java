@@ -59,10 +59,9 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 	protected void doDelete(Folder folder) throws Exception {
 		SearchContext searchContext = new SearchContext();
 
-		searchContext.setSearchEngineId(getSearchEngineId());
-
 		searchContext.setCompanyId(folder.getCompanyId());
 		searchContext.setEnd(QueryUtil.ALL_POS);
+		searchContext.setSearchEngineId(getSearchEngineId());
 		searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
 		searchContext.setStart(QueryUtil.ALL_POS);
 

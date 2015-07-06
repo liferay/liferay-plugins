@@ -239,6 +239,7 @@ public class KBArticleIndexer extends BaseIndexer<KBArticle> {
 		actionableDynamicQuery.performActions();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(KBArticleIndexer.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		KBArticleIndexer.class);
 
 }

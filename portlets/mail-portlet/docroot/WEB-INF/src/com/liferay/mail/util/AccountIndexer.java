@@ -59,10 +59,9 @@ public class AccountIndexer extends BaseIndexer<Account> {
 	protected void doDelete(Account account) throws Exception {
 		SearchContext searchContext = new SearchContext();
 
-		searchContext.setSearchEngineId(getSearchEngineId());
-
 		searchContext.setCompanyId(account.getCompanyId());
 		searchContext.setEnd(QueryUtil.ALL_POS);
+		searchContext.setSearchEngineId(getSearchEngineId());
 		searchContext.setSorts(SortFactoryUtil.getDefaultSorts());
 		searchContext.setStart(QueryUtil.ALL_POS);
 
