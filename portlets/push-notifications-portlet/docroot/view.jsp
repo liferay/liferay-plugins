@@ -35,7 +35,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 %>
 
-<liferay-ui:success key="deviceDeleted" message="the-device-was-deleted-successfully" />
+<liferay-ui:success key="pushNotificationsDeviceDeleted" message="the-device-was-deleted-successfully" />
 
 <liferay-portlet:actionURL name="updatePortletPreferences" var="updatePortletPreferencesURL" />
 
