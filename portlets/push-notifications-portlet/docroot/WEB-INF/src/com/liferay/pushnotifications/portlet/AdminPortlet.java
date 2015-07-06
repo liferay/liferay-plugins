@@ -43,7 +43,8 @@ public class AdminPortlet extends MVCPortlet {
 			PushNotificationsDeviceLocalServiceUtil.
 				deletePushNotificationsDevice(pushNotificationsDeviceId);
 
-			SessionMessages.add(actionRequest, "deviceDeleted");
+			SessionMessages.add(
+				actionRequest, "pushNotificationsDeviceDeleted");
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(actionRequest, pe.getClass());
