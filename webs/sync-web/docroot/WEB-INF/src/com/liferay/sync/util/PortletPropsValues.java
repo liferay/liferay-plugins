@@ -70,6 +70,9 @@ public class PortletPropsValues {
 	public static final boolean SYNC_OAUTH_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SYNC_OAUTH_ENABLED));
 
+	public static final int SYNC_PAGINATION_DELTA = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.SYNC_PAGINATION_DELTA));
+
 	public static final boolean SYNC_SERVICES_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SYNC_SERVICES_ENABLED));
 

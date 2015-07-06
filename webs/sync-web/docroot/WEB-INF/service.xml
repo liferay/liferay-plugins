@@ -99,6 +99,23 @@
 			<finder-column name="modifiedTime" comparator="&gt;" />
 			<finder-column name="repositoryId" />
 		</finder>
+		<finder name="C_R_T" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="repositoryId" />
+			<finder-column name="type" />
+		</finder>
+		<finder name="C_M_R_P" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="modifiedTime" comparator="&gt;" />
+			<finder-column name="repositoryId" />
+			<finder-column name="parentFolderId" />
+		</finder>
+		<finder name="C_M_R_NotE" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="modifiedTime" comparator="&gt;" />
+			<finder-column name="repositoryId" />
+			<finder-column name="event" comparator="!=" />
+		</finder>
 
 		<!-- References -->
 

@@ -41,4 +41,6 @@ public class PortletPropsKeys
 	public static final String SYNC_MAC_PACKAGE_METADATA_FILE_NAMES =
 		"sync.mac.package.metadata.file.names";
 
+	public static final String SYNC_PAGINATION_DELTA = "sync.pagination.delta";
+
 }
