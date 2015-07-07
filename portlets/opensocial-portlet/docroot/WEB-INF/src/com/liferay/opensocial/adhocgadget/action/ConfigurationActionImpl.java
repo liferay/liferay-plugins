@@ -37,8 +37,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shindig.gadgets.spec.OAuthService;
 
-import org.scribe.oauth.OAuthService;
-
 /**
  * @author Michael Young
  * @author Dennis Ju
