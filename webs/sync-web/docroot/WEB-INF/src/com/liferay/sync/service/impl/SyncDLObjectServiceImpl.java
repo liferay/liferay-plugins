@@ -595,15 +595,17 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					PortletPropsValues.SYNC_PAGINATION_DELTA,
 					new SyncDLObjectTypeComparator());
 
-			syncDLObjects = checkSyncDLObjects(syncDLObjects);
-
-			for (SyncDLObject syncDLObject : syncDLObjects) {
-				if (syncDLObject.getModifiedTime() > lastAccessTime) {
-					lastAccessTime = syncDLObject.getModifiedTime();
-				}
+			if (syncDLObjects.isEmpty()) {
+				return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
 			}
 
-			return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
+			SyncDLObject syncDLObject = syncDLObjects.get(
+				syncDLObjects.size() - 1);
+
+			syncDLObjects = checkSyncDLObjects(syncDLObjects);
+
+			return new SyncDLObjectUpdate(
+				syncDLObjects, syncDLObject.getModifiedTime());
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
