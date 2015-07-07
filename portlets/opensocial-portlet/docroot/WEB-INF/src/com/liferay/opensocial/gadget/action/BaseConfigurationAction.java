@@ -60,15 +60,15 @@ public abstract class BaseConfigurationAction
 			ActionResponse actionResponse)
 		throws Exception {
 
+		HttpServletRequest request =
+			PortalUtil.getHttpServletRequest(actionRequest);
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		Layout layout = themeDisplay.getLayout();
 
 		JSONObject userPrefsJSONObject = JSONFactoryUtil.createJSONObject();
-
-		HttpServletRequest request =
-			PortalUtil.getHttpServletRequest(actionRequest);
 
 		Map<String, UserPref> userPrefs = getUserPrefs(
 			portletConfig, request);
