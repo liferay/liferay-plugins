@@ -16,6 +16,7 @@ package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.model.impl.CalendarResourceImpl;
+import com.liferay.calendar.model.impl.CalendarResourceModelImpl;
 import com.liferay.calendar.service.persistence.CalendarResourceFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -35,6 +36,7 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Eduardo Lundgren
@@ -442,6 +444,11 @@ public class CalendarResourceFinderImpl
 		sb.append(") AND");
 
 		return sb.toString();
+	}
+
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return CalendarResourceModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 }

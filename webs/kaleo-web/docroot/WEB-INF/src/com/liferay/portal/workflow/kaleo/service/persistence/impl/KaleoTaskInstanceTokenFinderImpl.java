@@ -40,6 +40,7 @@ import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenUtil;
@@ -52,6 +53,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Michael C. Han
@@ -607,6 +609,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 		sb.append("AND (KaleoTaskAssignmentInstance.assigneeClassPK = ?))");
 
 		return sb.toString();
+	}
+
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KaleoTaskInstanceTokenModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	protected String getTaskName(

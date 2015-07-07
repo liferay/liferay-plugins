@@ -16,6 +16,7 @@ package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.impl.CalendarBookingImpl;
+import com.liferay.calendar.model.impl.CalendarBookingModelImpl;
 import com.liferay.calendar.service.persistence.CalendarBookingFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -35,6 +36,7 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Eduardo Lundgren
@@ -632,6 +634,11 @@ public class CalendarBookingFinderImpl
 		sb.append(") ");
 
 		return sb.toString();
+	}
+
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return CalendarBookingModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 }
