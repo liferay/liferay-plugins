@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -53,7 +54,7 @@ public class AdminPortlet extends MVCPortlet {
 		sendRedirect(actionRequest, actionResponse);
 	}
 
-	public void updatePortletPreferences(
+	public void updateAndroidPreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -70,6 +71,24 @@ public class AdminPortlet extends MVCPortlet {
 
 		portletPreferences.setValue(
 			PortletPropsKeys.ANDROID_RETRIES, String.valueOf(androidRetries));
+
+		portletPreferences.store();
+
+		PushNotificationsDeviceLocalServiceUtil.resetPushNotificationSenders();
+
+		SessionMessages.add(
+			actionRequest,
+			PortalUtil.getPortletId(actionRequest) +
+				SessionMessages.KEY_SUFFIX_UPDATED_PREFERENCES);
+
+		sendRedirect(actionRequest, actionResponse);
+	}
+
+	public void updateApplePreferences(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences();
 
 		String appleCertificatePassword = ParamUtil.getString(
 			actionRequest, "appleCertificatePassword");
@@ -93,6 +112,13 @@ public class AdminPortlet extends MVCPortlet {
 		portletPreferences.store();
 
 		PushNotificationsDeviceLocalServiceUtil.resetPushNotificationSenders();
+
+		SessionMessages.add(
+			actionRequest,
+			PortalUtil.getPortletId(actionRequest) +
+				SessionMessages.KEY_SUFFIX_UPDATED_PREFERENCES);
+
+		sendRedirect(actionRequest, actionResponse);
 	}
 
 }
