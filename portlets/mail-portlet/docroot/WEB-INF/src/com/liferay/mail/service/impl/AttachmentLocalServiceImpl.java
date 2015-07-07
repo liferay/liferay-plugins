@@ -27,8 +27,6 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
-import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
-import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 import java.io.File;
@@ -116,20 +114,8 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		String filePath = getFilePath(
 			attachment.getMessageId(), attachment.getFileName());
 
-		try {
-			DLStoreUtil.deleteFile(
-				attachment.getCompanyId(), _REPOSITORY_ID, filePath);
-		}
-		catch (NoSuchDirectoryException nsde) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(nsde, nsde);
-			}
-		}
-		catch (NoSuchFileException nsfe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(nsfe, nsfe);
-			}
-		}
+		DLStoreUtil.deleteFile(
+			attachment.getCompanyId(), _REPOSITORY_ID, filePath);
 
 		return attachment;
 	}
@@ -150,15 +136,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 
 		String directoryPath = getDirectoryPath(messageId);
 
-		try {
-			DLStoreUtil.deleteDirectory(
-				companyId, _REPOSITORY_ID, directoryPath);
-		}
-		catch (NoSuchDirectoryException nsde) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(nsde.getMessage());
-			}
-		}
+		DLStoreUtil.deleteDirectory(companyId, _REPOSITORY_ID, directoryPath);
 	}
 
 	public List<Attachment> getAttachments(long messageId) {

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
@@ -38,13 +37,8 @@ public class UpgradeKBAttachments extends BaseUpgradeAttachments {
 
 	protected void deleteEmptyDirectories() throws Exception {
 		for (long companyId : PortalUtil.getCompanyIds()) {
-			try {
-				DLStoreUtil.deleteDirectory(
-					companyId, CompanyConstants.SYSTEM,
-					"knowledgebase/kbarticles");
-			}
-			catch (NoSuchDirectoryException nsde) {
-			}
+			DLStoreUtil.deleteDirectory(
+				companyId, CompanyConstants.SYSTEM, "knowledgebase/kbarticles");
 		}
 	}
 
