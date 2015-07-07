@@ -1202,6 +1202,11 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return BarModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the bar persistence.
 	 */

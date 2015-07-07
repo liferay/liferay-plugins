@@ -68,6 +68,14 @@ public class TestBlobEntryModelImpl extends BaseModelImpl<TestBlobEntry>
 			{ "testBlobEntryId", Types.BIGINT },
 			{ "blobField", Types.BLOB }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("testBlobEntryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("blobField", Types.BLOB);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table TestBlob_TestBlobEntry (uuid_ VARCHAR(75) null,testBlobEntryId LONG not null primary key,blobField BLOB)";
 	public static final String TABLE_SQL_DROP = "drop table TestBlob_TestBlobEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY testBlobEntry.testBlobEntryId ASC";

@@ -78,6 +78,22 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 			{ "endDate", Types.TIMESTAMP },
 			{ "data_", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("projectsEntryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("startDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("endDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("data_", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table SO_ProjectsEntry (projectsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,data_ VARCHAR(1000) null)";
 	public static final String TABLE_SQL_DROP = "drop table SO_ProjectsEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY projectsEntry.endDate ASC";

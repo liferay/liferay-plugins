@@ -69,6 +69,15 @@ public class FavoriteSiteModelImpl extends BaseModelImpl<FavoriteSite>
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("favoriteSiteId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table SO_FavoriteSite (favoriteSiteId LONG not null primary key,groupId LONG,companyId LONG,userId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table SO_FavoriteSite";
 	public static final String ORDER_BY_JPQL = " ORDER BY favoriteSite.favoriteSiteId ASC";

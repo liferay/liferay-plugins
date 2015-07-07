@@ -27,7 +27,7 @@
 		<property name="gadgetKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="serviceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="keyType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.opensocial.model.impl.OAuthTokenImpl" table="OpenSocial_OAuthToken">

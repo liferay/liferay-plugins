@@ -72,6 +72,19 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 			{ "actionbody", Types.VARCHAR },
 			{ "actionlevel", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("author", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("created", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("updated", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("issueid", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("actiontype", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("actionbody", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("actionlevel", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table jiraaction (id LONG not null primary key,author VARCHAR(75) null,created DATE null,updated DATE null,issueid LONG,actiontype VARCHAR(75) null,actionbody VARCHAR(75) null,actionlevel VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraaction";
 	public static final String ORDER_BY_JPQL = " ORDER BY jiraAction.modifiedDate DESC";

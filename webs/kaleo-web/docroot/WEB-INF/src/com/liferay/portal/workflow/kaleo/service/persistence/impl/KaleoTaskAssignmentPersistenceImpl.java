@@ -3041,16 +3041,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = KaleoTaskAssignmentModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " +
-				KaleoTaskAssignmentModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KaleoTaskAssignmentModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

@@ -63,6 +63,13 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 			{ "barId", Types.BIGINT },
 			{ "text_", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("barId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("text_", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table TestTransaction_Bar (barId LONG not null primary key,text_ VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table TestTransaction_Bar";
 	public static final String ORDER_BY_JPQL = " ORDER BY bar.text ASC";

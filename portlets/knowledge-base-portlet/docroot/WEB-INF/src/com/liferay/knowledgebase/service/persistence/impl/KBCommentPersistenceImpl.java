@@ -5692,6 +5692,11 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KBCommentModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the k b comment persistence.
 	 */

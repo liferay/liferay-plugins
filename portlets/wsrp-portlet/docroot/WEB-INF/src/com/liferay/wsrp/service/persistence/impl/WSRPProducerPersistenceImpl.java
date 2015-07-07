@@ -2662,6 +2662,11 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return WSRPProducerModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the w s r p producer persistence.
 	 */

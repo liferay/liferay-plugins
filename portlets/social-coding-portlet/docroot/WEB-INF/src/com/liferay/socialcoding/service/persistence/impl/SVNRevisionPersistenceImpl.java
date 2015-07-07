@@ -2320,6 +2320,11 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return SVNRevisionModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the s v n revision persistence.
 	 */

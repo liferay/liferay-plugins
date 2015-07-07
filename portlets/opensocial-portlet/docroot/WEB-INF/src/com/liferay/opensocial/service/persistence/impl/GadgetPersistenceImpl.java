@@ -3806,6 +3806,11 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return GadgetModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the gadget persistence.
 	 */

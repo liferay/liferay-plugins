@@ -2349,6 +2349,11 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return WSRPConsumerModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the w s r p consumer persistence.
 	 */

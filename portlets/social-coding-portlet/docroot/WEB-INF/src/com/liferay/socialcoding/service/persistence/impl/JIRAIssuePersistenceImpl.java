@@ -6661,6 +6661,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return JIRAIssueModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the j i r a issue persistence.
 	 */

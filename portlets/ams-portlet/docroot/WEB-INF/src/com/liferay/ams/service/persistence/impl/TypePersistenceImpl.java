@@ -665,6 +665,11 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return TypeModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the type persistence.
 	 */

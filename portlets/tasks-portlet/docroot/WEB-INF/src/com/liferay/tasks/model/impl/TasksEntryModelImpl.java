@@ -86,6 +86,25 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 			{ "finishDate", Types.TIMESTAMP },
 			{ "status", Types.INTEGER }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("tasksEntryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("priority", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("assigneeUserId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("resolverUserId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("dueDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("finishDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table TMS_TasksEntry (tasksEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,priority INTEGER,assigneeUserId LONG,resolverUserId LONG,dueDate DATE null,finishDate DATE null,status INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table TMS_TasksEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY tasksEntry.priority ASC, tasksEntry.dueDate ASC, tasksEntry.createDate ASC";

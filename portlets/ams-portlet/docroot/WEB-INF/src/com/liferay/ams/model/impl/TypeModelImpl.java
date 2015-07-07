@@ -64,6 +64,14 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 			{ "groupId", Types.BIGINT },
 			{ "name", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("typeId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table AMS_Type (typeId LONG not null primary key,groupId LONG,name VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Type";
 	public static final String ORDER_BY_JPQL = " ORDER BY type.name ASC";

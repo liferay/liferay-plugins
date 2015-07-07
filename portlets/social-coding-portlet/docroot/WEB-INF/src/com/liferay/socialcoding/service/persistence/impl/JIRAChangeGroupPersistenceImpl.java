@@ -1744,6 +1744,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return JIRAChangeGroupModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the j i r a change group persistence.
 	 */

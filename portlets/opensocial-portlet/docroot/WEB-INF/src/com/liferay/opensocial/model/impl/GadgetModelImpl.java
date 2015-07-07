@@ -78,6 +78,19 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			{ "url", Types.VARCHAR },
 			{ "portletCategoryNames", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("gadgetId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("url", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("portletCategoryNames", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,portletCategoryNames STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";
 	public static final String ORDER_BY_JPQL = " ORDER BY gadget.name ASC";

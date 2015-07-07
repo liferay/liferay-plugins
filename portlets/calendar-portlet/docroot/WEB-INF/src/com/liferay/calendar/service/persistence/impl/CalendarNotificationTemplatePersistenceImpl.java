@@ -3144,6 +3144,11 @@ public class CalendarNotificationTemplatePersistenceImpl
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return CalendarNotificationTemplateModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the calendar notification template persistence.
 	 */

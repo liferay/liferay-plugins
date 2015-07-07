@@ -76,6 +76,16 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			{ "platform", Types.VARCHAR },
 			{ "token", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("pushNotificationsDeviceId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("platform", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("token", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table PushNotificationsDevice (pushNotificationsDeviceId LONG not null primary key,userId LONG,createDate DATE null,platform VARCHAR(75) null,token STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table PushNotificationsDevice";
 	public static final String ORDER_BY_JPQL = " ORDER BY pushNotificationsDevice.pushNotificationsDeviceId ASC";

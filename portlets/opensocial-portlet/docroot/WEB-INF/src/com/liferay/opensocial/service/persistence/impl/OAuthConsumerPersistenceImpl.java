@@ -1619,6 +1619,11 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return OAuthConsumerModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the o auth consumer persistence.
 	 */

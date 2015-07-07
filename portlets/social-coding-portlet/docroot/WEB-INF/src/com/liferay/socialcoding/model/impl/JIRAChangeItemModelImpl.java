@@ -69,6 +69,18 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 			{ "newValue", Types.VARCHAR },
 			{ "newString", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupid", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("field", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("oldValue", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("oldString", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("newValue", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("newString", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table changeitem (id LONG not null primary key,groupid LONG,field VARCHAR(75) null,oldValue VARCHAR(75) null,oldString VARCHAR(75) null,newValue VARCHAR(75) null,newString VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table changeitem";
 	public static final String ORDER_BY_JPQL = " ORDER BY jiraChangeItem.jiraChangeItemId ASC";

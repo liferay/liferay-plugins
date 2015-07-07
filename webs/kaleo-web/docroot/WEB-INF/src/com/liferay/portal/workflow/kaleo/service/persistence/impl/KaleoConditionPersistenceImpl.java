@@ -1997,16 +1997,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = KaleoConditionModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " +
-				KaleoConditionModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KaleoConditionModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

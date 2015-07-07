@@ -2296,6 +2296,11 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return JIRAActionModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the j i r a action persistence.
 	 */

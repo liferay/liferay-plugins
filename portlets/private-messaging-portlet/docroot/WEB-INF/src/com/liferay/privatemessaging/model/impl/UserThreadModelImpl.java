@@ -82,6 +82,21 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 			{ "read_", Types.BOOLEAN },
 			{ "deleted", Types.BOOLEAN }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("userThreadId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("mbThreadId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("topMBMessageId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("read_", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("deleted", Types.BOOLEAN);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table PM_UserThread (userThreadId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,mbThreadId LONG,topMBMessageId LONG,read_ BOOLEAN,deleted BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table PM_UserThread";
 	public static final String ORDER_BY_JPQL = " ORDER BY userThread.modifiedDate DESC";

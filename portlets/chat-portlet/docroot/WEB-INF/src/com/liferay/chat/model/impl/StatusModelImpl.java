@@ -73,6 +73,19 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 			{ "message", Types.VARCHAR },
 			{ "playSound", Types.BOOLEAN }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("statusId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("online_", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("awake", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("activePanelIds", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("message", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("playSound", Types.BOOLEAN);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online_ BOOLEAN,awake BOOLEAN,activePanelIds STRING null,message STRING null,playSound BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Status";
 	public static final String ORDER_BY_JPQL = " ORDER BY status.statusId ASC";

@@ -1188,6 +1188,11 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return AttachmentModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the attachment persistence.
 	 */

@@ -7159,6 +7159,11 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return CalendarResourceModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the calendar resource persistence.
 	 */

@@ -72,6 +72,20 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			{ "consumerSecret", Types.CLOB },
 			{ "keyType", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("oAuthConsumerId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("gadgetKey", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("serviceName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("consumerKey", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("consumerSecret", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("keyType", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oAuthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetKey VARCHAR(75) null,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret TEXT null,keyType VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthConsumer";
 	public static final String ORDER_BY_JPQL = " ORDER BY oAuthConsumer.serviceName ASC";

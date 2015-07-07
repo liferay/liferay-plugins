@@ -1024,6 +1024,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return FeedModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the feed persistence.
 	 */

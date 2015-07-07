@@ -9265,6 +9265,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return MicroblogsEntryModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the microblogs entry persistence.
 	 */

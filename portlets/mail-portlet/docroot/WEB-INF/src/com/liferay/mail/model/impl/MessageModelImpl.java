@@ -87,6 +87,31 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 			{ "remoteMessageId", Types.BIGINT },
 			{ "contentType", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("messageId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("accountId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("folderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("sender", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("to_", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("cc", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("bcc", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("sentDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("subject", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("preview", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("body", Types.CLOB);
+		TABLE_COLUMNS_MAP.put("flags", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("size_", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("remoteMessageId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("contentType", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender STRING null,to_ TEXT null,cc TEXT null,bcc TEXT null,sentDate DATE null,subject STRING null,preview VARCHAR(75) null,body TEXT null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG,contentType VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Message";
 	public static final String ORDER_BY_JPQL = " ORDER BY message.sentDate ASC";

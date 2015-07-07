@@ -3746,6 +3746,11 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KBFolderModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the k b folder persistence.
 	 */

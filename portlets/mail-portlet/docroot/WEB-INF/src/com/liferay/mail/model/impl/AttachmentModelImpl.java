@@ -74,6 +74,20 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 			{ "fileName", Types.VARCHAR },
 			{ "size_", Types.BIGINT }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("attachmentId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("accountId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("folderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("messageId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("contentPath", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("fileName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("size_", Types.BIGINT);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Mail_Attachment (attachmentId LONG not null primary key,companyId LONG,userId LONG,accountId LONG,folderId LONG,messageId LONG,contentPath VARCHAR(75) null,fileName VARCHAR(75) null,size_ LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Attachment";
 	public static final String ORDER_BY_JPQL = " ORDER BY attachment.attachmentId ASC";

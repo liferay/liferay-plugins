@@ -75,6 +75,21 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 			{ "inactiveDate", Types.TIMESTAMP },
 			{ "active_", Types.BOOLEAN }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("assetId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("definitionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("serialNumber", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("inactiveDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table AMS_Asset (assetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,definitionId LONG,serialNumber VARCHAR(75) null,inactiveDate DATE null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Asset";
 	public static final String ORDER_BY_JPQL = " ORDER BY asset.assetId ASC";

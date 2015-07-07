@@ -4448,6 +4448,11 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return CalendarModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the calendar persistence.
 	 */

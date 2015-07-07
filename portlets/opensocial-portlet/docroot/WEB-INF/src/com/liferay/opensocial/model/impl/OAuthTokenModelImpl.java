@@ -80,6 +80,25 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			{ "sessionHandle", Types.VARCHAR },
 			{ "expiration", Types.BIGINT }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("oAuthTokenId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("gadgetKey", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("serviceName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("moduleId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("accessToken", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("tokenName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("tokenSecret", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("sessionHandle", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("expiration", Types.BIGINT);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetKey VARCHAR(75) null,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthToken";
 	public static final String ORDER_BY_JPQL = " ORDER BY oAuthToken.oAuthTokenId ASC";

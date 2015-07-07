@@ -972,6 +972,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return SVNRepositoryModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the s v n repository persistence.
 	 */

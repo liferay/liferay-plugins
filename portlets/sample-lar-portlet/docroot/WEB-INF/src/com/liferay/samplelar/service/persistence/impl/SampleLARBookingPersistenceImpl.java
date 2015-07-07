@@ -2679,6 +2679,11 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return SampleLARBookingModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the sample l a r booking persistence.
 	 */

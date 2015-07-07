@@ -1866,6 +1866,11 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return PushNotificationsDeviceModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the push notifications device persistence.
 	 */

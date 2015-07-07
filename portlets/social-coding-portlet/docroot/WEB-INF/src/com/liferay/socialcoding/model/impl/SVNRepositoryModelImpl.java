@@ -65,6 +65,14 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 			{ "url", Types.VARCHAR },
 			{ "revisionNumber", Types.BIGINT }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("svnRepositoryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("url", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("revisionNumber", Types.BIGINT);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table SC_SVNRepository (svnRepositoryId LONG not null primary key,url VARCHAR(200) null,revisionNumber LONG)";
 	public static final String TABLE_SQL_DROP = "drop table SC_SVNRepository";
 	public static final String ORDER_BY_JPQL = " ORDER BY svnRepository.url ASC";

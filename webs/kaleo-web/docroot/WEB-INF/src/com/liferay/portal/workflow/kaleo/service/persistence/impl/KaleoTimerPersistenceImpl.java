@@ -1946,15 +1946,8 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = KaleoTimerModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " + KaleoTimerModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KaleoTimerModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

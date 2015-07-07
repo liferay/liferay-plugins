@@ -1206,6 +1206,11 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return JIRAChangeItemModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the j i r a change item persistence.
 	 */

@@ -79,6 +79,23 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			{ "invitedTeamId", Types.BIGINT },
 			{ "status", Types.INTEGER }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("memberRequestId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("key_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("receiverUserId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("invitedRoleId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("invitedTeamId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table SO_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,invitedRoleId LONG,invitedTeamId LONG,status INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table SO_MemberRequest";
 	public static final String ORDER_BY_JPQL = " ORDER BY memberRequest.createDate DESC";

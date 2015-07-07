@@ -974,6 +974,11 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return JIRAProjectModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the j i r a project persistence.
 	 */

@@ -2006,6 +2006,11 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return MessageModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the message persistence.
 	 */

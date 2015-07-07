@@ -3182,16 +3182,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = KaleoTaskInstanceTokenModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " +
-				KaleoTaskInstanceTokenModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KaleoTaskInstanceTokenModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

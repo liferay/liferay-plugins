@@ -32,7 +32,7 @@
 		<property name="mimeType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="changeLog" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="extraSettings" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="extraSettings" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="versionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />

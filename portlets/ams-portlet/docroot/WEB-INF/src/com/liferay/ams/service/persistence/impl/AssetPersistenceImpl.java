@@ -706,6 +706,11 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return AssetModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the asset persistence.
 	 */

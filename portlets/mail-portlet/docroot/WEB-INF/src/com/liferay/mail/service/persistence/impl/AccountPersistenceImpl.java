@@ -1543,6 +1543,11 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return AccountModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the account persistence.
 	 */

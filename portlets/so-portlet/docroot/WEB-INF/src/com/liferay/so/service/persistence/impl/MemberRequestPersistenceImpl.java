@@ -2374,6 +2374,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return MemberRequestModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the member request persistence.
 	 */

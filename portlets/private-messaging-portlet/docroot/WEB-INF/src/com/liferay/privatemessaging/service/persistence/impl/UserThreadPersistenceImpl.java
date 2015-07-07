@@ -3116,6 +3116,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return UserThreadModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the user thread persistence.
 	 */

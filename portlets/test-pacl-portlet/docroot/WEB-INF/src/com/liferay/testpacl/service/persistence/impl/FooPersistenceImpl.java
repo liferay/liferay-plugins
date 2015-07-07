@@ -1190,6 +1190,11 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return FooModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the foo persistence.
 	 */

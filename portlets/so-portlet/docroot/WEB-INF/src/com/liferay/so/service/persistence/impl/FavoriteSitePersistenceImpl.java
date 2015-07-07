@@ -1458,6 +1458,11 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return FavoriteSiteModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the favorite site persistence.
 	 */

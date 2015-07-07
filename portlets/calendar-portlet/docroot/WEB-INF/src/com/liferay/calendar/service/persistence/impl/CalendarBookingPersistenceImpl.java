@@ -6176,6 +6176,11 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return CalendarBookingModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the calendar booking persistence.
 	 */

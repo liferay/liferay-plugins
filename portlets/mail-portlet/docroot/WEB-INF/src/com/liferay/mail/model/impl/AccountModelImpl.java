@@ -92,6 +92,37 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 			{ "trashFolderId", Types.BIGINT },
 			{ "defaultSender", Types.BOOLEAN }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("accountId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("address", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("personalName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("protocol", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("incomingHostName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("incomingPort", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("incomingSecure", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("outgoingHostName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("outgoingPort", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("outgoingSecure", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("login", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("password_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("savePassword", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("signature", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("useSignature", Types.BOOLEAN);
+		TABLE_COLUMNS_MAP.put("folderPrefix", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("inboxFolderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("draftFolderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("sentFolderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("trashFolderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("defaultSender", Types.BOOLEAN);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Mail_Account (accountId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,address VARCHAR(75) null,personalName VARCHAR(75) null,protocol VARCHAR(75) null,incomingHostName VARCHAR(75) null,incomingPort INTEGER,incomingSecure BOOLEAN,outgoingHostName VARCHAR(75) null,outgoingPort INTEGER,outgoingSecure BOOLEAN,login VARCHAR(75) null,password_ VARCHAR(75) null,savePassword BOOLEAN,signature VARCHAR(75) null,useSignature BOOLEAN,folderPrefix VARCHAR(75) null,inboxFolderId LONG,draftFolderId LONG,sentFolderId LONG,trashFolderId LONG,defaultSender BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Account";
 	public static final String ORDER_BY_JPQL = " ORDER BY account.address ASC";

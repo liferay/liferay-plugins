@@ -1239,6 +1239,11 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return TestBlobEntryModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the test blob entry persistence.
 	 */

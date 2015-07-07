@@ -69,6 +69,17 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 			{ "revisionNumber", Types.BIGINT },
 			{ "comments", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("svnRevisionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("svnUserId", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("svnRepositoryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("revisionNumber", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("comments", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table SC_SVNRevision (svnRevisionId LONG not null primary key,svnUserId VARCHAR(75) null,createDate DATE null,svnRepositoryId LONG,revisionNumber LONG,comments STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table SC_SVNRevision";
 	public static final String ORDER_BY_JPQL = " ORDER BY svnRevision.revisionNumber DESC";

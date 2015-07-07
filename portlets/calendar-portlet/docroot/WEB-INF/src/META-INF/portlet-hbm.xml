@@ -45,7 +45,7 @@
 		<property name="parentCalendarBookingId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="vEventUid" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="location" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="startTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="endTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -76,7 +76,7 @@
 		<property name="notificationTypeSettings" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="notificationTemplateType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="subject" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="body" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="body" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 	</class>
 	<class name="com.liferay.calendar.model.impl.CalendarResourceImpl" table="CalendarResource">
 		<id name="calendarResourceId" type="long">

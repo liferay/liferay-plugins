@@ -65,6 +65,14 @@ public class JIRAProjectModelImpl extends BaseModelImpl<JIRAProject>
 			{ "pkey", Types.VARCHAR },
 			{ "pname", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("pkey", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("pname", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table project (id LONG not null primary key,pkey VARCHAR(75) null,pname VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table project";
 	public static final String ORDER_BY_JPQL = " ORDER BY jiraProject.jiraProjectId ASC";

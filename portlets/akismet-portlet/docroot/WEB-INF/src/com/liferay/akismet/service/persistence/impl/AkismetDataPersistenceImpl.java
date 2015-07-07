@@ -1486,6 +1486,11 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return AkismetDataModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the akismet data persistence.
 	 */

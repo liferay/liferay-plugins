@@ -75,6 +75,22 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 			{ "resolution", Types.VARCHAR },
 			{ "issuestatus", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("created", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("updated", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("project", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("issuenum", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("summary", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("reporter", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("assignee", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("resolution", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("issuestatus", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table jiraissue (id LONG not null primary key,created DATE null,updated DATE null,project LONG,issuenum LONG,summary VARCHAR(75) null,description VARCHAR(75) null,reporter VARCHAR(75) null,assignee VARCHAR(75) null,resolution VARCHAR(75) null,issuestatus VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraissue";
 	public static final String ORDER_BY_JPQL = " ORDER BY jiraIssue.modifiedDate DESC";

@@ -4065,15 +4065,8 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = KaleoLogModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " + KaleoLogModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KaleoLogModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

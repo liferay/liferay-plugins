@@ -68,6 +68,15 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 			{ "created", Types.TIMESTAMP },
 			{ "issueid", Types.BIGINT }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("id", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("author", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("created", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("issueid", Types.BIGINT);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table changegroup (id LONG not null primary key,author VARCHAR(75) null,created DATE null,issueid LONG)";
 	public static final String TABLE_SQL_DROP = "drop table changegroup";
 	public static final String ORDER_BY_JPQL = " ORDER BY jiraChangeGroup.createDate DESC";

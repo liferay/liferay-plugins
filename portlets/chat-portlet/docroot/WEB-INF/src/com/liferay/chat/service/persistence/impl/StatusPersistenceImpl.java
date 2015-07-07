@@ -2460,6 +2460,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return StatusModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the status persistence.
 	 */

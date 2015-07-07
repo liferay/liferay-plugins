@@ -3032,16 +3032,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = KaleoNotificationModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " +
-				KaleoNotificationModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KaleoNotificationModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

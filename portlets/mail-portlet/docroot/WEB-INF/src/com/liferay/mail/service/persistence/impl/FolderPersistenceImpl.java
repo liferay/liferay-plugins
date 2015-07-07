@@ -1522,6 +1522,11 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return FolderModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the folder persistence.
 	 */

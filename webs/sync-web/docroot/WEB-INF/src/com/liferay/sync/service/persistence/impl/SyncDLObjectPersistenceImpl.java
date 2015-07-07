@@ -4531,15 +4531,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = SyncDLObjectModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " + SyncDLObjectModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return SyncDLObjectModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

@@ -709,6 +709,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return DefinitionModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the definition persistence.
 	 */

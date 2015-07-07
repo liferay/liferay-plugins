@@ -74,6 +74,20 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			{ "twitterScreenName", Types.VARCHAR },
 			{ "lastStatusId", Types.BIGINT }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("feedId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("twitterUserId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("twitterScreenName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastStatusId", Types.BIGINT);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,twitterUserId LONG,twitterScreenName VARCHAR(75) null,lastStatusId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Twitter_Feed";
 	public static final String ORDER_BY_JPQL = " ORDER BY feed.feedId ASC";

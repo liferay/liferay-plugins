@@ -1818,6 +1818,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return OAuthTokenModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the o auth token persistence.
 	 */

@@ -75,6 +75,21 @@ public class AkismetDataModelImpl extends BaseModelImpl<AkismetData>
 			{ "userIP", Types.VARCHAR },
 			{ "userURL", Types.VARCHAR }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("akismetDataId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("classNameId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("classPK", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("type_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("permalink", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("referrer", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("userAgent", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("userIP", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("userURL", Types.VARCHAR);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Akismet_AkismetData (akismetDataId LONG not null primary key,modifiedDate DATE null,classNameId LONG,classPK LONG,type_ VARCHAR(75) null,permalink VARCHAR(75) null,referrer VARCHAR(75) null,userAgent VARCHAR(75) null,userIP VARCHAR(75) null,userURL VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Akismet_AkismetData";
 	public static final String ORDER_BY_JPQL = " ORDER BY akismetData.akismetDataId ASC";

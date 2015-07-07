@@ -76,6 +76,21 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 			{ "displayName", Types.VARCHAR },
 			{ "remoteMessageCount", Types.INTEGER }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("folderId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("accountId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("fullName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("displayName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("remoteMessageCount", Types.INTEGER);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Mail_Folder (folderId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,fullName VARCHAR(75) null,displayName VARCHAR(75) null,remoteMessageCount INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Folder";
 	public static final String ORDER_BY_JPQL = " ORDER BY folder.fullName ASC";

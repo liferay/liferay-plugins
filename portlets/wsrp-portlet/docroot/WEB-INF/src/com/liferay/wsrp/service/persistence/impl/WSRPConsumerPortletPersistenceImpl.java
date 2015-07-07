@@ -2721,6 +2721,11 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return WSRPConsumerPortletModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the w s r p consumer portlet persistence.
 	 */

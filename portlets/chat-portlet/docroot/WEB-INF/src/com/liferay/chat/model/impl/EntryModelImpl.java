@@ -70,6 +70,17 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 			{ "content", Types.VARCHAR },
 			{ "flag", Types.INTEGER }
 		};
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+
+	static {
+		TABLE_COLUMNS_MAP.put("entryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("createDate", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("fromUserId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("toUserId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("content", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("flag", Types.INTEGER);
+	}
+
 	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(1000) null,flag INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Entry";
 	public static final String ORDER_BY_JPQL = " ORDER BY entry.createDate DESC";

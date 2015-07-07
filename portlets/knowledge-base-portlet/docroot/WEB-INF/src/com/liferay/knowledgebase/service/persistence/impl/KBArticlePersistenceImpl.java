@@ -30514,6 +30514,11 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KBArticleModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the k b article persistence.
 	 */

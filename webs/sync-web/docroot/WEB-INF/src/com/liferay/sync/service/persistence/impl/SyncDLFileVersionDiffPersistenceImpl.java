@@ -2061,16 +2061,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	}
 
 	@Override
-	protected int getColumnType(String columnName) {
-		Integer type = SyncDLFileVersionDiffModelImpl.TABLE_COLUMNS_MAP.get(columnName);
-
-		if (type == null) {
-			throw new IllegalArgumentException("Unknown column name " +
-				columnName + " for table " +
-				SyncDLFileVersionDiffModelImpl.TABLE_NAME);
-		}
-
-		return type;
+	protected Map<String, Integer> getTableColumnsMap() {
+		return SyncDLFileVersionDiffModelImpl.TABLE_COLUMNS_MAP;
 	}
 
 	/**

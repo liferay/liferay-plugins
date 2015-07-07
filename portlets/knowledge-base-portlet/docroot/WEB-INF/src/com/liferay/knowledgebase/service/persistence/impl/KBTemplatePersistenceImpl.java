@@ -3012,6 +3012,11 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		return _badColumnNames;
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return KBTemplateModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the k b template persistence.
 	 */

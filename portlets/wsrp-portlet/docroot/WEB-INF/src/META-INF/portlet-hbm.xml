@@ -15,8 +15,8 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="wsdl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="registrationContextString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="wsdl" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
+		<property name="registrationContextString" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
 		<property name="registrationPropertiesString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="forwardCookies" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="forwardHeaders" type="com.liferay.portal.dao.orm.hibernate.StringType" />

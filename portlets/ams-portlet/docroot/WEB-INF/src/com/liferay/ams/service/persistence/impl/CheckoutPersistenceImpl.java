@@ -704,6 +704,11 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		return count.intValue();
 	}
 
+	@Override
+	protected Map<String, Integer> getTableColumnsMap() {
+		return CheckoutModelImpl.TABLE_COLUMNS_MAP;
+	}
+
 	/**
 	 * Initializes the checkout persistence.
 	 */
