@@ -5,36 +5,54 @@
 	<macrodef name="download-node">
 		<sequential>
 			<if>
-				<os arch="x86_32" family="mac" />
+				<and>
+					<os family="mac" />
+					<equals arg1="${sun.arch.data.model}" arg2="32" />
+				</and>
 				<then>
 					<propertycopy from="nodejs.url[osx32]" name="nodejs.url" />
 				</then>
 				<elseif>
-					<os arch="x86_64" family="mac" />
+					<and>
+						<os family="mac" />
+						<equals arg1="${sun.arch.data.model}" arg2="64" />
+					</and>
 					<then>
 						<propertycopy from="nodejs.url[osx64]" name="nodejs.url" />
 					</then>
 				</elseif>
 				<elseif>
-					<os arch="amd" family="unix" />
+					<and>
+						<os family="unix" />
+						<equals arg1="${sun.arch.data.model}" arg2="32" />
+					</and>
 					<then>
 						<propertycopy from="nodejs.url[linux32]" name="nodejs.url" />
 					</then>
 				</elseif>
 				<elseif>
-					<os arch="amd64" family="unix" />
+					<and>
+						<os family="unix" />
+						<equals arg1="${sun.arch.data.model}" arg2="64" />
+					</and>
 					<then>
 						<propertycopy from="nodejs.url[linux64]" name="nodejs.url" />
 					</then>
 				</elseif>
 				<elseif>
-					<os arch="x86" family="windows" />
+					<and>
+						<os family="windows" />
+						<equals arg1="${sun.arch.data.model}" arg2="32" />
+					</and>
 					<then>
 						<propertycopy from="nodejs.url[windows32]" name="nodejs.url" />
 					</then>
 				</elseif>
 				<elseif>
-					<os arch="amd64" family="windows" />
+					<and>
+						<os family="windows" />
+						<equals arg1="${sun.arch.data.model}" arg2="64" />
+					</and>
 					<then>
 						<propertycopy from="nodejs.url[windows64]" name="nodejs.url" />
 					</then>
