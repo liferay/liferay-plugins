@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.calendar.model.Calendar">
+		<field name="uuid" type="String" />
+		<field name="calendarId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="resourceBlockId" type="long" />
+		<field name="calendarResourceId" type="long" />
+		<field name="name" type="String" localized="true" />
+		<field name="description" type="String" localized="true">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="timeZoneId" type="String" />
+		<field name="color" type="int" />
+		<field name="defaultCalendar" type="boolean" />
+		<field name="enableComments" type="boolean" />
+		<field name="enableRatings" type="boolean" />
+	</model>
+	<model name="com.liferay.calendar.model.CalendarBooking">
+		<field name="uuid" type="String" />
+		<field name="calendarBookingId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="resourceBlockId" type="long" />
+		<field name="calendarId" type="long" />
+		<field name="calendarResourceId" type="long" />
+		<field name="parentCalendarBookingId" type="long" />
+		<field name="vEventUid" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="title" type="String" localized="true" />
+		<field name="description" type="String" localized="true">
+			<hint-collection name="EDITOR" />
+		</field>
+		<field name="location" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="startTime" type="long">
+			<hint name="type">Date</hint>
+		</field>
+		<field name="endTime" type="long">
+			<hint name="type">Date</hint>
+		</field>
+		<field name="allDay" type="boolean" />
+		<field name="recurrence" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="firstReminder" type="long" />
+		<field name="firstReminderType" type="String" />
+		<field name="secondReminder" type="long" />
+		<field name="secondReminderType" type="String" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUserName" type="String" />
+		<field name="statusDate" type="Date" />
+	</model>
+	<model name="com.liferay.calendar.model.CalendarNotificationTemplate">
+		<field name="uuid" type="String" />
+		<field name="calendarNotificationTemplateId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="calendarId" type="long" />
+		<field name="notificationType" type="String" />
+		<field name="notificationTypeSettings" type="String" />
+		<field name="notificationTemplateType" type="String" />
+		<field name="subject" type="String" />
+		<field name="body" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+	<model name="com.liferay.calendar.model.CalendarResource">
+		<field name="uuid" type="String" />
+		<field name="calendarResourceId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="resourceBlockId" type="long" />
+		<field name="classNameId" type="long" />
+		<field name="classPK" type="long" />
+		<field name="classUuid" type="String" />
+		<field name="code" type="String" />
+		<field name="name" type="String" localized="true" />
+		<field name="description" type="String" localized="true">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="active" type="boolean" />
+	</model>
+</model-hints>

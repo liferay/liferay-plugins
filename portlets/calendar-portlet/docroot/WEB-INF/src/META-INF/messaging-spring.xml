@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+
+	<!-- Listeners -->
+
+	<bean id="messageListener.hot_deploy" class="com.liferay.calendar.messaging.CalendarHotDeployMessageListener">
+		<constructor-arg name="servletContextNames">
+			<array>
+				<bean class="com.liferay.calendar.service.ClpSerializer" factory-method="getServletContextName" />
+			</array>
+		</constructor-arg>
+	</bean>
+
+	<!-- Configurator -->
+
+	<bean id="messagingConfigurator" class="com.liferay.portal.kernel.messaging.config.PluginMessagingConfigurator">
+		<property name="messageListeners">
+			<map key-type="java.lang.String" value-type="java.util.List">
+				<entry key="liferay/hot_deploy">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.hot_deploy" />
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>
