@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -68,7 +68,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 			};
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+			TransactionCommitCallbackUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -131,7 +131,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 
 			};
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+			TransactionCommitCallbackUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

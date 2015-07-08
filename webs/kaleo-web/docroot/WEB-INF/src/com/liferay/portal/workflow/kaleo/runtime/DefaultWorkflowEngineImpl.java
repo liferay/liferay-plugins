@@ -17,7 +17,7 @@ package com.liferay.portal.workflow.kaleo.runtime;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -144,7 +144,7 @@ public class DefaultWorkflowEngineImpl
 
 			nodeExecutor.executeTimer(currentKaleoNode, executionContext);
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(
+			TransactionCommitCallbackUtil.registerCallback(
 				new Callable<Void>() {
 
 					@Override
@@ -372,7 +372,7 @@ public class DefaultWorkflowEngineImpl
 			final ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, workflowContext, serviceContext);
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(
+			TransactionCommitCallbackUtil.registerCallback(
 				new Callable<Void>() {
 
 					@Override
@@ -462,7 +462,7 @@ public class DefaultWorkflowEngineImpl
 			final ExecutionContext executionContext = new ExecutionContext(
 				rootKaleoInstanceToken, workflowContext, serviceContext);
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(
+			TransactionCommitCallbackUtil.registerCallback(
 				new Callable<Void>() {
 
 					@Override

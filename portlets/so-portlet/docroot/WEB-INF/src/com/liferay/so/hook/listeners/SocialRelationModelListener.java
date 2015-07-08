@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.model.BaseModelListener;
@@ -62,7 +62,7 @@ public class SocialRelationModelListener
 			socialRelationReindexerCallable =
 				new SocialRelationReindexerCallable();
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(
+			TransactionCommitCallbackUtil.registerCallback(
 				socialRelationReindexerCallable);
 
 			_socialRelationReindexerCallable.set(

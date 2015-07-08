@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.BaseModelListener;
@@ -71,7 +71,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 			};
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+			TransactionCommitCallbackUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -100,7 +100,7 @@ public class RoleModelListener extends BaseModelListener<Role> {
 
 			};
 
-			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+			TransactionCommitCallbackUtil.registerCallback(callable);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
