@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.lar.StagedModelDataHandler;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerRegistryUtil;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
 
 /**
@@ -84,12 +85,18 @@ public class CalendarBookingExportActionableDynamicQuery
 			dynamicQuery.add(disjunction);
 		}
 
-		StagedModelDataHandler<?> stagedModelDataHandler = StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(CalendarBooking.class.getName());
-
 		Property workflowStatusProperty = PropertyFactoryUtil.forName("status");
 
-		dynamicQuery.add(workflowStatusProperty.in(
-				stagedModelDataHandler.getExportableStatuses()));
+		if (_portletDataContext.isInitialPublication()) {
+			dynamicQuery.add(workflowStatusProperty.ne(
+					WorkflowConstants.STATUS_IN_TRASH));
+		}
+		else {
+			StagedModelDataHandler<?> stagedModelDataHandler = StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(CalendarBooking.class.getName());
+
+			dynamicQuery.add(workflowStatusProperty.in(
+					stagedModelDataHandler.getExportableStatuses()));
+		}
 	}
 
 	protected StagedModelType getStagedModelType() {

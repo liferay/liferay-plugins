@@ -433,6 +433,12 @@ public class ClpSerializer {
 		}
 
 		if (className.equals(
+					"com.liferay.calendar.CalendarBookingRecurrenceException")) {
+			return new com.liferay.calendar.CalendarBookingRecurrenceException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
 					"com.liferay.calendar.CalendarBookingStartTimeException")) {
 			return new com.liferay.calendar.CalendarBookingStartTimeException(throwable.getMessage(),
 				throwable.getCause());
