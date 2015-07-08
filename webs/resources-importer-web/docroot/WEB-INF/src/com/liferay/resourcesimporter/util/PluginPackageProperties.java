@@ -45,10 +45,6 @@ public class PluginPackageProperties {
 
 		String propertiesString = StringUtil.read(inputStream);
 
-		if (propertiesString == null) {
-			return;
-		}
-
 		String contextPath = servletContext.getRealPath(StringPool.SLASH);
 
 		contextPath = StringUtil.replace(
