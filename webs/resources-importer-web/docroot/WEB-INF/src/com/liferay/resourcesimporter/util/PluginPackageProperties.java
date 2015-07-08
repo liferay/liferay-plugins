@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.LayoutSetPrototype;
 
+import java.io.InputStream;
 import java.io.IOException;
 
 import java.util.Properties;
@@ -35,9 +36,14 @@ public class PluginPackageProperties {
 	public PluginPackageProperties(ServletContext servletContext)
 		throws IOException {
 
-		String propertiesString = StringUtil.read(
-			servletContext.getResourceAsStream(
-				"/WEB-INF/liferay-plugin-package.properties"));
+		InputStream inputStream = servletContext.getResourceAsStream(
+			"/WEB-INF/liferay-plugin-package.properties");
+
+		if (inputStream == null) {
+			return;
+		}
+
+		String propertiesString = StringUtil.read(inputStream);
 
 		if (propertiesString == null) {
 			return;
