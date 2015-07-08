@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -291,7 +292,16 @@ public class SyncUtil {
 		return isSupportedFolder(dlFolder);
 	}
 
-	public static boolean isSyncEnabled(Group group) {
+	public static boolean isSyncEnabled(Group group) throws SystemException {
+		if (group.isUser() &&
+			!PrefsPropsUtil.getBoolean(
+				group.getCompanyId(),
+				PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
+				PortletPropsValues.SYNC_ALLOW_USER_PERSONAL_SITES)) {
+
+			return false;
+		}
+
 		return GetterUtil.getBoolean(
 			group.getTypeSettingsProperty("syncEnabled"), true);
 	}
