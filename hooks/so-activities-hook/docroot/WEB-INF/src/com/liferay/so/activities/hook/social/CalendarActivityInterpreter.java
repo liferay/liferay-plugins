@@ -14,6 +14,7 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.calendar.constants.CalendarPortletKeys;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
@@ -163,10 +164,10 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 			CalendarBookingLocalServiceUtil.fetchCalendarBooking(classPK);
 
 		long plid = PortalUtil.getPlidFromPortletId(
-			calendarBooking.getGroupId(), "1_WAR_calendarportlet");
+			calendarBooking.getGroupId(), CalendarPortletKeys.CALENDAR);
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			serviceContext.getRequest(), "1_WAR_calendarportlet", plid,
+			serviceContext.getRequest(), CalendarPortletKeys.CALENDAR, plid,
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
