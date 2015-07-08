@@ -12,6 +12,8 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="com.liferay.bookmarks.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+		<dependency name="com.liferay.calendar.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+		<dependency name="com.liferay.calendar.service" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.wiki.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 	</dependencies>
 </ivy-module>
