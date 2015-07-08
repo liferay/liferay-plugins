@@ -191,9 +191,19 @@ ${nodejs.url[osx64]}.
 				</then>
 			</if>
 
-			<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{node.command}">
-				<arg line="@{node.command.args} @{node.args}" />
-			</exec>
+			<if>
+				<os family="windows" />
+				<then>
+					<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/@{node.command}.cmd">
+						<arg line="@{node.command.args} @{node.args}" />
+					</exec>
+				</then>
+				<else>
+					<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/bin/@{node.command}">
+						<arg line="@{node.command.args} @{node.args}" />
+					</exec>
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
