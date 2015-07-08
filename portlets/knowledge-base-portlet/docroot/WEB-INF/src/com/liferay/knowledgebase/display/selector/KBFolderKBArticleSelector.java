@@ -113,13 +113,19 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 
 		KBFolder kbFolder = null;
 
-		if (Validator.isNotNull(preferredKBFolderUrlTitle)) {
+		int kbArticlesCount = KBArticleLocalServiceUtil.getKBArticlesCount(
+			groupId, ancestorKBFolder.getKbFolderId(),
+			WorkflowConstants.STATUS_APPROVED);
+
+		if (Validator.isNotNull(preferredKBFolderUrlTitle) &&
+			(kbArticlesCount == 0)) {
+
 			kbFolder = KBFolderLocalServiceUtil.fetchKBFolderByUrlTitle(
 				groupId, ancestorKBFolder.getKbFolderId(),
 				preferredKBFolderUrlTitle);
 		}
 
-		if (kbFolder == null) {
+		if ((kbFolder == null) && (kbArticlesCount == 0)) {
 			kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
 				groupId, ancestorKBFolder.getKbFolderId());
 		}
@@ -174,7 +180,11 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 				preferredKBFolderUrlTitle);
 		}
 
-		if (kbFolder == null) {
+		int kbArticlesCount = KBArticleLocalServiceUtil.getKBArticlesCount(
+			groupId, ancestorKBFolder.getKbFolderId(),
+			WorkflowConstants.STATUS_APPROVED);
+	
+		if ((kbFolder == null) && (kbArticlesCount == 0)) {
 			kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
 				groupId, ancestorKBFolder.getKbFolderId());
 		}
