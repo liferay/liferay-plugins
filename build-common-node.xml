@@ -149,6 +149,12 @@ ${nodejs.url[osx64]}.
 							/>
 						</then>
 					</if>
+
+					<node-execute
+						node.args="config set cache ${sdk.tools.dir}/node-v${nodejs.version}/.cache --global"
+						node.command="npm"
+						node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
+					/>
 				</then>
 			</if>
 		</sequential>
