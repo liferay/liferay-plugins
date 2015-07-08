@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.LayoutSetPrototype;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.Properties;
 
