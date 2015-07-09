@@ -19,12 +19,8 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.google.ical.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.calendar.api.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.site.my.sites.web.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/joda-time.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/org.osgi.compendium.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/org.osgi.core.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
