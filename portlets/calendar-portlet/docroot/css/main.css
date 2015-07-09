@@ -410,6 +410,11 @@
 	padding: 0 3px 0 3px;
 }
 
+.scheduler-view-table-events-overlay-node {
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
 .simple-menu {
 	position: absolute;
 }
