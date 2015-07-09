@@ -28,5 +28,3 @@
 
 	<aui:nav-item cssClass="divider-vertical"></aui:nav-item>
 </c:if>
-
-<%@ include file="/html/portlet/dockbar/view_user_account.portal.jspf" %>
