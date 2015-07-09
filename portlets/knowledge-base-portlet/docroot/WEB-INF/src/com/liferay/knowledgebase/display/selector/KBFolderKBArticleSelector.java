@@ -182,7 +182,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 		int kbArticlesCount = KBArticleLocalServiceUtil.getKBArticlesCount(
 			groupId, ancestorKBFolder.getKbFolderId(),
 			WorkflowConstants.STATUS_APPROVED);
-	
+
 		if ((kbFolder == null) && (kbArticlesCount == 0)) {
 			kbFolder = KBFolderLocalServiceUtil.fetchFirstChildKBFolder(
 				groupId, ancestorKBFolder.getKbFolderId());
