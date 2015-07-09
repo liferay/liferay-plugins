@@ -622,14 +622,12 @@ public class NotificationsPortlet extends MVCPortlet {
 		else {
 			actionURL.setParameter("javax.portlet.action", "markAsRead");
 
-			actionDiv =
-				StringUtil.replace(
-					_MARK_AS_READ_DIV,
-					new String[] {
-						"[$LINK$]", "[$MARK_AS_READ_URL$]"},
-					new String[] {
-						userNotificationFeedEntry.getLink(),
-						actionURL.toString()});
+			actionDiv = StringUtil.replace(
+				_MARK_AS_READ_DIV,
+				new String[] {"[$LINK$]", "[$MARK_AS_READ_URL$]"},
+				new String[] {
+					userNotificationFeedEntry.getLink(), actionURL.toString()
+				});
 
 			if (userNotificationEvent.isArchived()) {
 				cssClass = "archived";
@@ -662,22 +660,21 @@ public class NotificationsPortlet extends MVCPortlet {
 			userPortraitURL = user.getPortraitURL(themeDisplay);
 		}
 
-		Format dateFormatDate =
-			FastDateFormatFactoryUtil.getDate(
-				DateFormat.FULL, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
+		Format dateFormatDate = FastDateFormatFactoryUtil.getDate(
+			DateFormat.FULL, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
 
-		Format dateTimeFormat =
-			FastDateFormatFactoryUtil.getDateTime(
-				DateFormat.FULL, DateFormat.SHORT, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
+		Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(
+			DateFormat.FULL, DateFormat.SHORT, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
 
 		return StringUtil.replace(
 			ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
 			new String[] {
-				"[$ACTION_DIV$]", "[$BODY$]", "[$CSS_CLASS$]","[$ICON_MENU$]",
+				"[$ACTION_DIV$]", "[$BODY$]", "[$CSS_CLASS$]", "[$ICON_MENU$]",
 				"[$PORTLET_ICON$]", "[$PORTLET_NAME$]", "[$TIMESTAMP$]",
-				"[$TIMETITLE$]", "[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"},
+				"[$TIMETITLE$]", "[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"
+			},
 			new String[] {
 				actionDiv, userNotificationFeedEntry.getBody(), cssClass,
 				iconMenu, portletIcon, portletName,
@@ -686,7 +683,8 @@ public class NotificationsPortlet extends MVCPortlet {
 					themeDisplay.getLocale(), themeDisplay.getTimeZone(),
 					dateFormatDate),
 				dateTimeFormat.format(userNotificationEvent.getTimestamp()),
-				userFullName, userPortraitURL});
+				userFullName, userPortraitURL
+			});
 	}
 
 	protected void updateArchived(long userNotificationEventId)
