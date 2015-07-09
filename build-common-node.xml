@@ -169,11 +169,11 @@ ${nodejs.url[osx64]}.
 
 			<if>
 				<not>
-					<contains string="${package.json.file}" substring='"version": "@{node.module.version}"' />
+					<contains string="${package.json.file}" substring="&quot;version&quot;: &quot;@{node.module.version}&quot;" />
 				</not>
 				<then>
 					<node-execute
-						node.args='install @{node.module.name}@"@{node.module.version}"'
+						node.args="install @{node.module.name}@&quot;@{node.module.version}&quot;"
 						node.command="npm"
 						node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
 					/>
