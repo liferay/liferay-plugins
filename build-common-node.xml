@@ -165,11 +165,11 @@ ${nodejs.url[osx64]}.
 		<attribute name="node.module.version" />
 
 		<sequential>
-			<loadfile failonerror="false" property="package.json.file" srcFile="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/@{node.module.name}/package.json" />
+			<loadfile failonerror="false" property="package.json.content" srcFile="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/@{node.module.name}/package.json" />
 
 			<if>
 				<not>
-					<contains string="${package.json.file}" substring="&quot;version&quot;: &quot;@{node.module.version}&quot;" />
+					<contains string="${package.json.content}" substring="&quot;version&quot;: &quot;@{node.module.version}&quot;" />
 				</not>
 				<then>
 					<node-execute
@@ -180,7 +180,7 @@ ${nodejs.url[osx64]}.
 				</then>
 			</if>
 
-			<var name="package.json.file" unset="true" />
+			<var name="package.json.content" unset="true" />
 		</sequential>
 	</macrodef>
 
