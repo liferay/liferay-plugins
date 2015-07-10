@@ -583,15 +583,20 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			repositoryService.checkRepository(repositoryId);
 
-			String event = null;
+			String[] events = null;
 
 			if (lastAccessTime == -1) {
-				event = SyncConstants.EVENT_DELETE;
+				events = new String[] {
+					SyncConstants.EVENT_DELETE, SyncConstants.EVENT_TRASH
+				};
+			}
+			else {
+				events = new String[0];
 			}
 
 			List<SyncDLObject> syncDLObjects =
 				syncDLObjectPersistence.findByC_M_R_NotE(
-					companyId, lastAccessTime, repositoryId, event, 0,
+					companyId, lastAccessTime, repositoryId, events, 0,
 					PortletPropsValues.SYNC_PAGINATION_DELTA,
 					new SyncDLObjectTypeComparator());
 
