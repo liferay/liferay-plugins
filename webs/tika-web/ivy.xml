@@ -11,5 +11,11 @@
 	</info>
 
 	<dependencies defaultconf="default">
+		<dependency name="commons-lang" org="commons-lang" rev="2.6" />
+		<dependency name="tika-core" org="org.apache.tika" rev="1.5" />
+		<dependency name="tika-parsers" org="org.apache.tika" rev="1.5" />
+		<dependency name="com.xuggle.xuggler" org="com.liferay" rev="5.4">
+			<artifact ext="jar" m2:classifier="noarch" name="com.xuggle.xuggler" />
+		</dependency>
 	</dependencies>
 </ivy-module>
