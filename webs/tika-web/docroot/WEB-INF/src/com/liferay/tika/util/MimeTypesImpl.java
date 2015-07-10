@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypes;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -66,7 +68,7 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 			org.apache.tika.mime.MimeTypes.getDefaultMimeTypes());
 
 		_webImageMimeTypes = SetUtil.fromArray(
-			PropsValues.MIME_TYPES_WEB_IMAGES);
+			PropsUtil.getArray(PropsKeys.MIME_TYPES_WEB_IMAGES));
 	}
 
 	public void afterPropertiesSet() {

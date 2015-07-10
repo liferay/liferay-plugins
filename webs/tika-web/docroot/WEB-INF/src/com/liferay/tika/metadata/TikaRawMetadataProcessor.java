@@ -24,8 +24,10 @@ import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.process.ProcessExecutor;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
-import com.liferay.portal.util.PropsValues;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -114,16 +116,7 @@ public class TikaRawMetadataProcessor extends XugglerRawMetadataProcessor {
 
 		Metadata metadata = super.extractMetadata(extension, mimeType, file);
 
-		boolean forkProcess = false;
-
-		if (PropsValues.TEXT_EXTRACTION_FORK_PROCESS_ENABLED) {
-			if (ArrayUtil.contains(
-					PropsValues.TEXT_EXTRACTION_FORK_PROCESS_MIME_TYPES,
-					mimeType)) {
-
-				forkProcess = true;
-			}
-		}
+		boolean forkProcess = isForkProcess(mimeType);
 
 		if (forkProcess) {
 			ExtractMetadataProcessCallable extractMetadataProcessCallable =
@@ -164,16 +157,7 @@ public class TikaRawMetadataProcessor extends XugglerRawMetadataProcessor {
 		Metadata metadata = super.extractMetadata(
 			extension, mimeType, inputStream);
 
-		boolean forkProcess = false;
-
-		if (PropsValues.TEXT_EXTRACTION_FORK_PROCESS_ENABLED) {
-			if (ArrayUtil.contains(
-					PropsValues.TEXT_EXTRACTION_FORK_PROCESS_MIME_TYPES,
-					mimeType)) {
-
-				forkProcess = true;
-			}
-		}
+		boolean forkProcess = isForkProcess(mimeType);
 
 		if (forkProcess) {
 			File file = FileUtil.createTempFile();
@@ -204,6 +188,24 @@ public class TikaRawMetadataProcessor extends XugglerRawMetadataProcessor {
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
 		}
+	}
+
+	protected boolean isForkProcess(String mimeType) {
+		boolean textExtractionForkProcessEnabled = GetterUtil.getBoolean(
+			PropsKeys.TEXT_EXTRACTION_FORK_PROCESS_ENABLED);
+
+		if (!textExtractionForkProcessEnabled) {
+			return false;
+		}
+
+		String[] textExtractionForkProcessMimeTypes = PropsUtil.getArray(
+			PropsKeys.TEXT_EXTRACTION_FORK_PROCESS_MIME_TYPES);
+
+		if (!ArrayUtil.contains(textExtractionForkProcessMimeTypes, mimeType)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
