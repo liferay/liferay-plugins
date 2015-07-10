@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.metadata;
+package com.liferay.tika.metadata;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.PortletDataContext;

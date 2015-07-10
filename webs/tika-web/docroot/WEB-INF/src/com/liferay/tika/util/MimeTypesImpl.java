@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.util;
+package com.liferay.tika.util;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
