@@ -43,7 +43,7 @@ import org.apache.tika.parser.Parser;
 /**
  * @author Jonathan McCann
  */
-public class TikaContextListener
+public class TikaServletContextListener
 	extends BasePortalLifecycle implements ServletContextListener {
 
 	@Override
@@ -144,7 +144,8 @@ public class TikaContextListener
 			new ClassLoaderBeanHandler(instance, portletClassLoader));
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(TikaContextListener.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		TikaServletContextListener.class);
 
 	private File _originalFile;
 	private MimeTypes _originalMimeTypesImpl;
