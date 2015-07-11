@@ -88,12 +88,12 @@ public class TikaServletContextListener
 			TikaFileInvocationHandler tikaFileInvocationHandler =
 				new TikaFileInvocationHandler(portalClassLoaderFile);
 
-			File file = (File)newInstance(
+			File portletClassLoaderFile = (File)newInstance(
 				portletClassLoader, File.class, tikaFileInvocationHandler);
 
 			FileUtil fileUtil = new FileUtil();
 
-			fileUtil.setFile(file);
+			fileUtil.setFile(portletClassLoaderFile);
 
 			_originalMimeTypes = MimeTypesUtil.getMimeTypes();
 
