@@ -88,12 +88,25 @@ public class TikaServletContextListener
 			TikaFileInvocationHandler tikaFileInvocationHandler =
 				new TikaFileInvocationHandler(portalClassLoaderFile);
 
-			File portletClassLoaderFile = (File)newInstance(
+			File file = (File)newInstance(
 				portletClassLoader, File.class, tikaFileInvocationHandler);
 
 			FileUtil fileUtil = new FileUtil();
 
-			fileUtil.setFile(portletClassLoaderFile);
+			fileUtil.setFile(file);
+
+			_originalMimeTypes = MimeTypesUtil.getMimeTypes();
+
+			MimeTypesImpl mimeTypesImpl = new MimeTypesImpl();
+
+			mimeTypesImpl.afterPropertiesSet();
+
+			MimeTypes mimeTypes = (MimeTypes)newInstance(
+				portletClassLoader, MimeTypes.class, mimeTypesImpl);
+
+			MimeTypesUtil mimeTypesUtil = new MimeTypesUtil();
+			
+			mimeTypesUtil.setMimeTypes(mimeTypes);
 
 			_originalRawMetadataProcessor =
 				RawMetadataProcessorUtil.getRawMetadataProcessor();
@@ -115,19 +128,6 @@ public class TikaServletContextListener
 			
 			rawMetadataProcessorUtil.setRawMetadataProcessor(
 				rawMetadataProcessor);
-
-			_originalMimeTypes = MimeTypesUtil.getMimeTypes();
-
-			MimeTypesImpl mimeTypesImpl = new MimeTypesImpl();
-
-			mimeTypesImpl.afterPropertiesSet();
-
-			MimeTypes mimeTypes = (MimeTypes)newInstance(
-				portletClassLoader, MimeTypes.class, mimeTypesImpl);
-
-			MimeTypesUtil mimeTypesUtil = new MimeTypesUtil();
-			
-			mimeTypesUtil.setMimeTypes(mimeTypes);
 		}
 		catch (Exception e) {
 			_log.error("Unable to initialize Tika hook", e);
