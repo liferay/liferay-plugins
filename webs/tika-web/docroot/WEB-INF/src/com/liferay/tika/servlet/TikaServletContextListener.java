@@ -105,7 +105,7 @@ public class TikaServletContextListener
 				portletClassLoader, MimeTypes.class, mimeTypesImpl);
 
 			MimeTypesUtil mimeTypesUtil = new MimeTypesUtil();
-			
+
 			mimeTypesUtil.setMimeTypes(mimeTypes);
 
 			_originalRawMetadataProcessor =
@@ -125,7 +125,7 @@ public class TikaServletContextListener
 
 			RawMetadataProcessorUtil rawMetadataProcessorUtil =
 				new RawMetadataProcessorUtil();
-			
+
 			rawMetadataProcessorUtil.setRawMetadataProcessor(
 				rawMetadataProcessor);
 		}
