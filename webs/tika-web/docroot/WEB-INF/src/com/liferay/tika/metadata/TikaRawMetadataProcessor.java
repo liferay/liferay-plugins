@@ -98,7 +98,7 @@ public class TikaRawMetadataProcessor extends XugglerRawMetadataProcessor {
 				_log.error(e, e);
 			}
 
-			throw new IOException(e.getMessage());
+			throw new IOException(e);
 		}
 
 		// Remove potential security risks

@@ -58,12 +58,19 @@ public class TikaServletContextListener
 
 	@Override
 	protected void doPortalDestroy() throws Exception {
-		new FileUtil().setFile(_originalFile);
+		FileUtil fileUtil = new FileUtil();
 
-		new RawMetadataProcessorUtil().setRawMetadataProcessor(
+		fileUtil.setFile(_originalFile);
+
+		MimeTypesUtil mimeTypesUtil = new MimeTypesUtil();
+
+		mimeTypesUtil.setMimeTypes(_originalMimeTypes);
+
+		RawMetadataProcessorUtil rawMetadataProcessorUtil =
+			new RawMetadataProcessorUtil();
+
+		rawMetadataProcessorUtil.setRawMetadataProcessor(
 			_originalRawMetadataProcessor);
-
-		new MimeTypesUtil().setMimeTypes(_originalMimeTypesImpl);
 	}
 
 	@Override
@@ -78,13 +85,15 @@ public class TikaServletContextListener
 			File portalClassLoaderFile = (File)newInstance(
 				portalClassLoader, File.class, _originalFile);
 
-			TikaFileInvocationHandler fileImplInvocationHandler =
+			TikaFileInvocationHandler tikaFileInvocationHandler =
 				new TikaFileInvocationHandler(portalClassLoaderFile);
 
 			File portletClassLoaderFile = (File)newInstance(
-					portletClassLoader, File.class, fileImplInvocationHandler);
+				portletClassLoader, File.class, tikaFileInvocationHandler);
 
-			new FileUtil().setFile(portletClassLoaderFile);
+			FileUtil fileUtil = new FileUtil();
+
+			fileUtil.setFile(portletClassLoaderFile);
 
 			_originalRawMetadataProcessor =
 				RawMetadataProcessorUtil.getRawMetadataProcessor();
@@ -101,21 +110,27 @@ public class TikaServletContextListener
 					portletClassLoader, RawMetadataProcessor.class,
 					tikaRawMetadataProcessor);
 
-			new RawMetadataProcessorUtil().setRawMetadataProcessor(
+			RawMetadataProcessorUtil rawMetadataProcessorUtil =
+				new RawMetadataProcessorUtil();
+			
+			rawMetadataProcessorUtil.setRawMetadataProcessor(
 				rawMetadataProcessor);
 
-			_originalMimeTypesImpl = MimeTypesUtil.getMimeTypes();
+			_originalMimeTypes = MimeTypesUtil.getMimeTypes();
 
-			MimeTypesImpl tikaMimeTypesImpl = new MimeTypesImpl();
-			tikaMimeTypesImpl.afterPropertiesSet();
+			MimeTypesImpl mimeTypesImpl = new MimeTypesImpl();
+
+			mimeTypesImpl.afterPropertiesSet();
 
 			MimeTypes mimeTypes = (MimeTypes)newInstance(
-				portletClassLoader, MimeTypes.class, tikaMimeTypesImpl);
+				portletClassLoader, MimeTypes.class, mimeTypesImpl);
 
-			new MimeTypesUtil().setMimeTypes(mimeTypes);
+			MimeTypesUtil mimeTypesUtil = new MimeTypesUtil();
+			
+			mimeTypesUtil.setMimeTypes(mimeTypes);
 		}
 		catch (Exception e) {
-			_log.error("Cannot initialize Tika hook", e);
+			_log.error("Unable to initialize Tika hook", e);
 		}
 	}
 
@@ -124,7 +139,7 @@ public class TikaServletContextListener
 			InvocationHandler invocationHandler)
 		throws Exception {
 
-		Class<?>[] interfaceClasses = new Class<?>[] { interfaceClass };
+		Class<?>[] interfaceClasses = new Class<?>[] {interfaceClass};
 
 		Object instance = ProxyUtil.newProxyInstance(
 			portletClassLoader, interfaceClasses, invocationHandler);
@@ -137,7 +152,7 @@ public class TikaServletContextListener
 			Object instance)
 		throws Exception {
 
-		Class<?>[] interfaceClasses = new Class<?>[] { interfaceClass };
+		Class<?>[] interfaceClasses = new Class<?>[] {interfaceClass};
 
 		return ProxyUtil.newProxyInstance(
 			portletClassLoader, interfaceClasses,
@@ -148,7 +163,7 @@ public class TikaServletContextListener
 		TikaServletContextListener.class);
 
 	private File _originalFile;
-	private MimeTypes _originalMimeTypesImpl;
+	private MimeTypes _originalMimeTypes;
 	private RawMetadataProcessor _originalRawMetadataProcessor;
 
 }
