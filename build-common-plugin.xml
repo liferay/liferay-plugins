@@ -36,7 +36,7 @@
 					<var name="service.osgi.module" value="true" />
 					<var name="service.props.util" value="${plugin.name}.util.ServiceProps" />
 					<var name="service.plugin.name" value="" />
-					<var name="service.spring.namespaces" value="beans,osgi" />
+					<var name="service.spring.namespaces" value="beans" />
 				</then>
 				<else>
 					<var name="service.osgi.module" value="false" />
