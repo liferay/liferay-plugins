@@ -14,13 +14,15 @@
 
 package com.liferay.sync.hook.upgrade.v1_0_0;
 
-import com.liferay.portal.kernel.dao.orm.QueryDefinition;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -28,20 +30,37 @@ import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
-import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.SyncUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Dennis Ju
  */
 public class UpgradeSyncDLObject extends UpgradeProcess {
+
+	protected void addSyncDLObject(SyncDLObject syncDLObject)
+		throws PortalException {
+
+		SyncDLObjectLocalServiceUtil.addSyncDLObject(
+			syncDLObject.getCompanyId(), syncDLObject.getUserId(),
+			syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
+			syncDLObject.getRepositoryId(), syncDLObject.getParentFolderId(),
+			syncDLObject.getName(), syncDLObject.getExtension(),
+			syncDLObject.getMimeType(), syncDLObject.getDescription(),
+			syncDLObject.getChangeLog(), syncDLObject.getExtraSettings(),
+			syncDLObject.getVersion(), syncDLObject.getVersionId(),
+			syncDLObject.getSize(), syncDLObject.getChecksum(),
+			syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
+			syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
+			syncDLObject.getType(), syncDLObject.getTypePK(),
+			syncDLObject.getTypeUuid());
+	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
@@ -54,77 +73,135 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		updateSyncDLObjects();
 	}
 
-	protected void populateAllSyncDLObjects(
-			long groupId, long folderId, List<SyncDLObject> syncDLObjects)
+	protected void incrementCounter() {
+		_counter++;
+
+		if (_log.isDebugEnabled() && ((_counter % 1000) == 0)) {
+			_log.debug(
+				"Processed " + _counter + "/" + _totalCount +
+					" folders and files");
+		}
+	}
+
+	protected void populateAllSyncDLObjects(long groupId)
 		throws PortalException {
 
-		List<Object> foldersAndFileEntriesAndFileShortcuts =
-			DLFolderLocalServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(
-				groupId, folderId, null, false,
-				new QueryDefinition(WorkflowConstants.STATUS_APPROVED));
+		if (_log.isDebugEnabled()) {
+			_log.debug("Processing group " + groupId);
+		}
 
-		for (Object foldersAndFileEntriesAndFileShortcut :
-				foldersAndFileEntriesAndFileShortcuts) {
+		_counter = 0;
 
-			if (foldersAndFileEntriesAndFileShortcut instanceof DLFileEntry) {
-				DLFileEntry dlFileEntry =
-					(DLFileEntry)foldersAndFileEntriesAndFileShortcut;
+		ActionableDynamicQuery dlFolderActionableDynamicQuery =
+			DLFolderLocalServiceUtil.getActionableDynamicQuery();
 
-				String event = StringPool.BLANK;
+		dlFolderActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
 
-				if (dlFileEntry.isInTrash()) {
-					event = SyncConstants.EVENT_TRASH;
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					Property mountPointProperty = PropertyFactoryUtil.forName(
+						"mountPoint");
+
+					dynamicQuery.add(mountPointProperty.eq(false));
+
+					Property statusProperty = PropertyFactoryUtil.forName(
+						"status");
+
+					dynamicQuery.add(
+						statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 				}
-				else {
-					event = SyncConstants.EVENT_ADD;
+
+			});
+
+		dlFolderActionableDynamicQuery.setGroupId(groupId);
+
+		dlFolderActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod() {
+
+				@Override
+				public void performAction(Object object)
+					throws PortalException {
+
+					incrementCounter();
+
+					DLFolder dlFolder = (DLFolder)object;
+
+					if (!SyncUtil.isSupportedFolder(dlFolder)) {
+						return;
+					}
+
+					addSyncDLObject(
+						SyncUtil.toSyncDLObject(
+							dlFolder, SyncConstants.EVENT_ADD));
 				}
 
-				try {
-					SyncDLObject fileEntrySyncDLObject =
-						SyncUtil.toSyncDLObject(dlFileEntry, event, true);
+			});
 
-					String type = fileEntrySyncDLObject.getType();
+		ActionableDynamicQuery dlFileEntryActionableDynamicQuery =
+			DLFileEntryLocalServiceUtil.getActionableDynamicQuery();
 
-					if (type.equals(SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
-						SyncDLObject approvedSyncDLObject =
+		dlFileEntryActionableDynamicQuery.setGroupId(groupId);
+
+		dlFileEntryActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod() {
+
+				@Override
+				public void performAction(Object object)
+					throws PortalException {
+
+					incrementCounter();
+
+					DLFileEntry dlFileEntry = (DLFileEntry)object;
+
+					if (dlFileEntry.getStatus() !=
+							WorkflowConstants.STATUS_APPROVED) {
+
+						return;
+					}
+
+					try {
+						SyncDLObject fileEntrySyncDLObject =
 							SyncUtil.toSyncDLObject(
-								dlFileEntry, event, true, true);
+								dlFileEntry, SyncConstants.EVENT_ADD, true);
 
-						syncDLObjects.add(approvedSyncDLObject);
+						String type = fileEntrySyncDLObject.getType();
+
+						if (type.equals(
+								SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
+
+							SyncDLObject approvedSyncDLObject =
+								SyncUtil.toSyncDLObject(
+									dlFileEntry, SyncConstants.EVENT_ADD, true,
+									true);
+
+							addSyncDLObject(approvedSyncDLObject);
+						}
+
+						addSyncDLObject(fileEntrySyncDLObject);
 					}
-
-					syncDLObjects.add(fileEntrySyncDLObject);
-				}
-				catch (NoSuchFileException nsfe) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"File missing for file entry " +
-								dlFileEntry.getFileEntryId());
+					catch (NoSuchFileException nsfe) {
+						if (_log.isWarnEnabled()) {
+							_log.warn(
+								"File missing for file entry " +
+									dlFileEntry.getFileEntryId());
+						}
 					}
 				}
-			}
-			else if (foldersAndFileEntriesAndFileShortcut instanceof DLFolder) {
-				DLFolder dlFolder =
-					(DLFolder)foldersAndFileEntriesAndFileShortcut;
 
-				if (!SyncUtil.isSupportedFolder(dlFolder)) {
-					continue;
-				}
+			});
 
-				String event = StringPool.BLANK;
+		_totalCount =
+			dlFolderActionableDynamicQuery.performCount() +
+				dlFileEntryActionableDynamicQuery.performCount();
 
-				if (dlFolder.isInTrash()) {
-					event = SyncConstants.EVENT_TRASH;
-				}
-				else {
-					event = SyncConstants.EVENT_ADD;
-				}
+		dlFolderActionableDynamicQuery.performActions();
+		dlFileEntryActionableDynamicQuery.performActions();
 
-				syncDLObjects.add(SyncUtil.toSyncDLObject(dlFolder, event));
-
-				populateAllSyncDLObjects(
-					groupId, dlFolder.getFolderId(), syncDLObjects);
-			}
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				"Processed " + _counter + " files and folders for group " +
+					groupId);
 		}
 	}
 
@@ -141,31 +218,13 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				continue;
 			}
 
-			List<SyncDLObject> syncDLObjects = new ArrayList<>();
-
-			populateAllSyncDLObjects(
-				group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-				syncDLObjects);
-
-			for (SyncDLObject syncDLObject : syncDLObjects) {
-				SyncDLObjectLocalServiceUtil.addSyncDLObject(
-					syncDLObject.getCompanyId(), syncDLObject.getUserId(),
-					syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
-					syncDLObject.getRepositoryId(),
-					syncDLObject.getParentFolderId(), syncDLObject.getName(),
-					syncDLObject.getExtension(), syncDLObject.getMimeType(),
-					syncDLObject.getDescription(), syncDLObject.getChangeLog(),
-					syncDLObject.getExtraSettings(), syncDLObject.getVersion(),
-					syncDLObject.getVersionId(), syncDLObject.getSize(),
-					syncDLObject.getChecksum(), syncDLObject.getEvent(),
-					syncDLObject.getLockExpirationDate(),
-					syncDLObject.getLockUserId(),
-					syncDLObject.getLockUserName(), syncDLObject.getType(),
-					syncDLObject.getTypePK(), syncDLObject.getTypeUuid());
-			}
+			populateAllSyncDLObjects(group.getGroupId());
 		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(UpgradeSyncDLObject.class);
+
+	private long _counter = 0;
+	private long _totalCount = 0;
 
 }
