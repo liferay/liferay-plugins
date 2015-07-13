@@ -22,7 +22,7 @@ long selResourcePrimKey = ParamUtil.getLong(request, "selResourcePrimKey");
 String orderByCol = ParamUtil.getString(request, "orderByCol", "modified-date");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
-String portletId = PortletProviderUtil.getPortletId(request, PortletConfigurationApplicationType.PortletConfiguration.CLASS_NAME, PortletProvider.Action.VIEW);
+String portletId = PortletProviderUtil.getPortletId(PortletConfigurationApplicationType.PortletConfiguration.CLASS_NAME, PortletProvider.Action.VIEW);
 %>
 
 <liferay-ui:header
