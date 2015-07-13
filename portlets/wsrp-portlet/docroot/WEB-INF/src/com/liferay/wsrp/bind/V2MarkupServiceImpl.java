@@ -590,7 +590,6 @@ public class V2MarkupServiceImpl
 
 			String portletConfigurationPortletId =
 				PortletProviderUtil.getPortletId(
-					request,
 					PortletConfigurationApplicationType.
 						PortletConfiguration.CLASS_NAME,
 					PortletProvider.Action.VIEW);
