@@ -38,7 +38,6 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.portletconfiguration.util.PortletConfigurationApplicationType;
 import com.liferay.util.Encryptor;
@@ -576,31 +575,31 @@ public class V2MarkupServiceImpl
 
 		String portletId = getPortletId(portletContext);
 
-		if (navigationalContext != null) {
-			String opaqueValue = navigationalContext.getOpaqueValue();
+		if (navigationalContext == null) {
+			return portletId;
+		}
 
-			if (Validator.isNotNull(opaqueValue)) {
-				opaqueValue = new String(
-					Base64.decode(Base64.fromURLSafe(opaqueValue)),
-					StringPool.UTF8);
-			}
+		String opaqueValue = navigationalContext.getOpaqueValue();
 
-			Map<String, String[]> parameterMap =
-				HttpUtil.parameterMapFromString(opaqueValue);
+		if (Validator.isNotNull(opaqueValue)) {
+			opaqueValue = new String(
+				Base64.decode(Base64.fromURLSafe(opaqueValue)),
+				StringPool.UTF8);
+		}
 
-			String portletConfigurationPortletId =
-				PortletProviderUtil.getPortletId(
-					PortletConfigurationApplicationType.
-						PortletConfiguration.CLASS_NAME,
-					PortletProvider.Action.VIEW);
+		Map<String, String[]> parameterMap = HttpUtil.parameterMapFromString(
+			opaqueValue);
 
-			String actionPortletConfiguration =
+		String portletConfigurationPortletId = PortletProviderUtil.getPortletId(
+			PortletConfigurationApplicationType.
+				PortletConfiguration.CLASS_NAME,
+			PortletProvider.Action.VIEW);
+
+		if (parameterMap.containsKey(
 				PortalUtil.getPortletNamespace(portletConfigurationPortletId) +
-					"portletConfiguration";
+					"portletConfiguration")) {
 
-			if (parameterMap.containsKey(actionPortletConfiguration)) {
-				portletId = portletConfigurationPortletId;
-			}
+			portletId = portletConfigurationPortletId;
 		}
 
 		return portletId;
