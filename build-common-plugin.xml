@@ -880,13 +880,25 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 
 				<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
+				<propertyregex property="test.java.classes"
+					input="${test.classes}"
+					regexp=".class"
+					replace=".java"
+					global="true"
+				/>
+
 				<if>
-					<or>
-						<not>
-							<isset property="test.type" />
-						</not>
-						<equals arg1="${test.type}" arg2="unit" />
-					</or>
+					<and>
+						<or>
+							<not>
+								<isset property="test.type" />
+							</not>
+							<equals arg1="${test.type}" arg2="unit" />
+						</or>
+						<resourcecount when="gt" count="0">
+							<fileset dir="${basedir}/test/unit" includes="${test.java.classes}" />
+						</resourcecount>
+					</and>
 					<then>
 						<test-cmd
 							module.dir="${basedir}"
@@ -898,12 +910,17 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				</if>
 
 				<if>
-					<or>
-						<not>
-							<isset property="test.type" />
-						</not>
-						<equals arg1="${test.type}" arg2="integration" />
-					</or>
+					<and>
+						<or>
+							<not>
+								<isset property="test.type" />
+							</not>
+							<equals arg1="${test.type}" arg2="integration" />
+						</or>
+						<resourcecount when="gt" count="0">
+							<fileset dir="${basedir}/test/integration" includes="${test.java.classes}" />
+						</resourcecount>
+					</and>
 					<then>
 						<test-cmd
 							module.dir="${basedir}"
