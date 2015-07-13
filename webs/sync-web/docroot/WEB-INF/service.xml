@@ -114,7 +114,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="modifiedTime" comparator="&gt;" />
 			<finder-column name="repositoryId" />
-			<finder-column name="event" comparator="!=" />
+			<finder-column name="event" arrayable-operator="AND" comparator="!=" />
 		</finder>
 
 		<!-- References -->
