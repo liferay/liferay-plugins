@@ -315,7 +315,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					companyId, repositoryId, SyncConstants.TYPE_FOLDER);
 
 			SyncDLObjectUpdate syncDLObjectUpdate = checkSyncDLObjects(
-				syncDLObjects);
+				syncDLObjects, repositoryId);
 
 			return syncDLObjectUpdate.getSyncDLObjects();
 		}
@@ -612,7 +612,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
 			}
 
-			return checkSyncDLObjects(syncDLObjects);
+			return checkSyncDLObjects(syncDLObjects, repositoryId);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -1047,10 +1047,12 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	protected SyncDLObjectUpdate checkSyncDLObjects(
-			List<SyncDLObject> syncDLObjects)
+			List<SyncDLObject> syncDLObjects, long repositoryId)
 		throws PortalException {
 
 		PermissionChecker permissionChecker = getPermissionChecker();
+
+		boolean groupAdmin = permissionChecker.isGroupAdmin(repositoryId);
 
 		List<SyncDLObject> checkedSyncDLObjects = new ArrayList<SyncDLObject>();
 
@@ -1061,9 +1063,19 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				lastAccessTime = syncDLObject.getModifiedTime();
 			}
 
+			if (groupAdmin) {
+				checkedSyncDLObjects.add(syncDLObject);
+
+				continue;
+			}
+
 			String event = syncDLObject.getEvent();
 
-			if (event.equals(SyncConstants.EVENT_DELETE)) {
+			if (event.equals(SyncConstants.EVENT_DELETE) ||
+				event.equals(SyncConstants.EVENT_TRASH)) {
+
+				checkedSyncDLObjects.add(syncDLObject);
+
 				continue;
 			}
 
@@ -1142,7 +1154,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				companyId, lastAccessTime, repositoryId, parentFolderId);
 
 		SyncDLObjectUpdate syncDLObjectUpdate = checkSyncDLObjects(
-			curSyncDLObjects);
+			curSyncDLObjects, repositoryId);
 
 		curSyncDLObjects = syncDLObjectUpdate.getSyncDLObjects();
 
