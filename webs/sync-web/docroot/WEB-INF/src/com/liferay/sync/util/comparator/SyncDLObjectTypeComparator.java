@@ -23,13 +23,11 @@ import com.liferay.sync.model.SyncDLObject;
 public class SyncDLObjectTypeComparator
 	extends OrderByComparator<SyncDLObject> {
 
-	public static final String ORDER_BY_ASC =
-		"SyncDLObject.type_ ASC, SyncDLObject.modifiedTime ASC";
+	public static final String ORDER_BY_ASC = "SyncDLObject.type_ ASC";
 
-	public static final String ORDER_BY_DESC =
-		"SyncDLObject.type_ DESC, SyncDLObject.modifiedTime ASC";
+	public static final String ORDER_BY_DESC = "SyncDLObject.type_ DESC";
 
-	public static final String[] ORDER_BY_FIELDS = {"type", "modifiedTime"};
+	public static final String[] ORDER_BY_FIELDS = {"type"};
 
 	public SyncDLObjectTypeComparator() {
 		this(false);
@@ -72,16 +70,6 @@ public class SyncDLObjectTypeComparator
 	@Override
 	public boolean isAscending() {
 		return _ascending;
-	}
-
-	@Override
-	public boolean isAscending(String field) {
-		if (field.equals("type")) {
-			return isAscending();
-		}
-		else {
-			return true;
-		}
 	}
 
 	private boolean _ascending;
