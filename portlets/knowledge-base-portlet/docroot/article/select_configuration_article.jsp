@@ -22,7 +22,7 @@ long selResourcePrimKey = ParamUtil.getLong(request, "selResourcePrimKey");
 String orderByCol = ParamUtil.getString(request, "orderByCol", "modified-date");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
-String portletConfigurationPortletId = PortletProviderUtil.getPortletId(request, PortletConfigurationApplicationType.PortletConfiguration.CLASS_NAME, PortletProvider.Action.VIEW);
+String portletId = PortletProviderUtil.getPortletId(request, PortletConfigurationApplicationType.PortletConfiguration.CLASS_NAME, PortletProvider.Action.VIEW);
 %>
 
 <liferay-ui:header
@@ -112,9 +112,7 @@ String portletConfigurationPortletId = PortletProviderUtil.getPortletId(request,
 		>
 
 			<%
-			String portletConfigurationId = PortletProviderUtil.getPortletURL(request, PortletConfigurationApplicationType.PortletConfiguration.CLASS_NAME, PortletProvider.Action.VIEW);
-
-			String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(portletConfigurationPortletId) + "selectConfigurationKBArticle('" + kbArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(kbArticle.getTitle()) + "'); window.close();";
+			String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(portletId) + "selectConfigurationKBArticle('" + kbArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(kbArticle.getTitle()) + "'); window.close();";
 			%>
 
 			<aui:button onClick="<%= taglibOnClick %>" value="choose" />
@@ -132,7 +130,7 @@ String portletConfigurationPortletId = PortletProviderUtil.getPortletId(request,
 				<%= selKBArticle.getTitle() %>
 
 				<%
-				String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(portletConfigurationPortletId) + "selectConfigurationKBArticle('0', ''); window.close();";
+				String taglibOnClick = "opener." + PortalUtil.getPortletNamespace(portletId) + "selectConfigurationKBArticle('0', ''); window.close();";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="remove" />
