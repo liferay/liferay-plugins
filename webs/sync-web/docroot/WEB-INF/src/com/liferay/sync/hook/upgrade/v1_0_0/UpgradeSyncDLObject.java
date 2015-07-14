@@ -73,13 +73,15 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		updateSyncDLObjects();
 	}
 
-	protected void incrementCounter() {
-		_counter++;
+	protected void incrementCount() {
+		_count++;
 
-		if (_log.isDebugEnabled() && ((_counter % 1000) == 0)) {
-			_log.debug(
-				"Processed " + _counter + "/" + _totalCount +
-					" folders and files");
+		if (_log.isDebugEnabled()) {
+			if ((_count % 1000) == 0) {
+				_log.debug(
+					"Processed " + _count + "/" + _totalCount + "folders and" +
+					" files");
+			}
 		}
 	}
 
@@ -90,53 +92,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 			_log.debug("Processing group " + groupId);
 		}
 
-		_counter = 0;
-
-		ActionableDynamicQuery dlFolderActionableDynamicQuery =
-			DLFolderLocalServiceUtil.getActionableDynamicQuery();
-
-		dlFolderActionableDynamicQuery.setAddCriteriaMethod(
-			new ActionableDynamicQuery.AddCriteriaMethod() {
-
-				@Override
-				public void addCriteria(DynamicQuery dynamicQuery) {
-					Property mountPointProperty = PropertyFactoryUtil.forName(
-						"mountPoint");
-
-					dynamicQuery.add(mountPointProperty.eq(false));
-
-					Property statusProperty = PropertyFactoryUtil.forName(
-						"status");
-
-					dynamicQuery.add(
-						statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
-				}
-
-			});
-
-		dlFolderActionableDynamicQuery.setGroupId(groupId);
-
-		dlFolderActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.PerformActionMethod() {
-
-				@Override
-				public void performAction(Object object)
-					throws PortalException {
-
-					incrementCounter();
-
-					DLFolder dlFolder = (DLFolder)object;
-
-					if (!SyncUtil.isSupportedFolder(dlFolder)) {
-						return;
-					}
-
-					addSyncDLObject(
-						SyncUtil.toSyncDLObject(
-							dlFolder, SyncConstants.EVENT_ADD));
-				}
-
-			});
+		_count = 0;
 
 		ActionableDynamicQuery dlFileEntryActionableDynamicQuery =
 			DLFileEntryLocalServiceUtil.getActionableDynamicQuery();
@@ -150,7 +106,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				public void performAction(Object object)
 					throws PortalException {
 
-					incrementCounter();
+					incrementCount();
 
 					DLFileEntry dlFileEntry = (DLFileEntry)object;
 
@@ -191,16 +147,63 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 			});
 
-		_totalCount =
-			dlFolderActionableDynamicQuery.performCount() +
-				dlFileEntryActionableDynamicQuery.performCount();
+		ActionableDynamicQuery dlFolderActionableDynamicQuery =
+			DLFolderLocalServiceUtil.getActionableDynamicQuery();
 
-		dlFolderActionableDynamicQuery.performActions();
+			dlFolderActionableDynamicQuery.setAddCriteriaMethod(
+				new ActionableDynamicQuery.AddCriteriaMethod() {
+
+					@Override
+					public void addCriteria(DynamicQuery dynamicQuery) {
+						Property mountPointProperty =
+							PropertyFactoryUtil.forName("mountPoint");
+
+						dynamicQuery.add(mountPointProperty.eq(false));
+
+						Property statusProperty = PropertyFactoryUtil.forName(
+							"status");
+
+						dynamicQuery.add(
+							statusProperty.eq(
+								WorkflowConstants.STATUS_APPROVED));
+					}
+
+				});
+
+			dlFolderActionableDynamicQuery.setGroupId(groupId);
+
+			dlFolderActionableDynamicQuery.setPerformActionMethod(
+				new ActionableDynamicQuery.PerformActionMethod() {
+
+					@Override
+					public void performAction(Object object)
+						throws PortalException {
+
+						incrementCount();
+
+						DLFolder dlFolder = (DLFolder)object;
+
+						if (!SyncUtil.isSupportedFolder(dlFolder)) {
+							return;
+						}
+
+						addSyncDLObject(
+							SyncUtil.toSyncDLObject(
+								dlFolder, SyncConstants.EVENT_ADD));
+					}
+
+				});
+
+		_totalCount =
+			dlFileEntryActionableDynamicQuery.performCount() +
+				dlFolderActionableDynamicQuery.performCount();
+
 		dlFileEntryActionableDynamicQuery.performActions();
+		dlFolderActionableDynamicQuery.performActions();
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Processed " + _counter + " files and folders for group " +
+				"Processed " + _count + " files and folders for group " +
 					groupId);
 		}
 	}
@@ -224,7 +227,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 	private static Log _log = LogFactoryUtil.getLog(UpgradeSyncDLObject.class);
 
-	private long _counter = 0;
+	private long _count = 0;
 	private long _totalCount = 0;
 
 }
