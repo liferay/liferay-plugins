@@ -15,8 +15,8 @@
 package com.liferay.marketplace.store.portlet;
 
 import com.liferay.compat.portal.kernel.util.HttpUtil;
+import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.compat.portal.util.PortalUtil;
-import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;

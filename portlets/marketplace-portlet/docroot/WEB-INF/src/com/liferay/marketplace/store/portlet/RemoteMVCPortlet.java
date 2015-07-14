@@ -14,15 +14,15 @@
 
 package com.liferay.marketplace.store.portlet;
 
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.Validator;
+import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.marketplace.oauth.util.OAuthUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;

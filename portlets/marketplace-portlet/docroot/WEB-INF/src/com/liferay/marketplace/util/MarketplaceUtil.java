@@ -14,11 +14,11 @@
 
 package com.liferay.marketplace.util;
 
+import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeFormatter;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
