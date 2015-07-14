@@ -79,8 +79,8 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		if (_log.isDebugEnabled()) {
 			if ((_count % 1000) == 0) {
 				_log.debug(
-					"Processed " + _count + "/" + _totalCount + "folders and" +
-						" files");
+					"Processed " + _count + "/" + _totalCount + " folders " +
+						"and files");
 			}
 		}
 	}
