@@ -2726,7 +2726,7 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<resourcecount count="1">
 					<fileset dir="@{module.dir}/test/integration" includes="**/@{test.class}.java" erroronmissingdir="false" />
-				</resourcecount>	
+				</resourcecount>
 				<then>
 					<var name="test.type" value="integration" />
 
