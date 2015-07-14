@@ -1,0 +1,72 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.marketplace.oauth.util;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.User;
+import com.liferay.portlet.expando.model.ExpandoValue;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+
+import org.scribe.model.Token;
+
+/**
+ * @author Ryan Park
+ */
+public class OAuthUtil {
+
+	public static void deleteAccessToken(User user)
+		throws PortalException, SystemException {
+
+		ExpandoValueLocalServiceUtil.deleteValue(
+			user.getCompanyId(), User.class.getName(), "MP", "secret",
+			user.getUserId());
+		ExpandoValueLocalServiceUtil.deleteValue(
+			user.getCompanyId(), User.class.getName(), "MP", "token",
+			user.getUserId());
+	}
+
+	public static Token getAccessToken(User user)
+		throws PortalException, SystemException {
+
+		ExpandoValue secretExpandoValue =
+			ExpandoValueLocalServiceUtil.getValue(
+				user.getCompanyId(), User.class.getName(), "MP", "secret",
+				user.getUserId());
+		ExpandoValue tokenExpandoValue =
+			ExpandoValueLocalServiceUtil.getValue(
+				user.getCompanyId(), User.class.getName(), "MP", "token",
+				user.getUserId());
+
+		if ((secretExpandoValue == null) || (tokenExpandoValue == null)) {
+			return null;
+		}
+
+		return new Token(
+			tokenExpandoValue.getString(), secretExpandoValue.getString());
+	}
+
+	public static void updateAccessToken(User user, Token token)
+		throws PortalException, SystemException {
+
+		ExpandoValueLocalServiceUtil.addValue(
+			user.getCompanyId(), User.class.getName(), "MP", "secret",
+			user.getUserId(), token.getSecret());
+		ExpandoValueLocalServiceUtil.addValue(
+			user.getCompanyId(), User.class.getName(), "MP", "token",
+			user.getUserId(), token.getToken());
+	}
+
+}
