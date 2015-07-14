@@ -17,8 +17,6 @@
 
 package com.liferay.tasks.portlet;
 
-import com.liferay.portal.kernel.comment.CommentManagerUtil;
-import com.liferay.portal.kernel.comment.DiscussionPermission;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -26,16 +24,12 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.Function;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portal.service.ServiceContextFunction;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
@@ -113,56 +107,6 @@ public class TasksPortlet extends MVCPortlet {
 
 		if (Validator.isNotNull(redirect)) {
 			actionResponse.sendRedirect(redirect);
-		}
-	}
-
-	public void updateMessage(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		long groupId = PortalUtil.getScopeGroupId(actionRequest);
-		String className = ParamUtil.getString(actionRequest, "className");
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		long messageId = ParamUtil.getLong(actionRequest, "messageId");
-		long parentMessageId = ParamUtil.getLong(
-			actionRequest, "parentMessageId");
-		String subject = ParamUtil.getString(actionRequest, "subject");
-		String body = ParamUtil.getString(actionRequest, "body");
-
-		Function<String, ServiceContext> serviceContextFunction =
-			new ServiceContextFunction(actionRequest);
-
-		DiscussionPermission discussionPermission =
-			CommentManagerUtil.getDiscussionPermission(
-				themeDisplay.getPermissionChecker());
-
-		if (cmd.equals(Constants.DELETE)) {
-			discussionPermission.checkDeletePermission(messageId);
-
-			CommentManagerUtil.deleteComment(messageId);
-		}
-		else if (messageId <= 0) {
-			discussionPermission.checkAddPermission(
-				themeDisplay.getCompanyId(), groupId, className, classPK);
-
-			User user = themeDisplay.getUser();
-
-			CommentManagerUtil.addComment(
-				themeDisplay.getUserId(), className, classPK,
-				user.getFullName(), parentMessageId, subject, body,
-				serviceContextFunction);
-		}
-		else {
-			discussionPermission.checkUpdatePermission(messageId);
-
-			CommentManagerUtil.updateComment(
-				themeDisplay.getUserId(), className, classPK, messageId,
-				subject, body, serviceContextFunction);
 		}
 	}
 

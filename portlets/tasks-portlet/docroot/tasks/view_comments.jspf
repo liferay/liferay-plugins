@@ -17,18 +17,10 @@
  */
 --%>
 
-<liferay-portlet:actionURL name="updateMessage" var="updateDiscussionURL" />
-
-<portlet:resourceURL var="paginationURL">
-	<portlet:param name="invokeTaglibDiscussion" value="<%= Boolean.TRUE.toString() %>" />
-</portlet:resourceURL>
-
 <liferay-ui:discussion
 	className="<%= TasksEntry.class.getName() %>"
 	classPK="<%= tasksEntry.getTasksEntryId() %>"
-	formAction="<%= updateDiscussionURL %>"
 	formName="fm2"
-	paginationURL="<%= paginationURL %>"
 	ratingsEnabled="<%= false %>"
 	redirect="<%= currentURL %>"
 	userId="<%= tasksEntry.getUserId() %>"
