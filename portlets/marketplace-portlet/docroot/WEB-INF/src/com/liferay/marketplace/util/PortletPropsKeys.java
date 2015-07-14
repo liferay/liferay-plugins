@@ -19,6 +19,10 @@ package com.liferay.marketplace.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String MARKETPLACE_KEY = "marketplace.key";
+
+	public static final String MARKETPLACE_SECRET = "marketplace.secret";
+
 	public static final String MARKETPLACE_STORE_ENABLED =
 		"marketplace.store.enabled";
 
