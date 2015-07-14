@@ -2219,7 +2219,7 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<if>
-				<resourcecount count="0" when="ne">
+				<resourcecount count="0" when="gt">
 					<fileset dir="${plugin.source.dir}" includes="**/*.java" />
 				</resourcecount>
 				<then>
@@ -2656,7 +2656,7 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<and>
 					<isset property="lp.portal.project.dir" />
-					<resourcecount count="0" when="ne">
+					<resourcecount count="0" when="gt">
 						<fileset dir="@{module.dir}/test-classes/integration" includes="@{test.class}" erroronmissingdir="false">
 							<filename regex="${junit.test.excludes}" negate="true" />
 						</fileset>

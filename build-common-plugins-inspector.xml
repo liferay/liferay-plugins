@@ -159,7 +159,7 @@
 		</if>
 
 		<if>
-			<resourcecount count="0" when="ne">
+			<resourcecount count="0" when="gt">
 				<fileset defaultexcludes="false" dir="." includes="**/.gitignore" />
 			</resourcecount>
 			<then>
