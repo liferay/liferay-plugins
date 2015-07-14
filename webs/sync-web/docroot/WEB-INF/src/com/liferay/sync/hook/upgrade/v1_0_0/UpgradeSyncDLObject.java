@@ -80,7 +80,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 			if ((_count % 1000) == 0) {
 				_log.debug(
 					"Processed " + _count + "/" + _totalCount + "folders and" +
-					" files");
+						" files");
 			}
 		}
 	}
@@ -169,9 +169,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 					}
 
 				});
-
 			dlFolderActionableDynamicQuery.setGroupId(groupId);
-
 			dlFolderActionableDynamicQuery.setPerformActionMethod(
 				new ActionableDynamicQuery.PerformActionMethod() {
 
@@ -199,6 +197,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				dlFolderActionableDynamicQuery.performCount();
 
 		dlFileEntryActionableDynamicQuery.performActions();
+
 		dlFolderActionableDynamicQuery.performActions();
 
 		if (_log.isDebugEnabled()) {
