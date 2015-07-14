@@ -1950,12 +1950,9 @@ Please find a solution that does not require portal-impl.jar.
 								</or>
 								<then>
 									<if>
-										<and>
-											<available file="@{module.dir}/docroot" />
-											<resourcecount count="0" when="gt">
-												<fileset dir="@{module.dir}/docroot" includes="**/*.css" />
-											</resourcecount>
-										</and>
+										<resourcecount count="0" when="gt">
+											<fileset dir="@{module.dir}/docroot" includes="**/*.css" erroronmissingdir="false" />
+										</resourcecount>
 										<then>
 											<build-css
 												module.dir="@{module.dir}"
@@ -1965,12 +1962,9 @@ Please find a solution that does not require portal-impl.jar.
 									</if>
 
 									<if>
-										<and>
-											<available file="@{module.dir}/src/META-INF/resources" />
-											<resourcecount count="0" when="gt">
-												<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.css" />
-											</resourcecount>
-										</and>
+										<resourcecount count="0" when="gt">
+											<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/*.css" erroronmissingdir="false"/>
+										</resourcecount>
 										<then>
 											<build-css
 												module.dir="@{module.dir}"
@@ -1980,13 +1974,9 @@ Please find a solution that does not require portal-impl.jar.
 									</if>
 
 									<if>
-										<and>
-											<available file="@{module.dir}/bower.json" />
-											<available file="@{module.dir}/src/META-INF/resources" />
-											<resourcecount count="0" when="gt">
-												<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/${transpile.file.pattern},${transpile.file.pattern}" />
-											</resourcecount>
-										</and>
+										<resourcecount count="0" when="gt">
+											<fileset dir="@{module.dir}/src/META-INF/resources" includes="**/${transpile.file.pattern},${transpile.file.pattern}" erroronmissingdir="false"/>
+										</resourcecount>
 										<then>
 											<transpile-js
 												module.dir="@{module.dir}"
@@ -2228,14 +2218,10 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<resourcecount property="module.java.count">
-				<fileset dir="${plugin.source.dir}" includes="**/*.java" />
-			</resourcecount>
-
 			<if>
-				<not>
-					<equals arg1="${module.java.count}" arg2="0" />
-				</not>
+				<resourcecount count="0" when="ne">
+					<fileset dir="${plugin.source.dir}" includes="**/*.java" />
+				</resourcecount>
 				<then>
 					<javadoc
 						classpathref="plugin.classpath"
@@ -2670,37 +2656,26 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<and>
 					<isset property="lp.portal.project.dir" />
-					<available file="@{module.dir}/test-classes/integration" type="dir" />
-				</and>
-				<then>
-					<resourcecount property="test.integration.count">
-						<fileset dir="@{module.dir}/test-classes/integration" includes="@{test.class}">
+					<resourcecount count="0" when="ne">
+						<fileset dir="@{module.dir}/test-classes/integration" includes="@{test.class}" erroronmissingdir="false">
 							<filename regex="${junit.test.excludes}" negate="true" />
 						</fileset>
 					</resourcecount>
+					<not>
+						<available file="@{module.dir}/test/integration/skip.managed.app.server" type="file" />
+					</not>
+				</and>
+				<then>
+					<delete file="${lp.portal.project.dir}/.testable.portal.started" failonerror="false" />
 
-					<if>
-						<and>
-							<not>
-								<equals arg1="${test.integration.count}" arg2="0" />
-							</not>
-							<not>
-								<available file="@{module.dir}/test/integration/skip.managed.app.server" type="file" />
-							</not>
-						</and>
-						<then>
-							<delete file="${lp.portal.project.dir}/.testable.portal.started" failonerror="false" />
+					<ant antfile="${lp.portal.project.dir}/build-test.xml" target="setup-testable-tomcat" inheritAll="false">
+						<property name="project.dir" value="${lp.portal.project.dir}" />
+					</ant>
 
-							<ant antfile="${lp.portal.project.dir}/build-test.xml" target="setup-testable-tomcat" inheritAll="false">
-								<property name="project.dir" value="${lp.portal.project.dir}" />
-							</ant>
-
-							<ant antfile="${lp.portal.project.dir}/build-test.xml" target="start-app-server" inheritAll="false">
-								<property name="project.dir" value="${lp.portal.project.dir}" />
-								<property name="testable.portal.started.marker.file" value="${lp.portal.project.dir}/.testable.portal.started" />
-							</ant>
-						</then>
-					</if>
+					<ant antfile="${lp.portal.project.dir}/build-test.xml" target="start-app-server" inheritAll="false">
+						<property name="project.dir" value="${lp.portal.project.dir}" />
+						<property name="testable.portal.started.marker.file" value="${lp.portal.project.dir}/.testable.portal.started" />
+					</ant>
 				</then>
 			</if>
 		</sequential>
@@ -2747,33 +2722,20 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="test.class" />
 
 		<sequential>
-			<if>
-				<available file="@{module.dir}/test/integration" type="dir" />
-				<then>
-					<resourcecount property="test.integration.count">
-						<fileset dir="@{module.dir}/test/integration" includes="**/@{test.class}.java" />
-					</resourcecount>
-				</then>
-			</if>
 
 			<if>
-				<available file="@{module.dir}/test/unit" type="dir" />
-				<then>
-					<resourcecount property="test.unit.count">
-						<fileset dir="@{module.dir}/test/unit" includes="**/@{test.class}.java" />
-					</resourcecount>
-				</then>
-			</if>
-
-			<if>
-				<equals arg1="${test.integration.count}" arg2="1" />
+				<resourcecount count="1">
+					<fileset dir="@{module.dir}/test/integration" includes="**/@{test.class}.java" erroronmissingdir="false" />
+				</resourcecount>	
 				<then>
 					<var name="test.type" value="integration" />
 
 					<setup-arquillian module.dir="@{module.dir}" />
 				</then>
 				<elseif>
-					<equals arg1="${test.unit.count}" arg2="1" />
+					<resourcecount count="1">
+						<fileset dir="@{module.dir}/test/unit" includes="**/@{test.class}.java" erroronmissingdir="false"/>
+					</resourcecount>
 					<then>
 						<var name="test.type" value="unit" />
 					</then>

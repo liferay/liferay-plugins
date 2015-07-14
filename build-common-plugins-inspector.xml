@@ -158,14 +158,10 @@
 			</then>
 		</if>
 
-		<resourcecount property="gitignore.count">
-			<fileset defaultexcludes="false" dir="." includes="**/.gitignore" />
-		</resourcecount>
-
 		<if>
-			<not>
-				<equals arg1="${gitignore.count}" arg2="0" />
-			</not>
+			<resourcecount count="0" when="ne">
+				<fileset defaultexcludes="false" dir="." includes="**/.gitignore" />
+			</resourcecount>
 			<then>
 				<record-fail message="Plugins must not have custom .gitignore files." />
 			</then>
