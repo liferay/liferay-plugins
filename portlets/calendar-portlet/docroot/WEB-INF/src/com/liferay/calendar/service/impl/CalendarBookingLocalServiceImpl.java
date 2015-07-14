@@ -138,16 +138,7 @@ public class CalendarBookingLocalServiceImpl
 
 		Date now = new Date();
 
-		if (Validator.isNull(recurrence)) {
-			validate(titleMap, startTimeJCalendar, endTimeJCalendar);
-		}
-		else {
-			java.util.Calendar untilJCalendar =
-				RecurrenceSerializer.deserialize(recurrence).getUntilJCalendar();
-
-			validate(
-				titleMap, startTimeJCalendar, endTimeJCalendar, untilJCalendar);
-		}
+		validate(titleMap, startTimeJCalendar, endTimeJCalendar, recurrence);
 
 		CalendarBooking calendarBooking = calendarBookingPersistence.create(
 			calendarBookingId);
@@ -806,16 +797,7 @@ public class CalendarBookingLocalServiceImpl
 			firstReminder = originalSecondReminder;
 		}
 
-		if (Validator.isNull(recurrence)) {
-			validate(titleMap, startTimeJCalendar, endTimeJCalendar);
-		}
-		else {
-			java.util.Calendar untilJCalendar =
-				RecurrenceSerializer.deserialize(recurrence).getUntilJCalendar();
-
-			validate(
-				titleMap, startTimeJCalendar, endTimeJCalendar, untilJCalendar);
-		}
+		validate(titleMap, startTimeJCalendar, endTimeJCalendar, recurrence);
 
 		calendarBooking.setGroupId(calendar.getGroupId());
 		calendarBooking.setModifiedDate(serviceContext.getModifiedDate(null));
@@ -1212,16 +1194,7 @@ public class CalendarBookingLocalServiceImpl
 
 	protected void validate(
 			Map<Locale, String> titleMap, java.util.Calendar startTimeJCalendar,
-			java.util.Calendar endTimeJCalendar)
-		throws PortalException {
-
-		validate(titleMap, startTimeJCalendar, endTimeJCalendar, null);
-	}
-
-	protected void validate(
-			Map<Locale, String> titleMap, java.util.Calendar startTimeJCalendar,
-			java.util.Calendar endTimeJCalendar,
-			java.util.Calendar untilJCalendar)
+			java.util.Calendar endTimeJCalendar, String recurrence)
 		throws PortalException {
 
 		if (Validator.isNull(titleMap) || titleMap.isEmpty()) {
@@ -1232,9 +1205,16 @@ public class CalendarBookingLocalServiceImpl
 			throw new CalendarBookingDurationException();
 		}
 
-		if (Validator.isNotNull(untilJCalendar) &&
-			startTimeJCalendar.after(untilJCalendar)) {
-				throw new CalendarBookingRecurrenceException();
+		if (Validator.isNull(recurrence)) {
+			return;
+		}
+
+		Recurrence recurrenceObj = RecurrenceSerializer.deserialize(recurrence);
+
+		if ((recurrenceObj.getUntilJCalendar() != null) &&
+			startTimeJCalendar.after(recurrenceObj.getUntilJCalendar())) {
+
+			throw new CalendarBookingRecurrenceException()
 		}
 	}
 
