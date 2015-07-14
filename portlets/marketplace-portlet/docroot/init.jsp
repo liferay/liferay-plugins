@@ -23,8 +23,8 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@
-page import="com.liferay.marketplace.util.PortletKeys" %><%@
+<%@ page import="com.liferay.marketplace.util.PortletKeys" %><%@
+page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.ServerDetector" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %>
@@ -34,25 +34,3 @@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
-
-<%
-long appId = ParamUtil.getLong(request, "appId");
-
-String portletId = portletDisplay.getId();
-
-String iFrameURL = MarketplaceConstants.MARKETPLACE_URL_LOGOUT;
-
-String referer = StringPool.BLANK;
-
-if (portletId.equals(PortletKeys.MY_MARKETPLACE)) {
-	referer = MarketplaceConstants.getPathPurchased();
-}
-else if (portletId.equals(PortletKeys.STORE) && (appId > 0)) {
-	referer = MarketplaceConstants.getPathStore() + "/application/" + appId;
-}
-else {
-	referer = MarketplaceConstants.getPathStore();
-}
-
-referer = StringPool.SLASH + locale.getLanguage() + referer;
-%>

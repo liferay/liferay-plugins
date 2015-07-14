@@ -47,7 +47,7 @@ import javax.portlet.PortletException;
 /**
  * @author Ryan Park
  */
-public class StorePortlet extends MVCPortlet {
+public class StorePortlet extends RemoteMVCPortlet {
 
 	public void downloadApp(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -363,6 +363,10 @@ public class StorePortlet extends MVCPortlet {
 			url, _PORTLET_NAMESPACE.concat("token"), token);
 
 		return url;
+	}
+
+	protected String getRemotePortletURL() {
+		return PortletPropsValues.MARKETPLACE_URL + "/osb-portlet/mp_server";
 	}
 
 	private static final String _PORTLET_NAMESPACE =
