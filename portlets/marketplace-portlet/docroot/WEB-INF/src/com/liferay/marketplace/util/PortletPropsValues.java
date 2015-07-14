@@ -23,9 +23,15 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String MARKETPLACE_KEY = PortletProps.get(
+		PortletPropsKeys.MARKETPLACE_KEY);
+
+	public static final String MARKETPLACE_SECRET = PortletProps.get(
+		PortletPropsKeys.MARKETPLACE_SECRET);
+
 	public static final String MARKETPLACE_URL =
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.MARKETPLACE_URL),
-			"https://mp.liferay.com");
+			"https://www.liferay.com");
 
 }
