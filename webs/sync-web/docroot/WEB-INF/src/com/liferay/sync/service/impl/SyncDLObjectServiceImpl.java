@@ -1052,10 +1052,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		PermissionChecker permissionChecker = getPermissionChecker();
 
-		boolean groupAdmin = permissionChecker.isGroupAdmin(repositoryId);
-
 		List<SyncDLObject> checkedSyncDLObjects = new ArrayList<SyncDLObject>();
-
 		long lastAccessTime = 0;
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
@@ -1063,7 +1060,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				lastAccessTime = syncDLObject.getModifiedTime();
 			}
 
-			if (groupAdmin) {
+			if (permissionChecker.isGroupAdmin(repositoryId)) {
 				checkedSyncDLObjects.add(syncDLObject);
 
 				continue;
