@@ -14,13 +14,19 @@
 
 package com.liferay.marketplace.oauth.util;
 
+import com.liferay.marketplace.oauth.api.MarketplaceApi;
+import com.liferay.marketplace.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
+import org.scribe.builder.api.Api;
+import org.scribe.model.OAuthConfig;
+import org.scribe.model.SignatureType;
 import org.scribe.model.Token;
+import org.scribe.oauth.OAuthService;
 
 /**
  * @author Ryan Park
@@ -56,6 +62,18 @@ public class OAuthUtil {
 
 		return new Token(
 			tokenExpandoValue.getString(), secretExpandoValue.getString());
+	}
+
+	public static OAuthService getOAuthService() {
+		Api api = new MarketplaceApi();
+
+		OAuthConfig oAuthConfig = new OAuthConfig(
+			PortletPropsValues.MARKETPLACE_KEY,
+			PortletPropsValues.MARKETPLACE_SECRET,
+			PortletPropsValues.MARKETPLACE_URL, SignatureType.Header, null,
+			null);
+
+		return api.createService(oAuthConfig);
 	}
 
 	public static void updateAccessToken(User user, Token token)

@@ -25,19 +25,18 @@
 
 <%@ page import="com.liferay.marketplace.model.App" %><%@
 page import="com.liferay.marketplace.service.AppLocalServiceUtil" %><%@
-page import="com.liferay.marketplace.util.MarketplaceConstants" %><%@
 page import="com.liferay.marketplace.util.PortletKeys" %><%@
 page import="com.liferay.marketplace.util.comparator.PluginComparator" %><%@
 page import="com.liferay.portal.kernel.deploy.DeployManagerUtil" %><%@
 page import="com.liferay.portal.kernel.plugin.RequiredPluginPackageException" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %><%@
+page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.search.Indexer" %><%@
 page import="com.liferay.portal.kernel.servlet.ServletContextPool" %><%@
 page import="com.liferay.portal.kernel.upload.UploadException" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.kernel.util.ServerDetector" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
@@ -59,33 +58,10 @@ page import="java.util.Iterator" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletRequest" %><%@
-page import="javax.portlet.PortletURL" %><%@
-page import="javax.portlet.WindowState" %>
+page import="javax.portlet.PortletURL" %>
 
 <%@ page import="javax.servlet.ServletContext" %>
 
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
-
-<%
-long appId = ParamUtil.getLong(request, "appId");
-
-String portletId = portletDisplay.getId();
-
-String iFrameURL = MarketplaceConstants.MARKETPLACE_URL_LOGOUT;
-
-String referer = StringPool.BLANK;
-
-if (portletId.equals(PortletKeys.MY_MARKETPLACE)) {
-	referer = MarketplaceConstants.getPathPurchased();
-}
-else if (portletId.equals(PortletKeys.STORE) && (appId > 0)) {
-	referer = MarketplaceConstants.getPathStore() + "/application/" + appId;
-}
-else {
-	referer = MarketplaceConstants.getPathStore();
-}
-
-referer = StringPool.SLASH + locale.getLanguage() + referer;
-%>

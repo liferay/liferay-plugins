@@ -33,7 +33,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +50,7 @@ import javax.portlet.PortletException;
 /**
  * @author Ryan Park
  */
-public class StorePortlet extends MVCPortlet {
+public class StorePortlet extends RemoteMVCPortlet {
 
 	public void downloadApp(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -408,6 +407,10 @@ public class StorePortlet extends MVCPortlet {
 			url, _PORTLET_NAMESPACE.concat("token"), token);
 
 		return url;
+	}
+
+	protected String getRemotePortletURL() {
+		return PortletPropsValues.MARKETPLACE_URL + "/osb-portlet/mp_server";
 	}
 
 	private static final String _PORTLET_NAMESPACE =
