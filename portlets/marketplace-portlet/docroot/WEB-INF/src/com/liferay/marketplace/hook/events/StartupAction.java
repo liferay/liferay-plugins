@@ -27,6 +27,7 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 /**
  * @author Peter Shin
+ * @author Ryan Park
  */
 public class StartupAction extends SimpleAction {
 
@@ -54,7 +55,9 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "clientId", ExpandoColumnConstants.STRING);
+				table.getTableId(), "secret", ExpandoColumnConstants.STRING);
+			ExpandoColumnLocalServiceUtil.addColumn(
+				table.getTableId(), "token", ExpandoColumnConstants.STRING);
 		}
 		catch (DuplicateColumnNameException dcne) {
 		}
