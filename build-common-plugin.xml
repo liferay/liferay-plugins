@@ -880,19 +880,39 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 
 				<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
-				<test-cmd
-					module.dir="${basedir}"
-					junit.forkmode="perTest"
-					test.class="${test.classes}"
-					test.type="unit"
-				/>
+				<if>
+					<or>
+						<not>
+							<isset property="test.type" />
+						</not>
+						<equals arg1="${test.type}" arg2="unit" />
+					</or>
+					<then>
+						<test-cmd
+							module.dir="${basedir}"
+							junit.forkmode="perTest"
+							test.class="${test.classes}"
+							test.type="unit"
+						/>
+					</then>
+				</if>
 
-				<test-cmd
-					module.dir="${basedir}"
-					junit.forkmode="once"
-					test.class="${test.classes}"
-					test.type="integration"
-				/>
+				<if>
+					<or>
+						<not>
+							<isset property="test.type" />
+						</not>
+						<equals arg1="${test.type}" arg2="integration" />
+					</or>
+					<then>
+						<test-cmd
+							module.dir="${basedir}"
+							junit.forkmode="once"
+							test.class="${test.classes}"
+							test.type="integration"
+						/>
+					</then>
+				</if>
 			</then>
 		</if>
 
