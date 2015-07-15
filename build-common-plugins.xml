@@ -84,7 +84,13 @@
 			includes="${plugins.includes}"
 			root.dir="${basedir}"
 			target="test-class-group"
-		/>
+		>
+			<properties>
+				<propertyset>
+					<propertyref name="test.type" />
+				</propertyset>
+			</properties>
+		</multiroot-subant>
 	</target>
 
 	<target name="test-package">
