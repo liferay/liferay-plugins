@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserNotificationEvent;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -109,11 +110,21 @@ public class SOAnnouncementsUserNotificationHandler
 			return null;
 		}
 
-		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+		String entryClassName = announcementEntry.getClassName();
+		long entryClassPK = announcementEntry.getClassPK();
 
-		User user = themeDisplay.getUser();
+		Group group = null;
 
-		Group group = user.getGroup();
+		if (entryClassName.equals(Group.class.getName())) {
+			group = GroupLocalServiceUtil.getGroup(entryClassPK);
+		}
+		else {
+			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+			User user = themeDisplay.getUser();
+
+			group = user.getGroup();
+		}
 
 		long portletPlid = PortalUtil.getPlidFromPortletId(
 			group.getGroupId(), true, PortletKeys.SO_ANNOUNCEMENTS);
