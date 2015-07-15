@@ -2410,6 +2410,7 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="includes" />
 		<attribute name="root.dir" />
 		<attribute name="target" />
+		<element name="properties" optional="true" />
 
 		<sequential>
 			<path id="includes.path">
@@ -2421,6 +2422,7 @@ Please find a solution that does not require portal-impl.jar.
 			<pathconvert pathsep="," property="includes.path" refid="includes.path" targetos="unix" />
 
 			<subant target="@{target}">
+				<properties />
 				<multirootfileset basedirs="${includes.path}">
 					<include name="@{build.file}" />
 				</multirootfileset>
