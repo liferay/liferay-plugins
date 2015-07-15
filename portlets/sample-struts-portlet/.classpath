@@ -26,6 +26,7 @@
 	<classpathentry kind="lib" path="/portal-master/lib/portal/oro.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/portals-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-core.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-extras.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-taglib.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/struts-tiles.jar" />
 	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
