@@ -881,10 +881,10 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 				<propertycopy from="TEST_CLASS_GROUP_${test.class.group.index}" name="test.classes" />
 
 				<propertyregex property="test.java.classes"
+					global="true"
 					input="${test.classes}"
 					regexp="\.class"
 					replace=".java"
-					global="true"
 				/>
 
 				<if>
@@ -895,7 +895,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 							</not>
 							<equals arg1="${test.type}" arg2="unit" />
 						</or>
-						<resourcecount when="gt" count="0">
+						<resourcecount count="0" when="gt">
 							<fileset dir="${basedir}/test/unit" includes="${test.java.classes}" />
 						</resourcecount>
 					</and>
@@ -917,7 +917,7 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 							</not>
 							<equals arg1="${test.type}" arg2="integration" />
 						</or>
-						<resourcecount when="gt" count="0">
+						<resourcecount count="0" when="gt">
 							<fileset dir="${basedir}/test/integration" includes="${test.java.classes}" />
 						</resourcecount>
 					</and>
