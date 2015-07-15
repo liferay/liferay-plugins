@@ -934,7 +934,15 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 		</if>
 
 		<if>
-			<equals arg1="${test.class.group.index}" arg2="0" />
+			<and>
+				<or>
+					<not>
+						<isset property="test.type" />
+					</not>
+					<equals arg1="${test.type}" arg2="unit" />
+				</or>
+				<equals arg1="${test.class.group.index}" arg2="0" />
+			</and>
 			<then>
 				<antcall target="compile-jsp" />
 			</then>
