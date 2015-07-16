@@ -71,7 +71,7 @@ import com.liferay.sync.util.JSONWebServiceActionParametersMap;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
-import com.liferay.sync.util.comparator.SyncDLObjectTypeComparator;
+import com.liferay.sync.util.comparator.SyncDLObjectModifiedTimeComparator;
 
 import java.io.File;
 import java.io.InputStream;
@@ -315,10 +315,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncDLObjectPersistence.findByC_R_T(
 					companyId, repositoryId, SyncConstants.TYPE_FOLDER);
 
-			SyncDLObjectUpdate syncDLObjectUpdate = checkSyncDLObjects(
-				syncDLObjects, companyId, repositoryId);
-
-			return syncDLObjectUpdate.getSyncDLObjects();
+			return checkSyncDLObjects(syncDLObjects, companyId, repositoryId);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -607,13 +604,18 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncDLObjectPersistence.findByC_M_R_NotE(
 					companyId, lastAccessTime, repositoryId, events, 0,
 					PortletPropsValues.SYNC_PAGINATION_DELTA,
-					new SyncDLObjectTypeComparator());
+					new SyncDLObjectModifiedTimeComparator());
 
 			if (syncDLObjects.isEmpty()) {
 				return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
 			}
 
-			return checkSyncDLObjects(syncDLObjects, companyId, repositoryId);
+			SyncDLObject syncDLObject = syncDLObjects.get(
+				syncDLObjects.size() - 1);
+
+			return new SyncDLObjectUpdate(
+				checkSyncDLObjects(syncDLObjects, companyId, repositoryId),
+				syncDLObject.getModifiedTime());
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -1047,30 +1049,23 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		return syncDLObject;
 	}
 
-	protected SyncDLObjectUpdate checkSyncDLObjects(
+	protected List<SyncDLObject> checkSyncDLObjects(
 			List<SyncDLObject> syncDLObjects, long companyId, long repositoryId)
 		throws PortalException, SystemException {
 
 		PermissionChecker permissionChecker = getPermissionChecker();
 
-		long lastAccessTime = 0;
+		if (permissionChecker.isGroupAdmin(repositoryId)) {
+			return syncDLObjects;
+		}
+
 		List<Long> typePKs = new ArrayList<Long>();
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
-			if (syncDLObject.getModifiedTime() > lastAccessTime) {
-				lastAccessTime = syncDLObject.getModifiedTime();
-			}
-
-			if (!permissionChecker.isGroupAdmin(repositoryId)) {
-				typePKs.add(syncDLObject.getTypePK());
-			}
+			typePKs.add(syncDLObject.getTypePK());
 		}
 
-		if (permissionChecker.isGroupAdmin(repositoryId)) {
-			return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
-		}
-
-		List<Long> checkedTypePKs = checkSyncDLObjects(
+		List<Long> checkedTypePKs = checkTypePks(
 			companyId, repositoryId, permissionChecker.getUserId(), typePKs);
 
 		List<SyncDLObject> checkedSyncDLObjects = new ArrayList<SyncDLObject>();
@@ -1091,10 +1086,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			}
 		}
 
-		return new SyncDLObjectUpdate(checkedSyncDLObjects, lastAccessTime);
+		return checkedSyncDLObjects;
 	}
 
-	protected List<Long> checkSyncDLObjects(
+	protected List<Long> checkTypePks(
 			long companyId, long repositoryId, long userId, List<Long> typePKs)
 		throws SystemException {
 
@@ -1113,7 +1108,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			sublist.clear();
 
 			checkedTypePKs.addAll(
-				checkSyncDLObjects(companyId, repositoryId, userId, typePKs));
+				checkTypePks(companyId, repositoryId, userId, typePKs));
 
 			return checkedTypePKs;
 		}
@@ -1155,10 +1150,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			syncDLObjectPersistence.findByC_M_R_P(
 				companyId, lastAccessTime, repositoryId, parentFolderId);
 
-		SyncDLObjectUpdate syncDLObjectUpdate = checkSyncDLObjects(
+		curSyncDLObjects = checkSyncDLObjects(
 			curSyncDLObjects, companyId, repositoryId);
-
-		curSyncDLObjects = syncDLObjectUpdate.getSyncDLObjects();
 
 		syncDLObjects.addAll(curSyncDLObjects);
 
