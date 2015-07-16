@@ -20,29 +20,36 @@ import com.liferay.sync.model.SyncDLObject;
 /**
  * @author Shinn Lok
  */
-public class SyncDLObjectTypeComparator
+public class SyncDLObjectModifiedTimeComparator
 	extends OrderByComparator<SyncDLObject> {
 
-	public static final String ORDER_BY_ASC = "SyncDLObject.type_ ASC";
+	public static final String ORDER_BY_ASC = "SyncDLObject.modifiedTime ASC";
 
-	public static final String ORDER_BY_DESC = "SyncDLObject.type_ DESC";
+	public static final String ORDER_BY_DESC = "SyncDLObject.modifiedTime DESC";
 
-	public static final String[] ORDER_BY_FIELDS = {"type"};
+	public static final String[] ORDER_BY_FIELDS = {"modifiedTime"};
 
-	public SyncDLObjectTypeComparator() {
-		this(false);
+	public SyncDLObjectModifiedTimeComparator() {
+		this(true);
 	}
 
-	public SyncDLObjectTypeComparator(boolean ascending) {
+	public SyncDLObjectModifiedTimeComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
 	@Override
 	public int compare(SyncDLObject syncDLObject1, SyncDLObject syncDLObject2) {
-		String type1 = syncDLObject1.getType();
-		String type2 = syncDLObject2.getType();
+		long modifiedTime1 = syncDLObject1.getModifiedTime();
+		long modifiedTime2 = syncDLObject2.getModifiedTime();
 
-		int value = type1.compareTo(type2);
+		int value = 0;
+
+		if (modifiedTime1 < modifiedTime2) {
+			value = -1;
+		}
+		else if (modifiedTime1 > modifiedTime2) {
+			value = 1;
+		}
 
 		if (_ascending) {
 			return value;
