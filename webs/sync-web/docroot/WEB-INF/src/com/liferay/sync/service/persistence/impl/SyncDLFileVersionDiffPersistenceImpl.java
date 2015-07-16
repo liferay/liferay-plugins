@@ -1446,8 +1446,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	}
 
 	protected void cacheUniqueFindersCache(
-		SyncDLFileVersionDiff syncDLFileVersionDiff) {
-		if (syncDLFileVersionDiff.isNew()) {
+		SyncDLFileVersionDiff syncDLFileVersionDiff, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					syncDLFileVersionDiff.getFileEntryId(),
 					syncDLFileVersionDiff.getSourceFileVersionId(),
@@ -1670,7 +1670,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 			syncDLFileVersionDiff.getPrimaryKey(), syncDLFileVersionDiff, false);
 
 		clearUniqueFindersCache(syncDLFileVersionDiff);
-		cacheUniqueFindersCache(syncDLFileVersionDiff);
+		cacheUniqueFindersCache(syncDLFileVersionDiff, isNew);
 
 		syncDLFileVersionDiff.resetOriginalValues();
 

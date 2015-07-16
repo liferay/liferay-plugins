@@ -4191,8 +4191,9 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		}
 	}
 
-	protected void cacheUniqueFindersCache(SyncDLObject syncDLObject) {
-		if (syncDLObject.isNew()) {
+	protected void cacheUniqueFindersCache(SyncDLObject syncDLObject,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					syncDLObject.getType(), syncDLObject.getTypePK()
 				};
@@ -4447,7 +4448,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 			false);
 
 		clearUniqueFindersCache(syncDLObject);
-		cacheUniqueFindersCache(syncDLObject);
+		cacheUniqueFindersCache(syncDLObject, isNew);
 
 		syncDLObject.resetOriginalValues();
 
