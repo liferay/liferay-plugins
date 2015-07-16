@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/display/init.jsp" %>
+<%@ include file="/article/init.jsp" %>
 
 <%
 long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
@@ -27,25 +27,17 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 String portletId = PortletProviderUtil.getPortletId(PortletConfigurationApplicationType.PortletConfiguration.CLASS_NAME, PortletProvider.Action.VIEW);
 
-String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurationKBObject";
+String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurationKBArticle";
 %>
 
 <div class="kb-select-article-search-containers">
 	<c:if test="<%= resourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID %>">
 		<aui:button-row cssClass="input-append">
-			<c:choose>
-				<c:when test="<%= resourceClassNameId == kbFolderClassNameId %>">
-					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBFolderLocalServiceUtil.fetchKBFolder(resourcePrimKey), "name") %>' />
-				</c:when>
-				<c:otherwise>
-					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED), "title") %>' />
-				</c:otherwise>
-			</c:choose>
+			<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleLocalServiceUtil.fetchLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED), "title") %>' />
 
 			<%
 			Map<String, Object> data = new HashMap<String, Object>();
 
-			data.put("resourceClassNameId", kbFolderClassNameId);
 			data.put("resourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 			data.put("title", StringPool.BLANK);
 			%>
@@ -57,7 +49,7 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 	</c:if>
 
 	<%
-	KnowledgeBaseUtil.addPortletBreadcrumbEntries(parentResourceClassNameId, parentResourcePrimKey, "/display/select_configuration_object.jsp", request, renderResponse);
+	KnowledgeBaseUtil.addPortletBreadcrumbEntries(parentResourceClassNameId, parentResourcePrimKey, "/article/select_configuration_article.jsp", request, renderResponse);
 	%>
 
 	<liferay-ui:breadcrumb
@@ -86,7 +78,7 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 			>
 
 				<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+					<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
 					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
 				</liferay-portlet:renderURL>
@@ -117,26 +109,6 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 					property="modifiedDate"
 				/>
 
-				<liferay-ui:search-container-column-text
-					align="right"
-				>
-
-					<%
-					Map<String, Object> data = new HashMap<String, Object>();
-
-					data.put("priority", KBArticleConstants.DEFAULT_PRIORITY);
-					data.put("resourceClassNameId", kbFolder.getClassNameId());
-					data.put("resourcePrimKey", kbFolder.getKbFolderId());
-					data.put("title", kbFolder.getName());
-					%>
-
-					<aui:button
-						cssClass="selector-button"
-						data="<%= data %>"
-						disabled="<%= (kbFolder.getKbFolderId() == resourcePrimKey) %>"
-						value="choose"
-					/>
-				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator />
@@ -144,7 +116,7 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 	</c:if>
 
 	<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+		<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
 		<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
 		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 	</liferay-portlet:renderURL>
@@ -169,7 +141,7 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 			modelVar="kbArticle"
 		>
 			<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+				<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
 				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
 				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			</liferay-portlet:renderURL>
@@ -234,7 +206,6 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 				<%
 				Map<String, Object> data = new HashMap<String, Object>();
 
-				data.put("resourceClassNameId", kbArticle.getClassNameId());
 				data.put("resourcePrimKey", kbArticle.getResourcePrimKey());
 				data.put("title", kbArticle.getTitle());
 				%>
