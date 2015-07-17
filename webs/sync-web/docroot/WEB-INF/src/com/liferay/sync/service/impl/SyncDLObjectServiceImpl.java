@@ -1090,11 +1090,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				ArrayUtil.toLongArray(typePKs));
 		}
 		else {
-			List<Long> sublist = typePKs.subList(0, _SQL_DATA_MAX_PARAMETERS);
-
 			List<Long> checkedTypePKs = syncDLObjectFinder.filterFindByC_R_U_T(
 				companyId, repositoryId, userId,
-				ArrayUtil.toLongArray(sublist));
+				ArrayUtil.toLongArray(
+					typePKs.subList(0, _SQL_DATA_MAX_PARAMETERS)));
 
 			checkedTypePKs.addAll(
 				checkTypePks(companyId, repositoryId, userId, typePKs));
