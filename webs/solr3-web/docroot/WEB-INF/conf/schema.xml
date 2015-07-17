@@ -74,7 +74,6 @@
 		<dynamicField name="*CategoryNames" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="*CategoryIds" type="string" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="*_sortable" type="string" indexed="true" multiValued="false" stored="true" />
-		<dynamicField name="ddm__*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="expando__*" type="text" indexed="true" multiValued="true" stored="true" />
 		<dynamicField name="web_content/*" type="text" indexed="true" stored="true" />
 
