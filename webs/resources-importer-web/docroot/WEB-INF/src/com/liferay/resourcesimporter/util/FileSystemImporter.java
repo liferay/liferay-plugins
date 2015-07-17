@@ -20,6 +20,7 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.service.JournalArticleServiceUtil;
+import com.liferay.journal.util.JournalConverterUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -89,7 +90,6 @@ import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.storage.StorageType;
-import com.liferay.portlet.journal.util.JournalConverterUtil;
 import com.liferay.wiki.model.WikiPage;
 
 import java.io.BufferedInputStream;
