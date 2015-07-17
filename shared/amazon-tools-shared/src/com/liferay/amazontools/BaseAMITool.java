@@ -24,6 +24,7 @@ import com.amazonaws.services.ec2.model.DescribeImagesResult;
 import com.amazonaws.services.ec2.model.Filter;
 import com.amazonaws.services.ec2.model.Image;
 import com.amazonaws.services.identitymanagement.AmazonIdentityManagementClient;
+import com.amazonaws.services.s3.AmazonS3Client;
 
 import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
 import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
@@ -62,6 +63,9 @@ public class BaseAMITool {
 			properties.getProperty("secret.key"),
 			properties.getProperty("ec2.endpoint"));
 		amazonIdentityManagementClient = getAmazonIdentityManagementClient(
+			properties.getProperty("access.key"),
+			properties.getProperty("secret.key"));
+		amazonS3Client = getAmazonS3Client(
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"));
 	}
@@ -109,6 +113,15 @@ public class BaseAMITool {
 			accessKey, secretKey);
 
 		return new AmazonIdentityManagementClient(awsCredentials);
+	}
+
+	protected AmazonS3Client getAmazonS3Client(
+		String accessKey, String secretKey) {
+
+		AWSCredentials awsCredentials = new BasicAWSCredentials(
+			accessKey, secretKey);
+
+		return new AmazonS3Client(awsCredentials);
 	}
 
 	protected String getImageId(String imageName) {
@@ -245,6 +258,7 @@ public class BaseAMITool {
 	protected AmazonCloudWatchClient amazonCloudWatchClient;
 	protected AmazonEC2Client amazonEC2Client;
 	protected AmazonIdentityManagementClient amazonIdentityManagementClient;
+	protected AmazonS3Client amazonS3Client;
 	protected Properties properties;
 
 }
