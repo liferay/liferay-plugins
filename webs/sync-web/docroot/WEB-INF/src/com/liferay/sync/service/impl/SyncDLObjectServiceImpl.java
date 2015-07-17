@@ -1096,8 +1096,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				companyId, repositoryId, userId,
 				ArrayUtil.toLongArray(sublist));
 
-			sublist.clear();
-
 			checkedTypePKs.addAll(
 				checkTypePks(companyId, repositoryId, userId, typePKs));
 
