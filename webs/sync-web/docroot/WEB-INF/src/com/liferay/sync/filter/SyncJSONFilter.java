@@ -83,7 +83,7 @@ public class SyncJSONFilter implements Filter {
 					syncClientMinBuild = _ABSOLUTE_MINIMUM_BUILD;
 				}
 
-				if ((build == -1) || (build >= syncClientMinBuild)) {
+				if (build >= syncClientMinBuild) {
 					filterChain.doFilter(servletRequest, servletResponse);
 
 					return;
@@ -120,6 +120,6 @@ public class SyncJSONFilter implements Filter {
 	public void init(FilterConfig filterConfig) {
 	}
 
-	private static final int _ABSOLUTE_MINIMUM_BUILD = 3000;
+	private static final int _ABSOLUTE_MINIMUM_BUILD = 3009;
 
 }
