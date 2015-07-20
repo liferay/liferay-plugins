@@ -26,8 +26,7 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 @ProviderType
 public class SyncDLObjectFinderUtil {
 	public static java.util.List<java.lang.Long> filterFindByC_R_U_T(
-		long companyId, long groupId, long userId, long[] typePKs)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, long groupId, long userId, long[] typePKs) {
 		return getFinder()
 				   .filterFindByC_R_U_T(companyId, groupId, userId, typePKs);
 	}
