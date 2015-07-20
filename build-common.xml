@@ -1951,7 +1951,7 @@ Please find a solution that does not require portal-impl.jar.
 								<then>
 									<if>
 										<resourcecount count="0" when="gt">
-											<fileset dir="@{module.dir}/docroot" erroronmissingdir="false" includes="**/*.css" />
+											<fileset dir="@{module.dir}/docroot" erroronmissingdir="false" includes="**/*.css, **/*.scss" />
 										</resourcecount>
 										<then>
 											<build-css
@@ -1963,7 +1963,7 @@ Please find a solution that does not require portal-impl.jar.
 
 									<if>
 										<resourcecount count="0" when="gt">
-											<fileset dir="@{module.dir}/src/META-INF/resources" erroronmissingdir="false" includes="**/*.css" />
+											<fileset dir="@{module.dir}/src/META-INF/resources" erroronmissingdir="false" includes="**/*.css, **/*.scss" />
 										</resourcecount>
 										<then>
 											<build-css
