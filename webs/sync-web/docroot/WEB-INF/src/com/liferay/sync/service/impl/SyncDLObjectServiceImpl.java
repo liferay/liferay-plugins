@@ -353,7 +353,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			List<SyncDLObject> syncDLObjects =
 				syncDLObjectPersistence.findByC_M_R(companyId, 0, repositoryId);
 
-			return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
+			return new SyncDLObjectUpdate(
+				syncDLObjects, syncDLObjects.size(), lastAccessTime);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -602,15 +603,18 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					new SyncDLObjectModifiedTimeComparator());
 
 			if (syncDLObjects.isEmpty()) {
-				return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
+				return new SyncDLObjectUpdate(syncDLObjects, 0, lastAccessTime);
 			}
+
+			int count = syncDLObjectPersistence.countByC_M_R_NotE(
+				companyId, lastAccessTime, repositoryId, events);
 
 			SyncDLObject syncDLObject = syncDLObjects.get(
 				syncDLObjects.size() - 1);
 
 			return new SyncDLObjectUpdate(
 				checkSyncDLObjects(syncDLObjects, companyId, repositoryId),
-				syncDLObject.getModifiedTime());
+				count, syncDLObject.getModifiedTime());
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -651,7 +655,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncDLObjects, companyId, repositoryId, parentFolderId,
 				lastAccessTime);
 
-			return new SyncDLObjectUpdate(syncDLObjects, lastAccessTime);
+			return new SyncDLObjectUpdate(
+				syncDLObjects, syncDLObjects.size(), lastAccessTime);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
