@@ -51,13 +51,12 @@ import com.liferay.portlet.trash.util.TrashUtil;
 import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.so.activities.util.PortletPropsValues;
 
+import java.text.DateFormat;
 import java.text.Format;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * @author Brian Wing Shun Chan
@@ -199,11 +198,6 @@ public abstract class SOSocialActivityInterpreter
 		return activity.getCreateDate();
 	}
 
-	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {
-		return FastDateFormatFactoryUtil.getSimpleDateFormat(
-			"EEEE, MMMMM dd, yyyy 'at' h:mm a", locale, timezone);
-	}
-
 	protected String getLink(
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
@@ -328,8 +322,9 @@ public abstract class SOSocialActivityInterpreter
 
 		sb.append("</div><div class=\"activity-time\" title=\"");
 
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
+		Format dateFormatDate = FastDateFormatFactoryUtil.getDateTime(
+			DateFormat.FULL, DateFormat.SHORT, serviceContext.getLocale(),
+			serviceContext.getTimeZone());
 
 		Date activityDate = new Date(displayDate);
 
@@ -337,9 +332,13 @@ public abstract class SOSocialActivityInterpreter
 
 		sb.append("\">");
 
+		Format dateFormat = FastDateFormatFactoryUtil.getDate(
+			DateFormat.FULL, serviceContext.getLocale(),
+			serviceContext.getTimeZone());
+
 		String relativeTimeDescription = Time.getRelativeTimeDescription(
 			displayDate, serviceContext.getLocale(),
-			serviceContext.getTimeZone());
+			serviceContext.getTimeZone(), dateFormat);
 
 		sb.append(relativeTimeDescription);
 
