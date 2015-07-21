@@ -14,9 +14,9 @@
 
 package com.liferay.shortlink.messaging;
 
-import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.shortlink.service.ShortLinkEntryLocalServiceUtil;
 import com.liferay.shortlink.util.PortletPropsValues;
 
