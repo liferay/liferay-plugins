@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.javadoc.formatter" org="com.liferay" rev="1.0.3" />
+		<dependency name="com.liferay.javadoc.formatter" org="com.liferay" rev="1.0.4" />
 	</dependencies>
 </ivy-module>
