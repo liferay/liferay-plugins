@@ -23,8 +23,8 @@ import java.util.List;
 /**
  * This class is used by SOAP remote services, specifically {@link com.liferay.shortlink.service.http.ShortLinkEntryServiceSoap}.
  *
- * @author    Brian Wing Shun Chan
- * @see       com.liferay.shortlink.service.http.ShortLinkEntryServiceSoap
+ * @author Brian Wing Shun Chan
+ * @see com.liferay.shortlink.service.http.ShortLinkEntryServiceSoap
  * @generated
  */
 public class ShortLinkEntrySoap implements Serializable {

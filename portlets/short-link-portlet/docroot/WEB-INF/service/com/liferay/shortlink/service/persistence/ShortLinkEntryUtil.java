@@ -61,7 +61,7 @@ public class ShortLinkEntryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public long countWithDynamicQuery(DynamicQuery dynamicQuery)
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
@@ -95,99 +95,19 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
+	 */
+	public static ShortLinkEntry update(ShortLinkEntry shortLinkEntry)
+		throws SystemException {
+		return getPersistence().update(shortLinkEntry);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static ShortLinkEntry update(ShortLinkEntry shortLinkEntry,
-		boolean merge) throws SystemException {
-		return getPersistence().update(shortLinkEntry, merge);
-	}
-
-	/**
-	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
-	 */
-	public static ShortLinkEntry update(ShortLinkEntry shortLinkEntry,
-		boolean merge, ServiceContext serviceContext) throws SystemException {
-		return getPersistence().update(shortLinkEntry, merge, serviceContext);
-	}
-
-	/**
-	* Caches the short link entry in the entity cache if it is enabled.
-	*
-	* @param shortLinkEntry the short link entry
-	*/
-	public static void cacheResult(
-		com.liferay.shortlink.model.ShortLinkEntry shortLinkEntry) {
-		getPersistence().cacheResult(shortLinkEntry);
-	}
-
-	/**
-	* Caches the short link entries in the entity cache if it is enabled.
-	*
-	* @param shortLinkEntries the short link entries
-	*/
-	public static void cacheResult(
-		java.util.List<com.liferay.shortlink.model.ShortLinkEntry> shortLinkEntries) {
-		getPersistence().cacheResult(shortLinkEntries);
-	}
-
-	/**
-	* Creates a new short link entry with the primary key. Does not add the short link entry to the database.
-	*
-	* @param shortLinkEntryId the primary key for the new short link entry
-	* @return the new short link entry
-	*/
-	public static com.liferay.shortlink.model.ShortLinkEntry create(
-		long shortLinkEntryId) {
-		return getPersistence().create(shortLinkEntryId);
-	}
-
-	/**
-	* Removes the short link entry with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param shortLinkEntryId the primary key of the short link entry
-	* @return the short link entry that was removed
-	* @throws com.liferay.shortlink.NoSuchEntryException if a short link entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.shortlink.model.ShortLinkEntry remove(
-		long shortLinkEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.shortlink.NoSuchEntryException {
-		return getPersistence().remove(shortLinkEntryId);
-	}
-
-	public static com.liferay.shortlink.model.ShortLinkEntry updateImpl(
-		com.liferay.shortlink.model.ShortLinkEntry shortLinkEntry, boolean merge)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().updateImpl(shortLinkEntry, merge);
-	}
-
-	/**
-	* Returns the short link entry with the primary key or throws a {@link com.liferay.shortlink.NoSuchEntryException} if it could not be found.
-	*
-	* @param shortLinkEntryId the primary key of the short link entry
-	* @return the short link entry
-	* @throws com.liferay.shortlink.NoSuchEntryException if a short link entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.shortlink.model.ShortLinkEntry findByPrimaryKey(
-		long shortLinkEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.shortlink.NoSuchEntryException {
-		return getPersistence().findByPrimaryKey(shortLinkEntryId);
-	}
-
-	/**
-	* Returns the short link entry with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param shortLinkEntryId the primary key of the short link entry
-	* @return the short link entry, or <code>null</code> if a short link entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.shortlink.model.ShortLinkEntry fetchByPrimaryKey(
-		long shortLinkEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(shortLinkEntryId);
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(shortLinkEntry, serviceContext);
 	}
 
 	/**
@@ -207,7 +127,7 @@ public class ShortLinkEntryUtil {
 	* Returns a range of all the short link entries where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -226,7 +146,7 @@ public class ShortLinkEntryUtil {
 	* Returns an ordered range of all the short link entries where uuid = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param uuid the uuid
@@ -328,6 +248,29 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Removes all the short link entries where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByUuid(uuid);
+	}
+
+	/**
+	* Returns the number of short link entries where uuid = &#63;.
+	*
+	* @param uuid the uuid
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByUuid(uuid);
+	}
+
+	/**
 	* Returns all the short link entries where modifiedDate &lt; &#63;.
 	*
 	* @param modifiedDate the modified date
@@ -344,7 +287,7 @@ public class ShortLinkEntryUtil {
 	* Returns a range of all the short link entries where modifiedDate &lt; &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -363,7 +306,7 @@ public class ShortLinkEntryUtil {
 	* Returns an ordered range of all the short link entries where modifiedDate &lt; &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param modifiedDate the modified date
@@ -471,6 +414,29 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Removes all the short link entries where modifiedDate &lt; &#63; from the database.
+	*
+	* @param modifiedDate the modified date
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByLtModifiedDate(java.util.Date modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByLtModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Returns the number of short link entries where modifiedDate &lt; &#63;.
+	*
+	* @param modifiedDate the modified date
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByLtModifiedDate(java.util.Date modifiedDate)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByLtModifiedDate(modifiedDate);
+	}
+
+	/**
 	* Returns the short link entry where shortURL = &#63; or throws a {@link com.liferay.shortlink.NoSuchEntryException} if it could not be found.
 	*
 	* @param shortURL the short u r l
@@ -513,6 +479,32 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Removes the short link entry where shortURL = &#63; from the database.
+	*
+	* @param shortURL the short u r l
+	* @return the short link entry that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry removeByShortURL(
+		java.lang.String shortURL)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence().removeByShortURL(shortURL);
+	}
+
+	/**
+	* Returns the number of short link entries where shortURL = &#63;.
+	*
+	* @param shortURL the short u r l
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByShortURL(java.lang.String shortURL)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByShortURL(shortURL);
+	}
+
+	/**
 	* Returns all the short link entries where autogenerated = &#63;.
 	*
 	* @param autogenerated the autogenerated
@@ -529,7 +521,7 @@ public class ShortLinkEntryUtil {
 	* Returns a range of all the short link entries where autogenerated = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param autogenerated the autogenerated
@@ -548,7 +540,7 @@ public class ShortLinkEntryUtil {
 	* Returns an ordered range of all the short link entries where autogenerated = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param autogenerated the autogenerated
@@ -656,6 +648,29 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Removes all the short link entries where autogenerated = &#63; from the database.
+	*
+	* @param autogenerated the autogenerated
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByAutogenerated(boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByAutogenerated(autogenerated);
+	}
+
+	/**
+	* Returns the number of short link entries where autogenerated = &#63;.
+	*
+	* @param autogenerated the autogenerated
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByAutogenerated(boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByAutogenerated(autogenerated);
+	}
+
+	/**
 	* Returns all the short link entries where originalURL = &#63; and autogenerated = &#63;.
 	*
 	* @param originalURL the original u r l
@@ -673,7 +688,7 @@ public class ShortLinkEntryUtil {
 	* Returns a range of all the short link entries where originalURL = &#63; and autogenerated = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param originalURL the original u r l
@@ -694,7 +709,7 @@ public class ShortLinkEntryUtil {
 	* Returns an ordered range of all the short link entries where originalURL = &#63; and autogenerated = &#63;.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param originalURL the original u r l
@@ -814,6 +829,33 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Removes all the short link entries where originalURL = &#63; and autogenerated = &#63; from the database.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByOURL_A(java.lang.String originalURL,
+		boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByOURL_A(originalURL, autogenerated);
+	}
+
+	/**
+	* Returns the number of short link entries where originalURL = &#63; and autogenerated = &#63;.
+	*
+	* @param originalURL the original u r l
+	* @param autogenerated the autogenerated
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByOURL_A(java.lang.String originalURL,
+		boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByOURL_A(originalURL, autogenerated);
+	}
+
+	/**
 	* Returns the short link entry where shortURL = &#63; and autogenerated = &#63; or throws a {@link com.liferay.shortlink.NoSuchEntryException} if it could not be found.
 	*
 	* @param shortURL the short u r l
@@ -861,6 +903,115 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
+	* Removes the short link entry where shortURL = &#63; and autogenerated = &#63; from the database.
+	*
+	* @param shortURL the short u r l
+	* @param autogenerated the autogenerated
+	* @return the short link entry that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry removeBySURL_A(
+		java.lang.String shortURL, boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence().removeBySURL_A(shortURL, autogenerated);
+	}
+
+	/**
+	* Returns the number of short link entries where shortURL = &#63; and autogenerated = &#63;.
+	*
+	* @param shortURL the short u r l
+	* @param autogenerated the autogenerated
+	* @return the number of matching short link entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countBySURL_A(java.lang.String shortURL,
+		boolean autogenerated)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countBySURL_A(shortURL, autogenerated);
+	}
+
+	/**
+	* Caches the short link entry in the entity cache if it is enabled.
+	*
+	* @param shortLinkEntry the short link entry
+	*/
+	public static void cacheResult(
+		com.liferay.shortlink.model.ShortLinkEntry shortLinkEntry) {
+		getPersistence().cacheResult(shortLinkEntry);
+	}
+
+	/**
+	* Caches the short link entries in the entity cache if it is enabled.
+	*
+	* @param shortLinkEntries the short link entries
+	*/
+	public static void cacheResult(
+		java.util.List<com.liferay.shortlink.model.ShortLinkEntry> shortLinkEntries) {
+		getPersistence().cacheResult(shortLinkEntries);
+	}
+
+	/**
+	* Creates a new short link entry with the primary key. Does not add the short link entry to the database.
+	*
+	* @param shortLinkEntryId the primary key for the new short link entry
+	* @return the new short link entry
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry create(
+		long shortLinkEntryId) {
+		return getPersistence().create(shortLinkEntryId);
+	}
+
+	/**
+	* Removes the short link entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param shortLinkEntryId the primary key of the short link entry
+	* @return the short link entry that was removed
+	* @throws com.liferay.shortlink.NoSuchEntryException if a short link entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry remove(
+		long shortLinkEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence().remove(shortLinkEntryId);
+	}
+
+	public static com.liferay.shortlink.model.ShortLinkEntry updateImpl(
+		com.liferay.shortlink.model.ShortLinkEntry shortLinkEntry)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(shortLinkEntry);
+	}
+
+	/**
+	* Returns the short link entry with the primary key or throws a {@link com.liferay.shortlink.NoSuchEntryException} if it could not be found.
+	*
+	* @param shortLinkEntryId the primary key of the short link entry
+	* @return the short link entry
+	* @throws com.liferay.shortlink.NoSuchEntryException if a short link entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry findByPrimaryKey(
+		long shortLinkEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.shortlink.NoSuchEntryException {
+		return getPersistence().findByPrimaryKey(shortLinkEntryId);
+	}
+
+	/**
+	* Returns the short link entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param shortLinkEntryId the primary key of the short link entry
+	* @return the short link entry, or <code>null</code> if a short link entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.shortlink.model.ShortLinkEntry fetchByPrimaryKey(
+		long shortLinkEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(shortLinkEntryId);
+	}
+
+	/**
 	* Returns all the short link entries.
 	*
 	* @return the short link entries
@@ -875,7 +1026,7 @@ public class ShortLinkEntryUtil {
 	* Returns a range of all the short link entries.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of short link entries
@@ -893,7 +1044,7 @@ public class ShortLinkEntryUtil {
 	* Returns an ordered range of all the short link entries.
 	*
 	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.shortlink.model.impl.ShortLinkEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	* </p>
 	*
 	* @param start the lower bound of the range of short link entries
@@ -910,81 +1061,6 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
-	* Removes all the short link entries where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByUuid(uuid);
-	}
-
-	/**
-	* Removes all the short link entries where modifiedDate &lt; &#63; from the database.
-	*
-	* @param modifiedDate the modified date
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByLtModifiedDate(java.util.Date modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByLtModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Removes the short link entry where shortURL = &#63; from the database.
-	*
-	* @param shortURL the short u r l
-	* @return the short link entry that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.shortlink.model.ShortLinkEntry removeByShortURL(
-		java.lang.String shortURL)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.shortlink.NoSuchEntryException {
-		return getPersistence().removeByShortURL(shortURL);
-	}
-
-	/**
-	* Removes all the short link entries where autogenerated = &#63; from the database.
-	*
-	* @param autogenerated the autogenerated
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByAutogenerated(boolean autogenerated)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByAutogenerated(autogenerated);
-	}
-
-	/**
-	* Removes all the short link entries where originalURL = &#63; and autogenerated = &#63; from the database.
-	*
-	* @param originalURL the original u r l
-	* @param autogenerated the autogenerated
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByOURL_A(java.lang.String originalURL,
-		boolean autogenerated)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence().removeByOURL_A(originalURL, autogenerated);
-	}
-
-	/**
-	* Removes the short link entry where shortURL = &#63; and autogenerated = &#63; from the database.
-	*
-	* @param shortURL the short u r l
-	* @param autogenerated the autogenerated
-	* @return the short link entry that was removed
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.shortlink.model.ShortLinkEntry removeBySURL_A(
-		java.lang.String shortURL, boolean autogenerated)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.shortlink.NoSuchEntryException {
-		return getPersistence().removeBySURL_A(shortURL, autogenerated);
-	}
-
-	/**
 	* Removes all the short link entries from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -992,82 +1068,6 @@ public class ShortLinkEntryUtil {
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
-	}
-
-	/**
-	* Returns the number of short link entries where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching short link entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByUuid(uuid);
-	}
-
-	/**
-	* Returns the number of short link entries where modifiedDate &lt; &#63;.
-	*
-	* @param modifiedDate the modified date
-	* @return the number of matching short link entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByLtModifiedDate(java.util.Date modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByLtModifiedDate(modifiedDate);
-	}
-
-	/**
-	* Returns the number of short link entries where shortURL = &#63;.
-	*
-	* @param shortURL the short u r l
-	* @return the number of matching short link entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByShortURL(java.lang.String shortURL)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByShortURL(shortURL);
-	}
-
-	/**
-	* Returns the number of short link entries where autogenerated = &#63;.
-	*
-	* @param autogenerated the autogenerated
-	* @return the number of matching short link entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByAutogenerated(boolean autogenerated)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByAutogenerated(autogenerated);
-	}
-
-	/**
-	* Returns the number of short link entries where originalURL = &#63; and autogenerated = &#63;.
-	*
-	* @param originalURL the original u r l
-	* @param autogenerated the autogenerated
-	* @return the number of matching short link entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByOURL_A(java.lang.String originalURL,
-		boolean autogenerated)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByOURL_A(originalURL, autogenerated);
-	}
-
-	/**
-	* Returns the number of short link entries where shortURL = &#63; and autogenerated = &#63;.
-	*
-	* @param shortURL the short u r l
-	* @param autogenerated the autogenerated
-	* @return the number of matching short link entries
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countBySURL_A(java.lang.String shortURL,
-		boolean autogenerated)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countBySURL_A(shortURL, autogenerated);
 	}
 
 	/**
@@ -1094,7 +1094,7 @@ public class ShortLinkEntryUtil {
 	}
 
 	/**
-	 * @deprecated
+	 * @deprecated As of 6.2.0
 	 */
 	public void setPersistence(ShortLinkEntryPersistence persistence) {
 	}

@@ -18,6 +18,7 @@ import com.liferay.portal.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
 public class ShortLinkEntryServiceClp implements ShortLinkEntryService {
 	public ShortLinkEntryServiceClp(InvokableService invokableService) {
@@ -32,6 +33,7 @@ public class ShortLinkEntryServiceClp implements ShortLinkEntryService {
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 	}
 
+	@Override
 	public java.lang.String getBeanIdentifier() {
 		Object returnObj = null;
 
@@ -54,6 +56,7 @@ public class ShortLinkEntryServiceClp implements ShortLinkEntryService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
 			_invokableService.invokeMethod(_methodName1,
@@ -73,6 +76,7 @@ public class ShortLinkEntryServiceClp implements ShortLinkEntryService {
 		}
 	}
 
+	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {

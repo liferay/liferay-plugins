@@ -188,37 +188,61 @@ public interface ShortLinkEntryModel extends BaseModel<ShortLinkEntry> {
 	 */
 	public void setActive(boolean active);
 
+	@Override
 	public boolean isNew();
 
+	@Override
 	public void setNew(boolean n);
 
+	@Override
 	public boolean isCachedModel();
 
+	@Override
 	public void setCachedModel(boolean cachedModel);
 
+	@Override
 	public boolean isEscapedModel();
 
+	@Override
 	public Serializable getPrimaryKeyObj();
 
+	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj);
 
+	@Override
 	public ExpandoBridge getExpandoBridge();
 
+	@Override
+	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
+
+	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	@Override
 	public Object clone();
 
-	public int compareTo(ShortLinkEntry shortLinkEntry);
+	@Override
+	public int compareTo(
+		com.liferay.shortlink.model.ShortLinkEntry shortLinkEntry);
 
+	@Override
 	public int hashCode();
 
-	public CacheModel<ShortLinkEntry> toCacheModel();
+	@Override
+	public CacheModel<com.liferay.shortlink.model.ShortLinkEntry> toCacheModel();
 
-	public ShortLinkEntry toEscapedModel();
+	@Override
+	public com.liferay.shortlink.model.ShortLinkEntry toEscapedModel();
 
-	public ShortLinkEntry toUnescapedModel();
+	@Override
+	public com.liferay.shortlink.model.ShortLinkEntry toUnescapedModel();
 
+	@Override
 	public String toString();
 
+	@Override
 	public String toXmlString();
 }

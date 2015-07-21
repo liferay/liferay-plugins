@@ -20,6 +20,7 @@ import java.util.Arrays;
 
 /**
  * @author Brian Wing Shun Chan
+ * @generated
  */
 public class ShortLinkEntryLocalServiceClpInvoker {
 	public ShortLinkEntryLocalServiceClpInvoker() {
@@ -72,67 +73,68 @@ public class ShortLinkEntryLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.DynamicQuery"
 			};
 
-		_methodName9 = "fetchShortLinkEntry";
+		_methodName9 = "dynamicQueryCount";
 
-		_methodParameterTypes9 = new String[] { "long" };
+		_methodParameterTypes9 = new String[] {
+				"com.liferay.portal.kernel.dao.orm.DynamicQuery",
+				"com.liferay.portal.kernel.dao.orm.Projection"
+			};
 
-		_methodName10 = "getShortLinkEntry";
+		_methodName10 = "fetchShortLinkEntry";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getPersistedModel";
+		_methodName11 = "getShortLinkEntry";
 
-		_methodParameterTypes11 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getShortLinkEntries";
+		_methodName12 = "getPersistedModel";
 
-		_methodParameterTypes12 = new String[] { "int", "int" };
+		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getShortLinkEntriesCount";
+		_methodName13 = "getShortLinkEntries";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "updateShortLinkEntry";
+		_methodName14 = "getShortLinkEntriesCount";
 
-		_methodParameterTypes14 = new String[] {
-				"com.liferay.shortlink.model.ShortLinkEntry"
-			};
+		_methodParameterTypes14 = new String[] {  };
 
 		_methodName15 = "updateShortLinkEntry";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.shortlink.model.ShortLinkEntry", "boolean"
+				"com.liferay.shortlink.model.ShortLinkEntry"
 			};
 
-		_methodName44 = "getBeanIdentifier";
+		_methodName34 = "getBeanIdentifier";
 
-		_methodParameterTypes44 = new String[] {  };
+		_methodParameterTypes34 = new String[] {  };
 
-		_methodName45 = "setBeanIdentifier";
+		_methodName35 = "setBeanIdentifier";
 
-		_methodParameterTypes45 = new String[] { "java.lang.String" };
+		_methodParameterTypes35 = new String[] { "java.lang.String" };
 
-		_methodName50 = "addShortLinkEntry";
+		_methodName40 = "addShortLinkEntry";
 
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes40 = new String[] {
 				"java.lang.String", "java.lang.String", "boolean"
 			};
 
-		_methodName51 = "deleteShortLinkEntries";
+		_methodName41 = "deleteShortLinkEntries";
 
-		_methodParameterTypes51 = new String[] { "java.util.Date" };
+		_methodParameterTypes41 = new String[] { "java.util.Date" };
 
-		_methodName52 = "getShortLinkEntries";
+		_methodName42 = "getShortLinkEntries";
 
-		_methodParameterTypes52 = new String[] { "boolean", "int", "int" };
+		_methodParameterTypes42 = new String[] { "boolean", "int", "int" };
 
-		_methodName53 = "getShortLinkEntry";
+		_methodName43 = "getShortLinkEntry";
 
-		_methodParameterTypes53 = new String[] { "java.lang.String", "boolean" };
+		_methodParameterTypes43 = new String[] { "java.lang.String", "boolean" };
 
-		_methodName54 = "updateShortLinkEntry";
+		_methodName44 = "updateShortLinkEntry";
 
-		_methodParameterTypes54 = new String[] {
+		_methodParameterTypes44 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "boolean"
 			};
 	}
@@ -191,82 +193,82 @@ public class ShortLinkEntryLocalServiceClpInvoker {
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return ShortLinkEntryLocalServiceUtil.fetchShortLinkEntry(((Long)arguments[0]).longValue());
+			return ShortLinkEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return ShortLinkEntryLocalServiceUtil.getShortLinkEntry(((Long)arguments[0]).longValue());
+			return ShortLinkEntryLocalServiceUtil.fetchShortLinkEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return ShortLinkEntryLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return ShortLinkEntryLocalServiceUtil.getShortLinkEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return ShortLinkEntryLocalServiceUtil.getShortLinkEntries(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return ShortLinkEntryLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return ShortLinkEntryLocalServiceUtil.getShortLinkEntriesCount();
+			return ShortLinkEntryLocalServiceUtil.getShortLinkEntries(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return ShortLinkEntryLocalServiceUtil.updateShortLinkEntry((com.liferay.shortlink.model.ShortLinkEntry)arguments[0]);
+			return ShortLinkEntryLocalServiceUtil.getShortLinkEntriesCount();
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return ShortLinkEntryLocalServiceUtil.updateShortLinkEntry((com.liferay.shortlink.model.ShortLinkEntry)arguments[0],
-				((Boolean)arguments[1]).booleanValue());
+			return ShortLinkEntryLocalServiceUtil.updateShortLinkEntry((com.liferay.shortlink.model.ShortLinkEntry)arguments[0]);
 		}
 
-		if (_methodName44.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+		if (_methodName34.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
 			return ShortLinkEntryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+		if (_methodName35.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
 			ShortLinkEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return ShortLinkEntryLocalServiceUtil.addShortLinkEntry((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1],
 				((Boolean)arguments[2]).booleanValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			ShortLinkEntryLocalServiceUtil.deleteShortLinkEntries((java.util.Date)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return ShortLinkEntryLocalServiceUtil.getShortLinkEntries(((Boolean)arguments[0]).booleanValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			return ShortLinkEntryLocalServiceUtil.getShortLinkEntry((java.lang.String)arguments[0],
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			return ShortLinkEntryLocalServiceUtil.updateShortLinkEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Boolean)arguments[3]).booleanValue());
@@ -307,18 +309,18 @@ public class ShortLinkEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
+	private String _methodName34;
+	private String[] _methodParameterTypes34;
+	private String _methodName35;
+	private String[] _methodParameterTypes35;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
-	private String _methodName51;
-	private String[] _methodParameterTypes51;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
 }

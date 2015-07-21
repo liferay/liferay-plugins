@@ -38,6 +38,7 @@ public abstract class ShortLinkEntryBaseImpl extends ShortLinkEntryModelImpl
 	 *
 	 * Never modify or reference this class directly. All methods that expect a short link entry model instance should use the {@link ShortLinkEntry} interface instead.
 	 */
+	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
 			ShortLinkEntryLocalServiceUtil.addShortLinkEntry(this);
