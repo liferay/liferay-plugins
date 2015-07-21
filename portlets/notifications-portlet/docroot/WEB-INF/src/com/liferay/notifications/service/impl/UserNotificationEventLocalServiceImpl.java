@@ -66,6 +66,21 @@ public class UserNotificationEventLocalServiceImpl
 			userId, actionRequired, archived, start, end);
 	}
 
+	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
+			long userId, boolean archived, int start, int end)
+		throws PortalException, SystemException {
+
+		return userNotificationEventPersistence.findByU_AR(
+			userId, archived, start, end);
+	}
+
+	public int getArchivedUserNotificationEventsCount(
+			long userId, boolean archived)
+		throws PortalException, SystemException {
+
+		return userNotificationEventPersistence.countByU_AR(userId, archived);
+	}
+
 	public int getArchivedUserNotificationEventsCount(
 			long userId, boolean actionRequired, boolean archived)
 		throws PortalException, SystemException {
@@ -81,6 +96,21 @@ public class UserNotificationEventLocalServiceImpl
 
 		return userNotificationEventPersistence.findByU_D_A(
 			userId, delivered, actionRequired, start, end);
+	}
+
+	public List<UserNotificationEvent> getDeliveredUserNotificationEvents(
+			long userId, boolean delivered, int start, int end)
+		throws PortalException, SystemException {
+
+		return userNotificationEventPersistence.findByU_D(
+			userId, delivered, start, end);
+	}
+
+	public int getDeliveredUserNotificationEventsCount(
+			long userId, boolean delivered)
+		throws PortalException, SystemException {
+
+		return userNotificationEventPersistence.countByU_D(userId, delivered);
 	}
 
 	public int getDeliveredUserNotificationEventsCount(
