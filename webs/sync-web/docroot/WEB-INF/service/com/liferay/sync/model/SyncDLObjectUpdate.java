@@ -25,9 +25,11 @@ import java.util.List;
 public class SyncDLObjectUpdate {
 
 	public SyncDLObjectUpdate(
-		List<SyncDLObject> syncDLObjects, long lastAccessTime) {
+		List<SyncDLObject> syncDLObjects, int totalResults,
+		long lastAccessTime) {
 
 		_syncDLObjects = syncDLObjects;
+		_totalResults = totalResults;
 		_lastAccessTime = lastAccessTime;
 	}
 
@@ -40,7 +42,12 @@ public class SyncDLObjectUpdate {
 		return _syncDLObjects;
 	}
 
+	public int getTotalResults() {
+		return _totalResults;
+	}
+
 	private long _lastAccessTime;
 	private List<SyncDLObject> _syncDLObjects;
+	private int _totalResults;
 
 }

@@ -28,7 +28,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.sync.model.SyncDLObject;
-import com.liferay.sync.service.persistence.SyncDLObjectFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Collections;
