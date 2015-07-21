@@ -37,6 +37,14 @@
 			<finder-column name="userId" />
 			<finder-column name="actionRequired" />
 		</finder>
+		<finder name="U_AR" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="archived" />
+		</finder>
+		<finder name="U_D" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="delivered" />
+		</finder>
 		<finder name="U_D_A" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="delivered" />
