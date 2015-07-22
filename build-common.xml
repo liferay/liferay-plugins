@@ -75,8 +75,6 @@
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar" />
 	</path>
 
-	<path id="js.config.generator.path"/>
-
 	<path id="portal.classpath">
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
@@ -1989,10 +1987,6 @@ Please find a solution that does not require portal-impl.jar.
 									<if>
 										<available file="@{module.dir}/bower.json" />
 										<then>
-											<copy todir="@{module.dir}/.js-cache/META-INF/resources">
-												<path refid="js.config.generator.path" />
-											</copy>
-
 											<copy
 												file="@{module.dir}/bower.json"
 												overwrite="true"
