@@ -21,6 +21,7 @@ import com.liferay.asset.entry.set.service.base.AssetEntrySetLocalServiceBaseImp
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinderUtil;
 import com.liferay.asset.entry.set.service.persistence.AssetEntrySetLikePK;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
+import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.util.PortletKeys;
@@ -35,13 +36,11 @@ import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.metadata.RawMetadataProcessorUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -52,13 +51,8 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
-import com.liferay.portlet.dynamicdatamapping.storage.Field;
-import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 import com.liferay.util.portlet.PortletProps;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 
 import java.io.File;
@@ -72,8 +66,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.imageio.ImageIO;
 
 /**
  * @author Calvin Keum
@@ -336,7 +328,12 @@ public class AssetEntrySetLocalServiceImpl
 
 		Set<Long> fileEntryIds = new HashSet<Long>();
 
-		rotateImage(file);
+		try {
+			AssetEntrySetImageUtil.rotateImage(file);
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
 
 		FileEntry rawFileEntry = addFileEntry(userId, file, StringPool.BLANK);
 
@@ -446,33 +443,6 @@ public class AssetEntrySetLocalServiceImpl
 		return assetEntrySets;
 	}
 
-	protected int getOrientation(File file) {
-		Map<String, Fields> metaData = null;
-
-		try {
-			metaData = RawMetadataProcessorUtil.getRawMetadataMap(
-				FileUtil.getExtension(file.getName()),
-				MimeTypesUtil.getContentType(file), file);
-		}
-		catch (Exception e) {
-			return 1;
-		}
-
-		Fields rawMetadata = metaData.get("TIKARAWMETADATA");
-
-		if (rawMetadata == null) {
-			return 1;
-		}
-
-		Field orientation = rawMetadata.get("TIFF_ORIENTATION");
-
-		if (orientation == null) {
-			return 1;
-		}
-
-		return GetterUtil.getInteger(orientation.getValue());
-	}
-
 	protected Map<Long, Set<Long>> getSharedToClassPKsMap(
 			AssetEntrySet assetEntrySet)
 		throws PortalException {
@@ -520,85 +490,6 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return true;
-	}
-
-	protected void rotateImage(File file)
-		throws PortalException, SystemException {
-
-		try {
-			ImageBag imageBag = ImageToolUtil.read(file);
-
-			RenderedImage renderedImage = imageBag.getRenderedImage();
-
-			int orientation = getOrientation(file);
-
-			AffineTransform affineTransform = new AffineTransform();
-
-			if (orientation == 1) {
-				return;
-			}
-			else if (orientation == 2) {
-				affineTransform.scale(-1.0, 1.0);
-
-				affineTransform.translate(-renderedImage.getWidth(), 0);
-			}
-			else if (orientation == 3) {
-				affineTransform.translate(
-					renderedImage.getWidth(), renderedImage.getHeight());
-
-				affineTransform.rotate(Math.toRadians(180));
-			}
-			else if (orientation == 4) {
-				affineTransform.scale(1.0, -1.0);
-
-				affineTransform.translate(0, -renderedImage.getHeight());
-			}
-			else if (orientation == 5) {
-				affineTransform.rotate(-Math.toRadians(90));
-
-				affineTransform.scale(-1.0, 1.0);
-			}
-			else if (orientation == 6) {
-				affineTransform.translate(renderedImage.getHeight(), 0);
-
-				affineTransform.rotate(Math.toRadians(90));
-			}
-			else if (orientation == 7) {
-				affineTransform.scale(-1.0, 1.0);
-
-				affineTransform.translate(-renderedImage.getHeight(), 0);
-
-				affineTransform.translate(0, renderedImage.getWidth());
-
-				affineTransform.rotate(Math.toRadians(270));
-			}
-			else if (orientation == 8) {
-				affineTransform.translate(0, renderedImage.getWidth());
-
-				affineTransform.rotate(Math.toRadians(270));
-			}
-			else {
-				return;
-			}
-
-			BufferedImage bufferedImage = ImageToolUtil.getBufferedImage(
-				renderedImage);
-
-			AffineTransformOp affineTransformOp = new AffineTransformOp(
-				affineTransform, AffineTransformOp.TYPE_BILINEAR);
-
-			BufferedImage newBufferedImage = new BufferedImage(
-				bufferedImage.getHeight(), bufferedImage.getWidth(),
-				bufferedImage.getType());
-
-			newBufferedImage = affineTransformOp.filter(
-				bufferedImage, newBufferedImage);
-
-			ImageIO.write(newBufferedImage, imageBag.getType(), file);
-		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
-		}
 	}
 
 	protected void setSharedToClassPKsMap(
