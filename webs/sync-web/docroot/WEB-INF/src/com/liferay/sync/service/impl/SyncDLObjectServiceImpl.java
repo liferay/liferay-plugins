@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.zip.ZipReader;
@@ -82,6 +83,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import jodd.bean.BeanUtil;
 
@@ -1062,8 +1064,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			typePKs.add(syncDLObject.getTypePK());
 		}
 
-		List<Long> checkedTypePKs = checkTypePks(
-			companyId, repositoryId, permissionChecker.getUserId(), typePKs);
+		Set<Long> checkedTypePKs = SetUtil.fromList(
+			checkTypePKs(
+				companyId, repositoryId, permissionChecker.getUserId(),
+				typePKs));
 
 		List<SyncDLObject> checkedSyncDLObjects = new ArrayList<>();
 
@@ -1086,7 +1090,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		return checkedSyncDLObjects;
 	}
 
-	protected List<Long> checkTypePks(
+	protected List<Long> checkTypePKs(
 		long companyId, long repositoryId, long userId, List<Long> typePKs) {
 
 		if (typePKs.size() <= _SQL_DATA_MAX_PARAMETERS) {
@@ -1105,7 +1109,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			subListTypePKs.clear();
 
 			checkedTypePKs.addAll(
-				checkTypePks(companyId, repositoryId, userId, typePKs));
+				checkTypePKs(companyId, repositoryId, userId, typePKs));
 
 			return checkedTypePKs;
 		}
