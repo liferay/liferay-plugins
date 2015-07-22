@@ -2,6 +2,25 @@
 <!DOCTYPE project>
 
 <project name="build-common-node" xmlns:antelope="antlib:ise.antelope.tasks">
+	<macrodef name="config-js-modules">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<mkdir dir="@{module.dir}/.js-cache/META-INF/resources" />
+
+			<download-node-module
+				node.module.name="lfr-module-config-generator"
+				node.module.version="${nodejs.modules.version[lfr-module-config-generator]}"
+			/>
+
+			<node-execute
+				node.command="node"
+				node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -c '' -e '' -f /_/g,- -i true -m @{module.dir}/.js-cache/bower.json -o @{module.dir}/.js-cache/META-INF/config.json -r @{module.dir}/.js-cache/META-INF/resources @{module.dir}/.js-cache"
+				node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
+			/>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="download-node">
 		<sequential>
 			<if>
@@ -262,25 +281,6 @@ ${nodejs.url[osx64]}.
 			/>
 
 			<var name="transpile.files" unset="true" />
-		</sequential>
-	</macrodef>
-
-	<macrodef name="config-js-modules">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<mkdir dir="@{module.dir}/.js-cache/META-INF/resources" />
-
-			<download-node-module
-				node.module.name="lfr-module-config-generator"
-				node.module.version="${nodejs.modules.version[lfr-module-config-generator]}"
-			/>
-
-			<node-execute
-				node.command="node"
-				node.command.args="${sdk.tools.dir}/node-v${nodejs.version}/node_modules/lfr-module-config-generator/bin/index.js -c '' -e '' -f /_/g,- -i true -m @{module.dir}/.js-cache/bower.json -o @{module.dir}/.js-cache/META-INF/config.json -r @{module.dir}/.js-cache/META-INF/resources @{module.dir}/.js-cache"
-				node.working.dir="${sdk.tools.dir}/node-v${nodejs.version}"
-			/>
 		</sequential>
 	</macrodef>
 </project>
