@@ -41,10 +41,10 @@ import javax.imageio.ImageIO;
 public class AssetEntrySetImageUtil {
 
 	public static int getOrientation(File file) {
-		Map<String, Fields> metaData = null;
+		Map<String, Fields> fieldsMap = null;
 
 		try {
-			metaData = RawMetadataProcessorUtil.getRawMetadataMap(
+			fieldsMap = RawMetadataProcessorUtil.getRawMetadataMap(
 				FileUtil.getExtension(file.getName()),
 				MimeTypesUtil.getContentType(file), file);
 		}
@@ -52,19 +52,19 @@ public class AssetEntrySetImageUtil {
 			return _ORIENTATION_NORMAL;
 		}
 
-		Fields rawMetadata = metaData.get("TIKARAWMETADATA");
+		Fields rawMetadataFields = fieldsMap.get("TIKARAWMETADATA");
 
-		if (rawMetadata == null) {
+		if (rawMetadataFields == null) {
 			return _ORIENTATION_NORMAL;
 		}
 
-		Field orientation = rawMetadata.get("TIFF_ORIENTATION");
+		Field orientationField = rawMetadataFields.get("TIFF_ORIENTATION");
 
-		if (orientation == null) {
+		if (orientationField == null) {
 			return _ORIENTATION_NORMAL;
 		}
 
-		return GetterUtil.getInteger(orientation.getValue());
+		return GetterUtil.getInteger(orientationField.getValue());
 	}
 
 	public static void rotateImage(File file) throws IOException {
