@@ -210,7 +210,16 @@ ${nodejs.url[osx64]}.
 					</exec>
 				</then>
 				<else>
-					<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/@{node.command}.cmd">
+					<var name="node.command.extension" value="cmd" />
+
+					<if>
+						<equals arg1="@{node.command}" arg2="node" />
+						<then>
+							<var name="node.command.extension" value="exe" />
+						</then>
+					</if>
+
+					<exec dir="@{node.working.dir}" executable="${sdk.tools.dir}/node-v${nodejs.version}/@{node.command}.${node.command.extension}">
 						<arg line="@{node.command.args} @{node.args}" />
 					</exec>
 				</else>
