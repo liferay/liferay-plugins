@@ -52,6 +52,6 @@
 		<dependency conf="test->default" name="powermock-module-junit4" org="org.powermock" rev="1.6.1" />
 		<dependency conf="test->default" name="powermock-module-junit4-common" org="org.powermock" rev="1.6.1" />
 		<dependency conf="test->default" name="powermock-reflect" org="org.powermock" rev="1.6.1" />
-		<dependency conf="test->default" name="spring-test" org="org.springframework" rev="3.0.7.RELEASE" />
+		<dependency conf="test->default" name="spring-test" org="org.springframework" rev="3.2.10.RELEASE" />
 	</dependencies>
 </ivy-module>
