@@ -21,9 +21,15 @@ public class PushNotificationsConstants {
 
 	public static final String KEY_BODY = "body";
 
+	public static final String KEY_BODY_LOCALIZED = "bodyLocKey";
+
+	public static final String KEY_BODY_LOCALIZED_ARGUMENTS = "bodyLocArgs";
+
 	public static final String KEY_FROM = "from";
 
 	public static final String KEY_PAYLOAD = "payload";
+
+	public static final String KEY_SOUND = "sound";
 
 	public static final String KEY_TO_USER = "toUser";
 
