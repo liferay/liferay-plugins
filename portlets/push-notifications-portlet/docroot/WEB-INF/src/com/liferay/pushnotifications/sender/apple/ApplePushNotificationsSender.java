@@ -14,6 +14,7 @@
 
 package com.liferay.pushnotifications.sender.apple;
 
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -28,6 +29,7 @@ import com.notnoop.apns.ApnsService;
 import com.notnoop.apns.ApnsServiceBuilder;
 import com.notnoop.apns.PayloadBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,7 +69,39 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			builder.alertBody(body);
 		}
 
+		String bodyLocalizedKey = payloadJSONObject.getString(
+			PushNotificationsConstants.KEY_BODY_LOCALIZED);
+
+		if (Validator.isNotNull(bodyLocalizedKey)) {
+			builder.localizedKey(bodyLocalizedKey);
+		}
+
+		JSONArray bodyLocalizedArguments = payloadJSONObject.getJSONArray(
+			PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS);
+
+		if (Validator.isNotNull(bodyLocalizedArguments)) {
+			List<String> argumentsList = new ArrayList<String>();
+
+			for (int i = 0; i < bodyLocalizedArguments.length(); i++) {
+				argumentsList.add(bodyLocalizedArguments.getString(i));
+			}
+
+			builder.localizedArguments(argumentsList);
+		}
+
+		String sound = payloadJSONObject.getString(
+			PushNotificationsConstants.KEY_SOUND);
+
+		if (Validator.isNotNull(sound)) {
+			builder.sound(sound);
+		}
+
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY_LOCALIZED);
+		payloadJSONObject.remove(
+			PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS);
+
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_SOUND);
 
 		builder.customField(
 			PushNotificationsConstants.KEY_PAYLOAD,
