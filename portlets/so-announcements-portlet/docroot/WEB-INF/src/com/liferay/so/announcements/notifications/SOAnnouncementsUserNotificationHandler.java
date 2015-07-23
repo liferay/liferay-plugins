@@ -110,13 +110,13 @@ public class SOAnnouncementsUserNotificationHandler
 			return null;
 		}
 
-		String entryClassName = announcementEntry.getClassName();
-		long entryClassPK = announcementEntry.getClassPK();
-
 		Group group = null;
 
+		String entryClassName = announcementEntry.getClassName();
+
 		if (entryClassName.equals(Group.class.getName())) {
-			group = GroupLocalServiceUtil.getGroup(entryClassPK);
+			group = GroupLocalServiceUtil.getGroup(
+				announcementEntry.getClassPK());
 		}
 		else {
 			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
