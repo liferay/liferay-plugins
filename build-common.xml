@@ -3777,55 +3777,55 @@ for (String path : paths) {
 	</target>
 
 	<target name="watch">
-        <touch mkdirs="true" file="${sdk.dir}/tmp/watch.flagfile"/>
-        <property name="watch.flagfile" location="${sdk.dir}/tmp/watch.flagfile" />
+		<touch mkdirs="true" file="${sdk.dir}/tmp/watch.flagfile"/>
+		<property name="watch.flagfile" location="${sdk.dir}/tmp/watch.flagfile" />
 
-        <antelope:repeat count="-1" interval="2">
-            <outofdate outputsourcespath="watch.sources.path">
-                <sourcefiles>
-                    <fileset dir="${basedir}">
-                        <include name="**/*.css" />
-                        <include name="**/*.ftl" />
-                        <include name="**/*.java" />
-                        <include name="**/*.js" />
-                        <include name="**/*.jsp" />
-                        <include name="**/*.jspf" />
-                        <include name="**/*.scss" />
-                        <include name="**/*.vm" />
-                        <exclude name="**/test/unit/**" />
-                        <exclude name="**/test/integration/**" />
-                        <exclude name="**/classes/**" />
-                        <exclude name="**/.sass-cache/**" />
-                    </fileset>
-                </sourcefiles>
-                <targetfiles>
-                    <pathelement location="${watch.flagfile}"/>
-                </targetfiles>
-                <sequential>
-                    <property refid="watch.sources.path" name="watch.sources.path"/>
+		<antelope:repeat count="-1" interval="2">
+			<outofdate outputsourcespath="watch.sources.path">
+				<sourcefiles>
+					<fileset dir="${basedir}">
+						<include name="**/*.css" />
+						<include name="**/*.ftl" />
+						<include name="**/*.java" />
+						<include name="**/*.js" />
+						<include name="**/*.jsp" />
+						<include name="**/*.jspf" />
+						<include name="**/*.scss" />
+						<include name="**/*.vm" />
+						<exclude name="**/test/unit/**" />
+						<exclude name="**/test/integration/**" />
+						<exclude name="**/classes/**" />
+						<exclude name="**/.sass-cache/**" />
+					</fileset>
+				</sourcefiles>
+				<targetfiles>
+					<pathelement location="${watch.flagfile}"/>
+				</targetfiles>
+				<sequential>
+					<property refid="watch.sources.path" name="watch.sources.path"/>
 
-                    <echo>File changed:${watch.sources.path}</echo>
+					<echo>File changed:${watch.sources.path}</echo>
 
-                    <propertyregex property="watch.deploy.path"
-                                   override="true"
-                                   input="${watch.sources.path}"
-                                   regexp="src.*$|docroot.*$"
-                                   replace=""
-                                   global="false" />
+					<propertyregex property="watch.deploy.path"
+								   override="true"
+								   input="${watch.sources.path}"
+								   regexp="src.*$|docroot.*$"
+								   replace=""
+								   global="false" />
 
-                    <echo>Deploying: ${watch.deploy.path}</echo>
+					<echo>Deploying: ${watch.deploy.path}</echo>
 
-                    <deploy
-                        module.dir="${watch.deploy.path}"
-                        />
+					<deploy
+						module.dir="${watch.deploy.path}"
+						/>
 
-                    <var name="watch.sources.path" unset="true"/>
+					<var name="watch.sources.path" unset="true"/>
 
-                    <touch file="${watch.flagfile}"/>
+					<touch file="${watch.flagfile}"/>
 
-                    <echo>Done deploying.  Watching files again.</echo>
-                </sequential>
-            </outofdate>
-        </antelope:repeat>
-    </target>
+					<echo>Done deploying.  Watching files again.</echo>
+				</sequential>
+			</outofdate>
+		</antelope:repeat>
+	</target>
 </project>
