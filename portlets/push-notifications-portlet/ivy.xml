@@ -11,7 +11,7 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="apns" org="com.notnoop.apns" rev="0.2.3" />
+		<dependency name="apns" org="com.notnoop.apns" rev="1.0.0.Beta6" />
 		<dependency name="gcm-server" org="com.ganyo" rev="1.0.2" />
 		<dependency name="java-mpns" org="org.jboss.aerogear.windows" rev="0.1.0" />
 		<dependency name="jodd-http" org="org.jodd" rev="3.6.4" />
