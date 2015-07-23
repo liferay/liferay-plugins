@@ -981,32 +981,4 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 			test.type="unit"
 		/>
 	</target>
-
-	<target name="watch" depends="deploy">
-		<antelope:repeat count="-1" interval="2">
-			<outofdate verbose="true">
-				<sourcefiles>
-					<fileset dir="${basedir}">
-						<include name="**/*.css" />
-						<include name="**/*.ftl" />
-						<include name="**/*.java" />
-						<include name="**/*.jsp" />
-						<include name="**/*.jspf" />
-						<include name="**/*.scss" />
-						<include name="**/*.vm" />
-						<exclude name="**/classes/**" />
-						<exclude name="**/.sass-cache/**" />
-					</fileset>
-				</sourcefiles>
-				<targetfiles>
-					<pathelement location="${plugin.file}" />
-				</targetfiles>
-				<sequential>
-					<deploy
-						module.dir="${basedir}"
-					/>
-				</sequential>
-			</outofdate>
-		</antelope:repeat>
-	</target>
 </project>
