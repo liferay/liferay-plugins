@@ -77,24 +77,27 @@ public class SyncJSONFilter implements Filter {
 				PortletPropsKeys.SYNC_SERVICES_ENABLED,
 				PortletPropsValues.SYNC_SERVICES_ENABLED)) {
 
-			String device = httpServletRequest.getHeader("Sync-Device");
+			String syncDevice = httpServletRequest.getHeader("Sync-Device");
 
-			if (device == null) {
+			if (syncDevice == null) {
 				throwable = new SyncServicesUnavailableException();
 			}
-			else if (device.startsWith("desktop")) {
-				int build = httpServletRequest.getIntHeader("Sync-Build");
+			else if (syncDevice.startsWith("desktop")) {
+				int syncBuild = httpServletRequest.getIntHeader("Sync-Build");
 
-				int syncClientMinBuild = PrefsPropsUtil.getInteger(
+				int syncClientDesktopMinBuild = PrefsPropsUtil.getInteger(
 					PortalUtil.getCompanyId(httpServletRequest),
 					PortletPropsKeys.SYNC_CLIENT_DESKTOP_MIN_BUILD,
 					PortletPropsValues.SYNC_CLIENT_DESKTOP_MIN_BUILD);
 
-				if (syncClientMinBuild < _ABSOLUTE_DESKTOP_MINIMUM_BUILD) {
-					syncClientMinBuild = _ABSOLUTE_DESKTOP_MINIMUM_BUILD;
+				if (syncClientDesktopMinBuild <
+						_ABSOLUTE_SYNC_CLIENT_DESKTOP_MIN_BUILD) {
+
+					syncClientDesktopMinBuild =
+						_ABSOLUTE_SYNC_CLIENT_DESKTOP_MIN_BUILD;
 				}
 
-				if (build >= syncClientMinBuild) {
+				if (syncBuild >= syncClientDesktopMinBuild) {
 					filterChain.doFilter(servletRequest, servletResponse);
 
 					return;
@@ -102,10 +105,10 @@ public class SyncJSONFilter implements Filter {
 				else {
 					throwable = new SyncClientMinBuildException(
 						"Sync client does not meet minimum build " +
-							syncClientMinBuild);
+							syncClientDesktopMinBuild);
 				}
 			}
-			else if (device.startsWith("mobile")) {
+			else if (syncDevice.startsWith("mobile")) {
 				filterChain.doFilter(servletRequest, servletResponse);
 
 				return;
@@ -136,6 +139,6 @@ public class SyncJSONFilter implements Filter {
 	public void init(FilterConfig filterConfig) {
 	}
 
-	private static final int _ABSOLUTE_DESKTOP_MINIMUM_BUILD = 3009;
+	private static final int _ABSOLUTE_SYNC_CLIENT_DESKTOP_MIN_BUILD = 3009;
 
 }
