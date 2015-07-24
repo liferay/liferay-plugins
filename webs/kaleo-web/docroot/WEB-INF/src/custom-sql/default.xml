@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-
-<custom-sql>
-	<sql file="custom-sql/kaleotaskinstancetoken.xml" />
-</custom-sql>
