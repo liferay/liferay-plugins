@@ -212,8 +212,10 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
-	public List<SyncDLObject> getSyncDLObjects(long parentFolderId) {
-		return syncDLObjectPersistence.findByParentFolderId(parentFolderId);
+	public List<SyncDLObject> getSyncDLObjects(
+		long repositoryId, long parentFolderId) {
+
+		return syncDLObjectPersistence.findByR_P(repositoryId, parentFolderId);
 	}
 
 	protected boolean isDefaultRepository(long folderId)

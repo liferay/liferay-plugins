@@ -76,15 +76,23 @@
 		<!-- Order -->
 
 		<order by="asc">
-			<order-column name="companyId" />
 			<order-column name="modifiedTime" />
 			<order-column name="repositoryId" />
 		</order>
 
 		<!-- Finder methods -->
 
-		<finder name="ParentFolderId" return-type="Collection">
+		<finder name="M_R" return-type="Collection">
+			<finder-column name="modifiedTime" comparator="&gt;" />
+			<finder-column name="repositoryId" />
+		</finder>
+		<finder name="R_P" return-type="Collection">
+			<finder-column name="repositoryId" />
 			<finder-column name="parentFolderId" />
+		</finder>
+		<finder name="R_T" return-type="Collection">
+			<finder-column name="repositoryId" />
+			<finder-column name="type" />
 		</finder>
 		<finder name="V_T" return-type="Collection">
 			<finder-column name="version" />
@@ -94,27 +102,20 @@
 			<finder-column name="type" />
 			<finder-column name="typePK" />
 		</finder>
-		<finder name="C_M_R" return-type="Collection">
-			<finder-column name="companyId" />
-			<finder-column name="modifiedTime" comparator="&gt;" />
-			<finder-column name="repositoryId" />
-		</finder>
-		<finder name="C_R_T" return-type="Collection">
-			<finder-column name="companyId" />
-			<finder-column name="repositoryId" />
-			<finder-column name="type" />
-		</finder>
-		<finder name="C_M_R_P" return-type="Collection">
-			<finder-column name="companyId" />
+		<finder name="M_R_P" return-type="Collection">
 			<finder-column name="modifiedTime" comparator="&gt;" />
 			<finder-column name="repositoryId" />
 			<finder-column name="parentFolderId" />
 		</finder>
-		<finder name="C_M_R_NotE" return-type="Collection">
-			<finder-column name="companyId" />
+		<finder name="M_R_NotE" return-type="Collection">
 			<finder-column name="modifiedTime" comparator="&gt;" />
 			<finder-column name="repositoryId" />
 			<finder-column name="event" arrayable-operator="AND" comparator="!=" />
+		</finder>
+		<finder name="R_P_T" return-type="Collection">
+			<finder-column name="repositoryId" />
+			<finder-column name="parentFolderId" />
+			<finder-column name="type" arrayable-operator="OR" />
 		</finder>
 
 		<!-- References -->

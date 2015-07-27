@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -44,8 +45,8 @@ public class SyncDLObjectFinderImpl
 		SyncDLObjectFinder.class.getName() + ".findByTypePKs";
 
 	@Override
-	public List<Long> filterFindByC_R_U_T(
-		long companyId, long groupId, long userId, long[] typePKs) {
+	public List<Long> filterFindByR_U_T(
+		long groupId, long userId, long[] typePKs) {
 
 		if (ArrayUtil.isEmpty(typePKs)) {
 			return Collections.emptyList();
@@ -70,7 +71,7 @@ public class SyncDLObjectFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			qPos.add(CompanyThreadLocal.getCompanyId());
 			qPos.add(ResourceConstants.SCOPE_INDIVIDUAL);
 
 			return (List<Long>)sqlQuery.list();

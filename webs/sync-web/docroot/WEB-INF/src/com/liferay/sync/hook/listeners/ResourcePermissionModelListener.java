@@ -74,7 +74,7 @@ public class ResourcePermissionModelListener
 
 		List<SyncDLObject> childSyncDLObjects =
 			SyncDLObjectLocalServiceUtil.getSyncDLObjects(
-				syncDLObject.getTypePK());
+				syncDLObject.getRepositoryId(), syncDLObject.getTypePK());
 
 		for (SyncDLObject childSyncDLObject : childSyncDLObjects) {
 			updateSyncDLObject(childSyncDLObject);
