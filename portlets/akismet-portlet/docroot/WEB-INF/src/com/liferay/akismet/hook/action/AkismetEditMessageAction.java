@@ -18,7 +18,6 @@ import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
-import com.liferay.portal.kernel.struts.StrutsPortletAction;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -37,10 +36,6 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
 
 /**
  * @author Amos Fong
@@ -50,7 +45,6 @@ public class AkismetEditMessageAction extends BaseStrutsPortletAction {
 
 	@Override
 	public void processAction(
-			StrutsPortletAction originalStrutsPortletAction,
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			ActionResponse actionResponse)
 		throws Exception {
@@ -73,32 +67,6 @@ public class AkismetEditMessageAction extends BaseStrutsPortletAction {
 				SessionErrors.add(actionRequest, e.getClass());
 			}
 		}
-		else {
-			originalStrutsPortletAction.processAction(
-				portletConfig, actionRequest, actionResponse);
-		}
-	}
-
-	@Override
-	public String render(
-			StrutsPortletAction originalStrutsPortletAction,
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return originalStrutsPortletAction.render(
-			portletConfig, renderRequest, renderResponse);
-	}
-
-	@Override
-	public void serveResource(
-			StrutsPortletAction originalStrutsPortletAction,
-			PortletConfig portletConfig, ResourceRequest resourceRequest,
-			ResourceResponse resourceResponse)
-		throws Exception {
-
-		originalStrutsPortletAction.serveResource(
-			portletConfig, resourceRequest, resourceResponse);
 	}
 
 	protected void checkPermission(long scopeGroupId) throws PortalException {

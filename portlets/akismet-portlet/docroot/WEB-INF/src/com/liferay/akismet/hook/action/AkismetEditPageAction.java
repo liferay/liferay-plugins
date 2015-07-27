@@ -197,7 +197,8 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 
 			// Latest version
 
-			if ((latestContent != null) && ((previousContent == null) ||
+			if ((latestContent != null) &&
+				((previousContent == null) ||
 				 latestContent.equals(previousContent))) {
 
 				WikiPageLocalServiceUtil.revertPage(
