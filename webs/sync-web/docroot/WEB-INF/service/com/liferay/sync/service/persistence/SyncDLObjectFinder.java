@@ -18,7 +18,7 @@ package com.liferay.sync.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface SyncDLObjectFinder {
-	public java.util.List<java.lang.Long> filterFindByC_R_U_T(long companyId,
-		long groupId, long userId, long[] typePKs)
+	public java.util.List<java.lang.Long> filterFindByR_U_T(long groupId,
+		long userId, long[] typePKs)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

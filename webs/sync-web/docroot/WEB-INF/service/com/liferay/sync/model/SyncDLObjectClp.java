@@ -987,20 +987,6 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	public int compareTo(SyncDLObject syncDLObject) {
 		int value = 0;
 
-		if (getCompanyId() < syncDLObject.getCompanyId()) {
-			value = -1;
-		}
-		else if (getCompanyId() > syncDLObject.getCompanyId()) {
-			value = 1;
-		}
-		else {
-			value = 0;
-		}
-
-		if (value != 0) {
-			return value;
-		}
-
 		if (getModifiedTime() < syncDLObject.getModifiedTime()) {
 			value = -1;
 		}

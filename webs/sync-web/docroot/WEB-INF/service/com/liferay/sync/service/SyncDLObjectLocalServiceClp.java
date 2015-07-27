@@ -142,7 +142,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 		_methodName23 = "getSyncDLObjects";
 
-		_methodParameterTypes23 = new String[] { "long" };
+		_methodParameterTypes23 = new String[] { "long", "long" };
 	}
 
 	@Override
@@ -874,13 +874,14 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 	@Override
 	public java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
-		long parentFolderId)
+		long repositoryId, long parentFolderId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { parentFolderId });
+					_methodParameterTypes23,
+					new Object[] { repositoryId, parentFolderId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

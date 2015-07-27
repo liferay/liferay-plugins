@@ -282,6 +282,6 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
-		long parentFolderId)
+		long repositoryId, long parentFolderId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

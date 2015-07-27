@@ -314,9 +314,9 @@ public class SyncDLObjectLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
-		long parentFolderId)
+		long repositoryId, long parentFolderId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getSyncDLObjects(parentFolderId);
+		return getService().getSyncDLObjects(repositoryId, parentFolderId);
 	}
 
 	public static void clearService() {

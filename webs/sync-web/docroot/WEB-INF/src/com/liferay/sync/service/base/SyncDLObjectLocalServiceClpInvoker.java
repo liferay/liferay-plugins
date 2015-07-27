@@ -141,7 +141,7 @@ public class SyncDLObjectLocalServiceClpInvoker {
 
 		_methodName92 = "getSyncDLObjects";
 
-		_methodParameterTypes92 = new String[] { "long" };
+		_methodParameterTypes92 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -290,7 +290,8 @@ public class SyncDLObjectLocalServiceClpInvoker {
 
 		if (_methodName92.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes92, parameterTypes)) {
-			return SyncDLObjectLocalServiceUtil.getSyncDLObjects(((Long)arguments[0]).longValue());
+			return SyncDLObjectLocalServiceUtil.getSyncDLObjects(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
