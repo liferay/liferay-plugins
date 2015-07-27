@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
-import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.ac.AccessControlled;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
@@ -324,45 +323,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 	}
 
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	@Override
-	public SyncDLObjectUpdate getAllSyncDLObjects(
-			long repositoryId, long folderId)
-		throws PortalException, SystemException {
-
-		try {
-			SyncUtil.checkSyncEnabled(repositoryId);
-
-			long lastAccessTime = System.currentTimeMillis();
-
-			long companyId = 0;
-
-			Repository repository = repositoryLocalService.fetchRepository(
-				repositoryId);
-
-			if (repository != null) {
-				companyId = repository.getCompanyId();
-			}
-			else {
-				Group group = groupLocalService.getGroup(repositoryId);
-
-				companyId = group.getCompanyId();
-			}
-
-			List<SyncDLObject> syncDLObjects =
-				syncDLObjectPersistence.findByC_M_R(companyId, 0, repositoryId);
-
-			return new SyncDLObjectUpdate(
-				syncDLObjects, syncDLObjects.size(), lastAccessTime);
-		}
-		catch (PortalException pe) {
-			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
-		}
-	}
-
 	@Override
 	public SyncDLObject getFileEntrySyncDLObject(
 			long groupId, long folderId, String title)
@@ -499,11 +459,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 	}
 
-	@Override
-	public long getLatestModifiedTime() throws SystemException {
-		return syncDLObjectLocalService.getLatestModifiedTime();
-	}
-
 	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public SyncContext getSyncContext()
@@ -571,17 +526,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
 		}
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #getSyncContext()}
-	 */
-	@Deprecated
-	@Override
-	public SyncContext getSyncContext(String uuid)
-		throws PortalException, SystemException {
-
-		return getSyncContext();
 	}
 
 	@Override
