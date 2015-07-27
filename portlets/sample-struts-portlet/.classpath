@@ -12,6 +12,7 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/antlr2.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-beanutils.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-chain.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-collections.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-digester.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-fileupload.jar" />
@@ -24,7 +25,10 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/oro.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/portals-bridges.jar" />
-	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/struts.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/struts-core.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/struts-extras.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/struts-taglib.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/struts-tiles.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
