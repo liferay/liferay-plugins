@@ -59,7 +59,7 @@
 					<c:when test="<%= spam %>">
 						<li>
 							<portlet:actionURL var="notSpamURL">
-								<portlet:param name="struts_action" value="/message_boards/edit_message" />
+								<portlet:param name="struts_action" value="/message_boards/akismet_edit_message" />
 								<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="messageId" value="<%= messageId %>" />
@@ -77,7 +77,7 @@
 					<c:otherwise>
 						<li>
 							<portlet:actionURL var="markAsSpamURL">
-								<portlet:param name="struts_action" value="/message_boards/edit_message" />
+								<portlet:param name="struts_action" value="/message_boards/akismet_edit_message" />
 								<portlet:param name="<%= Constants.CMD %>" value="updateStatus" />
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="messageId" value="<%= messageId %>" />
