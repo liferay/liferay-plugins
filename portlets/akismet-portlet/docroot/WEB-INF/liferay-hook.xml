@@ -14,11 +14,11 @@
 		<service-impl>com.liferay.akismet.hook.service.impl.AkismetWikiPageLocalServiceImpl</service-impl>
 	</service>
 	<struts-action>
-		<struts-action-path>/message_boards/edit_message</struts-action-path>
+		<struts-action-path>/message_boards/akismet_edit_message</struts-action-path>
 		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditMessageAction</struts-action-impl>
 	</struts-action>
 	<struts-action>
-		<struts-action-path>/message_boards_admin/edit_message</struts-action-path>
+		<struts-action-path>/message_boards_admin/akismet_edit_message</struts-action-path>
 		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditMessageAction</struts-action-impl>
 	</struts-action>
 	<struts-action>
