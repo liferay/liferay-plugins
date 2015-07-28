@@ -76,14 +76,16 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			builder.localizedKey(bodyLocalizedKey);
 		}
 
-		JSONArray bodyLocalizedArguments = payloadJSONObject.getJSONArray(
-			PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS);
+		JSONArray bodyLocalizedArgumentsJSONArray =
+			payloadJSONObject.getJSONArray(
+				PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS);
 
-		if (Validator.isNotNull(bodyLocalizedArguments)) {
+		if (bodyLocalizedArgumentsJSONArray != null) {
 			List<String> localizedArguments = new ArrayList<>();
 
-			for (int i = 0; i < bodyLocalizedArguments.length(); i++) {
-				localizedArguments.add(bodyLocalizedArguments.getString(i));
+			for (int i = 0; i < bodyLocalizedArgumentsJSONArray.length(); i++) {
+				localizedArguments.add(
+					bodyLocalizedArgumentsJSONArray.getString(i));
 			}
 
 			builder.localizedArguments(localizedArguments);
@@ -100,7 +102,6 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY_LOCALIZED);
 		payloadJSONObject.remove(
 			PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS);
-
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_SOUND);
 
 		builder.customField(
