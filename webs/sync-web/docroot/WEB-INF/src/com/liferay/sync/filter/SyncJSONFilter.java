@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.sync.SyncClientMinBuildException;
+import com.liferay.sync.SyncDeviceHeaderException;
 import com.liferay.sync.SyncServicesUnavailableException;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
@@ -80,7 +81,7 @@ public class SyncJSONFilter implements Filter {
 			String syncDevice = httpServletRequest.getHeader("Sync-Device");
 
 			if (syncDevice == null) {
-				throwable = new SyncServicesUnavailableException();
+				throwable = new SyncDeviceHeaderException();
 			}
 			else if (syncDevice.startsWith("desktop")) {
 				int syncBuild = httpServletRequest.getIntHeader("Sync-Build");
@@ -114,7 +115,7 @@ public class SyncJSONFilter implements Filter {
 				return;
 			}
 			else {
-				throwable = new SyncServicesUnavailableException();
+				throwable = new SyncDeviceHeaderException();
 			}
 		}
 		else {
