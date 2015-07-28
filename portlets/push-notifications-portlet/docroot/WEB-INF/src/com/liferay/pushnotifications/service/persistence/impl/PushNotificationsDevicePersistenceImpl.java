@@ -1271,8 +1271,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	}
 
 	protected void cacheUniqueFindersCache(
-		PushNotificationsDevice pushNotificationsDevice) {
-		if (pushNotificationsDevice.isNew()) {
+		PushNotificationsDevice pushNotificationsDevice, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] { pushNotificationsDevice.getToken() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TOKEN, args,
@@ -1482,7 +1482,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 			false);
 
 		clearUniqueFindersCache(pushNotificationsDevice);
-		cacheUniqueFindersCache(pushNotificationsDevice);
+		cacheUniqueFindersCache(pushNotificationsDevice, isNew);
 
 		pushNotificationsDevice.resetOriginalValues();
 

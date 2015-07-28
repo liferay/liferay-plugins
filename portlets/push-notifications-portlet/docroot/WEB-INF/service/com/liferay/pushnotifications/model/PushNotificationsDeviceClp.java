@@ -459,7 +459,7 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	private String _platform;
 	private String _token;
 	private BaseModel<?> _pushNotificationsDeviceRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.pushnotifications.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }
