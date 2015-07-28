@@ -13,6 +13,8 @@
 	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jstl-api.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/jstl-impl.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
@@ -20,6 +22,7 @@
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/apns.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-httpclient.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-lang3.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/gcm-server.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpclient.jar" />
