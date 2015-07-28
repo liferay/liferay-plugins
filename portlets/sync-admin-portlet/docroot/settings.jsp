@@ -66,12 +66,6 @@ if (oAuthEnabled) {
 
 	<h4><liferay-ui:message key="advanced" /></h4>
 
-	<c:if test='<%= DeployManagerUtil.isDeployed("oauth-portlet") %>'>
-		<aui:fieldset>
-			<aui:input helpMessage="oauth-enabled-help" label="oauth-enabled" name="oAuthEnabled" type="checkbox" value="<%= oAuthEnabled %>" />
-		</aui:fieldset>
-	</c:if>
-
 	<aui:input helpMessage="max-connections-help" label="max-connections" name="maxConnections" type="text" value="<%= maxConnections %>" wrapperCssClass="lfr-input-text-container">
 		<aui:validator name="digits" />
 		<aui:validator name="min">1</aui:validator>
