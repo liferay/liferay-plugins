@@ -22,6 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface SyncDLObjectFinder {
-	public java.util.List<java.lang.Long> filterFindByC_R_U_T(long companyId,
-		long groupId, long userId, long[] typePKs);
+	public java.util.List<java.lang.Long> filterFindByR_U_T(long groupId,
+		long userId, long[] typePKs);
 }

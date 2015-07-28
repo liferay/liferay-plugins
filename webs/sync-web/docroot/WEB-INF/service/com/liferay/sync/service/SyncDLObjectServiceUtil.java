@@ -106,19 +106,9 @@ public class SyncDLObjectServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getAllFolderSyncDLObjects(
-		long companyId, long repositoryId)
+		long repositoryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getAllFolderSyncDLObjects(companyId, repositoryId);
-	}
-
-	/**
-	* @deprecated As of 7.0.0, with no direct replacement
-	*/
-	@Deprecated
-	public static com.liferay.sync.model.SyncDLObjectUpdate getAllSyncDLObjects(
-		long repositoryId, long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getAllSyncDLObjects(repositoryId, folderId);
+		return getService().getAllFolderSyncDLObjects(repositoryId);
 	}
 
 	/**
@@ -131,9 +121,10 @@ public class SyncDLObjectServiceUtil {
 	}
 
 	public static com.liferay.sync.model.SyncDLObject getFileEntrySyncDLObject(
-		long groupId, long folderId, java.lang.String title)
+		long repositoryId, long folderId, java.lang.String title)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getFileEntrySyncDLObject(groupId, folderId, title);
+		return getService()
+				   .getFileEntrySyncDLObject(repositoryId, folderId, title);
 	}
 
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getFileEntrySyncDLObjects(
@@ -166,40 +157,23 @@ public class SyncDLObjectServiceUtil {
 		return getService().getGroup(groupId);
 	}
 
-	public static long getLatestModifiedTime() {
-		return getService().getLatestModifiedTime();
-	}
-
 	public static com.liferay.sync.model.SyncContext getSyncContext()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSyncContext();
 	}
 
-	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getSyncContext()}
-	*/
-	@Deprecated
-	public static com.liferay.sync.model.SyncContext getSyncContext(
-		java.lang.String uuid)
+	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
+		long repositoryId, long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSyncContext(uuid);
+		return getService().getSyncDLObjectUpdate(repositoryId, lastAccessTime);
 	}
 
 	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long companyId, long repositoryId, long lastAccessTime)
+		long repositoryId, long parentFolderId, long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .getSyncDLObjectUpdate(companyId, repositoryId,
+				   .getSyncDLObjectUpdate(repositoryId, parentFolderId,
 			lastAccessTime);
-	}
-
-	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long companyId, long repositoryId, long parentFolderId,
-		long lastAccessTime)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getSyncDLObjectUpdate(companyId, repositoryId,
-			parentFolderId, lastAccessTime);
 	}
 
 	public static java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()

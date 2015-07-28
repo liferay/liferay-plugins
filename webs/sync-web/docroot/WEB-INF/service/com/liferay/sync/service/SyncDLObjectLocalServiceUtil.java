@@ -246,8 +246,8 @@ public class SyncDLObjectLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
-		long parentFolderId) {
-		return getService().getSyncDLObjects(parentFolderId);
+		long repositoryId, long parentFolderId) {
+		return getService().getSyncDLObjects(repositoryId, parentFolderId);
 	}
 
 	/**

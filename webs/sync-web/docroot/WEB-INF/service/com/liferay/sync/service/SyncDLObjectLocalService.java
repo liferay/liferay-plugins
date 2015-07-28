@@ -214,7 +214,7 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
-		long parentFolderId);
+		long repositoryId, long parentFolderId);
 
 	/**
 	* Returns a range of all the sync d l objects.

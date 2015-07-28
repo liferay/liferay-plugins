@@ -882,7 +882,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		try {
 			String methodName = "setCreateDate";
 
-			Class<?>[] parameterTypes = new Class<?>[] { Date.class };
+			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
 
 			Object[] parameterValues = new Object[] { createDate };
 
@@ -898,7 +898,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		try {
 			String methodName = "setModifiedDate";
 
-			Class<?>[] parameterTypes = new Class<?>[] { Date.class };
+			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
 
 			Object[] parameterValues = new Object[] { modifiedDate };
 
@@ -1010,20 +1010,6 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	@Override
 	public int compareTo(SyncDLObject syncDLObject) {
 		int value = 0;
-
-		if (getCompanyId() < syncDLObject.getCompanyId()) {
-			value = -1;
-		}
-		else if (getCompanyId() > syncDLObject.getCompanyId()) {
-			value = 1;
-		}
-		else {
-			value = 0;
-		}
-
-		if (value != 0) {
-			return value;
-		}
 
 		if (getModifiedTime() < syncDLObject.getModifiedTime()) {
 			value = -1;
@@ -1296,7 +1282,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	private long _typePK;
 	private String _typeUuid;
 	private BaseModel<?> _syncDLObjectRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.sync.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

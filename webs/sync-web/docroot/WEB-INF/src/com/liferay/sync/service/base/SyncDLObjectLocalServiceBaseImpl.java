@@ -1002,7 +1002,7 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	protected com.liferay.sync.service.SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService;
 	@BeanReference(type = SyncDLFileVersionDiffPersistence.class)
 	protected SyncDLFileVersionDiffPersistence syncDLFileVersionDiffPersistence;
-	@BeanReference(type = SyncDLObjectLocalService.class)
+	@BeanReference(type = com.liferay.sync.service.SyncDLObjectLocalService.class)
 	protected SyncDLObjectLocalService syncDLObjectLocalService;
 	@BeanReference(type = com.liferay.sync.service.SyncDLObjectService.class)
 	protected com.liferay.sync.service.SyncDLObjectService syncDLObjectService;

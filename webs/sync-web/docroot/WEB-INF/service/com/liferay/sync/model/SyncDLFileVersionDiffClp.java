@@ -518,7 +518,7 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 	private long _size;
 	private Date _expirationDate;
 	private BaseModel<?> _syncDLFileVersionDiffRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.sync.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }
