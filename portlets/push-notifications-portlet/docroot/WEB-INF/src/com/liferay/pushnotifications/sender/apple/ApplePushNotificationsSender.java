@@ -80,13 +80,13 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			PushNotificationsConstants.KEY_BODY_LOCALIZED_ARGUMENTS);
 
 		if (Validator.isNotNull(bodyLocalizedArguments)) {
-			List<String> argumentsList = new ArrayList<String>();
+			List<String> localizedArguments = new ArrayList<>();
 
 			for (int i = 0; i < bodyLocalizedArguments.length(); i++) {
-				argumentsList.add(bodyLocalizedArguments.getString(i));
+				localizedArguments.add(bodyLocalizedArguments.getString(i));
 			}
 
-			builder.localizedArguments(argumentsList);
+			builder.localizedArguments(localizedArguments);
 		}
 
 		String sound = payloadJSONObject.getString(
