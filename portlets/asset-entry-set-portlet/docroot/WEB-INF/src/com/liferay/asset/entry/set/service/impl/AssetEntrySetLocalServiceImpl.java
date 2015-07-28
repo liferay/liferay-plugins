@@ -326,7 +326,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		Set<Long> fileEntryIds = new HashSet<Long>();
+		JSONObject fileEntryIdsJSONObject = JSONFactoryUtil.createJSONObject();
 
 		try {
 			AssetEntrySetImageUtil.rotateImage(file);
@@ -337,28 +337,28 @@ public class AssetEntrySetLocalServiceImpl
 
 		FileEntry rawFileEntry = addFileEntry(userId, file, StringPool.BLANK);
 
-		fileEntryIds.add(rawFileEntry.getFileEntryId());
-
 		for (String imageType :
 				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
 
-			FileEntry fileEntry = addImageFileEntry(userId, file, imageType);
+			FileEntry fileEntry = null;
 
-			fileEntryIds.add(fileEntry.getFileEntryId());
+			if (Validator.equals(imageType, "raw")) {
+				fileEntry = rawFileEntry;
+			}
+			else {
+				fileEntry = addImageFileEntry(userId, file, imageType);
+			}
+
+			fileEntryIdsJSONObject.put(imageType, fileEntry.getFileEntryId());
 
 			imageJSONObject.put(
-				"imageURL" + StringPool.UNDERLINE + imageType,
+				"imageURL_" + imageType,
 				DLUtil.getPreviewURL(
 					fileEntry, fileEntry.getFileVersion(), null,
 					StringPool.BLANK, false, true));
 		}
 
-		imageJSONObject.put("fileEntryIds", StringUtil.merge(fileEntryIds));
-		imageJSONObject.put(
-			"imageURL_raw",
-			DLUtil.getPreviewURL(
-				rawFileEntry, rawFileEntry.getFileVersion(), null,
-				StringPool.BLANK, false, true));
+		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
 		imageJSONObject.put("name", rawFileEntry.getTitle());
 
 		return imageJSONObject;

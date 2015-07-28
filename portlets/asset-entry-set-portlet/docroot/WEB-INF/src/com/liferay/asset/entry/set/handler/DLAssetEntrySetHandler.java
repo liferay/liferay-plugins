@@ -16,17 +16,23 @@ package com.liferay.asset.entry.set.handler;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
+import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -49,19 +55,32 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 			userId, assetEntrySetId, payloadJSONObject);
 
 		Set<Long> assetEntryIds = new HashSet<Long>();
+		Set<Long> fileEntryIds = new HashSet<Long>();
 
 		String[] assetTagNames = StringUtil.split(
 			payloadJSONObject.getString(
 				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
 
-		JSONArray jsonArray = payloadJSONObject.getJSONArray("imageData");
+		JSONArray processedImageDataJSONArray =
+			JSONFactoryUtil.createJSONArray();
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject imageJSONObject = jsonArray.getJSONObject(i);
+		JSONArray imageDataJSONArray = payloadJSONObject.getJSONArray(
+			"imageData");
 
-			for (long fileEntryId :
-					StringUtil.split(
-						imageJSONObject.getString("fileEntryIds"), 0L)) {
+		for (int i = 0; i < imageDataJSONArray.length(); i++) {
+			JSONObject processedImageJSONObject =
+				JSONFactoryUtil.createJSONObject();
+
+			JSONObject imageJSONObject = imageDataJSONArray.getJSONObject(i);
+
+			for (String imageType :
+					PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
+
+				long fileEntryId = imageJSONObject.getLong(imageType);
+
+				if (fileEntryId <= 0) {
+					continue;
+				}
 
 				DLFileEntry dlFileEntry =
 					DLFileEntryLocalServiceUtil.getFileEntry(fileEntryId);
@@ -75,12 +94,25 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					dlFileEntry, assetTagNames);
 
 				assetEntryIds.add(assetEntry.getEntryId());
+
+				FileEntry fileEntry =
+					PortletFileRepositoryUtil.getPortletFileEntry(fileEntryId);
+
+				processedImageJSONObject.put(
+					"imageURL_" + imageType,
+					DLUtil.getPreviewURL(
+						fileEntry, fileEntry.getFileVersion(), null,
+						StringPool.BLANK, false, true));
+
+				fileEntryIds.add(fileEntryId);
 			}
+
+			processedImageDataJSONArray.put(processedImageJSONObject);
 		}
 
 		jsonObject.put("assetEntryIds", StringUtil.merge(assetEntryIds));
-
-		jsonObject.put("imageData", jsonArray);
+		jsonObject.put("fileEntryIds", StringUtil.merge(fileEntryIds));
+		jsonObject.put("imageData", processedImageDataJSONArray);
 
 		return jsonObject;
 	}
