@@ -12,6 +12,28 @@
 					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
 			[$JOIN_BY$]
 			WHERE
+				(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
+				(AssetEntrySet.parentAssetEntrySetId = ?) AND
+				(AssetSharingEntry1.classNameId = ?) AND
+				(
+					[$SHARED_TO$]
+					[$ASSET_TAG_NAMES$]
+				)
+			ORDER BY
+				AssetEntrySet.createTime DESC
+		]]>
+	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByMT_PAESI_CNI">
+		<![CDATA[
+			SELECT
+				DISTINCT {AssetEntrySet.*}
+			FROM
+				AssetEntrySet
+			INNER JOIN
+				AssetSharingEntry AS AssetSharingEntry1 ON
+					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
+			[$JOIN_BY$]
+			WHERE
 				(AssetEntrySet.modifiedTime [$MODIFIED_TIME_COMPARATOR$] ?) AND
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND

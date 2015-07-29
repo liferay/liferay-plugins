@@ -176,13 +176,13 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
-			long userId, long modifiedTime, long parentAssetEntrySetId,
+			long userId, long time, int timeField, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, modifiedTime, true, parentAssetEntrySetId,
+			userId, time, true, timeField, parentAssetEntrySetId,
 			sharedToJSONArray, assetTagNames, start, end);
 	}
 
@@ -202,13 +202,13 @@ public class AssetEntrySetLocalServiceImpl
 
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
-			long userId, long modifiedTime, long parentAssetEntrySetId,
+			long userId, long time, int timeField, long parentAssetEntrySetId,
 			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
 			int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
-			userId, modifiedTime, false, parentAssetEntrySetId,
+			userId, time, false, timeField, parentAssetEntrySetId,
 			sharedToJSONArray, assetTagNames, start, end);
 	}
 
@@ -425,7 +425,7 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected List<AssetEntrySet> getAssetEntrySets(
-			long userId, long modifiedTime, boolean gtModifiedTime,
+			long userId, long time, boolean gtTime, int timeField,
 			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
@@ -434,12 +434,29 @@ public class AssetEntrySetLocalServiceImpl
 			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
 				userId);
 
-		List<AssetEntrySet> assetEntrySets =
-			assetEntrySetFinder.findByCT_PAESI_CNI(
-				classNameIdAndClassPKOVP.getKey(),
-				classNameIdAndClassPKOVP.getValue(), modifiedTime,
-				gtModifiedTime, parentAssetEntrySetId, sharedToJSONArray,
-				assetTagNames, start, end);
+		List<AssetEntrySet> assetEntrySets = new ArrayList<AssetEntrySet>();
+
+		if (timeField ==
+				AssetEntrySetConstants.ASSET_ENTRY_SET_FIELD_CREATE_TIME) {
+
+			assetEntrySets =
+				assetEntrySetFinder.findByCT_PAESI_CNI(
+					classNameIdAndClassPKOVP.getKey(),
+					classNameIdAndClassPKOVP.getValue(), time,
+					gtTime, parentAssetEntrySetId, sharedToJSONArray,
+					assetTagNames, start, end);
+		}
+		else if (timeField ==
+					AssetEntrySetConstants.
+						ASSET_ENTRY_SET_FIELD_MODIFIED_TIME) {
+
+			assetEntrySets =
+				assetEntrySetFinder.findByMT_PAESI_CNI(
+					classNameIdAndClassPKOVP.getKey(),
+					classNameIdAndClassPKOVP.getValue(), time,
+					gtTime, parentAssetEntrySetId, sharedToJSONArray,
+					assetTagNames, start, end);
+		}
 
 		return assetEntrySets;
 	}
