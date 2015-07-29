@@ -138,7 +138,7 @@ public class ArticlePortlet extends BaseKBPortlet {
 		String mvcPath = ParamUtil.getString(renderRequest, "mvcPath");
 
 		if (((defaultValue == 0) && mvcPath.equals(viewTemplate)) ||
-			mvcPath.equals("/article/select_configuration_article.jsp")) {
+			mvcPath.equals("/article/select_configuration_object.jsp")) {
 
 			return 0;
 		}
