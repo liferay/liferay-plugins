@@ -29,7 +29,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.dynamic.data.lists.service.persistence.DDLRecordSetPersistence;
-import com.liferay.portlet.dynamicdatamapping.service.persistence.DDMStructurePersistence;
+import com.liferay.dynamic.data.mapping.service.persistence.DDMStructurePersistence;
 import com.liferay.journal.service.persistence.JournalArticlePersistence;
 
 import com.liferay.skinny.service.SkinnyService;
@@ -343,7 +343,7 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the d d m structure local service
 	 */
-	public com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService getDDMStructureLocalService() {
+	public com.liferay.dynamic.data.mapping.service.DDMStructureLocalService getDDMStructureLocalService() {
 		return ddmStructureLocalService;
 	}
 
@@ -353,7 +353,7 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	 * @param ddmStructureLocalService the d d m structure local service
 	 */
 	public void setDDMStructureLocalService(
-		com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService ddmStructureLocalService) {
+		com.liferay.dynamic.data.mapping.service.DDMStructureLocalService ddmStructureLocalService) {
 		this.ddmStructureLocalService = ddmStructureLocalService;
 	}
 
@@ -362,7 +362,7 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the d d m structure remote service
 	 */
-	public com.liferay.portlet.dynamicdatamapping.service.DDMStructureService getDDMStructureService() {
+	public com.liferay.dynamic.data.mapping.service.DDMStructureService getDDMStructureService() {
 		return ddmStructureService;
 	}
 
@@ -372,7 +372,7 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	 * @param ddmStructureService the d d m structure remote service
 	 */
 	public void setDDMStructureService(
-		com.liferay.portlet.dynamicdatamapping.service.DDMStructureService ddmStructureService) {
+		com.liferay.dynamic.data.mapping.service.DDMStructureService ddmStructureService) {
 		this.ddmStructureService = ddmStructureService;
 	}
 
@@ -556,10 +556,10 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.dynamic.data.lists.service.DDLRecordSetService ddlRecordSetService;
 	@BeanReference(type = DDLRecordSetPersistence.class)
 	protected DDLRecordSetPersistence ddlRecordSetPersistence;
-	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService.class)
-	protected com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService ddmStructureLocalService;
-	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMStructureService.class)
-	protected com.liferay.portlet.dynamicdatamapping.service.DDMStructureService ddmStructureService;
+	@BeanReference(type = com.liferay.dynamic.data.mapping.service.DDMStructureLocalService.class)
+	protected com.liferay.dynamic.data.mapping.service.DDMStructureLocalService ddmStructureLocalService;
+	@BeanReference(type = com.liferay.dynamic.data.mapping.service.DDMStructureService.class)
+	protected com.liferay.dynamic.data.mapping.service.DDMStructureService ddmStructureService;
 	@BeanReference(type = DDMStructurePersistence.class)
 	protected DDMStructurePersistence ddmStructurePersistence;
 	@BeanReference(type = com.liferay.journal.service.JournalArticleLocalService.class)
