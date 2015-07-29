@@ -108,7 +108,7 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 	<c:when test='<%= tabs2.equals("general") %>'>
 		<aui:script use="aui-base">
 			<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
+				<portlet:param name="mvcPath" value="/article/select_configuration_object.jsp" />
 				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
 			</liferay-portlet:renderURL>
@@ -123,7 +123,7 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 								destroyOnHide: true,
 								modal: true
 							},
-							id: '<portlet:namespace />selectConfigurationKBArticle',
+							id: '<portlet:namespace />selectConfigurationKBObject',
 							title: '<liferay-ui:message key="select-parent" />',
 							uri: '<%= selectConfigurationKBArticleURL %>'
 						},
