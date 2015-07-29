@@ -356,23 +356,23 @@ public class StorePortlet extends RemoteMVCPortlet {
 		String encodedClientId = MarketplaceUtil.encodeClientId(
 			companyId, userId, token);
 
-		String remoteNamespace = getRemoteNamespace();
+		String serverNamespace = getServerNamespace();
 
 		url = HttpUtil.addParameter(
-			url, remoteNamespace.concat("clientId"), encodedClientId);
+			url, serverNamespace.concat("clientId"), encodedClientId);
 		url = HttpUtil.addParameter(
-			url, remoteNamespace.concat("token"), token);
+			url, serverNamespace.concat("token"), token);
 
 		return url;
 	}
 
 	@Override
-	protected String getRemoteNamespace() {
+	protected String getServerNamespace() {
 		return PortalUtil.getPortletNamespace(_OSB_PORTLET_ID);
 	}
 
 	@Override
-	protected String getRemotePortletURL() {
+	protected String getServerPortletURL() {
 		return PortletPropsValues.MARKETPLACE_URL + "/osb-portlet/mp_server";
 	}
 
