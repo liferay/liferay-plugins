@@ -14,10 +14,13 @@
  */
 --%>
 
-<%@ include file="/display/init.jsp" %>
+<%@ include file="/admin/init.jsp" %>
 
 <%
 long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
+
+long resourceClassNameId = GetterUtil.getLong(portletPreferences.getValue("resourceClassNameId", null), kbFolderClassNameId);
+long resourcePrimKey = GetterUtil.getLong(portletPreferences.getValue("resourcePrimKey", null));
 
 long parentResourceClassNameId = ParamUtil.getLong(request, "parentResourceClassNameId", kbFolderClassNameId);
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -58,7 +61,7 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 	</c:if>
 
 	<%
-	KnowledgeBaseUtil.addPortletBreadcrumbEntries(parentResourceClassNameId, parentResourcePrimKey, "/display/select_configuration_object.jsp", request, renderResponse);
+	KnowledgeBaseUtil.addPortletBreadcrumbEntries(parentResourceClassNameId, parentResourcePrimKey, templatePath + "select_configuration_object.jsp", request, renderResponse);
 	%>
 
 	<liferay-ui:breadcrumb
@@ -88,7 +91,7 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 			>
 
 				<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+					<portlet:param name="mvcPath" value='<%= templatePath + "select_configuration_object.jsp" %>' />
 					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbFolder.getKbFolderId()) %>" />
 				</liferay-portlet:renderURL>
@@ -148,7 +151,7 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 	</c:if>
 
 	<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+		<portlet:param name="mvcPath" value='<%= templatePath + "select_configuration_object.jsp" %>' />
 		<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(parentResourceClassNameId) %>" />
 		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 	</liferay-portlet:renderURL>
@@ -173,7 +176,7 @@ String eventName = PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURAT
 			modelVar="kbArticle"
 		>
 			<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcPath" value="/display/select_configuration_object.jsp" />
+				<portlet:param name="mvcPath" value='<%= templatePath + "select_configuration_object.jsp" %>' />
 				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbArticle.getClassNameId()) %>" />
 				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 			</liferay-portlet:renderURL>
