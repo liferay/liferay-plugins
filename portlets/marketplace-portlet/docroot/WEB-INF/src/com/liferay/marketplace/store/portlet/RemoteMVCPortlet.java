@@ -112,6 +112,10 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		return oAuthRequest;
 	}
 
+	protected String getRemoteNamespace() {
+		return StringPool.BLANK;
+	}
+
 	protected String getRemotePortletURL() {
 		return StringPool.BLANK;
 	}
@@ -156,6 +160,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		oAuthRequest.addQuerystringParameter(
 			"remotePortletNamespace", portletResponse.getNamespace());
 
+		String remoteNamespace = getRemoteNamespace();
+
 		Map<String, String[]> parameterMap = portletRequest.getParameterMap();
 
 		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
@@ -165,7 +171,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 				continue;
 			}
 
-			oAuthRequest.addQuerystringParameter(entry.getKey(), values[0]);
+			oAuthRequest.addQuerystringParameter(
+				remoteNamespace.concat(entry.getKey()), values[0]);
 		}
 	}
 
