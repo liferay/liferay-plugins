@@ -298,13 +298,14 @@ public class AssetEntrySetLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
-		long userId, long modifiedTime, long parentAssetEntrySetId,
+		long userId, long time, boolean modifiedTime,
+		long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getNewAssetEntrySets(userId, modifiedTime,
+				   .getNewAssetEntrySets(userId, time, modifiedTime,
 			parentAssetEntrySetId, sharedToJSONArray, assetTagNames, start, end);
 	}
 
@@ -320,13 +321,14 @@ public class AssetEntrySetLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
-		long userId, long modifiedTime, long parentAssetEntrySetId,
+		long userId, long time, boolean modifiedTime,
+		long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getOldAssetEntrySets(userId, modifiedTime,
+				   .getOldAssetEntrySets(userId, time, modifiedTime,
 			parentAssetEntrySetId, sharedToJSONArray, assetTagNames, start, end);
 	}
 
