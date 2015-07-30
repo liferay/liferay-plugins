@@ -14,12 +14,14 @@
 
 package com.liferay.notifications.hook.upgrade.v1_0_0;
 
+import com.liferay.announcements.web.constants.AnnouncementsPortletKeys;
 import com.liferay.notifications.util.PortletKeys;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portlet.announcements.constants.AnnouncementsConstants;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -92,7 +94,9 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 					return;
 				}
 
-				if (type.equals(_ANNOUNCEMENTS)) {
+				if (type.equals(_ANNOUNCEMENTS) ||
+					type.equals(AnnouncementsPortletKeys.ANNOUNCEMENTS)) {
+
 					type = PortletKeys.SO_ANNOUNCEMENTS;
 				}
 

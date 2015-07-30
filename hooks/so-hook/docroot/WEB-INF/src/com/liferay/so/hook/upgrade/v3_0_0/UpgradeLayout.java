@@ -17,6 +17,7 @@
 
 package com.liferay.so.hook.upgrade.v3_0_0;
 
+import com.liferay.announcements.web.constants.AnnouncementsPortletKeys;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -57,9 +58,13 @@ public class UpgradeLayout extends UpgradeProcess {
 
 			sb.append("select Layout.plid from Layout ");
 			sb.append(getJoinSQL());
-			sb.append("where (Layout.typeSettings like '%");
+			sb.append("where ((Layout.typeSettings like '%");
 			sb.append(_ANNOUNCEMENTS);
-			sb.append("%') and (Layout.typeSettings not like '%");
+			sb.append("%')");
+			sb.append("or (Layout.typeSettings like '%");
+			sb.append(AnnouncementsPortletKeys.ANNOUNCEMENTS);
+			sb.append("%'))");
+			sb.append("and (Layout.typeSettings not like '%");
 			sb.append(PortletKeys.SO_ANNOUNCEMENTS);
 			sb.append("%')");
 
@@ -87,6 +92,10 @@ public class UpgradeLayout extends UpgradeProcess {
 
 					columnValue = StringUtil.replace(
 						columnValue, _ANNOUNCEMENTS,
+						PortletKeys.SO_ANNOUNCEMENTS);
+
+					columnValue = StringUtil.replace(
+						columnValue, AnnouncementsPortletKeys.ANNOUNCEMENTS,
 						PortletKeys.SO_ANNOUNCEMENTS);
 
 					typeSettingsProperties.setProperty(columnName, columnValue);
