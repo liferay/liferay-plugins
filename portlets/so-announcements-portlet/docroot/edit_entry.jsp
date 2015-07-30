@@ -42,7 +42,7 @@ if (entry == null) {
 <aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
-	<aui:input name="alert" type="hidden" value="<%= portletName.equals(alertsPortletId) %>" />
+	<aui:input name="alert" type="hidden" value="<%= portletName.equals(alertsEntryPortletId) %>" />
 
 	<aui:model-context bean="<%= entry %>" model="<%= AnnouncementsEntry.class %>" />
 
