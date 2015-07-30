@@ -86,20 +86,20 @@ public class SyncJSONHttpServletRequestWrapper
 
 			Object jsonObject = JSONFactoryUtil.looseDeserialize(cmd);
 
-			List<Object> jsonBatchItems = null;
+			List<Object> jsonItems = null;
 
 			if (jsonObject instanceof List) {
-				jsonBatchItems = (List<Object>)jsonObject;
+				jsonItems = (List<Object>)jsonObject;
 			}
 			else if (jsonObject instanceof Map) {
-				jsonBatchItems = new ArrayList<>(1);
+				jsonItems = new ArrayList<>(1);
 
-				jsonBatchItems.add(jsonObject);
+				jsonItems.add(jsonObject);
 			}
 
-			for (Object jsonBatchItem : jsonBatchItems) {
+			for (Object jsonItem : jsonItems) {
 				Map<String, Map<String, Object>> map =
-					(Map<String, Map<String, Object>>)jsonBatchItem;
+					(Map<String, Map<String, Object>>)jsonItem;
 
 				Set<String> keySet = map.keySet();
 
