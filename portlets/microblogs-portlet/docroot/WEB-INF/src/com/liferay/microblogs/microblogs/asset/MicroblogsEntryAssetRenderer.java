@@ -44,10 +44,16 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Matthew Kong
  */
-public class MicroblogsEntryAssetRenderer extends BaseJSPAssetRenderer {
+public class MicroblogsEntryAssetRenderer
+	extends BaseJSPAssetRenderer<MicroblogsEntry> {
 
 	public MicroblogsEntryAssetRenderer(MicroblogsEntry entry) {
 		_entry = entry;
+	}
+
+	@Override
+	public MicroblogsEntry getAssetObject() {
+		return _entry;
 	}
 
 	@Override

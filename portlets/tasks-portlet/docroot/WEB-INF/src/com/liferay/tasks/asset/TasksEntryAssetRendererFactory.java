@@ -29,14 +29,15 @@ import com.liferay.tasks.service.permission.TasksEntryPermission;
 /**
  * @author Matthew Kong
  */
-public class TasksEntryAssetRendererFactory extends BaseAssetRendererFactory {
+public class TasksEntryAssetRendererFactory
+	extends BaseAssetRendererFactory<TasksEntry> {
 
 	public static final String CLASS_NAME = TasksEntry.class.getName();
 
 	public static final String TYPE = "tasks";
 
 	@Override
-	public AssetRenderer getAssetRenderer(long classPK, int type)
+	public AssetRenderer<TasksEntry> getAssetRenderer(long classPK, int type)
 		throws PortalException {
 
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(

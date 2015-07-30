@@ -43,10 +43,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Matthew Kong
  */
-public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer {
+public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 
 	public TasksEntryAssetRenderer(TasksEntry entry) {
 		_entry = entry;
+	}
+
+	@Override
+	public TasksEntry getAssetObject() {
+		return _entry;
 	}
 
 	@Override

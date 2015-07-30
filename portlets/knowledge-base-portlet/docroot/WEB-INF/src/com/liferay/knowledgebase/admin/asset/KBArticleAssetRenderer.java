@@ -41,10 +41,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Peter Shin
  */
-public class KBArticleAssetRenderer extends BaseJSPAssetRenderer {
+public class KBArticleAssetRenderer extends BaseJSPAssetRenderer<KBArticle> {
 
 	public KBArticleAssetRenderer(KBArticle kbArticle) {
 		_kbArticle = kbArticle;
+	}
+
+	@Override
+	public KBArticle getAssetObject() {
+		return _kbArticle;
 	}
 
 	@Override

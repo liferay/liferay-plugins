@@ -30,14 +30,15 @@ import com.liferay.portlet.asset.model.BaseAssetRendererFactory;
  * @author Matthew Kong
  */
 public class MicroblogsEntryAssetRendererFactory
-	extends BaseAssetRendererFactory {
+	extends BaseAssetRendererFactory<MicroblogsEntry> {
 
 	public static final String CLASS_NAME = MicroblogsEntry.class.getName();
 
 	public static final String TYPE = "microblogs";
 
 	@Override
-	public AssetRenderer getAssetRenderer(long classPK, int type)
+	public AssetRenderer<MicroblogsEntry> getAssetRenderer(
+			long classPK, int type)
 		throws PortalException {
 
 		MicroblogsEntry microblogsEntry =
