@@ -56,13 +56,12 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 
 		Set<Long> assetEntryIds = new HashSet<Long>();
 		Set<Long> fileEntryIds = new HashSet<Long>();
+		JSONArray processedImageDataJSONArray =
+			JSONFactoryUtil.createJSONArray();
 
 		String[] assetTagNames = StringUtil.split(
 			payloadJSONObject.getString(
 				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
-
-		JSONArray processedImageDataJSONArray =
-			JSONFactoryUtil.createJSONArray();
 
 		JSONArray imageDataJSONArray = payloadJSONObject.getJSONArray(
 			"imageData");

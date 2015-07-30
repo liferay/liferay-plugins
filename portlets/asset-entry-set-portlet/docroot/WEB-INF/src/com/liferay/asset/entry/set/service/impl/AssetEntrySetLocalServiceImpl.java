@@ -359,6 +359,7 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
+
 		imageJSONObject.put("name", rawFileEntry.getTitle());
 
 		return imageJSONObject;
