@@ -58,7 +58,7 @@ public class UpgradeLayout extends UpgradeProcess {
 			sb.append("select Layout.plid from Layout ");
 			sb.append(getJoinSQL());
 			sb.append("where (Layout.typeSettings like '%");
-			sb.append(PortletKeys.ANNOUNCEMENTS);
+			sb.append(_ANNOUNCEMENTS);
 			sb.append("%') and (Layout.typeSettings not like '%");
 			sb.append(PortletKeys.SO_ANNOUNCEMENTS);
 			sb.append("%')");
@@ -86,7 +86,7 @@ public class UpgradeLayout extends UpgradeProcess {
 						columnName);
 
 					columnValue = StringUtil.replace(
-						columnValue, PortletKeys.ANNOUNCEMENTS,
+						columnValue, _ANNOUNCEMENTS,
 						PortletKeys.SO_ANNOUNCEMENTS);
 
 					typeSettingsProperties.setProperty(columnName, columnValue);
@@ -216,5 +216,7 @@ public class UpgradeLayout extends UpgradeProcess {
 
 		return 0;
 	}
+
+	private static final String _ANNOUNCEMENTS = "84";
 
 }
