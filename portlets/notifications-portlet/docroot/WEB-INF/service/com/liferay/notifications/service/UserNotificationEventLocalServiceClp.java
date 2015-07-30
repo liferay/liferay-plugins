@@ -128,35 +128,51 @@ public class UserNotificationEventLocalServiceClp
 				"long", "boolean", "boolean", "int", "int"
 			};
 
-		_methodName21 = "getArchivedUserNotificationEventsCount";
+		_methodName21 = "getArchivedUserNotificationEvents";
 
-		_methodParameterTypes21 = new String[] { "long", "boolean", "boolean" };
+		_methodParameterTypes21 = new String[] { "long", "boolean", "int", "int" };
 
-		_methodName22 = "getDeliveredUserNotificationEvents";
+		_methodName22 = "getArchivedUserNotificationEventsCount";
 
-		_methodParameterTypes22 = new String[] {
-				"long", "boolean", "boolean", "int", "int"
-			};
+		_methodParameterTypes22 = new String[] { "long", "boolean" };
 
-		_methodName23 = "getDeliveredUserNotificationEventsCount";
+		_methodName23 = "getArchivedUserNotificationEventsCount";
 
 		_methodParameterTypes23 = new String[] { "long", "boolean", "boolean" };
 
-		_methodName24 = "getNotificationEventByUserNotificationEventId";
+		_methodName24 = "getDeliveredUserNotificationEvents";
 
-		_methodParameterTypes24 = new String[] { "long" };
+		_methodParameterTypes24 = new String[] {
+				"long", "boolean", "boolean", "int", "int"
+			};
 
-		_methodName25 = "getUserNotificationEvents";
+		_methodName25 = "getDeliveredUserNotificationEvents";
 
 		_methodParameterTypes25 = new String[] { "long", "boolean", "int", "int" };
 
-		_methodName26 = "getUserNotificationEventsCount";
+		_methodName26 = "getDeliveredUserNotificationEventsCount";
 
 		_methodParameterTypes26 = new String[] { "long", "boolean" };
 
-		_methodName27 = "updateUserNotificationEvent";
+		_methodName27 = "getDeliveredUserNotificationEventsCount";
 
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes27 = new String[] { "long", "boolean", "boolean" };
+
+		_methodName28 = "getNotificationEventByUserNotificationEventId";
+
+		_methodParameterTypes28 = new String[] { "long" };
+
+		_methodName29 = "getUserNotificationEvents";
+
+		_methodParameterTypes29 = new String[] { "long", "boolean", "int", "int" };
+
+		_methodName30 = "getUserNotificationEventsCount";
+
+		_methodParameterTypes30 = new String[] { "long", "boolean" };
+
+		_methodName31 = "updateUserNotificationEvent";
+
+		_methodParameterTypes31 = new String[] {
 				"long", "long", "boolean", "boolean", "boolean"
 			};
 	}
@@ -804,8 +820,8 @@ public class UserNotificationEventLocalServiceClp
 	}
 
 	@Override
-	public int getArchivedUserNotificationEventsCount(long userId,
-		boolean actionRequired, boolean archived)
+	public java.util.List<com.liferay.notifications.model.UserNotificationEvent> getArchivedUserNotificationEvents(
+		long userId, boolean archived, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -813,6 +829,75 @@ public class UserNotificationEventLocalServiceClp
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName21,
 					_methodParameterTypes21,
+					new Object[] { userId, archived, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.notifications.model.UserNotificationEvent>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getArchivedUserNotificationEventsCount(long userId,
+		boolean archived)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] { userId, archived });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public int getArchivedUserNotificationEventsCount(long userId,
+		boolean actionRequired, boolean archived)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { userId, actionRequired, archived });
 		}
 		catch (Throwable t) {
@@ -847,8 +932,8 @@ public class UserNotificationEventLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { userId, delivered, actionRequired, start, end });
 		}
 		catch (Throwable t) {
@@ -875,6 +960,75 @@ public class UserNotificationEventLocalServiceClp
 	}
 
 	@Override
+	public java.util.List<com.liferay.notifications.model.UserNotificationEvent> getDeliveredUserNotificationEvents(
+		long userId, boolean delivered, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
+					new Object[] { userId, delivered, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.notifications.model.UserNotificationEvent>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getDeliveredUserNotificationEventsCount(long userId,
+		boolean delivered)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26, new Object[] { userId, delivered });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
 	public int getDeliveredUserNotificationEventsCount(long userId,
 		boolean delivered, boolean actionRequired)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -882,8 +1036,8 @@ public class UserNotificationEventLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { userId, delivered, actionRequired });
 		}
 		catch (Throwable t) {
@@ -917,8 +1071,8 @@ public class UserNotificationEventLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] { userNotificationEventId });
 		}
 		catch (Throwable t) {
@@ -952,8 +1106,8 @@ public class UserNotificationEventLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] { userId, actionRequired, start, end });
 		}
 		catch (Throwable t) {
@@ -987,8 +1141,8 @@ public class UserNotificationEventLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] { userId, actionRequired });
 		}
 		catch (Throwable t) {
@@ -1023,8 +1177,8 @@ public class UserNotificationEventLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
 					new Object[] {
 						notificationEventId,
 						
@@ -1115,4 +1269,12 @@ public class UserNotificationEventLocalServiceClp
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
+	private String _methodName30;
+	private String[] _methodParameterTypes30;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
 }

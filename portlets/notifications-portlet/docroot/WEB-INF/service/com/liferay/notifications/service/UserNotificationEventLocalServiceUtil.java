@@ -295,6 +295,23 @@ public class UserNotificationEventLocalServiceUtil {
 			archived, start, end);
 	}
 
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> getArchivedUserNotificationEvents(
+		long userId, boolean archived, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getArchivedUserNotificationEvents(userId, archived, start,
+			end);
+	}
+
+	public static int getArchivedUserNotificationEventsCount(long userId,
+		boolean archived)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getArchivedUserNotificationEventsCount(userId, archived);
+	}
+
 	public static int getArchivedUserNotificationEventsCount(long userId,
 		boolean actionRequired, boolean archived)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -312,6 +329,23 @@ public class UserNotificationEventLocalServiceUtil {
 		return getService()
 				   .getDeliveredUserNotificationEvents(userId, delivered,
 			actionRequired, start, end);
+	}
+
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> getDeliveredUserNotificationEvents(
+		long userId, boolean delivered, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getDeliveredUserNotificationEvents(userId, delivered,
+			start, end);
+	}
+
+	public static int getDeliveredUserNotificationEventsCount(long userId,
+		boolean delivered)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getDeliveredUserNotificationEventsCount(userId, delivered);
 	}
 
 	public static int getDeliveredUserNotificationEventsCount(long userId,

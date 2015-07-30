@@ -311,6 +311,24 @@ public class UserNotificationEventLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.notifications.model.UserNotificationEvent> getArchivedUserNotificationEvents(
+		long userId, boolean archived, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userNotificationEventLocalService.getArchivedUserNotificationEvents(userId,
+			archived, start, end);
+	}
+
+	@Override
+	public int getArchivedUserNotificationEventsCount(long userId,
+		boolean archived)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userNotificationEventLocalService.getArchivedUserNotificationEventsCount(userId,
+			archived);
+	}
+
+	@Override
 	public int getArchivedUserNotificationEventsCount(long userId,
 		boolean actionRequired, boolean archived)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -327,6 +345,24 @@ public class UserNotificationEventLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		return _userNotificationEventLocalService.getDeliveredUserNotificationEvents(userId,
 			delivered, actionRequired, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.notifications.model.UserNotificationEvent> getDeliveredUserNotificationEvents(
+		long userId, boolean delivered, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userNotificationEventLocalService.getDeliveredUserNotificationEvents(userId,
+			delivered, start, end);
+	}
+
+	@Override
+	public int getDeliveredUserNotificationEventsCount(long userId,
+		boolean delivered)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userNotificationEventLocalService.getDeliveredUserNotificationEventsCount(userId,
+			delivered);
 	}
 
 	@Override

@@ -106,55 +106,71 @@ public class UserNotificationEventLocalServiceClpInvoker {
 				"com.liferay.notifications.model.UserNotificationEvent"
 			};
 
-		_methodName38 = "getBeanIdentifier";
+		_methodName32 = "getBeanIdentifier";
 
-		_methodParameterTypes38 = new String[] {  };
+		_methodParameterTypes32 = new String[] {  };
 
-		_methodName39 = "setBeanIdentifier";
+		_methodName33 = "setBeanIdentifier";
 
-		_methodParameterTypes39 = new String[] { "java.lang.String" };
+		_methodParameterTypes33 = new String[] { "java.lang.String" };
 
-		_methodName44 = "addUserNotificationEvent";
+		_methodName38 = "addUserNotificationEvent";
 
-		_methodParameterTypes44 = new String[] {
+		_methodParameterTypes38 = new String[] {
 				"long", "long", "long", "boolean", "boolean", "boolean"
 			};
 
-		_methodName45 = "getArchivedUserNotificationEvents";
+		_methodName39 = "getArchivedUserNotificationEvents";
 
-		_methodParameterTypes45 = new String[] {
+		_methodParameterTypes39 = new String[] {
 				"long", "boolean", "boolean", "int", "int"
 			};
 
-		_methodName46 = "getArchivedUserNotificationEventsCount";
+		_methodName40 = "getArchivedUserNotificationEvents";
+
+		_methodParameterTypes40 = new String[] { "long", "boolean", "int", "int" };
+
+		_methodName41 = "getArchivedUserNotificationEventsCount";
+
+		_methodParameterTypes41 = new String[] { "long", "boolean" };
+
+		_methodName42 = "getArchivedUserNotificationEventsCount";
+
+		_methodParameterTypes42 = new String[] { "long", "boolean", "boolean" };
+
+		_methodName43 = "getDeliveredUserNotificationEvents";
+
+		_methodParameterTypes43 = new String[] {
+				"long", "boolean", "boolean", "int", "int"
+			};
+
+		_methodName44 = "getDeliveredUserNotificationEvents";
+
+		_methodParameterTypes44 = new String[] { "long", "boolean", "int", "int" };
+
+		_methodName45 = "getDeliveredUserNotificationEventsCount";
+
+		_methodParameterTypes45 = new String[] { "long", "boolean" };
+
+		_methodName46 = "getDeliveredUserNotificationEventsCount";
 
 		_methodParameterTypes46 = new String[] { "long", "boolean", "boolean" };
 
-		_methodName47 = "getDeliveredUserNotificationEvents";
+		_methodName47 = "getNotificationEventByUserNotificationEventId";
 
-		_methodParameterTypes47 = new String[] {
-				"long", "boolean", "boolean", "int", "int"
-			};
+		_methodParameterTypes47 = new String[] { "long" };
 
-		_methodName48 = "getDeliveredUserNotificationEventsCount";
+		_methodName48 = "getUserNotificationEvents";
 
-		_methodParameterTypes48 = new String[] { "long", "boolean", "boolean" };
+		_methodParameterTypes48 = new String[] { "long", "boolean", "int", "int" };
 
-		_methodName49 = "getNotificationEventByUserNotificationEventId";
+		_methodName49 = "getUserNotificationEventsCount";
 
-		_methodParameterTypes49 = new String[] { "long" };
+		_methodParameterTypes49 = new String[] { "long", "boolean" };
 
-		_methodName50 = "getUserNotificationEvents";
+		_methodName50 = "updateUserNotificationEvent";
 
-		_methodParameterTypes50 = new String[] { "long", "boolean", "int", "int" };
-
-		_methodName51 = "getUserNotificationEventsCount";
-
-		_methodParameterTypes51 = new String[] { "long", "boolean" };
-
-		_methodName52 = "updateUserNotificationEvent";
-
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"long", "long", "boolean", "boolean", "boolean"
 			};
 	}
@@ -248,20 +264,20 @@ public class UserNotificationEventLocalServiceClpInvoker {
 			return UserNotificationEventLocalServiceUtil.updateUserNotificationEvent((com.liferay.notifications.model.UserNotificationEvent)arguments[0]);
 		}
 
-		if (_methodName38.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName39.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			UserNotificationEventLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName44.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+		if (_methodName38.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.addUserNotificationEvent(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -270,8 +286,8 @@ public class UserNotificationEventLocalServiceClpInvoker {
 				((Boolean)arguments[5]).booleanValue());
 		}
 
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+		if (_methodName39.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue(),
@@ -279,15 +295,29 @@ public class UserNotificationEventLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+			return UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			return UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue());
+		}
+
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue());
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEvents(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue(),
@@ -295,34 +325,48 @@ public class UserNotificationEventLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+			return UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEvents(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+			return UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEventsCount(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue());
+		}
+
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEventsCount(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Boolean)arguments[2]).booleanValue());
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getNotificationEventByUserNotificationEventId(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getUserNotificationEvents(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Boolean)arguments[2]).booleanValue(),
@@ -365,10 +409,22 @@ public class UserNotificationEventLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
+	private String _methodName33;
+	private String[] _methodParameterTypes33;
 	private String _methodName38;
 	private String[] _methodParameterTypes38;
 	private String _methodName39;
 	private String[] _methodParameterTypes39;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
 	private String _methodName45;
@@ -383,8 +439,4 @@ public class UserNotificationEventLocalServiceClpInvoker {
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
-	private String _methodName51;
-	private String[] _methodParameterTypes51;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
 }

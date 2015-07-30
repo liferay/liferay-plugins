@@ -187,6 +187,181 @@ public class UserNotificationEventUtil {
 	}
 
 	/**
+	* Returns all the user notification events where userId = &#63; and delivered = &#63;.
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @return the matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> findByU_D(
+		long userId, boolean delivered)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_D(userId, delivered);
+	}
+
+	/**
+	* Returns a range of all the user notification events where userId = &#63; and delivered = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.notifications.model.impl.UserNotificationEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @param start the lower bound of the range of user notification events
+	* @param end the upper bound of the range of user notification events (not inclusive)
+	* @return the range of matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> findByU_D(
+		long userId, boolean delivered, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_D(userId, delivered, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the user notification events where userId = &#63; and delivered = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.notifications.model.impl.UserNotificationEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @param start the lower bound of the range of user notification events
+	* @param end the upper bound of the range of user notification events (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> findByU_D(
+		long userId, boolean delivered, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_D(userId, delivered, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first user notification event in the ordered set where userId = &#63; and delivered = &#63;.
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching user notification event
+	* @throws com.liferay.notifications.NoSuchUserNotificationEventException if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent findByU_D_First(
+		long userId, boolean delivered,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.notifications.NoSuchUserNotificationEventException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_D_First(userId, delivered, orderByComparator);
+	}
+
+	/**
+	* Returns the first user notification event in the ordered set where userId = &#63; and delivered = &#63;.
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching user notification event, or <code>null</code> if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent fetchByU_D_First(
+		long userId, boolean delivered,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_D_First(userId, delivered, orderByComparator);
+	}
+
+	/**
+	* Returns the last user notification event in the ordered set where userId = &#63; and delivered = &#63;.
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching user notification event
+	* @throws com.liferay.notifications.NoSuchUserNotificationEventException if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent findByU_D_Last(
+		long userId, boolean delivered,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.notifications.NoSuchUserNotificationEventException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_D_Last(userId, delivered, orderByComparator);
+	}
+
+	/**
+	* Returns the last user notification event in the ordered set where userId = &#63; and delivered = &#63;.
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching user notification event, or <code>null</code> if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent fetchByU_D_Last(
+		long userId, boolean delivered,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_D_Last(userId, delivered, orderByComparator);
+	}
+
+	/**
+	* Returns the user notification events before and after the current user notification event in the ordered set where userId = &#63; and delivered = &#63;.
+	*
+	* @param notificationEventId the primary key of the current user notification event
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next user notification event
+	* @throws com.liferay.notifications.NoSuchUserNotificationEventException if a user notification event with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent[] findByU_D_PrevAndNext(
+		long notificationEventId, long userId, boolean delivered,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.notifications.NoSuchUserNotificationEventException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_D_PrevAndNext(notificationEventId, userId,
+			delivered, orderByComparator);
+	}
+
+	/**
+	* Removes all the user notification events where userId = &#63; and delivered = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU_D(long userId, boolean delivered)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU_D(userId, delivered);
+	}
+
+	/**
+	* Returns the number of user notification events where userId = &#63; and delivered = &#63;.
+	*
+	* @param userId the user ID
+	* @param delivered the delivered
+	* @return the number of matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_D(long userId, boolean delivered)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_D(userId, delivered);
+	}
+
+	/**
 	* Returns all the user notification events where userId = &#63; and actionRequired = &#63;.
 	*
 	* @param userId the user ID
@@ -360,6 +535,181 @@ public class UserNotificationEventUtil {
 	public static int countByU_A(long userId, boolean actionRequired)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByU_A(userId, actionRequired);
+	}
+
+	/**
+	* Returns all the user notification events where userId = &#63; and archived = &#63;.
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @return the matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> findByU_AR(
+		long userId, boolean archived)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_AR(userId, archived);
+	}
+
+	/**
+	* Returns a range of all the user notification events where userId = &#63; and archived = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.notifications.model.impl.UserNotificationEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @param start the lower bound of the range of user notification events
+	* @param end the upper bound of the range of user notification events (not inclusive)
+	* @return the range of matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> findByU_AR(
+		long userId, boolean archived, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_AR(userId, archived, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the user notification events where userId = &#63; and archived = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.notifications.model.impl.UserNotificationEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @param start the lower bound of the range of user notification events
+	* @param end the upper bound of the range of user notification events (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.notifications.model.UserNotificationEvent> findByU_AR(
+		long userId, boolean archived, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_AR(userId, archived, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first user notification event in the ordered set where userId = &#63; and archived = &#63;.
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching user notification event
+	* @throws com.liferay.notifications.NoSuchUserNotificationEventException if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent findByU_AR_First(
+		long userId, boolean archived,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.notifications.NoSuchUserNotificationEventException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_AR_First(userId, archived, orderByComparator);
+	}
+
+	/**
+	* Returns the first user notification event in the ordered set where userId = &#63; and archived = &#63;.
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching user notification event, or <code>null</code> if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent fetchByU_AR_First(
+		long userId, boolean archived,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_AR_First(userId, archived, orderByComparator);
+	}
+
+	/**
+	* Returns the last user notification event in the ordered set where userId = &#63; and archived = &#63;.
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching user notification event
+	* @throws com.liferay.notifications.NoSuchUserNotificationEventException if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent findByU_AR_Last(
+		long userId, boolean archived,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.notifications.NoSuchUserNotificationEventException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_AR_Last(userId, archived, orderByComparator);
+	}
+
+	/**
+	* Returns the last user notification event in the ordered set where userId = &#63; and archived = &#63;.
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching user notification event, or <code>null</code> if a matching user notification event could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent fetchByU_AR_Last(
+		long userId, boolean archived,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_AR_Last(userId, archived, orderByComparator);
+	}
+
+	/**
+	* Returns the user notification events before and after the current user notification event in the ordered set where userId = &#63; and archived = &#63;.
+	*
+	* @param notificationEventId the primary key of the current user notification event
+	* @param userId the user ID
+	* @param archived the archived
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next user notification event
+	* @throws com.liferay.notifications.NoSuchUserNotificationEventException if a user notification event with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.notifications.model.UserNotificationEvent[] findByU_AR_PrevAndNext(
+		long notificationEventId, long userId, boolean archived,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.notifications.NoSuchUserNotificationEventException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_AR_PrevAndNext(notificationEventId, userId,
+			archived, orderByComparator);
+	}
+
+	/**
+	* Removes all the user notification events where userId = &#63; and archived = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU_AR(long userId, boolean archived)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU_AR(userId, archived);
+	}
+
+	/**
+	* Returns the number of user notification events where userId = &#63; and archived = &#63;.
+	*
+	* @param userId the user ID
+	* @param archived the archived
+	* @return the number of matching user notification events
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_AR(long userId, boolean archived)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_AR(userId, archived);
 	}
 
 	/**
