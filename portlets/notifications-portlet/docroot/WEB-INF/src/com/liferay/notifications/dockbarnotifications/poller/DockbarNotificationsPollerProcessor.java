@@ -14,10 +14,10 @@
 
 package com.liferay.notifications.dockbarnotifications.poller;
 
+import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.poller.BasePollerProcessor;
 import com.liferay.portal.kernel.poller.PollerRequest;
 import com.liferay.portal.kernel.poller.PollerResponse;
-import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 
 /**
  * @author Jonathan Lee
@@ -41,8 +41,7 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 		throws Exception {
 
 		int newUserNotificationsCount =
-			UserNotificationEventLocalServiceUtil.
-				getDeliveredUserNotificationEventsCount(
+			NotificationsUtil.getDeliveredUserNotificationEventsCount(
 					pollerRequest.getUserId(), false);
 
 		pollerResponse.setParameter(
@@ -53,8 +52,7 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 			"timestamp", String.valueOf(System.currentTimeMillis()));
 
 		int unreadUserNotificationsCount =
-			UserNotificationEventLocalServiceUtil.
-				getArchivedUserNotificationEventsCount(
+			NotificationsUtil.getArchivedUserNotificationEventsCount(
 					pollerRequest.getUserId(), false);
 
 		pollerResponse.setParameter(

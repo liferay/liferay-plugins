@@ -267,9 +267,8 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		try {
 			int newUserNotificationsCount =
-				UserNotificationEventLocalServiceUtil.
-					getDeliveredUserNotificationEventsCount(
-						themeDisplay.getUserId(), false);
+				NotificationsUtil.getDeliveredUserNotificationEventsCount(
+					themeDisplay.getUserId(), false);
 
 			jsonObject.put(
 				"newUserNotificationsCount", newUserNotificationsCount);
@@ -278,8 +277,7 @@ public class NotificationsPortlet extends MVCPortlet {
 				"timestamp", String.valueOf(System.currentTimeMillis()));
 
 			int unreadUserNotificationsCount =
-				UserNotificationEventLocalServiceUtil.
-					getArchivedUserNotificationEventsCount(
+				NotificationsUtil.getArchivedUserNotificationEventsCount(
 						themeDisplay.getUserId(), false);
 
 			jsonObject.put(
