@@ -32,8 +32,6 @@ import java.sql.ResultSet;
  */
 public class UpgradeUserNotificationEvent extends UpgradeProcess {
 
-	public static final String _ANNOUNCEMENTS = "84";
-
 	@Override
 	protected void doUpgrade() throws Exception {
 		upgradeNotifications();
@@ -94,7 +92,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 					return;
 				}
 
-				if (type.equals(_ANNOUNCEMENTS) ||
+				if (type.equals(_PORTLET_ID_ANNOUNCEMENTS) ||
 					type.equals(AnnouncementsPortletKeys.ANNOUNCEMENTS)) {
 
 					type = PortletKeys.SO_ANNOUNCEMENTS;
@@ -138,5 +136,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
+
+	private static final String _PORTLET_ID_ANNOUNCEMENTS = "84";
 
 }
