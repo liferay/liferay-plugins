@@ -38,7 +38,7 @@ int yearRangeEnd = curCal.get(Calendar.YEAR);
 
 int[] projectsEntriesIndexes = new int[projectsEntries.size()];
 
-for (int i = 0; i < projectsEntries.size() ; i++) {
+for (int i = 0; i < projectsEntries.size(); i++) {
 	projectsEntriesIndexes[i] = i;
 }
 
