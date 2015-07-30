@@ -18,11 +18,18 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/calendar-portlet-service.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.announcements.web.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.asset.publisher.web.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.bookmarks.api-1.0.0-SNAPSHOT.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.bookmarks.api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.site.my.sites.web.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.site.navigation.breadcrumb.web.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.wiki.api.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/contacts-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/deploy-listener-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/microblogs-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/microblogs-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/org.osgi.core.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/private-messaging-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/so-announcements-shared.jar" />

@@ -1,3 +1,4 @@
+/.gitignore
 /calendar-portlet-service.jar
 /commons-logging.jar
 /contacts-portlet-service.jar

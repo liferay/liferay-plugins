@@ -3,9 +3,12 @@
 /jstl-api.jar
 /jstl-impl.jar
 /log4j.jar
+/microblogs-shared.jar
+/notifications-shared.jar
 /portal-compat-shared.jar
 /private-messaging-shared.jar
 /so-announcements-shared.jar
+/so-configurations-shared.jar
 /so-shared.jar
 /util-bridges.jar
 /util-java.jar
