@@ -38,11 +38,13 @@ import javax.servlet.http.HttpServletRequestWrapper;
 /**
  * @author Dennis Ju
  */
-public class SyncJSONFilterHttpServletRequestWrapper
+public class SyncJSONHttpServletRequestWrapper
 	extends HttpServletRequestWrapper {
 
-	public SyncJSONFilterHttpServletRequestWrapper(HttpServletRequest request) {
-		super(request);
+	public SyncJSONHttpServletRequestWrapper(
+		HttpServletRequest httpServletRequest) {
+
+		super(httpServletRequest);
 	}
 
 	@Override
@@ -76,28 +78,28 @@ public class SyncJSONFilterHttpServletRequestWrapper
 
 	public boolean isSyncJSONRequest() {
 		try {
-			String command = getParameter(Constants.CMD);
+			String cmd = getParameter(Constants.CMD);
 
-			if (command == null) {
-				command = StringUtil.read(getInputStream());
+			if (cmd == null) {
+				cmd = StringUtil.read(getInputStream());
 			}
 
-			Object jsonObject = JSONFactoryUtil.looseDeserializeSafe(command);
+			Object jsonObject = JSONFactoryUtil.looseDeserializeSafe(cmd);
 
-			List<Object> list = null;
+			List<Object> jsonBatchItems = null;
 
 			if (jsonObject instanceof List) {
-				list = (List<Object>)jsonObject;
+				jsonBatchItems = (List<Object>)jsonObject;
 			}
 			else if (jsonObject instanceof Map) {
-				list = new ArrayList<>(1);
+				jsonBatchItems = new ArrayList<>(1);
 
-				list.add(jsonObject);
+				jsonBatchItems.add(jsonObject);
 			}
 
-			for (Object object : list) {
+			for (Object jsonBatchItem : jsonBatchItems) {
 				Map<String, Map<String, Object>> map =
-					(Map<String, Map<String, Object>>)object;
+					(Map<String, Map<String, Object>>)jsonBatchItem;
 
 				Set<String> keySet = map.keySet();
 
