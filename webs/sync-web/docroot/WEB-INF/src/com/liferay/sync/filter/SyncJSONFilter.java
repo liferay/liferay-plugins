@@ -61,12 +61,13 @@ public class SyncJSONFilter implements Filter {
 			(HttpServletRequest)servletRequest;
 
 		if (uri.equals("/api/jsonws/invoke")) {
-			SyncJSONFilterHttpServletRequestWrapper httpServletRequestWrapper =
-				new SyncJSONFilterHttpServletRequestWrapper(httpServletRequest);
+			SyncJSONHttpServletRequestWrapper
+				syncJSONHttpServletRequestWrapper =
+					new SyncJSONHttpServletRequestWrapper(httpServletRequest);
 
-			servletRequest = httpServletRequestWrapper;
+			servletRequest = syncJSONHttpServletRequestWrapper;
 
-			if (!httpServletRequestWrapper.isSyncJSONRequest()) {
+			if (!syncJSONHttpServletRequestWrapper.isSyncJSONRequest()) {
 				filterChain.doFilter(servletRequest, servletResponse);
 
 				return;
