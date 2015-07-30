@@ -42,7 +42,7 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 
 		int newUserNotificationsCount =
 			NotificationsUtil.getDeliveredUserNotificationEventsCount(
-					pollerRequest.getUserId(), false);
+				pollerRequest.getUserId(), false);
 
 		pollerResponse.setParameter(
 			"newUserNotificationsCount",
@@ -53,7 +53,7 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 
 		int unreadUserNotificationsCount =
 			NotificationsUtil.getArchivedUserNotificationEventsCount(
-					pollerRequest.getUserId(), false);
+				pollerRequest.getUserId(), false);
 
 		pollerResponse.setParameter(
 			"unreadUserNotificationsCount",
