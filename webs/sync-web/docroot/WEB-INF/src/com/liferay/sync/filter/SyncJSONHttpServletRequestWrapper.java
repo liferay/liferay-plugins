@@ -84,7 +84,7 @@ public class SyncJSONHttpServletRequestWrapper
 				cmd = StringUtil.read(getInputStream());
 			}
 
-			Object jsonObject = JSONFactoryUtil.looseDeserializeSafe(cmd);
+			Object jsonObject = JSONFactoryUtil.looseDeserialize(cmd);
 
 			List<Object> jsonBatchItems = null;
 
