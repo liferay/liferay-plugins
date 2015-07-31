@@ -455,6 +455,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 	}
 
+	@Override
+	public long getLatestModifiedTime() {
+		return syncDLObjectLocalService.getLatestModifiedTime();
+	}
+
 	@AccessControlled(guestAccessEnabled = true)
 	@Override
 	public SyncContext getSyncContext() throws PortalException {
