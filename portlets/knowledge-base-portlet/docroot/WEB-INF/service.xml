@@ -42,6 +42,7 @@
 		<column name="latest" type="boolean" />
 		<column name="main" type="boolean" />
 		<column name="sourceURL" type="String" />
+		<column name="lastPublishDate" type="Date" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
@@ -215,6 +216,7 @@
 		<column name="classPK" type="long" />
 		<column name="content" type="String" />
 		<column name="userRating" type="int" />
+		<column name="lastPublishDate" type="Date" />
 		<column name="status" type="int" />
 
 		<!-- Order -->
@@ -282,6 +284,7 @@
 		<column name="name" type="String" />
 		<column name="urlTitle" type="String" />
 		<column name="description" type="String" />
+		<column name="lastPublishDate" type="Date" />
 
 		<!-- Finder methods -->
 
@@ -326,6 +329,7 @@
 
 		<column name="title" type="String" />
 		<column name="content" type="String" />
+		<column name="lastPublishDate" type="Date" />
 
 		<!-- Order -->
 
