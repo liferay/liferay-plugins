@@ -161,6 +161,11 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
+	public long getLatestModifiedTime() {
+		return _syncDLObjectService.getLatestModifiedTime();
+	}
+
+	@Override
 	public com.liferay.sync.model.SyncContext getSyncContext()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _syncDLObjectService.getSyncContext();

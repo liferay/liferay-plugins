@@ -123,6 +123,9 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 	public com.liferay.portal.model.Group getGroup(long groupId)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getLatestModifiedTime();
+
 	@AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncContext getSyncContext()
