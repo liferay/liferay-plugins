@@ -29,7 +29,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 </aui:form>
 
 <liferay-ui:search-container
-	emptyResultsMessage="no-categories-found"
+	emptyResultsMessage="no-categories-were-found"
 	iteratorURL="<%= portletURL %>"
 	total="<%= SubscriptionManagerUtil.getMBCategoriesCount(scopeGroupId, keywords) %>"
 >

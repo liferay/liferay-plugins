@@ -372,7 +372,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 								<c:if test="<%= !showOnlySiteMembers && (connectionUsersCount <= 0) && (followingUsersCount <= 0) %>">
 									<aui:layout cssClass="contacts-center-introduction">
-										<liferay-ui:message key="contacts-center-allows-you-to-search-view-and-establish-social-relations-with-other-users" />
+										<liferay-ui:message key="contacts-center-lets-you-search-view-and-establish-social-relations-with-other-users" />
 									</aui:layout>
 								</c:if>
 							</aui:layout>
