@@ -32,7 +32,7 @@
 </aui:button-row>
 
 <liferay-ui:search-container
-	emptyResultsMessage="no-messages-found"
+	emptyResultsMessage="no-messages-were-found"
 	total="<%= UserThreadLocalServiceUtil.getUserUserThreadCount(themeDisplay.getUserId(), false) %>"
 >
 	<liferay-ui:search-container-results
