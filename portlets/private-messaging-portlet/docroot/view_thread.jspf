@@ -120,7 +120,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 %>
 
 <liferay-ui:search-container
-	emptyResultsMessage="no-messages-found"
+	emptyResultsMessage="no-messages-were-found"
 	iteratorURL="<%= iteratorURL %>"
 	total="<%= UserThreadServiceUtil.getThreadMessagesCount(mbThreadId) %>"
 >
