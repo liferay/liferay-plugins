@@ -158,6 +158,10 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getLatestModifiedTime()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
 		long repositoryId, long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException,

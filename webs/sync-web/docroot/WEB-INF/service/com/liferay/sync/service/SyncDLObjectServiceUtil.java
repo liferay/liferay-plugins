@@ -190,6 +190,11 @@ public class SyncDLObjectServiceUtil {
 		return getService().getSyncContext();
 	}
 
+	public static long getLatestModifiedTime()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getLatestModifiedTime();
+	}
+
 	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
 		long repositoryId, long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException,
