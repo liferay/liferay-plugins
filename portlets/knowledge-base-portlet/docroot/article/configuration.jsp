@@ -24,6 +24,8 @@ String tabs2Names = Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE
 if (PortalUtil.isRSSFeedsEnabled()) {
 	tabs2Names += ",rss";
 }
+
+long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
@@ -55,15 +57,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 
 						<liferay-ui:input-resource id="configurationKBArticle" url="<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>" />
 
-						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-							<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
-						</liferay-portlet:renderURL>
-
-						<%
-						String taglibOnClick = "var selectConfigurationKBArticleWindow = window.open('" + selectConfigurationKBArticleURL + "&" + HtmlUtil.escapeJS(PortalUtil.getPortletNamespace(portletResource)) + "&selResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "resourcePrimKey.value, 'selectConfigurationKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBArticleWindow.focus();";
-						%>
-
-						<aui:button onClick="<%= taglibOnClick %>" value="select" />
+						<aui:button name="selectKBArticleButton" value="select" />
 					</aui:field-wrapper>
 				</div>
 			</c:when>
@@ -166,7 +160,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 								modal: true
 							},
 							id: '<portlet:namespace />selectConfigurationKBObject',
-							title: '<liferay-ui:message key="select-parent" />',
+							title: '<liferay-ui:message key="article" />',
 							uri: '<%= selectConfigurationKBArticleURL %>'
 						},
 						function(event) {
