@@ -2687,8 +2687,6 @@ Please find a solution that does not require portal-impl.jar.
 					</not>
 				</and>
 				<then>
-					<delete file="${lp.portal.project.dir}/.testable.portal.started" failonerror="false" />
-
 					<ant antfile="${lp.portal.project.dir}/build-test.xml" target="setup-testable-tomcat" inheritAll="false">
 						<property name="project.dir" value="${lp.portal.project.dir}" />
 					</ant>
