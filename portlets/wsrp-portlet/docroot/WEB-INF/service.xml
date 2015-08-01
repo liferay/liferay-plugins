@@ -25,6 +25,7 @@
 		<column name="forwardCookies" type="String" />
 		<column name="forwardHeaders" type="String" />
 		<column name="markupCharacterSets" type="String" />
+		<column name="lastPublishDate" type="Date" />
 
 		<!-- Order -->
 
@@ -55,6 +56,7 @@
 		<column name="wsrpConsumerId" type="long" />
 		<column name="name" type="String" />
 		<column name="portletHandle" type="String" />
+		<column name="lastPublishDate" type="Date" />
 
 		<!-- Order -->
 
@@ -93,6 +95,7 @@
 		<column name="name" type="String" />
 		<column name="version" type="String" />
 		<column name="portletIds" type="String" />
+		<column name="lastPublishDate" type="Date" />
 
 		<!-- Order -->
 
