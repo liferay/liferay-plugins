@@ -278,7 +278,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 			int unreadUserNotificationsCount =
 				NotificationsUtil.getArchivedUserNotificationEventsCount(
-						themeDisplay.getUserId(), false);
+					themeDisplay.getUserId(), false);
 
 			jsonObject.put(
 				"unreadUserNotificationsCount", unreadUserNotificationsCount);
