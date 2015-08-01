@@ -25,6 +25,7 @@
 		<!-- Other fields -->
 
 		<column name="bookingNumber" type="String" />
+		<column name="lastPublishDate" type="Date" />
 
 		<!-- Order -->
 
