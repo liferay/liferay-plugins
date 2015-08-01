@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade.v1_3_4;
+package com.liferay.wsrp.hook.upgrade.v1_2_0;
 
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.upgrade.BaseUpgradeLastPublishDate;
 
 /**
@@ -24,21 +23,17 @@ public class UpgradeLastPublishDate extends BaseUpgradeLastPublishDate {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("alter table KBArticle add lastPublishDate DATE null");
+		runSQL("alter table WSRPConsumerPortlet add lastPublishDate DATE null");
 
-		updateLastPublishDates(PortletKeys.KNOWLEDGE_BASE_ADMIN, "KBArticle");
+		updateLastPublishDates("1_WAR_wsrpportlet", "WSRPConsumerPortlet");
 
-		runSQL("alter table KBComment add lastPublishDate DATE null");
+		runSQL("alter table WSRPConsumer add lastPublishDate DATE null");
 
-		updateLastPublishDates(PortletKeys.KNOWLEDGE_BASE_ADMIN, "KBComment");
+		updateLastPublishDates("1_WAR_wsrpportlet", "WSRPConsumer");
 
-		runSQL("alter table KBFolder add lastPublishDate DATE null");
+		runSQL("alter table WSRPProducer add lastPublishDate DATE null");
 
-		updateLastPublishDates(PortletKeys.KNOWLEDGE_BASE_ADMIN, "KBFolder");
-
-		runSQL("alter table KBTemplate add lastPublishDate DATE null");
-
-		updateLastPublishDates(PortletKeys.KNOWLEDGE_BASE_ADMIN, "KBTemplate");
+		updateLastPublishDates("1_WAR_wsrpportlet", "WSRPProducer");
 	}
 
 }
