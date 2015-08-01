@@ -16,6 +16,7 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="portletCategoryNames" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.opensocial.model.impl.OAuthConsumerImpl" table="OpenSocial_OAuthConsumer">
 		<id name="oAuthConsumerId" type="long" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor">

@@ -110,6 +110,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		attributes.put("latest", getLatest());
 		attributes.put("main", getMain());
 		attributes.put("sourceURL", getSourceURL());
+		attributes.put("lastPublishDate", getLastPublishDate());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
@@ -267,6 +268,12 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 		if (sourceURL != null) {
 			setSourceURL(sourceURL);
+		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -888,6 +895,29 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLastPublishDate", Date.class);
+
+				method.invoke(_kbArticleRemoteModel, lastPublishDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -1358,6 +1388,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		clone.setLatest(getLatest());
 		clone.setMain(getMain());
 		clone.setSourceURL(getSourceURL());
+		clone.setLastPublishDate(getLastPublishDate());
 		clone.setStatus(getStatus());
 		clone.setStatusByUserId(getStatusByUserId());
 		clone.setStatusByUserName(getStatusByUserName());
@@ -1425,7 +1456,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(59);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1475,6 +1506,8 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getMain());
 		sb.append(", sourceURL=");
 		sb.append(getSourceURL());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -1490,7 +1523,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(88);
+		StringBundler sb = new StringBundler(91);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -1593,6 +1626,10 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getSourceURL());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -1639,12 +1676,13 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private boolean _latest;
 	private boolean _main;
 	private String _sourceURL;
+	private Date _lastPublishDate;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserName;
 	private Date _statusDate;
 	private BaseModel<?> _kbArticleRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -70,6 +70,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 		attributes.put("forwardCookies", getForwardCookies());
 		attributes.put("forwardHeaders", getForwardHeaders());
 		attributes.put("markupCharacterSets", getMarkupCharacterSets());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		return attributes;
 	}
@@ -156,6 +157,12 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 		if (markupCharacterSets != null) {
 			setMarkupCharacterSets(markupCharacterSets);
 		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
+		}
 	}
 
 	@Override
@@ -211,6 +218,16 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	@Override
 	public java.lang.String getForwardHeaders() {
 		return _wsrpConsumer.getForwardHeaders();
+	}
+
+	/**
+	* Returns the last publish date of this w s r p consumer.
+	*
+	* @return the last publish date of this w s r p consumer
+	*/
+	@Override
+	public Date getLastPublishDate() {
+		return _wsrpConsumer.getLastPublishDate();
 	}
 
 	/**
@@ -414,6 +431,16 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	@Override
 	public void setForwardHeaders(java.lang.String forwardHeaders) {
 		_wsrpConsumer.setForwardHeaders(forwardHeaders);
+	}
+
+	/**
+	* Sets the last publish date of this w s r p consumer.
+	*
+	* @param lastPublishDate the last publish date of this w s r p consumer
+	*/
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_wsrpConsumer.setLastPublishDate(lastPublishDate);
 	}
 
 	/**

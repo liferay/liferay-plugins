@@ -95,6 +95,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("title", getTitle());
 		attributes.put("content", getContent());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -162,6 +163,12 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 		if (content != null) {
 			setContent(content);
+		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
 		}
 
 		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
@@ -415,6 +422,29 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	}
 
 	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+
+		if (_kbTemplateRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbTemplateRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLastPublishDate", Date.class);
+
+				method.invoke(_kbTemplateRemoteModel, lastPublishDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				KBTemplate.class.getName()));
@@ -499,6 +529,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setTitle(getTitle());
 		clone.setContent(getContent());
+		clone.setLastPublishDate(getLastPublishDate());
 
 		return clone;
 	}
@@ -562,7 +593,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -584,6 +615,8 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 		sb.append(getTitle());
 		sb.append(", content=");
 		sb.append(getContent());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -591,7 +624,7 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBTemplate");
@@ -637,6 +670,10 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 			"<column><column-name>content</column-name><column-value><![CDATA[");
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -653,8 +690,9 @@ public class KBTemplateClp extends BaseModelImpl<KBTemplate>
 	private Date _modifiedDate;
 	private String _title;
 	private String _content;
+	private Date _lastPublishDate;
 	private BaseModel<?> _kbTemplateRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.knowledgebase.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

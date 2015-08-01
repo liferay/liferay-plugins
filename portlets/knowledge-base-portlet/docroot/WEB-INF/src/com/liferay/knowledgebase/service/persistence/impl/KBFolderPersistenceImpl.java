@@ -2993,8 +2993,8 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		}
 	}
 
-	protected void cacheUniqueFindersCache(KBFolder kbFolder) {
-		if (kbFolder.isNew()) {
+	protected void cacheUniqueFindersCache(KBFolder kbFolder, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					kbFolder.getUuid(), kbFolder.getGroupId()
 				};
@@ -3356,7 +3356,7 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 			KBFolderImpl.class, kbFolder.getPrimaryKey(), kbFolder, false);
 
 		clearUniqueFindersCache(kbFolder);
-		cacheUniqueFindersCache(kbFolder);
+		cacheUniqueFindersCache(kbFolder, isNew);
 
 		kbFolder.resetOriginalValues();
 
@@ -3385,6 +3385,7 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		kbFolderImpl.setName(kbFolder.getName());
 		kbFolderImpl.setUrlTitle(kbFolder.getUrlTitle());
 		kbFolderImpl.setDescription(kbFolder.getDescription());
+		kbFolderImpl.setLastPublishDate(kbFolder.getLastPublishDate());
 
 		return kbFolderImpl;
 	}

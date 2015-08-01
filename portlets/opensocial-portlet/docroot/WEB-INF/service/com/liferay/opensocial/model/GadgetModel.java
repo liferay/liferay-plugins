@@ -187,6 +187,20 @@ public interface GadgetModel extends BaseModel<Gadget>, StagedModel {
 	 */
 	public void setPortletCategoryNames(String portletCategoryNames);
 
+	/**
+	 * Returns the last publish date of this gadget.
+	 *
+	 * @return the last publish date of this gadget
+	 */
+	public Date getLastPublishDate();
+
+	/**
+	 * Sets the last publish date of this gadget.
+	 *
+	 * @param lastPublishDate the last publish date of this gadget
+	 */
+	public void setLastPublishDate(Date lastPublishDate);
+
 	@Override
 	public boolean isNew();
 

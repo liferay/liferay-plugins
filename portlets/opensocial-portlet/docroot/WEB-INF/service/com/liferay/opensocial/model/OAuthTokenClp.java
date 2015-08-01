@@ -795,7 +795,7 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	private String _sessionHandle;
 	private long _expiration;
 	private BaseModel<?> _oAuthTokenRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.opensocial.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

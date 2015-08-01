@@ -46,6 +46,7 @@ public class KBFolderSoap implements Serializable {
 		soapModel.setName(model.getName());
 		soapModel.setUrlTitle(model.getUrlTitle());
 		soapModel.setDescription(model.getDescription());
+		soapModel.setLastPublishDate(model.getLastPublishDate());
 
 		return soapModel;
 	}
@@ -194,6 +195,14 @@ public class KBFolderSoap implements Serializable {
 		_description = description;
 	}
 
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	private String _uuid;
 	private long _kbFolderId;
 	private long _groupId;
@@ -206,4 +215,5 @@ public class KBFolderSoap implements Serializable {
 	private String _name;
 	private String _urlTitle;
 	private String _description;
+	private Date _lastPublishDate;
 }

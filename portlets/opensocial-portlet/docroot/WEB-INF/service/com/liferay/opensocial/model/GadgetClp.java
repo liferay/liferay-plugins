@@ -87,6 +87,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		attributes.put("name", getName());
 		attributes.put("url", getUrl());
 		attributes.put("portletCategoryNames", getPortletCategoryNames());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -143,6 +144,12 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 		if (portletCategoryNames != null) {
 			setPortletCategoryNames(portletCategoryNames);
+		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
 		}
 
 		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
@@ -335,6 +342,29 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	}
 
 	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+
+		if (_gadgetRemoteModel != null) {
+			try {
+				Class<?> clazz = _gadgetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setLastPublishDate", Date.class);
+
+				method.invoke(_gadgetRemoteModel, lastPublishDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				Gadget.class.getName()));
@@ -417,6 +447,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		clone.setName(getName());
 		clone.setUrl(getUrl());
 		clone.setPortletCategoryNames(getPortletCategoryNames());
+		clone.setLastPublishDate(getLastPublishDate());
 
 		return clone;
 	}
@@ -477,7 +508,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -495,6 +526,8 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		sb.append(getUrl());
 		sb.append(", portletCategoryNames=");
 		sb.append(getPortletCategoryNames());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -502,7 +535,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.Gadget");
@@ -540,6 +573,10 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 			"<column><column-name>portletCategoryNames</column-name><column-value><![CDATA[");
 		sb.append(getPortletCategoryNames());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -554,8 +591,9 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	private String _name;
 	private String _url;
 	private String _portletCategoryNames;
+	private Date _lastPublishDate;
 	private BaseModel<?> _gadgetRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.opensocial.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

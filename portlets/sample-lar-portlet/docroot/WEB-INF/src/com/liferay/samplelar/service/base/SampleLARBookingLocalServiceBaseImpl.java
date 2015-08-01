@@ -697,7 +697,7 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = SampleLARBookingLocalService.class)
+	@BeanReference(type = com.liferay.samplelar.service.SampleLARBookingLocalService.class)
 	protected SampleLARBookingLocalService sampleLARBookingLocalService;
 	@BeanReference(type = SampleLARBookingPersistence.class)
 	protected SampleLARBookingPersistence sampleLARBookingPersistence;

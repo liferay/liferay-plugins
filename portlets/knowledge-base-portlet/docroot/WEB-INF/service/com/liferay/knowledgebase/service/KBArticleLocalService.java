@@ -308,10 +308,11 @@ public interface KBArticleLocalService extends BaseLocalService,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
 
 	/**
-	* @deprecated As of 7.0.0, replaced by
-	{@link #getKBArticleAndAllDescendantKBArticles(long, int,
+	* @deprecated As of 7.0.0, replaced by {@link
+	#getKBArticleAndAllDescendantKBArticles(long, int,
 	com.liferay.portal.kernel.util.OrderByComparator)}
 	*/
+	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendants(
 		long resourcePrimKey, int status,
@@ -448,6 +449,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	int, int, int,
 	com.liferay.portal.kernel.util.OrderByComparator)}
 	*/
+	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
@@ -458,6 +460,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @deprecated As of 7.0.0, replaced by {@link #getKBArticlesCount(long,
 	long, int)}
 	*/
+	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSiblingKBArticlesCount(long groupId,
 		long parentResourcePrimKey, int status);

@@ -66,7 +66,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(59);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -116,6 +116,8 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		sb.append(main);
 		sb.append(", sourceURL=");
 		sb.append(sourceURL);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", statusByUserId=");
@@ -221,6 +223,13 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 			kbArticleImpl.setSourceURL(sourceURL);
 		}
 
+		if (lastPublishDate == Long.MIN_VALUE) {
+			kbArticleImpl.setLastPublishDate(null);
+		}
+		else {
+			kbArticleImpl.setLastPublishDate(new Date(lastPublishDate));
+		}
+
 		kbArticleImpl.setStatus(status);
 		kbArticleImpl.setStatusByUserId(statusByUserId);
 
@@ -269,6 +278,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		latest = objectInput.readBoolean();
 		main = objectInput.readBoolean();
 		sourceURL = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 		status = objectInput.readInt();
 		statusByUserId = objectInput.readLong();
 		statusByUserName = objectInput.readUTF();
@@ -354,6 +364,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 			objectOutput.writeUTF(sourceURL);
 		}
 
+		objectOutput.writeLong(lastPublishDate);
 		objectOutput.writeInt(status);
 		objectOutput.writeLong(statusByUserId);
 
@@ -391,6 +402,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 	public boolean latest;
 	public boolean main;
 	public String sourceURL;
+	public long lastPublishDate;
 	public int status;
 	public long statusByUserId;
 	public String statusByUserName;

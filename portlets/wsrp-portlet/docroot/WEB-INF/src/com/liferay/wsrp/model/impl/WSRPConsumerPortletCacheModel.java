@@ -66,7 +66,7 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -84,6 +84,8 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 		sb.append(name);
 		sb.append(", portletHandle=");
 		sb.append(portletHandle);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -133,6 +135,13 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 			wsrpConsumerPortletImpl.setPortletHandle(portletHandle);
 		}
 
+		if (lastPublishDate == Long.MIN_VALUE) {
+			wsrpConsumerPortletImpl.setLastPublishDate(null);
+		}
+		else {
+			wsrpConsumerPortletImpl.setLastPublishDate(new Date(lastPublishDate));
+		}
+
 		wsrpConsumerPortletImpl.resetOriginalValues();
 
 		return wsrpConsumerPortletImpl;
@@ -148,6 +157,7 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 		wsrpConsumerId = objectInput.readLong();
 		name = objectInput.readUTF();
 		portletHandle = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 	}
 
 	@Override
@@ -179,6 +189,8 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 		else {
 			objectOutput.writeUTF(portletHandle);
 		}
+
+		objectOutput.writeLong(lastPublishDate);
 	}
 
 	public String uuid;
@@ -189,4 +201,5 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 	public long wsrpConsumerId;
 	public String name;
 	public String portletHandle;
+	public long lastPublishDate;
 }

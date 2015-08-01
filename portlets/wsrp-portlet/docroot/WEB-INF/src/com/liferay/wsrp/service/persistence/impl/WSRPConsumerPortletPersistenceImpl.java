@@ -2038,8 +2038,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	}
 
 	protected void cacheUniqueFindersCache(
-		WSRPConsumerPortlet wsrpConsumerPortlet) {
-		if (wsrpConsumerPortlet.isNew()) {
+		WSRPConsumerPortlet wsrpConsumerPortlet, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					wsrpConsumerPortlet.getWsrpConsumerId(),
 					wsrpConsumerPortlet.getPortletHandle()
@@ -2330,7 +2330,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			wsrpConsumerPortlet, false);
 
 		clearUniqueFindersCache(wsrpConsumerPortlet);
-		cacheUniqueFindersCache(wsrpConsumerPortlet);
+		cacheUniqueFindersCache(wsrpConsumerPortlet, isNew);
 
 		wsrpConsumerPortlet.resetOriginalValues();
 
@@ -2356,6 +2356,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		wsrpConsumerPortletImpl.setWsrpConsumerId(wsrpConsumerPortlet.getWsrpConsumerId());
 		wsrpConsumerPortletImpl.setName(wsrpConsumerPortlet.getName());
 		wsrpConsumerPortletImpl.setPortletHandle(wsrpConsumerPortlet.getPortletHandle());
+		wsrpConsumerPortletImpl.setLastPublishDate(wsrpConsumerPortlet.getLastPublishDate());
 
 		return wsrpConsumerPortletImpl;
 	}

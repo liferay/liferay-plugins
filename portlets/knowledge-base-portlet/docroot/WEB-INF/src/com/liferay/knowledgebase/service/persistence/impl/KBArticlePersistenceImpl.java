@@ -29305,8 +29305,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 	}
 
-	protected void cacheUniqueFindersCache(KBArticle kbArticle) {
-		if (kbArticle.isNew()) {
+	protected void cacheUniqueFindersCache(KBArticle kbArticle, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					kbArticle.getUuid(), kbArticle.getGroupId()
 				};
@@ -30107,7 +30107,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			KBArticleImpl.class, kbArticle.getPrimaryKey(), kbArticle, false);
 
 		clearUniqueFindersCache(kbArticle);
-		cacheUniqueFindersCache(kbArticle);
+		cacheUniqueFindersCache(kbArticle, isNew);
 
 		kbArticle.resetOriginalValues();
 
@@ -30148,6 +30148,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		kbArticleImpl.setLatest(kbArticle.isLatest());
 		kbArticleImpl.setMain(kbArticle.isMain());
 		kbArticleImpl.setSourceURL(kbArticle.getSourceURL());
+		kbArticleImpl.setLastPublishDate(kbArticle.getLastPublishDate());
 		kbArticleImpl.setStatus(kbArticle.getStatus());
 		kbArticleImpl.setStatusByUserId(kbArticle.getStatusByUserId());
 		kbArticleImpl.setStatusByUserName(kbArticle.getStatusByUserName());

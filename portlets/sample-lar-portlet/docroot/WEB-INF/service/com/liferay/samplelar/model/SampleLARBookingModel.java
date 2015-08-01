@@ -223,6 +223,20 @@ public interface SampleLARBookingModel extends BaseModel<SampleLARBooking>,
 	 */
 	public void setBookingNumber(String bookingNumber);
 
+	/**
+	 * Returns the last publish date of this sample l a r booking.
+	 *
+	 * @return the last publish date of this sample l a r booking
+	 */
+	public Date getLastPublishDate();
+
+	/**
+	 * Sets the last publish date of this sample l a r booking.
+	 *
+	 * @param lastPublishDate the last publish date of this sample l a r booking
+	 */
+	public void setLastPublishDate(Date lastPublishDate);
+
 	@Override
 	public boolean isNew();
 

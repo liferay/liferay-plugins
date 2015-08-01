@@ -66,7 +66,7 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -94,6 +94,8 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 		sb.append(forwardHeaders);
 		sb.append(", markupCharacterSets=");
 		sb.append(markupCharacterSets);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -183,6 +185,13 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 			wsrpConsumerImpl.setMarkupCharacterSets(markupCharacterSets);
 		}
 
+		if (lastPublishDate == Long.MIN_VALUE) {
+			wsrpConsumerImpl.setLastPublishDate(null);
+		}
+		else {
+			wsrpConsumerImpl.setLastPublishDate(new Date(lastPublishDate));
+		}
+
 		wsrpConsumerImpl.resetOriginalValues();
 
 		return wsrpConsumerImpl;
@@ -203,6 +212,7 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 		forwardCookies = objectInput.readUTF();
 		forwardHeaders = objectInput.readUTF();
 		markupCharacterSets = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 	}
 
 	@Override
@@ -275,6 +285,8 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 		else {
 			objectOutput.writeUTF(markupCharacterSets);
 		}
+
+		objectOutput.writeLong(lastPublishDate);
 	}
 
 	public String uuid;
@@ -290,4 +302,5 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 	public String forwardCookies;
 	public String forwardHeaders;
 	public String markupCharacterSets;
+	public long lastPublishDate;
 }

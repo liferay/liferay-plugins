@@ -189,10 +189,6 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	public java.lang.String getBeanIdentifier();
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext);
-
 	/**
 	* Returns the foo with the primary key.
 	*

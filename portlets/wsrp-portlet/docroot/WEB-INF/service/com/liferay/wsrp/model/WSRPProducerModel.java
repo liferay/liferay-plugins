@@ -201,6 +201,20 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer>, StagedModel 
 	 */
 	public void setPortletIds(String portletIds);
 
+	/**
+	 * Returns the last publish date of this w s r p producer.
+	 *
+	 * @return the last publish date of this w s r p producer
+	 */
+	public Date getLastPublishDate();
+
+	/**
+	 * Sets the last publish date of this w s r p producer.
+	 *
+	 * @param lastPublishDate the last publish date of this w s r p producer
+	 */
+	public void setLastPublishDate(Date lastPublishDate);
+
 	@Override
 	public boolean isNew();
 

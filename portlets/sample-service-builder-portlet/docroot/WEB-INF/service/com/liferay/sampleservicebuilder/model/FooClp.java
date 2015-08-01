@@ -26,9 +26,6 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
-
-import com.liferay.portlet.exportimport.lar.StagedModelType;
 
 import com.liferay.sampleservicebuilder.service.ClpSerializer;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
@@ -507,12 +504,6 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
-	@Override
-	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				Foo.class.getName()));
-	}
-
 	public BaseModel<?> getFooRemoteModel() {
 		return _fooRemoteModel;
 	}
@@ -768,7 +759,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	private Date _field4;
 	private String _field5;
 	private BaseModel<?> _fooRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.sampleservicebuilder.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

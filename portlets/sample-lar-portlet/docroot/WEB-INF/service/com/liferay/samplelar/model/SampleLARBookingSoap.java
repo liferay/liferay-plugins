@@ -42,6 +42,7 @@ public class SampleLARBookingSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setBookingNumber(model.getBookingNumber());
+		soapModel.setLastPublishDate(model.getLastPublishDate());
 
 		return soapModel;
 	}
@@ -168,6 +169,14 @@ public class SampleLARBookingSoap implements Serializable {
 		_bookingNumber = bookingNumber;
 	}
 
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	private String _uuid;
 	private long _sampleLARBookingId;
 	private long _groupId;
@@ -177,4 +186,5 @@ public class SampleLARBookingSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _bookingNumber;
+	private Date _lastPublishDate;
 }

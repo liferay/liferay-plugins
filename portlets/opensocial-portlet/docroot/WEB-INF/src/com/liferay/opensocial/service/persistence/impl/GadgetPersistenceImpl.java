@@ -3151,8 +3151,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Gadget gadget) {
-		if (gadget.isNew()) {
+	protected void cacheUniqueFindersCache(Gadget gadget, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] { gadget.getCompanyId(), gadget.getUrl() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_U, args,
@@ -3421,7 +3421,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			GadgetImpl.class, gadget.getPrimaryKey(), gadget, false);
 
 		clearUniqueFindersCache(gadget);
-		cacheUniqueFindersCache(gadget);
+		cacheUniqueFindersCache(gadget, isNew);
 
 		gadget.resetOriginalValues();
 
@@ -3446,6 +3446,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		gadgetImpl.setName(gadget.getName());
 		gadgetImpl.setUrl(gadget.getUrl());
 		gadgetImpl.setPortletCategoryNames(gadget.getPortletCategoryNames());
+		gadgetImpl.setLastPublishDate(gadget.getLastPublishDate());
 
 		return gadgetImpl;
 	}

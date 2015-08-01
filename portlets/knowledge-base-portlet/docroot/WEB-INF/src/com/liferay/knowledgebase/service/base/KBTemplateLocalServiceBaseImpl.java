@@ -1042,7 +1042,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	protected com.liferay.knowledgebase.service.KBFolderService kbFolderService;
 	@BeanReference(type = KBFolderPersistence.class)
 	protected KBFolderPersistence kbFolderPersistence;
-	@BeanReference(type = KBTemplateLocalService.class)
+	@BeanReference(type = com.liferay.knowledgebase.service.KBTemplateLocalService.class)
 	protected KBTemplateLocalService kbTemplateLocalService;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBTemplateService.class)
 	protected com.liferay.knowledgebase.service.KBTemplateService kbTemplateService;

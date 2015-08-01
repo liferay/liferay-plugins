@@ -1098,7 +1098,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected KBArticlePersistence kbArticlePersistence;
 	@BeanReference(type = KBArticleFinder.class)
 	protected KBArticleFinder kbArticleFinder;
-	@BeanReference(type = KBCommentLocalService.class)
+	@BeanReference(type = com.liferay.knowledgebase.service.KBCommentLocalService.class)
 	protected KBCommentLocalService kbCommentLocalService;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBCommentService.class)
 	protected com.liferay.knowledgebase.service.KBCommentService kbCommentService;

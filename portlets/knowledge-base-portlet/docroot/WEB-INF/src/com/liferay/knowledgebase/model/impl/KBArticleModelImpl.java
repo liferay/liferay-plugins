@@ -98,6 +98,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			{ "latest", Types.BOOLEAN },
 			{ "main", Types.BOOLEAN },
 			{ "sourceURL", Types.VARCHAR },
+			{ "lastPublishDate", Types.TIMESTAMP },
 			{ "status", Types.INTEGER },
 			{ "statusByUserId", Types.BIGINT },
 			{ "statusByUserName", Types.VARCHAR },
@@ -130,13 +131,14 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		TABLE_COLUMNS_MAP.put("latest", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("main", Types.BOOLEAN);
 		TABLE_COLUMNS_MAP.put("sourceURL", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("statusByUserId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("statusByUserName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourceClassNameId LONG,parentResourcePrimKey LONG,kbFolderId LONG,version INTEGER,title STRING null,urlTitle VARCHAR(75) null,content TEXT null,description STRING null,priority DOUBLE,sections STRING null,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,sourceURL STRING null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourceClassNameId LONG,parentResourcePrimKey LONG,kbFolderId LONG,version INTEGER,title STRING null,urlTitle VARCHAR(75) null,content TEXT null,description STRING null,priority DOUBLE,sections STRING null,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,sourceURL STRING null,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KBArticle";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbArticle.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBArticle.modifiedDate DESC";
@@ -203,6 +205,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		model.setLatest(soapModel.getLatest());
 		model.setMain(soapModel.getMain());
 		model.setSourceURL(soapModel.getSourceURL());
+		model.setLastPublishDate(soapModel.getLastPublishDate());
 		model.setStatus(soapModel.getStatus());
 		model.setStatusByUserId(soapModel.getStatusByUserId());
 		model.setStatusByUserName(soapModel.getStatusByUserName());
@@ -296,6 +299,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		attributes.put("latest", getLatest());
 		attributes.put("main", getMain());
 		attributes.put("sourceURL", getSourceURL());
+		attributes.put("lastPublishDate", getLastPublishDate());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
@@ -453,6 +457,12 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		if (sourceURL != null) {
 			setSourceURL(sourceURL);
+		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
 		}
 
 		Integer status = (Integer)attributes.get("status");
@@ -949,6 +959,17 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@JSON
 	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
+	@JSON
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -1174,6 +1195,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		kbArticleImpl.setLatest(getLatest());
 		kbArticleImpl.setMain(getMain());
 		kbArticleImpl.setSourceURL(getSourceURL());
+		kbArticleImpl.setLastPublishDate(getLastPublishDate());
 		kbArticleImpl.setStatus(getStatus());
 		kbArticleImpl.setStatusByUserId(getStatusByUserId());
 		kbArticleImpl.setStatusByUserName(getStatusByUserName());
@@ -1402,6 +1424,15 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			kbArticleCacheModel.sourceURL = null;
 		}
 
+		Date lastPublishDate = getLastPublishDate();
+
+		if (lastPublishDate != null) {
+			kbArticleCacheModel.lastPublishDate = lastPublishDate.getTime();
+		}
+		else {
+			kbArticleCacheModel.lastPublishDate = Long.MIN_VALUE;
+		}
+
 		kbArticleCacheModel.status = getStatus();
 
 		kbArticleCacheModel.statusByUserId = getStatusByUserId();
@@ -1428,7 +1459,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(57);
+		StringBundler sb = new StringBundler(59);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1478,6 +1509,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(getMain());
 		sb.append(", sourceURL=");
 		sb.append(getSourceURL());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -1493,7 +1526,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(88);
+		StringBundler sb = new StringBundler(91);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -1596,6 +1629,10 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(getSourceURL());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -1665,6 +1702,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private boolean _originalMain;
 	private boolean _setOriginalMain;
 	private String _sourceURL;
+	private Date _lastPublishDate;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;

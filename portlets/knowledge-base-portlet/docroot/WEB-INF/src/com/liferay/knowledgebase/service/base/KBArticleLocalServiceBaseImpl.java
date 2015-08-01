@@ -1484,7 +1484,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = KBArticleLocalService.class)
+	@BeanReference(type = com.liferay.knowledgebase.service.KBArticleLocalService.class)
 	protected KBArticleLocalService kbArticleLocalService;
 	@BeanReference(type = com.liferay.knowledgebase.service.KBArticleService.class)
 	protected com.liferay.knowledgebase.service.KBArticleService kbArticleService;

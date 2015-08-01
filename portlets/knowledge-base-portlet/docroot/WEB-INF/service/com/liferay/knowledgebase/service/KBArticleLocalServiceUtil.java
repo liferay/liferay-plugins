@@ -392,10 +392,11 @@ public class KBArticleLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by
-	{@link #getKBArticleAndAllDescendantKBArticles(long, int,
+	* @deprecated As of 7.0.0, replaced by {@link
+	#getKBArticleAndAllDescendantKBArticles(long, int,
 	com.liferay.portal.kernel.util.OrderByComparator)}
 	*/
+	@Deprecated
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendants(
 		long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
@@ -572,6 +573,7 @@ public class KBArticleLocalServiceUtil {
 	int, int, int,
 	com.liferay.portal.kernel.util.OrderByComparator)}
 	*/
+	@Deprecated
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end,
@@ -585,6 +587,7 @@ public class KBArticleLocalServiceUtil {
 	* @deprecated As of 7.0.0, replaced by {@link #getKBArticlesCount(long,
 	long, int)}
 	*/
+	@Deprecated
 	public static int getSiblingKBArticlesCount(long groupId,
 		long parentResourcePrimKey, int status) {
 		return getService()

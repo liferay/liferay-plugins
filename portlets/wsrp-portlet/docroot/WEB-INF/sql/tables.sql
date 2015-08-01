@@ -11,7 +11,8 @@ create table WSRP_WSRPConsumer (
 	registrationPropertiesString STRING null,
 	forwardCookies VARCHAR(255) null,
 	forwardHeaders VARCHAR(255) null,
-	markupCharacterSets VARCHAR(255) null
+	markupCharacterSets VARCHAR(255) null,
+	lastPublishDate DATE null
 );
 
 create table WSRP_WSRPConsumerPortlet (
@@ -22,7 +23,8 @@ create table WSRP_WSRPConsumerPortlet (
 	modifiedDate DATE null,
 	wsrpConsumerId LONG,
 	name VARCHAR(75) null,
-	portletHandle VARCHAR(255) null
+	portletHandle VARCHAR(255) null,
+	lastPublishDate DATE null
 );
 
 create table WSRP_WSRPProducer (
@@ -34,5 +36,6 @@ create table WSRP_WSRPProducer (
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
 	version VARCHAR(75) null,
-	portletIds STRING null
+	portletIds STRING null,
+	lastPublishDate DATE null
 );

@@ -64,6 +64,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 		attributes.put("name", getName());
 		attributes.put("version", getVersion());
 		attributes.put("portletIds", getPortletIds());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		return attributes;
 	}
@@ -123,6 +124,12 @@ public class WSRPProducerWrapper implements WSRPProducer,
 		if (portletIds != null) {
 			setPortletIds(portletIds);
 		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
+		}
 	}
 
 	@Override
@@ -168,6 +175,16 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	@Override
 	public long getGroupId() {
 		return _wsrpProducer.getGroupId();
+	}
+
+	/**
+	* Returns the last publish date of this w s r p producer.
+	*
+	* @return the last publish date of this w s r p producer
+	*/
+	@Override
+	public Date getLastPublishDate() {
+		return _wsrpProducer.getLastPublishDate();
 	}
 
 	/**
@@ -326,6 +343,16 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	@Override
 	public void setGroupId(long groupId) {
 		_wsrpProducer.setGroupId(groupId);
+	}
+
+	/**
+	* Sets the last publish date of this w s r p producer.
+	*
+	* @param lastPublishDate the last publish date of this w s r p producer
+	*/
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_wsrpProducer.setLastPublishDate(lastPublishDate);
 	}
 
 	/**

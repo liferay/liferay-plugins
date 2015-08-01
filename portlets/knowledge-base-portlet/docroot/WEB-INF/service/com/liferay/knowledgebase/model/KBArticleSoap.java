@@ -58,6 +58,7 @@ public class KBArticleSoap implements Serializable {
 		soapModel.setLatest(model.getLatest());
 		soapModel.setMain(model.getMain());
 		soapModel.setSourceURL(model.getSourceURL());
+		soapModel.setLastPublishDate(model.getLastPublishDate());
 		soapModel.setStatus(model.getStatus());
 		soapModel.setStatusByUserId(model.getStatusByUserId());
 		soapModel.setStatusByUserName(model.getStatusByUserName());
@@ -314,6 +315,14 @@ public class KBArticleSoap implements Serializable {
 		_sourceURL = sourceURL;
 	}
 
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	public int getStatus() {
 		return _status;
 	}
@@ -370,6 +379,7 @@ public class KBArticleSoap implements Serializable {
 	private boolean _latest;
 	private boolean _main;
 	private String _sourceURL;
+	private Date _lastPublishDate;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserName;

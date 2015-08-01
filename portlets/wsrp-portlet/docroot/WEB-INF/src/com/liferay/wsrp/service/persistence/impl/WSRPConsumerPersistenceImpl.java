@@ -1987,6 +1987,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		wsrpConsumerImpl.setForwardCookies(wsrpConsumer.getForwardCookies());
 		wsrpConsumerImpl.setForwardHeaders(wsrpConsumer.getForwardHeaders());
 		wsrpConsumerImpl.setMarkupCharacterSets(wsrpConsumer.getMarkupCharacterSets());
+		wsrpConsumerImpl.setLastPublishDate(wsrpConsumer.getLastPublishDate());
 
 		return wsrpConsumerImpl;
 	}

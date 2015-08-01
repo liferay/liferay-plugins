@@ -21,6 +21,7 @@
 		<property name="forwardCookies" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="forwardHeaders" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="markupCharacterSets" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl" table="WSRP_WSRPConsumerPortlet">
 		<id name="wsrpConsumerPortletId" type="long">
@@ -33,6 +34,7 @@
 		<property name="wsrpConsumerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="portletHandle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.wsrp.model.impl.WSRPProducerImpl" table="WSRP_WSRPProducer">
 		<id name="wsrpProducerId" type="long">
@@ -46,5 +48,6 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="portletIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

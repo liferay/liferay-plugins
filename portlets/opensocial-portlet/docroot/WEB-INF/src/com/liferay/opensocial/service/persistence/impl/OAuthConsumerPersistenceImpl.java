@@ -1000,8 +1000,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		}
 	}
 
-	protected void cacheUniqueFindersCache(OAuthConsumer oAuthConsumer) {
-		if (oAuthConsumer.isNew()) {
+	protected void cacheUniqueFindersCache(OAuthConsumer oAuthConsumer,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName()
 				};
@@ -1236,7 +1237,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			oAuthConsumer, false);
 
 		clearUniqueFindersCache(oAuthConsumer);
-		cacheUniqueFindersCache(oAuthConsumer);
+		cacheUniqueFindersCache(oAuthConsumer, isNew);
 
 		oAuthConsumer.resetOriginalValues();
 

@@ -216,12 +216,6 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		return _fooLocalService.getBeanIdentifier();
 	}
 
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
-		return _fooLocalService.getExportActionableDynamicQuery(portletDataContext);
-	}
-
 	/**
 	* Returns the foo with the primary key.
 	*

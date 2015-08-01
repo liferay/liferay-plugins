@@ -2345,8 +2345,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		}
 	}
 
-	protected void cacheUniqueFindersCache(KBTemplate kbTemplate) {
-		if (kbTemplate.isNew()) {
+	protected void cacheUniqueFindersCache(KBTemplate kbTemplate, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					kbTemplate.getUuid(), kbTemplate.getGroupId()
 				};
@@ -2623,7 +2623,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate, false);
 
 		clearUniqueFindersCache(kbTemplate);
-		cacheUniqueFindersCache(kbTemplate);
+		cacheUniqueFindersCache(kbTemplate, isNew);
 
 		kbTemplate.resetOriginalValues();
 
@@ -2650,6 +2650,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		kbTemplateImpl.setModifiedDate(kbTemplate.getModifiedDate());
 		kbTemplateImpl.setTitle(kbTemplate.getTitle());
 		kbTemplateImpl.setContent(kbTemplate.getContent());
+		kbTemplateImpl.setLastPublishDate(kbTemplate.getLastPublishDate());
 
 		return kbTemplateImpl;
 	}

@@ -65,7 +65,7 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -83,6 +83,8 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 		sb.append(url);
 		sb.append(", portletCategoryNames=");
 		sb.append(portletCategoryNames);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -137,6 +139,13 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 			gadgetImpl.setPortletCategoryNames(portletCategoryNames);
 		}
 
+		if (lastPublishDate == Long.MIN_VALUE) {
+			gadgetImpl.setLastPublishDate(null);
+		}
+		else {
+			gadgetImpl.setLastPublishDate(new Date(lastPublishDate));
+		}
+
 		gadgetImpl.resetOriginalValues();
 
 		return gadgetImpl;
@@ -152,6 +161,7 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 		name = objectInput.readUTF();
 		url = objectInput.readUTF();
 		portletCategoryNames = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 	}
 
 	@Override
@@ -189,6 +199,8 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 		else {
 			objectOutput.writeUTF(portletCategoryNames);
 		}
+
+		objectOutput.writeLong(lastPublishDate);
 	}
 
 	public String uuid;
@@ -199,4 +211,5 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 	public String name;
 	public String url;
 	public String portletCategoryNames;
+	public long lastPublishDate;
 }

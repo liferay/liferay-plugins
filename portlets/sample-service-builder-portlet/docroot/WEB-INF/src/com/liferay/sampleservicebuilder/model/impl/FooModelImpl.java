@@ -28,11 +28,9 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
-import com.liferay.portlet.exportimport.lar.StagedModelType;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.model.FooModel;
@@ -550,12 +548,6 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	@Override
 	public void setField5(String field5) {
 		_field5 = field5;
-	}
-
-	@Override
-	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				Foo.class.getName()));
 	}
 
 	public long getColumnBitmask() {

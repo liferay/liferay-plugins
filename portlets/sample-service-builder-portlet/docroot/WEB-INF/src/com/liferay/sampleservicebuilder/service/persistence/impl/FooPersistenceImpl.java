@@ -1967,8 +1967,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Foo foo) {
-		if (foo.isNew()) {
+	protected void cacheUniqueFindersCache(Foo foo, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] { foo.getUuid(), foo.getGroupId() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
@@ -2229,7 +2229,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			FooImpl.class, foo.getPrimaryKey(), foo, false);
 
 		clearUniqueFindersCache(foo);
-		cacheUniqueFindersCache(foo);
+		cacheUniqueFindersCache(foo, isNew);
 
 		foo.resetOriginalValues();
 

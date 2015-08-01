@@ -620,7 +620,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	private String _consumerSecret;
 	private String _keyType;
 	private BaseModel<?> _oAuthConsumerRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.opensocial.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

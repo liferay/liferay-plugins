@@ -46,6 +46,7 @@ public class KBCommentSoap implements Serializable {
 		soapModel.setClassPK(model.getClassPK());
 		soapModel.setContent(model.getContent());
 		soapModel.setUserRating(model.getUserRating());
+		soapModel.setLastPublishDate(model.getLastPublishDate());
 		soapModel.setStatus(model.getStatus());
 
 		return soapModel;
@@ -195,6 +196,14 @@ public class KBCommentSoap implements Serializable {
 		_userRating = userRating;
 	}
 
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	public int getStatus() {
 		return _status;
 	}
@@ -215,5 +224,6 @@ public class KBCommentSoap implements Serializable {
 	private long _classPK;
 	private String _content;
 	private int _userRating;
+	private Date _lastPublishDate;
 	private int _status;
 }

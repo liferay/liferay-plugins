@@ -14,6 +14,7 @@
 		<field name="portletCategoryNames" type="String">
 			<hint name="max-length">4000</hint>
 		</field>
+		<field name="lastPublishDate" type="Date" />
 	</model>
 	<model name="com.liferay.opensocial.model.OAuthConsumer">
 		<field name="oAuthConsumerId" type="long" />

@@ -7,5 +7,6 @@ create table SampleLARBooking (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	bookingNumber VARCHAR(75) null
+	bookingNumber VARCHAR(75) null,
+	lastPublishDate DATE null
 );

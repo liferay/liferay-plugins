@@ -66,7 +66,7 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -86,6 +86,8 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 		sb.append(version);
 		sb.append(", portletIds=");
 		sb.append(portletIds);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -141,6 +143,13 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 			wsrpProducerImpl.setPortletIds(portletIds);
 		}
 
+		if (lastPublishDate == Long.MIN_VALUE) {
+			wsrpProducerImpl.setLastPublishDate(null);
+		}
+		else {
+			wsrpProducerImpl.setLastPublishDate(new Date(lastPublishDate));
+		}
+
 		wsrpProducerImpl.resetOriginalValues();
 
 		return wsrpProducerImpl;
@@ -157,6 +166,7 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 		name = objectInput.readUTF();
 		version = objectInput.readUTF();
 		portletIds = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 	}
 
 	@Override
@@ -195,6 +205,8 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 		else {
 			objectOutput.writeUTF(portletIds);
 		}
+
+		objectOutput.writeLong(lastPublishDate);
 	}
 
 	public String uuid;
@@ -206,4 +218,5 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 	public String name;
 	public String version;
 	public String portletIds;
+	public long lastPublishDate;
 }

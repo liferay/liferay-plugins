@@ -33,6 +33,7 @@
 		<property name="latest" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="main" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="sourceURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -53,6 +54,7 @@
 		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="userRating" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.KBFolderImpl" table="KBFolder">
@@ -70,6 +72,7 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="urlTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.KBTemplateImpl" table="KBTemplate">
 		<id name="kbTemplateId" type="long">
@@ -84,5 +87,6 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringClobType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 	</class>
 </hibernate-mapping>

@@ -42,6 +42,7 @@ public class GadgetSoap implements Serializable {
 		soapModel.setName(model.getName());
 		soapModel.setUrl(model.getUrl());
 		soapModel.setPortletCategoryNames(model.getPortletCategoryNames());
+		soapModel.setLastPublishDate(model.getLastPublishDate());
 
 		return soapModel;
 	}
@@ -158,6 +159,14 @@ public class GadgetSoap implements Serializable {
 		_portletCategoryNames = portletCategoryNames;
 	}
 
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	private String _uuid;
 	private long _gadgetId;
 	private long _companyId;
@@ -166,4 +175,5 @@ public class GadgetSoap implements Serializable {
 	private String _name;
 	private String _url;
 	private String _portletCategoryNames;
+	private Date _lastPublishDate;
 }

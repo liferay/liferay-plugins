@@ -36,6 +36,7 @@
 		<field name="sourceURL" type="String">
 			<hint name="max-length">4000</hint>
 		</field>
+		<field name="lastPublishDate" type="Date" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
 		<field name="statusByUserName" type="String" />
@@ -56,6 +57,7 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 		<field name="userRating" type="int" />
+		<field name="lastPublishDate" type="Date" />
 		<field name="status" type="int" />
 	</model>
 	<model name="com.liferay.knowledgebase.model.KBFolder">
@@ -75,6 +77,7 @@
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
+		<field name="lastPublishDate" type="Date" />
 	</model>
 	<model name="com.liferay.knowledgebase.model.KBTemplate">
 		<field name="uuid" type="String" />
@@ -91,5 +94,6 @@
 		<field name="content" type="String">
 			<hint-collection name="CLOB" />
 		</field>
+		<field name="lastPublishDate" type="Date" />
 	</model>
 </model-hints>

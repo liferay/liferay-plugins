@@ -42,6 +42,7 @@ public class WSRPProducerSoap implements Serializable {
 		soapModel.setName(model.getName());
 		soapModel.setVersion(model.getVersion());
 		soapModel.setPortletIds(model.getPortletIds());
+		soapModel.setLastPublishDate(model.getLastPublishDate());
 
 		return soapModel;
 	}
@@ -166,6 +167,14 @@ public class WSRPProducerSoap implements Serializable {
 		_portletIds = portletIds;
 	}
 
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	private String _uuid;
 	private long _wsrpProducerId;
 	private long _groupId;
@@ -175,4 +184,5 @@ public class WSRPProducerSoap implements Serializable {
 	private String _name;
 	private String _version;
 	private String _portletIds;
+	private Date _lastPublishDate;
 }

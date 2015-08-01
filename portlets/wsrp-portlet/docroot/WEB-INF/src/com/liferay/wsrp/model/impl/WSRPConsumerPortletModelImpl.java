@@ -71,7 +71,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "wsrpConsumerId", Types.BIGINT },
 			{ "name", Types.VARCHAR },
-			{ "portletHandle", Types.VARCHAR }
+			{ "portletHandle", Types.VARCHAR },
+			{ "lastPublishDate", Types.TIMESTAMP }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -84,9 +85,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		TABLE_COLUMNS_MAP.put("wsrpConsumerId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("portletHandle", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumerPortlet (uuid_ VARCHAR(75) null,wsrpConsumerPortletId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle VARCHAR(255) null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumerPortlet (uuid_ VARCHAR(75) null,wsrpConsumerPortletId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle VARCHAR(255) null,lastPublishDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumerPortlet";
 	public static final String ORDER_BY_JPQL = " ORDER BY wsrpConsumerPortlet.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPConsumerPortlet.name ASC";
@@ -155,6 +157,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		attributes.put("wsrpConsumerId", getWsrpConsumerId());
 		attributes.put("name", getName());
 		attributes.put("portletHandle", getPortletHandle());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -211,6 +214,12 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 		if (portletHandle != null) {
 			setPortletHandle(portletHandle);
+		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
 		}
 	}
 
@@ -360,6 +369,16 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				WSRPConsumerPortlet.class.getName()));
@@ -404,6 +423,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		wsrpConsumerPortletImpl.setWsrpConsumerId(getWsrpConsumerId());
 		wsrpConsumerPortletImpl.setName(getName());
 		wsrpConsumerPortletImpl.setPortletHandle(getPortletHandle());
+		wsrpConsumerPortletImpl.setLastPublishDate(getLastPublishDate());
 
 		wsrpConsumerPortletImpl.resetOriginalValues();
 
@@ -533,12 +553,21 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			wsrpConsumerPortletCacheModel.portletHandle = null;
 		}
 
+		Date lastPublishDate = getLastPublishDate();
+
+		if (lastPublishDate != null) {
+			wsrpConsumerPortletCacheModel.lastPublishDate = lastPublishDate.getTime();
+		}
+		else {
+			wsrpConsumerPortletCacheModel.lastPublishDate = Long.MIN_VALUE;
+		}
+
 		return wsrpConsumerPortletCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -556,6 +585,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		sb.append(getName());
 		sb.append(", portletHandle=");
 		sb.append(getPortletHandle());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -563,7 +594,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumerPortlet");
@@ -601,6 +632,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			"<column><column-name>portletHandle</column-name><column-value><![CDATA[");
 		sb.append(getPortletHandle());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -626,6 +661,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	private String _name;
 	private String _portletHandle;
 	private String _originalPortletHandle;
+	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private WSRPConsumerPortlet _escapedModel;
 }

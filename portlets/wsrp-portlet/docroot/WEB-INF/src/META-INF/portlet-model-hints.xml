@@ -29,6 +29,7 @@
 		<field name="markupCharacterSets" type="String">
 			<hint name="max-length">255</hint>
 		</field>
+		<field name="lastPublishDate" type="Date" />
 	</model>
 	<model name="com.liferay.wsrp.model.WSRPConsumerPortlet">
 		<field name="uuid" type="String" />
@@ -41,6 +42,7 @@
 		<field name="portletHandle" type="String">
 			<hint name="max-length">255</hint>
 		</field>
+		<field name="lastPublishDate" type="Date" />
 	</model>
 	<model name="com.liferay.wsrp.model.WSRPProducer">
 		<field name="uuid" type="String" />
@@ -54,5 +56,6 @@
 		<field name="portletIds" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
+		<field name="lastPublishDate" type="Date" />
 	</model>
 </model-hints>

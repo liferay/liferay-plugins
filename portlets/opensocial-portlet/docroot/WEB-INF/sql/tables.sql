@@ -6,7 +6,8 @@ create table OpenSocial_Gadget (
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
 	url STRING null,
-	portletCategoryNames STRING null
+	portletCategoryNames STRING null,
+	lastPublishDate DATE null
 );
 
 create table OpenSocial_OAuthConsumer (

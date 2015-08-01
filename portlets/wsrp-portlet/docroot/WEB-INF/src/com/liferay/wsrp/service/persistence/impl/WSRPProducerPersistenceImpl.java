@@ -1992,8 +1992,9 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		}
 	}
 
-	protected void cacheUniqueFindersCache(WSRPProducer wsrpProducer) {
-		if (wsrpProducer.isNew()) {
+	protected void cacheUniqueFindersCache(WSRPProducer wsrpProducer,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					wsrpProducer.getUuid(), wsrpProducer.getGroupId()
 				};
@@ -2274,7 +2275,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			false);
 
 		clearUniqueFindersCache(wsrpProducer);
-		cacheUniqueFindersCache(wsrpProducer);
+		cacheUniqueFindersCache(wsrpProducer, isNew);
 
 		wsrpProducer.resetOriginalValues();
 
@@ -2300,6 +2301,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		wsrpProducerImpl.setName(wsrpProducer.getName());
 		wsrpProducerImpl.setVersion(wsrpProducer.getVersion());
 		wsrpProducerImpl.setPortletIds(wsrpProducer.getPortletIds());
+		wsrpProducerImpl.setLastPublishDate(wsrpProducer.getLastPublishDate());
 
 		return wsrpProducerImpl;
 	}

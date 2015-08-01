@@ -2006,8 +2006,9 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 		}
 	}
 
-	protected void cacheUniqueFindersCache(SampleLARBooking sampleLARBooking) {
-		if (sampleLARBooking.isNew()) {
+	protected void cacheUniqueFindersCache(SampleLARBooking sampleLARBooking,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
 					sampleLARBooking.getUuid(), sampleLARBooking.getGroupId()
 				};
@@ -2288,7 +2289,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			sampleLARBooking, false);
 
 		clearUniqueFindersCache(sampleLARBooking);
-		cacheUniqueFindersCache(sampleLARBooking);
+		cacheUniqueFindersCache(sampleLARBooking, isNew);
 
 		sampleLARBooking.resetOriginalValues();
 
@@ -2315,6 +2316,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 		sampleLARBookingImpl.setCreateDate(sampleLARBooking.getCreateDate());
 		sampleLARBookingImpl.setModifiedDate(sampleLARBooking.getModifiedDate());
 		sampleLARBookingImpl.setBookingNumber(sampleLARBooking.getBookingNumber());
+		sampleLARBookingImpl.setLastPublishDate(sampleLARBooking.getLastPublishDate());
 
 		return sampleLARBookingImpl;
 	}

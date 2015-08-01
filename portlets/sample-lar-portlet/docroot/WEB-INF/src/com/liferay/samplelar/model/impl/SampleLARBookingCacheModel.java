@@ -66,7 +66,7 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -86,6 +86,8 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 		sb.append(modifiedDate);
 		sb.append(", bookingNumber=");
 		sb.append(bookingNumber);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -135,6 +137,13 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 			sampleLARBookingImpl.setBookingNumber(bookingNumber);
 		}
 
+		if (lastPublishDate == Long.MIN_VALUE) {
+			sampleLARBookingImpl.setLastPublishDate(null);
+		}
+		else {
+			sampleLARBookingImpl.setLastPublishDate(new Date(lastPublishDate));
+		}
+
 		sampleLARBookingImpl.resetOriginalValues();
 
 		return sampleLARBookingImpl;
@@ -151,6 +160,7 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 		bookingNumber = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 	}
 
 	@Override
@@ -184,6 +194,8 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 		else {
 			objectOutput.writeUTF(bookingNumber);
 		}
+
+		objectOutput.writeLong(lastPublishDate);
 	}
 
 	public String uuid;
@@ -195,4 +207,5 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 	public long createDate;
 	public long modifiedDate;
 	public String bookingNumber;
+	public long lastPublishDate;
 }

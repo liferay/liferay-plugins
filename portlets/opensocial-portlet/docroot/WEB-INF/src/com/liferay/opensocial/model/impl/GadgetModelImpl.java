@@ -76,7 +76,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "name", Types.VARCHAR },
 			{ "url", Types.VARCHAR },
-			{ "portletCategoryNames", Types.VARCHAR }
+			{ "portletCategoryNames", Types.VARCHAR },
+			{ "lastPublishDate", Types.TIMESTAMP }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -89,9 +90,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("url", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("portletCategoryNames", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,portletCategoryNames STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,portletCategoryNames STRING null,lastPublishDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";
 	public static final String ORDER_BY_JPQL = " ORDER BY gadget.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_Gadget.name ASC";
@@ -133,6 +135,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		model.setName(soapModel.getName());
 		model.setUrl(soapModel.getUrl());
 		model.setPortletCategoryNames(soapModel.getPortletCategoryNames());
+		model.setLastPublishDate(soapModel.getLastPublishDate());
 
 		return model;
 	}
@@ -205,6 +208,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		attributes.put("name", getName());
 		attributes.put("url", getUrl());
 		attributes.put("portletCategoryNames", getPortletCategoryNames());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -261,6 +265,12 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 		if (portletCategoryNames != null) {
 			setPortletCategoryNames(portletCategoryNames);
+		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
 		}
 	}
 
@@ -410,6 +420,17 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		_portletCategoryNames = portletCategoryNames;
 	}
 
+	@JSON
+	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
@@ -455,6 +476,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		gadgetImpl.setName(getName());
 		gadgetImpl.setUrl(getUrl());
 		gadgetImpl.setPortletCategoryNames(getPortletCategoryNames());
+		gadgetImpl.setLastPublishDate(getLastPublishDate());
 
 		gadgetImpl.resetOriginalValues();
 
@@ -587,12 +609,21 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			gadgetCacheModel.portletCategoryNames = null;
 		}
 
+		Date lastPublishDate = getLastPublishDate();
+
+		if (lastPublishDate != null) {
+			gadgetCacheModel.lastPublishDate = lastPublishDate.getTime();
+		}
+		else {
+			gadgetCacheModel.lastPublishDate = Long.MIN_VALUE;
+		}
+
 		return gadgetCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -610,6 +641,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		sb.append(getUrl());
 		sb.append(", portletCategoryNames=");
 		sb.append(getPortletCategoryNames());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -617,7 +650,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.Gadget");
@@ -655,6 +688,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			"<column><column-name>portletCategoryNames</column-name><column-value><![CDATA[");
 		sb.append(getPortletCategoryNames());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -678,6 +715,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _url;
 	private String _originalUrl;
 	private String _portletCategoryNames;
+	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private Gadget _escapedModel;
 }

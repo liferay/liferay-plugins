@@ -676,7 +676,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	protected com.liferay.opensocial.service.GadgetService gadgetService;
 	@BeanReference(type = GadgetPersistence.class)
 	protected GadgetPersistence gadgetPersistence;
-	@BeanReference(type = OAuthConsumerLocalService.class)
+	@BeanReference(type = com.liferay.opensocial.service.OAuthConsumerLocalService.class)
 	protected OAuthConsumerLocalService oAuthConsumerLocalService;
 	@BeanReference(type = OAuthConsumerPersistence.class)
 	protected OAuthConsumerPersistence oAuthConsumerPersistence;

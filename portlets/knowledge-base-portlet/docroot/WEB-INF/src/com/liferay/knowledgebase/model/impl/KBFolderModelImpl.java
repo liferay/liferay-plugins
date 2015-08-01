@@ -83,7 +83,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 			{ "parentKBFolderId", Types.BIGINT },
 			{ "name", Types.VARCHAR },
 			{ "urlTitle", Types.VARCHAR },
-			{ "description", Types.VARCHAR }
+			{ "description", Types.VARCHAR },
+			{ "lastPublishDate", Types.TIMESTAMP }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -100,9 +101,10 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("urlTitle", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KBFolder (uuid_ VARCHAR(75) null,kbFolderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentKBFolderId LONG,name VARCHAR(75) null,urlTitle VARCHAR(75) null,description STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table KBFolder (uuid_ VARCHAR(75) null,kbFolderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentKBFolderId LONG,name VARCHAR(75) null,urlTitle VARCHAR(75) null,description STRING null,lastPublishDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KBFolder";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbFolder.kbFolderId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBFolder.kbFolderId ASC";
@@ -151,6 +153,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		model.setName(soapModel.getName());
 		model.setUrlTitle(soapModel.getUrlTitle());
 		model.setDescription(soapModel.getDescription());
+		model.setLastPublishDate(soapModel.getLastPublishDate());
 
 		return model;
 	}
@@ -227,6 +230,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		attributes.put("name", getName());
 		attributes.put("urlTitle", getUrlTitle());
 		attributes.put("description", getDescription());
+		attributes.put("lastPublishDate", getLastPublishDate());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -306,6 +310,12 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 		if (description != null) {
 			setDescription(description);
+		}
+
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
 		}
 	}
 
@@ -552,6 +562,17 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		_description = description;
 	}
 
+	@JSON
+	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
@@ -601,6 +622,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		kbFolderImpl.setName(getName());
 		kbFolderImpl.setUrlTitle(getUrlTitle());
 		kbFolderImpl.setDescription(getDescription());
+		kbFolderImpl.setLastPublishDate(getLastPublishDate());
 
 		kbFolderImpl.resetOriginalValues();
 
@@ -758,12 +780,21 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 			kbFolderCacheModel.description = null;
 		}
 
+		Date lastPublishDate = getLastPublishDate();
+
+		if (lastPublishDate != null) {
+			kbFolderCacheModel.lastPublishDate = lastPublishDate.getTime();
+		}
+		else {
+			kbFolderCacheModel.lastPublishDate = Long.MIN_VALUE;
+		}
+
 		return kbFolderCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -789,6 +820,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		sb.append(getUrlTitle());
 		sb.append(", description=");
 		sb.append(getDescription());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -796,7 +829,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBFolder");
@@ -850,6 +883,10 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 			"<column><column-name>description</column-name><column-value><![CDATA[");
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -882,6 +919,7 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	private String _urlTitle;
 	private String _originalUrlTitle;
 	private String _description;
+	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private KBFolder _escapedModel;
 }

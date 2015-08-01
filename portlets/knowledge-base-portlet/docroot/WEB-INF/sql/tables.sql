@@ -23,6 +23,7 @@ create table KBArticle (
 	latest BOOLEAN,
 	main BOOLEAN,
 	sourceURL STRING null,
+	lastPublishDate DATE null,
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,
@@ -42,6 +43,7 @@ create table KBComment (
 	classPK LONG,
 	content STRING null,
 	userRating INTEGER,
+	lastPublishDate DATE null,
 	status INTEGER
 );
 
@@ -57,7 +59,8 @@ create table KBFolder (
 	parentKBFolderId LONG,
 	name VARCHAR(75) null,
 	urlTitle VARCHAR(75) null,
-	description STRING null
+	description STRING null,
+	lastPublishDate DATE null
 );
 
 create table KBTemplate (
@@ -70,5 +73,6 @@ create table KBTemplate (
 	createDate DATE null,
 	modifiedDate DATE null,
 	title STRING null,
-	content TEXT null
+	content TEXT null,
+	lastPublishDate DATE null
 );

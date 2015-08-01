@@ -750,7 +750,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = GadgetLocalService.class)
+	@BeanReference(type = com.liferay.opensocial.service.GadgetLocalService.class)
 	protected GadgetLocalService gadgetLocalService;
 	@BeanReference(type = com.liferay.opensocial.service.GadgetService.class)
 	protected com.liferay.opensocial.service.GadgetService gadgetService;

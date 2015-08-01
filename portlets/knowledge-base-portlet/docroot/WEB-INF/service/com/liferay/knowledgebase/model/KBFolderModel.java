@@ -266,6 +266,20 @@ public interface KBFolderModel extends BaseModel<KBFolder>, StagedGroupedModel {
 	 */
 	public void setDescription(String description);
 
+	/**
+	 * Returns the last publish date of this k b folder.
+	 *
+	 * @return the last publish date of this k b folder
+	 */
+	public Date getLastPublishDate();
+
+	/**
+	 * Sets the last publish date of this k b folder.
+	 *
+	 * @param lastPublishDate the last publish date of this k b folder
+	 */
+	public void setLastPublishDate(Date lastPublishDate);
+
 	@Override
 	public boolean isNew();
 

@@ -680,7 +680,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	protected com.liferay.opensocial.service.OAuthConsumerLocalService oAuthConsumerLocalService;
 	@BeanReference(type = OAuthConsumerPersistence.class)
 	protected OAuthConsumerPersistence oAuthConsumerPersistence;
-	@BeanReference(type = OAuthTokenLocalService.class)
+	@BeanReference(type = com.liferay.opensocial.service.OAuthTokenLocalService.class)
 	protected OAuthTokenLocalService oAuthTokenLocalService;
 	@BeanReference(type = OAuthTokenPersistence.class)
 	protected OAuthTokenPersistence oAuthTokenPersistence;

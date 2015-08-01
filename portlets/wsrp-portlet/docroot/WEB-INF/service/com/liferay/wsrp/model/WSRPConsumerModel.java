@@ -263,6 +263,20 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer>, StagedModel 
 	 */
 	public void setMarkupCharacterSets(String markupCharacterSets);
 
+	/**
+	 * Returns the last publish date of this w s r p consumer.
+	 *
+	 * @return the last publish date of this w s r p consumer
+	 */
+	public Date getLastPublishDate();
+
+	/**
+	 * Sets the last publish date of this w s r p consumer.
+	 *
+	 * @param lastPublishDate the last publish date of this w s r p consumer
+	 */
+	public void setLastPublishDate(Date lastPublishDate);
+
 	@Override
 	public boolean isNew();
 

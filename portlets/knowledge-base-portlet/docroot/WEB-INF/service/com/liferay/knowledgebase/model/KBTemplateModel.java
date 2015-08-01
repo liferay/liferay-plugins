@@ -238,6 +238,20 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>,
 	 */
 	public void setContent(String content);
 
+	/**
+	 * Returns the last publish date of this k b template.
+	 *
+	 * @return the last publish date of this k b template
+	 */
+	public Date getLastPublishDate();
+
+	/**
+	 * Sets the last publish date of this k b template.
+	 *
+	 * @param lastPublishDate the last publish date of this k b template
+	 */
+	public void setLastPublishDate(Date lastPublishDate);
+
 	@Override
 	public boolean isNew();
 
