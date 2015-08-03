@@ -66,8 +66,8 @@ User selUser = (User)request.getAttribute("user.selUser");
 
 					<liferay-ui:logo-selector
 						currentLogoURL="<%= selUser.getPortraitURL(themeDisplay) %>"
-						defaultLogoURL="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), selUser.isMale(), 0) %>"
 						defaultLogo="<%= selUser.getPortraitId() == 0 %>"
+						defaultLogoURL="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), selUser.isMale(), 0) %>"
 						logoDisplaySelector=".user-logo"
 						showBackground="<%= false %>"
 					/>

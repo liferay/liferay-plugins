@@ -861,9 +861,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 				params.put(
 					"userGroupRole",
-					new Long[] {
-						group.getGroupId(), siteOwnerRole.getRoleId()
-					});
+					new Long[] {group.getGroupId(), siteOwnerRole.getRoleId()});
 
 				users.addAll(
 					UserLocalServiceUtil.search(
