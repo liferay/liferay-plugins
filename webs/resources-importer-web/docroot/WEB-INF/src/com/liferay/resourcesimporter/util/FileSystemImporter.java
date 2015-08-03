@@ -97,6 +97,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -162,17 +163,18 @@ public class FileSystemImporter extends BaseImporter {
 					userId, groupId, classNameId, 0,
 					PortalUtil.getClassNameId(JournalArticle.class),
 					getKey(fileName), getMap(name), null,
-					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK,
-					getDDMTemplateLanguage(file.getName()), script, false,
-					false, StringPool.BLANK, null, serviceContext);
+					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
+					StringPool.BLANK, getDDMTemplateLanguage(file.getName()),
+					script, false, false, StringPool.BLANK, null,
+					serviceContext);
 			}
 			else {
 				DDMTemplateLocalServiceUtil.updateTemplate(
 					userId, ddmTemplate.getTemplateId(),
 					ddmTemplate.getClassPK(), getMap(name), null,
-					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK,
-					getDDMTemplateLanguage(file.getName()), script, false,
-					serviceContext);
+					DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
+					StringPool.BLANK, getDDMTemplateLanguage(file.getName()),
+					script, false, serviceContext);
 			}
 		}
 		catch (PortalException e) {

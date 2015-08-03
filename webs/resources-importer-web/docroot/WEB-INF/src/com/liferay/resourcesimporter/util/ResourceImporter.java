@@ -28,8 +28,10 @@ import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 
 import java.io.File;
 import java.io.InputStream;
+
 import java.net.URL;
 import java.net.URLConnection;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
