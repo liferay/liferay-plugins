@@ -28,10 +28,6 @@ public class AssetEntrySetConstants {
 	public static final String ASSET_ENTRY_KEY_PARTICIPANT_URL =
 		"participantURL";
 
-	public static final int ASSET_ENTRY_SET_FIELD_CREATE_TIME = 1;
-
-	public static final int ASSET_ENTRY_SET_FIELD_MODIFIED_TIME = 2;
-
 	public static final String PAYLOAD_KEY_ASSET_TAG_NAMES = "assetTagNames";
 
 	public static final String PAYLOAD_KEY_CREATOR = "creator";
