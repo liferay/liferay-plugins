@@ -414,13 +414,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				"dependencies/notification_message_subject.tmpl"));
 
 		subject = StringUtil.replace(
-			subject,
-			new String[] {
-				"[$COMPANY_NAME$]", "[$FROM_NAME$]"
-			},
-			new String[] {
-				company.getName(), sender.getFullName()
-			});
+			subject, new String[] {"[$COMPANY_NAME$]", "[$FROM_NAME$]"},
+			new String[] {company.getName(), sender.getFullName()});
 
 		String body = StringUtil.read(
 			PrivateMessagingPortlet.class.getResourceAsStream(
@@ -478,10 +473,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				recipient.getLocale(), recipient.getTimeZone());
 
 			String userThreadBody = StringUtil.replace(
-				body,
-				new String[] {
-					"[$SENT_DATE$]", "[$THREAD_URL$]"
-				},
+				body, new String[] {"[$SENT_DATE$]", "[$THREAD_URL$]"},
 				new String[] {
 					dateFormatDateTime.format(mbMessage.getCreateDate()),
 					threadURL
@@ -512,9 +504,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			if ((userThread.getUserId() == mbMessage.getUserId()) ||
 				((userThread.getUserId() != mbMessage.getUserId()) &&
 				 !UserNotificationManagerUtil.isDeliver(
-					userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING, 0,
-					PrivateMessagingConstants.NEW_MESSAGE,
-					UserNotificationDeliveryConstants.TYPE_WEBSITE))) {
+					 userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING, 0,
+					 PrivateMessagingConstants.NEW_MESSAGE,
+					 UserNotificationDeliveryConstants.TYPE_WEBSITE))) {
 
 				continue;
 			}
