@@ -25,8 +25,8 @@
 		rowChecker="<%= new RowChecker(renderResponse) %>"
 	>
 		<liferay-ui:search-container-results
-			results="<%= MBMessageLocalServiceUtil.getGroupMessages(scopeGroupId, WorkflowConstants.STATUS_DENIED, searchContainer.getStart(), searchContainer.getEnd()) %>"
-			total="<%= MBMessageLocalServiceUtil.getGroupMessagesCount(scopeGroupId, WorkflowConstants.STATUS_DENIED) %>"
+			results="<%= ModerationUtil.getMBMessages(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
+			total="<%= ModerationUtil.getMBMessagesCount(scopeGroupId) %>"
 		/>
 
 		<c:if test="<%= !results.isEmpty() %>">
