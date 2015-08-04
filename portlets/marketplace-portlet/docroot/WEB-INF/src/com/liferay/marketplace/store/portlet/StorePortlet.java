@@ -34,7 +34,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.URL;
@@ -150,29 +149,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
-	}
-
-	@Override
-	public void processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
-
-		try {
-			if (!isProcessActionRequest(actionRequest)) {
-				return;
-			}
-
-			if (!callActionMethod(actionRequest, actionResponse)) {
-				return;
-			}
-		}
-		catch (PortletException pe) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-			jsonObject.put("message", "fail");
-
-			writeJSON(actionRequest, actionResponse, jsonObject);
-		}
 	}
 
 	public void uninstallApp(

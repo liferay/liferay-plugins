@@ -30,6 +30,8 @@ import java.io.PrintWriter;
 
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -49,6 +51,22 @@ import org.scribe.oauth.OAuthService;
  * @author Joan Kim
  */
 public class RemoteMVCPortlet extends MVCPortlet {
+
+	@Override
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws IOException, PortletException {
+
+		try {
+			remoteProcessAction(actionRequest, actionResponse);
+		}
+		catch (IOException ioe) {
+			throw ioe;
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
 
 	@Override
 	public void render(
@@ -89,12 +107,24 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		}
 	}
 
-	protected OAuthRequest getGetOAuthRequest(
-			PortletRequest portletRequest, PortletResponse portletResponse)
+	protected void addOAuthParameter(
+		OAuthRequest oAuthRequest, String key, String value) {
+
+		if (oAuthRequest.getVerb() == Verb.GET) {
+			oAuthRequest.addQuerystringParameter(key, value);
+		}
+		else if (oAuthRequest.getVerb() == Verb.POST) {
+			oAuthRequest.addBodyParameter(key, value);
+		}
+	}
+
+	protected OAuthRequest getOAuthRequest(
+			PortletRequest portletRequest, PortletResponse portletResponse,
+			Verb verb)
 		throws Exception {
 
 		OAuthRequest oAuthRequest = new OAuthRequest(
-			Verb.GET, getServerPortletURL());
+			verb, getServerPortletURL());
 
 		setRequestParameters(portletRequest, portletResponse, oAuthRequest);
 
@@ -120,12 +150,22 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		return StringPool.BLANK;
 	}
 
+	protected void remoteProcessAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		OAuthRequest oAuthRequest = getOAuthRequest(
+			actionRequest, actionResponse, Verb.POST);
+
+		oAuthRequest.send();
+	}
+
 	protected void remoteRender(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
-		OAuthRequest oAuthRequest = getGetOAuthRequest(
-			renderRequest, renderResponse);
+		OAuthRequest oAuthRequest = getOAuthRequest(
+			renderRequest, renderResponse, Verb.GET);
 
 		Response response = oAuthRequest.send();
 
@@ -140,8 +180,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		OAuthRequest oAuthRequest = getGetOAuthRequest(
-			resourceRequest, resourceResponse);
+		OAuthRequest oAuthRequest = getOAuthRequest(
+			resourceRequest, resourceResponse, Verb.GET);
 
 		Response response = oAuthRequest.send();
 
@@ -155,10 +195,11 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		String currentURL = PortalUtil.getCurrentURL(portletRequest);
 
-		oAuthRequest.addQuerystringParameter("remoteURL", currentURL);
+		addOAuthParameter(oAuthRequest, "remoteURL", currentURL);
 
-		oAuthRequest.addQuerystringParameter(
-			"remotePortletNamespace", portletResponse.getNamespace());
+		addOAuthParameter(
+			oAuthRequest, "remotePortletNamespace",
+			portletResponse.getNamespace());
 
 		String serverNamespace = getServerNamespace();
 
@@ -171,8 +212,9 @@ public class RemoteMVCPortlet extends MVCPortlet {
 				continue;
 			}
 
-			oAuthRequest.addQuerystringParameter(
-				serverNamespace.concat(entry.getKey()), values[0]);
+			addOAuthParameter(
+				oAuthRequest, serverNamespace.concat(entry.getKey()),
+				values[0]);
 		}
 	}
 
