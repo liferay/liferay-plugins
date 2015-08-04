@@ -22,8 +22,14 @@ public class PortletPropsKeys {
 	public static final String SYNC_ALLOW_USER_PERSONAL_SITES =
 		"sync.allow.user.personal.sites";
 
+	public static final String SYNC_CLIENT_ANDROID_MIN_BUILD =
+		"sync.client.android.min.build";
+
 	public static final String SYNC_CLIENT_DESKTOP_MIN_BUILD =
 		"sync.client.desktop.min.build";
+
+	public static final String SYNC_CLIENT_IOS_MIN_BUILD =
+		"sync.client.ios.min.build";
 
 	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
 		"sync.client.max.connections";
