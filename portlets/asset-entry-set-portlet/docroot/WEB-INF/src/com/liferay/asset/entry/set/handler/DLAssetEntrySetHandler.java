@@ -70,6 +70,9 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 			JSONObject processedImageJSONObject =
 				JSONFactoryUtil.createJSONObject();
 
+			JSONObject fileEntryIdsJSONObject =
+				JSONFactoryUtil.createJSONObject();
+
 			JSONObject imageJSONObject = imageDataJSONArray.getJSONObject(i);
 
 			for (String imageType :
@@ -104,13 +107,17 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 						StringPool.BLANK, false, true));
 
 				fileEntryIds.add(fileEntryId);
+
+				fileEntryIdsJSONObject.put(imageType, fileEntryId);
 			}
+
+			processedImageJSONObject.put(
+				"fileEntryIds", fileEntryIdsJSONObject);
 
 			processedImageDataJSONArray.put(processedImageJSONObject);
 		}
 
 		jsonObject.put("assetEntryIds", StringUtil.merge(assetEntryIds));
-		jsonObject.put("fileEntryIds", StringUtil.merge(fileEntryIds));
 		jsonObject.put("imageData", processedImageDataJSONArray);
 
 		return jsonObject;
