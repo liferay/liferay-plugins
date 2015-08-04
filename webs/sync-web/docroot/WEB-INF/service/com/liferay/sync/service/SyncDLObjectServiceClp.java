@@ -118,7 +118,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 
 		_methodName17 = "getSyncDLObjectUpdate";
 
-		_methodParameterTypes17 = new String[] { "long", "long" };
+		_methodParameterTypes17 = new String[] { "long", "long", "int" };
 
 		_methodName18 = "getSyncDLObjectUpdate";
 
@@ -764,15 +764,15 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long lastAccessTime)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName17,
 					_methodParameterTypes17,
-					new Object[] { repositoryId, lastAccessTime });
+					new Object[] { repositoryId, lastAccessTime, max });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -790,7 +790,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 			}
 		}
 
-		return (com.liferay.sync.model.SyncDLObjectUpdate)ClpSerializer.translateOutput(returnObj);
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

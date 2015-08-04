@@ -124,7 +124,7 @@ public class SyncDLObjectServiceClpInvoker {
 
 		_methodName88 = "getSyncDLObjectUpdate";
 
-		_methodParameterTypes88 = new String[] { "long", "long" };
+		_methodParameterTypes88 = new String[] { "long", "long", "int" };
 
 		_methodName89 = "getSyncDLObjectUpdate";
 
@@ -313,7 +313,8 @@ public class SyncDLObjectServiceClpInvoker {
 		if (_methodName88.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
 			return SyncDLObjectServiceUtil.getSyncDLObjectUpdate(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName89.equals(name) &&

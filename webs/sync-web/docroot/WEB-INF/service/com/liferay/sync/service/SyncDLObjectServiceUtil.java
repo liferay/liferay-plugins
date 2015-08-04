@@ -166,10 +166,11 @@ public class SyncDLObjectServiceUtil {
 		return getService().getSyncContext();
 	}
 
-	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long lastAccessTime)
+	public static java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getSyncDLObjectUpdate(repositoryId, lastAccessTime);
+		return getService()
+				   .getSyncDLObjectUpdate(repositoryId, lastAccessTime, max);
 	}
 
 	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(

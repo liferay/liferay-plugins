@@ -172,11 +172,11 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long lastAccessTime)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _syncDLObjectService.getSyncDLObjectUpdate(repositoryId,
-			lastAccessTime);
+			lastAccessTime, max);
 	}
 
 	@Override
