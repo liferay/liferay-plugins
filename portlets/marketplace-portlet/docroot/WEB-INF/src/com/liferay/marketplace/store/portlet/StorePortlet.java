@@ -14,6 +14,7 @@
 
 package com.liferay.marketplace.store.portlet;
 
+import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
@@ -24,7 +25,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -35,7 +35,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.URL;
@@ -178,29 +177,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
-	}
-
-	@Override
-	public void processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
-
-		try {
-			if (!isProcessActionRequest(actionRequest)) {
-				return;
-			}
-
-			if (!callActionMethod(actionRequest, actionResponse)) {
-				return;
-			}
-		}
-		catch (PortletException pe) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-			jsonObject.put("message", "fail");
-
-			writeJSON(actionRequest, actionResponse, jsonObject);
-		}
 	}
 
 	public void uninstallApp(
