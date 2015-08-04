@@ -528,7 +528,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
-	public String getSyncDLObjectUpdate(long repositoryId, long lastAccessTime)
+	public String getSyncDLObjectUpdate(
+			long repositoryId, long lastAccessTime, int max)
 		throws PortalException {
 
 		try {
@@ -547,10 +548,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				events = new String[0];
 			}
 
+			if (max == 0) {
+				max = PortletPropsValues.SYNC_PAGINATION_DELTA;
+			}
+
 			List<SyncDLObject> syncDLObjects =
 				syncDLObjectPersistence.findByM_R_NotE(
-					lastAccessTime, repositoryId, events, 0,
-					PortletPropsValues.SYNC_PAGINATION_DELTA,
+					lastAccessTime, repositoryId, events, 0, max,
 					new SyncDLObjectModifiedTimeComparator());
 
 			if (syncDLObjects.isEmpty()) {
