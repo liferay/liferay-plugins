@@ -62,15 +62,15 @@ public class SyncDLObjectUpdate {
 		for (int i = 0; i < _syncDLObjects.size(); i++) {
 			SyncDLObject syncDLObject = _syncDLObjects.get(i);
 
-			sb.append(", \"checksum\": \"");
+			sb.append("{\"checksum\": \"");
 			sb.append(syncDLObject.getChecksum());
 			sb.append("\", \"changeLog\": \"");
 			sb.append(syncDLObject.getChangeLog());
-			sb.append(", \"companyId\": ");
+			sb.append("\", \"companyId\": ");
 			sb.append(syncDLObject.getCompanyId());
-			sb.append("\", \"createTime\": ");
+			sb.append(", \"createTime\": ");
 			sb.append(syncDLObject.getCreateTime());
-			sb.append("\", \"description\": \"");
+			sb.append(", \"description\": \"");
 			sb.append(syncDLObject.getDescription());
 			sb.append("\", \"extension\": \"");
 			sb.append(syncDLObject.getExtension());
@@ -86,11 +86,11 @@ public class SyncDLObjectUpdate {
 			sb.append(syncDLObject.getLockUserName());
 			sb.append("\", \"mimeType\": \"");
 			sb.append(syncDLObject.getMimeType());
-			sb.append(", \"modifiedTime\": ");
+			sb.append("\", \"modifiedTime\": ");
 			sb.append(syncDLObject.getModifiedTime());
 			sb.append(", \"name\": \"");
 			sb.append(syncDLObject.getName());
-			sb.append(", \"parentFolderId\": ");
+			sb.append("\", \"parentFolderId\": ");
 			sb.append(syncDLObject.getParentFolderId());
 			sb.append(", \"repositoryId\": ");
 			sb.append(syncDLObject.getRepositoryId());
@@ -98,13 +98,13 @@ public class SyncDLObjectUpdate {
 			sb.append(syncDLObject.getSize());
 			sb.append(", \"syncDLObjectId\": ");
 			sb.append(syncDLObject.getSyncDLObjectId());
-			sb.append("\", \"type\": \"");
+			sb.append(", \"type\": \"");
 			sb.append(syncDLObject.getType());
 			sb.append("\", \"typePK\": ");
 			sb.append(syncDLObject.getTypePK());
 			sb.append(", \"typeUuid\": \"");
 			sb.append(syncDLObject.getTypeUuid());
-			sb.append(", \"userId\": ");
+			sb.append("\", \"userId\": ");
 			sb.append(syncDLObject.getUserId());
 			sb.append(", \"userName\": \"");
 			sb.append(syncDLObject.getUserName());
@@ -112,7 +112,7 @@ public class SyncDLObjectUpdate {
 			sb.append(syncDLObject.getVersion());
 			sb.append("\", \"versionId\": ");
 			sb.append(syncDLObject.getVersionId());
-			sb.append("\"}");
+			sb.append(StringPool.CLOSE_CURLY_BRACE);
 
 			if (i != (_syncDLObjects.size() - 1)) {
 				sb.append(StringPool.COMMA);
