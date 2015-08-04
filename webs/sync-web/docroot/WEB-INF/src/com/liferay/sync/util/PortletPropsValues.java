@@ -29,9 +29,16 @@ public class PortletPropsValues {
 	public static final String SYNC_AUTH_VERIFIER_PIPELINE = PortletProps.get(
 		PortletPropsKeys.SYNC_AUTH_VERIFIER_PIPELINE);
 
+	public static final int SYNC_CLIENT_ANDROID_MIN_BUILD =
+		GetterUtil.getInteger(
+			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_ANDROID_MIN_BUILD));
+
 	public static final int SYNC_CLIENT_DESKTOP_MIN_BUILD =
 		GetterUtil.getInteger(
 			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_DESKTOP_MIN_BUILD));
+
+	public static final int SYNC_CLIENT_IOS_MIN_BUILD = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_IOS_MIN_BUILD));
 
 	public static final int SYNC_CLIENT_MAX_CONNECTIONS = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS));
