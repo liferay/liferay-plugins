@@ -23,11 +23,11 @@
 		headerNames="title,version,posted-by"
 		iteratorURL="<%= portletURL %>"
 		rowChecker="<%= new RowChecker(renderResponse) %>"
-		total="<%= (int)WikiPageLocalServiceUtil.dynamicQueryCount(_getDynamicQuery(scopeGroupId)) %>"
+		total="<%= ModerationUtil.getWikiPagesCount(scopeGroupId) %>"
 	>
 
 		<liferay-ui:search-container-results
-			results="<%= WikiPageLocalServiceUtil.dynamicQuery(_getDynamicQuery(scopeGroupId), searchContainer.getStart(), searchContainer.getEnd()) %>"
+			results="<%= ModerationUtil.getWikiPages(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
 		/>
 
 		<c:if test="<%= !results.isEmpty() %>">
@@ -91,19 +91,3 @@
 		<liferay-ui:search-iterator />
 	</liferay-ui:search-container>
 </aui:form>
-
-<%!
-private DynamicQuery _getDynamicQuery(long scopeGroupId) {
-	DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(WikiPage.class);
-
-	Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
-
-	dynamicQuery.add(groupIdProperty.eq(scopeGroupId));
-
-	Property summaryProperty = PropertyFactoryUtil.forName("summary");
-
-	dynamicQuery.add(summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
-
-	return dynamicQuery;
-}
-%>
