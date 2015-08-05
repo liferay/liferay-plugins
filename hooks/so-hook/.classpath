@@ -22,6 +22,7 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.asset.publisher.web.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.bookmarks.api-1.0.0-SNAPSHOT.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.bookmarks.api.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.message.boards.web.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.site.my.sites.web.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.site.navigation.breadcrumb.web.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.wiki.api.jar" />
