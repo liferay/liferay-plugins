@@ -160,15 +160,15 @@ public class LayoutUtil {
 			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
 				removePortletBorder(layout, portletId);
 			}
-			else if (portletId.startsWith(PortletKeys.BLOGS_AGGREGATOR)) {
-				configureBlogsAggregator(layout);
-				updatePortletTitle(layout, portletId, "recent-blogs");
-			}
 			else if (portletId.startsWith(
 						MessageBoardsPortletKeys.MESSAGE_BOARDS)) {
 
 				configureMessageBoards(layout);
 				removePortletBorder(layout, portletId);
+			}
+			else if (portletId.startsWith(PortletKeys.BLOGS_AGGREGATOR)) {
+				configureBlogsAggregator(layout);
+				updatePortletTitle(layout, portletId, "recent-blogs");
 			}
 			else if (portletId.equals(PortletKeys.DOCUMENT_LIBRARY) ||
 					 portletId.equals(PortletKeys.BLOGS) ||
