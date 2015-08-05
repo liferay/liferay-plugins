@@ -14,6 +14,7 @@
 		<dependency name="com.liferay.announcements.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.asset.publisher.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.bookmarks.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+		<dependency name="com.liferay.message.boards.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.site.my.sites.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.site.navigation.breadcrumb.web" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.wiki.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
