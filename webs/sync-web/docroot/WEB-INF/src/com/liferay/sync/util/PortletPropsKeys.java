@@ -23,6 +23,9 @@ public class PortletPropsKeys
 	public static final String SYNC_AUTH_VERIFIER_PIPELINE =
 		"sync.auth.verifier.pipeline";
 
+	public static final String SYNC_CLIENT_BATCH_FILE_MAX_SIZE =
+		"sync.client.batch.file.max.size";
+
 	public static final String SYNC_FILE_CHECKSUM_THRESHOLD_SIZE =
 		"sync.file.checksum.threshold.size";
 
