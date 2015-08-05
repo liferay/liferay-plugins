@@ -23,11 +23,13 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 MBMessage message = (MBMessage)row.getObject();
 
-long messageBoardsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKeys.MESSAGE_BOARDS);
+String portletId = PortletProviderUtil.getPortletId(MBMessage.class.getName(), PortletProvider.Action.VIEW);
+
+long messageBoardsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), portletId);
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
-	<liferay-portlet:renderURL plid="<%= messageBoardsPlid %>" portletName="<%= PortletKeys.MESSAGE_BOARDS %>" var="viewURL">
+	<liferay-portlet:renderURL plid="<%= messageBoardsPlid %>" portletName="<%= portletId %>" var="viewURL">
 		<portlet:param name="struts_action" value="/message_boards/view_message" />
 		<portlet:param name="messageId" value="<%= String.valueOf(message.getMessageId()) %>" />
 	</liferay-portlet:renderURL>

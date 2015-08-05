@@ -45,10 +45,12 @@
 		>
 
 			<%
-			long messageBoardsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKeys.MESSAGE_BOARDS);
+			String portletId = PortletProviderUtil.getPortletId(MBMessage.class.getName(), PortletProvider.Action.VIEW);
+
+			long messageBoardsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), portletId);
 			%>
 
-			<liferay-portlet:renderURL plid="<%= messageBoardsPlid %>" portletName="<%= PortletKeys.MESSAGE_BOARDS %>" varImpl="rowURL">
+			<liferay-portlet:renderURL plid="<%= messageBoardsPlid %>" portletName="<%= portletId %>" varImpl="rowURL">
 				<portlet:param name="struts_action" value="/message_boards/view_message" />
 				<portlet:param name="messageId" value="<%= String.valueOf(message.getMessageId()) %>" />
 			</liferay-portlet:renderURL>

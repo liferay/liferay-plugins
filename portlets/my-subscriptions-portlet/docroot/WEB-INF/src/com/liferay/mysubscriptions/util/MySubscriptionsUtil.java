@@ -19,6 +19,8 @@ import com.liferay.journal.model.JournalFolder;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.portlet.PortletProvider;
+import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -93,8 +95,10 @@ public class MySubscriptionsUtil {
 		}
 
 		if (className.equals(MBCategory.class.getName())) {
-			return PortalUtil.getLayoutFullURL(
-				classPK, PortletKeys.MESSAGE_BOARDS);
+			String portletId = PortletProviderUtil.getPortletId(
+				MBMessage.class.getName(), PortletProvider.Action.VIEW);
+
+			return PortalUtil.getLayoutFullURL(classPK, portletId);
 		}
 
 		if (className.equals(WikiNode.class.getName())) {
