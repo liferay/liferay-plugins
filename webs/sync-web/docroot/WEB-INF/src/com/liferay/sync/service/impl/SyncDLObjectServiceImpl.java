@@ -1073,6 +1073,15 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		User user = getUser();
 
+		int batchFileMaxSize = PrefsPropsUtil.getInteger(
+			user.getCompanyId(),
+			PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE,
+			PortletPropsValues.SYNC_CLIENT_BATCH_FILE_MAX_SIZE);
+
+		portletPreferencesMap.put(
+			PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE,
+			String.valueOf(batchFileMaxSize));
+
 		int maxConnections = PrefsPropsUtil.getInteger(
 			user.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
 			PortletPropsValues.SYNC_CLIENT_MAX_CONNECTIONS);

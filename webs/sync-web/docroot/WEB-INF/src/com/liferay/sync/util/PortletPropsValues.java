@@ -33,6 +33,10 @@ public class PortletPropsValues {
 		GetterUtil.getInteger(
 			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_ANDROID_MIN_BUILD));
 
+	public static final int SYNC_CLIENT_BATCH_FILE_MAX_SIZE =
+		GetterUtil.getInteger(
+			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE));
+
 	public static final int SYNC_CLIENT_DESKTOP_MIN_BUILD =
 		GetterUtil.getInteger(
 			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_DESKTOP_MIN_BUILD));
