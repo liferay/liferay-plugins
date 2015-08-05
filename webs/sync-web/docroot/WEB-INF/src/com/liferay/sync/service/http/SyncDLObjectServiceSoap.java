@@ -268,6 +268,19 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
+	public static long getLatestModifiedTime() throws RemoteException {
+		try {
+			long returnValue = SyncDLObjectServiceUtil.getLatestModifiedTime();
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.sync.model.SyncContext getSyncContext()
 		throws RemoteException {
 		try {
@@ -282,24 +295,11 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
-	public static long getLatestModifiedTime() throws RemoteException {
+	public static java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max) throws RemoteException {
 		try {
-			long returnValue = SyncDLObjectServiceUtil.getLatestModifiedTime();
-
-			return returnValue;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long lastAccessTime) throws RemoteException {
-		try {
-			com.liferay.sync.model.SyncDLObjectUpdate returnValue = SyncDLObjectServiceUtil.getSyncDLObjectUpdate(repositoryId,
-					lastAccessTime);
+			java.lang.String returnValue = SyncDLObjectServiceUtil.getSyncDLObjectUpdate(repositoryId,
+					lastAccessTime, max);
 
 			return returnValue;
 		}

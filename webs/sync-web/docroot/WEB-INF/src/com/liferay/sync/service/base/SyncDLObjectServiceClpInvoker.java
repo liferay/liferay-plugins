@@ -111,17 +111,17 @@ public class SyncDLObjectServiceClpInvoker {
 
 		_methodParameterTypes85 = new String[] { "long" };
 
-		_methodName86 = "getSyncContext";
+		_methodName86 = "getLatestModifiedTime";
 
 		_methodParameterTypes86 = new String[] {  };
 
-		_methodName87 = "getLatestModifiedTime";
+		_methodName87 = "getSyncContext";
 
 		_methodParameterTypes87 = new String[] {  };
 
 		_methodName88 = "getSyncDLObjectUpdate";
 
-		_methodParameterTypes88 = new String[] { "long", "long" };
+		_methodParameterTypes88 = new String[] { "long", "long", "int" };
 
 		_methodName89 = "getSyncDLObjectUpdate";
 
@@ -299,18 +299,19 @@ public class SyncDLObjectServiceClpInvoker {
 
 		if (_methodName86.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
-			return SyncDLObjectServiceUtil.getSyncContext();
+			return SyncDLObjectServiceUtil.getLatestModifiedTime();
 		}
 
 		if (_methodName87.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
-			return SyncDLObjectServiceUtil.getLatestModifiedTime();
+			return SyncDLObjectServiceUtil.getSyncContext();
 		}
 
 		if (_methodName88.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
 			return SyncDLObjectServiceUtil.getSyncDLObjectUpdate(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+				((Long)arguments[1]).longValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName89.equals(name) &&

@@ -151,6 +151,10 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getLatestModifiedTime()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@com.liferay.portal.security.ac.AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncContext getSyncContext()
@@ -158,12 +162,8 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long lastAccessTime)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

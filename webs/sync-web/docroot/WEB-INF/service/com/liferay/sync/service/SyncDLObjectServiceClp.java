@@ -111,17 +111,17 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 
 		_methodParameterTypes16 = new String[] { "long" };
 
-		_methodName17 = "getSyncContext";
+		_methodName17 = "getLatestModifiedTime";
 
 		_methodParameterTypes17 = new String[] {  };
 
-		_methodName18 = "getLatestModifiedTime";
+		_methodName18 = "getSyncContext";
 
 		_methodParameterTypes18 = new String[] {  };
 
 		_methodName19 = "getSyncDLObjectUpdate";
 
-		_methodParameterTypes19 = new String[] { "long", "long" };
+		_methodParameterTypes19 = new String[] { "long", "long", "int" };
 
 		_methodName20 = "getSyncDLObjectUpdate";
 
@@ -809,14 +809,42 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	}
 
 	@Override
+	public long getLatestModifiedTime()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Long)returnObj).longValue();
+	}
+
+	@Override
 	public com.liferay.sync.model.SyncContext getSyncContext()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -842,36 +870,8 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	}
 
 	@Override
-	public long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Long)returnObj).longValue();
-	}
-
-	@Override
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long lastAccessTime)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -879,7 +879,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName19,
 					_methodParameterTypes19,
-					new Object[] { repositoryId, lastAccessTime });
+					new Object[] { repositoryId, lastAccessTime, max });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -901,7 +901,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 			}
 		}
 
-		return (com.liferay.sync.model.SyncDLObjectUpdate)ClpSerializer.translateOutput(returnObj);
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

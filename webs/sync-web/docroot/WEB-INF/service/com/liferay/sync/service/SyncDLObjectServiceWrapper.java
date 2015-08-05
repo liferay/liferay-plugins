@@ -189,6 +189,12 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
+	public long getLatestModifiedTime()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectService.getLatestModifiedTime();
+	}
+
+	@Override
 	public com.liferay.sync.model.SyncContext getSyncContext()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -196,18 +202,12 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
-	public long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _syncDLObjectService.getLatestModifiedTime();
-	}
-
-	@Override
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long lastAccessTime)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLObjectService.getSyncDLObjectUpdate(repositoryId,
-			lastAccessTime);
+			lastAccessTime, max);
 	}
 
 	@Override
