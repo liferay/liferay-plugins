@@ -25,7 +25,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 />
 
 <aui:form action="<%= portletURL %>" cssClass="form-search" method="post" name="fm1">
-	<liferay-ui:input-search placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "keywords") %>' />
+	<liferay-ui:input-search placeholder='<%= LanguageUtil.get(request, "keywords") %>' title='<%= LanguageUtil.get(request, "keywords") %>' />
 </aui:form>
 
 <liferay-ui:search-container
