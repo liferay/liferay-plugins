@@ -3806,24 +3806,26 @@ for (String path : paths) {
 
 					<echo>File changed:${watch.sources.path}</echo>
 
-					<propertyregex property="watch.deploy.path"
-								   override="true"
-								   input="${watch.sources.path}"
-								   regexp="src.*$|docroot.*$"
-								   replace=""
-								   global="false" />
+					<propertyregex
+						property="watch.deploy.path"
+						override="true"
+						input="${watch.sources.path}"
+						regexp="src.*$|docroot.*$"
+						replace=""
+						global="false"
+					/>
 
 					<echo>Deploying: ${watch.deploy.path}</echo>
 
 					<deploy
 						module.dir="${watch.deploy.path}"
-						/>
+					/>
 
 					<var name="watch.sources.path" unset="true"/>
 
 					<touch file="${watch.flagfile}"/>
 
-					<echo>Done deploying.  Watching files again.</echo>
+					<echo>Done deploying. Watching files again.</echo>
 				</sequential>
 			</outofdate>
 		</antelope:repeat>
