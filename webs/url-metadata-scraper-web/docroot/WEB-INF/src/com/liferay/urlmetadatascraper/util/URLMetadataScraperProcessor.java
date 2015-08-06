@@ -16,6 +16,7 @@ package com.liferay.urlmetadatascraper.util;
 
 import java.awt.image.BufferedImage;
 
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ public class URLMetadataScraperProcessor {
 					HttpUtil.removeProtocol(url);
 
 			Connection connection = Jsoup.connect(url);
+
+			connection.userAgent(_DEFAULT_USER_AGENT);
 
 			document = connection.get();
 		}
@@ -164,8 +167,14 @@ public class URLMetadataScraperProcessor {
 
 		URL url = new URL(imageURL);
 
+		HttpURLConnection httpURLConnection =
+			(HttpURLConnection)url.openConnection();
+
+		httpURLConnection.setRequestProperty("User-Agent", _DEFAULT_USER_AGENT);
+
 		try {
-			BufferedImage bufferedImage = ImageIO.read(url);
+			BufferedImage bufferedImage = ImageIO.read(
+				httpURLConnection.getInputStream());
 
 			if (bufferedImage == null) {
 				return false;
@@ -187,10 +196,13 @@ public class URLMetadataScraperProcessor {
 		return false;
 	}
 
-	private static int _IMAGE_AREA_MINIMUM = 1000;
+	private static final String _DEFAULT_USER_AGENT =
+		"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
 
-	private static int _IMAGE_DIMENSION_MINIMUM = 80;
+	private static final int _IMAGE_AREA_MINIMUM = 1000;
 
-	private static int _IMAGE_URLS_MAXIMUM = 10;
+	private static final int _IMAGE_DIMENSION_MINIMUM = 80;
+
+	private static final int _IMAGE_URLS_MAXIMUM = 10;
 
 }
