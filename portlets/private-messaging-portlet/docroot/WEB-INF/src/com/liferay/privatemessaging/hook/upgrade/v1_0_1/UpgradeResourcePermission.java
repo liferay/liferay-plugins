@@ -17,6 +17,7 @@
 
 package com.liferay.privatemessaging.hook.upgrade.v1_0_1;
 
+import com.liferay.message.boards.web.constants.MBPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.model.Company;
@@ -58,7 +59,7 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 		throws PortalException {
 
 		Repository repository = RepositoryLocalServiceUtil.fetchRepository(
-			group.getGroupId(), "19");
+			group.getGroupId(), MBPortletKeys.MESSAGE_BOARDS);
 
 		if (repository == null) {
 			return;
