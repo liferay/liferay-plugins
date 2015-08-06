@@ -120,10 +120,10 @@
 	</path>
 
 	<path id="classpath.org.apache.maven.maven.ant.tasks">
-		<fileset dir="${sdk.dir}/dependencies/org.apache.maven.maven.ant.tasks/lib" includes="*.jar"/>
+		<fileset dir="${sdk.dir}/dependencies/org.apache.maven.maven.ant.tasks/lib" includes="*.jar" />
 	</path>
 
-	<taskdef classpathref="classpath.org.apache.maven.maven.ant.tasks" resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant"/>
+	<taskdef classpathref="classpath.org.apache.maven.maven.ant.tasks" resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" />
 
 	<path id="classpath.org.codehaus.groovy">
 		<fileset dir="${sdk.dir}/dependencies/org.codehaus.groovy/lib" includes="*.jar" />
@@ -3777,7 +3777,7 @@ for (String path : paths) {
 	</target>
 
 	<target name="watch">
-		<touch mkdirs="true" file="${sdk.dir}/tmp/watch.flagfile"/>
+		<touch mkdirs="true" file="${sdk.dir}/tmp/watch.flagfile" />
 		<property name="watch.flagfile" location="${sdk.dir}/tmp/watch.flagfile" />
 
 		<antelope:repeat count="-1" interval="2">
@@ -3799,10 +3799,10 @@ for (String path : paths) {
 					</fileset>
 				</sourcefiles>
 				<targetfiles>
-					<pathelement location="${watch.flagfile}"/>
+					<pathelement location="${watch.flagfile}" />
 				</targetfiles>
 				<sequential>
-					<property refid="watch.sources.path" name="watch.sources.path"/>
+					<property refid="watch.sources.path" name="watch.sources.path" />
 
 					<echo>File changed:${watch.sources.path}</echo>
 
@@ -3821,9 +3821,9 @@ for (String path : paths) {
 						module.dir="${watch.deploy.path}"
 					/>
 
-					<var name="watch.sources.path" unset="true"/>
+					<var name="watch.sources.path" unset="true" />
 
-					<touch file="${watch.flagfile}"/>
+					<touch file="${watch.flagfile}" />
 
 					<echo>Done deploying. Watching files again.</echo>
 				</sequential>
