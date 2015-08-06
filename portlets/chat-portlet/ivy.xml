@@ -11,7 +11,7 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency org="org.igniterealtime.smack" name="smack" rev="3.2.1" />
-		<dependency org="org.igniterealtime.smack" name="smackx" rev="3.2.1" />
+		<dependency name="smack" org="org.igniterealtime.smack" rev="3.2.1" />
+		<dependency name="smackx" org="org.igniterealtime.smack" rev="3.2.1" />
 	</dependencies>
 </ivy-module>
