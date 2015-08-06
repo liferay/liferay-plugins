@@ -32,7 +32,6 @@ import com.liferay.portal.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 
 import java.util.List;
@@ -59,7 +58,7 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 		throws PortalException {
 
 		Repository repository = RepositoryLocalServiceUtil.fetchRepository(
-			group.getGroupId(), PortletKeys.MESSAGE_BOARDS);
+			group.getGroupId(), "19");
 
 		if (repository == null) {
 			return;
