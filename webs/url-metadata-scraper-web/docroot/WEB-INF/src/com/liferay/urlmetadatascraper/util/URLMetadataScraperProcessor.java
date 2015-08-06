@@ -122,7 +122,9 @@ public class URLMetadataScraperProcessor {
 		for (Element imageElement : imageElements) {
 			String imageURL = imageElement.absUrl("src");
 
-			if (isValidImageURL(imageURL) && !imageURLs.contains(imageURL)) {
+			if (isValidImageElement(imageElement) &&
+				isValidImageURL(imageURL) && !imageURLs.contains(imageURL)) {
+
 				imageURLs.add(imageURL);
 
 				if (imageURLs.size() >= _IMAGE_URLS_MAXIMUM) {
@@ -158,6 +160,30 @@ public class URLMetadataScraperProcessor {
 		}
 
 		return StringUtil.shorten(title, 200);
+	}
+
+	protected boolean isValidImageElement(Element imageElement)
+		throws Exception {
+
+		int height = GetterUtil.getInteger(imageElement.attr("width"));
+
+		if ((height > 0) && (height < _IMAGE_DIMENSION_MINIMUM)) {
+			return false;
+		}
+
+		int width = GetterUtil.getInteger(imageElement.attr("width"));
+
+		if ((width > 0) && (width < _IMAGE_DIMENSION_MINIMUM)) {
+			return false;
+		}
+
+		if ((height > 0) && (width > 0) &&
+			((height * width) < _IMAGE_AREA_MINIMUM)) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	protected boolean isValidImageURL(String imageURL) throws Exception {
