@@ -165,7 +165,7 @@ public class URLMetadataScraperProcessor {
 	protected boolean isValidImageElement(Element imageElement)
 		throws Exception {
 
-		int height = GetterUtil.getInteger(imageElement.attr("width"));
+		int height = GetterUtil.getInteger(imageElement.attr("height"));
 
 		if ((height > 0) && (height < _IMAGE_DIMENSION_MINIMUM)) {
 			return false;
