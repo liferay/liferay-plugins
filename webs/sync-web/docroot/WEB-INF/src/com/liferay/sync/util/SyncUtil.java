@@ -428,23 +428,8 @@ public class SyncUtil {
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
 		syncDLObject.setCompanyId(dlFileVersion.getCompanyId());
-
-		long userId = 0;
-		String userName = StringPool.BLANK;
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		if (permissionChecker != null) {
-			User user = permissionChecker.getUser();
-
-			userId = user.getUserId();
-			userName = user.getFullName();
-		}
-
-		syncDLObject.setUserId(userId);
-		syncDLObject.setUserName(userName);
-
+		syncDLObject.setUserId(dlFileVersion.getUserId());
+		syncDLObject.setUserName(dlFileVersion.getUserName());
 		syncDLObject.setCreateDate(dlFileVersion.getCreateDate());
 		syncDLObject.setModifiedDate(dlFileVersion.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFileVersion.getRepositoryId());
