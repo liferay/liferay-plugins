@@ -3777,8 +3777,9 @@ for (String path : paths) {
 	</target>
 
 	<target name="watch">
-		<touch mkdirs="true" file="${sdk.dir}/tmp/watch.flagfile" />
-		<property name="watch.flagfile" location="${sdk.dir}/tmp/watch.flagfile" />
+		<property name="watch.flag.file" location="${sdk.dir}/tmp/watch.flag" />
+
+		<touch file="${watch.flag.file}" mkdirs="true" />
 
 		<antelope:repeat count="-1" interval="2">
 			<outofdate outputsourcespath="watch.sources.path">
@@ -3799,12 +3800,12 @@ for (String path : paths) {
 					</fileset>
 				</sourcefiles>
 				<targetfiles>
-					<pathelement location="${watch.flagfile}" />
+					<pathelement location="${watch.flag.file}" />
 				</targetfiles>
 				<sequential>
 					<property refid="watch.sources.path" name="watch.sources.path" />
 
-					<echo>File changed:${watch.sources.path}</echo>
+					<echo>Detected a modification in ${watch.sources.path}.</echo>
 
 					<propertyregex
 						global="false"
@@ -3815,7 +3816,7 @@ for (String path : paths) {
 						replace=""
 					/>
 
-					<echo>Deploying: ${watch.deploy.path}</echo>
+					<echo>Deploying ${watch.deploy.path}.</echo>
 
 					<deploy
 						module.dir="${watch.deploy.path}"
@@ -3823,9 +3824,9 @@ for (String path : paths) {
 
 					<var name="watch.sources.path" unset="true" />
 
-					<touch file="${watch.flagfile}" />
+					<touch file="${watch.flag.file}" />
 
-					<echo>Done deploying. Watching files again.</echo>
+					<echo>Finished deployment. Watching files again.</echo>
 				</sequential>
 			</outofdate>
 		</antelope:repeat>
