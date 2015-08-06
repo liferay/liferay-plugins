@@ -23,7 +23,12 @@ MBCategory mbCategory = (MBCategory)row.getObject();
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
-	<liferay-portlet:renderURL plid="<%= PortalUtil.getPlidFromPortletId(mbCategory.getGroupId(), PortletKeys.MESSAGE_BOARDS) %>" portletName="<%= PortletKeys.MESSAGE_BOARDS %>" var="viewURL">
+
+	<%
+	String portletId = PortletProviderUtil.getPortletId(MBMessage.class.getName(), PortletProvider.Action.VIEW);
+	%>
+
+	<liferay-portlet:renderURL plid="<%= PortalUtil.getPlidFromPortletId(mbCategory.getGroupId(), portletId) %>" portletName="<%= portletId %>" var="viewURL">
 		<portlet:param name="struts_action" value="/message_boards/view" />
 		<portlet:param name="mbCategoryId" value="<%= String.valueOf(mbCategory.getCategoryId()) %>" />
 	</liferay-portlet:renderURL>
