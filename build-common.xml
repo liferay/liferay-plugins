@@ -3803,7 +3803,7 @@ for (String path : paths) {
 					<pathelement location="${watch.flag.file}" />
 				</targetfiles>
 				<sequential>
-					<property refid="watch.sources.path" name="watch.sources.path" />
+					<property name="watch.sources.path" refid="watch.sources.path" />
 
 					<echo>Detected a modification in ${watch.sources.path}.</echo>
 
