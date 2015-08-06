@@ -93,6 +93,7 @@ public class SyncServletContextListener
 
 				values.put("event", dlSyncEvent.getEvent());
 				values.put("modifiedTime", dlSyncEvent.getModifiedTime());
+				values.put("syncEventId", dlSyncEvent.getSyncEventId());
 				values.put("type", dlSyncEvent.getType());
 				values.put("typePK", dlSyncEvent.getTypePK());
 
@@ -102,8 +103,6 @@ public class SyncServletContextListener
 					DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
 					message);
 			}
-
-			DLSyncEventLocalServiceUtil.deleteDLSyncEvents();
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -112,8 +111,6 @@ public class SyncServletContextListener
 
 	@Override
 	protected void doPortalDestroy() throws Exception {
-		DLSyncEventLocalServiceUtil.deleteDLSyncEvents();
-
 		MessageBusUtil.unregisterMessageListener(
 			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
 			_syncDLObjectMessageListener);
