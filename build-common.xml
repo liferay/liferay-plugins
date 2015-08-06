@@ -3826,7 +3826,7 @@ for (String path : paths) {
 
 					<touch file="${watch.flag.file}" />
 
-					<echo>Finished deployment. Watching files again.</echo>
+					<echo>Finished deployment. Watching for additional modifications.</echo>
 				</sequential>
 			</outofdate>
 		</antelope:repeat>
