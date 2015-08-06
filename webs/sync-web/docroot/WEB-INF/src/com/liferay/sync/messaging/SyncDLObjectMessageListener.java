@@ -14,7 +14,9 @@
 
 package com.liferay.sync.messaging;
 
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -26,8 +28,10 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
+import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
@@ -148,14 +152,45 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 		}
 	}
 
+	protected void deleteDLSyncEvent(
+			long modifiedTime, long syncEventId, long typePK)
+		throws Exception {
+
+		if (syncEventId != 0) {
+			DLSyncEventLocalServiceUtil.deleteDLSyncEvent(syncEventId);
+
+			return;
+		}
+
+		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
+
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.eq("modifiedTime", modifiedTime));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("typePK", typePK));
+
+		List<DLSyncEvent> dlSyncEvents =
+			DLSyncEventLocalServiceUtil.dynamicQuery(dynamicQuery);
+
+		if (dlSyncEvents.isEmpty()) {
+			return;
+		}
+
+		DLSyncEvent dlSyncEvent = dlSyncEvents.get(0);
+
+		DLSyncEventLocalServiceUtil.deleteDLSyncEvent(dlSyncEvent);
+	}
+
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		String event = message.getString("event");
 		long modifiedTime = message.getLong("modifiedTime");
+		long syncEventId = message.getLong("syncEventId");
 		String type = message.getString("type");
 		long typePK = message.getLong("typePK");
 
 		addSyncDLObject(modifiedTime, event, type, typePK);
+
+		deleteDLSyncEvent(modifiedTime, syncEventId, typePK);
 	}
 
 }
