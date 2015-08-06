@@ -3807,12 +3807,12 @@ for (String path : paths) {
 					<echo>File changed:${watch.sources.path}</echo>
 
 					<propertyregex
-						property="watch.deploy.path"
-						override="true"
+						global="false"
 						input="${watch.sources.path}"
+						override="true"
+						property="watch.deploy.path"
 						regexp="src.*$|docroot.*$"
 						replace=""
-						global="false"
 					/>
 
 					<echo>Deploying: ${watch.deploy.path}</echo>
