@@ -79,11 +79,11 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 					JSONObject newImageJSONObject =
 						JSONFactoryUtil.createJSONObject();
 
-					JSONObject imageJSONObject =
-						imageDataJSONArray.getJSONObject(i);
-
 					JSONObject fileEntryIdsJSONObject =
 						JSONFactoryUtil.createJSONObject();
+
+					JSONObject imageJSONObject =
+						imageDataJSONArray.getJSONObject(i);
 
 					for (String imageType :
 							PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
