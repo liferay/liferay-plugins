@@ -53,8 +53,8 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 			rs = ps.executeQuery();
 
 			ps = con.prepareStatement(
-				"update AssetEntrySet set payload = ? where assetEntrySetId =" +
-					" ?");
+				"update AssetEntrySet set payload = ? where assetEntrySetId " +
+					"= ?");
 
 			while (rs.next()) {
 				long assetEntrySetId = rs.getLong("assetEntrySetId");
