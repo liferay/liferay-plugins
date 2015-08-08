@@ -74,25 +74,17 @@ public class AMICleaner extends BaseAMITool {
 	public AMICleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
 
-		if (isAcknowledged("Do you want to delete available Volumes?")) {
-			System.out.println("Deleting available Volumes");
+		System.out.println("Deleting available Volumes");
 
-			deleteAvailableVolumes();
-		}
+		deleteAvailableVolumes();
 
-		if (isAcknowledged(
-				"Do you want to delete old Launch Configurations?")) {
+		System.out.println("Deleting old Launch Configurations");
 
-			System.out.println("Deleting old Launch Configurations");
+		deleteOldLaunchConfigurations();
 
-			deleteOldLaunchConfigurations();
-		}
+		System.out.println("Deleting unused AMIs");
 
-		if (isAcknowledged("Do you want to delete unused AMIs?")) {
-			System.out.println("Deleting unused AMIs");
-
-			deleteOldAMIs();
-		}
+		deleteOldAMIs();
 	}
 
 	protected void deleteAvailableVolumes() {
@@ -124,14 +116,12 @@ public class AMICleaner extends BaseAMITool {
 	}
 
 	protected void deleteOldAMIs() {
-		Set<String> amisInUse = getAMIsInUse();
+		Set<String> imageIds = getImageIds();
 
-		List<String> unusedAMIs = getUnusedAMIs(getUserId(), amisInUse);
+		List<String> unusedImageIds = getUnusedImageIds(getUserId(), imageIds);
 
-		for (String unusedAMI : unusedAMIs) {
-			if (isAcknowledged("Delete AMI with ID " + unusedAMI + "?")) {
-				deleteAMI(unusedAMI);
-			}
+		for (String imageId : unusedImageIds) {
+			deleteAMI(imageId);
 		}
 	}
 
@@ -166,24 +156,26 @@ public class AMICleaner extends BaseAMITool {
 		}
 	}
 
-	protected Set<String> getAMIsInUse() {
+	protected Set<String> getImageIds() {
 		DescribeInstancesResult describeInstancesResult =
 			amazonEC2Client.describeInstances();
 
-		Set<String> amis = new HashSet<String>();
+		Set<String> imageIds = new HashSet<String>();
 
 		for (Reservation reservation :
 				describeInstancesResult.getReservations()) {
 
 			for (Instance instance : reservation.getInstances()) {
-				amis.add(instance.getImageId());
+				imageIds.add(instance.getImageId());
 			}
 		}
 
-		return amis;
+		return imageIds;
 	}
 
-	protected List<String> getUnusedAMIs(String userId, Set<String> amisInUse) {
+	protected List<String> getUnusedImageIds(
+		String userId, Set<String> imageIds) {
+
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
 
@@ -198,24 +190,24 @@ public class AMICleaner extends BaseAMITool {
 
 		List<Image> images = describeImagesResult.getImages();
 
-		List<String> unusedAMIs = new ArrayList<String>();
+		List<String> unusedImageIds = new ArrayList<String>();
 
 		for (Image image : images) {
 			String imageName = image.getName();
 
-			if ((imageName != null) &&
-				imageName.startsWith("osb-lcs-") &&
-				!amisInUse.contains(image.getImageId())) {
+			if ((imageName != null) && imageName.startsWith("osb-lcs-") &&
+				!imageIds.contains(image.getImageId())) {
 
-				unusedAMIs.add(image.getImageId());
+				unusedImageIds.add(image.getImageId());
 			}
 		}
 
-		return unusedAMIs;
+		return unusedImageIds;
 	}
 
 	protected String getUserId() {
 		String userId = null;
+
 		try {
 			GetUserResult getUserResult =
 				amazonIdentityManagementClient.getUser();
@@ -225,25 +217,26 @@ public class AMICleaner extends BaseAMITool {
 			userId = user.getUserId();
 		}
 		catch (AmazonServiceException e) {
-			if (e.getErrorCode().compareTo("AccessDenied") == 0) {
-				String msg = e.getMessage();
+			String errorCode = e.getErrorCode();
 
-				int startIndex = msg.indexOf("::");
+			if (errorCode.compareTo("AccessDenied") == 0) {
+				String message = e.getMessage();
 
-				int endIndex = msg.indexOf(":", startIndex + 2);
+				int start = message.indexOf("::");
+				int end = message.indexOf(":", start + 2);
 
-				userId = msg.substring(startIndex + 2, endIndex);
+				userId = message.substring(start + 2, end);
 			}
 		}
 
 		return userId;
 	}
 
-	private void deleteAMI(String unusedAMI) {
+	private void deleteAMI(String imageId) {
 		DeregisterImageRequest deregisterImageRequest =
 			new DeregisterImageRequest();
 
-		deregisterImageRequest.setImageId(unusedAMI);
+		deregisterImageRequest.setImageId(imageId);
 
 		amazonEC2Client.deregisterImage(deregisterImageRequest);
 	}

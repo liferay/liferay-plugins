@@ -60,13 +60,11 @@ public class AlarmCleaner extends BaseAMITool {
 	public AlarmCleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
 
-		if (isAcknowledged("Do you want to Metric Alarms?")) {
-			deleteMetricAlarms();
-		}
+		deleteMetricAlarms();
 	}
 
-	public List<String> getActiveAutoScalingGroups() {
-		List<String> allAutoScalingGroups = new ArrayList<String>();
+	public List<String> getActiveAutoScalingGroupNames() {
+		List<String> autoScalingGroupNames = new ArrayList<String>();
 
 		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
 			amazonAutoScalingClient.describeAutoScalingGroups();
@@ -75,53 +73,67 @@ public class AlarmCleaner extends BaseAMITool {
 			describeAutoScalingGroupsResult.getAutoScalingGroups();
 
 		for (AutoScalingGroup autoScalingGroup : autoScalingGroups) {
-			allAutoScalingGroups.add(
+			autoScalingGroupNames.add(
 				autoScalingGroup.getAutoScalingGroupName());
 		}
 
-		return allAutoScalingGroups;
+		return autoScalingGroupNames;
 	}
 
 	private void deleteMetricAlarms() {
 		System.out.println("Finding Metric Alarms for deleting...");
 
-		Map<String, String> allMetricAlarms = getAllMetricAlarms();
+		Map<String, String> autoScalingGroupsMetricAlarms =
+			getAutoScalingGroupsMetricAlarms();
 
-		List<String> activeAutoScalingGroups = getActiveAutoScalingGroups();
+		List<String> activeAutoScalingGroupNames =
+			getActiveAutoScalingGroupNames();
 
-		List<String> allMetricAlarmsForDeleting =
-			getAllMetricAlarmsForDeleting(
-				allMetricAlarms, activeAutoScalingGroups);
+		List<String> inactiveMetricAlarms =
+			getInactiveMetricAlarms(
+				autoScalingGroupsMetricAlarms, activeAutoScalingGroupNames);
 
-		for (String metricAlarmName : allMetricAlarmsForDeleting) {
-			if (isAcknowledged("Delete Metric Alarm " + metricAlarmName +"?")) {
-				System.out.println("Deleting Metric Alarm " + metricAlarmName);
+		for (String metricAlarmName : inactiveMetricAlarms) {
+			System.out.println("Deleting Metric Alarm " + metricAlarmName);
 
-				DeleteAlarmsRequest deleteAlarmsRequest =
-					new DeleteAlarmsRequest();
+			DeleteAlarmsRequest deleteAlarmsRequest = new DeleteAlarmsRequest();
 
-				List<String> alarmNames = new ArrayList<String>();
+			List<String> metricAlarmNames = new ArrayList<String>();
 
-				alarmNames.add(metricAlarmName);
+			metricAlarmNames.add(metricAlarmName);
 
-				deleteAlarmsRequest.setAlarmNames(alarmNames);
+			deleteAlarmsRequest.setAlarmNames(metricAlarmNames);
 
-				amazonCloudWatchClient.deleteAlarms(deleteAlarmsRequest);
-			}
+			amazonCloudWatchClient.deleteAlarms(deleteAlarmsRequest);
 		}
 	}
 
-	private Map<String, String> getAllMetricAlarms() {
-		Map<String, String> metricAlarmsMap = new HashMap<String, String>();
+	private String getAutoScalingGroupName(List<Dimension> dimensions) {
+		for (Dimension dimension : dimensions) {
+			String name = dimension.getName();
+
+			if (name.equals("AutoScalingGroupName")) {
+				return dimension.getValue();
+			}
+		}
+
+		return null;
+	}
+
+	private Map<String, String> getAutoScalingGroupsMetricAlarms() {
+		Map<String, String> autoScalingGroupsMetricAlarms =
+			new HashMap<String, String>();
 
 		DescribeAlarmsResult describeAlarmsResult =
 			amazonCloudWatchClient.describeAlarms();
 
 		String nextToken = null;
+
 		do {
 			if (nextToken != null) {
 				DescribeAlarmsRequest describeAlarmsRequest =
 					new DescribeAlarmsRequest();
+
 				describeAlarmsRequest.setNextToken(nextToken);
 
 				describeAlarmsResult =
@@ -133,46 +145,38 @@ public class AlarmCleaner extends BaseAMITool {
 				describeAlarmsResult.getMetricAlarms();
 
 			for (MetricAlarm metricAlarm : metricAlarms) {
-				String autoScalingGroup = getAutoScalingGroup(
+				String autoScalingGroupName = getAutoScalingGroupName(
 					metricAlarm.getDimensions());
 
-				if (autoScalingGroup != null) {
-					metricAlarmsMap.put(
-						autoScalingGroup, metricAlarm.getAlarmName());
+				if (autoScalingGroupName != null) {
+					autoScalingGroupsMetricAlarms.put(
+						autoScalingGroupName, metricAlarm.getAlarmName());
 				}
 			}
 
 			nextToken = describeAlarmsResult.getNextToken();
+		}
+		while (nextToken != null);
 
-		} while (nextToken != null);
-
-		return metricAlarmsMap;
+		return autoScalingGroupsMetricAlarms;
 	}
 
-	private List<String> getAllMetricAlarmsForDeleting(
-		Map<String, String> allMetricAlarms,
+	private List<String> getInactiveMetricAlarms(
+		Map<String, String> autoScalingGroupsMetricAlarms,
 		List<String> activeAutoScalingGroups) {
 
-		List<String> allMetricAlarmsForDeleting = new ArrayList<String>();
+		List<String> inactiveMetricAlarms = new ArrayList<String>();
 
-		for (String autoScalingGroupName : allMetricAlarms.keySet()) {
+		for (String autoScalingGroupName :
+				autoScalingGroupsMetricAlarms.keySet()) {
+
 			if (!activeAutoScalingGroups.contains(autoScalingGroupName)) {
-				allMetricAlarmsForDeleting.add(
-					allMetricAlarms.get(autoScalingGroupName));
+				inactiveMetricAlarms.add(
+					autoScalingGroupsMetricAlarms.get(autoScalingGroupName));
 			}
 		}
 
-		return allMetricAlarmsForDeleting;
-	}
-
-	private String getAutoScalingGroup(List<Dimension> dimensions) {
-		for (Dimension dimension : dimensions) {
-			if (dimension.getName().equals("AutoScalingGroupName")) {
-				return dimension.getValue();
-			}
-		}
-
-		return null;
+		return inactiveMetricAlarms;
 	}
 
 }
