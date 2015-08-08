@@ -28,7 +28,6 @@ import com.amazonaws.services.identitymanagement.AmazonIdentityManagementClient;
 import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
 import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
 
-import java.io.Console;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
@@ -167,16 +166,6 @@ public class BaseAMITool {
 		return image.getImageId();
 	}
 
-	protected String getInputYN(String prompt) {
-		System.out.println(prompt + " (y/n): ");
-
-		Console console = System.console();
-
-		String input = console.readLine();
-
-		return input;
-	}
-
 	protected JSONWebServiceClient getJSONWebServiceClient(
 		String hostName, int hostPort, String keyStorePath,
 		String keyStorePassword, String login, String password) {
@@ -250,16 +239,6 @@ public class BaseAMITool {
 		}
 
 		return properties;
-	}
-
-	protected boolean isAcknowledged(String prompt) {
-		String inputYN = getInputYN(prompt);
-
-		if (inputYN.equalsIgnoreCase("y") || inputYN.equalsIgnoreCase("yes")) {
-			return true;
-		}
-
-		return false;
 	}
 
 	protected void sleep(long timeout) {
