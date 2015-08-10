@@ -266,7 +266,7 @@ public class AMIBuilder extends BaseAMITool {
 		return provisioners;
 	}
 
-	protected Instance getRunningInstance(String instanceId) {
+	protected Instance getInstance(String instanceId, String state) {
 		DescribeInstancesRequest describeInstancesRequest =
 			new DescribeInstancesRequest();
 
@@ -278,7 +278,7 @@ public class AMIBuilder extends BaseAMITool {
 
 		List<String> values = new ArrayList<>();
 
-		values.add("running");
+		values.add(state);
 
 		filter.setValues(values);
 
@@ -522,34 +522,40 @@ public class AMIBuilder extends BaseAMITool {
 
 		boolean running = false;
 
-		for (int i = 0; i < 6; i++) {
+		int i = 0;
+
+		do {
+			System.out.println("Waiting for running instance... ("  + i + ")" );
+
+			i = i + 1;
+
 			sleep(30);
 
-			instance = getRunningInstance(_instanceId);
+			instance = getInstance(_instanceId, "pending");
+		} while (instance != null);
 
-			if (instance != null) {
-				_publicIpAddress = instance.getPublicIpAddress();
+		instance = getInstance(_instanceId, "running");
 
-				running = true;
+		if (instance != null) {
+			_publicIpAddress = instance.getPublicIpAddress();
 
-				sb = new StringBuilder(7);
+			running = true;
 
-				sb.append("{instanceId=");
-				sb.append(_instanceId);
-				sb.append(", publicIpAddress=");
-				sb.append(_publicIpAddress);
-				sb.append(", stat=");
+			sb = new StringBuilder(7);
 
-				instanceState = instance.getState();
+			sb.append("{instanceId=");
+			sb.append(_instanceId);
+			sb.append(", publicIpAddress=");
+			sb.append(_publicIpAddress);
+			sb.append(", stat=");
 
-				sb.append(instanceState.getName());
+			instanceState = instance.getState();
 
-				sb.append("}");
+			sb.append(instanceState.getName());
 
-				System.out.println("Started instance " + sb.toString());
+			sb.append("}");
 
-				break;
-			}
+			System.out.println("Started instance " + sb.toString());
 		}
 
 		if (!running) {
