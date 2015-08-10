@@ -15,12 +15,14 @@
 package com.liferay.marketplace.store.portlet;
 
 import com.liferay.marketplace.oauth.util.OAuthUtil;
+import com.liferay.marketplace.util.WebKeys;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -35,15 +37,20 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
+import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.scribe.model.OAuthConstants;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
+import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 /**
@@ -52,10 +59,45 @@ import org.scribe.oauth.OAuthService;
  */
 public class RemoteMVCPortlet extends MVCPortlet {
 
+	public void authorize(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String callbackURL = ParamUtil.getString(actionRequest, "callbackURL");
+
+		OAuthService oAuthService = OAuthUtil.getOAuthService();
+
+		Token requestToken = oAuthService.getRequestToken();
+
+		PortletSession portletSession = actionRequest.getPortletSession();
+
+		portletSession.setAttribute(WebKeys.OAUTH_REQUEST_TOKEN, requestToken);
+
+		String redirect = oAuthService.getAuthorizationUrl(requestToken);
+
+		redirect = HttpUtil.addParameter(
+			redirect, OAuthConstants.CALLBACK, callbackURL);
+
+		actionResponse.sendRedirect(redirect);
+	}
+
 	@Override
 	public void processAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
+
+		try {
+			String actionName = ParamUtil.getString(
+				actionRequest, ActionRequest.ACTION_NAME);
+
+			getActionMethod(actionName);
+
+			super.processAction(actionRequest, actionResponse);
+
+			return;
+		}
+		catch (NoSuchMethodException nsme) {
+		}
 
 		try {
 			remoteProcessAction(actionRequest, actionResponse);
@@ -73,22 +115,38 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		String remoteMVCPath = renderRequest.getParameter("remoteMVCPath");
+		try {
+			HttpServletRequest httpServletRequest =
+				PortalUtil.getHttpServletRequest(renderRequest);
 
-		if (remoteMVCPath != null) {
-			try {
+			httpServletRequest = PortalUtil.getOriginalServletRequest(
+				httpServletRequest);
+
+			String oAuthVerifier = httpServletRequest.getParameter(
+				OAuthConstants.VERIFIER);
+
+			System.out.println(oAuthVerifier);
+
+			if (oAuthVerifier != null) {
+				updateAccessToken(renderRequest, oAuthVerifier);
+			}
+
+			String remoteMVCPath = renderRequest.getParameter("remoteMVCPath");
+
+			if (remoteMVCPath != null) {
 				remoteRender(renderRequest, renderResponse);
-			}
-			catch (IOException ioe) {
-				throw ioe;
-			}
-			catch (Exception e) {
-				throw new PortletException(e);
+
+				return;
 			}
 		}
-		else {
-			super.render(renderRequest, renderResponse);
+		catch (IOException ioe) {
+			throw ioe;
 		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+
+		super.render(renderRequest, renderResponse);
 	}
 
 	@Override
@@ -217,6 +275,28 @@ public class RemoteMVCPortlet extends MVCPortlet {
 				oAuthRequest, serverNamespace.concat(entry.getKey()),
 				values[0]);
 		}
+	}
+
+	protected void updateAccessToken(
+			RenderRequest renderRequest, String oAuthVerifier)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletSession portletSession = renderRequest.getPortletSession();
+
+		Token requestToken = (Token)portletSession.getAttribute(
+			WebKeys.OAUTH_REQUEST_TOKEN);
+
+		OAuthService oAuthService = OAuthUtil.getOAuthService();
+
+		Token accessToken = oAuthService.getAccessToken(
+			requestToken, new Verifier(oAuthVerifier));
+
+		OAuthUtil.updateAccessToken(themeDisplay.getUser(), accessToken);
+
+		portletSession.removeAttribute(WebKeys.OAUTH_REQUEST_TOKEN);
 	}
 
 }
