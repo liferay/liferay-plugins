@@ -18,6 +18,7 @@ import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.marketplace.model.App;
+import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceUtil;
@@ -34,6 +35,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.URL;
@@ -41,6 +43,10 @@ import java.net.URL;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
+import org.scribe.model.Token;
 
 /**
  * @author Ryan Park
@@ -302,6 +308,31 @@ public class StorePortlet extends RemoteMVCPortlet {
 		}
 
 		return true;
+	}
+
+	@Override
+	protected void doDispatch(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			Token accessToken = OAuthUtil.getAccessToken(
+				themeDisplay.getUser());
+
+			if (accessToken == null) {
+				include("/store/login.jsp", renderRequest, renderResponse);
+
+				return;
+			}
+		}
+		catch (Exception pe) {
+			throw new PortletException(pe);
+		}
+
+		super.doDispatch(renderRequest, renderResponse);
 	}
 
 	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
