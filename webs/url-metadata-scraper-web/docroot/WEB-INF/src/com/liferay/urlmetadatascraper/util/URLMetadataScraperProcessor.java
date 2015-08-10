@@ -50,7 +50,7 @@ public class URLMetadataScraperProcessor {
 
 			Connection connection = Jsoup.connect(url);
 
-			connection.userAgent(_DEFAULT_USER_AGENT);
+			connection.userAgent(_USER_AGENT_DEFAULT);
 
 			document = connection.get();
 		}
@@ -196,7 +196,7 @@ public class URLMetadataScraperProcessor {
 		HttpURLConnection httpURLConnection =
 			(HttpURLConnection)url.openConnection();
 
-		httpURLConnection.setRequestProperty("User-Agent", _DEFAULT_USER_AGENT);
+		httpURLConnection.setRequestProperty("User-Agent", _USER_AGENT_DEFAULT);
 
 		try {
 			BufferedImage bufferedImage = ImageIO.read(
@@ -222,7 +222,7 @@ public class URLMetadataScraperProcessor {
 		return false;
 	}
 
-	private static final String _DEFAULT_USER_AGENT =
+	private static final String _USER_AGENT_DEFAULT =
 		"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
 
 	private static final int _IMAGE_AREA_MINIMUM = 1000;
