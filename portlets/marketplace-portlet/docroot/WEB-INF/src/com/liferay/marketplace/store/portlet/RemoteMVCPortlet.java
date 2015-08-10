@@ -63,17 +63,17 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String callbackURL = ParamUtil.getString(actionRequest, "callbackURL");
+		PortletSession portletSession = actionRequest.getPortletSession();
 
 		OAuthService oAuthService = OAuthUtil.getOAuthService();
 
 		Token requestToken = oAuthService.getRequestToken();
 
-		PortletSession portletSession = actionRequest.getPortletSession();
-
 		portletSession.setAttribute(WebKeys.OAUTH_REQUEST_TOKEN, requestToken);
 
 		String redirect = oAuthService.getAuthorizationUrl(requestToken);
+
+		String callbackURL = ParamUtil.getString(actionRequest, "callbackURL");
 
 		redirect = HttpUtil.addParameter(
 			redirect, OAuthConstants.CALLBACK, callbackURL);
