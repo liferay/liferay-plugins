@@ -63,10 +63,10 @@ public class S3Cleaner extends BaseAMITool {
 	public S3Cleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
 
-		deleteS3Buckets();
+		deleteBucketNames();
 	}
 
-	private void deleteBucket(String bucketName) {
+	protected void deleteBucketName(String bucketName) {
 		ObjectListing objectListing = amazonS3Client.listObjects(bucketName);
 
 		List<S3ObjectSummary> objectSummaries =
@@ -93,39 +93,78 @@ public class S3Cleaner extends BaseAMITool {
 		amazonS3Client.deleteBucket(bucketName);
 	}
 
-	private void deleteS3Buckets() {
+	protected void deleteBucketNames() {
 		System.out.println("Finding S3 buckets for deleting...");
 
-		List<String> activeLaunchConfigurationNames =
-			getActiveLaunchConfigurationNames();
+		List<String> launchConfigurationNames = getLaunchConfigurationNames();
 
-		List<String> activeAMIs = getAMIForLunchConfigurations(
-			activeLaunchConfigurationNames);
+		List<String> imageIds = getImageIds(launchConfigurationNames);
 
-		List<String> amiNames = getAMINames(activeAMIs);
+		List<String> imageNames = getImageNames(imageIds);
 
 		List<String> timestamps = new ArrayList<String>();
 
-		for (String amiName : amiNames) {
-			timestamps.add(getTimestamp(amiName));
+		for (String imageName : imageNames) {
+			timestamps.add(getTimestamp(imageName));
 		}
 
-		List<String> s3BucketNamesForDeleting = getS3BucketNamesForDeleting(
-			timestamps);
+		List<String> bucketNames = getBucketNames(timestamps);
 
-		for (String s3BucketName : s3BucketNamesForDeleting) {
-			if (isAcknowledged("Delete bucket " + s3BucketName +"?")) {
-				System.out.println(
-					"Deleting Bucket " +
-						s3BucketName + " and all its contents");
+		for (String bucketName : bucketNames) {
+			System.out.println("Deleting Bucket " + bucketName);
 
-				deleteBucket(s3BucketName);
-			}
+			deleteBucketName(bucketName);
 		}
 	}
 
-	private List<String> getActiveLaunchConfigurationNames() {
-		List<String> activeLaunchConfigurationNames = new ArrayList<String>();
+	protected List<String> getBucketNames(List<String> timestamps) {
+		List<String> bucketNames = new ArrayList<String>();
+
+		List<Bucket> buckets = amazonS3Client.listBuckets();
+
+		for (Bucket bucket : buckets) {
+			String name = bucket.getName();
+
+			if (name.startsWith("frw-cluster") ||
+				name.startsWith("lcs-cluster")) {
+
+				String timestamp = getTimestamp(name);
+
+				if (!timestamps.contains(timestamp)) {
+					bucketNames.add(bucket.getName());
+				}
+			}
+		}
+
+		return bucketNames;
+	}
+
+	protected List<String> getImageIds(List<String> launchConfigurationNames) {
+		DescribeLaunchConfigurationsRequest
+			describeLaunchConfigurationsRequest =
+				new DescribeLaunchConfigurationsRequest();
+
+		describeLaunchConfigurationsRequest.setLaunchConfigurationNames(
+			launchConfigurationNames);
+
+		DescribeLaunchConfigurationsResult
+			describeLaunchConfigurationsResult =
+				amazonAutoScalingClient.describeLaunchConfigurations(
+					describeLaunchConfigurationsRequest);
+
+		List<String> imageIds = new ArrayList<String>();
+
+		for (LaunchConfiguration launchConfiguration :
+				describeLaunchConfigurationsResult.getLaunchConfigurations()) {
+
+			imageIds.add(launchConfiguration.getImageId());
+		}
+
+		return imageIds;
+	}
+
+	protected List<String> getLaunchConfigurationNames() {
+		List<String> launchConfigurationNames = new ArrayList<String>();
 
 		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
 			amazonAutoScalingClient.describeAutoScalingGroups();
@@ -134,81 +173,33 @@ public class S3Cleaner extends BaseAMITool {
 			describeAutoScalingGroupsResult.getAutoScalingGroups();
 
 		for (AutoScalingGroup autoScalingGroup : autoScalingGroups) {
-			activeLaunchConfigurationNames.add(
+			launchConfigurationNames.add(
 				autoScalingGroup.getLaunchConfigurationName());
 		}
 
-		return activeLaunchConfigurationNames;
+		return launchConfigurationNames;
 	}
 
-	private List<String> getAMIForLunchConfigurations(
-		List<String> activeLaunchConfigurationNames) {
+	protected List<String> getImageNames(List<String> imageIds) {
+		List<String> names = new ArrayList<String>();
 
-		DescribeLaunchConfigurationsRequest
-			describeLaunchConfigurationsRequest =
-				new DescribeLaunchConfigurationsRequest();
-
-		describeLaunchConfigurationsRequest.setLaunchConfigurationNames(
-			activeLaunchConfigurationNames);
-
-		DescribeLaunchConfigurationsResult
-			describeLaunchConfigurationsResult =
-				amazonAutoScalingClient.describeLaunchConfigurations(
-					describeLaunchConfigurationsRequest);
-
-		List<String> amis = new ArrayList<String>();
-
-		for (LaunchConfiguration launchConfiguration :
-				describeLaunchConfigurationsResult.getLaunchConfigurations()) {
-
-			amis.add(launchConfiguration.getImageId());
-		}
-
-		return amis;
-	}
-
-	private List<String> getAMINames(List<String> activeAMIs) {
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
 
-		describeImagesRequest.setImageIds(activeAMIs);
+		describeImagesRequest.setImageIds(imageIds);
 
 		DescribeImagesResult describeImagesResult =
 			amazonEC2Client.describeImages(describeImagesRequest);
 
-		List<String> amiNames = new ArrayList<String>();
-
 		for (Image image : describeImagesResult.getImages()) {
-			amiNames.add(image.getName());
+			names.add(image.getName());
 		}
 
-		return amiNames;
+		return names;
 	}
 
-	private List<String> getS3BucketNamesForDeleting(List<String> timestamps) {
-		List<String> bucketsForDeleting = new ArrayList<String>();
-
-		List<Bucket> buckets = amazonS3Client.listBuckets();
-
-		for (Bucket bucket : buckets) {
-			if (bucket.getName().startsWith("frw-cluster") ||
-				bucket.getName().startsWith("lcs-cluster")) {
-
-				String timestamp = getTimestamp(bucket.getName());
-
-				if (!timestamps.contains(timestamp)) {
-					bucketsForDeleting.add(bucket.getName());
-				}
-			}
-		}
-
-		return bucketsForDeleting;
-	}
-
-	private String getTimestamp(String amiName) {
-		int start = amiName.lastIndexOf('-');
-
-		return amiName.substring(start + 1);
+	protected String getTimestamp(String imageName) {
+		return imageName.substring(imageName.lastIndexOf('-') + 1);
 	}
 
 }
