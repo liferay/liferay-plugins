@@ -195,9 +195,9 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		String currentURL = PortalUtil.getCurrentURL(portletRequest);
 
-		addOAuthParameter(oAuthRequest, "remoteURL", currentURL);
+		addOAuthParameter(oAuthRequest, "clientURL", currentURL);
 		addOAuthParameter(
-			oAuthRequest, "remotePortletNamespace",
+			oAuthRequest, "clientPortletNamespace",
 			portletResponse.getNamespace());
 
 		String serverNamespace = getServerNamespace();
