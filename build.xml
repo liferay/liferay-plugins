@@ -251,7 +251,7 @@ the outputted files will work in any supported application server.
 		<zip
 			basedir="${app.server.portal.dir}"
 			destfile="dist/liferay-portal-${tstamp.value}.war"
-			excludes="html/js/editor/_fckeditor/**,html/js/editor/fckeditor/_samples/**"
+			excludes="_fckeditor/**,fckeditor/_samples/**"
 		/>
 
 		<copy todir="${tstamp.value}/WEB-INF/lib">
