@@ -86,10 +86,7 @@ public class BaseAMITool {
 		AWSCredentials awsCredentials = new BasicAWSCredentials(
 			accessKey, secretKey);
 
-		AmazonCloudWatchClient amazonCloudWatchClient =
-			new AmazonCloudWatchClient(awsCredentials);
-
-		return amazonCloudWatchClient;
+		return new AmazonCloudWatchClient(awsCredentials);
 	}
 
 	protected AmazonEC2Client getAmazonEC2Client(
@@ -109,12 +106,9 @@ public class BaseAMITool {
 		String accessKey, String secretKey) {
 
 		AWSCredentials awsCredentials = new BasicAWSCredentials(
-					accessKey, secretKey);
+			accessKey, secretKey);
 
-		AmazonIdentityManagementClient amazonIdentityManagementClient =
-			new AmazonIdentityManagementClient(awsCredentials);
-
-		return amazonIdentityManagementClient;
+		return new AmazonIdentityManagementClient(awsCredentials);
 	}
 
 	protected String getImageId(String imageName) {
