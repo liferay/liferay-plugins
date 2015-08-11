@@ -60,7 +60,7 @@ public class AlarmCleaner extends BaseAMITool {
 	public AlarmCleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
 
-		deleteMetricAlarmNames();
+		deleteMetricAlarms();
 	}
 
 	public List<String> getActiveAutoScalingGroupNames() {
@@ -80,7 +80,7 @@ public class AlarmCleaner extends BaseAMITool {
 		return autoScalingGroupNames;
 	}
 
-	protected void deleteMetricAlarmNames() {
+	protected void deleteMetricAlarms() {
 		System.out.println("Deleting metric alarms");
 
 		List<String> inactiveMetricAlarmNames =
