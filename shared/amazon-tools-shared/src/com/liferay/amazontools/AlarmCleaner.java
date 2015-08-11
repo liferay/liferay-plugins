@@ -60,7 +60,7 @@ public class AlarmCleaner extends BaseAMITool {
 	public AlarmCleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
 
-		deleteMetricAlarms();
+		deleteMetricAlarmNames();
 	}
 
 	public List<String> getActiveAutoScalingGroupNames() {
@@ -80,20 +80,20 @@ public class AlarmCleaner extends BaseAMITool {
 		return autoScalingGroupNames;
 	}
 
-	protected void deleteMetricAlarms() {
+	protected void deleteMetricAlarmNames() {
 		System.out.println("Deleting metric alarms");
 
-		Map<String, String> autoScalingGroupsMetricAlarms =
-			getAutoScalingGroupsMetricAlarms();
+		Map<String, String> autoScalingGroupsMetricAlarmNames =
+			getAutoScalingGroupsMetricAlarmNames();
 
 		List<String> activeAutoScalingGroupNames =
 			getActiveAutoScalingGroupNames();
 
-		List<String> inactiveMetricAlarms =
-			getInactiveMetricAlarms(
-				autoScalingGroupsMetricAlarms, activeAutoScalingGroupNames);
+		List<String> inactiveMetricAlarmNames =
+			getInactiveMetricAlarmNames(
+				autoScalingGroupsMetricAlarmNames, activeAutoScalingGroupNames);
 
-		for (String metricAlarmName : inactiveMetricAlarms) {
+		for (String metricAlarmName : inactiveMetricAlarmNames) {
 			System.out.println("Deleting metric alarm " + metricAlarmName);
 
 			DeleteAlarmsRequest deleteAlarmsRequest = new DeleteAlarmsRequest();
@@ -120,8 +120,8 @@ public class AlarmCleaner extends BaseAMITool {
 		return null;
 	}
 
-	protected Map<String, String> getAutoScalingGroupsMetricAlarms() {
-		Map<String, String> autoScalingGroupsMetricAlarms =
+	protected Map<String, String> getAutoScalingGroupsMetricAlarmNames() {
+		Map<String, String> autoScalingGroupsMetricAlarmNames =
 			new HashMap<String, String>();
 
 		DescribeAlarmsResult describeAlarmsResult =
@@ -149,7 +149,7 @@ public class AlarmCleaner extends BaseAMITool {
 					metricAlarm.getDimensions());
 
 				if (autoScalingGroupName != null) {
-					autoScalingGroupsMetricAlarms.put(
+					autoScalingGroupsMetricAlarmNames.put(
 						autoScalingGroupName, metricAlarm.getAlarmName());
 				}
 			}
@@ -158,25 +158,25 @@ public class AlarmCleaner extends BaseAMITool {
 		}
 		while (nextToken != null);
 
-		return autoScalingGroupsMetricAlarms;
+		return autoScalingGroupsMetricAlarmNames;
 	}
 
-	protected List<String> getInactiveMetricAlarms(
-		Map<String, String> autoScalingGroupsMetricAlarms,
-		List<String> activeAutoScalingGroups) {
+	protected List<String> getInactiveMetricAlarmNames(
+		Map<String, String> autoScalingGroupsMetricAlarmNames,
+		List<String> activeAutoScalingGroupNames) {
 
-		List<String> inactiveMetricAlarms = new ArrayList<String>();
+		List<String> inactiveMetricAlarmNames = new ArrayList<String>();
 
 		for (String autoScalingGroupName :
-				autoScalingGroupsMetricAlarms.keySet()) {
+				autoScalingGroupsMetricAlarmNames.keySet()) {
 
-			if (!activeAutoScalingGroups.contains(autoScalingGroupName)) {
-				inactiveMetricAlarms.add(
-					autoScalingGroupsMetricAlarms.get(autoScalingGroupName));
+			if (!activeAutoScalingGroupNames.contains(autoScalingGroupName)) {
+				inactiveMetricAlarmNames.add(
+					autoScalingGroupsMetricAlarmNames.get(autoScalingGroupName));
 			}
 		}
 
-		return inactiveMetricAlarms;
+		return inactiveMetricAlarmNames;
 	}
 
 }
