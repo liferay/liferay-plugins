@@ -113,6 +113,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceWrapper {
 
 		long categoryId = mbMessage.getCategoryId();
 
+		if (categoryId > 0) {
+			categoryIds.add(categoryId);
+		}
+
 		if (categoryId != MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
 			MBCategory category = mbMessage.getCategory();
 
