@@ -72,22 +72,22 @@ public class S3Cleaner extends BaseAMITool {
 		List<S3ObjectSummary> objectSummaries =
 			objectListing.getObjectSummaries();
 
-		if (objectSummaries.size() != 0) {
-			DeleteObjectsRequest multiObjectDeleteRequest =
+		if (!objectSummaries.isEmpty()) {
+			DeleteObjectsRequest deleteObjectsRequest =
 				new DeleteObjectsRequest(bucketName);
 
-			List<DeleteObjectsRequest.KeyVersion> keys =
+			List<DeleteObjectsRequest.KeyVersion> keyVersions =
 				new ArrayList<DeleteObjectsRequest.KeyVersion>();
 
 			for (S3ObjectSummary objectSummary : objectSummaries) {
-				keys.add(
+				keyVersions.add(
 					new DeleteObjectsRequest.KeyVersion(
 						objectSummary.getKey()));
 			}
 
-			multiObjectDeleteRequest.setKeys(keys);
+			deleteObjectsRequest.setKeys(keyVersions);
 
-			amazonS3Client.deleteObjects(multiObjectDeleteRequest);
+			amazonS3Client.deleteObjects(deleteObjectsRequest);
 		}
 
 		amazonS3Client.deleteBucket(bucketName);
