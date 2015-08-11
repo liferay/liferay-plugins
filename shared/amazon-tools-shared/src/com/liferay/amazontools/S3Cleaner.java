@@ -94,7 +94,7 @@ public class S3Cleaner extends BaseAMITool {
 	}
 
 	protected void deleteBucketNames() {
-		System.out.println("Finding S3 buckets for deleting...");
+		System.out.println("Deleting buckets");
 
 		List<String> launchConfigurationNames = getLaunchConfigurationNames();
 
@@ -111,7 +111,7 @@ public class S3Cleaner extends BaseAMITool {
 		List<String> bucketNames = getBucketNames(timestamps);
 
 		for (String bucketName : bucketNames) {
-			System.out.println("Deleting Bucket " + bucketName);
+			System.out.println("Deleting bucket " + bucketName);
 
 			deleteBucketName(bucketName);
 		}
