@@ -170,10 +170,12 @@ public class AlarmCleaner extends BaseAMITool {
 		for (String autoScalingGroupName :
 				autoScalingGroupsMetricAlarmNames.keySet()) {
 
-			if (!activeAutoScalingGroupNames.contains(autoScalingGroupName)) {
-				inactiveMetricAlarmNames.add(
-					autoScalingGroupsMetricAlarmNames.get(autoScalingGroupName));
+			if (activeAutoScalingGroupNames.contains(autoScalingGroupName)) {
+				continue;
 			}
+
+			inactiveMetricAlarmNames.add(
+				autoScalingGroupsMetricAlarmNames.get(autoScalingGroupName));
 		}
 
 		return inactiveMetricAlarmNames;
