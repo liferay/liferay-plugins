@@ -54,15 +54,13 @@ public class BaseAMITool {
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"),
 			properties.getProperty("autoscaling.endpoint"));
+		amazonCloudWatchClient = getAmazonCloudWatchClient(
+			properties.getProperty("access.key"),
+			properties.getProperty("secret.key"));
 		amazonEC2Client = getAmazonEC2Client(
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"),
 			properties.getProperty("ec2.endpoint"));
-
-		amazonCloudWatchClient = getAmazonCloudWatchClient(
-			properties.getProperty("access.key"),
-			properties.getProperty("secret.key"));
-
 		amazonIdentityManagementClient = getAmazonIdentityManagementClient(
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"));
