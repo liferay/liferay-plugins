@@ -148,10 +148,12 @@ public class AlarmCleaner extends BaseAMITool {
 				String autoScalingGroupName = getAutoScalingGroupName(
 					metricAlarm.getDimensions());
 
-				if (autoScalingGroupName != null) {
-					autoScalingGroupsMetricAlarmNames.put(
-						autoScalingGroupName, metricAlarm.getAlarmName());
+				if (autoScalingGroupName == null) {
+					continue;
 				}
+
+				autoScalingGroupsMetricAlarmNames.put(
+					autoScalingGroupName, metricAlarm.getAlarmName());
 			}
 
 			nextToken = describeAlarmsResult.getNextToken();
