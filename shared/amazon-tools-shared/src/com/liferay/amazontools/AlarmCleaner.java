@@ -80,7 +80,7 @@ public class AlarmCleaner extends BaseAMITool {
 		return autoScalingGroupNames;
 	}
 
-	private void deleteMetricAlarms() {
+	protected void deleteMetricAlarms() {
 		System.out.println("Finding Metric Alarms for deleting...");
 
 		Map<String, String> autoScalingGroupsMetricAlarms =
@@ -108,7 +108,7 @@ public class AlarmCleaner extends BaseAMITool {
 		}
 	}
 
-	private String getAutoScalingGroupName(List<Dimension> dimensions) {
+	protected String getAutoScalingGroupName(List<Dimension> dimensions) {
 		for (Dimension dimension : dimensions) {
 			String name = dimension.getName();
 
@@ -120,7 +120,7 @@ public class AlarmCleaner extends BaseAMITool {
 		return null;
 	}
 
-	private Map<String, String> getAutoScalingGroupsMetricAlarms() {
+	protected Map<String, String> getAutoScalingGroupsMetricAlarms() {
 		Map<String, String> autoScalingGroupsMetricAlarms =
 			new HashMap<String, String>();
 
@@ -161,7 +161,7 @@ public class AlarmCleaner extends BaseAMITool {
 		return autoScalingGroupsMetricAlarms;
 	}
 
-	private List<String> getInactiveMetricAlarms(
+	protected List<String> getInactiveMetricAlarms(
 		Map<String, String> autoScalingGroupsMetricAlarms,
 		List<String> activeAutoScalingGroups) {
 
