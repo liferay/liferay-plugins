@@ -525,7 +525,7 @@ public class AMIBuilder extends BaseAMITool {
 		int i = 0;
 
 		do {
-			System.out.println("Waiting for running instance "  + i + "...");
+			System.out.println("Waiting for running instance " + i + "...");
 
 			i = i + 1;
 
