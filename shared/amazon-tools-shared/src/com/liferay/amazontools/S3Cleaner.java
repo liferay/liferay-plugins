@@ -160,23 +160,6 @@ public class S3Cleaner extends BaseAMITool {
 		return imageIds;
 	}
 
-	protected List<String> getLaunchConfigurationNames() {
-		List<String> launchConfigurationNames = new ArrayList<String>();
-
-		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
-			amazonAutoScalingClient.describeAutoScalingGroups();
-
-		List<AutoScalingGroup> autoScalingGroups =
-			describeAutoScalingGroupsResult.getAutoScalingGroups();
-
-		for (AutoScalingGroup autoScalingGroup : autoScalingGroups) {
-			launchConfigurationNames.add(
-				autoScalingGroup.getLaunchConfigurationName());
-		}
-
-		return launchConfigurationNames;
-	}
-
 	protected List<String> getImageNames(List<String> imageIds) {
 		List<String> imageNames = new ArrayList<String>();
 
@@ -193,6 +176,23 @@ public class S3Cleaner extends BaseAMITool {
 		}
 
 		return imageNames;
+	}
+
+	protected List<String> getLaunchConfigurationNames() {
+		List<String> launchConfigurationNames = new ArrayList<String>();
+
+		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
+			amazonAutoScalingClient.describeAutoScalingGroups();
+
+		List<AutoScalingGroup> autoScalingGroups =
+			describeAutoScalingGroupsResult.getAutoScalingGroups();
+
+		for (AutoScalingGroup autoScalingGroup : autoScalingGroups) {
+			launchConfigurationNames.add(
+				autoScalingGroup.getLaunchConfigurationName());
+		}
+
+		return launchConfigurationNames;
 	}
 
 	protected String getTimestamp(String imageName) {
