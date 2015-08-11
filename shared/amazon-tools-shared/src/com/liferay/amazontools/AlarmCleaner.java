@@ -81,7 +81,7 @@ public class AlarmCleaner extends BaseAMITool {
 	}
 
 	protected void deleteMetricAlarms() {
-		System.out.println("Finding Metric Alarms for deleting...");
+		System.out.println("Deleting metric alarms");
 
 		Map<String, String> autoScalingGroupsMetricAlarms =
 			getAutoScalingGroupsMetricAlarms();
@@ -94,7 +94,7 @@ public class AlarmCleaner extends BaseAMITool {
 				autoScalingGroupsMetricAlarms, activeAutoScalingGroupNames);
 
 		for (String metricAlarmName : inactiveMetricAlarms) {
-			System.out.println("Deleting Metric Alarm " + metricAlarmName);
+			System.out.println("Deleting metric alarm " + metricAlarmName);
 
 			DeleteAlarmsRequest deleteAlarmsRequest = new DeleteAlarmsRequest();
 
