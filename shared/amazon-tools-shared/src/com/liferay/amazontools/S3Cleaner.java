@@ -137,6 +137,8 @@ public class S3Cleaner extends BaseAMITool {
 	}
 
 	protected List<String> getImageIds(List<String> launchConfigurationNames) {
+		List<String> imageIds = new ArrayList<String>();
+
 		DescribeLaunchConfigurationsRequest
 			describeLaunchConfigurationsRequest =
 				new DescribeLaunchConfigurationsRequest();
@@ -148,8 +150,6 @@ public class S3Cleaner extends BaseAMITool {
 			describeLaunchConfigurationsResult =
 				amazonAutoScalingClient.describeLaunchConfigurations(
 					describeLaunchConfigurationsRequest);
-
-		List<String> imageIds = new ArrayList<String>();
 
 		for (LaunchConfiguration launchConfiguration :
 				describeLaunchConfigurationsResult.getLaunchConfigurations()) {
