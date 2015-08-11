@@ -84,7 +84,7 @@ public class AMICleaner extends BaseAMITool {
 
 		System.out.println("Deleting unused AMIs");
 
-		deleteOldAMIs();
+		deleteOldImages();
 	}
 
 	protected void deleteAvailableVolumes() {
@@ -115,13 +115,13 @@ public class AMICleaner extends BaseAMITool {
 		}
 	}
 
-	protected void deleteOldAMIs() {
+	protected void deleteOldImages() {
 		Set<String> imageIds = getImageIds();
 
 		Set<String> unusedImageIds = getUnusedImageIds(getUserId(), imageIds);
 
 		for (String imageId : unusedImageIds) {
-			deleteAMI(imageId);
+			deleteImage(imageId);
 		}
 	}
 
@@ -233,7 +233,7 @@ public class AMICleaner extends BaseAMITool {
 		return userId;
 	}
 
-	private void deleteAMI(String imageId) {
+	protected void deleteImage(String imageId) {
 		DeregisterImageRequest deregisterImageRequest =
 			new DeregisterImageRequest();
 
