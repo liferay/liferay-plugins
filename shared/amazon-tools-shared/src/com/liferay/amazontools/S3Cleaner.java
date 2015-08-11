@@ -63,7 +63,7 @@ public class S3Cleaner extends BaseAMITool {
 	public S3Cleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
 
-		deleteBucketNames();
+		deleteBuckets();
 	}
 
 	protected void deleteBucketName(String bucketName) {
@@ -93,7 +93,7 @@ public class S3Cleaner extends BaseAMITool {
 		amazonS3Client.deleteBucket(bucketName);
 	}
 
-	protected void deleteBucketNames() {
+	protected void deleteBuckets() {
 		System.out.println("Deleting buckets");
 
 		List<String> timestamps = new ArrayList<String>();
