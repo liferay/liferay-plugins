@@ -67,5 +67,21 @@ public class ScreensJournalArticleServiceSoap {
 		}
 	}
 
+	public static java.lang.String getJournalArticleByStructureId(
+		long groupId, java.lang.String articleId, long templateId, String locale)
+		throws RemoteException {
+		try {
+			java.lang.String returnValue = ScreensJournalArticleServiceUtil.getJournalArticleByStructureId(groupId,
+					articleId, templateId, LocaleUtil.fromLanguageId(locale));
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(ScreensJournalArticleServiceSoap.class);
 }

@@ -70,6 +70,16 @@ public class ScreensJournalArticleServiceUtil {
 		return getService().getJournalArticle(groupId, classPK, locale);
 	}
 
+	public static java.lang.String getJournalArticleByStructureId(
+		long groupId, java.lang.String articleId, long templateId,
+		java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getJournalArticleByStructureId(groupId, articleId,
+			templateId, locale);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

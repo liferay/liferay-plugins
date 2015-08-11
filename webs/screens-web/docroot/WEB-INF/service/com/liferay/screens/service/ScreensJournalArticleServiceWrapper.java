@@ -68,6 +68,15 @@ public class ScreensJournalArticleServiceWrapper
 			classPK, locale);
 	}
 
+	@Override
+	public java.lang.String getJournalArticleByStructureId(long groupId,
+		java.lang.String articleId, long templateId, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _screensJournalArticleService.getJournalArticleByStructureId(groupId,
+			articleId, templateId, locale);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

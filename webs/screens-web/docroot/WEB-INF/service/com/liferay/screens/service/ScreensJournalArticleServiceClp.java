@@ -36,6 +36,12 @@ public class ScreensJournalArticleServiceClp
 		_methodName3 = "getJournalArticle";
 
 		_methodParameterTypes3 = new String[] { "int", "int", "java.util.Locale" };
+
+		_methodName4 = "getJournalArticleByStructureId";
+
+		_methodParameterTypes4 = new String[] {
+				"long", "java.lang.String", "long", "java.util.Locale"
+			};
 	}
 
 	@Override
@@ -129,6 +135,49 @@ public class ScreensJournalArticleServiceClp
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public java.lang.String getJournalArticleByStructureId(long groupId,
+		java.lang.String articleId, long templateId, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] {
+						groupId,
+						
+					ClpSerializer.translateInput(articleId),
+						
+					templateId,
+						
+					ClpSerializer.translateInput(locale)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -136,4 +185,6 @@ public class ScreensJournalArticleServiceClp
 	private String[] _methodParameterTypes1;
 	private String _methodName3;
 	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
 }
