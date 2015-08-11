@@ -115,6 +115,15 @@ public class AMICleaner extends BaseAMITool {
 		}
 	}
 
+	protected void deleteImage(String imageId) {
+		DeregisterImageRequest deregisterImageRequest =
+			new DeregisterImageRequest();
+
+		deregisterImageRequest.setImageId(imageId);
+
+		amazonEC2Client.deregisterImage(deregisterImageRequest);
+	}
+
 	protected void deleteOldImages() {
 		Set<String> imageIds = getImageIds();
 
@@ -231,15 +240,6 @@ public class AMICleaner extends BaseAMITool {
 		}
 
 		return userId;
-	}
-
-	protected void deleteImage(String imageId) {
-		DeregisterImageRequest deregisterImageRequest =
-			new DeregisterImageRequest();
-
-		deregisterImageRequest.setImageId(imageId);
-
-		amazonEC2Client.deregisterImage(deregisterImageRequest);
 	}
 
 }
