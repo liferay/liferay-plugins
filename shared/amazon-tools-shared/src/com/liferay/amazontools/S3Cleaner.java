@@ -178,7 +178,7 @@ public class S3Cleaner extends BaseAMITool {
 	}
 
 	protected List<String> getImageNames(List<String> imageIds) {
-		List<String> names = new ArrayList<String>();
+		List<String> imageNames = new ArrayList<String>();
 
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
@@ -189,10 +189,10 @@ public class S3Cleaner extends BaseAMITool {
 			amazonEC2Client.describeImages(describeImagesRequest);
 
 		for (Image image : describeImagesResult.getImages()) {
-			names.add(image.getName());
+			imageNames.add(image.getName());
 		}
 
-		return names;
+		return imageNames;
 	}
 
 	protected String getTimestamp(String imageName) {
