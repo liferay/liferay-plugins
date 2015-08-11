@@ -17,6 +17,8 @@ package com.liferay.screens.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
+import com.liferay.portlet.dynamicdatamapping.service.DDMTemplateServiceUtil;
 import com.liferay.portlet.journal.model.JournalArticleResource;
 import com.liferay.screens.service.base.ScreensJournalArticleServiceBaseImpl;
 
@@ -32,18 +34,41 @@ public class ScreensJournalArticleServiceImpl
 	public String getJournalArticle(int groupId, int classPK, Locale locale)
 		throws PortalException, SystemException {
 
+		JournalArticleResource journalArticleResource =
+			journalArticleResourceLocalService.getArticleResource(classPK);
+
+		String languageId = getLanguageId(locale);
+
+		return journalArticleLocalService.getArticleContent(
+			groupId, journalArticleResource.getArticleId(), null, languageId,
+			null);
+	}
+
+	public String getJournalArticleByStructureId(
+		long groupId, java.lang.String articleId, long templateId, Locale locale) throws PortalException, SystemException {
+
+		String languageId = getLanguageId(locale);
+
+		DDMTemplate ddmTemplate = DDMTemplateServiceUtil.getTemplate(templateId);
+		String ddmTemplateKey = null;
+
+		if (ddmTemplate != null) {
+			ddmTemplateKey = ddmTemplate.getTemplateKey();
+		}
+
+		return journalArticleLocalService.getArticleContent(
+			groupId, articleId, null, ddmTemplateKey, languageId, null);
+	}
+
+	private String getLanguageId(Locale locale) {
 		Locale currentLocale = locale;
 
 		if (currentLocale == null) {
 			currentLocale = LocaleUtil.getSiteDefault();
 		}
 
-		JournalArticleResource journalArticleResource =
-			journalArticleResourceLocalService.getArticleResource(classPK);
-
-		return journalArticleLocalService.getArticleContent(
-			groupId, journalArticleResource.getArticleId(), null,
-			LocaleUtil.toLanguageId(currentLocale), null);
+		String languageId = LocaleUtil.toLanguageId(currentLocale);
+		return languageId;
 	}
 
 }
