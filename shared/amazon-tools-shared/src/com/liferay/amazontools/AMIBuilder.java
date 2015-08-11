@@ -235,37 +235,6 @@ public class AMIBuilder extends BaseAMITool {
 		}
 	}
 
-	protected String getKeyFileName() {
-		StringBuilder sb = new StringBuilder(6);
-
-		sb.append(System.getProperty("user.home"));
-		sb.append(File.separator);
-		sb.append(".ssh");
-		sb.append(File.separator);
-		sb.append(properties.getProperty("key.name"));
-		sb.append(".pem");
-
-		return sb.toString();
-	}
-
-	protected Map<String, String> getProvisioners(Properties properties) {
-		Map<String, String> provisioners = new TreeMap<String, String>();
-
-		Set<String> names = properties.stringPropertyNames();
-
-		for (String name : names) {
-			if (!name.contains("provisioners")) {
-				continue;
-			}
-
-			String value = properties.getProperty(name);
-
-			provisioners.put(name, value);
-		}
-
-		return provisioners;
-	}
-
 	protected Instance getInstance(String instanceId, String state) {
 		DescribeInstancesRequest describeInstancesRequest =
 			new DescribeInstancesRequest();
@@ -307,6 +276,37 @@ public class AMIBuilder extends BaseAMITool {
 		List<Instance> instances = reservation.getInstances();
 
 		return instances.get(0);
+	}
+
+	protected String getKeyFileName() {
+		StringBuilder sb = new StringBuilder(6);
+
+		sb.append(System.getProperty("user.home"));
+		sb.append(File.separator);
+		sb.append(".ssh");
+		sb.append(File.separator);
+		sb.append(properties.getProperty("key.name"));
+		sb.append(".pem");
+
+		return sb.toString();
+	}
+
+	protected Map<String, String> getProvisioners(Properties properties) {
+		Map<String, String> provisioners = new TreeMap<String, String>();
+
+		Set<String> names = properties.stringPropertyNames();
+
+		for (String name : names) {
+			if (!name.contains("provisioners")) {
+				continue;
+			}
+
+			String value = properties.getProperty(name);
+
+			provisioners.put(name, value);
+		}
+
+		return provisioners;
 	}
 
 	protected boolean isImageCreated(String imageId) {
@@ -532,7 +532,8 @@ public class AMIBuilder extends BaseAMITool {
 			sleep(30);
 
 			instance = getInstance(_instanceId, "pending");
-		} while (instance != null);
+		}
+		while (instance != null);
 
 		instance = getInstance(_instanceId, "running");
 
