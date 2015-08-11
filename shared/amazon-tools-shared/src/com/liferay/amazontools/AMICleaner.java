@@ -118,7 +118,7 @@ public class AMICleaner extends BaseAMITool {
 	protected void deleteOldAMIs() {
 		Set<String> imageIds = getImageIds();
 
-		List<String> unusedImageIds = getUnusedImageIds(getUserId(), imageIds);
+		Set<String> unusedImageIds = getUnusedImageIds(getUserId(), imageIds);
 
 		for (String imageId : unusedImageIds) {
 			deleteAMI(imageId);
@@ -157,10 +157,10 @@ public class AMICleaner extends BaseAMITool {
 	}
 
 	protected Set<String> getImageIds() {
+		Set<String> imageIds = new HashSet<String>();
+
 		DescribeInstancesResult describeInstancesResult =
 			amazonEC2Client.describeInstances();
-
-		Set<String> imageIds = new HashSet<String>();
 
 		for (Reservation reservation :
 				describeInstancesResult.getReservations()) {
@@ -173,13 +173,15 @@ public class AMICleaner extends BaseAMITool {
 		return imageIds;
 	}
 
-	protected List<String> getUnusedImageIds(
+	protected Set<String> getUnusedImageIds(
 		String userId, Set<String> imageIds) {
+
+		Set<String> unusedImageIds = new HashSet<String>();
 
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
 
-		ArrayList<String> owners = new ArrayList<String>();
+		List<String> owners = new ArrayList<String>();
 
 		owners.add(userId);
 
@@ -189,8 +191,6 @@ public class AMICleaner extends BaseAMITool {
 			amazonEC2Client.describeImages(describeImagesRequest);
 
 		List<Image> images = describeImagesResult.getImages();
-
-		List<String> unusedImageIds = new ArrayList<String>();
 
 		for (Image image : images) {
 			String imageName = image.getName();
@@ -222,10 +222,11 @@ public class AMICleaner extends BaseAMITool {
 			if (errorCode.compareTo("AccessDenied") == 0) {
 				String message = e.getMessage();
 
-				int start = message.indexOf("::");
-				int end = message.indexOf(":", start + 2);
+				int x = message.indexOf("::");
 
-				userId = message.substring(start + 2, end);
+				int y = message.indexOf(":", x + 2);
+
+				userId = message.substring(x + 2, y);
 			}
 		}
 
