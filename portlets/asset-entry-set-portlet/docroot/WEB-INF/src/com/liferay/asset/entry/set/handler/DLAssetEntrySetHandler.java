@@ -55,7 +55,6 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 			userId, assetEntrySetId, payloadJSONObject);
 
 		Set<Long> assetEntryIds = new HashSet<Long>();
-		Set<Long> fileEntryIds = new HashSet<Long>();
 		JSONArray processedImageDataJSONArray =
 			JSONFactoryUtil.createJSONArray();
 
@@ -105,8 +104,6 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					DLUtil.getPreviewURL(
 						fileEntry, fileEntry.getFileVersion(), null,
 						StringPool.BLANK, false, true));
-
-				fileEntryIds.add(fileEntryId);
 
 				fileEntryIdsJSONObject.put(imageType, fileEntryId);
 			}
