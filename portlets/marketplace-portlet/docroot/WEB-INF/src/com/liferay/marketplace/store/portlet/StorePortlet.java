@@ -379,6 +379,11 @@ public class StorePortlet extends RemoteMVCPortlet {
 	}
 
 	@Override
+	protected String getServerPortletId() {
+		return _OSB_PORTLET_ID;
+	}
+
+	@Override
 	protected String getServerPortletURL() {
 		return PortletPropsValues.MARKETPLACE_URL + "/osb-portlet/mp_server";
 	}
