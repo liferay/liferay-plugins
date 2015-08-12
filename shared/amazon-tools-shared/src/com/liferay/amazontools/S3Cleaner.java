@@ -66,7 +66,7 @@ public class S3Cleaner extends BaseAMITool {
 		deleteBuckets();
 	}
 
-	protected void deleteBucketName(String bucketName) {
+	protected void deleteBucket(String bucketName) {
 		ObjectListing objectListing = amazonS3Client.listObjects(bucketName);
 
 		List<S3ObjectSummary> objectSummaries =
@@ -110,7 +110,7 @@ public class S3Cleaner extends BaseAMITool {
 		for (String bucketName : bucketNames) {
 			System.out.println("Deleting bucket " + bucketName);
 
-			deleteBucketName(bucketName);
+			deleteBucket(bucketName);
 		}
 	}
 

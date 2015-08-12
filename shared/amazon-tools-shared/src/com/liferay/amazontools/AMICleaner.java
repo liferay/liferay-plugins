@@ -76,43 +76,15 @@ public class AMICleaner extends BaseAMITool {
 
 		System.out.println("Deleting available Volumes");
 
-		deleteAvailableVolumes();
+		deleteVolumes();
 
 		System.out.println("Deleting old Launch Configurations");
 
-		deleteOldLaunchConfigurations();
+		deleteLaunchConfigurations();
 
 		System.out.println("Deleting unused AMIs");
 
-		deleteOldImages();
-	}
-
-	protected void deleteAvailableVolumes() {
-		DescribeVolumesRequest describeVolumesRequest =
-			new DescribeVolumesRequest();
-
-		Filter filter = new Filter();
-
-		filter.setName("status");
-
-		filter.withValues("available");
-
-		describeVolumesRequest.withFilters(filter);
-
-		DescribeVolumesResult describeVolumesResult =
-			amazonEC2Client.describeVolumes(describeVolumesRequest);
-
-		List<Volume> volumes = describeVolumesResult.getVolumes();
-
-		for (int i = 0; i < volumes.size(); i++) {
-			DeleteVolumeRequest deleteVolumeRequest = new DeleteVolumeRequest();
-
-			Volume volume = volumes.get(i);
-
-			deleteVolumeRequest.setVolumeId(volume.getVolumeId());
-
-			amazonEC2Client.deleteVolume(deleteVolumeRequest);
-		}
+		deleteImages();
 	}
 
 	protected void deleteImage(String imageId) {
@@ -124,7 +96,7 @@ public class AMICleaner extends BaseAMITool {
 		amazonEC2Client.deregisterImage(deregisterImageRequest);
 	}
 
-	protected void deleteOldImages() {
+	protected void deleteImages() {
 		Set<String> imageIds = getImageIds();
 
 		Set<String> unusedImageIds = getUnusedImageIds(getUserId(), imageIds);
@@ -134,7 +106,7 @@ public class AMICleaner extends BaseAMITool {
 		}
 	}
 
-	protected void deleteOldLaunchConfigurations() {
+	protected void deleteLaunchConfigurations() {
 		DescribeLaunchConfigurationsRequest
 			describeLaunchConfigurationsRequest =
 				new DescribeLaunchConfigurationsRequest();
@@ -162,6 +134,34 @@ public class AMICleaner extends BaseAMITool {
 			}
 			catch (ResourceInUseException riue) {
 			}
+		}
+	}
+
+	protected void deleteVolumes() {
+		DescribeVolumesRequest describeVolumesRequest =
+			new DescribeVolumesRequest();
+
+		Filter filter = new Filter();
+
+		filter.setName("status");
+
+		filter.withValues("available");
+
+		describeVolumesRequest.withFilters(filter);
+
+		DescribeVolumesResult describeVolumesResult =
+			amazonEC2Client.describeVolumes(describeVolumesRequest);
+
+		List<Volume> volumes = describeVolumesResult.getVolumes();
+
+		for (int i = 0; i < volumes.size(); i++) {
+			DeleteVolumeRequest deleteVolumeRequest = new DeleteVolumeRequest();
+
+			Volume volume = volumes.get(i);
+
+			deleteVolumeRequest.setVolumeId(volume.getVolumeId());
+
+			amazonEC2Client.deleteVolume(deleteVolumeRequest);
 		}
 	}
 
