@@ -74,15 +74,15 @@ public class AMICleaner extends BaseAMITool {
 	public AMICleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
 
-		System.out.println("Deleting available Volumes");
+		System.out.println("Deleting volumes");
 
 		deleteVolumes();
 
-		System.out.println("Deleting old Launch Configurations");
+		System.out.println("Deleting launch configurations");
 
 		deleteLaunchConfigurations();
 
-		System.out.println("Deleting unused AMIs");
+		System.out.println("Deleting images");
 
 		deleteImages();
 	}
