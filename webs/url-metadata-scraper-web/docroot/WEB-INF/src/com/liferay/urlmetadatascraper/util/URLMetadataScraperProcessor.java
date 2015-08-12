@@ -70,8 +70,7 @@ public class URLMetadataScraperProcessor {
 
 		jsonObject.put("description", getDescription(document));
 		jsonObject.put("imageURLs", getImageURLs(document));
-
-		jsonObject.put("videoURL", scrapeForContent(document, _VIDEO_URL_SELECTORS));
+		jsonObject.put("videoURL", getVideoURL(document));
 
 		String domain = "";
 
@@ -164,6 +163,26 @@ public class URLMetadataScraperProcessor {
 		return StringUtil.shorten(title, 200);
 	}
 
+	protected String getVideoURL(Document document) {
+		Element head = document.head();
+
+		String videoURL = "";
+
+		for (String selector : _VIDEO_URL_SELECTORS) {
+			Elements elements = head.select(selector);
+
+			String elementContent = elements.attr("content");
+
+			if (!Validator.isBlank(elementContent)) {
+				videoURL = elementContent;
+
+				break;
+			}
+		}
+
+		return videoURL;
+	}
+
 	protected boolean isValidImageElement(Element imageElement)
 		throws Exception {
 
@@ -224,40 +243,18 @@ public class URLMetadataScraperProcessor {
 		return false;
 	}
 
-	private String scrapeForContent(Document document, String[] selectors) {
-		Element head = document.head();
-
-		String content = "";
-
-		for (String selector : selectors) {
-			Elements elements = head.select(selector);
-
-			String elementContent = elements.attr("content");
-
-			if (!Validator.isBlank(elementContent)) {
-				content = elementContent;
-
-				break;
-			}
-		}
-
-		return content;
-	}
-
-	private static final String _USER_AGENT_DEFAULT =
-		"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
-
 	private static final int _IMAGE_AREA_MINIMUM = 1000;
 
 	private static final int _IMAGE_DIMENSION_MINIMUM = 80;
 
 	private static final int _IMAGE_URLS_MAXIMUM = 10;
 
+	private static final String _USER_AGENT_DEFAULT =
+		"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
+
 	private static final String[] _VIDEO_URL_SELECTORS = {
-		"meta[property=og:video:]",
-		"meta[property=og:video:url]",
-		"meta[property=og:video:secure_url]",
-		"meta[name=twitter:player]"
+		"meta[property=og:video:]", "meta[property=og:video:url]",
+		"meta[property=og:video:secure_url]", "meta[name=twitter:player]"
 	};
 
 }
