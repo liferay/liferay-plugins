@@ -60,7 +60,7 @@ public class URLMetadataScraperProcessor {
 			return jsonObject.toString();
 		}
 
-		String title = getTitle(document);
+		String title = getContent(document, _SELECTORS_TITLE);
 
 		if (Validator.isNull(title)) {
 			jsonObject.put("success", false);
@@ -68,9 +68,10 @@ public class URLMetadataScraperProcessor {
 			return jsonObject.toString();
 		}
 
-		jsonObject.put("description", getDescription(document));
+		jsonObject.put(
+			"description", getContent(document, _SELECTORS_DESCRIPTION));
 		jsonObject.put("imageURLs", getImageURLs(document));
-		jsonObject.put("videoURL", getVideoURL(document));
+		jsonObject.put("videoURL", getContent(document, _SELECTORS_VIDEO_URL_));
 
 		String domain = "";
 
@@ -92,36 +93,40 @@ public class URLMetadataScraperProcessor {
 		return jsonObject.toString();
 	}
 
-	protected String getDescription(Document document) {
-		Elements descriptionElements = document.select(
-			"meta[property=og:description]");
+	protected String getContent(Document document, String[] selectors) {
+		String content = "";
 
-		if (descriptionElements.isEmpty()) {
-			descriptionElements = document.select("meta[name=description]");
+		for (String selector : selectors) {
+			Elements elements = document.select(selector);
+
+			if (selector.equals("title")) {
+				content = elements.html();
+			}
+			else {
+				content = elements.attr("content");
+			}
+
+			if (Validator.isNotNull(content)) {
+				return content;
+			}
 		}
 
-		String description = descriptionElements.attr("content");
-
-		return StringUtil.shorten(description, 200);
+		return "";
 	}
 
 	protected List<String> getImageURLs(Document document) throws Exception {
 		List<String> imageURLs = new ArrayList<String>();
 
-		Elements imageElements = document.select("meta[property=og:image]");
+		String imageURL = getContent(document, _SELECTORS_IMAGE);
 
-		if (!imageElements.isEmpty()) {
-			String imageURL = imageElements.attr("content");
-
-			if (isValidImageURL(imageURL)) {
-				imageURLs.add(imageURL);
-			}
+		if (isValidImageURL(imageURL)) {
+			imageURLs.add(imageURL);
 		}
 
-		imageElements = document.select("img");
+		Elements imageElements = document.select("img");
 
 		for (Element imageElement : imageElements) {
-			String imageURL = imageElement.absUrl("src");
+			imageURL = imageElement.absUrl("src");
 
 			if (isValidImageElement(imageElement) &&
 				isValidImageURL(imageURL) && !imageURLs.contains(imageURL)) {
@@ -135,52 +140,6 @@ public class URLMetadataScraperProcessor {
 		}
 
 		return imageURLs;
-	}
-
-	protected String getTitle(Document document) {
-		Elements titleElements = document.select("meta[property=og:title]");
-
-		String title = titleElements.attr("content");
-
-		if (Validator.isNull(title)) {
-			titleElements = document.select("meta[name=title]");
-
-			title = titleElements.attr("content");
-		}
-
-		if (Validator.isNull(title)) {
-			titleElements = document.select("title");
-
-			title = titleElements.html();
-		}
-
-		if (Validator.isNull(title)) {
-			titleElements = document.select("meta[property=og:site_name]");
-
-			title = titleElements.attr("content");
-		}
-
-		return StringUtil.shorten(title, 200);
-	}
-
-	protected String getVideoURL(Document document) {
-		Element head = document.head();
-
-		String videoURL = "";
-
-		for (String selector : _VIDEO_URL_SELECTORS) {
-			Elements elements = head.select(selector);
-
-			String elementContent = elements.attr("content");
-
-			if (!Validator.isBlank(elementContent)) {
-				videoURL = elementContent;
-
-				break;
-			}
-		}
-
-		return videoURL;
 	}
 
 	protected boolean isValidImageElement(Element imageElement)
@@ -249,12 +208,25 @@ public class URLMetadataScraperProcessor {
 
 	private static final int _IMAGE_URLS_MAXIMUM = 10;
 
-	private static final String _USER_AGENT_DEFAULT =
-		"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
+	private static final String[] _SELECTORS_DESCRIPTION = {
+		"meta[property=og:description]", "meta[name=description]"
+	};
 
-	private static final String[] _VIDEO_URL_SELECTORS = {
+	private static final String[] _SELECTORS_IMAGE = {
+		"meta[property=og:image]"
+	};
+
+	private static final String[] _SELECTORS_TITLE = {
+		"meta[property=og:title]", "meta[name=title]", "title",
+		"meta[property=og:site_name]"
+	};
+
+	private static final String[] _SELECTORS_VIDEO_URL_ = {
 		"meta[property=og:video:]", "meta[property=og:video:url]",
 		"meta[property=og:video:secure_url]", "meta[name=twitter:player]"
 	};
+
+	private static final String _USER_AGENT_DEFAULT =
+		"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)";
 
 }
