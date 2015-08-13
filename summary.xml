@@ -1,221 +1,5 @@
 <plugins-summary>
 	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Analytics API]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Analytics Hook]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Content Targeting API]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Content Targeting]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Portal 6.2 Compatibility Hook for Audience Targeting]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[This module is needed in order for Audience Targeting to work in 6.2]]></short-description>
-		<long-description><![CDATA[This module is needed in order for Audience Targeting to work in 6.2]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Campaign Content Report]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Campaign Tracking Action Report]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[User Segment Content Report]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[content-targeting]]></artifact-id>
-		<name><![CDATA[Simulator Hook]]></name>
-		<type><![CDATA[app]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Simulator for the Audience Targeting Apps]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+,6.2.10+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[antisamy-hook]]></artifact-id>
 		<name><![CDATA[AntiSamy]]></name>
 		<type><![CDATA[hook]]></type>
@@ -971,33 +755,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[calendar-portlet]]></artifact-id>
-		<name><![CDATA[Calendar]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[calendar, calendar resources]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay's Calendar app allows users and organizations to create, track, share, and manage events. In addition, the Calendar app supports notifications, integration with Social Office, and staging. As a user, you can create as many calendars as you need. As an administrator, you are able to manage the scheduling of Calendar Resources such as rooms and projectors. All content from the old Calendar portlet is automatically imported into this new application.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[true]]></bundle>
-			<category><![CDATA[Communication]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[portlets/calendar-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[portlets/calendar-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/calendar-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[chat-portlet]]></artifact-id>
 		<name><![CDATA[Chat]]></name>
 		<type><![CDATA[portlet]]></type>
@@ -1474,7 +1231,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[true]]></bundle>
+			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Communication]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -1495,14 +1252,14 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[gadget, opensocial, social, widget]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[OpenSocial is a framework designed for creating applications, called gadgets that function on any social networking site that supports them. There are many existing gadgets available, and anyone can create their own gadgets. With this app, you can integrate any OpenSocial gadget directly into a Liferay page, and you can easily manage which gadgets are currently in use or available. You can also create your own OpenSocial Gadget using the Liferay's OpenSocial development environment. Gadgets can be integrated into your portal like a portlet to be added or removed by users as desired. The OpenSocial Gadget portlet also allows you to change the permissions for who can view or edit the portlet, as well as options to share the contents of the portlet, just like you can with any other Liferay portlet.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
+		<long-description><![CDATA[OpenSocial is a framework designed for creating applications, called gadgets, that function on any social networking site that supports them. There are many existing gadgets available, and anyone can create their own gadgets. With this app, you can integrate any OpenSocial gadget directly into a Liferay page, and you can easily manage which gadgets are currently in use or available. You can also create your own OpenSocial Gadget using Liferay's OpenSocial development environment. Gadgets can be integrated into your portal like a portlet to be added or removed by users as desired. The OpenSocial Gadget portlet also allows you to change the permissions for who can view or edit the portlet, as well as options to share the contents of the portlet, just like you can with any other Liferay portlet.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[true]]></bundle>
+			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Communication]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -3041,7 +2798,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[true]]></bundle>
+			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -3418,7 +3175,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[true]]></bundle>
+			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -3628,47 +3385,19 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[kaleo-web]]></artifact-id>
-		<name><![CDATA[Kaleo Workflow]]></name>
-		<type><![CDATA[web]]></type>
-		<tags><![CDATA[bi, business intelligence, designer, kaleo, workflow]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides the Kaleo Workflow engine, for use with Liferay Portal. In Greek, Kaleo means "called ones," which is appropriate for a workflow engine that calls users to participate in a process that has been designed for them. Kaleo workflow allows a user to define any number of simple to complex business processes/workflows, deploy them, and manage them through a portal interface. Those processes have knowledge of users, groups, and roles. You don't have to write a single line of code to accomplish this: all you have to do is create a single XML document. And if you're a Liferay customer, you get a graphical workflow designer, which gives you a point and click interface to create workflows. Simple workflows can be managed using the default configuration and GUI tools, while more complex workflows can be created to meet the workflow management needs of almost any portal.<br /><br />This app installs as a Liferay service.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[true]]></bundle>
-			<category><![CDATA[Productivity]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[webs/kaleo-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[webs/kaleo-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[webs/kaleo-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<screenshot><![CDATA[webs/kaleo-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[resources-importer-web]]></artifact-id>
 		<name><![CDATA[Resources Importer]]></name>
 		<type><![CDATA[web]]></type>
 		<tags><![CDATA[configuration, lar, layout, package, theme, web content]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[The Resources Importer app allows front-end developers to package web content, portlet configurations, and layouts together in a theme without saving it as a compiled .LAR file thereby allowing for greater flexibility in its usage between Liferay Portal versions.<br /><br />This app will automatically create associated content when other plugins are deployed that are configured to make use of the Resource Importer app.<br /><br />This app installs as a Liferay service.]]></long-description>
+		<long-description><![CDATA[The Resources Importer app allows front-end developers to package web content, portlet configurations, and layouts together in a theme without saving it as a compiled LAR file thereby allowing for greater flexibility in its usage between Liferay Portal versions.<br /><br />This app will automatically create associated content when other plugins are deployed that are configured to make use of the Resources Importer app.<br /><br />This app installs as a Liferay service.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[true]]></bundle>
+			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Utility]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -3778,7 +3507,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[true]]></bundle>
+			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
