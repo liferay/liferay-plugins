@@ -43,6 +43,7 @@ import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
+import com.liferay.sync.util.VerifyUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -129,6 +130,10 @@ public class SyncServletContextListener
 	@Override
 	protected void doPortalInit() {
 		try {
+			if (PortletPropsValues.SYNC_VERIFY) {
+				VerifyUtil.verify();
+			}
+
 			List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 			for (Company company : companies) {

@@ -16,6 +16,8 @@ package com.liferay.sync.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -112,8 +114,17 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 			SyncDLFileVersionDiff syncDLFileVersionDiff)
 		throws PortalException, SystemException {
 
-		PortletFileRepositoryUtil.deletePortletFileEntry(
-			syncDLFileVersionDiff.getDataFileEntryId());
+		try {
+			PortletFileRepositoryUtil.deletePortletFileEntry(
+				syncDLFileVersionDiff.getDataFileEntryId());
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Failed to delete data fileEntryId " +
+						syncDLFileVersionDiff.getDataFileEntryId());
+			}
+		}
 
 		return super.deleteSyncDLFileVersionDiff(syncDLFileVersionDiff);
 	}
@@ -175,5 +186,8 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 		return sb.toString();
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		SyncDLFileVersionDiffLocalServiceImpl.class);
 
 }

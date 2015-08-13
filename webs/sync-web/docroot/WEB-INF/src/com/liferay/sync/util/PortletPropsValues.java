@@ -89,4 +89,7 @@ public class PortletPropsValues {
 	public static final boolean SYNC_SERVICES_ENABLED = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.SYNC_SERVICES_ENABLED));
 
+	public static final boolean SYNC_VERIFY = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.SYNC_VERIFY));
+
 }
