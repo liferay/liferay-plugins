@@ -548,13 +548,23 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				events = new String[0];
 			}
 
-			if (max == 0) {
-				max = PortletPropsValues.SYNC_PAGINATION_DELTA;
+			int start = 0;
+			int end = 0;
+
+			if (max == QueryUtil.ALL_POS) {
+				start = QueryUtil.ALL_POS;
+				end = QueryUtil.ALL_POS;
+			}
+			else if (max == 0) {
+				end = PortletPropsValues.SYNC_PAGINATION_DELTA;
+			}
+			else {
+				end = max;
 			}
 
 			List<SyncDLObject> syncDLObjects =
 				syncDLObjectPersistence.findByM_R_NotE(
-					lastAccessTime, repositoryId, events, 0, max,
+					lastAccessTime, repositoryId, events, start, end,
 					new SyncDLObjectModifiedTimeComparator());
 
 			if (syncDLObjects.isEmpty()) {
