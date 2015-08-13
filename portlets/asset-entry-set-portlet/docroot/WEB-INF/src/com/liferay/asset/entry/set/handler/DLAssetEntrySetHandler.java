@@ -20,12 +20,14 @@ import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Image;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
@@ -34,6 +36,7 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -106,6 +109,19 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 						StringPool.BLANK, false, true));
 
 				fileEntryIdsJSONObject.put(imageType, fileEntryId);
+
+				try {
+					Image image = ImageToolUtil.getImage(
+						fileEntry.getContentStream());
+
+					processedImageJSONObject.put(
+						"height_" + imageType, image.getHeight());
+					processedImageJSONObject.put(
+						"width_" + imageType, image.getWidth());
+				}
+				catch (IOException ioe) {
+					throw new SystemException(ioe);
+				}
 			}
 
 			processedImageJSONObject.put(
