@@ -129,6 +129,18 @@ public class JCalendarUtil {
 		return weekOfMonth;
 	}
 
+	public static Calendar mergeDateTime(
+		Calendar dateCalendar, Calendar timeCalendar, TimeZone timeZone) {
+
+		return CalendarFactoryUtil.getCalendar(
+			dateCalendar.get(Calendar.YEAR), dateCalendar.get(Calendar.MONTH),
+			dateCalendar.get(Calendar.DAY_OF_MONTH),
+			timeCalendar.get(Calendar.HOUR_OF_DAY),
+			timeCalendar.get(Calendar.MINUTE),
+			timeCalendar.get(Calendar.SECOND),
+			timeCalendar.get(Calendar.MILLISECOND), timeZone);
+	}
+
 	public static Calendar toLastHourJCalendar(Calendar jCalendar) {
 		Calendar lastHourJCalendar = (Calendar)jCalendar.clone();
 
