@@ -3812,7 +3812,7 @@ for (String path : paths) {
 						input="${watch.sources.path}"
 						override="true"
 						property="watch.deploy.path"
-						regexp="src.*$|docroot.*$"
+						regexp="(/|\\)(src.*$|docroot.*$)"
 						replace=""
 					/>
 
