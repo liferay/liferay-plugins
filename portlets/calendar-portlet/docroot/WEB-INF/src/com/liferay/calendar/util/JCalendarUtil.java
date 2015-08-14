@@ -39,6 +39,11 @@ public class JCalendarUtil {
 
 	public static final long SECOND = 1000;
 
+	public static Calendar atTimeZone(Calendar jCalendar, TimeZone timeZone) {
+		return CalendarFactoryUtil.getCalendar(
+			jCalendar.getTimeInMillis(), timeZone);
+	}
+
 	public static long getDaysBetween(
 		Calendar startTimeJCalendar, Calendar endTimeJCalendar) {
 
