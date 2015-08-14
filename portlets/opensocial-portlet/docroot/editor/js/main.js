@@ -1651,6 +1651,7 @@ AUI.add(
 											return {
 												folderId: node.get(ENTRY_ID),
 												getFileEntries: true,
+												p_auth: Liferay.authToken,
 												repositoryId: instance.get(REPOSITORY_ID)
 											};
 										},
@@ -1947,6 +1948,13 @@ AUI.add(
 						var instance = this;
 
 						var io = instance._getIORequest(name, callback);
+
+						data = A.merge(
+							data,
+							{
+								p_auth: Liferay.authToken
+							}
+						);
 
 						io.set('data', data);
 
