@@ -243,11 +243,11 @@ public class VerifyUtil {
 						}
 
 						if (dlFileEntry.isCheckedOut()) {
-							SyncDLObject approvedSyncDLObject =
+							SyncDLObject approvedFileEntrySyncDLObject =
 								SyncUtil.toSyncDLObject(
 									dlFileEntry, event, true, true);
 
-							addSyncDLObject(approvedSyncDLObject);
+							addSyncDLObject(approvedFileEntrySyncDLObject);
 						}
 
 						fileEntrySyncDLObject = SyncUtil.toSyncDLObject(
