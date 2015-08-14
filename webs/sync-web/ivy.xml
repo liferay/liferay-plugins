@@ -12,6 +12,7 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="com.liferay.io.delta" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+		<dependency name="commons-lang" org="commons-lang" rev="2.6" />
 		<dependency name="jodd-bean" org="org.jodd" rev="3.6.3" />
 		<dependency name="jodd-core" org="org.jodd" rev="3.6.3" />
 		<dependency name="jsontoken" org="com.googlecode.jsontoken" rev="1.1">
