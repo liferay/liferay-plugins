@@ -32,10 +32,10 @@ if (recurrence != null) {
 	interval = recurrence.getInterval();
 
 	if (recurrence.getUntilJCalendar() != null) {
-		java.util.Calendar calendarStartTimeJCalendar = CalendarFactoryUtil.getCalendar(startTimeJCalendar.getTimeInMillis(), calendar.getTimeZone());
+		java.util.Calendar calendarStartTimeJCalendar = JCalendarUtil.atTimeZone(startTimeJCalendar, calendar.getTimeZone());
 		java.util.Calendar calendarUntilJCalendar = JCalendarUtil.mergeDateTime(recurrence.getUntilJCalendar(), calendarStartTimeJCalendar, calendar.getTimeZone());
 
-		untilJCalendar = CalendarFactoryUtil.getCalendar(calendarUntilJCalendar.getTimeInMillis(), userTimeZone);
+		untilJCalendar = JCalendarUtil.atTimeZone(calendarUntilJCalendar, userTimeZone);
 	}
 
 	for (PositionalWeekday curPositionalWeekday : recurrence.getPositionalWeekdays()) {

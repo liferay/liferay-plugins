@@ -69,7 +69,6 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
-import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -745,8 +744,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 			untilJCalendar = JCalendarUtil.mergeDateTime(
 				untilJCalendar, startTimeJCalendar, getTimeZone(actionRequest));
-			untilJCalendar = CalendarFactoryUtil.getCalendar(
-				untilJCalendar.getTimeInMillis(), calendarTimeZone);
+			untilJCalendar = JCalendarUtil.atTimeZone(
+				untilJCalendar, calendarTimeZone);
 		}
 
 		recurrence.setUntilJCalendar(untilJCalendar);
