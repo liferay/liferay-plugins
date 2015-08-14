@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 /**
  * @author Michael Young
  * @author Shinn Lok
@@ -63,33 +65,38 @@ public class SyncDLObjectUpdate {
 			SyncDLObject syncDLObject = _syncDLObjects.get(i);
 
 			sb.append("{\"checksum\":\"");
-			sb.append(syncDLObject.getChecksum());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getChecksum()));
 			sb.append("\",\"changeLog\":\"");
-			sb.append(syncDLObject.getChangeLog());
+			sb.append(
+				StringEscapeUtils.escapeJava(syncDLObject.getChangeLog()));
 			sb.append("\",\"companyId\":");
 			sb.append(syncDLObject.getCompanyId());
 			sb.append(",\"createTime\":");
 			sb.append(syncDLObject.getCreateTime());
 			sb.append(",\"description\":\"");
-			sb.append(syncDLObject.getDescription());
+			sb.append(
+				StringEscapeUtils.escapeJava(syncDLObject.getDescription()));
 			sb.append("\",\"extension\":\"");
-			sb.append(syncDLObject.getExtension());
+			sb.append(
+				StringEscapeUtils.escapeJava(syncDLObject.getExtension()));
 			sb.append("\",\"extraSettings\":\"");
-			sb.append(syncDLObject.getExtraSettings());
+			sb.append(
+				StringEscapeUtils.escapeJava(syncDLObject.getExtraSettings()));
 			sb.append("\",\"event\":\"");
-			sb.append(syncDLObject.getEvent());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getEvent()));
 			sb.append("\",\"lockExpirationDate\":");
 			sb.append(syncDLObject.getLockExpirationDate());
 			sb.append(",\"lockUserId\":");
 			sb.append(syncDLObject.getLockUserId());
 			sb.append(",\"lockUserName\":\"");
-			sb.append(syncDLObject.getLockUserName());
+			sb.append(
+				StringEscapeUtils.escapeJava(syncDLObject.getLockUserName()));
 			sb.append("\",\"mimeType\":\"");
-			sb.append(syncDLObject.getMimeType());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getMimeType()));
 			sb.append("\",\"modifiedTime\":");
 			sb.append(syncDLObject.getModifiedTime());
 			sb.append(",\"name\":\"");
-			sb.append(syncDLObject.getName());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getName()));
 			sb.append("\",\"parentFolderId\":");
 			sb.append(syncDLObject.getParentFolderId());
 			sb.append(",\"repositoryId\":");
@@ -99,17 +106,17 @@ public class SyncDLObjectUpdate {
 			sb.append(",\"syncDLObjectId\":");
 			sb.append(syncDLObject.getSyncDLObjectId());
 			sb.append(",\"type\":\"");
-			sb.append(syncDLObject.getType());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getType()));
 			sb.append("\",\"typePK\":");
 			sb.append(syncDLObject.getTypePK());
 			sb.append(",\"typeUuid\":\"");
-			sb.append(syncDLObject.getTypeUuid());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getTypeUuid()));
 			sb.append("\",\"userId\":");
 			sb.append(syncDLObject.getUserId());
 			sb.append(",\"userName\":\"");
-			sb.append(syncDLObject.getUserName());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getUserName()));
 			sb.append("\",\"version\":\"");
-			sb.append(syncDLObject.getVersion());
+			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getVersion()));
 			sb.append("\",\"versionId\":");
 			sb.append(syncDLObject.getVersionId());
 			sb.append(StringPool.CLOSE_CURLY_BRACE);
