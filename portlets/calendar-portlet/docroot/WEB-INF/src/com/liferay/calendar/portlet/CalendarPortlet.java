@@ -739,29 +739,12 @@ public class CalendarPortlet extends MVCPortlet {
 		java.util.Calendar untilJCalendar = null;
 
 		if (ends.equals("on")) {
-			int untilDateDay = ParamUtil.getInteger(
-				actionRequest, "untilDateDay");
-			int untilDateMonth = ParamUtil.getInteger(
-				actionRequest, "untilDateMonth");
-			int untilDateYear = ParamUtil.getInteger(
-				actionRequest, "untilDateYear");
-			int startTimeHour = ParamUtil.getInteger(
-				actionRequest, "startTimeHour");
-			int startTimeMinute = ParamUtil.getInteger(
-				actionRequest, "startTimeMinute");
-			int startTimeAmPm = ParamUtil.getInteger(
-				actionRequest, "startTimeAmPm");
-			TimeZone displayTimeZone = getTimeZone(actionRequest);
+			untilJCalendar = getJCalendar(actionRequest, "untilDate");
+			java.util.Calendar startTimeJCalendar = getJCalendar(
+				actionRequest, "startTime");
 
-			untilJCalendar = CalendarFactoryUtil.getCalendar(displayTimeZone);
-
-			untilJCalendar.set(java.util.Calendar.DATE, untilDateDay);
-			untilJCalendar.set(java.util.Calendar.MONTH, untilDateMonth);
-			untilJCalendar.set(java.util.Calendar.YEAR, untilDateYear);
-			untilJCalendar.set(java.util.Calendar.HOUR, startTimeHour);
-			untilJCalendar.set(java.util.Calendar.MINUTE, startTimeMinute);
-			untilJCalendar.set(java.util.Calendar.AM_PM, startTimeAmPm);
-
+			untilJCalendar = JCalendarUtil.mergeDateTime(
+				untilJCalendar, startTimeJCalendar, getTimeZone(actionRequest));
 			untilJCalendar = CalendarFactoryUtil.getCalendar(
 				untilJCalendar.getTimeInMillis(), calendarTimeZone);
 		}

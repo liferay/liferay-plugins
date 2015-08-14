@@ -33,14 +33,9 @@ if (recurrence != null) {
 
 	if (recurrence.getUntilJCalendar() != null) {
 		java.util.Calendar calendarStartTimeJCalendar = CalendarFactoryUtil.getCalendar(startTimeJCalendar.getTimeInMillis(), calendar.getTimeZone());
-		untilJCalendar = recurrence.getUntilJCalendar();
+		java.util.Calendar calendarUntilJCalendar = JCalendarUtil.mergeDateTime(recurrence.getUntilJCalendar(), calendarStartTimeJCalendar, calendar.getTimeZone());
 
-		untilJCalendar.setTimeZone(calendar.getTimeZone());
-		untilJCalendar.set(java.util.Calendar.HOUR, calendarStartTimeJCalendar.get(java.util.Calendar.HOUR));
-		untilJCalendar.set(java.util.Calendar.MINUTE, calendarStartTimeJCalendar.get(java.util.Calendar.MINUTE));
-		untilJCalendar.set(java.util.Calendar.AM_PM, calendarStartTimeJCalendar.get(java.util.Calendar.AM_PM));
-
-		untilJCalendar = CalendarFactoryUtil.getCalendar(untilJCalendar.getTimeInMillis(), userTimeZone);
+		untilJCalendar = CalendarFactoryUtil.getCalendar(calendarUntilJCalendar.getTimeInMillis(), userTimeZone);
 	}
 
 	for (PositionalWeekday curPositionalWeekday : recurrence.getPositionalWeekdays()) {
