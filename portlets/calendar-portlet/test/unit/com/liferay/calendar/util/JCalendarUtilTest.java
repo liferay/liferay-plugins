@@ -39,6 +39,24 @@ public class JCalendarUtilTest {
 	}
 
 	@Test
+	public void testAtTimeZone() {
+		Calendar losAngelesJCalendar = CalendarFactoryUtil.getCalendar(
+			RandomTestUtil.randomInt(2000, 2100),
+			RandomTestUtil.randomInt(0, 12), RandomTestUtil.randomInt(1, 29),
+			RandomTestUtil.randomInt(0, 24), RandomTestUtil.randomInt(0, 60),
+			RandomTestUtil.randomInt(0, 60), RandomTestUtil.randomInt(0, 60),
+			_losAngelesTimeZone);
+
+		Calendar madridJCalendar = JCalendarUtil.atTimeZone(
+			losAngelesJCalendar, _madridTimeZone);
+
+		Assert.assertEquals(
+			losAngelesJCalendar.getTimeInMillis(),
+			madridJCalendar.getTimeInMillis());
+		Assert.assertEquals(_madridTimeZone, madridJCalendar.getTimeZone());
+	}
+
+	@Test
 	public void testGetDSTShiftAtLosAngelesDuringDST() {
 		Calendar jCalendar1 = JCalendarUtil.getJCalendar(
 			2012, Calendar.MAY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
