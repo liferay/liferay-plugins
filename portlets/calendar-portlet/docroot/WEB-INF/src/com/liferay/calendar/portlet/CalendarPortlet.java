@@ -311,6 +311,8 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, "calendarBookingId");
 
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+		Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
+
 		long[] childCalendarIds = ParamUtil.getLongValues(
 			actionRequest, "childCalendarIds");
 		Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
@@ -323,7 +325,8 @@ public class CalendarPortlet extends MVCPortlet {
 		java.util.Calendar endTimeJCalendar = getJCalendar(
 			actionRequest, "endTime");
 		boolean allDay = ParamUtil.getBoolean(actionRequest, "allDay");
-		String recurrence = getRecurrence(actionRequest);
+		String recurrence = getRecurrence(
+			actionRequest, calendar.getTimeZone());
 		long[] reminders = getReminders(actionRequest);
 		String[] remindersType = getRemindersType(actionRequest);
 		int status = ParamUtil.getInteger(actionRequest, "status");
@@ -703,7 +706,9 @@ public class CalendarPortlet extends MVCPortlet {
 		return notificationTypeSettingsProperties.toString();
 	}
 
-	protected String getRecurrence(ActionRequest actionRequest) {
+	protected String getRecurrence(
+		ActionRequest actionRequest, TimeZone calendarTimeZone) {
+
 		boolean repeat = ParamUtil.getBoolean(actionRequest, "repeat");
 
 		if (!repeat) {
@@ -740,12 +745,25 @@ public class CalendarPortlet extends MVCPortlet {
 				actionRequest, "untilDateMonth");
 			int untilDateYear = ParamUtil.getInteger(
 				actionRequest, "untilDateYear");
+			int startTimeHour = ParamUtil.getInteger(
+				actionRequest, "startTimeHour");
+			int startTimeMinute = ParamUtil.getInteger(
+				actionRequest, "startTimeMinute");
+			int startTimeAmPm = ParamUtil.getInteger(
+				actionRequest, "startTimeAmPm");
+			TimeZone displayTimeZone = getTimeZone(actionRequest);
 
-			untilJCalendar = CalendarFactoryUtil.getCalendar();
+			untilJCalendar = CalendarFactoryUtil.getCalendar(displayTimeZone);
 
 			untilJCalendar.set(java.util.Calendar.DATE, untilDateDay);
 			untilJCalendar.set(java.util.Calendar.MONTH, untilDateMonth);
 			untilJCalendar.set(java.util.Calendar.YEAR, untilDateYear);
+			untilJCalendar.set(java.util.Calendar.HOUR, startTimeHour);
+			untilJCalendar.set(java.util.Calendar.MINUTE, startTimeMinute);
+			untilJCalendar.set(java.util.Calendar.AM_PM, startTimeAmPm);
+
+			untilJCalendar = CalendarFactoryUtil.getCalendar(
+				untilJCalendar.getTimeInMillis(), calendarTimeZone);
 		}
 
 		recurrence.setUntilJCalendar(untilJCalendar);
