@@ -86,6 +86,8 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					continue;
 				}
 
+				fileEntryIdsJSONObject.put(imageType, fileEntryId);
+
 				DLFileEntry dlFileEntry =
 					DLFileEntryLocalServiceUtil.getFileEntry(fileEntryId);
 
@@ -107,8 +109,6 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					DLUtil.getPreviewURL(
 						fileEntry, fileEntry.getFileVersion(), null,
 						StringPool.BLANK, false, true));
-
-				fileEntryIdsJSONObject.put(imageType, fileEntryId);
 
 				try {
 					Image image = ImageToolUtil.getImage(
