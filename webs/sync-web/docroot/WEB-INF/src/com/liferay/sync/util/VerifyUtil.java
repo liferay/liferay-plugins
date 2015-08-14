@@ -157,7 +157,7 @@ public class VerifyUtil {
 					logCount(
 						_dlFoldersAndFileEntriesCount,
 						_dlFoldersAndFileEntriesTotalCount,
-						"dlFileEntries and dlFolders");
+						"DL folders and DL file entries");
 
 					DLFolder dlFolder = (DLFolder)object;
 
@@ -210,7 +210,7 @@ public class VerifyUtil {
 					logCount(
 						_dlFoldersAndFileEntriesCount,
 						_dlFoldersAndFileEntriesTotalCount,
-						"dlFolders and dlFileEntries");
+						"DL folders and DL file entries");
 
 					DLFileEntry dlFileEntry = (DLFileEntry)object;
 
@@ -282,11 +282,11 @@ public class VerifyUtil {
 
 		logCount(
 			_dlFoldersAndFileEntriesCount, _dlFoldersAndFileEntriesTotalCount,
-			"dlFolders and dlFileEntries");
+			"DL folders and DL file entries");
 	}
 
 	protected void verifySyncDLObjects(final long groupId) throws Exception {
-		_syncDLObjectCount = 0;
+		_syncDLObjectsCount = 0;
 
 		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
 			SyncDLObjectLocalServiceUtil.getActionableDynamicQuery();
@@ -316,11 +316,11 @@ public class VerifyUtil {
 				public void performAction(Object object)
 					throws PortalException {
 
-					_syncDLObjectCount++;
+					_syncDLObjectsCount++;
 
 					logCount(
-						_syncDLObjectCount, _syncDLObjectTotalCount,
-						"syncDLObjects");
+						_syncDLObjectsCount, _syncDLObjectsTotalCount,
+						"Sync DL objects");
 
 					SyncDLObject syncDLObject = (SyncDLObject)object;
 
@@ -371,20 +371,21 @@ public class VerifyUtil {
 
 			});
 
-		_syncDLObjectTotalCount =
+		_syncDLObjectsTotalCount =
 			syncDLObjectActionableDynamicQuery.performCount();
 
 		syncDLObjectActionableDynamicQuery.performActions();
 
 		logCount(
-			_syncDLObjectTotalCount, _syncDLObjectTotalCount, "syncDLObjects");
+			_syncDLObjectsTotalCount, _syncDLObjectsTotalCount,
+			"Sync DL objects");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(VerifyUtil.class);
 
-	private long _dlFoldersAndFileEntriesCount = 0;
-	private long _dlFoldersAndFileEntriesTotalCount = 0;
-	private long _syncDLObjectCount = 0;
-	private long _syncDLObjectTotalCount = 0;
+	private long _dlFoldersAndFileEntriesCount;
+	private long _dlFoldersAndFileEntriesTotalCount;
+	private long _syncDLObjectsCount;
+	private long _syncDLObjectsTotalCount;
 
 }

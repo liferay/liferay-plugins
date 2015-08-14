@@ -118,7 +118,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Failed to delete data fileEntryId " +
+					"Unable to delete file entry " +
 						syncDLFileVersionDiff.getDataFileEntryId());
 			}
 		}
