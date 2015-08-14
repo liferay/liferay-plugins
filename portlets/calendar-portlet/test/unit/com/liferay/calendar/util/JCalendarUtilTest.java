@@ -41,19 +41,17 @@ public class JCalendarUtilTest {
 	@Test
 	public void testAtTimeZone() {
 		Calendar losAngelesJCalendar = CalendarFactoryUtil.getCalendar(
-			RandomTestUtil.randomInt(2000, 2100),
-			RandomTestUtil.randomInt(0, 12), RandomTestUtil.randomInt(1, 29),
-			RandomTestUtil.randomInt(0, 24), RandomTestUtil.randomInt(0, 60),
-			RandomTestUtil.randomInt(0, 60), RandomTestUtil.randomInt(0, 60),
+			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
+			randomMinute(), randomSecond(), randomMillisecond(),
 			_losAngelesTimeZone);
 
 		Calendar madridJCalendar = JCalendarUtil.atTimeZone(
 			losAngelesJCalendar, _madridTimeZone);
 
+		Assert.assertEquals(_madridTimeZone, madridJCalendar.getTimeZone());
 		Assert.assertEquals(
 			losAngelesJCalendar.getTimeInMillis(),
 			madridJCalendar.getTimeInMillis());
-		Assert.assertEquals(_madridTimeZone, madridJCalendar.getTimeZone());
 	}
 
 	@Test
@@ -151,17 +149,13 @@ public class JCalendarUtilTest {
 	@Test
 	public void testMergeDateTime() {
 		Calendar dateJCalendar = CalendarFactoryUtil.getCalendar(
-			RandomTestUtil.randomInt(2000, 2100),
-			RandomTestUtil.randomInt(0, 12), RandomTestUtil.randomInt(1, 29),
-			RandomTestUtil.randomInt(0, 24), RandomTestUtil.randomInt(0, 60),
-			RandomTestUtil.randomInt(0, 60), RandomTestUtil.randomInt(0, 60),
+			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
+			randomMinute(), randomSecond(), randomMillisecond(),
 			_losAngelesTimeZone);
 
 		Calendar timeJCalendar = CalendarFactoryUtil.getCalendar(
-			RandomTestUtil.randomInt(2000, 2100),
-			RandomTestUtil.randomInt(0, 12), RandomTestUtil.randomInt(1, 29),
-			RandomTestUtil.randomInt(0, 24), RandomTestUtil.randomInt(0, 60),
-			RandomTestUtil.randomInt(0, 60), RandomTestUtil.randomInt(0, 60),
+			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
+			randomMinute(), randomSecond(), randomMillisecond(),
 			_madridTimeZone);
 
 		Calendar jCalendar = JCalendarUtil.mergeDateTime(
@@ -188,6 +182,34 @@ public class JCalendarUtilTest {
 			timeJCalendar.get(Calendar.AM_PM), jCalendar.get(Calendar.AM_PM));
 
 		Assert.assertEquals(_calcuttaTimeZone, jCalendar.getTimeZone());
+	}
+
+	protected int randomDayOfMonth() {
+		return RandomTestUtil.randomInt(1, 29);
+	}
+
+	protected int randomHour() {
+		return RandomTestUtil.randomInt(0, 24);
+	}
+
+	protected int randomMillisecond() {
+		return RandomTestUtil.randomInt(0, 100);
+	}
+
+	protected int randomMinute() {
+		return RandomTestUtil.randomInt(0, 60);
+	}
+
+	protected int randomMonth() {
+		return RandomTestUtil.randomInt(0, 12);
+	}
+
+	protected int randomSecond() {
+		return RandomTestUtil.randomInt(0, 60);
+	}
+
+	protected int randomYear() {
+		return RandomTestUtil.randomInt(2000, 2100);
 	}
 
 	private static final TimeZone _calcuttaTimeZone = TimeZone.getTimeZone(
