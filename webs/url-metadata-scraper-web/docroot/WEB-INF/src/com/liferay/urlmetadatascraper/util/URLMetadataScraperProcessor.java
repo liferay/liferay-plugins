@@ -209,7 +209,7 @@ public class URLMetadataScraperProcessor {
 	private static final int _IMAGE_URLS_MAXIMUM = 10;
 
 	private static final String[] _SELECTORS_DESCRIPTION = {
-		"meta[property=og:description]", "meta[name=description]"
+		"meta[name=description]", "meta[property=og:description]"
 	};
 
 	private static final String[] _SELECTORS_IMAGE = {
@@ -217,13 +217,13 @@ public class URLMetadataScraperProcessor {
 	};
 
 	private static final String[] _SELECTORS_TITLE = {
-		"meta[property=og:title]", "meta[name=title]", "title",
-		"meta[property=og:site_name]"
+		"meta[name=title]", "meta[property=og:site_name]",
+		"meta[property=og:title]", "title"
 	};
 
 	private static final String[] _SELECTORS_VIDEO_URL_ = {
-		"meta[property=og:video:]", "meta[property=og:video:url]",
-		"meta[property=og:video:secure_url]", "meta[name=twitter:player]"
+		"meta[name=twitter:player]", "meta[property=og:video:]",
+		"meta[property=og:video:secure_url]", "meta[property=og:video:url]"
 	};
 
 	private static final String _USER_AGENT_DEFAULT =
