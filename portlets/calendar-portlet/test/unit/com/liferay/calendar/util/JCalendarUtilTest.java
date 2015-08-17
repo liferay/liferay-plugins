@@ -39,22 +39,6 @@ public class JCalendarUtilTest {
 	}
 
 	@Test
-	public void testGetJCalendar() {
-		Calendar losAngelesJCalendar = CalendarFactoryUtil.getCalendar(
-			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
-			randomMinute(), randomSecond(), randomMillisecond(),
-			_losAngelesTimeZone);
-
-		Calendar madridJCalendar = JCalendarUtil.getJCalendar(
-			losAngelesJCalendar, _madridTimeZone);
-
-		Assert.assertEquals(_madridTimeZone, madridJCalendar.getTimeZone());
-		Assert.assertEquals(
-			losAngelesJCalendar.getTimeInMillis(),
-			madridJCalendar.getTimeInMillis());
-	}
-
-	@Test
 	public void testGetDSTShiftAtLosAngelesDuringDST() {
 		Calendar jCalendar1 = JCalendarUtil.getJCalendar(
 			2012, Calendar.MAY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
@@ -104,6 +88,22 @@ public class JCalendarUtilTest {
 			jCalendar1, jCalendar2, _losAngelesTimeZone);
 
 		Assert.assertEquals(-1 * JCalendarUtil.HOUR, shift);
+	}
+
+	@Test
+	public void testGetJCalendar() {
+		Calendar losAngelesJCalendar = CalendarFactoryUtil.getCalendar(
+			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
+			randomMinute(), randomSecond(), randomMillisecond(),
+			_losAngelesTimeZone);
+
+		Calendar madridJCalendar = JCalendarUtil.getJCalendar(
+			losAngelesJCalendar, _madridTimeZone);
+
+		Assert.assertEquals(_madridTimeZone, madridJCalendar.getTimeZone());
+		Assert.assertEquals(
+			losAngelesJCalendar.getTimeInMillis(),
+			madridJCalendar.getTimeInMillis());
 	}
 
 	@Test
