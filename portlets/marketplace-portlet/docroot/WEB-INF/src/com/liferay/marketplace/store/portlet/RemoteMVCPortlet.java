@@ -16,6 +16,7 @@ package com.liferay.marketplace.store.portlet;
 
 import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.util.WebKeys;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -38,6 +39,7 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletSession;
+import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -79,6 +81,25 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			redirect, OAuthConstants.CALLBACK, callbackURL);
 
 		actionResponse.sendRedirect(redirect);
+	}
+
+	public void deauthorize(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		OAuthUtil.deleteAccessToken(themeDisplay.getUser());
+
+		LiferayPortletResponse liferayPortletResponse =
+			(LiferayPortletResponse)actionResponse;
+
+		PortletURL portletURL = liferayPortletResponse.createRenderURL();
+
+		portletURL.setParameter("mvcPath", "/view.jsp");
+
+		actionResponse.sendRedirect(portletURL.toString());
 	}
 
 	@Override
