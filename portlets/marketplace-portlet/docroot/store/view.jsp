@@ -22,11 +22,7 @@
 
 <iframe frameborder="0" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="<%= viewURL %>"></iframe>
 
-<%
-boolean marketplaceStoreAuthorized = GetterUtil.getBoolean(request.getAttribute(WebKeys.OAUTH_AUTHORIZED));
-%>
-
-<c:if test="<%= marketplaceStoreAuthorized %>">
+<c:if test="<%= GetterUtil.getBoolean(request.getAttribute(WebKeys.OAUTH_AUTHORIZED)) %>">
 	<div class="sign-out">
 		<liferay-portlet:actionURL name="deauthorize" var="deauthorizeURL" />
 
