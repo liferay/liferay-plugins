@@ -147,7 +147,7 @@ public class JCalendarUtilTest {
 	}
 
 	@Test
-	public void testMergeDateTime() {
+	public void testMergeJCalendar() {
 		Calendar dateJCalendar = CalendarFactoryUtil.getCalendar(
 			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
 			randomMinute(), randomSecond(), randomMillisecond(),
