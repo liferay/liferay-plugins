@@ -743,7 +743,7 @@ public class CalendarPortlet extends MVCPortlet {
 			java.util.Calendar startTimeJCalendar = getJCalendar(
 				actionRequest, "startTime");
 
-			untilJCalendar = JCalendarUtil.mergeDateTimeJCalendar(
+			untilJCalendar = JCalendarUtil.mergeJCalendar(
 				untilJCalendar, startTimeJCalendar, getTimeZone(actionRequest));
 
 			untilJCalendar = JCalendarUtil.getJCalendar(

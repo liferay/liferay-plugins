@@ -134,7 +134,7 @@ public class JCalendarUtil {
 		return weekOfMonth;
 	}
 
-	public static Calendar mergeDateTimeJCalendar(
+	public static Calendar mergeJCalendar(
 		Calendar dateJCalendar, Calendar timeJCalendar, TimeZone timeZone) {
 
 		return CalendarFactoryUtil.getCalendar(

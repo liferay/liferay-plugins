@@ -158,7 +158,7 @@ public class JCalendarUtilTest {
 			randomMinute(), randomSecond(), randomMillisecond(),
 			_madridTimeZone);
 
-		Calendar jCalendar = JCalendarUtil.mergeDateTimeJCalendar(
+		Calendar jCalendar = JCalendarUtil.mergeJCalendar(
 			dateJCalendar, timeJCalendar, _calcuttaTimeZone);
 
 		Assert.assertEquals(

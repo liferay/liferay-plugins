@@ -34,7 +34,7 @@ if (recurrence != null) {
 	if (recurrence.getUntilJCalendar() != null) {
 		java.util.Calendar calendarStartTimeJCalendar = JCalendarUtil.getJCalendar(startTimeJCalendar, calendar.getTimeZone());
 
-		java.util.Calendar calendarUntilJCalendar = JCalendarUtil.mergeDateTimeJCalendar(recurrence.getUntilJCalendar(), calendarStartTimeJCalendar, calendar.getTimeZone());
+		java.util.Calendar calendarUntilJCalendar = JCalendarUtil.mergeJCalendar(recurrence.getUntilJCalendar(), calendarStartTimeJCalendar, calendar.getTimeZone());
 
 		untilJCalendar = JCalendarUtil.getJCalendar(calendarUntilJCalendar, userTimeZone);
 	}
