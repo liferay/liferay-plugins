@@ -152,7 +152,6 @@ public class JCalendarUtilTest {
 			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
 			randomMinute(), randomSecond(), randomMillisecond(),
 			_losAngelesTimeZone);
-
 		Calendar timeJCalendar = CalendarFactoryUtil.getCalendar(
 			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
 			randomMinute(), randomSecond(), randomMillisecond(),
@@ -179,7 +178,6 @@ public class JCalendarUtilTest {
 			jCalendar.get(Calendar.MILLISECOND));
 		Assert.assertEquals(
 			timeJCalendar.get(Calendar.AM_PM), jCalendar.get(Calendar.AM_PM));
-
 		Assert.assertEquals(_calcuttaTimeZone, jCalendar.getTimeZone());
 	}
 
