@@ -168,7 +168,6 @@ public class JCalendarUtilTest {
 		Assert.assertEquals(
 			dateJCalendar.get(Calendar.DAY_OF_MONTH),
 			jCalendar.get(Calendar.DAY_OF_MONTH));
-
 		Assert.assertEquals(
 			timeJCalendar.get(Calendar.HOUR), jCalendar.get(Calendar.HOUR));
 		Assert.assertEquals(

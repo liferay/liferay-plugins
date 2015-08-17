@@ -310,6 +310,7 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, "calendarBookingId");
 
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+
 		Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
 
 		long[] childCalendarIds = ParamUtil.getLongValues(
@@ -735,10 +736,10 @@ public class CalendarPortlet extends MVCPortlet {
 
 		recurrence.setInterval(interval);
 
-		java.util.Calendar untilJCalendar = null;
-
 		if (ends.equals("on")) {
-			untilJCalendar = getJCalendar(actionRequest, "untilDate");
+			java.util.Calendar untilJCalendar = getJCalendar(
+				actionRequest, "untilDate");
+
 			java.util.Calendar startTimeJCalendar = getJCalendar(
 				actionRequest, "startTime");
 
@@ -746,9 +747,9 @@ public class CalendarPortlet extends MVCPortlet {
 				untilJCalendar, startTimeJCalendar, getTimeZone(actionRequest));
 			untilJCalendar = JCalendarUtil.atTimeZone(
 				untilJCalendar, calendarTimeZone);
-		}
 
-		recurrence.setUntilJCalendar(untilJCalendar);
+			recurrence.setUntilJCalendar(untilJCalendar);
+		}
 
 		List<PositionalWeekday> positionalWeekdays =
 			new ArrayList<PositionalWeekday>();
@@ -880,7 +881,7 @@ public class CalendarPortlet extends MVCPortlet {
 		searchContext.setStart(0);
 		searchContext.setUserId(userId);
 
-		Indexer indexer = CalendarSearcher.getInstance();
+		Indexer<?> indexer = CalendarSearcher.getInstance();
 
 		return indexer.search(searchContext);
 	}
