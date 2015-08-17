@@ -19,6 +19,8 @@ package com.liferay.marketplace.util;
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
+	public static final String OAUTH_AUTHORIZED = "OAUTH_AUTHORIZED";
+
 	public static final String OAUTH_REQUEST_TOKEN = "OAUTH_REQUEST_TOKEN";
 
 }

@@ -23,13 +23,13 @@ import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.marketplace.util.PortletPropsValues;
+import com.liferay.marketplace.util.WebKeys;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
@@ -331,6 +331,8 @@ public class StorePortlet extends RemoteMVCPortlet {
 		catch (Exception pe) {
 			throw new PortletException(pe);
 		}
+
+		renderRequest.setAttribute(WebKeys.OAUTH_AUTHORIZED, Boolean.TRUE);
 
 		super.doDispatch(renderRequest, renderResponse);
 	}
