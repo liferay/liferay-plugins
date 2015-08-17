@@ -743,9 +743,10 @@ public class CalendarPortlet extends MVCPortlet {
 			java.util.Calendar startTimeJCalendar = getJCalendar(
 				actionRequest, "startTime");
 
-			untilJCalendar = JCalendarUtil.mergeDateTime(
+			untilJCalendar = JCalendarUtil.mergeDateTimeJCalendar(
 				untilJCalendar, startTimeJCalendar, getTimeZone(actionRequest));
-			untilJCalendar = JCalendarUtil.atTimeZone(
+
+			untilJCalendar = JCalendarUtil.getJCalendar(
 				untilJCalendar, calendarTimeZone);
 
 			recurrence.setUntilJCalendar(untilJCalendar);

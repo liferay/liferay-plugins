@@ -39,13 +39,13 @@ public class JCalendarUtilTest {
 	}
 
 	@Test
-	public void testAtTimeZone() {
+	public void testGetJCalendar() {
 		Calendar losAngelesJCalendar = CalendarFactoryUtil.getCalendar(
 			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
 			randomMinute(), randomSecond(), randomMillisecond(),
 			_losAngelesTimeZone);
 
-		Calendar madridJCalendar = JCalendarUtil.atTimeZone(
+		Calendar madridJCalendar = JCalendarUtil.getJCalendar(
 			losAngelesJCalendar, _madridTimeZone);
 
 		Assert.assertEquals(_madridTimeZone, madridJCalendar.getTimeZone());
@@ -158,7 +158,7 @@ public class JCalendarUtilTest {
 			randomMinute(), randomSecond(), randomMillisecond(),
 			_madridTimeZone);
 
-		Calendar jCalendar = JCalendarUtil.mergeDateTime(
+		Calendar jCalendar = JCalendarUtil.mergeDateTimeJCalendar(
 			dateJCalendar, timeJCalendar, _calcuttaTimeZone);
 
 		Assert.assertEquals(

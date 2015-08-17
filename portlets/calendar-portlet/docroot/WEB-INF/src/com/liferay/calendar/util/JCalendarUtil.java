@@ -39,7 +39,7 @@ public class JCalendarUtil {
 
 	public static final long SECOND = 1000;
 
-	public static Calendar atTimeZone(Calendar jCalendar, TimeZone timeZone) {
+	public static Calendar getJCalendar(Calendar jCalendar, TimeZone timeZone) {
 		return CalendarFactoryUtil.getCalendar(
 			jCalendar.getTimeInMillis(), timeZone);
 	}
@@ -134,16 +134,16 @@ public class JCalendarUtil {
 		return weekOfMonth;
 	}
 
-	public static Calendar mergeDateTime(
-		Calendar dateCalendar, Calendar timeCalendar, TimeZone timeZone) {
+	public static Calendar mergeDateTimeJCalendar(
+		Calendar dateJCalendar, Calendar timeJCalendar, TimeZone timeZone) {
 
 		return CalendarFactoryUtil.getCalendar(
-			dateCalendar.get(Calendar.YEAR), dateCalendar.get(Calendar.MONTH),
-			dateCalendar.get(Calendar.DAY_OF_MONTH),
-			timeCalendar.get(Calendar.HOUR_OF_DAY),
-			timeCalendar.get(Calendar.MINUTE),
-			timeCalendar.get(Calendar.SECOND),
-			timeCalendar.get(Calendar.MILLISECOND), timeZone);
+			dateJCalendar.get(Calendar.YEAR), dateJCalendar.get(Calendar.MONTH),
+			dateJCalendar.get(Calendar.DAY_OF_MONTH),
+			timeJCalendar.get(Calendar.HOUR_OF_DAY),
+			timeJCalendar.get(Calendar.MINUTE),
+			timeJCalendar.get(Calendar.SECOND),
+			timeJCalendar.get(Calendar.MILLISECOND), timeZone);
 	}
 
 	public static Calendar toLastHourJCalendar(Calendar jCalendar) {
