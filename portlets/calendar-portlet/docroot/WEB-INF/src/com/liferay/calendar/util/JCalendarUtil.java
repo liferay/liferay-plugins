@@ -73,8 +73,7 @@ public class JCalendarUtil {
 	}
 
 	public static Calendar getJCalendar(Calendar jCalendar, TimeZone timeZone) {
-		return CalendarFactoryUtil.getCalendar(
-			jCalendar.getTimeInMillis(), timeZone);
+		return getJCalendar(jCalendar.getTimeInMillis(), timeZone);
 	}
 
 	public static Calendar getJCalendar(

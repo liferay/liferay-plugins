@@ -882,7 +882,7 @@ public class CalendarPortlet extends MVCPortlet {
 		searchContext.setStart(0);
 		searchContext.setUserId(userId);
 
-		Indexer<?> indexer = CalendarSearcher.getInstance();
+		Indexer indexer = CalendarSearcher.getInstance();
 
 		return indexer.search(searchContext);
 	}
