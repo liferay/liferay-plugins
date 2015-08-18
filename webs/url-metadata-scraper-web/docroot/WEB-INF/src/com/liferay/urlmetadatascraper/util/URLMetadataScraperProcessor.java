@@ -38,7 +38,9 @@ import org.jsoup.select.Elements;
  */
 public class URLMetadataScraperProcessor {
 
-	public String getURLMetadataJSON(String url) throws Exception {
+	public String getURLMetadataJSON(String url, String userAgent)
+		throws Exception {
+
 		JSONObject jsonObject = new JSONObject();
 
 		Document document = null;
@@ -50,7 +52,11 @@ public class URLMetadataScraperProcessor {
 
 			Connection connection = Jsoup.connect(url);
 
-			connection.userAgent(_USER_AGENT_DEFAULT);
+			if (Validator.isNull(userAgent)) {
+				userAgent = _USER_AGENT_DEFAULT;
+			}
+
+			connection.userAgent(userAgent);
 
 			document = connection.get();
 		}
@@ -70,7 +76,7 @@ public class URLMetadataScraperProcessor {
 
 		jsonObject.put(
 			"description", getContent(document, _SELECTORS_DESCRIPTION));
-		jsonObject.put("imageURLs", getImageURLs(document));
+		jsonObject.put("imageURLs", getImageURLs(document, userAgent));
 		jsonObject.put("videoURL", getContent(document, _SELECTORS_VIDEO_URL_));
 
 		String domain = "";
@@ -114,12 +120,14 @@ public class URLMetadataScraperProcessor {
 		return "";
 	}
 
-	protected List<String> getImageURLs(Document document) throws Exception {
+	protected List<String> getImageURLs(Document document, String userAgent)
+		throws Exception {
+
 		List<String> imageURLs = new ArrayList<String>();
 
 		String imageURL = getContent(document, _SELECTORS_IMAGE);
 
-		if (isValidImageURL(imageURL)) {
+		if (isValidImageURL(imageURL, userAgent)) {
 			imageURLs.add(imageURL);
 		}
 
@@ -129,7 +137,8 @@ public class URLMetadataScraperProcessor {
 			imageURL = imageElement.absUrl("src");
 
 			if (isValidImageElement(imageElement) &&
-				isValidImageURL(imageURL) && !imageURLs.contains(imageURL)) {
+				isValidImageURL(imageURL, userAgent) &&
+				!imageURLs.contains(imageURL)) {
 
 				imageURLs.add(imageURL);
 
@@ -166,7 +175,9 @@ public class URLMetadataScraperProcessor {
 		return true;
 	}
 
-	protected boolean isValidImageURL(String imageURL) throws Exception {
+	protected boolean isValidImageURL(String imageURL, String userAgent)
+		throws Exception {
+
 		if (Validator.isNull(imageURL)) {
 			return false;
 		}
@@ -176,7 +187,7 @@ public class URLMetadataScraperProcessor {
 		HttpURLConnection httpURLConnection =
 			(HttpURLConnection)url.openConnection();
 
-		httpURLConnection.setRequestProperty("User-Agent", _USER_AGENT_DEFAULT);
+		httpURLConnection.setRequestProperty("User-Agent", userAgent);
 
 		try {
 			BufferedImage bufferedImage = ImageIO.read(

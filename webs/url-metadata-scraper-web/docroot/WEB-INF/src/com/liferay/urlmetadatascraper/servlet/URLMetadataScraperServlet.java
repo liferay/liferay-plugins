@@ -47,9 +47,11 @@ public class URLMetadataScraperServlet extends HttpServlet {
 		throws IOException, ServletException {
 
 		String url = request.getParameter("url");
+		String userAgent = request.getHeader("user-agent");
 
 		try {
-			String json = _urlMetadataScraperProcessor.getURLMetadataJSON(url);
+			String json = _urlMetadataScraperProcessor.getURLMetadataJSON(
+				url, userAgent);
 
 			write(response, new ByteArrayInputStream(json.getBytes()));
 		}
