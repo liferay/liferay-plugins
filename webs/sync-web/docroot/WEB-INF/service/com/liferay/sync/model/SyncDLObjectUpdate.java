@@ -65,7 +65,7 @@ public class SyncDLObjectUpdate {
 			SyncDLObject syncDLObject = _syncDLObjects.get(i);
 
 			sb.append("{\"checksum\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getChecksum()));
+			sb.append(syncDLObject.getChecksum());
 			sb.append("\",\"changeLog\":\"");
 			sb.append(
 				StringEscapeUtils.escapeJava(syncDLObject.getChangeLog()));
@@ -77,13 +77,12 @@ public class SyncDLObjectUpdate {
 			sb.append(
 				StringEscapeUtils.escapeJava(syncDLObject.getDescription()));
 			sb.append("\",\"extension\":\"");
-			sb.append(
-				StringEscapeUtils.escapeJava(syncDLObject.getExtension()));
+			sb.append(syncDLObject.getExtension());
 			sb.append("\",\"extraSettings\":\"");
 			sb.append(
 				StringEscapeUtils.escapeJava(syncDLObject.getExtraSettings()));
 			sb.append("\",\"event\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getEvent()));
+			sb.append(syncDLObject.getEvent());
 			sb.append("\",\"lockExpirationDate\":");
 			sb.append(syncDLObject.getLockExpirationDate());
 			sb.append(",\"lockUserId\":");
@@ -92,7 +91,7 @@ public class SyncDLObjectUpdate {
 			sb.append(
 				StringEscapeUtils.escapeJava(syncDLObject.getLockUserName()));
 			sb.append("\",\"mimeType\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getMimeType()));
+			sb.append(syncDLObject.getMimeType());
 			sb.append("\",\"modifiedTime\":");
 			sb.append(syncDLObject.getModifiedTime());
 			sb.append(",\"name\":\"");
@@ -106,17 +105,17 @@ public class SyncDLObjectUpdate {
 			sb.append(",\"syncDLObjectId\":");
 			sb.append(syncDLObject.getSyncDLObjectId());
 			sb.append(",\"type\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getType()));
+			sb.append(syncDLObject.getType());
 			sb.append("\",\"typePK\":");
 			sb.append(syncDLObject.getTypePK());
 			sb.append(",\"typeUuid\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getTypeUuid()));
+			sb.append(syncDLObject.getTypeUuid());
 			sb.append("\",\"userId\":");
 			sb.append(syncDLObject.getUserId());
 			sb.append(",\"userName\":\"");
 			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getUserName()));
 			sb.append("\",\"version\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getVersion()));
+			sb.append(syncDLObject.getVersion());
 			sb.append("\",\"versionId\":");
 			sb.append(syncDLObject.getVersionId());
 			sb.append(StringPool.CLOSE_CURLY_BRACE);
