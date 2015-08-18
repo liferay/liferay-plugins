@@ -211,7 +211,7 @@ public class JCalendarUtilTest {
 
 	private static final TimeZone _calcuttaTimeZone = TimeZone.getTimeZone(
 		"Asia/Calcutta");
-	private static TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
+	private static final TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
 		"America/Los_Angeles");
 	private static final TimeZone _madridTimeZone = TimeZone.getTimeZone(
 		"Europe/Madrid");
