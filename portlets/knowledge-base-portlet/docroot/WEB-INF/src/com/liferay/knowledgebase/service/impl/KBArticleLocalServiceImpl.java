@@ -838,6 +838,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			status = WorkflowConstants.STATUS_PENDING;
 		}
 
+		kbArticle.setUuid(serviceContext.getUuid());
 		kbArticle.setResourcePrimKey(oldResourcePrimKey);
 		kbArticle.setGroupId(oldGroupId);
 		kbArticle.setCompanyId(user.getCompanyId());
