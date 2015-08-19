@@ -290,15 +290,21 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		Map<String, String[]> parameterMap = portletRequest.getParameterMap();
 
 		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+			String key = entry.getKey();
 			String[] values = entry.getValue();
+
+			if (key.equals("remoteWindowState")) {
+				key = "p_p_state";
+			}
+			else {
+				key = serverNamespace.concat(key);
+			}
 
 			if (ArrayUtil.isEmpty(values) || Validator.isNull(values[0])) {
 				continue;
 			}
 
-			addOAuthParameter(
-				oAuthRequest, serverNamespace.concat(entry.getKey()),
-				values[0]);
+			addOAuthParameter(oAuthRequest, key, values[0]);
 		}
 	}
 
