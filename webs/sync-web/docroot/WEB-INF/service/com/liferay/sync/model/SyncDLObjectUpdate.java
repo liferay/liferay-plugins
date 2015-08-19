@@ -64,22 +64,22 @@ public class SyncDLObjectUpdate {
 		for (int i = 0; i < _syncDLObjects.size(); i++) {
 			SyncDLObject syncDLObject = _syncDLObjects.get(i);
 
-			sb.append("{\"checksum\":");
-			appendString(sb, syncDLObject.getChecksum(), false);
-			sb.append(",\"changeLog\":");
+			sb.append("{\"changeLog\":");
 			appendString(sb, syncDLObject.getChangeLog(), false);
+			sb.append(",\"checksum\":");
+			appendString(sb, syncDLObject.getChecksum(), false);
 			sb.append(",\"companyId\":");
 			sb.append(syncDLObject.getCompanyId());
 			sb.append(",\"createTime\":");
 			sb.append(syncDLObject.getCreateTime());
 			sb.append(",\"description\":");
 			appendString(sb, syncDLObject.getDescription(), true);
+			sb.append(",\"event\":");
+			appendString(sb, syncDLObject.getEvent(), false);
 			sb.append(",\"extension\":");
 			appendString(sb, syncDLObject.getExtension(), false);
 			sb.append(",\"extraSettings\":");
 			appendString(sb, syncDLObject.getExtraSettings(), true);
-			sb.append(",\"event\":");
-			appendString(sb, syncDLObject.getEvent(), false);
 			sb.append(",\"lockExpirationDate\":");
 			sb.append(syncDLObject.getLockExpirationDate());
 			sb.append(",\"lockUserId\":");
