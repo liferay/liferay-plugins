@@ -5135,7 +5135,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 				syncDLObject.setNew(false);
 			}
 			else {
-				session.merge(syncDLObject);
+				syncDLObject = (SyncDLObject)session.merge(syncDLObject);
 			}
 		}
 		catch (Exception e) {

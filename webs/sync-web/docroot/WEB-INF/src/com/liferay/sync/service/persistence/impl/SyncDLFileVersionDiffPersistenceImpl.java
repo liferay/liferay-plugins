@@ -1626,7 +1626,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 				syncDLFileVersionDiff.setNew(false);
 			}
 			else {
-				session.merge(syncDLFileVersionDiff);
+				syncDLFileVersionDiff = (SyncDLFileVersionDiff)session.merge(syncDLFileVersionDiff);
 			}
 		}
 		catch (Exception e) {
