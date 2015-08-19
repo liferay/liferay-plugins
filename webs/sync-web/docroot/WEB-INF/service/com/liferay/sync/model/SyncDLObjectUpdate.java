@@ -53,7 +53,7 @@ public class SyncDLObjectUpdate {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler((_syncDLObjects.size() * 52) + 5);
+		StringBundler sb = new StringBundler((_syncDLObjects.size() * 78) + 5);
 
 		sb.append("{\"lastAccessTime\":");
 		sb.append(_lastAccessTime);
@@ -64,39 +64,35 @@ public class SyncDLObjectUpdate {
 		for (int i = 0; i < _syncDLObjects.size(); i++) {
 			SyncDLObject syncDLObject = _syncDLObjects.get(i);
 
-			sb.append("{\"checksum\":\"");
-			sb.append(syncDLObject.getChecksum());
-			sb.append("\",\"changeLog\":\"");
-			sb.append(
-				StringEscapeUtils.escapeJava(syncDLObject.getChangeLog()));
-			sb.append("\",\"companyId\":");
+			sb.append("{\"checksum\":");
+			appendString(sb, syncDLObject.getChecksum(), false);
+			sb.append(",\"changeLog\":");
+			appendString(sb, syncDLObject.getChangeLog(), false);
+			sb.append(",\"companyId\":");
 			sb.append(syncDLObject.getCompanyId());
 			sb.append(",\"createTime\":");
 			sb.append(syncDLObject.getCreateTime());
-			sb.append(",\"description\":\"");
-			sb.append(
-				StringEscapeUtils.escapeJava(syncDLObject.getDescription()));
-			sb.append("\",\"extension\":\"");
-			sb.append(syncDLObject.getExtension());
-			sb.append("\",\"extraSettings\":\"");
-			sb.append(
-				StringEscapeUtils.escapeJava(syncDLObject.getExtraSettings()));
-			sb.append("\",\"event\":\"");
-			sb.append(syncDLObject.getEvent());
-			sb.append("\",\"lockExpirationDate\":");
+			sb.append(",\"description\":");
+			appendString(sb, syncDLObject.getDescription(), true);
+			sb.append(",\"extension\":");
+			appendString(sb, syncDLObject.getExtension(), false);
+			sb.append(",\"extraSettings\":");
+			appendString(sb, syncDLObject.getExtraSettings(), true);
+			sb.append(",\"event\":");
+			appendString(sb, syncDLObject.getEvent(), false);
+			sb.append(",\"lockExpirationDate\":");
 			sb.append(syncDLObject.getLockExpirationDate());
 			sb.append(",\"lockUserId\":");
 			sb.append(syncDLObject.getLockUserId());
-			sb.append(",\"lockUserName\":\"");
-			sb.append(
-				StringEscapeUtils.escapeJava(syncDLObject.getLockUserName()));
-			sb.append("\",\"mimeType\":\"");
-			sb.append(syncDLObject.getMimeType());
-			sb.append("\",\"modifiedTime\":");
+			sb.append(",\"lockUserName\":");
+			appendString(sb, syncDLObject.getLockUserName(), true);
+			sb.append(",\"mimeType\":");
+			appendString(sb, syncDLObject.getMimeType(), false);
+			sb.append(",\"modifiedTime\":");
 			sb.append(syncDLObject.getModifiedTime());
-			sb.append(",\"name\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getName()));
-			sb.append("\",\"parentFolderId\":");
+			sb.append(",\"name\":");
+			appendString(sb, syncDLObject.getName(), true);
+			sb.append(",\"parentFolderId\":");
 			sb.append(syncDLObject.getParentFolderId());
 			sb.append(",\"repositoryId\":");
 			sb.append(syncDLObject.getRepositoryId());
@@ -104,19 +100,19 @@ public class SyncDLObjectUpdate {
 			sb.append(syncDLObject.getSize());
 			sb.append(",\"syncDLObjectId\":");
 			sb.append(syncDLObject.getSyncDLObjectId());
-			sb.append(",\"type\":\"");
-			sb.append(syncDLObject.getType());
-			sb.append("\",\"typePK\":");
+			sb.append(",\"type\":");
+			appendString(sb, syncDLObject.getType(), false);
+			sb.append(",\"typePK\":");
 			sb.append(syncDLObject.getTypePK());
-			sb.append(",\"typeUuid\":\"");
-			sb.append(syncDLObject.getTypeUuid());
-			sb.append("\",\"userId\":");
+			sb.append(",\"typeUuid\":");
+			appendString(sb, syncDLObject.getTypeUuid(), false);
+			sb.append(",\"userId\":");
 			sb.append(syncDLObject.getUserId());
-			sb.append(",\"userName\":\"");
-			sb.append(StringEscapeUtils.escapeJava(syncDLObject.getUserName()));
-			sb.append("\",\"version\":\"");
-			sb.append(syncDLObject.getVersion());
-			sb.append("\",\"versionId\":");
+			sb.append(",\"userName\":");
+			appendString(sb, syncDLObject.getUserName(), true);
+			sb.append(",\"version\":");
+			appendString(sb, syncDLObject.getVersion(), false);
+			sb.append(",\"versionId\":");
 			sb.append(syncDLObject.getVersionId());
 			sb.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -128,6 +124,18 @@ public class SyncDLObjectUpdate {
 		sb.append("]}");
 
 		return sb.toString();
+	}
+
+	protected void appendString(StringBundler sb, String s, boolean escape) {
+		sb.append(StringPool.QUOTE);
+
+		if (escape) {
+			s = StringEscapeUtils.escapeJava(s);
+		}
+
+		sb.append(s);
+
+		sb.append(StringPool.QUOTE);
 	}
 
 	private long _lastAccessTime;
