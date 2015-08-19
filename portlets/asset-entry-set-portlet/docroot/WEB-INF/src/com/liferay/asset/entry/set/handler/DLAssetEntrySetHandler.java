@@ -111,6 +111,9 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 						fileEntry, fileEntry.getFileVersion(), null,
 						StringPool.BLANK, false, true));
 
+				processedImageJSONObject.put(
+					"mimeType", fileEntry.getMimeType());
+
 				try {
 					Image image = ImageToolUtil.getImage(
 						fileEntry.getContentStream());

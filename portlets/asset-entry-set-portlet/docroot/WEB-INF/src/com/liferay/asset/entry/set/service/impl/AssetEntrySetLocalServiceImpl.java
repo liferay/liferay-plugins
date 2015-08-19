@@ -360,6 +360,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
 
+		imageJSONObject.put("mimeType", rawFileEntry.getMimeType());
 		imageJSONObject.put("name", rawFileEntry.getTitle());
 
 		return imageJSONObject;
