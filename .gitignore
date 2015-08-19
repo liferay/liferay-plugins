@@ -33,6 +33,7 @@
 /dist
 /hooks/*/test/integration/arquillian.xml
 /portlets/*/test/integration/arquillian.xml
+/webs/*/test/integration/arquillian.xml
 /themes/*/docroot/WEB-INF/lib
 /themes/*/docroot/css
 /themes/*/docroot/images
