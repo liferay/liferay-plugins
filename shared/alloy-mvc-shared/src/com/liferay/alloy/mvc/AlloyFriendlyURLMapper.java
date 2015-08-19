@@ -127,10 +127,7 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 		String namespace = PortalUtil.getPortletNamespace(portletId);
 
 		addParameter(namespace, parameterMap, "p_p_id", portletId);
-
-		String lifecycle = ParamUtil.getString(request, "p_p_lifecycle", "0");
-
-		addParameter(parameterMap, "p_p_lifecycle", lifecycle);
+		addParameter(parameterMap, "p_p_lifecycle", getLifecycle(request));
 
 		String format = routeParameters.get("format");
 
@@ -139,6 +136,14 @@ public class AlloyFriendlyURLMapper extends DefaultFriendlyURLMapper {
 		}
 
 		populateParams(parameterMap, namespace, routeParameters);
+	}
+
+	protected String getLifecycle(HttpServletRequest request) {
+		if (PortalUtil.isMultipartRequest(request)) {
+			return "1";
+		}
+
+		return ParamUtil.getString(request, "p_p_lifecycle", "0");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
