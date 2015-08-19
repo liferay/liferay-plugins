@@ -37,7 +37,7 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 
 <liferay-ui:error-principal />
 
-<c:if test='<%= SessionMessages.contains(portletSession, "anotherUserHasMadeChangesToThesePages") %>'>
+<c:if test='<%= SessionMessages.contains(renderRequest, "anotherUserHasMadeChangesToThesePages") %>'>
 
 	<%
 	String wikiPageLinks = (String)SessionMessages.get(renderRequest, "anotherUserHasMadeChangesToThesePages");
