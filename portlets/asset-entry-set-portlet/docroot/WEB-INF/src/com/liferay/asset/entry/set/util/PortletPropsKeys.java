@@ -42,4 +42,6 @@ public interface PortletPropsKeys {
 
 	public static final String ASSET_ENTRY_SET_TYPES = "asset.entry.set.types";
 
+	public static final String GEONAMES_USERNAME = "geonames.username";
+
 }

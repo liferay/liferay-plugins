@@ -38,4 +38,7 @@ public class PortletPropsValues {
 	public static final String[] ASSET_ENTRY_SET_TYPES = PortletProps.getArray(
 		PortletPropsKeys.ASSET_ENTRY_SET_TYPES);
 
+	public static final String GEONAMES_USERNAME = PortletProps.get(
+		PortletPropsKeys.GEONAMES_USERNAME);
+
 }

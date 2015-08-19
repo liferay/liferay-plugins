@@ -18,6 +18,7 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
+import com.liferay.asset.entry.set.util.GeoNamesUtil;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -65,6 +66,17 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 
 			jsonObject.put("contentModifiedTime", System.currentTimeMillis());
 		}
+
+		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
+			"geolocation");
+
+		double latitude = geolocationJSONObject.getDouble("latitude");
+		double longitude = geolocationJSONObject.getDouble("longitude");
+
+		geolocationJSONObject.put(
+			"locationName", GeoNamesUtil.getLocationName(latitude, longitude));
+
+		jsonObject.put("geolocation", geolocationJSONObject);
 
 		jsonObject.put("linkData", payloadJSONObject.getString("linkData"));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
