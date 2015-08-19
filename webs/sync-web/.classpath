@@ -5,6 +5,15 @@
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal-master" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="test/integration" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/junit.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/mockito.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-api-mockito.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-api-support.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-core.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-module-junit4.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/powermock-module-junit4-common.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/development/spring-test.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/activation.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/jsp-api.jar" />
@@ -12,6 +21,8 @@
 	<classpathentry kind="lib" path="/portal-master/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-io.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
@@ -20,6 +31,7 @@
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.io.delta.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-lang.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-collections.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/gson.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore.jar" />
