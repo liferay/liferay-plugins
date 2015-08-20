@@ -110,7 +110,6 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					DLUtil.getPreviewURL(
 						fileEntry, fileEntry.getFileVersion(), null,
 						StringPool.BLANK, false, true));
-
 				processedImageJSONObject.put(
 					"mimeType", fileEntry.getMimeType());
 
