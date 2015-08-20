@@ -47,11 +47,9 @@ public class GeoNamesUtil {
 
 	protected static WebService getWebService() {
 		if (_webService == null) {
-			WebService webService = new WebService();
+			_webService = new WebService();
 
-			webService.setUserName(PortletPropsValues.GEONAMES_USERNAME);
-
-			_webService = webService;
+			_webService.setUserName(PortletPropsValues.GEONAMES_USERNAME);
 		}
 
 		return _webService;
