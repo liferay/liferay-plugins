@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String portletId = portletDisplay.getId();
-
 String remoteMVCPath = "/marketplace/view.jsp";
+
+String portletId = portletDisplay.getId();
 
 if (portletId.equals(PortletKeys.PURCHASED)) {
 	remoteMVCPath = "/marketplace_server/view_purchased.jsp";
