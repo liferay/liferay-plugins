@@ -16,8 +16,18 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+String remoteMVCPath = "/marketplace/view.jsp";
+
+String portletId = portletDisplay.getId();
+
+if (portletId.equals(PortletKeys.PURCHASED)) {
+	remoteMVCPath = "/marketplace_server/view_purchased.jsp";
+}
+%>
+
 <liferay-portlet:renderURL var="viewURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-	<portlet:param name="remoteMVCPath" value="/marketplace/view.jsp" />
+	<portlet:param name="remoteMVCPath" value="<%= remoteMVCPath %>" />
 </liferay-portlet:renderURL>
 
 <iframe frameborder="0" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="<%= viewURL %>"></iframe>
