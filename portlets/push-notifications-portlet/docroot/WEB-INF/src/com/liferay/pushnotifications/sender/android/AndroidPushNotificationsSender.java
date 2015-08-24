@@ -14,15 +14,21 @@
 
 package com.liferay.pushnotifications.sender.android;
 
+import com.google.android.gcm.server.Constants;
 import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Message.Builder;
+import com.google.android.gcm.server.MulticastResult;
+import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
 
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.PushNotificationsException;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
+import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.pushnotifications.util.PortletPropsValues;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
@@ -57,7 +63,9 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 			PortletPropsKeys.ANDROID_RETRIES,
 			PortletPropsValues.ANDROID_RETRIES);
 
-		sender.send(message, tokens, retries);
+		MulticastResult multicastResult = sender.send(message, tokens, retries);
+
+		validateMulticastResult(tokens, multicastResult);
 	}
 
 	protected Message buildMessage(JSONObject payloadJSONObject) {
@@ -87,6 +95,47 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 		return _sender;
 	}
+
+	protected void validateMulticastResult(
+		List<String> tokens, MulticastResult multicastResult) {
+
+		if ((multicastResult.getCanonicalIds() == 0) &&
+			(multicastResult.getFailure() == 0)) {
+
+			return;
+		}
+
+		List<Result> results = multicastResult.getResults();
+
+		for (int i = 0; i < results.size(); i++) {
+			Result result = results.get(i);
+			String token = tokens.get(i);
+
+			String error = result.getErrorCodeName();
+
+			if (Validator.isNotNull(error)) {
+				if (error.equals(Constants.ERROR_INVALID_REGISTRATION) ||
+					error.equals(Constants.ERROR_MISMATCH_SENDER_ID) ||
+					error.equals(Constants.ERROR_NOT_REGISTERED)) {
+
+					try {
+						PushNotificationsDeviceLocalServiceUtil.
+							deletePushNotificationsDevice(token);
+					}
+					catch (Exception e) {
+						if (_log.isWarnEnabled()) {
+							_log.warn(
+								"Token " + token + " is invalid but could not" +
+									" be deleted");
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		AndroidPushNotificationsSender.class);
 
 	private Sender _sender;
 
