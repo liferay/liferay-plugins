@@ -146,6 +146,12 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 				"java.lang.String", "java.util.List",
 				"com.liferay.portal.kernel.json.JSONObject"
 			};
+
+		_methodName52 = "updateToken";
+
+		_methodParameterTypes52 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -291,6 +297,14 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			PushNotificationsDeviceLocalServiceUtil.updateToken((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1]);
+
+			return null;
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -342,4 +356,6 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
 }

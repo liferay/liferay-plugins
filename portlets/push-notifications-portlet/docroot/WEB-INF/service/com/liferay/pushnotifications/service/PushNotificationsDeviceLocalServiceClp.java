@@ -148,6 +148,12 @@ public class PushNotificationsDeviceLocalServiceClp
 				"java.lang.String", "java.util.List",
 				"com.liferay.portal.kernel.json.JSONObject"
 			};
+
+		_methodName25 = "updateToken";
+
+		_methodParameterTypes25 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
 	}
 
 	@Override
@@ -905,6 +911,40 @@ public class PushNotificationsDeviceLocalServiceClp
 		}
 	}
 
+	@Override
+	public void updateToken(java.lang.String oldToken, java.lang.String newToken)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName25,
+				_methodParameterTypes25,
+				new Object[] {
+					ClpSerializer.translateInput(oldToken),
+					
+				ClpSerializer.translateInput(newToken)
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -954,4 +994,6 @@ public class PushNotificationsDeviceLocalServiceClp
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

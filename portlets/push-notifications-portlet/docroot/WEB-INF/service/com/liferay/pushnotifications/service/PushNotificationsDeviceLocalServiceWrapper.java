@@ -338,6 +338,13 @@ public class PushNotificationsDeviceLocalServiceWrapper
 			tokens, payloadJSONObject);
 	}
 
+	@Override
+	public void updateToken(java.lang.String oldToken, java.lang.String newToken)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_pushNotificationsDeviceLocalService.updateToken(oldToken, newToken);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
