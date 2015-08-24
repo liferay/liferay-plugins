@@ -161,6 +161,12 @@ public class PushNotificationsDeviceLocalServiceClp
 		_methodParameterTypes26 = new String[] {
 				"com.liferay.pushnotifications.model.PushNotificationsDevice"
 			};
+
+		_methodName27 = "updateToken";
+
+		_methodParameterTypes27 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
 	}
 
 	@Override
@@ -879,6 +885,35 @@ public class PushNotificationsDeviceLocalServiceClp
 		return (com.liferay.pushnotifications.model.PushNotificationsDevice)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public void updateToken(java.lang.String oldToken, java.lang.String newToken)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName27,
+				_methodParameterTypes27,
+				new Object[] {
+					ClpSerializer.translateInput(oldToken),
+					
+				ClpSerializer.translateInput(newToken)
+				});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -932,4 +967,6 @@ public class PushNotificationsDeviceLocalServiceClp
 	private String[] _methodParameterTypes25;
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
+	private String _methodName27;
+	private String[] _methodParameterTypes27;
 }

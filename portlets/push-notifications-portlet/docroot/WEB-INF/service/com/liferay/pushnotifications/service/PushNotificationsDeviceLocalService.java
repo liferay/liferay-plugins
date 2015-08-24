@@ -258,4 +258,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
 	public com.liferay.pushnotifications.model.PushNotificationsDevice updatePushNotificationsDevice(
 		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice);
+
+	public void updateToken(java.lang.String oldToken, java.lang.String newToken)
+		throws PortalException;
 }

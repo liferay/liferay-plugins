@@ -1437,7 +1437,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 				pushNotificationsDevice.setNew(false);
 			}
 			else {
-				session.merge(pushNotificationsDevice);
+				pushNotificationsDevice = (PushNotificationsDevice)session.merge(pushNotificationsDevice);
 			}
 		}
 		catch (Exception e) {

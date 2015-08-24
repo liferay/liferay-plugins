@@ -303,6 +303,12 @@ public class PushNotificationsDeviceLocalServiceUtil {
 				   .updatePushNotificationsDevice(pushNotificationsDevice);
 	}
 
+	public static void updateToken(java.lang.String oldToken,
+		java.lang.String newToken)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().updateToken(oldToken, newToken);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
