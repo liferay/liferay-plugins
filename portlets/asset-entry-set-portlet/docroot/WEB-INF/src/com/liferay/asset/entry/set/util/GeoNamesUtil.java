@@ -28,7 +28,9 @@ public class GeoNamesUtil {
 
 	public static String getLocationName(double latitude, double longitude) {
 		try {
-			List<Toponym> toponyms = getWebService().findNearbyPlaceName(
+			WebService webService = getWebService();
+
+			List<Toponym> toponyms = webService.findNearbyPlaceName(
 				latitude, longitude);
 
 			if (toponyms.isEmpty()) {
