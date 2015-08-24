@@ -39,11 +39,6 @@ public class SyncDLObjectUpdateTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Thread currentThread = Thread.currentThread();
-
-		PortletClassLoaderUtil.setClassLoader(
-			currentThread.getContextClassLoader());
-
 		ConfigurationFactoryUtil.setConfigurationFactory(
 			new ConfigurationFactoryImpl());
 
@@ -56,6 +51,11 @@ public class SyncDLObjectUpdateTest {
 
 		jsonIncludesManagerUtil.setJSONIncludesManager(
 			new JSONIncludesManagerImpl());
+
+		Thread currentThread = Thread.currentThread();
+
+		PortletClassLoaderUtil.setClassLoader(
+			currentThread.getContextClassLoader());
 
 		PortletClassLoaderUtil.setServletContextName("sync-web");
 	}
