@@ -1329,6 +1329,7 @@ Please find a solution that does not require portal-impl.jar.
 								src="${frontend.themes.web.jar.path}"
 							>
 								<patternset>
+									<exclude name="**/META-INF/resources/**/*.css" />
 									<include name="**/META-INF/resources/**" />
 								</patternset>
 								<mapper>

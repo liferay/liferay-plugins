@@ -1,8 +1,8 @@
 @import "bourbon";
 
-@import url(color_schemes/democrat.css);
-@import url(color_schemes/republican.css);
-@import url(color_schemes/independent.css);
+@import "color_schemes/democrat";
+@import "color_schemes/republican";
+@import "color_schemes/independent";
 
 $dockbarGradientEnd: #1273C7;
 $dockbarGradientStart: #118ADE;
