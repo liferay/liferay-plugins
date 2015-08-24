@@ -29,6 +29,10 @@ import com.notnoop.apns.ApnsService;
 import com.notnoop.apns.ApnsServiceBuilder;
 import com.notnoop.apns.PayloadBuilder;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,6 +129,22 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 						"portlet.properties");
 			}
 
+			InputStream is = null;
+
+			try {
+				is = new FileInputStream(path);
+			}
+			catch (FileNotFoundException fnfe) {
+				ClassLoader classLoader = getClass().getClassLoader();
+
+				is = classLoader.getResourceAsStream(path);
+			}
+
+			if (is == null) {
+				throw new PushNotificationsException(
+					"Apple certificate could not be found at " + path);
+			}
+
 			String password = PrefsPropsUtil.getString(
 				PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD,
 				PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
@@ -135,7 +155,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 						"in portlet.properties");
 			}
 
-			appleServiceBuilder.withCert(path, password);
+			appleServiceBuilder.withCert(is, password);
 
 			boolean sandbox = PrefsPropsUtil.getBoolean(
 				PortletPropsKeys.APPLE_SANDBOX,
