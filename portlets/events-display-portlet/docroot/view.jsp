@@ -92,11 +92,7 @@ for (CalendarBooking calendarBooking : calendarBookings) {
 	long startTime = calendarBooking.getStartTime();
 
 	if (calendarBooking.isAllDay()) {
-		startTime -= timeZone.getRawOffset();
-
-		if (timeZone.inDaylightTime(new Date(startTime))) {
-			startTime -= timeZone.getDSTSavings();
-		}
+		startTime -= timeZone.getOffset(startTime);
 	}
 
 	startTimeJCalendar.setTimeInMillis(startTime);

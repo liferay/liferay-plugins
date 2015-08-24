@@ -60,13 +60,7 @@ public class JIRAUtil {
 	private static int _getUTCOffset() {
 		TimeZone jiraTimeZone = TimeZone.getTimeZone("America/Los_Angeles");
 
-		int jiraTimeZoneUTCOffset = jiraTimeZone.getRawOffset();
-
-		if (jiraTimeZone.inDaylightTime(new Date())) {
-			jiraTimeZoneUTCOffset += Time.HOUR;
-		}
-
-		return jiraTimeZoneUTCOffset;
+		return jiraTimeZone.getOffset(System.currentTimeMillis());
 	}
 
 }
