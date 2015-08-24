@@ -5,6 +5,11 @@
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal-6.2.x" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="test/integration" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/junit.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/mockito.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/powermock-mockito.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/spring-test.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/activation.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/jsp-api.jar" />
@@ -12,6 +17,8 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/global/portlet.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/bnd.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-io.jar" />
+	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/portal-service/portal-service.jar" />
@@ -26,6 +33,7 @@
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/joda-time.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jodd-bean.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jodd-core.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jodd-json.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/jsontoken.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/oauth-portlet-service.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
