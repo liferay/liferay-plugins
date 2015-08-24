@@ -16,8 +16,11 @@ package com.liferay.sync.model;
 
 import com.liferay.portal.configuration.ConfigurationFactoryImpl;
 import com.liferay.portal.json.JSONFactoryImpl;
+import com.liferay.portal.json.JSONIncludesManagerImpl;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONIncludesManagerUtil;
+import com.liferay.portal.kernel.json.JSONSerializer;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
@@ -36,6 +39,11 @@ public class SyncDLObjectUpdateTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Thread currentThread = Thread.currentThread();
+
+		PortletClassLoaderUtil.setClassLoader(
+			currentThread.getContextClassLoader());
+
 		ConfigurationFactoryUtil.setConfigurationFactory(
 			new ConfigurationFactoryImpl());
 
@@ -43,12 +51,18 @@ public class SyncDLObjectUpdateTest {
 
 		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
 
+		JSONIncludesManagerUtil jsonIncludesManagerUtil =
+			new JSONIncludesManagerUtil();
+
+		jsonIncludesManagerUtil.setJSONIncludesManager(
+			new JSONIncludesManagerImpl());
+
 		PortletClassLoaderUtil.setServletContextName("sync-web");
 	}
 
 	@Test
 	public void testToString() {
-		List<SyncDLObject> syncDLObjects = new ArrayList<>(3);
+		List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>(3);
 
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
@@ -62,8 +76,11 @@ public class SyncDLObjectUpdateTest {
 		SyncDLObjectUpdate syncDLObjectUpdate = new SyncDLObjectUpdate(
 			syncDLObjects, syncDLObjects.size(), System.currentTimeMillis());
 
-		String expectedJSON = JSONFactoryUtil.looseSerializeDeep(
-			syncDLObjectUpdate);
+		JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
+
+		jsonSerializer.exclude("*.class");
+
+		String expectedJSON = jsonSerializer.serialize(syncDLObjectUpdate);
 
 		String actualJSON = syncDLObjectUpdate.toString();
 
