@@ -111,6 +111,24 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 			Result result = results.get(i);
 			String token = tokens.get(i);
 
+			String messageId = result.getMessageId();
+			String canonicalRegistrationId =
+				result.getCanonicalRegistrationId();
+
+			if (Validator.isNotNull(messageId) &&
+				Validator.isNotNull(canonicalRegistrationId)) {
+
+				try {
+					PushNotificationsDeviceLocalServiceUtil.updateToken(
+						token, canonicalRegistrationId);
+				}
+				catch (Exception e) {
+					if (_log.isWarnEnabled()) {
+						_log.warn("Could not update token " + token);
+					}
+				}
+			}
+
 			String error = result.getErrorCodeName();
 
 			if (Validator.isNotNull(error)) {
