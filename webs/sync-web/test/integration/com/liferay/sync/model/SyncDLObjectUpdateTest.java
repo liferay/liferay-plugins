@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -68,6 +69,7 @@ public class SyncDLObjectUpdateTest {
 
 		syncDLObject.setDescription(
 			"These values should be escaped: \", \\, \\b, \\f, \\n, \\r, \\t");
+		syncDLObject.setLockExpirationDate(new Date());
 
 		syncDLObjects.add(syncDLObject);
 		syncDLObjects.add(syncDLObject);
