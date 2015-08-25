@@ -111,12 +111,12 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 			Result result = results.get(i);
 			String token = tokens.get(i);
 
-			String messageId = result.getMessageId();
 			String canonicalRegistrationId =
 				result.getCanonicalRegistrationId();
+			String messageId = result.getMessageId();
 
-			if (Validator.isNotNull(messageId) &&
-				Validator.isNotNull(canonicalRegistrationId)) {
+			if (Validator.isNotNull(canonicalRegistrationId) &&
+				Validator.isNotNull(messageId)) {
 
 				try {
 					PushNotificationsDeviceLocalServiceUtil.updateToken(
@@ -124,17 +124,18 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 				}
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
-						_log.warn("Could not update token " + token);
+						_log.warn("Unable to update token " + token);
 					}
 				}
 			}
 
-			String error = result.getErrorCodeName();
+			String errorCodeName = result.getErrorCodeName();
 
-			if (Validator.isNotNull(error)) {
-				if (error.equals(Constants.ERROR_INVALID_REGISTRATION) ||
-					error.equals(Constants.ERROR_MISMATCH_SENDER_ID) ||
-					error.equals(Constants.ERROR_NOT_REGISTERED)) {
+			if (Validator.isNotNull(errorCodeName)) {
+				if (errorCodeName.equals(
+						Constants.ERROR_INVALID_REGISTRATION) ||
+					errorCodeName.equals(Constants.ERROR_MISMATCH_SENDER_ID) ||
+					errorCodeName.equals(Constants.ERROR_NOT_REGISTERED)) {
 
 					try {
 						PushNotificationsDeviceLocalServiceUtil.
@@ -143,8 +144,7 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 					catch (Exception e) {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
-								"Token " + token + " is invalid but could not" +
-									" be deleted");
+								"Unable to delete invalid token " + token);
 						}
 					}
 				}

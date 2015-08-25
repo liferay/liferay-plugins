@@ -135,14 +135,16 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 				is = new FileInputStream(path);
 			}
 			catch (FileNotFoundException fnfe) {
-				ClassLoader classLoader = getClass().getClassLoader();
+				Class<?> clazz = getClass();
+
+				ClassLoader classLoader = clazz.getClassLoader();
 
 				is = classLoader.getResourceAsStream(path);
 			}
 
 			if (is == null) {
 				throw new PushNotificationsException(
-					"Apple certificate could not be found at " + path);
+					"Apple certificate does not exist at " + path);
 			}
 
 			String password = PrefsPropsUtil.getString(
