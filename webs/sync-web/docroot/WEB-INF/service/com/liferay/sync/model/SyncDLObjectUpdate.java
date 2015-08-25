@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -65,7 +66,7 @@ public class SyncDLObjectUpdate {
 			SyncDLObject syncDLObject = _syncDLObjects.get(i);
 
 			sb.append("{\"changeLog\":");
-			append(sb, syncDLObject.getChangeLog(), false);
+			append(sb, syncDLObject.getChangeLog(), true);
 			sb.append(",\"checksum\":");
 			append(sb, syncDLObject.getChecksum(), false);
 			sb.append(",\"companyId\":");
@@ -77,17 +78,26 @@ public class SyncDLObjectUpdate {
 			sb.append(",\"event\":");
 			append(sb, syncDLObject.getEvent(), false);
 			sb.append(",\"extension\":");
-			append(sb, syncDLObject.getExtension(), false);
+			append(sb, syncDLObject.getExtension(), true);
 			sb.append(",\"extraSettings\":");
 			append(sb, syncDLObject.getExtraSettings(), true);
 			sb.append(",\"lockExpirationDate\":");
-			sb.append(syncDLObject.getLockExpirationDate());
+
+			Date lockExpirationDate = syncDLObject.getLockExpirationDate();
+
+			if (lockExpirationDate != null) {
+				sb.append(lockExpirationDate.getTime());
+			}
+			else {
+				sb.append(StringPool.NULL);
+			}
+
 			sb.append(",\"lockUserId\":");
 			sb.append(syncDLObject.getLockUserId());
 			sb.append(",\"lockUserName\":");
 			append(sb, syncDLObject.getLockUserName(), true);
 			sb.append(",\"mimeType\":");
-			append(sb, syncDLObject.getMimeType(), false);
+			append(sb, syncDLObject.getMimeType(), true);
 			sb.append(",\"modifiedTime\":");
 			sb.append(syncDLObject.getModifiedTime());
 			sb.append(",\"name\":");
