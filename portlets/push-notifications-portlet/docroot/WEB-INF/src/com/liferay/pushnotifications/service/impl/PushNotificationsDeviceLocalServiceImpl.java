@@ -150,10 +150,10 @@ public class PushNotificationsDeviceLocalServiceImpl
 		PushNotificationsDevice oldPushNotificationsDevice =
 			deletePushNotificationsDevice(oldToken);
 
-		PushNotificationsDevice pushNotificationsDevice =
+		PushNotificationsDevice newPushNotificationsDevice =
 			pushNotificationsDevicePersistence.fetchByToken(newToken);
 
-		if (pushNotificationsDevice == null) {
+		if (newPushNotificationsDevice == null) {
 			addPushNotificationsDevice(
 				oldPushNotificationsDevice.getUserId(),
 				oldPushNotificationsDevice.getPlatform(), newToken);
