@@ -1,1 +1,0 @@
-Liferay.Service.register("Liferay.Service.ShortLink", "com.liferay.shortlink.service", "short-link-portlet");
