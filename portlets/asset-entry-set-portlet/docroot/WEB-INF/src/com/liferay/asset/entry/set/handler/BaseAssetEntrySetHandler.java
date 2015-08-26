@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -67,14 +68,22 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			jsonObject.put("contentModifiedTime", System.currentTimeMillis());
 		}
 
+		String locationName = StringPool.BLANK;
+
 		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
 			"geolocation");
 
-		double latitude = geolocationJSONObject.getDouble("latitude");
-		double longitude = geolocationJSONObject.getDouble("longitude");
+		if (geolocationJSONObject == null) {
+			geolocationJSONObject = JSONFactoryUtil.createJSONObject();
+		}
+		else {
+			double latitude = geolocationJSONObject.getDouble("latitude");
+			double longitude = geolocationJSONObject.getDouble("longitude");
 
-		geolocationJSONObject.put(
-			"locationName", GeoNamesUtil.getLocationName(latitude, longitude));
+			locationName = GeoNamesUtil.getLocationName(latitude, longitude);
+		}
+
+		geolocationJSONObject.put("locationName", locationName);
 
 		jsonObject.put("geolocation", geolocationJSONObject);
 
