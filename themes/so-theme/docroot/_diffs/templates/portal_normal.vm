@@ -61,7 +61,7 @@ $theme.include($body_top_include)
 							$join_url.setParameter("addUserIds", "$user_id")
 							$join_url.setWindowState("normal")
 
-							<a class="action request member-link" href="$join_url" id="memberButton">
+							<a class="action member-link request" href="$join_url" id="memberButton">
 								<span>#language("join-site")</span>
 							</a>
 						#elseif (($page_group.getType() == 2) && !$membership_request)
@@ -76,11 +76,11 @@ $theme.include($body_top_include)
 
 							$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray(), false))
 
-							<a class="action request member-link" href="$membership_request_url" id="memberButton">
+							<a class="action member-link request" href="$membership_request_url" id="memberButton">
 								<span>#language ("request-membership")</span>
 							</a>
 						#elseif ($membership_request)
-							<span class="action request member-link" id="memberButton">
+							<span class="action member-link request" id="memberButton">
 								<span>#language ("membership-requested")</span>
 							</span>
 						#end
