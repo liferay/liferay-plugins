@@ -40,6 +40,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.concurrent.Future;
 
 import javax.servlet.http.HttpServletResponse;
@@ -337,9 +338,10 @@ public class LiferayPersonService implements PersonService {
 		}
 
 		if (fields.contains(Person.Field.UTC_OFFSET.toString())) {
+			TimeZone timeZone = user.getTimeZone();
+
 			person.setUtcOffset(
-				Long.valueOf(
-					user.getTimeZone().getOffset(System.currentTimeMillis())));
+				Long.valueOf(timeZone.getOffset(System.currentTimeMillis())));
 		}
 
 		if (securityToken.getOwnerId().equals(person.getId())) {
