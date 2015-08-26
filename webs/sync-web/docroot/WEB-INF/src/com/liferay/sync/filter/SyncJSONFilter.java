@@ -61,12 +61,12 @@ public class SyncJSONFilter implements Filter {
 
 		if (uri.equals("/api/jsonws/invoke")) {
 			SyncJSONHttpServletRequestWrapper
-				syncJSONhttpServletRequestWrapper =
+				syncJSONHttpServletRequestWrapper =
 					new SyncJSONHttpServletRequestWrapper(httpServletRequest);
 
-			servletRequest = syncJSONhttpServletRequestWrapper;
+			servletRequest = syncJSONHttpServletRequestWrapper;
 
-			if (!syncJSONhttpServletRequestWrapper.isSyncJSONRequest()) {
+			if (!syncJSONHttpServletRequestWrapper.isSyncJSONRequest()) {
 				filterChain.doFilter(servletRequest, servletResponse);
 
 				return;
@@ -101,30 +101,30 @@ public class SyncJSONFilter implements Filter {
 			}
 			else if (syncDevice.startsWith("desktop")) {
 				absoluteSyncClientMinBuild =
-					_ABSOLUTE_SYNC_CLIENT_DESKTOP_MIN_BUILD;
+					_ABSOLUTE_SYNC_CLIENT_MIN_BUILD_DESKTOP;
 
 				syncClientMinBuild = PrefsPropsUtil.getInteger(
 					PortalUtil.getCompanyId(httpServletRequest),
-					PortletPropsKeys.SYNC_CLIENT_DESKTOP_MIN_BUILD,
-					PortletPropsValues.SYNC_CLIENT_DESKTOP_MIN_BUILD);
+					PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_DESKTOP,
+					PortletPropsValues.SYNC_CLIENT_MIN_BUILD_DESKTOP);
 			}
 			else if (syncDevice.equals("mobile-android")) {
 				absoluteSyncClientMinBuild =
-					_ABSOLUTE_SYNC_CLIENT_ANDROID_MIN_BUILD;
+					_ABSOLUTE_SYNC_CLIENT_MIN_BUILD_ANDROID;
 
 				syncClientMinBuild = PrefsPropsUtil.getInteger(
 					PortalUtil.getCompanyId(httpServletRequest),
-					PortletPropsKeys.SYNC_CLIENT_ANDROID_MIN_BUILD,
-					PortletPropsValues.SYNC_CLIENT_ANDROID_MIN_BUILD);
+					PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_ANDROID,
+					PortletPropsValues.SYNC_CLIENT_MIN_BUILD_ANDROID);
 			}
 			else if (syncDevice.equals("mobile-ios")) {
 				absoluteSyncClientMinBuild =
-					_ABSOLUTE_SYNC_CLIENT_IOS_MIN_BUILD;
+					_ABSOLUTE_SYNC_CLIENT_MIN_BUILD_IOS;
 
 				syncClientMinBuild = PrefsPropsUtil.getInteger(
 					PortalUtil.getCompanyId(httpServletRequest),
-					PortletPropsKeys.SYNC_CLIENT_IOS_MIN_BUILD,
-					PortletPropsValues.SYNC_CLIENT_IOS_MIN_BUILD);
+					PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_IOS,
+					PortletPropsValues.SYNC_CLIENT_MIN_BUILD_IOS);
 			}
 			else {
 				throwable = new SyncDeviceHeaderException();
@@ -171,10 +171,10 @@ public class SyncJSONFilter implements Filter {
 	public void init(FilterConfig filterConfig) {
 	}
 
-	private static final int _ABSOLUTE_SYNC_CLIENT_ANDROID_MIN_BUILD = 26;
+	private static final int _ABSOLUTE_SYNC_CLIENT_MIN_BUILD_ANDROID = 26;
 
-	private static final int _ABSOLUTE_SYNC_CLIENT_DESKTOP_MIN_BUILD = 3009;
+	private static final int _ABSOLUTE_SYNC_CLIENT_MIN_BUILD_DESKTOP = 3009;
 
-	private static final int _ABSOLUTE_SYNC_CLIENT_IOS_MIN_BUILD = 7;
+	private static final int _ABSOLUTE_SYNC_CLIENT_MIN_BUILD_IOS = 7;
 
 }
