@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.shortlink.model.ShortLinkEntry;
+import com.liferay.shortlink.model.ShortLinkEntryConstants;
 import com.liferay.shortlink.service.ShortLinkEntryLocalServiceUtil;
 
 /**
@@ -34,6 +35,12 @@ public class RewriteShortLinkFilter extends BaseShortLinkFilter {
 	@Override
 	protected String getOriginalURL(String shortUrl)
 		throws PortalException, SystemException {
+
+		if (shortUrl.length() <
+				ShortLinkEntryConstants.SHORT_URL_MINIMUM_SIZE) {
+
+			return null;
+		}
 
 		ShortLinkEntry shortLinkEntry =
 			ShortLinkEntryLocalServiceUtil.getShortLinkEntry(shortUrl, false);

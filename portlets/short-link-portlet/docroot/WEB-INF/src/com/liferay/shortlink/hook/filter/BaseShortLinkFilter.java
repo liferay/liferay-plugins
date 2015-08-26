@@ -17,7 +17,6 @@ package com.liferay.shortlink.hook.filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.BaseFilter;
-import com.liferay.shortlink.model.ShortLinkEntryConstants;
 import com.liferay.shortlink.util.PortletPropsValues;
 
 import java.io.IOException;
@@ -52,14 +51,6 @@ public abstract class BaseShortLinkFilter extends BaseFilter {
 		String servletPath = request.getServletPath();
 
 		String shortUrl = servletPath.substring(1);
-
-		if (shortUrl.length() <
-				ShortLinkEntryConstants.SHORT_URL_MINIMUM_SIZE) {
-
-			processFilter(getClass(), request, response, filterChain);
-
-			return;
-		}
 
 		String originalURL = null;
 
