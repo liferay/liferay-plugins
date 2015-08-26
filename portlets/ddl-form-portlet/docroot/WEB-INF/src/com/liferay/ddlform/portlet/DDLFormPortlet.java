@@ -14,6 +14,7 @@
 
 package com.liferay.ddlform.portlet;
 
+import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.ddlform.DuplicateSubmissionException;
@@ -23,11 +24,11 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portlet.documentlibrary.FileSizeException;
+import com.liferay.portlet.dynamicdatalists.NoSuchRecordSetException;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatalists.util.DDLUtil;
 import com.liferay.portlet.dynamicdatamapping.StorageFieldRequiredException;
@@ -89,6 +90,7 @@ public class DDLFormPortlet extends MVCPortlet {
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof DuplicateSubmissionException ||
 			cause instanceof FileSizeException ||
+			cause instanceof NoSuchRecordSetException ||
 			cause instanceof PrincipalException ||
 			cause instanceof StorageFieldRequiredException) {
 
