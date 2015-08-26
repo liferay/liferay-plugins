@@ -29,3 +29,43 @@
 		<aui:button onClick="<%= deauthorizeURL %>" value="sign-out" />
 	</div>
 </c:if>
+
+<aui:script use="liferay-marketplace-messenger">
+	var frame = A.one('#<portlet:namespace />frame');
+
+	Liferay.MarketplaceMessenger.init(
+		{
+			targetFrame: frame
+		}
+	);
+
+	Liferay.MarketplaceMessenger.receiveMessage(
+		function(event) {
+			var response = event.responseData;
+
+			if (!response.cmd) {
+				return;
+			}
+
+			var data = response.data;
+
+			if ((response.cmd == 'resize') || (response.cmd == 'init')) {
+				if (data.height) {
+					frame.height(data.height + 50);
+				}
+
+				if (data.width) {
+					frame.width(data.width);
+				}
+			}
+
+			if ((response.cmd == 'scrollTo') || (response.cmd == 'init')) {
+				var scrollX = data.scrollX || 0;
+				var scrollY = data.scrollY || 0;
+
+				window.scrollTo(scrollX, scrollY);
+			}
+		},
+		A.Lang.emptyFnTrue
+	);
+</aui:script>
