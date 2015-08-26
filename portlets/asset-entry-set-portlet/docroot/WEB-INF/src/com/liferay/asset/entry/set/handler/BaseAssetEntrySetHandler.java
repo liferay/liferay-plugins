@@ -68,10 +68,10 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			jsonObject.put("contentModifiedTime", System.currentTimeMillis());
 		}
 
-		String locationName = StringPool.BLANK;
-
 		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
 			"geolocation");
+
+		String locationName = StringPool.BLANK;
 
 		if (geolocationJSONObject == null) {
 			geolocationJSONObject = JSONFactoryUtil.createJSONObject();
