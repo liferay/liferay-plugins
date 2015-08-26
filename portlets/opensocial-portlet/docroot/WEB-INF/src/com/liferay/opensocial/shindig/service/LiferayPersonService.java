@@ -337,8 +337,7 @@ public class LiferayPersonService implements PersonService {
 		}
 
 		if (fields.contains(Person.Field.UTC_OFFSET.toString())) {
-			person.setUtcOffset(
-				Long.valueOf(user.getTimeZone().getOffset()));
+			person.setUtcOffset(Long.valueOf(user.getTimeZone().getOffset()));
 		}
 
 		if (securityToken.getOwnerId().equals(person.getId())) {

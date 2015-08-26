@@ -64,7 +64,6 @@ page import="com.liferay.site.my.sites.web.constants.MySitesPortletKeys" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Calendar" %><%@
-page import="java.util.Date" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletMode" %><%@

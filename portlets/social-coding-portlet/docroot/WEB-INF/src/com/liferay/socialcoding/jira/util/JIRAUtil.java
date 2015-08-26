@@ -14,8 +14,6 @@
 
 package com.liferay.socialcoding.jira.util;
 
-import com.liferay.portal.kernel.util.Time;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
