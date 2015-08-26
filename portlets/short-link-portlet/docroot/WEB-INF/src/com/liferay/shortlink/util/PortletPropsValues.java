@@ -32,4 +32,7 @@ public class PortletPropsValues {
 	public static final int SHORT_URL_LIFETIME = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SHORT_URL_LIFETIME));
 
+	public static final String SHORT_URL_NOT_FOUND = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.SHORT_URL_NOT_FOUND));
+
 }

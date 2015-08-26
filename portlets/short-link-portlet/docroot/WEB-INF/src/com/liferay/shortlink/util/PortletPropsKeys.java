@@ -21,6 +21,8 @@ public interface PortletPropsKeys {
 
 	String SHORT_URL_CLEAN_UP_THRESHOLD = "short.url.clean.up.threshold";
 
+	String SHORT_URL_NOT_FOUND = "short.url.not.found";
+
 	String SHORT_URL_HOSTNAME = "short.url.hostname";
 
 	String SHORT_URL_LIFETIME = "short.url.lifetime";
