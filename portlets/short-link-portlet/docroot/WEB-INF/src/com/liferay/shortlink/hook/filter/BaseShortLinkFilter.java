@@ -16,7 +16,6 @@ package com.liferay.shortlink.hook.filter;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.servlet.BaseFilter;
 import com.liferay.shortlink.model.ShortLinkEntryConstants;
 import com.liferay.shortlink.util.PortletPropsValues;
@@ -62,33 +61,40 @@ public abstract class BaseShortLinkFilter extends BaseFilter {
 			return;
 		}
 
+		String originalURL = null;
+
 		try {
-			String originalURL = getOriginalURL(shortUrl);
-
-			response.sendRedirect(originalURL);
-
-			return;
-		}
-		catch (IOException ioe) {
-			Log log = getLog();
-
-			if (log.isWarnEnabled()) {
-				log.warn("Unable to redirect to long URL", ioe);
-			}
+			originalURL = getOriginalURL(shortUrl);
 		}
 		catch (PortalException pe) {
-			Log log = getLog();
-
-			if (log.isInfoEnabled()) {
-				log.info("Unable to find short link entry for URL " + shortUrl);
+			if (getLog().isInfoEnabled()) {
+				getLog().info(
+					"Unable to find short link entry for URL " + shortUrl);
 			}
 		}
 		catch (SystemException se) {
-			Log log = getLog();
-
-			if (log.isWarnEnabled()) {
-				log.warn(
+			if (getLog().isWarnEnabled()) {
+				getLog().warn(
 					"Unable to get short link entry for URL " + shortUrl, se);
+			}
+		}
+
+		if ((originalURL == null) &&
+			!PortletPropsValues.SHORT_URL_NOT_FOUND.isEmpty()) {
+
+			originalURL = PortletPropsValues.SHORT_URL_NOT_FOUND;
+		}
+
+		if (originalURL != null) {
+			try {
+				response.sendRedirect(originalURL);
+
+				return;
+			}
+			catch (IOException ioe) {
+				if (getLog().isWarnEnabled()) {
+					getLog().error("Unable to redirect to long URL", ioe);
+				}
 			}
 		}
 
