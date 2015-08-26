@@ -39,11 +39,11 @@
 	#set ($show_preview_controls = $has_layout_update_permission || $groupPermission.contains($permissionChecker, $page_group.getGroupId(), "PREVIEW_IN_DEVICE"))
 	#set ($show_toggle_controls = ((!$page_group.hasStagingGroup()) || $page_group.isStagingGroup()) && ($has_layout_update_permission || ($layoutTypePortlet.isCustomizable() && $layoutTypePortlet.isCustomizedView()) || $portletPermission.hasConfigurationPermission($permissionChecker, $theme_display.getSiteGroupId(), $layout, "CONFIGURATION")))
 
-	#set ($liferay_toggle_controls = $sessionClicks.get($request, "liferay_toggle_controls", ""))
+	#set ($liferay_toggle_controls = $sessionClicks.get($request, "com.liferay.frontend.js.web_toggleControls", ""))
 	#set ($themeNamespace = "_" + $themeDisplay.getThemeId() + "_")
 
 	#if ($liferay_toggle_controls == "")
-		$sessionClicks.put($request, "liferay_toggle_controls", "hidden")
+		$sessionClicks.put($request, "com.liferay.frontend.js.web_toggleControls", "hidden")
 
 		#set ($liferay_toggle_controls = "hidden")
 		#set ($css_class = $css_class.replaceAll("controls-visible", "controls-hidden"))
