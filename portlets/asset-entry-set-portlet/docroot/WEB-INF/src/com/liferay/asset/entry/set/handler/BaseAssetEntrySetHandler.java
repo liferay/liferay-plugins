@@ -68,25 +68,8 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			jsonObject.put("contentModifiedTime", System.currentTimeMillis());
 		}
 
-		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
-			"geolocation");
-
-		String locationName = StringPool.BLANK;
-
-		if (geolocationJSONObject == null) {
-			geolocationJSONObject = JSONFactoryUtil.createJSONObject();
-		}
-		else {
-			double latitude = geolocationJSONObject.getDouble("latitude");
-			double longitude = geolocationJSONObject.getDouble("longitude");
-
-			locationName = GeoNamesUtil.getLocationName(latitude, longitude);
-		}
-
-		geolocationJSONObject.put("locationName", locationName);
-
-		jsonObject.put("geolocation", geolocationJSONObject);
-
+		jsonObject.put(
+			"geolocation", getGeolocationJSONObject(payloadJSONObject));
 		jsonObject.put("linkData", payloadJSONObject.getString("linkData"));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("type", payloadJSONObject.getString("type"));
@@ -174,6 +157,27 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		}
 
 		return newSharedToJSONArray;
+	}
+
+	protected JSONObject getGeolocationJSONObject(
+		JSONObject payloadJSONObject) {
+
+		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
+			"geolocation");
+
+		String locationName = StringPool.BLANK;
+
+		if (geolocationJSONObject == null) {
+			geolocationJSONObject = JSONFactoryUtil.createJSONObject();
+		}
+		else {
+			double latitude = geolocationJSONObject.getDouble("latitude");
+			double longitude = geolocationJSONObject.getDouble("longitude");
+
+			locationName = GeoNamesUtil.getLocationName(latitude, longitude);
+		}
+
+		return geolocationJSONObject;
 	}
 
 	protected boolean isContentModified(
