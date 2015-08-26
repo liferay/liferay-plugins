@@ -102,7 +102,13 @@ public class PortalUtil extends com.liferay.portal.util.PortalUtil {
 			DynamicActionRequest dynamicActionRequest =
 				(DynamicActionRequest)portletRequest;
 
-			return dynamicActionRequest.getUploadPortletRequest();
+			if (dynamicActionRequest.getUploadPortletRequest() != null) {
+				return dynamicActionRequest.getUploadPortletRequest();
+			}
+			else {
+				return getPortal().getUploadPortletRequest(
+					dynamicActionRequest.getRequest());
+			}
 		}
 		else {
 			return getPortal().getUploadPortletRequest(portletRequest);
