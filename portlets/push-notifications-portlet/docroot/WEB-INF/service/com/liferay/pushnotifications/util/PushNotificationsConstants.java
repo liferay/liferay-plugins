@@ -32,8 +32,6 @@ public class PushNotificationsConstants {
 
 	public static final String KEY_SOUND = "sound";
 
-	public static final String KEY_TO_USER = "toUser";
-
-	public static final String KEY_USER_ID = "userId";
+	public static final String KEY_TO_USER_IDS = "toUserIds";
 
 }

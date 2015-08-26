@@ -14,6 +14,7 @@
 
 package com.liferay.pushnotifications.messaging;
 
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -30,17 +31,22 @@ public class PushNotificationsMessageListener implements MessageListener {
 
 	@Override
 	public void receive(Message message) {
-		JSONObject jsonObject = (JSONObject)message.getPayload();
+		JSONObject payloadJSONObject = (JSONObject)message.getPayload();
 
-		JSONObject toUserJSONObject = jsonObject.getJSONObject(
-			PushNotificationsConstants.KEY_TO_USER);
+		JSONArray toUserIdsJSONArray = payloadJSONObject.getJSONArray(
+			PushNotificationsConstants.KEY_TO_USER_IDS);
 
-		long toUserId = toUserJSONObject.getLong(
-			PushNotificationsConstants.KEY_USER_ID);
+		long[] toUserIds = new long[toUserIdsJSONArray.length()];
+
+		for (int i = 0; i < toUserIdsJSONArray.length(); i++) {
+			toUserIds[i] = toUserIdsJSONArray.getLong(i);
+		}
+
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_TO_USER_IDS);
 
 		try {
 			PushNotificationsDeviceLocalServiceUtil.sendPushNotification(
-				new long[] {toUserId}, jsonObject);
+				toUserIds, payloadJSONObject);
 		}
 		catch (Exception e) {
 			_log.error("Unable to send notification", e);
