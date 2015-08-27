@@ -238,6 +238,12 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws PortalException;
 
+	public void sendPushNotification(java.lang.String platform,
+		java.util.List<java.lang.String> tokens,
+		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
+		java.util.Map<java.lang.String, java.lang.Object> configuration)
+		throws PortalException;
+
 	public void sendPushNotification(long[] toUserIds,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws PortalException;

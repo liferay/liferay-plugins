@@ -1481,8 +1481,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 			pushNotificationsDevice.getPrimaryKey(), pushNotificationsDevice,
 			false);
 
-		clearUniqueFindersCache(pushNotificationsDevice);
-		cacheUniqueFindersCache(pushNotificationsDevice, isNew);
+		clearUniqueFindersCache((PushNotificationsDevice)pushNotificationsDeviceModelImpl);
+		cacheUniqueFindersCache((PushNotificationsDevice)pushNotificationsDeviceModelImpl,
+			isNew);
 
 		pushNotificationsDevice.resetOriginalValues();
 
