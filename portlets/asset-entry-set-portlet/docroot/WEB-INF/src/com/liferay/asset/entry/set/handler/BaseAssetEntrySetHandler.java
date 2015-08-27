@@ -175,6 +175,8 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			double longitude = geolocationJSONObject.getDouble("longitude");
 
 			locationName = GeoNamesUtil.getLocationName(latitude, longitude);
+
+			geolocationJSONObject.put("locationName", locationName);
 		}
 
 		return geolocationJSONObject;
