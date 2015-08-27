@@ -120,11 +120,25 @@ public class PushNotificationsDeviceLocalServiceImpl
 			String platform, List<String> tokens, JSONObject payloadJSONObject)
 		throws PortalException {
 
+		sendPushNotification(platform, tokens, payloadJSONObject, null);
+	}
+
+	@Override
+	public void sendPushNotification(
+			String platform, List<String> tokens, JSONObject payloadJSONObject,
+			Map<String, Object> configuration)
+		throws PortalException {
+
 		PushNotificationsSender pushNotificationsSender =
 			_pushNotificationsSenders.get(platform);
 
 		if (pushNotificationsSender == null) {
 			return;
+		}
+
+		if (configuration != null) {
+			pushNotificationsSender = pushNotificationsSender.create(
+				configuration);
 		}
 
 		try {
