@@ -1299,14 +1299,14 @@ Please find a solution that does not require portal-impl.jar.
 
 			<if>
 				<resourcecount count="1" when="eq">
-					<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.themes.web*.jar" />
+					<fileset dir="${module.framework.base.dir}/modules" includes="com.liferay.frontend.themes.web*.jar" />
 				</resourcecount>
 				<then>
 					<property name="frontend.themes.web.dir" value="${sdk.dir}/tmp/com.liferay.frontend.themes.web" />
 
 					<pathconvert property="frontend.themes.web.jar.path">
 						<path>
-							<fileset dir="${module.framework.base.dir}/portal" includes="com.liferay.frontend.themes.web*.jar" />
+							<fileset dir="${module.framework.base.dir}/modules" includes="com.liferay.frontend.themes.web*.jar" />
 						</path>
 					</pathconvert>
 
@@ -1315,7 +1315,7 @@ Please find a solution that does not require portal-impl.jar.
 					<if>
 						<not>
 							<uptodate
-								srcfile="${module.framework.base.dir}/portal/${frontend.themes.web.file}"
+								srcfile="${module.framework.base.dir}/modules/${frontend.themes.web.file}"
 								targetfile="${frontend.themes.web.dir}"
 							/>
 						</not>
