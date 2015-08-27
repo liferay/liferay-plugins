@@ -24,6 +24,7 @@ import com.google.android.gcm.server.Sender;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.PushNotificationsException;
@@ -34,6 +35,7 @@ import com.liferay.pushnotifications.util.PortletPropsValues;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
@@ -41,8 +43,49 @@ import java.util.List;
  */
 public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
+	public AndroidPushNotificationsSender() {
+	}
+
+	public AndroidPushNotificationsSender(String apiKey, Integer retries) {
+		_apiKey = apiKey;
+		_retries = retries;
+	}
+
+	@Override
+	public PushNotificationsSender create(Map<String, Object> configuration) {
+		String apiKey = MapUtil.getString(
+			configuration, PortletPropsKeys.ANDROID_API_KEY, null);
+
+		Integer retries = (Integer)configuration.get(
+			PortletPropsKeys.ANDROID_RETRIES);
+
+		return new AndroidPushNotificationsSender(apiKey, retries);
+	}
+
+	public String getAPIKey() {
+		if (Validator.isNull(_apiKey)) {
+			_apiKey = PrefsPropsUtil.getString(
+				PortletPropsKeys.ANDROID_API_KEY,
+				PortletPropsValues.ANDROID_API_KEY);
+		}
+
+		return _apiKey;
+	}
+
+	public int getRetries() {
+		if (_retries == null) {
+			_retries = PrefsPropsUtil.getInteger(
+				PortletPropsKeys.ANDROID_RETRIES,
+				PortletPropsValues.ANDROID_RETRIES);
+		}
+
+		return _retries;
+	}
+
 	@Override
 	public synchronized void reset() {
+		_apiKey = null;
+		_retries = null;
 		_sender = null;
 	}
 
@@ -59,13 +102,18 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 		Message message = buildMessage(payloadJSONObject);
 
-		int retries = PrefsPropsUtil.getInteger(
-			PortletPropsKeys.ANDROID_RETRIES,
-			PortletPropsValues.ANDROID_RETRIES);
-
-		MulticastResult multicastResult = sender.send(message, tokens, retries);
+		MulticastResult multicastResult = sender.send(
+			message, tokens, getRetries());
 
 		validateMulticastResult(tokens, multicastResult);
+	}
+
+	public void setAPIKey(String apiKey) {
+		_apiKey = apiKey;
+	}
+
+	public void setRetries(int retries) {
+		_retries = retries;
 	}
 
 	protected Message buildMessage(JSONObject payloadJSONObject) {
@@ -80,17 +128,15 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 	protected synchronized Sender getSender() throws Exception {
 		if (_sender == null) {
-			String key = PrefsPropsUtil.getString(
-				PortletPropsKeys.ANDROID_API_KEY,
-				PortletPropsValues.ANDROID_API_KEY);
+			String apiKey = getAPIKey();
 
-			if (Validator.isNull(key)) {
+			if (Validator.isNull(apiKey)) {
 				throw new PushNotificationsException(
 					"The property \"android.api.key\" is not set in " +
 						"portlet.properties");
 			}
 
-			_sender = new Sender(key);
+			_sender = new Sender(apiKey);
 		}
 
 		return _sender;
@@ -155,6 +201,8 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	private static Log _log = LogFactoryUtil.getLog(
 		AndroidPushNotificationsSender.class);
 
+	private String _apiKey;
+	private Integer _retries;
 	private Sender _sender;
 
 }

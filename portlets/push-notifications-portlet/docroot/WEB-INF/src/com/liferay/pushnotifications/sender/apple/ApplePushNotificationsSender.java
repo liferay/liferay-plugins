@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.sender.apple;
 
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.PushNotificationsException;
@@ -35,6 +36,7 @@ import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
@@ -42,9 +44,68 @@ import java.util.List;
  */
 public class ApplePushNotificationsSender implements PushNotificationsSender {
 
+	public ApplePushNotificationsSender() {
+	}
+
+	public ApplePushNotificationsSender(
+		String certificatePath, String certificatePassword, Boolean sandbox) {
+
+		_certificatePath = certificatePath;
+		_certificatePassword = certificatePassword;
+		_sandbox = sandbox;
+	}
+
+	@Override
+	public PushNotificationsSender create(Map<String, Object> configuration) {
+		String certificatePath = MapUtil.getString(
+			configuration, PortletPropsKeys.APPLE_CERTIFICATE_PATH, null);
+
+		String certificatePassword = MapUtil.getString(
+			configuration, PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD, null);
+
+		Boolean sandbox = (Boolean)configuration.get(
+			PortletPropsKeys.APPLE_SANDBOX);
+
+		return new ApplePushNotificationsSender(
+			certificatePath, certificatePassword, sandbox);
+	}
+
+	public String getCertificatePassword() {
+		if (Validator.isNull(_certificatePassword)) {
+			_certificatePassword = PrefsPropsUtil.getString(
+				PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD,
+				PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
+		}
+
+		return _certificatePassword;
+	}
+
+	public String getCertificatePath() {
+		if (Validator.isNull(_certificatePath)) {
+			_certificatePath = PrefsPropsUtil.getString(
+				PortletPropsKeys.APPLE_CERTIFICATE_PATH,
+				PortletPropsValues.APPLE_CERTIFICATE_PATH);
+		}
+
+		return _certificatePath;
+	}
+
+	public boolean isSandbox() {
+		if (_sandbox == null) {
+			_sandbox = PrefsPropsUtil.getBoolean(
+				PortletPropsKeys.APPLE_SANDBOX,
+				PortletPropsValues.APPLE_SANDBOX);
+		}
+
+		return _sandbox;
+	}
+
 	@Override
 	public synchronized void reset() {
 		_apnsService = null;
+		_certificatePassword = null;
+		_certificatePath = null;
+		_sandbox = null;
 	}
 
 	@Override
@@ -61,6 +122,18 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		String payload = buildPayload(payloadJSONObject);
 
 		apnsService.push(tokens, payload);
+	}
+
+	public void setCertificatePassword(String certificatePassword) {
+		_certificatePassword = certificatePassword;
+	}
+
+	public void setCertificatePath(String certificatePath) {
+		_certificatePath = certificatePath;
+	}
+
+	public void setSandbox(boolean sandbox) {
+		_sandbox = sandbox;
 	}
 
 	protected String buildPayload(JSONObject payloadJSONObject) {
@@ -119,11 +192,9 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		if (_apnsService == null) {
 			ApnsServiceBuilder appleServiceBuilder = APNS.newService();
 
-			String path = PrefsPropsUtil.getString(
-				PortletPropsKeys.APPLE_CERTIFICATE_PATH,
-				PortletPropsValues.APPLE_CERTIFICATE_PATH);
+			String certificatePath = getCertificatePath();
 
-			if (Validator.isNull(path)) {
+			if (Validator.isNull(certificatePath)) {
 				throw new PushNotificationsException(
 					"The property \"apple.certificate.path\" is not set in " +
 						"portlet.properties");
@@ -132,38 +203,32 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			InputStream is = null;
 
 			try {
-				is = new FileInputStream(path);
+				is = new FileInputStream(certificatePath);
 			}
 			catch (FileNotFoundException fnfe) {
 				Class<?> clazz = getClass();
 
 				ClassLoader classLoader = clazz.getClassLoader();
 
-				is = classLoader.getResourceAsStream(path);
+				is = classLoader.getResourceAsStream(certificatePath);
 			}
 
 			if (is == null) {
 				throw new PushNotificationsException(
-					"Apple certificate does not exist at " + path);
+					"Apple certificate does not exist at " + certificatePath);
 			}
 
-			String password = PrefsPropsUtil.getString(
-				PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD,
-				PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
+			String certificatePassword = getCertificatePassword();
 
-			if (Validator.isNull(password)) {
+			if (Validator.isNull(certificatePassword)) {
 				throw new PushNotificationsException(
 					"The property \"apple.certificate.password\" is not set " +
 						"in portlet.properties");
 			}
 
-			appleServiceBuilder.withCert(is, password);
+			appleServiceBuilder.withCert(is, certificatePassword);
 
-			boolean sandbox = PrefsPropsUtil.getBoolean(
-				PortletPropsKeys.APPLE_SANDBOX,
-				PortletPropsValues.APPLE_SANDBOX);
-
-			if (sandbox) {
+			if (isSandbox()) {
 				appleServiceBuilder.withSandboxDestination();
 			}
 			else {
@@ -177,5 +242,8 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	}
 
 	private ApnsService _apnsService;
+	private String _certificatePassword;
+	private String _certificatePath;
+	private Boolean _sandbox;
 
 }
