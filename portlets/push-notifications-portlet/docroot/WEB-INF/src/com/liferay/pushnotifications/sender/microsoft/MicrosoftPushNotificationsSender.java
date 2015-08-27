@@ -22,6 +22,7 @@ import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.jboss.aerogear.windows.mpns.MPNS;
 import org.jboss.aerogear.windows.mpns.MpnsService;
@@ -35,6 +36,11 @@ import org.jboss.aerogear.windows.mpns.notifications.ToastNotification;
  */
 public class MicrosoftPushNotificationsSender
 	implements PushNotificationsSender {
+
+	@Override
+	public PushNotificationsSender create(Map<String, Object> configuration) {
+		return new MicrosoftPushNotificationsSender();
+	}
 
 	@Override
 	public synchronized void reset() {
