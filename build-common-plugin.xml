@@ -139,6 +139,50 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="build-taglibs">
+		<attribute name="tagbuilder.components.xml" />
+		<attribute name="tagbuilder.java.dir" />
+		<attribute name="tagbuilder.java.package" />
+		<attribute name="tagbuilder.jsp.common.init.path" default="/init.jsp" />
+		<attribute name="tagbuilder.jsp.dir" default="/" />
+		<attribute name="tagbuilder.jsp.parent.dir" default="src/META-INF/resources/" />
+		<attribute name="tagbuilder.tld.dir" default="src/META-INF/resources/" />
+
+		<sequential>
+			<loop-macrodef-or-target
+				module.dirs="${basedir}"
+				target.name="compile"
+			/>
+
+			<path id="tagbuilder.classpath">
+				<fileset dir="${sdk.dir}/dependencies/com.liferay.alloy.taglib/lib" includes="*.jar" />
+				<fileset dir="${sdk.dir}/dependencies/org.freemarker/lib" includes="*.jar" />
+				<path refid="portal.classpath" />
+				<fileset dir="${plugin.lib.dir}" includes="*.jar" />
+				<pathelement location="${plugin.classes.dir}" />
+			</path>
+
+			<java
+				classname="com.liferay.alloy.tools.tagbuilder.TagBuilder"
+				classpathref="tagbuilder.classpath"
+				fork="true"
+				maxmemory="256m"
+				newenvironment="true"
+			>
+				<jvmarg value="-Dtagbuilder.components.xml=@{tagbuilder.components.xml}" />
+				<jvmarg value="-Dtagbuilder.copyright.year=present" />
+				<jvmarg value="-Dtagbuilder.java.dir=@{tagbuilder.java.dir}" />
+				<jvmarg value="-Dtagbuilder.java.package=@{tagbuilder.java.package}" />
+				<jvmarg value="-Dtagbuilder.jsp.common.init.path=/init.jsp" />
+				<jvmarg value="-Dtagbuilder.jsp.dir=@{tagbuilder.jsp.dir}" />
+				<jvmarg value="-Dtagbuilder.jsp.parent.dir=@{tagbuilder.jsp.parent.dir}" />
+				<jvmarg value="-Dtagbuilder.osgi.module.symbolic.name=${plugin.name}" />
+				<jvmarg value="-Dtagbuilder.templates.dir=com/liferay/alloy/tools/tagbuilder/templates/" />
+				<jvmarg value="-Dtagbuilder.tld.dir=@{tagbuilder.tld.dir}" />
+			</java>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="classpath-to-jar">
 		<attribute name="classpathref" />
 		<attribute name="jarfile" />
