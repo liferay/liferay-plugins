@@ -390,9 +390,9 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		KBArticle importedKBArticle = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			importedKBArticle =
-				importKBArticleVersions(portletDataContext, kbArticle.getUuid(),
-				parentResourcePrimKey, dirName, kbArticleElement, kbArticlePKs);
+			importedKBArticle = importKBArticleVersions(
+				portletDataContext, kbArticle.getUuid(), parentResourcePrimKey,
+				dirName, kbArticleElement, kbArticlePKs);
 		}
 		else {
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
@@ -547,7 +547,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 				try {
 					existingKBArticle =
 						KBArticleLocalServiceUtil.getLatestKBArticle(
-						resourcePrimaryKey, WorkflowConstants.STATUS_ANY);
+							resourcePrimaryKey, WorkflowConstants.STATUS_ANY);
 				}
 				catch (NoSuchArticleException nsae) {
 				}
@@ -585,8 +585,9 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			}
 
 			if (!curKBArticle.isMain()) {
-				kbArticlePKs.put(curKBArticle.getResourcePrimKey(),
-				importedKBArticle.getResourcePrimKey());
+				kbArticlePKs.put(
+					curKBArticle.getResourcePrimKey(),
+					importedKBArticle.getResourcePrimKey());
 			}
 		}
 
