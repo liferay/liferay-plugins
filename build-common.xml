@@ -1392,6 +1392,24 @@ Please find a solution that does not require portal-impl.jar.
 					</then>
 				</elseif>
 				<elseif>
+					<equals arg1="${theme.parent}" arg2="admin" />
+					<then>
+						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${frontend.themes.web.dir}/admin"
+								excludes="**/.sass-cache/**,_diffs/**,templates/**"
+							/>
+						</copy>
+
+						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${frontend.themes.web.dir}/admin/templates"
+								includes="*.${theme.type}"
+							/>
+						</copy>
+					</then>
+				</elseif>
+				<elseif>
 					<equals arg1="${theme.parent}" arg2="classic" />
 					<then>
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
@@ -1404,24 +1422,6 @@ Please find a solution that does not require portal-impl.jar.
 						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 							<fileset
 								dir="${frontend.themes.web.dir}/classic/templates"
-								includes="*.${theme.type}"
-							/>
-						</copy>
-					</then>
-				</elseif>
-				<elseif>
-					<equals arg1="${theme.parent}" arg2="control_panel" />
-					<then>
-						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-							<fileset
-								dir="${frontend.themes.web.dir}/control_panel"
-								excludes="**/.sass-cache/**,_diffs/**,templates/**"
-							/>
-						</copy>
-
-						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
-							<fileset
-								dir="${frontend.themes.web.dir}/control_panel/templates"
 								includes="*.${theme.type}"
 							/>
 						</copy>
