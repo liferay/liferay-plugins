@@ -50,10 +50,8 @@ public class TwilioSMSSender implements PushNotificationsSender {
 	public PushNotificationsSender create(Map<String, Object> configuration) {
 		String accountSID = MapUtil.getString(
 			configuration, PortletPropsKeys.SMS_TWILIO_ACCOUNT_SID, null);
-
 		String authToken = MapUtil.getString(
 			configuration, PortletPropsKeys.SMS_TWILIO_AUTH_TOKEN, null);
-
 		String number = MapUtil.getString(
 			configuration, PortletPropsKeys.SMS_TWILIO_NUMBER, null);
 

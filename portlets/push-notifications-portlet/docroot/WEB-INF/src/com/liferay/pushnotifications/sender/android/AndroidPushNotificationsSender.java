@@ -55,7 +55,6 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	public PushNotificationsSender create(Map<String, Object> configuration) {
 		String apiKey = MapUtil.getString(
 			configuration, PortletPropsKeys.ANDROID_API_KEY, null);
-
 		Integer retries = (Integer)configuration.get(
 			PortletPropsKeys.ANDROID_RETRIES);
 

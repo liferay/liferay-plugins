@@ -59,10 +59,8 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	public PushNotificationsSender create(Map<String, Object> configuration) {
 		String certificatePath = MapUtil.getString(
 			configuration, PortletPropsKeys.APPLE_CERTIFICATE_PATH, null);
-
 		String certificatePassword = MapUtil.getString(
 			configuration, PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD, null);
-
 		Boolean sandbox = (Boolean)configuration.get(
 			PortletPropsKeys.APPLE_SANDBOX);
 
