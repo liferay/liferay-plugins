@@ -24,23 +24,16 @@ import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
-import com.liferay.asset.entry.set.util.PortletKeys;
-import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
-import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.image.ImageBag;
-import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
@@ -48,18 +41,11 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.util.DLUtil;
-import com.liferay.util.portlet.PortletProps;
-
-import java.awt.image.RenderedImage;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -136,7 +122,7 @@ public class AssetEntrySetLocalServiceImpl
 				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_EXTENSIONS,
 				extension)) {
 
-			return addImageFile(userId, file, _IMAGE_TYPE_RAW);
+			return AssetEntrySetImageUtil.addImageFile(userId, file);
 		}
 
 		return JSONFactoryUtil.createJSONObject();
@@ -322,92 +308,6 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		return assetEntrySet;
-	}
-
-	protected FileEntry addFileEntry(long userId, File file, String type)
-		throws PortalException, SystemException {
-
-		User user = userLocalService.getUser(userId);
-
-		String fileName =
-			Calendar.getInstance().getTimeInMillis() + type + file.getName();
-
-		return PortletFileRepositoryUtil.addPortletFileEntry(
-			user.getGroupId(), userId, AssetEntrySet.class.getName(), 0L,
-			PortletKeys.ASSET_ENTRY_SET, 0L, file, fileName, null, false);
-	}
-
-	protected JSONObject addImageFile(long userId, File file, String imageType)
-		throws PortalException, SystemException {
-
-		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
-
-		JSONObject fileEntryIdsJSONObject = JSONFactoryUtil.createJSONObject();
-
-		try {
-			AssetEntrySetImageUtil.rotateImage(file);
-		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
-		}
-
-		FileEntry fileEntry = addFileEntry(userId, file, imageType);
-
-		fileEntryIdsJSONObject.put(imageType, fileEntry.getFileEntryId());
-
-		imageJSONObject.put(
-			"imageURL_" + imageType,
-			DLUtil.getPreviewURL(
-				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
-				false, true));
-
-		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
-
-		imageJSONObject.put("mimeType", fileEntry.getMimeType());
-		imageJSONObject.put("name", fileEntry.getTitle());
-
-		return imageJSONObject;
-	}
-
-	protected FileEntry addImageFileEntry(
-			long userId, File file, String imageType)
-		throws PortalException, SystemException {
-
-		ImageBag imageBag = null;
-
-		try {
-			imageBag = ImageToolUtil.read(file);
-		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
-		}
-
-		RenderedImage rawRenderedImage = imageBag.getRenderedImage();
-
-		String imageMaxSize = PortletProps.get(
-			PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE, new Filter(imageType));
-
-		String[] maxDimensions = imageMaxSize.split("x");
-
-		RenderedImage scaledRenderedImage = ImageToolUtil.scale(
-			rawRenderedImage, GetterUtil.getInteger(maxDimensions[0]),
-			GetterUtil.getInteger(maxDimensions[1]));
-
-		File scaledFile = null;
-
-		try {
-			scaledFile = FileUtil.createTempFile(
-				ImageToolUtil.getBytes(
-					scaledRenderedImage, imageBag.getType()));
-
-			return addFileEntry(userId, scaledFile, imageType);
-		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
-		}
-		finally {
-			FileUtil.delete(scaledFile);
-		}
 	}
 
 	protected void deleteChildAssetEntrySets(long parentAssetEntrySetId)
@@ -646,7 +546,5 @@ public class AssetEntrySetLocalServiceImpl
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
-
-	private static final String _IMAGE_TYPE_RAW = "raw";
 
 }
