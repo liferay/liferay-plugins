@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
@@ -116,14 +117,18 @@ public class AssetEntrySetFinderImpl
 	public List<AssetEntrySet> findByCT_PAESI_CNI(
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId,
-			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
+			JSONObject streamEntryJSONObject, String[] assetTagNames, int start,
 			int end)
 		throws SystemException {
 
-		if (((sharedToJSONArray == null) ||
-			 (sharedToJSONArray.length() == 0)) &&
-			ArrayUtil.isEmpty(assetTagNames)) {
+		if (isNull(streamEntryJSONObject) && ArrayUtil.isEmpty(assetTagNames)) {
+			return Collections.emptyList();
+		}
 
+		JSONArray sharedToJSONArray = streamEntryJSONObject.getJSONArray(
+			"sharedToJSONArray");
+
+		if (isNull(sharedToJSONArray) && ArrayUtil.isEmpty(assetTagNames)) {
 			return Collections.emptyList();
 		}
 
@@ -154,6 +159,12 @@ public class AssetEntrySetFinderImpl
 				sql, "[$ASSET_TAG_NAMES$]",
 				getAssetTagNames(
 					classNameId, classPK, sharedToJSONArray, assetTagNames));
+			sql = StringUtil.replace(
+				sql, "[$FOLLOWED_ASSET_ENTRY_SETS$]",
+				getFollowedAssetEntrySets(streamEntryJSONObject));
+			sql = StringUtil.replace(
+				sql, "[$UNFOLLOWED_ASSET_ENTRY_SETS$]",
+				getUnfollowedAssetEntrySets(streamEntryJSONObject));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -181,14 +192,18 @@ public class AssetEntrySetFinderImpl
 	public List<AssetEntrySet> findByMT_PAESI_CNI(
 			long classNameId, long classPK, long modifiedTime,
 			boolean gtModifiedTime, long parentAssetEntrySetId,
-			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
+			JSONObject streamEntryJSONObject, String[] assetTagNames, int start,
 			int end)
 		throws SystemException {
 
-		if (((sharedToJSONArray == null) ||
-			 (sharedToJSONArray.length() == 0)) &&
-			ArrayUtil.isEmpty(assetTagNames)) {
+		if (isNull(streamEntryJSONObject) && ArrayUtil.isEmpty(assetTagNames)) {
+			return Collections.emptyList();
+		}
 
+		JSONArray sharedToJSONArray = streamEntryJSONObject.getJSONArray(
+			"sharedToJSONArray");
+
+		if (isNull(sharedToJSONArray) && ArrayUtil.isEmpty(assetTagNames)) {
 			return Collections.emptyList();
 		}
 
@@ -219,6 +234,12 @@ public class AssetEntrySetFinderImpl
 				sql, "[$ASSET_TAG_NAMES$]",
 				getAssetTagNames(
 					classNameId, classPK, sharedToJSONArray, assetTagNames));
+			sql = StringUtil.replace(
+				sql, "[$FOLLOWED_ASSET_ENTRY_SETS$]",
+				getFollowedAssetEntrySets(streamEntryJSONObject));
+			sql = StringUtil.replace(
+				sql, "[$UNFOLLOWED_ASSET_ENTRY_SETS$]",
+				getUnfollowedAssetEntrySets(streamEntryJSONObject));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -269,6 +290,37 @@ public class AssetEntrySetFinderImpl
 		return sb.toString();
 	}
 
+	protected String getFollowedAssetEntrySets(
+		JSONObject streamEntryJSONObject) {
+
+		JSONArray followedAssetEntrySetJSONArray =
+			streamEntryJSONObject.getJSONArray(
+				"followedAssetEntrySetJSONArray");
+
+		if (isNull(followedAssetEntrySetJSONArray)) {
+			return StringPool.BLANK;
+		}
+		else {
+			StringBundler sb = new StringBundler();
+
+			sb.append(" OR ");
+			sb.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < followedAssetEntrySetJSONArray.length(); i++) {
+				sb.append("(AssetEntrySet.assetEntrySetId = ");
+				sb.append(followedAssetEntrySetJSONArray.getLong(i));
+				sb.append(StringPool.CLOSE_PARENTHESIS);
+				sb.append(" OR ");
+			}
+
+			sb.setIndex(sb.index() - 1);
+
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+
+			return sb.toString();
+		}
+	}
+
 	protected String getJoinBy(
 		JSONArray sharedToJSONArray, String[] assetTagNames) {
 
@@ -288,7 +340,7 @@ public class AssetEntrySetFinderImpl
 	protected String getSharedTo(
 		long classNameId, long classPK, JSONArray sharedToJSONArray) {
 
-		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
+		if (isNull(sharedToJSONArray)) {
 			return StringPool.BLANK;
 		}
 
@@ -341,6 +393,38 @@ public class AssetEntrySetFinderImpl
 		return sb.toString();
 	}
 
+	protected String getUnfollowedAssetEntrySets(
+		JSONObject streamEntryJSONObject) {
+
+		JSONArray unfollowedAssetEntrySetJSONArray =
+			streamEntryJSONObject.getJSONArray(
+				"unfollowedAssetEntrySetJSONArray");
+
+		if (isNull(unfollowedAssetEntrySetJSONArray)) {
+			return StringPool.BLANK;
+		}
+		else {
+			StringBundler sb = new StringBundler();
+
+			sb.append(" AND ");
+			sb.append(StringPool.OPEN_PARENTHESIS);
+			sb.append("(AssetEntrySet.assetEntrySetId NOT IN (");
+
+			for (int i = 0; i < unfollowedAssetEntrySetJSONArray.length();
+				i++) {
+
+				sb.append(unfollowedAssetEntrySetJSONArray.getLong(i));
+				sb.append(StringPool.COMMA);
+			}
+
+			sb.setIndex(sb.index() - 1);
+
+			sb.append(")))");
+
+			return sb.toString();
+		}
+	}
+
 	protected String getViewable(long classNameId, long classPK) {
 		StringBundler sb = new StringBundler(6);
 
@@ -352,6 +436,26 @@ public class AssetEntrySetFinderImpl
 		sb.append(")))");
 
 		return sb.toString();
+	}
+
+	protected boolean isNull(Object obj) {
+		if (obj instanceof JSONObject) {
+			if ((obj == null) || (((JSONObject)obj).length() == 0)) {
+				return true;
+			}
+
+			return false;
+		}
+		else if (obj instanceof JSONArray) {
+			if ((obj == null) || (((JSONArray)obj).length() == 0)) {
+				return true;
+			}
+
+			return false;
+		}
+		else {
+			return Validator.isNull(obj);
+		}
 	}
 
 	protected void setAssetTagNames(QueryPos qPos, String[] assetTagNames) {

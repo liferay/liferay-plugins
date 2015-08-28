@@ -177,13 +177,13 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long time, boolean modifiedTime,
-			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
+			long parentAssetEntrySetId, JSONObject streamEntryJSONObject,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, time, true, modifiedTime, parentAssetEntrySetId,
-			sharedToJSONArray, assetTagNames, start, end);
+			streamEntryJSONObject, assetTagNames, start, end);
 	}
 
 	@Override
@@ -203,13 +203,13 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long time, boolean modifiedTime,
-			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
+			long parentAssetEntrySetId, JSONObject streamEntryJSONObject,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, time, false, modifiedTime, parentAssetEntrySetId,
-			sharedToJSONArray, assetTagNames, start, end);
+			streamEntryJSONObject, assetTagNames, start, end);
 	}
 
 	@Override
@@ -427,7 +427,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long time, boolean gtTime, boolean modifiedTime,
-			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
+			long parentAssetEntrySetId, JSONObject streamEntryJSONObject,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
@@ -439,15 +439,15 @@ public class AssetEntrySetLocalServiceImpl
 			return assetEntrySetFinder.findByCT_PAESI_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
-				parentAssetEntrySetId, sharedToJSONArray, assetTagNames, start,
-				end);
+				parentAssetEntrySetId, streamEntryJSONObject, assetTagNames,
+				start, end);
 		}
 		else {
 			return assetEntrySetFinder.findByMT_PAESI_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
-				parentAssetEntrySetId, sharedToJSONArray, assetTagNames, start,
-				end);
+				parentAssetEntrySetId, streamEntryJSONObject, assetTagNames,
+				start, end);
 		}
 	}
 
