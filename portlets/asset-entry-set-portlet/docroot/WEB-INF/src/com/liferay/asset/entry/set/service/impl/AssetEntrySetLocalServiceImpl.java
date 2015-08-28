@@ -136,7 +136,7 @@ public class AssetEntrySetLocalServiceImpl
 				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_EXTENSIONS,
 				extension)) {
 
-			return addImageFile(userId, file);
+			return addImageFile(userId, file, _IMAGE_TYPE_RAW);
 		}
 
 		return JSONFactoryUtil.createJSONObject();
@@ -337,7 +337,7 @@ public class AssetEntrySetLocalServiceImpl
 			PortletKeys.ASSET_ENTRY_SET, 0L, file, fileName, null, false);
 	}
 
-	protected JSONObject addImageFile(long userId, File file)
+	protected JSONObject addImageFile(long userId, File file, String imageType)
 		throws PortalException, SystemException {
 
 		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
@@ -351,33 +351,20 @@ public class AssetEntrySetLocalServiceImpl
 			throw new SystemException(ioe);
 		}
 
-		FileEntry rawFileEntry = addFileEntry(userId, file, StringPool.BLANK);
+		FileEntry fileEntry = addFileEntry(userId, file, imageType);
 
-		for (String imageType :
-				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
+		fileEntryIdsJSONObject.put(imageType, fileEntry.getFileEntryId());
 
-			FileEntry fileEntry = null;
-
-			if (Validator.equals(imageType, "raw")) {
-				fileEntry = rawFileEntry;
-			}
-			else {
-				fileEntry = addImageFileEntry(userId, file, imageType);
-			}
-
-			fileEntryIdsJSONObject.put(imageType, fileEntry.getFileEntryId());
-
-			imageJSONObject.put(
-				"imageURL_" + imageType,
-				DLUtil.getPreviewURL(
-					fileEntry, fileEntry.getFileVersion(), null,
-					StringPool.BLANK, false, true));
-		}
+		imageJSONObject.put(
+			"imageURL_" + imageType,
+			DLUtil.getPreviewURL(
+				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
+				false, true));
 
 		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
 
-		imageJSONObject.put("mimeType", rawFileEntry.getMimeType());
-		imageJSONObject.put("name", rawFileEntry.getTitle());
+		imageJSONObject.put("mimeType", fileEntry.getMimeType());
+		imageJSONObject.put("name", fileEntry.getTitle());
 
 		return imageJSONObject;
 	}
@@ -659,5 +646,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
 		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
+
+	private static final String _IMAGE_TYPE_RAW = "raw";
 
 }
