@@ -18,6 +18,8 @@ import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.model.AssetEntrySetReference;
 import com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
+import com.liferay.asset.sharing.model.AssetSharingEntry;
+import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -161,7 +163,8 @@ public class AssetEntrySetFinderImpl
 					classNameId, classPK, sharedToJSONArray, assetTagNames));
 			sql = StringUtil.replace(
 				sql, "[$FOLLOWED_ASSET_ENTRY_SETS$]",
-				getFollowedAssetEntrySets(streamEntryJSONObject));
+				getFollowedAssetEntrySets(
+					classNameId, classPK, streamEntryJSONObject));
 			sql = StringUtil.replace(
 				sql, "[$UNFOLLOWED_ASSET_ENTRY_SETS$]",
 				getUnfollowedAssetEntrySets(streamEntryJSONObject));
@@ -236,7 +239,8 @@ public class AssetEntrySetFinderImpl
 					classNameId, classPK, sharedToJSONArray, assetTagNames));
 			sql = StringUtil.replace(
 				sql, "[$FOLLOWED_ASSET_ENTRY_SETS$]",
-				getFollowedAssetEntrySets(streamEntryJSONObject));
+				getFollowedAssetEntrySets(
+					classNameId, classPK, streamEntryJSONObject));
 			sql = StringUtil.replace(
 				sql, "[$UNFOLLOWED_ASSET_ENTRY_SETS$]",
 				getUnfollowedAssetEntrySets(streamEntryJSONObject));
@@ -291,7 +295,8 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected String getFollowedAssetEntrySets(
-		JSONObject streamEntryJSONObject) {
+			long classNameId, long classPK, JSONObject streamEntryJSONObject)
+		throws SystemException {
 
 		JSONArray followedAssetEntrySetJSONArray =
 			streamEntryJSONObject.getJSONArray(
@@ -307,8 +312,18 @@ public class AssetEntrySetFinderImpl
 			sb.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < followedAssetEntrySetJSONArray.length(); i++) {
-				sb.append("(AssetEntrySet.assetEntrySetId = ");
-				sb.append(followedAssetEntrySetJSONArray.getLong(i));
+				long assetEntrySetId = followedAssetEntrySetJSONArray.getLong(
+					i);
+
+				sb.append("((AssetEntrySet.assetEntrySetId = ");
+				sb.append(assetEntrySetId);
+				sb.append(StringPool.CLOSE_PARENTHESIS);
+
+				if (!isMember(classNameId, classPK, assetEntrySetId)) {
+					sb.append(" AND ");
+					sb.append(getViewable(classNameId, classPK));
+				}
+
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 				sb.append(" OR ");
 			}
@@ -436,6 +451,27 @@ public class AssetEntrySetFinderImpl
 		sb.append(")))");
 
 		return sb.toString();
+	}
+
+	protected boolean isMember(
+			long classNameId, long classPK, long assetEntrySetId)
+		throws SystemException {
+
+		List<AssetSharingEntry> assetSharingEntries =
+			AssetSharingEntryLocalServiceUtil.getAssetSharingEntries(
+				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
+
+		for (AssetSharingEntry assetSharingEntry : assetSharingEntries) {
+			if (AssetEntrySetParticipantInfoUtil.isMember(
+					classNameId, classPK,
+				assetSharingEntry.getSharedToClassNameId(),
+				assetSharingEntry.getSharedToClassPK())) {
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	protected boolean isNull(Object obj) {
