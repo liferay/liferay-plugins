@@ -28,6 +28,8 @@ public class AssetEntrySetConstants {
 	public static final String ASSET_ENTRY_KEY_PARTICIPANT_URL =
 		"participantURL";
 
+	public static final String IMAGE_TYPE_RAW = "raw";
+
 	public static final String PAYLOAD_KEY_ASSET_TAG_NAMES = "assetTagNames";
 
 	public static final String PAYLOAD_KEY_CREATOR = "creator";

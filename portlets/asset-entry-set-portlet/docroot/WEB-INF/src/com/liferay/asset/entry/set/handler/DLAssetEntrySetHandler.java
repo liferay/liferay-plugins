@@ -16,25 +16,24 @@ package com.liferay.asset.entry.set.handler;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
+import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.image.ImageBag;
 import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.Image;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 import java.io.IOException;
 
@@ -73,24 +72,39 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 			JSONObject processedImageJSONObject =
 				JSONFactoryUtil.createJSONObject();
 
-			JSONObject fileEntryIdsJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
 			JSONObject imageJSONObject = imageDataJSONArray.getJSONObject(i);
+
+			long rawFileEntryId = imageJSONObject.getLong(
+				AssetEntrySetConstants.IMAGE_TYPE_RAW);
+
+			FileEntry rawFileEntry =
+				PortletFileRepositoryUtil.getPortletFileEntry(rawFileEntryId);
+
+			ImageBag imageBag = null;
+
+			try {
+				imageBag = ImageToolUtil.read(rawFileEntry.getContentStream());
+			}
+			catch (IOException ioe) {
+				throw new SystemException(ioe);
+			}
 
 			for (String imageType :
 					PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
 
-				long fileEntryId = imageJSONObject.getLong(imageType);
+				FileEntry fileEntry = null;
 
-				if (fileEntryId <= 0) {
-					continue;
+				if (imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
+					fileEntry = rawFileEntry;
+				}
+				else {
+					fileEntry = AssetEntrySetImageUtil.addScaledImageFileEntry(
+						userId, imageBag, imageType);
 				}
 
-				fileEntryIdsJSONObject.put(imageType, fileEntryId);
-
 				DLFileEntry dlFileEntry =
-					DLFileEntryLocalServiceUtil.getFileEntry(fileEntryId);
+					DLFileEntryLocalServiceUtil.getFileEntry(
+						fileEntry.getFileEntryId());
 
 				dlFileEntry.setClassPK(assetEntrySetId);
 
@@ -102,33 +116,10 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 
 				assetEntryIds.add(assetEntry.getEntryId());
 
-				FileEntry fileEntry =
-					PortletFileRepositoryUtil.getPortletFileEntry(fileEntryId);
-
-				processedImageJSONObject.put(
-					"imageURL_" + imageType,
-					DLUtil.getPreviewURL(
-						fileEntry, fileEntry.getFileVersion(), null,
-						StringPool.BLANK, false, true));
-				processedImageJSONObject.put(
-					"mimeType", fileEntry.getMimeType());
-
-				try {
-					Image image = ImageToolUtil.getImage(
-						fileEntry.getContentStream());
-
-					processedImageJSONObject.put(
-						"height_" + imageType, image.getHeight());
-					processedImageJSONObject.put(
-						"width_" + imageType, image.getWidth());
-				}
-				catch (IOException ioe) {
-					throw new SystemException(ioe);
-				}
+				processedImageJSONObject =
+					AssetEntrySetImageUtil.getImageJSONObject(
+						processedImageJSONObject, fileEntry, imageType);
 			}
-
-			processedImageJSONObject.put(
-				"fileEntryIds", fileEntryIdsJSONObject);
 
 			processedImageDataJSONArray.put(processedImageJSONObject);
 		}

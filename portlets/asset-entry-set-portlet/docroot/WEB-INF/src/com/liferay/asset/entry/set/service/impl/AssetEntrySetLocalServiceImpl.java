@@ -122,7 +122,8 @@ public class AssetEntrySetLocalServiceImpl
 				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_EXTENSIONS,
 				extension)) {
 
-			return AssetEntrySetImageUtil.addImageFile(userId, file);
+			return AssetEntrySetImageUtil.addImageFile(
+				userId, file, AssetEntrySetConstants.IMAGE_TYPE_RAW);
 		}
 
 		return JSONFactoryUtil.createJSONObject();

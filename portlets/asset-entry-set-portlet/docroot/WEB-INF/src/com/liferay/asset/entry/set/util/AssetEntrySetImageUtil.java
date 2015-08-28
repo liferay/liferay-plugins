@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Image;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -54,10 +55,90 @@ import javax.imageio.ImageIO;
  */
 public class AssetEntrySetImageUtil {
 
-	public static JSONObject addImageFile(long userId, File file)
+	public static JSONObject addImageFile(
+			long userId, File file, String imageType)
 		throws PortalException, SystemException {
 
-		return addImageFile(userId, file, _IMAGE_TYPE_RAW);
+		try {
+			AssetEntrySetImageUtil.rotateImage(file);
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
+
+		FileEntry fileEntry = addFileEntry(userId, file, imageType);
+
+		return getImageJSONObject(
+			JSONFactoryUtil.createJSONObject(), fileEntry, imageType);
+	}
+
+	public static FileEntry addScaledImageFileEntry(
+			long userId, ImageBag imageBag, String imageType)
+		throws PortalException, SystemException {
+
+		RenderedImage rawRenderedImage = imageBag.getRenderedImage();
+
+		String imageMaxSize = PortletProps.get(
+			PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE, new Filter(imageType));
+
+		String[] maxDimensions = imageMaxSize.split("x");
+
+		RenderedImage scaledRenderedImage = ImageToolUtil.scale(
+			rawRenderedImage, GetterUtil.getInteger(maxDimensions[0]),
+			GetterUtil.getInteger(maxDimensions[1]));
+
+		File scaledFile = null;
+
+		try {
+			scaledFile = FileUtil.createTempFile(
+				ImageToolUtil.getBytes(
+					scaledRenderedImage, imageBag.getType()));
+
+			return addFileEntry(userId, scaledFile, imageType);
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
+		finally {
+			FileUtil.delete(scaledFile);
+		}
+	}
+
+	public static JSONObject getImageJSONObject(
+			JSONObject imageJSONObject, FileEntry fileEntry, String imageType)
+		throws PortalException, SystemException {
+
+		JSONObject fileEntryIdsJSONObject = imageJSONObject.getJSONObject(
+			"fileEntryIds");
+
+		if (fileEntryIdsJSONObject == null) {
+			fileEntryIdsJSONObject = JSONFactoryUtil.createJSONObject();
+		}
+
+		fileEntryIdsJSONObject.put(imageType, fileEntry.getFileEntryId());
+
+		imageJSONObject.put(
+			"imageURL_" + imageType,
+			DLUtil.getPreviewURL(
+				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
+				false, true));
+
+		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
+
+		imageJSONObject.put("mimeType", fileEntry.getMimeType());
+		imageJSONObject.put("name", fileEntry.getTitle());
+
+		try {
+			Image image = ImageToolUtil.getImage(fileEntry.getContentStream());
+
+			imageJSONObject.put("height_" + imageType, image.getHeight());
+			imageJSONObject.put("width_" + imageType, image.getWidth());
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
+
+		return imageJSONObject;
 	}
 
 	public static int getOrientation(File file) {
@@ -170,82 +251,6 @@ public class AssetEntrySetImageUtil {
 			user.getGroupId(), userId, AssetEntrySet.class.getName(), 0L,
 			PortletKeys.ASSET_ENTRY_SET, 0L, file, fileName, null, false);
 	}
-
-	protected static JSONObject addImageFile(
-			long userId, File file, String imageType)
-		throws PortalException, SystemException {
-
-		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
-
-		JSONObject fileEntryIdsJSONObject = JSONFactoryUtil.createJSONObject();
-
-		try {
-			AssetEntrySetImageUtil.rotateImage(file);
-		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
-		}
-
-		FileEntry fileEntry = addFileEntry(userId, file, imageType);
-
-		fileEntryIdsJSONObject.put(imageType, fileEntry.getFileEntryId());
-
-		imageJSONObject.put(
-			"imageURL_" + imageType,
-			DLUtil.getPreviewURL(
-				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
-				false, true));
-
-		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
-
-		imageJSONObject.put("mimeType", fileEntry.getMimeType());
-		imageJSONObject.put("name", fileEntry.getTitle());
-
-		return imageJSONObject;
-	}
-
-	protected static FileEntry addImageFileEntry(
-			long userId, File file, String imageType)
-		throws PortalException, SystemException {
-
-		ImageBag imageBag = null;
-
-		try {
-			imageBag = ImageToolUtil.read(file);
-		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
-		}
-
-		RenderedImage rawRenderedImage = imageBag.getRenderedImage();
-
-		String imageMaxSize = PortletProps.get(
-			PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE, new Filter(imageType));
-
-		String[] maxDimensions = imageMaxSize.split("x");
-
-		RenderedImage scaledRenderedImage = ImageToolUtil.scale(
-			rawRenderedImage, GetterUtil.getInteger(maxDimensions[0]),
-			GetterUtil.getInteger(maxDimensions[1]));
-
-		File scaledFile = null;
-
-		try {
-			scaledFile = FileUtil.createTempFile(
-				ImageToolUtil.getBytes(
-					scaledRenderedImage, imageBag.getType()));
-
-			return addFileEntry(userId, scaledFile, imageType);
-		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
-		}
-		finally {
-			FileUtil.delete(scaledFile);
-		}
-	}
-
-	private static final String _IMAGE_TYPE_RAW = "raw";
 
 	private static final int _ORIENTATION_MIRROR_HORIZONTAL = 2;
 
