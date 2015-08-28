@@ -52,13 +52,10 @@ public class LiferayPushNotificationsSender implements PushNotificationsSender {
 	public PushNotificationsSender create(Map<String, Object> configuration) {
 		String username = MapUtil.getString(
 			configuration, PortletPropsKeys.LIFERAY_USERNAME, null);
-
 		String password = MapUtil.getString(
 			configuration, PortletPropsKeys.LIFERAY_PASSWORD, null);
-
 		String server = MapUtil.getString(
 			configuration, PortletPropsKeys.LIFERAY_SERVER, null);
-
 		Integer timeout = (Integer)configuration.get(
 			PortletPropsKeys.LIFERAY_TIMEOUT);
 
@@ -114,12 +111,9 @@ public class LiferayPushNotificationsSender implements PushNotificationsSender {
 		HttpRequest httpRequest = HttpRequest.post(getServer());
 
 		httpRequest.basicAuthentication(getUsername(), getPassword());
-
-		httpRequest.path(
-			"/api/jsonws/push-notifications-portlet.pushnotificationsdevice" +
-				"/send-push-notification");
-
-		httpRequest.timeout(getTimeout());
+		httpRequest.form(
+			PushNotificationsConstants.KEY_PAYLOAD,
+			payloadJSONObject.toString());
 		httpRequest.form("platform", platform);
 
 		JSONArray tokensJSONArray = JSONFactoryUtil.createJSONArray();
@@ -129,9 +123,11 @@ public class LiferayPushNotificationsSender implements PushNotificationsSender {
 		}
 
 		httpRequest.form("tokens", tokensJSONArray.toString());
-		httpRequest.form(
-			PushNotificationsConstants.KEY_PAYLOAD,
-			payloadJSONObject.toString());
+
+		httpRequest.path(
+			"/api/jsonws/push-notifications-portlet.pushnotificationsdevice" +
+				"/send-push-notification");
+		httpRequest.timeout(getTimeout());
 
 		HttpResponse httpResponse = httpRequest.send();
 
