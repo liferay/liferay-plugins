@@ -130,8 +130,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes21 = new String[] {
 				"long", "long", "boolean", "long",
-				"com.liferay.portal.kernel.json.JSONArray",
-				"java.lang.String[][]", "int", "int"
+				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
+				"long[][]", "java.lang.String[][]", "int", "int"
 			};
 
 		_methodName22 = "getNewChildAssetEntrySets";
@@ -145,8 +145,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes23 = new String[] {
 				"long", "long", "boolean", "long",
-				"com.liferay.portal.kernel.json.JSONArray",
-				"java.lang.String[][]", "int", "int"
+				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
+				"long[][]", "java.lang.String[][]", "int", "int"
 			};
 
 		_methodName24 = "getOldChildAssetEntrySets";
@@ -820,6 +820,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		long userId, long time, boolean modifiedTime,
 		long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -838,6 +839,10 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					parentAssetEntrySetId,
 						
 					ClpSerializer.translateInput(sharedToJSONArray),
+						
+					ClpSerializer.translateInput(includeAssetEntrySetIds),
+						
+					ClpSerializer.translateInput(excludeAssetEntrySetIds),
 						
 					ClpSerializer.translateInput(assetTagNames),
 						
@@ -923,6 +928,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		long userId, long time, boolean modifiedTime,
 		long parentAssetEntrySetId,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -941,6 +947,10 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					parentAssetEntrySetId,
 						
 					ClpSerializer.translateInput(sharedToJSONArray),
+						
+					ClpSerializer.translateInput(includeAssetEntrySetIds),
+						
+					ClpSerializer.translateInput(excludeAssetEntrySetIds),
 						
 					ClpSerializer.translateInput(assetTagNames),
 						
