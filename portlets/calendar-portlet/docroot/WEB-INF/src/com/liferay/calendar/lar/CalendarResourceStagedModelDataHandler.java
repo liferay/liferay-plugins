@@ -193,8 +193,8 @@ public class CalendarResourceStagedModelDataHandler
 			}
 			catch (DuplicateCalendarResourceException dcre) {
 
-				// the resource for the site's default calendar is always
-				// generated beforehand, so we don't want to add it twice
+				// The calendar resource for the site's default calendar is
+				// always generated beforehand, so we only want to add it once
 
 				importedCalendarResource =
 					CalendarResourceLocalServiceUtil.fetchCalendarResource(
