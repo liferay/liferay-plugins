@@ -45,11 +45,16 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Resource;
+import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.ResourceLocalServiceUtil;
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -1024,6 +1029,15 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return syncDLObjects;
 		}
 
+		boolean hasFileModelPermission = hasModelPermission(
+			repositoryId, DLFileEntryConstants.getClassName());
+		boolean hasFolderModelPermission = hasModelPermission(
+			repositoryId, DLFolderConstants.getClassName());
+
+		if (hasFileModelPermission && hasFolderModelPermission) {
+			return syncDLObjects;
+		}
+
 		List<Long> typePKs = new ArrayList<>();
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
@@ -1037,16 +1051,16 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			String event = syncDLObject.getEvent();
+			String type = syncDLObject.getType();
 
 			if (event.equals(SyncConstants.EVENT_DELETE) ||
-				event.equals(SyncConstants.EVENT_TRASH)) {
+				event.equals(SyncConstants.EVENT_TRASH) ||
+				(type.equals(SyncConstants.TYPE_FILE) &&
+				 hasFileModelPermission) ||
+				(type.equals(SyncConstants.TYPE_FOLDER) &&
+				 hasFolderModelPermission) ||
+				checkedTypePKs.contains(syncDLObject.getTypePK())) {
 
-				checkedSyncDLObjects.add(syncDLObject);
-
-				continue;
-			}
-
-			if (checkedTypePKs.contains(syncDLObject.getTypePK())) {
 				checkedSyncDLObjects.add(syncDLObject);
 			}
 		}
@@ -1137,6 +1151,40 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 
 		return syncDLObjects;
+	}
+
+	protected boolean hasModelPermission(long groupId, String name)
+		throws PortalException {
+
+		PermissionChecker permissionChecker = getPermissionChecker();
+
+		List<Resource> resources = new ArrayList<>(3);
+
+		Resource groupResource = ResourceLocalServiceUtil.getResource(
+			permissionChecker.getCompanyId(), name,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(groupId));
+
+		resources.add(groupResource);
+
+		Resource groupTemplateResource = ResourceLocalServiceUtil.getResource(
+			permissionChecker.getCompanyId(), name,
+			ResourceConstants.SCOPE_GROUP_TEMPLATE,
+			String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID));
+
+		resources.add(groupTemplateResource);
+
+		Resource companyResource = ResourceLocalServiceUtil.getResource(
+			permissionChecker.getCompanyId(), name,
+			ResourceConstants.SCOPE_COMPANY,
+			String.valueOf(permissionChecker.getCompanyId()));
+
+		resources.add(companyResource);
+
+		long[] roleIds = permissionChecker.getRoleIds(
+			permissionChecker.getUserId(), groupId);
+
+		return ResourcePermissionLocalServiceUtil.hasResourcePermission(
+			resources, roleIds, ActionKeys.VIEW);
 	}
 
 	protected SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
