@@ -65,9 +65,9 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				0, userId, userName, modifiedTime, 0, 0, StringPool.BLANK,
 				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 0, 0,
-				StringPool.BLANK, event, null, 0, StringPool.BLANK, type,
-				typePK, StringPool.BLANK);
+				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
+				StringPool.BLANK, type, typePK, StringPool.BLANK);
 
 			return;
 		}
@@ -107,15 +107,15 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 			syncDLObject.getCompanyId(), syncDLObject.getUserId(),
 			syncDLObject.getUserName(), modifiedTime,
 			syncDLObject.getRepositoryId(), syncDLObject.getParentFolderId(),
-			syncDLObject.getName(), syncDLObject.getExtension(),
-			syncDLObject.getMimeType(), syncDLObject.getDescription(),
-			syncDLObject.getChangeLog(), syncDLObject.getExtraSettings(),
-			syncDLObject.getVersion(), syncDLObject.getVersionId(),
-			syncDLObject.getSize(), syncDLObject.getChecksum(),
-			syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
-			syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
-			syncDLObject.getType(), syncDLObject.getTypePK(),
-			syncDLObject.getTypeUuid());
+			syncDLObject.getTreePath(), syncDLObject.getName(),
+			syncDLObject.getExtension(), syncDLObject.getMimeType(),
+			syncDLObject.getDescription(), syncDLObject.getChangeLog(),
+			syncDLObject.getExtraSettings(), syncDLObject.getVersion(),
+			syncDLObject.getVersionId(), syncDLObject.getSize(),
+			syncDLObject.getChecksum(), syncDLObject.getEvent(),
+			syncDLObject.getLockExpirationDate(), syncDLObject.getLockUserId(),
+			syncDLObject.getLockUserName(), syncDLObject.getType(),
+			syncDLObject.getTypePK(), syncDLObject.getTypeUuid());
 
 		if (event.equals(SyncConstants.EVENT_RESTORE) &&
 			type.equals(SyncConstants.TYPE_FOLDER)) {
