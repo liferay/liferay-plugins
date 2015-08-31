@@ -190,6 +190,21 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	public void setParentFolderId(long parentFolderId);
 
 	/**
+	 * Returns the tree path of this sync d l object.
+	 *
+	 * @return the tree path of this sync d l object
+	 */
+	@AutoEscape
+	public String getTreePath();
+
+	/**
+	 * Sets the tree path of this sync d l object.
+	 *
+	 * @param treePath the tree path of this sync d l object
+	 */
+	public void setTreePath(String treePath);
+
+	/**
 	 * Returns the name of this sync d l object.
 	 *
 	 * @return the name of this sync d l object

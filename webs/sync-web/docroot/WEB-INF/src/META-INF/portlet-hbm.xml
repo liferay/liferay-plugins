@@ -27,6 +27,7 @@
 		<property name="modifiedTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="repositoryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="parentFolderId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="treePath" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="extension" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="mimeType" type="com.liferay.portal.dao.orm.hibernate.StringType" />

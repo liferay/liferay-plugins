@@ -1669,8 +1669,9 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 			SyncDLFileVersionDiffImpl.class,
 			syncDLFileVersionDiff.getPrimaryKey(), syncDLFileVersionDiff, false);
 
-		clearUniqueFindersCache(syncDLFileVersionDiff);
-		cacheUniqueFindersCache(syncDLFileVersionDiff, isNew);
+		clearUniqueFindersCache((SyncDLFileVersionDiff)syncDLFileVersionDiffModelImpl);
+		cacheUniqueFindersCache((SyncDLFileVersionDiff)syncDLFileVersionDiffModelImpl,
+			isNew);
 
 		syncDLFileVersionDiff.resetOriginalValues();
 

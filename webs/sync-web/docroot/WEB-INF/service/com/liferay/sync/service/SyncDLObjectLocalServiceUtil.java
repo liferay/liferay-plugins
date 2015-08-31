@@ -44,18 +44,18 @@ public class SyncDLObjectLocalServiceUtil {
 	public static com.liferay.sync.model.SyncDLObject addSyncDLObject(
 		long companyId, long userId, java.lang.String userName,
 		long modifiedTime, long repositoryId, long parentFolderId,
-		java.lang.String name, java.lang.String extension,
-		java.lang.String mimeType, java.lang.String description,
-		java.lang.String changeLog, java.lang.String extraSettings,
-		java.lang.String version, long versionId, long size,
-		java.lang.String checksum, java.lang.String event,
-		java.util.Date lockExpirationDate, long lockUserId,
-		java.lang.String lockUserName, java.lang.String type, long typePK,
-		java.lang.String typeUuid)
+		java.lang.String treePath, java.lang.String name,
+		java.lang.String extension, java.lang.String mimeType,
+		java.lang.String description, java.lang.String changeLog,
+		java.lang.String extraSettings, java.lang.String version,
+		long versionId, long size, java.lang.String checksum,
+		java.lang.String event, java.util.Date lockExpirationDate,
+		long lockUserId, java.lang.String lockUserName, java.lang.String type,
+		long typePK, java.lang.String typeUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addSyncDLObject(companyId, userId, userName, modifiedTime,
-			repositoryId, parentFolderId, name, extension, mimeType,
+			repositoryId, parentFolderId, treePath, name, extension, mimeType,
 			description, changeLog, extraSettings, version, versionId, size,
 			checksum, event, lockExpirationDate, lockUserId, lockUserName,
 			type, typePK, typeUuid);

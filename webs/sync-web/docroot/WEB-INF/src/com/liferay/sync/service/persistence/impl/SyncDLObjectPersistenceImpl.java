@@ -5243,8 +5243,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 			SyncDLObjectImpl.class, syncDLObject.getPrimaryKey(), syncDLObject,
 			false);
 
-		clearUniqueFindersCache(syncDLObject);
-		cacheUniqueFindersCache(syncDLObject, isNew);
+		clearUniqueFindersCache((SyncDLObject)syncDLObjectModelImpl);
+		cacheUniqueFindersCache((SyncDLObject)syncDLObjectModelImpl, isNew);
 
 		syncDLObject.resetOriginalValues();
 
@@ -5269,6 +5269,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		syncDLObjectImpl.setModifiedTime(syncDLObject.getModifiedTime());
 		syncDLObjectImpl.setRepositoryId(syncDLObject.getRepositoryId());
 		syncDLObjectImpl.setParentFolderId(syncDLObject.getParentFolderId());
+		syncDLObjectImpl.setTreePath(syncDLObject.getTreePath());
 		syncDLObjectImpl.setName(syncDLObject.getName());
 		syncDLObjectImpl.setExtension(syncDLObject.getExtension());
 		syncDLObjectImpl.setMimeType(syncDLObject.getMimeType());
