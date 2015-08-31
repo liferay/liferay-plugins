@@ -192,6 +192,10 @@ public class CalendarResourceStagedModelDataHandler
 						calendarResource.isActive(), serviceContext);
 			}
 			catch (DuplicateCalendarResourceException dcre) {
+
+				// the resource for the site's default calendar is always
+				// generated beforehand, so we don't want to add it twice
+
 				importedCalendarResource =
 					CalendarResourceLocalServiceUtil.fetchCalendarResource(
 						calendarResource.getClassNameId(), classPK);
