@@ -15,7 +15,7 @@
 package com.liferay.marketplace.oauth.api;
 
 import com.liferay.compat.portal.kernel.util.HttpUtil;
-import com.liferay.marketplace.util.PortletPropsValues;
+import com.liferay.marketplace.configuration.PortletPropsValues;
 
 import org.scribe.builder.api.DefaultApi10a;
 import org.scribe.model.OAuthConstants;
