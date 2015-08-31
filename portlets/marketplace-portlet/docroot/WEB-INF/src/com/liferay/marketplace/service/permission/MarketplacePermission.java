@@ -14,13 +14,10 @@
 
 package com.liferay.marketplace.service.permission;
 
-import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.UserLocalServiceUtil;
 
 /**
  * @author Ryan Park
@@ -40,13 +37,6 @@ public class MarketplacePermission {
 
 		if (!permissionChecker.isOmniadmin()) {
 			return false;
-		}
-
-		User user = UserLocalServiceUtil.getUserById(
-			permissionChecker.getUserId());
-
-		if (MarketplaceUtil.isMarketplaceAdmin(user)) {
-			return true;
 		}
 
 		return false;
