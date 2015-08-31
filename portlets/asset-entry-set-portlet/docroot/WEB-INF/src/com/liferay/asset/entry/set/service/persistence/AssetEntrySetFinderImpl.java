@@ -289,6 +289,28 @@ public class AssetEntrySetFinderImpl
 		return sb.toString();
 	}
 
+	protected String getExcludeAssetEntrySetIds(long[] assetEntrySetIds) {
+		if (ArrayUtil.isEmpty(assetEntrySetIds)) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		sb.append(" AND ");
+		sb.append("(AssetEntrySet.assetEntrySetId NOT IN (");
+
+		for (long assetEntrySetId : assetEntrySetIds) {
+			sb.append(assetEntrySetId);
+			sb.append(StringPool.COMMA);
+		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append("))");
+
+		return sb.toString();
+	}
+
 	protected String getIncludeAssetEntrySetIds(
 			long classNameId, long classPK, long[] assetEntrySetIds)
 		throws SystemException {
@@ -391,28 +413,6 @@ public class AssetEntrySetFinderImpl
 		}
 
 		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
-	}
-
-	protected String getExcludeAssetEntrySetIds(long[] assetEntrySetIds) {
-		if (ArrayUtil.isEmpty(assetEntrySetIds)) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler();
-
-		sb.append(" AND ");
-		sb.append("(AssetEntrySet.assetEntrySetId NOT IN (");
-
-		for (long assetEntrySetId : assetEntrySetIds) {
-			sb.append(assetEntrySetId);
-			sb.append(StringPool.COMMA);
-		}
-
-		sb.setIndex(sb.index() - 1);
-
-		sb.append("))");
 
 		return sb.toString();
 	}
