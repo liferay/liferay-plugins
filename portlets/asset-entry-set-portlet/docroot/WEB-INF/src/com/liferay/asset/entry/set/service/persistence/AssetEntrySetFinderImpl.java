@@ -305,35 +305,33 @@ public class AssetEntrySetFinderImpl
 		if (isNull(followedAssetEntrySetJSONArray)) {
 			return StringPool.BLANK;
 		}
-		else {
-			StringBundler sb = new StringBundler();
 
-			sb.append(" OR ");
-			sb.append(StringPool.OPEN_PARENTHESIS);
+		StringBundler sb = new StringBundler();
 
-			for (int i = 0; i < followedAssetEntrySetJSONArray.length(); i++) {
-				long assetEntrySetId = followedAssetEntrySetJSONArray.getLong(
-					i);
+		sb.append(" OR ");
+		sb.append(StringPool.OPEN_PARENTHESIS);
 
-				sb.append("((AssetEntrySet.assetEntrySetId = ");
-				sb.append(assetEntrySetId);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
+		for (int i = 0; i < followedAssetEntrySetJSONArray.length(); i++) {
+			long assetEntrySetId = followedAssetEntrySetJSONArray.getLong(i);
 
-				if (!isMember(classNameId, classPK, assetEntrySetId)) {
-					sb.append(" AND ");
-					sb.append(getViewable(classNameId, classPK));
-				}
-
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-				sb.append(" OR ");
-			}
-
-			sb.setIndex(sb.index() - 1);
-
+			sb.append("((AssetEntrySet.assetEntrySetId = ");
+			sb.append(assetEntrySetId);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
-			return sb.toString();
+			if (!isMember(classNameId, classPK, assetEntrySetId)) {
+				sb.append(" AND ");
+				sb.append(getViewable(classNameId, classPK));
+			}
+
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+			sb.append(" OR ");
 		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(StringPool.CLOSE_PARENTHESIS);
+
+		return sb.toString();
 	}
 
 	protected String getJoinBy(
@@ -418,26 +416,22 @@ public class AssetEntrySetFinderImpl
 		if (isNull(unfollowedAssetEntrySetJSONArray)) {
 			return StringPool.BLANK;
 		}
-		else {
-			StringBundler sb = new StringBundler();
 
-			sb.append(" AND ");
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append("(AssetEntrySet.assetEntrySetId NOT IN (");
+		StringBundler sb = new StringBundler();
 
-			for (int i = 0; i < unfollowedAssetEntrySetJSONArray.length();
-				i++) {
+		sb.append(" AND ");
+		sb.append("(AssetEntrySet.assetEntrySetId NOT IN (");
 
-				sb.append(unfollowedAssetEntrySetJSONArray.getLong(i));
-				sb.append(StringPool.COMMA);
-			}
-
-			sb.setIndex(sb.index() - 1);
-
-			sb.append(")))");
-
-			return sb.toString();
+		for (int i = 0; i < unfollowedAssetEntrySetJSONArray.length(); i++) {
+			sb.append(unfollowedAssetEntrySetJSONArray.getLong(i));
+			sb.append(StringPool.COMMA);
 		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append("))");
+
+		return sb.toString();
 	}
 
 	protected String getViewable(long classNameId, long classPK) {
@@ -464,8 +458,8 @@ public class AssetEntrySetFinderImpl
 		for (AssetSharingEntry assetSharingEntry : assetSharingEntries) {
 			if (AssetEntrySetParticipantInfoUtil.isMember(
 					classNameId, classPK,
-				assetSharingEntry.getSharedToClassNameId(),
-				assetSharingEntry.getSharedToClassPK())) {
+					assetSharingEntry.getSharedToClassNameId(),
+					assetSharingEntry.getSharedToClassPK())) {
 
 				return true;
 			}
@@ -475,23 +469,27 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected boolean isNull(Object obj) {
+		if (obj == null) {
+			return true;
+		}
+
 		if (obj instanceof JSONObject) {
-			if ((obj == null) || (((JSONObject)obj).length() == 0)) {
+			if (((JSONObject)obj).length() == 0) {
 				return true;
 			}
 
 			return false;
 		}
-		else if (obj instanceof JSONArray) {
-			if ((obj == null) || (((JSONArray)obj).length() == 0)) {
+
+		if (obj instanceof JSONArray) {
+			if (((JSONArray)obj).length() == 0) {
 				return true;
 			}
 
 			return false;
 		}
-		else {
-			return Validator.isNull(obj);
-		}
+
+		return Validator.isNull(obj);
 	}
 
 	protected void setAssetTagNames(QueryPos qPos, String[] assetTagNames) {
