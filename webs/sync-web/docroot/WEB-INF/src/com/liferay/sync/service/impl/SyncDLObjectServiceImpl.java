@@ -1051,15 +1051,12 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			String event = syncDLObject.getEvent();
-			String type = syncDLObject.getType();
 
 			if (event.equals(SyncConstants.EVENT_DELETE) ||
 				event.equals(SyncConstants.EVENT_TRASH) ||
-				(type.equals(SyncConstants.TYPE_FILE) &&
-				 hasFileModelPermission) ||
-				(type.equals(SyncConstants.TYPE_FOLDER) &&
-				 hasFolderModelPermission) ||
-				checkedTypePKs.contains(syncDLObject.getTypePK())) {
+				hasPermission(
+					checkedTypePKs, syncDLObject, hasFileModelPermission,
+					hasFolderModelPermission)) {
 
 				checkedSyncDLObjects.add(syncDLObject);
 			}
@@ -1185,6 +1182,24 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		return ResourcePermissionLocalServiceUtil.hasResourcePermission(
 			resources, roleIds, ActionKeys.VIEW);
+	}
+
+	protected boolean hasPermission(
+		Set<Long> checkedTypePKs, SyncDLObject syncDLObject,
+		boolean hasFileModelPermission, boolean hasFolderModelPermission) {
+
+		String type = syncDLObject.getType();
+
+		if ((!type.equals(SyncConstants.TYPE_FILE) ||
+			 !hasFileModelPermission) &&
+			(!type.equals(SyncConstants.TYPE_FOLDER) ||
+			 !hasFolderModelPermission) &&
+			!checkedTypePKs.contains(syncDLObject.getTypePK())) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	protected SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
