@@ -12,15 +12,15 @@
  * details.
  */
 
-package com.liferay.marketplace.util;
+package com.liferay.marketplace.constants;
 
 /**
  * @author Ryan Park
  */
-public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
+public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
-	public static final String OAUTH_AUTHORIZED = "OAUTH_AUTHORIZED";
+	public static final String PURCHASED = "2_WAR_marketplaceportlet";
 
-	public static final String OAUTH_REQUEST_TOKEN = "OAUTH_REQUEST_TOKEN";
+	public static final String STORE = "1_WAR_marketplaceportlet";
 
 }
