@@ -14,7 +14,7 @@
 
 package com.liferay.calendar.lar;
 
-import com.liferay.calendar.exception.DuplicateCalendarResourceException;
+import com.liferay.calendar.DuplicateCalendarResourceException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
