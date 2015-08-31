@@ -146,20 +146,23 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet deleteAssetEntrySet(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
-		assetEntrySetPersistence.remove(assetEntrySet);
-
 		assetEntryLocalService.deleteEntry(
 			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId());
 
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntryId());
 
-		if (assetEntrySet.getParentAssetEntrySetId() > 0) {
+		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
+			deleteChildAssetEntrySets(assetEntrySet.getAssetEntrySetId());
+		}
+		else {
 			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
 				assetEntrySet.getParentAssetEntrySetId());
 
 			updateAssetSharingEntries(parentAssetEntrySet);
 		}
+
+		assetEntrySetPersistence.remove(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -172,6 +175,19 @@ public class AssetEntrySetLocalServiceImpl
 			assetEntrySetId);
 
 		return deleteAssetEntrySet(assetEntrySet);
+	}
+
+	@Override
+	public List<AssetEntrySet> getChildAssetEntrySets(
+			long parentAssetEntrySetId)
+		throws SystemException {
+
+		if (parentAssetEntrySetId == 0) {
+			return null;
+		}
+
+		return assetEntrySetPersistence.findByParentAssetEntrySetId(
+			parentAssetEntrySetId);
 	}
 
 	@Override
@@ -408,6 +424,17 @@ public class AssetEntrySetLocalServiceImpl
 		}
 		finally {
 			FileUtil.delete(scaledFile);
+		}
+	}
+
+	protected void deleteChildAssetEntrySets(long parentAssetEntrySetId)
+		throws PortalException, SystemException {
+
+		List<AssetEntrySet> childAssetEntrySets = getChildAssetEntrySets(
+			parentAssetEntrySetId);
+
+		for (AssetEntrySet assetEntrySet : childAssetEntrySets) {
+			deleteAssetEntrySet(assetEntrySet);
 		}
 	}
 
