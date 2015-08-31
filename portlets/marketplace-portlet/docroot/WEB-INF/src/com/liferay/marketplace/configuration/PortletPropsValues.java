@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.marketplace.util;
+package com.liferay.marketplace.configuration;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;
