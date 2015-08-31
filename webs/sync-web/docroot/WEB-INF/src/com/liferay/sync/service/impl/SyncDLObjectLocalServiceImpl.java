@@ -46,8 +46,8 @@ public class SyncDLObjectLocalServiceImpl
 	@Override
 	public SyncDLObject addSyncDLObject(
 			long companyId, long userId, String userName, long modifiedTime,
-			long repositoryId, long parentFolderId, String name,
-			String extension, String mimeType, String description,
+			long repositoryId, long parentFolderId, String treePath,
+			String name, String extension, String mimeType, String description,
 			String changeLog, String extraSettings, String version,
 			long versionId, long size, String checksum, String event,
 			Date lockExpirationDate, long lockUserId, String lockUserName,
@@ -120,6 +120,7 @@ public class SyncDLObjectLocalServiceImpl
 		syncDLObject.setUserName(userName);
 		syncDLObject.setModifiedTime(modifiedTime);
 		syncDLObject.setParentFolderId(parentFolderId);
+		syncDLObject.setTreePath(treePath);
 		syncDLObject.setName(name);
 		syncDLObject.setExtension(extension);
 		syncDLObject.setMimeType(mimeType);

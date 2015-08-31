@@ -61,23 +61,23 @@ public class VerifyUtil {
 				0, syncDLObject.getUserId(), syncDLObject.getUserName(),
 				syncDLObject.getModifiedTime(), 0, 0, StringPool.BLANK,
 				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 0, 0,
-				StringPool.BLANK, event, null, 0, StringPool.BLANK,
-				syncDLObject.getType(), syncDLObject.getTypePK(),
-				StringPool.BLANK);
+				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
+				StringPool.BLANK, syncDLObject.getType(),
+				syncDLObject.getTypePK(), StringPool.BLANK);
 		}
 		else {
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				syncDLObject.getCompanyId(), syncDLObject.getUserId(),
 				syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
 				syncDLObject.getRepositoryId(),
-				syncDLObject.getParentFolderId(), syncDLObject.getName(),
-				syncDLObject.getExtension(), syncDLObject.getMimeType(),
-				syncDLObject.getDescription(), syncDLObject.getChangeLog(),
-				syncDLObject.getExtraSettings(), syncDLObject.getVersion(),
-				syncDLObject.getVersionId(), syncDLObject.getSize(),
-				syncDLObject.getChecksum(), syncDLObject.getEvent(),
-				syncDLObject.getLockExpirationDate(),
+				syncDLObject.getParentFolderId(), syncDLObject.getTreePath(),
+				syncDLObject.getName(), syncDLObject.getExtension(),
+				syncDLObject.getMimeType(), syncDLObject.getDescription(),
+				syncDLObject.getChangeLog(), syncDLObject.getExtraSettings(),
+				syncDLObject.getVersion(), syncDLObject.getVersionId(),
+				syncDLObject.getSize(), syncDLObject.getChecksum(),
+				syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
 				syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
 				syncDLObject.getType(), syncDLObject.getTypePK(),
 				syncDLObject.getTypeUuid());

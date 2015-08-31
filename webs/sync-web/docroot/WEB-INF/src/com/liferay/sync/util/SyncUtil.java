@@ -434,6 +434,7 @@ public class SyncUtil {
 		syncDLObject.setModifiedDate(dlFileVersion.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFileVersion.getRepositoryId());
 		syncDLObject.setParentFolderId(dlFileVersion.getFolderId());
+		syncDLObject.setTreePath(dlFileVersion.getTreePath());
 		syncDLObject.setName(dlFileVersion.getTitle());
 		syncDLObject.setExtension(dlFileVersion.getExtension());
 		syncDLObject.setMimeType(dlFileVersion.getMimeType());
@@ -488,6 +489,7 @@ public class SyncUtil {
 		syncDLObject.setModifiedDate(dlFolder.getModifiedDate());
 		syncDLObject.setRepositoryId(dlFolder.getRepositoryId());
 		syncDLObject.setParentFolderId(dlFolder.getParentFolderId());
+		syncDLObject.setTreePath(dlFolder.getTreePath());
 		syncDLObject.setName(dlFolder.getName());
 		syncDLObject.setExtension(StringPool.BLANK);
 		syncDLObject.setMimeType(StringPool.BLANK);

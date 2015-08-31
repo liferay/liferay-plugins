@@ -84,6 +84,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -320,7 +321,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncDLObjectPersistence.findByR_T(
 					repositoryId, SyncConstants.TYPE_FOLDER);
 
-			return checkSyncDLObjects(syncDLObjects, repositoryId);
+			return checkSyncDLObjects(syncDLObjects, repositoryId, false);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -579,6 +580,12 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				return syncDLObjectUpdate.toString();
 			}
 
+			boolean initialSync = false;
+
+			if (lastAccessTime == -1) {
+				initialSync = true;
+			}
+
 			int count = syncDLObjectPersistence.countByM_R_NotE(
 				lastAccessTime, repositoryId, events);
 
@@ -586,8 +593,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncDLObjects.size() - 1);
 
 			SyncDLObjectUpdate syncDLObjectUpdate = new SyncDLObjectUpdate(
-				checkSyncDLObjects(syncDLObjects, repositoryId), count,
-				syncDLObject.getModifiedTime());
+				checkSyncDLObjects(syncDLObjects, repositoryId, initialSync),
+				count, syncDLObject.getModifiedTime());
 
 			return syncDLObjectUpdate.toString();
 		}
@@ -1020,7 +1027,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	protected List<SyncDLObject> checkSyncDLObjects(
-			List<SyncDLObject> syncDLObjects, long repositoryId)
+			List<SyncDLObject> syncDLObjects, long repositoryId,
+			boolean initialSync)
 		throws PortalException {
 
 		PermissionChecker permissionChecker = getPermissionChecker();
@@ -1038,14 +1046,29 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return syncDLObjects;
 		}
 
-		List<Long> typePKs = new ArrayList<>();
+		Set<Long> typePKs = new HashSet<>();
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			typePKs.add(syncDLObject.getTypePK());
+
+			if (!initialSync && !hasFolderModelPermission &&
+				_PERMISSIONS_VIEW_DYNAMIC_INHERITANCE) {
+
+				long[] parentFolderIds = StringUtil.split(
+					syncDLObject.getTreePath(), StringPool.SLASH, 0L);
+
+				for (long parentFolderId : parentFolderIds) {
+					if (parentFolderId > 0) {
+						typePKs.add(parentFolderId);
+					}
+				}
+			}
 		}
 
 		Set<Long> checkedTypePKs = SetUtil.fromList(
-			checkTypePKs(repositoryId, permissionChecker.getUserId(), typePKs));
+			checkTypePKs(
+				repositoryId, permissionChecker.getUserId(),
+				new ArrayList(typePKs)));
 
 		List<SyncDLObject> checkedSyncDLObjects = new ArrayList<>();
 
@@ -1131,7 +1154,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			syncDLObjectPersistence.findByM_R_P(
 				lastAccessTime, repositoryId, parentFolderId);
 
-		curSyncDLObjects = checkSyncDLObjects(curSyncDLObjects, repositoryId);
+		curSyncDLObjects = checkSyncDLObjects(
+			curSyncDLObjects, repositoryId, false);
 
 		syncDLObjects.addAll(curSyncDLObjects);
 
@@ -1197,6 +1221,21 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			!checkedTypePKs.contains(syncDLObject.getTypePK())) {
 
 			return false;
+		}
+
+		if (!hasFolderModelPermission &&
+			_PERMISSIONS_VIEW_DYNAMIC_INHERITANCE) {
+
+			long[] parentFolderIds = StringUtil.split(
+				syncDLObject.getTreePath(), StringPool.SLASH, 0L);
+
+			for (long parentFolderId : parentFolderIds) {
+				if ((parentFolderId > 0) &&
+					!checkedTypePKs.contains(parentFolderId)) {
+
+					return false;
+				}
+			}
 		}
 
 		return true;
@@ -1431,6 +1470,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				"No JSON web service action with path " + urlPath);
 		}
 	}
+
+	private static final boolean _PERMISSIONS_VIEW_DYNAMIC_INHERITANCE =
+		GetterUtil.getBoolean(
+			PropsUtil.get(PropsKeys.PERMISSIONS_VIEW_DYNAMIC_INHERITANCE));
 
 	private static final int _SQL_DATA_MAX_PARAMETERS = GetterUtil.getInteger(
 		PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));

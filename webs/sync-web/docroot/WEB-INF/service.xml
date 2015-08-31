@@ -55,6 +55,7 @@
 
 		<column name="repositoryId" type="long" />
 		<column name="parentFolderId" type="long" />
+		<column name="treePath" type="String" json-enabled="false" />
 		<column name="name" type="String" />
 		<column name="extension" type="String" />
 		<column name="mimeType" type="String" />
