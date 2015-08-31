@@ -177,13 +177,15 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getNewAssetEntrySets(
 			long userId, long time, boolean modifiedTime,
-			long parentAssetEntrySetId, JSONObject streamEntryJSONObject,
+			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
+			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, time, true, modifiedTime, parentAssetEntrySetId,
-			streamEntryJSONObject, assetTagNames, start, end);
+			sharedToJSONArray, includeAssetEntrySetIds, excludeAssetEntrySetIds,
+			assetTagNames, start, end);
 	}
 
 	@Override
@@ -203,13 +205,15 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public List<AssetEntrySet> getOldAssetEntrySets(
 			long userId, long time, boolean modifiedTime,
-			long parentAssetEntrySetId, JSONObject streamEntryJSONObject,
+			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
+			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
 		return getAssetEntrySets(
 			userId, time, false, modifiedTime, parentAssetEntrySetId,
-			streamEntryJSONObject, assetTagNames, start, end);
+			sharedToJSONArray, includeAssetEntrySetIds, excludeAssetEntrySetIds,
+			assetTagNames, start, end);
 	}
 
 	@Override
@@ -427,7 +431,8 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected List<AssetEntrySet> getAssetEntrySets(
 			long userId, long time, boolean gtTime, boolean modifiedTime,
-			long parentAssetEntrySetId, JSONObject streamEntryJSONObject,
+			long parentAssetEntrySetId, JSONArray sharedToJSONArray,
+			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 			String[] assetTagNames, int start, int end)
 		throws PortalException, SystemException {
 
@@ -439,14 +444,16 @@ public class AssetEntrySetLocalServiceImpl
 			return assetEntrySetFinder.findByCT_PAESI_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
-				parentAssetEntrySetId, streamEntryJSONObject, assetTagNames,
+				parentAssetEntrySetId, sharedToJSONArray,
+				includeAssetEntrySetIds, excludeAssetEntrySetIds, assetTagNames,
 				start, end);
 		}
 		else {
 			return assetEntrySetFinder.findByMT_PAESI_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
-				parentAssetEntrySetId, streamEntryJSONObject, assetTagNames,
+				parentAssetEntrySetId, sharedToJSONArray,
+				includeAssetEntrySetIds, excludeAssetEntrySetIds, assetTagNames,
 				start, end);
 		}
 	}

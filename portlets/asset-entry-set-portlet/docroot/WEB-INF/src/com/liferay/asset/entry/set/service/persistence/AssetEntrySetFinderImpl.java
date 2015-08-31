@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
@@ -119,18 +118,16 @@ public class AssetEntrySetFinderImpl
 	public List<AssetEntrySet> findByCT_PAESI_CNI(
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId,
-			JSONObject streamEntryJSONObject, String[] assetTagNames, int start,
+			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
+			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
 		throws SystemException {
 
-		if (isNull(streamEntryJSONObject) && ArrayUtil.isEmpty(assetTagNames)) {
-			return Collections.emptyList();
-		}
+		if (((sharedToJSONArray == null) ||
+			 (sharedToJSONArray.length() == 0)) &&
+			ArrayUtil.isEmpty(includeAssetEntrySetIds) &&
+			ArrayUtil.isEmpty(assetTagNames)) {
 
-		JSONArray sharedToJSONArray = streamEntryJSONObject.getJSONArray(
-			"sharedToJSONArray");
-
-		if (isNull(sharedToJSONArray) && ArrayUtil.isEmpty(assetTagNames)) {
 			return Collections.emptyList();
 		}
 
@@ -162,12 +159,12 @@ public class AssetEntrySetFinderImpl
 				getAssetTagNames(
 					classNameId, classPK, sharedToJSONArray, assetTagNames));
 			sql = StringUtil.replace(
-				sql, "[$FOLLOWED_ASSET_ENTRY_SETS$]",
-				getFollowedAssetEntrySets(
-					classNameId, classPK, streamEntryJSONObject));
+				sql, "[$INCLUDE_ASSET_ENTRY_SET_IDS$]",
+				getIncludeAssetEntrySetIds(
+					classNameId, classPK, includeAssetEntrySetIds));
 			sql = StringUtil.replace(
-				sql, "[$UNFOLLOWED_ASSET_ENTRY_SETS$]",
-				getUnfollowedAssetEntrySets(streamEntryJSONObject));
+				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
+				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -195,18 +192,16 @@ public class AssetEntrySetFinderImpl
 	public List<AssetEntrySet> findByMT_PAESI_CNI(
 			long classNameId, long classPK, long modifiedTime,
 			boolean gtModifiedTime, long parentAssetEntrySetId,
-			JSONObject streamEntryJSONObject, String[] assetTagNames, int start,
+			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
+			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
 		throws SystemException {
 
-		if (isNull(streamEntryJSONObject) && ArrayUtil.isEmpty(assetTagNames)) {
-			return Collections.emptyList();
-		}
+		if (((sharedToJSONArray == null) ||
+			 (sharedToJSONArray.length() == 0)) &&
+			ArrayUtil.isEmpty(includeAssetEntrySetIds) &&
+			ArrayUtil.isEmpty(assetTagNames)) {
 
-		JSONArray sharedToJSONArray = streamEntryJSONObject.getJSONArray(
-			"sharedToJSONArray");
-
-		if (isNull(sharedToJSONArray) && ArrayUtil.isEmpty(assetTagNames)) {
 			return Collections.emptyList();
 		}
 
@@ -238,12 +233,12 @@ public class AssetEntrySetFinderImpl
 				getAssetTagNames(
 					classNameId, classPK, sharedToJSONArray, assetTagNames));
 			sql = StringUtil.replace(
-				sql, "[$FOLLOWED_ASSET_ENTRY_SETS$]",
-				getFollowedAssetEntrySets(
-					classNameId, classPK, streamEntryJSONObject));
+				sql, "[$INCLUDE_ASSET_ENTRY_SET_IDS$]",
+				getIncludeAssetEntrySetIds(
+					classNameId, classPK, includeAssetEntrySetIds));
 			sql = StringUtil.replace(
-				sql, "[$UNFOLLOWED_ASSET_ENTRY_SETS$]",
-				getUnfollowedAssetEntrySets(streamEntryJSONObject));
+				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
+				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
 
 			SQLQuery q = session.createSQLQuery(sql);
 
@@ -294,15 +289,11 @@ public class AssetEntrySetFinderImpl
 		return sb.toString();
 	}
 
-	protected String getFollowedAssetEntrySets(
-			long classNameId, long classPK, JSONObject streamEntryJSONObject)
+	protected String getIncludeAssetEntrySetIds(
+			long classNameId, long classPK, long[] assetEntrySetIds)
 		throws SystemException {
 
-		JSONArray followedAssetEntrySetJSONArray =
-			streamEntryJSONObject.getJSONArray(
-				"followedAssetEntrySetJSONArray");
-
-		if (isNull(followedAssetEntrySetJSONArray)) {
+		if (ArrayUtil.isEmpty(assetEntrySetIds)) {
 			return StringPool.BLANK;
 		}
 
@@ -311,9 +302,7 @@ public class AssetEntrySetFinderImpl
 		sb.append(" OR ");
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
-		for (int i = 0; i < followedAssetEntrySetJSONArray.length(); i++) {
-			long assetEntrySetId = followedAssetEntrySetJSONArray.getLong(i);
-
+		for (long assetEntrySetId : assetEntrySetIds) {
 			sb.append("((AssetEntrySet.assetEntrySetId = ");
 			sb.append(assetEntrySetId);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
@@ -353,7 +342,7 @@ public class AssetEntrySetFinderImpl
 	protected String getSharedTo(
 		long classNameId, long classPK, JSONArray sharedToJSONArray) {
 
-		if (isNull(sharedToJSONArray)) {
+		if ((sharedToJSONArray == null) || (sharedToJSONArray.length() == 0)) {
 			return StringPool.BLANK;
 		}
 
@@ -406,14 +395,8 @@ public class AssetEntrySetFinderImpl
 		return sb.toString();
 	}
 
-	protected String getUnfollowedAssetEntrySets(
-		JSONObject streamEntryJSONObject) {
-
-		JSONArray unfollowedAssetEntrySetJSONArray =
-			streamEntryJSONObject.getJSONArray(
-				"unfollowedAssetEntrySetJSONArray");
-
-		if (isNull(unfollowedAssetEntrySetJSONArray)) {
+	protected String getExcludeAssetEntrySetIds(long[] assetEntrySetIds) {
+		if (ArrayUtil.isEmpty(assetEntrySetIds)) {
 			return StringPool.BLANK;
 		}
 
@@ -422,8 +405,8 @@ public class AssetEntrySetFinderImpl
 		sb.append(" AND ");
 		sb.append("(AssetEntrySet.assetEntrySetId NOT IN (");
 
-		for (int i = 0; i < unfollowedAssetEntrySetJSONArray.length(); i++) {
-			sb.append(unfollowedAssetEntrySetJSONArray.getLong(i));
+		for (long assetEntrySetId : assetEntrySetIds) {
+			sb.append(assetEntrySetId);
 			sb.append(StringPool.COMMA);
 		}
 
@@ -466,30 +449,6 @@ public class AssetEntrySetFinderImpl
 		}
 
 		return false;
-	}
-
-	protected boolean isNull(Object obj) {
-		if (obj == null) {
-			return true;
-		}
-
-		if (obj instanceof JSONObject) {
-			if (((JSONObject)obj).length() == 0) {
-				return true;
-			}
-
-			return false;
-		}
-
-		if (obj instanceof JSONArray) {
-			if (((JSONArray)obj).length() == 0) {
-				return true;
-			}
-
-			return false;
-		}
-
-		return Validator.isNull(obj);
 	}
 
 	protected void setAssetTagNames(QueryPos qPos, String[] assetTagNames) {

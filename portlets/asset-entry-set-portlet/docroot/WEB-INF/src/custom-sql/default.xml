@@ -18,9 +18,9 @@
 				(
 					[$SHARED_TO$]
 					[$ASSET_TAG_NAMES$]
-					[$FOLLOWED_ASSET_ENTRY_SETS$]
+					[$INCLUDE_ASSET_ENTRY_SET_IDS$]
 				)
-				[$UNFOLLOWED_ASSET_ENTRY_SETS$]
+				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
@@ -42,9 +42,9 @@
 				(
 					[$SHARED_TO$]
 					[$ASSET_TAG_NAMES$]
-					[$FOLLOWED_ASSET_ENTRY_SETS$]
+					[$INCLUDE_ASSET_ENTRY_SET_IDS$]
 				)
-				[$UNFOLLOWED_ASSET_ENTRY_SETS$]
+				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
 				AssetEntrySet.createTime DESC
 		]]>
