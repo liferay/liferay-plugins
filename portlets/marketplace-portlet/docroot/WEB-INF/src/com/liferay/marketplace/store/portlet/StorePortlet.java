@@ -16,6 +16,7 @@ package com.liferay.marketplace.store.portlet;
 
 import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.marketplace.configuration.PortletPropsValues;
+import com.liferay.marketplace.constants.MarketplaceConstants;
 import com.liferay.marketplace.constants.WebKeys;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.oauth.util.OAuthUtil;
@@ -27,6 +28,8 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -36,9 +39,13 @@ import java.io.InputStream;
 
 import java.net.URL;
 
+import java.util.Map;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -305,6 +312,24 @@ public class StorePortlet extends RemoteMVCPortlet {
 	@Override
 	protected String getServerPortletURL() {
 		return PortletPropsValues.MARKETPLACE_URL + "/osb-portlet/mp_server";
+	}
+
+	@Override
+	protected void processPortletParameterMap(
+		PortletRequest portletRequest, PortletResponse portletResponse,
+		Map<String, String[]> parameterMap) {
+
+		parameterMap.put(
+			"clientId",
+			new String[] {String.valueOf(MarketplaceConstants.CLIENT_BUILD)});
+		parameterMap.put(
+			"compatibility",
+			new String[] {String.valueOf(ReleaseInfo.getBuildNumber())});
+		parameterMap.put(
+			"supportsHotDeploy",
+			new String[] {
+				String.valueOf(ServerDetector.isSupportsHotDeploy())
+			});
 	}
 
 	private static final String _OSB_PORTLET_ID = "12_WAR_osbportlet";
