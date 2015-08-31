@@ -39,6 +39,7 @@ public class SyncDLObjectSoap implements Serializable {
 		soapModel.setModifiedTime(model.getModifiedTime());
 		soapModel.setRepositoryId(model.getRepositoryId());
 		soapModel.setParentFolderId(model.getParentFolderId());
+		soapModel.setTreePath(model.getTreePath());
 		soapModel.setName(model.getName());
 		soapModel.setExtension(model.getExtension());
 		soapModel.setMimeType(model.getMimeType());
@@ -170,6 +171,14 @@ public class SyncDLObjectSoap implements Serializable {
 
 	public void setParentFolderId(long parentFolderId) {
 		_parentFolderId = parentFolderId;
+	}
+
+	public String getTreePath() {
+		return _treePath;
+	}
+
+	public void setTreePath(String treePath) {
+		_treePath = treePath;
 	}
 
 	public String getName() {
@@ -316,6 +325,7 @@ public class SyncDLObjectSoap implements Serializable {
 	private long _modifiedTime;
 	private long _repositoryId;
 	private long _parentFolderId;
+	private String _treePath;
 	private String _name;
 	private String _extension;
 	private String _mimeType;

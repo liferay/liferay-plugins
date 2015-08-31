@@ -58,6 +58,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 		attributes.put("modifiedTime", getModifiedTime());
 		attributes.put("repositoryId", getRepositoryId());
 		attributes.put("parentFolderId", getParentFolderId());
+		attributes.put("treePath", getTreePath());
 		attributes.put("name", getName());
 		attributes.put("extension", getExtension());
 		attributes.put("mimeType", getMimeType());
@@ -127,6 +128,12 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 
 		if (parentFolderId != null) {
 			setParentFolderId(parentFolderId);
+		}
+
+		String treePath = (String)attributes.get("treePath");
+
+		if (treePath != null) {
+			setTreePath(treePath);
 		}
 
 		String name = (String)attributes.get("name");
@@ -432,6 +439,26 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public void setParentFolderId(long parentFolderId) {
 		_syncDLObject.setParentFolderId(parentFolderId);
+	}
+
+	/**
+	* Returns the tree path of this sync d l object.
+	*
+	* @return the tree path of this sync d l object
+	*/
+	@Override
+	public java.lang.String getTreePath() {
+		return _syncDLObject.getTreePath();
+	}
+
+	/**
+	* Sets the tree path of this sync d l object.
+	*
+	* @param treePath the tree path of this sync d l object
+	*/
+	@Override
+	public void setTreePath(java.lang.String treePath) {
+		_syncDLObject.setTreePath(treePath);
 	}
 
 	/**
@@ -898,6 +925,17 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	public void persist()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_syncDLObject.persist();
+	}
+
+	@Override
+	public void updateTreePath(java.lang.String treePath)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_syncDLObject.updateTreePath(treePath);
+	}
+
+	@Override
+	public java.lang.String buildTreePath() {
+		return _syncDLObject.buildTreePath();
 	}
 
 	@Override

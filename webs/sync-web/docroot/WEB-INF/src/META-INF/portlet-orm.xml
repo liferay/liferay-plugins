@@ -35,6 +35,7 @@
 			<basic name="modifiedTime" />
 			<basic name="repositoryId" />
 			<basic name="parentFolderId" />
+			<basic name="treePath" />
 			<basic name="name" />
 			<basic name="extension" />
 			<basic name="mimeType" />

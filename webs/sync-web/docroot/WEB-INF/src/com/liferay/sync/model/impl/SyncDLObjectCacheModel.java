@@ -38,7 +38,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(51);
+		StringBundler sb = new StringBundler(53);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(syncDLObjectId);
@@ -56,6 +56,8 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		sb.append(repositoryId);
 		sb.append(", parentFolderId=");
 		sb.append(parentFolderId);
+		sb.append(", treePath=");
+		sb.append(treePath);
 		sb.append(", name=");
 		sb.append(name);
 		sb.append(", extension=");
@@ -114,6 +116,13 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		syncDLObjectImpl.setModifiedTime(modifiedTime);
 		syncDLObjectImpl.setRepositoryId(repositoryId);
 		syncDLObjectImpl.setParentFolderId(parentFolderId);
+
+		if (treePath == null) {
+			syncDLObjectImpl.setTreePath(StringPool.BLANK);
+		}
+		else {
+			syncDLObjectImpl.setTreePath(treePath);
+		}
 
 		if (name == null) {
 			syncDLObjectImpl.setName(StringPool.BLANK);
@@ -228,6 +237,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		modifiedTime = objectInput.readLong();
 		repositoryId = objectInput.readLong();
 		parentFolderId = objectInput.readLong();
+		treePath = objectInput.readUTF();
 		name = objectInput.readUTF();
 		extension = objectInput.readUTF();
 		mimeType = objectInput.readUTF();
@@ -265,6 +275,13 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		objectOutput.writeLong(modifiedTime);
 		objectOutput.writeLong(repositoryId);
 		objectOutput.writeLong(parentFolderId);
+
+		if (treePath == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(treePath);
+		}
 
 		if (name == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -367,6 +384,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	public long modifiedTime;
 	public long repositoryId;
 	public long parentFolderId;
+	public String treePath;
 	public String name;
 	public String extension;
 	public String mimeType;

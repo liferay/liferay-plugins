@@ -47,4 +47,13 @@ public abstract class SyncDLObjectBaseImpl extends SyncDLObjectModelImpl
 			SyncDLObjectLocalServiceUtil.updateSyncDLObject(this);
 		}
 	}
+
+	@Override
+	public void updateTreePath(String treePath) throws SystemException {
+		SyncDLObject syncDLObject = this;
+
+		syncDLObject.setTreePath(treePath);
+
+		SyncDLObjectLocalServiceUtil.updateSyncDLObject(syncDLObject);
+	}
 }
