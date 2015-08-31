@@ -14,8 +14,8 @@
 
 package com.liferay.marketplace.oauth.util;
 
+import com.liferay.marketplace.configuration.PortletPropsValues;
 import com.liferay.marketplace.oauth.api.MarketplaceApi;
-import com.liferay.marketplace.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;

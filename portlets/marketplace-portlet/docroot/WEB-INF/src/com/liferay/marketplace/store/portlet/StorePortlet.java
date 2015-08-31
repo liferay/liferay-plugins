@@ -15,14 +15,14 @@
 package com.liferay.marketplace.store.portlet;
 
 import com.liferay.compat.portal.kernel.util.HttpUtil;
+import com.liferay.marketplace.configuration.PortletPropsValues;
+import com.liferay.marketplace.constants.WebKeys;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
 import com.liferay.marketplace.util.MarketplaceUtil;
-import com.liferay.marketplace.util.PortletPropsValues;
-import com.liferay.marketplace.util.WebKeys;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;

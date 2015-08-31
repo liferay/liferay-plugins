@@ -23,10 +23,10 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.marketplace.model.App" %><%@
+<%@ page import="com.liferay.marketplace.constants.PortletKeys" %><%@
+page import="com.liferay.marketplace.constants.WebKeys" %><%@
+page import="com.liferay.marketplace.model.App" %><%@
 page import="com.liferay.marketplace.service.AppLocalServiceUtil" %><%@
-page import="com.liferay.marketplace.util.PortletKeys" %><%@
-page import="com.liferay.marketplace.util.WebKeys" %><%@
 page import="com.liferay.marketplace.util.comparator.PluginComparator" %><%@
 page import="com.liferay.portal.kernel.deploy.DeployManagerUtil" %><%@
 page import="com.liferay.portal.kernel.plugin.RequiredPluginPackageException" %><%@

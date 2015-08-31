@@ -14,7 +14,7 @@
 
 package com.liferay.marketplace.store.portlet;
 
-import com.liferay.marketplace.util.PortletPropsValues;
+import com.liferay.marketplace.configuration.PortletPropsValues;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.security.permission.PermissionChecker;

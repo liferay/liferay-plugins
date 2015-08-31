@@ -14,8 +14,8 @@
 
 package com.liferay.marketplace.store.portlet;
 
+import com.liferay.marketplace.constants.WebKeys;
 import com.liferay.marketplace.oauth.util.OAuthUtil;
-import com.liferay.marketplace.util.WebKeys;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;

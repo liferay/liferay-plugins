@@ -14,6 +14,7 @@
 
 package com.liferay.marketplace.constants;
 
+import com.liferay.marketplace.configuration.PortletPropsValues;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringPool;
 
