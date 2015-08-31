@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -31,6 +32,7 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -229,6 +231,11 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		return StringPool.BLANK;
 	}
 
+	protected void processPortletParameterMap(
+		PortletRequest portletRequest, PortletResponse portletResponse,
+		Map<String, String[]> parameterMap) {
+	}
+
 	protected void remoteProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -277,17 +284,20 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		addOAuthParameter(
 			oAuthRequest, "clientPortletNamespace",
 			portletResponse.getNamespace());
-
-		String currentURL = PortalUtil.getCurrentURL(portletRequest);
-
-		addOAuthParameter(oAuthRequest, "clientURL", currentURL);
-
+		addOAuthParameter(
+			oAuthRequest, "clientURL",
+			PortalUtil.getCurrentURL(portletRequest));
 		addOAuthParameter(oAuthRequest, "p_p_id", getServerPortletId());
+
+		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
+
+		MapUtil.copy(portletRequest.getParameterMap(), parameterMap);
+
+		processPortletParameterMap(
+			portletRequest, portletResponse, parameterMap);
 
 		String serverNamespace = PortalUtil.getPortletNamespace(
 			getServerPortletId());
-
-		Map<String, String[]> parameterMap = portletRequest.getParameterMap();
 
 		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
 			String key = entry.getKey();
