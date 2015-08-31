@@ -14,9 +14,7 @@
 
 package com.liferay.marketplace.store.portlet;
 
-import com.liferay.compat.portal.kernel.util.HttpUtil;
 import com.liferay.compat.portal.kernel.util.Validator;
-import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.marketplace.configuration.PortletPropsValues;
 import com.liferay.marketplace.constants.WebKeys;
 import com.liferay.marketplace.model.App;
@@ -24,16 +22,13 @@ import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
-import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,9 +72,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 			return;
 		}
 
-		url = getRemoteAppPackageURL(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token, url);
-
 		URL urlObj = new URL(url);
 
 		File tempFile = null;
@@ -117,27 +109,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 
 		jsonObject.put("cmd", "getApp");
 		jsonObject.put("message", "success");
-
-		writeJSON(actionRequest, actionResponse, jsonObject);
-	}
-
-	public void getClientId(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String token = ParamUtil.getString(actionRequest, "token");
-
-		String encodedClientId = MarketplaceUtil.encodeClientId(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token);
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("cmd", "getClientId");
-		jsonObject.put("clientId", encodedClientId);
-		jsonObject.put("token", token);
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
@@ -200,9 +171,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 			return;
 		}
 
-		url = getRemoteAppPackageURL(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token, url);
-
 		URL urlObj = new URL(url);
 
 		File tempFile = null;
@@ -243,44 +211,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 		}
 	}
 
-	public void updateClientId(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		String clientId = ParamUtil.getString(actionRequest, "clientId");
-		String token = ParamUtil.getString(actionRequest, "token");
-
-		String decodedClientId = MarketplaceUtil.decodeClientId(
-			clientId, token);
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("cmd", "updateClientId");
-
-		if (Validator.isNull(decodedClientId)) {
-			jsonObject.put("message", "fail");
-
-			writeJSON(actionRequest, actionResponse, jsonObject);
-
-			return;
-		}
-
-		ExpandoValueLocalServiceUtil.addValue(
-			themeDisplay.getCompanyId(), User.class.getName(), "MP", "clientId",
-			themeDisplay.getUserId(), decodedClientId);
-
-		jsonObject.put("message", "success");
-
-		writeJSON(actionRequest, actionResponse, jsonObject);
-	}
-
 	@Override
 	protected boolean callActionMethod(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -299,17 +229,11 @@ public class StorePortlet extends RemoteMVCPortlet {
 			else if (cmd.equals("getApp")) {
 				getApp(actionRequest, actionResponse);
 			}
-			else if (cmd.equals("getClientId")) {
-				getClientId(actionRequest, actionResponse);
-			}
 			else if (cmd.equals("installApp")) {
 				installApp(actionRequest, actionResponse);
 			}
 			else if (cmd.equals("updateApp")) {
 				updateApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("updateClientId")) {
-				updateClientId(actionRequest, actionResponse);
 			}
 			else if (cmd.equals("uninstallApp")) {
 				uninstallApp(actionRequest, actionResponse);
@@ -371,24 +295,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 		}
 
 		return jsonObject;
-	}
-
-	protected String getRemoteAppPackageURL(
-			long companyId, long userId, String token, String url)
-		throws Exception {
-
-		String encodedClientId = MarketplaceUtil.encodeClientId(
-			companyId, userId, token);
-
-		String serverNamespace = PortalUtil.getPortletNamespace(
-			getServerPortletId());
-
-		url = HttpUtil.addParameter(
-			url, serverNamespace.concat("clientId"), encodedClientId);
-		url = HttpUtil.addParameter(
-			url, serverNamespace.concat("token"), token);
-
-		return url;
 	}
 
 	@Override
