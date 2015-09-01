@@ -47,6 +47,12 @@ int startTimeDay = ParamUtil.getInteger(request, "startTimeDay", startTimeJCalen
 int startTimeHour = ParamUtil.getInteger(request, "startTimeHour", startTimeJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
 int startTimeMinute = ParamUtil.getInteger(request, "startTimeMinute", startTimeJCalendar.get(java.util.Calendar.MINUTE));
 
+int startTimeAmPm = ParamUtil.getInteger(request, "startTimeAmPm");
+
+if (startTimeAmPm == java.util.Calendar.PM) {
+	startTimeHour += 12;
+}
+
 startTimeJCalendar = CalendarFactoryUtil.getCalendar(startTimeYear, startTimeMonth, startTimeDay, startTimeHour, startTimeMinute, 0, 0, calendarBookingTimeZone);
 
 startTimeJCalendar.setFirstDayOfWeek(weekStartsOn + 1);
@@ -66,6 +72,12 @@ int endTimeMonth = ParamUtil.getInteger(request, "endTimeMonth", endTimeJCalenda
 int endTimeDay = ParamUtil.getInteger(request, "endTimeDay", endTimeJCalendar.get(java.util.Calendar.DAY_OF_MONTH));
 int endTimeHour = ParamUtil.getInteger(request, "endTimeHour", endTimeJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
 int endTimeMinute = ParamUtil.getInteger(request, "endTimeMinute", endTimeJCalendar.get(java.util.Calendar.MINUTE));
+
+int endTimeAmPm = ParamUtil.getInteger(request, "endTimeAmPm");
+
+if (endTimeAmPm == java.util.Calendar.PM) {
+	endTimeHour += 12;
+}
 
 endTimeJCalendar = CalendarFactoryUtil.getCalendar(endTimeYear, endTimeMonth, endTimeDay, endTimeHour, endTimeMinute, 0, 0, calendarBookingTimeZone);
 
