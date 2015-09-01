@@ -37,6 +37,7 @@ import java.net.URLConnection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -87,9 +88,9 @@ public class ProxyServlet extends HttpServlet {
 
 		String hostAddress = inetAddress.getHostAddress();
 
-		String serverIp = PortalUtil.getComputerAddress();
+		Set<String> serverIps = PortalUtil.getComputerAddresses();
 
-		boolean serverIpIsHostAddress = serverIp.equals(hostAddress);
+		boolean serverIpIsHostAddress = serverIps.contains(hostAddress);
 
 		for (String ip : allowedIps) {
 			if ((serverIpIsHostAddress && ip.equals("SERVER_IP")) ||
