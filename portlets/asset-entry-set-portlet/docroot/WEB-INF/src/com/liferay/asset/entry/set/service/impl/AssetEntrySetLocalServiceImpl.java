@@ -182,10 +182,6 @@ public class AssetEntrySetLocalServiceImpl
 			long parentAssetEntrySetId)
 		throws SystemException {
 
-		if (parentAssetEntrySetId == 0) {
-			return null;
-		}
-
 		return assetEntrySetPersistence.findByParentAssetEntrySetId(
 			parentAssetEntrySetId);
 	}
