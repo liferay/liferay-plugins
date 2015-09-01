@@ -312,6 +312,13 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
+		long parentAssetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.getChildAssetEntrySets(parentAssetEntrySetId);
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
 		long parentAssetEntrySetId,

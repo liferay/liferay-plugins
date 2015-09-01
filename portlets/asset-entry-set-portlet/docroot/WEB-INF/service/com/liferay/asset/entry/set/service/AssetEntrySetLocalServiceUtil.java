@@ -297,6 +297,12 @@ public class AssetEntrySetLocalServiceUtil {
 		return getService().addFileAttachment(userId, file);
 	}
 
+	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
+		long parentAssetEntrySetId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getChildAssetEntrySets(parentAssetEntrySetId);
+	}
+
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
 		long parentAssetEntrySetId,
