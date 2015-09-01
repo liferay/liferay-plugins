@@ -3,7 +3,7 @@
 
 <service-builder package-path="com.liferay.asset.entry.set" auto-namespace-tables="false">
 	<namespace>AssetEntrySet</namespace>
-	<entity name="AssetEntrySet" local-service="true" remote-service="false">
+	<entity name="AssetEntrySet" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
