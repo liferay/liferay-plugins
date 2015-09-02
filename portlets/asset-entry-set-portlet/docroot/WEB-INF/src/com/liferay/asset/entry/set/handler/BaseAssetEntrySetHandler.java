@@ -56,6 +56,8 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		throws PortalException, SystemException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject oldGeolocationJSONObject =
+			JSONFactoryUtil.createJSONObject();
 
 		AssetEntrySet assetEntrySet =
 			AssetEntrySetLocalServiceUtil.fetchAssetEntrySet(assetEntrySetId);
@@ -66,10 +68,18 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 				payloadJSONObject)) {
 
 			jsonObject.put("contentModifiedTime", System.currentTimeMillis());
+
+			JSONObject oldPayloadJSONObject = JSONFactoryUtil.createJSONObject(
+				assetEntrySet.getPayload());
+
+			oldGeolocationJSONObject = oldPayloadJSONObject.getJSONObject(
+				"geolocation");
 		}
 
 		jsonObject.put(
-			"geolocation", getGeolocationJSONObject(payloadJSONObject));
+			"geolocation",
+			getGeolocationJSONObject(
+				oldGeolocationJSONObject, payloadJSONObject));
 		jsonObject.put("linkData", payloadJSONObject.getString("linkData"));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("type", payloadJSONObject.getString("type"));
@@ -160,7 +170,11 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 	}
 
 	protected JSONObject getGeolocationJSONObject(
-		JSONObject payloadJSONObject) {
+		JSONObject oldGeolocationJSONObject, JSONObject payloadJSONObject) {
+
+		if (oldGeolocationJSONObject.length() > 0) {
+			return oldGeolocationJSONObject;
+		}
 
 		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
 			"geolocation");
