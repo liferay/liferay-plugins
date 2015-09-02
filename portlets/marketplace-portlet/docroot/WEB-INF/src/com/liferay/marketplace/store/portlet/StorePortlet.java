@@ -298,7 +298,7 @@ public class StorePortlet extends RemoteMVCPortlet {
 
 	@Override
 	protected String getServerPortletId() {
-		return _OSB_PORTLET_ID;
+		return PortletPropsValues.MARKETPLACE_PORTLET_ID;
 	}
 
 	@Override
@@ -323,7 +323,5 @@ public class StorePortlet extends RemoteMVCPortlet {
 				String.valueOf(ServerDetector.isSupportsHotDeploy())
 			});
 	}
-
-	private static final String _OSB_PORTLET_ID = "12_WAR_osbportlet";
 
 }

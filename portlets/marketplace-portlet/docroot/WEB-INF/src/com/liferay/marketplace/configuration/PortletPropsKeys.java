@@ -21,6 +21,9 @@ public interface PortletPropsKeys {
 
 	public static final String MARKETPLACE_KEY = "marketplace.key";
 
+	public static final String MARKETPLACE_PORTLET_ID =
+		"marketplace.portlet.id";
+
 	public static final String MARKETPLACE_SECRET = "marketplace.secret";
 
 	public static final String MARKETPLACE_URL = "marketplace.url";
