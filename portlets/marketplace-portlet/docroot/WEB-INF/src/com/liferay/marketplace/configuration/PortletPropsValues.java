@@ -25,6 +25,9 @@ public class PortletPropsValues {
 	public static final String MARKETPLACE_KEY = PortletProps.get(
 		PortletPropsKeys.MARKETPLACE_KEY);
 
+	public static final String MARKETPLACE_PORTLET_ID = PortletProps.get(
+		PortletPropsKeys.MARKETPLACE_PORTLET_ID);
+
 	public static final String MARKETPLACE_SECRET = PortletProps.get(
 		PortletPropsKeys.MARKETPLACE_SECRET);
 
