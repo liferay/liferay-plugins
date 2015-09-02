@@ -88,9 +88,9 @@ public class ProxyServlet extends HttpServlet {
 
 		String hostAddress = inetAddress.getHostAddress();
 
-		Set<String> serverIps = PortalUtil.getComputerAddresses();
+		Set<String> computerAddresses = PortalUtil.getComputerAddresses();
 
-		boolean serverIpIsHostAddress = serverIps.contains(hostAddress);
+		boolean serverIpIsHostAddress = computerAddresses.contains(hostAddress);
 
 		for (String ip : allowedIps) {
 			if ((serverIpIsHostAddress && ip.equals("SERVER_IP")) ||
