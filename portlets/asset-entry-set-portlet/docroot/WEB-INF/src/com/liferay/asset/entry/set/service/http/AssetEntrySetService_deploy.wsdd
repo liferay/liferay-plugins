@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_AssetEntrySet_AssetEntrySetService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="com.liferay.asset.entry.set.service.http.AssetEntrySetServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="AssetEntrySetServiceSoap" />
+		<parameter name="wsdlServiceElement" value="AssetEntrySetServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_AssetEntrySet_AssetEntrySetService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.set.entry.asset.liferay.com" />
+	</service>
+</deployment>
