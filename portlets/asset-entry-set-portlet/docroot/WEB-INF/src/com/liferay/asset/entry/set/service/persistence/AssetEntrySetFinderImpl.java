@@ -294,7 +294,7 @@ public class AssetEntrySetFinderImpl
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler((assetEntrySetIds.length * 2) + 3);
 
 		sb.append(" AND ");
 		sb.append("(AssetEntrySet.assetEntrySetId NOT IN (");
@@ -319,7 +319,7 @@ public class AssetEntrySetFinderImpl
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler((assetEntrySetIds.length * 7) + 3);
 
 		sb.append(" OR ");
 		sb.append(StringPool.OPEN_PARENTHESIS);
