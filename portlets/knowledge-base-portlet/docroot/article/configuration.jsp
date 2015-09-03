@@ -24,8 +24,6 @@ String tabs2Names = Validator.equals(portletResource, PortletKeys.KNOWLEDGE_BASE
 if (PortalUtil.isRSSFeedsEnabled()) {
 	tabs2Names += ",rss";
 }
-
-long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassName());
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
@@ -109,7 +107,7 @@ long kbFolderClassNameId = PortalUtil.getClassNameId(KBFolderConstants.getClassN
 		<aui:script use="aui-base">
 			<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 				<portlet:param name="mvcPath" value="/article/select_configuration_object.jsp" />
-				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />
+				<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(PortalUtil.getClassNameId(KBFolderConstants.getClassName())) %>" />
 				<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) %>" />
 			</liferay-portlet:renderURL>
 
