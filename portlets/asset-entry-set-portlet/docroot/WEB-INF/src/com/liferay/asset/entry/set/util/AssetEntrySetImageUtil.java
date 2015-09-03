@@ -76,6 +76,8 @@ public class AssetEntrySetImageUtil {
 			long userId, ImageBag imageBag, String imageType)
 		throws PortalException, SystemException {
 
+		File scaledFile = null;
+
 		RenderedImage rawRenderedImage = imageBag.getRenderedImage();
 
 		String imageMaxSize = PortletProps.get(
@@ -86,8 +88,6 @@ public class AssetEntrySetImageUtil {
 		RenderedImage scaledRenderedImage = ImageToolUtil.scale(
 			rawRenderedImage, GetterUtil.getInteger(maxDimensions[0]),
 			GetterUtil.getInteger(maxDimensions[1]));
-
-		File scaledFile = null;
 
 		try {
 			scaledFile = FileUtil.createTempFile(
@@ -117,16 +117,7 @@ public class AssetEntrySetImageUtil {
 
 		fileEntryIdsJSONObject.put(imageType, fileEntry.getFileEntryId());
 
-		imageJSONObject.put(
-			"imageURL_" + imageType,
-			DLUtil.getPreviewURL(
-				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
-				false, true));
-
 		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
-
-		imageJSONObject.put("mimeType", fileEntry.getMimeType());
-		imageJSONObject.put("name", fileEntry.getTitle());
 
 		try {
 			Image image = ImageToolUtil.getImage(fileEntry.getContentStream());
@@ -137,6 +128,14 @@ public class AssetEntrySetImageUtil {
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
 		}
+
+		imageJSONObject.put(
+			"imageURL_" + imageType,
+			DLUtil.getPreviewURL(
+				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
+				false, true));
+		imageJSONObject.put("mimeType", fileEntry.getMimeType());
+		imageJSONObject.put("name", fileEntry.getTitle());
 
 		return imageJSONObject;
 	}
