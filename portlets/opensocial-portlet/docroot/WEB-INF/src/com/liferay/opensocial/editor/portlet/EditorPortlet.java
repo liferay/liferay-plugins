@@ -66,11 +66,9 @@ public class EditorPortlet extends AdminPortlet {
 		throws IOException, PortletException {
 
 		try {
-			Class<?> clazz = getClass();
-
 			AuthTokenUtil.checkCSRFToken(
 				PortalUtil.getHttpServletRequest(resourceRequest),
-				clazz.getName());
+				this.getClass().getName());
 
 			String resourceID = resourceRequest.getResourceID();
 
