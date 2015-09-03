@@ -256,8 +256,8 @@ public class DisplayPortlet extends BaseKBPortlet {
 		String mvcPath = ParamUtil.getString(renderRequest, "mvcPath");
 
 		if (mvcPath.endsWith("/edit_article.jsp") ||
-			mvcPath.endsWith("/print_article.jsp") ||
-			mvcPath.endsWith("/history.jsp")) {
+			mvcPath.endsWith("/history.jsp") ||
+			mvcPath.endsWith("/print_article.jsp")) {
 
 			long resourcePrimKey = ParamUtil.getLong(
 				renderRequest, "resourcePrimKey");
