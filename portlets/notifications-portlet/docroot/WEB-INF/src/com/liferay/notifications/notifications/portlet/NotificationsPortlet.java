@@ -39,6 +39,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -588,54 +589,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		UserNotificationFeedEntry userNotificationFeedEntry =
-			UserNotificationManagerUtil.interpret(
-				StringPool.BLANK, userNotificationEvent,
-				ServiceContextFactory.getInstance(resourceRequest));
-
-		if (userNotificationFeedEntry == null) {
-			return null;
-		}
-
-		LiferayPortletResponse liferayPortletResponse =
-			(LiferayPortletResponse)resourceResponse;
-
-		PortletURL actionURL = liferayPortletResponse.createActionURL(
-			PortletKeys.NOTIFICATIONS);
-
-		actionURL.setParameter(
-			"userNotificationEventId",
-			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
-		actionURL.setWindowState(WindowState.NORMAL);
-
-		String actionDiv = StringPool.BLANK;
-		String cssClass = StringPool.BLANK;
-		String iconMenu = StringPool.BLANK;
-
-		if (userNotificationEvent.isActionRequired()) {
-			actionURL.setParameter(
-				"javax.portlet.action", "deleteUserNotificationEvent");
-
-			actionDiv = StringUtil.replace(
-				_DELETE_DIV, "[$DELETE_URL$]", actionURL.toString());
-		}
-		else {
-			actionURL.setParameter("javax.portlet.action", "markAsRead");
-
-			actionDiv = StringUtil.replace(
-				_MARK_AS_READ_DIV,
-				new String[] {"[$LINK$]", "[$MARK_AS_READ_URL$]"},
-				new String[] {
-					userNotificationFeedEntry.getLink(), actionURL.toString()
-				});
-
-			if (userNotificationEvent.isArchived()) {
-				cssClass = "archived";
-			}
-
-			iconMenu = getIconMenu(
-				userNotificationEvent, liferayPortletResponse, themeDisplay);
-		}
+		String actionDiv = _ACTION_DIV_DEFAULT;
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			themeDisplay.getCompanyId(), userNotificationEvent.getType());
@@ -668,6 +622,85 @@ public class NotificationsPortlet extends MVCPortlet {
 			DateFormat.FULL, DateFormat.SHORT, themeDisplay.getLocale(),
 			themeDisplay.getTimeZone());
 
+		String timestamp = Time.getRelativeTimeDescription(
+			userNotificationEvent.getTimestamp(), themeDisplay.getLocale(),
+			themeDisplay.getTimeZone(), dateFormatDate);
+
+		String timeTitle = dateTimeFormat.format(
+			userNotificationEvent.getTimestamp());
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
+
+		UserNotificationFeedEntry userNotificationFeedEntry =
+			UserNotificationManagerUtil.interpret(
+				StringPool.BLANK, userNotificationEvent, serviceContext);
+
+		if (userNotificationFeedEntry == null) {
+			String body = StringUtil.replace(
+				_BODY_TEMPLATE_DEFAULT, new String[] {"[$BODY$]", "[$TITLE$]"},
+				new String[] {
+					serviceContext.translate(
+						"unable-to-display-notification-for-x",
+						portlet.getDisplayName()),
+					serviceContext.translate(
+						"notification-no-longer-applies")
+				});
+
+			return StringUtil.replace(
+				ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
+				new String[] {
+					"[$ACTION_DIV$]", "[$BODY$]", "[$CSS_CLASS$]",
+					"[$ICON_MENU$]", "[$PORTLET_ICON$]", "[$PORTLET_NAME$]",
+					"[$TIMESTAMP$]", "[$TIMETITLE$]", "[$USER_FULL_NAME$]",
+					"[$USER_PORTRAIT_URL$]"
+				},
+				new String[] {
+					actionDiv, body, StringPool.BLANK, StringPool.BLANK,
+					portletIcon, portletName, timestamp, timeTitle,
+					userFullName, userPortraitURL
+				});
+		}
+
+		LiferayPortletResponse liferayPortletResponse =
+			(LiferayPortletResponse)resourceResponse;
+
+		PortletURL actionURL = liferayPortletResponse.createActionURL(
+			PortletKeys.NOTIFICATIONS);
+
+		actionURL.setParameter(
+			"userNotificationEventId",
+			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
+		actionURL.setWindowState(WindowState.NORMAL);
+
+		String cssClass = StringPool.BLANK;
+		String iconMenu = StringPool.BLANK;
+
+		if (userNotificationEvent.isActionRequired()) {
+			actionURL.setParameter(
+				"javax.portlet.action", "deleteUserNotificationEvent");
+
+			actionDiv = StringUtil.replace(
+				_DELETE_DIV, "[$DELETE_URL$]", actionURL.toString());
+		}
+		else {
+			actionURL.setParameter("javax.portlet.action", "markAsRead");
+
+			actionDiv = StringUtil.replace(
+				_MARK_AS_READ_DIV,
+				new String[] {"[$LINK$]", "[$MARK_AS_READ_URL$]"},
+				new String[] {
+					userNotificationFeedEntry.getLink(), actionURL.toString()
+				});
+
+			if (userNotificationEvent.isArchived()) {
+				cssClass = "archived";
+			}
+
+			iconMenu = getIconMenu(
+				userNotificationEvent, liferayPortletResponse, themeDisplay);
+		}
+
 		return StringUtil.replace(
 			ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
 			new String[] {
@@ -677,12 +710,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			},
 			new String[] {
 				actionDiv, userNotificationFeedEntry.getBody(), cssClass,
-				iconMenu, portletIcon, portletName,
-				Time.getRelativeTimeDescription(
-					userNotificationEvent.getTimestamp(),
-					themeDisplay.getLocale(), themeDisplay.getTimeZone(),
-					dateFormatDate),
-				dateTimeFormat.format(userNotificationEvent.getTimestamp()),
+				iconMenu, portletIcon, portletName, timestamp, timeTitle,
 				userFullName, userPortraitURL
 			});
 	}
@@ -699,6 +727,13 @@ public class NotificationsPortlet extends MVCPortlet {
 		UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
 			userNotificationEvent);
 	}
+
+	private static final String _ACTION_DIV_DEFAULT =
+		"<div class\"clearfix\">";
+
+	private static final String _BODY_TEMPLATE_DEFAULT =
+		"<div class=\"title\">[$TITLE$]</div><div class=\"body\">[$BODY$]" +
+			"</div>";
 
 	private static final String _DELETE_DIV =
 		"<div class=\"clearfix user-notification-delete\" data-deleteURL=\"" +
