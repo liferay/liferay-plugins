@@ -19,6 +19,9 @@ import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.template.TemplateManagerUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
@@ -121,8 +124,15 @@ public class TemplateNotificationMessageGenerator
 
 			template.put("kaleoTaskInstanceToken", kaleoTaskInstanceToken);
 			template.put("taskName", kaleoTask.getName());
-			template.put("userId", kaleoTaskInstanceToken.getUserId());
-			template.put("userName", kaleoTaskInstanceToken.getUserName());
+
+			ServiceContext serviceContext =
+				executionContext.getServiceContext();
+
+			User user = UserLocalServiceUtil.getUser(
+				serviceContext.getGuestOrUserId());
+
+			template.put("userId", user.getUserId());
+			template.put("userName", user.getFullName());
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
