@@ -2885,7 +2885,7 @@ for (String path : paths) {
 								<zip
 									basedir="@{module.dir}/docroot"
 									destfile="${plugin.file}"
-									excludes="_diffs.*,_diffs/**,${plugins.war.excludes},**/.sass-cache/**,**/*.scss"
+									excludes="**/.sass-cache/**,**/*.scss,_diffs.*,_diffs/**,${plugins.war.excludes}"
 								>
 									<mappedresources>
 										<fileset 
@@ -2958,7 +2958,7 @@ for (String path : paths) {
 					<zip
 						basedir="${docroot.dir}"
 						destfile="${plugin.file}"
-						excludes="**/META-INF/context.xml,${liferay-hook.xml.excludes},${plugins.war.excludes},**/.sass-cache/**,**/*.scss"
+						excludes="**/.sass-cache/**,**/*.scss,**/META-INF/context.xml,${liferay-hook.xml.excludes},${plugins.war.excludes}"
 					>
 						<zipfileset
 							dir="${docroot.dir}"
@@ -2980,7 +2980,7 @@ for (String path : paths) {
 					<zip
 						basedir="${docroot.dir}"
 						destfile="${plugin.file}"
-						excludes="${liferay-hook.xml.excludes},${plugins.war.excludes},**/.sass-cache/**,**/*.scss"
+						excludes="**/.sass-cache/**,**/*.scss,${liferay-hook.xml.excludes},${plugins.war.excludes}"
 					>
 						<zipfileset
 							dir="${docroot.dir}"
