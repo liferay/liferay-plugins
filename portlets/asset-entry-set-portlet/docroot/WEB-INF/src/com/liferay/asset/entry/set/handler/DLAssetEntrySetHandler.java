@@ -80,6 +80,15 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 			FileEntry rawFileEntry =
 				PortletFileRepositoryUtil.getPortletFileEntry(rawFileEntryId);
 
+			ImageBag imageBag = null;
+
+			try {
+				imageBag = ImageToolUtil.read(rawFileEntry.getContentStream());
+			}
+			catch (IOException ioe) {
+				throw new SystemException(ioe);
+			}
+
 			for (String imageType :
 					PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
 
@@ -89,17 +98,8 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					fileEntry = rawFileEntry;
 				}
 				else {
-					try {
-						ImageBag imageBag = ImageToolUtil.read(
-							rawFileEntry.getContentStream());
-
-						fileEntry =
-							AssetEntrySetImageUtil.addScaledImageFileEntry(
-								userId, imageBag, imageType);
-					}
-					catch (IOException ioe) {
-						throw new SystemException(ioe);
-					}
+					fileEntry = AssetEntrySetImageUtil.addScaledImageFileEntry(
+						userId, imageBag, imageType);
 				}
 
 				DLFileEntry dlFileEntry =
