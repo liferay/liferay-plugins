@@ -57,21 +57,32 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
+		JSONObject geolocationJSONObject = JSONFactoryUtil.createJSONObject();
+
 		AssetEntrySet assetEntrySet =
 			AssetEntrySetLocalServiceUtil.fetchAssetEntrySet(assetEntrySetId);
 
-		if ((assetEntrySet != null) &&
-			isContentModified(
-				JSONFactoryUtil.createJSONObject(assetEntrySet.getPayload()),
-				payloadJSONObject)) {
+		if (assetEntrySet != null) {
+			if (isContentModified(
+					JSONFactoryUtil.createJSONObject(
+						assetEntrySet.getPayload()),
+					payloadJSONObject)) {
 
-			jsonObject.put("contentModifiedTime", System.currentTimeMillis());
+				jsonObject.put(
+					"contentModifiedTime", System.currentTimeMillis());
+			}
+
+			JSONObject oldPayloadJSONObject = JSONFactoryUtil.createJSONObject(
+				assetEntrySet.getPayload());
+
+			geolocationJSONObject = oldPayloadJSONObject.getJSONObject(
+				"geolocation");
 		}
 		else {
-			jsonObject.put(
-				"geolocation", getGeolocationJSONObject(payloadJSONObject));
+			geolocationJSONObject = getGeolocationJSONObject(payloadJSONObject);
 		}
 
+		jsonObject.put("geolocation", geolocationJSONObject);
 		jsonObject.put("linkData", payloadJSONObject.getString("linkData"));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("type", payloadJSONObject.getString("type"));
