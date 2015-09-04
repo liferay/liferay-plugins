@@ -330,6 +330,15 @@ public class KBArticleServiceUtil {
 			parentResourcePrimKey, priority);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle revertKBArticle(
+		long resourcePrimKey, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .revertKBArticle(resourcePrimKey, version, serviceContext);
+	}
+
 	public static void subscribeGroupKBArticles(long groupId,
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,

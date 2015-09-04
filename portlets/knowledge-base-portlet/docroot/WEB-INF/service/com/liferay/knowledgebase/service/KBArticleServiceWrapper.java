@@ -336,6 +336,16 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
+		long resourcePrimKey, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleService.revertKBArticle(resourcePrimKey, version,
+			serviceContext);
+	}
+
+	@Override
 	public void subscribeGroupKBArticles(long groupId,
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
