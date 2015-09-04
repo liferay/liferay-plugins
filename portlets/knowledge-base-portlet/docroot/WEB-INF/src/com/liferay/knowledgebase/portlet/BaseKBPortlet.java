@@ -321,6 +321,13 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 				title, urlTitle, content, description, sourceURL, sections,
 				selectedFileNames, serviceContext);
 		}
+		else if (cmd.equals(Constants.REVERT)) {
+			int version = ParamUtil.getInteger(
+				actionRequest, "version", KBArticleConstants.DEFAULT_VERSION);
+
+			kbArticle = KBArticleServiceUtil.revertKBArticle(
+				resourcePrimKey, version, serviceContext);
+		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
 				resourcePrimKey, title, content, description, sourceURL,
