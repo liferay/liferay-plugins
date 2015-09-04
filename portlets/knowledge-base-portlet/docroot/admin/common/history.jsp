@@ -149,13 +149,8 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 							<portlet:param name="mvcPath" value='<%= templatePath + "history.jsp" %>' />
 							<portlet:param name="redirect" value="<%= redirect %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-							<portlet:param name="status" value="<%= String.valueOf(status) %>" />
-							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" />
-							<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbArticle.getParentResourceClassNameId()) %>" />
-							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(kbArticle.getParentResourcePrimKey()) %>" />
-							<portlet:param name="title" value="<%= curKBArticle.getTitle() %>" />
-							<portlet:param name="content" value="<%= curKBArticle.getContent() %>" />
-							<portlet:param name="description" value="<%= curKBArticle.getDescription() %>" />
+							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.REVERT %>" />
+							<portlet:param name="version" value="<%= String.valueOf(curKBArticle.getVersion()) %>" />
 							<portlet:param name="workflowAction" value="<%= String.valueOf(WorkflowConstants.ACTION_PUBLISH) %>" />
 						</liferay-portlet:actionURL>
 
