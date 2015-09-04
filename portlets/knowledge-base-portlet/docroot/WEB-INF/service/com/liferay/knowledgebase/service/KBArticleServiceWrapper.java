@@ -305,6 +305,15 @@ public class KBArticleServiceWrapper implements KBArticleService,
 			parentResourceClassNameId, parentResourcePrimKey, priority);
 	}
 
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
+		long resourcePrimKey, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticleService.revertKBArticle(resourcePrimKey, version,
+			serviceContext);
+	}
+
 	/**
 	* Sets the Spring bean ID for this bean.
 	*

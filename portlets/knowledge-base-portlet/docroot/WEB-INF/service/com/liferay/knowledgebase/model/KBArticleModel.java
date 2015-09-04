@@ -464,6 +464,7 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	 *
 	 * @return the last publish date of this k b article
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -471,6 +472,7 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	 *
 	 * @param lastPublishDate the last publish date of this k b article
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	/**

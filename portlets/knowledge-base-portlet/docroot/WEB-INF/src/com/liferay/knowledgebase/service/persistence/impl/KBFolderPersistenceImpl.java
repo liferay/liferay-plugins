@@ -2977,7 +2977,7 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(kbFolder);
+		clearUniqueFindersCache((KBFolderModelImpl)kbFolder);
 	}
 
 	@Override
@@ -2989,87 +2989,92 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 			EntityCacheUtil.removeResult(KBFolderModelImpl.ENTITY_CACHE_ENABLED,
 				KBFolderImpl.class, kbFolder.getPrimaryKey());
 
-			clearUniqueFindersCache(kbFolder);
+			clearUniqueFindersCache((KBFolderModelImpl)kbFolder);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(KBFolder kbFolder, boolean isNew) {
+	protected void cacheUniqueFindersCache(
+		KBFolderModelImpl kbFolderModelImpl, boolean isNew) {
 		if (isNew) {
 			Object[] args = new Object[] {
-					kbFolder.getUuid(), kbFolder.getGroupId()
+					kbFolderModelImpl.getUuid(), kbFolderModelImpl.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
-				kbFolder);
+				kbFolderModelImpl);
 
 			args = new Object[] {
-					kbFolder.getGroupId(), kbFolder.getParentKBFolderId(),
-					kbFolder.getName()
+					kbFolderModelImpl.getGroupId(),
+					kbFolderModelImpl.getParentKBFolderId(),
+					kbFolderModelImpl.getName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_N, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_N, args, kbFolder);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_N, args,
+				kbFolderModelImpl);
 
 			args = new Object[] {
-					kbFolder.getGroupId(), kbFolder.getParentKBFolderId(),
-					kbFolder.getUrlTitle()
+					kbFolderModelImpl.getGroupId(),
+					kbFolderModelImpl.getParentKBFolderId(),
+					kbFolderModelImpl.getUrlTitle()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_UT, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_UT, args,
-				kbFolder);
+				kbFolderModelImpl);
 		}
 		else {
-			KBFolderModelImpl kbFolderModelImpl = (KBFolderModelImpl)kbFolder;
-
 			if ((kbFolderModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbFolder.getUuid(), kbFolder.getGroupId()
+						kbFolderModelImpl.getUuid(),
+						kbFolderModelImpl.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
-					kbFolder);
+					kbFolderModelImpl);
 			}
 
 			if ((kbFolderModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_G_P_N.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbFolder.getGroupId(), kbFolder.getParentKBFolderId(),
-						kbFolder.getName()
+						kbFolderModelImpl.getGroupId(),
+						kbFolderModelImpl.getParentKBFolderId(),
+						kbFolderModelImpl.getName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_N, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_N, args,
-					kbFolder);
+					kbFolderModelImpl);
 			}
 
 			if ((kbFolderModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_G_P_UT.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbFolder.getGroupId(), kbFolder.getParentKBFolderId(),
-						kbFolder.getUrlTitle()
+						kbFolderModelImpl.getGroupId(),
+						kbFolderModelImpl.getParentKBFolderId(),
+						kbFolderModelImpl.getUrlTitle()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_UT, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_UT, args,
-					kbFolder);
+					kbFolderModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(KBFolder kbFolder) {
-		KBFolderModelImpl kbFolderModelImpl = (KBFolderModelImpl)kbFolder;
-
-		Object[] args = new Object[] { kbFolder.getUuid(), kbFolder.getGroupId() };
+	protected void clearUniqueFindersCache(KBFolderModelImpl kbFolderModelImpl) {
+		Object[] args = new Object[] {
+				kbFolderModelImpl.getUuid(), kbFolderModelImpl.getGroupId()
+			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
@@ -3086,8 +3091,9 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		}
 
 		args = new Object[] {
-				kbFolder.getGroupId(), kbFolder.getParentKBFolderId(),
-				kbFolder.getName()
+				kbFolderModelImpl.getGroupId(),
+				kbFolderModelImpl.getParentKBFolderId(),
+				kbFolderModelImpl.getName()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_N, args);
@@ -3106,8 +3112,9 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		}
 
 		args = new Object[] {
-				kbFolder.getGroupId(), kbFolder.getParentKBFolderId(),
-				kbFolder.getUrlTitle()
+				kbFolderModelImpl.getGroupId(),
+				kbFolderModelImpl.getParentKBFolderId(),
+				kbFolderModelImpl.getUrlTitle()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_UT, args);
@@ -3277,7 +3284,7 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 				kbFolder.setNew(false);
 			}
 			else {
-				session.merge(kbFolder);
+				kbFolder = (KBFolder)session.merge(kbFolder);
 			}
 		}
 		catch (Exception e) {
@@ -3355,8 +3362,8 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		EntityCacheUtil.putResult(KBFolderModelImpl.ENTITY_CACHE_ENABLED,
 			KBFolderImpl.class, kbFolder.getPrimaryKey(), kbFolder, false);
 
-		clearUniqueFindersCache(kbFolder);
-		cacheUniqueFindersCache(kbFolder, isNew);
+		clearUniqueFindersCache(kbFolderModelImpl);
+		cacheUniqueFindersCache(kbFolderModelImpl, isNew);
 
 		kbFolder.resetOriginalValues();
 

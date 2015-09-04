@@ -285,6 +285,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @return the last publish date of this k b comment
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -292,6 +293,7 @@ public interface KBCommentModel extends AttachedModel, BaseModel<KBComment>,
 	 *
 	 * @param lastPublishDate the last publish date of this k b comment
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	/**

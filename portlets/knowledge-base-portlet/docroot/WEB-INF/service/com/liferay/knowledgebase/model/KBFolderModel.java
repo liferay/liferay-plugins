@@ -271,6 +271,7 @@ public interface KBFolderModel extends BaseModel<KBFolder>, StagedGroupedModel {
 	 *
 	 * @return the last publish date of this k b folder
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -278,6 +279,7 @@ public interface KBFolderModel extends BaseModel<KBFolder>, StagedGroupedModel {
 	 *
 	 * @param lastPublishDate the last publish date of this k b folder
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	@Override

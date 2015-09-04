@@ -243,6 +243,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>,
 	 *
 	 * @return the last publish date of this k b template
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -250,6 +251,7 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>,
 	 *
 	 * @param lastPublishDate the last publish date of this k b template
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	@Override

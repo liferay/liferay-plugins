@@ -617,6 +617,15 @@ public class KBArticleLocalServiceUtil {
 			parentResourcePrimKey, priority);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle revertKBArticle(
+		long userId, long resourcePrimKey, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .revertKBArticle(userId, resourcePrimKey, version,
+			serviceContext);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> search(
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,

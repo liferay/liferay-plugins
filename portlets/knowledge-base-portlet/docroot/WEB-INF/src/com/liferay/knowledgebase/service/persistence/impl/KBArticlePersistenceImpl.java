@@ -29289,7 +29289,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(kbArticle);
+		clearUniqueFindersCache((KBArticleModelImpl)kbArticle);
 	}
 
 	@Override
@@ -29301,62 +29301,67 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			EntityCacheUtil.removeResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 				KBArticleImpl.class, kbArticle.getPrimaryKey());
 
-			clearUniqueFindersCache(kbArticle);
+			clearUniqueFindersCache((KBArticleModelImpl)kbArticle);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(KBArticle kbArticle, boolean isNew) {
+	protected void cacheUniqueFindersCache(
+		KBArticleModelImpl kbArticleModelImpl, boolean isNew) {
 		if (isNew) {
 			Object[] args = new Object[] {
-					kbArticle.getUuid(), kbArticle.getGroupId()
+					kbArticleModelImpl.getUuid(),
+					kbArticleModelImpl.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
-				kbArticle);
+				kbArticleModelImpl);
 
 			args = new Object[] {
-					kbArticle.getResourcePrimKey(), kbArticle.getVersion()
+					kbArticleModelImpl.getResourcePrimKey(),
+					kbArticleModelImpl.getVersion()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_V, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V, args, kbArticle);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V, args,
+				kbArticleModelImpl);
 		}
 		else {
-			KBArticleModelImpl kbArticleModelImpl = (KBArticleModelImpl)kbArticle;
-
 			if ((kbArticleModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbArticle.getUuid(), kbArticle.getGroupId()
+						kbArticleModelImpl.getUuid(),
+						kbArticleModelImpl.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
-					kbArticle);
+					kbArticleModelImpl);
 			}
 
 			if ((kbArticleModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_R_V.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbArticle.getResourcePrimKey(), kbArticle.getVersion()
+						kbArticleModelImpl.getResourcePrimKey(),
+						kbArticleModelImpl.getVersion()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_V, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V, args,
-					kbArticle);
+					kbArticleModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(KBArticle kbArticle) {
-		KBArticleModelImpl kbArticleModelImpl = (KBArticleModelImpl)kbArticle;
-
-		Object[] args = new Object[] { kbArticle.getUuid(), kbArticle.getGroupId() };
+	protected void clearUniqueFindersCache(
+		KBArticleModelImpl kbArticleModelImpl) {
+		Object[] args = new Object[] {
+				kbArticleModelImpl.getUuid(), kbArticleModelImpl.getGroupId()
+			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
@@ -29373,7 +29378,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		args = new Object[] {
-				kbArticle.getResourcePrimKey(), kbArticle.getVersion()
+				kbArticleModelImpl.getResourcePrimKey(),
+				kbArticleModelImpl.getVersion()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_V, args);
@@ -29542,7 +29548,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				kbArticle.setNew(false);
 			}
 			else {
-				session.merge(kbArticle);
+				kbArticle = (KBArticle)session.merge(kbArticle);
 			}
 		}
 		catch (Exception e) {
@@ -30106,8 +30112,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		EntityCacheUtil.putResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleImpl.class, kbArticle.getPrimaryKey(), kbArticle, false);
 
-		clearUniqueFindersCache(kbArticle);
-		cacheUniqueFindersCache(kbArticle, isNew);
+		clearUniqueFindersCache(kbArticleModelImpl);
+		cacheUniqueFindersCache(kbArticleModelImpl, isNew);
 
 		kbArticle.resetOriginalValues();
 

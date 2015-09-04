@@ -201,38 +201,44 @@ public class KBArticleServiceClp implements KBArticleService {
 
 		_methodParameterTypes30 = new String[] { "long", "long", "long", "double" };
 
-		_methodName31 = "setBeanIdentifier";
+		_methodName31 = "revertKBArticle";
 
-		_methodParameterTypes31 = new String[] { "java.lang.String" };
+		_methodParameterTypes31 = new String[] {
+				"long", "int", "com.liferay.portal.service.ServiceContext"
+			};
 
-		_methodName32 = "subscribeGroupKBArticles";
+		_methodName32 = "setBeanIdentifier";
 
-		_methodParameterTypes32 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes32 = new String[] { "java.lang.String" };
 
-		_methodName33 = "subscribeKBArticle";
+		_methodName33 = "subscribeGroupKBArticles";
 
-		_methodParameterTypes33 = new String[] { "long", "long" };
+		_methodParameterTypes33 = new String[] { "long", "java.lang.String" };
 
-		_methodName34 = "unsubscribeGroupKBArticles";
+		_methodName34 = "subscribeKBArticle";
 
-		_methodParameterTypes34 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes34 = new String[] { "long", "long" };
 
-		_methodName35 = "unsubscribeKBArticle";
+		_methodName35 = "unsubscribeGroupKBArticles";
 
-		_methodParameterTypes35 = new String[] { "long" };
+		_methodParameterTypes35 = new String[] { "long", "java.lang.String" };
 
-		_methodName36 = "updateKBArticle";
+		_methodName36 = "unsubscribeKBArticle";
 
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes36 = new String[] { "long" };
+
+		_methodName37 = "updateKBArticle";
+
+		_methodParameterTypes37 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName37 = "updateKBArticlesPriorities";
+		_methodName38 = "updateKBArticlesPriorities";
 
-		_methodParameterTypes37 = new String[] { "long", "java.util.Map" };
+		_methodParameterTypes38 = new String[] { "long", "java.util.Map" };
 	}
 
 	@Override
@@ -1288,10 +1294,47 @@ public class KBArticleServiceClp implements KBArticleService {
 	}
 
 	@Override
+	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
+		long resourcePrimKey, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
+					new Object[] {
+						resourcePrimKey,
+						
+					version,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.KBArticle)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableService.invokeMethod(_methodName31,
-				_methodParameterTypes31,
+			_invokableService.invokeMethod(_methodName32,
+				_methodParameterTypes32,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -1312,8 +1355,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableService.invokeMethod(_methodName32,
-				_methodParameterTypes32,
+			_invokableService.invokeMethod(_methodName33,
+				_methodParameterTypes33,
 				new Object[] { groupId, ClpSerializer.translateInput(portletId) });
 		}
 		catch (Throwable t) {
@@ -1337,8 +1380,8 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void subscribeKBArticle(long groupId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableService.invokeMethod(_methodName33,
-				_methodParameterTypes33,
+			_invokableService.invokeMethod(_methodName34,
+				_methodParameterTypes34,
 				new Object[] { groupId, resourcePrimKey });
 		}
 		catch (Throwable t) {
@@ -1363,8 +1406,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableService.invokeMethod(_methodName34,
-				_methodParameterTypes34,
+			_invokableService.invokeMethod(_methodName35,
+				_methodParameterTypes35,
 				new Object[] { groupId, ClpSerializer.translateInput(portletId) });
 		}
 		catch (Throwable t) {
@@ -1388,8 +1431,8 @@ public class KBArticleServiceClp implements KBArticleService {
 	public void unsubscribeKBArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableService.invokeMethod(_methodName35,
-				_methodParameterTypes35, new Object[] { resourcePrimKey });
+			_invokableService.invokeMethod(_methodName36,
+				_methodParameterTypes36, new Object[] { resourcePrimKey });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1419,8 +1462,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName36,
-					_methodParameterTypes36,
+			returnObj = _invokableService.invokeMethod(_methodName37,
+					_methodParameterTypes37,
 					new Object[] {
 						resourcePrimKey,
 						
@@ -1465,8 +1508,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableService.invokeMethod(_methodName37,
-				_methodParameterTypes37,
+			_invokableService.invokeMethod(_methodName38,
+				_methodParameterTypes38,
 				new Object[] {
 					groupId,
 					
@@ -1565,4 +1608,6 @@ public class KBArticleServiceClp implements KBArticleService {
 	private String[] _methodParameterTypes36;
 	private String _methodName37;
 	private String[] _methodParameterTypes37;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
 }

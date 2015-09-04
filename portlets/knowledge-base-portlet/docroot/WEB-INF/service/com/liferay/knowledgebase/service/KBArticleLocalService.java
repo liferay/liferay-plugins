@@ -478,6 +478,11 @@ public interface KBArticleLocalService extends BaseLocalService,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority) throws PortalException;
 
+	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
+		long userId, long resourcePrimKey, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> search(
 		long groupId, java.lang.String title, java.lang.String content,

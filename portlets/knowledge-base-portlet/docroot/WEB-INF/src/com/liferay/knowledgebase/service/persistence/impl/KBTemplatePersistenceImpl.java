@@ -2329,7 +2329,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(kbTemplate);
+		clearUniqueFindersCache((KBTemplateModelImpl)kbTemplate);
 	}
 
 	@Override
@@ -2341,43 +2341,43 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 				KBTemplateImpl.class, kbTemplate.getPrimaryKey());
 
-			clearUniqueFindersCache(kbTemplate);
+			clearUniqueFindersCache((KBTemplateModelImpl)kbTemplate);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(KBTemplate kbTemplate, boolean isNew) {
+	protected void cacheUniqueFindersCache(
+		KBTemplateModelImpl kbTemplateModelImpl, boolean isNew) {
 		if (isNew) {
 			Object[] args = new Object[] {
-					kbTemplate.getUuid(), kbTemplate.getGroupId()
+					kbTemplateModelImpl.getUuid(),
+					kbTemplateModelImpl.getGroupId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
-				kbTemplate);
+				kbTemplateModelImpl);
 		}
 		else {
-			KBTemplateModelImpl kbTemplateModelImpl = (KBTemplateModelImpl)kbTemplate;
-
 			if ((kbTemplateModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						kbTemplate.getUuid(), kbTemplate.getGroupId()
+						kbTemplateModelImpl.getUuid(),
+						kbTemplateModelImpl.getGroupId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
-					kbTemplate);
+					kbTemplateModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(KBTemplate kbTemplate) {
-		KBTemplateModelImpl kbTemplateModelImpl = (KBTemplateModelImpl)kbTemplate;
-
+	protected void clearUniqueFindersCache(
+		KBTemplateModelImpl kbTemplateModelImpl) {
 		Object[] args = new Object[] {
-				kbTemplate.getUuid(), kbTemplate.getGroupId()
+				kbTemplateModelImpl.getUuid(), kbTemplateModelImpl.getGroupId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
@@ -2546,7 +2546,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				kbTemplate.setNew(false);
 			}
 			else {
-				session.merge(kbTemplate);
+				kbTemplate = (KBTemplate)session.merge(kbTemplate);
 			}
 		}
 		catch (Exception e) {
@@ -2622,8 +2622,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate, false);
 
-		clearUniqueFindersCache(kbTemplate);
-		cacheUniqueFindersCache(kbTemplate, isNew);
+		clearUniqueFindersCache(kbTemplateModelImpl);
+		cacheUniqueFindersCache(kbTemplateModelImpl, isNew);
 
 		kbTemplate.resetOriginalValues();
 
