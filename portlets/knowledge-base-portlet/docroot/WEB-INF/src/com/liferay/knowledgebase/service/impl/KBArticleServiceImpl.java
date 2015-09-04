@@ -657,6 +657,18 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	@Override
+	public KBArticle revertKBArticle(
+			long resourcePrimKey, int version, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		KBArticlePermission.check(
+			getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
+
+		return kbArticleLocalService.revertKBArticle(
+			getUserId(), resourcePrimKey, version, serviceContext);
+	}
+
+	@Override
 	public void subscribeGroupKBArticles(long groupId, String portletId)
 		throws PortalException, SystemException {
 
