@@ -31,6 +31,7 @@ import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBArticleServiceUtil;
 import com.liferay.knowledgebase.service.base.KBArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.KnowledgeBaseConstants;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
@@ -955,6 +956,23 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				resourcePrimKey, AdminActivityKeys.MOVE_KB_ARTICLE,
 				extraDataJSONObject.toString(), 0);
 		}
+	}
+
+	@Override
+	public KBArticle revertKBArticle(
+			long userId, long resourcePrimKey, int version,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		KBArticle sourceKBArticle = KBArticleServiceUtil.getKBArticle(
+			resourcePrimKey, version);
+
+		return updateKBArticle(
+			userId, resourcePrimKey, sourceKBArticle.getTitle(),
+			sourceKBArticle.getContent(), sourceKBArticle.getDescription(),
+			sourceKBArticle.getSourceURL(),
+			StringUtil.split(sourceKBArticle.getSections()), null, null,
+			serviceContext);
 	}
 
 	@Override
