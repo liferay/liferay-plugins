@@ -3112,18 +3112,8 @@ for (String path : paths) {
 								<zip
 									basedir="@{module.dir}/docroot"
 									destfile="${plugin.file}"
-									excludes="_diffs.*,_diffs/**,${plugins.war.excludes},**/.sass-cache/**,**/*.scss"
-								>
-									<mappedresources>
-										<fileset 
-											dir="@{module.dir}/docroot"
-											includes="**/.sass-cache/*.css"
-										/>
-										<filtermapper>
-											<replacestring from="/.sass-cache/" to="/"/>
-										</filtermapper>
-									</mappedresources>
-								</zip>
+									excludes="_diffs.*,_diffs/**,${plugins.war.excludes}"
+								/>
 							</then>
 						</elseif>
 						<else>
@@ -3185,44 +3175,26 @@ for (String path : paths) {
 					<zip
 						basedir="${docroot.dir}"
 						destfile="${plugin.file}"
-						excludes="**/META-INF/context.xml,${liferay-hook.xml.excludes},${plugins.war.excludes},**/.sass-cache/**,**/*.scss"
+						excludes="**/META-INF/context.xml,${liferay-hook.xml.excludes},${plugins.war.excludes}"
 					>
 						<zipfileset
 							dir="${docroot.dir}"
 							fullpath="WEB-INF/liferay-hook.xml"
 							includes="WEB-INF/liferay-hook.xml.processed"
 						/>
-						<mappedresources>
-							<fileset 
-								dir="${docroot.dir}"
-								includes="**/.sass-cache/*.css"
-							/>
-							<filtermapper>
-								<replacestring from="/.sass-cache/" to="/"/>
-							</filtermapper>
-						</mappedresources>
 					</zip>
 				</then>
 				<else>
 					<zip
 						basedir="${docroot.dir}"
 						destfile="${plugin.file}"
-						excludes="${liferay-hook.xml.excludes},${plugins.war.excludes},**/.sass-cache/**,**/*.scss"
+						excludes="${liferay-hook.xml.excludes},${plugins.war.excludes}"
 					>
 						<zipfileset
 							dir="${docroot.dir}"
 							fullpath="WEB-INF/liferay-hook.xml"
 							includes="WEB-INF/liferay-hook.xml.processed"
 						/>
-						<mappedresources>
-							<fileset 
-								dir="${docroot.dir}"
-								includes="**/.sass-cache/*.css"
-							/>
-							<filtermapper>
-								<replacestring from="/.sass-cache/" to="/"/>
-							</filtermapper>
-						</mappedresources>
 					</zip>
 				</else>
 			</if>
