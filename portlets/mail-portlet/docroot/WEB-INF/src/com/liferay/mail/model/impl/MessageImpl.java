@@ -36,12 +36,12 @@ public class MessageImpl extends MessageBaseImpl {
 
 	@Override
 	public String getBcc() {
-		return getNormalizedAddress(super.getBcc());
+		return normalizeAddress(super.getBcc());
 	}
 
 	@Override
 	public String getCc() {
-		return getNormalizedAddress(super.getCc());
+		return normalizeAddress(super.getCc());
 	}
 
 	public long getGroupId() throws PortalException {
@@ -54,7 +54,7 @@ public class MessageImpl extends MessageBaseImpl {
 
 	@Override
 	public String getTo() {
-		return getNormalizedAddress(super.getTo());
+		return normalizeAddress(super.getTo());
 	}
 
 	public boolean hasAttachments() {
@@ -76,7 +76,7 @@ public class MessageImpl extends MessageBaseImpl {
 		return ArrayUtil.contains(flags, flag);
 	}
 
-	private String getNormalizedAddress(String address) {
+	protected String normalizeAddress(String address) {
 		return StringUtil.replace(
 			address, StringPool.COMMA, StringPool.COMMA_AND_SPACE);
 	}
