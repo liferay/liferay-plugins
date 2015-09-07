@@ -964,15 +964,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		KBArticle sourceKBArticle = KBArticleServiceUtil.getKBArticle(
+		KBArticle kbArticle = KBArticleServiceUtil.getKBArticle(
 			resourcePrimKey, version);
 
 		return updateKBArticle(
-			userId, resourcePrimKey, sourceKBArticle.getTitle(),
-			sourceKBArticle.getContent(), sourceKBArticle.getDescription(),
-			sourceKBArticle.getSourceURL(),
-			StringUtil.split(sourceKBArticle.getSections()), null, null,
-			serviceContext);
+			userId, resourcePrimKey, kbArticle.getTitle(),
+			kbArticle.getContent(), kbArticle.getDescription(),
+			kbArticle.getSourceURL(), StringUtil.split(kbArticle.getSections()),
+			null, null, serviceContext);
 	}
 
 	@Override
