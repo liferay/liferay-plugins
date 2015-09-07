@@ -251,16 +251,18 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 		}
 	);
 
-	publishButton.on(
-		'click',
-		function() {
-			var workflowActionInput = form.one('#<portlet:namespace />workflowAction');
+	if (publishButton) {
+		publishButton.on(
+			'click',
+			function() {
+				var workflowActionInput = form.one('#<portlet:namespace />workflowAction');
 
-			if (workflowActionInput) {
-				workflowActionInput.val('<%= WorkflowConstants.ACTION_PUBLISH %>');
+				if (workflowActionInput) {
+					workflowActionInput.val('<%= WorkflowConstants.ACTION_PUBLISH %>');
+				}
 			}
-		}
-	);
+		);
+	}
 
 	form.on(
 		'submit',
