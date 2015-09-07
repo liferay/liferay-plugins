@@ -19,6 +19,7 @@ import com.liferay.mail.service.AttachmentLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -34,12 +35,27 @@ public class MessageImpl extends MessageBaseImpl {
 	public MessageImpl() {
 	}
 
+	@Override
+	public String getBcc() {
+		return getNormalizedAddress(super.getBcc());
+	}
+
+	@Override
+	public String getCc() {
+		return getNormalizedAddress(super.getCc());
+	}
+
 	public long getGroupId() throws PortalException, SystemException {
 		User user = UserLocalServiceUtil.getUser(getUserId());
 
 		Group group = user.getGroup();
 
 		return group.getGroupId();
+	}
+
+	@Override
+	public String getTo() {
+		return getNormalizedAddress(super.getTo());
 	}
 
 	public boolean hasAttachments() throws SystemException {
@@ -59,6 +75,11 @@ public class MessageImpl extends MessageBaseImpl {
 		int[] flags = StringUtil.split(getFlags(), 0);
 
 		return ArrayUtil.contains(flags, flag);
+	}
+
+	private String getNormalizedAddress(String address) {
+		return StringUtil.replace(
+			address, StringPool.COMMA, StringPool.COMMA_AND_SPACE);
 	}
 
 	private static final String _MULTIPART_MIXED = "multipart/MIXED";
