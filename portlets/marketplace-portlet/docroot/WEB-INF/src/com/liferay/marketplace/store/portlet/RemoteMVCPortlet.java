@@ -148,8 +148,6 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			String oAuthVerifier = httpServletRequest.getParameter(
 				OAuthConstants.VERIFIER);
 
-			System.out.println(oAuthVerifier);
-
 			if (oAuthVerifier != null) {
 				updateAccessToken(renderRequest, oAuthVerifier);
 			}
