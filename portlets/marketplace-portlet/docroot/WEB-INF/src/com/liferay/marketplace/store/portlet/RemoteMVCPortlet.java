@@ -271,6 +271,10 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		OAuthRequest oAuthRequest = getOAuthRequest(
 			resourceRequest, resourceResponse, Verb.GET);
 
+		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "2");
+		addOAuthParameter(
+			oAuthRequest, "p_p_resource_id", resourceRequest.getResourceID());
+
 		Response response = oAuthRequest.send();
 
 		PortletResponseUtil.write(resourceResponse, response.getStream());
