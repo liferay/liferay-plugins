@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -199,20 +200,13 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		}
 	}
 
-	protected OAuthRequest getOAuthRequest(
-			PortletRequest portletRequest, PortletResponse portletResponse,
-			Verb verb)
+	protected OAuthRequest getOAuthRequest(User user, Verb verb)
 		throws Exception {
 
 		OAuthRequest oAuthRequest = new OAuthRequest(
 			verb, getServerPortletURL());
 
-		setRequestParameters(portletRequest, portletResponse, oAuthRequest);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Token token = OAuthUtil.getAccessToken(themeDisplay.getUser());
+		Token token = OAuthUtil.getAccessToken(user);
 
 		if (token != null) {
 			OAuthService oAuthService = OAuthUtil.getOAuthService();
@@ -240,8 +234,15 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		OAuthRequest oAuthRequest = getOAuthRequest(
-			actionRequest, actionResponse, Verb.POST);
+			themeDisplay.getUser(), Verb.POST);
+
+		setBaseRequestParameters(actionRequest, actionResponse, oAuthRequest);
+
+		setRequestParameters(actionRequest, actionResponse, oAuthRequest);
 
 		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "1");
 
@@ -252,8 +253,15 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		OAuthRequest oAuthRequest = getOAuthRequest(
-			renderRequest, renderResponse, Verb.GET);
+			themeDisplay.getUser(), Verb.GET);
+
+		setBaseRequestParameters(renderRequest, renderResponse, oAuthRequest);
+
+		setRequestParameters(renderRequest, renderResponse, oAuthRequest);
 
 		Response response = oAuthRequest.send();
 
@@ -268,8 +276,16 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		OAuthRequest oAuthRequest = getOAuthRequest(
-			resourceRequest, resourceResponse, Verb.GET);
+			themeDisplay.getUser(), Verb.GET);
+
+		setBaseRequestParameters(
+			resourceRequest, resourceResponse, oAuthRequest);
+
+		setRequestParameters(resourceRequest, resourceResponse, oAuthRequest);
 
 		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "2");
 		addOAuthParameter(
@@ -280,10 +296,9 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		PortletResponseUtil.write(resourceResponse, response.getStream());
 	}
 
-	protected void setRequestParameters(
-			PortletRequest portletRequest, PortletResponse portletResponse,
-			OAuthRequest oAuthRequest)
-		throws Exception {
+	protected void setBaseRequestParameters(
+		PortletRequest portletRequest, PortletResponse portletResponse,
+		OAuthRequest oAuthRequest) {
 
 		addOAuthParameter(
 			oAuthRequest, "clientPortletNamespace",
@@ -292,6 +307,11 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			oAuthRequest, "clientURL",
 			PortalUtil.getCurrentURL(portletRequest));
 		addOAuthParameter(oAuthRequest, "p_p_id", getServerPortletId());
+	}
+
+	protected void setRequestParameters(
+		PortletRequest portletRequest, PortletResponse portletResponse,
+		OAuthRequest oAuthRequest) {
 
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 
