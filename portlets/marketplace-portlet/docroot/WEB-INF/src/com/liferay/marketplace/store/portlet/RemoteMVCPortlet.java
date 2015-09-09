@@ -238,8 +238,6 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		OAuthRequest oAuthRequest = getOAuthRequest(
 			themeDisplay.getUser(), Verb.POST);
 
-		setBaseRequestParameters(actionRequest, actionResponse, oAuthRequest);
-
 		setRequestParameters(actionRequest, actionResponse, oAuthRequest);
 
 		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "1");
@@ -256,8 +254,6 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		OAuthRequest oAuthRequest = getOAuthRequest(
 			themeDisplay.getUser(), Verb.GET);
-
-		setBaseRequestParameters(renderRequest, renderResponse, oAuthRequest);
 
 		setRequestParameters(renderRequest, renderResponse, oAuthRequest);
 
@@ -279,9 +275,6 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		OAuthRequest oAuthRequest = getOAuthRequest(
 			themeDisplay.getUser(), Verb.GET);
-
-		setBaseRequestParameters(
-			resourceRequest, resourceResponse, oAuthRequest);
 
 		setRequestParameters(resourceRequest, resourceResponse, oAuthRequest);
 
@@ -310,6 +303,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 	protected void setRequestParameters(
 		PortletRequest portletRequest, PortletResponse portletResponse,
 		OAuthRequest oAuthRequest) {
+
+		setBaseRequestParameters(portletRequest, portletResponse, oAuthRequest);
 
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
 
