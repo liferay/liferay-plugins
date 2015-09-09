@@ -4,6 +4,8 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<control-panel-entry-category>user.my_account</control-panel-entry-category>
+		<control-panel-entry-weight>2.0</control-panel-entry-weight>
 		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/notifications/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>notifications-portlet</css-class-wrapper>
