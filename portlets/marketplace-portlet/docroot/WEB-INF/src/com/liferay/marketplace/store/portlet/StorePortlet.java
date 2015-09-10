@@ -25,7 +25,6 @@ import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
@@ -210,45 +209,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 		}
 	}
 
-	@Override
-	protected boolean callActionMethod(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (Validator.isNull(cmd)) {
-			return super.callActionMethod(actionRequest, actionResponse);
-		}
-
-		try {
-			if (cmd.equals("downloadApp")) {
-				downloadApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("getApp")) {
-				getApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("installApp")) {
-				installApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("updateApp")) {
-				updateApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("uninstallApp")) {
-				uninstallApp(actionRequest, actionResponse);
-			}
-			else {
-				return super.callActionMethod(actionRequest, actionResponse);
-			}
-		}
-		catch (Exception e) {
-			throw new PortletException(e);
-		}
-
-		return true;
-	}
-
-	@Override
 	protected void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
