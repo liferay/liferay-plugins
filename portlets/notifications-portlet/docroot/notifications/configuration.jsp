@@ -52,7 +52,7 @@
 
 					<tr>
 						<td class="span8">
-							<liferay-ui:message key="<%= userNotificationDefinition.getDescription() %>" />
+							<liferay-ui:message key="<%= userNotificationDefinition.getDescription(locale) %>" />
 						</td>
 						<td class="span1">
 
