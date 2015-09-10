@@ -24,7 +24,6 @@ import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
@@ -49,8 +48,12 @@ import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.WindowState;
 
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Response;
 import org.scribe.model.Token;
+import org.scribe.model.Verb;
 
 /**
  * @author Ryan Park
@@ -121,24 +124,44 @@ public class StorePortlet extends RemoteMVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		OAuthRequest oAuthRequest = new OAuthRequest(
+			Verb.POST, getServerPortletURL());
+
+		setBaseRequestParameters(actionRequest, actionResponse, oAuthRequest);
+
+		String serverNamespace = getServerNamespace();
+
+		addOAuthParameter(
+			oAuthRequest, serverNamespace.concat("javax.portlet.action"),
+			"getBundledApps");
 
 		Map<String, String> bundledApps = AppLocalServiceUtil.getBundledApps();
 
-		JSONObject bundledAppJsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		Set<String> keys = bundledApps.keySet();
 
 		for (String key : keys) {
-			bundledAppJsonObject.put(key, bundledApps.get(key));
+			jsonObject.put(key, bundledApps.get(key));
 		}
 
-		jsonObject.put("bundledApps", bundledAppJsonObject);
+		addOAuthParameter(
+			oAuthRequest, serverNamespace.concat("bundledApps"),
+			jsonObject.toString());
 
-		jsonObject.put("cmd", "getBundledApps");
-		jsonObject.put("message", "success");
+		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "1");
+		addOAuthParameter(
+			oAuthRequest, "p_p_state", WindowState.NORMAL.toString());
 
-		writeJSON(actionRequest, actionResponse, jsonObject);
+		Response response = getResponse(themeDisplay.getUser(), oAuthRequest);
+
+		JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(
+			response.getBody());
+
+		writeJSON(actionRequest, actionResponse, responseJSONObject);
 	}
 
 	public void installApp(
@@ -233,47 +256,6 @@ public class StorePortlet extends RemoteMVCPortlet {
 				tempFile.delete();
 			}
 		}
-	}
-
-	@Override
-	protected boolean callActionMethod(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (Validator.isNull(cmd)) {
-			return super.callActionMethod(actionRequest, actionResponse);
-		}
-
-		try {
-			if (cmd.equals("downloadApp")) {
-				downloadApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("getApp")) {
-				getApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("getBundledApps")) {
-				getBundledApps(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("installApp")) {
-				installApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("updateApp")) {
-				updateApp(actionRequest, actionResponse);
-			}
-			else if (cmd.equals("uninstallApp")) {
-				uninstallApp(actionRequest, actionResponse);
-			}
-			else {
-				return super.callActionMethod(actionRequest, actionResponse);
-			}
-		}
-		catch (Exception e) {
-			throw new PortletException(e);
-		}
-
-		return true;
 	}
 
 	@Override
