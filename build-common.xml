@@ -2927,6 +2927,67 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="unzip-parent-theme-jar">
+		<attribute name="theme.jar.name" />
+
+		<sequential>
+			<if>
+				<resourcecount count="1" when="eq">
+					<fileset dir="${module.framework.base.dir}/modules" includes="@{theme.jar.name}*.jar" />
+				</resourcecount>
+				<then>
+					<property name="theme.tmp.dir" value="${sdk.dir}/tmp/@{theme.jar.name}" />
+
+					<pathconvert property="frontend.themes.web.jar.path">
+						<path>
+							<fileset dir="${module.framework.base.dir}/modules" includes="@{theme.jar.name}*.jar" />
+						</path>
+					</pathconvert>
+
+					<basename file="${frontend.themes.web.jar.path}" property="frontend.themes.web.file" />
+
+					<if>
+						<not>
+							<uptodate
+								srcfile="${module.framework.base.dir}/modules/${frontend.themes.web.file}"
+								targetfile="${theme.tmp.dir}"
+							/>
+						</not>
+						<then>
+							<delete dir="${theme.tmp.dir}" />
+
+							<mkdir dir="${theme.tmp.dir}" />
+
+							<unzip
+								dest="${theme.tmp.dir}"
+								src="${frontend.themes.web.jar.path}"
+							>
+								<patternset>
+									<exclude name="**/META-INF/resources/**/*.css" />
+									<include name="**/META-INF/resources/**" />
+								</patternset>
+								<mapper>
+									<globmapper from="META-INF/resources/*" to="*" />
+								</mapper>
+							</unzip>
+
+							<touch>
+								<fileset dir="${theme.tmp.dir}" />
+							</touch>
+						</then>
+					</if>
+				</then>
+				<else>
+					<fail>The module @{theme.jar.name} does not exist.</fail>
+				</else>
+			</if>
+
+			<var name="frontend.themes.web.file" unset="true" />
+			<var name="frontend.themes.web.jar.path" unset="true"/>
+			<var name="theme.tmp.dir" unset="true"/>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="war-alloy-portlet">
 		<attribute name="module.dir" />
 
