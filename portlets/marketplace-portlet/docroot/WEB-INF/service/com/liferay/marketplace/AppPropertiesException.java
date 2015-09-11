@@ -12,34 +12,29 @@
  * details.
  */
 
-package com.liferay.marketplace.service.permission;
+package com.liferay.marketplace;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
  * @author Ryan Park
  */
-public class MarketplacePermission {
+public class AppPropertiesException extends PortalException {
 
-	public static void check(PermissionChecker permissionChecker)
-		throws PortalException, SystemException {
-
-		if (!contains(permissionChecker)) {
-			throw new PrincipalException();
-		}
+	public AppPropertiesException() {
+		super();
 	}
 
-	public static boolean contains(PermissionChecker permissionChecker)
-		throws PortalException, SystemException {
+	public AppPropertiesException(String msg) {
+		super(msg);
+	}
 
-		if (!permissionChecker.isOmniadmin()) {
-			return false;
-		}
+	public AppPropertiesException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
-		return true;
+	public AppPropertiesException(Throwable cause) {
+		super(cause);
 	}
 
 }

@@ -57,6 +57,7 @@
 		</finder>
 	</entity>
 	<exceptions>
+		<exception>AppProperties</exception>
 		<exception>AppVersion</exception>
 		<exception>DuplicateApp</exception>
 	</exceptions>

@@ -17,6 +17,7 @@ package com.liferay.marketplace.service.impl;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.compat.portal.kernel.util.Validator;
+import com.liferay.marketplace.AppPropertiesException;
 import com.liferay.marketplace.AppVersionException;
 import com.liferay.marketplace.DuplicateAppException;
 import com.liferay.marketplace.model.App;
@@ -29,6 +30,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -259,7 +261,23 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
-	@Override
+	public App updateApp(long userId, File file)
+		throws PortalException, SystemException {
+
+		Properties properties = getMarketplaceProperties(file);
+
+		if (properties == null) {
+			throw new AppPropertiesException(
+				"Unable to read liferay-marketplace.properties");
+		}
+
+		long remoteAppId = GetterUtil.getLong(
+			properties.getProperty("remote-app-id"));
+		String version = properties.getProperty("version");
+
+		return updateApp(userId, remoteAppId, version, file);
+	}
+
 	public App updateApp(
 			long userId, long remoteAppId, String version, File file)
 		throws PortalException, SystemException {
@@ -335,6 +353,38 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 
 		return fileName;
+	}
+
+	protected Properties getMarketplaceProperties(File liferayPackageFile) {
+		InputStream inputStream = null;
+		ZipFile zipFile = null;
+
+		try {
+			zipFile = new ZipFile(liferayPackageFile);
+
+			ZipEntry zipEntry = zipFile.getEntry(
+				"liferay-marketplace.properties");
+
+			inputStream = zipFile.getInputStream(zipEntry);
+
+			String propertiesString = StringUtil.read(inputStream);
+
+			return PropertiesUtil.load(propertiesString);
+		}
+		catch (IOException ioe) {
+			return null;
+		}
+		finally {
+			if (zipFile != null) {
+				try {
+					zipFile.close();
+				}
+				catch (IOException ioe) {
+				}
+			}
+
+			StreamUtil.cleanUp(inputStream);
+		}
 	}
 
 	protected boolean hasDependentApp(Module module)

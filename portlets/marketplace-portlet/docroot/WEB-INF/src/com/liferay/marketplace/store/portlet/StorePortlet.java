@@ -34,9 +34,6 @@ import com.liferay.portal.theme.ThemeDisplay;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-
-import java.net.URL;
 
 import java.util.Map;
 
@@ -48,7 +45,10 @@ import javax.portlet.PortletResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.scribe.model.OAuthRequest;
+import org.scribe.model.Response;
 import org.scribe.model.Token;
+import org.scribe.model.Verb;
 
 /**
  * @author Ryan Park
@@ -59,33 +59,18 @@ public class StorePortlet extends RemoteMVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
-		String url = ParamUtil.getString(actionRequest, "url");
-		String version = ParamUtil.getString(actionRequest, "version");
+		long appPackageId = ParamUtil.getLong(actionRequest, "appPackageId");
+		boolean unlicensed = ParamUtil.getBoolean(actionRequest, "unlicensed");
 
-		if (!url.startsWith(PortletPropsValues.MARKETPLACE_URL)) {
-			JSONObject jsonObject = getAppJSONObject(remoteAppId);
-
-			jsonObject.put("cmd", "downloadApp");
-			jsonObject.put("message", "fail");
-
-			writeJSON(actionRequest, actionResponse, jsonObject);
-
-			return;
-		}
-
-		URL urlObj = new URL(url);
-
-		File tempFile = null;
+		File file = null;
 
 		try {
-			InputStream inputStream = urlObj.openStream();
+			file = FileUtil.createTempFile();
 
-			tempFile = FileUtil.createTempFile();
+			downloadApp(
+				actionRequest, actionResponse, appPackageId, unlicensed, file);
 
-			FileUtil.write(tempFile, inputStream);
-
-			App app = AppServiceUtil.updateApp(remoteAppId, version, tempFile);
+			App app = AppServiceUtil.updateApp(file);
 
 			JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
 
@@ -95,8 +80,8 @@ public class StorePortlet extends RemoteMVCPortlet {
 			writeJSON(actionRequest, actionResponse, jsonObject);
 		}
 		finally {
-			if (tempFile != null) {
-				tempFile.delete();
+			if (file != null) {
+				file.delete();
 			}
 		}
 	}
@@ -151,36 +136,21 @@ public class StorePortlet extends RemoteMVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
-		String version = ParamUtil.getString(actionRequest, "version");
-		String url = ParamUtil.getString(actionRequest, "url");
+		long appPackageId = ParamUtil.getLong(actionRequest, "appPackageId");
+		boolean unlicensed = ParamUtil.getBoolean(actionRequest, "unlicensed");
 		String orderUuid = ParamUtil.getString(actionRequest, "orderUuid");
 		String productEntryName = ParamUtil.getString(
 			actionRequest, "productEntryName");
 
-		if (!url.startsWith(PortletPropsValues.MARKETPLACE_URL)) {
-			JSONObject jsonObject = getAppJSONObject(remoteAppId);
-
-			jsonObject.put("cmd", "updateApp");
-			jsonObject.put("message", "fail");
-
-			writeJSON(actionRequest, actionResponse, jsonObject);
-
-			return;
-		}
-
-		URL urlObj = new URL(url);
-
-		File tempFile = null;
+		File file = null;
 
 		try {
-			InputStream inputStream = urlObj.openStream();
+			file = FileUtil.createTempFile();
 
-			tempFile = FileUtil.createTempFile();
+			downloadApp(
+				actionRequest, actionResponse, appPackageId, unlicensed, file);
 
-			FileUtil.write(tempFile, inputStream);
-
-			AppServiceUtil.updateApp(remoteAppId, version, tempFile);
+			App app = AppServiceUtil.updateApp(file);
 
 			if (Validator.isNull(orderUuid) &&
 				Validator.isNotNull(productEntryName)) {
@@ -193,9 +163,9 @@ public class StorePortlet extends RemoteMVCPortlet {
 					orderUuid, productEntryName);
 			}
 
-			AppServiceUtil.installApp(remoteAppId);
+			AppServiceUtil.installApp(app.getRemoteAppId());
 
-			JSONObject jsonObject = getAppJSONObject(remoteAppId);
+			JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
 
 			jsonObject.put("cmd", "updateApp");
 			jsonObject.put("message", "success");
@@ -203,8 +173,8 @@ public class StorePortlet extends RemoteMVCPortlet {
 			writeJSON(actionRequest, actionResponse, jsonObject);
 		}
 		finally {
-			if (tempFile != null) {
-				tempFile.delete();
+			if (file != null) {
+				file.delete();
 			}
 		}
 	}
@@ -233,6 +203,39 @@ public class StorePortlet extends RemoteMVCPortlet {
 		renderRequest.setAttribute(WebKeys.OAUTH_AUTHORIZED, Boolean.TRUE);
 
 		super.doDispatch(renderRequest, renderResponse);
+	}
+
+	protected void downloadApp(
+			PortletRequest portletRequest, PortletResponse portletResponse,
+			long appPackageId, boolean unlicensed, File file)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		OAuthRequest oAuthRequest = new OAuthRequest(
+			Verb.GET, getServerPortletURL());
+
+		setBaseRequestParameters(portletRequest, portletResponse, oAuthRequest);
+
+		String serverNamespace = getServerNamespace();
+
+		addOAuthParameter(
+			oAuthRequest, serverNamespace.concat("appPackageId"),
+			String.valueOf(appPackageId));
+		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "2");
+
+		if (unlicensed) {
+			addOAuthParameter(
+				oAuthRequest, "p_p_resource_id", "serveUnlicensedApp");
+		}
+		else {
+			addOAuthParameter(oAuthRequest, "p_p_resource_id", "serveApp");
+		}
+
+		Response response = getResponse(themeDisplay.getUser(), oAuthRequest);
+
+		FileUtil.write(file, response.getStream());
 	}
 
 	protected JSONObject getAppJSONObject(long remoteAppId) throws Exception {
