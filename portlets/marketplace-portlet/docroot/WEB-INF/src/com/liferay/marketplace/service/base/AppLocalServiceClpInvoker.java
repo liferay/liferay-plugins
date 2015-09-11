@@ -166,9 +166,7 @@ public class AppLocalServiceClpInvoker {
 
 		_methodName62 = "updateApp";
 
-		_methodParameterTypes62 = new String[] {
-				"long", "long", "java.lang.String", "java.io.File"
-			};
+		_methodParameterTypes62 = new String[] { "long", "java.io.File" };
 
 		_methodName63 = "updateApp";
 
@@ -353,8 +351,7 @@ public class AppLocalServiceClpInvoker {
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
+				(java.io.File)arguments[1]);
 		}
 
 		if (_methodName63.equals(name) &&

@@ -364,10 +364,10 @@ public class AppLocalServiceWrapper implements AppLocalService,
 
 	@Override
 	public com.liferay.marketplace.model.App updateApp(long userId,
-		long remoteAppId, java.lang.String version, java.io.File file)
+		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _appLocalService.updateApp(userId, remoteAppId, version, file);
+		return _appLocalService.updateApp(userId, file);
 	}
 
 	@Override

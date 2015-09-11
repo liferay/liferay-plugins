@@ -81,11 +81,10 @@ public class AppServiceUtil {
 		getService().uninstallApp(remoteAppId);
 	}
 
-	public static com.liferay.marketplace.model.App updateApp(
-		long remoteAppId, java.lang.String version, java.io.File file)
+	public static com.liferay.marketplace.model.App updateApp(java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateApp(remoteAppId, version, file);
+		return getService().updateApp(file);
 	}
 
 	public static void clearService() {

@@ -46,9 +46,7 @@ public class AppServiceClp implements AppService {
 
 		_methodName6 = "updateApp";
 
-		_methodParameterTypes6 = new String[] {
-				"long", "java.lang.String", "java.io.File"
-			};
+		_methodParameterTypes6 = new String[] { "java.io.File" };
 	}
 
 	@Override
@@ -193,8 +191,7 @@ public class AppServiceClp implements AppService {
 	}
 
 	@Override
-	public com.liferay.marketplace.model.App updateApp(long remoteAppId,
-		java.lang.String version, java.io.File file)
+	public com.liferay.marketplace.model.App updateApp(java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -202,13 +199,7 @@ public class AppServiceClp implements AppService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName6,
 					_methodParameterTypes6,
-					new Object[] {
-						remoteAppId,
-						
-					ClpSerializer.translateInput(version),
-						
-					ClpSerializer.translateInput(file)
-					});
+					new Object[] { ClpSerializer.translateInput(file) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
