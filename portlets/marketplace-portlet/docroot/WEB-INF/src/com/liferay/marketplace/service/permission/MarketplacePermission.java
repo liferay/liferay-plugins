@@ -39,7 +39,7 @@ public class MarketplacePermission {
 			return false;
 		}
 
-		return false;
+		return true;
 	}
 
 }

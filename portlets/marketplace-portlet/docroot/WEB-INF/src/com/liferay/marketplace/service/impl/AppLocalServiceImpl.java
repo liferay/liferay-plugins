@@ -457,8 +457,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	}
 
 	@Override
-	public App updateApp(
-			long userId, long remoteAppId, String version, File file)
+	public App updateApp(long userId, File file)
 		throws PortalException, SystemException {
 
 		Properties properties = getMarketplaceProperties(file);
@@ -468,10 +467,13 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				"Unable to read liferay-marketplace.properties");
 		}
 
+		long remoteAppId = GetterUtil.getLong(
+			properties.getProperty("remote-app-id"));
 		String title = properties.getProperty("title");
 		String description = properties.getProperty("description");
 		String category = properties.getProperty("category");
 		String iconURL = properties.getProperty("icon-url");
+		String version = properties.getProperty("version");
 
 		return updateApp(
 			userId, remoteAppId, title, description, category, iconURL, version,
