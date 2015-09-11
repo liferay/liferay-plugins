@@ -32,7 +32,7 @@
 
 <aui:form action="${viewAssetsURL}" method="get" name="fm">
 	<aui:fieldset>
-		<aui:input inlineField="<%= true %>" label="" name="keywords" size="30" title="search-assets" type="text" />
+		<aui:input inlineField="${true}" label="" name="keywords" size="30" title="search-assets" type="text" />
 
 		<aui:button type="submit" value="search" />
 	</aui:fieldset>
@@ -46,7 +46,7 @@
 
 	<liferay-ui:search-container-row
 		className="com.liferay.ams.model.Asset"
-		escapedModel="<%= true %>"
+		escapedModel="${true}"
 		keyProperty="assetId"
 		modelVar="asset"
 	>
