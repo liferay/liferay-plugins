@@ -71,4 +71,11 @@ public interface ScreensAssetEntryService extends BaseService, InvokableService 
 		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.json.JSONArray getFilteredAssetEntries(
+		long companyId, long groupId, java.lang.String portletItemName,
+		java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }
