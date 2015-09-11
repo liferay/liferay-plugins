@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.*;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.PortletItem;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
@@ -47,35 +47,36 @@ public class ScreensAssetEntryServiceImpl
 
 	@Override
 	public JSONArray getAssetEntries(
-		AssetEntryQuery assetEntryQuery, Locale locale)
+			AssetEntryQuery assetEntryQuery, Locale locale)
 		throws PortalException, SystemException {
 
 		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
-		JSONArray assetEntriesJSONArray = convertToJSONArray(locale, assetEntries);
+		JSONArray assetEntriesJSONArray = _convertToJSONArray(locale, assetEntries);
 
 		return assetEntriesJSONArray;
 	}
 
-	public JSONArray getFilteredAssetEntries(long companyId, long groupId, String portletItemName, Locale locale)
+	public JSONArray getFilteredAssetEntries(
+			long companyId, long groupId, String portletItemName, Locale locale)
 		throws PortalException, SystemException {
 
 		List<AssetEntry> assetEntries = new ArrayList<AssetEntry>();
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(PortletItem.class)
 			.add(PropertyFactoryUtil.forName("name").eq(portletItemName));
+
 		dynamicQuery.setLimit(0, 1);
 
 		List<PortletItem> items = portletItemLocalService.dynamicQuery(dynamicQuery);
 
-		if (!items.isEmpty())
-
-		{
+		if (!items.isEmpty()) {
 			PortletItem portletItem = items.get(0);
 
 			PortletPreferences portletPreferences = portletPreferencesLocalService.getPreferences(
-				portletItem.getCompanyId(), portletItem.getPortletItemId(), PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0, portletItem.getPortletId());
+				portletItem.getCompanyId(), portletItem.getPortletItemId(),
+				PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0, portletItem.getPortletId());
 
 			String selectionStyle = GetterUtil.getString(portletPreferences.getValue("selectionStyle", null), "dynamic");
 
@@ -94,18 +95,17 @@ public class ScreensAssetEntryServiceImpl
 			}
 		}
 
-		return convertToJSONArray(locale, assetEntries);
+		return _convertToJSONArray(locale, assetEntries);
 	}
 
-	private JSONArray convertToJSONArray(Locale locale, List<AssetEntry> assetEntries) throws JSONException {
+	private JSONArray _convertToJSONArray(Locale locale, List<AssetEntry> assetEntries) throws JSONException {
 		JSONArray assetEntriesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntry assetEntry : assetEntries) {
 			JSONObject assetEntryJSONObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.looseSerialize(assetEntry));
 
-			assetEntryJSONObject.put(
-				"description", assetEntry.getDescription(locale));
+			assetEntryJSONObject.put("description", assetEntry.getDescription(locale));
 			assetEntryJSONObject.put("summary", assetEntry.getSummary(locale));
 			assetEntryJSONObject.put("title", assetEntry.getTitle(locale));
 
