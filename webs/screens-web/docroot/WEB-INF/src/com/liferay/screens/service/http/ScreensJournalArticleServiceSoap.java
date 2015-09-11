@@ -67,11 +67,11 @@ public class ScreensJournalArticleServiceSoap {
 		}
 	}
 
-	public static java.lang.String getJournalArticleByStructureId(
-		long groupId, java.lang.String articleId, long templateId, String locale)
+	public static java.lang.String getJournalArticleByTemplateId(long groupId,
+		java.lang.String articleId, long templateId, String locale)
 		throws RemoteException {
 		try {
-			java.lang.String returnValue = ScreensJournalArticleServiceUtil.getJournalArticleByStructureId(groupId,
+			java.lang.String returnValue = ScreensJournalArticleServiceUtil.getJournalArticleByTemplateId(groupId,
 					articleId, templateId, LocaleUtil.fromLanguageId(locale));
 
 			return returnValue;

@@ -37,7 +37,7 @@ public class ScreensJournalArticleServiceClp
 
 		_methodParameterTypes3 = new String[] { "int", "int", "java.util.Locale" };
 
-		_methodName4 = "getJournalArticleByStructureId";
+		_methodName4 = "getJournalArticleByTemplateId";
 
 		_methodParameterTypes4 = new String[] {
 				"long", "java.lang.String", "long", "java.util.Locale"
@@ -136,7 +136,7 @@ public class ScreensJournalArticleServiceClp
 	}
 
 	@Override
-	public java.lang.String getJournalArticleByStructureId(long groupId,
+	public java.lang.String getJournalArticleByTemplateId(long groupId,
 		java.lang.String articleId, long templateId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

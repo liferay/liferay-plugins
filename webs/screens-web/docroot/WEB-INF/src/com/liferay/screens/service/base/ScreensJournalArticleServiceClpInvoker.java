@@ -36,7 +36,7 @@ public class ScreensJournalArticleServiceClpInvoker {
 
 		_methodParameterTypes34 = new String[] { "int", "int", "java.util.Locale" };
 
-		_methodName35 = "getJournalArticleByStructureId";
+		_methodName35 = "getJournalArticleByTemplateId";
 
 		_methodParameterTypes35 = new String[] {
 				"long", "java.lang.String", "long", "java.util.Locale"
@@ -66,7 +66,7 @@ public class ScreensJournalArticleServiceClpInvoker {
 
 		if (_methodName35.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
-			return ScreensJournalArticleServiceUtil.getJournalArticleByStructureId(((Long)arguments[0]).longValue(),
+			return ScreensJournalArticleServiceUtil.getJournalArticleByTemplateId(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Long)arguments[2]).longValue(), (java.util.Locale)arguments[3]);
 		}

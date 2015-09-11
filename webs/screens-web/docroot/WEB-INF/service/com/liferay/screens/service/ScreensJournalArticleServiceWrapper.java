@@ -69,11 +69,11 @@ public class ScreensJournalArticleServiceWrapper
 	}
 
 	@Override
-	public java.lang.String getJournalArticleByStructureId(long groupId,
+	public java.lang.String getJournalArticleByTemplateId(long groupId,
 		java.lang.String articleId, long templateId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _screensJournalArticleService.getJournalArticleByStructureId(groupId,
+		return _screensJournalArticleService.getJournalArticleByTemplateId(groupId,
 			articleId, templateId, locale);
 	}
 
