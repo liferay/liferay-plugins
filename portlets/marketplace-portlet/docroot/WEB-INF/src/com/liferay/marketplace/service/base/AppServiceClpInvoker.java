@@ -45,9 +45,7 @@ public class AppServiceClpInvoker {
 
 		_methodName41 = "updateApp";
 
-		_methodParameterTypes41 = new String[] {
-				"long", "java.lang.String", "java.io.File"
-			};
+		_methodParameterTypes41 = new String[] { "java.io.File" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -85,8 +83,7 @@ public class AppServiceClpInvoker {
 
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
-			return AppServiceUtil.updateApp(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.io.File)arguments[2]);
+			return AppServiceUtil.updateApp((java.io.File)arguments[0]);
 		}
 
 		throw new UnsupportedOperationException();

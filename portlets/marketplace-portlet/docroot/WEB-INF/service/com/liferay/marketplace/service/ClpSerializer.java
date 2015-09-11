@@ -250,6 +250,11 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
+		if (className.equals("com.liferay.marketplace.AppPropertiesException")) {
+			return new com.liferay.marketplace.AppPropertiesException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
 		if (className.equals("com.liferay.marketplace.AppVersionException")) {
 			return new com.liferay.marketplace.AppVersionException(throwable.getMessage(),
 				throwable.getCause());

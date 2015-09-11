@@ -286,6 +286,13 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	}
 
 	public com.liferay.marketplace.model.App updateApp(long userId,
+		java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _appLocalService.updateApp(userId, file);
+	}
+
+	public com.liferay.marketplace.model.App updateApp(long userId,
 		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
