@@ -47,7 +47,7 @@ portletURL.setParameter("category", category);
 		List<App> apps = null;
 
 		if (Validator.isNotNull(category)) {
-			apps = AppLocalServiceUtil.getApps(category);
+			apps = AppLocalServiceUtil.getInstalledApps(category);
 		}
 		else {
 			apps = AppLocalServiceUtil.getInstalledApps();
