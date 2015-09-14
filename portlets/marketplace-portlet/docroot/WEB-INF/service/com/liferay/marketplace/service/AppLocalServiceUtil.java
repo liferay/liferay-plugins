@@ -326,6 +326,12 @@ public class AppLocalServiceUtil {
 		return getService().getInstalledApps();
 	}
 
+	public static java.util.List<com.liferay.marketplace.model.App> getInstalledApps(
+		java.lang.String category)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getInstalledApps(category);
+	}
+
 	public static void installApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
