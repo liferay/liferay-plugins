@@ -15,7 +15,10 @@
 package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBFolder;
+import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.service.persistence.KBArticleActionableDynamicQuery;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
@@ -25,6 +28,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
@@ -131,6 +135,7 @@ public class AdminIndexer extends BaseIndexer {
 		document.addText(Field.DESCRIPTION, kbArticle.getDescription());
 		document.addText(Field.TITLE, kbArticle.getTitle());
 
+		document.addKeyword("folderNames", getKBFolderNames(kbArticle));
 		document.addKeyword("titleKeyword", kbArticle.getTitle(), true);
 
 		return document;
@@ -183,6 +188,25 @@ public class AdminIndexer extends BaseIndexer {
 		long companyId = GetterUtil.getLong(ids[0]);
 
 		reindexKBArticles(companyId);
+	}
+
+	protected String[] getKBFolderNames(KBArticle kbArticle)
+		throws PortalException, SystemException {
+
+		long kbFolderId = kbArticle.getKbFolderId();
+
+		Collection<String> kbFolderNames = new ArrayList<String>();
+
+		while (kbFolderId != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			KBFolder kbFolder = KBFolderLocalServiceUtil.getKBFolder(
+				kbFolderId);
+
+			kbFolderNames.add(kbFolder.getName());
+
+			kbFolderId = kbFolder.getParentKBFolderId();
+		}
+
+		return kbFolderNames.toArray(new String[kbFolderNames.size()]);
 	}
 
 	@Override
