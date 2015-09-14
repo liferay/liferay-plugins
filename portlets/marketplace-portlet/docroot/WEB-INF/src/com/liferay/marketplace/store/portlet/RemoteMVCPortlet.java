@@ -41,7 +41,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletSession;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -68,13 +67,14 @@ public class RemoteMVCPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletSession portletSession = actionRequest.getPortletSession();
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		OAuthService oAuthService = OAuthUtil.getOAuthService();
 
 		Token requestToken = oAuthService.getRequestToken();
 
-		portletSession.setAttribute(WebKeys.OAUTH_REQUEST_TOKEN, requestToken);
+		OAuthUtil.updateRequestToken(themeDisplay.getUser(), requestToken);
 
 		String redirect = oAuthService.getAuthorizationUrl(requestToken);
 
@@ -342,10 +342,7 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PortletSession portletSession = renderRequest.getPortletSession();
-
-		Token requestToken = (Token)portletSession.getAttribute(
-			WebKeys.OAUTH_REQUEST_TOKEN);
+		Token requestToken = OAuthUtil.getRequestToken(themeDisplay.getUser());
 
 		OAuthService oAuthService = OAuthUtil.getOAuthService();
 
@@ -354,7 +351,7 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		OAuthUtil.updateAccessToken(themeDisplay.getUser(), accessToken);
 
-		portletSession.removeAttribute(WebKeys.OAUTH_REQUEST_TOKEN);
+		OAuthUtil.deleteRequestToken(themeDisplay.getUser());
 	}
 
 }
