@@ -16,10 +16,18 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-portlet:renderURL var="callbackURL" />
+<div class="authorize">
+	<img src="<%= PortalUtil.getPathContext(request) %>/store/images/logo.svg" />
 
-<liferay-portlet:actionURL name="authorize" var="authorizeURL">
-	<portlet:param name="callbackURL" value="<%= callbackURL %>" />
-</liferay-portlet:actionURL>
+	<p>
+		<liferay-ui:message key="liferay-marketplace-is-an-integral-part-of-the-liferay-platform-experience-for-all-users" />
+	</p>
 
-<aui:button onClick="<%= authorizeURL %>" value="sign-in" />
+	<liferay-portlet:renderURL var="callbackURL" />
+
+	<liferay-portlet:actionURL name="authorize" var="authorizeURL">
+		<portlet:param name="callbackURL" value="<%= callbackURL %>" />
+	</liferay-portlet:actionURL>
+
+	<aui:button onClick="<%= authorizeURL %>" value="sign-in" />
+</div>

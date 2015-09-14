@@ -3,3 +3,19 @@
 	min-width: 975px;
 	width: 100%;
 }
+
+.marketplace-portlet .authorize {
+	margin: 0 auto;
+	max-width: 960px;
+	padding: 6em 4em;
+
+	p {
+		margin: 2em 0;
+	}
+}
+
+.marketplace-portlet .sign-out {
+	margin: 2em auto;
+	text-align: center;
+	width: 300px;
+}
