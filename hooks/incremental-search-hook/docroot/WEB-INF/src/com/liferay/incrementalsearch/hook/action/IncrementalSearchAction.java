@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
 import com.liferay.portal.kernel.search.facet.config.FacetConfigurationUtil;
 import com.liferay.portal.kernel.search.facet.util.FacetFactoryUtil;
 import com.liferay.portal.kernel.struts.BaseStrutsPortletAction;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -96,6 +97,20 @@ public class IncrementalSearchAction extends BaseStrutsPortletAction {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			jsonObject.put(Field.TITLE, document.get(Field.TITLE));
+
+			JSONArray folderNamesJSONArray = JSONFactoryUtil.createJSONArray();
+
+			String[] folderNames = document.getValues("folderNames");
+
+			ArrayUtil.reverse(folderNames);
+
+			for (String folderName : folderNames) {
+				if (Validator.isNotNull(folderName)) {
+					folderNamesJSONArray.put(folderName);
+				}
+			}
+
+			jsonObject.put("folderNames", folderNamesJSONArray);
 
 			String viewURL = getViewURL(
 				resourceRequest, resourceResponse, document);

@@ -28,10 +28,55 @@
 <aui:script use="autocomplete,autocomplete-highlighters">
 	var node = A.one('#<portlet:namespace />searchContainer input[name="<portlet:namespace />keywords"]');
 
+	var searchResultTemplate =
+		'<div class="kb-search-result">' +
+			'{folders} <span class="kb-search-result-title">{title}</span>' +
+		'</div>';
+
+	var folderTemplate =
+		'<span class="kb-search-result-folder" style="font-size: 0.9em">' +
+			'{folderName} <span style="margin: 0 0.3em 0 0">&gt;</span>' +
+		'</span>';
+
+	function searchResultFormatter(query, results) {
+		return A.Array.map(
+			results,
+			function(result) {
+				var rawResult = result.raw;
+
+				var foldersMarkup = A.Array.reduce(
+					rawResult.folderNames,
+					'',
+					function(markup, folderName) {
+						if (!A.Lang.trim(folderName)) {
+							return markup;
+						}
+
+						var folderMarkup = A.Lang.sub(
+							folderTemplate,
+							{ folderName : folderName }
+						);
+
+						return markup + folderMarkup;
+					}
+				);
+
+				return A.Lang.sub(
+					searchResultTemplate,
+					{
+						folders : foldersMarkup,
+						title : rawResult.title
+					}
+				);
+			}
+		);
+	}
+
 	node.plug(
 		A.Plugin.AutoComplete,
 		{
 			requestTemplate: '&<portlet:namespace />keywords={query}',
+			resultFormatter: searchResultFormatter,
 			resultHighlighter: 'phraseMatch',
 			resultTextLocator: 'title',
 			source: '<%= incrementalSearchURL %>'
