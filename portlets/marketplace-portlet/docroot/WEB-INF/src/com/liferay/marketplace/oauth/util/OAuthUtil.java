@@ -37,10 +37,21 @@ public class OAuthUtil {
 		throws PortalException, SystemException {
 
 		ExpandoValueLocalServiceUtil.deleteValue(
-			user.getCompanyId(), User.class.getName(), "MP", "secret",
+			user.getCompanyId(), User.class.getName(), "MP", "accessSecret",
 			user.getUserId());
 		ExpandoValueLocalServiceUtil.deleteValue(
-			user.getCompanyId(), User.class.getName(), "MP", "token",
+			user.getCompanyId(), User.class.getName(), "MP", "accessToken",
+			user.getUserId());
+	}
+
+	public static void deleteRequestToken(User user)
+		throws PortalException, SystemException {
+
+		ExpandoValueLocalServiceUtil.deleteValue(
+			user.getCompanyId(), User.class.getName(), "MP", "requestSecret",
+			user.getUserId());
+		ExpandoValueLocalServiceUtil.deleteValue(
+			user.getCompanyId(), User.class.getName(), "MP", "requestToken",
 			user.getUserId());
 	}
 
@@ -49,11 +60,11 @@ public class OAuthUtil {
 
 		ExpandoValue secretExpandoValue =
 			ExpandoValueLocalServiceUtil.getValue(
-				user.getCompanyId(), User.class.getName(), "MP", "secret",
+				user.getCompanyId(), User.class.getName(), "MP", "accessSecret",
 				user.getUserId());
 		ExpandoValue tokenExpandoValue =
 			ExpandoValueLocalServiceUtil.getValue(
-				user.getCompanyId(), User.class.getName(), "MP", "token",
+				user.getCompanyId(), User.class.getName(), "MP", "accessToken",
 				user.getUserId());
 
 		if ((secretExpandoValue == null) || (tokenExpandoValue == null)) {
@@ -76,14 +87,45 @@ public class OAuthUtil {
 		return api.createService(oAuthConfig);
 	}
 
+	public static Token getRequestToken(User user)
+		throws PortalException, SystemException {
+
+		ExpandoValue secretExpandoValue =
+			ExpandoValueLocalServiceUtil.getValue(
+				user.getCompanyId(), User.class.getName(), "MP",
+				"requestSecret", user.getUserId());
+		ExpandoValue tokenExpandoValue =
+			ExpandoValueLocalServiceUtil.getValue(
+				user.getCompanyId(), User.class.getName(), "MP", "requestToken",
+				user.getUserId());
+
+		if ((secretExpandoValue == null) || (tokenExpandoValue == null)) {
+			return null;
+		}
+
+		return new Token(
+			tokenExpandoValue.getString(), secretExpandoValue.getString());
+	}
+
 	public static void updateAccessToken(User user, Token token)
 		throws PortalException, SystemException {
 
 		ExpandoValueLocalServiceUtil.addValue(
-			user.getCompanyId(), User.class.getName(), "MP", "secret",
+			user.getCompanyId(), User.class.getName(), "MP", "accessSecret",
 			user.getUserId(), token.getSecret());
 		ExpandoValueLocalServiceUtil.addValue(
-			user.getCompanyId(), User.class.getName(), "MP", "token",
+			user.getCompanyId(), User.class.getName(), "MP", "accessToken",
+			user.getUserId(), token.getToken());
+	}
+
+	public static void updateRequestToken(User user, Token token)
+		throws PortalException, SystemException {
+
+		ExpandoValueLocalServiceUtil.addValue(
+			user.getCompanyId(), User.class.getName(), "MP", "requestSecret",
+			user.getUserId(), token.getSecret());
+		ExpandoValueLocalServiceUtil.addValue(
+			user.getCompanyId(), User.class.getName(), "MP", "requestToken",
 			user.getUserId(), token.getToken());
 	}
 
