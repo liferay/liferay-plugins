@@ -14,9 +14,27 @@
  */
 --%>
 
+<%
+String calendarName = null;
+
+if (calendar != null) {
+	if (calendarResource == null) {
+		calendarResource = calendar.getCalendarResource();
+	}
+
+	String calendarResourceName = calendarResource.getName(locale);
+
+	calendarName = calendar.getName(locale);
+
+	if (!calendarName.equals(calendarResourceName)) {
+		calendarName = calendarResourceName + StringPool.SPACE + StringPool.DASH + StringPool.SPACE + calendarName;
+	}
+}
+%>
+
 <liferay-ui:header
 	backURL="<%= backURL %>"
-	title='<%= (calendar == null) ? LanguageUtil.format(pageContext, "new-calendar-for-x", calendarResource.getName(locale)) : calendar.getCalendarResource().getName(locale) + StringPool.SPACE + StringPool.DASH + StringPool.SPACE + calendar.getName(locale) %>'
+	title='<%= (calendar == null) ? LanguageUtil.format(pageContext, "new-calendar-for-x", calendarResource.getName(locale)) : calendarName %>'
 />
 
 <liferay-portlet:actionURL name="updateCalendar" var="updateCalendarURL" />
