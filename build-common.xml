@@ -3148,7 +3148,7 @@ for (String path : paths) {
 											includes="**/.sass-cache/*.css"
 										/>
 										<filtermapper>
-											<replacestring from="/.sass-cache/" to="/" />
+											<replacestring from=".sass-cache" to="" />
 										</filtermapper>
 									</mappedresources>
 								</zip>
@@ -3226,7 +3226,7 @@ for (String path : paths) {
 								includes="**/.sass-cache/*.css"
 							/>
 							<filtermapper>
-								<replacestring from="/.sass-cache/" to="/" />
+								<replacestring from=".sass-cache" to="" />
 							</filtermapper>
 						</mappedresources>
 					</zip>
@@ -3248,7 +3248,7 @@ for (String path : paths) {
 								includes="**/.sass-cache/*.css"
 							/>
 							<filtermapper>
-								<replacestring from="/.sass-cache/" to="/" />
+								<replacestring from=".sass-cache" to="" />
 							</filtermapper>
 						</mappedresources>
 					</zip>
