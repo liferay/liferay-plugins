@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.display.portlet;
 
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
+import com.liferay.knowledgebase.display.selector.KBArticleSelection;
 import com.liferay.knowledgebase.display.selector.KBArticleSelector;
 import com.liferay.knowledgebase.display.selector.KBArticleSelectorFactoryUtil;
 import com.liferay.knowledgebase.model.KBArticle;
@@ -60,6 +61,8 @@ import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
@@ -73,7 +76,9 @@ public class DisplayPortlet extends BaseKBPortlet {
 		throws IOException, PortletException {
 
 		try {
-			KBArticle kbArticle = getKBArticle(renderRequest);
+			KBArticleSelection kbArticleSelection = getKBArticle(renderRequest);
+
+			KBArticle kbArticle = kbArticleSelection.getKBArticle();
 
 			int status = getStatus(renderRequest, kbArticle);
 
@@ -86,6 +91,19 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 			renderRequest.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_KB_ARTICLE, kbArticle);
+			renderRequest.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_EXACT_MATCH,
+				kbArticleSelection.isExactMatch());
+			renderRequest.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_SEARCH_KEYWORDS,
+				kbArticleSelection.getKeywords());
+
+			if (!kbArticleSelection.isExactMatch()) {
+				HttpServletResponse response =
+					PortalUtil.getHttpServletResponse(renderResponse);
+
+				response.setStatus(404);
+			}
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -250,7 +268,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 		return kbArticle;
 	}
 
-	protected KBArticle getKBArticle(RenderRequest renderRequest)
+	protected KBArticleSelection getKBArticle(RenderRequest renderRequest)
 		throws PortalException {
 
 		String mvcPath = ParamUtil.getString(renderRequest, "mvcPath");
@@ -263,11 +281,14 @@ public class DisplayPortlet extends BaseKBPortlet {
 				renderRequest, "resourcePrimKey");
 
 			if (resourcePrimKey == 0) {
-				return null;
+				return new KBArticleSelection(null, false);
 			}
 
-			return KBArticleLocalServiceUtil.getLatestKBArticle(
-				resourcePrimKey, WorkflowConstants.STATUS_ANY);
+			KBArticle latestKBArticle =
+				KBArticleLocalServiceUtil.getLatestKBArticle(
+					resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+			return new KBArticleSelection(latestKBArticle, true);
 		}
 
 		PortletPreferences portletPreferences = renderRequest.getPreferences();

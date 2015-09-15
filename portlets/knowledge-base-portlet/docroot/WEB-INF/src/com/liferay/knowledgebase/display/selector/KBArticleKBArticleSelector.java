@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 public class KBArticleKBArticleSelector implements KBArticleSelector {
 
 	@Override
-	public KBArticle findByResourcePrimKey(
+	public KBArticleSelection findByResourcePrimKey(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, long resourcePrimKey)
 		throws PortalException {
@@ -35,7 +35,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 				ancestorResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		if (ancestorKBArticle == null) {
-			return null;
+			return new KBArticleSelection(null, false);
 		}
 
 		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchLatestKBArticle(
@@ -46,7 +46,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 	}
 
 	@Override
-	public KBArticle findByUrlTitle(
+	public KBArticleSelection findByUrlTitle(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, String kbFolderUrlTitle,
 			String urlTitle)
@@ -69,7 +69,7 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 			groupId, ancestorKBArticle, kbArticle);
 	}
 
-	protected KBArticle findClosestMatchingKBArticle(
+	protected KBArticleSelection findClosestMatchingKBArticle(
 			long groupId, KBArticle ancestorKBArticle, KBArticle kbArticle)
 		throws PortalException {
 
@@ -82,25 +82,25 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 					candidateKBArticle.getUrlTitle());
 
 			if (matchingKBArticle != null) {
-				return matchingKBArticle;
+				return new KBArticleSelection(matchingKBArticle, false);
 			}
 
 			candidateKBArticle = candidateKBArticle.getParentKBArticle();
 		}
 
-		return ancestorKBArticle;
+		return new KBArticleSelection(ancestorKBArticle, false);
 	}
 
-	protected KBArticle getClosestMatchingDescendantKBArticle(
+	protected KBArticleSelection getClosestMatchingDescendantKBArticle(
 			long groupId, KBArticle ancestorKBArticle, KBArticle kbArticle)
 		throws PortalException {
 
 		if (kbArticle == null) {
-			return ancestorKBArticle;
+			return new KBArticleSelection(ancestorKBArticle, false);
 		}
 
 		if (isDescendant(kbArticle, ancestorKBArticle)) {
-			return kbArticle;
+			return new KBArticleSelection(kbArticle, true);
 		}
 
 		return findClosestMatchingKBArticle(

@@ -20,6 +20,9 @@ package com.liferay.knowledgebase.util;
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
+	public static final String KNOWLEDGE_BASE_EXACT_MATCH =
+		"KNOWLEDGE_BASE_EXACT_MATCH";
+
 	public static final String KNOWLEDGE_BASE_KB_ARTICLE =
 		"KNOWLEDGE_BASE_KB_ARTICLE";
 
@@ -33,6 +36,9 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
 	public static final String KNOWLEDGE_BASE_KB_TEMPLATE =
 		"KNOWLEDGE_BASE_KB_TEMPLATE";
+
+	public static final String KNOWLEDGE_BASE_SEARCH_KEYWORDS =
+		"KNOWLEDGE_BASE_SEARCH_KEYWORDS";
 
 	public static final String KNOWLEDGE_BASE_STATUS = "KNOWLEDGE_BASE_STATUS";
 

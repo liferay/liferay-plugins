@@ -16,6 +16,11 @@
 
 <%@ include file="/display/init.jsp" %>
 
+<%
+boolean exactMatch = GetterUtil.getBoolean(renderRequest.getAttribute(WebKeys.KNOWLEDGE_BASE_EXACT_MATCH), true);
+String[] searchKeywords = (String[])renderRequest.getAttribute(WebKeys.KNOWLEDGE_BASE_SEARCH_KEYWORDS);
+%>
+
 <div id="<portlet:namespace/>message-container"></div>
 
 <c:if test="<%= Validator.equals(portletDisplay.getId(), PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE) && PortletPermissionUtil.contains(permissionChecker, plid, portletDisplay.getId(), ActionKeys.CONFIGURATION) %>">
@@ -24,6 +29,33 @@
 	</div>
 </c:if>
 
-<div class="kb-article-container">
-	<liferay-util:include page="/admin/common/view_article.jsp" servletContext="<%= application %>" />
-</div>
+<c:choose>
+	<c:when test="<%= searchKeywords == null %>">
+		<c:if test="<%= !exactMatch %>">
+			<div class="alert alert-info">
+				<liferay-ui:message key="the-article-you-requested-was-not-found.-this-similar-article-may-be-useful-to-you" />
+			</div>
+		</c:if>
+
+		<div class="kb-article-container">
+			<liferay-util:include page="/admin/common/view_article.jsp" servletContext="<%= application %>" />
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div class="alert alert-warning">
+			<liferay-ui:message key="the-article-you-requested-was-not-found" />
+
+			<%
+			PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(PortletKeys.SEARCH, PortletRequest.RENDER_PHASE);
+
+			portletURL.setParameter("struts_action", "/search/search");
+			portletURL.setParameter("redirect", currentURL);
+			portletURL.setParameter("keywords", StringUtil.merge(searchKeywords, StringPool.SPACE));
+			portletURL.setPortletMode(PortletMode.VIEW);
+			portletURL.setWindowState(WindowState.MAXIMIZED);
+			%>
+
+			<aui:a href="<%= portletURL.toString() %>" label='<%= LanguageUtil.get(request, "search-for-a-similar-article") %>' />
+		</div>
+	</c:otherwise>
+</c:choose>
