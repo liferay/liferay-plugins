@@ -166,6 +166,37 @@ PortletURL portletURL = (PortletURL)request.getAttribute("search.jsp-portletURL"
 				</span>
 			</c:if>
 
+			<% String[] folderNames = document.getValues("folderNames"); %>
+
+			<c:if test="<%= !ArrayUtil.isEmpty(folderNames) && (Validator.isNotNull(folderNames[0])) %>">
+				<div class="asset-entry-tags">
+
+					<%
+					for (int i = 0; i < folderNames.length; i++) {
+						String folderName = folderNames[i].trim();
+
+						PortletURL folderURL = PortletURLUtil.clone(portletURL, renderResponse);
+
+						folderURL.setParameter("folderName", folderName);
+					%>
+
+						<c:if test="<%= i == 0 %>">
+							<div class="taglib-asset-tags-summary">
+						</c:if>
+
+						<aui:icon image="folder-open" label="<%= folderName %>" url="<%= folderURL.toString() %>" />
+
+						<c:if test="<%= (i + 1) == folderNames.length %>">
+							</div>
+						</c:if>
+
+					<%
+					}
+					%>
+
+				</div>
+			</c:if>
+
 			<c:if test="<%= Validator.isNotNull(assetTagNames[0]) %>">
 				<div class="asset-entry-tags">
 
