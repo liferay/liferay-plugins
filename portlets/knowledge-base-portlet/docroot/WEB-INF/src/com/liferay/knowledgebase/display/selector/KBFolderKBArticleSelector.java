@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.display.selector;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
@@ -31,7 +32,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 public class KBFolderKBArticleSelector implements KBArticleSelector {
 
 	@Override
-	public KBArticle findByResourcePrimKey(
+	public KBArticleSelection findByResourcePrimKey(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, long resourcePrimKey)
 		throws PortalException, SystemException {
@@ -45,7 +46,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 				ancestorResourcePrimKey);
 
 			if (ancestorKBFolder == null) {
-				return null;
+				return new KBArticleSelection(null, false);
 			}
 		}
 
@@ -53,15 +54,20 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		if ((kbArticle == null) || !isDescendant(kbArticle, ancestorKBFolder)) {
-			return findClosestMatchingKBArticle(
-				groupId, ancestorKBFolder, preferredKBFolderUrlTitle);
+			KBArticleSelection closestMatchingKBArticle =
+				findClosestMatchingKBArticle(
+					groupId, ancestorKBFolder, preferredKBFolderUrlTitle);
+
+			closestMatchingKBArticle.setExactMatch(true);
+
+			return closestMatchingKBArticle;
 		}
 
-		return kbArticle;
+		return new KBArticleSelection(kbArticle, true);
 	}
 
 	@Override
-	public KBArticle findByUrlTitle(
+	public KBArticleSelection findByUrlTitle(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, String kbFolderUrlTitle,
 			String urlTitle)
@@ -76,7 +82,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 				ancestorResourcePrimKey);
 
 			if (ancestorKBFolder == null) {
-				return null;
+				return new KBArticleSelection(null, false);
 			}
 		}
 
@@ -103,10 +109,10 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 				kbFolderUrlTitle, urlTitle);
 		}
 
-		return kbArticle;
+		return new KBArticleSelection(kbArticle, true);
 	}
 
-	protected KBArticle findClosestMatchingKBArticle(
+	protected KBArticleSelection findClosestMatchingKBArticle(
 			long groupId, KBFolder ancestorKBFolder,
 			String preferredKBFolderUrlTitle)
 		throws PortalException, SystemException {
@@ -134,11 +140,14 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			kbFolder = ancestorKBFolder;
 		}
 
-		return KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
-			groupId, kbFolder.getKbFolderId());
+		KBArticle kbArticle =
+			KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
+				groupId, kbFolder.getKbFolderId());
+
+		return new KBArticleSelection(kbArticle, false);
 	}
 
-	protected KBArticle findClosestMatchingKBArticle(
+	protected KBArticleSelection findClosestMatchingKBArticle(
 			long groupId, KBFolder ancestorKBFolder,
 			String preferredKBFolderUrlTitle, String kbFolderUrlTitle,
 			String urlTitle)
@@ -153,11 +162,15 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 				groupId, kbFolder.getKbFolderId(), urlTitle);
 
 		if (kbArticle != null) {
-			return kbArticle;
+			return new KBArticleSelection(kbArticle, false);
 		}
 
-		return KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
+		kbArticle = KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
 			groupId, kbFolder.getKbFolderId());
+
+		String[] keywords = StringUtil.split(urlTitle, '-');
+
+		return new KBArticleSelection(kbArticle, keywords);
 	}
 
 	protected KBFolder getCandidateKBFolder(

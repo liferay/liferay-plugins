@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.display.selector;
 
-import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
@@ -23,12 +22,12 @@ import com.liferay.portal.kernel.exception.SystemException;
  */
 public interface KBArticleSelector {
 
-	public KBArticle findByResourcePrimKey(
+	public KBArticleSelection findByResourcePrimKey(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, long resourcePrimKey)
 		throws PortalException, SystemException;
 
-	public KBArticle findByUrlTitle(
+	public KBArticleSelection findByUrlTitle(
 			long groupId, String preferredKBFolderUrlTitle,
 			long ancestorResourcePrimKey, String kbFolderUrlTitle,
 			String urlTitle)
