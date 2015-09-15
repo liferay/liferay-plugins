@@ -1300,9 +1300,9 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<equals arg1="${theme.parent}" arg2="_unstyled" />
 				<then>
-					<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.themes.unstyled" />
+					<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.theme.unstyled" />
 
-					<property name="unstyled.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.themes.unstyled" />
+					<property name="unstyled.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.theme.unstyled" />
 
 					<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 						<fileset
@@ -1322,11 +1322,11 @@ Please find a solution that does not require portal-impl.jar.
 				<elseif>
 					<equals arg1="${theme.parent}" arg2="_styled" />
 					<then>
-						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.themes.unstyled" />
-						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.themes.styled" />
+						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.theme.unstyled" />
+						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.theme.styled" />
 
-						<property name="styled.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.themes.styled" />
-						<property name="unstyled.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.themes.unstyled" />
+						<property name="styled.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.theme.styled" />
+						<property name="unstyled.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.theme.unstyled" />
 
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
@@ -1353,9 +1353,9 @@ Please find a solution that does not require portal-impl.jar.
 				<elseif>
 					<equals arg1="${theme.parent}" arg2="admin" />
 					<then>
-						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.themes.admin.web" />
+						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.theme.admin.web" />
 
-						<property name="classic.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.themes.classic.web" />
+						<property name="classic.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.theme.classic.web" />
 
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
@@ -1375,9 +1375,9 @@ Please find a solution that does not require portal-impl.jar.
 				<elseif>
 					<equals arg1="${theme.parent}" arg2="classic" />
 					<then>
-						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.themes.classic.web" />
+						<unzip-parent-theme-jar theme.jar.name="com.liferay.frontend.theme.classic.web" />
 
-						<property name="classic.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.themes.classic.web" />
+						<property name="classic.tmp.dir" value="${sdk.dir}/tmp/com.liferay.frontend.theme.classic.web" />
 
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
@@ -2905,18 +2905,18 @@ Please find a solution that does not require portal-impl.jar.
 				<then>
 					<property name="theme.tmp.dir" value="${sdk.dir}/tmp/@{theme.jar.name}" />
 
-					<pathconvert property="frontend.themes.web.jar.path">
+					<pathconvert property="frontend.theme.web.jar.path">
 						<path>
 							<fileset dir="${module.framework.base.dir}/modules" includes="@{theme.jar.name}*.jar" />
 						</path>
 					</pathconvert>
 
-					<basename file="${frontend.themes.web.jar.path}" property="frontend.themes.web.file" />
+					<basename file="${frontend.theme.web.jar.path}" property="frontend.theme.web.file" />
 
 					<if>
 						<not>
 							<uptodate
-								srcfile="${module.framework.base.dir}/modules/${frontend.themes.web.file}"
+								srcfile="${module.framework.base.dir}/modules/${frontend.theme.web.file}"
 								targetfile="${theme.tmp.dir}"
 							/>
 						</not>
@@ -2927,7 +2927,7 @@ Please find a solution that does not require portal-impl.jar.
 
 							<unzip
 								dest="${theme.tmp.dir}"
-								src="${frontend.themes.web.jar.path}"
+								src="${frontend.theme.web.jar.path}"
 							>
 								<patternset>
 									<exclude name="**/META-INF/resources/**/*.css" />
@@ -2949,8 +2949,8 @@ Please find a solution that does not require portal-impl.jar.
 				</else>
 			</if>
 
-			<var name="frontend.themes.web.file" unset="true" />
-			<var name="frontend.themes.web.jar.path" unset="true"/>
+			<var name="frontend.theme.web.file" unset="true" />
+			<var name="frontend.theme.web.jar.path" unset="true"/>
 			<var name="theme.tmp.dir" unset="true"/>
 		</sequential>
 	</macrodef>
