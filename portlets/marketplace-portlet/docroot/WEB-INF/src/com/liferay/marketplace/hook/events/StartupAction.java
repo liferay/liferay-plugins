@@ -55,17 +55,16 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "access_secret",
+				table.getTableId(), "accessSecret",
 				ExpandoColumnConstants.STRING);
 			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "access_token",
-				ExpandoColumnConstants.STRING);
-
-			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "request_secret",
+				table.getTableId(), "accessToken",
 				ExpandoColumnConstants.STRING);
 			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "request_token",
+				table.getTableId(), "requestSecret",
+				ExpandoColumnConstants.STRING);
+			ExpandoColumnLocalServiceUtil.addColumn(
+				table.getTableId(), "requestToken",
 				ExpandoColumnConstants.STRING);
 		}
 		catch (DuplicateColumnNameException dcne) {
