@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.AuthTokenUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import java.io.IOException;
@@ -291,6 +292,13 @@ public class RemoteMVCPortlet extends MVCPortlet {
 	protected void setBaseRequestParameters(
 		PortletRequest portletRequest, PortletResponse portletResponse,
 		OAuthRequest oAuthRequest) {
+
+		HttpServletRequest httpServletRequest =
+			PortalUtil.getHttpServletRequest(portletRequest);
+
+		String clientAuthToken = AuthTokenUtil.getToken(httpServletRequest);
+
+		addOAuthParameter(oAuthRequest, "clientAuthToken", clientAuthToken);
 
 		addOAuthParameter(
 			oAuthRequest, "clientPortletNamespace",
