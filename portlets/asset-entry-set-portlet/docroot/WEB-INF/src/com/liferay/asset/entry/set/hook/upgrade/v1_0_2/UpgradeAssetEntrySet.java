@@ -14,8 +14,6 @@
 
 package com.liferay.asset.entry.set.hook.upgrade.v1_0_2;
 
-import com.liferay.asset.entry.set.model.AssetEntrySet;
-import com.liferay.asset.entry.set.service.AssetEntrySetLocalServiceUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
@@ -23,8 +21,6 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import java.util.List;
 
 /**
  * @author Calvin Keum
@@ -34,6 +30,33 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		upgradeAssetEntrySet();
+	}
+
+	protected int getChildAssetEntrySetCount(long assetEntrySetId)
+		throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select count(*) from AssetEntrySet where " +
+					"parentAssetEntrySetId = " + assetEntrySetId);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+
+			return 0;
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
 	}
 
 	protected void upgradeAssetEntrySet() throws Exception {
@@ -56,11 +79,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 			while (rs.next()) {
 				long assetEntrySetId = rs.getLong("assetEntrySetId");
 
-				List<AssetEntrySet> assetEntrySets =
-					AssetEntrySetLocalServiceUtil.getChildAssetEntrySets(
-						assetEntrySetId);
-
-				ps.setInt(1, assetEntrySets.size());
+				ps.setInt(1, getChildAssetEntrySetCount(assetEntrySetId));
 
 				ps.setLong(2, assetEntrySetId);
 
