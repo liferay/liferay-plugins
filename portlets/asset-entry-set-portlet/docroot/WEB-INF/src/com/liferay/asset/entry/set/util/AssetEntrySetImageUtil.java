@@ -245,8 +245,8 @@ public class AssetEntrySetImageUtil {
 		String fileName = System.currentTimeMillis() + type + file.getName();
 
 		return PortletFileRepositoryUtil.addPortletFileEntry(
-			user.getGroupId(), userId, AssetEntrySet.class.getName(), 0L,
-			PortletKeys.ASSET_ENTRY_SET, 0L, file, fileName, null, false);
+			user.getGroupId(), userId, AssetEntrySet.class.getName(), 0,
+			PortletKeys.ASSET_ENTRY_SET, 0, file, fileName, null, false);
 	}
 
 	private static final int _ORIENTATION_MIRROR_HORIZONTAL = 2;
