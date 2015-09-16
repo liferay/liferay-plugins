@@ -6,8 +6,8 @@
 
 	<target name="test-jsp">
 		<compile-jsp
+			compile.jsp.delete.generated.files="false"
 			compile.jsp.docroot.dir="docroot"
-			delete.generated.files="false"
 		/>
 
 		<path id="jsp.test.classpath">
