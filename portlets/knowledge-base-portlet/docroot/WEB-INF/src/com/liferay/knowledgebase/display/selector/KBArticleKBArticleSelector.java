@@ -112,6 +112,10 @@ public class KBArticleKBArticleSelector implements KBArticleSelector {
 			KBArticle kbArticle, KBArticle ancestorKBArticle)
 		throws PortalException, SystemException {
 
+		if (kbArticle.getKbArticleId() == ancestorKBArticle.getKbArticleId()) {
+			return true;
+		}
+
 		KBArticle parentKBArticle = kbArticle.getParentKBArticle();
 
 		while ((parentKBArticle != null) &&
