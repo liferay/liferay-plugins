@@ -2885,8 +2885,8 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="test-unit">
-		<attribute name="test.classpathref" default="test.classpath" />
 		<attribute name="module.dir" />
+		<attribute name="test.classpathref" default="test.classpath" />
 
 		<sequential>
 			<test-cmd
