@@ -330,7 +330,7 @@
 						</else>
 					</if>
 
-					<property name="compile.jsp.jspc.dir" value="temp/jsp/${app.server.type}" />
+					<var name="compile.jsp.jspc.dir" value="temp/jsp/${app.server.type}" />
 
 					<delete dir="${compile.jsp.jspc.dir}" quiet="true" />
 					<mkdir dir="${compile.jsp.jspc.dir}" />
