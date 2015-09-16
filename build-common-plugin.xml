@@ -330,10 +330,10 @@
 						</else>
 					</if>
 
-					<property name="jspc.dir" value="temp/jsp/${app.server.type}" />
+					<property name="compile.jsp.jspc.dir" value="temp/jsp/${app.server.type}" />
 
-					<delete dir="${jspc.dir}" quiet="true" />
-					<mkdir dir="${jspc.dir}" />
+					<delete dir="${compile.jsp.jspc.dir}" quiet="true" />
+					<mkdir dir="${compile.jsp.jspc.dir}" />
 
 					<java
 						classname="com.liferay.jasper.jspc.JspC"
@@ -345,7 +345,7 @@
 					>
 						<sysproperty key="jspc.module.web" value="${jspc.module.web}" />
 						<sysproperty key="jspc.portal.dir" value="${app.server.portal.dir}" />
-						<arg line="-d ${jspc.dir}/src -webapp @{compile.jsp.docroot.dir}" />
+						<arg line="-d ${compile.jsp.jspc.dir}/src -webapp @{compile.jsp.docroot.dir}" />
 					</java>
 
 					<echo>${jspc.output}</echo>
@@ -353,16 +353,16 @@
 					<if>
 						<contains string="${jspc.output}" substring="JasperException" />
 						<then>
-							<delete dir="${jspc.dir}/src" quiet="true" />
+							<delete dir="${compile.jsp.jspc.dir}/src" quiet="true" />
 
 							<fail>JSPs failed to compile.</fail>
 						</then>
 					</if>
 
 					<if>
-						<available file="${jspc.dir}/src" type="dir" />
+						<available file="${compile.jsp.jspc.dir}/src" type="dir" />
 						<then>
-							<mkdir dir="${jspc.dir}/classes" />
+							<mkdir dir="${compile.jsp.jspc.dir}/classes" />
 
 							<delete file="${sdk.dir}/jspc.javac.output.txt" />
 
@@ -372,13 +372,13 @@
 								classpathref="jspc.classpath"
 								compiler="${javac.compiler}"
 								deprecation="${javac.deprecation}"
-								destdir="${jspc.dir}/classes"
+								destdir="${compile.jsp.jspc.dir}/classes"
 								encoding="${javac.encoding}"
 								errorProperty="jspc.javac.fail"
 								failonerror="false"
 								includeAntRuntime="false"
 								nowarn="on"
-								srcdir="${jspc.dir}/src"
+								srcdir="${compile.jsp.jspc.dir}/src"
 							/>
 
 							<record action="stop" name="${sdk.dir}/jspc.javac.output.txt" />
@@ -397,7 +397,7 @@
 							<if>
 								<istrue value="@{compile.jsp.delete.generated.files}" />
 								<then>
-									<delete dir="${jspc.dir}" quiet="true" />
+									<delete dir="${compile.jsp.jspc.dir}" quiet="true" />
 								</then>
 							</if>
 						</then>
