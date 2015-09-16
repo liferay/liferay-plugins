@@ -234,9 +234,9 @@
 	</macrodef>
 
 	<macrodef name="compile-jsp">
+		<attribute name="compile.jsp.delete.generated.files" default="true" />
 		<attribute name="compile.jsp.docroot.dir" />
 		<attribute name="compile.jsp.temp.dir" default="" />
-		<attribute name="delete.generated.files" default="true" />
 
 		<sequential>
 			<if>
@@ -395,7 +395,7 @@
 							</if>
 
 							<if>
-								<istrue value="@{delete.generated.files}" />
+								<istrue value="@{compile.jsp.delete.generated.files}" />
 								<then>
 									<delete dir="${jspc.dir}" quiet="true" />
 								</then>
