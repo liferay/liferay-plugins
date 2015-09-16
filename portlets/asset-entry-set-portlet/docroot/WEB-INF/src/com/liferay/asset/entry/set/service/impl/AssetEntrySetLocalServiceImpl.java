@@ -140,20 +140,22 @@ public class AssetEntrySetLocalServiceImpl
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntryId());
 
-		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
+		long parentAssetEntrySetId = assetEntrySet.getParentAssetEntrySetId();
+
+		if (parentAssetEntrySetId == 0) {
 			deleteChildAssetEntrySets(assetEntrySet.getAssetEntrySetId());
-		}
-		else {
-			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
-				assetEntrySet.getParentAssetEntrySetId());
-
-			updateAssetSharingEntries(parentAssetEntrySet);
-
-			updateChildAssetEntrySetsCount(
-				parentAssetEntrySet.getAssetEntrySetId());
 		}
 
 		assetEntrySetPersistence.remove(assetEntrySet);
+
+		if (parentAssetEntrySetId > 0) {
+			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
+				parentAssetEntrySetId);
+
+			updateAssetSharingEntries(parentAssetEntrySet);
+
+			updateChildAssetEntrySetsCount(parentAssetEntrySetId);
+		}
 
 		return assetEntrySet;
 	}
