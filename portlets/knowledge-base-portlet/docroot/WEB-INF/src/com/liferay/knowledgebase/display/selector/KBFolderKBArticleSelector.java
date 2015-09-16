@@ -212,6 +212,12 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			KBArticle kbArticle, KBFolder ancestorKBFolder)
 		throws PortalException {
 
+		if (ancestorKBFolder.getKbFolderId() ==
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			return true;
+		}
+
 		KBFolder parentKBFolder = KBFolderLocalServiceUtil.fetchKBFolder(
 			kbArticle.getKbFolderId());
 
