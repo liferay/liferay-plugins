@@ -73,6 +73,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 		attributes.put("size", getSize());
 		attributes.put("checksum", getChecksum());
 		attributes.put("event", getEvent());
+		attributes.put("lastPermissionChangeDate", getLastPermissionChangeDate());
 		attributes.put("lockExpirationDate", getLockExpirationDate());
 		attributes.put("lockUserId", getLockUserId());
 		attributes.put("lockUserName", getLockUserName());
@@ -203,6 +204,13 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 
 		if (event != null) {
 			setEvent(event);
+		}
+
+		Date lastPermissionChangeDate = (Date)attributes.get(
+				"lastPermissionChangeDate");
+
+		if (lastPermissionChangeDate != null) {
+			setLastPermissionChangeDate(lastPermissionChangeDate);
 		}
 
 		Date lockExpirationDate = (Date)attributes.get("lockExpirationDate");
@@ -340,6 +348,16 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public java.lang.String getExtraSettings() {
 		return _syncDLObject.getExtraSettings();
+	}
+
+	/**
+	* Returns the last permission change date of this sync d l object.
+	*
+	* @return the last permission change date of this sync d l object
+	*/
+	@Override
+	public Date getLastPermissionChangeDate() {
+		return _syncDLObject.getLastPermissionChangeDate();
 	}
 
 	/**
@@ -688,6 +706,16 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public void setExtraSettings(java.lang.String extraSettings) {
 		_syncDLObject.setExtraSettings(extraSettings);
+	}
+
+	/**
+	* Sets the last permission change date of this sync d l object.
+	*
+	* @param lastPermissionChangeDate the last permission change date of this sync d l object
+	*/
+	@Override
+	public void setLastPermissionChangeDate(Date lastPermissionChangeDate) {
+		_syncDLObject.setLastPermissionChangeDate(lastPermissionChangeDate);
 	}
 
 	/**

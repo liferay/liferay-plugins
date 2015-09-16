@@ -66,7 +66,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(53);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(syncDLObjectId);
@@ -108,6 +108,8 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		sb.append(checksum);
 		sb.append(", event=");
 		sb.append(event);
+		sb.append(", lastPermissionChangeDate=");
+		sb.append(lastPermissionChangeDate);
 		sb.append(", lockExpirationDate=");
 		sb.append(lockExpirationDate);
 		sb.append(", lockUserId=");
@@ -218,6 +220,14 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 			syncDLObjectImpl.setEvent(event);
 		}
 
+		if (lastPermissionChangeDate == Long.MIN_VALUE) {
+			syncDLObjectImpl.setLastPermissionChangeDate(null);
+		}
+		else {
+			syncDLObjectImpl.setLastPermissionChangeDate(new Date(
+					lastPermissionChangeDate));
+		}
+
 		if (lockExpirationDate == Long.MIN_VALUE) {
 			syncDLObjectImpl.setLockExpirationDate(null);
 		}
@@ -277,6 +287,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		size = objectInput.readLong();
 		checksum = objectInput.readUTF();
 		event = objectInput.readUTF();
+		lastPermissionChangeDate = objectInput.readLong();
 		lockExpirationDate = objectInput.readLong();
 		lockUserId = objectInput.readLong();
 		lockUserName = objectInput.readUTF();
@@ -377,6 +388,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 			objectOutput.writeUTF(event);
 		}
 
+		objectOutput.writeLong(lastPermissionChangeDate);
 		objectOutput.writeLong(lockExpirationDate);
 		objectOutput.writeLong(lockUserId);
 
@@ -424,6 +436,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	public long size;
 	public String checksum;
 	public String event;
+	public long lastPermissionChangeDate;
 	public long lockExpirationDate;
 	public long lockUserId;
 	public String lockUserName;

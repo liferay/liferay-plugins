@@ -4948,7 +4948,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(syncDLObject);
+		clearUniqueFindersCache((SyncDLObjectModelImpl)syncDLObject);
 	}
 
 	@Override
@@ -4960,44 +4960,44 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 			EntityCacheUtil.removeResult(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 				SyncDLObjectImpl.class, syncDLObject.getPrimaryKey());
 
-			clearUniqueFindersCache(syncDLObject);
+			clearUniqueFindersCache((SyncDLObjectModelImpl)syncDLObject);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(SyncDLObject syncDLObject,
-		boolean isNew) {
+	protected void cacheUniqueFindersCache(
+		SyncDLObjectModelImpl syncDLObjectModelImpl, boolean isNew) {
 		if (isNew) {
 			Object[] args = new Object[] {
-					syncDLObject.getType(), syncDLObject.getTypePK()
+					syncDLObjectModelImpl.getType(),
+					syncDLObjectModelImpl.getTypePK()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_T_T, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_T_T, args,
-				syncDLObject);
+				syncDLObjectModelImpl);
 		}
 		else {
-			SyncDLObjectModelImpl syncDLObjectModelImpl = (SyncDLObjectModelImpl)syncDLObject;
-
 			if ((syncDLObjectModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_T_T.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						syncDLObject.getType(), syncDLObject.getTypePK()
+						syncDLObjectModelImpl.getType(),
+						syncDLObjectModelImpl.getTypePK()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_T_T, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_T_T, args,
-					syncDLObject);
+					syncDLObjectModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(SyncDLObject syncDLObject) {
-		SyncDLObjectModelImpl syncDLObjectModelImpl = (SyncDLObjectModelImpl)syncDLObject;
-
+	protected void clearUniqueFindersCache(
+		SyncDLObjectModelImpl syncDLObjectModelImpl) {
 		Object[] args = new Object[] {
-				syncDLObject.getType(), syncDLObject.getTypePK()
+				syncDLObjectModelImpl.getType(),
+				syncDLObjectModelImpl.getTypePK()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_T, args);
@@ -5243,8 +5243,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 			SyncDLObjectImpl.class, syncDLObject.getPrimaryKey(), syncDLObject,
 			false);
 
-		clearUniqueFindersCache((SyncDLObject)syncDLObjectModelImpl);
-		cacheUniqueFindersCache((SyncDLObject)syncDLObjectModelImpl, isNew);
+		clearUniqueFindersCache(syncDLObjectModelImpl);
+		cacheUniqueFindersCache(syncDLObjectModelImpl, isNew);
 
 		syncDLObject.resetOriginalValues();
 
@@ -5281,6 +5281,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		syncDLObjectImpl.setSize(syncDLObject.getSize());
 		syncDLObjectImpl.setChecksum(syncDLObject.getChecksum());
 		syncDLObjectImpl.setEvent(syncDLObject.getEvent());
+		syncDLObjectImpl.setLastPermissionChangeDate(syncDLObject.getLastPermissionChangeDate());
 		syncDLObjectImpl.setLockExpirationDate(syncDLObject.getLockExpirationDate());
 		syncDLObjectImpl.setLockUserId(syncDLObject.getLockUserId());
 		syncDLObjectImpl.setLockUserName(syncDLObject.getLockUserName());

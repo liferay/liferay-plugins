@@ -39,6 +39,7 @@
 		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
 		<property name="checksum" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="event" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPermissionChangeDate" type="org.hibernate.type.TimestampType" />
 		<property name="lockExpirationDate" type="org.hibernate.type.TimestampType" />
 		<property name="lockUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="lockUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />

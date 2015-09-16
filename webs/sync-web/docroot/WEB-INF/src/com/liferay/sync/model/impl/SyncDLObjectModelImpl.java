@@ -90,6 +90,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 			{ "size_", Types.BIGINT },
 			{ "checksum", Types.VARCHAR },
 			{ "event", Types.VARCHAR },
+			{ "lastPermissionChangeDate", Types.TIMESTAMP },
 			{ "lockExpirationDate", Types.TIMESTAMP },
 			{ "lockUserId", Types.BIGINT },
 			{ "lockUserName", Types.VARCHAR },
@@ -120,6 +121,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		TABLE_COLUMNS_MAP.put("size_", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("checksum", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("event", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastPermissionChangeDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("lockExpirationDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("lockUserId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("lockUserName", Types.VARCHAR);
@@ -128,7 +130,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		TABLE_COLUMNS_MAP.put("typeUuid", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SyncDLObject (syncDLObjectId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,repositoryId LONG,parentFolderId LONG,treePath STRING null,name VARCHAR(255) null,extension VARCHAR(75) null,mimeType VARCHAR(75) null,description STRING null,changeLog VARCHAR(75) null,extraSettings TEXT null,version VARCHAR(75) null,versionId LONG,size_ LONG,checksum VARCHAR(75) null,event VARCHAR(75) null,lockExpirationDate DATE null,lockUserId LONG,lockUserName VARCHAR(75) null,type_ VARCHAR(75) null,typePK LONG,typeUuid VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table SyncDLObject (syncDLObjectId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createTime LONG,modifiedTime LONG,repositoryId LONG,parentFolderId LONG,treePath STRING null,name VARCHAR(255) null,extension VARCHAR(75) null,mimeType VARCHAR(75) null,description STRING null,changeLog VARCHAR(75) null,extraSettings TEXT null,version VARCHAR(75) null,versionId LONG,size_ LONG,checksum VARCHAR(75) null,event VARCHAR(75) null,lastPermissionChangeDate DATE null,lockExpirationDate DATE null,lockUserId LONG,lockUserName VARCHAR(75) null,type_ VARCHAR(75) null,typePK LONG,typeUuid VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SyncDLObject";
 	public static final String ORDER_BY_JPQL = " ORDER BY syncDLObject.modifiedTime ASC, syncDLObject.repositoryId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SyncDLObject.modifiedTime ASC, SyncDLObject.repositoryId ASC";
@@ -185,6 +187,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		model.setSize(soapModel.getSize());
 		model.setChecksum(soapModel.getChecksum());
 		model.setEvent(soapModel.getEvent());
+		model.setLastPermissionChangeDate(soapModel.getLastPermissionChangeDate());
 		model.setLockExpirationDate(soapModel.getLockExpirationDate());
 		model.setLockUserId(soapModel.getLockUserId());
 		model.setLockUserName(soapModel.getLockUserName());
@@ -275,6 +278,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		attributes.put("size", getSize());
 		attributes.put("checksum", getChecksum());
 		attributes.put("event", getEvent());
+		attributes.put("lastPermissionChangeDate", getLastPermissionChangeDate());
 		attributes.put("lockExpirationDate", getLockExpirationDate());
 		attributes.put("lockUserId", getLockUserId());
 		attributes.put("lockUserName", getLockUserName());
@@ -408,6 +412,13 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 		if (event != null) {
 			setEvent(event);
+		}
+
+		Date lastPermissionChangeDate = (Date)attributes.get(
+				"lastPermissionChangeDate");
+
+		if (lastPermissionChangeDate != null) {
+			setLastPermissionChangeDate(lastPermissionChangeDate);
 		}
 
 		Date lockExpirationDate = (Date)attributes.get("lockExpirationDate");
@@ -794,6 +805,17 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		return GetterUtil.getString(_originalEvent);
 	}
 
+	@JSON(include = false)
+	@Override
+	public Date getLastPermissionChangeDate() {
+		return _lastPermissionChangeDate;
+	}
+
+	@Override
+	public void setLastPermissionChangeDate(Date lastPermissionChangeDate) {
+		_lastPermissionChangeDate = lastPermissionChangeDate;
+	}
+
 	@JSON
 	@Override
 	public Date getLockExpirationDate() {
@@ -964,6 +986,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		syncDLObjectImpl.setSize(getSize());
 		syncDLObjectImpl.setChecksum(getChecksum());
 		syncDLObjectImpl.setEvent(getEvent());
+		syncDLObjectImpl.setLastPermissionChangeDate(getLastPermissionChangeDate());
 		syncDLObjectImpl.setLockExpirationDate(getLockExpirationDate());
 		syncDLObjectImpl.setLockUserId(getLockUserId());
 		syncDLObjectImpl.setLockUserName(getLockUserName());
@@ -1187,6 +1210,15 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 			syncDLObjectCacheModel.event = null;
 		}
 
+		Date lastPermissionChangeDate = getLastPermissionChangeDate();
+
+		if (lastPermissionChangeDate != null) {
+			syncDLObjectCacheModel.lastPermissionChangeDate = lastPermissionChangeDate.getTime();
+		}
+		else {
+			syncDLObjectCacheModel.lastPermissionChangeDate = Long.MIN_VALUE;
+		}
+
 		Date lockExpirationDate = getLockExpirationDate();
 
 		if (lockExpirationDate != null) {
@@ -1229,7 +1261,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(53);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("{syncDLObjectId=");
 		sb.append(getSyncDLObjectId());
@@ -1271,6 +1303,8 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		sb.append(getChecksum());
 		sb.append(", event=");
 		sb.append(getEvent());
+		sb.append(", lastPermissionChangeDate=");
+		sb.append(getLastPermissionChangeDate());
 		sb.append(", lockExpirationDate=");
 		sb.append(getLockExpirationDate());
 		sb.append(", lockUserId=");
@@ -1290,7 +1324,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(82);
+		StringBundler sb = new StringBundler(85);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sync.model.SyncDLObject");
@@ -1377,6 +1411,10 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		sb.append(getEvent());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>lastPermissionChangeDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPermissionChangeDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>lockExpirationDate</column-name><column-value><![CDATA[");
 		sb.append(getLockExpirationDate());
 		sb.append("]]></column-value></column>");
@@ -1438,6 +1476,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	private String _checksum;
 	private String _event;
 	private String _originalEvent;
+	private Date _lastPermissionChangeDate;
 	private Date _lockExpirationDate;
 	private long _lockUserId;
 	private String _lockUserName;

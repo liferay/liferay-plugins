@@ -1428,7 +1428,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(syncDLFileVersionDiff);
+		clearUniqueFindersCache((SyncDLFileVersionDiffModelImpl)syncDLFileVersionDiff);
 	}
 
 	@Override
@@ -1441,51 +1441,48 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 				SyncDLFileVersionDiffImpl.class,
 				syncDLFileVersionDiff.getPrimaryKey());
 
-			clearUniqueFindersCache(syncDLFileVersionDiff);
+			clearUniqueFindersCache((SyncDLFileVersionDiffModelImpl)syncDLFileVersionDiff);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
-		SyncDLFileVersionDiff syncDLFileVersionDiff, boolean isNew) {
+		SyncDLFileVersionDiffModelImpl syncDLFileVersionDiffModelImpl,
+		boolean isNew) {
 		if (isNew) {
 			Object[] args = new Object[] {
-					syncDLFileVersionDiff.getFileEntryId(),
-					syncDLFileVersionDiff.getSourceFileVersionId(),
-					syncDLFileVersionDiff.getTargetFileVersionId()
+					syncDLFileVersionDiffModelImpl.getFileEntryId(),
+					syncDLFileVersionDiffModelImpl.getSourceFileVersionId(),
+					syncDLFileVersionDiffModelImpl.getTargetFileVersionId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_S_T, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_S_T, args,
-				syncDLFileVersionDiff);
+				syncDLFileVersionDiffModelImpl);
 		}
 		else {
-			SyncDLFileVersionDiffModelImpl syncDLFileVersionDiffModelImpl = (SyncDLFileVersionDiffModelImpl)syncDLFileVersionDiff;
-
 			if ((syncDLFileVersionDiffModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_F_S_T.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						syncDLFileVersionDiff.getFileEntryId(),
-						syncDLFileVersionDiff.getSourceFileVersionId(),
-						syncDLFileVersionDiff.getTargetFileVersionId()
+						syncDLFileVersionDiffModelImpl.getFileEntryId(),
+						syncDLFileVersionDiffModelImpl.getSourceFileVersionId(),
+						syncDLFileVersionDiffModelImpl.getTargetFileVersionId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_S_T, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_S_T, args,
-					syncDLFileVersionDiff);
+					syncDLFileVersionDiffModelImpl);
 			}
 		}
 	}
 
 	protected void clearUniqueFindersCache(
-		SyncDLFileVersionDiff syncDLFileVersionDiff) {
-		SyncDLFileVersionDiffModelImpl syncDLFileVersionDiffModelImpl = (SyncDLFileVersionDiffModelImpl)syncDLFileVersionDiff;
-
+		SyncDLFileVersionDiffModelImpl syncDLFileVersionDiffModelImpl) {
 		Object[] args = new Object[] {
-				syncDLFileVersionDiff.getFileEntryId(),
-				syncDLFileVersionDiff.getSourceFileVersionId(),
-				syncDLFileVersionDiff.getTargetFileVersionId()
+				syncDLFileVersionDiffModelImpl.getFileEntryId(),
+				syncDLFileVersionDiffModelImpl.getSourceFileVersionId(),
+				syncDLFileVersionDiffModelImpl.getTargetFileVersionId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_S_T, args);
@@ -1669,9 +1666,8 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 			SyncDLFileVersionDiffImpl.class,
 			syncDLFileVersionDiff.getPrimaryKey(), syncDLFileVersionDiff, false);
 
-		clearUniqueFindersCache((SyncDLFileVersionDiff)syncDLFileVersionDiffModelImpl);
-		cacheUniqueFindersCache((SyncDLFileVersionDiff)syncDLFileVersionDiffModelImpl,
-			isNew);
+		clearUniqueFindersCache(syncDLFileVersionDiffModelImpl);
+		cacheUniqueFindersCache(syncDLFileVersionDiffModelImpl, isNew);
 
 		syncDLFileVersionDiff.resetOriginalValues();
 

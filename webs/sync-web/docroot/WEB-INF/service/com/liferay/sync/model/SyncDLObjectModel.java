@@ -368,6 +368,20 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	public void setEvent(String event);
 
 	/**
+	 * Returns the last permission change date of this sync d l object.
+	 *
+	 * @return the last permission change date of this sync d l object
+	 */
+	public Date getLastPermissionChangeDate();
+
+	/**
+	 * Sets the last permission change date of this sync d l object.
+	 *
+	 * @param lastPermissionChangeDate the last permission change date of this sync d l object
+	 */
+	public void setLastPermissionChangeDate(Date lastPermissionChangeDate);
+
+	/**
 	 * Returns the lock expiration date of this sync d l object.
 	 *
 	 * @return the lock expiration date of this sync d l object
