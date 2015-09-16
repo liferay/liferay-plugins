@@ -45,7 +45,6 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 
-import java.util.Calendar;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -243,8 +242,7 @@ public class AssetEntrySetImageUtil {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		String fileName =
-			Calendar.getInstance().getTimeInMillis() + type + file.getName();
+		String fileName = System.currentTimeMillis() + type + file.getName();
 
 		return PortletFileRepositoryUtil.addPortletFileEntry(
 			user.getGroupId(), userId, AssetEntrySet.class.getName(), 0L,
