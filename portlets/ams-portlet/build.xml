@@ -4,5 +4,5 @@
 <project name="ams-portlet" basedir="." default="deploy">
 	<property name="import.shared" value="alloy-mvc-shared" />
 
-	<import file="../build-common-portlet.xml" />
+	<import file="../build-common-alloy-portlet.xml" />
 </project>

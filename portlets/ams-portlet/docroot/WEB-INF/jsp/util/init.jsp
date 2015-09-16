@@ -42,4 +42,5 @@ page import="java.util.regex.Pattern" %>
 page import="javax.portlet.PortletResponse" %><%@
 page import="javax.portlet.PortletURL" %>
 
+<%@ include file="/WEB-INF/jsp/util/asset_util.jspf" %>
 <%@ include file="/WEB-INF/jsp/util/portlet_keys.jspf" %>
