@@ -330,7 +330,11 @@
 						</else>
 					</if>
 
-					<var name="compile.jsp.jspc.dir" value="temp/jsp/${app.server.type}" />
+					<tstamp>
+						<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+					</tstamp>
+
+					<var name="compile.jsp.jspc.dir" value="${tstamp.value}" />
 
 					<delete dir="${compile.jsp.jspc.dir}" quiet="true" />
 					<mkdir dir="${compile.jsp.jspc.dir}" />
