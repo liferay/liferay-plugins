@@ -236,6 +236,7 @@
 	<macrodef name="compile-jsp">
 		<attribute name="compile.jsp.docroot.dir" />
 		<attribute name="compile.jsp.temp.dir" default="" />
+		<attribute name="delete.generated.files" default="true" />
 
 		<sequential>
 			<if>
@@ -329,7 +330,10 @@
 						</else>
 					</if>
 
-					<delete dir="classes/tomcat" quiet="true" />
+					<property name="jspc.dir" value="jsp/${app.server.type}" />
+
+					<delete dir="${jspc.dir}" quiet="true" />
+					<mkdir dir="${jspc.dir}" />
 
 					<java
 						classname="com.liferay.jasper.jspc.JspC"
@@ -341,7 +345,7 @@
 					>
 						<sysproperty key="jspc.module.web" value="${jspc.module.web}" />
 						<sysproperty key="jspc.portal.dir" value="${app.server.portal.dir}" />
-						<arg line="-d classes/tomcat -webapp @{compile.jsp.docroot.dir}" />
+						<arg line="-d ${jspc.dir}/src -webapp @{compile.jsp.docroot.dir}" />
 					</java>
 
 					<echo>${jspc.output}</echo>
@@ -349,15 +353,17 @@
 					<if>
 						<contains string="${jspc.output}" substring="JasperException" />
 						<then>
-							<delete dir="classes/tomcat" quiet="true" />
+							<delete dir="${jspc.dir}/src" quiet="true" />
 
 							<fail>JSPs failed to compile.</fail>
 						</then>
 					</if>
 
 					<if>
-						<available file="classes/tomcat" type="dir" />
+						<available file="${jspc.dir}/src" type="dir" />
 						<then>
+							<mkdir dir="${jspc.dir}/classes" />
+
 							<delete file="${sdk.dir}/jspc.javac.output.txt" />
 
 							<record action="start" name="${sdk.dir}/jspc.javac.output.txt" />
@@ -366,13 +372,13 @@
 								classpathref="jspc.classpath"
 								compiler="${javac.compiler}"
 								deprecation="${javac.deprecation}"
-								destdir="classes/tomcat"
+								destdir="${jspc.dir}/classes"
 								encoding="${javac.encoding}"
 								errorProperty="jspc.javac.fail"
 								failonerror="false"
 								includeAntRuntime="false"
 								nowarn="on"
-								srcdir="classes/tomcat"
+								srcdir="${jspc.dir}/src"
 							/>
 
 							<record action="stop" name="${sdk.dir}/jspc.javac.output.txt" />
@@ -388,7 +394,12 @@
 								</then>
 							</if>
 
-							<delete dir="classes/tomcat" quiet="true" />
+							<if>
+								<istrue value="@{delete.generated.files}" />
+								<then>
+									<delete dir="${jspc.dir}" quiet="true" />
+								</then>
+							</if>
 						</then>
 					</if>
 
