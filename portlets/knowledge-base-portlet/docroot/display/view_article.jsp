@@ -46,7 +46,9 @@ String[] searchKeywords = (String[])renderRequest.getAttribute(WebKeys.KNOWLEDGE
 			<liferay-ui:message key="the-article-you-requested-was-not-found" />
 
 			<%
-			PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(PortletKeys.SEARCH, PortletRequest.RENDER_PHASE);
+			String searchPortletId = PortletProviderUtil.getPortletId(PortalSearchApplicationType.Search.CLASS_NAME, PortletProvider.Action.VIEW);
+
+			PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(searchPortletId, PortletRequest.RENDER_PHASE);
 
 			portletURL.setParameter("struts_action", "/search/search");
 			portletURL.setParameter("redirect", currentURL);
