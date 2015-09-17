@@ -15,7 +15,6 @@
 package com.liferay.asset.entry.set.hook.upgrade.v1_0_2;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
-import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 import java.sql.Connection;

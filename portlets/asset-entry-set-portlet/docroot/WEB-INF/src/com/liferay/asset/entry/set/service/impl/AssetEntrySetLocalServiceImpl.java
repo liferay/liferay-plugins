@@ -134,27 +134,25 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet deleteAssetEntrySet(AssetEntrySet assetEntrySet)
 		throws PortalException, SystemException {
 
+		assetEntrySetPersistence.remove(assetEntrySet);
+
 		assetEntryLocalService.deleteEntry(
 			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId());
 
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntryId());
 
-		long parentAssetEntrySetId = assetEntrySet.getParentAssetEntrySetId();
-
-		if (parentAssetEntrySetId == 0) {
+		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
 			deleteChildAssetEntrySets(assetEntrySet.getAssetEntrySetId());
 		}
-
-		assetEntrySetPersistence.remove(assetEntrySet);
-
-		if (parentAssetEntrySetId > 0) {
+		else {
 			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
-				parentAssetEntrySetId);
+				assetEntrySet.getParentAssetEntrySetId());
 
 			updateAssetSharingEntries(parentAssetEntrySet);
 
-			updateChildAssetEntrySetsCount(parentAssetEntrySetId);
+			updateChildAssetEntrySetsCount(
+				parentAssetEntrySet.getAssetEntrySetId());
 		}
 
 		return assetEntrySet;
