@@ -79,7 +79,6 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 				long assetEntrySetId = rs.getLong("assetEntrySetId");
 
 				ps.setInt(1, getChildAssetEntrySetCount(assetEntrySetId));
-
 				ps.setLong(2, assetEntrySetId);
 
 				ps.executeUpdate();
