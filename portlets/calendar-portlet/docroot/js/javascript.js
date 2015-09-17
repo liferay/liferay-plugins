@@ -1317,7 +1317,7 @@ AUI.add(
 						A.each(
 							Liferay.CalendarUtil.availableCalendars,
 							function(item, index) {
-								item.reset(calendarEvents[index]);
+								item.reset(calendarEvents[index], {skipSyncEventsUI: true});
 							}
 						);
 
