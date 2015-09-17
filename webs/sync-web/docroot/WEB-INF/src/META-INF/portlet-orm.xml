@@ -49,6 +49,9 @@
 			</basic>
 			<basic name="checksum" />
 			<basic name="event" />
+			<basic name="lastPermissionChangeDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
 			<basic name="lockExpirationDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
