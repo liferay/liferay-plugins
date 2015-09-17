@@ -728,7 +728,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			userNotificationEvent);
 	}
 
-	private static final String _ACTION_DIV_DEFAULT = 
+	private static final String _ACTION_DIV_DEFAULT =
 		"<div class=\"clearfix\">";
 
 	private static final String _BODY_TEMPLATE_DEFAULT =
