@@ -67,6 +67,7 @@
 		<column name="size" type="long" />
 		<column name="checksum" type="String" />
 		<column name="event" type="String" />
+		<column name="lastPermissionChangeDate" type="Date" json-enabled="false" />
 		<column name="lockExpirationDate" type="Date" />
 		<column name="lockUserId" type="long" />
 		<column name="lockUserName" type="String" />

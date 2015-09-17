@@ -83,6 +83,7 @@ import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -321,7 +322,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncDLObjectPersistence.findByR_T(
 					repositoryId, SyncConstants.TYPE_FOLDER);
 
-			return checkSyncDLObjects(syncDLObjects, repositoryId, false);
+			return checkSyncDLObjects(syncDLObjects, repositoryId, 0);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -583,12 +584,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				return syncDLObjectUpdate.toString();
 			}
 
-			boolean initialSync = false;
-
-			if (lastAccessTime == -1) {
-				initialSync = true;
-			}
-
 			int count = syncDLObjectPersistence.countByM_R_NotE(
 				lastAccessTime, repositoryId, events);
 
@@ -596,7 +591,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				syncDLObjects.size() - 1);
 
 			SyncDLObjectUpdate syncDLObjectUpdate = new SyncDLObjectUpdate(
-				checkSyncDLObjects(syncDLObjects, repositoryId, initialSync),
+				checkSyncDLObjects(syncDLObjects, repositoryId, lastAccessTime),
 				count, syncDLObject.getModifiedTime());
 
 			return syncDLObjectUpdate.toString();
@@ -1034,7 +1029,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	protected List<SyncDLObject> checkSyncDLObjects(
 			List<SyncDLObject> syncDLObjects, long repositoryId,
-			boolean initialSync)
+			long lastAccessTime)
 		throws PortalException, SystemException {
 
 		PermissionChecker permissionChecker = getPermissionChecker();
@@ -1057,7 +1052,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			typePKs.add(syncDLObject.getTypePK());
 
-			if (!initialSync && !hasFolderModelPermission &&
+			if ((lastAccessTime != -1) && !hasFolderModelPermission &&
 				_PERMISSIONS_VIEW_DYNAMIC_INHERITANCE) {
 
 				long[] parentFolderIds = StringUtil.split(
@@ -1078,6 +1073,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		List<SyncDLObject> checkedSyncDLObjects = new ArrayList<SyncDLObject>();
 
+		Date lastAccessDate = new Date(lastAccessTime);
+
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			String event = syncDLObject.getEvent();
 
@@ -1086,6 +1083,19 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				hasPermission(
 					checkedTypePKs, syncDLObject, hasFileModelPermission,
 					hasFolderModelPermission)) {
+
+				checkedSyncDLObjects.add(syncDLObject);
+
+				continue;
+			}
+
+			Date lastPermissionChangeDate =
+				syncDLObject.getLastPermissionChangeDate();
+
+			if ((lastPermissionChangeDate != null) &&
+				lastPermissionChangeDate.after(lastAccessDate)) {
+
+				syncDLObject.setEvent(SyncConstants.EVENT_DELETE);
 
 				checkedSyncDLObjects.add(syncDLObject);
 			}
@@ -1163,7 +1173,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				lastAccessTime, repositoryId, parentFolderId);
 
 		curSyncDLObjects = checkSyncDLObjects(
-			curSyncDLObjects, repositoryId, false);
+			curSyncDLObjects, repositoryId, lastAccessTime);
 
 		syncDLObjects.addAll(curSyncDLObjects);
 
