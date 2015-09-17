@@ -16,6 +16,20 @@
 				<filter catenateAll="0" catenateNumbers="1" catenateWords="1" class="solr.WordDelimiterFilterFactory" generateNumberParts="1" generateWordParts="1" />
 			</analyzer>
 		</fieldType>
+		<fieldType class="solr.TextField" name="assetTagNameField" positionIncrementGap="100">
+			<analyzer type="index">
+				<tokenizer class="solr.KeywordTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+			</analyzer>
+			<analyzer type="query">
+				<tokenizer class="solr.WhitespaceTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+				<filter class="solr.RemoveDuplicatesTokenFilterFactory" />
+				<filter class="solr.StopFilterFactory" enablePositionIncrements="true" ignoreCase="true" words="stopwords.txt" />
+				<filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt" />
+				<filter catenateAll="0" catenateNumbers="0" catenateWords="0" class="solr.WordDelimiterFilterFactory" generateNumberParts="1" generateWordParts="1" />
+			</analyzer>
+		</fieldType>
 		<fieldType class="solr.BoolField" name="boolean" omitNorms="true" sortMissingLast="true" />
 		<fieldType class="solr.IntField" name="integer" omitNorms="true" />
 		<fieldType class="solr.LongField" name="long" omitNorms="true" />
@@ -465,7 +479,7 @@
 		<field indexed="true" name="assetTagId" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="assetTagIds" stored="true" type="string" />
 		<field indexed="true" name="assetCategoryTitle" stored="true" termPositions="true" termVectors="true" type="text" />
-		<field indexed="true" multiValued="true" name="assetTagNames" stored="true" termPositions="true" termVectors="true" type="text" />
+		<field indexed="true" multiValued="true" name="assetTagNames" stored="true" termPositions="true" termVectors="true" type="assetTagNameField" />
 		<field indexed="true" name="assetVocabularyId" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="assetVocabularyIds" stored="true" type="string" />
 		<field indexed="true" name="classTypeId" stored="true" type="string" />
