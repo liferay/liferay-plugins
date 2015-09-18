@@ -32,6 +32,7 @@ import com.liferay.portal.model.Image;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
@@ -59,7 +60,7 @@ public class AssetEntrySetImageUtil {
 		throws PortalException, SystemException {
 
 		try {
-			AssetEntrySetImageUtil.rotateImage(file);
+			rotateImage(file);
 		}
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
@@ -119,7 +120,9 @@ public class AssetEntrySetImageUtil {
 		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
 
 		try {
-			Image image = ImageToolUtil.getImage(fileEntry.getContentStream());
+			Image image = ImageToolUtil.getImage(
+				DLFileEntryLocalServiceUtil.getFileAsStream(
+					fileEntry.getFileEntryId(), fileEntry.getVersion(), false));
 
 			imageJSONObject.put("height_" + imageType, image.getHeight());
 			imageJSONObject.put("width_" + imageType, image.getWidth());
