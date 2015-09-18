@@ -1199,13 +1199,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		List<Resource> resources = new ArrayList<Resource>(3);
 
-		Resource companyResource = ResourceLocalServiceUtil.getResource(
-			permissionChecker.getCompanyId(), name,
-			ResourceConstants.SCOPE_COMPANY,
-			String.valueOf(permissionChecker.getCompanyId()));
-
-		resources.add(companyResource);
-
 		Resource groupResource = ResourceLocalServiceUtil.getResource(
 			permissionChecker.getCompanyId(), name,
 			ResourceConstants.SCOPE_GROUP, String.valueOf(groupId));
@@ -1218,6 +1211,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID));
 
 		resources.add(groupTemplateResource);
+
+		Resource companyResource = ResourceLocalServiceUtil.getResource(
+			permissionChecker.getCompanyId(), name,
+			ResourceConstants.SCOPE_COMPANY,
+			String.valueOf(permissionChecker.getCompanyId()));
+
+		resources.add(companyResource);
 
 		long[] roleIds = permissionChecker.getRoleIds(
 			permissionChecker.getUserId(), groupId);
