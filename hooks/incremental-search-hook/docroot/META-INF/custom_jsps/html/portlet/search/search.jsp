@@ -30,7 +30,7 @@
 
 	var searchResultTemplate =
 		'<div class="kb-search-result">' +
-			'{folders} <span class="kb-search-result-title">{title}</span>' +
+			'{folders} <span class="kb-search-result-title" style="display: block; font-weight: bolder">{title}</span>' +
 		'</div>';
 
 	var folderTemplate =

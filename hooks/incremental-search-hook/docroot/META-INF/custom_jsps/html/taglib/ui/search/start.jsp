@@ -88,8 +88,9 @@ incrementalSearchURL.setParameter("groupId", String.valueOf(scopeGroupId));
 
 	var searchResultTemplate =
 		'<div class="kb-search-result">' +
-			'{folders} <span class="kb-search-result-title">{title}</span>' +
+			'{folders} <span class="kb-search-result-title" style="display: block; font-weight: bolder">{title}</span>' +
 		'</div>';
+
 
 	var folderTemplate =
 		'<span class="kb-search-result-folder" style="font-size: 0.9em">' +
