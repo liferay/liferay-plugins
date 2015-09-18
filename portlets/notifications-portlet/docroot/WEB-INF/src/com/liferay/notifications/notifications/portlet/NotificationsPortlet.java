@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil;
@@ -386,13 +387,77 @@ public class NotificationsPortlet extends MVCPortlet {
 			portalUserNotificationEvent =
 				userNotificationEvent.getUserNotificationEvent();
 
+		String actionDiv = _ACTION_DIV_DEFAULT;
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			themeDisplay.getCompanyId(), userNotificationEvent.getType());
+
+		String portletName = portlet.getDisplayName();
+		String portletIcon = portlet.getContextPath() + portlet.getIcon();
+
+		JSONObject userNotificationEventJSONObject =
+			JSONFactoryUtil.createJSONObject(
+				userNotificationEvent.getPayload());
+
+		long userId = userNotificationEventJSONObject.getLong("userId");
+
+		String userFullName = HtmlUtil.escape(
+			PortalUtil.getUserName(userId, StringPool.BLANK));
+
+		String userPortraitURL = StringPool.BLANK;
+
+		User user = UserLocalServiceUtil.fetchUserById(userId);
+
+		if (user != null) {
+			userPortraitURL = user.getPortraitURL(themeDisplay);
+		}
+
+		Format dateFormatDate = FastDateFormatFactoryUtil.getDate(
+			DateFormat.FULL, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
+
+		Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(
+			DateFormat.FULL, DateFormat.SHORT, themeDisplay.getLocale(),
+			themeDisplay.getTimeZone());
+
+		String timestamp = Time.getRelativeTimeDescription(
+			userNotificationEvent.getTimestamp(), themeDisplay.getLocale(),
+			themeDisplay.getTimeZone(), dateFormatDate);
+
+		String timeTitle = dateTimeFormat.format(
+			userNotificationEvent.getTimestamp());
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
+
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			UserNotificationManagerUtil.interpret(
-				StringPool.BLANK, portalUserNotificationEvent,
-				ServiceContextFactory.getInstance(resourceRequest));
+				StringPool.BLANK, portalUserNotificationEvent, serviceContext);
 
 		if (userNotificationFeedEntry == null) {
-			return null;
+			String body = StringUtil.replace(
+				_BODY_TEMPLATE_DEFAULT, new String[] {"[$BODY$]", "[$TITLE$]"},
+				new String[] {
+					serviceContext.translate(
+						"unable-to-display-notification-for-x",
+						portlet.getDisplayName()),
+					serviceContext.translate(
+						"notification-no-longer-applies")
+				});
+
+			return StringUtil.replace(
+				ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
+				new String[] {
+					"[$ACTION_DIV$]", "[$BODY$]", "[$CSS_CLASS$]",
+					"[$ICON_MENU$]", "[$PORTLET_ICON$]", "[$PORTLET_NAME$]",
+					"[$TIMESTAMP$]", "[$TIMETITLE$]", "[$USER_FULL_NAME$]",
+					"[$USER_PORTRAIT_URL$]"
+				},
+				new String[] {
+					actionDiv, body, StringPool.BLANK, StringPool.BLANK,
+					portletIcon, portletName, timestamp, timeTitle,
+					userFullName, userPortraitURL
+				});
 		}
 
 		boolean actionable = ArrayUtil.contains(
@@ -411,7 +476,6 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		actionURL.setWindowState(WindowState.NORMAL);
 
-		String actionDiv = StringPool.BLANK;
 		String cssClass = StringPool.BLANK;
 		String markAsReadIcon = StringPool.BLANK;
 
@@ -452,40 +516,6 @@ public class NotificationsPortlet extends MVCPortlet {
 			}
 		}
 
-		Portlet portlet =
-			PortletLocalServiceUtil.getPortletById(
-				themeDisplay.getCompanyId(), userNotificationEvent.getType());
-
-		String portletName = portlet.getDisplayName();
-		String portletIcon = portlet.getContextPath() + portlet.getIcon();
-
-		JSONObject userNotificationEventJSONObject =
-			JSONFactoryUtil.createJSONObject(
-				userNotificationEvent.getPayload());
-
-		long userId = userNotificationEventJSONObject.getLong("userId");
-
-		String userFullName = HtmlUtil.escape(
-			PortalUtil.getUserName(userId, StringPool.BLANK));
-
-		String userPortraitURL = StringPool.BLANK;
-
-		User user = UserLocalServiceUtil.fetchUserById(userId);
-
-		if (user != null) {
-			userPortraitURL = user.getPortraitURL(themeDisplay);
-		}
-
-		Format dateFormatDate =
-			FastDateFormatFactoryUtil.getDate(
-				DateFormat.FULL, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
-
-		Format dateTimeFormat =
-			FastDateFormatFactoryUtil.getDateTime(
-				DateFormat.FULL, DateFormat.SHORT, themeDisplay.getLocale(),
-				themeDisplay.getTimeZone());
-
 		return StringUtil.replace(
 			ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
 			new String[] {
@@ -495,13 +525,9 @@ public class NotificationsPortlet extends MVCPortlet {
 				"[$USER_PORTRAIT_URL$]"},
 			new String[] {
 				actionDiv, userNotificationFeedEntry.getBody(), cssClass,
-				markAsReadIcon, portletIcon, portletName,
-				Time.getRelativeTimeDescription(
-					userNotificationEvent.getTimestamp(),
-					themeDisplay.getLocale(), themeDisplay.getTimeZone(),
-					dateFormatDate),
-				dateTimeFormat.format(userNotificationEvent.getTimestamp()),
-				userFullName, userPortraitURL});
+				markAsReadIcon, portletIcon, portletName, timestamp, timeTitle,
+				userFullName, userPortraitURL
+			});
 	}
 
 	protected void updateArchived(long userNotificationEventId)
@@ -516,6 +542,13 @@ public class NotificationsPortlet extends MVCPortlet {
 		UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
 			userNotificationEvent);
 	}
+
+	private static final String _ACTION_DIV_DEFAULT =
+		"<div class=\"clearfix\">";
+
+	private static final String _BODY_TEMPLATE_DEFAULT =
+		"<div class=\"title\">[$TITLE$]</div><div class=\"body\">[$BODY$]" +
+			"</div>";
 
 	private static final String _DELETE_DIV =
 		"<div class=\"clearfix user-notification-delete\" data-deleteURL=\"" +
