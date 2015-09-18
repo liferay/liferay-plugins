@@ -40,7 +40,7 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 
 <liferay-ui:header
 	backURL="<%= backURL %>"
-	title="<%= calendar.getName(locale) %>"
+	title="<%= calendarName %>"
 />
 
 <liferay-ui:tabs
