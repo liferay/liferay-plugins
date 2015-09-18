@@ -26,9 +26,6 @@ public class PortletPropsValues {
 		GetterUtil.getBoolean(
 			PortletProps.get(PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES));
 
-	public static final String SYNC_AUTH_VERIFIER_PIPELINE = PortletProps.get(
-		PortletPropsKeys.SYNC_AUTH_VERIFIER_PIPELINE);
-
 	public static final int SYNC_CLIENT_BATCH_FILE_MAX_SIZE =
 		GetterUtil.getInteger(
 			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE));
