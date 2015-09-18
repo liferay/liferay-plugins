@@ -53,13 +53,8 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		if ((kbArticle == null) || !isDescendant(kbArticle, ancestorKBFolder)) {
-			KBArticleSelection closestMatchingKBArticle =
-				findClosestMatchingKBArticle(
-					groupId, ancestorKBFolder, preferredKBFolderUrlTitle);
-
-			closestMatchingKBArticle.setExactMatch(true);
-
-			return closestMatchingKBArticle;
+			return findFirstKBArticle(
+				groupId, ancestorKBFolder, preferredKBFolderUrlTitle);
 		}
 
 		return new KBArticleSelection(kbArticle, true);
@@ -113,6 +108,32 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 
 	protected KBArticleSelection findClosestMatchingKBArticle(
 			long groupId, KBFolder ancestorKBFolder,
+			String preferredKBFolderUrlTitle, String kbFolderUrlTitle,
+			String urlTitle)
+		throws PortalException {
+
+		KBFolder kbFolder = getCandidateKBFolder(
+			groupId, preferredKBFolderUrlTitle, ancestorKBFolder,
+			kbFolderUrlTitle);
+
+		KBArticle kbArticle =
+			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				groupId, kbFolder.getKbFolderId(), urlTitle);
+
+		if (kbArticle != null) {
+			return new KBArticleSelection(kbArticle, false);
+		}
+
+		kbArticle = KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
+			groupId, kbFolder.getKbFolderId());
+
+		String[] keywords = StringUtil.split(urlTitle, '-');
+
+		return new KBArticleSelection(kbArticle, keywords);
+	}
+
+	protected KBArticleSelection findFirstKBArticle(
+			long groupId, KBFolder ancestorKBFolder,
 			String preferredKBFolderUrlTitle)
 		throws PortalException {
 
@@ -143,33 +164,7 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
 				groupId, kbFolder.getKbFolderId());
 
-		return new KBArticleSelection(kbArticle, false);
-	}
-
-	protected KBArticleSelection findClosestMatchingKBArticle(
-			long groupId, KBFolder ancestorKBFolder,
-			String preferredKBFolderUrlTitle, String kbFolderUrlTitle,
-			String urlTitle)
-		throws PortalException {
-
-		KBFolder kbFolder = getCandidateKBFolder(
-			groupId, preferredKBFolderUrlTitle, ancestorKBFolder,
-			kbFolderUrlTitle);
-
-		KBArticle kbArticle =
-			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
-				groupId, kbFolder.getKbFolderId(), urlTitle);
-
-		if (kbArticle != null) {
-			return new KBArticleSelection(kbArticle, false);
-		}
-
-		kbArticle = KBArticleLocalServiceUtil.fetchFirstChildKBArticle(
-			groupId, kbFolder.getKbFolderId());
-
-		String[] keywords = StringUtil.split(urlTitle, '-');
-
-		return new KBArticleSelection(kbArticle, keywords);
+		return new KBArticleSelection(kbArticle, true);
 	}
 
 	protected KBFolder getCandidateKBFolder(
