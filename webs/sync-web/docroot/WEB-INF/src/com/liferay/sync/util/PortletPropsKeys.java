@@ -20,9 +20,6 @@ package com.liferay.sync.util;
 public class PortletPropsKeys
 	extends com.liferay.sync.shared.util.PortletPropsKeys {
 
-	public static final String SYNC_AUTH_VERIFIER_PIPELINE =
-		"sync.auth.verifier.pipeline";
-
 	public static final String SYNC_CLIENT_BATCH_FILE_MAX_SIZE =
 		"sync.client.batch.file.max.size";
 

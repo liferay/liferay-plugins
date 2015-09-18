@@ -18,23 +18,17 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
+import com.liferay.portal.kernel.security.auth.http.HttpAuthManagerUtil;
+import com.liferay.portal.kernel.security.auth.http.HttpAuthorizationHeader;
 import com.liferay.portal.kernel.security.auth.verifier.AuthVerifier;
 import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
-import com.liferay.portal.kernel.security.auto.login.AutoLoginException;
-import com.liferay.portal.kernel.security.auto.login.BaseAutoLogin;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PwdGenerator;
-import com.liferay.portal.kernel.util.ReflectionUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.AccessControlContext;
 import com.liferay.portal.security.auth.AuthException;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.sync.util.PortletPropsValues;
-
-import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.List;
@@ -60,7 +54,7 @@ import org.joda.time.Instant;
  * @author Michael Young
  * @author Dennis Ju
  */
-public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
+public class SyncAuthVerifier implements AuthVerifier {
 
 	@Override
 	public String getAuthType() {
@@ -110,12 +104,13 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 		try {
 			AuthVerifierResult authVerifierResult = new AuthVerifierResult();
 
-			String[] credentials = login(
+			String[] credentials = getCredentials(
 				accessControlContext.getRequest(),
 				accessControlContext.getResponse());
 
 			if (credentials != null) {
 				authVerifierResult.setPassword(credentials[1]);
+				authVerifierResult.setPasswordBasedAuthentication(true);
 				authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
 				authVerifierResult.setUserId(
 					GetterUtil.getLong(credentials[0]));
@@ -123,8 +118,8 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 
 			return authVerifierResult;
 		}
-		catch (AutoLoginException ale) {
-			throw new AuthException(ale);
+		catch (Exception e) {
+			throw new AuthException(e);
 		}
 	}
 
@@ -157,8 +152,7 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 		}
 	}
 
-	@Override
-	protected String[] doLogin(
+	protected String[] getCredentials(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
@@ -172,44 +166,32 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 			}
 		}
 
-		Thread currentThread = Thread.currentThread();
+		HttpAuthorizationHeader httpAuthorizationHeader =
+			HttpAuthManagerUtil.parse(request);
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
-
-		try {
-			currentThread.setContextClassLoader(portalClassLoader);
-
-			for (String autoLoginClassName : _autoLoginClassNames) {
-				Class<?> clazz = portalClassLoader.loadClass(
-					autoLoginClassName);
-
-				Object object = clazz.newInstance();
-
-				Method method = ReflectionUtil.getDeclaredMethod(
-					clazz, "doLogin", HttpServletRequest.class,
-					HttpServletResponse.class);
-
-				String[] credentials = (String[])method.invoke(
-					object, request, response);
-
-				if (credentials != null) {
-					token = createToken(GetterUtil.getLong(credentials[0]));
-
-					if (token != null) {
-						response.addHeader(_TOKEN_HEADER, token);
-					}
-
-					return credentials;
-				}
-			}
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
+		if (httpAuthorizationHeader == null) {
+			return null;
 		}
 
-		return null;
+		long userId = HttpAuthManagerUtil.getBasicUserId(request);
+
+		if (userId <= 0) {
+			throw new AuthException();
+		}
+
+		token = createToken(userId);
+
+		if (token != null) {
+			response.addHeader(_TOKEN_HEADER, token);
+		}
+
+		String[] credentials = new String[2];
+
+		credentials[0] = String.valueOf(userId);
+		credentials[1] = httpAuthorizationHeader.getAuthParameter(
+			HttpAuthorizationHeader.AUTH_PARAMETER_NAME_PASSWORD);
+
+		return credentials;
 	}
 
 	protected JsonTokenParser getJsonTokenParser() throws Exception {
@@ -263,8 +245,6 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 
 	private static final String _TOKEN_HEADER = "Sync-JWT";
 
-	private static String[] _autoLoginClassNames = StringUtil.split(
-		PortletPropsValues.SYNC_AUTH_VERIFIER_PIPELINE);
 	private static long _expiration = 3600000;
 	private static JsonTokenParser _jsonTokenParser;
 	private static String _secret = PwdGenerator.getPassword();
