@@ -1154,6 +1154,7 @@ Please find a solution that does not require portal-impl.jar.
 
 	<macrodef name="compile-test-cmd">
 		<attribute name="module.dir" />
+		<attribute name="test.classpathref" default="test.classpath" />
 		<attribute name="test.type" />
 
 		<sequential>
@@ -1202,7 +1203,7 @@ Please find a solution that does not require portal-impl.jar.
 					</path>
 
 					<compile-java
-						javac.classpathref="test.classpath"
+						javac.classpathref="@{test.classpathref}"
 						javac.destdir="@{module.dir}/test-classes/@{test.type}"
 						javac.srcdir="@{module.dir}/test/@{test.type}"
 						module.dir="@{module.dir}"
@@ -2583,6 +2584,7 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="junit.forkmode" />
 		<attribute name="module.dir" />
 		<attribute name="test.class" />
+		<attribute name="test.classpathref" default="test.classpath" />
 		<attribute name="test.type" />
 
 		<sequential>
@@ -2602,6 +2604,7 @@ Please find a solution that does not require portal-impl.jar.
 
 					<compile-test-cmd
 						module.dir="@{module.dir}"
+						test.classpathref="@{test.classpathref}"
 						test.type="@{test.type}"
 					/>
 
@@ -2656,7 +2659,7 @@ Please find a solution that does not require portal-impl.jar.
 								<jvmarg value="-Dtest.class.groups=${TEST_CLASS_GROUPS}" />
 								<jvmarg value="-Duser.timezone=GMT" />
 								<classpath location="@{module.dir}/test-coverage" />
-								<classpath refid="test.classpath" />
+								<classpath refid="@{test.classpathref}" />
 								<formatter type="brief" usefile="false" />
 								<formatter type="xml" />
 								<batchtest todir="@{module.dir}/test-results/@{test.type}">
@@ -2688,6 +2691,7 @@ Please find a solution that does not require portal-impl.jar.
 	</macrodef>
 
 	<macrodef name="test-unit">
+		<attribute name="test.classpathref" default="test.classpath" />
 		<attribute name="module.dir" />
 
 		<sequential>
@@ -2695,6 +2699,7 @@ Please find a solution that does not require portal-impl.jar.
 				junit.forkmode="perTest"
 				module.dir="@{module.dir}"
 				test.class="**/*Test.class"
+				test.classpathref="@{test.classpathref}"
 				test.type="unit"
 			/>
 		</sequential>
