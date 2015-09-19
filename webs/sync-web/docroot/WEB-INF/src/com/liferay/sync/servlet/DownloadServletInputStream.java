@@ -24,15 +24,20 @@ import java.io.InputStream;
 public class DownloadServletInputStream {
 
 	public DownloadServletInputStream(InputStream inputStream, long size) {
-		this(inputStream, StringPool.BLANK, size);
+		this(inputStream, StringPool.BLANK, StringPool.BLANK, size);
 	}
 
 	public DownloadServletInputStream(
-		InputStream inputStream, String mimeType, long size) {
+		InputStream inputStream, String fileName, String mimeType, long size) {
 
 		_inputStream = inputStream;
+		_fileName = fileName;
 		_mimeType = mimeType;
 		_size = size;
+	}
+
+	public String getFileName() {
+		return _fileName;
 	}
 
 	public InputStream getInputStream() {
@@ -47,6 +52,7 @@ public class DownloadServletInputStream {
 		return _size;
 	}
 
+	private String _fileName;
 	private InputStream _inputStream;
 	private String _mimeType;
 	private long _size;

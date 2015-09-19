@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
@@ -244,14 +245,15 @@ public class DownloadServlet extends HttpServlet {
 					false);
 
 			return new DownloadServletInputStream(
-				inputStream, fileEntry.getMimeType(), fileEntry.getSize());
+				inputStream, fileEntry.getFileName(), fileEntry.getMimeType(),
+				fileEntry.getSize());
 		}
 		else {
 			FileVersion fileVersion = fileEntry.getFileVersion(version);
 
 			return new DownloadServletInputStream(
-				fileVersion.getContentStream(false), fileVersion.getMimeType(),
-				fileVersion.getSize());
+				fileVersion.getContentStream(false), fileVersion.getFileName(),
+				fileVersion.getMimeType(), fileVersion.getSize());
 		}
 	}
 
@@ -344,9 +346,18 @@ public class DownloadServlet extends HttpServlet {
 		DownloadServletInputStream downloadServletInputStream =
 			getFileDownloadServletInputStream(userId, groupId, uuid, version);
 
-		ServletResponseUtil.write(
-			response, downloadServletInputStream.getInputStream(),
-			downloadServletInputStream.getSize());
+		if (request.getHeader(HttpHeaders.RANGE) != null) {
+			ServletResponseUtil.sendFileWithRangeHeader(
+				request, response, downloadServletInputStream.getFileName(),
+				downloadServletInputStream.getInputStream(),
+				downloadServletInputStream.getSize(),
+				downloadServletInputStream.getMimeType());
+		}
+		else {
+			ServletResponseUtil.write(
+				response, downloadServletInputStream.getInputStream(),
+				downloadServletInputStream.getSize());
+		}
 	}
 
 	protected void sendImage(HttpServletResponse response, long imageId)
