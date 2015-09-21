@@ -24,17 +24,17 @@ import java.util.Arrays;
  */
 public class ScreensAssetEntryServiceClpInvoker {
 	public ScreensAssetEntryServiceClpInvoker() {
-		_methodName32 = "getBeanIdentifier";
+		_methodName26 = "getBeanIdentifier";
 
-		_methodParameterTypes32 = new String[] {  };
+		_methodParameterTypes26 = new String[] {  };
 
-		_methodName33 = "setBeanIdentifier";
+		_methodName27 = "setBeanIdentifier";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
+		_methodParameterTypes27 = new String[] { "java.lang.String" };
 
-		_methodName36 = "getAssetEntries";
+		_methodName30 = "getAssetEntries";
 
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes30 = new String[] {
 				"com.liferay.portlet.asset.service.persistence.AssetEntryQuery",
 				"java.util.Locale"
 			};
@@ -42,20 +42,20 @@ public class ScreensAssetEntryServiceClpInvoker {
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+		if (_methodName26.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
 			return ScreensAssetEntryServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+		if (_methodName27.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
 			ScreensAssetEntryServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName36.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+		if (_methodName30.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
 			return ScreensAssetEntryServiceUtil.getAssetEntries((com.liferay.portlet.asset.service.persistence.AssetEntryQuery)arguments[0],
 				(java.util.Locale)arguments[1]);
 		}
@@ -63,10 +63,10 @@ public class ScreensAssetEntryServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
-	private String _methodName36;
-	private String[] _methodParameterTypes36;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
+	private String _methodName27;
+	private String[] _methodParameterTypes27;
+	private String _methodName30;
+	private String[] _methodParameterTypes30;
 }
