@@ -108,21 +108,31 @@ public class ScreensDDLRecordServiceImpl
 		JSONArray ddlRecordsJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (DDLRecord ddlRecord : ddlRecords) {
-			JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
-
-			ddlRecordJSONObject.put(
-				"modelAttributes",
-				JSONFactoryUtil.createJSONObject(
-					JSONFactoryUtil.looseSerialize(
-						ddlRecord.getModelAttributes())));
-			ddlRecordJSONObject.put(
-				"modelValues",
-				getDDLRecord(ddlRecord.getRecordId(), locale));
+			JSONObject ddlRecordJSONObject = 
+				getDDLRecordJSONObject(ddlRecord, locale);
 
 			ddlRecordsJSONArray.put(ddlRecordJSONObject);
 		}
 
 		return ddlRecordsJSONArray;
+	}
+
+	protected JSONObject getDDLRecordJSONObject(
+			DDLRecord ddlRecord, Locale locale)
+		throws PortalException, SystemException {
+
+		JSONObject ddlRecordJSONObject = JSONFactoryUtil.createJSONObject();
+
+		ddlRecordJSONObject.put(
+			"modelAttributes",
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(
+					ddlRecord.getModelAttributes())));
+		ddlRecordJSONObject.put(
+			"modelValues",
+			getDDLRecord(ddlRecord.getRecordId(), locale));
+
+		return ddlRecordJSONObject;
 	}
 
 	protected Object getFieldValue(Field field, Locale locale)
