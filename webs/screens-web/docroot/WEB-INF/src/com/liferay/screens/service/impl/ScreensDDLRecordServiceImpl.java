@@ -42,8 +42,6 @@ public class ScreensDDLRecordServiceImpl
 	public JSONObject getDDLRecord(long ddlRecordId, Locale locale)
 		throws PortalException, SystemException {
 
-		Map<String, Object> ddlRecordMap = new HashMap<String, Object>();
-
 		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
 			ddlRecordId);
 
@@ -55,16 +53,7 @@ public class ScreensDDLRecordServiceImpl
 			locale = fields.getDefaultLocale();
 		}
 
-		for (Field field : fields) {
-			Object fieldValue = getFieldValue(field, locale);
-
-			if (fieldValue != null) {
-				ddlRecordMap.put(field.getName(), fieldValue);
-			}
-		}
-
-		return JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.looseSerialize(ddlRecordMap));
+		return getDDLRecordJSONObject(ddlRecord, locale);
 	}
 
 	@Override
@@ -101,25 +90,6 @@ public class ScreensDDLRecordServiceImpl
 		return ddlRecordPersistence.countByR_U(ddlRecordSetId, userId);
 	}
 
-	@Override
-	public JSONObject getDDLRecordWithAttributes(
-			long ddlRecordId, Locale locale)
-		throws PortalException, SystemException {
-
-		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
-			ddlRecordId);
-
-		Fields fields = ddlRecord.getFields();
-
-		Set<Locale> availableLocales = fields.getAvailableLocales();
-
-		if ((locale == null) || !availableLocales.contains(locale)) {
-			locale = fields.getDefaultLocale();
-		}
-
-		return getDDLRecordJSONObject(ddlRecord, locale);
-	}
-
 	protected JSONObject getDDLRecordJSONObject(
 			DDLRecord ddlRecord, Locale locale)
 		throws PortalException, SystemException {
@@ -131,9 +101,29 @@ public class ScreensDDLRecordServiceImpl
 			JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.looseSerialize(
 					ddlRecord.getModelAttributes())));
+
+		Map<String, Object> ddlRecordMap = new HashMap<String, Object>();
+
+		Fields fields = ddlRecord.getFields();
+
+		Set<Locale> availableLocales = fields.getAvailableLocales();
+
+		if ((locale == null) || !availableLocales.contains(locale)) {
+			locale = fields.getDefaultLocale();
+		}
+
+		for (Field field : fields) {
+			Object fieldValue = getFieldValue(field, locale);
+
+			if (fieldValue != null) {
+				ddlRecordMap.put(field.getName(), fieldValue);
+			}
+		}
+
 		ddlRecordJSONObject.put(
 			"modelValues",
-			getDDLRecord(ddlRecord.getRecordId(), locale));
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(ddlRecordMap)));
 
 		return ddlRecordJSONObject;
 	}
