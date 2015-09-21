@@ -449,9 +449,9 @@ public class NotificationsPortlet extends MVCPortlet {
 				ContentUtil.get(PortletPropsValues.USER_NOTIFICATION_ENTRY),
 				new String[] {
 					"[$ACTION_DIV$]", "[$BODY$]", "[$CSS_CLASS$]",
-					"[$ICON_MENU$]", "[$PORTLET_ICON$]", "[$PORTLET_NAME$]",
-					"[$TIMESTAMP$]", "[$TIMETITLE$]", "[$USER_FULL_NAME$]",
-					"[$USER_PORTRAIT_URL$]"
+					"[$MARK_AS_READ_ICON$]", "[$PORTLET_ICON$]",
+					"[$PORTLET_NAME$]", "[$TIMESTAMP$]", "[$TIMETITLE$]",
+					"[$USER_FULL_NAME$]", "[$USER_PORTRAIT_URL$]"
 				},
 				new String[] {
 					actionDiv, body, StringPool.BLANK, StringPool.BLANK,
