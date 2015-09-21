@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.PortletItem;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
@@ -82,8 +84,8 @@ public class ScreensAssetEntryServiceImpl
 				assetEntries = AssetPublisherUtil.getAssetEntries(portletPreferences, null, groupId, Integer.MAX_VALUE, false);
 			}
 			else {
-				MockPermissionChecker permissionChecker = new MockPermissionChecker(companyId);
 				try {
+					PermissionChecker permissionChecker = PermissionCheckerFactoryUtil.create(getUser());
 					assetEntries = AssetPublisherUtil.getAssetEntries(null, portletPreferences, permissionChecker, new long[]{groupId},
 						portletPreferences.getValues("assetEntryXml", new String[0]), false, false);
 				}
