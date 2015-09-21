@@ -8,7 +8,7 @@
 			FROM
 				CalendarBooking
 			WHERE
-				(companyId = ?) AND
+				(CalendarBooking.companyId = ?) AND
 				[$GROUP_ID$]
 				[$CALENDAR_ID$]
 				[$CALENDAR_RESOURCE_ID$]
@@ -49,7 +49,7 @@
 			FROM
 				CalendarBooking
 			WHERE
-				(companyId = ?) AND
+				(CalendarBooking.companyId = ?) AND
 				[$GROUP_ID$]
 				[$CALENDAR_ID$]
 				[$CALENDAR_RESOURCE_ID$]
@@ -79,11 +79,11 @@
 			FROM
 				Calendar
 			WHERE
-				(companyId = ?) AND
+				(Calendar.companyId = ?) AND
 				[$GROUP_ID$]
 				[$CALENDAR_RESOURCE_ID$]
 				(
-					(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(Calendar.name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(description LIKE ? [$AND_OR_NULL_CHECK$])
 				)
 		]]>
@@ -95,11 +95,11 @@
 			FROM
 				Calendar
 			WHERE
-				(companyId = ?) AND
+				(Calendar.companyId = ?) AND
 				[$GROUP_ID$]
 				[$CALENDAR_RESOURCE_ID$]
 				(
-					(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(Calendar.name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(description LIKE ? [$AND_OR_NULL_CHECK$])
 				)
 				[$ORDER_BY$]
@@ -112,12 +112,12 @@
 			FROM
 				CalendarResource
 			WHERE
-				(companyId = ?) AND
+				(CalendarResource.companyId = ?) AND
 				[$GROUP_ID$]
 				[$CLASS_NAME_ID$]
 				(
 					(lower(code_) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-					(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(CalendarResource.name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(description LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
 				(active_ = ?)
@@ -130,12 +130,12 @@
 			FROM
 				CalendarResource
 			WHERE
-				(companyId = ?) AND
+				(CalendarResource.companyId = ?) AND
 				[$GROUP_ID$]
 				[$CLASS_NAME_ID$]
 				(
 					(lower(code_) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-					(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(CalendarResource.name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(description LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND
 				(active_ = ?)

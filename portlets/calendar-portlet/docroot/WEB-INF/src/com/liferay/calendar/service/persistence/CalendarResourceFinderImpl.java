@@ -297,7 +297,8 @@ public class CalendarResourceFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(code_)", StringPool.LIKE, false, codes);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(name)", StringPool.LIKE, false, names);
+				sql, "lower(CalendarResource.name)", StringPool.LIKE, false,
+				names);
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "description", StringPool.LIKE, false, descriptions);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
@@ -371,7 +372,8 @@ public class CalendarResourceFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(code_)", StringPool.LIKE, false, codes);
 			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(name)", StringPool.LIKE, false, names);
+				sql, "lower(CalendarResource.name)", StringPool.LIKE, false,
+				names);
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "description", StringPool.LIKE, true, descriptions);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);

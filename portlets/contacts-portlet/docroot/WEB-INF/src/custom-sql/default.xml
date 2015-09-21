@@ -26,7 +26,7 @@
 				FROM
 					User_
 				WHERE
-					(companyId = ?) AND
+					(User_.companyId = ?) AND
 					(defaultUser = [$FALSE$]) AND
 					(
 						(lower(User_.firstName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
@@ -77,7 +77,7 @@
 				FROM
 					User_
 				WHERE
-					(companyId = ?) AND
+					(User_.companyId = ?) AND
 					(defaultUser = [$FALSE$]) AND
 					(
 						(lower(User_.firstName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
