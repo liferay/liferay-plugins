@@ -101,6 +101,25 @@ public class ScreensDDLRecordServiceImpl
 		return ddlRecordPersistence.countByR_U(ddlRecordSetId, userId);
 	}
 
+	@Override
+	public JSONObject getDDLRecordWithAttributes(
+			long ddlRecordId, Locale locale)
+		throws PortalException, SystemException {
+
+		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
+			ddlRecordId);
+
+		Fields fields = ddlRecord.getFields();
+
+		Set<Locale> availableLocales = fields.getAvailableLocales();
+
+		if ((locale == null) || !availableLocales.contains(locale)) {
+			locale = fields.getDefaultLocale();
+		}
+
+		return getDDLRecordJSONObject(ddlRecord, locale);
+	}
+
 	protected JSONArray getDDLRecordsJSONArray(
 			List<DDLRecord> ddlRecords, Locale locale)
 		throws PortalException, SystemException {
