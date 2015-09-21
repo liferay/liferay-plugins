@@ -23,11 +23,9 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.SerialDestination;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
-import com.liferay.portal.kernel.scheduler.SchedulerEntry;
-import com.liferay.portal.kernel.scheduler.SchedulerEntryImpl;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.TimeUnit;
-import com.liferay.portal.kernel.scheduler.TriggerType;
+import com.liferay.portal.kernel.scheduler.TriggerFactoryUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.model.Company;
@@ -213,17 +211,15 @@ public class SyncServletContextListener
 
 	protected void scheduleDLFileVersionDiffMessageListener() {
 		try {
-			SchedulerEntry schedulerEntry = new SchedulerEntryImpl();
-
-			schedulerEntry.setEventListenerClass(
-				SyncDLFileVersionDiffMessageListener.class.getName());
-			schedulerEntry.setTimeUnit(TimeUnit.HOUR);
-			schedulerEntry.setTriggerType(TriggerType.SIMPLE);
-			schedulerEntry.setTriggerValue(
-				PortletPropsValues.SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL);
+			String eventListenerClassName =
+				SyncDLFileVersionDiffMessageListener.class.getName();
 
 			SchedulerEngineHelperUtil.schedule(
-				schedulerEntry.getTrigger(), StorageType.MEMORY_CLUSTERED, null,
+				TriggerFactoryUtil.createTrigger(
+					eventListenerClassName, eventListenerClassName,
+					PortletPropsValues.SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL,
+					TimeUnit.HOUR),
+				StorageType.MEMORY_CLUSTERED, null,
 				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME, null, 0);
 		}
 		catch (Exception e) {

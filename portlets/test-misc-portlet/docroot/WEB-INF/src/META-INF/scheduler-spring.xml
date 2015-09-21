@@ -14,13 +14,16 @@
 				<bean class="com.liferay.portal.kernel.scheduler.SchedulerEntryImpl">
 					<property name="description" value="" />
 					<property name="eventListenerClass" value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
-					<property name="timeUnit">
-						<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.HOUR" />
+					<property name="trigger">
+						<bean class="com.liferay.portal.kernel.scheduler.TriggerFactoryUtil" factory-method="createTrigger">
+							<constructor-arg value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
+							<constructor-arg value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
+							<constructor-arg value="1" />
+							<constructor-arg>
+								<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.HOUR" />
+							</constructor-arg>
+						</bean>
 					</property>
-					<property name="triggerType">
-						<util:constant static-field="com.liferay.portal.kernel.scheduler.TriggerType.SIMPLE" />
-					</property>
-					<property name="triggerValue" value="1" />
 				</bean>
 			</list>
 		</property>

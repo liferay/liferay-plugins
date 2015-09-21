@@ -35,11 +35,11 @@ import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
-import com.liferay.portal.kernel.scheduler.IntervalTrigger;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.TimeUnit;
 import com.liferay.portal.kernel.scheduler.Trigger;
+import com.liferay.portal.kernel.scheduler.TriggerFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
@@ -538,9 +538,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected Trigger getSchedulerTrigger() {
 		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
-		return new IntervalTrigger(
+		return TriggerFactoryUtil.createTrigger(
 			getSchedulerJobName(), getMessageListenerGroupName(),
-			calendar.getTime(), null, 1, TimeUnit.DAY);
+			calendar.getTime(), 1, TimeUnit.DAY);
 	}
 
 	protected Map<String, Serializable> getSearchAttributes(
