@@ -96,13 +96,6 @@ public class ScreensDDLRecordServiceUtil {
 		return getService().getDDLRecordsCount(ddlRecordSetId, userId);
 	}
 
-	public static com.liferay.portal.kernel.json.JSONObject getDDLRecordWithAttributes(
-		long ddlRecordId, java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getDDLRecordWithAttributes(ddlRecordId, locale);
-	}
-
 	public static void clearService() {
 		_service = null;
 	}

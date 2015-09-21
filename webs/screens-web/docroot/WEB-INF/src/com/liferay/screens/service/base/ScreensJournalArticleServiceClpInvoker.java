@@ -24,35 +24,35 @@ import java.util.Arrays;
  */
 public class ScreensJournalArticleServiceClpInvoker {
 	public ScreensJournalArticleServiceClpInvoker() {
-		_methodName30 = "getBeanIdentifier";
+		_methodName36 = "getBeanIdentifier";
 
-		_methodParameterTypes30 = new String[] {  };
+		_methodParameterTypes36 = new String[] {  };
 
-		_methodName31 = "setBeanIdentifier";
+		_methodName37 = "setBeanIdentifier";
 
-		_methodParameterTypes31 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "java.lang.String" };
 
-		_methodName34 = "getJournalArticle";
+		_methodName40 = "getJournalArticle";
 
-		_methodParameterTypes34 = new String[] { "int", "int", "java.util.Locale" };
+		_methodParameterTypes40 = new String[] { "int", "int", "java.util.Locale" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return ScreensJournalArticleServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			ScreensJournalArticleServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName34.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return ScreensJournalArticleServiceUtil.getJournalArticle(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue(),
 				(java.util.Locale)arguments[2]);
@@ -61,10 +61,10 @@ public class ScreensJournalArticleServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
-	private String _methodName34;
-	private String[] _methodParameterTypes34;
+	private String _methodName36;
+	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
 }

@@ -2,10 +2,6 @@
 
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 	<service name="Plugin_Screens_ScreensDDLRecordService" provider="java:RPC" style="rpc" use="encoded">
-		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecordWithAttributes" qname="operNS:getDDLRecordWithAttributes" returnQName="getDDLRecordWithAttributesReturn" returnType="rtns:string" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordId" type="tns:long"></parameter>
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
-		</operation>
 		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDDLRecord" qname="operNS:getDDLRecord" returnQName="getDDLRecordReturn" returnType="rtns:string" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddlRecordId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
@@ -30,7 +26,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
 		</operation>
-		<parameter name="allowedMethods" value="getDDLRecord getDDLRecordWithAttributes getDDLRecords getDDLRecordsCount" />
+		<parameter name="allowedMethods" value="getDDLRecord getDDLRecords getDDLRecordsCount" />
 		<parameter name="className" value="com.liferay.screens.service.http.ScreensDDLRecordServiceSoap" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<parameter name="wsdlPortType" value="ScreensDDLRecordServiceSoap" />

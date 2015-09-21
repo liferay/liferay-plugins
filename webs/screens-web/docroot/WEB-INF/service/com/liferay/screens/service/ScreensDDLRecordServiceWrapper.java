@@ -98,15 +98,6 @@ public class ScreensDDLRecordServiceWrapper implements ScreensDDLRecordService,
 			userId);
 	}
 
-	@Override
-	public com.liferay.portal.kernel.json.JSONObject getDDLRecordWithAttributes(
-		long ddlRecordId, java.util.Locale locale)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _screensDDLRecordService.getDDLRecordWithAttributes(ddlRecordId,
-			locale);
-	}
-
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
