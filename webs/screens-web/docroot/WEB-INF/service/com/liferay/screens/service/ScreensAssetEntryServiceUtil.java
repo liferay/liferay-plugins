@@ -71,6 +71,16 @@ public class ScreensAssetEntryServiceUtil {
 		return getService().getAssetEntries(assetEntryQuery, locale);
 	}
 
+	public static com.liferay.portal.kernel.json.JSONArray getFilteredAssetEntries(
+		long companyId, long groupId, java.lang.String portletItemName,
+		java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getFilteredAssetEntries(companyId, groupId,
+			portletItemName, locale);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

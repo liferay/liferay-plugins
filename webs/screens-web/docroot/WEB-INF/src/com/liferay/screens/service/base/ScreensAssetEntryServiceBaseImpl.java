@@ -21,7 +21,8 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.InfrastructureUtil;
 import com.liferay.portal.service.BaseServiceImpl;
-import com.liferay.portal.service.persistence.ClassNamePersistence;
+import com.liferay.portal.service.persistence.PortletItemPersistence;
+import com.liferay.portal.service.persistence.PortletPreferencesPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
@@ -146,60 +147,98 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the class name local service.
+	 * Returns the portlet item local service.
 	 *
-	 * @return the class name local service
+	 * @return the portlet item local service
 	 */
-	public com.liferay.portal.service.ClassNameLocalService getClassNameLocalService() {
-		return classNameLocalService;
+	public com.liferay.portal.service.PortletItemLocalService getPortletItemLocalService() {
+		return portletItemLocalService;
 	}
 
 	/**
-	 * Sets the class name local service.
+	 * Sets the portlet item local service.
 	 *
-	 * @param classNameLocalService the class name local service
+	 * @param portletItemLocalService the portlet item local service
 	 */
-	public void setClassNameLocalService(
-		com.liferay.portal.service.ClassNameLocalService classNameLocalService) {
-		this.classNameLocalService = classNameLocalService;
+	public void setPortletItemLocalService(
+		com.liferay.portal.service.PortletItemLocalService portletItemLocalService) {
+		this.portletItemLocalService = portletItemLocalService;
 	}
 
 	/**
-	 * Returns the class name remote service.
+	 * Returns the portlet item persistence.
 	 *
-	 * @return the class name remote service
+	 * @return the portlet item persistence
 	 */
-	public com.liferay.portal.service.ClassNameService getClassNameService() {
-		return classNameService;
+	public PortletItemPersistence getPortletItemPersistence() {
+		return portletItemPersistence;
 	}
 
 	/**
-	 * Sets the class name remote service.
+	 * Sets the portlet item persistence.
 	 *
-	 * @param classNameService the class name remote service
+	 * @param portletItemPersistence the portlet item persistence
 	 */
-	public void setClassNameService(
-		com.liferay.portal.service.ClassNameService classNameService) {
-		this.classNameService = classNameService;
+	public void setPortletItemPersistence(
+		PortletItemPersistence portletItemPersistence) {
+		this.portletItemPersistence = portletItemPersistence;
 	}
 
 	/**
-	 * Returns the class name persistence.
+	 * Returns the portlet preferences local service.
 	 *
-	 * @return the class name persistence
+	 * @return the portlet preferences local service
 	 */
-	public ClassNamePersistence getClassNamePersistence() {
-		return classNamePersistence;
+	public com.liferay.portal.service.PortletPreferencesLocalService getPortletPreferencesLocalService() {
+		return portletPreferencesLocalService;
 	}
 
 	/**
-	 * Sets the class name persistence.
+	 * Sets the portlet preferences local service.
 	 *
-	 * @param classNamePersistence the class name persistence
+	 * @param portletPreferencesLocalService the portlet preferences local service
 	 */
-	public void setClassNamePersistence(
-		ClassNamePersistence classNamePersistence) {
-		this.classNamePersistence = classNamePersistence;
+	public void setPortletPreferencesLocalService(
+		com.liferay.portal.service.PortletPreferencesLocalService portletPreferencesLocalService) {
+		this.portletPreferencesLocalService = portletPreferencesLocalService;
+	}
+
+	/**
+	 * Returns the portlet preferences remote service.
+	 *
+	 * @return the portlet preferences remote service
+	 */
+	public com.liferay.portal.service.PortletPreferencesService getPortletPreferencesService() {
+		return portletPreferencesService;
+	}
+
+	/**
+	 * Sets the portlet preferences remote service.
+	 *
+	 * @param portletPreferencesService the portlet preferences remote service
+	 */
+	public void setPortletPreferencesService(
+		com.liferay.portal.service.PortletPreferencesService portletPreferencesService) {
+		this.portletPreferencesService = portletPreferencesService;
+	}
+
+	/**
+	 * Returns the portlet preferences persistence.
+	 *
+	 * @return the portlet preferences persistence
+	 */
+	public PortletPreferencesPersistence getPortletPreferencesPersistence() {
+		return portletPreferencesPersistence;
+	}
+
+	/**
+	 * Sets the portlet preferences persistence.
+	 *
+	 * @param portletPreferencesPersistence the portlet preferences persistence
+	 */
+	public void setPortletPreferencesPersistence(
+		PortletPreferencesPersistence portletPreferencesPersistence) {
+		this.portletPreferencesPersistence = portletPreferencesPersistence;
 	}
 
 	/**
@@ -413,12 +452,16 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.screens.service.ScreensUserService screensUserService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
-	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
-	protected com.liferay.portal.service.ClassNameLocalService classNameLocalService;
-	@BeanReference(type = com.liferay.portal.service.ClassNameService.class)
-	protected com.liferay.portal.service.ClassNameService classNameService;
-	@BeanReference(type = ClassNamePersistence.class)
-	protected ClassNamePersistence classNamePersistence;
+	@BeanReference(type = com.liferay.portal.service.PortletItemLocalService.class)
+	protected com.liferay.portal.service.PortletItemLocalService portletItemLocalService;
+	@BeanReference(type = PortletItemPersistence.class)
+	protected PortletItemPersistence portletItemPersistence;
+	@BeanReference(type = com.liferay.portal.service.PortletPreferencesLocalService.class)
+	protected com.liferay.portal.service.PortletPreferencesLocalService portletPreferencesLocalService;
+	@BeanReference(type = com.liferay.portal.service.PortletPreferencesService.class)
+	protected com.liferay.portal.service.PortletPreferencesService portletPreferencesService;
+	@BeanReference(type = PortletPreferencesPersistence.class)
+	protected PortletPreferencesPersistence portletPreferencesPersistence;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
 	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
 	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
