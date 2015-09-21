@@ -228,7 +228,8 @@ public class DownloadServlet extends HttpServlet {
 	}
 
 	protected DownloadServletInputStream getFileDownloadServletInputStream(
-			long userId, long groupId, String uuid, String version)
+			long userId, long groupId, String uuid, String version,
+			long versionId)
 		throws Exception {
 
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntryByUuidAndGroupId(
@@ -249,11 +250,23 @@ public class DownloadServlet extends HttpServlet {
 				fileEntry.getSize());
 		}
 		else {
-			FileVersion fileVersion = fileEntry.getFileVersion(version);
+			if (versionId > 0) {
+				DLFileVersion dlFileVersion =
+					DLFileVersionLocalServiceUtil.fetchDLFileVersion(versionId);
 
-			return new DownloadServletInputStream(
-				fileVersion.getContentStream(false), fileVersion.getFileName(),
-				fileVersion.getMimeType(), fileVersion.getSize());
+				return new DownloadServletInputStream(
+					dlFileVersion.getContentStream(false),
+					dlFileVersion.getFileName(), dlFileVersion.getMimeType(),
+					dlFileVersion.getSize());
+			}
+			else {
+				FileVersion fileVersion = fileEntry.getFileVersion(version);
+
+				return new DownloadServletInputStream(
+					fileVersion.getContentStream(false),
+					fileVersion.getFileName(), fileVersion.getMimeType(),
+					fileVersion.getSize());
+			}
 		}
 	}
 
@@ -342,9 +355,11 @@ public class DownloadServlet extends HttpServlet {
 		throws Exception {
 
 		String version = ParamUtil.getString(request, "version");
+		long versionId = ParamUtil.getLong(request, "versionId");
 
 		DownloadServletInputStream downloadServletInputStream =
-			getFileDownloadServletInputStream(userId, groupId, uuid, version);
+			getFileDownloadServletInputStream(
+				userId, groupId, uuid, version, versionId);
 
 		if (request.getHeader(HttpHeaders.RANGE) != null) {
 			ServletResponseUtil.sendFileWithRangeHeader(
@@ -446,7 +461,8 @@ public class DownloadServlet extends HttpServlet {
 					DownloadServletInputStream downloadServletInputStream =
 						getFileDownloadServletInputStream(
 							userId, groupId, uuid,
-							zipObjectJSONObject.getString("version"));
+							zipObjectJSONObject.getString("version"),
+							zipObjectJSONObject.getLong("versionId"));
 
 					zipWriter.addEntry(
 						zipFileId, downloadServletInputStream.getInputStream());
