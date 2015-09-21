@@ -35,10 +35,15 @@ if (calendarResource == null) {
 	calendarResource = calendar.getCalendarResource();
 }
 
-String calendarName = (calendar != null) ? calendar.getName(locale) : null;
+String calendarName = null;
+
+if (calendar != null) {
+	calendarName = calendar.getName(locale);
+}
+
 String calendarResourceName = calendarResource.getName(locale);
 
-if (!calendarResourceName.equals(calendarName)) {
+if (Validator.isNotNull(calendarName) && !calendarResourceName.equals(calendarName)) {
 	calendarName = calendarResourceName + StringPool.SPACE + StringPool.DASH + StringPool.SPACE + calendarName;
 }
 %>
