@@ -142,6 +142,20 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 		views.push(window.<portlet:namespace />agendaView);
 	</c:if>
 
+	for (var i in views) {
+		views[i].after('render', function() {
+			var instance = this;
+
+			if (instance.eventsOverlay) {
+				instance.eventsOverlay.setAttrs(
+					{
+						constrain: '#p_p_id<portlet:namespace />'
+					}
+				);
+			}
+		});
+	}
+
 	window.<portlet:namespace />scheduler = new Liferay.Scheduler(
 		{
 			activeView: window['<portlet:namespace /><%= HtmlUtil.escapeJS(activeView) %>View'],
