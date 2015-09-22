@@ -24,11 +24,8 @@ package com.liferay.samplealloymvc.model.impl;
  * @author Brian Wing Shun Chan
  */
 public class TypeImpl extends TypeBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a type model instance should use the {@link com.liferay.samplealloymvc.model.Type} interface instead.
-	 */
+
 	public TypeImpl() {
 	}
+
 }

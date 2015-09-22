@@ -31,9 +31,4 @@ import com.liferay.samplealloymvc.service.base.DefinitionLocalServiceBaseImpl;
  * @see com.liferay.samplealloymvc.service.DefinitionLocalServiceUtil
  */
 public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.samplealloymvc.service.DefinitionLocalServiceUtil} to access the definition local service.
-	 */
 }

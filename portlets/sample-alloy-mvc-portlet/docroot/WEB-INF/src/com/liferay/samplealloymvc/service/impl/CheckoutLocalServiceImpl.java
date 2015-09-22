@@ -31,9 +31,4 @@ import com.liferay.samplealloymvc.service.base.CheckoutLocalServiceBaseImpl;
  * @see com.liferay.samplealloymvc.service.CheckoutLocalServiceUtil
  */
 public class CheckoutLocalServiceImpl extends CheckoutLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.samplealloymvc.service.CheckoutLocalServiceUtil} to access the checkout local service.
-	 */
 }

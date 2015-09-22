@@ -24,11 +24,8 @@ package com.liferay.samplealloymvc.model.impl;
  * @author Brian Wing Shun Chan
  */
 public class DefinitionImpl extends DefinitionBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a definition model instance should use the {@link com.liferay.samplealloymvc.model.Definition} interface instead.
-	 */
+
 	public DefinitionImpl() {
 	}
+
 }

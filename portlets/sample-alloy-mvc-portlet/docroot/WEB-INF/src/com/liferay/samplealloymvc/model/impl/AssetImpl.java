@@ -24,11 +24,8 @@ package com.liferay.samplealloymvc.model.impl;
  * @author Brian Wing Shun Chan
  */
 public class AssetImpl extends AssetBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a asset model instance should use the {@link com.liferay.samplealloymvc.model.Asset} interface instead.
-	 */
+
 	public AssetImpl() {
 	}
+
 }

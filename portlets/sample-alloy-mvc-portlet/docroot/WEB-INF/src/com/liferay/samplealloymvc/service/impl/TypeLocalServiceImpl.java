@@ -31,9 +31,4 @@ import com.liferay.samplealloymvc.service.base.TypeLocalServiceBaseImpl;
  * @see com.liferay.samplealloymvc.service.TypeLocalServiceUtil
  */
 public class TypeLocalServiceImpl extends TypeLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.samplealloymvc.service.TypeLocalServiceUtil} to access the type local service.
-	 */
 }
