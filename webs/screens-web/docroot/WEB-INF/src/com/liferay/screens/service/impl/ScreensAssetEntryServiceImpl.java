@@ -57,7 +57,7 @@ public class ScreensAssetEntryServiceImpl
 		return toJSONArray(assetEntries, locale);
 	}
 
-	public JSONArray getFilteredAssetEntries(
+	public JSONArray getAssetEntries(
 			long companyId, long groupId, String portletItemName, Locale locale)
 		throws PortalException, SystemException {
 
