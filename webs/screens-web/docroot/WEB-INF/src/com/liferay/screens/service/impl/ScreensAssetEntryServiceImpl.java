@@ -98,14 +98,18 @@ public class ScreensAssetEntryServiceImpl
 		return toJSONArray(assetEntries, locale);
 	}
 
-	protected JSONArray toJSONArray(List<AssetEntry> assetEntries, Locale locale) throws JSONException {
+	protected JSONArray toJSONArray(
+			List<AssetEntry> assetEntries, Locale locale)
+		throws JSONException {
+
 		JSONArray assetEntriesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntry assetEntry : assetEntries) {
 			JSONObject assetEntryJSONObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.looseSerialize(assetEntry));
 
-			assetEntryJSONObject.put("description", assetEntry.getDescription(locale));
+			assetEntryJSONObject.put(
+				"description", assetEntry.getDescription(locale));
 			assetEntryJSONObject.put("summary", assetEntry.getSummary(locale));
 			assetEntryJSONObject.put("title", assetEntry.getTitle(locale));
 
