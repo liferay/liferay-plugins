@@ -107,6 +107,12 @@ public class ScreensAssetEntryServiceImpl
 						"assetEntryXml", new String[0]),
 					false, false);
 			}
+			catch (PortalException pe) {
+				throw pe;
+			}
+			catch (SystemException se) {
+				throw se;
+			}
 			catch (Exception e) {
 				throw new PortalException(e);
 			}
