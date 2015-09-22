@@ -67,7 +67,7 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 
 		String content = null;
 
-		portletURL.setParameter("mvcPath", "/WEB-INF/jsp/ams/views/assets/view.jsp");
+		portletURL.setParameter("mvcPath", "/WEB-INF/jsp/sample_alloy_mvc/views/assets/view.jsp");
 
 		String assetId = document.get(Field.ENTRY_CLASS_PK);
 
@@ -78,7 +78,7 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 
 	private AssetIndexer() {
 		setClassName(Asset.class.getName());
-		setPortletId(PortletKeys.AMS);
+		setPortletId(PortletKeys.SAMPLEALOYMVC);
 	}
 
 	private static AssetIndexer _instance = new AssetIndexer();
