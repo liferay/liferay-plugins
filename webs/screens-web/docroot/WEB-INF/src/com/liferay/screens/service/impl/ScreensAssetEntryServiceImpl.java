@@ -81,20 +81,29 @@ public class ScreensAssetEntryServiceImpl
 
 		PortletItem portletItem = portletItems.get(0);
 
-		PortletPreferences portletPreferences = portletPreferencesLocalService.getPreferences(
-			portletItem.getCompanyId(), portletItem.getPortletItemId(),
-			PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0, portletItem.getPortletId());
+		PortletPreferences portletPreferences =
+			portletPreferencesLocalService.getPreferences(
+				portletItem.getCompanyId(), portletItem.getPortletItemId(),
+				PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0,
+				portletItem.getPortletId());
 
-		String selectionStyle = GetterUtil.getString(portletPreferences.getValue("selectionStyle", null), "dynamic");
+		String selectionStyle = GetterUtil.getString(
+			portletPreferences.getValue("selectionStyle", null), "dynamic");
 
 		if (selectionStyle.equals("dynamic")) {
-			assetEntries = AssetPublisherUtil.getAssetEntries(portletPreferences, null, groupId, Integer.MAX_VALUE, false);
+			assetEntries = AssetPublisherUtil.getAssetEntries(
+				portletPreferences, null, groupId, Integer.MAX_VALUE, false);
 		}
 		else {
 			try {
-				PermissionChecker permissionChecker = PermissionCheckerFactoryUtil.create(getUser());
-				assetEntries = AssetPublisherUtil.getAssetEntries(null, portletPreferences, permissionChecker, new long[]{groupId},
-					portletPreferences.getValues("assetEntryXml", new String[0]), false, false);
+				PermissionChecker permissionChecker =
+					PermissionCheckerFactoryUtil.create(getUser());
+
+				assetEntries = AssetPublisherUtil.getAssetEntries(
+					null, portletPreferences, permissionChecker, new long[]{groupId},
+					portletPreferences.getValues(
+						"assetEntryXml", new String[0]),
+					false, false);
 			}
 			catch (Exception e) {
 				throw new PortalException(e);
