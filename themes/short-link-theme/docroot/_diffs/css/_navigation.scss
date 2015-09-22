@@ -1,0 +1,44 @@
+.modify-pages .delete-tab {
+	font-weight: 100;
+	line-height: 5px;
+	padding: 0;
+	right: -20px;
+}
+
+#navigation {
+	display: block;
+	float: right;
+	margin: 78px 0 0;
+	text-align: right;
+
+	li {
+		display: block;
+		font-size: 12px;
+		letter-spacing: 0.15em;
+		padding: 0 0 8px;
+
+		a {
+			color: $neutralGrey;
+			opacity: 0.6;
+			position: relative;
+			text-transform: lowercase;
+			transition: opacity 0.1s ease;
+
+			&:hover {
+				color: $neutralGrey;
+				opacity: 1;
+				text-decoration: none;
+			}
+		}
+
+		&.selected a:before {
+			background-color: lighten($neutralGrey, 2);
+			bottom: -4px;
+			content: "";
+			height: 1px;
+			left: 0;
+			position: absolute;
+			width: 100%;
+		}
+	}
+}

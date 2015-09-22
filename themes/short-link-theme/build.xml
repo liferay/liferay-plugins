@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="short-link-theme" basedir="." default="deploy">
+	<property name="theme.parent" value="_styled" />
+
+	<import file="../build-common-theme.xml" />
+</project>

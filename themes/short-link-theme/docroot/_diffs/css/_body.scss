@@ -1,0 +1,48 @@
+body {
+	overflow-x: hidden;
+}
+
+#banner {
+	margin-bottom: 100px;
+}
+
+#heading {
+	display: inline-block;
+}
+
+#content {
+	margin-bottom: 300px;
+}
+
+#wrapper {
+	margin: 0 12%;
+	min-height: 100vh;
+	overflow: visible;
+	padding: 0;
+	position: relative;
+}
+
+#footer {
+	border-top: 1px solid $neutralGrey;
+	bottom: 0;
+	display: block;
+	padding: 40px 0 80px;
+	position: absolute;
+	text-align: right;
+	width: 100%;
+}
+
+.powered-by {
+	font-family: $fontStack;
+	font-size: 12px;
+	font-weight: 300;
+	letter-spacing: 0.2em;
+	margin: 0 40px;
+	text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+	.body {
+		padding: 0;
+	}
+}

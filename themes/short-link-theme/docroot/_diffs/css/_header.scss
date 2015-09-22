@@ -1,0 +1,33 @@
+.site-title {
+	display: inline-block;
+	margin: 40px 0 0;
+}
+
+.logo img {
+	margin-bottom: 7px;
+	width: 132px;
+}
+
+.site-name {
+	display: none;
+}
+
+#sign-in {
+	color: $neutralGrey;
+	display: inline-block;
+	float: right;
+	font-size: 13px;
+	font-weight: 200;
+	letter-spacing: 0.15em;
+	opacity: 0.6;
+	position: absolute;
+	right: 0;
+	text-transform: lowercase;
+	top: 24px;
+	transition: opacity 0.1s ease;
+
+	&:hover {
+		opacity: 1;
+		text-decoration: none;
+	}
+}

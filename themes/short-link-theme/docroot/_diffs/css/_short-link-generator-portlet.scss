@@ -1,0 +1,34 @@
+.short-link-generator-portlet {
+	.control-group, .form {
+		margin: 0;
+	}
+
+	.button-holder {
+		margin: 0;
+	}
+
+	.result-container {
+		margin-bottom: 90px;
+		min-height: 127px;
+
+		.result {
+			margin: 0;
+		}
+
+		.control-label {
+			margin-top: 5px;
+		}
+	}
+
+	.field, .result {
+		animation: slideIn 0.2s ease 0.1s backwards;
+	}
+
+	a.result:hover {
+		text-decoration: none;
+	}
+
+	.control-label {
+		animation: slideIn 0.15s ease 0.4s backwards;
+	}
+}

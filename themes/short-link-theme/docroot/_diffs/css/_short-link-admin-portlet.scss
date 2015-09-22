@@ -1,0 +1,103 @@
+.short-link-admin-portlet {
+	.input-String-wrapper {
+		animation: slideIn 0.25s ease 0.25s backwards;
+	}
+
+	.input-String-wrapper:first-child {
+		animation: slideIn 0.25s ease 0.05s backwards;
+	}
+
+	.table-bordered {
+		border-width: 0;
+	}
+
+	.table-striped tbody > tr:nth-child(odd) > td {
+		background-color: transparent;
+	}
+
+	.table thead:first-child tr:first-child th {
+		border-top-width: 0;
+	}
+
+	tbody tr:hover > td {
+		background-color: inherit;
+	}
+
+	td, th {
+		border-bottom-width: 0;
+		border-left-width: 0;
+		border-right-width: 0;
+		border-top: 1px solid $neutralGreySubtle;
+		font-weight: 200;
+		line-height: 20px;
+		max-width: 300px;
+		overflow: hidden;
+		padding: 8px 8px 32px;
+		text-align: left;
+		text-overflow: ellipsis;
+		vertical-align: top;
+		word-wrap: break-word;
+
+		a {
+			color: $neutralGrey;
+			letter-spacing: 0.03em;
+			opacity: 0.8;
+			transition: opacity 0.15s ease;
+
+			&:hover {
+				opacity: 1;
+				text-decoration: none;
+			}
+		}
+	}
+
+	td {
+		font-size: 12px;
+	}
+
+	th {
+		font-size: 14px;
+	}
+
+	.pager .disabled > a {
+		border-color: $coolGreySubtle;
+		color: $coolGreySubtle;
+		font-weight: 200;
+
+		&:hover {
+			background-color: transparent;
+			color: $coolGreySubtle;
+			opacity: 0.7;
+		}
+	}
+
+	.pager li > a {
+		border-color: $coolGrey;
+		color: $coolGrey;
+		font-weight: 200;
+		opacity: 0.7;
+
+		&:hover {
+			background-color: $subtleTransparent;
+			color: $coolGrey;
+			opacity: 1;
+		}
+	}
+
+	.lfr-search-container {
+		animation: slideUp 0.2s ease backwards 0.1s;
+	}
+
+	.searchcontainer-content {
+		max-width: 100%;
+		overflow: auto;
+	}
+
+	.lfr-pagination {
+		animation: fadeIn 0.1s ease 0.6s backwards;
+	}
+
+	.control-group:first-child {
+		margin-bottom: 60px;
+	}
+}

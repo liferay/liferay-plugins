@@ -1,0 +1,33 @@
+.dropdown-menu {
+	animation: slideUp 0.15s ease;
+	border-color: $coolGreyLight;
+	border-radius: 2px;
+	box-shadow: none;
+	padding-bottom: 20px;
+
+	li {
+		margin-bottom: 10px;
+
+		a {
+			color: $neutralGreyDark;
+			font-weight: 200;
+			opacity: 0.7;
+
+			&:hover {
+				color: $neutralGreyDark;
+				opacity: 1;
+			}
+
+			&:hover, &:focus, &:active {
+				background: transparent;
+				box-shadow: none;
+				color: $neutralGreyDark;
+				outline: none;
+			}
+
+			img {
+				display: none;
+			}
+		}
+	}
+}

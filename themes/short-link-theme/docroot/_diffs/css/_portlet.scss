@@ -1,0 +1,196 @@
+.portlet {
+	.portlet-content {
+		padding: 0
+	}
+
+	.portlet-topper {
+		display: none;
+	}
+
+	a:focus {
+		text-decoration: none;
+	}
+
+	.alert {
+		background-color: transparent;
+		border-width: 0 0 1px;
+		font-weight: 200;
+		letter-spacing: 0.05em;
+		line-height: 3;
+		padding: 0;
+	}
+
+	.alert-success {
+		border-bottom-color: $success-color;
+		color: $success-color;
+	}
+
+	.alert-error, .alert-danger {
+		border-bottom-color: $error-color;
+		color: $error-color;
+	}
+
+	.action-button, .btn {
+		background: none;
+		background-color: transparent;
+		border-color: $coolGrey;
+		color: $coolGrey;
+		opacity: 0.7;
+		transition: opacity 0.2s ease-in-out;
+
+		&:active {
+			box-shadow: none;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&:active, &:focus, &:hover {
+			background-color: $subtleTransparent;
+			opacity: 1;
+		}
+
+		&.dropdown-toggle {
+			background-color: $subtleTransparent;
+			box-shadow: none;
+		}
+	}
+
+	.btn-group.open .dropdown-toggle {
+		background-color: $subtleTransparent;
+	}
+
+	.btn {
+		font-weight: 200;
+		letter-spacing: 0.08em;
+		padding: 8px 12px;
+		text-shadow: none;
+
+		.caret {
+			opacity: 0.4;
+		}
+
+		span {
+			padding: 0 4px;
+		}
+
+		img {
+			display: none;
+		}
+	}
+
+	.btn.btn-primary {
+		border-color: $neutralGreyDark;
+		color: $neutralGreyDark;
+		margin-right: 12px;
+	}
+
+	.control-label {
+		color: $neutralGrey;
+		display: block;
+		font-size: 16px;
+		letter-spacing: 0.25em;
+	}
+
+	.control-group {
+		margin-bottom: 0;
+		position: relative;
+
+		&, &.success, &.error {
+			.control-label {
+				color: $neutralGrey;
+			}
+
+			input, .add-on {
+				background-color: transparent;
+				border-width: 0;
+				box-shadow: none;
+				color: $blackStrong;
+				outline: none;
+			}
+
+			.field {
+				border-bottom: 1px solid $neutralGreyLight;
+			}
+
+			.form-validator-stack {
+				color: $neutralGrey;
+			}
+		}
+
+		label.checkbox {
+			font-size: 16px;
+			font-weight: 200;
+			letter-spacing: 0.08em;
+			margin-bottom: 40px;
+
+			input[type="checkbox"] {
+				margin-right: 8px;
+				margin-top: 3px;
+			}
+		}
+	}
+
+	.field:not([type="checkbox"]) {
+		border-bottom: solid $neutralGreyLight;
+		border-width: 0 0 1px;
+		font-family: $fontStack;
+		height: auto;
+		margin: 0 0 90px;
+		transition: border-color 0.4s ease;
+		width: 100%;
+
+		&:not(:focus) {
+			border-bottom-color: $neutralGreyLight;
+		}
+	}
+
+	.field, .result-container .result, .add-on {
+		color: $blackStrong;
+		font-family: $fontStack;
+		font-size: 60px;
+		font-weight: 100;
+		line-height: 1.7;
+		padding: 0;
+	}
+
+	.input-prepend {
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+
+		.add-on {
+			float: left;
+			height: auto;
+			margin-right: 2px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.field {
+			flex: 2 1 auto;
+			width: auto;
+		}
+	}
+
+	.control-group .field:focus {
+		border-bottom-color: transparent;
+	}
+
+	@include input-placeholder {
+		color: $coolGreySubtle;
+	}
+
+	.form-validator-stack {
+		animation: slideIn 0.45s ease 0.2s backwards;
+		bottom: 44px;
+		display: block;
+		font-size: 14px;
+		font-weight: 200;
+		left: 0;
+		letter-spacing: 0.05em;
+		padding: 0;
+		position: absolute;
+	}
+}
