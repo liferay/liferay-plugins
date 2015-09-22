@@ -100,7 +100,7 @@ public class ScreensAssetEntryServiceImpl
 					PermissionCheckerFactoryUtil.create(getUser());
 
 				assetEntries = AssetPublisherUtil.getAssetEntries(
-					null, portletPreferences, permissionChecker, new long[]{groupId},
+					null, portletPreferences, permissionChecker, new long[] {groupId},
 					portletPreferences.getValues(
 						"assetEntryXml", new String[0]),
 					false, false);
