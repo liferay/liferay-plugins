@@ -32,9 +32,15 @@ public class ScreensJournalArticleServiceClpInvoker {
 
 		_methodParameterTypes37 = new String[] { "java.lang.String" };
 
-		_methodName40 = "getJournalArticle";
+		_methodName40 = "getJournalArticleContent";
 
 		_methodParameterTypes40 = new String[] { "int", "int", "java.util.Locale" };
+
+		_methodName41 = "getJournalArticleContent";
+
+		_methodParameterTypes41 = new String[] {
+				"long", "java.lang.String", "long", "java.util.Locale"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -53,9 +59,16 @@ public class ScreensJournalArticleServiceClpInvoker {
 
 		if (_methodName40.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
-			return ScreensJournalArticleServiceUtil.getJournalArticle(((Integer)arguments[0]).intValue(),
+			return ScreensJournalArticleServiceUtil.getJournalArticleContent(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue(),
 				(java.util.Locale)arguments[2]);
+		}
+
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			return ScreensJournalArticleServiceUtil.getJournalArticleContent(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1],
+				((Long)arguments[2]).longValue(), (java.util.Locale)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -67,4 +80,6 @@ public class ScreensJournalArticleServiceClpInvoker {
 	private String[] _methodParameterTypes37;
 	private String _methodName40;
 	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
 }
