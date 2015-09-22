@@ -53,9 +53,7 @@ public class ScreensAssetEntryServiceImpl
 		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
-		JSONArray assetEntriesJSONArray = toJSONArray(assetEntries, locale);
-
-		return assetEntriesJSONArray;
+		return toJSONArray(assetEntries, locale);
 	}
 
 	public JSONArray getFilteredAssetEntries(
@@ -102,21 +100,21 @@ public class ScreensAssetEntryServiceImpl
 			List<AssetEntry> assetEntries, Locale locale)
 		throws JSONException {
 
-		JSONArray assetEntriesJSONArray = JSONFactoryUtil.createJSONArray();
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntry assetEntry : assetEntries) {
-			JSONObject assetEntryJSONObject = JSONFactoryUtil.createJSONObject(
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.looseSerialize(assetEntry));
 
-			assetEntryJSONObject.put(
+			jsonObject.put(
 				"description", assetEntry.getDescription(locale));
-			assetEntryJSONObject.put("summary", assetEntry.getSummary(locale));
-			assetEntryJSONObject.put("title", assetEntry.getTitle(locale));
+			jsonObject.put("summary", assetEntry.getSummary(locale));
+			jsonObject.put("title", assetEntry.getTitle(locale));
 
-			assetEntriesJSONArray.put(assetEntryJSONObject);
+			jsonArray.put(jsonObject);
 		}
 
-		return assetEntriesJSONArray;
+		return jsonArray;
 	}
 
 }
