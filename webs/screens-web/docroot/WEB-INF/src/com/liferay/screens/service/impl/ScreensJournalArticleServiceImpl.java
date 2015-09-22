@@ -49,8 +49,6 @@ public class ScreensJournalArticleServiceImpl
 			long groupId, String articleId, long templateId, Locale locale)
 		throws PortalException, SystemException {
 
-		String languageId = getLanguageId(locale);
-
 		DDMTemplate ddmTemplate = DDMTemplateServiceUtil.getTemplate(
 			templateId);
 
@@ -59,6 +57,8 @@ public class ScreensJournalArticleServiceImpl
 		if (ddmTemplate != null) {
 			ddmTemplateKey = ddmTemplate.getTemplateKey();
 		}
+
+		String languageId = getLanguageId(locale);
 
 		return journalArticleLocalService.getArticleContent(
 			groupId, articleId, null, ddmTemplateKey, languageId, null);
