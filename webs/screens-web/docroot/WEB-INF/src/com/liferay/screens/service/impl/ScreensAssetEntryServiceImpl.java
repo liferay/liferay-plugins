@@ -72,29 +72,32 @@ public class ScreensAssetEntryServiceImpl
 
 		dynamicQuery.setLimit(0, 1);
 
-		List<PortletItem> portletItems = portletItemLocalService.dynamicQuery(dynamicQuery);
+		List<PortletItem> portletItems = portletItemLocalService.dynamicQuery(
+			dynamicQuery);
 
-		if (!portletItems.isEmpty()) {
-			PortletItem portletItem = portletItems.get(0);
+		if (portletItems.isEmpty()) {
+			return toJSONArray(assetEntries, locale);
+		}
 
-			PortletPreferences portletPreferences = portletPreferencesLocalService.getPreferences(
-				portletItem.getCompanyId(), portletItem.getPortletItemId(),
-				PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0, portletItem.getPortletId());
+		PortletItem portletItem = portletItems.get(0);
 
-			String selectionStyle = GetterUtil.getString(portletPreferences.getValue("selectionStyle", null), "dynamic");
+		PortletPreferences portletPreferences = portletPreferencesLocalService.getPreferences(
+			portletItem.getCompanyId(), portletItem.getPortletItemId(),
+			PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0, portletItem.getPortletId());
 
-			if (selectionStyle.equals("dynamic")) {
-				assetEntries = AssetPublisherUtil.getAssetEntries(portletPreferences, null, groupId, Integer.MAX_VALUE, false);
+		String selectionStyle = GetterUtil.getString(portletPreferences.getValue("selectionStyle", null), "dynamic");
+
+		if (selectionStyle.equals("dynamic")) {
+			assetEntries = AssetPublisherUtil.getAssetEntries(portletPreferences, null, groupId, Integer.MAX_VALUE, false);
+		}
+		else {
+			try {
+				PermissionChecker permissionChecker = PermissionCheckerFactoryUtil.create(getUser());
+				assetEntries = AssetPublisherUtil.getAssetEntries(null, portletPreferences, permissionChecker, new long[]{groupId},
+					portletPreferences.getValues("assetEntryXml", new String[0]), false, false);
 			}
-			else {
-				try {
-					PermissionChecker permissionChecker = PermissionCheckerFactoryUtil.create(getUser());
-					assetEntries = AssetPublisherUtil.getAssetEntries(null, portletPreferences, permissionChecker, new long[]{groupId},
-						portletPreferences.getValues("assetEntryXml", new String[0]), false, false);
-				}
-				catch (Exception e) {
-					throw new PortalException(e);
-				}
+			catch (Exception e) {
+				throw new PortalException(e);
 			}
 		}
 
