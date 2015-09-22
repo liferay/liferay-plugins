@@ -53,7 +53,7 @@ public class ScreensAssetEntryServiceImpl
 		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
-		JSONArray assetEntriesJSONArray = toJSONArray(locale, assetEntries);
+		JSONArray assetEntriesJSONArray = toJSONArray(assetEntries, locale);
 
 		return assetEntriesJSONArray;
 	}
@@ -95,10 +95,10 @@ public class ScreensAssetEntryServiceImpl
 			}
 		}
 
-		return toJSONArray(locale, assetEntries);
+		return toJSONArray(assetEntries, locale);
 	}
 
-	protected JSONArray toJSONArray(Locale locale, List<AssetEntry> assetEntries) throws JSONException {
+	protected JSONArray toJSONArray(List<AssetEntry> assetEntries, Locale locale) throws JSONException {
 		JSONArray assetEntriesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntry assetEntry : assetEntries) {
