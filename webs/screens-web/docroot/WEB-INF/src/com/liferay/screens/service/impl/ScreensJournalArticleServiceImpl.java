@@ -69,8 +69,7 @@ public class ScreensJournalArticleServiceImpl
 			currentLocale = LocaleUtil.getSiteDefault();
 		}
 
-		String languageId = LocaleUtil.toLanguageId(currentLocale);
-		return languageId;
+		return LocaleUtil.toLanguageId(currentLocale);
 	}
 
 }
