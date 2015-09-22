@@ -51,7 +51,9 @@ public class ScreensJournalArticleServiceImpl
 
 		String languageId = getLanguageId(locale);
 
-		DDMTemplate ddmTemplate = DDMTemplateServiceUtil.getTemplate(templateId);
+		DDMTemplate ddmTemplate = DDMTemplateServiceUtil.getTemplate(
+			templateId);
+
 		String ddmTemplateKey = null;
 
 		if (ddmTemplate != null) {
