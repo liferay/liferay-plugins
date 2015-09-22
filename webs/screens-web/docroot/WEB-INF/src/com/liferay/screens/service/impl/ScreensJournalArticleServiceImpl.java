@@ -31,7 +31,8 @@ public class ScreensJournalArticleServiceImpl
 	extends ScreensJournalArticleServiceBaseImpl {
 
 	@Override
-	public String getJournalArticle(int groupId, int classPK, Locale locale)
+	public String getJournalArticleContent(
+			int groupId, int classPK, Locale locale)
 		throws PortalException, SystemException {
 
 		JournalArticleResource journalArticleResource =
@@ -45,7 +46,7 @@ public class ScreensJournalArticleServiceImpl
 	}
 
 	@Override
-	public String getJournalArticleByTemplateId(
+	public String getJournalArticleContent(
 			long groupId, String articleId, long templateId, Locale locale)
 		throws PortalException, SystemException {
 
