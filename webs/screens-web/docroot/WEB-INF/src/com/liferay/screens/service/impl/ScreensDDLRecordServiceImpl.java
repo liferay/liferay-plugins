@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
@@ -172,15 +173,31 @@ public class ScreensDDLRecordServiceImpl
 		else if (dataType.equals(FieldConstants.FLOAT) ||
 				 dataType.equals(FieldConstants.NUMBER)) {
 
+			if (Validator.isNull(fieldValueString)) {
+				return null;
+			}
+
 			return Float.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.INTEGER)) {
+			if (Validator.isNull(fieldValueString)) {
+				return null;
+			}
+
 			return Integer.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.LONG)) {
+			if (Validator.isNull(fieldValueString)) {
+				return null;
+			}
+
 			return Long.valueOf(fieldValueString);
 		}
 		else if (dataType.equals(FieldConstants.SHORT)) {
+			if (Validator.isNull(fieldValueString)) {
+				return null;
+			}
+
 			return Short.valueOf(fieldValueString);
 		}
 
