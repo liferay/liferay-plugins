@@ -92,7 +92,7 @@ public class ScreensAssetEntryServiceImpl
 
 		if (selectionStyle.equals("dynamic")) {
 			assetEntries = AssetPublisherUtil.getAssetEntries(
-				portletPreferences, null, groupId, Integer.MAX_VALUE, false);
+				portletPreferences, null, groupId, 100, false);
 		}
 		else {
 			try {
