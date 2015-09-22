@@ -72,10 +72,10 @@ public class ScreensAssetEntryServiceImpl
 
 		dynamicQuery.setLimit(0, 1);
 
-		List<PortletItem> items = portletItemLocalService.dynamicQuery(dynamicQuery);
+		List<PortletItem> portletItems = portletItemLocalService.dynamicQuery(dynamicQuery);
 
-		if (!items.isEmpty()) {
-			PortletItem portletItem = items.get(0);
+		if (!portletItems.isEmpty()) {
+			PortletItem portletItem = portletItems.get(0);
 
 			PortletPreferences portletPreferences = portletPreferencesLocalService.getPreferences(
 				portletItem.getCompanyId(), portletItem.getPortletItemId(),
