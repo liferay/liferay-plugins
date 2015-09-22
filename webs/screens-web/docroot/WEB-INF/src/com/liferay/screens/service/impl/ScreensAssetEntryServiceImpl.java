@@ -16,6 +16,7 @@ package com.liferay.screens.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -62,8 +63,12 @@ public class ScreensAssetEntryServiceImpl
 
 		List<AssetEntry> assetEntries = new ArrayList<AssetEntry>();
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(PortletItem.class)
-			.add(PropertyFactoryUtil.forName("name").eq(portletItemName));
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			PortletItem.class);
+
+		Property property = PropertyFactoryUtil.forName("name");
+
+		dynamicQuery.add(property.eq(portletItemName));
 
 		dynamicQuery.setLimit(0, 1);
 
