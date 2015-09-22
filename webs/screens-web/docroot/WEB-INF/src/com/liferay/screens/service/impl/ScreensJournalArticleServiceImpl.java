@@ -46,7 +46,9 @@ public class ScreensJournalArticleServiceImpl
 
 	@Override
 	public String getJournalArticleByTemplateId(
-		long groupId, java.lang.String articleId, long templateId, Locale locale) throws PortalException, SystemException {
+			long groupId, java.lang.String articleId, long templateId,
+			Locale locale)
+		throws PortalException, SystemException {
 
 		String languageId = getLanguageId(locale);
 
