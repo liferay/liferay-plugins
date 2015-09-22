@@ -38,11 +38,9 @@ public class ScreensJournalArticleServiceImpl
 		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
-		String languageId = getLanguageId(locale);
-
 		return journalArticleLocalService.getArticleContent(
-			groupId, journalArticleResource.getArticleId(), null, languageId,
-			null);
+			groupId, journalArticleResource.getArticleId(), null,
+			getLanguageId(locale), null);
 	}
 
 	@Override
@@ -59,10 +57,9 @@ public class ScreensJournalArticleServiceImpl
 			ddmTemplateKey = ddmTemplate.getTemplateKey();
 		}
 
-		String languageId = getLanguageId(locale);
-
 		return journalArticleLocalService.getArticleContent(
-			groupId, articleId, null, ddmTemplateKey, languageId, null);
+			groupId, articleId, null, ddmTemplateKey, getLanguageId(locale),
+			null);
 	}
 
 	protected String getLanguageId(Locale locale) {
