@@ -66,13 +66,11 @@ public class ScreensJournalArticleServiceImpl
 	}
 
 	protected String getLanguageId(Locale locale) {
-		Locale currentLocale = locale;
-
-		if (currentLocale == null) {
-			currentLocale = LocaleUtil.getSiteDefault();
+		if (locale == null) {
+			locale = LocaleUtil.getSiteDefault();
 		}
 
-		return LocaleUtil.toLanguageId(currentLocale);
+		return LocaleUtil.toLanguageId(locale);
 	}
 
 }
