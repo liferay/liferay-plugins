@@ -112,7 +112,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			SyncUtil.checkSyncEnabled(group.getGroupId());
 
 			if (!group.isUser() &&
-				(serviceContext.getGroupPermissions() == null)) {
+				ArrayUtil.isEmpty(serviceContext.getGroupPermissions())) {
 
 				SyncUtil.setFilePermissions(group, false, serviceContext);
 			}
@@ -157,7 +157,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			SyncUtil.checkSyncEnabled(group.getGroupId());
 
 			if (!group.isUser() &&
-				(serviceContext.getGroupPermissions() == null)) {
+				ArrayUtil.isEmpty(serviceContext.getGroupPermissions())) {
 
 				SyncUtil.setFilePermissions(group, true, serviceContext);
 			}
@@ -289,7 +289,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				sourceFileEntryId);
 
 			if (!group.isUser() &&
-				(serviceContext.getGroupPermissions() == null)) {
+				ArrayUtil.isEmpty(serviceContext.getGroupPermissions())) {
 
 				SyncUtil.setFilePermissions(group, false, serviceContext);
 			}
