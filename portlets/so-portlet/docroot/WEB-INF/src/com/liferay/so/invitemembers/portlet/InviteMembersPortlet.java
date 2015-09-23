@@ -249,8 +249,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 			PermissionCheckerFactoryUtil.create(themeDisplay.getDefaultUser());
 
 		if (LayoutPermissionUtil.contains(
-				permissionChecker, themeDisplay.getLayout(),
-				themeDisplay.getControlPanelCategory(), true,
+				permissionChecker, themeDisplay.getLayout(), true,
 				ActionKeys.VIEW) &&
 			LayoutPermissionUtil.contains(
 				permissionChecker, themeDisplay.getLayout(), false,
