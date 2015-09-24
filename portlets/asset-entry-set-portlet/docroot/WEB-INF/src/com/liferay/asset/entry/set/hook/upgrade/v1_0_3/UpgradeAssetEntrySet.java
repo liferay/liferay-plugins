@@ -79,6 +79,10 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 					continue;
 				}
 
+				String[] assetTagNames = StringUtil.split(
+					payloadJSONObject.getString(
+						AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
+
 				String assetEntryIds = payloadJSONObject.getString(
 					"assetEntryIds");
 
@@ -87,10 +91,6 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 				JSONArray imageDataJSONArray = payloadJSONObject.getJSONArray(
 					"imageData");
-
-				String[] assetTagNames = StringUtil.split(
-					payloadJSONObject.getString(
-						AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
 
 				for (int i = 0; i < imageDataJSONArray.length(); i++) {
 					JSONObject imageJSONObject =
