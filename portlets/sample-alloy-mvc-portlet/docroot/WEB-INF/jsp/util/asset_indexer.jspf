@@ -78,7 +78,7 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 
 	private AssetIndexer() {
 		setClassName(Asset.class.getName());
-		setPortletId(PortletKeys.SAMPLEALOYMVC);
+		setPortletId(PortletKeys.SAMPLE_ALLOY_MVC);
 	}
 
 	private static AssetIndexer _instance = new AssetIndexer();
