@@ -1345,7 +1345,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(message);
+		clearUniqueFindersCache((MessageModelImpl)message);
 	}
 
 	@Override
@@ -1357,42 +1357,43 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 				MessageImpl.class, message.getPrimaryKey());
 
-			clearUniqueFindersCache(message);
+			clearUniqueFindersCache((MessageModelImpl)message);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Message message) {
-		if (message.isNew()) {
+	protected void cacheUniqueFindersCache(MessageModelImpl messageModelImpl,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					message.getFolderId(), message.getRemoteMessageId()
+					messageModelImpl.getFolderId(),
+					messageModelImpl.getRemoteMessageId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_R, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R, args, message);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R, args,
+				messageModelImpl);
 		}
 		else {
-			MessageModelImpl messageModelImpl = (MessageModelImpl)message;
-
 			if ((messageModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_F_R.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						message.getFolderId(), message.getRemoteMessageId()
+						messageModelImpl.getFolderId(),
+						messageModelImpl.getRemoteMessageId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_F_R, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R, args,
-					message);
+					messageModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(Message message) {
-		MessageModelImpl messageModelImpl = (MessageModelImpl)message;
-
+	protected void clearUniqueFindersCache(MessageModelImpl messageModelImpl) {
 		Object[] args = new Object[] {
-				message.getFolderId(), message.getRemoteMessageId()
+				messageModelImpl.getFolderId(),
+				messageModelImpl.getRemoteMessageId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_F_R, args);
@@ -1550,7 +1551,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				message.setNew(false);
 			}
 			else {
-				session.merge(message);
+				message = (Message)session.merge(message);
 			}
 		}
 		catch (Exception e) {
@@ -1607,8 +1608,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey(), message, false);
 
-		clearUniqueFindersCache(message);
-		cacheUniqueFindersCache(message);
+		clearUniqueFindersCache(messageModelImpl);
+		cacheUniqueFindersCache(messageModelImpl, isNew);
 
 		message.resetOriginalValues();
 

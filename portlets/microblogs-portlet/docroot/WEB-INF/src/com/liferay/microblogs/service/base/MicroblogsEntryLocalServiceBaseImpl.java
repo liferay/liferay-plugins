@@ -616,7 +616,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = MicroblogsEntryLocalService.class)
+	@BeanReference(type = com.liferay.microblogs.service.MicroblogsEntryLocalService.class)
 	protected MicroblogsEntryLocalService microblogsEntryLocalService;
 	@BeanReference(type = com.liferay.microblogs.service.MicroblogsEntryService.class)
 	protected com.liferay.microblogs.service.MicroblogsEntryService microblogsEntryService;

@@ -719,7 +719,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = FooLocalService.class)
+	@BeanReference(type = com.liferay.testpacl.service.FooLocalService.class)
 	protected FooLocalService fooLocalService;
 	@BeanReference(type = FooPersistence.class)
 	protected FooPersistence fooPersistence;

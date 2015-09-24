@@ -65,23 +65,6 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class KBArticleServiceSoap {
-	public static com.liferay.knowledgebase.model.KBArticleSoap revertKBArticle(
-		long resourcePrimKey, int version,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.revertKBArticle(resourcePrimKey,
-					version, serviceContext);
-
-			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.knowledgebase.model.KBArticleSoap addKBArticle(
 		java.lang.String portletId, long parentResourceClassNameId,
 		long parentResourcePrimKey, java.lang.String title,
@@ -503,6 +486,23 @@ public class KBArticleServiceSoap {
 		try {
 			KBArticleServiceUtil.moveKBArticle(resourcePrimKey,
 				parentResourceClassNameId, parentResourcePrimKey, priority);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticleSoap revertKBArticle(
+		long resourcePrimKey, int version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.revertKBArticle(resourcePrimKey,
+					version, serviceContext);
+
+			return com.liferay.knowledgebase.model.KBArticleSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

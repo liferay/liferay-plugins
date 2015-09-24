@@ -854,7 +854,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(favoriteSite);
+		clearUniqueFindersCache((FavoriteSiteModelImpl)favoriteSite);
 	}
 
 	@Override
@@ -866,43 +866,44 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			EntityCacheUtil.removeResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
 				FavoriteSiteImpl.class, favoriteSite.getPrimaryKey());
 
-			clearUniqueFindersCache(favoriteSite);
+			clearUniqueFindersCache((FavoriteSiteModelImpl)favoriteSite);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(FavoriteSite favoriteSite) {
-		if (favoriteSite.isNew()) {
+	protected void cacheUniqueFindersCache(
+		FavoriteSiteModelImpl favoriteSiteModelImpl, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					favoriteSite.getGroupId(), favoriteSite.getUserId()
+					favoriteSiteModelImpl.getGroupId(),
+					favoriteSiteModelImpl.getUserId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U, args,
-				favoriteSite);
+				favoriteSiteModelImpl);
 		}
 		else {
-			FavoriteSiteModelImpl favoriteSiteModelImpl = (FavoriteSiteModelImpl)favoriteSite;
-
 			if ((favoriteSiteModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_G_U.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						favoriteSite.getGroupId(), favoriteSite.getUserId()
+						favoriteSiteModelImpl.getGroupId(),
+						favoriteSiteModelImpl.getUserId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_U, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_U, args,
-					favoriteSite);
+					favoriteSiteModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(FavoriteSite favoriteSite) {
-		FavoriteSiteModelImpl favoriteSiteModelImpl = (FavoriteSiteModelImpl)favoriteSite;
-
+	protected void clearUniqueFindersCache(
+		FavoriteSiteModelImpl favoriteSiteModelImpl) {
 		Object[] args = new Object[] {
-				favoriteSite.getGroupId(), favoriteSite.getUserId()
+				favoriteSiteModelImpl.getGroupId(),
+				favoriteSiteModelImpl.getUserId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_U, args);
@@ -1040,7 +1041,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 				favoriteSite.setNew(false);
 			}
 			else {
-				session.merge(favoriteSite);
+				favoriteSite = (FavoriteSite)session.merge(favoriteSite);
 			}
 		}
 		catch (Exception e) {
@@ -1079,8 +1080,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite,
 			false);
 
-		clearUniqueFindersCache(favoriteSite);
-		cacheUniqueFindersCache(favoriteSite);
+		clearUniqueFindersCache(favoriteSiteModelImpl);
+		cacheUniqueFindersCache(favoriteSiteModelImpl, isNew);
 
 		favoriteSite.resetOriginalValues();
 

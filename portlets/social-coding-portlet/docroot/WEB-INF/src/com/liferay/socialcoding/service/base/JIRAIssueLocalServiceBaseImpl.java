@@ -880,7 +880,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.socialcoding.service.JIRAChangeItemLocalService jiraChangeItemLocalService;
 	@BeanReference(type = JIRAChangeItemPersistence.class)
 	protected JIRAChangeItemPersistence jiraChangeItemPersistence;
-	@BeanReference(type = JIRAIssueLocalService.class)
+	@BeanReference(type = com.liferay.socialcoding.service.JIRAIssueLocalService.class)
 	protected JIRAIssueLocalService jiraIssueLocalService;
 	@BeanReference(type = JIRAIssuePersistence.class)
 	protected JIRAIssuePersistence jiraIssuePersistence;

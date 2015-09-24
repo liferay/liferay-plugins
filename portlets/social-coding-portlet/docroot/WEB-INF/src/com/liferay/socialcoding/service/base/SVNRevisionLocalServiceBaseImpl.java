@@ -896,7 +896,7 @@ public abstract class SVNRevisionLocalServiceBaseImpl
 	protected com.liferay.socialcoding.service.SVNRepositoryLocalService svnRepositoryLocalService;
 	@BeanReference(type = SVNRepositoryPersistence.class)
 	protected SVNRepositoryPersistence svnRepositoryPersistence;
-	@BeanReference(type = SVNRevisionLocalService.class)
+	@BeanReference(type = com.liferay.socialcoding.service.SVNRevisionLocalService.class)
 	protected SVNRevisionLocalService svnRevisionLocalService;
 	@BeanReference(type = SVNRevisionPersistence.class)
 	protected SVNRevisionPersistence svnRevisionPersistence;

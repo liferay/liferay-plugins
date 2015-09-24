@@ -878,7 +878,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	protected JIRAChangeGroupPersistence jiraChangeGroupPersistence;
 	@BeanReference(type = JIRAChangeGroupFinder.class)
 	protected JIRAChangeGroupFinder jiraChangeGroupFinder;
-	@BeanReference(type = JIRAChangeItemLocalService.class)
+	@BeanReference(type = com.liferay.socialcoding.service.JIRAChangeItemLocalService.class)
 	protected JIRAChangeItemLocalService jiraChangeItemLocalService;
 	@BeanReference(type = JIRAChangeItemPersistence.class)
 	protected JIRAChangeItemPersistence jiraChangeItemPersistence;

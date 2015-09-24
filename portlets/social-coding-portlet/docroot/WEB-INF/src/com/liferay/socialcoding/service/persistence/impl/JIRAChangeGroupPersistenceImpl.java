@@ -1302,7 +1302,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 				jiraChangeGroup.setNew(false);
 			}
 			else {
-				session.merge(jiraChangeGroup);
+				jiraChangeGroup = (JIRAChangeGroup)session.merge(jiraChangeGroup);
 			}
 		}
 		catch (Exception e) {

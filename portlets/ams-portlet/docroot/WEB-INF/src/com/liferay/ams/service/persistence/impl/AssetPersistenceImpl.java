@@ -302,7 +302,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 				asset.setNew(false);
 			}
 			else {
-				session.merge(asset);
+				asset = (Asset)session.merge(asset);
 			}
 		}
 		catch (Exception e) {

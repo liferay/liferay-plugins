@@ -396,7 +396,7 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(jiraProject);
+		clearUniqueFindersCache((JIRAProjectModelImpl)jiraProject);
 	}
 
 	@Override
@@ -408,38 +408,36 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 			EntityCacheUtil.removeResult(JIRAProjectModelImpl.ENTITY_CACHE_ENABLED,
 				JIRAProjectImpl.class, jiraProject.getPrimaryKey());
 
-			clearUniqueFindersCache(jiraProject);
+			clearUniqueFindersCache((JIRAProjectModelImpl)jiraProject);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(JIRAProject jiraProject) {
-		if (jiraProject.isNew()) {
-			Object[] args = new Object[] { jiraProject.getKey() };
+	protected void cacheUniqueFindersCache(
+		JIRAProjectModelImpl jiraProjectModelImpl, boolean isNew) {
+		if (isNew) {
+			Object[] args = new Object[] { jiraProjectModelImpl.getKey() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KEY, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY, args,
-				jiraProject);
+				jiraProjectModelImpl);
 		}
 		else {
-			JIRAProjectModelImpl jiraProjectModelImpl = (JIRAProjectModelImpl)jiraProject;
-
 			if ((jiraProjectModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_KEY.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { jiraProject.getKey() };
+				Object[] args = new Object[] { jiraProjectModelImpl.getKey() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KEY, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY, args,
-					jiraProject);
+					jiraProjectModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(JIRAProject jiraProject) {
-		JIRAProjectModelImpl jiraProjectModelImpl = (JIRAProjectModelImpl)jiraProject;
-
-		Object[] args = new Object[] { jiraProject.getKey() };
+	protected void clearUniqueFindersCache(
+		JIRAProjectModelImpl jiraProjectModelImpl) {
+		Object[] args = new Object[] { jiraProjectModelImpl.getKey() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_KEY, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY, args);
@@ -560,6 +558,8 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 
 		boolean isNew = jiraProject.isNew();
 
+		JIRAProjectModelImpl jiraProjectModelImpl = (JIRAProjectModelImpl)jiraProject;
+
 		Session session = null;
 
 		try {
@@ -571,7 +571,7 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 				jiraProject.setNew(false);
 			}
 			else {
-				session.merge(jiraProject);
+				jiraProject = (JIRAProject)session.merge(jiraProject);
 			}
 		}
 		catch (Exception e) {
@@ -591,8 +591,8 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 			JIRAProjectImpl.class, jiraProject.getPrimaryKey(), jiraProject,
 			false);
 
-		clearUniqueFindersCache(jiraProject);
-		cacheUniqueFindersCache(jiraProject);
+		clearUniqueFindersCache(jiraProjectModelImpl);
+		cacheUniqueFindersCache(jiraProjectModelImpl, isNew);
 
 		jiraProject.resetOriginalValues();
 

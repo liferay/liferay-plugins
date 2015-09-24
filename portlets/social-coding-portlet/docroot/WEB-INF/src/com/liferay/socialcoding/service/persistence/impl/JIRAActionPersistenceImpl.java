@@ -1835,7 +1835,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				jiraAction.setNew(false);
 			}
 			else {
-				session.merge(jiraAction);
+				jiraAction = (JIRAAction)session.merge(jiraAction);
 			}
 		}
 		catch (Exception e) {

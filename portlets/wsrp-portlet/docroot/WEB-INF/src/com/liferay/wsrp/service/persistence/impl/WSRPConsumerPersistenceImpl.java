@@ -1880,7 +1880,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 				wsrpConsumer.setNew(false);
 			}
 			else {
-				session.merge(wsrpConsumer);
+				wsrpConsumer = (WSRPConsumer)session.merge(wsrpConsumer);
 			}
 		}
 		catch (Exception e) {

@@ -343,7 +343,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadLocalService.class)
 	protected com.liferay.privatemessaging.service.UserThreadLocalService userThreadLocalService;
-	@BeanReference(type = UserThreadService.class)
+	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadService.class)
 	protected UserThreadService userThreadService;
 	@BeanReference(type = UserThreadPersistence.class)
 	protected UserThreadPersistence userThreadPersistence;

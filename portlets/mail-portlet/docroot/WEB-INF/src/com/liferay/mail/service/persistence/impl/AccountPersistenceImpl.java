@@ -897,7 +897,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(account);
+		clearUniqueFindersCache((AccountModelImpl)account);
 	}
 
 	@Override
@@ -909,41 +909,42 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 				AccountImpl.class, account.getPrimaryKey());
 
-			clearUniqueFindersCache(account);
+			clearUniqueFindersCache((AccountModelImpl)account);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Account account) {
-		if (account.isNew()) {
+	protected void cacheUniqueFindersCache(AccountModelImpl accountModelImpl,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					account.getUserId(), account.getAddress()
+					accountModelImpl.getUserId(), accountModelImpl.getAddress()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_A, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A, args, account);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A, args,
+				accountModelImpl);
 		}
 		else {
-			AccountModelImpl accountModelImpl = (AccountModelImpl)account;
-
 			if ((accountModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						account.getUserId(), account.getAddress()
+						accountModelImpl.getUserId(),
+						accountModelImpl.getAddress()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_A, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A, args,
-					account);
+					accountModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(Account account) {
-		AccountModelImpl accountModelImpl = (AccountModelImpl)account;
-
-		Object[] args = new Object[] { account.getUserId(), account.getAddress() };
+	protected void clearUniqueFindersCache(AccountModelImpl accountModelImpl) {
+		Object[] args = new Object[] {
+				accountModelImpl.getUserId(), accountModelImpl.getAddress()
+			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
@@ -1100,7 +1101,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				account.setNew(false);
 			}
 			else {
-				session.merge(account);
+				account = (Account)session.merge(account);
 			}
 		}
 		catch (Exception e) {
@@ -1138,8 +1139,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		EntityCacheUtil.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountImpl.class, account.getPrimaryKey(), account, false);
 
-		clearUniqueFindersCache(account);
-		cacheUniqueFindersCache(account);
+		clearUniqueFindersCache(accountModelImpl);
+		cacheUniqueFindersCache(accountModelImpl, isNew);
 
 		account.resetOriginalValues();
 

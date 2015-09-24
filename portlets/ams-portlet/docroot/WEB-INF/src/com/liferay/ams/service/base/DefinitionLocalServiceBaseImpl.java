@@ -696,7 +696,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	protected com.liferay.ams.service.CheckoutLocalService checkoutLocalService;
 	@BeanReference(type = CheckoutPersistence.class)
 	protected CheckoutPersistence checkoutPersistence;
-	@BeanReference(type = DefinitionLocalService.class)
+	@BeanReference(type = com.liferay.ams.service.DefinitionLocalService.class)
 	protected DefinitionLocalService definitionLocalService;
 	@BeanReference(type = DefinitionPersistence.class)
 	protected DefinitionPersistence definitionPersistence;

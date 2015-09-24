@@ -315,7 +315,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	private long _barId;
 	private String _text;
 	private BaseModel<?> _barRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.testtransaction.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

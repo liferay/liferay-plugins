@@ -643,7 +643,7 @@ public abstract class EntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = EntryLocalService.class)
+	@BeanReference(type = com.liferay.chat.service.EntryLocalService.class)
 	protected EntryLocalService entryLocalService;
 	@BeanReference(type = EntryPersistence.class)
 	protected EntryPersistence entryPersistence;

@@ -501,7 +501,7 @@ public abstract class SocialOfficeServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.so.service.ProjectsEntryLocalService projectsEntryLocalService;
 	@BeanReference(type = ProjectsEntryPersistence.class)
 	protected ProjectsEntryPersistence projectsEntryPersistence;
-	@BeanReference(type = SocialOfficeService.class)
+	@BeanReference(type = com.liferay.so.service.SocialOfficeService.class)
 	protected SocialOfficeService socialOfficeService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;

@@ -4382,7 +4382,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				entry.setNew(false);
 			}
 			else {
-				session.merge(entry);
+				entry = (Entry)session.merge(entry);
 			}
 		}
 		catch (Exception e) {

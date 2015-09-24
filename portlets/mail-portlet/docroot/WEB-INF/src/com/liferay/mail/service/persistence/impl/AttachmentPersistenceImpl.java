@@ -762,7 +762,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 				attachment.setNew(false);
 			}
 			else {
-				session.merge(attachment);
+				attachment = (Attachment)session.merge(attachment);
 			}
 		}
 		catch (Exception e) {

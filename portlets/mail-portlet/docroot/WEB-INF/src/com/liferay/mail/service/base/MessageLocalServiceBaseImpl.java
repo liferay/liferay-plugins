@@ -695,7 +695,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.mail.service.FolderLocalService folderLocalService;
 	@BeanReference(type = FolderPersistence.class)
 	protected FolderPersistence folderPersistence;
-	@BeanReference(type = MessageLocalService.class)
+	@BeanReference(type = com.liferay.mail.service.MessageLocalService.class)
 	protected MessageLocalService messageLocalService;
 	@BeanReference(type = MessagePersistence.class)
 	protected MessagePersistence messagePersistence;

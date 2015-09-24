@@ -688,7 +688,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.ams.service.AssetLocalService assetLocalService;
 	@BeanReference(type = AssetPersistence.class)
 	protected AssetPersistence assetPersistence;
-	@BeanReference(type = CheckoutLocalService.class)
+	@BeanReference(type = com.liferay.ams.service.CheckoutLocalService.class)
 	protected CheckoutLocalService checkoutLocalService;
 	@BeanReference(type = CheckoutPersistence.class)
 	protected CheckoutPersistence checkoutPersistence;

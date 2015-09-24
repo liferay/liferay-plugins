@@ -694,7 +694,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.ams.service.DefinitionLocalService definitionLocalService;
 	@BeanReference(type = DefinitionPersistence.class)
 	protected DefinitionPersistence definitionPersistence;
-	@BeanReference(type = TypeLocalService.class)
+	@BeanReference(type = com.liferay.ams.service.TypeLocalService.class)
 	protected TypeLocalService typeLocalService;
 	@BeanReference(type = TypePersistence.class)
 	protected TypePersistence typePersistence;

@@ -888,7 +888,7 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	protected JIRAIssuePersistence jiraIssuePersistence;
 	@BeanReference(type = JIRAIssueFinder.class)
 	protected JIRAIssueFinder jiraIssueFinder;
-	@BeanReference(type = JIRAProjectLocalService.class)
+	@BeanReference(type = com.liferay.socialcoding.service.JIRAProjectLocalService.class)
 	protected JIRAProjectLocalService jiraProjectLocalService;
 	@BeanReference(type = JIRAProjectPersistence.class)
 	protected JIRAProjectPersistence jiraProjectPersistence;

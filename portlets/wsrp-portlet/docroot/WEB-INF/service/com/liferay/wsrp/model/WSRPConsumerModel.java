@@ -268,6 +268,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer>, StagedModel 
 	 *
 	 * @return the last publish date of this w s r p consumer
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -275,6 +276,7 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer>, StagedModel 
 	 *
 	 * @param lastPublishDate the last publish date of this w s r p consumer
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	@Override

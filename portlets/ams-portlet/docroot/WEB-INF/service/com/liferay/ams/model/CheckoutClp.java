@@ -644,7 +644,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 	private Date _expectedCheckInDate;
 	private Date _actualCheckInDate;
 	private BaseModel<?> _checkoutRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.ams.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -804,7 +804,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = FavoriteSiteLocalService.class)
+	@BeanReference(type = com.liferay.so.service.FavoriteSiteLocalService.class)
 	protected FavoriteSiteLocalService favoriteSiteLocalService;
 	@BeanReference(type = FavoriteSitePersistence.class)
 	protected FavoriteSitePersistence favoriteSitePersistence;

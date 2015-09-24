@@ -304,7 +304,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 				checkout.setNew(false);
 			}
 			else {
-				session.merge(checkout);
+				checkout = (Checkout)session.merge(checkout);
 			}
 		}
 		catch (Exception e) {

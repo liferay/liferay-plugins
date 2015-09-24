@@ -1086,7 +1086,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_EXPIRATIONDATE_EXPIRATIONDATE_1 = "syncDLFileVersionDiff.expirationDate < NULL";
+	private static final String _FINDER_COLUMN_EXPIRATIONDATE_EXPIRATIONDATE_1 = "syncDLFileVersionDiff.expirationDate IS NULL";
 	private static final String _FINDER_COLUMN_EXPIRATIONDATE_EXPIRATIONDATE_2 = "syncDLFileVersionDiff.expirationDate < ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_F_S_T = new FinderPath(SyncDLFileVersionDiffModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLFileVersionDiffModelImpl.FINDER_CACHE_ENABLED,

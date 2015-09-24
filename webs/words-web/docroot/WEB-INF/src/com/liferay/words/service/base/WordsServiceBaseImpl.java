@@ -294,7 +294,7 @@ public abstract class WordsServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = WordsService.class)
+	@BeanReference(type = com.liferay.words.service.WordsService.class)
 	protected WordsService wordsService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;

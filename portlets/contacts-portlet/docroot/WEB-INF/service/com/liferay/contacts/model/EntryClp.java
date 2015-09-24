@@ -640,7 +640,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	private String _emailAddress;
 	private String _comments;
 	private BaseModel<?> _entryRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.contacts.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

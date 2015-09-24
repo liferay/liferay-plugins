@@ -1859,7 +1859,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				svnRevision.setNew(false);
 			}
 			else {
-				session.merge(svnRevision);
+				svnRevision = (SVNRevision)session.merge(svnRevision);
 			}
 		}
 		catch (Exception e) {

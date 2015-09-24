@@ -353,7 +353,7 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	private long _groupId;
 	private String _name;
 	private BaseModel<?> _typeRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.ams.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

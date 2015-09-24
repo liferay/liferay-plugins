@@ -691,7 +691,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected com.liferay.mail.service.AttachmentLocalService attachmentLocalService;
 	@BeanReference(type = AttachmentPersistence.class)
 	protected AttachmentPersistence attachmentPersistence;
-	@BeanReference(type = FolderLocalService.class)
+	@BeanReference(type = com.liferay.mail.service.FolderLocalService.class)
 	protected FolderLocalService folderLocalService;
 	@BeanReference(type = FolderPersistence.class)
 	protected FolderPersistence folderPersistence;

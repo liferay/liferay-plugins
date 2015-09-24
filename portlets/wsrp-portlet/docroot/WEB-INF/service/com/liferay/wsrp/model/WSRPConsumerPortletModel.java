@@ -192,6 +192,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	 *
 	 * @return the last publish date of this w s r p consumer portlet
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -199,6 +200,7 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	 *
 	 * @param lastPublishDate the last publish date of this w s r p consumer portlet
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	@Override

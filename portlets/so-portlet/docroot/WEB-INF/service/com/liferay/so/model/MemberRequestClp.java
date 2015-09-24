@@ -738,7 +738,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	private long _invitedTeamId;
 	private int _status;
 	private BaseModel<?> _memberRequestRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.so.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

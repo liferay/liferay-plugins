@@ -655,7 +655,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	private boolean _read;
 	private boolean _deleted;
 	private BaseModel<?> _userThreadRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.privatemessaging.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

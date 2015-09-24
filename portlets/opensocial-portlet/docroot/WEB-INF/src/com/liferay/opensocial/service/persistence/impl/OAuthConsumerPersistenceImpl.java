@@ -984,7 +984,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(oAuthConsumer);
+		clearUniqueFindersCache((OAuthConsumerModelImpl)oAuthConsumer);
 	}
 
 	@Override
@@ -996,45 +996,44 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			EntityCacheUtil.removeResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 				OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey());
 
-			clearUniqueFindersCache(oAuthConsumer);
+			clearUniqueFindersCache((OAuthConsumerModelImpl)oAuthConsumer);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(OAuthConsumer oAuthConsumer,
-		boolean isNew) {
+	protected void cacheUniqueFindersCache(
+		OAuthConsumerModelImpl oAuthConsumerModelImpl, boolean isNew) {
 		if (isNew) {
 			Object[] args = new Object[] {
-					oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName()
+					oAuthConsumerModelImpl.getGadgetKey(),
+					oAuthConsumerModelImpl.getServiceName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S, args,
-				oAuthConsumer);
+				oAuthConsumerModelImpl);
 		}
 		else {
-			OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
-
 			if ((oAuthConsumerModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_G_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						oAuthConsumer.getGadgetKey(),
-						oAuthConsumer.getServiceName()
+						oAuthConsumerModelImpl.getGadgetKey(),
+						oAuthConsumerModelImpl.getServiceName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S, args,
-					oAuthConsumer);
+					oAuthConsumerModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(OAuthConsumer oAuthConsumer) {
-		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumer;
-
+	protected void clearUniqueFindersCache(
+		OAuthConsumerModelImpl oAuthConsumerModelImpl) {
 		Object[] args = new Object[] {
-				oAuthConsumer.getGadgetKey(), oAuthConsumer.getServiceName()
+				oAuthConsumerModelImpl.getGadgetKey(),
+				oAuthConsumerModelImpl.getServiceName()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_S, args);
@@ -1195,7 +1194,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				oAuthConsumer.setNew(false);
 			}
 			else {
-				session.merge(oAuthConsumer);
+				oAuthConsumer = (OAuthConsumer)session.merge(oAuthConsumer);
 			}
 		}
 		catch (Exception e) {
@@ -1236,8 +1235,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey(),
 			oAuthConsumer, false);
 
-		clearUniqueFindersCache(oAuthConsumer);
-		cacheUniqueFindersCache(oAuthConsumer, isNew);
+		clearUniqueFindersCache(oAuthConsumerModelImpl);
+		cacheUniqueFindersCache(oAuthConsumerModelImpl, isNew);
 
 		oAuthConsumer.resetOriginalValues();
 

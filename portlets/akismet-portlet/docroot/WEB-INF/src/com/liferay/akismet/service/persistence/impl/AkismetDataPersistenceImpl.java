@@ -587,7 +587,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_1 = "akismetData.modifiedDate < NULL";
+	private static final String _FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_1 = "akismetData.modifiedDate IS NULL";
 	private static final String _FINDER_COLUMN_LTMODIFIEDDATE_MODIFIEDDATE_2 = "akismetData.modifiedDate < ?";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_C = new FinderPath(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataModelImpl.FINDER_CACHE_ENABLED, AkismetDataImpl.class,
@@ -893,7 +893,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(akismetData);
+		clearUniqueFindersCache((AkismetDataModelImpl)akismetData);
 	}
 
 	@Override
@@ -905,43 +905,44 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			EntityCacheUtil.removeResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 				AkismetDataImpl.class, akismetData.getPrimaryKey());
 
-			clearUniqueFindersCache(akismetData);
+			clearUniqueFindersCache((AkismetDataModelImpl)akismetData);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(AkismetData akismetData) {
-		if (akismetData.isNew()) {
+	protected void cacheUniqueFindersCache(
+		AkismetDataModelImpl akismetDataModelImpl, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					akismetData.getClassNameId(), akismetData.getClassPK()
+					akismetDataModelImpl.getClassNameId(),
+					akismetDataModelImpl.getClassPK()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C, args,
-				akismetData);
+				akismetDataModelImpl);
 		}
 		else {
-			AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
-
 			if ((akismetDataModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_C_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						akismetData.getClassNameId(), akismetData.getClassPK()
+						akismetDataModelImpl.getClassNameId(),
+						akismetDataModelImpl.getClassPK()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C, args,
-					akismetData);
+					akismetDataModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(AkismetData akismetData) {
-		AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
-
+	protected void clearUniqueFindersCache(
+		AkismetDataModelImpl akismetDataModelImpl) {
 		Object[] args = new Object[] {
-				akismetData.getClassNameId(), akismetData.getClassPK()
+				akismetDataModelImpl.getClassNameId(),
+				akismetDataModelImpl.getClassPK()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
@@ -1065,6 +1066,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		boolean isNew = akismetData.isNew();
 
+		AkismetDataModelImpl akismetDataModelImpl = (AkismetDataModelImpl)akismetData;
+
 		Session session = null;
 
 		try {
@@ -1076,7 +1079,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 				akismetData.setNew(false);
 			}
 			else {
-				session.merge(akismetData);
+				akismetData = (AkismetData)session.merge(akismetData);
 			}
 		}
 		catch (Exception e) {
@@ -1096,8 +1099,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData,
 			false);
 
-		clearUniqueFindersCache(akismetData);
-		cacheUniqueFindersCache(akismetData);
+		clearUniqueFindersCache(akismetDataModelImpl);
+		cacheUniqueFindersCache(akismetDataModelImpl, isNew);
 
 		akismetData.resetOriginalValues();
 

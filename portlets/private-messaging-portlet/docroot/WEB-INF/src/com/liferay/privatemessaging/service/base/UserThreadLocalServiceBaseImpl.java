@@ -593,7 +593,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = UserThreadLocalService.class)
+	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadLocalService.class)
 	protected UserThreadLocalService userThreadLocalService;
 	@BeanReference(type = com.liferay.privatemessaging.service.UserThreadService.class)
 	protected com.liferay.privatemessaging.service.UserThreadService userThreadService;

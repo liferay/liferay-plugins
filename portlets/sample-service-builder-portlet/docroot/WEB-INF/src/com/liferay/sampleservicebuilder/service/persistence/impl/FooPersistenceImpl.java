@@ -1951,7 +1951,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(foo);
+		clearUniqueFindersCache((FooModelImpl)foo);
 	}
 
 	@Override
@@ -1963,36 +1963,41 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 				FooImpl.class, foo.getPrimaryKey());
 
-			clearUniqueFindersCache(foo);
+			clearUniqueFindersCache((FooModelImpl)foo);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Foo foo, boolean isNew) {
+	protected void cacheUniqueFindersCache(FooModelImpl fooModelImpl,
+		boolean isNew) {
 		if (isNew) {
-			Object[] args = new Object[] { foo.getUuid(), foo.getGroupId() };
+			Object[] args = new Object[] {
+					fooModelImpl.getUuid(), fooModelImpl.getGroupId()
+				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args, foo);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+				fooModelImpl);
 		}
 		else {
-			FooModelImpl fooModelImpl = (FooModelImpl)foo;
-
 			if ((fooModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { foo.getUuid(), foo.getGroupId() };
+				Object[] args = new Object[] {
+						fooModelImpl.getUuid(), fooModelImpl.getGroupId()
+					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args, foo);
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+					fooModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(Foo foo) {
-		FooModelImpl fooModelImpl = (FooModelImpl)foo;
-
-		Object[] args = new Object[] { foo.getUuid(), foo.getGroupId() };
+	protected void clearUniqueFindersCache(FooModelImpl fooModelImpl) {
+		Object[] args = new Object[] {
+				fooModelImpl.getUuid(), fooModelImpl.getGroupId()
+			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
@@ -2157,7 +2162,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				foo.setNew(false);
 			}
 			else {
-				session.merge(foo);
+				foo = (Foo)session.merge(foo);
 			}
 		}
 		catch (Exception e) {
@@ -2228,8 +2233,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooImpl.class, foo.getPrimaryKey(), foo, false);
 
-		clearUniqueFindersCache(foo);
-		cacheUniqueFindersCache(foo, isNew);
+		clearUniqueFindersCache(fooModelImpl);
+		cacheUniqueFindersCache(fooModelImpl, isNew);
 
 		foo.resetOriginalValues();
 

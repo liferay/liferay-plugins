@@ -192,6 +192,7 @@ public interface GadgetModel extends BaseModel<Gadget>, StagedModel {
 	 *
 	 * @return the last publish date of this gadget
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -199,6 +200,7 @@ public interface GadgetModel extends BaseModel<Gadget>, StagedModel {
 	 *
 	 * @param lastPublishDate the last publish date of this gadget
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	@Override

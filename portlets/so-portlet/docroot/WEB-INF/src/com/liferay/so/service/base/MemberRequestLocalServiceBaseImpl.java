@@ -868,7 +868,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	protected FavoriteSitePersistence favoriteSitePersistence;
 	@BeanReference(type = FavoriteSiteFinder.class)
 	protected FavoriteSiteFinder favoriteSiteFinder;
-	@BeanReference(type = MemberRequestLocalService.class)
+	@BeanReference(type = com.liferay.so.service.MemberRequestLocalService.class)
 	protected MemberRequestLocalService memberRequestLocalService;
 	@BeanReference(type = MemberRequestPersistence.class)
 	protected MemberRequestPersistence memberRequestPersistence;

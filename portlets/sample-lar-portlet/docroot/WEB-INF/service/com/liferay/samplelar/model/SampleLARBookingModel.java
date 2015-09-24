@@ -228,6 +228,7 @@ public interface SampleLARBookingModel extends BaseModel<SampleLARBooking>,
 	 *
 	 * @return the last publish date of this sample l a r booking
 	 */
+	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -235,6 +236,7 @@ public interface SampleLARBookingModel extends BaseModel<SampleLARBooking>,
 	 *
 	 * @param lastPublishDate the last publish date of this sample l a r booking
 	 */
+	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	@Override

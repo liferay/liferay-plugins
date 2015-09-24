@@ -414,7 +414,7 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	private long _companyId;
 	private long _userId;
 	private BaseModel<?> _favoriteSiteRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.so.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

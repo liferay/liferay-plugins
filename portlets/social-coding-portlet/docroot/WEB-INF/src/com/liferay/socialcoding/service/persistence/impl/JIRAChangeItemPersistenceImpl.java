@@ -778,7 +778,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 				jiraChangeItem.setNew(false);
 			}
 			else {
-				session.merge(jiraChangeItem);
+				jiraChangeItem = (JIRAChangeItem)session.merge(jiraChangeItem);
 			}
 		}
 		catch (Exception e) {

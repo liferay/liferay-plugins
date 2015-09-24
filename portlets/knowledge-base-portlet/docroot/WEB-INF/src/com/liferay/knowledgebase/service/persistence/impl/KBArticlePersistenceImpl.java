@@ -24311,7 +24311,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	private static final String _FINDER_COLUMN_G_S_L_GROUPID_2 = "kbArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_S_L_SECTIONS_1 = "kbArticle.sections LIKE NULL AND ";
+	private static final String _FINDER_COLUMN_G_S_L_SECTIONS_1 = "kbArticle.sections IS NULL AND ";
 	private static final String _FINDER_COLUMN_G_S_L_SECTIONS_2 = "kbArticle.sections LIKE ? AND ";
 	private static final String _FINDER_COLUMN_G_S_L_SECTIONS_3 = "(kbArticle.sections IS NULL OR kbArticle.sections LIKE '') AND ";
 	private static final String _FINDER_COLUMN_G_S_L_SECTIONS_4 = "(" +
@@ -25914,7 +25914,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	private static final String _FINDER_COLUMN_G_S_M_GROUPID_2 = "kbArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_S_M_SECTIONS_1 = "kbArticle.sections LIKE NULL AND ";
+	private static final String _FINDER_COLUMN_G_S_M_SECTIONS_1 = "kbArticle.sections IS NULL AND ";
 	private static final String _FINDER_COLUMN_G_S_M_SECTIONS_2 = "kbArticle.sections LIKE ? AND ";
 	private static final String _FINDER_COLUMN_G_S_M_SECTIONS_3 = "(kbArticle.sections IS NULL OR kbArticle.sections LIKE '') AND ";
 	private static final String _FINDER_COLUMN_G_S_M_SECTIONS_4 = "(" +
@@ -27515,7 +27515,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	}
 
 	private static final String _FINDER_COLUMN_G_S_S_GROUPID_2 = "kbArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_S_S_SECTIONS_1 = "kbArticle.sections LIKE NULL AND ";
+	private static final String _FINDER_COLUMN_G_S_S_SECTIONS_1 = "kbArticle.sections IS NULL AND ";
 	private static final String _FINDER_COLUMN_G_S_S_SECTIONS_2 = "kbArticle.sections LIKE ? AND ";
 	private static final String _FINDER_COLUMN_G_S_S_SECTIONS_3 = "(kbArticle.sections IS NULL OR kbArticle.sections LIKE '') AND ";
 	private static final String _FINDER_COLUMN_G_S_S_SECTIONS_4 = "(" +

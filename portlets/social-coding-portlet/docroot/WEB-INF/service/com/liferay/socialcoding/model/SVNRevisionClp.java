@@ -536,7 +536,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 	private long _revisionNumber;
 	private String _comments;
 	private BaseModel<?> _svnRevisionRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

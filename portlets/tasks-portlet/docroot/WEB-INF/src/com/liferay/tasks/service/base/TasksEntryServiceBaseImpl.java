@@ -362,7 +362,7 @@ public abstract class TasksEntryServiceBaseImpl extends BaseServiceImpl
 
 	@BeanReference(type = com.liferay.tasks.service.TasksEntryLocalService.class)
 	protected com.liferay.tasks.service.TasksEntryLocalService tasksEntryLocalService;
-	@BeanReference(type = TasksEntryService.class)
+	@BeanReference(type = com.liferay.tasks.service.TasksEntryService.class)
 	protected TasksEntryService tasksEntryService;
 	@BeanReference(type = TasksEntryPersistence.class)
 	protected TasksEntryPersistence tasksEntryPersistence;

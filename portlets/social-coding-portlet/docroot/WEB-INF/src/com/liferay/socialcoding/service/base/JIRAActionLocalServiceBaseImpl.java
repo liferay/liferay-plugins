@@ -866,7 +866,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = JIRAActionLocalService.class)
+	@BeanReference(type = com.liferay.socialcoding.service.JIRAActionLocalService.class)
 	protected JIRAActionLocalService jiraActionLocalService;
 	@BeanReference(type = JIRAActionPersistence.class)
 	protected JIRAActionPersistence jiraActionPersistence;

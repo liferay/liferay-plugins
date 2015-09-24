@@ -305,7 +305,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 				definition.setNew(false);
 			}
 			else {
-				session.merge(definition);
+				definition = (Definition)session.merge(definition);
 			}
 		}
 		catch (Exception e) {

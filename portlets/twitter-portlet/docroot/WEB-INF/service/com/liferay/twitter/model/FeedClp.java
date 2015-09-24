@@ -621,7 +621,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	private String _twitterScreenName;
 	private long _lastStatusId;
 	private BaseModel<?> _feedRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.twitter.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

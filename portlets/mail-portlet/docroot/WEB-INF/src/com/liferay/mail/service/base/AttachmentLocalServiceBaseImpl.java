@@ -692,7 +692,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	protected com.liferay.mail.service.AccountLocalService accountLocalService;
 	@BeanReference(type = AccountPersistence.class)
 	protected AccountPersistence accountPersistence;
-	@BeanReference(type = AttachmentLocalService.class)
+	@BeanReference(type = com.liferay.mail.service.AttachmentLocalService.class)
 	protected AttachmentLocalService attachmentLocalService;
 	@BeanReference(type = AttachmentPersistence.class)
 	protected AttachmentPersistence attachmentPersistence;

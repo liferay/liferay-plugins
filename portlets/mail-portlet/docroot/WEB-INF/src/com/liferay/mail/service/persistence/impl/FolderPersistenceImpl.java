@@ -898,7 +898,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(folder);
+		clearUniqueFindersCache((FolderModelImpl)folder);
 	}
 
 	@Override
@@ -910,40 +910,43 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 				FolderImpl.class, folder.getPrimaryKey());
 
-			clearUniqueFindersCache(folder);
+			clearUniqueFindersCache((FolderModelImpl)folder);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Folder folder) {
-		if (folder.isNew()) {
+	protected void cacheUniqueFindersCache(FolderModelImpl folderModelImpl,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					folder.getAccountId(), folder.getFullName()
+					folderModelImpl.getAccountId(),
+					folderModelImpl.getFullName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_F, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F, args, folder);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F, args,
+				folderModelImpl);
 		}
 		else {
-			FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
-
 			if ((folderModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_A_F.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						folder.getAccountId(), folder.getFullName()
+						folderModelImpl.getAccountId(),
+						folderModelImpl.getFullName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_A_F, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F, args, folder);
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F, args,
+					folderModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(Folder folder) {
-		FolderModelImpl folderModelImpl = (FolderModelImpl)folder;
-
-		Object[] args = new Object[] { folder.getAccountId(), folder.getFullName() };
+	protected void clearUniqueFindersCache(FolderModelImpl folderModelImpl) {
+		Object[] args = new Object[] {
+				folderModelImpl.getAccountId(), folderModelImpl.getFullName()
+			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_A_F, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F, args);
@@ -1099,7 +1102,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				folder.setNew(false);
 			}
 			else {
-				session.merge(folder);
+				folder = (Folder)session.merge(folder);
 			}
 		}
 		catch (Exception e) {
@@ -1139,8 +1142,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		EntityCacheUtil.putResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderImpl.class, folder.getPrimaryKey(), folder, false);
 
-		clearUniqueFindersCache(folder);
-		cacheUniqueFindersCache(folder);
+		clearUniqueFindersCache(folderModelImpl);
+		cacheUniqueFindersCache(folderModelImpl, isNew);
 
 		folder.resetOriginalValues();
 

@@ -1,1 +1,1 @@
-create index IX_AEFF307C on TestTransaction_Bar (text_);
+create index IX_AEFF307C on TestTransaction_Bar (text_[$COLUMN_LENGTH:75$]);

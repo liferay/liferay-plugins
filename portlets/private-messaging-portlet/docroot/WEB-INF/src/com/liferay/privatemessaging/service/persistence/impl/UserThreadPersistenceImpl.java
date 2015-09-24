@@ -2418,7 +2418,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(userThread);
+		clearUniqueFindersCache((UserThreadModelImpl)userThread);
 	}
 
 	@Override
@@ -2430,42 +2430,44 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 				UserThreadImpl.class, userThread.getPrimaryKey());
 
-			clearUniqueFindersCache(userThread);
+			clearUniqueFindersCache((UserThreadModelImpl)userThread);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(UserThread userThread) {
-		if (userThread.isNew()) {
+	protected void cacheUniqueFindersCache(
+		UserThreadModelImpl userThreadModelImpl, boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					userThread.getUserId(), userThread.getMbThreadId()
+					userThreadModelImpl.getUserId(),
+					userThreadModelImpl.getMbThreadId()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args, userThread);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
+				userThreadModelImpl);
 		}
 		else {
-			UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
-
 			if ((userThreadModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						userThread.getUserId(), userThread.getMbThreadId()
+						userThreadModelImpl.getUserId(),
+						userThreadModelImpl.getMbThreadId()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
-					userThread);
+					userThreadModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(UserThread userThread) {
-		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
-
+	protected void clearUniqueFindersCache(
+		UserThreadModelImpl userThreadModelImpl) {
 		Object[] args = new Object[] {
-				userThread.getUserId(), userThread.getMbThreadId()
+				userThreadModelImpl.getUserId(),
+				userThreadModelImpl.getMbThreadId()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
@@ -2625,7 +2627,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				userThread.setNew(false);
 			}
 			else {
-				session.merge(userThread);
+				userThread = (UserThread)session.merge(userThread);
 			}
 		}
 		catch (Exception e) {
@@ -2726,8 +2728,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey(), userThread, false);
 
-		clearUniqueFindersCache(userThread);
-		cacheUniqueFindersCache(userThread);
+		clearUniqueFindersCache(userThreadModelImpl);
+		cacheUniqueFindersCache(userThreadModelImpl, isNew);
 
 		userThread.resetOriginalValues();
 

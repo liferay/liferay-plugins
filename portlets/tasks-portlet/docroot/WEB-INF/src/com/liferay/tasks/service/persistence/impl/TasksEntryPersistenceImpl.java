@@ -9721,7 +9721,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				tasksEntry.setNew(false);
 			}
 			else {
-				session.merge(tasksEntry);
+				tasksEntry = (TasksEntry)session.merge(tasksEntry);
 			}
 		}
 		catch (Exception e) {

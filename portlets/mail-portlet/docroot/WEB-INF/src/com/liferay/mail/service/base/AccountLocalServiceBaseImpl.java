@@ -683,7 +683,7 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = AccountLocalService.class)
+	@BeanReference(type = com.liferay.mail.service.AccountLocalService.class)
 	protected AccountLocalService accountLocalService;
 	@BeanReference(type = AccountPersistence.class)
 	protected AccountPersistence accountPersistence;

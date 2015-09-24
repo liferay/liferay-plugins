@@ -513,7 +513,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	private String _content;
 	private int _flag;
 	private BaseModel<?> _entryRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.chat.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

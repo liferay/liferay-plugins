@@ -790,7 +790,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 				bar.setNew(false);
 			}
 			else {
-				session.merge(bar);
+				bar = (Bar)session.merge(bar);
 			}
 		}
 		catch (Exception e) {

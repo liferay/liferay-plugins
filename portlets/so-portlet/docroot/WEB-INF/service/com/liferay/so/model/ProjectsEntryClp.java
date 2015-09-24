@@ -681,7 +681,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	private Date _endDate;
 	private String _data;
 	private BaseModel<?> _projectsEntryRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.so.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

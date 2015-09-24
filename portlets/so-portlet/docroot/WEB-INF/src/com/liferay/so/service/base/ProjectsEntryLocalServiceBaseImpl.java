@@ -700,7 +700,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	protected com.liferay.so.service.MemberRequestLocalService memberRequestLocalService;
 	@BeanReference(type = MemberRequestPersistence.class)
 	protected MemberRequestPersistence memberRequestPersistence;
-	@BeanReference(type = ProjectsEntryLocalService.class)
+	@BeanReference(type = com.liferay.so.service.ProjectsEntryLocalService.class)
 	protected ProjectsEntryLocalService projectsEntryLocalService;
 	@BeanReference(type = ProjectsEntryPersistence.class)
 	protected ProjectsEntryPersistence projectsEntryPersistence;

@@ -595,7 +595,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = TestBlobEntryLocalService.class)
+	@BeanReference(type = com.liferay.testblob.service.TestBlobEntryLocalService.class)
 	protected TestBlobEntryLocalService testBlobEntryLocalService;
 	@BeanReference(type = TestBlobEntryPersistence.class)
 	protected TestBlobEntryPersistence testBlobEntryPersistence;

@@ -400,7 +400,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	private Date _createDate;
 	private long _jiraIssueId;
 	private BaseModel<?> _jiraChangeGroupRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

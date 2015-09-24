@@ -574,7 +574,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = AkismetDataLocalService.class)
+	@BeanReference(type = com.liferay.akismet.service.AkismetDataLocalService.class)
 	protected AkismetDataLocalService akismetDataLocalService;
 	@BeanReference(type = AkismetDataPersistence.class)
 	protected AkismetDataPersistence akismetDataPersistence;

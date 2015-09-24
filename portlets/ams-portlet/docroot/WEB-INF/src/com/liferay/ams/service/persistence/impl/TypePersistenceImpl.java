@@ -273,7 +273,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 				type.setNew(false);
 			}
 			else {
-				session.merge(type);
+				type = (Type)session.merge(type);
 			}
 		}
 		catch (Exception e) {

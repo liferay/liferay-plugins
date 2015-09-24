@@ -892,7 +892,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	protected com.liferay.socialcoding.service.JIRAProjectLocalService jiraProjectLocalService;
 	@BeanReference(type = JIRAProjectPersistence.class)
 	protected JIRAProjectPersistence jiraProjectPersistence;
-	@BeanReference(type = SVNRepositoryLocalService.class)
+	@BeanReference(type = com.liferay.socialcoding.service.SVNRepositoryLocalService.class)
 	protected SVNRepositoryLocalService svnRepositoryLocalService;
 	@BeanReference(type = SVNRepositoryPersistence.class)
 	protected SVNRepositoryPersistence svnRepositoryPersistence;

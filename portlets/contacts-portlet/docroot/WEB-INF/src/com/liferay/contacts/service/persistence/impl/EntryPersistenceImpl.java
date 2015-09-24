@@ -892,7 +892,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(entry);
+		clearUniqueFindersCache((EntryModelImpl)entry);
 	}
 
 	@Override
@@ -904,40 +904,42 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			EntityCacheUtil.removeResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 				EntryImpl.class, entry.getPrimaryKey());
 
-			clearUniqueFindersCache(entry);
+			clearUniqueFindersCache((EntryModelImpl)entry);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Entry entry) {
-		if (entry.isNew()) {
+	protected void cacheUniqueFindersCache(EntryModelImpl entryModelImpl,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					entry.getUserId(), entry.getEmailAddress()
+					entryModelImpl.getUserId(), entryModelImpl.getEmailAddress()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_EA, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_EA, args, entry);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_EA, args,
+				entryModelImpl);
 		}
 		else {
-			EntryModelImpl entryModelImpl = (EntryModelImpl)entry;
-
 			if ((entryModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_EA.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						entry.getUserId(), entry.getEmailAddress()
+						entryModelImpl.getUserId(),
+						entryModelImpl.getEmailAddress()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_EA, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_EA, args, entry);
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_EA, args,
+					entryModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(Entry entry) {
-		EntryModelImpl entryModelImpl = (EntryModelImpl)entry;
-
-		Object[] args = new Object[] { entry.getUserId(), entry.getEmailAddress() };
+	protected void clearUniqueFindersCache(EntryModelImpl entryModelImpl) {
+		Object[] args = new Object[] {
+				entryModelImpl.getUserId(), entryModelImpl.getEmailAddress()
+			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_EA, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_EA, args);
@@ -1093,7 +1095,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				entry.setNew(false);
 			}
 			else {
-				session.merge(entry);
+				entry = (Entry)session.merge(entry);
 			}
 		}
 		catch (Exception e) {
@@ -1129,8 +1131,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		EntityCacheUtil.putResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryImpl.class, entry.getPrimaryKey(), entry, false);
 
-		clearUniqueFindersCache(entry);
-		cacheUniqueFindersCache(entry);
+		clearUniqueFindersCache(entryModelImpl);
+		cacheUniqueFindersCache(entryModelImpl, isNew);
 
 		entry.resetOriginalValues();
 

@@ -567,7 +567,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = FeedLocalService.class)
+	@BeanReference(type = com.liferay.twitter.service.FeedLocalService.class)
 	protected FeedLocalService feedLocalService;
 	@BeanReference(type = FeedPersistence.class)
 	protected FeedPersistence feedPersistence;

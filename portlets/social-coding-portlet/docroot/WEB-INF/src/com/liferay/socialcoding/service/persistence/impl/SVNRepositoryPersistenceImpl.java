@@ -399,7 +399,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(svnRepository);
+		clearUniqueFindersCache((SVNRepositoryModelImpl)svnRepository);
 	}
 
 	@Override
@@ -411,38 +411,36 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			EntityCacheUtil.removeResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 				SVNRepositoryImpl.class, svnRepository.getPrimaryKey());
 
-			clearUniqueFindersCache(svnRepository);
+			clearUniqueFindersCache((SVNRepositoryModelImpl)svnRepository);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(SVNRepository svnRepository) {
-		if (svnRepository.isNew()) {
-			Object[] args = new Object[] { svnRepository.getUrl() };
+	protected void cacheUniqueFindersCache(
+		SVNRepositoryModelImpl svnRepositoryModelImpl, boolean isNew) {
+		if (isNew) {
+			Object[] args = new Object[] { svnRepositoryModelImpl.getUrl() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_URL, args,
 				Long.valueOf(1));
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL, args,
-				svnRepository);
+				svnRepositoryModelImpl);
 		}
 		else {
-			SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
-
 			if ((svnRepositoryModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_URL.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { svnRepository.getUrl() };
+				Object[] args = new Object[] { svnRepositoryModelImpl.getUrl() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_URL, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL, args,
-					svnRepository);
+					svnRepositoryModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(SVNRepository svnRepository) {
-		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
-
-		Object[] args = new Object[] { svnRepository.getUrl() };
+	protected void clearUniqueFindersCache(
+		SVNRepositoryModelImpl svnRepositoryModelImpl) {
+		Object[] args = new Object[] { svnRepositoryModelImpl.getUrl() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_URL, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL, args);
@@ -563,6 +561,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 		boolean isNew = svnRepository.isNew();
 
+		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
+
 		Session session = null;
 
 		try {
@@ -574,7 +574,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 				svnRepository.setNew(false);
 			}
 			else {
-				session.merge(svnRepository);
+				svnRepository = (SVNRepository)session.merge(svnRepository);
 			}
 		}
 		catch (Exception e) {
@@ -594,8 +594,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey(),
 			svnRepository, false);
 
-		clearUniqueFindersCache(svnRepository);
-		cacheUniqueFindersCache(svnRepository);
+		clearUniqueFindersCache(svnRepositoryModelImpl);
+		cacheUniqueFindersCache(svnRepositoryModelImpl, isNew);
 
 		svnRepository.resetOriginalValues();
 

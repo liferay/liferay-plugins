@@ -393,7 +393,7 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	private String _url;
 	private long _revisionNumber;
 	private BaseModel<?> _svnRepositoryRemoteModel;
-	private Class<?> _clpSerializerClass = ClpSerializer.class;
+	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -567,7 +567,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
-	@BeanReference(type = BarLocalService.class)
+	@BeanReference(type = com.liferay.testtransaction.service.BarLocalService.class)
 	protected BarLocalService barLocalService;
 	@BeanReference(type = BarPersistence.class)
 	protected BarPersistence barPersistence;

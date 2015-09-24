@@ -1825,7 +1825,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(status);
+		clearUniqueFindersCache((StatusModelImpl)status);
 	}
 
 	@Override
@@ -1837,37 +1837,35 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 				StatusImpl.class, status.getPrimaryKey());
 
-			clearUniqueFindersCache(status);
+			clearUniqueFindersCache((StatusModelImpl)status);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Status status) {
-		if (status.isNew()) {
-			Object[] args = new Object[] { status.getUserId() };
+	protected void cacheUniqueFindersCache(StatusModelImpl statusModelImpl,
+		boolean isNew) {
+		if (isNew) {
+			Object[] args = new Object[] { statusModelImpl.getUserId() };
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args, status);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+				statusModelImpl);
 		}
 		else {
-			StatusModelImpl statusModelImpl = (StatusModelImpl)status;
-
 			if ((statusModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { status.getUserId() };
+				Object[] args = new Object[] { statusModelImpl.getUserId() };
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
-					status);
+					statusModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(Status status) {
-		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
-
-		Object[] args = new Object[] { status.getUserId() };
+	protected void clearUniqueFindersCache(StatusModelImpl statusModelImpl) {
+		Object[] args = new Object[] { statusModelImpl.getUserId() };
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
@@ -1998,7 +1996,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				status.setNew(false);
 			}
 			else {
-				session.merge(status);
+				status = (Status)session.merge(status);
 			}
 		}
 		catch (Exception e) {
@@ -2074,8 +2072,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey(), status, false);
 
-		clearUniqueFindersCache(status);
-		cacheUniqueFindersCache(status);
+		clearUniqueFindersCache(statusModelImpl);
+		cacheUniqueFindersCache(statusModelImpl, isNew);
 
 		status.resetOriginalValues();
 

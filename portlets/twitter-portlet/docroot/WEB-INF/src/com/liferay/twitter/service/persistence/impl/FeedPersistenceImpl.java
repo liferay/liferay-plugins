@@ -421,7 +421,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache(feed);
+		clearUniqueFindersCache((FeedModelImpl)feed);
 	}
 
 	@Override
@@ -433,41 +433,42 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 				FeedImpl.class, feed.getPrimaryKey());
 
-			clearUniqueFindersCache(feed);
+			clearUniqueFindersCache((FeedModelImpl)feed);
 		}
 	}
 
-	protected void cacheUniqueFindersCache(Feed feed) {
-		if (feed.isNew()) {
+	protected void cacheUniqueFindersCache(FeedModelImpl feedModelImpl,
+		boolean isNew) {
+		if (isNew) {
 			Object[] args = new Object[] {
-					feed.getUserId(), feed.getTwitterScreenName()
+					feedModelImpl.getUserId(),
+					feedModelImpl.getTwitterScreenName()
 				};
 
 			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_TSN, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN, args, feed);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN, args,
+				feedModelImpl);
 		}
 		else {
-			FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
-
 			if ((feedModelImpl.getColumnBitmask() &
 					FINDER_PATH_FETCH_BY_U_TSN.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
-						feed.getUserId(), feed.getTwitterScreenName()
+						feedModelImpl.getUserId(),
+						feedModelImpl.getTwitterScreenName()
 					};
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_TSN, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN, args, feed);
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN, args,
+					feedModelImpl);
 			}
 		}
 	}
 
-	protected void clearUniqueFindersCache(Feed feed) {
-		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
-
+	protected void clearUniqueFindersCache(FeedModelImpl feedModelImpl) {
 		Object[] args = new Object[] {
-				feed.getUserId(), feed.getTwitterScreenName()
+				feedModelImpl.getUserId(), feedModelImpl.getTwitterScreenName()
 			};
 
 		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_TSN, args);
@@ -623,7 +624,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				feed.setNew(false);
 			}
 			else {
-				session.merge(feed);
+				feed = (Feed)session.merge(feed);
 			}
 		}
 		catch (Exception e) {
@@ -642,8 +643,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed, false);
 
-		clearUniqueFindersCache(feed);
-		cacheUniqueFindersCache(feed);
+		clearUniqueFindersCache(feedModelImpl);
+		cacheUniqueFindersCache(feedModelImpl, isNew);
 
 		feed.resetOriginalValues();
 
