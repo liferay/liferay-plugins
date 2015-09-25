@@ -254,4 +254,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @return the number of bars
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

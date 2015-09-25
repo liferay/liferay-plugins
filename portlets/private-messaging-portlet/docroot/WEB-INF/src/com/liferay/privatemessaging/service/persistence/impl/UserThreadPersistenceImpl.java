@@ -3114,7 +3114,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

@@ -372,6 +372,10 @@ public class ProjectsEntryUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static ProjectsEntryPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (ProjectsEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.getServletContextName(),

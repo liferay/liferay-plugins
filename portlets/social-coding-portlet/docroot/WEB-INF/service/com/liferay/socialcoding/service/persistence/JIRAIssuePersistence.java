@@ -1451,4 +1451,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @return the number of j i r a issues
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

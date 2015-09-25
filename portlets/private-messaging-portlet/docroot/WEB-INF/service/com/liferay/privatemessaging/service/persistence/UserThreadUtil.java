@@ -879,6 +879,10 @@ public class UserThreadUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static UserThreadPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (UserThreadPersistence)PortletBeanLocatorUtil.locate(com.liferay.privatemessaging.service.ClpSerializer.getServletContextName(),

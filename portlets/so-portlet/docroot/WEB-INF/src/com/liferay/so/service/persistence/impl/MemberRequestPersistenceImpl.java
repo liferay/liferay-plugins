@@ -2370,7 +2370,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

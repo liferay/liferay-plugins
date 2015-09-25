@@ -255,4 +255,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @return the number of test blob entries
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

@@ -1248,4 +1248,7 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	* @return the number of k b comments
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

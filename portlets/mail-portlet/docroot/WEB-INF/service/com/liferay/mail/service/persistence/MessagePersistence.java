@@ -417,4 +417,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @return the number of messages
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

@@ -482,4 +482,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @return the number of j i r a actions
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

@@ -444,6 +444,10 @@ public class AkismetDataUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static AkismetDataPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (AkismetDataPersistence)PortletBeanLocatorUtil.locate(com.liferay.akismet.service.ClpSerializer.getServletContextName(),

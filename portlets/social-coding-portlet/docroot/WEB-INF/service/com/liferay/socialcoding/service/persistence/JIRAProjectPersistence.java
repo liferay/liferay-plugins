@@ -187,4 +187,7 @@ public interface JIRAProjectPersistence extends BasePersistence<JIRAProject> {
 	* @return the number of j i r a projects
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

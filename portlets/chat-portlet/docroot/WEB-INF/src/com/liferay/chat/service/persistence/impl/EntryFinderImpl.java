@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.List;
@@ -33,7 +32,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class EntryFinderImpl
-	extends BasePersistenceImpl<Entry> implements EntryFinder {
+	extends EntryFinderBaseImpl implements EntryFinder {
 
 	public static final String FIND_BY_EMPTY_CONTENT =
 		EntryFinder.class.getName() + ".findByEmptyContent";

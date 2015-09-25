@@ -375,6 +375,10 @@ public class AttachmentUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static AttachmentPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (AttachmentPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.getServletContextName(),

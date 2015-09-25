@@ -255,4 +255,7 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	* @return the number of attachments
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

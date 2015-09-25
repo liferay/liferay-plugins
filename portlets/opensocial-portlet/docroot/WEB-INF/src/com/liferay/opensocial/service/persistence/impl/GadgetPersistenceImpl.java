@@ -3806,7 +3806,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

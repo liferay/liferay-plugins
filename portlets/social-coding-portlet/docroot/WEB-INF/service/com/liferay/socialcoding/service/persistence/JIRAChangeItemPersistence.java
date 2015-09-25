@@ -259,4 +259,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	* @return the number of j i r a change items
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

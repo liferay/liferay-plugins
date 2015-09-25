@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarUtil;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.model.impl.JIRAActionImpl;
 import com.liferay.socialcoding.service.persistence.JIRAActionFinder;
@@ -37,7 +36,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class JIRAActionFinderImpl
-	extends BasePersistenceImpl<JIRAAction> implements JIRAActionFinder {
+	extends JIRAActionFinderBaseImpl implements JIRAActionFinder {
 
 	public static final String COUNT_BY_CD_P =
 		JIRAActionFinder.class.getName() + ".countByCD_P";

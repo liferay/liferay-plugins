@@ -743,6 +743,10 @@ public class WSRPConsumerPortletUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static WSRPConsumerPortletPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (WSRPConsumerPortletPersistence)PortletBeanLocatorUtil.locate(com.liferay.wsrp.service.ClpSerializer.getServletContextName(),

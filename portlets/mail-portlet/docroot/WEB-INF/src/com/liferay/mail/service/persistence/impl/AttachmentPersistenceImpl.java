@@ -1184,7 +1184,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

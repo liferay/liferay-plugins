@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.model.TasksEntryConstants;
@@ -42,7 +41,7 @@ import java.util.List;
  * @author Ryan Park
  */
 public class TasksEntryFinderImpl
-	extends BasePersistenceImpl<TasksEntry> implements TasksEntryFinder {
+	extends TasksEntryFinderBaseImpl implements TasksEntryFinder {
 
 	public static final String COUNT_BY_G_U_P_A_S_T_N =
 		TasksEntryFinder.class.getName() + ".countByG_U_P_A_S_T_N";

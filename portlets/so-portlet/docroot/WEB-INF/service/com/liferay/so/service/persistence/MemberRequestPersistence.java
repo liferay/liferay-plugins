@@ -481,4 +481,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @return the number of member requests
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

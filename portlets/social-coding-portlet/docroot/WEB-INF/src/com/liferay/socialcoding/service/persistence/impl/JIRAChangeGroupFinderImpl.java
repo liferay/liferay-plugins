@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarUtil;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.socialcoding.model.JIRAChangeGroup;
 import com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl;
 import com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder;
@@ -37,7 +36,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class JIRAChangeGroupFinderImpl
-	extends BasePersistenceImpl<JIRAChangeGroup>
+	extends JIRAChangeGroupFinderBaseImpl
 	implements JIRAChangeGroupFinder {
 
 	public static final String COUNT_BY_CD_P =

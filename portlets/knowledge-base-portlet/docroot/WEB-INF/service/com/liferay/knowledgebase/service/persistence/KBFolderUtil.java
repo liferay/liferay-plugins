@@ -958,6 +958,10 @@ public class KBFolderUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static KBFolderPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (KBFolderPersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.getServletContextName(),

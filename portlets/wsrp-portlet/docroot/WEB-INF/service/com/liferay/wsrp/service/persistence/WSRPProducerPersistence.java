@@ -546,4 +546,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @return the number of w s r p producers
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

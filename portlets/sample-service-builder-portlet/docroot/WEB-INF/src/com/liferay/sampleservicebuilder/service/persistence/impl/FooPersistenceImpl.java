@@ -2619,7 +2619,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

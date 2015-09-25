@@ -6600,4 +6600,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the number of k b articles
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

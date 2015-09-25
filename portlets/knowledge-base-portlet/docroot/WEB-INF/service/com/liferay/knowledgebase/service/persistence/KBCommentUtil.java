@@ -1568,6 +1568,10 @@ public class KBCommentUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static KBCommentPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (KBCommentPersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.getServletContextName(),

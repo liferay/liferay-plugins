@@ -2003,7 +2003,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

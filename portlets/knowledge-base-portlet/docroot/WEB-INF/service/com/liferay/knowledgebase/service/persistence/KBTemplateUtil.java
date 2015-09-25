@@ -788,6 +788,10 @@ public class KBTemplateUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static KBTemplatePersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (KBTemplatePersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.getServletContextName(),

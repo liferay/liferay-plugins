@@ -3750,7 +3750,7 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

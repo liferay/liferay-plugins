@@ -679,4 +679,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	* @return the number of user threads
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

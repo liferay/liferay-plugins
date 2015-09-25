@@ -1871,6 +1871,10 @@ public class JIRAIssueUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static JIRAIssuePersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (JIRAIssuePersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),

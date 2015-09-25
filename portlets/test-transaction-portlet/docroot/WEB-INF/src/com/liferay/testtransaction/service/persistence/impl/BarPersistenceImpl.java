@@ -1198,7 +1198,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

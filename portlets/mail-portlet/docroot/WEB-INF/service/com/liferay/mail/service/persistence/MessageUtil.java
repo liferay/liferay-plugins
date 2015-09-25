@@ -568,6 +568,10 @@ public class MessageUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static MessagePersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (MessagePersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.getServletContextName(),

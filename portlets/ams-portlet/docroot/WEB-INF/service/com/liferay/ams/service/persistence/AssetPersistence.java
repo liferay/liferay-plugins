@@ -142,4 +142,7 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	* @return the number of assets
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

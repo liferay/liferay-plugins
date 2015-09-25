@@ -553,4 +553,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	* @return the number of w s r p consumer portlets
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

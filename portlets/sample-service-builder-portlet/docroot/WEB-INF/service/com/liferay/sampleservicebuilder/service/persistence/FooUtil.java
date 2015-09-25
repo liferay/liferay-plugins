@@ -706,6 +706,10 @@ public class FooUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static FooPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (FooPersistence)PortletBeanLocatorUtil.locate(com.liferay.sampleservicebuilder.service.ClpSerializer.getServletContextName(),

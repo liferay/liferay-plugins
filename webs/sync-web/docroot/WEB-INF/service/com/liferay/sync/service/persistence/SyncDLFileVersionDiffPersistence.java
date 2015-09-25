@@ -436,4 +436,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @return the number of sync d l file version diffs
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

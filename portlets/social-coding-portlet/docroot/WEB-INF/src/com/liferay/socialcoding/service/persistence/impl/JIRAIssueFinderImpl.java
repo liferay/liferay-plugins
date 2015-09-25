@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.model.impl.JIRAIssueImpl;
 import com.liferay.socialcoding.service.persistence.JIRAIssueFinder;
@@ -39,7 +38,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class JIRAIssueFinderImpl
-	extends BasePersistenceImpl<JIRAIssue> implements JIRAIssueFinder {
+	extends JIRAIssueFinderBaseImpl implements JIRAIssueFinder {
 
 	public static final String COUNT_BY_CD_P =
 		JIRAIssueFinder.class.getName() + ".countByCD_P";

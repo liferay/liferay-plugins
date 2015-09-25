@@ -739,4 +739,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	* @return the number of k b folders
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

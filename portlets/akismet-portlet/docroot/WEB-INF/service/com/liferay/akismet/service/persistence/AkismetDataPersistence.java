@@ -307,4 +307,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	* @return the number of akismet datas
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

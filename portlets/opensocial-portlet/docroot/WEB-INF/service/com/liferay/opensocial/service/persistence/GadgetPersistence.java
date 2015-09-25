@@ -733,4 +733,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @return the number of gadgets
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

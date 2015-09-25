@@ -496,4 +496,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @return the number of w s r p consumers
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

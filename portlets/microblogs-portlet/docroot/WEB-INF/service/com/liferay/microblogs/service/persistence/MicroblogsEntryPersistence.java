@@ -1960,4 +1960,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	* @return the number of microblogs entries
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

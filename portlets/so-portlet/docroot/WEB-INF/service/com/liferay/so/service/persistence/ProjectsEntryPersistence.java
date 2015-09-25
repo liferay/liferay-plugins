@@ -255,4 +255,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @return the number of projects entries
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

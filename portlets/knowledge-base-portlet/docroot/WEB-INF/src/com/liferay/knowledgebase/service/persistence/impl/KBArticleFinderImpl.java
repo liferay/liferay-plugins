@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.math.BigInteger;
@@ -35,7 +34,7 @@ import java.util.List;
  * @author Adolfo Pérez
  */
 public class KBArticleFinderImpl
-	extends BasePersistenceImpl<KBArticle> implements KBArticleFinder {
+	extends KBArticleFinderBaseImpl implements KBArticleFinder {
 
 	@Override
 	public int countByUrlTitle(

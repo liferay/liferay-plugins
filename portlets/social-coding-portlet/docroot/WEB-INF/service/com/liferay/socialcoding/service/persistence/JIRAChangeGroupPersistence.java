@@ -370,4 +370,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @return the number of j i r a change groups
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

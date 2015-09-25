@@ -1485,7 +1485,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

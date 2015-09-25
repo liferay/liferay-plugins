@@ -546,4 +546,7 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @return the number of sample l a r bookings
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

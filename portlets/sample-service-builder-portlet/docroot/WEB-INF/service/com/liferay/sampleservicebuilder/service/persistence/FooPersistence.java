@@ -538,4 +538,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* @return the number of foos
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

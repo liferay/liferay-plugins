@@ -5691,7 +5691,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

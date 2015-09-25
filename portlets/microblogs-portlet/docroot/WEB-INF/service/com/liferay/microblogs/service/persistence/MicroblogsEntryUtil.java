@@ -2476,6 +2476,10 @@ public class MicroblogsEntryUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static MicroblogsEntryPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (MicroblogsEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.microblogs.service.ClpSerializer.getServletContextName(),

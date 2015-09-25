@@ -615,6 +615,10 @@ public class SyncDLFileVersionDiffUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static SyncDLFileVersionDiffPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (SyncDLFileVersionDiffPersistence)PortletBeanLocatorUtil.locate(com.liferay.sync.service.ClpSerializer.getServletContextName(),

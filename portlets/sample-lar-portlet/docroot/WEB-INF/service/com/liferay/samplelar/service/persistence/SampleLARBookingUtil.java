@@ -719,6 +719,10 @@ public class SampleLARBookingUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static SampleLARBookingPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (SampleLARBookingPersistence)PortletBeanLocatorUtil.locate(com.liferay.samplelar.service.ClpSerializer.getServletContextName(),

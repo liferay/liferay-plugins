@@ -371,6 +371,10 @@ public class TestBlobEntryUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static TestBlobEntryPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (TestBlobEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.testblob.service.ClpSerializer.getServletContextName(),

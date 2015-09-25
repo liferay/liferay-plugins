@@ -1241,4 +1241,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	* @return the number of sync d l objects
 	*/
 	public int countAll();
+
+	@Override
+	public java.util.Set<java.lang.String> getBadColumnNames();
 }

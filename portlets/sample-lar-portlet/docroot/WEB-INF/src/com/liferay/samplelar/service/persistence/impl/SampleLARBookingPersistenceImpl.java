@@ -2676,7 +2676,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 

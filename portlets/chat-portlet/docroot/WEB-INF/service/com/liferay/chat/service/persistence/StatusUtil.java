@@ -709,6 +709,10 @@ public class StatusUtil {
 		return getPersistence().countAll();
 	}
 
+	public static java.util.Set<java.lang.String> getBadColumnNames() {
+		return getPersistence().getBadColumnNames();
+	}
+
 	public static StatusPersistence getPersistence() {
 		if (_persistence == null) {
 			_persistence = (StatusPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.getServletContextName(),

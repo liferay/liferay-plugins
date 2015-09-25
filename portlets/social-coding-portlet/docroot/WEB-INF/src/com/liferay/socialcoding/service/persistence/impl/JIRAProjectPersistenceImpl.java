@@ -970,7 +970,7 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 	}
 
 	@Override
-	protected Set<String> getBadColumnNames() {
+	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
 	}
 
