@@ -2890,8 +2890,14 @@ for (String path : paths) {
 								<zip
 									basedir="@{module.dir}/docroot"
 									destfile="${plugin.file}"
-									excludes="_diffs.*,_diffs/**,${plugins.war.excludes}"
-								/>
+									excludes="WEB-INF/liferay-hook.xml*,_diffs.*,_diffs/**,${plugins.war.excludes}"
+								>
+									<zipfileset
+										dir="@{module.dir}/docroot"
+										fullpath="WEB-INF/liferay-hook.xml"
+										includes="WEB-INF/liferay-hook.xml.processed"
+									/>
+								</zip>
 							</then>
 						</elseif>
 						<else>
