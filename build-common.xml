@@ -3145,8 +3145,13 @@ for (String path : paths) {
 								<zip
 									basedir="@{module.dir}/docroot"
 									destfile="${plugin.file}"
-									excludes="**/.sass-cache/**,**/*.scss,_diffs.*,_diffs/**,${plugins.war.excludes}"
+									excludes="**/.sass-cache/**,**/*.scss,WEB-INF/liferay-hook.xml*,_diffs.*,_diffs/**,${plugins.war.excludes}"
 								>
+									<zipfileset
+										dir="@{module.dir}/docroot"
+										fullpath="WEB-INF/liferay-hook.xml"
+										includes="WEB-INF/liferay-hook.xml.processed"
+									/>
 									<mappedresources>
 										<fileset 
 											dir="@{module.dir}/docroot"
