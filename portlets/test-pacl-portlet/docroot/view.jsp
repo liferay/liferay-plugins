@@ -56,37 +56,6 @@
 </p>
 
 <p>
-	EntityCacheUtil#setEntityCache=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				EntityCacheUtil entityCacheUtil = new EntityCacheUtil();
-
-				EntityCache entityCache = EntityCacheUtil.getEntityCache();
-
-				entityCacheUtil.setEntityCache(entityCache);
-			}
-
-		};
-		%>
-
-	FinderCacheUtil#setFinderCache=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				FinderCacheUtil finderCacheUtil = new FinderCacheUtil();
-
-				FinderCache finderCache = FinderCacheUtil.getFinderCache();
-
-				finderCacheUtil.setFinderCache(finderCache);
-			}
-
-		};
-		%>
 
 	PortalCustomSQLUtil#setPortalCustomSQL=
 
