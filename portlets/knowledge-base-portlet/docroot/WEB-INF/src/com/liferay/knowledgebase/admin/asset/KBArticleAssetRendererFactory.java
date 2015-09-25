@@ -45,6 +45,7 @@ public class KBArticleAssetRendererFactory
 
 	public KBArticleAssetRendererFactory() {
 		setLinkable(true);
+		setSearchable(true);
 	}
 
 	@Override
