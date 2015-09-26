@@ -23,17 +23,19 @@ public class UpgradeLastPublishDate extends BaseUpgradeLastPublishDate {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		runSQL("alter table WSRPConsumerPortlet add lastPublishDate DATE null");
+		runSQL(
+			"alter table WSRP_WSRPConsumerPortlet add lastPublishDate DATE " +
+				"null");
 
-		updateLastPublishDates("1_WAR_wsrpportlet", "WSRPConsumerPortlet");
+		updateLastPublishDates("1_WAR_wsrpportlet", "WSRP_WSRPConsumerPortlet");
 
-		runSQL("alter table WSRPConsumer add lastPublishDate DATE null");
+		runSQL("alter table WSRP_WSRPConsumer add lastPublishDate DATE null");
 
-		updateLastPublishDates("1_WAR_wsrpportlet", "WSRPConsumer");
+		updateLastPublishDates("1_WAR_wsrpportlet", "WSRP_WSRPConsumer");
 
-		runSQL("alter table WSRPProducer add lastPublishDate DATE null");
+		runSQL("alter table WSRP_WSRPProducer add lastPublishDate DATE null");
 
-		updateLastPublishDates("1_WAR_wsrpportlet", "WSRPProducer");
+		updateLastPublishDates("1_WAR_wsrpportlet", "WSRP_WSRPProducer");
 	}
 
 }
