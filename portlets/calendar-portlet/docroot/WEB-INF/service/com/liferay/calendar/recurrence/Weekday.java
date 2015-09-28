@@ -96,8 +96,8 @@ public enum Weekday {
 	}
 
 	private Weekday(String value, int calendarWeekday) {
-		_calendarWeekday = calendarWeekday;
 		_value = value;
+		_calendarWeekday = calendarWeekday;
 	}
 
 	private int _calendarWeekday;

@@ -41,10 +41,13 @@ if (recurrence != null) {
 
 	for (PositionalWeekday curPositionalWeekday : recurrence.getPositionalWeekdays()) {
 		Weekday weekday = curPositionalWeekday.getWeekday();
+
 		java.util.Calendar weekdayCalendar = CalendarFactoryUtil.getCalendar(startTimeJCalendar.getTimeInMillis(), calendar.getTimeZone());
 
 		weekdayCalendar.set(java.util.Calendar.DAY_OF_WEEK, weekday.getCalendarWeekday());
+
 		weekdayCalendar = JCalendarUtil.getJCalendar(weekdayCalendar, calendarBookingTimeZone);
+
 		weekday = Weekday.getWeekday(weekdayCalendar.get(java.util.Calendar.DAY_OF_WEEK));
 
 		weekdays.add(weekday);
