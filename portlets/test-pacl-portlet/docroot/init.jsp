@@ -18,9 +18,9 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
+taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
+taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.chat.NoSuchEntryException" %><%@
 page import="com.liferay.chat.model.Entry" %><%@
@@ -34,10 +34,6 @@ page import="com.liferay.portal.kernel.dao.db.DB" %><%@
 page import="com.liferay.portal.kernel.dao.db.DBFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.jdbc.DataAccess" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
-page import="com.liferay.portal.kernel.dao.orm.EntityCache" %><%@
-page import="com.liferay.portal.kernel.dao.orm.EntityCacheUtil" %><%@
-page import="com.liferay.portal.kernel.dao.orm.FinderCache" %><%@
-page import="com.liferay.portal.kernel.dao.orm.FinderCacheUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.PortalCustomSQL" %><%@
 page import="com.liferay.portal.kernel.dao.orm.PortalCustomSQLUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
