@@ -46,6 +46,7 @@ int currentPermissions = GetterUtil.getInteger(group.getTypeSettingsProperty("sy
 
 		permissionsOptions.add(SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY);
 		permissionsOptions.add(SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION);
+		permissionsOptions.add(SyncPermissionsConstants.PERMISSIONS_VIEW_UPDATE_AND_ADD_DISCUSSION);
 		permissionsOptions.add(SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS);
 
 		for (Integer permissions : permissionsOptions) {
@@ -70,6 +71,15 @@ int currentPermissions = GetterUtil.getInteger(group.getTypeSettingsProperty("sy
 						<liferay-ui:message key="view-and-add-discussion" />
 
 						<liferay-ui:icon-help message="view-and-add-discussion-help" />
+
+					<%
+					}
+					else if (permissions == SyncPermissionsConstants.PERMISSIONS_VIEW_UPDATE_AND_ADD_DISCUSSION) {
+					%>
+
+						<liferay-ui:message key="view-update-and-add-discussion" />
+
+						<liferay-ui:icon-help message="view-update-and-add-discussion-help" />
 
 					<%
 					}

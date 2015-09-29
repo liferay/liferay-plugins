@@ -44,6 +44,8 @@ portletURL.setParameter("delta", String.valueOf(delta));
 
 			<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "setPermissionsViewAndAddDiscussion();" %>' label="view-and-add-discussion" />
 
+			<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "setPermissionsViewUpdateAndAddDiscussion();" %>' label="view-update-and-add-discussion" />
+
 			<aui:nav-item href='<%= "javascript:" + renderResponse.getNamespace() + "setPermissionsFullAccess();" %>' label="full-access" />
 		</aui:nav-item>
 	</aui:nav>
@@ -132,6 +134,9 @@ portletURL.setParameter("delta", String.valueOf(delta));
 				}
 				else if (currentPermissions == SyncPermissionsConstants.PERMISSIONS_VIEW_AND_ADD_DISCUSSION) {
 					permissionsDescription = LanguageUtil.get(request, "view-and-add-discussion");
+				}
+				else if (currentPermissions == SyncPermissionsConstants.PERMISSIONS_VIEW_UPDATE_AND_ADD_DISCUSSION) {
+					permissionsDescription = LanguageUtil.get(request, "view-update-and-add-discussion");
 				}
 				else if (currentPermissions == SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS) {
 					permissionsDescription = fullAccessPermissionsDescription;
@@ -250,6 +255,22 @@ portletURL.setParameter("delta", String.valueOf(delta));
 			if (groupIds) {
 				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
 				document.<portlet:namespace />fm.<portlet:namespace />permissions.value = <%= SyncPermissionsConstants.PERMISSIONS_VIEW_ONLY %>;
+
+				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateSites" />');
+			}
+		},
+		['liferay-util-list-fields']
+	);
+
+	Liferay.provide(
+		window,
+		'<portlet:namespace />setPermissionsViewUpdateAndAddDiscussion',
+		function() {
+			var groupIds = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
+
+			if (groupIds) {
+				document.<portlet:namespace />fm.<portlet:namespace />groupIds.value = groupIds;
+				document.<portlet:namespace />fm.<portlet:namespace />permissions.value = <%= SyncPermissionsConstants.PERMISSIONS_VIEW_UPDATE_AND_ADD_DISCUSSION %>;
 
 				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="updateSites" />');
 			}
