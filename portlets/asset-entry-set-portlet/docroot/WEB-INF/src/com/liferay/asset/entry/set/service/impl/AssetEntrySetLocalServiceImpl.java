@@ -24,6 +24,7 @@ import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
+import com.liferay.asset.entry.set.util.PortletKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -41,7 +42,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.ClassNameLocalServiceUtil;
 
 import java.io.File;
 
@@ -124,7 +124,9 @@ public class AssetEntrySetLocalServiceImpl
 				extension)) {
 
 			return AssetEntrySetImageUtil.addImageFile(
-				userId, file, AssetEntrySetConstants.IMAGE_TYPE_RAW);
+				userId, AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
+				0L, PortletKeys.ASSET_ENTRY_SET, file,
+				AssetEntrySetConstants.IMAGE_TYPE_RAW);
 		}
 
 		return JSONFactoryUtil.createJSONObject();
@@ -140,7 +142,8 @@ public class AssetEntrySetLocalServiceImpl
 			AssetEntrySet.class.getName(), assetEntrySet.getAssetEntrySetId());
 
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
-			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntryId());
+			AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
+			assetEntrySet.getAssetEntryId());
 
 		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
 			deleteChildAssetEntrySets(assetEntrySet.getAssetEntrySetId());
@@ -496,7 +499,8 @@ public class AssetEntrySetLocalServiceImpl
 		throws PortalException, SystemException {
 
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
-			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntrySetId());
+			AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
+			assetEntrySet.getAssetEntrySetId());
 
 		Map<Long, Set<Long>> sharedToClassPKsMap = getSharedToClassPKsMap(
 			assetEntrySet);
@@ -519,8 +523,8 @@ public class AssetEntrySetLocalServiceImpl
 		}
 
 		AssetSharingEntryLocalServiceUtil.addAssetSharingEntries(
-			_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySet.getAssetEntrySetId(),
-			sharedToClassPKsMap);
+			AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
+			assetEntrySet.getAssetEntrySetId(), sharedToClassPKsMap);
 
 		if (assetEntrySet.getParentAssetEntrySetId() > 0) {
 			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
@@ -563,8 +567,5 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 	}
-
-	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
-		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
 
 }

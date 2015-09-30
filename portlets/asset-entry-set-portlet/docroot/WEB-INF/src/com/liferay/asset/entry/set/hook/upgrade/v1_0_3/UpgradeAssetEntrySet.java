@@ -17,7 +17,10 @@ package com.liferay.asset.entry.set.hook.upgrade.v1_0_3;
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
+import com.liferay.asset.entry.set.util.PortletKeys;
+import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.compat.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.image.ImageBag;
 import com.liferay.portal.kernel.image.ImageToolUtil;
@@ -35,6 +38,7 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,10 +51,10 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeAssetEntrySet();
+		upgradeAssetEntrySet("full");
 	}
 
-	protected void upgradeAssetEntrySet() throws Exception {
+	protected void upgradeAssetEntrySet(String imageType) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -110,9 +114,17 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 							rawFileEntry.getFileEntryId(),
 							rawFileEntry.getVersion(), false));
 
+					String imageMaxSize = PortletProps.get(
+						PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE,
+						new Filter(imageType));
+
 					FileEntry fileEntry =
 						AssetEntrySetImageUtil.addScaledImageFileEntry(
-							rawFileEntry.getUserId(), imageBag, "full");
+							rawFileEntry.getUserId(),
+							AssetEntrySetConstants.
+								ASSET_ENTRY_SET_CLASS_NAME_ID,
+							0L, PortletKeys.ASSET_ENTRY_SET, imageBag,
+							imageType, imageMaxSize);
 
 					DLFileEntry dlFileEntry =
 						DLFileEntryLocalServiceUtil.getFileEntry(
@@ -138,7 +150,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 					newImageDataJSONArray.put(
 						AssetEntrySetImageUtil.getImageJSONObject(
-							imageJSONObject, fileEntry, "full"));
+							imageJSONObject, fileEntry, imageType));
 				}
 
 				payloadJSONObject.put("assetEntryIds", assetEntryIds);

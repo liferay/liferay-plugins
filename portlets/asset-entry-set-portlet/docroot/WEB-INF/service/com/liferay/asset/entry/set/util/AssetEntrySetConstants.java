@@ -14,6 +14,9 @@
 
 package com.liferay.asset.entry.set.util;
 
+import com.liferay.asset.entry.set.model.AssetEntrySet;
+import com.liferay.portal.util.PortalUtil;
+
 /**
  * @author Matthew Kong
  */
@@ -27,6 +30,9 @@ public class AssetEntrySetConstants {
 
 	public static final String ASSET_ENTRY_KEY_PARTICIPANT_URL =
 		"participantURL";
+
+	public static final long ASSET_ENTRY_SET_CLASS_NAME_ID =
+		PortalUtil.getClassNameId(AssetEntrySet.class);
 
 	public static final String IMAGE_TYPE_RAW = "raw";
 

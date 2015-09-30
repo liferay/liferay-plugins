@@ -17,8 +17,11 @@ package com.liferay.asset.entry.set.handler;
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
+import com.liferay.asset.entry.set.util.PortletKeys;
+import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.compat.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.image.ImageBag;
@@ -34,6 +37,7 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
 
@@ -98,8 +102,15 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					fileEntry = rawFileEntry;
 				}
 				else {
+					String imageMaxSize = PortletProps.get(
+						PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE,
+						new Filter(imageType));
+
 					fileEntry = AssetEntrySetImageUtil.addScaledImageFileEntry(
-						userId, imageBag, imageType);
+						userId,
+						AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
+						0L, PortletKeys.ASSET_ENTRY_SET, imageBag, imageType,
+						imageMaxSize);
 				}
 
 				DLFileEntry dlFileEntry =

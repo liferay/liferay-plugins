@@ -14,8 +14,6 @@
 
 package com.liferay.asset.entry.set.util;
 
-import com.liferay.asset.entry.set.model.AssetEntrySet;
-import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.image.ImageBag;
@@ -28,15 +26,18 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Image;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
-import com.liferay.util.portlet.PortletProps;
 
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -55,8 +56,35 @@ import javax.imageio.ImageIO;
  */
 public class AssetEntrySetImageUtil {
 
+	public static FileEntry addFileEntry(
+			long userId, long classNameId, long classPK, String portletKey,
+			File file, String type)
+		throws PortalException, SystemException {
+
+		long groupId = 0;
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		if (user.isDefaultUser()) {
+			Group group = GroupLocalServiceUtil.getGroup(
+				user.getCompanyId(), GroupConstants.GUEST);
+
+			groupId = group.getGroupId();
+		}
+		else {
+			groupId = user.getGroupId();
+		}
+
+		String fileName = System.currentTimeMillis() + type + file.getName();
+
+		return PortletFileRepositoryUtil.addPortletFileEntry(
+			groupId, userId, PortalUtil.getClassName(classNameId), classPK,
+			portletKey, 0L, file, fileName, null, false);
+	}
+
 	public static JSONObject addImageFile(
-			long userId, File file, String imageType)
+			long userId, long classNameId, long classPK, String portletKey,
+			File file, String imageType)
 		throws PortalException, SystemException {
 
 		try {
@@ -66,27 +94,25 @@ public class AssetEntrySetImageUtil {
 			throw new SystemException(ioe);
 		}
 
-		FileEntry fileEntry = addFileEntry(userId, file, imageType);
+		FileEntry fileEntry = addFileEntry(
+			userId, classNameId, classPK, portletKey, file, imageType);
 
 		return getImageJSONObject(
 			JSONFactoryUtil.createJSONObject(), fileEntry, imageType);
 	}
 
 	public static FileEntry addScaledImageFileEntry(
-			long userId, ImageBag imageBag, String imageType)
+			long userId, long classNameId, long classPK, String portletKey,
+			ImageBag imageBag, String imageType, String imageMaxSize)
 		throws PortalException, SystemException {
 
 		File scaledFile = null;
 
-		RenderedImage rawRenderedImage = imageBag.getRenderedImage();
-
-		String imageMaxSize = PortletProps.get(
-			PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE, new Filter(imageType));
-
 		String[] maxDimensions = imageMaxSize.split("x");
 
 		RenderedImage scaledRenderedImage = ImageToolUtil.scale(
-			rawRenderedImage, GetterUtil.getInteger(maxDimensions[0]),
+			imageBag.getRenderedImage(),
+			GetterUtil.getInteger(maxDimensions[0]),
 			GetterUtil.getInteger(maxDimensions[1]));
 
 		try {
@@ -94,7 +120,9 @@ public class AssetEntrySetImageUtil {
 				ImageToolUtil.getBytes(
 					scaledRenderedImage, imageBag.getType()));
 
-			return addFileEntry(userId, scaledFile, imageType);
+			return addFileEntry(
+				userId, classNameId, classPK, portletKey, scaledFile,
+				imageType);
 		}
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
@@ -238,18 +266,6 @@ public class AssetEntrySetImageUtil {
 				oldBufferedImage.getType()));
 
 		ImageIO.write(newBufferedImage, imageBag.getType(), file);
-	}
-
-	protected static FileEntry addFileEntry(long userId, File file, String type)
-		throws PortalException, SystemException {
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		String fileName = System.currentTimeMillis() + type + file.getName();
-
-		return PortletFileRepositoryUtil.addPortletFileEntry(
-			user.getGroupId(), userId, AssetEntrySet.class.getName(), 0,
-			PortletKeys.ASSET_ENTRY_SET, 0, file, fileName, null, false);
 	}
 
 	private static final int _ORIENTATION_MIRROR_HORIZONTAL = 2;
