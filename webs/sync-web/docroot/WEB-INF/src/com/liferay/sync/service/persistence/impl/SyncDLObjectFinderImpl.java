@@ -27,7 +27,6 @@ import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
-import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.persistence.SyncDLObjectFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
