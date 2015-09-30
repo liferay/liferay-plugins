@@ -56,32 +56,6 @@ import javax.imageio.ImageIO;
  */
 public class AssetEntrySetImageUtil {
 
-	protected static FileEntry addFileEntry(
-			long userId, long classNameId, long classPK, String portletKey,
-			File file, String type)
-		throws PortalException, SystemException {
-
-		long groupId = 0;
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		if (user.isDefaultUser()) {
-			Group group = GroupLocalServiceUtil.getGroup(
-				user.getCompanyId(), GroupConstants.GUEST);
-
-			groupId = group.getGroupId();
-		}
-		else {
-			groupId = user.getGroupId();
-		}
-
-		String fileName = System.currentTimeMillis() + type + file.getName();
-
-		return PortletFileRepositoryUtil.addPortletFileEntry(
-			groupId, userId, PortalUtil.getClassName(classNameId), classPK,
-			portletKey, 0L, file, fileName, null, false);
-	}
-
 	public static JSONObject addImageFile(
 			long userId, long classNameId, long classPK, String portletKey,
 			File file, String imageType)
@@ -266,6 +240,32 @@ public class AssetEntrySetImageUtil {
 				oldBufferedImage.getType()));
 
 		ImageIO.write(newBufferedImage, imageBag.getType(), file);
+	}
+
+	protected static FileEntry addFileEntry(
+			long userId, long classNameId, long classPK, String portletKey,
+			File file, String type)
+		throws PortalException, SystemException {
+
+		long groupId = 0;
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		if (user.isDefaultUser()) {
+			Group group = GroupLocalServiceUtil.getGroup(
+				user.getCompanyId(), GroupConstants.GUEST);
+
+			groupId = group.getGroupId();
+		}
+		else {
+			groupId = user.getGroupId();
+		}
+
+		String fileName = System.currentTimeMillis() + type + file.getName();
+
+		return PortletFileRepositoryUtil.addPortletFileEntry(
+			groupId, userId, PortalUtil.getClassName(classNameId), classPK,
+			portletKey, 0L, file, fileName, null, false);
 	}
 
 	private static final int _ORIENTATION_MIRROR_HORIZONTAL = 2;
