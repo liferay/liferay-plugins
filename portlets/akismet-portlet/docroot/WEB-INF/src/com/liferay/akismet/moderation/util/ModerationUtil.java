@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
@@ -37,7 +38,7 @@ public class ModerationUtil {
 
 	public static List<MBMessage> getMBMessages(
 			long scopeGroupId, int start, int end)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(scopeGroupId);
 
@@ -45,7 +46,7 @@ public class ModerationUtil {
 	}
 
 	public static int getMBMessagesCount(long scopeGroupId)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(scopeGroupId);
 
@@ -54,7 +55,7 @@ public class ModerationUtil {
 
 	public static List<WikiPage> getWikiPages(
 			long scopeGroupId, int start, int end)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = buildWikiPageDynamicQuery(scopeGroupId);
 
@@ -62,7 +63,7 @@ public class ModerationUtil {
 	}
 
 	public static int getWikiPagesCount(long scopeGroupId)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = buildWikiPageDynamicQuery(scopeGroupId);
 
@@ -70,16 +71,20 @@ public class ModerationUtil {
 	}
 
 	protected static DynamicQuery buildMBMessageDynamicQuery(long scopeGroupId)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			MBMessage.class);
 
-		Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
+		Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
-		Long[] scopeGroupIds = getChildScopeGroupIds(scopeGroupId);
+		if (!group.isCompany()) {
+			Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
 
-		dynamicQuery.add(groupIdProperty.in(scopeGroupIds));
+			Long[] scopeGroupIds = getChildScopeGroupIds(scopeGroupId);
+
+			dynamicQuery.add(groupIdProperty.in(scopeGroupIds));
+		}
 
 		Property categoryIdProperty = PropertyFactoryUtil.forName("categoryId");
 
@@ -93,16 +98,20 @@ public class ModerationUtil {
 	}
 
 	protected static DynamicQuery buildWikiPageDynamicQuery(long scopeGroupId)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			WikiPage.class);
 
-		Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
+		Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
-		Long[] scopeGroupIds = getChildScopeGroupIds(scopeGroupId);
+		if (!group.isCompany()) {
+			Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
 
-		dynamicQuery.add(groupIdProperty.in(scopeGroupIds));
+			Long[] scopeGroupIds = getChildScopeGroupIds(scopeGroupId);
+
+			dynamicQuery.add(groupIdProperty.in(scopeGroupIds));
+		}
 
 		Property summaryProperty = PropertyFactoryUtil.forName("summary");
 
