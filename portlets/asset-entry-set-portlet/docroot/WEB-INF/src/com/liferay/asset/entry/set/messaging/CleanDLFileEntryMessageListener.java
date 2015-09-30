@@ -15,6 +15,7 @@
 package com.liferay.asset.entry.set.messaging;
 
 import com.liferay.asset.entry.set.model.AssetEntrySet;
+import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
@@ -46,7 +47,7 @@ public class CleanDLFileEntryMessageListener extends BaseMessageListener {
 
 		dlFileEntryDynamicQuery.add(
 			classNameIdProperty.eq(
-				PortalUtil.getClassNameId(AssetEntrySet.class)));
+				AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID));
 
 		Property classPKProperty = PropertyFactoryUtil.forName("classPK");
 

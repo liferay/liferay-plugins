@@ -17,6 +17,7 @@ package com.liferay.asset.entry.set.service.persistence;
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.model.AssetEntrySetReference;
 import com.liferay.asset.entry.set.model.impl.AssetEntrySetImpl;
+import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
@@ -87,7 +88,7 @@ public class AssetEntrySetFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(parentAssetEntrySetId);
-			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+			qPos.add(AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			List<AssetEntrySetReference> assetEntrySetReferences =
 				new ArrayList<AssetEntrySetReference>();
@@ -174,7 +175,7 @@ public class AssetEntrySetFinderImpl
 
 			qPos.add(createTime);
 			qPos.add(parentAssetEntrySetId);
-			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+			qPos.add(AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			setAssetTagNames(qPos, assetTagNames);
 
@@ -248,7 +249,7 @@ public class AssetEntrySetFinderImpl
 
 			qPos.add(modifiedTime);
 			qPos.add(parentAssetEntrySetId);
-			qPos.add(_ASSET_ENTRY_SET_CLASS_NAME_ID);
+			qPos.add(AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			setAssetTagNames(qPos, assetTagNames);
 
@@ -436,7 +437,8 @@ public class AssetEntrySetFinderImpl
 
 		List<AssetSharingEntry> assetSharingEntries =
 			AssetSharingEntryLocalServiceUtil.getAssetSharingEntries(
-				_ASSET_ENTRY_SET_CLASS_NAME_ID, assetEntrySetId);
+				AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
+				assetEntrySetId);
 
 		for (AssetSharingEntry assetSharingEntry : assetSharingEntries) {
 			if (AssetEntrySetParticipantInfoUtil.isMember(
@@ -460,8 +462,5 @@ public class AssetEntrySetFinderImpl
 			qPos.add(StringUtil.toLowerCase(assetTagName));
 		}
 	}
-
-	private static final long _ASSET_ENTRY_SET_CLASS_NAME_ID =
-		ClassNameLocalServiceUtil.getClassNameId(AssetEntrySet.class);
 
 }
