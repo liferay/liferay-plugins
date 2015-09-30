@@ -1,12 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common"
-	xmlns:antelope="antlib:ise.antelope.tasks"
-	xmlns:if="ant:if"
-	xmlns:ivy="antlib:org.apache.ivy.ant"
-	xmlns:unless="ant:unless"
->
+<project name="build-common" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:if="ant:if" xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:unless="ant:unless">
 	<dirname file="${ant.file.build-common}" property="sdk.dir.native" />
 
 	<pathconvert property="sdk.dir" targetos="unix">
