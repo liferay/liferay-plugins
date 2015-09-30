@@ -119,6 +119,9 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 					width: width
 				},
 				portletNamespace: '<portlet:namespace />',
+				strings: {
+					'description-hint': '<liferay-ui:message key="description-hint" />'
+				},
 				viewCalendarBookingURL: '<%= HtmlUtil.escapeJS(viewCalendarBookingURL) %>'
 			}
 		);
