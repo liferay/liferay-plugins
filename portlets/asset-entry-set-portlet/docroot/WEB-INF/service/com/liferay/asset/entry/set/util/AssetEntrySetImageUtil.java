@@ -56,7 +56,7 @@ import javax.imageio.ImageIO;
  */
 public class AssetEntrySetImageUtil {
 
-	public static FileEntry addFileEntry(
+	protected static FileEntry addFileEntry(
 			long userId, long classNameId, long classPK, String portletKey,
 			File file, String type)
 		throws PortalException, SystemException {
