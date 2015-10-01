@@ -226,6 +226,7 @@ public class ModerationPortlet extends MVCPortlet {
 		}
 	}
 
+	@Override
 	protected boolean isProcessPortletRequest(PortletRequest portletRequest) {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
