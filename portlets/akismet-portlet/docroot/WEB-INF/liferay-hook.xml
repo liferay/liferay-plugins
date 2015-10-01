@@ -22,6 +22,10 @@
 		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditMessageAction</struts-action-impl>
 	</struts-action>
 	<struts-action>
+		<struts-action-path>/portal/akismet_edit_discussion</struts-action-path>
+		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditDiscussionAction</struts-action-impl>
+	</struts-action>
+	<struts-action>
 		<struts-action-path>/wiki/edit_page</struts-action-path>
 		<struts-action-impl>com.liferay.akismet.hook.action.AkismetEditPageAction</struts-action-impl>
 	</struts-action>
