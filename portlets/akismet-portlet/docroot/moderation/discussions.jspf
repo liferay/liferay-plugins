@@ -49,7 +49,7 @@
 
 			ExpandoBridge expandoBridge = message.getExpandoBridge();
 
-			String contentURL = (String)expandoBridge.getAttribute("contentURL", false);
+			String contentURL = (String)expandoBridge.getAttribute("akismetContentURL", false);
 
 			if (Validator.isNotNull(contentURL)) {
 				rowURL = contentURL;
