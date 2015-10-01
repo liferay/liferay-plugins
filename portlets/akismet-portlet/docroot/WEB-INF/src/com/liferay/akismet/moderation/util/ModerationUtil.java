@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portlet.messageboards.model.MBCategoryConstants;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.wiki.model.WikiPage;
@@ -35,11 +36,31 @@ import java.util.List;
  */
 public class ModerationUtil {
 
+	public static List<MBMessage> getDiscussionMBMessages(
+			long scopeGroupId, int start, int end)
+		throws PortalException {
+
+		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(
+			scopeGroupId, true);
+
+		return MBMessageLocalServiceUtil.dynamicQuery(dynamicQuery, start, end);
+	}
+
+	public static int getDiscussionMBMessagesCount(long scopeGroupId)
+		throws PortalException {
+
+		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(
+			scopeGroupId, true);
+
+		return (int)MBMessageLocalServiceUtil.dynamicQueryCount(dynamicQuery);
+	}
+
 	public static List<MBMessage> getMBMessages(
 			long scopeGroupId, int start, int end)
 		throws PortalException {
 
-		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(scopeGroupId);
+		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(
+			scopeGroupId, false);
 
 		return MBMessageLocalServiceUtil.dynamicQuery(dynamicQuery, start, end);
 	}
@@ -47,7 +68,8 @@ public class ModerationUtil {
 	public static int getMBMessagesCount(long scopeGroupId)
 		throws PortalException {
 
-		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(scopeGroupId);
+		DynamicQuery dynamicQuery = buildMBMessageDynamicQuery(
+			scopeGroupId, false);
 
 		return (int)MBMessageLocalServiceUtil.dynamicQueryCount(dynamicQuery);
 	}
@@ -69,7 +91,8 @@ public class ModerationUtil {
 		return (int)WikiPageLocalServiceUtil.dynamicQueryCount(dynamicQuery);
 	}
 
-	protected static DynamicQuery buildMBMessageDynamicQuery(long scopeGroupId)
+	protected static DynamicQuery buildMBMessageDynamicQuery(
+			long scopeGroupId, boolean discussion)
 		throws PortalException {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
@@ -87,7 +110,16 @@ public class ModerationUtil {
 
 		Property categoryIdProperty = PropertyFactoryUtil.forName("categoryId");
 
-		dynamicQuery.add(categoryIdProperty.ne(-1L));
+		if (discussion) {
+			dynamicQuery.add(
+				categoryIdProperty.eq(
+					MBCategoryConstants.DISCUSSION_CATEGORY_ID));
+		}
+		else {
+			dynamicQuery.add(
+				categoryIdProperty.ne(
+					MBCategoryConstants.DISCUSSION_CATEGORY_ID));
+		}
 
 		Property statusProperty = PropertyFactoryUtil.forName("status");
 
