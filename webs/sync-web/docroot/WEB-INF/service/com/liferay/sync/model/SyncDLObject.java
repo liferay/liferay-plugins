@@ -16,6 +16,7 @@ package com.liferay.sync.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.model.TreeModel;
 
@@ -36,6 +37,24 @@ public interface SyncDLObject extends SyncDLObjectModel, PersistedModel,
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.sync.model.impl.SyncDLObjectImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<SyncDLObject, Long> SYNC_D_L_OBJECT_ID_ACCESSOR =
+		new Accessor<SyncDLObject, Long>() {
+			@Override
+			public Long get(SyncDLObject syncDLObject) {
+				return syncDLObject.getSyncDLObjectId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<SyncDLObject> getTypeClass() {
+				return SyncDLObject.class;
+			}
+		};
+
 	@Override
 	public java.lang.String buildTreePath();
 

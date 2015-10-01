@@ -3654,7 +3654,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 		if ((list != null) && !list.isEmpty()) {
 			for (SyncDLObject syncDLObject : list) {
-				if ((modifiedTime != syncDLObject.getModifiedTime()) ||
+				if ((modifiedTime >= syncDLObject.getModifiedTime()) ||
 						(repositoryId != syncDLObject.getRepositoryId()) ||
 						!ArrayUtil.contains(events, syncDLObject.getEvent())) {
 					list = null;
