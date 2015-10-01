@@ -16,7 +16,6 @@ package com.liferay.akismet.moderation.portlet;
 
 import com.liferay.akismet.util.AkismetConstants;
 import com.liferay.akismet.util.AkismetUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -27,10 +26,9 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -40,6 +38,7 @@ import com.liferay.portlet.messageboards.NoSuchMessageException;
 import com.liferay.portlet.messageboards.RequiredMessageException;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
+import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.wiki.constants.WikiPortletKeys;
 import com.liferay.wiki.exception.NoSuchPageException;
 import com.liferay.wiki.model.WikiNode;
@@ -63,11 +62,6 @@ public class ModerationPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		checkMBMessagePermission(themeDisplay.getScopeGroupId());
-
 		long[] mbMessageIds = ParamUtil.getLongValues(
 			actionRequest, "deleteMBMessageIds");
 
@@ -80,16 +74,11 @@ public class ModerationPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		checkMBMessagePermission(themeDisplay.getScopeGroupId());
-
 		long[] mbMessageIds = ParamUtil.getLongValues(
 			actionRequest, "deleteMBMessageIds");
 
 		for (long mbMessageId : mbMessageIds) {
-			MBMessageLocalServiceUtil.deleteMessage(mbMessageId);
+			MBMessageServiceUtil.deleteMessage(mbMessageId);
 		}
 	}
 
@@ -99,8 +88,6 @@ public class ModerationPortlet extends MVCPortlet {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		checkMBMessagePermission(themeDisplay.getScopeGroupId());
 
 		long[] mbMessageIds = ParamUtil.getLongValues(
 			actionRequest, "notSpamMBMessageIds");
@@ -125,8 +112,6 @@ public class ModerationPortlet extends MVCPortlet {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		checkWikiPagePermission(themeDisplay.getScopeGroupId());
 
 		long[] wikiPageIds = ParamUtil.getLongValues(
 			actionRequest, "notSpamWikiPageIds");
@@ -228,11 +213,6 @@ public class ModerationPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		checkWikiPagePermission(themeDisplay.getScopeGroupId());
-
 		long[] wikiPageIds = ParamUtil.getLongValues(
 			actionRequest, "spamWikiPageIds");
 
@@ -246,32 +226,26 @@ public class ModerationPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void checkMBMessagePermission(long scopeGroupId)
-		throws PortalException {
+	protected boolean isProcessPortletRequest(PortletRequest portletRequest) {
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
+			themeDisplay.getPermissionChecker();
 
-		if (!permissionChecker.hasPermission(
-				scopeGroupId, "com.liferay.portlet.messageboards", scopeGroupId,
-				ActionKeys.BAN_USER)) {
-
-			throw new PrincipalException();
+		if (permissionChecker.isCompanyAdmin()) {
+			return true;
 		}
-	}
 
-	protected void checkWikiPagePermission(long scopeGroupId)
-		throws PortalException {
+		Group group = themeDisplay.getScopeGroup();
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
+		if (group.isSite() &&
+			permissionChecker.isGroupAdmin(themeDisplay.getScopeGroupId())) {
 
-		if (!permissionChecker.hasPermission(
-				scopeGroupId, "com.liferay.portlet.wiki", scopeGroupId,
-				ActionKeys.ADD_NODE)) {
-
-			throw new PrincipalException();
+			return true;
 		}
+
+		return false;
 	}
 
 	@Override
