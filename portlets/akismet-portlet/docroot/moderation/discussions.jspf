@@ -45,21 +45,14 @@
 		>
 
 			<%
-			MBDiscussion mbDiscussion = MBDiscussionLocalServiceUtil.getThreadDiscussion(message.getThreadId());
+			String rowURL = null;
 
-			long blogsPlid = PortalUtil.getPlidFromPortletId(message.getGroupId(), PortletKeys.BLOGS);
-			%>
+			ExpandoBridge expandoBridge = message.getExpandoBridge();
 
-			<liferay-portlet:renderURL plid="<%= blogsPlid %>" portletName="<%= PortletKeys.BLOGS %>" varImpl="rowURL">
-				<portlet:param name="struts_action" value="/blogs/view_entry" />
-				<portlet:param name="entryId" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
-			</liferay-portlet:renderURL>
+			String contentURL = (String)expandoBridge.getAttribute("contentURL", false);
 
-			<%
-			String className = PortalUtil.getClassName(mbDiscussion.getClassNameId());
-
-			if (!className.equals(BlogsEntry.class.getName())) {
-				rowURL = null;
+			if (Validator.isNotNull(contentURL)) {
+				rowURL = contentURL;
 			}
 			%>
 
