@@ -74,7 +74,7 @@ public class AkismetServletContextListener
 
 		try {
 			ExpandoColumnLocalServiceUtil.addColumn(
-				expandoTable.getTableId(), "contentURL",
+				expandoTable.getTableId(), "akismetContentURL",
 				ExpandoColumnConstants.STRING);
 		}
 		catch (Exception e) {
