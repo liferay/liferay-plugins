@@ -29,7 +29,7 @@ MBMessage mbMessage = (MBMessage)row.getObject();
 	<%
 	ExpandoBridge expandoBridge = mbMessage.getExpandoBridge();
 
-	String contentURL = (String)expandoBridge.getAttribute("contentURL", false);
+	String contentURL = (String)expandoBridge.getAttribute("akismetContentURL", false);
 	%>
 
 	<c:if test="<%= Validator.isNotNull(contentURL) %>">
