@@ -26,7 +26,6 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.akismet.moderation.util.ModerationUtil" %><%@
 page import="com.liferay.akismet.util.AkismetUtil" %><%@
-page import="com.liferay.akismet.util.PortletKeys" %><%@
 page import="com.liferay.akismet.util.PortletPropsKeys" %><%@
 page import="com.liferay.akismet.util.PrefsPortletPropsUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.RowChecker" %><%@
@@ -39,14 +38,13 @@ page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
+page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.blogs.model.BlogsEntry" %><%@
+page import="com.liferay.portlet.expando.model.ExpandoBridge" %><%@
 page import="com.liferay.portlet.messageboards.NoSuchMessageException" %><%@
 page import="com.liferay.portlet.messageboards.RequiredMessageException" %><%@
-page import="com.liferay.portlet.messageboards.model.MBDiscussion" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
-page import="com.liferay.portlet.messageboards.service.MBDiscussionLocalServiceUtil" %><%@
 page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.wiki.constants.WikiPortletKeys" %><%@
 page import="com.liferay.wiki.exception.NoSuchPageException" %><%@

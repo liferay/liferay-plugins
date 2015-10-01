@@ -22,25 +22,18 @@ portletURL.setParameter("tabs1", "discussions");
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 MBMessage mbMessage = (MBMessage)row.getObject();
-
-MBDiscussion mbDiscussion = MBDiscussionLocalServiceUtil.getThreadDiscussion(mbMessage.getThreadId());
-
-long blogsPlid = PortalUtil.getPlidFromPortletId(mbMessage.getGroupId(), PortletKeys.BLOGS);
 %>
 
 <liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 
 	<%
-	String className = PortalUtil.getClassName(mbDiscussion.getClassNameId());
+	ExpandoBridge expandoBridge = mbMessage.getExpandoBridge();
+
+	String contentURL = (String)expandoBridge.getAttribute("contentURL", false);
 	%>
 
-	<c:if test="<%= className.equals(BlogsEntry.class.getName()) %>">
-		<liferay-portlet:renderURL plid="<%= blogsPlid %>" portletName="<%= PortletKeys.BLOGS %>" varImpl="viewURL">
-			<portlet:param name="struts_action" value="/blogs/view_entry" />
-			<portlet:param name="entryId" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
-		</liferay-portlet:renderURL>
-
-		<liferay-ui:icon iconCssClass="icon-search" message="view-in-context" target="_blank" url="<%= String.valueOf(viewURL) %>" />
+	<c:if test="<%= Validator.isNotNull(contentURL) %>">
+		<liferay-ui:icon iconCssClass="icon-search" message="view-in-context" target="_blank" url="<%= String.valueOf(contentURL) %>" />
 	</c:if>
 
 	<portlet:actionURL name="markNotSpamMBMessages" var="markAsHamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
