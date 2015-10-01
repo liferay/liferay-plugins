@@ -24,11 +24,13 @@ import com.google.android.gcm.server.Sender;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.PushNotificationsException;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
+import com.liferay.pushnotifications.sender.Response;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.pushnotifications.util.PortletPropsValues;
@@ -144,17 +146,22 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	protected void validateMulticastResult(
 		List<String> tokens, MulticastResult multicastResult) {
 
-		if ((multicastResult.getCanonicalIds() == 0) &&
-			(multicastResult.getFailure() == 0)) {
-
-			return;
-		}
-
 		List<Result> results = multicastResult.getResults();
 
 		for (int i = 0; i < results.size(); i++) {
 			Result result = results.get(i);
 			String token = tokens.get(i);
+
+			Response response = new AndroidResponse(result, token);
+
+			MessageBusUtil.sendMessage(
+				"liferay/push_notification_response", response);
+
+			if ((multicastResult.getCanonicalIds() == 0) &&
+				(multicastResult.getFailure() == 0)) {
+
+				continue;
+			}
 
 			String canonicalRegistrationId =
 				result.getCanonicalRegistrationId();
