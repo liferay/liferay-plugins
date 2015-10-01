@@ -2821,8 +2821,8 @@ Please find a solution that does not require portal-impl.jar.
 							/>
 
 							<junit dir="@{module.dir}" fork="on" forkmode="@{junit.forkmode}" jvm="${junit.jvm}" outputtoformatters="false" printsummary="on" showoutput="true">
-								<sysproperty if:true="${jvm.debug}" key="jvm.debug" value="true" />
 								<sysproperty key="app.server.tomcat.dir" value="${app.server.tomcat.dir}" />
+								<sysproperty if:true="${jvm.debug}" key="jvm.debug" value="true" />
 								<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/@{test.type}/cobertura.ser" />
 								<sysproperty key="whip.agent" file="${whip.agent}" />
 								<sysproperty key="whip.datafile" file="@{module.dir}/test-coverage/whip.dat" />
