@@ -57,7 +57,7 @@ import javax.imageio.ImageIO;
 public class AssetEntrySetImageUtil {
 
 	public static JSONObject addImageFile(
-			long userId, long classNameId, long classPK, String portletKey,
+			long userId, long classNameId, long classPK, String portletId,
 			File file, String imageType)
 		throws PortalException, SystemException {
 
@@ -69,14 +69,14 @@ public class AssetEntrySetImageUtil {
 		}
 
 		FileEntry fileEntry = addFileEntry(
-			userId, classNameId, classPK, portletKey, file, imageType);
+			userId, classNameId, classPK, portletId, file, imageType);
 
 		return getImageJSONObject(
 			JSONFactoryUtil.createJSONObject(), fileEntry, imageType);
 	}
 
 	public static FileEntry addScaledImageFileEntry(
-			long userId, long classNameId, long classPK, String portletKey,
+			long userId, long classNameId, long classPK, String portletId,
 			ImageBag imageBag, String imageType, String imageMaxSize)
 		throws PortalException, SystemException {
 
@@ -95,7 +95,7 @@ public class AssetEntrySetImageUtil {
 					scaledRenderedImage, imageBag.getType()));
 
 			return addFileEntry(
-				userId, classNameId, classPK, portletKey, scaledFile,
+				userId, classNameId, classPK, portletId, scaledFile,
 				imageType);
 		}
 		catch (IOException ioe) {
@@ -243,7 +243,7 @@ public class AssetEntrySetImageUtil {
 	}
 
 	protected static FileEntry addFileEntry(
-			long userId, long classNameId, long classPK, String portletKey,
+			long userId, long classNameId, long classPK, String portletId,
 			File file, String type)
 		throws PortalException, SystemException {
 
@@ -265,7 +265,7 @@ public class AssetEntrySetImageUtil {
 
 		return PortletFileRepositoryUtil.addPortletFileEntry(
 			groupId, userId, PortalUtil.getClassName(classNameId), classPK,
-			portletKey, 0L, file, fileName, null, false);
+			portletId, 0L, file, fileName, null, false);
 	}
 
 	private static final int _ORIENTATION_MIRROR_HORIZONTAL = 2;
