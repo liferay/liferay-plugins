@@ -93,6 +93,10 @@ public class ScreensAssetEntryServiceImpl
 			portletPreferences.getValue("selectionStyle", null), "dynamic");
 
 		if (selectionStyle.equals("dynamic")) {
+			if (max > 500) {
+				max = 500;
+			}
+
 			assetEntries = AssetPublisherUtil.getAssetEntries(
 				portletPreferences, null, groupId, max, false);
 		}
