@@ -73,11 +73,12 @@ public class ScreensAssetEntryServiceUtil {
 
 	public static com.liferay.portal.kernel.json.JSONArray getAssetEntries(
 		long companyId, long groupId, java.lang.String portletItemName,
-		java.util.Locale locale)
+		java.util.Locale locale, int max)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getAssetEntries(companyId, groupId, portletItemName, locale);
+				   .getAssetEntries(companyId, groupId, portletItemName,
+			locale, max);
 	}
 
 	public static void clearService() {

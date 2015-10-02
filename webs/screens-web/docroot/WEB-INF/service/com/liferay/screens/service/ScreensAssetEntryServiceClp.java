@@ -42,7 +42,7 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 		_methodName4 = "getAssetEntries";
 
 		_methodParameterTypes4 = new String[] {
-				"long", "long", "java.lang.String", "java.util.Locale"
+				"long", "long", "java.lang.String", "java.util.Locale", "int"
 			};
 	}
 
@@ -139,7 +139,7 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray getAssetEntries(
 		long companyId, long groupId, java.lang.String portletItemName,
-		java.util.Locale locale)
+		java.util.Locale locale, int max)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -154,7 +154,9 @@ public class ScreensAssetEntryServiceClp implements ScreensAssetEntryService {
 						
 					ClpSerializer.translateInput(portletItemName),
 						
-					ClpSerializer.translateInput(locale)
+					ClpSerializer.translateInput(locale),
+						
+					max
 					});
 		}
 		catch (Throwable t) {

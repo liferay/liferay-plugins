@@ -70,11 +70,11 @@ public class ScreensAssetEntryServiceWrapper implements ScreensAssetEntryService
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray getAssetEntries(
 		long companyId, long groupId, java.lang.String portletItemName,
-		java.util.Locale locale)
+		java.util.Locale locale, int max)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _screensAssetEntryService.getAssetEntries(companyId, groupId,
-			portletItemName, locale);
+			portletItemName, locale, max);
 	}
 
 	/**
