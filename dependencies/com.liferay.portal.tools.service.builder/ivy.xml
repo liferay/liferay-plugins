@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.portal.tools.service.builder" org="com.liferay" rev="1.0.40" />
+		<dependency name="com.liferay.portal.tools.service.builder" org="com.liferay" rev="1.0.41" />
 	</dependencies>
 </ivy-module>
