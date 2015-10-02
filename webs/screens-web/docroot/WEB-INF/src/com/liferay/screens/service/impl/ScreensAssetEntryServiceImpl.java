@@ -59,7 +59,8 @@ public class ScreensAssetEntryServiceImpl
 
 	@Override
 	public JSONArray getAssetEntries(
-			long companyId, long groupId, String portletItemName, Locale locale)
+			long companyId, long groupId, String portletItemName, Locale locale,
+			int max)
 		throws PortalException, SystemException {
 
 		List<AssetEntry> assetEntries = new ArrayList<AssetEntry>();
@@ -93,7 +94,7 @@ public class ScreensAssetEntryServiceImpl
 
 		if (selectionStyle.equals("dynamic")) {
 			assetEntries = AssetPublisherUtil.getAssetEntries(
-				portletPreferences, null, groupId, 100, false);
+				portletPreferences, null, groupId, max, false);
 		}
 		else {
 			try {
