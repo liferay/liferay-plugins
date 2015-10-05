@@ -233,6 +233,8 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 				appleServiceBuilder.withProductionDestination();
 			}
 
+			appleServiceBuilder.withDelegate(new AppleDelegate());
+
 			_apnsService = appleServiceBuilder.build();
 		}
 
