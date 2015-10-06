@@ -62,7 +62,7 @@
 				</li>
 			</c:if>
 
-			<c:if test="<%= Validator.isNull(aim) && Validator.isNull(icq) && Validator.isNull(jabber) && Validator.isNull(msn) && Validator.isNull(skype) && Validator.isNull(ym) %>">
+			<c:if test="<%= Validator.isNull(aim) && Validator.isNull(icq) && Validator.isNull(jabber) && Validator.isNull(skype) && Validator.isNull(ym) %>">
 				<li class="action-field component lfr-token settings-field" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(request, "instant-messenger") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>

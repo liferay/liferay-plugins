@@ -1141,7 +1141,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		String icqSn = BeanParamUtil.getString(contact, actionRequest, "icqSn");
 		String jabberSn = BeanParamUtil.getString(
 			contact, actionRequest, "jabberSn");
-		String msnSn = BeanParamUtil.getString(contact, actionRequest, "msnSn");
 		String mySpaceSn = BeanParamUtil.getString(
 			contact, actionRequest, "mySpaceSn");
 		String skypeSn = BeanParamUtil.getString(
@@ -1172,7 +1171,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			user.getLanguageId(), user.getTimeZoneId(), user.getGreeting(),
 			comments, firstName, middleName, lastName, contact.getPrefixId(),
 			contact.getSuffixId(), user.isMale(), birthdayMonth, birthdayDay,
-			birthdayYear, smsSn, aimSn, facebookSn, icqSn, jabberSn, msnSn,
+			birthdayYear, smsSn, aimSn, facebookSn, icqSn, jabberSn,
 			mySpaceSn, skypeSn, twitterSn, ymSn, jobTitle, user.getGroupIds(),
 			user.getOrganizationIds(), user.getRoleIds(), null,
 			user.getUserGroupIds(), user.getAddresses(), null, user.getPhones(),

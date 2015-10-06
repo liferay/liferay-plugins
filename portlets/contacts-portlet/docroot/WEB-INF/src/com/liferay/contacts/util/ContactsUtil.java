@@ -309,12 +309,6 @@ public class ContactsUtil {
 			sb.append(StringPool.NEW_LINE);
 		}
 
-		if (Validator.isNotNull(contact.getMsnSn())) {
-			sb.append("X-MSN;type=OTHER;type=pref:");
-			sb.append(contact.getMsnSn());
-			sb.append(StringPool.NEW_LINE);
-		}
-
 		if (Validator.isNotNull(contact.getSkypeSn())) {
 			sb.append("X-SKYPE;type=OTHER;type=pref:");
 			sb.append(contact.getSkypeSn());
