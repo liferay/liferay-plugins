@@ -46,7 +46,7 @@ public class ScreensJournalArticleServiceImpl
 
 	@Override
 	public String getJournalArticleContent(
-			long groupId, long classPK, long templateId, Locale locale)
+			long groupId, long classPK, long ddmTemplateId, Locale locale)
 		throws PortalException, SystemException {
 
 		JournalArticleResource journalArticleResource =
@@ -54,7 +54,7 @@ public class ScreensJournalArticleServiceImpl
 
 		String articleId = journalArticleResource.getArticleId();
 
-		String ddmTemplateKey = getTemplateKey(templateId);
+		String ddmTemplateKey = getDDMTemplateKey(ddmTemplateId);
 
 		return journalArticleLocalService.getArticleContent(
 			groupId, articleId, null, ddmTemplateKey, getLanguageId(locale),
@@ -63,10 +63,10 @@ public class ScreensJournalArticleServiceImpl
 
 	@Override
 	public String getJournalArticleContent(
-			long groupId, String articleId, long templateId, Locale locale)
+			long groupId, String articleId, long ddmTemplateId, Locale locale)
 		throws PortalException, SystemException {
 
-		String ddmTemplateKey = getTemplateKey(templateId);
+		String ddmTemplateKey = getDDMTemplateKey(ddmTemplateId);
 
 		return journalArticleLocalService.getArticleContent(
 			groupId, articleId, null, ddmTemplateKey, getLanguageId(locale),
@@ -81,11 +81,11 @@ public class ScreensJournalArticleServiceImpl
 		return LocaleUtil.toLanguageId(locale);
 	}
 
-	protected String getTemplateKey(long templateId) 
+	protected String getDDMTemplateKey(long ddmTemplateId) 
 			throws PortalException, SystemException {
 
 		DDMTemplate ddmTemplate = DDMTemplateServiceUtil.getTemplate(
-			templateId);
+			ddmTemplateId);
 
 		String ddmTemplateKey = null;
 
