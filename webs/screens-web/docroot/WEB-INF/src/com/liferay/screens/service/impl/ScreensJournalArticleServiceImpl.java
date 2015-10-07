@@ -32,7 +32,7 @@ public class ScreensJournalArticleServiceImpl
 
 	@Override
 	public String getJournalArticleContent(
-			int groupId, int classPK, Locale locale)
+			long groupId, long classPK, Locale locale)
 		throws PortalException, SystemException {
 
 		JournalArticleResource journalArticleResource =
