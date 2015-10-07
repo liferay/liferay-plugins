@@ -45,6 +45,28 @@ public class ScreensJournalArticleServiceImpl
 
 	@Override
 	public String getJournalArticleContent(
+			long groupId, long classPK, long templateId, Locale locale)
+		throws PortalException, SystemException {
+
+		JournalArticleResource journalArticleResource =
+			journalArticleResourceLocalService.getArticleResource(classPK);
+
+		DDMTemplate ddmTemplate = DDMTemplateServiceUtil.getTemplate(
+			templateId);
+
+		String ddmTemplateKey = null;
+
+		if (ddmTemplate != null) {
+			ddmTemplateKey = ddmTemplate.getTemplateKey();
+		}
+
+		return journalArticleLocalService.getArticleContent(
+			groupId, journalArticleResource.getArticleId(), null,
+			ddmTemplateKey, getLanguageId(locale), null);
+	}
+
+	@Override
+	public String getJournalArticleContent(
 			long groupId, String articleId, long templateId, Locale locale)
 		throws PortalException, SystemException {
 
