@@ -15,6 +15,7 @@
 package com.liferay.sync.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
@@ -29,6 +30,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.impl.SyncDLObjectImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Collections;
@@ -42,6 +44,9 @@ public class SyncDLObjectFinderImpl
 
 	public static final String FIND_BY_TYPE_PKS =
 		SyncDLObjectFinder.class.getName() + ".findByTypePKs";
+
+	public static final String FIND_BY_MODIFIED_TIME =
+		SyncDLObjectFinder.class.getName() + ".findByModifiedTime";
 
 	public List<Long> filterFindByR_U_T(
 			long groupId, long userId, long[] typePKs)
@@ -74,6 +79,69 @@ public class SyncDLObjectFinderImpl
 			qPos.add(ResourceConstants.SCOPE_INDIVIDUAL);
 
 			return (List<Long>)sqlQuery.list();
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
+	public List<SyncDLObject> findByModifiedTime(
+			long modifiedTime, long repositoryId, long parentFolderId,
+			String type, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_MODIFIED_TIME);
+
+			if (modifiedTime <= 0) {
+				sql = StringUtil.replace(
+					sql, "(SyncDLObject.modifiedTime > ?) AND",
+					StringPool.BLANK);
+			}
+
+			if (parentFolderId == 0) {
+				sql = StringUtil.replace(
+					sql, "AND (SyncDLObject.treePath LIKE ?)",
+					StringPool.BLANK);
+			}
+
+			if (type == null) {
+				sql = StringUtil.replace(
+					sql, "AND (SyncDLObject.type_ = ?)", StringPool.BLANK);
+
+				sql = CustomSQLUtil.removeOrderBy(sql);
+			}
+
+			SQLQuery sqlQuery = session.createSQLQuery(sql);
+
+			sqlQuery.addEntity("SyncDLObject", SyncDLObjectImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+
+			if (modifiedTime > 0) {
+				qPos.add(modifiedTime);
+			}
+
+			qPos.add(repositoryId);
+
+			if (parentFolderId != 0) {
+				qPos.add("/" + parentFolderId + "/%");
+			}
+
+			if (type != null) {
+				qPos.add(type);
+			}
+
+			return (List<SyncDLObject>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

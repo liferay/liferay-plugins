@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <custom-sql>
+	<sql id="com.liferay.sync.service.persistence.SyncDLObjectFinder.findByModifiedTime">
+		<![CDATA[
+			SELECT
+				{SyncDLObject.*}
+			FROM
+				SyncDLObject
+			WHERE
+				(SyncDLObject.modifiedTime > ?) AND
+				(SyncDLObject.repositoryId = ?) AND
+				(SyncDLObject.event != 'delete') AND
+				(SyncDLObject.event != 'trash') AND
+				(SyncDLObject.treePath LIKE ?) AND
+				(SyncDLObject.type_ = ?)
+			ORDER BY
+				modifiedTime asc
+		]]>
+	</sql>
 	<sql id="com.liferay.sync.service.persistence.SyncDLObjectFinder.findByTypePKs">
 		<![CDATA[
 			SELECT
