@@ -107,7 +107,6 @@
 				<arg value="service.osgi.module=${service.osgi.module}" />
 				<arg value="service.plugin.name=${service.plugin.name}" />
 				<arg value="service.props.util=${service.props.util}" />
-				<arg value="service.remoting.file=" />
 				<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
 				<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/@{service.spring.file.name}" />
 				<arg value="service.spring.namespaces=${service.spring.namespaces}" />

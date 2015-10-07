@@ -50,7 +50,6 @@ a portlet plugin.
 			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-spring.xml" />
 			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/ext-service/src" />
 			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/ext-impl/src" />
-			<arg value="service.remoting.file=${basedir}/docroot/WEB-INF/ext-web/docroot/WEB-INF/remoting-servlet-ext.xml" />
 			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=portal-tables.sql" />
 			<arg value="service.sql.indexes.file=indexes.sql" />
