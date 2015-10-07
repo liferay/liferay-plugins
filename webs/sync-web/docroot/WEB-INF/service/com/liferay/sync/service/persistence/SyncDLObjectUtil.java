@@ -169,6 +169,32 @@ public class SyncDLObjectUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param modifiedTime the modified time
+	* @param repositoryId the repository ID
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByM_R(
+		long modifiedTime, long repositoryId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByM_R(modifiedTime, repositoryId, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Returns the first sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63;.
 	*
 	* @param modifiedTime the modified time
@@ -346,6 +372,32 @@ public class SyncDLObjectUtil {
 		return getPersistence()
 				   .findByR_P(repositoryId, parentFolderId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the sync d l objects where repositoryId = &#63; and parentFolderId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param repositoryId the repository ID
+	* @param parentFolderId the parent folder ID
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByR_P(
+		long repositoryId, long parentFolderId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_P(repositoryId, parentFolderId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -528,6 +580,32 @@ public class SyncDLObjectUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the sync d l objects where repositoryId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param repositoryId the repository ID
+	* @param type the type
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByR_T(
+		long repositoryId, java.lang.String type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_T(repositoryId, type, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Returns the first sync d l object in the ordered set where repositoryId = &#63; and type = &#63;.
 	*
 	* @param repositoryId the repository ID
@@ -703,6 +781,32 @@ public class SyncDLObjectUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the sync d l objects where version = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param version the version
+	* @param type the type
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByV_T(
+		java.lang.String version, java.lang.String type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByV_T(version, type, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
 	* Returns the first sync d l object in the ordered set where version = &#63; and type = &#63;.
 	*
 	* @param version the version
@@ -853,7 +957,7 @@ public class SyncDLObjectUtil {
 	*
 	* @param type the type
 	* @param typePK the type p k
-	* @param retrieveFromCache whether to use the finder cache
+	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -889,205 +993,6 @@ public class SyncDLObjectUtil {
 	public static int countByT_T(java.lang.String type, long typePK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByT_T(type, typePK);
-	}
-
-	/**
-	* Returns all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @return the matching sync d l objects
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByM_R_P(
-		long modifiedTime, long repositoryId, long parentFolderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByM_R_P(modifiedTime, repositoryId, parentFolderId);
-	}
-
-	/**
-	* Returns a range of all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @param start the lower bound of the range of sync d l objects
-	* @param end the upper bound of the range of sync d l objects (not inclusive)
-	* @return the range of matching sync d l objects
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByM_R_P(
-		long modifiedTime, long repositoryId, long parentFolderId, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByM_R_P(modifiedTime, repositoryId, parentFolderId,
-			start, end);
-	}
-
-	/**
-	* Returns an ordered range of all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @param start the lower bound of the range of sync d l objects
-	* @param end the upper bound of the range of sync d l objects (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching sync d l objects
-	* @throws SystemException if a system exception occurred
-	*/
-	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByM_R_P(
-		long modifiedTime, long repositoryId, long parentFolderId, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByM_R_P(modifiedTime, repositoryId, parentFolderId,
-			start, end, orderByComparator);
-	}
-
-	/**
-	* Returns the first sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching sync d l object
-	* @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.sync.model.SyncDLObject findByM_R_P_First(
-		long modifiedTime, long repositoryId, long parentFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
-		return getPersistence()
-				   .findByM_R_P_First(modifiedTime, repositoryId,
-			parentFolderId, orderByComparator);
-	}
-
-	/**
-	* Returns the first sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.sync.model.SyncDLObject fetchByM_R_P_First(
-		long modifiedTime, long repositoryId, long parentFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByM_R_P_First(modifiedTime, repositoryId,
-			parentFolderId, orderByComparator);
-	}
-
-	/**
-	* Returns the last sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching sync d l object
-	* @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.sync.model.SyncDLObject findByM_R_P_Last(
-		long modifiedTime, long repositoryId, long parentFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
-		return getPersistence()
-				   .findByM_R_P_Last(modifiedTime, repositoryId,
-			parentFolderId, orderByComparator);
-	}
-
-	/**
-	* Returns the last sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.sync.model.SyncDLObject fetchByM_R_P_Last(
-		long modifiedTime, long repositoryId, long parentFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByM_R_P_Last(modifiedTime, repositoryId,
-			parentFolderId, orderByComparator);
-	}
-
-	/**
-	* Returns the sync d l objects before and after the current sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* @param syncDLObjectId the primary key of the current sync d l object
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next sync d l object
-	* @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.sync.model.SyncDLObject[] findByM_R_P_PrevAndNext(
-		long syncDLObjectId, long modifiedTime, long repositoryId,
-		long parentFolderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
-		return getPersistence()
-				   .findByM_R_P_PrevAndNext(syncDLObjectId, modifiedTime,
-			repositoryId, parentFolderId, orderByComparator);
-	}
-
-	/**
-	* Removes all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63; from the database.
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @throws SystemException if a system exception occurred
-	*/
-	public static void removeByM_R_P(long modifiedTime, long repositoryId,
-		long parentFolderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		getPersistence()
-			.removeByM_R_P(modifiedTime, repositoryId, parentFolderId);
-	}
-
-	/**
-	* Returns the number of sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and parentFolderId = &#63;.
-	*
-	* @param modifiedTime the modified time
-	* @param repositoryId the repository ID
-	* @param parentFolderId the parent folder ID
-	* @return the number of matching sync d l objects
-	* @throws SystemException if a system exception occurred
-	*/
-	public static int countByM_R_P(long modifiedTime, long repositoryId,
-		long parentFolderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .countByM_R_P(modifiedTime, repositoryId, parentFolderId);
 	}
 
 	/**
@@ -1152,6 +1057,34 @@ public class SyncDLObjectUtil {
 		return getPersistence()
 				   .findByM_R_NotE(modifiedTime, repositoryId, event, start,
 			end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param modifiedTime the modified time
+	* @param repositoryId the repository ID
+	* @param event the event
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByM_R_NotE(
+		long modifiedTime, long repositoryId, java.lang.String event,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByM_R_NotE(modifiedTime, repositoryId, event, start,
+			end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1328,6 +1261,34 @@ public class SyncDLObjectUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; all &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param modifiedTime the modified time
+	* @param repositoryId the repository ID
+	* @param events the events
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByM_R_NotE(
+		long modifiedTime, long repositoryId, java.lang.String[] events,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByM_R_NotE(modifiedTime, repositoryId, events, start,
+			end, orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Removes all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63; from the database.
 	*
 	* @param modifiedTime the modified time
@@ -1435,6 +1396,34 @@ public class SyncDLObjectUtil {
 		return getPersistence()
 				   .findByR_P_T(repositoryId, parentFolderId, type, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the sync d l objects where repositoryId = &#63; and parentFolderId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param repositoryId the repository ID
+	* @param parentFolderId the parent folder ID
+	* @param type the type
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByR_P_T(
+		long repositoryId, long parentFolderId, java.lang.String type,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_P_T(repositoryId, parentFolderId, type, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1609,6 +1598,34 @@ public class SyncDLObjectUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the sync d l objects where repositoryId = &#63; and parentFolderId = &#63; and type = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param repositoryId the repository ID
+	* @param parentFolderId the parent folder ID
+	* @param types the types
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByR_P_T(
+		long repositoryId, long parentFolderId, java.lang.String[] types,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_P_T(repositoryId, parentFolderId, types, start,
+			end, orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Removes all the sync d l objects where repositoryId = &#63; and parentFolderId = &#63; and type = &#63; from the database.
 	*
 	* @param repositoryId the repository ID
@@ -1779,6 +1796,29 @@ public class SyncDLObjectUtil {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the sync d l objects.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of sync d l objects
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findAll(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findAll(start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

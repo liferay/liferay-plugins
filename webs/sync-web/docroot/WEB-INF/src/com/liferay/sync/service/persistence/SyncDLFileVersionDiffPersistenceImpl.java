@@ -162,6 +162,29 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	public List<SyncDLFileVersionDiff> findByFileEntryId(long fileEntryId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
+		return findByFileEntryId(fileEntryId, start, end, orderByComparator,
+			true);
+	}
+
+	/**
+	 * Returns an ordered range of all the sync d l file version diffs where fileEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param fileEntryId the file entry ID
+	 * @param start the lower bound of the range of sync d l file version diffs
+	 * @param end the upper bound of the range of sync d l file version diffs (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching sync d l file version diffs
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SyncDLFileVersionDiff> findByFileEntryId(long fileEntryId,
+		int start, int end, OrderByComparator orderByComparator,
+		boolean retrieveFromCache) throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -177,15 +200,19 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 			finderArgs = new Object[] { fileEntryId, start, end, orderByComparator };
 		}
 
-		List<SyncDLFileVersionDiff> list = (List<SyncDLFileVersionDiff>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<SyncDLFileVersionDiff> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (SyncDLFileVersionDiff syncDLFileVersionDiff : list) {
-				if ((fileEntryId != syncDLFileVersionDiff.getFileEntryId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<SyncDLFileVersionDiff>)FinderCacheUtil.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (SyncDLFileVersionDiff syncDLFileVersionDiff : list) {
+					if ((fileEntryId != syncDLFileVersionDiff.getFileEntryId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -652,6 +679,30 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	public List<SyncDLFileVersionDiff> findByExpirationDate(
 		Date expirationDate, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		return findByExpirationDate(expirationDate, start, end,
+			orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the sync d l file version diffs where expirationDate &lt; &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param expirationDate the expiration date
+	 * @param start the lower bound of the range of sync d l file version diffs
+	 * @param end the upper bound of the range of sync d l file version diffs (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching sync d l file version diffs
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SyncDLFileVersionDiff> findByExpirationDate(
+		Date expirationDate, int start, int end,
+		OrderByComparator orderByComparator, boolean retrieveFromCache)
+		throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -659,16 +710,20 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_EXPIRATIONDATE;
 		finderArgs = new Object[] { expirationDate, start, end, orderByComparator };
 
-		List<SyncDLFileVersionDiff> list = (List<SyncDLFileVersionDiff>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<SyncDLFileVersionDiff> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (SyncDLFileVersionDiff syncDLFileVersionDiff : list) {
-				if ((expirationDate.getTime() <= syncDLFileVersionDiff.getExpirationDate()
-																		  .getTime())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<SyncDLFileVersionDiff>)FinderCacheUtil.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (SyncDLFileVersionDiff syncDLFileVersionDiff : list) {
+					if ((expirationDate.getTime() <= syncDLFileVersionDiff.getExpirationDate()
+																			  .getTime())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1191,7 +1246,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	 * @param fileEntryId the file entry ID
 	 * @param sourceFileVersionId the source file version ID
 	 * @param targetFileVersionId the target file version ID
-	 * @param retrieveFromCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1876,6 +1931,27 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	@Override
 	public List<SyncDLFileVersionDiff> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the sync d l file version diffs.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of sync d l file version diffs
+	 * @param end the upper bound of the range of sync d l file version diffs (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of sync d l file version diffs
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SyncDLFileVersionDiff> findAll(int start, int end,
+		OrderByComparator orderByComparator, boolean retrieveFromCache)
+		throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1891,8 +1967,12 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<SyncDLFileVersionDiff> list = (List<SyncDLFileVersionDiff>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<SyncDLFileVersionDiff> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<SyncDLFileVersionDiff>)FinderCacheUtil.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;

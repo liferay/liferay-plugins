@@ -27,6 +27,15 @@ public class SyncDLObjectFinderUtil {
 		return getFinder().filterFindByR_U_T(groupId, userId, typePKs);
 	}
 
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByModifiedTime(
+		long modifiedTime, long repositoryId, long parentFolderId,
+		java.lang.String type, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder()
+				   .findByModifiedTime(modifiedTime, repositoryId,
+			parentFolderId, type, start, end);
+	}
+
 	public static SyncDLObjectFinder getFinder() {
 		if (_finder == null) {
 			_finder = (SyncDLObjectFinder)PortletBeanLocatorUtil.locate(com.liferay.sync.service.ClpSerializer.getServletContextName(),
