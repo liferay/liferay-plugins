@@ -66,16 +66,8 @@ public class ScreensJournalArticleServiceImpl
 			getLanguageId(locale), null);
 	}
 
-	protected String getLanguageId(Locale locale) {
-		if (locale == null) {
-			locale = LocaleUtil.getSiteDefault();
-		}
-
-		return LocaleUtil.toLanguageId(locale);
-	}
-
-	protected String getDDMTemplateKey(long ddmTemplateId) 
-			throws PortalException, SystemException {
+	protected String getDDMTemplateKey(long ddmTemplateId)
+		throws PortalException, SystemException {
 
 		String ddmTemplateKey = null;
 
@@ -87,6 +79,14 @@ public class ScreensJournalArticleServiceImpl
 		}
 
 		return ddmTemplateKey;
+	}
+
+	protected String getLanguageId(Locale locale) {
+		if (locale == null) {
+			locale = LocaleUtil.getSiteDefault();
+		}
+
+		return LocaleUtil.toLanguageId(locale);
 	}
 
 }
