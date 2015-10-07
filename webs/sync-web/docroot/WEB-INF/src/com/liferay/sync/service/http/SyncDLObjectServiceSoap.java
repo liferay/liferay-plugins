@@ -313,6 +313,22 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
+	public static java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max, boolean retrieveFromCache)
+		throws RemoteException {
+		try {
+			java.lang.String returnValue = SyncDLObjectServiceUtil.getSyncDLObjectUpdate(repositoryId,
+					lastAccessTime, max, retrieveFromCache);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
 		long repositoryId, long parentFolderId, long lastAccessTime)
 		throws RemoteException {

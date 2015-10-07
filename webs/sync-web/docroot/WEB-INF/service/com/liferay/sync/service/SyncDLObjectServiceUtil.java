@@ -173,6 +173,14 @@ public class SyncDLObjectServiceUtil {
 				   .getSyncDLObjectUpdate(repositoryId, lastAccessTime, max);
 	}
 
+	public static java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getSyncDLObjectUpdate(repositoryId, lastAccessTime, max,
+			retrieveFromCache);
+	}
+
 	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
 		long repositoryId, long parentFolderId, long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException {

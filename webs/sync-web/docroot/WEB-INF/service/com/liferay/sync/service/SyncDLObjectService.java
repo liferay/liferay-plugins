@@ -136,6 +136,11 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 		long lastAccessTime, int max) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long lastAccessTime, int max, boolean retrieveFromCache)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
 		long repositoryId, long parentFolderId, long lastAccessTime)
 		throws PortalException;
