@@ -104,11 +104,6 @@
 			<finder-column name="type" />
 			<finder-column name="typePK" />
 		</finder>
-		<finder name="M_R_P" return-type="Collection">
-			<finder-column name="modifiedTime" comparator="&gt;" />
-			<finder-column name="repositoryId" />
-			<finder-column name="parentFolderId" />
-		</finder>
 		<finder name="M_R_NotE" return-type="Collection">
 			<finder-column name="modifiedTime" comparator="&gt;" />
 			<finder-column name="repositoryId" />
