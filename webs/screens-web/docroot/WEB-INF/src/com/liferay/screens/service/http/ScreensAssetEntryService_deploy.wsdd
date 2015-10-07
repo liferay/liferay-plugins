@@ -10,6 +10,13 @@
 			<parameter xmlns:tns="http://persistence.service.asset.portlet.liferay.com" qname="assetEntryQuery" type="tns:AssetEntryQuery"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
 		</operation>
+		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAssetEntries" qname="operNS:getAssetEntries" returnQName="getAssetEntriesReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="portletItemName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="max" type="tns:int"></parameter>
+		</operation>
 		<parameter name="allowedMethods" value="getAssetEntries" />
 		<parameter name="className" value="com.liferay.screens.service.http.ScreensAssetEntryServiceSoap" />
 		<parameter name="schemaUnqualified" value="http://persistence.service.asset.portlet.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.screens.liferay.com" />

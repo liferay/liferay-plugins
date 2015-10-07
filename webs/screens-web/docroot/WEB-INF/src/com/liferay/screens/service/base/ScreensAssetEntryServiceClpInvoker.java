@@ -24,50 +24,50 @@ import java.util.Arrays;
  */
 public class ScreensAssetEntryServiceClpInvoker {
 	public ScreensAssetEntryServiceClpInvoker() {
-		_methodName36 = "getBeanIdentifier";
+		_methodName42 = "getBeanIdentifier";
 
-		_methodParameterTypes36 = new String[] {  };
+		_methodParameterTypes42 = new String[] {  };
 
-		_methodName37 = "setBeanIdentifier";
+		_methodName43 = "setBeanIdentifier";
 
-		_methodParameterTypes37 = new String[] { "java.lang.String" };
+		_methodParameterTypes43 = new String[] { "java.lang.String" };
 
-		_methodName40 = "getAssetEntries";
+		_methodName46 = "getAssetEntries";
 
-		_methodParameterTypes40 = new String[] {
+		_methodParameterTypes46 = new String[] {
 				"com.liferay.portlet.asset.service.persistence.AssetEntryQuery",
 				"java.util.Locale"
 			};
 
-		_methodName41 = "getAssetEntries";
+		_methodName47 = "getAssetEntries";
 
-		_methodParameterTypes41 = new String[] {
+		_methodParameterTypes47 = new String[] {
 				"long", "long", "java.lang.String", "java.util.Locale", "int"
 			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName36.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return ScreensAssetEntryServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName37.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			ScreensAssetEntryServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			return ScreensAssetEntryServiceUtil.getAssetEntries((com.liferay.portlet.asset.service.persistence.AssetEntryQuery)arguments[0],
 				(java.util.Locale)arguments[1]);
 		}
 
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			return ScreensAssetEntryServiceUtil.getAssetEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.util.Locale)arguments[3],
@@ -77,12 +77,12 @@ public class ScreensAssetEntryServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName36;
-	private String[] _methodParameterTypes36;
-	private String _methodName37;
-	private String[] _methodParameterTypes37;
-	private String _methodName40;
-	private String[] _methodParameterTypes40;
-	private String _methodName41;
-	private String[] _methodParameterTypes41;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
 }

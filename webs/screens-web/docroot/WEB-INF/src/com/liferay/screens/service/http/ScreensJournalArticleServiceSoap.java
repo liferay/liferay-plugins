@@ -52,8 +52,8 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class ScreensJournalArticleServiceSoap {
-	public static java.lang.String getJournalArticleContent(int groupId,
-		int classPK, String locale) throws RemoteException {
+	public static java.lang.String getJournalArticleContent(long groupId,
+		long classPK, String locale) throws RemoteException {
 		try {
 			java.lang.String returnValue = ScreensJournalArticleServiceUtil.getJournalArticleContent(groupId,
 					classPK, LocaleUtil.fromLanguageId(locale));
@@ -68,11 +68,27 @@ public class ScreensJournalArticleServiceSoap {
 	}
 
 	public static java.lang.String getJournalArticleContent(long groupId,
-		java.lang.String articleId, long templateId, String locale)
+		long classPK, long ddmTemplateId, String locale)
 		throws RemoteException {
 		try {
 			java.lang.String returnValue = ScreensJournalArticleServiceUtil.getJournalArticleContent(groupId,
-					articleId, templateId, LocaleUtil.fromLanguageId(locale));
+					classPK, ddmTemplateId, LocaleUtil.fromLanguageId(locale));
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static java.lang.String getJournalArticleContent(long groupId,
+		java.lang.String articleId, long ddmTemplateId, String locale)
+		throws RemoteException {
+		try {
+			java.lang.String returnValue = ScreensJournalArticleServiceUtil.getJournalArticleContent(groupId,
+					articleId, ddmTemplateId, LocaleUtil.fromLanguageId(locale));
 
 			return returnValue;
 		}

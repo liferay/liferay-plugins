@@ -63,19 +63,28 @@ public class ScreensJournalArticleServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static java.lang.String getJournalArticleContent(int groupId,
-		int classPK, java.util.Locale locale)
+	public static java.lang.String getJournalArticleContent(long groupId,
+		long classPK, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getJournalArticleContent(groupId, classPK, locale);
 	}
 
 	public static java.lang.String getJournalArticleContent(long groupId,
-		java.lang.String articleId, long templateId, java.util.Locale locale)
+		long classPK, long ddmTemplateId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getJournalArticleContent(groupId, articleId, templateId,
+				   .getJournalArticleContent(groupId, classPK, ddmTemplateId,
+			locale);
+	}
+
+	public static java.lang.String getJournalArticleContent(long groupId,
+		java.lang.String articleId, long ddmTemplateId, java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getJournalArticleContent(groupId, articleId, ddmTemplateId,
 			locale);
 	}
 
