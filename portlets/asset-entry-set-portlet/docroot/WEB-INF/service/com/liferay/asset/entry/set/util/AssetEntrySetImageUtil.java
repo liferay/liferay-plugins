@@ -136,8 +136,7 @@ public class AssetEntrySetImageUtil {
 					scaledRenderedImage, imageBag.getType()));
 
 			return addFileEntry(
-				userId, classNameId, classPK, portletId, scaledFile,
-				imageType);
+				userId, classNameId, classPK, portletId, scaledFile, imageType);
 		}
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
@@ -219,6 +218,8 @@ public class AssetEntrySetImageUtil {
 
 		RenderedImage renderedImage = imageBag.getRenderedImage();
 
+		boolean reverseDimensions = false;
+
 		int orientation = getOrientation(file);
 
 		if (orientation == _ORIENTATION_MIRROR_HORIZONTAL) {
@@ -234,11 +235,15 @@ public class AssetEntrySetImageUtil {
 			affineTransform.translate(0, renderedImage.getWidth());
 
 			affineTransform.rotate(Math.toRadians(270));
+
+			reverseDimensions = true;
 		}
 		else if (orientation == _ORIENTATION_MIRROR_HORIZONTAL_ROTATE_270_CW) {
 			affineTransform.rotate(-Math.toRadians(90));
 
 			affineTransform.scale(-1.0, 1.0);
+
+			reverseDimensions = true;
 		}
 		else if (orientation == _ORIENTATION_MIRROR_VERTICAL) {
 			affineTransform.scale(1.0, -1.0);
@@ -252,6 +257,8 @@ public class AssetEntrySetImageUtil {
 			affineTransform.translate(renderedImage.getHeight(), 0);
 
 			affineTransform.rotate(Math.toRadians(90));
+
+			reverseDimensions = true;
 		}
 		else if (orientation == _ORIENTATION_ROTATE_180) {
 			affineTransform.translate(
@@ -263,6 +270,8 @@ public class AssetEntrySetImageUtil {
 			affineTransform.translate(0, renderedImage.getWidth());
 
 			affineTransform.rotate(Math.toRadians(270));
+
+			reverseDimensions = true;
 		}
 		else {
 			return;
@@ -274,11 +283,17 @@ public class AssetEntrySetImageUtil {
 		BufferedImage oldBufferedImage = ImageToolUtil.getBufferedImage(
 			renderedImage);
 
+		int height = oldBufferedImage.getHeight();
+		int width = oldBufferedImage.getWidth();
+
+		if (reverseDimensions) {
+			height = oldBufferedImage.getWidth();
+			width = oldBufferedImage.getHeight();
+		}
+
 		BufferedImage newBufferedImage = affineTransformOp.filter(
 			oldBufferedImage,
-			new BufferedImage(
-				oldBufferedImage.getHeight(), oldBufferedImage.getWidth(),
-				oldBufferedImage.getType()));
+			new BufferedImage(width, height, oldBufferedImage.getType()));
 
 		ImageIO.write(newBufferedImage, imageBag.getType(), file);
 	}
