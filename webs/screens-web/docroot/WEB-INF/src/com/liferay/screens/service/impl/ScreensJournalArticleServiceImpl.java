@@ -38,10 +38,9 @@ public class ScreensJournalArticleServiceImpl
 		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
-		String articleId = journalArticleResource.getArticleId();
-
 		return journalArticleLocalService.getArticleContent(
-			groupId, articleId, null, getLanguageId(locale), null);
+			groupId, journalArticleResource.getArticleId(), null,
+			getLanguageId(locale), null);
 	}
 
 	@Override
@@ -52,13 +51,9 @@ public class ScreensJournalArticleServiceImpl
 		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
-		String articleId = journalArticleResource.getArticleId();
-
-		String ddmTemplateKey = getDDMTemplateKey(ddmTemplateId);
-
 		return journalArticleLocalService.getArticleContent(
-			groupId, articleId, null, ddmTemplateKey, getLanguageId(locale),
-			null);
+			groupId, journalArticleResource.getArticleId(), null,
+			getDDMTemplateKey(ddmTemplateId), getLanguageId(locale), null);
 	}
 
 	@Override
@@ -66,11 +61,9 @@ public class ScreensJournalArticleServiceImpl
 			long groupId, String articleId, long ddmTemplateId, Locale locale)
 		throws PortalException, SystemException {
 
-		String ddmTemplateKey = getDDMTemplateKey(ddmTemplateId);
-
 		return journalArticleLocalService.getArticleContent(
-			groupId, articleId, null, ddmTemplateKey, getLanguageId(locale),
-			null);
+			groupId, articleId, null, getDDMTemplateKey(ddmTemplateId),
+			getLanguageId(locale), null);
 	}
 
 	protected String getLanguageId(Locale locale) {
@@ -84,10 +77,10 @@ public class ScreensJournalArticleServiceImpl
 	protected String getDDMTemplateKey(long ddmTemplateId) 
 			throws PortalException, SystemException {
 
+		String ddmTemplateKey = null;
+
 		DDMTemplate ddmTemplate = DDMTemplateServiceUtil.getTemplate(
 			ddmTemplateId);
-
-		String ddmTemplateKey = null;
 
 		if (ddmTemplate != null) {
 			ddmTemplateKey = ddmTemplate.getTemplateKey();
