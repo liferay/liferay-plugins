@@ -326,11 +326,9 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		addOAuthParameter(oAuthRequest, "clientAuthToken", clientAuthToken);
 
 		addOAuthParameter(oAuthRequest, "clientPortletId", getPortletName());
-
-		String clientURL = PortalUtil.getCurrentCompleteURL(httpServletRequest);
-
-		addOAuthParameter(oAuthRequest, "clientURL", clientURL);
-
+		addOAuthParameter(
+			oAuthRequest, "clientURL",
+			PortalUtil.getCurrentCompleteURL(httpServletRequest));
 		addOAuthParameter(oAuthRequest, "p_p_id", getServerPortletId());
 	}
 
