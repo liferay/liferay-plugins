@@ -22,7 +22,7 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 	}
 
 	@Override
-	public void postProcessSearchQuery(BooleanQuery searchQuery, SearchContext searchContext) throws Exception {
+	public void postProcessSearchQuery(BooleanQuery searchQuery, BooleanFilter fullQueryBooleanFilter, SearchContext searchContext) throws Exception {
 		addSearchTerm(searchQuery, searchContext, "active", false);
 		addSearchTerm(searchQuery, searchContext, "definitionManufacturer", true);
 		addSearchTerm(searchQuery, searchContext, "definitionModel", true);

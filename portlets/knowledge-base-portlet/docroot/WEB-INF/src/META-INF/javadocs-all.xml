@@ -3334,6 +3334,11 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>fullQueryBooleanFilter</name>
+				<type>com.liferay.portal.kernel.search.filter.BooleanFilter</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>searchContext</name>
 				<type>com.liferay.portal.kernel.search.SearchContext</type>
 				<comment><![CDATA[]]></comment>
