@@ -14,9 +14,14 @@
 		<property name="name" value="liferay/push_notification" />
 	</bean>
 
+	<bean id="destination.push_notification_response" class="com.liferay.portal.kernel.messaging.SerialDestination">
+		<property name="name" value="liferay/push_notification_response" />
+	</bean>
+
 	<!-- Listeners -->
 
 	<bean id="messageListener.push_notification" class="com.liferay.pushnotifications.messaging.PushNotificationsMessageListener" />
+	<bean id="messageListener.push_notification_response" class="com.liferay.pushnotifications.messaging.PushNotificationsResponseMessageListener" />
 
 	<!-- Configurator -->
 
@@ -24,6 +29,7 @@
 		<property name="destinations">
 			<list>
 				<ref bean="destination.push_notification" />
+				<ref bean="destination.push_notification_response" />
 			</list>
 		</property>
 		<property name="messageListeners">
@@ -31,6 +37,11 @@
 				<entry key="liferay/push_notification">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.push_notification" />
+					</list>
+				</entry>
+				<entry key="liferay/push_notification_response">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.push_notification_response" />
 					</list>
 				</entry>
 			</map>

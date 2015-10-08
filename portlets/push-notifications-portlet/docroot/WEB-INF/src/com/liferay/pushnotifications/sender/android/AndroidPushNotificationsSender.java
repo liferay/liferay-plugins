@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.PushNotificationsException;
+import com.liferay.pushnotifications.messaging.DestinationNames;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.sender.Response;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
@@ -155,7 +156,7 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 			Response response = new AndroidResponse(result, token);
 
 			MessageBusUtil.sendMessage(
-				"liferay/push_notification_response", response);
+				DestinationNames.PUSH_NOTIFICATION_RESPONSE, response);
 
 			if ((multicastResult.getCanonicalIds() == 0) &&
 				(multicastResult.getFailure() == 0)) {

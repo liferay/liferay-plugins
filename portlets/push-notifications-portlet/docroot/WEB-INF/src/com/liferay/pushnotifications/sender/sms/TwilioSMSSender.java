@@ -20,7 +20,9 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.PushNotificationsException;
+import com.liferay.pushnotifications.messaging.DestinationNames;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
+import com.liferay.pushnotifications.sender.Response;
 import com.liferay.pushnotifications.util.PortletPropsKeys;
 import com.liferay.pushnotifications.util.PortletPropsValues;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
@@ -132,9 +134,10 @@ public class TwilioSMSSender implements PushNotificationsSender {
 			params.put("Body", body);
 
 			Sms sms = smsFactory.create(params);
+			Response response = new TwilioResponse(sms);
 
 			MessageBusUtil.sendMessage(
-				"liferay/push_notification_response", new TwilioResponse(sms));
+				DestinationNames.PUSH_NOTIFICATION_RESPONSE, response);
 		}
 	}
 
