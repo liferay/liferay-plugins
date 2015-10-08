@@ -15,6 +15,7 @@
 package com.liferay.pushnotifications.sender.sms;
 
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -27,6 +28,7 @@ import com.liferay.pushnotifications.util.PushNotificationsConstants;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.resource.factory.SmsFactory;
 import com.twilio.sdk.resource.instance.Account;
+import com.twilio.sdk.resource.instance.Sms;
 
 import java.util.HashMap;
 import java.util.List;
@@ -129,7 +131,10 @@ public class TwilioSMSSender implements PushNotificationsSender {
 			params.put("From", from);
 			params.put("Body", body);
 
-			smsFactory.create(params);
+			Sms sms = smsFactory.create(params);
+
+			MessageBusUtil.sendMessage(
+				"liferay/push_notification_response", new TwilioResponse(sms));
 		}
 	}
 
