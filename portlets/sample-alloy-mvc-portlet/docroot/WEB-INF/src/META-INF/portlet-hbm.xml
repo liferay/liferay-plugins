@@ -6,7 +6,7 @@
 	<import class="com.liferay.samplealloymvc.model.Checkout" />
 	<import class="com.liferay.samplealloymvc.model.Definition" />
 	<import class="com.liferay.samplealloymvc.model.Type" />
-	<class name="com.liferay.samplealloymvc.model.impl.AssetImpl" table="SAM_Asset">
+	<class name="com.liferay.samplealloymvc.model.impl.AssetImpl" table="SAMVC_Asset">
 		<cache usage="read-write" />
 		<id name="assetId" type="long">
 			<generator class="assigned" />
@@ -21,7 +21,7 @@
 		<property name="inactiveDate" type="org.hibernate.type.TimestampType" />
 		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
 	</class>
-	<class name="com.liferay.samplealloymvc.model.impl.CheckoutImpl" table="SAM_Checkout">
+	<class name="com.liferay.samplealloymvc.model.impl.CheckoutImpl" table="SAMVC_Checkout">
 		<cache usage="read-write" />
 		<id name="checkoutId" type="long">
 			<generator class="assigned" />
@@ -36,7 +36,7 @@
 		<property name="expectedCheckInDate" type="org.hibernate.type.TimestampType" />
 		<property name="actualCheckInDate" type="org.hibernate.type.TimestampType" />
 	</class>
-	<class name="com.liferay.samplealloymvc.model.impl.DefinitionImpl" table="SAM_Definition">
+	<class name="com.liferay.samplealloymvc.model.impl.DefinitionImpl" table="SAMVC_Definition">
 		<cache usage="read-write" />
 		<id name="definitionId" type="long">
 			<generator class="assigned" />
@@ -54,7 +54,7 @@
 		<property name="quantity" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 	</class>
-	<class name="com.liferay.samplealloymvc.model.impl.TypeImpl" table="SAM_Type">
+	<class name="com.liferay.samplealloymvc.model.impl.TypeImpl" table="SAMVC_Type">
 		<cache usage="read-write" />
 		<id name="typeId" type="long">
 			<generator class="assigned" />

@@ -17,7 +17,7 @@ package com.liferay.samplealloymvc.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the Type service. Represents a row in the &quot;SAM_Type&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Type service. Represents a row in the &quot;SAMVC_Type&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see TypeModel

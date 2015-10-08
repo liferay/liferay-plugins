@@ -99,19 +99,19 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.samplealloymvc.model.impl.AssetImpl" name="Asset">
-		<table name="SAM_Asset" />
+		<table name="SAMVC_Asset" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.samplealloymvc.model.impl.CheckoutImpl" name="Checkout">
-		<table name="SAM_Checkout" />
+		<table name="SAMVC_Checkout" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.samplealloymvc.model.impl.DefinitionImpl" name="Definition">
-		<table name="SAM_Definition" />
+		<table name="SAMVC_Definition" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.samplealloymvc.model.impl.TypeImpl" name="Type">
-		<table name="SAM_Type" />
+		<table name="SAMVC_Type" />
 		<attributes />
 	</entity>
 </entity-mappings>
