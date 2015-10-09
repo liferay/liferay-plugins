@@ -57,7 +57,7 @@
 						override="true"
 						property="mirrors.src"
 						regexp="http://"
-						replace="http://mirrors/"
+						replace="http://mirrors.lax.liferay.com/"
 					/>
 
 					<if>
