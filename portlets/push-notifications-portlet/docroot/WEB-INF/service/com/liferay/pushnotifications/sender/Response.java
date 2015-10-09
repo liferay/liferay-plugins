@@ -25,4 +25,6 @@ public interface Response {
 
 	public String getToken();
 
+	public boolean isSucceeded();
+
 }

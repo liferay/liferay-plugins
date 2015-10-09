@@ -14,6 +14,7 @@
 
 package com.liferay.pushnotifications.sender.sms;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.BaseResponse;
 
 import com.twilio.sdk.resource.instance.Sms;
@@ -28,6 +29,11 @@ public class TwilioResponse extends BaseResponse {
 		id = sms.getSid();
 		price = sms.getPrice();
 		status = sms.getStatus();
+
+		if (Validator.isNotNull(status) && status.equals("queued")) {
+			succeeded = true;
+		}
+
 		token = sms.getTo();
 	}
 

@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.sender.android;
 
 import com.google.android.gcm.server.Result;
 
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.BaseResponse;
 
 /**
@@ -28,6 +29,10 @@ public class AndroidResponse extends BaseResponse {
 		id = result.getMessageId();
 		status = result.getErrorCodeName();
 		this.token = token;
+
+		if (Validator.isNull(status)) {
+			succeeded = true;
+		}
 	}
 
 	public String getCanonicalRegistrationId() {
