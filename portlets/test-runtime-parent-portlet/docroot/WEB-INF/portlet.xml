@@ -13,7 +13,6 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
-		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Test Runtime Parent</title>
 			<short-title>Test Runtime Parent</short-title>
