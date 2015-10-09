@@ -58,7 +58,7 @@ public class AssetEntrySetImageUtil {
 
 	public static JSONObject addImageFile(
 			long userId, long classNameId, long classPK, String portletId,
-			File file, String imageType)
+			File file)
 		throws PortalException, SystemException {
 
 		try {
@@ -69,10 +69,51 @@ public class AssetEntrySetImageUtil {
 		}
 
 		FileEntry fileEntry = addFileEntry(
-			userId, classNameId, classPK, portletId, file, imageType);
+			userId, classNameId, classPK, portletId, file,
+			AssetEntrySetConstants.IMAGE_TYPE_RAW);
 
 		return getImageJSONObject(
-			JSONFactoryUtil.createJSONObject(), fileEntry, imageType);
+			JSONFactoryUtil.createJSONObject(), fileEntry,
+			AssetEntrySetConstants.IMAGE_TYPE_RAW);
+	}
+
+	public static JSONObject addImageFile(
+			long userId, long classNameId, long classPK, String portletId,
+			File file, Map<String, String> imageTypes)
+		throws PortalException, SystemException {
+
+		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		ImageBag imageBag = null;
+		FileEntry rawFileEntry = null;
+
+		try {
+			rotateImage(file);
+
+			rawFileEntry = addFileEntry(
+				userId, classNameId, classPK, portletId, file,
+				AssetEntrySetConstants.IMAGE_TYPE_RAW);
+
+			imageBag = ImageToolUtil.read(rawFileEntry.getContentStream());
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
+
+		for (String imageType : imageTypes.keySet()) {
+			FileEntry fileEntry = rawFileEntry;
+
+			if (!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
+				fileEntry = addScaledImageFileEntry(
+					userId, classNameId, 0L, portletId, imageBag, imageType,
+					imageTypes.get(imageType));
+			}
+
+			imageJSONObject = getImageJSONObject(
+				imageJSONObject, fileEntry, imageType);
+		}
+
+		return imageJSONObject;
 	}
 
 	public static FileEntry addScaledImageFileEntry(

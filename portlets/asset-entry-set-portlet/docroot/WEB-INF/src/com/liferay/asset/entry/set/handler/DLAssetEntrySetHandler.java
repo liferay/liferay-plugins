@@ -17,15 +17,10 @@ package com.liferay.asset.entry.set.handler;
 import com.liferay.asset.entry.set.model.AssetEntrySet;
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
-import com.liferay.asset.entry.set.util.PortletKeys;
-import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.compat.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.image.ImageBag;
-import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -37,9 +32,6 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
-import com.liferay.util.portlet.PortletProps;
-
-import java.io.IOException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -78,44 +70,13 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 
 			JSONObject imageJSONObject = imageDataJSONArray.getJSONObject(i);
 
-			long rawFileEntryId = imageJSONObject.getLong(
-				AssetEntrySetConstants.IMAGE_TYPE_RAW);
-
-			FileEntry rawFileEntry =
-				PortletFileRepositoryUtil.getPortletFileEntry(rawFileEntryId);
-
-			ImageBag imageBag = null;
-
-			try {
-				imageBag = ImageToolUtil.read(rawFileEntry.getContentStream());
-			}
-			catch (IOException ioe) {
-				throw new SystemException(ioe);
-			}
-
 			for (String imageType :
 					PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
 
-				FileEntry fileEntry = null;
-
-				if (imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
-					fileEntry = rawFileEntry;
-				}
-				else {
-					String imageMaxSize = PortletProps.get(
-						PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE,
-						new Filter(imageType));
-
-					fileEntry = AssetEntrySetImageUtil.addScaledImageFileEntry(
-						userId,
-						AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
-						0L, PortletKeys.ASSET_ENTRY_SET, imageBag, imageType,
-						imageMaxSize);
-				}
+				long fileEntryId = imageJSONObject.getLong(imageType);
 
 				DLFileEntry dlFileEntry =
-					DLFileEntryLocalServiceUtil.getFileEntry(
-						fileEntry.getFileEntryId());
+					DLFileEntryLocalServiceUtil.getFileEntry(fileEntryId);
 
 				dlFileEntry.setClassPK(assetEntrySetId);
 
@@ -126,6 +87,9 @@ public class DLAssetEntrySetHandler extends BaseAssetEntrySetHandler {
 					dlFileEntry, assetTagNames);
 
 				assetEntryIds.add(assetEntry.getEntryId());
+
+				FileEntry fileEntry =
+					PortletFileRepositoryUtil.getPortletFileEntry(fileEntryId);
 
 				processedImageJSONObject =
 					AssetEntrySetImageUtil.getImageJSONObject(

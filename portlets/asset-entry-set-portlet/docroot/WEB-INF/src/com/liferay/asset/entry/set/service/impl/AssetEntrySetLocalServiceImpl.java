@@ -25,8 +25,10 @@ import com.liferay.asset.entry.set.util.AssetEntrySetImageUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
 import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.util.PortletKeys;
+import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -42,11 +44,13 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -125,8 +129,7 @@ public class AssetEntrySetLocalServiceImpl
 
 			return AssetEntrySetImageUtil.addImageFile(
 				userId, AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
-				0L, PortletKeys.ASSET_ENTRY_SET, file,
-				AssetEntrySetConstants.IMAGE_TYPE_RAW);
+				0L, PortletKeys.ASSET_ENTRY_SET, file, _imageTypes);
 		}
 
 		return JSONFactoryUtil.createJSONObject();
@@ -566,6 +569,21 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySet.setModifiedTime(modifiedTime);
 
 		assetEntrySetPersistence.update(assetEntrySet);
+	}
+
+	private static Map<String, String> _imageTypes =
+		new HashMap<String, String>();
+
+	static {
+		for (String imageType :
+				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
+
+			String imageMaxSize = PortletProps.get(
+				PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE,
+				new Filter(imageType));
+
+			_imageTypes.put(imageType, imageMaxSize);
+		}
 	}
 
 }
