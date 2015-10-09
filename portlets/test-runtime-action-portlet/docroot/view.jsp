@@ -17,12 +17,11 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 
 <portlet:defineObjects />
 
-<portlet:actionURL name="customAction" var="action"></portlet:actionURL>
+<portlet:actionURL name="customAction" var="customActionURL"></portlet:actionURL>
 
-<aui:form action="<%= action %>" method="post" name="fm">
+<aui:form action="<%= customActionURL %>" method="post" name="fm">
 	<aui:button type="submit" value="Execute" />
 </aui:form>

@@ -27,17 +27,18 @@ import javax.portlet.PortletException;
 /**
  * @author Juan Gonzalez
  */
-public class TestPortlet extends MVCPortlet {
+public class TestRuntimeActionPortlet extends MVCPortlet {
 
 	public void customAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Action executed");
+			_log.info("Executed custom action");
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(TestPortlet.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		TestRuntimeActionPortlet.class);
 
 }

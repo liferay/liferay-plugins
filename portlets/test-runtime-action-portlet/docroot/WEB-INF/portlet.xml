@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Test Runtime Action</display-name>
-		<portlet-class>com.liferay.testruntimeaction.portlet.TestPortlet</portlet-class>
+		<portlet-class>com.liferay.testruntimeaction.portlet.TestRuntimeActionPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/view.jsp</value>
@@ -13,7 +13,6 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
-		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Test Runtime Action</title>
 			<short-title>Test Runtime Action</short-title>
