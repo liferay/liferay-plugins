@@ -102,7 +102,7 @@ public class StorePortlet extends RemoteMVCPortlet {
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
-	public void getBundledApps(
+	public void getPrepackagedApps(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -118,20 +118,21 @@ public class StorePortlet extends RemoteMVCPortlet {
 
 		addOAuthParameter(
 			oAuthRequest, serverNamespace.concat("javax.portlet.action"),
-			"getBundledApps");
+			"getPrepackagedApps");
 
-		Map<String, String> bundledApps = AppLocalServiceUtil.getBundledApps();
+		Map<String, String> prepackagedApps =
+			AppLocalServiceUtil.getPrepackagedApps();
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		Set<String> keys = bundledApps.keySet();
+		Set<String> keys = prepackagedApps.keySet();
 
 		for (String key : keys) {
-			jsonObject.put(key, bundledApps.get(key));
+			jsonObject.put(key, prepackagedApps.get(key));
 		}
 
 		addOAuthParameter(
-			oAuthRequest, serverNamespace.concat("bundledApps"),
+			oAuthRequest, serverNamespace.concat("prepackagedApps"),
 			jsonObject.toString());
 
 		addOAuthParameter(
