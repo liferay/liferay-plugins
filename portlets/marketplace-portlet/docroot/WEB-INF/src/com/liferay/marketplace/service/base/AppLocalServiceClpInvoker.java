@@ -144,7 +144,7 @@ public class AppLocalServiceClpInvoker {
 
 		_methodParameterTypes56 = new String[] { "java.lang.String" };
 
-		_methodName57 = "getBundledApps";
+		_methodName57 = "getPrepackagedApps";
 
 		_methodParameterTypes57 = new String[] {  };
 
@@ -323,7 +323,7 @@ public class AppLocalServiceClpInvoker {
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return AppLocalServiceUtil.getBundledApps();
+			return AppLocalServiceUtil.getPrepackagedApps();
 		}
 
 		if (_methodName58.equals(name) &&

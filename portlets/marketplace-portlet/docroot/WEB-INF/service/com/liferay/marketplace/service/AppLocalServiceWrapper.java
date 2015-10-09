@@ -331,8 +331,8 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	}
 
 	@Override
-	public java.util.Map<java.lang.String, java.lang.String> getBundledApps() {
-		return _appLocalService.getBundledApps();
+	public java.util.Map<java.lang.String, java.lang.String> getPrepackagedApps() {
+		return _appLocalService.getPrepackagedApps();
 	}
 
 	@Override

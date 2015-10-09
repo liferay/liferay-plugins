@@ -134,7 +134,7 @@ public class AppLocalServiceClp implements AppLocalService {
 
 		_methodParameterTypes23 = new String[] { "java.lang.String" };
 
-		_methodName24 = "getBundledApps";
+		_methodName24 = "getPrepackagedApps";
 
 		_methodParameterTypes24 = new String[] {  };
 
@@ -860,7 +860,7 @@ public class AppLocalServiceClp implements AppLocalService {
 	}
 
 	@Override
-	public java.util.Map<java.lang.String, java.lang.String> getBundledApps() {
+	public java.util.Map<java.lang.String, java.lang.String> getPrepackagedApps() {
 		Object returnObj = null;
 
 		try {
