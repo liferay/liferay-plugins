@@ -34,8 +34,14 @@ public abstract class BaseResponse implements Response {
 		return token;
 	}
 
+	@Override
+	public boolean isSucceeded() {
+		return succeeded;
+	}
+
 	protected String id;
 	protected String status;
+	protected boolean succeeded;
 	protected String token;
 
 }

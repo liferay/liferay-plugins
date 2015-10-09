@@ -27,6 +27,7 @@ public class AppleResponse extends BaseResponse {
 	public AppleResponse(ApnsNotification notification, boolean resent) {
 		this(notification);
 		this.resent = resent;
+		succeeded = true;
 	}
 
 	public AppleResponse(ApnsNotification notification, Throwable throwable) {
