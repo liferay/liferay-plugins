@@ -203,7 +203,7 @@ portletURL.setParameter("tabs1", tabs1);
 	socialActivities.delegate(
 		'click',
 		function(event) {
-			if (confirm('<%= UnicodeLanguageUtil.get(request,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
 				var currentTarget = event.currentTarget;
 
 				var activityFooter = currentTarget.ancestor('.activity-footer');

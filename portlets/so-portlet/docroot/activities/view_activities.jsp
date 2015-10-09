@@ -72,7 +72,7 @@ while ((count < _DELTA) && ((results == null) || !results.isEmpty())) {
 	<portlet:namespace />start = <%= start %>;
 </aui:script>
 
-<c:if test="<%= (results.isEmpty()) %>">
+<c:if test="<%= results.isEmpty() %>">
 	<div class="no-activities">
 		<c:choose>
 			<c:when test="<%= total == 0 %>">

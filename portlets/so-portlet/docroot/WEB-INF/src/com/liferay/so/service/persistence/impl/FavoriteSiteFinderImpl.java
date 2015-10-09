@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.so.model.FavoriteSite;
 import com.liferay.so.service.persistence.FavoriteSiteFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 

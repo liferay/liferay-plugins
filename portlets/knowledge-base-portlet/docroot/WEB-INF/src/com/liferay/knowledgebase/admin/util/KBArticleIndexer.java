@@ -89,8 +89,9 @@ public class KBArticleIndexer extends BaseIndexer<KBArticle> {
 
 	@Override
 	public void postProcessSearchQuery(
-		BooleanQuery searchQuery, BooleanFilter fullQueryBooleanFilter,
-		SearchContext searchContext)throws Exception {
+			BooleanQuery searchQuery, BooleanFilter fullQueryBooleanFilter,
+			SearchContext searchContext)
+		throws Exception {
 
 		addSearchTerm(searchQuery, searchContext, Field.CONTENT, true);
 		addSearchTerm(searchQuery, searchContext, Field.DESCRIPTION, true);

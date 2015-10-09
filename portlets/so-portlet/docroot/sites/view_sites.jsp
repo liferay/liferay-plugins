@@ -191,7 +191,7 @@ else {
 							classNames.push('member');
 						}
 
-						if (index % 2 == 1) {
+						if ((index % 2) == 1) {
 							classNames.push('alt');
 						}
 
@@ -351,7 +351,7 @@ else {
 
 			var currentTargetClass = event.currentTarget.getAttribute('class');
 
-			if (currentTargetClass == 'delete-site' || currentTargetClass == 'leave-site' || currentTargetClass == 'join-site' || currentTargetClass == 'request-site') {
+			if ((currentTargetClass == 'delete-site') || (currentTargetClass == 'leave-site') || (currentTargetClass == 'join-site') || (currentTargetClass == 'request-site')) {
 				var confirmMessage = '';
 
 				var siteAction = '';

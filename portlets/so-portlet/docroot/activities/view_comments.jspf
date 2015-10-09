@@ -39,7 +39,7 @@
 				</span>
 			</div>
 
-			<aui:input cssClass="comment-form" label="" name="body" placeholder='<%= LanguageUtil.get(request, "leave-a-comment") %>'/>
+			<aui:input cssClass="comment-form" label="" name="body" placeholder='<%= LanguageUtil.get(request, "leave-a-comment") %>' />
 
 			<aui:input name="submit" type="hidden" value="post" />
 		</div>
