@@ -82,10 +82,9 @@ public class AssetEntrySetImageUtil {
 			File file, Map<String, String> imageTypes)
 		throws PortalException, SystemException {
 
-		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
+		FileEntry rawFileEntry = null;
 
 		ImageBag imageBag = null;
-		FileEntry rawFileEntry = null;
 
 		try {
 			rotateImage(file);
@@ -99,6 +98,8 @@ public class AssetEntrySetImageUtil {
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
 		}
+
+		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
 
 		for (String imageType : imageTypes.keySet()) {
 			FileEntry fileEntry = rawFileEntry;
