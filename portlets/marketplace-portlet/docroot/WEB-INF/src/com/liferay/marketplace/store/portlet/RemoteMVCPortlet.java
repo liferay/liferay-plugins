@@ -204,6 +204,17 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		}
 	}
 
+	protected String getFileName(String contentDisposition) {
+		int pos = contentDisposition.indexOf("filename=\"");
+
+		if (pos == -1) {
+			return StringPool.BLANK;
+		}
+
+		return contentDisposition.substring(
+			pos + 10, contentDisposition.length() - 1);
+	}
+
 	protected Response getResponse(User user, OAuthRequest oAuthRequest)
 		throws Exception {
 
@@ -311,7 +322,24 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		Response response = getResponse(themeDisplay.getUser(), oAuthRequest);
 
-		PortletResponseUtil.write(resourceResponse, response.getStream());
+		String contentType = response.getHeader(HttpHeaders.CONTENT_TYPE);
+
+		if (contentType.startsWith(ContentTypes.APPLICATION_OCTET_STREAM)) {
+			String contentDisposition = response.getHeader(
+				HttpHeaders.CONTENT_DISPOSITION);
+
+			int contentLength = Integer.valueOf(
+				response.getHeader(HttpHeaders.CONTENT_LENGTH));
+
+			PortletResponseUtil.sendFile(
+				resourceRequest, resourceResponse,
+				getFileName(contentDisposition), response.getStream(),
+				contentLength, contentType,
+				HttpHeaders.CONTENT_DISPOSITION_ATTACHMENT);
+		}
+		else {
+			PortletResponseUtil.write(resourceResponse, response.getStream());
+		}
 	}
 
 	protected void setBaseRequestParameters(
