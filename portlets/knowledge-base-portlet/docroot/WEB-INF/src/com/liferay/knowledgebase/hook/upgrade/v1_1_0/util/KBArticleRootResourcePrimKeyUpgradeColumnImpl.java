@@ -34,7 +34,6 @@ public class KBArticleRootResourcePrimKeyUpgradeColumnImpl
 		_resourcePrimKeyColumn = resourcePrimKeyColumn;
 	}
 
-	@Override
 	public Object getNewValue(Object oldValue) throws Exception {
 		Long resourcePrimKey = (Long)_resourcePrimKeyColumn.getOldValue();
 
