@@ -579,7 +579,7 @@ public class AssetEntrySetLocalServiceImpl
 				PortletPropsValues.ASSET_ENTRY_SET_IMAGE_TYPES) {
 
 			String imageMaxSize = PortletProps.get(
-				PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE,
+				PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_MAX_SIZE,
 				new Filter(imageType));
 
 			_imageMaxSizes.put(imageType, imageMaxSize);

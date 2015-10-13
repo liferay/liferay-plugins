@@ -115,7 +115,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 							rawFileEntry.getVersion(), false));
 
 					String imageMaxSize = PortletProps.get(
-						PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE,
+						PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_MAX_SIZE,
 						new Filter(imageType));
 
 					FileEntry fileEntry =

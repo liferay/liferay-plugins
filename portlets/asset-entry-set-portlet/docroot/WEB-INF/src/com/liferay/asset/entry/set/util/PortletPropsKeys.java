@@ -25,8 +25,8 @@ public interface PortletPropsKeys {
 	public static final String ASSET_ENTRY_SET_IMAGE_EXTENSIONS =
 		"asset.entry.set.image.extensions";
 
-	public static final String ASSET_ENTRY_SET_IMAGE_TYPE =
-		"asset.entry.set.image.type";
+	public static final String ASSET_ENTRY_SET_IMAGE_MAX_SIZE =
+		"asset.entry.set.image.max.size";
 
 	public static final String ASSET_ENTRY_SET_IMAGE_TYPES =
 		"asset.entry.set.image.types";
