@@ -303,7 +303,7 @@ public class SyncUtil {
 		}
 
 		return GetterUtil.getBoolean(
-			group.getTypeSettingsProperty("syncEnabled"), true);
+			group.getTypeSettingsProperty("syncEnabled"), !group.isCompany());
 	}
 
 	public static void patchFile(

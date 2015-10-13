@@ -711,6 +711,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				groups.add(user.getGroup());
 			}
 
+			Group companyGroup = groupLocalService.getCompanyGroup(
+				user.getCompanyId());
+
+			if (SyncUtil.isSyncEnabled(companyGroup)) {
+				groups.add(companyGroup);
+			}
+
 			Collections.sort(groups, new GroupNameComparator());
 
 			return ListUtil.unique(groups);
