@@ -79,7 +79,7 @@ public class AssetEntrySetImageUtil {
 
 	public static JSONObject addImageFile(
 			long userId, long classNameId, long classPK, String portletId,
-			File file, Map<String, String> imageTypes)
+			File file, Map<String, String> imageMaxSizes)
 		throws PortalException, SystemException {
 
 		FileEntry rawFileEntry = null;
@@ -101,13 +101,13 @@ public class AssetEntrySetImageUtil {
 
 		JSONObject imageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		for (String imageType : imageTypes.keySet()) {
+		for (String imageType : imageMaxSizes.keySet()) {
 			FileEntry fileEntry = rawFileEntry;
 
 			if (!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
 				fileEntry = addScaledImageFileEntry(
 					userId, classNameId, 0L, portletId, imageBag, imageType,
-					imageTypes.get(imageType));
+					imageMaxSizes.get(imageType));
 			}
 
 			imageJSONObject = getImageJSONObject(

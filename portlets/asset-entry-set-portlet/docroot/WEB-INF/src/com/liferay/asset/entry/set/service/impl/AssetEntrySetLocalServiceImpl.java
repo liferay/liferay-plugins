@@ -129,7 +129,7 @@ public class AssetEntrySetLocalServiceImpl
 
 			return AssetEntrySetImageUtil.addImageFile(
 				userId, AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
-				0L, PortletKeys.ASSET_ENTRY_SET, file, _imageTypes);
+				0L, PortletKeys.ASSET_ENTRY_SET, file, _imageMaxSizes);
 		}
 
 		return JSONFactoryUtil.createJSONObject();
@@ -571,7 +571,7 @@ public class AssetEntrySetLocalServiceImpl
 		assetEntrySetPersistence.update(assetEntrySet);
 	}
 
-	private static Map<String, String> _imageTypes =
+	private static Map<String, String> _imageMaxSizes =
 		new HashMap<String, String>();
 
 	static {
@@ -582,7 +582,7 @@ public class AssetEntrySetLocalServiceImpl
 				PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_TYPE,
 				new Filter(imageType));
 
-			_imageTypes.put(imageType, imageMaxSize);
+			_imageMaxSizes.put(imageType, imageMaxSize);
 		}
 	}
 
