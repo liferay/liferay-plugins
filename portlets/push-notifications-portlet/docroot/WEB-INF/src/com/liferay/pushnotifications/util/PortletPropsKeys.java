@@ -46,4 +46,7 @@ public interface PortletPropsKeys {
 
 	public static final String SMS_TWILIO_NUMBER = "sms.twilio.number";
 
+	public static final String SMS_TWILIO_STATUS_CALLBACK =
+		"sms.twilio.status.callback";
+
 }
