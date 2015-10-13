@@ -34,4 +34,10 @@ public class PushNotificationsConstants {
 
 	public static final String KEY_TO_USER_IDS = "toUserIds";
 
+	public static final String PLATFORM_ANDROID = "android";
+
+	public static final String PLATFORM_APPLE = "apple";
+
+	public static final String PLATFORM_SMS = "sms";
+
 }

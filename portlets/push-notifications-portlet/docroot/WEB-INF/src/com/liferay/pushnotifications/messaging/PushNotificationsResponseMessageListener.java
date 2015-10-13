@@ -30,9 +30,13 @@ public class PushNotificationsResponseMessageListener
 	@Override
 	public void receive(Message message) {
 		Response response = (Response)message.getPayload();
+		String json = JSONFactoryUtil.serialize(response);
 
-		if (_log.isDebugEnabled()) {
-			_log.debug(JSONFactoryUtil.serialize(response));
+		if (!response.isSucceeded()) {
+			_log.error(json);
+		}
+		else if (_log.isDebugEnabled()) {
+			_log.debug(json);
 		}
 	}
 

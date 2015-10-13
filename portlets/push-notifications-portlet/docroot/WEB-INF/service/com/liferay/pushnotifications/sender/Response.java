@@ -21,6 +21,8 @@ public interface Response {
 
 	public String getId();
 
+	public String getPlatform();
+
 	public String getStatus();
 
 	public String getToken();

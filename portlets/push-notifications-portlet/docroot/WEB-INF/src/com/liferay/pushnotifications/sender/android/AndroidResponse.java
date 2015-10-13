@@ -18,6 +18,7 @@ import com.google.android.gcm.server.Result;
 
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.BaseResponse;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 /**
  * @author Bruno Farache
@@ -25,6 +26,8 @@ import com.liferay.pushnotifications.sender.BaseResponse;
 public class AndroidResponse extends BaseResponse {
 
 	public AndroidResponse(Result result, String token) {
+		super(PushNotificationsConstants.PLATFORM_ANDROID);
+
 		canonicalRegistrationId = result.getCanonicalRegistrationId();
 		id = result.getMessageId();
 		status = result.getErrorCodeName();

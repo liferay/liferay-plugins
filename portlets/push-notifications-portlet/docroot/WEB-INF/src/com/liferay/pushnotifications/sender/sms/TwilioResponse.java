@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.sender.sms;
 
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.BaseResponse;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import com.twilio.sdk.resource.instance.Sms;
 
@@ -25,6 +26,8 @@ import com.twilio.sdk.resource.instance.Sms;
 public class TwilioResponse extends BaseResponse {
 
 	public TwilioResponse(Sms sms) {
+		super(PushNotificationsConstants.PLATFORM_SMS);
+
 		accountSid = sms.getAccountSid();
 		id = sms.getSid();
 		price = sms.getPrice();

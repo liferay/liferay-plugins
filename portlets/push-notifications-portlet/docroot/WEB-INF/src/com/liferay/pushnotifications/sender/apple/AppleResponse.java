@@ -15,6 +15,7 @@
 package com.liferay.pushnotifications.sender.apple;
 
 import com.liferay.pushnotifications.sender.BaseResponse;
+import com.liferay.pushnotifications.util.PushNotificationsConstants;
 
 import com.notnoop.apns.ApnsNotification;
 import com.notnoop.apns.DeliveryError;
@@ -26,16 +27,20 @@ public class AppleResponse extends BaseResponse {
 
 	public AppleResponse(ApnsNotification notification, boolean resent) {
 		this(notification);
+
 		this.resent = resent;
 		succeeded = true;
 	}
 
 	public AppleResponse(ApnsNotification notification, Throwable throwable) {
 		this(notification);
+
 		status = throwable.getMessage();
 	}
 
 	public AppleResponse(int identifier, DeliveryError deliveryError) {
+		this(null);
+
 		id = String.valueOf(identifier);
 		status = deliveryError.name();
 	}
@@ -52,6 +57,8 @@ public class AppleResponse extends BaseResponse {
 	protected boolean resent;
 
 	private AppleResponse(ApnsNotification notification) {
+		super(PushNotificationsConstants.PLATFORM_APPLE);
+
 		if (notification != null) {
 			expiry = notification.getExpiry();
 			id = String.valueOf(notification.getIdentifier());
