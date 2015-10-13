@@ -59,4 +59,8 @@ public class PortletPropsValues {
 	public static final String SMS_TWILIO_NUMBER = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.SMS_TWILIO_NUMBER));
 
+	public static final String SMS_TWILIO_STATUS_CALLBACK =
+		GetterUtil.getString(
+			PortletProps.get(PortletPropsKeys.SMS_TWILIO_STATUS_CALLBACK));
+
 }
