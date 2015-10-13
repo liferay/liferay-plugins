@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -35,4 +36,21 @@ public interface PushNotificationsDevice extends PushNotificationsDeviceModel,
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.pushnotifications.model.impl.PushNotificationsDeviceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<PushNotificationsDevice, Long> PUSH_NOTIFICATIONS_DEVICE_ID_ACCESSOR =
+		new Accessor<PushNotificationsDevice, Long>() {
+			@Override
+			public Long get(PushNotificationsDevice pushNotificationsDevice) {
+				return pushNotificationsDevice.getPushNotificationsDeviceId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<PushNotificationsDevice> getTypeClass() {
+				return PushNotificationsDevice.class;
+			}
+		};
 }
