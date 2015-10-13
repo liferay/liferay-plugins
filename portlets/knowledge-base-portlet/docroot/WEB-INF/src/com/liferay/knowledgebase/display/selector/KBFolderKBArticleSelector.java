@@ -54,8 +54,14 @@ public class KBFolderKBArticleSelector implements KBArticleSelector {
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		if ((kbArticle == null) || !isDescendant(kbArticle, ancestorKBFolder)) {
-			return findFirstKBArticle(
+			KBArticleSelection kbArticleSelection = findFirstKBArticle(
 				groupId, ancestorKBFolder, preferredKBFolderUrlTitle);
+
+			if (resourcePrimKey == 0) {
+				kbArticleSelection.setExactMatch(true);
+			}
+
+			return kbArticleSelection;
 		}
 
 		return new KBArticleSelection(kbArticle, true);
