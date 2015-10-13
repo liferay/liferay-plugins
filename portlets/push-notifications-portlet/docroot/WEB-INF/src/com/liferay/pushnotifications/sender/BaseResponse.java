@@ -17,11 +17,29 @@ package com.liferay.pushnotifications.sender;
 /**
  * @author Bruno Farache
  */
-public abstract class BaseResponse implements Response {
+public class BaseResponse implements Response {
+
+	public BaseResponse(String platform) {
+		this(platform, null);
+	}
+
+	public BaseResponse(String platform, Exception exception) {
+		this.platform = platform;
+
+		if (exception != null) {
+			succeeded = false;
+			status = exception.getMessage();
+		}
+	}
 
 	@Override
 	public String getId() {
 		return id;
+	}
+
+	@Override
+	public String getPlatform() {
+		return platform;
 	}
 
 	@Override
@@ -40,6 +58,7 @@ public abstract class BaseResponse implements Response {
 	}
 
 	protected String id;
+	protected String platform;
 	protected String status;
 	protected boolean succeeded;
 	protected String token;
