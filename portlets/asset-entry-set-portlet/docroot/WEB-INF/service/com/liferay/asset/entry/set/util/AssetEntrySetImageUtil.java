@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Image;
@@ -104,7 +105,12 @@ public class AssetEntrySetImageUtil {
 		for (String imageType : imageMaxSizes.keySet()) {
 			FileEntry fileEntry = rawFileEntry;
 
-			if (!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
+			if (!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW) &&
+				(!(imageType.equals(
+						AssetEntrySetConstants.IMAGE_TYPE_FULL) &&
+				 Validator.equals(
+						FileUtil.getExtension(file.getName()), "gif")))) {
+
 				fileEntry = addScaledImageFileEntry(
 					userId, classNameId, 0L, portletId, imageBag, imageType,
 					imageMaxSizes.get(imageType));
