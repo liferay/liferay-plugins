@@ -32,28 +32,28 @@ public class AppleDelegate implements ApnsDelegate {
 
 	@Override
 	public void connectionClosed(DeliveryError deliveryError, int identifier) {
-		_sendResponse(new AppleResponse(identifier, deliveryError));
+		sendResponse(new AppleResponse(identifier, deliveryError));
 	}
 
 	@Override
 	public void messageSendFailed(
 		ApnsNotification notification, Throwable throwable) {
 
-		_sendResponse(new AppleResponse(notification, throwable));
+		sendResponse(new AppleResponse(notification, throwable));
 	}
 
 	@Override
 	public void messageSent(ApnsNotification notification, boolean resent) {
-		_sendResponse(new AppleResponse(notification, resent));
+		sendResponse(new AppleResponse(notification, resent));
 	}
 
 	@Override
 	public void notificationsResent(int resendCount) {
 	}
 
-	private void _sendResponse(AppleResponse response) {
+	protected void sendResponse(AppleResponse appleResponse) {
 		MessageBusUtil.sendMessage(
-			DestinationNames.PUSH_NOTIFICATION_RESPONSE, response);
+			DestinationNames.PUSH_NOTIFICATION_RESPONSE, appleResponse);
 	}
 
 }

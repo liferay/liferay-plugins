@@ -28,10 +28,11 @@ public class AndroidResponse extends BaseResponse {
 	public AndroidResponse(Result result, String token) {
 		super(PushNotificationsConstants.PLATFORM_ANDROID);
 
+		this.token = token;
+
 		canonicalRegistrationId = result.getCanonicalRegistrationId();
 		id = result.getMessageId();
 		status = result.getErrorCodeName();
-		this.token = token;
 
 		if (Validator.isNull(status)) {
 			succeeded = true;
