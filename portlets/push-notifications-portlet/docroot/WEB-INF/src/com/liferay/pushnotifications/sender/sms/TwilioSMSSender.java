@@ -147,15 +147,16 @@ public class TwilioSMSSender implements PushNotificationsSender {
 		for (String phoneNumber : phoneNumbers) {
 			Map<String, String> params = new HashMap<String, String>();
 
-			params.put("To", phoneNumber);
-			params.put("From", from);
 			params.put("Body", body);
+			params.put("From", from);
 
 			String statusCallback = getStatusCallback();
 
 			if (Validator.isNotNull(statusCallback)) {
 				params.put("StatusCallback", statusCallback);
 			}
+
+			params.put("To", phoneNumber);
 
 			Response response = new TwilioResponse(smsFactory.create(params));
 
