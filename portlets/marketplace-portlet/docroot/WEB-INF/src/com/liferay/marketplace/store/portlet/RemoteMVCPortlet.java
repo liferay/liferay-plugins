@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -327,8 +328,7 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		if (contentType.startsWith(ContentTypes.APPLICATION_OCTET_STREAM)) {
 			String contentDisposition = response.getHeader(
 				HttpHeaders.CONTENT_DISPOSITION);
-
-			int contentLength = Integer.valueOf(
+			int contentLength = GetterUtil.getInteger(
 				response.getHeader(HttpHeaders.CONTENT_LENGTH));
 
 			PortletResponseUtil.sendFile(
