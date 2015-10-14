@@ -25,15 +25,18 @@ import com.notnoop.apns.DeliveryError;
  */
 public class AppleResponse extends BaseResponse {
 
-	public AppleResponse(ApnsNotification notification, boolean resent) {
-		this(notification);
+	public AppleResponse(ApnsNotification apnsNotification, boolean resent) {
+		this(apnsNotification);
 
 		this.resent = resent;
+
 		succeeded = true;
 	}
 
-	public AppleResponse(ApnsNotification notification, Throwable throwable) {
-		this(notification);
+	public AppleResponse(
+		ApnsNotification apnsNotification, Throwable throwable) {
+
+		this(apnsNotification);
 
 		status = throwable.getMessage();
 	}
@@ -56,17 +59,17 @@ public class AppleResponse extends BaseResponse {
 	protected int expiry;
 	protected boolean resent;
 
-	private AppleResponse(ApnsNotification notification) {
+	protected AppleResponse(ApnsNotification apnsNotification) {
 		super(PushNotificationsConstants.PLATFORM_APPLE);
 
-		if (notification != null) {
-			expiry = notification.getExpiry();
-			id = String.valueOf(notification.getIdentifier());
-			token = _getHexadecimalString(notification.getDeviceToken());
+		if (apnsNotification != null) {
+			expiry = apnsNotification.getExpiry();
+			id = String.valueOf(apnsNotification.getIdentifier());
+			token = getHexadecimalString(apnsNotification.getDeviceToken());
 		}
 	}
 
-	private String _getHexadecimalString(byte[] token) {
+	protected String getHexadecimalString(byte[] token) {
 		StringBuilder sb = new StringBuilder();
 
 		for (byte b : token) {
