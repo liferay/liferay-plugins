@@ -17,6 +17,7 @@ package com.liferay.marketplace.store.portlet;
 import com.liferay.compat.portal.kernel.util.Validator;
 import com.liferay.marketplace.configuration.PortletPropsValues;
 import com.liferay.marketplace.constants.MarketplaceConstants;
+import com.liferay.marketplace.constants.PortletKeys;
 import com.liferay.marketplace.constants.WebKeys;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.oauth.util.OAuthUtil;
@@ -257,6 +258,11 @@ public class StorePortlet extends RemoteMVCPortlet {
 		}
 
 		return jsonObject;
+	}
+
+	@Override
+	protected String getClientPortletId() {
+		return PortletKeys.STORE;
 	}
 
 	@Override

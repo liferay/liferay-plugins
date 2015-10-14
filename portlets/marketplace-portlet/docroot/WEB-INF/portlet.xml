@@ -35,7 +35,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Purchased</display-name>
-		<portlet-class>com.liferay.marketplace.store.portlet.StorePortlet</portlet-class>
+		<portlet-class>com.liferay.marketplace.purchased.portlet.PurchasedPortlet</portlet-class>
 		<init-param>
 			<name>view-template</name>
 			<value>/store/view.jsp</value>

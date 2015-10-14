@@ -205,6 +205,10 @@ public class RemoteMVCPortlet extends MVCPortlet {
 		}
 	}
 
+	protected String getClientPortletId() {
+		return StringPool.BLANK;
+	}
+
 	protected String getFileName(String contentDisposition) {
 		int pos = contentDisposition.indexOf("filename=\"");
 
@@ -353,7 +357,8 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		addOAuthParameter(oAuthRequest, "clientAuthToken", clientAuthToken);
 
-		addOAuthParameter(oAuthRequest, "clientPortletId", getPortletName());
+		addOAuthParameter(
+			oAuthRequest, "clientPortletId", getClientPortletId());
 		addOAuthParameter(
 			oAuthRequest, "clientURL",
 			PortalUtil.getCurrentCompleteURL(httpServletRequest));
