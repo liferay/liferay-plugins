@@ -56,9 +56,6 @@ public class AppleResponse extends BaseResponse {
 		return resent;
 	}
 
-	protected int expiry;
-	protected boolean resent;
-
 	protected AppleResponse(ApnsNotification apnsNotification) {
 		super(PushNotificationsConstants.PLATFORM_APPLE);
 
@@ -78,5 +75,8 @@ public class AppleResponse extends BaseResponse {
 
 		return sb.toString();
 	}
+
+	protected int expiry;
+	protected boolean resent;
 
 }
