@@ -13,7 +13,6 @@
 	<bean id="destination.push_notification" class="com.liferay.portal.kernel.messaging.SerialDestination">
 		<property name="name" value="liferay/push_notification" />
 	</bean>
-
 	<bean id="destination.push_notification_response" class="com.liferay.portal.kernel.messaging.SerialDestination">
 		<property name="name" value="liferay/push_notification_response" />
 	</bean>
