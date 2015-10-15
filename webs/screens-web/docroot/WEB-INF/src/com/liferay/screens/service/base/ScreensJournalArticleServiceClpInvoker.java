@@ -24,59 +24,59 @@ import java.util.Arrays;
  */
 public class ScreensJournalArticleServiceClpInvoker {
 	public ScreensJournalArticleServiceClpInvoker() {
-		_methodName30 = "getBeanIdentifier";
+		_methodName36 = "getBeanIdentifier";
 
-		_methodParameterTypes30 = new String[] {  };
+		_methodParameterTypes36 = new String[] {  };
 
-		_methodName31 = "setBeanIdentifier";
+		_methodName37 = "setBeanIdentifier";
 
-		_methodParameterTypes31 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "java.lang.String" };
 
-		_methodName34 = "getJournalArticleContent";
+		_methodName40 = "getJournalArticleContent";
 
-		_methodParameterTypes34 = new String[] { "long", "java.util.Locale" };
+		_methodParameterTypes40 = new String[] { "long", "java.util.Locale" };
 
-		_methodName35 = "getJournalArticleContent";
+		_methodName41 = "getJournalArticleContent";
 
-		_methodParameterTypes35 = new String[] {
+		_methodParameterTypes41 = new String[] {
 				"long", "long", "java.util.Locale"
 			};
 
-		_methodName36 = "getJournalArticleContent";
+		_methodName42 = "getJournalArticleContent";
 
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes42 = new String[] {
 				"long", "java.lang.String", "long", "java.util.Locale"
 			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return ScreensJournalArticleServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			ScreensJournalArticleServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName34.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return ScreensJournalArticleServiceUtil.getJournalArticleContent(((Long)arguments[0]).longValue(),
 				(java.util.Locale)arguments[1]);
 		}
 
-		if (_methodName35.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			return ScreensJournalArticleServiceUtil.getJournalArticleContent(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (java.util.Locale)arguments[2]);
 		}
 
-		if (_methodName36.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return ScreensJournalArticleServiceUtil.getJournalArticleContent(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Long)arguments[2]).longValue(), (java.util.Locale)arguments[3]);
@@ -85,14 +85,14 @@ public class ScreensJournalArticleServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
-	private String _methodName34;
-	private String[] _methodParameterTypes34;
-	private String _methodName35;
-	private String[] _methodParameterTypes35;
 	private String _methodName36;
 	private String[] _methodParameterTypes36;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
 }
