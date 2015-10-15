@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
@@ -86,7 +87,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 					String mimeType = imageJSONObject.getString("mimeType");
 
-					if (!Validator.equals(mimeType,"image/gif")) {
+					if (!Validator.equals(mimeType, ContentTypes.IMAGE_GIF)) {
 						continue;
 					}
 
@@ -108,22 +109,14 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 					long rawFileEntryId = fileEntryIdsJSONObject.getLong("raw");
 
+					fileEntryIdsJSONObject.put("full", rawFileEntryId);
+
 					long fullFileEntryId = fileEntryIdsJSONObject.getLong(
 						"full");
 
-					fileEntryIdsJSONObject.put("full", rawFileEntryId);
-
-					FileEntry fullFileEntry =
-						PortletFileRepositoryUtil.getPortletFileEntry(
-							fullFileEntryId);
-
 					AssetEntry fullAssetEntry =
 						AssetEntryLocalServiceUtil.fetchEntry(
-							AssetEntrySet.class.getName(),
-							fullFileEntry.getFileEntryId());
-
-					PortletFileRepositoryUtil.deletePortletFileEntry(
-						fullFileEntry.getFileEntryId());
+							AssetEntrySet.class.getName(), fullFileEntryId);
 
 					if (fullAssetEntry != null) {
 						List<String> assetEntrySetIdList =
@@ -135,6 +128,9 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 						assetEntryIds = StringUtil.merge(assetEntrySetIdList);
 					}
+
+					PortletFileRepositoryUtil.deletePortletFileEntry(
+						fullFileEntryId);
 				}
 
 				payloadJSONObject.put("assetEntryIds", assetEntryIds);

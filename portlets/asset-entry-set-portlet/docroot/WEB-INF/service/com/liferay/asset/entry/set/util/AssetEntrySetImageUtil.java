@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.metadata.RawMetadataProcessorUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -106,10 +107,10 @@ public class AssetEntrySetImageUtil {
 			FileEntry fileEntry = rawFileEntry;
 
 			if (!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW) &&
-				(!(imageType.equals(
-						AssetEntrySetConstants.IMAGE_TYPE_FULL) &&
-				 Validator.equals(
-						FileUtil.getExtension(file.getName()), "gif")))) {
+				(!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_FULL) ||
+				 !Validator.equals(
+					MimeTypesUtil.getContentType(file),
+					ContentTypes.IMAGE_GIF))) {
 
 				fileEntry = addScaledImageFileEntry(
 					userId, classNameId, 0L, portletId, imageBag, imageType,
