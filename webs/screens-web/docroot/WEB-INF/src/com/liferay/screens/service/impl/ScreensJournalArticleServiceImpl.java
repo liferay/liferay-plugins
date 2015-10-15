@@ -37,10 +37,10 @@ public class ScreensJournalArticleServiceImpl
 		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
-		long groupId = journalArticleResource.getGroupId();
 		return journalArticleLocalService.getArticleContent(
-			groupId, journalArticleResource.getArticleId(), null,
-			getLanguageId(locale), null);
+			journalArticleResource.getGroupId(),
+			journalArticleResource.getArticleId(), null, getLanguageId(locale),
+			null);
 	}
 
 	@Override
@@ -51,9 +51,9 @@ public class ScreensJournalArticleServiceImpl
 		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
-		long groupId = journalArticleResource.getGroupId();
 		return journalArticleLocalService.getArticleContent(
-			groupId, journalArticleResource.getArticleId(), null,
+			journalArticleResource.getGroupId(),
+			journalArticleResource.getArticleId(), null,
 			getDDMTemplateKey(ddmTemplateId), getLanguageId(locale), null);
 	}
 
