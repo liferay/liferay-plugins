@@ -63,7 +63,7 @@ public class ScreensAssetEntryServiceImpl
 			int max)
 		throws PortalException, SystemException {
 
-		List<AssetEntry> assetEntries = new ArrayList<AssetEntry>();
+		List<AssetEntry> assetEntries;
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			PortletItem.class);
@@ -78,7 +78,8 @@ public class ScreensAssetEntryServiceImpl
 			dynamicQuery);
 
 		if (portletItems.isEmpty()) {
-			return toJSONArray(assetEntries, locale);
+			throw new PortalException(
+				"portletItemName " + portletItemName + " does not exist.");
 		}
 
 		PortletItem portletItem = portletItems.get(0);
