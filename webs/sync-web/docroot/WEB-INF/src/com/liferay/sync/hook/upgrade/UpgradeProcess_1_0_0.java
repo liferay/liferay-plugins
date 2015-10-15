@@ -14,6 +14,8 @@
 
 package com.liferay.sync.hook.upgrade;
 
+import com.liferay.portal.kernel.upgrade.UpgradeException;
+import com.liferay.sync.hook.upgrade.v1_0_0.UpgradeIndex;
 import com.liferay.sync.hook.upgrade.v1_0_0.UpgradeSyncDLObject;
 
 /**
@@ -24,6 +26,13 @@ public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 	@Override
 	public int getThreshold() {
 		return 100;
+	}
+
+	@Override
+	public void upgrade() throws UpgradeException {
+		upgrade(UpgradeIndex.class);
+
+		super.upgrade();
 	}
 
 	@Override
