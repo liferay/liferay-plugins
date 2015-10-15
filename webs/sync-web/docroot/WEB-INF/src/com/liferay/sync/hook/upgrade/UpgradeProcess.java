@@ -14,21 +14,29 @@
 
 package com.liferay.sync.hook.upgrade;
 
-import com.liferay.sync.hook.upgrade.v1_0_0.UpgradeSyncDLObject;
+import com.liferay.portal.kernel.upgrade.UpgradeException;
 
 /**
- * @author Dennis Ju
+ * @author Shinn Lok
  */
-public class UpgradeProcess_1_0_0 extends UpgradeProcess {
+public abstract class UpgradeProcess
+	extends com.liferay.portal.kernel.upgrade.UpgradeProcess {
 
 	@Override
-	public int getThreshold() {
-		return 100;
-	}
+	public void upgrade() throws UpgradeException {
+		try {
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeSyncDLObject.class);
+			// SYNC-1453
+
+			if (!tableHasData("SyncDLObject")) {
+				return;
+			}
+
+			super.upgrade();
+		}
+		catch (Exception e) {
+			throw new UpgradeException(e);
+		}
 	}
 
 }

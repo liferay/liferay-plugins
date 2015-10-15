@@ -14,7 +14,6 @@
 
 package com.liferay.sync.hook.upgrade;
 
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.sync.hook.upgrade.v1_0_1.UpgradeSyncDLObject;
 
 /**
