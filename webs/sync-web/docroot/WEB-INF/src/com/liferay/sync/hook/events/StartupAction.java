@@ -12,23 +12,38 @@
  * details.
  */
 
-package com.liferay.sync.hook.upgrade;
+package com.liferay.sync.hook.events;
 
+import com.liferay.portal.kernel.events.ActionException;
+import com.liferay.portal.kernel.events.SimpleAction;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.sync.hook.upgrade.v1_0_0.UpgradeSyncDLObject;
+import com.liferay.sync.util.VerifyUtil;
 
 /**
- * @author Dennis Ju
+ * @author Shinn Lok
  */
-public class UpgradeProcess_1_0_0 extends UpgradeProcess {
+public class StartupAction extends SimpleAction {
 
 	@Override
-	public int getThreshold() {
-		return 100;
+	public void run(String[] ids) throws ActionException {
+		try {
+			doRun();
+		}
+		catch (Exception e) {
+			throw new ActionException(e);
+		}
 	}
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeSyncDLObject.class);
+	protected void doRun() throws Exception {
+
+		// SYNC-1453
+
+		UpgradeProcess upgradeProcess = new UpgradeSyncDLObject();
+
+		if (!upgradeProcess.tableHasData("SyncDLObject")) {
+			VerifyUtil.verify();
+		}
 	}
 
 }
