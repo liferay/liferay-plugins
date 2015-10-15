@@ -35,13 +35,11 @@ public class ScreensJournalArticleServiceClp
 
 		_methodName3 = "getJournalArticleContent";
 
-		_methodParameterTypes3 = new String[] { "long", "long", "java.util.Locale" };
+		_methodParameterTypes3 = new String[] { "long", "java.util.Locale" };
 
 		_methodName4 = "getJournalArticleContent";
 
-		_methodParameterTypes4 = new String[] {
-				"long", "long", "long", "java.util.Locale"
-			};
+		_methodParameterTypes4 = new String[] { "long", "long", "java.util.Locale" };
 
 		_methodName5 = "getJournalArticleContent";
 
@@ -101,8 +99,8 @@ public class ScreensJournalArticleServiceClp
 	}
 
 	@Override
-	public java.lang.String getJournalArticleContent(long groupId,
-		long classPK, java.util.Locale locale)
+	public java.lang.String getJournalArticleContent(long classPK,
+		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -110,13 +108,7 @@ public class ScreensJournalArticleServiceClp
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] {
-						groupId,
-						
-					classPK,
-						
-					ClpSerializer.translateInput(locale)
-					});
+					new Object[] { classPK, ClpSerializer.translateInput(locale) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -142,8 +134,8 @@ public class ScreensJournalArticleServiceClp
 	}
 
 	@Override
-	public java.lang.String getJournalArticleContent(long groupId,
-		long classPK, long ddmTemplateId, java.util.Locale locale)
+	public java.lang.String getJournalArticleContent(long classPK,
+		long ddmTemplateId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -152,9 +144,7 @@ public class ScreensJournalArticleServiceClp
 			returnObj = _invokableService.invokeMethod(_methodName4,
 					_methodParameterTypes4,
 					new Object[] {
-						groupId,
-						
-					classPK,
+						classPK,
 						
 					ddmTemplateId,
 						

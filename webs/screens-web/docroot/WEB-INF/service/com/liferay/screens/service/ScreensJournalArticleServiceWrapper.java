@@ -60,21 +60,21 @@ public class ScreensJournalArticleServiceWrapper
 	}
 
 	@Override
-	public java.lang.String getJournalArticleContent(long groupId,
-		long classPK, java.util.Locale locale)
+	public java.lang.String getJournalArticleContent(long classPK,
+		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _screensJournalArticleService.getJournalArticleContent(groupId,
-			classPK, locale);
+		return _screensJournalArticleService.getJournalArticleContent(classPK,
+			locale);
 	}
 
 	@Override
-	public java.lang.String getJournalArticleContent(long groupId,
-		long classPK, long ddmTemplateId, java.util.Locale locale)
+	public java.lang.String getJournalArticleContent(long classPK,
+		long ddmTemplateId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _screensJournalArticleService.getJournalArticleContent(groupId,
-			classPK, ddmTemplateId, locale);
+		return _screensJournalArticleService.getJournalArticleContent(classPK,
+			ddmTemplateId, locale);
 	}
 
 	@Override

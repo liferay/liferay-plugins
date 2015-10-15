@@ -67,14 +67,14 @@ public interface ScreensJournalArticleService extends BaseService,
 		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.lang.String getJournalArticleContent(long groupId,
-		long classPK, java.util.Locale locale)
+	public java.lang.String getJournalArticleContent(long classPK,
+		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.lang.String getJournalArticleContent(long groupId,
-		long classPK, long ddmTemplateId, java.util.Locale locale)
+	public java.lang.String getJournalArticleContent(long classPK,
+		long ddmTemplateId, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
