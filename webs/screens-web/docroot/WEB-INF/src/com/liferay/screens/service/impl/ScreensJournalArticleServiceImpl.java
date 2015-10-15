@@ -31,13 +31,13 @@ public class ScreensJournalArticleServiceImpl
 	extends ScreensJournalArticleServiceBaseImpl {
 
 	@Override
-	public String getJournalArticleContent(
-			long groupId, long classPK, Locale locale)
+	public String getJournalArticleContent(long classPK, Locale locale)
 		throws PortalException, SystemException {
 
 		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
+		long groupId = journalArticleResource.getGroupId();
 		return journalArticleLocalService.getArticleContent(
 			groupId, journalArticleResource.getArticleId(), null,
 			getLanguageId(locale), null);
@@ -45,12 +45,13 @@ public class ScreensJournalArticleServiceImpl
 
 	@Override
 	public String getJournalArticleContent(
-			long groupId, long classPK, long ddmTemplateId, Locale locale)
+			long classPK, long ddmTemplateId, Locale locale)
 		throws PortalException, SystemException {
 
 		JournalArticleResource journalArticleResource =
 			journalArticleResourceLocalService.getArticleResource(classPK);
 
+		long groupId = journalArticleResource.getGroupId();
 		return journalArticleLocalService.getArticleContent(
 			groupId, journalArticleResource.getArticleId(), null,
 			getDDMTemplateKey(ddmTemplateId), getLanguageId(locale), null);
