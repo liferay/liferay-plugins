@@ -107,12 +107,12 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 					JSONObject fileEntryIdsJSONObject =
 						imageJSONObject.getJSONObject("fileEntryIds");
 
+					long fullFileEntryId = fileEntryIdsJSONObject.getLong(
+						"full");
+
 					long rawFileEntryId = fileEntryIdsJSONObject.getLong("raw");
 
 					fileEntryIdsJSONObject.put("full", rawFileEntryId);
-
-					long fullFileEntryId = fileEntryIdsJSONObject.getLong(
-						"full");
 
 					AssetEntry fullAssetEntry =
 						AssetEntryLocalServiceUtil.fetchEntry(
