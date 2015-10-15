@@ -159,6 +159,29 @@ public class AkismetDataUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the akismet datas where modifiedDate &lt; &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AkismetDataModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param modifiedDate the modified date
+	* @param start the lower bound of the range of akismet datas
+	* @param end the upper bound of the range of akismet datas (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching akismet datas
+	*/
+	public static List<AkismetData> findByLtModifiedDate(
+		java.util.Date modifiedDate, int start, int end,
+		OrderByComparator<AkismetData> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByLtModifiedDate(modifiedDate, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Returns the first akismet data in the ordered set where modifiedDate &lt; &#63;.
 	*
 	* @param modifiedDate the modified date
@@ -284,7 +307,7 @@ public class AkismetDataUtil {
 	*
 	* @param classNameId the class name ID
 	* @param classPK the class p k
-	* @param retrieveFromCache whether to use the finder cache
+	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	*/
 	public static AkismetData fetchByC_C(long classNameId, long classPK,
@@ -426,6 +449,26 @@ public class AkismetDataUtil {
 	public static List<AkismetData> findAll(int start, int end,
 		OrderByComparator<AkismetData> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the akismet datas.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AkismetDataModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of akismet datas
+	* @param end the upper bound of the range of akismet datas (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of akismet datas
+	*/
+	public static List<AkismetData> findAll(int start, int end,
+		OrderByComparator<AkismetData> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findAll(start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface KBComment extends KBCommentModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.KBCommentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<KBComment, Long> KB_COMMENT_ID_ACCESSOR = new Accessor<KBComment, Long>() {
+			@Override
+			public Long get(KBComment kbComment) {
+				return kbComment.getKbCommentId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<KBComment> getTypeClass() {
+				return KBComment.class;
+			}
+		};
 }

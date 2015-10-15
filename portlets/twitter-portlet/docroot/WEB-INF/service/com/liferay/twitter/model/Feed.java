@@ -16,6 +16,7 @@ package com.liferay.twitter.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface Feed extends FeedModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.twitter.model.impl.FeedImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<Feed, Long> FEED_ID_ACCESSOR = new Accessor<Feed, Long>() {
+			@Override
+			public Long get(Feed feed) {
+				return feed.getFeedId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<Feed> getTypeClass() {
+				return Feed.class;
+			}
+		};
 }

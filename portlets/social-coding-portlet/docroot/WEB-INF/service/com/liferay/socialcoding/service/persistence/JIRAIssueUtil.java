@@ -156,6 +156,28 @@ public class JIRAIssueUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the j i r a issues where projectId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectId the project ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByProjectId(long projectId, int start,
+		int end, OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByProjectId(projectId, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63;.
 	*
 	* @param projectId the project ID
@@ -295,6 +317,29 @@ public class JIRAIssueUtil {
 		return getPersistence()
 				   .findByReporterJiraUserId(reporterJiraUserId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues where reporterJiraUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param reporterJiraUserId the reporter jira user ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByReporterJiraUserId(
+		java.lang.String reporterJiraUserId, int start, int end,
+		OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByReporterJiraUserId(reporterJiraUserId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -448,6 +493,29 @@ public class JIRAIssueUtil {
 		return getPersistence()
 				   .findByAssigneeJiraUserId(assigneeJiraUserId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues where assigneeJiraUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param assigneeJiraUserId the assignee jira user ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByAssigneeJiraUserId(
+		java.lang.String assigneeJiraUserId, int start, int end,
+		OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByAssigneeJiraUserId(assigneeJiraUserId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -606,6 +674,30 @@ public class JIRAIssueUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param modifiedDate the modified date
+	* @param projectId the project ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByMD_P(java.util.Date modifiedDate,
+		long projectId, int start, int end,
+		OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByMD_P(modifiedDate, projectId, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
 	*
 	* @param modifiedDate the modified date
@@ -756,6 +848,30 @@ public class JIRAIssueUtil {
 		return getPersistence()
 				   .findByP_RJUI(projectId, reporterJiraUserId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectId the project ID
+	* @param reporterJiraUserId the reporter jira user ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByP_RJUI(long projectId,
+		java.lang.String reporterJiraUserId, int start, int end,
+		OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByP_RJUI(projectId, reporterJiraUserId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -919,6 +1035,30 @@ public class JIRAIssueUtil {
 		return getPersistence()
 				   .findByP_AJUI(projectId, assigneeJiraUserId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectId the project ID
+	* @param assigneeJiraUserId the assignee jira user ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByP_AJUI(long projectId,
+		java.lang.String assigneeJiraUserId, int start, int end,
+		OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByP_AJUI(projectId, assigneeJiraUserId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1087,6 +1227,31 @@ public class JIRAIssueUtil {
 		return getPersistence()
 				   .findByMD_P_RJUI(modifiedDate, projectId,
 			reporterJiraUserId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param modifiedDate the modified date
+	* @param projectId the project ID
+	* @param reporterJiraUserId the reporter jira user ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByMD_P_RJUI(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId, int start,
+		int end, OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByMD_P_RJUI(modifiedDate, projectId,
+			reporterJiraUserId, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1266,6 +1431,31 @@ public class JIRAIssueUtil {
 		return getPersistence()
 				   .findByMD_P_AJUI(modifiedDate, projectId,
 			assigneeJiraUserId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param modifiedDate the modified date
+	* @param projectId the project ID
+	* @param assigneeJiraUserId the assignee jira user ID
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByMD_P_AJUI(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId, int start,
+		int end, OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByMD_P_AJUI(modifiedDate, projectId,
+			assigneeJiraUserId, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1449,6 +1639,31 @@ public class JIRAIssueUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectId the project ID
+	* @param reporterJiraUserId the reporter jira user ID
+	* @param status the status
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByP_RJUI_S(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		int start, int end, OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByP_RJUI_S(projectId, reporterJiraUserId, status,
+			start, end, orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
 	*
 	* @param projectId the project ID
@@ -1623,6 +1838,31 @@ public class JIRAIssueUtil {
 		return getPersistence()
 				   .findByP_AJUI_S(projectId, assigneeJiraUserId, status,
 			start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param projectId the project ID
+	* @param assigneeJiraUserId the assignee jira user ID
+	* @param status the status
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a issues
+	*/
+	public static List<JIRAIssue> findByP_AJUI_S(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		int start, int end, OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByP_AJUI_S(projectId, assigneeJiraUserId, status,
+			start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1853,6 +2093,26 @@ public class JIRAIssueUtil {
 	public static List<JIRAIssue> findAll(int start, int end,
 		OrderByComparator<JIRAIssue> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the j i r a issues.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAIssueModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of j i r a issues
+	* @param end the upper bound of the range of j i r a issues (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of j i r a issues
+	*/
+	public static List<JIRAIssue> findAll(int start, int end,
+		OrderByComparator<JIRAIssue> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findAll(start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

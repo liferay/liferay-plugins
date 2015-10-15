@@ -16,7 +16,9 @@ package com.liferay.privatemessaging.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -153,6 +155,27 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	@Override
 	public List<UserThread> findByMBThreadId(long mbThreadId, int start,
 		int end, OrderByComparator<UserThread> orderByComparator) {
+		return findByMBThreadId(mbThreadId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the user threads where mbThreadId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param mbThreadId the mb thread ID
+	 * @param start the lower bound of the range of user threads
+	 * @param end the upper bound of the range of user threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching user threads
+	 */
+	@Override
+	public List<UserThread> findByMBThreadId(long mbThreadId, int start,
+		int end, OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -168,15 +191,19 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			finderArgs = new Object[] { mbThreadId, start, end, orderByComparator };
 		}
 
-		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<UserThread> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (UserThread userThread : list) {
-				if ((mbThreadId != userThread.getMbThreadId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<UserThread>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (UserThread userThread : list) {
+					if ((mbThreadId != userThread.getMbThreadId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -233,10 +260,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -526,8 +553,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		Object[] finderArgs = new Object[] { mbThreadId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -551,10 +577,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -632,6 +658,27 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	@Override
 	public List<UserThread> findByUserId(long userId, int start, int end,
 		OrderByComparator<UserThread> orderByComparator) {
+		return findByUserId(userId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the user threads where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of user threads
+	 * @param end the upper bound of the range of user threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching user threads
+	 */
+	@Override
+	public List<UserThread> findByUserId(long userId, int start, int end,
+		OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -647,15 +694,19 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
-		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<UserThread> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (UserThread userThread : list) {
-				if ((userId != userThread.getUserId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<UserThread>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (UserThread userThread : list) {
+					if ((userId != userThread.getUserId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -712,10 +763,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1002,8 +1053,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		Object[] finderArgs = new Object[] { userId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -1027,10 +1077,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1107,7 +1157,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 *
 	 * @param userId the user ID
 	 * @param mbThreadId the mb thread ID
-	 * @param retrieveFromCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	 */
 	@Override
@@ -1118,7 +1168,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_M,
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_U_M,
 					finderArgs, this);
 		}
 
@@ -1158,8 +1208,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				List<UserThread> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-						finderArgs, list);
+					finderCache.putResult(FINDER_PATH_FETCH_BY_U_M, finderArgs,
+						list);
 				}
 				else {
 					if ((list.size() > 1) && _log.isWarnEnabled()) {
@@ -1177,14 +1227,13 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 					if ((userThread.getUserId() != userId) ||
 							(userThread.getMbThreadId() != mbThreadId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+						finderCache.putResult(FINDER_PATH_FETCH_BY_U_M,
 							finderArgs, userThread);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
-					finderArgs);
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_U_M, finderArgs);
 
 				throw processException(e);
 			}
@@ -1229,8 +1278,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		Object[] finderArgs = new Object[] { userId, mbThreadId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -1258,10 +1306,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1345,6 +1393,28 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	@Override
 	public List<UserThread> findByU_D(long userId, boolean deleted, int start,
 		int end, OrderByComparator<UserThread> orderByComparator) {
+		return findByU_D(userId, deleted, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the user threads where userId = &#63; and deleted = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param deleted the deleted
+	 * @param start the lower bound of the range of user threads
+	 * @param end the upper bound of the range of user threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching user threads
+	 */
+	@Override
+	public List<UserThread> findByU_D(long userId, boolean deleted, int start,
+		int end, OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1364,16 +1434,20 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				};
 		}
 
-		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<UserThread> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (UserThread userThread : list) {
-				if ((userId != userThread.getUserId()) ||
-						(deleted != userThread.getDeleted())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<UserThread>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (UserThread userThread : list) {
+					if ((userId != userThread.getUserId()) ||
+							(deleted != userThread.getDeleted())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1434,10 +1508,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1744,8 +1818,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		Object[] finderArgs = new Object[] { userId, deleted };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -1773,10 +1846,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1873,6 +1946,31 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public List<UserThread> findByU_R_D(long userId, boolean read,
 		boolean deleted, int start, int end,
 		OrderByComparator<UserThread> orderByComparator) {
+		return findByU_R_D(userId, read, deleted, start, end,
+			orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the user threads where userId = &#63; and read = &#63; and deleted = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param read the read
+	 * @param deleted the deleted
+	 * @param start the lower bound of the range of user threads
+	 * @param end the upper bound of the range of user threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching user threads
+	 */
+	@Override
+	public List<UserThread> findByU_R_D(long userId, boolean read,
+		boolean deleted, int start, int end,
+		OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1892,17 +1990,21 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				};
 		}
 
-		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<UserThread> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (UserThread userThread : list) {
-				if ((userId != userThread.getUserId()) ||
-						(read != userThread.getRead()) ||
-						(deleted != userThread.getDeleted())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<UserThread>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (UserThread userThread : list) {
+					if ((userId != userThread.getUserId()) ||
+							(read != userThread.getRead()) ||
+							(deleted != userThread.getDeleted())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1967,10 +2069,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2295,8 +2397,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		Object[] finderArgs = new Object[] { userId, read, deleted };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(4);
@@ -2328,10 +2429,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2358,10 +2459,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public void cacheResult(UserThread userThread) {
-		EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey(), userThread);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+		finderCache.putResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] { userThread.getUserId(), userThread.getMbThreadId() },
 			userThread);
 
@@ -2376,7 +2477,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	@Override
 	public void cacheResult(List<UserThread> userThreads) {
 		for (UserThread userThread : userThreads) {
-			if (EntityCacheUtil.getResult(
+			if (entityCache.getResult(
 						UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 						UserThreadImpl.class, userThread.getPrimaryKey()) == null) {
 				cacheResult(userThread);
@@ -2391,43 +2492,43 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 * Clears the cache for all user threads.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(UserThreadImpl.class);
+		entityCache.clearCache(UserThreadImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the user thread.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(UserThread userThread) {
-		EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		clearUniqueFindersCache((UserThreadModelImpl)userThread);
 	}
 
 	@Override
 	public void clearCache(List<UserThread> userThreads) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (UserThread userThread : userThreads) {
-			EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 				UserThreadImpl.class, userThread.getPrimaryKey());
 
 			clearUniqueFindersCache((UserThreadModelImpl)userThread);
@@ -2442,9 +2543,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					userThreadModelImpl.getMbThreadId()
 				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
+			finderCache.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
+			finderCache.putResult(FINDER_PATH_FETCH_BY_U_M, args,
 				userThreadModelImpl);
 		}
 		else {
@@ -2455,9 +2556,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.getMbThreadId()
 					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, args,
+				finderCache.putResult(FINDER_PATH_COUNT_BY_U_M, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M, args,
+				finderCache.putResult(FINDER_PATH_FETCH_BY_U_M, args,
 					userThreadModelImpl);
 			}
 		}
@@ -2470,8 +2571,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				userThreadModelImpl.getMbThreadId()
 			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
 
 		if ((userThreadModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
@@ -2480,8 +2581,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					userThreadModelImpl.getOriginalMbThreadId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
 		}
 	}
 
@@ -2637,10 +2738,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !UserThreadModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		else {
@@ -2650,16 +2751,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.getOriginalMbThreadId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
 					args);
 
 				args = new Object[] { userThreadModelImpl.getMbThreadId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
 					args);
 			}
 
@@ -2669,14 +2768,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.getOriginalUserId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
 				args = new Object[] { userThreadModelImpl.getUserId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 			}
 
@@ -2687,8 +2786,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.getOriginalDeleted()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
 					args);
 
 				args = new Object[] {
@@ -2696,8 +2795,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.getDeleted()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
 					args);
 			}
 
@@ -2709,8 +2808,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.getOriginalDeleted()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
 					args);
 
 				args = new Object[] {
@@ -2719,13 +2818,13 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.getDeleted()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
 					args);
 			}
 		}
 
-		EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey(), userThread, false);
 
 		clearUniqueFindersCache(userThreadModelImpl);
@@ -2805,7 +2904,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public UserThread fetchByPrimaryKey(Serializable primaryKey) {
-		UserThread userThread = (UserThread)EntityCacheUtil.getResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+		UserThread userThread = (UserThread)entityCache.getResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 				UserThreadImpl.class, primaryKey);
 
 		if (userThread == _nullUserThread) {
@@ -2825,12 +2924,12 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					cacheResult(userThread);
 				}
 				else {
-					EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 						UserThreadImpl.class, primaryKey, _nullUserThread);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 					UserThreadImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2880,7 +2979,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			UserThread userThread = (UserThread)EntityCacheUtil.getResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+			UserThread userThread = (UserThread)entityCache.getResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 					UserThreadImpl.class, primaryKey);
 
 			if (userThread == null) {
@@ -2932,7 +3031,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 					UserThreadImpl.class, primaryKey, _nullUserThread);
 			}
 		}
@@ -2987,6 +3086,26 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	@Override
 	public List<UserThread> findAll(int start, int end,
 		OrderByComparator<UserThread> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the user threads.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of user threads
+	 * @param end the upper bound of the range of user threads (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of user threads
+	 */
+	@Override
+	public List<UserThread> findAll(int start, int end,
+		OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3002,8 +3121,12 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<UserThread> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<UserThread>)finderCache.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -3050,10 +3173,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3083,7 +3206,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -3096,11 +3219,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -3130,12 +3253,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(UserThreadImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(UserThreadImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_USERTHREAD = "SELECT userThread FROM UserThread userThread";
 	private static final String _SQL_SELECT_USERTHREAD_WHERE_PKS_IN = "SELECT userThread FROM UserThread userThread WHERE userThreadId IN (";
 	private static final String _SQL_SELECT_USERTHREAD_WHERE = "SELECT userThread FROM UserThread userThread WHERE ";

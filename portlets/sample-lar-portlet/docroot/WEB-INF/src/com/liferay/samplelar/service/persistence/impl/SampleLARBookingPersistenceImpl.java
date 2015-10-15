@@ -16,7 +16,9 @@ package com.liferay.samplelar.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -155,6 +157,27 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	@Override
 	public List<SampleLARBooking> findByUuid(String uuid, int start, int end,
 		OrderByComparator<SampleLARBooking> orderByComparator) {
+		return findByUuid(uuid, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the sample l a r bookings where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of sample l a r bookings
+	 * @param end the upper bound of the range of sample l a r bookings (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching sample l a r bookings
+	 */
+	@Override
+	public List<SampleLARBooking> findByUuid(String uuid, int start, int end,
+		OrderByComparator<SampleLARBooking> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -170,15 +193,19 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			finderArgs = new Object[] { uuid, start, end, orderByComparator };
 		}
 
-		List<SampleLARBooking> list = (List<SampleLARBooking>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<SampleLARBooking> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (SampleLARBooking sampleLARBooking : list) {
-				if (!Validator.equals(uuid, sampleLARBooking.getUuid())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<SampleLARBooking>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (SampleLARBooking sampleLARBooking : list) {
+					if (!Validator.equals(uuid, sampleLARBooking.getUuid())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -249,10 +276,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -555,8 +582,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 		Object[] finderArgs = new Object[] { uuid };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -594,10 +620,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -677,7 +703,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
 	 */
 	@Override
@@ -688,7 +714,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_UUID_G,
 					finderArgs, this);
 		}
 
@@ -742,7 +768,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 				List<SampleLARBooking> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+					finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 						finderArgs, list);
 				}
 				else {
@@ -755,14 +781,13 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 					if ((sampleLARBooking.getUuid() == null) ||
 							!sampleLARBooking.getUuid().equals(uuid) ||
 							(sampleLARBooking.getGroupId() != groupId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+						finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 							finderArgs, sampleLARBooking);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-					finderArgs);
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -807,8 +832,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -850,10 +874,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -943,6 +967,29 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	public List<SampleLARBooking> findByUuid_C(String uuid, long companyId,
 		int start, int end,
 		OrderByComparator<SampleLARBooking> orderByComparator) {
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the sample l a r bookings where uuid = &#63; and companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of sample l a r bookings
+	 * @param end the upper bound of the range of sample l a r bookings (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching sample l a r bookings
+	 */
+	@Override
+	public List<SampleLARBooking> findByUuid_C(String uuid, long companyId,
+		int start, int end,
+		OrderByComparator<SampleLARBooking> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -962,16 +1009,20 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 				};
 		}
 
-		List<SampleLARBooking> list = (List<SampleLARBooking>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<SampleLARBooking> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (SampleLARBooking sampleLARBooking : list) {
-				if (!Validator.equals(uuid, sampleLARBooking.getUuid()) ||
-						(companyId != sampleLARBooking.getCompanyId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<SampleLARBooking>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (SampleLARBooking sampleLARBooking : list) {
+					if (!Validator.equals(uuid, sampleLARBooking.getUuid()) ||
+							(companyId != sampleLARBooking.getCompanyId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1046,10 +1097,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1371,8 +1422,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -1414,10 +1464,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1500,6 +1550,27 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	@Override
 	public List<SampleLARBooking> findByGroupId(long groupId, int start,
 		int end, OrderByComparator<SampleLARBooking> orderByComparator) {
+		return findByGroupId(groupId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the sample l a r bookings where groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of sample l a r bookings
+	 * @param end the upper bound of the range of sample l a r bookings (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching sample l a r bookings
+	 */
+	@Override
+	public List<SampleLARBooking> findByGroupId(long groupId, int start,
+		int end, OrderByComparator<SampleLARBooking> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1515,15 +1586,19 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			finderArgs = new Object[] { groupId, start, end, orderByComparator };
 		}
 
-		List<SampleLARBooking> list = (List<SampleLARBooking>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<SampleLARBooking> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (SampleLARBooking sampleLARBooking : list) {
-				if ((groupId != sampleLARBooking.getGroupId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<SampleLARBooking>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (SampleLARBooking sampleLARBooking : list) {
+					if ((groupId != sampleLARBooking.getGroupId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1580,10 +1655,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1874,8 +1949,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 		Object[] finderArgs = new Object[] { groupId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -1899,10 +1973,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1927,11 +2001,11 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 */
 	@Override
 	public void cacheResult(SampleLARBooking sampleLARBooking) {
-		EntityCacheUtil.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 			SampleLARBookingImpl.class, sampleLARBooking.getPrimaryKey(),
 			sampleLARBooking);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+		finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				sampleLARBooking.getUuid(), sampleLARBooking.getGroupId()
 			}, sampleLARBooking);
@@ -1947,7 +2021,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	@Override
 	public void cacheResult(List<SampleLARBooking> sampleLARBookings) {
 		for (SampleLARBooking sampleLARBooking : sampleLARBookings) {
-			if (EntityCacheUtil.getResult(
+			if (entityCache.getResult(
 						SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 						SampleLARBookingImpl.class,
 						sampleLARBooking.getPrimaryKey()) == null) {
@@ -1963,43 +2037,43 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 * Clears the cache for all sample l a r bookings.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(SampleLARBookingImpl.class);
+		entityCache.clearCache(SampleLARBookingImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the sample l a r booking.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(SampleLARBooking sampleLARBooking) {
-		EntityCacheUtil.removeResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 			SampleLARBookingImpl.class, sampleLARBooking.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		clearUniqueFindersCache((SampleLARBookingModelImpl)sampleLARBooking);
 	}
 
 	@Override
 	public void clearCache(List<SampleLARBooking> sampleLARBookings) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (SampleLARBooking sampleLARBooking : sampleLARBookings) {
-			EntityCacheUtil.removeResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 				SampleLARBookingImpl.class, sampleLARBooking.getPrimaryKey());
 
 			clearUniqueFindersCache((SampleLARBookingModelImpl)sampleLARBooking);
@@ -2014,9 +2088,9 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 					sampleLARBookingModelImpl.getGroupId()
 				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+			finderCache.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+			finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
 				sampleLARBookingModelImpl);
 		}
 		else {
@@ -2027,9 +2101,9 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 						sampleLARBookingModelImpl.getGroupId()
 					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+				finderCache.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+				finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
 					sampleLARBookingModelImpl);
 			}
 		}
@@ -2042,8 +2116,8 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 				sampleLARBookingModelImpl.getGroupId()
 			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 
 		if ((sampleLARBookingModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
@@ -2052,8 +2126,8 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 					sampleLARBookingModelImpl.getOriginalGroupId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 		}
 	}
 
@@ -2220,10 +2294,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !SampleLARBookingModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		else {
@@ -2233,14 +2307,14 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 						sampleLARBookingModelImpl.getOriginalUuid()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
 
 				args = new Object[] { sampleLARBookingModelImpl.getUuid() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
 			}
 
@@ -2251,8 +2325,8 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 						sampleLARBookingModelImpl.getOriginalCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
 					args);
 
 				args = new Object[] {
@@ -2260,8 +2334,8 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 						sampleLARBookingModelImpl.getCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
 					args);
 			}
 
@@ -2271,19 +2345,19 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 						sampleLARBookingModelImpl.getOriginalGroupId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
 				args = new Object[] { sampleLARBookingModelImpl.getGroupId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 			}
 		}
 
-		EntityCacheUtil.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 			SampleLARBookingImpl.class, sampleLARBooking.getPrimaryKey(),
 			sampleLARBooking, false);
 
@@ -2365,7 +2439,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 */
 	@Override
 	public SampleLARBooking fetchByPrimaryKey(Serializable primaryKey) {
-		SampleLARBooking sampleLARBooking = (SampleLARBooking)EntityCacheUtil.getResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+		SampleLARBooking sampleLARBooking = (SampleLARBooking)entityCache.getResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 				SampleLARBookingImpl.class, primaryKey);
 
 		if (sampleLARBooking == _nullSampleLARBooking) {
@@ -2385,13 +2459,13 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 					cacheResult(sampleLARBooking);
 				}
 				else {
-					EntityCacheUtil.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 						SampleLARBookingImpl.class, primaryKey,
 						_nullSampleLARBooking);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 					SampleLARBookingImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2441,7 +2515,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			SampleLARBooking sampleLARBooking = (SampleLARBooking)EntityCacheUtil.getResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+			SampleLARBooking sampleLARBooking = (SampleLARBooking)entityCache.getResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 					SampleLARBookingImpl.class, primaryKey);
 
 			if (sampleLARBooking == null) {
@@ -2493,7 +2567,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 					SampleLARBookingImpl.class, primaryKey,
 					_nullSampleLARBooking);
 			}
@@ -2549,6 +2623,26 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	@Override
 	public List<SampleLARBooking> findAll(int start, int end,
 		OrderByComparator<SampleLARBooking> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the sample l a r bookings.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SampleLARBookingModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of sample l a r bookings
+	 * @param end the upper bound of the range of sample l a r bookings (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of sample l a r bookings
+	 */
+	@Override
+	public List<SampleLARBooking> findAll(int start, int end,
+		OrderByComparator<SampleLARBooking> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2564,8 +2658,12 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<SampleLARBooking> list = (List<SampleLARBooking>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<SampleLARBooking> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<SampleLARBooking>)finderCache.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2612,10 +2710,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2645,7 +2743,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -2658,11 +2756,11 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -2692,12 +2790,14 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(SampleLARBookingImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(SampleLARBookingImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_SAMPLELARBOOKING = "SELECT sampleLARBooking FROM SampleLARBooking sampleLARBooking";
 	private static final String _SQL_SELECT_SAMPLELARBOOKING_WHERE_PKS_IN = "SELECT sampleLARBooking FROM SampleLARBooking sampleLARBooking WHERE sampleLARBookingId IN (";
 	private static final String _SQL_SELECT_SAMPLELARBOOKING_WHERE = "SELECT sampleLARBooking FROM SampleLARBooking sampleLARBooking WHERE ";

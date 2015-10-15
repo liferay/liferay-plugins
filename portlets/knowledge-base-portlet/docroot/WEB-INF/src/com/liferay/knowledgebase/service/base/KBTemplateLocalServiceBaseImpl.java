@@ -311,14 +311,12 @@ public abstract class KBTemplateLocalServiceBaseImpl
 
 		exportActionableDynamicQuery.setGroupId(portletDataContext.getScopeGroupId());
 
-		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
+		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod<KBTemplate>() {
 				@Override
-				public void performAction(Object object)
+				public void performAction(KBTemplate kbTemplate)
 					throws PortalException {
-					KBTemplate stagedModel = (KBTemplate)object;
-
 					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
-						stagedModel);
+						kbTemplate);
 				}
 			});
 		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(

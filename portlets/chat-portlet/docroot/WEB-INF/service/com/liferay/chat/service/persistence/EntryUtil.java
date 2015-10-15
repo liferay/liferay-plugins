@@ -153,6 +153,28 @@ public class EntryUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the entries where createDate = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param createDate the create date
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByCreateDate(long createDate, int start,
+		int end, OrderByComparator<Entry> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByCreateDate(createDate, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
 	* Returns the first entry in the ordered set where createDate = &#63;.
 	*
 	* @param createDate the create date
@@ -288,6 +310,28 @@ public class EntryUtil {
 		int end, OrderByComparator<Entry> orderByComparator) {
 		return getPersistence()
 				   .findByFromUserId(fromUserId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the entries where fromUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param fromUserId the from user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByFromUserId(long fromUserId, int start,
+		int end, OrderByComparator<Entry> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByFromUserId(fromUserId, start, end, orderByComparator,
+			retrieveFromCache);
 	}
 
 	/**
@@ -428,6 +472,27 @@ public class EntryUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the entries where toUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByToUserId(long toUserId, int start, int end,
+		OrderByComparator<Entry> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByToUserId(toUserId, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
 	* Returns the first entry in the ordered set where toUserId = &#63;.
 	*
 	* @param toUserId the to user ID
@@ -564,6 +629,29 @@ public class EntryUtil {
 		return getPersistence()
 				   .findByC_F(createDate, fromUserId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByC_F(long createDate, long fromUserId,
+		int start, int end, OrderByComparator<Entry> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByC_F(createDate, fromUserId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -716,6 +804,29 @@ public class EntryUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the entries where createDate = &#63; and toUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param createDate the create date
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByC_T(long createDate, long toUserId,
+		int start, int end, OrderByComparator<Entry> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByC_T(createDate, toUserId, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
 	*
 	* @param createDate the create date
@@ -862,6 +973,29 @@ public class EntryUtil {
 		return getPersistence()
 				   .findByF_T(fromUserId, toUserId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByF_T(long fromUserId, long toUserId,
+		int start, int end, OrderByComparator<Entry> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByF_T(fromUserId, toUserId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1017,6 +1151,30 @@ public class EntryUtil {
 		return getPersistence()
 				   .findByC_F_T(createDate, fromUserId, toUserId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param createDate the create date
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByC_F_T(long createDate, long fromUserId,
+		long toUserId, int start, int end,
+		OrderByComparator<Entry> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByC_F_T(createDate, fromUserId, toUserId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1186,6 +1344,30 @@ public class EntryUtil {
 		return getPersistence()
 				   .findByF_T_C(fromUserId, toUserId, content, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param fromUserId the from user ID
+	* @param toUserId the to user ID
+	* @param content the content
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching entries
+	*/
+	public static List<Entry> findByF_T_C(long fromUserId, long toUserId,
+		java.lang.String content, int start, int end,
+		OrderByComparator<Entry> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByF_T_C(fromUserId, toUserId, content, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -1411,6 +1593,25 @@ public class EntryUtil {
 	public static List<Entry> findAll(int start, int end,
 		OrderByComparator<Entry> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the entries.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of entries
+	*/
+	public static List<Entry> findAll(int start, int end,
+		OrderByComparator<Entry> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findAll(start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

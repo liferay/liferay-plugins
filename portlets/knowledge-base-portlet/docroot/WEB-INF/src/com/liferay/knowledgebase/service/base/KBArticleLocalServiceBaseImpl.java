@@ -359,14 +359,12 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 		exportActionableDynamicQuery.setGroupId(portletDataContext.getScopeGroupId());
 
-		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
+		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod<KBArticle>() {
 				@Override
-				public void performAction(Object object)
+				public void performAction(KBArticle kbArticle)
 					throws PortalException {
-					KBArticle stagedModel = (KBArticle)object;
-
 					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
-						stagedModel);
+						kbArticle);
 				}
 			});
 		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(

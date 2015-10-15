@@ -16,6 +16,7 @@ package com.liferay.opensocial.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface Gadget extends GadgetModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.opensocial.model.impl.GadgetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<Gadget, Long> GADGET_ID_ACCESSOR = new Accessor<Gadget, Long>() {
+			@Override
+			public Long get(Gadget gadget) {
+				return gadget.getGadgetId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<Gadget> getTypeClass() {
+				return Gadget.class;
+			}
+		};
 }

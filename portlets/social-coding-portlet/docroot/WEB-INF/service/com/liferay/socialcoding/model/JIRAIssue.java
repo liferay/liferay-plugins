@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,5 +35,22 @@ public interface JIRAIssue extends JIRAIssueModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAIssueImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<JIRAIssue, Long> JIRA_ISSUE_ID_ACCESSOR = new Accessor<JIRAIssue, Long>() {
+			@Override
+			public Long get(JIRAIssue jiraIssue) {
+				return jiraIssue.getJiraIssueId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<JIRAIssue> getTypeClass() {
+				return JIRAIssue.class;
+			}
+		};
+
 	public java.lang.String getKey();
 }

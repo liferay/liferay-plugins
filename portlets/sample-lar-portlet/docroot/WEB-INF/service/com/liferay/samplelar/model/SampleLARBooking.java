@@ -16,6 +16,7 @@ package com.liferay.samplelar.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,21 @@ public interface SampleLARBooking extends SampleLARBookingModel, PersistedModel 
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.samplelar.model.impl.SampleLARBookingImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<SampleLARBooking, Long> SAMPLE_L_A_R_BOOKING_ID_ACCESSOR =
+		new Accessor<SampleLARBooking, Long>() {
+			@Override
+			public Long get(SampleLARBooking sampleLARBooking) {
+				return sampleLARBooking.getSampleLARBookingId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<SampleLARBooking> getTypeClass() {
+				return SampleLARBooking.class;
+			}
+		};
 }

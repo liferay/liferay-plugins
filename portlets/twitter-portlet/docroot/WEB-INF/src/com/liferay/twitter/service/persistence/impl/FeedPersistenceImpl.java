@@ -16,7 +16,9 @@ package com.liferay.twitter.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -150,7 +152,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 *
 	 * @param userId the user ID
 	 * @param twitterScreenName the twitter screen name
-	 * @param retrieveFromCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 */
 	@Override
@@ -161,7 +163,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_TSN,
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_U_TSN,
 					finderArgs, this);
 		}
 
@@ -216,7 +218,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				List<Feed> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN,
+					finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN,
 						finderArgs, list);
 				}
 				else {
@@ -237,14 +239,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 							(feed.getTwitterScreenName() == null) ||
 							!feed.getTwitterScreenName()
 									 .equals(twitterScreenName)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN,
+						finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN,
 							finderArgs, feed);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_TSN,
-					finderArgs);
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_U_TSN, finderArgs);
 
 				throw processException(e);
 			}
@@ -289,8 +290,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		Object[] finderArgs = new Object[] { userId, twitterScreenName };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -332,10 +332,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -363,10 +363,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	@Override
 	public void cacheResult(Feed feed) {
-		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN,
+		finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN,
 			new Object[] { feed.getUserId(), feed.getTwitterScreenName() }, feed);
 
 		feed.resetOriginalValues();
@@ -380,7 +380,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	@Override
 	public void cacheResult(List<Feed> feeds) {
 		for (Feed feed : feeds) {
-			if (EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			if (entityCache.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 						FeedImpl.class, feed.getPrimaryKey()) == null) {
 				cacheResult(feed);
 			}
@@ -394,43 +394,43 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * Clears the cache for all feeds.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(FeedImpl.class);
+		entityCache.clearCache(FeedImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the feed.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(Feed feed) {
-		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		clearUniqueFindersCache((FeedModelImpl)feed);
 	}
 
 	@Override
 	public void clearCache(List<Feed> feeds) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (Feed feed : feeds) {
-			EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 				FeedImpl.class, feed.getPrimaryKey());
 
 			clearUniqueFindersCache((FeedModelImpl)feed);
@@ -445,9 +445,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					feedModelImpl.getTwitterScreenName()
 				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_TSN, args,
+			finderCache.putResult(FINDER_PATH_COUNT_BY_U_TSN, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN, args,
+			finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN, args,
 				feedModelImpl);
 		}
 		else {
@@ -458,9 +458,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 						feedModelImpl.getTwitterScreenName()
 					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_TSN, args,
+				finderCache.putResult(FINDER_PATH_COUNT_BY_U_TSN, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_TSN, args,
+				finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN, args,
 					feedModelImpl);
 			}
 		}
@@ -471,8 +471,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				feedModelImpl.getUserId(), feedModelImpl.getTwitterScreenName()
 			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_TSN, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_TSN, args);
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_U_TSN, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_U_TSN, args);
 
 		if ((feedModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_U_TSN.getColumnBitmask()) != 0) {
@@ -481,8 +481,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					feedModelImpl.getOriginalTwitterScreenName()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_TSN, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_TSN, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_TSN, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_TSN, args);
 		}
 	}
 
@@ -634,13 +634,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !FeedModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
-		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed, false);
 
 		clearUniqueFindersCache(feedModelImpl);
@@ -718,7 +718,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	@Override
 	public Feed fetchByPrimaryKey(Serializable primaryKey) {
-		Feed feed = (Feed)EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+		Feed feed = (Feed)entityCache.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 				FeedImpl.class, primaryKey);
 
 		if (feed == _nullFeed) {
@@ -737,12 +737,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					cacheResult(feed);
 				}
 				else {
-					EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 						FeedImpl.class, primaryKey, _nullFeed);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 					FeedImpl.class, primaryKey);
 
 				throw processException(e);
@@ -792,7 +792,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Feed feed = (Feed)EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			Feed feed = (Feed)entityCache.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 					FeedImpl.class, primaryKey);
 
 			if (feed == null) {
@@ -844,7 +844,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 					FeedImpl.class, primaryKey, _nullFeed);
 			}
 		}
@@ -899,6 +899,25 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	@Override
 	public List<Feed> findAll(int start, int end,
 		OrderByComparator<Feed> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the feeds.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link FeedModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of feeds
+	 * @param end the upper bound of the range of feeds (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of feeds
+	 */
+	@Override
+	public List<Feed> findAll(int start, int end,
+		OrderByComparator<Feed> orderByComparator, boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -914,8 +933,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<Feed> list = (List<Feed>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<Feed> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<Feed>)finderCache.getResult(finderPath, finderArgs,
+					this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -962,10 +985,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -995,7 +1018,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1008,11 +1031,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -1037,12 +1060,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(FeedImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(FeedImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_FEED = "SELECT feed FROM Feed feed";
 	private static final String _SQL_SELECT_FEED_WHERE_PKS_IN = "SELECT feed FROM Feed feed WHERE feedId IN (";
 	private static final String _SQL_SELECT_FEED_WHERE = "SELECT feed FROM Feed feed WHERE ";

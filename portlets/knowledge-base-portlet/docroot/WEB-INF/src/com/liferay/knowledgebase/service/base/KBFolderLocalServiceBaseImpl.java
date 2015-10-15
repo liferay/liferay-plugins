@@ -303,14 +303,12 @@ public abstract class KBFolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 		exportActionableDynamicQuery.setGroupId(portletDataContext.getScopeGroupId());
 
-		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
+		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod<KBFolder>() {
 				@Override
-				public void performAction(Object object)
+				public void performAction(KBFolder kbFolder)
 					throws PortalException {
-					KBFolder stagedModel = (KBFolder)object;
-
 					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
-						stagedModel);
+						kbFolder);
 				}
 			});
 		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(

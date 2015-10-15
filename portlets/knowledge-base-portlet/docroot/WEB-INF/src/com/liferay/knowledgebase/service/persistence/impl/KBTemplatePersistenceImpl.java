@@ -22,7 +22,9 @@ import com.liferay.knowledgebase.model.impl.KBTemplateImpl;
 import com.liferay.knowledgebase.model.impl.KBTemplateModelImpl;
 import com.liferay.knowledgebase.service.persistence.KBTemplatePersistence;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -153,6 +155,27 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	@Override
 	public List<KBTemplate> findByUuid(String uuid, int start, int end,
 		OrderByComparator<KBTemplate> orderByComparator) {
+		return findByUuid(uuid, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the k b templates where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of k b templates
+	 * @param end the upper bound of the range of k b templates (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching k b templates
+	 */
+	@Override
+	public List<KBTemplate> findByUuid(String uuid, int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -168,15 +191,19 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			finderArgs = new Object[] { uuid, start, end, orderByComparator };
 		}
 
-		List<KBTemplate> list = (List<KBTemplate>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<KBTemplate> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KBTemplate kbTemplate : list) {
-				if (!Validator.equals(uuid, kbTemplate.getUuid())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<KBTemplate>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (KBTemplate kbTemplate : list) {
+					if (!Validator.equals(uuid, kbTemplate.getUuid())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -247,10 +274,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -551,8 +578,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 		Object[] finderArgs = new Object[] { uuid };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -590,10 +616,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -672,7 +698,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
-	 * @param retrieveFromCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching k b template, or <code>null</code> if a matching k b template could not be found
 	 */
 	@Override
@@ -683,7 +709,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_UUID_G,
 					finderArgs, this);
 		}
 
@@ -737,7 +763,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				List<KBTemplate> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+					finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 						finderArgs, list);
 				}
 				else {
@@ -750,14 +776,13 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 					if ((kbTemplate.getUuid() == null) ||
 							!kbTemplate.getUuid().equals(uuid) ||
 							(kbTemplate.getGroupId() != groupId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+						finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 							finderArgs, kbTemplate);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-					finderArgs);
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, finderArgs);
 
 				throw processException(e);
 			}
@@ -802,8 +827,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -845,10 +869,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -935,6 +959,28 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	@Override
 	public List<KBTemplate> findByUuid_C(String uuid, long companyId,
 		int start, int end, OrderByComparator<KBTemplate> orderByComparator) {
+		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the k b templates where uuid = &#63; and companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of k b templates
+	 * @param end the upper bound of the range of k b templates (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching k b templates
+	 */
+	@Override
+	public List<KBTemplate> findByUuid_C(String uuid, long companyId,
+		int start, int end, OrderByComparator<KBTemplate> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -954,16 +1000,20 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				};
 		}
 
-		List<KBTemplate> list = (List<KBTemplate>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<KBTemplate> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KBTemplate kbTemplate : list) {
-				if (!Validator.equals(uuid, kbTemplate.getUuid()) ||
-						(companyId != kbTemplate.getCompanyId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<KBTemplate>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (KBTemplate kbTemplate : list) {
+					if (!Validator.equals(uuid, kbTemplate.getUuid()) ||
+							(companyId != kbTemplate.getCompanyId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1038,10 +1088,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1363,8 +1413,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -1406,10 +1455,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1490,6 +1539,27 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	@Override
 	public List<KBTemplate> findByGroupId(long groupId, int start, int end,
 		OrderByComparator<KBTemplate> orderByComparator) {
+		return findByGroupId(groupId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the k b templates where groupId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param groupId the group ID
+	 * @param start the lower bound of the range of k b templates
+	 * @param end the upper bound of the range of k b templates (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching k b templates
+	 */
+	@Override
+	public List<KBTemplate> findByGroupId(long groupId, int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1505,15 +1575,19 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			finderArgs = new Object[] { groupId, start, end, orderByComparator };
 		}
 
-		List<KBTemplate> list = (List<KBTemplate>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<KBTemplate> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (KBTemplate kbTemplate : list) {
-				if ((groupId != kbTemplate.getGroupId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<KBTemplate>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (KBTemplate kbTemplate : list) {
+					if ((groupId != kbTemplate.getGroupId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1570,10 +1644,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2168,8 +2242,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 		Object[] finderArgs = new Object[] { groupId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -2193,10 +2266,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2269,10 +2342,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public void cacheResult(KBTemplate kbTemplate) {
-		EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+		finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] { kbTemplate.getUuid(), kbTemplate.getGroupId() },
 			kbTemplate);
 
@@ -2287,7 +2360,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	@Override
 	public void cacheResult(List<KBTemplate> kbTemplates) {
 		for (KBTemplate kbTemplate : kbTemplates) {
-			if (EntityCacheUtil.getResult(
+			if (entityCache.getResult(
 						KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 						KBTemplateImpl.class, kbTemplate.getPrimaryKey()) == null) {
 				cacheResult(kbTemplate);
@@ -2302,43 +2375,43 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * Clears the cache for all k b templates.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(KBTemplateImpl.class);
+		entityCache.clearCache(KBTemplateImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the k b template.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(KBTemplate kbTemplate) {
-		EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateImpl.class, kbTemplate.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		clearUniqueFindersCache((KBTemplateModelImpl)kbTemplate);
 	}
 
 	@Override
 	public void clearCache(List<KBTemplate> kbTemplates) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (KBTemplate kbTemplate : kbTemplates) {
-			EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 				KBTemplateImpl.class, kbTemplate.getPrimaryKey());
 
 			clearUniqueFindersCache((KBTemplateModelImpl)kbTemplate);
@@ -2353,9 +2426,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 					kbTemplateModelImpl.getGroupId()
 				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+			finderCache.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+			finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
 				kbTemplateModelImpl);
 		}
 		else {
@@ -2366,9 +2439,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						kbTemplateModelImpl.getGroupId()
 					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+				finderCache.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+				finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
 					kbTemplateModelImpl);
 			}
 		}
@@ -2380,8 +2453,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 				kbTemplateModelImpl.getUuid(), kbTemplateModelImpl.getGroupId()
 			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 
 		if ((kbTemplateModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
@@ -2390,8 +2463,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 					kbTemplateModelImpl.getOriginalGroupId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 		}
 	}
 
@@ -2556,10 +2629,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !KBTemplateModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		else {
@@ -2569,14 +2642,14 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						kbTemplateModelImpl.getOriginalUuid()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
 
 				args = new Object[] { kbTemplateModelImpl.getUuid() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
 			}
 
@@ -2587,8 +2660,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						kbTemplateModelImpl.getOriginalCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
 					args);
 
 				args = new Object[] {
@@ -2596,8 +2669,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						kbTemplateModelImpl.getCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
 					args);
 			}
 
@@ -2607,19 +2680,19 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 						kbTemplateModelImpl.getOriginalGroupId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
 				args = new Object[] { kbTemplateModelImpl.getGroupId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 			}
 		}
 
-		EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 			KBTemplateImpl.class, kbTemplate.getPrimaryKey(), kbTemplate, false);
 
 		clearUniqueFindersCache(kbTemplateModelImpl);
@@ -2700,7 +2773,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public KBTemplate fetchByPrimaryKey(Serializable primaryKey) {
-		KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+		KBTemplate kbTemplate = (KBTemplate)entityCache.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 				KBTemplateImpl.class, primaryKey);
 
 		if (kbTemplate == _nullKBTemplate) {
@@ -2720,12 +2793,12 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 					cacheResult(kbTemplate);
 				}
 				else {
-					EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 						KBTemplateImpl.class, primaryKey, _nullKBTemplate);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 					KBTemplateImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2775,7 +2848,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+			KBTemplate kbTemplate = (KBTemplate)entityCache.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 					KBTemplateImpl.class, primaryKey);
 
 			if (kbTemplate == null) {
@@ -2827,7 +2900,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 					KBTemplateImpl.class, primaryKey, _nullKBTemplate);
 			}
 		}
@@ -2882,6 +2955,26 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	@Override
 	public List<KBTemplate> findAll(int start, int end,
 		OrderByComparator<KBTemplate> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the k b templates.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link KBTemplateModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of k b templates
+	 * @param end the upper bound of the range of k b templates (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of k b templates
+	 */
+	@Override
+	public List<KBTemplate> findAll(int start, int end,
+		OrderByComparator<KBTemplate> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2897,8 +2990,12 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<KBTemplate> list = (List<KBTemplate>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<KBTemplate> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<KBTemplate>)finderCache.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2945,10 +3042,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2978,7 +3075,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -2991,11 +3088,11 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -3025,12 +3122,14 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(KBTemplateImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(KBTemplateImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_KBTEMPLATE = "SELECT kbTemplate FROM KBTemplate kbTemplate";
 	private static final String _SQL_SELECT_KBTEMPLATE_WHERE_PKS_IN = "SELECT kbTemplate FROM KBTemplate kbTemplate WHERE kbTemplateId IN (";
 	private static final String _SQL_SELECT_KBTEMPLATE_WHERE = "SELECT kbTemplate FROM KBTemplate kbTemplate WHERE ";

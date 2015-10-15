@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,6 +35,23 @@ public interface KBArticle extends KBArticleModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.KBArticleImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<KBArticle, Long> KB_ARTICLE_ID_ACCESSOR = new Accessor<KBArticle, Long>() {
+			@Override
+			public Long get(KBArticle kbArticle) {
+				return kbArticle.getKbArticleId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<KBArticle> getTypeClass() {
+				return KBArticle.class;
+			}
+		};
+
 	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys()
 		throws com.liferay.portal.kernel.exception.PortalException;
 

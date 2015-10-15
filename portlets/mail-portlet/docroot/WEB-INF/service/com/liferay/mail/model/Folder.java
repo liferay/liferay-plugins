@@ -16,6 +16,7 @@ package com.liferay.mail.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface Folder extends FolderModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.FolderImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<Folder, Long> FOLDER_ID_ACCESSOR = new Accessor<Folder, Long>() {
+			@Override
+			public Long get(Folder folder) {
+				return folder.getFolderId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<Folder> getTypeClass() {
+				return Folder.class;
+			}
+		};
 }

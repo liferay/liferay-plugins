@@ -16,6 +16,7 @@ package com.liferay.so.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,21 @@ public interface ProjectsEntry extends ProjectsEntryModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.so.model.impl.ProjectsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<ProjectsEntry, Long> PROJECTS_ENTRY_ID_ACCESSOR =
+		new Accessor<ProjectsEntry, Long>() {
+			@Override
+			public Long get(ProjectsEntry projectsEntry) {
+				return projectsEntry.getProjectsEntryId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<ProjectsEntry> getTypeClass() {
+				return ProjectsEntry.class;
+			}
+		};
 }

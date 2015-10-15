@@ -16,6 +16,7 @@ package com.liferay.tasks.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,6 +35,23 @@ public interface TasksEntry extends TasksEntryModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.tasks.model.impl.TasksEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<TasksEntry, Long> TASKS_ENTRY_ID_ACCESSOR = new Accessor<TasksEntry, Long>() {
+			@Override
+			public Long get(TasksEntry tasksEntry) {
+				return tasksEntry.getTasksEntryId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<TasksEntry> getTypeClass() {
+				return TasksEntry.class;
+			}
+		};
+
 	public java.lang.String getAssigneeFullName();
 
 	public java.lang.String getPriorityLabel();

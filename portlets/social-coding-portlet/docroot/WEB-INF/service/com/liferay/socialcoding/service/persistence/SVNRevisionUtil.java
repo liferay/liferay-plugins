@@ -157,6 +157,29 @@ public class SVNRevisionUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the s v n revisions where svnUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SVNRevisionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param svnUserId the svn user ID
+	* @param start the lower bound of the range of s v n revisions
+	* @param end the upper bound of the range of s v n revisions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching s v n revisions
+	*/
+	public static List<SVNRevision> findBySVNUserId(
+		java.lang.String svnUserId, int start, int end,
+		OrderByComparator<SVNRevision> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findBySVNUserId(svnUserId, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
 	* Returns the first s v n revision in the ordered set where svnUserId = &#63;.
 	*
 	* @param svnUserId the svn user ID
@@ -299,6 +322,29 @@ public class SVNRevisionUtil {
 		return getPersistence()
 				   .findBySVNRepositoryId(svnRepositoryId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the s v n revisions where svnRepositoryId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SVNRevisionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param svnRepositoryId the svn repository ID
+	* @param start the lower bound of the range of s v n revisions
+	* @param end the upper bound of the range of s v n revisions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching s v n revisions
+	*/
+	public static List<SVNRevision> findBySVNRepositoryId(
+		long svnRepositoryId, int start, int end,
+		OrderByComparator<SVNRevision> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findBySVNRepositoryId(svnRepositoryId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -449,6 +495,30 @@ public class SVNRevisionUtil {
 		return getPersistence()
 				   .findBySVNU_SVNR(svnUserId, svnRepositoryId, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SVNRevisionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param svnUserId the svn user ID
+	* @param svnRepositoryId the svn repository ID
+	* @param start the lower bound of the range of s v n revisions
+	* @param end the upper bound of the range of s v n revisions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching s v n revisions
+	*/
+	public static List<SVNRevision> findBySVNU_SVNR(
+		java.lang.String svnUserId, long svnRepositoryId, int start, int end,
+		OrderByComparator<SVNRevision> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findBySVNU_SVNR(svnUserId, svnRepositoryId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -670,6 +740,26 @@ public class SVNRevisionUtil {
 	public static List<SVNRevision> findAll(int start, int end,
 		OrderByComparator<SVNRevision> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the s v n revisions.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link SVNRevisionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of s v n revisions
+	* @param end the upper bound of the range of s v n revisions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of s v n revisions
+	*/
+	public static List<SVNRevision> findAll(int start, int end,
+		OrderByComparator<SVNRevision> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findAll(start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

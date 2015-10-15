@@ -82,6 +82,25 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator);
 
 	/**
+	* Returns an ordered range of all the j i r a actions where jiraUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAActionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param jiraUserId the jira user ID
+	* @param start the lower bound of the range of j i r a actions
+	* @param end the upper bound of the range of j i r a actions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a actions
+	*/
+	public java.util.List<JIRAAction> findByJiraUserId(
+		java.lang.String jiraUserId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
 	* Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
 	*
 	* @param jiraUserId the jira user ID
@@ -195,6 +214,25 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator);
 
 	/**
+	* Returns an ordered range of all the j i r a actions where jiraIssueId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAActionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param jiraIssueId the jira issue ID
+	* @param start the lower bound of the range of j i r a actions
+	* @param end the upper bound of the range of j i r a actions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a actions
+	*/
+	public java.util.List<JIRAAction> findByJiraIssueId(long jiraIssueId,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
 	* Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
 	*
 	* @param jiraIssueId the jira issue ID
@@ -306,6 +344,25 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	public java.util.List<JIRAAction> findByType(java.lang.String type,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the j i r a actions where type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAActionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param type the type
+	* @param start the lower bound of the range of j i r a actions
+	* @param end the upper bound of the range of j i r a actions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching j i r a actions
+	*/
+	public java.util.List<JIRAAction> findByType(java.lang.String type,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator,
+		boolean retrieveFromCache);
 
 	/**
 	* Returns the first j i r a action in the ordered set where type = &#63;.
@@ -470,6 +527,23 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*/
 	public java.util.List<JIRAAction> findAll(int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the j i r a actions.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAActionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of j i r a actions
+	* @param end the upper bound of the range of j i r a actions (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of j i r a actions
+	*/
+	public java.util.List<JIRAAction> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator,
+		boolean retrieveFromCache);
 
 	/**
 	* Removes all the j i r a actions from the database.

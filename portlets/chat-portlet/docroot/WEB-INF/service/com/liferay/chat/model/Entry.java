@@ -16,6 +16,7 @@ package com.liferay.chat.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface Entry extends EntryModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.chat.model.impl.EntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<Entry, Long> ENTRY_ID_ACCESSOR = new Accessor<Entry, Long>() {
+			@Override
+			public Long get(Entry entry) {
+				return entry.getEntryId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<Entry> getTypeClass() {
+				return Entry.class;
+			}
+		};
 }

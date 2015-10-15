@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface KBTemplate extends KBTemplateModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.KBTemplateImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<KBTemplate, Long> KB_TEMPLATE_ID_ACCESSOR = new Accessor<KBTemplate, Long>() {
+			@Override
+			public Long get(KBTemplate kbTemplate) {
+				return kbTemplate.getKbTemplateId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<KBTemplate> getTypeClass() {
+				return KBTemplate.class;
+			}
+		};
 }

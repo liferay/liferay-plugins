@@ -16,6 +16,7 @@ package com.liferay.wsrp.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -35,4 +36,21 @@ public interface WSRPConsumerPortlet extends WSRPConsumerPortletModel,
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<WSRPConsumerPortlet, Long> WSRP_CONSUMER_PORTLET_ID_ACCESSOR =
+		new Accessor<WSRPConsumerPortlet, Long>() {
+			@Override
+			public Long get(WSRPConsumerPortlet wsrpConsumerPortlet) {
+				return wsrpConsumerPortlet.getWsrpConsumerPortletId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<WSRPConsumerPortlet> getTypeClass() {
+				return WSRPConsumerPortlet.class;
+			}
+		};
 }

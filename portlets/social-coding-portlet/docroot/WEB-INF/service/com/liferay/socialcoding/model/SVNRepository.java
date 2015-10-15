@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,6 +35,24 @@ public interface SVNRepository extends SVNRepositoryModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.SVNRepositoryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<SVNRepository, Long> SVN_REPOSITORY_ID_ACCESSOR =
+		new Accessor<SVNRepository, Long>() {
+			@Override
+			public Long get(SVNRepository svnRepository) {
+				return svnRepository.getSvnRepositoryId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<SVNRepository> getTypeClass() {
+				return SVNRepository.class;
+			}
+		};
+
 	public java.lang.String getName();
 
 	public java.lang.String getShortURL();

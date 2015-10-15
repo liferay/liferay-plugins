@@ -22,7 +22,9 @@ import com.liferay.ams.model.impl.DefinitionImpl;
 import com.liferay.ams.model.impl.DefinitionModelImpl;
 import com.liferay.ams.service.persistence.DefinitionPersistence;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -95,7 +97,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public void cacheResult(Definition definition) {
-		EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey(), definition);
 
 		definition.resetOriginalValues();
@@ -109,7 +111,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	@Override
 	public void cacheResult(List<Definition> definitions) {
 		for (Definition definition : definitions) {
-			if (EntityCacheUtil.getResult(
+			if (entityCache.getResult(
 						DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 						DefinitionImpl.class, definition.getPrimaryKey()) == null) {
 				cacheResult(definition);
@@ -124,41 +126,41 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 * Clears the cache for all definitions.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(DefinitionImpl.class);
+		entityCache.clearCache(DefinitionImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the definition.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(Definition definition) {
-		EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@Override
 	public void clearCache(List<Definition> definitions) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (Definition definition : definitions) {
-			EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 				DefinitionImpl.class, definition.getPrimaryKey());
 		}
 	}
@@ -315,13 +317,13 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
-		EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey(), definition, false);
 
 		definition.resetOriginalValues();
@@ -401,7 +403,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public Definition fetchByPrimaryKey(Serializable primaryKey) {
-		Definition definition = (Definition)EntityCacheUtil.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+		Definition definition = (Definition)entityCache.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 				DefinitionImpl.class, primaryKey);
 
 		if (definition == _nullDefinition) {
@@ -421,12 +423,12 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 					cacheResult(definition);
 				}
 				else {
-					EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 						DefinitionImpl.class, primaryKey, _nullDefinition);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 					DefinitionImpl.class, primaryKey);
 
 				throw processException(e);
@@ -476,7 +478,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Definition definition = (Definition)EntityCacheUtil.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+			Definition definition = (Definition)entityCache.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 					DefinitionImpl.class, primaryKey);
 
 			if (definition == null) {
@@ -528,7 +530,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 					DefinitionImpl.class, primaryKey, _nullDefinition);
 			}
 		}
@@ -583,6 +585,26 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	@Override
 	public List<Definition> findAll(int start, int end,
 		OrderByComparator<Definition> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the definitions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link DefinitionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of definitions
+	 * @param end the upper bound of the range of definitions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of definitions
+	 */
+	@Override
+	public List<Definition> findAll(int start, int end,
+		OrderByComparator<Definition> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -598,8 +620,12 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<Definition> list = (List<Definition>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<Definition> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<Definition>)finderCache.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -646,10 +672,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -679,7 +705,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -692,11 +718,11 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -721,12 +747,14 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(DefinitionImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(DefinitionImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_DEFINITION = "SELECT definition FROM Definition definition";
 	private static final String _SQL_SELECT_DEFINITION_WHERE_PKS_IN = "SELECT definition FROM Definition definition WHERE definitionId IN (";
 	private static final String _SQL_COUNT_DEFINITION = "SELECT COUNT(definition) FROM Definition definition";

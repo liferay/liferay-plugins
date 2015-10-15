@@ -16,6 +16,7 @@ package com.liferay.ams.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface Type extends TypeModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.TypeImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<Type, Long> TYPE_ID_ACCESSOR = new Accessor<Type, Long>() {
+			@Override
+			public Long get(Type type) {
+				return type.getTypeId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<Type> getTypeClass() {
+				return Type.class;
+			}
+		};
 }

@@ -157,6 +157,29 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the w s r p consumer portlets where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WSRPConsumerPortletModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching w s r p consumer portlets
+	*/
+	public static List<WSRPConsumerPortlet> findByUuid(java.lang.String uuid,
+		int start, int end,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByUuid(uuid, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
 	* Returns the first w s r p consumer portlet in the ordered set where uuid = &#63;.
 	*
 	* @param uuid the uuid
@@ -294,6 +317,30 @@ public class WSRPConsumerPortletUtil {
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the w s r p consumer portlets where uuid = &#63; and companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WSRPConsumerPortletModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param uuid the uuid
+	* @param companyId the company ID
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching w s r p consumer portlets
+	*/
+	public static List<WSRPConsumerPortlet> findByUuid_C(
+		java.lang.String uuid, long companyId, int start, int end,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByUuid_C(uuid, companyId, start, end,
+			orderByComparator, retrieveFromCache);
 	}
 
 	/**
@@ -449,6 +496,29 @@ public class WSRPConsumerPortletUtil {
 	}
 
 	/**
+	* Returns an ordered range of all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WSRPConsumerPortletModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param wsrpConsumerId the wsrp consumer ID
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching w s r p consumer portlets
+	*/
+	public static List<WSRPConsumerPortlet> findByWsrpConsumerId(
+		long wsrpConsumerId, int start, int end,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByWsrpConsumerId(wsrpConsumerId, start, end,
+			orderByComparator, retrieveFromCache);
+	}
+
+	/**
 	* Returns the first w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
@@ -577,7 +647,7 @@ public class WSRPConsumerPortletUtil {
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param portletHandle the portlet handle
-	* @param retrieveFromCache whether to use the finder cache
+	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
 	*/
 	public static WSRPConsumerPortlet fetchByW_P(long wsrpConsumerId,
@@ -725,6 +795,26 @@ public class WSRPConsumerPortletUtil {
 	public static List<WSRPConsumerPortlet> findAll(int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the w s r p consumer portlets.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link WSRPConsumerPortletModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of w s r p consumer portlets
+	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of w s r p consumer portlets
+	*/
+	public static List<WSRPConsumerPortlet> findAll(int start, int end,
+		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findAll(start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**

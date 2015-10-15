@@ -22,7 +22,9 @@ import com.liferay.ams.model.impl.AssetImpl;
 import com.liferay.ams.model.impl.AssetModelImpl;
 import com.liferay.ams.service.persistence.AssetPersistence;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -96,7 +98,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	@Override
 	public void cacheResult(Asset asset) {
-		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey(), asset);
 
 		asset.resetOriginalValues();
@@ -110,7 +112,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	@Override
 	public void cacheResult(List<Asset> assets) {
 		for (Asset asset : assets) {
-			if (EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+			if (entityCache.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 						AssetImpl.class, asset.getPrimaryKey()) == null) {
 				cacheResult(asset);
 			}
@@ -124,41 +126,41 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 * Clears the cache for all assets.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(AssetImpl.class);
+		entityCache.clearCache(AssetImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the asset.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(Asset asset) {
-		EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@Override
 	public void clearCache(List<Asset> assets) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (Asset asset : assets) {
-			EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 				AssetImpl.class, asset.getPrimaryKey());
 		}
 	}
@@ -312,13 +314,13 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
-		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey(), asset, false);
 
 		asset.resetOriginalValues();
@@ -394,7 +396,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	@Override
 	public Asset fetchByPrimaryKey(Serializable primaryKey) {
-		Asset asset = (Asset)EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+		Asset asset = (Asset)entityCache.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 				AssetImpl.class, primaryKey);
 
 		if (asset == _nullAsset) {
@@ -413,12 +415,12 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 					cacheResult(asset);
 				}
 				else {
-					EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 						AssetImpl.class, primaryKey, _nullAsset);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 					AssetImpl.class, primaryKey);
 
 				throw processException(e);
@@ -468,7 +470,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Asset asset = (Asset)EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+			Asset asset = (Asset)entityCache.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 					AssetImpl.class, primaryKey);
 
 			if (asset == null) {
@@ -520,7 +522,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 					AssetImpl.class, primaryKey, _nullAsset);
 			}
 		}
@@ -575,6 +577,25 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	@Override
 	public List<Asset> findAll(int start, int end,
 		OrderByComparator<Asset> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the assets.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AssetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of assets
+	 * @param end the upper bound of the range of assets (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of assets
+	 */
+	@Override
+	public List<Asset> findAll(int start, int end,
+		OrderByComparator<Asset> orderByComparator, boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -590,8 +611,12 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<Asset> list = (List<Asset>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<Asset> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<Asset>)finderCache.getResult(finderPath, finderArgs,
+					this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -638,10 +663,10 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -671,7 +696,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -684,11 +709,11 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -718,12 +743,14 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(AssetImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(AssetImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_ASSET = "SELECT asset FROM Asset asset";
 	private static final String _SQL_SELECT_ASSET_WHERE_PKS_IN = "SELECT asset FROM Asset asset WHERE assetId IN (";
 	private static final String _SQL_COUNT_ASSET = "SELECT COUNT(asset) FROM Asset asset";

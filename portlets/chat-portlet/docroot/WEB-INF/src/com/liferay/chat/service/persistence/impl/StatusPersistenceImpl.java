@@ -22,7 +22,9 @@ import com.liferay.chat.model.impl.StatusImpl;
 import com.liferay.chat.model.impl.StatusModelImpl;
 import com.liferay.chat.service.persistence.StatusPersistence;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -138,7 +140,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * Returns the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param userId the user ID
-	 * @param retrieveFromCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching status, or <code>null</code> if a matching status could not be found
 	 */
 	@Override
@@ -148,7 +150,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_USERID,
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_USERID,
 					finderArgs, this);
 		}
 
@@ -183,7 +185,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				List<Status> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+					finderCache.putResult(FINDER_PATH_FETCH_BY_USERID,
 						finderArgs, list);
 				}
 				else {
@@ -194,14 +196,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					cacheResult(status);
 
 					if ((status.getUserId() != userId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+						finderCache.putResult(FINDER_PATH_FETCH_BY_USERID,
 							finderArgs, status);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-					finderArgs);
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_USERID, finderArgs);
 
 				throw processException(e);
 			}
@@ -243,8 +244,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		Object[] finderArgs = new Object[] { userId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -268,10 +268,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -350,6 +350,28 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	@Override
 	public List<Status> findByModifiedDate(long modifiedDate, int start,
 		int end, OrderByComparator<Status> orderByComparator) {
+		return findByModifiedDate(modifiedDate, start, end, orderByComparator,
+			true);
+	}
+
+	/**
+	 * Returns an ordered range of all the statuses where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StatusModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching statuses
+	 */
+	@Override
+	public List<Status> findByModifiedDate(long modifiedDate, int start,
+		int end, OrderByComparator<Status> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -369,15 +391,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				};
 		}
 
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<Status> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (Status status : list) {
-				if ((modifiedDate != status.getModifiedDate())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<Status>)finderCache.getResult(finderPath, finderArgs,
+					this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (Status status : list) {
+					if ((modifiedDate != status.getModifiedDate())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -434,10 +460,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -726,8 +752,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		Object[] finderArgs = new Object[] { modifiedDate };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -751,10 +776,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -831,6 +856,26 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	@Override
 	public List<Status> findByOnline(boolean online, int start, int end,
 		OrderByComparator<Status> orderByComparator) {
+		return findByOnline(online, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the statuses where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StatusModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param online the online
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching statuses
+	 */
+	@Override
+	public List<Status> findByOnline(boolean online, int start, int end,
+		OrderByComparator<Status> orderByComparator, boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -846,15 +891,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			finderArgs = new Object[] { online, start, end, orderByComparator };
 		}
 
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<Status> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (Status status : list) {
-				if ((online != status.getOnline())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<Status>)finderCache.getResult(finderPath, finderArgs,
+					this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (Status status : list) {
+					if ((online != status.getOnline())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -911,10 +960,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1201,8 +1250,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		Object[] finderArgs = new Object[] { online };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -1226,10 +1274,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1311,6 +1359,29 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	@Override
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
 		int end, OrderByComparator<Status> orderByComparator) {
+		return findByM_O(modifiedDate, online, start, end, orderByComparator,
+			true);
+	}
+
+	/**
+	 * Returns an ordered range of all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StatusModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date
+	 * @param online the online
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching statuses
+	 */
+	@Override
+	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
+		int end, OrderByComparator<Status> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1330,16 +1401,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				};
 		}
 
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<Status> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (Status status : list) {
-				if ((modifiedDate != status.getModifiedDate()) ||
-						(online != status.getOnline())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<Status>)finderCache.getResult(finderPath, finderArgs,
+					this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (Status status : list) {
+					if ((modifiedDate != status.getModifiedDate()) ||
+							(online != status.getOnline())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -1400,10 +1475,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1708,8 +1783,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		Object[] finderArgs = new Object[] { modifiedDate, online };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -1737,10 +1811,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1766,10 +1840,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	@Override
 	public void cacheResult(Status status) {
-		EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey(), status);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
+		finderCache.putResult(FINDER_PATH_FETCH_BY_USERID,
 			new Object[] { status.getUserId() }, status);
 
 		status.resetOriginalValues();
@@ -1783,9 +1857,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	@Override
 	public void cacheResult(List<Status> statuses) {
 		for (Status status : statuses) {
-			if (EntityCacheUtil.getResult(
-						StatusModelImpl.ENTITY_CACHE_ENABLED, StatusImpl.class,
-						status.getPrimaryKey()) == null) {
+			if (entityCache.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+						StatusImpl.class, status.getPrimaryKey()) == null) {
 				cacheResult(status);
 			}
 			else {
@@ -1798,43 +1871,43 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * Clears the cache for all statuses.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(StatusImpl.class);
+		entityCache.clearCache(StatusImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the status.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(Status status) {
-		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		clearUniqueFindersCache((StatusModelImpl)status);
 	}
 
 	@Override
 	public void clearCache(List<Status> statuses) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (Status status : statuses) {
-			EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 				StatusImpl.class, status.getPrimaryKey());
 
 			clearUniqueFindersCache((StatusModelImpl)status);
@@ -1846,9 +1919,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		if (isNew) {
 			Object[] args = new Object[] { statusModelImpl.getUserId() };
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+			finderCache.putResult(FINDER_PATH_COUNT_BY_USERID, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+			finderCache.putResult(FINDER_PATH_FETCH_BY_USERID, args,
 				statusModelImpl);
 		}
 		else {
@@ -1856,9 +1929,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] { statusModelImpl.getUserId() };
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID, args,
+				finderCache.putResult(FINDER_PATH_COUNT_BY_USERID, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID, args,
+				finderCache.putResult(FINDER_PATH_FETCH_BY_USERID, args,
 					statusModelImpl);
 			}
 		}
@@ -1867,15 +1940,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	protected void clearUniqueFindersCache(StatusModelImpl statusModelImpl) {
 		Object[] args = new Object[] { statusModelImpl.getUserId() };
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 
 		if ((statusModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_USERID.getColumnBitmask()) != 0) {
 			args = new Object[] { statusModelImpl.getOriginalUserId() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_USERID, args);
 		}
 	}
 
@@ -2006,10 +2079,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !StatusModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		else {
@@ -2019,16 +2092,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 						statusModelImpl.getOriginalModifiedDate()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE,
 					args);
 
 				args = new Object[] { statusModelImpl.getModifiedDate() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_MODIFIEDDATE, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MODIFIEDDATE,
 					args);
 			}
 
@@ -2036,14 +2107,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] { statusModelImpl.getOriginalOnline() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
 					args);
 
 				args = new Object[] { statusModelImpl.getOnline() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_ONLINE, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ONLINE,
 					args);
 			}
 
@@ -2054,8 +2125,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 						statusModelImpl.getOriginalOnline()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_M_O, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_M_O, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O,
 					args);
 
 				args = new Object[] {
@@ -2063,13 +2134,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 						statusModelImpl.getOnline()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_M_O, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_M_O, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_M_O,
 					args);
 			}
 		}
 
-		EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey(), status, false);
 
 		clearUniqueFindersCache(statusModelImpl);
@@ -2146,7 +2217,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	@Override
 	public Status fetchByPrimaryKey(Serializable primaryKey) {
-		Status status = (Status)EntityCacheUtil.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+		Status status = (Status)entityCache.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 				StatusImpl.class, primaryKey);
 
 		if (status == _nullStatus) {
@@ -2165,12 +2236,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					cacheResult(status);
 				}
 				else {
-					EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 						StatusImpl.class, primaryKey, _nullStatus);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 					StatusImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2220,7 +2291,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Status status = (Status)EntityCacheUtil.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+			Status status = (Status)entityCache.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 					StatusImpl.class, primaryKey);
 
 			if (status == null) {
@@ -2272,7 +2343,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 					StatusImpl.class, primaryKey, _nullStatus);
 			}
 		}
@@ -2327,6 +2398,25 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	@Override
 	public List<Status> findAll(int start, int end,
 		OrderByComparator<Status> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the statuses.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link StatusModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of statuses
+	 * @param end the upper bound of the range of statuses (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of statuses
+	 */
+	@Override
+	public List<Status> findAll(int start, int end,
+		OrderByComparator<Status> orderByComparator, boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2342,8 +2432,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<Status> list = (List<Status>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<Status> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<Status>)finderCache.getResult(finderPath, finderArgs,
+					this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -2390,10 +2484,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2423,7 +2517,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -2436,11 +2530,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -2470,12 +2564,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(StatusImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(StatusImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_STATUS = "SELECT status FROM Status status";
 	private static final String _SQL_SELECT_STATUS_WHERE_PKS_IN = "SELECT status FROM Status status WHERE statusId IN (";
 	private static final String _SQL_SELECT_STATUS_WHERE = "SELECT status FROM Status status WHERE ";

@@ -22,7 +22,9 @@ import com.liferay.akismet.model.impl.AkismetDataImpl;
 import com.liferay.akismet.model.impl.AkismetDataModelImpl;
 import com.liferay.akismet.service.persistence.AkismetDataPersistence;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -148,6 +150,28 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	@Override
 	public List<AkismetData> findByLtModifiedDate(Date modifiedDate, int start,
 		int end, OrderByComparator<AkismetData> orderByComparator) {
+		return findByLtModifiedDate(modifiedDate, start, end,
+			orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the akismet datas where modifiedDate &lt; &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AkismetDataModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date
+	 * @param start the lower bound of the range of akismet datas
+	 * @param end the upper bound of the range of akismet datas (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching akismet datas
+	 */
+	@Override
+	public List<AkismetData> findByLtModifiedDate(Date modifiedDate, int start,
+		int end, OrderByComparator<AkismetData> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -155,16 +179,20 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_LTMODIFIEDDATE;
 		finderArgs = new Object[] { modifiedDate, start, end, orderByComparator };
 
-		List<AkismetData> list = (List<AkismetData>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<AkismetData> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (AkismetData akismetData : list) {
-				if ((modifiedDate.getTime() <= akismetData.getModifiedDate()
-															  .getTime())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<AkismetData>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (AkismetData akismetData : list) {
+					if ((modifiedDate.getTime() <= akismetData.getModifiedDate()
+																  .getTime())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -232,10 +260,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -536,8 +564,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		Object[] finderArgs = new Object[] { modifiedDate };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -572,10 +599,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -653,7 +680,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 *
 	 * @param classNameId the class name ID
 	 * @param classPK the class p k
-	 * @param retrieveFromCache whether to use the finder cache
+	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
 	 */
 	@Override
@@ -664,7 +691,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_C,
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_C_C,
 					finderArgs, this);
 		}
 
@@ -704,8 +731,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 				List<AkismetData> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
-						finderArgs, list);
+					finderCache.putResult(FINDER_PATH_FETCH_BY_C_C, finderArgs,
+						list);
 				}
 				else {
 					if ((list.size() > 1) && _log.isWarnEnabled()) {
@@ -723,14 +750,13 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 					if ((akismetData.getClassNameId() != classNameId) ||
 							(akismetData.getClassPK() != classPK)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
+						finderCache.putResult(FINDER_PATH_FETCH_BY_C_C,
 							finderArgs, akismetData);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
-					finderArgs);
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_C_C, finderArgs);
 
 				throw processException(e);
 			}
@@ -775,8 +801,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		Object[] finderArgs = new Object[] { classNameId, classPK };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -804,10 +829,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -833,10 +858,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public void cacheResult(AkismetData akismetData) {
-		EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
+		finderCache.putResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] { akismetData.getClassNameId(), akismetData.getClassPK() },
 			akismetData);
 
@@ -851,7 +876,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	@Override
 	public void cacheResult(List<AkismetData> akismetDatas) {
 		for (AkismetData akismetData : akismetDatas) {
-			if (EntityCacheUtil.getResult(
+			if (entityCache.getResult(
 						AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 						AkismetDataImpl.class, akismetData.getPrimaryKey()) == null) {
 				cacheResult(akismetData);
@@ -866,43 +891,43 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 * Clears the cache for all akismet datas.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(AkismetDataImpl.class);
+		entityCache.clearCache(AkismetDataImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the akismet data.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(AkismetData akismetData) {
-		EntityCacheUtil.removeResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataImpl.class, akismetData.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		clearUniqueFindersCache((AkismetDataModelImpl)akismetData);
 	}
 
 	@Override
 	public void clearCache(List<AkismetData> akismetDatas) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (AkismetData akismetData : akismetDatas) {
-			EntityCacheUtil.removeResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 				AkismetDataImpl.class, akismetData.getPrimaryKey());
 
 			clearUniqueFindersCache((AkismetDataModelImpl)akismetData);
@@ -917,9 +942,9 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 					akismetDataModelImpl.getClassPK()
 				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
+			finderCache.putResult(FINDER_PATH_COUNT_BY_C_C, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C, args,
+			finderCache.putResult(FINDER_PATH_FETCH_BY_C_C, args,
 				akismetDataModelImpl);
 		}
 		else {
@@ -930,9 +955,9 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 						akismetDataModelImpl.getClassPK()
 					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, args,
+				finderCache.putResult(FINDER_PATH_COUNT_BY_C_C, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C, args,
+				finderCache.putResult(FINDER_PATH_FETCH_BY_C_C, args,
 					akismetDataModelImpl);
 			}
 		}
@@ -945,8 +970,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 				akismetDataModelImpl.getClassPK()
 			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C, args);
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_C_C, args);
 
 		if ((akismetDataModelImpl.getColumnBitmask() &
 				FINDER_PATH_FETCH_BY_C_C.getColumnBitmask()) != 0) {
@@ -955,8 +980,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 					akismetDataModelImpl.getOriginalClassPK()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_C_C, args);
 		}
 	}
 
@@ -1089,13 +1114,13 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !AkismetDataModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
-		EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData,
 			false);
 
@@ -1176,7 +1201,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public AkismetData fetchByPrimaryKey(Serializable primaryKey) {
-		AkismetData akismetData = (AkismetData)EntityCacheUtil.getResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+		AkismetData akismetData = (AkismetData)entityCache.getResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 				AkismetDataImpl.class, primaryKey);
 
 		if (akismetData == _nullAkismetData) {
@@ -1196,12 +1221,12 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 					cacheResult(akismetData);
 				}
 				else {
-					EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 						AkismetDataImpl.class, primaryKey, _nullAkismetData);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 					AkismetDataImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1251,7 +1276,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			AkismetData akismetData = (AkismetData)EntityCacheUtil.getResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+			AkismetData akismetData = (AkismetData)entityCache.getResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 					AkismetDataImpl.class, primaryKey);
 
 			if (akismetData == null) {
@@ -1303,7 +1328,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
 					AkismetDataImpl.class, primaryKey, _nullAkismetData);
 			}
 		}
@@ -1358,6 +1383,26 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	@Override
 	public List<AkismetData> findAll(int start, int end,
 		OrderByComparator<AkismetData> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the akismet datas.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AkismetDataModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of akismet datas
+	 * @param end the upper bound of the range of akismet datas (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of akismet datas
+	 */
+	@Override
+	public List<AkismetData> findAll(int start, int end,
+		OrderByComparator<AkismetData> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1373,8 +1418,12 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<AkismetData> list = (List<AkismetData>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<AkismetData> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<AkismetData>)finderCache.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1421,10 +1470,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1454,7 +1503,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1467,11 +1516,11 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -1501,12 +1550,14 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(AkismetDataImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(AkismetDataImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_AKISMETDATA = "SELECT akismetData FROM AkismetData akismetData";
 	private static final String _SQL_SELECT_AKISMETDATA_WHERE_PKS_IN = "SELECT akismetData FROM AkismetData akismetData WHERE akismetDataId IN (";
 	private static final String _SQL_SELECT_AKISMETDATA_WHERE = "SELECT akismetData FROM AkismetData akismetData WHERE ";

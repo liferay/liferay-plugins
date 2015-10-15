@@ -16,7 +16,9 @@ package com.liferay.socialcoding.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -155,6 +157,27 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	@Override
 	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int start,
 		int end, OrderByComparator<JIRAChangeGroup> orderByComparator) {
+		return findByJiraUserId(jiraUserId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the j i r a change groups where jiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAChangeGroupModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param jiraUserId the jira user ID
+	 * @param start the lower bound of the range of j i r a change groups
+	 * @param end the upper bound of the range of j i r a change groups (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching j i r a change groups
+	 */
+	@Override
+	public List<JIRAChangeGroup> findByJiraUserId(String jiraUserId, int start,
+		int end, OrderByComparator<JIRAChangeGroup> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -170,16 +193,20 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			finderArgs = new Object[] { jiraUserId, start, end, orderByComparator };
 		}
 
-		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<JIRAChangeGroup> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JIRAChangeGroup jiraChangeGroup : list) {
-				if (!Validator.equals(jiraUserId,
-							jiraChangeGroup.getJiraUserId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<JIRAChangeGroup>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (JIRAChangeGroup jiraChangeGroup : list) {
+					if (!Validator.equals(jiraUserId,
+								jiraChangeGroup.getJiraUserId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -250,10 +277,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -558,8 +585,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		Object[] finderArgs = new Object[] { jiraUserId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -597,10 +623,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -685,6 +711,28 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	@Override
 	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int start,
 		int end, OrderByComparator<JIRAChangeGroup> orderByComparator) {
+		return findByJiraIssueId(jiraIssueId, start, end, orderByComparator,
+			true);
+	}
+
+	/**
+	 * Returns an ordered range of all the j i r a change groups where jiraIssueId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAChangeGroupModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param jiraIssueId the jira issue ID
+	 * @param start the lower bound of the range of j i r a change groups
+	 * @param end the upper bound of the range of j i r a change groups (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching j i r a change groups
+	 */
+	@Override
+	public List<JIRAChangeGroup> findByJiraIssueId(long jiraIssueId, int start,
+		int end, OrderByComparator<JIRAChangeGroup> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -700,15 +748,19 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			finderArgs = new Object[] { jiraIssueId, start, end, orderByComparator };
 		}
 
-		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<JIRAChangeGroup> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (JIRAChangeGroup jiraChangeGroup : list) {
-				if ((jiraIssueId != jiraChangeGroup.getJiraIssueId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<JIRAChangeGroup>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (JIRAChangeGroup jiraChangeGroup : list) {
+					if ((jiraIssueId != jiraChangeGroup.getJiraIssueId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -765,10 +817,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1059,8 +1111,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 		Object[] finderArgs = new Object[] { jiraIssueId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -1084,10 +1135,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1112,7 +1163,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public void cacheResult(JIRAChangeGroup jiraChangeGroup) {
-		EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey(),
 			jiraChangeGroup);
 
@@ -1127,7 +1178,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	@Override
 	public void cacheResult(List<JIRAChangeGroup> jiraChangeGroups) {
 		for (JIRAChangeGroup jiraChangeGroup : jiraChangeGroups) {
-			if (EntityCacheUtil.getResult(
+			if (entityCache.getResult(
 						JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 						JIRAChangeGroupImpl.class,
 						jiraChangeGroup.getPrimaryKey()) == null) {
@@ -1143,41 +1194,41 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 * Clears the cache for all j i r a change groups.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(JIRAChangeGroupImpl.class);
+		entityCache.clearCache(JIRAChangeGroupImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the j i r a change group.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(JIRAChangeGroup jiraChangeGroup) {
-		EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@Override
 	public void clearCache(List<JIRAChangeGroup> jiraChangeGroups) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (JIRAChangeGroup jiraChangeGroup : jiraChangeGroups) {
-			EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 				JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey());
 		}
 	}
@@ -1312,10 +1363,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !JIRAChangeGroupModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		else {
@@ -1325,16 +1376,14 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 						jiraChangeGroupModelImpl.getOriginalJiraUserId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAUSERID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_JIRAUSERID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
 					args);
 
 				args = new Object[] { jiraChangeGroupModelImpl.getJiraUserId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAUSERID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_JIRAUSERID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAUSERID,
 					args);
 			}
 
@@ -1344,21 +1393,19 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 						jiraChangeGroupModelImpl.getOriginalJiraIssueId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
 					args);
 
 				args = new Object[] { jiraChangeGroupModelImpl.getJiraIssueId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_JIRAISSUEID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_JIRAISSUEID,
 					args);
 			}
 		}
 
-		EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey(),
 			jiraChangeGroup, false);
 
@@ -1430,7 +1477,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public JIRAChangeGroup fetchByPrimaryKey(Serializable primaryKey) {
-		JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)EntityCacheUtil.getResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+		JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)entityCache.getResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 				JIRAChangeGroupImpl.class, primaryKey);
 
 		if (jiraChangeGroup == _nullJIRAChangeGroup) {
@@ -1450,13 +1497,13 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 					cacheResult(jiraChangeGroup);
 				}
 				else {
-					EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 						JIRAChangeGroupImpl.class, primaryKey,
 						_nullJIRAChangeGroup);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 					JIRAChangeGroupImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1506,7 +1553,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)EntityCacheUtil.getResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+			JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)entityCache.getResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 					JIRAChangeGroupImpl.class, primaryKey);
 
 			if (jiraChangeGroup == null) {
@@ -1558,7 +1605,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 					JIRAChangeGroupImpl.class, primaryKey, _nullJIRAChangeGroup);
 			}
 		}
@@ -1613,6 +1660,26 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	@Override
 	public List<JIRAChangeGroup> findAll(int start, int end,
 		OrderByComparator<JIRAChangeGroup> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the j i r a change groups.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link JIRAChangeGroupModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of j i r a change groups
+	 * @param end the upper bound of the range of j i r a change groups (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of j i r a change groups
+	 */
+	@Override
+	public List<JIRAChangeGroup> findAll(int start, int end,
+		OrderByComparator<JIRAChangeGroup> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1628,8 +1695,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<JIRAChangeGroup> list = (List<JIRAChangeGroup>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<JIRAChangeGroup> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<JIRAChangeGroup>)finderCache.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1676,10 +1747,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1709,7 +1780,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1722,11 +1793,11 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -1756,12 +1827,14 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(JIRAChangeGroupImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(JIRAChangeGroupImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_JIRACHANGEGROUP = "SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup";
 	private static final String _SQL_SELECT_JIRACHANGEGROUP_WHERE_PKS_IN = "SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE id IN (";
 	private static final String _SQL_SELECT_JIRACHANGEGROUP_WHERE = "SELECT jiraChangeGroup FROM JIRAChangeGroup jiraChangeGroup WHERE ";

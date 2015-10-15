@@ -16,6 +16,7 @@ package com.liferay.so.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,20 @@ public interface FavoriteSite extends FavoriteSiteModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.so.model.impl.FavoriteSiteImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<FavoriteSite, Long> FAVORITE_SITE_ID_ACCESSOR = new Accessor<FavoriteSite, Long>() {
+			@Override
+			public Long get(FavoriteSite favoriteSite) {
+				return favoriteSite.getFavoriteSiteId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<FavoriteSite> getTypeClass() {
+				return FavoriteSite.class;
+			}
+		};
 }

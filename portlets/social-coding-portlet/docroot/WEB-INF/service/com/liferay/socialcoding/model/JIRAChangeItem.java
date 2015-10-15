@@ -16,6 +16,7 @@ package com.liferay.socialcoding.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,4 +35,21 @@ public interface JIRAChangeItem extends JIRAChangeItemModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAChangeItemImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<JIRAChangeItem, Long> JIRA_CHANGE_ITEM_ID_ACCESSOR =
+		new Accessor<JIRAChangeItem, Long>() {
+			@Override
+			public Long get(JIRAChangeItem jiraChangeItem) {
+				return jiraChangeItem.getJiraChangeItemId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<JIRAChangeItem> getTypeClass() {
+				return JIRAChangeItem.class;
+			}
+		};
 }

@@ -81,6 +81,25 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator);
 
 	/**
+	* Returns an ordered range of all the user threads where mbThreadId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param mbThreadId the mb thread ID
+	* @param start the lower bound of the range of user threads
+	* @param end the upper bound of the range of user threads (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching user threads
+	*/
+	public java.util.List<UserThread> findByMBThreadId(long mbThreadId,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
 	* Returns the first user thread in the ordered set where mbThreadId = &#63;.
 	*
 	* @param mbThreadId the mb thread ID
@@ -194,6 +213,25 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator);
 
 	/**
+	* Returns an ordered range of all the user threads where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of user threads
+	* @param end the upper bound of the range of user threads (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching user threads
+	*/
+	public java.util.List<UserThread> findByUserId(long userId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
 	* Returns the first user thread in the ordered set where userId = &#63;.
 	*
 	* @param userId the user ID
@@ -291,7 +329,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*
 	* @param userId the user ID
 	* @param mbThreadId the mb thread ID
-	* @param retrieveFromCache whether to use the finder cache
+	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	*/
 	public UserThread fetchByU_M(long userId, long mbThreadId,
@@ -358,6 +396,26 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public java.util.List<UserThread> findByU_D(long userId, boolean deleted,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the user threads where userId = &#63; and deleted = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param deleted the deleted
+	* @param start the lower bound of the range of user threads
+	* @param end the upper bound of the range of user threads (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching user threads
+	*/
+	public java.util.List<UserThread> findByU_D(long userId, boolean deleted,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache);
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63; and deleted = &#63;.
@@ -485,6 +543,27 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public java.util.List<UserThread> findByU_R_D(long userId, boolean read,
 		boolean deleted, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the user threads where userId = &#63; and read = &#63; and deleted = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param read the read
+	* @param deleted the deleted
+	* @param start the lower bound of the range of user threads
+	* @param end the upper bound of the range of user threads (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching user threads
+	*/
+	public java.util.List<UserThread> findByU_R_D(long userId, boolean read,
+		boolean deleted, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache);
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
@@ -667,6 +746,23 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public java.util.List<UserThread> findAll(int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the user threads.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link UserThreadModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of user threads
+	* @param end the upper bound of the range of user threads (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of user threads
+	*/
+	public java.util.List<UserThread> findAll(int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator,
+		boolean retrieveFromCache);
 
 	/**
 	* Removes all the user threads from the database.

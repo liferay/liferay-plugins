@@ -16,6 +16,7 @@ package com.liferay.mail.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,6 +35,23 @@ public interface Account extends AccountModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.AccountImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<Account, Long> ACCOUNT_ID_ACCESSOR = new Accessor<Account, Long>() {
+			@Override
+			public Long get(Account account) {
+				return account.getAccountId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<Account> getTypeClass() {
+				return Account.class;
+			}
+		};
+
 	public java.lang.String getPasswordDecrypted();
 
 	public void setPasswordDecrypted(java.lang.String unencryptedPassword);

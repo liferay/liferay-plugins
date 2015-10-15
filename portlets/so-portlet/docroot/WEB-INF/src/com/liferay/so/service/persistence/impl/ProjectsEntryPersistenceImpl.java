@@ -16,7 +16,9 @@ package com.liferay.so.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -153,6 +155,27 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	@Override
 	public List<ProjectsEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator<ProjectsEntry> orderByComparator) {
+		return findByUserId(userId, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the projects entries where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ProjectsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param start the lower bound of the range of projects entries
+	 * @param end the upper bound of the range of projects entries (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching projects entries
+	 */
+	@Override
+	public List<ProjectsEntry> findByUserId(long userId, int start, int end,
+		OrderByComparator<ProjectsEntry> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -168,15 +191,19 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
-		List<ProjectsEntry> list = (List<ProjectsEntry>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<ProjectsEntry> list = null;
 
-		if ((list != null) && !list.isEmpty()) {
-			for (ProjectsEntry projectsEntry : list) {
-				if ((userId != projectsEntry.getUserId())) {
-					list = null;
+		if (retrieveFromCache) {
+			list = (List<ProjectsEntry>)finderCache.getResult(finderPath,
+					finderArgs, this);
 
-					break;
+			if ((list != null) && !list.isEmpty()) {
+				for (ProjectsEntry projectsEntry : list) {
+					if ((userId != projectsEntry.getUserId())) {
+						list = null;
+
+						break;
+					}
 				}
 			}
 		}
@@ -233,10 +260,10 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -525,8 +552,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 		Object[] finderArgs = new Object[] { userId };
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -550,10 +576,10 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+				finderCache.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -578,7 +604,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public void cacheResult(ProjectsEntry projectsEntry) {
-		EntityCacheUtil.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey(),
 			projectsEntry);
 
@@ -593,7 +619,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	@Override
 	public void cacheResult(List<ProjectsEntry> projectsEntries) {
 		for (ProjectsEntry projectsEntry : projectsEntries) {
-			if (EntityCacheUtil.getResult(
+			if (entityCache.getResult(
 						ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 						ProjectsEntryImpl.class, projectsEntry.getPrimaryKey()) == null) {
 				cacheResult(projectsEntry);
@@ -608,41 +634,41 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 * Clears the cache for all projects entries.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		EntityCacheUtil.clearCache(ProjectsEntryImpl.class);
+		entityCache.clearCache(ProjectsEntryImpl.class);
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the projects entry.
 	 *
 	 * <p>
-	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(ProjectsEntry projectsEntry) {
-		EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	@Override
 	public void clearCache(List<ProjectsEntry> projectsEntries) {
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (ProjectsEntry projectsEntry : projectsEntries) {
-			EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 				ProjectsEntryImpl.class, projectsEntry.getPrimaryKey());
 		}
 	}
@@ -800,10 +826,10 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			closeSession(session);
 		}
 
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (isNew || !ProjectsEntryModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 
 		else {
@@ -813,19 +839,19 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 						projectsEntryModelImpl.getOriginalUserId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 
 				args = new Object[] { projectsEntryModelImpl.getUserId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
+				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
 					args);
 			}
 		}
 
-		EntityCacheUtil.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey(),
 			projectsEntry, false);
 
@@ -904,7 +930,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public ProjectsEntry fetchByPrimaryKey(Serializable primaryKey) {
-		ProjectsEntry projectsEntry = (ProjectsEntry)EntityCacheUtil.getResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+		ProjectsEntry projectsEntry = (ProjectsEntry)entityCache.getResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 				ProjectsEntryImpl.class, primaryKey);
 
 		if (projectsEntry == _nullProjectsEntry) {
@@ -924,12 +950,12 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 					cacheResult(projectsEntry);
 				}
 				else {
-					EntityCacheUtil.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 						ProjectsEntryImpl.class, primaryKey, _nullProjectsEntry);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 					ProjectsEntryImpl.class, primaryKey);
 
 				throw processException(e);
@@ -979,7 +1005,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			ProjectsEntry projectsEntry = (ProjectsEntry)EntityCacheUtil.getResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ProjectsEntry projectsEntry = (ProjectsEntry)entityCache.getResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 					ProjectsEntryImpl.class, primaryKey);
 
 			if (projectsEntry == null) {
@@ -1031,7 +1057,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 					ProjectsEntryImpl.class, primaryKey, _nullProjectsEntry);
 			}
 		}
@@ -1086,6 +1112,26 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	@Override
 	public List<ProjectsEntry> findAll(int start, int end,
 		OrderByComparator<ProjectsEntry> orderByComparator) {
+		return findAll(start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the projects entries.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link ProjectsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of projects entries
+	 * @param end the upper bound of the range of projects entries (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of projects entries
+	 */
+	@Override
+	public List<ProjectsEntry> findAll(int start, int end,
+		OrderByComparator<ProjectsEntry> orderByComparator,
+		boolean retrieveFromCache) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1101,8 +1147,12 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<ProjectsEntry> list = (List<ProjectsEntry>)FinderCacheUtil.getResult(finderPath,
-				finderArgs, this);
+		List<ProjectsEntry> list = null;
+
+		if (retrieveFromCache) {
+			list = (List<ProjectsEntry>)finderCache.getResult(finderPath,
+					finderArgs, this);
+		}
 
 		if (list == null) {
 			StringBundler query = null;
@@ -1149,10 +1199,10 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 				cacheResult(list);
 
-				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+				finderCache.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(finderPath, finderArgs);
+				finderCache.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1182,7 +1232,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1195,11 +1245,11 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY, count);
+				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+					count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -1229,12 +1279,14 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	public void destroy() {
-		EntityCacheUtil.removeCache(ProjectsEntryImpl.class.getName());
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		entityCache.removeCache(ProjectsEntryImpl.class.getName());
+		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
+	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
+	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	private static final String _SQL_SELECT_PROJECTSENTRY = "SELECT projectsEntry FROM ProjectsEntry projectsEntry";
 	private static final String _SQL_SELECT_PROJECTSENTRY_WHERE_PKS_IN = "SELECT projectsEntry FROM ProjectsEntry projectsEntry WHERE projectsEntryId IN (";
 	private static final String _SQL_SELECT_PROJECTSENTRY_WHERE = "SELECT projectsEntry FROM ProjectsEntry projectsEntry WHERE ";

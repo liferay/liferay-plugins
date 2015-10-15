@@ -328,14 +328,12 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 		exportActionableDynamicQuery.setGroupId(portletDataContext.getScopeGroupId());
 
-		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
+		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod<KBComment>() {
 				@Override
-				public void performAction(Object object)
+				public void performAction(KBComment kbComment)
 					throws PortalException {
-					KBComment stagedModel = (KBComment)object;
-
 					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
-						stagedModel);
+						kbComment);
 				}
 			});
 		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(

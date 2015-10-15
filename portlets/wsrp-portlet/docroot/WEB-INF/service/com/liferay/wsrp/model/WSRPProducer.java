@@ -16,6 +16,7 @@ package com.liferay.wsrp.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
 /**
@@ -34,5 +35,22 @@ public interface WSRPProducer extends WSRPProducerModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPProducerImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public static final Accessor<WSRPProducer, Long> WSRP_PRODUCER_ID_ACCESSOR = new Accessor<WSRPProducer, Long>() {
+			@Override
+			public Long get(WSRPProducer wsrpProducer) {
+				return wsrpProducer.getWsrpProducerId();
+			}
+
+			@Override
+			public Class<Long> getAttributeClass() {
+				return Long.class;
+			}
+
+			@Override
+			public Class<WSRPProducer> getTypeClass() {
+				return WSRPProducer.class;
+			}
+		};
+
 	public java.lang.String getURL(java.lang.String portalURL);
 }
