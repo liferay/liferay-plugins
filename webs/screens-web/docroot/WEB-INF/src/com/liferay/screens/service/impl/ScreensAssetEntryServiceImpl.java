@@ -90,28 +90,31 @@ public class ScreensAssetEntryServiceImpl
 				PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0,
 				portletItem.getPortletId());
 
-		String selectionStyle = GetterUtil.getString(
-			portletPreferences.getValue("selectionStyle", null), "dynamic");
+		String selectionStyle =
+			GetterUtil.getString(
+				portletPreferences.getValue("selectionStyle", null), "dynamic");
 
 		if (selectionStyle.equals("dynamic")) {
 			if (max > 500) {
 				max = 500;
 			}
 
-			assetEntries = AssetPublisherUtil.getAssetEntries(
-				portletPreferences, null, groupId, max, false);
+			assetEntries =
+				AssetPublisherUtil.getAssetEntries(
+					portletPreferences, null, groupId, max, false);
 		}
 		else {
 			try {
 				PermissionChecker permissionChecker =
 					PermissionCheckerFactoryUtil.create(getUser());
 
-				assetEntries = AssetPublisherUtil.getAssetEntries(
-					null, portletPreferences, permissionChecker,
-					new long[] {groupId},
-					portletPreferences.getValues(
-						"assetEntryXml", new String[0]),
-					false, false);
+				assetEntries =
+					AssetPublisherUtil.getAssetEntries(
+						null, portletPreferences, permissionChecker,
+						new long[] { groupId },
+						portletPreferences.getValues(
+							"assetEntryXml", new String[0]),
+						false, false);
 			}
 			catch (PortalException pe) {
 				throw pe;
@@ -134,8 +137,9 @@ public class ScreensAssetEntryServiceImpl
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntry assetEntry : assetEntries) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(assetEntry));
+			JSONObject jsonObject =
+				JSONFactoryUtil.createJSONObject(
+					JSONFactoryUtil.looseSerialize(assetEntry));
 
 			jsonObject.put("description", assetEntry.getDescription(locale));
 			jsonObject.put("summary", assetEntry.getSummary(locale));
