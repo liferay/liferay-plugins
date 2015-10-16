@@ -145,14 +145,14 @@ public class ScreensAssetEntryServiceImpl
 		String className = assetEntry.getClassName();
 
 		if (className.equals(
-				"com.liferay.portlet.journal.model.JournalArticle")) {
-
-			return getJournalArticleJSONObject(assetEntry);
-		}
-		else if (className.equals(
-					"com.liferay.portlet.documentlibrary.model.DLFileEntry")) {
+				"com.liferay.portlet.documentlibrary.model.DLFileEntry")) {
 
 			return getFileEntryJSONObject(assetEntry);
+		}
+		else if (className.equals(
+					"com.liferay.portlet.journal.model.JournalArticle")) {
+
+			return getJournalArticleJSONObject(assetEntry);
 		}
 
 		return JSONFactoryUtil.createJSONObject();
