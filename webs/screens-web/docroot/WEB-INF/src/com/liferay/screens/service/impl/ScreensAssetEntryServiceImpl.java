@@ -23,14 +23,21 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.PortletItem;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.journal.NoSuchArticleException;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleResource;
@@ -142,11 +149,47 @@ public class ScreensAssetEntryServiceImpl
 
 			return getJournalArticleJSONObject(assetEntry);
 		}
+		else if (assetEntry.getClassName().equals(
+					"com.liferay.portlet.documentlibrary.model.DLFileEntry")) {
+
+			return getFileEntryJSONObject(assetEntry);
+		}
 		else {
 			assetObjectJSONObject = JSONFactoryUtil.createJSONObject();
 		}
 
 		return assetObjectJSONObject;
+	}
+
+	protected JSONObject getFileEntryJSONObject(AssetEntry assetEntry)
+		throws PortalException, SystemException {
+
+		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(
+			assetEntry.getClassPK());
+
+		JSONObject fileEntryJSONObject =
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(fileEntry));
+
+		fileEntryJSONObject.put("url", getFileEntryPreviewURL(fileEntry));
+
+		return fileEntryJSONObject;
+	}
+
+	protected String getFileEntryPreviewURL(FileEntry fileEntry) {
+		StringBundler sb = new StringBundler(9);
+
+		sb.append(PortalUtil.getPathContext());
+		sb.append("/documents/");
+		sb.append(fileEntry.getRepositoryId());
+		sb.append(StringPool.SLASH);
+		sb.append(fileEntry.getFolderId());
+		sb.append(StringPool.SLASH);
+		sb.append(HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getTitle())));
+		sb.append(StringPool.SLASH);
+		sb.append(fileEntry.getUuid());
+
+		return sb.toString();
 	}
 
 	protected JSONObject getJournalArticleJSONObject(AssetEntry assetEntry)
