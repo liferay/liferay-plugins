@@ -70,12 +70,6 @@ portletURL.setParameter("delta", String.valueOf(delta));
 
 	List<Group> groups = GroupLocalServiceUtil.search(themeDisplay.getCompanyId(), keywords, groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-	groups = new ArrayList<Group>(groups);
-
-	Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(user.getCompanyId());
-
-	groups.add(0, companyGroup);
-
 	List<String> resourceActions = ListUtil.toList(SyncPermissionsConstants.getFileResourceActions(SyncPermissionsConstants.PERMISSIONS_FULL_ACCESS));
 
 	List<String> localizedResourceActions = new ArrayList<String>(resourceActions.size());
