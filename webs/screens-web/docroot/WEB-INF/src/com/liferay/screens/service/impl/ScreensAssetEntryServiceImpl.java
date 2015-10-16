@@ -192,21 +192,20 @@ public class ScreensAssetEntryServiceImpl
 	protected JSONObject getJournalArticleJSONObject(AssetEntry assetEntry)
 		throws PortalException, SystemException {
 
-		JournalArticle journalArticle;
+		JournalArticle journalArticle = null;
 
 		try {
 			journalArticle = journalArticleLocalService.getArticle(
 				assetEntry.getClassPK());
 		}
 		catch (NoSuchArticleException nsae) {
-			JournalArticleResource articleResource =
+			JournalArticleResource journalArticleResource =
 				JournalArticleResourceLocalServiceUtil.getArticleResource(
 					assetEntry.getClassPK());
 
-			journalArticle =
-				journalArticleLocalService.getLatestArticle(
-					articleResource.getGroupId(),
-					articleResource.getArticleId());
+			journalArticle = journalArticleLocalService.getLatestArticle(
+				journalArticleResource.getGroupId(),
+				journalArticleResource.getArticleId());
 		}
 
 		JSONObject journalArticleJSONObject =
