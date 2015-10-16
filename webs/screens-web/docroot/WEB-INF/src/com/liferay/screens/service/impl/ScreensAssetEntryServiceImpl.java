@@ -142,23 +142,20 @@ public class ScreensAssetEntryServiceImpl
 	protected JSONObject getAssetObjectJSONObject(AssetEntry assetEntry)
 		throws PortalException, SystemException {
 
-		JSONObject assetObjectJSONObject;
+		String className = assetEntry.getClassName();
 
-		if (assetEntry.getClassName().equals(
+		if (className.equals(
 				"com.liferay.portlet.journal.model.JournalArticle")) {
 
 			return getJournalArticleJSONObject(assetEntry);
 		}
-		else if (assetEntry.getClassName().equals(
+		else if (className.equals(
 					"com.liferay.portlet.documentlibrary.model.DLFileEntry")) {
 
 			return getFileEntryJSONObject(assetEntry);
 		}
-		else {
-			assetObjectJSONObject = JSONFactoryUtil.createJSONObject();
-		}
 
-		return assetObjectJSONObject;
+		return JSONFactoryUtil.createJSONObject();
 	}
 
 	protected JSONObject getFileEntryJSONObject(AssetEntry assetEntry)
