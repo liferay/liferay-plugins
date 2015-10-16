@@ -106,9 +106,8 @@ public class ScreensAssetEntryServiceImpl
 				max = 500;
 			}
 
-			List<AssetEntry> assetEntries =
-				AssetPublisherUtil.getAssetEntries(
-					portletPreferences, null, groupId, max, false);
+			List<AssetEntry> assetEntries = AssetPublisherUtil.getAssetEntries(
+				portletPreferences, null, groupId, max, false);
 
 			return toJSONArray(assetEntries, locale)
 		}
