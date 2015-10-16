@@ -98,9 +98,8 @@ public class ScreensAssetEntryServiceImpl
 				PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0,
 				portletItem.getPortletId());
 
-		String selectionStyle =
-			GetterUtil.getString(
-				portletPreferences.getValue("selectionStyle", null), "dynamic");
+		String selectionStyle = GetterUtil.getString(
+			portletPreferences.getValue("selectionStyle", null), "dynamic");
 
 		if (selectionStyle.equals("dynamic")) {
 			if (max > 500) {
