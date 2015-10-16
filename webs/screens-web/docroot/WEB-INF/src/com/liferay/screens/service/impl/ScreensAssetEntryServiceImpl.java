@@ -109,7 +109,7 @@ public class ScreensAssetEntryServiceImpl
 			List<AssetEntry> assetEntries = AssetPublisherUtil.getAssetEntries(
 				portletPreferences, null, groupId, max, false);
 
-			return toJSONArray(assetEntries, locale)
+			return toJSONArray(assetEntries, locale);
 		}
 		else {
 			try {
@@ -124,7 +124,7 @@ public class ScreensAssetEntryServiceImpl
 							"assetEntryXml", new String[0]),
 						false, false);
 
-				return toJSONArray(assetEntries, locale)
+				return toJSONArray(assetEntries, locale);
 			}
 			catch (PortalException pe) {
 				throw pe;
