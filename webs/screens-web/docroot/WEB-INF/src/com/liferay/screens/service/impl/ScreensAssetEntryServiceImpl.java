@@ -72,8 +72,6 @@ public class ScreensAssetEntryServiceImpl
 			int max)
 		throws PortalException, SystemException {
 
-		List<AssetEntry> assetEntries;
-
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			PortletItem.class);
 
@@ -108,22 +106,26 @@ public class ScreensAssetEntryServiceImpl
 				max = 500;
 			}
 
-			assetEntries =
+			List<AssetEntry> assetEntries =
 				AssetPublisherUtil.getAssetEntries(
 					portletPreferences, null, groupId, max, false);
+
+			return toJSONArray(assetEntries, locale)
 		}
 		else {
 			try {
 				PermissionChecker permissionChecker =
 					PermissionCheckerFactoryUtil.create(getUser());
 
-				assetEntries =
+				List<AssetEntry> assetEntries =
 					AssetPublisherUtil.getAssetEntries(
 						null, portletPreferences, permissionChecker,
 						new long[] { groupId },
 						portletPreferences.getValues(
 							"assetEntryXml", new String[0]),
 						false, false);
+
+				return toJSONArray(assetEntries, locale)
 			}
 			catch (PortalException pe) {
 				throw pe;
@@ -135,8 +137,6 @@ public class ScreensAssetEntryServiceImpl
 				throw new PortalException(e);
 			}
 		}
-
-		return toJSONArray(assetEntries, locale);
 	}
 
 	protected JSONObject getAssetObjectJSONObject(AssetEntry assetEntry)
