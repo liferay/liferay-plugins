@@ -86,7 +86,8 @@ public class ScreensAssetEntryServiceImpl
 
 		if (portletItems.isEmpty()) {
 			throw new PortalException(
-				"portletItemName " + portletItemName + " does not exist.");
+				"No portlet items associated with portlet item name " +
+					portletItemName);
 		}
 
 		PortletItem portletItem = portletItems.get(0);
