@@ -225,9 +225,8 @@ public class ScreensAssetEntryServiceImpl
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (AssetEntry assetEntry : assetEntries) {
-			JSONObject jsonObject =
-				JSONFactoryUtil.createJSONObject(
-					JSONFactoryUtil.looseSerialize(assetEntry));
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(assetEntry));
 
 			jsonObject.put("description", assetEntry.getDescription(locale));
 			jsonObject.put("object", getAssetObjectJSONObject(assetEntry));
