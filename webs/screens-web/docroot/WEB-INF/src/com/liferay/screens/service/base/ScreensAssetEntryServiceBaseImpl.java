@@ -21,12 +21,13 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.InfrastructureUtil;
 import com.liferay.portal.service.BaseServiceImpl;
-import com.liferay.portal.service.persistence.ClassNamePersistence;
 import com.liferay.portal.service.persistence.PortletItemPersistence;
 import com.liferay.portal.service.persistence.PortletPreferencesPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
+import com.liferay.portlet.documentlibrary.service.persistence.DLFileEntryPersistence;
+import com.liferay.portlet.journal.service.persistence.JournalArticlePersistence;
 
 import com.liferay.screens.service.ScreensAssetEntryService;
 
@@ -145,63 +146,6 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 	public void setCounterLocalService(
 		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
-	}
-
-	/**
-	 * Returns the class name local service.
-	 *
-	 * @return the class name local service
-	 */
-	public com.liferay.portal.service.ClassNameLocalService getClassNameLocalService() {
-		return classNameLocalService;
-	}
-
-	/**
-	 * Sets the class name local service.
-	 *
-	 * @param classNameLocalService the class name local service
-	 */
-	public void setClassNameLocalService(
-		com.liferay.portal.service.ClassNameLocalService classNameLocalService) {
-		this.classNameLocalService = classNameLocalService;
-	}
-
-	/**
-	 * Returns the class name remote service.
-	 *
-	 * @return the class name remote service
-	 */
-	public com.liferay.portal.service.ClassNameService getClassNameService() {
-		return classNameService;
-	}
-
-	/**
-	 * Sets the class name remote service.
-	 *
-	 * @param classNameService the class name remote service
-	 */
-	public void setClassNameService(
-		com.liferay.portal.service.ClassNameService classNameService) {
-		this.classNameService = classNameService;
-	}
-
-	/**
-	 * Returns the class name persistence.
-	 *
-	 * @return the class name persistence
-	 */
-	public ClassNamePersistence getClassNamePersistence() {
-		return classNamePersistence;
-	}
-
-	/**
-	 * Sets the class name persistence.
-	 *
-	 * @param classNamePersistence the class name persistence
-	 */
-	public void setClassNamePersistence(
-		ClassNamePersistence classNamePersistence) {
-		this.classNamePersistence = classNamePersistence;
 	}
 
 	/**
@@ -431,6 +375,120 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 		this.assetEntryPersistence = assetEntryPersistence;
 	}
 
+	/**
+	 * Returns the document library file entry local service.
+	 *
+	 * @return the document library file entry local service
+	 */
+	public com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService getDLFileEntryLocalService() {
+		return dlFileEntryLocalService;
+	}
+
+	/**
+	 * Sets the document library file entry local service.
+	 *
+	 * @param dlFileEntryLocalService the document library file entry local service
+	 */
+	public void setDLFileEntryLocalService(
+		com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService dlFileEntryLocalService) {
+		this.dlFileEntryLocalService = dlFileEntryLocalService;
+	}
+
+	/**
+	 * Returns the document library file entry remote service.
+	 *
+	 * @return the document library file entry remote service
+	 */
+	public com.liferay.portlet.documentlibrary.service.DLFileEntryService getDLFileEntryService() {
+		return dlFileEntryService;
+	}
+
+	/**
+	 * Sets the document library file entry remote service.
+	 *
+	 * @param dlFileEntryService the document library file entry remote service
+	 */
+	public void setDLFileEntryService(
+		com.liferay.portlet.documentlibrary.service.DLFileEntryService dlFileEntryService) {
+		this.dlFileEntryService = dlFileEntryService;
+	}
+
+	/**
+	 * Returns the document library file entry persistence.
+	 *
+	 * @return the document library file entry persistence
+	 */
+	public DLFileEntryPersistence getDLFileEntryPersistence() {
+		return dlFileEntryPersistence;
+	}
+
+	/**
+	 * Sets the document library file entry persistence.
+	 *
+	 * @param dlFileEntryPersistence the document library file entry persistence
+	 */
+	public void setDLFileEntryPersistence(
+		DLFileEntryPersistence dlFileEntryPersistence) {
+		this.dlFileEntryPersistence = dlFileEntryPersistence;
+	}
+
+	/**
+	 * Returns the journal article local service.
+	 *
+	 * @return the journal article local service
+	 */
+	public com.liferay.portlet.journal.service.JournalArticleLocalService getJournalArticleLocalService() {
+		return journalArticleLocalService;
+	}
+
+	/**
+	 * Sets the journal article local service.
+	 *
+	 * @param journalArticleLocalService the journal article local service
+	 */
+	public void setJournalArticleLocalService(
+		com.liferay.portlet.journal.service.JournalArticleLocalService journalArticleLocalService) {
+		this.journalArticleLocalService = journalArticleLocalService;
+	}
+
+	/**
+	 * Returns the journal article remote service.
+	 *
+	 * @return the journal article remote service
+	 */
+	public com.liferay.portlet.journal.service.JournalArticleService getJournalArticleService() {
+		return journalArticleService;
+	}
+
+	/**
+	 * Sets the journal article remote service.
+	 *
+	 * @param journalArticleService the journal article remote service
+	 */
+	public void setJournalArticleService(
+		com.liferay.portlet.journal.service.JournalArticleService journalArticleService) {
+		this.journalArticleService = journalArticleService;
+	}
+
+	/**
+	 * Returns the journal article persistence.
+	 *
+	 * @return the journal article persistence
+	 */
+	public JournalArticlePersistence getJournalArticlePersistence() {
+		return journalArticlePersistence;
+	}
+
+	/**
+	 * Sets the journal article persistence.
+	 *
+	 * @param journalArticlePersistence the journal article persistence
+	 */
+	public void setJournalArticlePersistence(
+		JournalArticlePersistence journalArticlePersistence) {
+		this.journalArticlePersistence = journalArticlePersistence;
+	}
+
 	public void afterPropertiesSet() {
 		Class<?> clazz = getClass();
 
@@ -510,12 +568,6 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.screens.service.ScreensUserService screensUserService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
-	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
-	protected com.liferay.portal.service.ClassNameLocalService classNameLocalService;
-	@BeanReference(type = com.liferay.portal.service.ClassNameService.class)
-	protected com.liferay.portal.service.ClassNameService classNameService;
-	@BeanReference(type = ClassNamePersistence.class)
-	protected ClassNamePersistence classNamePersistence;
 	@BeanReference(type = com.liferay.portal.service.PortletItemLocalService.class)
 	protected com.liferay.portal.service.PortletItemLocalService portletItemLocalService;
 	@BeanReference(type = PortletItemPersistence.class)
@@ -540,6 +592,18 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.portlet.asset.service.AssetEntryService assetEntryService;
 	@BeanReference(type = AssetEntryPersistence.class)
 	protected AssetEntryPersistence assetEntryPersistence;
+	@BeanReference(type = com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService.class)
+	protected com.liferay.portlet.documentlibrary.service.DLFileEntryLocalService dlFileEntryLocalService;
+	@BeanReference(type = com.liferay.portlet.documentlibrary.service.DLFileEntryService.class)
+	protected com.liferay.portlet.documentlibrary.service.DLFileEntryService dlFileEntryService;
+	@BeanReference(type = DLFileEntryPersistence.class)
+	protected DLFileEntryPersistence dlFileEntryPersistence;
+	@BeanReference(type = com.liferay.portlet.journal.service.JournalArticleLocalService.class)
+	protected com.liferay.portlet.journal.service.JournalArticleLocalService journalArticleLocalService;
+	@BeanReference(type = com.liferay.portlet.journal.service.JournalArticleService.class)
+	protected com.liferay.portlet.journal.service.JournalArticleService journalArticleService;
+	@BeanReference(type = JournalArticlePersistence.class)
+	protected JournalArticlePersistence journalArticlePersistence;
 	private String _beanIdentifier;
 	private ClassLoader _classLoader;
 	private ScreensAssetEntryServiceClpInvoker _clpInvoker = new ScreensAssetEntryServiceClpInvoker();
