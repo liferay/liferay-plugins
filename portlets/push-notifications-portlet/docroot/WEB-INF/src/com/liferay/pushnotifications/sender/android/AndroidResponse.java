@@ -31,11 +31,11 @@ public class AndroidResponse extends BaseResponse {
 
 		super(PushNotificationsConstants.PLATFORM_ANDROID);
 
-		this.payload = payloadJSONObject.toString();
 		this.token = token;
 
 		canonicalRegistrationId = result.getCanonicalRegistrationId();
 		id = result.getMessageId();
+		payload = payloadJSONObject.toString();
 		status = result.getErrorCodeName();
 
 		if (Validator.isNull(status)) {
