@@ -23,3 +23,10 @@
 <liferay-util:html-bottom outputKey="addthis">
 	<script src="<%= HttpUtil.getProtocol(request) %>://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50994fd636c849d6" type="text/javascript"></script>
 </liferay-util:html-bottom>
+
+<script type="text/javascript">
+	var addthis_share = {
+		url: '<%= url %>',
+		title: '<%= title %>'
+	}
+</script>
