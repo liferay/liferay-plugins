@@ -38,6 +38,11 @@ public class BaseResponse implements Response {
 	}
 
 	@Override
+	public String getPayload() {
+		return payload;
+	}
+
+	@Override
 	public String getPlatform() {
 		return platform;
 	}
@@ -58,6 +63,7 @@ public class BaseResponse implements Response {
 	}
 
 	protected String id;
+	protected String payload;
 	protected String platform;
 	protected String status;
 	protected boolean succeeded;

@@ -30,6 +30,7 @@ public class TwilioResponse extends BaseResponse {
 
 		accountSid = sms.getAccountSid();
 		id = sms.getSid();
+		payload = sms.getBody();
 		price = sms.getPrice();
 		status = sms.getStatus();
 

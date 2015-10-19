@@ -107,7 +107,7 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 		MulticastResult multicastResult = sender.send(
 			message, tokens, getRetries());
 
-		validateMulticastResult(tokens, multicastResult);
+		validateMulticastResult(tokens, payloadJSONObject, multicastResult);
 	}
 
 	public void setAPIKey(String apiKey) {
@@ -145,7 +145,8 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 	}
 
 	protected void validateMulticastResult(
-		List<String> tokens, MulticastResult multicastResult) {
+		List<String> tokens, JSONObject payloadJSONObject,
+		MulticastResult multicastResult) {
 
 		List<Result> results = multicastResult.getResults();
 
@@ -153,7 +154,8 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 			Result result = results.get(i);
 			String token = tokens.get(i);
 
-			Response response = new AndroidResponse(result, token);
+			Response response = new AndroidResponse(
+				result, token, payloadJSONObject);
 
 			MessageBusUtil.sendMessage(
 				DestinationNames.PUSH_NOTIFICATION_RESPONSE, response);
