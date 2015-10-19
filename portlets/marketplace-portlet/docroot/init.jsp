@@ -27,7 +27,10 @@
 page import="com.liferay.marketplace.constants.PortletKeys" %><%@
 page import="com.liferay.marketplace.constants.WebKeys" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
-page import="com.liferay.portal.kernel.util.GetterUtil" %>
+page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %>
+
+<%@ page import="javax.portlet.PortletURL" %>
 
 <portlet:defineObjects />
 

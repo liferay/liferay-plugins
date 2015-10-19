@@ -17,18 +17,27 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String remoteMVCPath = "/marketplace/view.jsp";
+PortletURL viewURL = renderResponse.createRenderURL();
 
 String portletId = portletDisplay.getId();
 
-if (portletId.equals(PortletKeys.PURCHASED)) {
-	remoteMVCPath = "/marketplace_server/view_purchased.jsp";
-}
-%>
+if (portletId.equals(PortletKeys.STORE)) {
+	long appEntryId = ParamUtil.getLong(request, "appEntryId");
 
-<liferay-portlet:renderURL var="viewURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-	<portlet:param name="remoteMVCPath" value="<%= remoteMVCPath %>" />
-</liferay-portlet:renderURL>
+	if (appEntryId <= 0) {
+		viewURL.setParameter("remoteMVCPath", "/marketplace/view.jsp");
+	}
+	else {
+		viewURL.setParameter("remoteMVCPath", "/marketplace/view_app_entry.jsp");
+		viewURL.setParameter("appEntryId", String.valueOf(appEntryId));
+	}
+}
+else {
+	viewURL.setParameter("remoteMVCPath", "/marketplace_server/view_purchased.jsp");
+}
+
+viewURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+%>
 
 <iframe frameborder="0" id="<portlet:namespace />frame" name="<portlet:namespace />frame" scrolling="no" src="<%= viewURL %>"></iframe>
 
@@ -57,23 +66,38 @@ if (portletId.equals(PortletKeys.PURCHASED)) {
 				return;
 			}
 
-			var data = response.data;
-
 			if ((response.cmd == 'resize') || (response.cmd == 'init')) {
-				if (data.height) {
-					frame.height(data.height + 50);
+				if (response.height) {
+					frame.height(response.height + 50);
 				}
 
-				if (data.width) {
-					frame.width(data.width);
+				if (response.width) {
+					frame.width(response.width);
 				}
 			}
 
 			if ((response.cmd == 'scrollTo') || (response.cmd == 'init')) {
-				var scrollX = data.scrollX || 0;
-				var scrollY = data.scrollY || 0;
+				var scrollX = response.scrollX || 0;
+				var scrollY = response.scrollY || 0;
 
 				window.scrollTo(scrollX, scrollY);
+			}
+
+			if (response.cmd == 'goto') {
+				var url = '<%= themeDisplay.getURLControlPanel() %>';
+
+				if (response.panel == 'purchased') {
+					url = '<liferay-portlet:renderURL doAsGroupId="<%= themeDisplay.getScopeGroupId() %>" portletName="<%= PortletKeys.PURCHASED %>" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>" />';
+				}
+				else if (response.panel == 'store') {
+					url = '<liferay-portlet:renderURL doAsGroupId="<%= themeDisplay.getScopeGroupId() %>" portletName="<%= PortletKeys.STORE %>" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>" />';
+
+					if (response.appEntryId) {
+						url = Liferay.Util.addParams('<%= PortalUtil.getPortletNamespace(PortletKeys.STORE) %>appEntryId=' + response.appEntryId, url);
+					}
+				}
+
+				window.location = url;
 			}
 		},
 		A.Lang.emptyFnTrue
