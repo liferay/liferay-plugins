@@ -16,6 +16,7 @@ package com.liferay.pushnotifications.sender.android;
 
 import com.google.android.gcm.server.Result;
 
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.BaseResponse;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
@@ -25,9 +26,12 @@ import com.liferay.pushnotifications.util.PushNotificationsConstants;
  */
 public class AndroidResponse extends BaseResponse {
 
-	public AndroidResponse(Result result, String token) {
+	public AndroidResponse(
+		Result result, String token, JSONObject payloadJSONObject) {
+
 		super(PushNotificationsConstants.PLATFORM_ANDROID);
 
+		this.payload = payloadJSONObject.toString();
 		this.token = token;
 
 		canonicalRegistrationId = result.getCanonicalRegistrationId();

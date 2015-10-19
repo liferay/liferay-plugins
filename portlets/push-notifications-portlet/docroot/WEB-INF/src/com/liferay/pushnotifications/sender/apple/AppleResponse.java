@@ -62,6 +62,7 @@ public class AppleResponse extends BaseResponse {
 		if (apnsNotification != null) {
 			expiry = apnsNotification.getExpiry();
 			id = String.valueOf(apnsNotification.getIdentifier());
+			payload = new String(apnsNotification.getPayload());
 			token = getHexadecimalString(apnsNotification.getDeviceToken());
 		}
 	}
