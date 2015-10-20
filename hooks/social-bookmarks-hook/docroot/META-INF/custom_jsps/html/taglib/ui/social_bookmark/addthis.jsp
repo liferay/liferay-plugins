@@ -24,9 +24,9 @@
 	<script src="<%= HttpUtil.getProtocol(request) %>://s7.addthis.com/js/300/addthis_widget.js" type="text/javascript"></script>
 </liferay-util:html-bottom>
 
-<script type="text/javascript">
+<aui:script>
 	var addthis_share = {
 		url: '<%= url %>',
 		title: '<%= HtmlUtil.escapeJS(title) %>'
 	}
-</script>
+</aui:script>
