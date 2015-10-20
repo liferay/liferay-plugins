@@ -26,7 +26,7 @@
 
 <aui:script>
 	var addthis_share = {
-		url: '<%= url %>',
-		title: '<%= HtmlUtil.escapeJS(title) %>'
+		title: '<%= HtmlUtil.escapeJS(title) %>',
+		url: '<%= url %>'
 	}
 </aui:script>
