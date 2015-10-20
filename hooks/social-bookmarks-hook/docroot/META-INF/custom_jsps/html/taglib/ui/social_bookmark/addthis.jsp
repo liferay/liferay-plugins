@@ -27,6 +27,6 @@
 <script type="text/javascript">
 	var addthis_share = {
 		url: '<%= url %>',
-		title: '<%= title %>'
+		title: '<%= HtmlUtil.escapeJS(title) %>'
 	}
 </script>
