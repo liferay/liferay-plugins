@@ -157,7 +157,8 @@ public class TwilioSMSSender implements PushNotificationsSender {
 
 			params.put("To", phoneNumber);
 
-			Response response = new TwilioResponse(smsFactory.create(params));
+			Response response = new TwilioResponse(
+				smsFactory.create(params), payloadJSONObject);
 
 			MessageBusUtil.sendMessage(
 				DestinationNames.PUSH_NOTIFICATION_RESPONSE, response);

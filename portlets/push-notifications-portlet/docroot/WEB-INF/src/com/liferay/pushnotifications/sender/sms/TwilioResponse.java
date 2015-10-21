@@ -14,6 +14,7 @@
 
 package com.liferay.pushnotifications.sender.sms;
 
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.pushnotifications.sender.BaseResponse;
 import com.liferay.pushnotifications.util.PushNotificationsConstants;
@@ -25,12 +26,12 @@ import com.twilio.sdk.resource.instance.Sms;
  */
 public class TwilioResponse extends BaseResponse {
 
-	public TwilioResponse(Sms sms) {
+	public TwilioResponse(Sms sms, JSONObject payloadJSONObject) {
 		super(PushNotificationsConstants.PLATFORM_SMS);
 
 		accountSid = sms.getAccountSid();
 		id = sms.getSid();
-		payload = sms.getBody();
+		payload = payloadJSONObject.toString();
 		price = sms.getPrice();
 		status = sms.getStatus();
 
