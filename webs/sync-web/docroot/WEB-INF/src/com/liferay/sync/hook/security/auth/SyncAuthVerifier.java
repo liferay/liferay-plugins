@@ -203,7 +203,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 				company.getCompanyId(), login, password, null, null,
 				resultsMap);
 
-			if (authResult == Authenticator.FAILURE) {
+			if (authResult != Authenticator.SUCCESS) {
 				throw new AuthException();
 			}
 
@@ -214,7 +214,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 				company.getCompanyId(), login, password, null, null,
 				resultsMap);
 
-			if (authResult == Authenticator.FAILURE) {
+			if (authResult != Authenticator.SUCCESS) {
 				throw new AuthException();
 			}
 
@@ -225,7 +225,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 				company.getCompanyId(), GetterUtil.getLong(login), password,
 				null, null, resultsMap);
 
-			if (authResult == Authenticator.FAILURE) {
+			if (authResult != Authenticator.SUCCESS) {
 				throw new AuthException();
 			}
 
