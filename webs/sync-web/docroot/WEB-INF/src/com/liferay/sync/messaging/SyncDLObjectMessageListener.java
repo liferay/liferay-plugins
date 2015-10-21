@@ -181,8 +181,8 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 
 		List<Object> foldersAndFileEntriesAndFileShortcuts =
 			DLAppServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(
-				repositoryId, folderId, WorkflowConstants.STATUS_ANY, false,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				repositoryId, folderId, WorkflowConstants.STATUS_APPROVED,
+				false, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Object folderAndFileEntryAndFileShortcut :
 				foldersAndFileEntriesAndFileShortcuts) {
