@@ -44,7 +44,64 @@ import java.util.List;
  */
 public class SyncDLObjectMessageListener extends BaseMessageListener {
 
-	protected void addSyncDLObject(
+	protected void addSyncDLObject(SyncDLObject syncDLObject) throws Exception {
+		SyncDLObjectLocalServiceUtil.addSyncDLObject(
+			syncDLObject.getCompanyId(), syncDLObject.getUserId(),
+			syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
+			syncDLObject.getRepositoryId(), syncDLObject.getParentFolderId(),
+			syncDLObject.getTreePath(), syncDLObject.getName(),
+			syncDLObject.getExtension(), syncDLObject.getMimeType(),
+			syncDLObject.getDescription(), syncDLObject.getChangeLog(),
+			syncDLObject.getExtraSettings(), syncDLObject.getVersion(),
+			syncDLObject.getVersionId(), syncDLObject.getSize(),
+			syncDLObject.getChecksum(), syncDLObject.getEvent(),
+			syncDLObject.getLockExpirationDate(), syncDLObject.getLockUserId(),
+			syncDLObject.getLockUserName(), syncDLObject.getType(),
+			syncDLObject.getTypePK(), syncDLObject.getTypeUuid());
+	}
+
+	protected void deleteDLSyncEvent(
+			long modifiedTime, long syncEventId, long typePK)
+		throws Exception {
+
+		if (syncEventId != 0) {
+			DLSyncEventLocalServiceUtil.deleteDLSyncEvent(syncEventId);
+
+			return;
+		}
+
+		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
+
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.eq("modifiedTime", modifiedTime));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("typePK", typePK));
+
+		List<DLSyncEvent> dlSyncEvents =
+			DLSyncEventLocalServiceUtil.dynamicQuery(dynamicQuery);
+
+		if (dlSyncEvents.isEmpty()) {
+			return;
+		}
+
+		DLSyncEvent dlSyncEvent = dlSyncEvents.get(0);
+
+		DLSyncEventLocalServiceUtil.deleteDLSyncEvent(dlSyncEvent);
+	}
+
+	@Override
+	protected void doReceive(Message message) throws Exception {
+		String event = message.getString("event");
+		long modifiedTime = message.getLong("modifiedTime");
+		long syncEventId = message.getLong("syncEventId");
+		String type = message.getString("type");
+		long typePK = message.getLong("typePK");
+
+		processSyncDLObject(modifiedTime, event, type, typePK);
+
+		deleteDLSyncEvent(modifiedTime, syncEventId, typePK);
+	}
+
+	protected void processSyncDLObject(
 			long modifiedTime, String event, String type, long typePK)
 		throws Exception {
 
@@ -103,94 +160,66 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 			syncDLObject = SyncUtil.toSyncDLObject(folder, event);
 		}
 
-		SyncDLObjectLocalServiceUtil.addSyncDLObject(
-			syncDLObject.getCompanyId(), syncDLObject.getUserId(),
-			syncDLObject.getUserName(), modifiedTime,
-			syncDLObject.getRepositoryId(), syncDLObject.getParentFolderId(),
-			syncDLObject.getTreePath(), syncDLObject.getName(),
-			syncDLObject.getExtension(), syncDLObject.getMimeType(),
-			syncDLObject.getDescription(), syncDLObject.getChangeLog(),
-			syncDLObject.getExtraSettings(), syncDLObject.getVersion(),
-			syncDLObject.getVersionId(), syncDLObject.getSize(),
-			syncDLObject.getChecksum(), syncDLObject.getEvent(),
-			syncDLObject.getLockExpirationDate(), syncDLObject.getLockUserId(),
-			syncDLObject.getLockUserName(), syncDLObject.getType(),
-			syncDLObject.getTypePK(), syncDLObject.getTypeUuid());
+		syncDLObject.setModifiedTime(modifiedTime);
+
+		addSyncDLObject(syncDLObject);
 
 		if (event.equals(SyncConstants.EVENT_RESTORE) &&
 			type.equals(SyncConstants.TYPE_FOLDER)) {
 
-			List<Object> foldersAndFileEntriesAndFileShortcuts =
-				DLAppServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(
-					syncDLObject.getRepositoryId(), syncDLObject.getTypePK(),
-					WorkflowConstants.STATUS_ANY, false, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
-
-			for (Object folderAndFileEntryAndFileShortcut :
-					foldersAndFileEntriesAndFileShortcuts) {
-
-				if (folderAndFileEntryAndFileShortcut instanceof FileEntry) {
-					FileEntry fileEntry =
-						(FileEntry)folderAndFileEntryAndFileShortcut;
-
-					addSyncDLObject(
-						modifiedTime, SyncConstants.EVENT_RESTORE,
-						SyncConstants.TYPE_FILE, fileEntry.getFileEntryId());
-				}
-				else if (folderAndFileEntryAndFileShortcut instanceof Folder) {
-					Folder folder = (Folder)folderAndFileEntryAndFileShortcut;
-
-					if (!SyncUtil.isSupportedFolder(folder)) {
-						continue;
-					}
-
-					addSyncDLObject(
-						modifiedTime, SyncConstants.EVENT_RESTORE,
-						SyncConstants.TYPE_FOLDER, folder.getFolderId());
-				}
-			}
+			restoreFolder(
+				syncDLObject.getRepositoryId(), syncDLObject.getTypePK(),
+				syncDLObject.getUserId(), syncDLObject.getUserName(),
+				modifiedTime);
 		}
 	}
 
-	protected void deleteDLSyncEvent(
-			long modifiedTime, long syncEventId, long typePK)
+	protected void restoreFolder(
+			long repositoryId, long folderId, long userId, String userName,
+			long modifiedTime)
 		throws Exception {
 
-		if (syncEventId != 0) {
-			DLSyncEventLocalServiceUtil.deleteDLSyncEvent(syncEventId);
+		List<Object> foldersAndFileEntriesAndFileShortcuts =
+			DLAppServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(
+				repositoryId, folderId, WorkflowConstants.STATUS_ANY, false,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-			return;
+		for (Object folderAndFileEntryAndFileShortcut :
+				foldersAndFileEntriesAndFileShortcuts) {
+
+			SyncDLObject syncDLObject = null;
+			Folder folder = null;
+
+			if (folderAndFileEntryAndFileShortcut instanceof FileEntry) {
+				FileEntry fileEntry =
+					(FileEntry)folderAndFileEntryAndFileShortcut;
+
+				syncDLObject = SyncUtil.toSyncDLObject(
+					fileEntry, SyncConstants.EVENT_RESTORE, true);
+			}
+			else if (folderAndFileEntryAndFileShortcut instanceof Folder) {
+				folder = (Folder)folderAndFileEntryAndFileShortcut;
+
+				if (!SyncUtil.isSupportedFolder(folder)) {
+					continue;
+				}
+
+				syncDLObject = SyncUtil.toSyncDLObject(
+					folder, SyncConstants.EVENT_RESTORE);
+			}
+
+			syncDLObject.setUserId(userId);
+			syncDLObject.setUserName(userName);
+			syncDLObject.setModifiedTime(modifiedTime);
+
+			addSyncDLObject(syncDLObject);
+
+			if (folderAndFileEntryAndFileShortcut instanceof Folder) {
+				restoreFolder(
+					repositoryId, folder.getFolderId(), userId, userName,
+					modifiedTime);
+			}
 		}
-
-		DynamicQuery dynamicQuery = DLSyncEventLocalServiceUtil.dynamicQuery();
-
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq("modifiedTime", modifiedTime));
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("typePK", typePK));
-
-		List<DLSyncEvent> dlSyncEvents =
-			DLSyncEventLocalServiceUtil.dynamicQuery(dynamicQuery);
-
-		if (dlSyncEvents.isEmpty()) {
-			return;
-		}
-
-		DLSyncEvent dlSyncEvent = dlSyncEvents.get(0);
-
-		DLSyncEventLocalServiceUtil.deleteDLSyncEvent(dlSyncEvent);
-	}
-
-	@Override
-	protected void doReceive(Message message) throws Exception {
-		String event = message.getString("event");
-		long modifiedTime = message.getLong("modifiedTime");
-		long syncEventId = message.getLong("syncEventId");
-		String type = message.getString("type");
-		long typePK = message.getLong("typePK");
-
-		addSyncDLObject(modifiedTime, event, type, typePK);
-
-		deleteDLSyncEvent(modifiedTime, syncEventId, typePK);
 	}
 
 }
