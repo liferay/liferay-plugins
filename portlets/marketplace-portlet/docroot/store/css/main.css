@@ -1,20 +1,25 @@
-.marketplace-portlet iframe {
-	border-width: 0;
-	width: 100%;
-}
-
-.marketplace-portlet .authorize {
-	margin: 0 auto;
-	max-width: 960px;
-	padding: 6em 4em;
-
-	p {
-		margin: 2em 0;
+.marketplace-portlet {
+	iframe {
+		border-width: 0;
+		min-width: 975px;
+		min-height: 320px;
+		width: 100%;
 	}
-}
 
-.marketplace-portlet .sign-out {
-	margin: 2em auto;
-	text-align: center;
-	width: 300px;
+	.authorize {
+		margin: 0 auto;
+		max-width: 960px;
+		padding: 6em 4em;
+
+		p {
+			margin: 2em 0;
+		}
+	}
+
+	.sign-out {
+		box-sizing: content-box;
+		margin: 0 auto 2em;
+		padding: 0 4em;
+		width: 960px;
+	}
 }
