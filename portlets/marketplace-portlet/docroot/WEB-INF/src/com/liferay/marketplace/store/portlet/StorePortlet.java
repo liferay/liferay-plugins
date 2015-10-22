@@ -126,7 +126,7 @@ public class StorePortlet extends RemoteMVCPortlet {
 			super.render(renderRequest, renderResponse);
 		}
 		catch (PortletException pe) {
-			include("/error.jsp", renderRequest, renderResponse);
+			include("/store/error.jsp", renderRequest, renderResponse);
 		}
 	}
 
