@@ -119,40 +119,21 @@ if (emailAddresses.isEmpty()) {
 </c:if>
 
 <%
-String aim = contact2.getAimSn();
-String icq = contact2.getIcqSn();
 String jabber = contact2.getJabberSn();
 String skype = contact2.getSkypeSn();
-String ym = contact2.getYmSn();
 
-if (Validator.isNull(aim) && Validator.isNull(icq) && Validator.isNull(jabber) && Validator.isNull(skype) && Validator.isNull(ym)) {
+if (Validator.isNull(jabber) && Validator.isNull(skype)) {
 	incompleteProfile = true;
 }
 %>
 
-<c:if test="<%= showInstantMessenger && (Validator.isNotNull(aim) || Validator.isNotNull(icq) || Validator.isNotNull(jabber) || Validator.isNotNull(skype) || Validator.isNotNull(ym)) %>">
+<c:if test="<%= showInstantMessenger && (Validator.isNotNull(jabber) || Validator.isNotNull(skype)) %>">
 	<div class="field-group section" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(request, "instant-messenger") %>">
 		<i class="icon-edit"></i>
 
 		<h3><liferay-ui:message key="instant-messenger" />:</h3>
 
 		<ul class="property-list">
-			<c:if test="<%= Validator.isNotNull(aim) %>">
-				<li>
-					<span class="property-type"><liferay-ui:message key="aim" /></span>
-
-					<span class="property"><%= HtmlUtil.escape(aim) %></span>
-				</li>
-			</c:if>
-
-			<c:if test="<%= Validator.isNotNull(icq) %>">
-				<li>
-					<span class="property-type"><liferay-ui:message key="icq" /></span>
-
-					<span class="property"><%= HtmlUtil.escape(icq) %></span>
-				</li>
-			</c:if>
-
 			<c:if test="<%= Validator.isNotNull(jabber) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="jabber" /></span>
@@ -168,14 +149,6 @@ if (Validator.isNull(aim) && Validator.isNull(icq) && Validator.isNull(jabber) &
 					<span class="property"><%= HtmlUtil.escape(skype) %></span>
 
 					<i class="icon-skype"></i>
-				</li>
-			</c:if>
-
-			<c:if test="<%= Validator.isNotNull(ym) %>">
-				<li>
-					<span class="property-type"><liferay-ui:message key="ym" /></span>
-
-					<span class="property"><%= HtmlUtil.escape(ym) %></span>
 				</li>
 			</c:if>
 		</ul>

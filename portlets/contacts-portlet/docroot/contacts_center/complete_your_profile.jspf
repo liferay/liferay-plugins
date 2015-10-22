@@ -62,16 +62,6 @@
 				</li>
 			</c:if>
 
-			<c:if test="<%= Validator.isNull(aim) && Validator.isNull(icq) && Validator.isNull(jabber) && Validator.isNull(skype) && Validator.isNull(ym) %>">
-				<li class="action-field component lfr-token settings-field" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(request, "instant-messenger") %>">
-					<div class="settings-field-content">
-						<i class="icon-plus-sign"></i>
-
-						<span class="settings-label"><liferay-ui:message key="instant-messenger" /></span>
-					</div>
-				</li>
-			</c:if>
-
 			<c:if test="<%= addresses.isEmpty() %>">
 				<li class="action-field component lfr-token settings-field" data-sectionId="addresses" data-title="<%= LanguageUtil.get(request, "addresses") %>">
 					<div class="settings-field-content">
