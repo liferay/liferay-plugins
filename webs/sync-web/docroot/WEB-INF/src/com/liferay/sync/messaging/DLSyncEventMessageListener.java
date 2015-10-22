@@ -42,7 +42,7 @@ import java.util.List;
 /**
  * @author Dennis Ju
  */
-public class SyncDLObjectMessageListener extends BaseMessageListener {
+public class DLSyncEventMessageListener extends BaseMessageListener {
 
 	protected void addSyncDLObject(SyncDLObject syncDLObject) throws Exception {
 		SyncDLObjectLocalServiceUtil.addSyncDLObject(
@@ -96,12 +96,12 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 		String type = message.getString("type");
 		long typePK = message.getLong("typePK");
 
-		processSyncDLObject(modifiedTime, event, type, typePK);
+		processDLSyncEvent(modifiedTime, event, type, typePK);
 
 		deleteDLSyncEvent(modifiedTime, syncEventId, typePK);
 	}
 
-	protected void processSyncDLObject(
+	protected void processDLSyncEvent(
 			long modifiedTime, String event, String type, long typePK)
 		throws Exception {
 
