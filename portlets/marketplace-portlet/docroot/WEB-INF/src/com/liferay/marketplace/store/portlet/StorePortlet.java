@@ -167,6 +167,19 @@ public class StorePortlet extends RemoteMVCPortlet {
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
+	@Override
+	public void render(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		try {
+			super.render(renderRequest, renderResponse);
+		}
+		catch (PortletException pe) {
+			include("/error.jsp", renderRequest, renderResponse);
+		}
+	}
+
 	public void uninstallApp(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
