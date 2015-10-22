@@ -187,8 +187,8 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 		for (Object folderAndFileEntryAndFileShortcut :
 				foldersAndFileEntriesAndFileShortcuts) {
 
-			SyncDLObject syncDLObject = null;
 			Folder folder = null;
+			SyncDLObject syncDLObject = null;
 
 			if (folderAndFileEntryAndFileShortcut instanceof FileEntry) {
 				FileEntry fileEntry =
