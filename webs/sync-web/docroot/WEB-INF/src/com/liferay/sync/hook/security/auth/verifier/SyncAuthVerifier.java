@@ -32,6 +32,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -114,6 +115,15 @@ public class SyncAuthVerifier implements AuthVerifier {
 				authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
 				authVerifierResult.setUserId(
 					GetterUtil.getLong(credentials[0]));
+			}
+			else {
+
+				// SYNC-1463
+
+				Map<String, Object> settings =
+					accessControlContext.getSettings();
+
+				settings.remove("basic_auth");
 			}
 
 			return authVerifierResult;
