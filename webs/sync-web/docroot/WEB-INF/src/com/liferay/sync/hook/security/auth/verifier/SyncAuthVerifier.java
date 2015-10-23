@@ -24,11 +24,14 @@ import com.liferay.portal.kernel.security.auth.verifier.AuthVerifier;
 import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PwdGenerator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.AccessControlContext;
 import com.liferay.portal.security.auth.AuthException;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.sync.service.ClpSerializer;
 
 import java.util.Date;
 import java.util.List;
@@ -102,12 +105,26 @@ public class SyncAuthVerifier implements AuthVerifier {
 			AccessControlContext accessControlContext, Properties properties)
 		throws AuthException {
 
-		try {
-			AuthVerifierResult authVerifierResult = new AuthVerifierResult();
+		AuthVerifierResult authVerifierResult = new AuthVerifierResult();
 
+		HttpServletRequest request = accessControlContext.getRequest();
+
+		String uri = (String)request.getAttribute(WebKeys.INVOKER_FILTER_URI);
+
+		if (uri.startsWith("/download/")) {
+			String contextPath = request.getContextPath();
+
+			if (!contextPath.equals(
+					StringPool.FORWARD_SLASH +
+						ClpSerializer.getServletContextName())) {
+
+				return authVerifierResult;
+			}
+		}
+
+		try {
 			String[] credentials = getCredentials(
-				accessControlContext.getRequest(),
-				accessControlContext.getResponse());
+				request, accessControlContext.getResponse());
 
 			if (credentials != null) {
 				authVerifierResult.setPassword(credentials[1]);
