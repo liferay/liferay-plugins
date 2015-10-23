@@ -27,15 +27,21 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Image;
+import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.RepositoryLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
+import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
@@ -325,11 +331,25 @@ public class AssetEntrySetImageUtil {
 			groupId = user.getGroupId();
 		}
 
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddGroupPermissions(false);
+		serviceContext.setAddGuestPermissions(false);
+
+		Repository repository = PortletFileRepositoryUtil.addPortletRepository(
+			groupId, portletId, serviceContext);
+
+		serviceContext.setAttribute(
+			"className", PortalUtil.getClassName(classNameId));
+		serviceContext.setAttribute("classPK", String.valueOf(classPK));
+
 		String fileName = System.currentTimeMillis() + type + file.getName();
 
-		return PortletFileRepositoryUtil.addPortletFileEntry(
-			groupId, userId, PortalUtil.getClassName(classNameId), classPK,
-			portletId, 0L, file, fileName, null, false);
+		String contentType = MimeTypesUtil.getContentType(fileName);
+
+		return DLAppServiceUtil.addFileEntry(
+			repository.getRepositoryId(), 0L, fileName, contentType, fileName,
+			StringPool.BLANK, StringPool.BLANK, file, serviceContext);
 	}
 
 	private static final int _ORIENTATION_MIRROR_HORIZONTAL = 2;
