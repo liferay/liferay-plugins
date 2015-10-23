@@ -69,25 +69,34 @@ public class UpgradeCalendar extends UpgradeProcess {
 						PropsKeys.COMPANY_DEFAULT_TIME_ZONE);
 				}
 
-				updateCalendarTimeZoneId(con, calendarId, timeZoneId);
+				updateCalendarTimeZoneId(calendarId, timeZoneId);
 			}
 		}
 		finally {
-			DataAccess.cleanUp(con);
+			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 
-	protected void updateCalendarTimeZoneId(
-			Connection connection, long calendarId, String timeZoneId)
+	protected void updateCalendarTimeZoneId(long calendarId, String timeZoneId)
 		throws Exception {
 
-		PreparedStatement ps = connection.prepareStatement(
-			"update Calendar set timeZoneId = ? where calendarId = ?");
+		Connection con = null;
+		PreparedStatement ps = null;
 
-		ps.setString(1, timeZoneId);
-		ps.setLong(2, calendarId);
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
 
-		ps.execute();
+			ps = con.prepareStatement(
+				"update Calendar set timeZoneId = ? where calendarId = ?");
+
+			ps.setString(1, timeZoneId);
+			ps.setLong(2, calendarId);
+
+			ps.execute();
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
+		}
 	}
 
 }
