@@ -38,6 +38,7 @@ import com.liferay.portal.NoSuchListTypeException;
 import com.liferay.portal.NoSuchRegionException;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.PhoneNumberException;
+import com.liferay.portal.PhoneNumberExtensionException;
 import com.liferay.portal.ReservedUserEmailAddressException;
 import com.liferay.portal.ReservedUserScreenNameException;
 import com.liferay.portal.UserEmailAddressException;
@@ -578,6 +579,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 			else if (e instanceof PhoneNumberException) {
 				message = "please-enter-a-valid-phone-number";
+			}
+			else if (e instanceof PhoneNumberExtensionException) {
+				message = "please-enter-a-valid-phone-number-extension";
 			}
 			else if (e instanceof ReservedUserEmailAddressException) {
 				message = "the-email-address-you-requested-is-reserveds";
