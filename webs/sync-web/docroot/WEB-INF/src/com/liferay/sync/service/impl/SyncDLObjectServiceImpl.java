@@ -554,13 +554,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			String[] events = null;
 
-			if (lastAccessTime == -1) {
+			if (retrieveFromCache) {
+				events = new String[0];
+			}
+			else {
 				events = new String[] {
 					SyncConstants.EVENT_DELETE, SyncConstants.EVENT_TRASH
 				};
-			}
-			else {
-				events = new String[0];
 			}
 
 			int count = syncDLObjectPersistence.countByM_R_NotE(
@@ -1055,7 +1055,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			typePKs.add(syncDLObject.getTypePK());
 
-			if ((lastAccessTime != -1) && !hasFolderModelPermission &&
+			if (!hasFolderModelPermission &&
 				_PERMISSIONS_VIEW_DYNAMIC_INHERITANCE) {
 
 				long[] parentFolderIds = StringUtil.split(
