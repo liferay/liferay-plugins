@@ -29,10 +29,12 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.PortletItem;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.persistence.LayoutUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
@@ -106,10 +108,19 @@ public class ScreensAssetEntryServiceImpl
 				max = 500;
 			}
 
-			List<AssetEntry> assetEntries = AssetPublisherUtil.getAssetEntries(
-				portletPreferences, null, groupId, max, false);
+			Layout companyLayout = LayoutUtil.fetchByCompanyId_First(
+				companyId, null);
 
-			return toJSONArray(assetEntries, locale);
+			if (companyLayout != null) {
+				List<AssetEntry> assetEntries =
+					AssetPublisherUtil.getAssetEntries(
+						portletPreferences, companyLayout, groupId, max, false);
+
+				return toJSONArray(assetEntries, locale);
+			}
+			else {
+				return JSONFactoryUtil.createJSONArray();
+			}
 		}
 		else {
 			try {
