@@ -122,6 +122,15 @@ public class SyncAuthVerifier implements AuthVerifier {
 				authVerifierResult.setUserId(
 					GetterUtil.getLong(credentials[0]));
 			}
+			else {
+
+				// SYNC-1463
+
+				Map<String, Object> settings =
+					accessControlContext.getSettings();
+
+				settings.remove("basic_auth");
+			}
 
 			return authVerifierResult;
 		}
