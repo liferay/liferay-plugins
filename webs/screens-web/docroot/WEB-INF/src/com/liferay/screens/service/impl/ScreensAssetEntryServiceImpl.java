@@ -108,13 +108,12 @@ public class ScreensAssetEntryServiceImpl
 				max = 500;
 			}
 
-			Layout companyLayout = LayoutUtil.fetchByCompanyId_First(
-				companyId, null);
+			Layout layout = LayoutUtil.fetchByCompanyId_First(companyId, null);
 
-			if (companyLayout != null) {
+			if (layout != null) {
 				List<AssetEntry> assetEntries =
 					AssetPublisherUtil.getAssetEntries(
-						portletPreferences, companyLayout, groupId, max, false);
+						portletPreferences, layout, groupId, max, false);
 
 				return toJSONArray(assetEntries, locale);
 			}
