@@ -16,7 +16,6 @@ package com.liferay.mail.util;
 
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.MessageLocalServiceUtil;
-import com.liferay.mail.service.persistence.MessageActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -123,8 +122,9 @@ public class MessageIndexer extends BaseIndexer<Message> {
 			new ActionableDynamicQuery.PerformActionMethod<Message>() {
 
 				@Override
-				public void performAction(Message message) throws
-					PortalException {
+				public void performAction(Message message)
+					throws PortalException {
+
 					try {
 						Document document = getDocument(message);
 

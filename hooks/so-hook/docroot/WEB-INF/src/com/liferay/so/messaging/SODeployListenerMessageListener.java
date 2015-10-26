@@ -38,7 +38,6 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.persistence.GroupActionableDynamicQuery;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
@@ -49,8 +48,6 @@ import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
 import com.liferay.so.util.SocialOfficeConstants;
 
-import java.lang.Object;
-import java.lang.Override;
 import java.util.List;
 
 /**
@@ -186,7 +183,8 @@ public class SODeployListenerMessageListener
 					UnicodeProperties typeSettingsProperties =
 						group.getTypeSettingsProperties();
 
-					typeSettingsProperties.remove("customJspServletContextName");
+					typeSettingsProperties.remove(
+						"customJspServletContextName");
 
 					GroupLocalServiceUtil.updateGroup(
 						group.getGroupId(), typeSettingsProperties.toString());

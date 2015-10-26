@@ -19,7 +19,6 @@ package com.liferay.so.hook.upgrade.v2_0_3;
 
 import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.service.BookmarksFolderLocalServiceUtil;
-import com.liferay.bookmarks.service.persistence.BookmarksFolderActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -31,9 +30,6 @@ import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-
-import java.lang.Object;
-import java.lang.Override;
 
 /**
  * @author Evan Thibodeau
@@ -53,7 +49,6 @@ public class UpgradeBookmarks extends UpgradeProcess {
 					Property property = PropertyFactoryUtil.forName("name");
 
 					dynamicQuery.add(property.eq("Bookmarks"));
-
 				}
 			}
 

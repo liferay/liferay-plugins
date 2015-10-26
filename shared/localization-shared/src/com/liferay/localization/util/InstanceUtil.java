@@ -32,15 +32,12 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.persistence.UserActionableDynamicQuery;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.util.portlet.PortletProps;
 
-import java.lang.Object;
-import java.lang.Override;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
@@ -207,7 +204,8 @@ public class InstanceUtil implements PortletPropsKeys {
 
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-					Property property = PropertyFactoryUtil.forName("createDate");
+					Property property = PropertyFactoryUtil.forName(
+						"createDate");
 
 					dynamicQuery.add(property.eqProperty("modifiedDate"));
 				}
@@ -221,7 +219,8 @@ public class InstanceUtil implements PortletPropsKeys {
 				@Override
 				public void performAction(User user) throws PortalException {
 					user.setModifiedDate(new Date());
-					user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
+					user.setLanguageId(
+						PortletPropsValues.COMPANY_DEFAULT_LOCALE);
 					user.setTimeZoneId(
 						PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
 

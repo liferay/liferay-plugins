@@ -35,10 +35,6 @@ import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-import com.liferay.portlet.expando.service.persistence.ExpandoValueActionableDynamicQuery;
-
-import java.lang.Object;
-import java.lang.Override;
 
 /**
  * @author Matthew Kong
