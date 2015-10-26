@@ -32,6 +32,9 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 
+import java.lang.Object;
+import java.lang.Override;
+
 /**
  * @author Evan Thibodeau
  */
@@ -40,42 +43,57 @@ public class UpgradeBookmarks extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		ActionableDynamicQuery actionableDynamicQuery =
-			new BookmarksFolderActionableDynamicQuery() {
+			BookmarksFolderLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void addCriteria(DynamicQuery dynamicQuery) {
-				Property property = PropertyFactoryUtil.forName("name");
+		actionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
 
-				dynamicQuery.add(property.eq("Bookmarks"));
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					Property property = PropertyFactoryUtil.forName("name");
+
+					dynamicQuery.add(property.eq("Bookmarks"));
+
+				}
 			}
 
-			@Override
-			protected void performAction(Object object) throws PortalException {
-				BookmarksFolder bookmarksFolder = (BookmarksFolder)object;
+		);
 
-				Group group = GroupLocalServiceUtil.fetchGroup(
-					bookmarksFolder.getGroupId());
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<BookmarksFolder>() {
 
-				if (group == null) {
-					return;
+				@Override
+				public void performAction(BookmarksFolder bookmarksFolder)
+					throws PortalException {
+
+					Group group = GroupLocalServiceUtil.fetchGroup(
+						bookmarksFolder.getGroupId());
+
+					if (group == null) {
+						return;
+					}
+
+					LayoutSet layoutSet =
+						LayoutSetLocalServiceUtil.getLayoutSet(
+							group.getGroupId(), group.hasPrivateLayouts());
+
+					String themeId = layoutSet.getThemeId();
+
+					if (!themeId.equals("so_WAR_sotheme")) {
+						return;
+					}
+
+					BookmarksFolderLocalServiceUtil.updateFolder(
+						bookmarksFolder.getUserId(),
+						bookmarksFolder.getFolderId(),
+						bookmarksFolder.getParentFolderId(),
+						bookmarksFolder.getName(),
+						bookmarksFolder.getDescription(), true,
+						new ServiceContext());
 				}
 
-				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-					group.getGroupId(), group.hasPrivateLayouts());
-
-				String themeId = layoutSet.getThemeId();
-
-				if (!themeId.equals("so_WAR_sotheme")) {
-					return;
-				}
-
-				BookmarksFolderLocalServiceUtil.updateFolder(
-					bookmarksFolder.getUserId(), bookmarksFolder.getFolderId(),
-					bookmarksFolder.getParentFolderId(),
-					bookmarksFolder.getName(), bookmarksFolder.getDescription(),
-					true, new ServiceContext());
 			}
-		};
+		);
 
 		actionableDynamicQuery.performActions();
 	}

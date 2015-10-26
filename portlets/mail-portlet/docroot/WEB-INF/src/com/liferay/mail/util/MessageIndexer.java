@@ -116,28 +116,32 @@ public class MessageIndexer extends BaseIndexer<Message> {
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {
-		ActionableDynamicQuery actionableDynamicQuery =
-			new MessageActionableDynamicQuery() {
+		final ActionableDynamicQuery actionableDynamicQuery =
+			MessageLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) {
-				Message message = (Message)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<Message>() {
 
-				try {
-					Document document = getDocument(message);
+				@Override
+				public void performAction(Message message) throws
+					PortalException {
+					try {
+						Document document = getDocument(message);
 
-					addDocument(document);
-				}
-				catch (PortalException pe) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"Unable to index message " + message.getMessageId(),
-							pe);
+						actionableDynamicQuery.addDocument(document);
+					}
+					catch (PortalException pe) {
+						if (_log.isWarnEnabled()) {
+							_log.warn(
+								"Unable to index message " +
+									message.getMessageId(),
+								pe);
+						}
 					}
 				}
-			}
 
-		};
+			}
+		);
 
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());

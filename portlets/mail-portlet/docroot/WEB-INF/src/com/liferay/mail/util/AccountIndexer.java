@@ -132,28 +132,33 @@ public class AccountIndexer extends BaseIndexer<Account> {
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {
-		ActionableDynamicQuery actionableDynamicQuery =
-			new AccountActionableDynamicQuery() {
+		final ActionableDynamicQuery actionableDynamicQuery =
+			AccountLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) {
-				Account account = (Account)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<Account>() {
 
-				try {
-					Document document = getDocument(account);
+				@Override
+				public void performAction(Account account)
+					throws PortalException {
 
-					addDocument(document);
-				}
-				catch (PortalException pe) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"Unable to index account " + account.getAccountId(),
-							pe);
+					try {
+						Document document = getDocument(account);
+
+						actionableDynamicQuery.addDocument(document);
+					}
+					catch (PortalException pe) {
+						if (_log.isWarnEnabled()) {
+							_log.warn(
+								"Unable to index account " +
+									account.getAccountId(),
+								pe);
+						}
 					}
 				}
-			}
 
-		};
+			}
+		);
 
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());

@@ -39,7 +39,6 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.persistence.GroupActionableDynamicQuery;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.model.ExpandoValue;
@@ -161,111 +160,117 @@ public class GoogleMailGroupsUtil {
 
 	public static void syncGroups() throws Exception {
 		ActionableDynamicQuery actionableDynamicQuery =
-			new GroupActionableDynamicQuery() {
+			GroupLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) throws PortalException {
-				Group group = (Group)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<Group>() {
 
-				if (!isSync(group)) {
-					return;
-				}
-
-				List<String> groupMemberEmailAddresses = new ArrayList<>();
-				Members members = null;
-
-				String groupEmailAddress = getGroupEmailAddress(group);
-
-				if (GoogleDirectoryUtil.getGroup(groupEmailAddress) == null) {
-					try {
-						GoogleDirectoryUtil.addGroup(
-							group.getDescriptiveName(), groupEmailAddress);
-					}
-					catch (Exception e) {
-						_log.error(
-							"Unable to add Google group for " +
-								group.getDescriptiveName(),
-							e);
-
+				@Override
+				public void performAction(Group group) throws PortalException {
+					if (!isSync(group)) {
 						return;
 					}
+
+					List<String> groupMemberEmailAddresses = new ArrayList<>();
+					Members members = null;
+
+					String groupEmailAddress = getGroupEmailAddress(group);
+
+					if (GoogleDirectoryUtil.getGroup(
+						groupEmailAddress) == null) {
+
+						try {
+							GoogleDirectoryUtil.addGroup(
+								group.getDescriptiveName(), groupEmailAddress);
+						}
+						catch (Exception e) {
+							_log.error(
+								"Unable to add Google group for " +
+									group.getDescriptiveName(),
+								e);
+
+							return;
+						}
+					}
+					else {
+						members = GoogleDirectoryUtil.getGroupMembers(
+							groupEmailAddress);
+					}
+
+					if ((members != null) && (members.getMembers() != null)) {
+						for (Member member : members.getMembers()) {
+							groupMemberEmailAddresses.add(member.getEmail());
+						}
+					}
+
+					List<String> emailAddresses = new ArrayList<>();
+
+					LinkedHashMap<String, Object> userParams =
+						new LinkedHashMap<>();
+
+					userParams.put("inherit", Boolean.TRUE);
+					userParams.put(
+						"usersGroups", Long.valueOf(group.getGroupId()));
+
+					List<User> users = UserLocalServiceUtil.search(
+						group.getCompanyId(), null,
+						WorkflowConstants.STATUS_APPROVED, userParams,
+						QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+						(OrderByComparator)null);
+
+					for (User user : users) {
+						emailAddresses.add(getUserEmailAddress(user));
+					}
+
+					for (String groupMemberEmailAddress :
+							groupMemberEmailAddresses) {
+
+						if (emailAddresses.contains(groupMemberEmailAddress)) {
+							continue;
+						}
+
+						try {
+							GoogleDirectoryUtil.deleteGroupMember(
+								groupEmailAddress, groupMemberEmailAddress);
+						}
+						catch (Exception e) {
+							StringBundler sb = new StringBundler(4);
+
+							sb.append("Unable to delete ");
+							sb.append(groupMemberEmailAddress);
+							sb.append(" from Google group ");
+							sb.append(groupEmailAddress);
+
+							_log.error(sb.toString(), e);
+						}
+					}
+
+					for (String emailAddress : emailAddresses) {
+						if (groupMemberEmailAddresses.contains(emailAddress)) {
+							continue;
+						}
+
+						try {
+							GoogleDirectoryUtil.addGroupMember(
+								groupEmailAddress, emailAddress);
+						}
+						catch (Exception e) {
+							StringBundler sb = new StringBundler(4);
+
+							sb.append("Unable to add ");
+							sb.append(emailAddress);
+							sb.append(" to Google group ");
+							sb.append(groupEmailAddress);
+
+							_log.error(sb.toString(), e);
+						}
+					}
+
+					checkLargeGroup(group);
 				}
-				else {
-					members = GoogleDirectoryUtil.getGroupMembers(
-						groupEmailAddress);
-				}
 
-				if ((members != null) && (members.getMembers() != null)) {
-					for (Member member : members.getMembers()) {
-						groupMemberEmailAddresses.add(member.getEmail());
-					}
-				}
-
-				List<String> emailAddresses = new ArrayList<>();
-
-				LinkedHashMap<String, Object> userParams =
-					new LinkedHashMap<>();
-
-				userParams.put("inherit", Boolean.TRUE);
-				userParams.put("usersGroups", Long.valueOf(group.getGroupId()));
-
-				List<User> users = UserLocalServiceUtil.search(
-					group.getCompanyId(), null,
-					WorkflowConstants.STATUS_APPROVED, userParams,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					(OrderByComparator)null);
-
-				for (User user : users) {
-					emailAddresses.add(getUserEmailAddress(user));
-				}
-
-				for (String groupMemberEmailAddress :
-						groupMemberEmailAddresses) {
-
-					if (emailAddresses.contains(groupMemberEmailAddress)) {
-						continue;
-					}
-
-					try {
-						GoogleDirectoryUtil.deleteGroupMember(
-							groupEmailAddress, groupMemberEmailAddress);
-					}
-					catch (Exception e) {
-						StringBundler sb = new StringBundler(4);
-
-						sb.append("Unable to delete ");
-						sb.append(groupMemberEmailAddress);
-						sb.append(" from Google group ");
-						sb.append(groupEmailAddress);
-
-						_log.error(sb.toString(), e);
-					}
-				}
-
-				for (String emailAddress : emailAddresses) {
-					if (groupMemberEmailAddresses.contains(emailAddress)) {
-						continue;
-					}
-
-					try {
-						GoogleDirectoryUtil.addGroupMember(
-							groupEmailAddress, emailAddress);
-					}
-					catch (Exception e) {
-						StringBundler sb = new StringBundler(4);
-
-						sb.append("Unable to add ");
-						sb.append(emailAddress);
-						sb.append(" to Google group ");
-						sb.append(groupEmailAddress);
-
-						_log.error(sb.toString(), e);
-					}
-				}
-
-				checkLargeGroup(group);
 			}
-		};
+		);
 
 		actionableDynamicQuery.performActions();
 	}

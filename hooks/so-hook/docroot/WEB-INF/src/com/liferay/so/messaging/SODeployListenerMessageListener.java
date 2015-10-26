@@ -49,6 +49,8 @@ import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
 import com.liferay.so.util.SocialOfficeConstants;
 
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
 
 /**
@@ -156,40 +158,42 @@ public class SODeployListenerMessageListener
 
 	protected void updateGroups(long companyId) throws PortalException {
 		ActionableDynamicQuery actionableDynamicQuery =
-			new GroupActionableDynamicQuery() {
+			GroupLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) throws PortalException {
-				Group group = (Group)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<Group>() {
 
-				if (!group.isRegularSite()) {
-					return;
+				@Override
+				public void performAction(Group group) throws PortalException {
+					if (!group.isRegularSite()) {
+						return;
+					}
+
+					if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
+							group.getGroupId())) {
+
+						return;
+					}
+
+					if (group.hasPrivateLayouts()) {
+						updateLayoutSetPrototype(group.getGroupId(), true);
+					}
+
+					if (group.hasPublicLayouts()) {
+						updateLayoutSetPrototype(group.getGroupId(), false);
+					}
+
+					UnicodeProperties typeSettingsProperties =
+						group.getTypeSettingsProperties();
+
+					typeSettingsProperties.remove("customJspServletContextName");
+
+					GroupLocalServiceUtil.updateGroup(
+						group.getGroupId(), typeSettingsProperties.toString());
 				}
 
-				if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
-						group.getGroupId())) {
-
-					return;
-				}
-
-				if (group.hasPrivateLayouts()) {
-					updateLayoutSetPrototype(group.getGroupId(), true);
-				}
-
-				if (group.hasPublicLayouts()) {
-					updateLayoutSetPrototype(group.getGroupId(), false);
-				}
-
-				UnicodeProperties typeSettingsProperties =
-					group.getTypeSettingsProperties();
-
-				typeSettingsProperties.remove("customJspServletContextName");
-
-				GroupLocalServiceUtil.updateGroup(
-					group.getGroupId(), typeSettingsProperties.toString());
 			}
-
-		};
+		);
 
 		actionableDynamicQuery.setCompanyId(companyId);
 

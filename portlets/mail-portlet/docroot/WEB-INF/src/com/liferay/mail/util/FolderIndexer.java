@@ -134,28 +134,33 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {
-		ActionableDynamicQuery actionableDynamicQuery =
-			new FolderActionableDynamicQuery() {
+		final ActionableDynamicQuery actionableDynamicQuery =
+			FolderLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) {
-				Folder folder = (Folder)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<Folder>() {
 
-				try {
-					Document document = getDocument(folder);
+				@Override
+				public void performAction(Folder folder)
+					throws PortalException {
 
-					addDocument(document);
-				}
-				catch (PortalException pe) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"Unable to index folder " + folder.getFolderId(),
-							pe);
+					try {
+						Document document = getDocument(folder);
+
+						actionableDynamicQuery.addDocument(document);
+					}
+					catch (PortalException pe) {
+						if (_log.isWarnEnabled()) {
+							_log.warn(
+								"Unable to index folder " +
+									folder.getFolderId(),
+								pe);
+						}
 					}
 				}
-			}
 
-		};
+			}
+		);
 
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());

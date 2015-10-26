@@ -41,6 +41,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.so.configurations.util.PortletKeys;
 import com.liferay.so.util.RoleConstants;
 
+import java.lang.Object;
+import java.lang.Override;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -65,19 +67,21 @@ public class ConfigurationsPortlet extends MVCPortlet {
 			themeDisplay.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
 		ActionableDynamicQuery actionableDynamicQuery =
-			new UserActionableDynamicQuery() {
+			UserLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) throws PortalException {
-				User user = (User)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<User>() {
 
-				if (!user.isDefaultUser()) {
-					UserLocalServiceUtil.addRoleUsers(
-						role.getRoleId(), new long[] {user.getUserId()});
+				@Override
+				public void performAction(User user) throws PortalException {
+					if (!user.isDefaultUser()) {
+						UserLocalServiceUtil.addRoleUsers(
+							role.getRoleId(), new long[] {user.getUserId()});
+					}
 				}
-			}
 
-		};
+			}
+		);
 
 		actionableDynamicQuery.setCompanyId(themeDisplay.getCompanyId());
 

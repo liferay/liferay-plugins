@@ -39,6 +39,8 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.util.portlet.PortletProps;
 
+import java.lang.Object;
+import java.lang.Override;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
@@ -198,28 +200,36 @@ public class InstanceUtil implements PortletPropsKeys {
 		CompanyLocalServiceUtil.updateCompany(company);
 
 		ActionableDynamicQuery actionableDynamicQuery =
-			new UserActionableDynamicQuery() {
+			UserLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void addCriteria(DynamicQuery dynamicQuery) {
-				Property property = PropertyFactoryUtil.forName("createDate");
+		actionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
 
-				dynamicQuery.add(property.eqProperty("modifiedDate"));
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					Property property = PropertyFactoryUtil.forName("createDate");
+
+					dynamicQuery.add(property.eqProperty("modifiedDate"));
+				}
+
 			}
+		);
 
-			@Override
-			protected void performAction(Object object) throws PortalException {
-				User user = (User)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<User>() {
 
-				user.setModifiedDate(new Date());
-				user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
-				user.setTimeZoneId(
-					PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
+				@Override
+				public void performAction(User user) throws PortalException {
+					user.setModifiedDate(new Date());
+					user.setLanguageId(PortletPropsValues.COMPANY_DEFAULT_LOCALE);
+					user.setTimeZoneId(
+						PortletPropsValues.COMPANY_DEFAULT_TIME_ZONE);
 
-				UserLocalServiceUtil.updateUser(user);
+					UserLocalServiceUtil.updateUser(user);
+				}
+
 			}
-
-		};
+		);
 
 		actionableDynamicQuery.setCompanyId(companyId);
 

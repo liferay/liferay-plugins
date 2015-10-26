@@ -237,12 +237,10 @@ public class KBArticleIndexer extends BaseIndexer<KBArticle> {
 			});
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.PerformActionMethod() {
+			new ActionableDynamicQuery.PerformActionMethod<KBArticle>() {
 
 				@Override
-				public void performAction(Object object) {
-					KBArticle kbArticle = (KBArticle)object;
-
+				public void performAction(KBArticle kbArticle) {
 					try {
 						Document document = getDocument(kbArticle);
 

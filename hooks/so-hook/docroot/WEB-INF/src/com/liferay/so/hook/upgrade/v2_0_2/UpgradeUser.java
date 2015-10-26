@@ -41,6 +41,8 @@ import com.liferay.so.util.RoleConstants;
 import com.liferay.so.util.SocialOfficeConstants;
 import com.liferay.so.util.SocialOfficeUtil;
 
+import java.lang.Object;
+import java.lang.Override;
 import java.util.List;
 
 /**
@@ -51,42 +53,46 @@ public class UpgradeUser extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		ActionableDynamicQuery actionableDynamicQuery =
-			new UserActionableDynamicQuery() {
+			UserLocalServiceUtil.getActionableDynamicQuery();
 
-			@Override
-			protected void performAction(Object object) throws PortalException {
-				User user = (User)object;
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<User>() {
 
-				try {
-					if (user.isDefaultUser()) {
-						return;
+				@Override
+				public void performAction(User user) throws PortalException {
+
+					try {
+						if (user.isDefaultUser()) {
+							return;
+						}
+
+						Group group = user.getGroup();
+
+						LayoutSet layoutSet =
+							LayoutSetLocalServiceUtil.getLayoutSet(
+								group.getGroupId(), false);
+
+						String themeId = layoutSet.getThemeId();
+
+						if (!themeId.equals("so_WAR_sotheme")) {
+							return;
+						}
+
+						Role role = RoleLocalServiceUtil.getRole(
+							user.getCompanyId(),
+							RoleConstants.SOCIAL_OFFICE_USER);
+
+						UserLocalServiceUtil.addRoleUsers(
+							role.getRoleId(), new long[] {user.getUserId()});
+
+						updateUserGroup(group);
+						updateSocialRelations(user);
 					}
-
-					Group group = user.getGroup();
-
-					LayoutSet layoutSet =
-						LayoutSetLocalServiceUtil.getLayoutSet(
-							group.getGroupId(), false);
-
-					String themeId = layoutSet.getThemeId();
-
-					if (!themeId.equals("so_WAR_sotheme")) {
-						return;
+					catch (Exception e) {
 					}
-
-					Role role = RoleLocalServiceUtil.getRole(
-						user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
-
-					UserLocalServiceUtil.addRoleUsers(
-						role.getRoleId(), new long[] {user.getUserId()});
-
-					updateUserGroup(group);
-					updateSocialRelations(user);
-				}
-				catch (Exception e) {
 				}
 			}
-		};
+		);
 	}
 
 	protected void updateSocialRelations(User user) throws Exception {

@@ -146,10 +146,10 @@ public class VerifyUtil {
 			});
 		dlFolderActionableDynamicQuery.setGroupId(groupId);
 		dlFolderActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.PerformActionMethod() {
+			new ActionableDynamicQuery.PerformActionMethod<DLFolder>() {
 
 				@Override
-				public void performAction(Object object)
+				public void performAction(DLFolder dlFolder)
 					throws PortalException {
 
 					_dlFoldersAndFileEntriesCount++;
@@ -158,8 +158,6 @@ public class VerifyUtil {
 						_dlFoldersAndFileEntriesCount,
 						_dlFoldersAndFileEntriesTotalCount,
 						"DL folders and DL file entries");
-
-					DLFolder dlFolder = (DLFolder)object;
 
 					if (!SyncUtil.isSupportedFolder(dlFolder)) {
 						return;
@@ -199,10 +197,10 @@ public class VerifyUtil {
 
 		dlFileEntryActionableDynamicQuery.setGroupId(groupId);
 		dlFileEntryActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.PerformActionMethod() {
+			new ActionableDynamicQuery.PerformActionMethod<DLFileEntry>() {
 
 				@Override
-				public void performAction(Object object)
+				public void performAction(DLFileEntry dlFileEntry)
 					throws PortalException {
 
 					_dlFoldersAndFileEntriesCount++;
@@ -211,8 +209,6 @@ public class VerifyUtil {
 						_dlFoldersAndFileEntriesCount,
 						_dlFoldersAndFileEntriesTotalCount,
 						"DL folders and DL file entries");
-
-					DLFileEntry dlFileEntry = (DLFileEntry)object;
 
 					if ((dlFileEntry.getStatus() !=
 							WorkflowConstants.STATUS_APPROVED) &&
@@ -310,10 +306,10 @@ public class VerifyUtil {
 
 			});
 		syncDLObjectActionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.PerformActionMethod() {
+			new ActionableDynamicQuery.PerformActionMethod<SyncDLObject>() {
 
 				@Override
-				public void performAction(Object object)
+				public void performAction(SyncDLObject syncDLObject)
 					throws PortalException {
 
 					_syncDLObjectsCount++;
@@ -321,8 +317,6 @@ public class VerifyUtil {
 					logCount(
 						_syncDLObjectsCount, _syncDLObjectsTotalCount,
 						"Sync DL objects");
-
-					SyncDLObject syncDLObject = (SyncDLObject)object;
 
 					String type = syncDLObject.getType();
 
