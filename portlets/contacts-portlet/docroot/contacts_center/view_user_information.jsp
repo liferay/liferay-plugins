@@ -119,34 +119,34 @@ if (emailAddresses.isEmpty()) {
 </c:if>
 
 <%
-String jabber = contact2.getJabberSn();
-String skype = contact2.getSkypeSn();
+String jabberSn = contact2.getJabberSn();
+String skypeSn = contact2.getSkypeSn();
 
-if (Validator.isNull(jabber) && Validator.isNull(skype)) {
+if (Validator.isNull(jabberSn) && Validator.isNull(skypeSn)) {
 	incompleteProfile = true;
 }
 %>
 
-<c:if test="<%= showInstantMessenger && (Validator.isNotNull(jabber) || Validator.isNotNull(skype)) %>">
+<c:if test="<%= showInstantMessenger && (Validator.isNotNull(jabberSn) || Validator.isNotNull(skypeSn)) %>">
 	<div class="field-group section" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(request, "instant-messenger") %>">
 		<i class="icon-edit"></i>
 
 		<h3><liferay-ui:message key="instant-messenger" />:</h3>
 
 		<ul class="property-list">
-			<c:if test="<%= Validator.isNotNull(jabber) %>">
+			<c:if test="<%= Validator.isNotNull(jabberSn) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="jabber" /></span>
 
-					<span class="property"><%= HtmlUtil.escape(jabber) %></span>
+					<span class="property"><%= HtmlUtil.escape(jabberSn) %></span>
 				</li>
 			</c:if>
 
-			<c:if test="<%= Validator.isNotNull(skype) %>">
+			<c:if test="<%= Validator.isNotNull(skypeSn) %>">
 				<li>
 					<span class="property-type"><liferay-ui:message key="skype" /></span>
 
-					<span class="property"><%= HtmlUtil.escape(skype) %></span>
+					<span class="property"><%= HtmlUtil.escape(skypeSn) %></span>
 
 					<i class="icon-skype"></i>
 				</li>
