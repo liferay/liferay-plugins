@@ -182,14 +182,14 @@ public class URLMetadataScraperProcessor {
 			return false;
 		}
 
-		URL url = new URL(imageURL);
-
-		HttpURLConnection httpURLConnection =
-			(HttpURLConnection)url.openConnection();
-
-		httpURLConnection.setRequestProperty("User-Agent", userAgent);
-
 		try {
+			URL url = new URL(imageURL);
+
+			HttpURLConnection httpURLConnection =
+				(HttpURLConnection)url.openConnection();
+
+			httpURLConnection.setRequestProperty("User-Agent", userAgent);
+
 			BufferedImage bufferedImage = ImageIO.read(
 				httpURLConnection.getInputStream());
 
