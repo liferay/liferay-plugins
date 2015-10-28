@@ -66,6 +66,7 @@ public class ConfigurationsPortlet extends MVCPortlet {
 		ActionableDynamicQuery actionableDynamicQuery =
 			UserLocalServiceUtil.getActionableDynamicQuery();
 
+		actionableDynamicQuery.setCompanyId(themeDisplay.getCompanyId());
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<User>() {
 
@@ -78,7 +79,6 @@ public class ConfigurationsPortlet extends MVCPortlet {
 				}
 
 			});
-		actionableDynamicQuery.setCompanyId(themeDisplay.getCompanyId());
 
 		actionableDynamicQuery.performActions();
 	}
