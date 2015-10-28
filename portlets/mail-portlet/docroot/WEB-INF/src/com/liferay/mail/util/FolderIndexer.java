@@ -136,6 +136,7 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 		final ActionableDynamicQuery actionableDynamicQuery =
 			FolderLocalServiceUtil.getActionableDynamicQuery();
 
+		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Folder>() {
 
@@ -159,7 +160,6 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 				}
 
 			});
-		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		actionableDynamicQuery.performActions();
