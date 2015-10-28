@@ -190,9 +190,7 @@ public class SODeployListenerMessageListener
 						group.getGroupId(), typeSettingsProperties.toString());
 				}
 
-			}
-		);
-
+			});
 		actionableDynamicQuery.setCompanyId(companyId);
 
 		actionableDynamicQuery.performActions();

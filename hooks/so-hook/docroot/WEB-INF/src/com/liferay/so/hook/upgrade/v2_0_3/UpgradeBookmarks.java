@@ -50,10 +50,7 @@ public class UpgradeBookmarks extends UpgradeProcess {
 
 					dynamicQuery.add(property.eq("Bookmarks"));
 				}
-			}
-
-		);
-
+			});
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<BookmarksFolder>() {
 
@@ -87,8 +84,7 @@ public class UpgradeBookmarks extends UpgradeProcess {
 						new ServiceContext());
 				}
 
-			}
-		);
+			});
 
 		actionableDynamicQuery.performActions();
 	}
