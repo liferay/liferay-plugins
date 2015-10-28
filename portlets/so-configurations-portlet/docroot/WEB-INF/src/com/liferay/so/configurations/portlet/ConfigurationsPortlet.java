@@ -77,9 +77,7 @@ public class ConfigurationsPortlet extends MVCPortlet {
 					}
 				}
 
-			}
-		);
-
+			});
 		actionableDynamicQuery.setCompanyId(themeDisplay.getCompanyId());
 
 		actionableDynamicQuery.performActions();
