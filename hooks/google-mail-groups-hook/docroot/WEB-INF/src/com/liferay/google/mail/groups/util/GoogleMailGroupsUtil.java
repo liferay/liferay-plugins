@@ -269,8 +269,7 @@ public class GoogleMailGroupsUtil {
 					checkLargeGroup(group);
 				}
 
-			}
-		);
+			});
 
 		actionableDynamicQuery.performActions();
 	}

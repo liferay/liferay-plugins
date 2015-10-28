@@ -158,9 +158,7 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 					}
 				}
 
-			}
-		);
-
+			});
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 

@@ -140,9 +140,7 @@ public class MessageIndexer extends BaseIndexer<Message> {
 					}
 				}
 
-			}
-		);
-
+			});
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 

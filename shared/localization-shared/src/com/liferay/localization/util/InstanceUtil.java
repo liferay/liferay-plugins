@@ -210,9 +210,8 @@ public class InstanceUtil implements PortletPropsKeys {
 					dynamicQuery.add(property.eqProperty("modifiedDate"));
 				}
 
-			}
-		);
-
+			});
+		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<User>() {
 
@@ -227,10 +226,7 @@ public class InstanceUtil implements PortletPropsKeys {
 					UserLocalServiceUtil.updateUser(user);
 				}
 
-			}
-		);
-
-		actionableDynamicQuery.setCompanyId(companyId);
+			});
 
 		actionableDynamicQuery.performActions();
 	}
