@@ -89,8 +89,7 @@ public class UpgradeUser extends UpgradeProcess {
 					}
 				}
 
-			}
-		);
+			});
 
 		actionableDynamicQuery.performActions();
 	}
