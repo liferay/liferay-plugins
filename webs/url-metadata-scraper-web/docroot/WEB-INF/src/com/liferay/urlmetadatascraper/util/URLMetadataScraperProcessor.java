@@ -45,10 +45,11 @@ public class URLMetadataScraperProcessor {
 
 		Document document = null;
 
+		String protocol =
+			HttpUtil.getProtocol(url) + HttpUtil.PROTOCOL_DELIMITER;
+
 		try {
-			url =
-				HttpUtil.getProtocol(url) + HttpUtil.PROTOCOL_DELIMITER +
-					HttpUtil.removeProtocol(url);
+			url = protocol + HttpUtil.removeProtocol(url);
 
 			Connection connection = Jsoup.connect(url);
 
@@ -76,7 +77,8 @@ public class URLMetadataScraperProcessor {
 
 		jsonObject.put(
 			"description", getContent(document, _SELECTORS_DESCRIPTION));
-		jsonObject.put("imageURLs", getImageURLs(document, userAgent));
+		jsonObject.put(
+			"imageURLs", getImageURLs(document, protocol, userAgent));
 		jsonObject.put("videoURL", getContent(document, _SELECTORS_VIDEO_URL_));
 
 		String domain = "";
@@ -120,14 +122,15 @@ public class URLMetadataScraperProcessor {
 		return "";
 	}
 
-	protected List<String> getImageURLs(Document document, String userAgent)
+	protected List<String> getImageURLs(
+			Document document, String protocol, String userAgent)
 		throws Exception {
 
 		List<String> imageURLs = new ArrayList<String>();
 
 		String imageURL = getContent(document, _SELECTORS_IMAGE);
 
-		if (isValidImageURL(imageURL, userAgent)) {
+		if (isValidImageURL(imageURL, protocol, userAgent)) {
 			imageURLs.add(imageURL);
 		}
 
@@ -137,7 +140,7 @@ public class URLMetadataScraperProcessor {
 			imageURL = imageElement.absUrl("src");
 
 			if (isValidImageElement(imageElement) &&
-				isValidImageURL(imageURL, userAgent) &&
+				isValidImageURL(imageURL, protocol, userAgent) &&
 				!imageURLs.contains(imageURL)) {
 
 				imageURLs.add(imageURL);
@@ -175,11 +178,16 @@ public class URLMetadataScraperProcessor {
 		return true;
 	}
 
-	protected boolean isValidImageURL(String imageURL, String userAgent)
+	protected boolean isValidImageURL(
+			String imageURL, String protocol, String userAgent)
 		throws Exception {
 
 		if (Validator.isNull(imageURL)) {
 			return false;
+		}
+
+		if (imageURL.startsWith("//")) {
+			imageURL = imageURL.replaceFirst("//", protocol);
 		}
 
 		try {
