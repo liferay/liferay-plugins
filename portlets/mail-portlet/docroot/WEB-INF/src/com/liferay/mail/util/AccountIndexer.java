@@ -134,6 +134,7 @@ public class AccountIndexer extends BaseIndexer<Account> {
 		final ActionableDynamicQuery actionableDynamicQuery =
 			AccountLocalServiceUtil.getActionableDynamicQuery();
 
+		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Account>() {
 
@@ -156,10 +157,7 @@ public class AccountIndexer extends BaseIndexer<Account> {
 					}
 				}
 
-			}
-		);
-
-		actionableDynamicQuery.setCompanyId(companyId);
+			});
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		actionableDynamicQuery.performActions();
