@@ -67,9 +67,8 @@ public class UpgradeGroup extends UpgradeProcess {
 
 					dynamicQuery.add(classNameIdProperty.eq(classNameId));
 				}
-			}
-		);
 
+			});
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Group>() {
 
@@ -122,8 +121,7 @@ public class UpgradeGroup extends UpgradeProcess {
 					}
 				}
 
-			}
-		);
+			});
 
 		actionableDynamicQuery.performActions();
 	}
