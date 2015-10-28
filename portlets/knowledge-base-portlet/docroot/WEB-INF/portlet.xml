@@ -69,6 +69,10 @@
 				<value>true</value>
 			</preference>
 			<preference>
+				<name>showKBArticleAttachments</name>
+				<value>true</value>
+			</preference>
+			<preference>
 				<name>showKBArticleKBComments</name>
 				<value>true</value>
 			</preference>
@@ -162,6 +166,10 @@
 				<value>true</value>
 			</preference>
 			<preference>
+				<name>showKBArticleAttachments</name>
+				<value>true</value>
+			</preference>
+			<preference>
 				<name>showKBArticleKBComments</name>
 				<value>false</value>
 			</preference>
@@ -248,6 +256,10 @@
 			</preference>
 			<preference>
 				<name>showKBArticleAssetEntries</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleAttachments</name>
 				<value>true</value>
 			</preference>
 			<preference>
@@ -360,6 +372,10 @@
 				<value>true</value>
 			</preference>
 			<preference>
+				<name>showKBArticleAttachments</name>
+				<value>true</value>
+			</preference>
+			<preference>
 				<name>showKBArticleKBComments</name>
 				<value>false</value>
 			</preference>
@@ -450,6 +466,10 @@
 			</preference>
 			<preference>
 				<name>showKBArticleAssetEntries</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showKBArticleAttachments</name>
 				<value>true</value>
 			</preference>
 			<preference>

@@ -80,6 +80,10 @@ request.setAttribute("article_icons.jsp-kb_article", kbArticle);
 
 	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
 
+	<c:if test="<%= showKBArticleAttachments %>">
+		<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
+	</c:if>
+
 	<c:if test="<%= !rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE) %>">
 		<liferay-util:include page="/admin/article_siblings.jsp" servletContext="<%= application %>" />
 	</c:if>
