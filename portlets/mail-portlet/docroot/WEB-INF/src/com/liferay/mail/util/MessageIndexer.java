@@ -118,6 +118,7 @@ public class MessageIndexer extends BaseIndexer<Message> {
 		final ActionableDynamicQuery actionableDynamicQuery =
 			MessageLocalServiceUtil.getActionableDynamicQuery();
 
+		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Message>() {
 
@@ -141,7 +142,6 @@ public class MessageIndexer extends BaseIndexer<Message> {
 				}
 
 			});
-		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		actionableDynamicQuery.performActions();
