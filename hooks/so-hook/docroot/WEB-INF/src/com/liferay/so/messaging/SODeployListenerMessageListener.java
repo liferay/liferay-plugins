@@ -157,6 +157,7 @@ public class SODeployListenerMessageListener
 		ActionableDynamicQuery actionableDynamicQuery =
 			GroupLocalServiceUtil.getActionableDynamicQuery();
 
+		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Group>() {
 
@@ -191,7 +192,6 @@ public class SODeployListenerMessageListener
 				}
 
 			});
-		actionableDynamicQuery.setCompanyId(companyId);
 
 		actionableDynamicQuery.performActions();
 	}
