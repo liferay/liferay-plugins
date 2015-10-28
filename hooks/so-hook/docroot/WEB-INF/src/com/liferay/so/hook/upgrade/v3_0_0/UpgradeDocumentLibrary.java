@@ -80,9 +80,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 					dynamicQuery.add(dataProperty.eq(StringPool.TRUE));
 				}
 
-			}
-		);
-
+			});
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<ExpandoValue>() {
 
@@ -105,8 +103,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 					DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
 				}
 
-			}
-		);
+			});
 
 		actionableDynamicQuery.performActions();
 

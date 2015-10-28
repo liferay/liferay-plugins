@@ -88,6 +88,7 @@ public class UpgradeUser extends UpgradeProcess {
 					catch (Exception e) {
 					}
 				}
+
 			}
 		);
 
