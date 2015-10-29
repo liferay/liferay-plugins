@@ -161,11 +161,11 @@ public class KBArticleStagedModelDataHandler
 		if ((parentResourceClassNameId != kbArticleClassNameId) &&
 			(parentResourceClassNameId != kbFolderClassNameId)) {
 
-			KBArticle kbArticleArticle =
+			KBArticle parentKBArticle =
 				KBArticleLocalServiceUtil.fetchLatestKBArticle(
 					parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-			if (kbArticleArticle != null) {
+			if (parentKBArticle != null) {
 				parentResourceClassNameId = kbArticleClassNameId;
 			}
 			else {
