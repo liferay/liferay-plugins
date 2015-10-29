@@ -171,32 +171,32 @@ public class KBArticleStagedModelDataHandler
 			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(),
 			kbArticle.getResourcePrimKey());
 
-		long parentResourceClassNameId =
-			kbArticle.getParentResourceClassNameId();
-		long kbArticleClassNameId = PortalUtil.getClassNameId(
-			KBArticleConstants.getClassName());
 		long kbFolderClassNameId = PortalUtil.getClassNameId(
 			KBFolderConstants.getClassName());
 
-		if ((parentResourceClassNameId != kbArticleClassNameId) &&
-			(parentResourceClassNameId != kbFolderClassNameId)) {
+		if ((kbArticle.getParentResourceClassNameId() !=
+				kbArticle.getClassNameId()) &&
+			(kbArticle.getParentResourceClassNameId() != kbFolderClassNameId)) {
 
 			KBArticle parentKBArticle =
 				KBArticleLocalServiceUtil.fetchLatestKBArticle(
 					parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 			if (parentKBArticle != null) {
-				parentResourceClassNameId = kbArticleClassNameId;
+				kbArticle.setParentResourceClassNameId(
+					kbArticle.getClassNameId());
 			}
 			else {
-				parentResourceClassNameId = kbFolderClassNameId;
+				kbArticle.setParentResourceClassNameId(kbFolderClassNameId);
 			}
 		}
 
 		if (kbArticle.getParentResourcePrimKey() !=
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
-			if (kbArticle.getClassNameId() == parentResourceClassNameId) {
+			if (kbArticle.getClassNameId() ==
+					kbArticle.getParentResourceClassNameId()) {
+
 				StagedModelDataHandlerUtil.importReferenceStagedModels(
 					portletDataContext, kbArticle, KBArticle.class);
 			}
@@ -251,7 +251,7 @@ public class KBArticleStagedModelDataHandler
 
 				if (existingKBArticle == null) {
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-						userId, parentResourceClassNameId,
+						userId, kbArticle.getParentResourceClassNameId(),
 						parentResourcePrimKey, kbArticle.getTitle(),
 						kbArticle.getUrlTitle(), kbArticle.getContent(),
 						kbArticle.getDescription(), kbArticle.getSourceURL(),
@@ -285,10 +285,11 @@ public class KBArticleStagedModelDataHandler
 		}
 		else {
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-				userId, parentResourceClassNameId, parentResourcePrimKey,
-				kbArticle.getTitle(), kbArticle.getUrlTitle(),
-				kbArticle.getContent(), kbArticle.getDescription(),
-				kbArticle.getSourceURL(), sections, null, serviceContext);
+				userId, kbArticle.getParentResourceClassNameId(),
+				parentResourcePrimKey, kbArticle.getTitle(),
+				kbArticle.getUrlTitle(), kbArticle.getContent(),
+				kbArticle.getDescription(), kbArticle.getSourceURL(), sections,
+				null, serviceContext);
 
 			KBArticleLocalServiceUtil.updatePriority(
 				importedKBArticle.getResourcePrimKey(),
