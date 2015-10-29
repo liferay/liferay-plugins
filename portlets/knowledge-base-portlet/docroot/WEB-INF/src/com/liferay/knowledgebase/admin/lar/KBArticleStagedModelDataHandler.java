@@ -180,10 +180,11 @@ public class KBArticleStagedModelDataHandler
 
 		long parentResourcePrimKey = MapUtil.getLong(
 			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey(),
-			KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+			kbArticle.getParentResourcePrimKey());
 
 		long resourcePrimaryKey = MapUtil.getLong(
-			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(), 0);
+			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(),
+			kbArticle.getResourcePrimKey());
 
 		if (parentResourcePrimKey ==
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
