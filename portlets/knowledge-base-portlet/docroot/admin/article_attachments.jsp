@@ -17,41 +17,40 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-	KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-	List<FileEntry> attachmentsFileEntries = new ArrayList<FileEntry>();
+List<FileEntry> attachmentsFileEntries = new ArrayList<FileEntry>();
 
-	if (kbArticle != null) {
-		attachmentsFileEntries = kbArticle.getAttachmentsFileEntries();
-	}
+if (kbArticle != null) {
+	attachmentsFileEntries = kbArticle.getAttachmentsFileEntries();
+}
 %>
 
 <div class="kb-attachments">
 	<c:if test="<%= !attachmentsFileEntries.isEmpty() %>">
-
 		<div id="<portlet:namespace />existingAttachmentsContainer">
 
 			<%
-				for (FileEntry fileEntry : attachmentsFileEntries) {
+			for (FileEntry fileEntry : attachmentsFileEntries) {
 			%>
 
-			<div id="<portlet:namespace />fileEntryIdWrapper<%= fileEntry.getFileEntryId() %>">
+				<div id="<portlet:namespace />fileEntryIdWrapper<%= fileEntry.getFileEntryId() %>">
 
-				<%
+					<%
 					String clipURL = DLUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK);
-				%>
+					%>
 
-				<liferay-ui:icon
+					<liferay-ui:icon
 						iconCssClass="icon-paper-clip"
 						label="<%= true %>"
 						message='<%= fileEntry.getTitle() + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)" %>'
 						method="get"
 						url="<%= clipURL %>"
-						/>
-			</div>
+					/>
+				</div>
 
 			<%
-				}
+			}
 			%>
 
 		</div>
