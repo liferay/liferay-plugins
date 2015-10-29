@@ -171,17 +171,17 @@ public class KBArticleStagedModelDataHandler
 			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(),
 			kbArticle.getResourcePrimKey());
 
-		long parentResourceClassNameId = 
-				kbArticle.getParentResourceClassNameId();
+		long parentResourceClassNameId =
+			kbArticle.getParentResourceClassNameId();
 		long kbArticleClassNameId = PortalUtil.getClassNameId(
-				KBArticleConstants.getClassName());
+			KBArticleConstants.getClassName());
 		long kbFolderClassNameId = PortalUtil.getClassNameId(
-				KBFolderConstants.getClassName());
+			KBFolderConstants.getClassName());
 
 		if ((parentResourceClassNameId != kbArticleClassNameId) &&
 			(parentResourceClassNameId != kbFolderClassNameId)) {
 
-			KBArticle kbArticleArticle = 
+			KBArticle kbArticleArticle =
 				KBArticleLocalServiceUtil.fetchLatestKBArticle(
 					parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
@@ -285,11 +285,10 @@ public class KBArticleStagedModelDataHandler
 		}
 		else {
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-				userId, parentResourceClassNameId,
-				parentResourcePrimKey, kbArticle.getTitle(),
-				kbArticle.getUrlTitle(), kbArticle.getContent(),
-				kbArticle.getDescription(), kbArticle.getSourceURL(), sections,
-				null, serviceContext);
+				userId, parentResourceClassNameId, parentResourcePrimKey,
+				kbArticle.getTitle(), kbArticle.getUrlTitle(),
+				kbArticle.getContent(), kbArticle.getDescription(),
+				kbArticle.getSourceURL(), sections, null, serviceContext);
 
 			KBArticleLocalServiceUtil.updatePriority(
 				importedKBArticle.getResourcePrimKey(),
