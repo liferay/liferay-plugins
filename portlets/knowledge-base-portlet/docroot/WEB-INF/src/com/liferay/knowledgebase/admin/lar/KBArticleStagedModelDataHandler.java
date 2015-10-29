@@ -139,21 +139,6 @@ public class KBArticleStagedModelDataHandler
 
 		long userId = portletDataContext.getUserId(kbArticle.getUserUuid());
 
-		if (kbArticle.getParentResourcePrimKey() !=
-				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-
-			if (kbArticle.getClassNameId() ==
-					kbArticle.getParentResourceClassNameId()) {
-
-				StagedModelDataHandlerUtil.importReferenceStagedModels(
-					portletDataContext, kbArticle, KBArticle.class);
-			}
-			else {
-				StagedModelDataHandlerUtil.importReferenceStagedModels(
-					portletDataContext, kbArticle, KBFolder.class);
-			}
-		}
-
 		Map<Long, Long> kbArticleResourcePrimKeys =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
@@ -165,6 +150,41 @@ public class KBArticleStagedModelDataHandler
 		long resourcePrimaryKey = MapUtil.getLong(
 			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(),
 			kbArticle.getResourcePrimKey());
+
+		long parentResourceClassNameId = 
+				kbArticle.getParentResourceClassNameId();
+		long kbArticleClassNameId = PortalUtil.getClassNameId(
+				KBArticleConstants.getClassName());
+		long kbFolderClassNameId = PortalUtil.getClassNameId(
+				KBFolderConstants.getClassName());
+
+		if ((parentResourceClassNameId != kbArticleClassNameId) &&
+			(parentResourceClassNameId != kbFolderClassNameId)) {
+
+			KBArticle kbArticleArticle = 
+				KBArticleLocalServiceUtil.fetchLatestKBArticle(
+					parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+
+			if (kbArticleArticle != null) {
+				parentResourceClassNameId = kbArticleClassNameId;
+			}
+			else {
+				parentResourceClassNameId = kbFolderClassNameId;
+			}
+		}
+
+		if (kbArticle.getParentResourcePrimKey() !=
+				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			if (kbArticle.getClassNameId() == parentResourceClassNameId) {
+				StagedModelDataHandlerUtil.importReferenceStagedModels(
+					portletDataContext, kbArticle, KBArticle.class);
+			}
+			else {
+				StagedModelDataHandlerUtil.importReferenceStagedModels(
+					portletDataContext, kbArticle, KBFolder.class);
+			}
+		}
 
 		if (parentResourcePrimKey ==
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
@@ -203,7 +223,7 @@ public class KBArticleStagedModelDataHandler
 
 				if (existingKBArticle == null) {
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-						userId, kbArticle.getParentResourceClassNameId(),
+						userId, parentResourceClassNameId,
 						parentResourcePrimKey, kbArticle.getTitle(),
 						kbArticle.getUrlTitle(), kbArticle.getContent(),
 						kbArticle.getDescription(), kbArticle.getSourceURL(),
@@ -237,7 +257,7 @@ public class KBArticleStagedModelDataHandler
 		}
 		else {
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
-				userId, kbArticle.getParentResourceClassNameId(),
+				userId, parentResourceClassNameId,
 				parentResourcePrimKey, kbArticle.getTitle(),
 				kbArticle.getUrlTitle(), kbArticle.getContent(),
 				kbArticle.getDescription(), kbArticle.getSourceURL(), sections,
