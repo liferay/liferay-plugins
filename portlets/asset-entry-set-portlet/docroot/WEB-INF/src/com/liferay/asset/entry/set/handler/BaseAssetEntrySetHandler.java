@@ -87,13 +87,13 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		jsonObject.put("linkData", payloadJSONObject.getJSONObject("linkData"));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("rawMessage", payloadJSONObject.getString("rawMessage"));
+		jsonObject.put("truncated", payloadJSONObject.getBoolean("truncated"));
 
-		if (Validator.isNotNull(
-				payloadJSONObject.getString("truncatedMessage"))) {
+		String truncatedMessage = payloadJSONObject.getString(
+			"truncatedMessage");
 
-			jsonObject.put(
-				"truncatedMessage",
-				payloadJSONObject.getString("truncatedMessage"));
+		if (Validator.isNotNull(truncatedMessage)) {
+			jsonObject.put("truncatedMessage", truncatedMessage);
 		}
 
 		jsonObject.put("type", payloadJSONObject.getString("type"));
