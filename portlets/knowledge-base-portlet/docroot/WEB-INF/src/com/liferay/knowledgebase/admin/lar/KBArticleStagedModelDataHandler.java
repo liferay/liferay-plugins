@@ -203,6 +203,14 @@ public class KBArticleStagedModelDataHandler
 			else {
 				StagedModelDataHandlerUtil.importReferenceStagedModels(
 					portletDataContext, kbArticle, KBFolder.class);
+
+				Map<Long, Long> kbFolderResourcePrimKeys =
+					(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+						KBFolder.class);
+
+				parentResourcePrimKey = MapUtil.getLong(
+					kbFolderResourcePrimKeys, parentResourcePrimKey,
+					parentResourcePrimKey);
 			}
 		}
 
