@@ -221,16 +221,6 @@ public class MemberRequestLocalServiceWrapper
 		return _memberRequestLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _memberRequestLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,
 		long receiverUserId, int status)
@@ -280,6 +270,16 @@ public class MemberRequestLocalServiceWrapper
 		return _memberRequestLocalService.getMemberRequestsCount();
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _memberRequestLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -325,16 +325,6 @@ public class MemberRequestLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _memberRequestLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_memberRequestLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

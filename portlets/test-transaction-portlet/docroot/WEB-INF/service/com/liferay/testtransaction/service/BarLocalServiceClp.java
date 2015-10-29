@@ -135,7 +135,7 @@ public class BarLocalServiceClp implements BarLocalService {
 
 		_methodParameterTypes21 = new String[] {  };
 
-		_methodName22 = "getBeanIdentifier";
+		_methodName22 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes22 = new String[] {  };
 
@@ -151,17 +151,13 @@ public class BarLocalServiceClp implements BarLocalService {
 
 		_methodParameterTypes25 = new String[] {  };
 
-		_methodName27 = "setBeanIdentifier";
+		_methodName27 = "testAddClassNameAndBar_Success";
 
 		_methodParameterTypes27 = new String[] { "java.lang.String" };
 
-		_methodName28 = "testAddClassNameAndBar_Success";
+		_methodName28 = "updateBar";
 
-		_methodParameterTypes28 = new String[] { "java.lang.String" };
-
-		_methodName29 = "updateBar";
-
-		_methodParameterTypes29 = new String[] {
+		_methodParameterTypes28 = new String[] {
 				"com.liferay.testtransaction.model.Bar"
 			};
 	}
@@ -728,7 +724,7 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -835,30 +831,10 @@ public class BarLocalServiceClp implements BarLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+	public void testAddClassNameAndBar_Success(java.lang.String text) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName27,
 				_methodParameterTypes27,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void testAddClassNameAndBar_Success(java.lang.String text) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName28,
-				_methodParameterTypes28,
 				new Object[] { ClpSerializer.translateInput(text) });
 		}
 		catch (Throwable t) {
@@ -880,8 +856,8 @@ public class BarLocalServiceClp implements BarLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] { ClpSerializer.translateInput(bar) });
 		}
 		catch (Throwable t) {
@@ -956,6 +932,4 @@ public class BarLocalServiceClp implements BarLocalService {
 	private String[] _methodParameterTypes27;
 	private String _methodName28;
 	private String[] _methodParameterTypes28;
-	private String _methodName29;
-	private String[] _methodParameterTypes29;
 }

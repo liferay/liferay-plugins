@@ -210,16 +210,6 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 		return _messageLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _messageLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
 		long companyId, int start, int end) {
@@ -294,6 +284,16 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 		return _messageLocalService.getMessagesCount();
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _messageLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -322,16 +322,6 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 		java.lang.String orderByField, java.lang.String orderByType) {
 		return _messageLocalService.populateMessages(messages, folderId,
 			keywords, pageNumber, messagesPerPage, orderByField, orderByType);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_messageLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

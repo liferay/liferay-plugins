@@ -99,15 +99,15 @@ public class StatusLocalServiceClp implements StatusLocalService {
 				"long", "long", "long", "int", "int"
 			};
 
-		_methodName14 = "getBeanIdentifier";
+		_methodName14 = "getGroupStatuses";
 
-		_methodParameterTypes14 = new String[] {  };
-
-		_methodName15 = "getGroupStatuses";
-
-		_methodParameterTypes15 = new String[] {
+		_methodParameterTypes14 = new String[] {
 				"long", "long", "java.lang.String[][]", "int", "int"
 			};
+
+		_methodName15 = "getOSGiServiceIdentifier";
+
+		_methodParameterTypes15 = new String[] {  };
 
 		_methodName16 = "getPersistedModel";
 
@@ -141,21 +141,17 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 		_methodParameterTypes22 = new String[] { "long" };
 
-		_methodName24 = "setBeanIdentifier";
+		_methodName24 = "updateStatus";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String" };
+		_methodParameterTypes24 = new String[] { "com.liferay.chat.model.Status" };
 
 		_methodName25 = "updateStatus";
 
-		_methodParameterTypes25 = new String[] { "com.liferay.chat.model.Status" };
+		_methodParameterTypes25 = new String[] { "long", "long" };
 
 		_methodName26 = "updateStatus";
 
-		_methodParameterTypes26 = new String[] { "long", "long" };
-
-		_methodName27 = "updateStatus";
-
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes26 = new String[] {
 				"long", "long", "int", "int", "java.lang.String",
 				"java.lang.String", "int"
 			};
@@ -534,36 +530,13 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
 		long modifiedDate, java.lang.String[] groupNames, int start, int end) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15,
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14,
 					new Object[] {
 						userId,
 						
@@ -589,6 +562,29 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		}
 
 		return (java.util.List<java.lang.Object[]>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -787,33 +783,13 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(status) });
 		}
 		catch (Throwable t) {
@@ -837,8 +813,8 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] { userId, modifiedDate });
 		}
 		catch (Throwable t) {
@@ -863,8 +839,8 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						userId,
 						
@@ -949,6 +925,4 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	private String[] _methodParameterTypes25;
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
 }

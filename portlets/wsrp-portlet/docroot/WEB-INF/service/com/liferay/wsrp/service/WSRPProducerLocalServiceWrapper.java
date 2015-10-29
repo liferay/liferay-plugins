@@ -231,20 +231,20 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		return _wsrpProducerLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _wsrpProducerLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		return _wsrpProducerLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _wsrpProducerLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -367,16 +367,6 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		throws java.lang.Throwable {
 		return _wsrpProducerLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_wsrpProducerLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

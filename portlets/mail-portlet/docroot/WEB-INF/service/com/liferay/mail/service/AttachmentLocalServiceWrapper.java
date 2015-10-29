@@ -247,16 +247,6 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 		return _attachmentLocalService.getAttachmentsCount();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _attachmentLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public java.io.File getFile(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -267,6 +257,16 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	public java.io.InputStream getInputStream(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _attachmentLocalService.getInputStream(attachmentId);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _attachmentLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -282,16 +282,6 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 		throws java.lang.Throwable {
 		return _attachmentLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_attachmentLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

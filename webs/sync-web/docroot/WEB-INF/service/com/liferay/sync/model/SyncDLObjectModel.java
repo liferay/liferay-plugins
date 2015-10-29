@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.ShardedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -41,7 +42,7 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
+public interface SyncDLObjectModel extends BaseModel<SyncDLObject>, ShardedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -81,6 +82,7 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	 *
 	 * @return the company ID of this sync d l object
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -88,6 +90,7 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	 *
 	 * @param companyId the company ID of this sync d l object
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**

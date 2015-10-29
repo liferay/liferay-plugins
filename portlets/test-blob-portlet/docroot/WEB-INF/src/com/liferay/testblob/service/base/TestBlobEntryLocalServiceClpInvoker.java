@@ -123,13 +123,9 @@ public class TestBlobEntryLocalServiceClpInvoker {
 
 		_methodParameterTypes19 = new String[] { "java.io.Serializable" };
 
-		_methodName42 = "getBeanIdentifier";
+		_methodName42 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes42 = new String[] {  };
-
-		_methodName43 = "setBeanIdentifier";
-
-		_methodParameterTypes43 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -238,14 +234,7 @@ public class TestBlobEntryLocalServiceClpInvoker {
 
 		if (_methodName42.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			return TestBlobEntryLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
-			TestBlobEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+			return TestBlobEntryLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
 		throw new UnsupportedOperationException();
@@ -291,6 +280,4 @@ public class TestBlobEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes19;
 	private String _methodName42;
 	private String[] _methodParameterTypes42;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
 }

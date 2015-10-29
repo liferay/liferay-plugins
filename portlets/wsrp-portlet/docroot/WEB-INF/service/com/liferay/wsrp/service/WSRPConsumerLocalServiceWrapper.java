@@ -223,20 +223,20 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		return _wsrpConsumerLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _wsrpConsumerLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		return _wsrpConsumerLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _wsrpConsumerLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -343,16 +343,6 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	public void restartConsumer(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_wsrpConsumerLocalService.restartConsumer(wsrpConsumerId);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_wsrpConsumerLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

@@ -221,19 +221,19 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 		return _syncDLObjectLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _syncDLObjectLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public long getLatestModifiedTime() {
 		return _syncDLObjectLocalService.getLatestModifiedTime();
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _syncDLObjectLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -297,16 +297,6 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 		throws java.lang.Throwable {
 		return _syncDLObjectLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_syncDLObjectLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

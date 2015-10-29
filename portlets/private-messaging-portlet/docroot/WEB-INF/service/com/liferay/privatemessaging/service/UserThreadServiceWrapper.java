@@ -32,21 +32,21 @@ public class UserThreadServiceWrapper implements UserThreadService,
 		_userThreadService = userThreadService;
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _userThreadService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.portlet.messageboards.model.MBMessage getLastThreadMessage(
 		long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadService.getLastThreadMessage(mbThreadId);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _userThreadService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -75,16 +75,6 @@ public class UserThreadServiceWrapper implements UserThreadService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _userThreadService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_userThreadService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

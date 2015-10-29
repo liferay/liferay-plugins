@@ -211,16 +211,6 @@ public class OAuthConsumerLocalServiceWrapper
 		return _oAuthConsumerLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _oAuthConsumerLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
 		java.lang.String gadgetKey, java.lang.String serviceName)
@@ -288,6 +278,16 @@ public class OAuthConsumerLocalServiceWrapper
 		return _oAuthConsumerLocalService.getOAuthConsumersCount(gadgetKey);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _oAuthConsumerLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -301,16 +301,6 @@ public class OAuthConsumerLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _oAuthConsumerLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_oAuthConsumerLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

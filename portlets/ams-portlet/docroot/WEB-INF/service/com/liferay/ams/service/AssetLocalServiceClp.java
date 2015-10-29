@@ -105,7 +105,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 
 		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName16 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes16 = new String[] {  };
 
@@ -113,13 +113,9 @@ public class AssetLocalServiceClp implements AssetLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.io.Serializable" };
 
-		_methodName19 = "setBeanIdentifier";
+		_methodName19 = "updateAsset";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String" };
-
-		_methodName20 = "updateAsset";
-
-		_methodParameterTypes20 = new String[] { "com.liferay.ams.model.Asset" };
+		_methodParameterTypes19 = new String[] { "com.liferay.ams.model.Asset" };
 	}
 
 	@Override
@@ -545,7 +541,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -605,33 +601,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.ams.model.Asset updateAsset(
 		com.liferay.ams.model.Asset asset) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { ClpSerializer.translateInput(asset) });
 		}
 		catch (Throwable t) {
@@ -688,6 +664,4 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName20;
-	private String[] _methodParameterTypes20;
 }

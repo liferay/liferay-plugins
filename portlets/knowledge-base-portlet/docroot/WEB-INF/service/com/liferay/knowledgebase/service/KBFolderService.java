@@ -62,13 +62,6 @@ public interface KBFolderService extends BaseService, InvokableService {
 		long groupId, long parentKbFolderId, java.lang.String urlTitle)
 		throws PortalException;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
 		throws PortalException;
@@ -87,6 +80,13 @@ public interface KBFolderService extends BaseService, InvokableService {
 	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws PortalException;
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
+
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
@@ -94,13 +94,6 @@ public interface KBFolderService extends BaseService, InvokableService {
 
 	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
 		throws PortalException;
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public com.liferay.knowledgebase.model.KBFolder updateKBFolder(
 		long parentResourceClassNameId, long parentResourcePrimKey,

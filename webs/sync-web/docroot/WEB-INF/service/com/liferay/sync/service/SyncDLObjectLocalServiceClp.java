@@ -120,11 +120,11 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName16 = "getLatestModifiedTime";
 
 		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "getLatestModifiedTime";
+		_methodName17 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes17 = new String[] {  };
 
@@ -148,13 +148,9 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 		_methodParameterTypes22 = new String[] {  };
 
-		_methodName24 = "setBeanIdentifier";
+		_methodName24 = "updateSyncDLObject";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String" };
-
-		_methodName25 = "updateSyncDLObject";
-
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 	}
@@ -647,7 +643,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public long getLatestModifiedTime() {
 		Object returnObj = null;
 
 		try {
@@ -666,11 +662,11 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 			}
 		}
 
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+		return ((Long)returnObj).longValue();
 	}
 
 	@Override
-	public long getLatestModifiedTime() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -689,7 +685,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 			}
 		}
 
-		return ((Long)returnObj).longValue();
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -831,33 +827,13 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.sync.model.SyncDLObject updateSyncDLObject(
 		com.liferay.sync.model.SyncDLObject syncDLObject) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(syncDLObject) });
 		}
 		catch (Throwable t) {
@@ -924,6 +900,4 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

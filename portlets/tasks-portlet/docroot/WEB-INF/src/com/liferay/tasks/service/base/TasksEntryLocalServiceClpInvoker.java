@@ -119,123 +119,119 @@ public class TasksEntryLocalServiceClpInvoker {
 				"com.liferay.tasks.model.TasksEntry"
 			};
 
-		_methodName45 = "getBeanIdentifier";
+		_methodName45 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes45 = new String[] {  };
 
-		_methodName46 = "setBeanIdentifier";
+		_methodName50 = "addTasksEntry";
 
-		_methodParameterTypes46 = new String[] { "java.lang.String" };
-
-		_methodName51 = "addTasksEntry";
-
-		_methodParameterTypes51 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"long", "java.lang.String", "int", "long", "int", "int", "int",
 				"int", "int", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
+		_methodName51 = "deleteTasksEntry";
+
+		_methodParameterTypes51 = new String[] { "long" };
+
 		_methodName52 = "deleteTasksEntry";
 
-		_methodParameterTypes52 = new String[] { "long" };
-
-		_methodName53 = "deleteTasksEntry";
-
-		_methodParameterTypes53 = new String[] {
+		_methodParameterTypes52 = new String[] {
 				"com.liferay.tasks.model.TasksEntry"
 			};
 
-		_methodName54 = "getAssigneeTasksEntries";
+		_methodName53 = "getAssigneeTasksEntries";
 
-		_methodParameterTypes54 = new String[] { "long", "int", "int" };
+		_methodParameterTypes53 = new String[] { "long", "int", "int" };
 
-		_methodName55 = "getAssigneeTasksEntriesCount";
+		_methodName54 = "getAssigneeTasksEntriesCount";
 
-		_methodParameterTypes55 = new String[] { "long" };
+		_methodParameterTypes54 = new String[] { "long" };
 
-		_methodName56 = "getGroupAssigneeTasksEntries";
+		_methodName55 = "getGroupAssigneeTasksEntries";
 
-		_methodParameterTypes56 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes55 = new String[] { "long", "long", "int", "int" };
 
-		_methodName57 = "getGroupAssigneeTasksEntriesCount";
+		_methodName56 = "getGroupAssigneeTasksEntriesCount";
 
-		_methodParameterTypes57 = new String[] { "long", "long" };
+		_methodParameterTypes56 = new String[] { "long", "long" };
 
-		_methodName58 = "getGroupResolverTasksEntries";
+		_methodName57 = "getGroupResolverTasksEntries";
 
-		_methodParameterTypes58 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes57 = new String[] { "long", "long", "int", "int" };
 
-		_methodName59 = "getGroupResolverTasksEntriesCount";
+		_methodName58 = "getGroupResolverTasksEntriesCount";
 
-		_methodParameterTypes59 = new String[] { "long", "long" };
+		_methodParameterTypes58 = new String[] { "long", "long" };
 
-		_methodName60 = "getGroupUserTasksEntries";
+		_methodName59 = "getGroupUserTasksEntries";
 
-		_methodParameterTypes60 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes59 = new String[] { "long", "long", "int", "int" };
 
-		_methodName61 = "getGroupUserTasksEntriesCount";
+		_methodName60 = "getGroupUserTasksEntriesCount";
 
-		_methodParameterTypes61 = new String[] { "long", "long" };
+		_methodParameterTypes60 = new String[] { "long", "long" };
 
-		_methodName62 = "getResolverTasksEntries";
+		_methodName61 = "getResolverTasksEntries";
 
-		_methodParameterTypes62 = new String[] { "long", "int", "int" };
+		_methodParameterTypes61 = new String[] { "long", "int", "int" };
 
-		_methodName63 = "getResolverTasksEntriesCount";
+		_methodName62 = "getResolverTasksEntriesCount";
 
-		_methodParameterTypes63 = new String[] { "long" };
+		_methodParameterTypes62 = new String[] { "long" };
+
+		_methodName63 = "getTasksEntries";
+
+		_methodParameterTypes63 = new String[] { "long", "int", "int" };
 
 		_methodName64 = "getTasksEntries";
 
-		_methodParameterTypes64 = new String[] { "long", "int", "int" };
-
-		_methodName65 = "getTasksEntries";
-
-		_methodParameterTypes65 = new String[] {
+		_methodParameterTypes64 = new String[] {
 				"long", "long", "int", "long", "int", "long[][]", "long[][]",
 				"int", "int"
 			};
 
+		_methodName65 = "getTasksEntriesCount";
+
+		_methodParameterTypes65 = new String[] { "long" };
+
 		_methodName66 = "getTasksEntriesCount";
 
-		_methodParameterTypes66 = new String[] { "long" };
-
-		_methodName67 = "getTasksEntriesCount";
-
-		_methodParameterTypes67 = new String[] {
+		_methodParameterTypes66 = new String[] {
 				"long", "long", "int", "long", "int", "long[][]", "long[][]"
 			};
 
-		_methodName68 = "getTasksEntry";
+		_methodName67 = "getTasksEntry";
 
-		_methodParameterTypes68 = new String[] { "long" };
+		_methodParameterTypes67 = new String[] { "long" };
 
-		_methodName69 = "getUserTasksEntries";
+		_methodName68 = "getUserTasksEntries";
 
-		_methodParameterTypes69 = new String[] { "long", "int", "int" };
+		_methodParameterTypes68 = new String[] { "long", "int", "int" };
 
-		_methodName70 = "getUserTasksEntriesCount";
+		_methodName69 = "getUserTasksEntriesCount";
 
-		_methodParameterTypes70 = new String[] { "long" };
+		_methodParameterTypes69 = new String[] { "long" };
 
-		_methodName71 = "updateAsset";
+		_methodName70 = "updateAsset";
 
-		_methodParameterTypes71 = new String[] {
+		_methodParameterTypes70 = new String[] {
 				"long", "com.liferay.tasks.model.TasksEntry", "long[][]",
 				"java.lang.String[][]"
 			};
 
-		_methodName72 = "updateTasksEntry";
+		_methodName71 = "updateTasksEntry";
 
-		_methodParameterTypes72 = new String[] {
+		_methodParameterTypes71 = new String[] {
 				"long", "java.lang.String", "int", "long", "long", "int", "int",
 				"int", "int", "int", "boolean", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName73 = "updateTasksEntryStatus";
+		_methodName72 = "updateTasksEntryStatus";
 
-		_methodParameterTypes73 = new String[] {
+		_methodParameterTypes72 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -342,18 +338,11 @@ public class TasksEntryLocalServiceClpInvoker {
 
 		if (_methodName45.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
-			return TasksEntryLocalServiceUtil.getBeanIdentifier();
+			return TasksEntryLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName46.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			TasksEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.addTasksEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -367,91 +356,91 @@ public class TasksEntryLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[10]);
 		}
 
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return TasksEntryLocalServiceUtil.deleteTasksEntry(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			return TasksEntryLocalServiceUtil.deleteTasksEntry(((Long)arguments[0]).longValue());
+			return TasksEntryLocalServiceUtil.deleteTasksEntry((com.liferay.tasks.model.TasksEntry)arguments[0]);
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return TasksEntryLocalServiceUtil.deleteTasksEntry((com.liferay.tasks.model.TasksEntry)arguments[0]);
-		}
-
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getAssigneeTasksEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getAssigneeTasksEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getGroupAssigneeTasksEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getGroupAssigneeTasksEntriesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getGroupResolverTasksEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getGroupResolverTasksEntriesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getGroupUserTasksEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getGroupUserTasksEntriesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getResolverTasksEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getResolverTasksEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getTasksEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getTasksEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -461,13 +450,13 @@ public class TasksEntryLocalServiceClpInvoker {
 				((Integer)arguments[8]).intValue());
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getTasksEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getTasksEntriesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -476,25 +465,25 @@ public class TasksEntryLocalServiceClpInvoker {
 				(long[])arguments[6]);
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getTasksEntry(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getUserTasksEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.getUserTasksEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			TasksEntryLocalServiceUtil.updateAsset(((Long)arguments[0]).longValue(),
 				(com.liferay.tasks.model.TasksEntry)arguments[1],
 				(long[])arguments[2], (java.lang.String[])arguments[3]);
@@ -502,8 +491,8 @@ public class TasksEntryLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.updateTasksEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -519,8 +508,8 @@ public class TasksEntryLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[12]);
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return TasksEntryLocalServiceUtil.updateTasksEntryStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -568,8 +557,8 @@ public class TasksEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName45;
 	private String[] _methodParameterTypes45;
-	private String _methodName46;
-	private String[] _methodParameterTypes46;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
 	private String _methodName52;
@@ -614,6 +603,4 @@ public class TasksEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes71;
 	private String _methodName72;
 	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
 }

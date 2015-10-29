@@ -191,16 +191,6 @@ public class JIRAChangeItemLocalServiceWrapper
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _jiraChangeItemLocalService.getBeanIdentifier();
-	}
-
-	/**
 	* Returns the j i r a change item with the primary key.
 	*
 	* @param jiraChangeItemId the primary key of the j i r a change item
@@ -247,6 +237,16 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.getJIRAChangeItemsCount();
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _jiraChangeItemLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -260,16 +260,6 @@ public class JIRAChangeItemLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _jiraChangeItemLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_jiraChangeItemLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

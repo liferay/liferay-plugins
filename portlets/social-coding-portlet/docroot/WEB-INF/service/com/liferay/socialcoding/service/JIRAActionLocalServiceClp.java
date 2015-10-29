@@ -98,19 +98,19 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getBeanIdentifier";
+		_methodName13 = "getJIRAAction";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "long" };
 
-		_methodName14 = "getJIRAAction";
+		_methodName14 = "getJIRAActions";
 
-		_methodParameterTypes14 = new String[] { "long" };
+		_methodParameterTypes14 = new String[] { "int", "int" };
 
-		_methodName15 = "getJIRAActions";
+		_methodName15 = "getJIRAActionsCount";
 
-		_methodParameterTypes15 = new String[] { "int", "int" };
+		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getJIRAActionsCount";
+		_methodName16 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes16 = new String[] {  };
 
@@ -118,13 +118,9 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.io.Serializable" };
 
-		_methodName19 = "setBeanIdentifier";
+		_methodName19 = "updateJIRAAction";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String" };
-
-		_methodName20 = "updateJIRAAction";
-
-		_methodParameterTypes20 = new String[] {
+		_methodParameterTypes19 = new String[] {
 				"com.liferay.socialcoding.model.JIRAAction"
 			};
 	}
@@ -480,37 +476,14 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.socialcoding.model.JIRAAction getJIRAAction(
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] { jiraActionId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] { jiraActionId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -537,8 +510,8 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -560,6 +533,29 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName16,
 					_methodParameterTypes16, new Object[] {  });
 		}
@@ -575,7 +571,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 			}
 		}
 
-		return ((Integer)returnObj).intValue();
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -616,33 +612,13 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName19,
-				_methodParameterTypes19,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { ClpSerializer.translateInput(jiraAction) });
 		}
 		catch (Throwable t) {
@@ -699,6 +675,4 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName20;
-	private String[] _methodParameterTypes20;
 }

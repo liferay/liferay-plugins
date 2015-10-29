@@ -46,16 +46,6 @@ public class KBCommentServiceWrapper implements KBCommentService,
 		return _kbCommentService.deleteKBComment(kbCommentId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kbCommentService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.knowledgebase.model.KBComment getKBComment(
 		long kbCommentId)
@@ -93,21 +83,21 @@ public class KBCommentServiceWrapper implements KBCommentService,
 		return _kbCommentService.getKBCommentsCount(groupId, status);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _kbCommentService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _kbCommentService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kbCommentService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

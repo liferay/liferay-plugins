@@ -27,17 +27,13 @@ import java.util.Arrays;
 @ProviderType
 public class EntryServiceClpInvoker {
 	public EntryServiceClpInvoker() {
-		_methodName26 = "getBeanIdentifier";
+		_methodName26 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes26 = new String[] {  };
 
-		_methodName27 = "setBeanIdentifier";
+		_methodName31 = "searchUsersAndContacts";
 
-		_methodParameterTypes27 = new String[] { "java.lang.String" };
-
-		_methodName32 = "searchUsersAndContacts";
-
-		_methodParameterTypes32 = new String[] {
+		_methodParameterTypes31 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 	}
@@ -46,18 +42,11 @@ public class EntryServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName26.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
-			return EntryServiceUtil.getBeanIdentifier();
+			return EntryServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName27.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
-			EntryServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+		if (_methodName31.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
 			return EntryServiceUtil.searchUsersAndContacts(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -69,8 +58,6 @@ public class EntryServiceClpInvoker {
 
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
 }

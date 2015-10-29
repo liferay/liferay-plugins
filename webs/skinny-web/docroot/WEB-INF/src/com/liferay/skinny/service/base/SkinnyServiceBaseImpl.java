@@ -14,23 +14,24 @@
 
 package com.liferay.skinny.service.base;
 
+import com.liferay.dynamic.data.lists.service.persistence.DDLRecordSetPersistence;
+import com.liferay.dynamic.data.mapping.service.persistence.DDMStructurePersistence;
+
+import com.liferay.journal.service.persistence.JournalArticlePersistence;
+
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiService;
 import com.liferay.portal.kernel.util.InfrastructureUtil;
 import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.persistence.ClassNamePersistence;
 import com.liferay.portal.service.persistence.GroupPersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.util.PortalUtil;
-
-import com.liferay.dynamic.data.lists.service.persistence.DDLRecordSetPersistence;
-import com.liferay.dynamic.data.mapping.service.persistence.DDMStructurePersistence;
-import com.liferay.journal.service.persistence.JournalArticlePersistence;
 
 import com.liferay.skinny.service.SkinnyService;
 
@@ -49,7 +50,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
-	implements SkinnyService, IdentifiableBean {
+	implements SkinnyService, IdentifiableOSGiService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -91,6 +92,177 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	public void setCounterLocalService(
 		com.liferay.counter.service.CounterLocalService counterLocalService) {
 		this.counterLocalService = counterLocalService;
+	}
+
+	/**
+	 * Returns the d d l record set local service.
+	 *
+	 * @return the d d l record set local service
+	 */
+	public com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService getDDLRecordSetLocalService() {
+		return ddlRecordSetLocalService;
+	}
+
+	/**
+	 * Sets the d d l record set local service.
+	 *
+	 * @param ddlRecordSetLocalService the d d l record set local service
+	 */
+	public void setDDLRecordSetLocalService(
+		com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService ddlRecordSetLocalService) {
+		this.ddlRecordSetLocalService = ddlRecordSetLocalService;
+	}
+
+	/**
+	 * Returns the d d l record set remote service.
+	 *
+	 * @return the d d l record set remote service
+	 */
+	public com.liferay.dynamic.data.lists.service.DDLRecordSetService getDDLRecordSetService() {
+		return ddlRecordSetService;
+	}
+
+	/**
+	 * Sets the d d l record set remote service.
+	 *
+	 * @param ddlRecordSetService the d d l record set remote service
+	 */
+	public void setDDLRecordSetService(
+		com.liferay.dynamic.data.lists.service.DDLRecordSetService ddlRecordSetService) {
+		this.ddlRecordSetService = ddlRecordSetService;
+	}
+
+	/**
+	 * Returns the d d l record set persistence.
+	 *
+	 * @return the d d l record set persistence
+	 */
+	public DDLRecordSetPersistence getDDLRecordSetPersistence() {
+		return ddlRecordSetPersistence;
+	}
+
+	/**
+	 * Sets the d d l record set persistence.
+	 *
+	 * @param ddlRecordSetPersistence the d d l record set persistence
+	 */
+	public void setDDLRecordSetPersistence(
+		DDLRecordSetPersistence ddlRecordSetPersistence) {
+		this.ddlRecordSetPersistence = ddlRecordSetPersistence;
+	}
+
+	/**
+	 * Returns the d d m structure local service.
+	 *
+	 * @return the d d m structure local service
+	 */
+	public com.liferay.dynamic.data.mapping.service.DDMStructureLocalService getDDMStructureLocalService() {
+		return ddmStructureLocalService;
+	}
+
+	/**
+	 * Sets the d d m structure local service.
+	 *
+	 * @param ddmStructureLocalService the d d m structure local service
+	 */
+	public void setDDMStructureLocalService(
+		com.liferay.dynamic.data.mapping.service.DDMStructureLocalService ddmStructureLocalService) {
+		this.ddmStructureLocalService = ddmStructureLocalService;
+	}
+
+	/**
+	 * Returns the d d m structure remote service.
+	 *
+	 * @return the d d m structure remote service
+	 */
+	public com.liferay.dynamic.data.mapping.service.DDMStructureService getDDMStructureService() {
+		return ddmStructureService;
+	}
+
+	/**
+	 * Sets the d d m structure remote service.
+	 *
+	 * @param ddmStructureService the d d m structure remote service
+	 */
+	public void setDDMStructureService(
+		com.liferay.dynamic.data.mapping.service.DDMStructureService ddmStructureService) {
+		this.ddmStructureService = ddmStructureService;
+	}
+
+	/**
+	 * Returns the d d m structure persistence.
+	 *
+	 * @return the d d m structure persistence
+	 */
+	public DDMStructurePersistence getDDMStructurePersistence() {
+		return ddmStructurePersistence;
+	}
+
+	/**
+	 * Sets the d d m structure persistence.
+	 *
+	 * @param ddmStructurePersistence the d d m structure persistence
+	 */
+	public void setDDMStructurePersistence(
+		DDMStructurePersistence ddmStructurePersistence) {
+		this.ddmStructurePersistence = ddmStructurePersistence;
+	}
+
+	/**
+	 * Returns the journal article local service.
+	 *
+	 * @return the journal article local service
+	 */
+	public com.liferay.journal.service.JournalArticleLocalService getJournalArticleLocalService() {
+		return journalArticleLocalService;
+	}
+
+	/**
+	 * Sets the journal article local service.
+	 *
+	 * @param journalArticleLocalService the journal article local service
+	 */
+	public void setJournalArticleLocalService(
+		com.liferay.journal.service.JournalArticleLocalService journalArticleLocalService) {
+		this.journalArticleLocalService = journalArticleLocalService;
+	}
+
+	/**
+	 * Returns the journal article remote service.
+	 *
+	 * @return the journal article remote service
+	 */
+	public com.liferay.journal.service.JournalArticleService getJournalArticleService() {
+		return journalArticleService;
+	}
+
+	/**
+	 * Sets the journal article remote service.
+	 *
+	 * @param journalArticleService the journal article remote service
+	 */
+	public void setJournalArticleService(
+		com.liferay.journal.service.JournalArticleService journalArticleService) {
+		this.journalArticleService = journalArticleService;
+	}
+
+	/**
+	 * Returns the journal article persistence.
+	 *
+	 * @return the journal article persistence
+	 */
+	public JournalArticlePersistence getJournalArticlePersistence() {
+		return journalArticlePersistence;
+	}
+
+	/**
+	 * Sets the journal article persistence.
+	 *
+	 * @param journalArticlePersistence the journal article persistence
+	 */
+	public void setJournalArticlePersistence(
+		JournalArticlePersistence journalArticlePersistence) {
+		this.journalArticlePersistence = journalArticlePersistence;
 	}
 
 	/**
@@ -281,177 +453,6 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 		this.userPersistence = userPersistence;
 	}
 
-	/**
-	 * Returns the d d l record set local service.
-	 *
-	 * @return the d d l record set local service
-	 */
-	public com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService getDDLRecordSetLocalService() {
-		return ddlRecordSetLocalService;
-	}
-
-	/**
-	 * Sets the d d l record set local service.
-	 *
-	 * @param ddlRecordSetLocalService the d d l record set local service
-	 */
-	public void setDDLRecordSetLocalService(
-		com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService ddlRecordSetLocalService) {
-		this.ddlRecordSetLocalService = ddlRecordSetLocalService;
-	}
-
-	/**
-	 * Returns the d d l record set remote service.
-	 *
-	 * @return the d d l record set remote service
-	 */
-	public com.liferay.dynamic.data.lists.service.DDLRecordSetService getDDLRecordSetService() {
-		return ddlRecordSetService;
-	}
-
-	/**
-	 * Sets the d d l record set remote service.
-	 *
-	 * @param ddlRecordSetService the d d l record set remote service
-	 */
-	public void setDDLRecordSetService(
-		com.liferay.dynamic.data.lists.service.DDLRecordSetService ddlRecordSetService) {
-		this.ddlRecordSetService = ddlRecordSetService;
-	}
-
-	/**
-	 * Returns the d d l record set persistence.
-	 *
-	 * @return the d d l record set persistence
-	 */
-	public DDLRecordSetPersistence getDDLRecordSetPersistence() {
-		return ddlRecordSetPersistence;
-	}
-
-	/**
-	 * Sets the d d l record set persistence.
-	 *
-	 * @param ddlRecordSetPersistence the d d l record set persistence
-	 */
-	public void setDDLRecordSetPersistence(
-		DDLRecordSetPersistence ddlRecordSetPersistence) {
-		this.ddlRecordSetPersistence = ddlRecordSetPersistence;
-	}
-
-	/**
-	 * Returns the d d m structure local service.
-	 *
-	 * @return the d d m structure local service
-	 */
-	public com.liferay.dynamic.data.mapping.service.DDMStructureLocalService getDDMStructureLocalService() {
-		return ddmStructureLocalService;
-	}
-
-	/**
-	 * Sets the d d m structure local service.
-	 *
-	 * @param ddmStructureLocalService the d d m structure local service
-	 */
-	public void setDDMStructureLocalService(
-		com.liferay.dynamic.data.mapping.service.DDMStructureLocalService ddmStructureLocalService) {
-		this.ddmStructureLocalService = ddmStructureLocalService;
-	}
-
-	/**
-	 * Returns the d d m structure remote service.
-	 *
-	 * @return the d d m structure remote service
-	 */
-	public com.liferay.dynamic.data.mapping.service.DDMStructureService getDDMStructureService() {
-		return ddmStructureService;
-	}
-
-	/**
-	 * Sets the d d m structure remote service.
-	 *
-	 * @param ddmStructureService the d d m structure remote service
-	 */
-	public void setDDMStructureService(
-		com.liferay.dynamic.data.mapping.service.DDMStructureService ddmStructureService) {
-		this.ddmStructureService = ddmStructureService;
-	}
-
-	/**
-	 * Returns the d d m structure persistence.
-	 *
-	 * @return the d d m structure persistence
-	 */
-	public DDMStructurePersistence getDDMStructurePersistence() {
-		return ddmStructurePersistence;
-	}
-
-	/**
-	 * Sets the d d m structure persistence.
-	 *
-	 * @param ddmStructurePersistence the d d m structure persistence
-	 */
-	public void setDDMStructurePersistence(
-		DDMStructurePersistence ddmStructurePersistence) {
-		this.ddmStructurePersistence = ddmStructurePersistence;
-	}
-
-	/**
-	 * Returns the journal article local service.
-	 *
-	 * @return the journal article local service
-	 */
-	public com.liferay.journal.service.JournalArticleLocalService getJournalArticleLocalService() {
-		return journalArticleLocalService;
-	}
-
-	/**
-	 * Sets the journal article local service.
-	 *
-	 * @param journalArticleLocalService the journal article local service
-	 */
-	public void setJournalArticleLocalService(
-		com.liferay.journal.service.JournalArticleLocalService journalArticleLocalService) {
-		this.journalArticleLocalService = journalArticleLocalService;
-	}
-
-	/**
-	 * Returns the journal article remote service.
-	 *
-	 * @return the journal article remote service
-	 */
-	public com.liferay.journal.service.JournalArticleService getJournalArticleService() {
-		return journalArticleService;
-	}
-
-	/**
-	 * Sets the journal article remote service.
-	 *
-	 * @param journalArticleService the journal article remote service
-	 */
-	public void setJournalArticleService(
-		com.liferay.journal.service.JournalArticleService journalArticleService) {
-		this.journalArticleService = journalArticleService;
-	}
-
-	/**
-	 * Returns the journal article persistence.
-	 *
-	 * @return the journal article persistence
-	 */
-	public JournalArticlePersistence getJournalArticlePersistence() {
-		return journalArticlePersistence;
-	}
-
-	/**
-	 * Sets the journal article persistence.
-	 *
-	 * @param journalArticlePersistence the journal article persistence
-	 */
-	public void setJournalArticlePersistence(
-		JournalArticlePersistence journalArticlePersistence) {
-		this.journalArticlePersistence = journalArticlePersistence;
-	}
-
 	public void afterPropertiesSet() {
 		Class<?> clazz = getClass();
 
@@ -462,23 +463,13 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the Spring bean ID for this bean.
+	 * Returns the OSGi service identifier.
 	 *
-	 * @return the Spring bean ID for this bean
+	 * @return the OSGi service identifier
 	 */
 	@Override
-	public String getBeanIdentifier() {
-		return _beanIdentifier;
-	}
-
-	/**
-	 * Sets the Spring bean ID for this bean.
-	 *
-	 * @param beanIdentifier the Spring bean ID for this bean
-	 */
-	@Override
-	public void setBeanIdentifier(String beanIdentifier) {
-		_beanIdentifier = beanIdentifier;
+	public String getOSGiServiceIdentifier() {
+		return SkinnyService.class.getName();
 	}
 
 	@Override
@@ -526,10 +517,28 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = SkinnyService.class)
+	@BeanReference(type = com.liferay.skinny.service.SkinnyService.class)
 	protected SkinnyService skinnyService;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
+	@BeanReference(type = com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService.class)
+	protected com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService ddlRecordSetLocalService;
+	@BeanReference(type = com.liferay.dynamic.data.lists.service.DDLRecordSetService.class)
+	protected com.liferay.dynamic.data.lists.service.DDLRecordSetService ddlRecordSetService;
+	@BeanReference(type = DDLRecordSetPersistence.class)
+	protected DDLRecordSetPersistence ddlRecordSetPersistence;
+	@BeanReference(type = com.liferay.dynamic.data.mapping.service.DDMStructureLocalService.class)
+	protected com.liferay.dynamic.data.mapping.service.DDMStructureLocalService ddmStructureLocalService;
+	@BeanReference(type = com.liferay.dynamic.data.mapping.service.DDMStructureService.class)
+	protected com.liferay.dynamic.data.mapping.service.DDMStructureService ddmStructureService;
+	@BeanReference(type = DDMStructurePersistence.class)
+	protected DDMStructurePersistence ddmStructurePersistence;
+	@BeanReference(type = com.liferay.journal.service.JournalArticleLocalService.class)
+	protected com.liferay.journal.service.JournalArticleLocalService journalArticleLocalService;
+	@BeanReference(type = com.liferay.journal.service.JournalArticleService.class)
+	protected com.liferay.journal.service.JournalArticleService journalArticleService;
+	@BeanReference(type = JournalArticlePersistence.class)
+	protected JournalArticlePersistence journalArticlePersistence;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
 	protected com.liferay.portal.service.ClassNameLocalService classNameLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameService.class)
@@ -550,25 +559,6 @@ public abstract class SkinnyServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService.class)
-	protected com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService ddlRecordSetLocalService;
-	@BeanReference(type = com.liferay.dynamic.data.lists.service.DDLRecordSetService.class)
-	protected com.liferay.dynamic.data.lists.service.DDLRecordSetService ddlRecordSetService;
-	@BeanReference(type = DDLRecordSetPersistence.class)
-	protected DDLRecordSetPersistence ddlRecordSetPersistence;
-	@BeanReference(type = com.liferay.dynamic.data.mapping.service.DDMStructureLocalService.class)
-	protected com.liferay.dynamic.data.mapping.service.DDMStructureLocalService ddmStructureLocalService;
-	@BeanReference(type = com.liferay.dynamic.data.mapping.service.DDMStructureService.class)
-	protected com.liferay.dynamic.data.mapping.service.DDMStructureService ddmStructureService;
-	@BeanReference(type = DDMStructurePersistence.class)
-	protected DDMStructurePersistence ddmStructurePersistence;
-	@BeanReference(type = com.liferay.journal.service.JournalArticleLocalService.class)
-	protected com.liferay.journal.service.JournalArticleLocalService journalArticleLocalService;
-	@BeanReference(type = com.liferay.journal.service.JournalArticleService.class)
-	protected com.liferay.journal.service.JournalArticleService journalArticleService;
-	@BeanReference(type = JournalArticlePersistence.class)
-	protected JournalArticlePersistence journalArticlePersistence;
-	private String _beanIdentifier;
 	private ClassLoader _classLoader;
 	private SkinnyServiceClpInvoker _clpInvoker = new SkinnyServiceClpInvoker();
 }

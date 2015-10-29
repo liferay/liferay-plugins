@@ -115,13 +115,9 @@ public class DefinitionLocalServiceClpInvoker {
 				"com.liferay.ams.model.Definition"
 			};
 
-		_methodName53 = "getBeanIdentifier";
+		_methodName53 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes53 = new String[] {  };
-
-		_methodName54 = "setBeanIdentifier";
-
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -225,14 +221,7 @@ public class DefinitionLocalServiceClpInvoker {
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return DefinitionLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			DefinitionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+			return DefinitionLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
 		throw new UnsupportedOperationException();
@@ -276,6 +265,4 @@ public class DefinitionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
 }

@@ -119,29 +119,25 @@ public class AkismetDataLocalServiceClpInvoker {
 				"com.liferay.akismet.model.AkismetData"
 			};
 
-		_methodName41 = "getBeanIdentifier";
+		_methodName41 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes41 = new String[] {  };
 
-		_methodName42 = "setBeanIdentifier";
+		_methodName46 = "deleteAkismetData";
 
-		_methodParameterTypes42 = new String[] { "java.lang.String" };
+		_methodParameterTypes46 = new String[] { "java.util.Date" };
 
 		_methodName47 = "deleteAkismetData";
 
-		_methodParameterTypes47 = new String[] { "java.util.Date" };
+		_methodParameterTypes47 = new String[] { "java.lang.String", "long" };
 
-		_methodName48 = "deleteAkismetData";
+		_methodName48 = "fetchAkismetData";
 
 		_methodParameterTypes48 = new String[] { "java.lang.String", "long" };
 
-		_methodName49 = "fetchAkismetData";
+		_methodName49 = "updateAkismetData";
 
-		_methodParameterTypes49 = new String[] { "java.lang.String", "long" };
-
-		_methodName50 = "updateAkismetData";
-
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes49 = new String[] {
 				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String"
@@ -249,39 +245,32 @@ public class AkismetDataLocalServiceClpInvoker {
 
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
-			return AkismetDataLocalServiceUtil.getBeanIdentifier();
+			return AkismetDataLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName42.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			AkismetDataLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+			AkismetDataLocalServiceUtil.deleteAkismetData((java.util.Date)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			AkismetDataLocalServiceUtil.deleteAkismetData((java.util.Date)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			AkismetDataLocalServiceUtil.deleteAkismetData((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return AkismetDataLocalServiceUtil.fetchAkismetData((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return AkismetDataLocalServiceUtil.updateAkismetData((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -330,14 +319,12 @@ public class AkismetDataLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName41;
 	private String[] _methodParameterTypes41;
-	private String _methodName42;
-	private String[] _methodParameterTypes42;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
 	private String _methodName47;
 	private String[] _methodParameterTypes47;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
 }

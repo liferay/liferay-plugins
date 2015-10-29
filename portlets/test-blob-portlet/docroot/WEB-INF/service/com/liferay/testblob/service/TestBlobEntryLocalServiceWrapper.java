@@ -190,20 +190,20 @@ public class TestBlobEntryLocalServiceWrapper
 		return _testBlobEntryLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _testBlobEntryLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
 		java.io.Serializable primaryKey) {
 		return _testBlobEntryLocalService.getBlobFieldBlobModel(primaryKey);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _testBlobEntryLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -260,16 +260,6 @@ public class TestBlobEntryLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _testBlobEntryLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_testBlobEntryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

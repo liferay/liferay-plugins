@@ -43,13 +43,13 @@ public class SyncPreferencesLocalServiceWrapper
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
+	* Returns the OSGi service identifier.
 	*
-	* @return the Spring bean ID for this bean
+	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _syncPreferencesLocalService.getBeanIdentifier();
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _syncPreferencesLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -65,16 +65,6 @@ public class SyncPreferencesLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _syncPreferencesLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_syncPreferencesLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

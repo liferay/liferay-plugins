@@ -226,16 +226,6 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		return _kbTemplateLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kbTemplateLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
@@ -344,6 +334,16 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		return _kbTemplateLocalService.getKBTemplatesCount();
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _kbTemplateLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -367,16 +367,6 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
 		return _kbTemplateLocalService.search(groupId, title, content,
 			startDate, endDate, andOperator, start, end, orderByComparator);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kbTemplateLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

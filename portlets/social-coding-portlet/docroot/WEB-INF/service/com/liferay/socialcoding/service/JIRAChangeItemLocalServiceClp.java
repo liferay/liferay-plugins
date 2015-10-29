@@ -98,23 +98,23 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getBeanIdentifier";
+		_methodName13 = "getJIRAChangeItem";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "long" };
 
-		_methodName14 = "getJIRAChangeItem";
+		_methodName14 = "getJIRAChangeItems";
 
 		_methodParameterTypes14 = new String[] { "long" };
 
 		_methodName15 = "getJIRAChangeItems";
 
-		_methodParameterTypes15 = new String[] { "long" };
+		_methodParameterTypes15 = new String[] { "int", "int" };
 
-		_methodName16 = "getJIRAChangeItems";
+		_methodName16 = "getJIRAChangeItemsCount";
 
-		_methodParameterTypes16 = new String[] { "int", "int" };
+		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "getJIRAChangeItemsCount";
+		_methodName17 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes17 = new String[] {  };
 
@@ -122,13 +122,9 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 
 		_methodParameterTypes18 = new String[] { "java.io.Serializable" };
 
-		_methodName20 = "setBeanIdentifier";
+		_methodName20 = "updateJIRAChangeItem";
 
-		_methodParameterTypes20 = new String[] { "java.lang.String" };
-
-		_methodName21 = "updateJIRAChangeItem";
-
-		_methodParameterTypes21 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"com.liferay.socialcoding.model.JIRAChangeItem"
 			};
 	}
@@ -484,37 +480,14 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem getJIRAChangeItem(
 		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] { jiraChangeItemId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13, new Object[] { jiraChangeItemId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -541,8 +514,8 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] { jiraChangeGroupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] { jiraChangeGroupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -565,8 +538,8 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -588,6 +561,29 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		Object returnObj = null;
 
 		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName17,
 					_methodParameterTypes17, new Object[] {  });
 		}
@@ -603,7 +599,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 			}
 		}
 
-		return ((Integer)returnObj).intValue();
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -644,33 +640,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { ClpSerializer.translateInput(jiraChangeItem) });
 		}
 		catch (Throwable t) {
@@ -729,6 +705,4 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	private String[] _methodParameterTypes18;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
-	private String _methodName21;
-	private String[] _methodParameterTypes21;
 }

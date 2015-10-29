@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.ShardedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -41,7 +42,8 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
+public interface OAuthConsumerModel extends BaseModel<OAuthConsumer>,
+	ShardedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -81,6 +83,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	 *
 	 * @return the company ID of this o auth consumer
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -88,6 +91,7 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	 *
 	 * @param companyId the company ID of this o auth consumer
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**

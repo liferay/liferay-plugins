@@ -107,25 +107,25 @@ public class EntryLocalServiceClp implements EntryLocalService {
 
 		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName16 = "getEntries";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes16 = new String[] { "int", "int" };
 
-		_methodName17 = "getEntries";
+		_methodName17 = "getEntriesCount";
 
-		_methodParameterTypes17 = new String[] { "int", "int" };
+		_methodParameterTypes17 = new String[] {  };
 
-		_methodName18 = "getEntriesCount";
+		_methodName18 = "getEntry";
 
-		_methodParameterTypes18 = new String[] {  };
+		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName19 = "getEntry";
+		_methodName19 = "getNewEntries";
 
-		_methodParameterTypes19 = new String[] { "long" };
+		_methodParameterTypes19 = new String[] { "long", "long", "int", "int" };
 
-		_methodName20 = "getNewEntries";
+		_methodName20 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes20 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes20 = new String[] {  };
 
 		_methodName21 = "getOldEntries";
 
@@ -135,13 +135,9 @@ public class EntryLocalServiceClp implements EntryLocalService {
 
 		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
 
-		_methodName24 = "setBeanIdentifier";
+		_methodName24 = "updateEntry";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String" };
-
-		_methodName25 = "updateEntry";
-
-		_methodParameterTypes25 = new String[] { "com.liferay.chat.model.Entry" };
+		_methodParameterTypes24 = new String[] { "com.liferay.chat.model.Entry" };
 	}
 
 	@Override
@@ -575,36 +571,13 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<com.liferay.chat.model.Entry> getEntries(int start,
 		int end) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -626,8 +599,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -650,8 +623,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { entryId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { entryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -678,8 +651,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { userId, createDate, start, end });
 		}
 		catch (Throwable t) {
@@ -695,6 +668,29 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		}
 
 		return (java.util.List<com.liferay.chat.model.Entry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -760,33 +756,13 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.chat.model.Entry updateEntry(
 		com.liferay.chat.model.Entry entry) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(entry) });
 		}
 		catch (Throwable t) {
@@ -853,6 +829,4 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

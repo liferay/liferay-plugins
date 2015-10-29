@@ -103,33 +103,33 @@ public class FolderLocalServiceClp implements FolderLocalService {
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "getBeanIdentifier";
+		_methodName15 = "getFolder";
 
-		_methodParameterTypes15 = new String[] {  };
+		_methodParameterTypes15 = new String[] { "long", "java.lang.String" };
 
 		_methodName16 = "getFolder";
 
-		_methodParameterTypes16 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes16 = new String[] { "long" };
 
-		_methodName17 = "getFolder";
+		_methodName17 = "getFolders";
 
 		_methodParameterTypes17 = new String[] { "long" };
 
 		_methodName18 = "getFolders";
 
-		_methodParameterTypes18 = new String[] { "long" };
+		_methodParameterTypes18 = new String[] { "int", "int" };
 
-		_methodName19 = "getFolders";
+		_methodName19 = "getFoldersCount";
 
-		_methodParameterTypes19 = new String[] { "int", "int" };
+		_methodParameterTypes19 = new String[] {  };
 
-		_methodName20 = "getFoldersCount";
+		_methodName20 = "getLocalPageCount";
 
-		_methodParameterTypes20 = new String[] {  };
+		_methodParameterTypes20 = new String[] { "long", "int" };
 
-		_methodName21 = "getLocalPageCount";
+		_methodName21 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes21 = new String[] { "long", "int" };
+		_methodParameterTypes21 = new String[] {  };
 
 		_methodName22 = "getPercentDownloaded";
 
@@ -143,17 +143,13 @@ public class FolderLocalServiceClp implements FolderLocalService {
 
 		_methodParameterTypes24 = new String[] { "long", "int" };
 
-		_methodName26 = "setBeanIdentifier";
+		_methodName26 = "updateFolder";
 
-		_methodParameterTypes26 = new String[] { "java.lang.String" };
+		_methodParameterTypes26 = new String[] { "com.liferay.mail.model.Folder" };
 
 		_methodName27 = "updateFolder";
 
-		_methodParameterTypes27 = new String[] { "com.liferay.mail.model.Folder" };
-
-		_methodName28 = "updateFolder";
-
-		_methodParameterTypes28 = new String[] {
+		_methodParameterTypes27 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int"
 			};
 	}
@@ -576,37 +572,14 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.mail.model.Folder getFolder(long accountId,
 		java.lang.String fullName)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16,
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
 					new Object[] {
 						accountId,
 						
@@ -638,8 +611,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] { folderId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] { folderId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -666,8 +639,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { accountId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] { accountId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -690,8 +663,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -713,8 +686,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -736,8 +709,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { folderId, messagesPerPage });
 		}
 		catch (Throwable t) {
@@ -753,6 +726,29 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		}
 
 		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -850,33 +846,13 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName26,
-				_methodParameterTypes26,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.mail.model.Folder updateFolder(
 		com.liferay.mail.model.Folder folder) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { ClpSerializer.translateInput(folder) });
 		}
 		catch (Throwable t) {
@@ -902,8 +878,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] {
 						folderId,
 						
@@ -988,6 +964,4 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
 }

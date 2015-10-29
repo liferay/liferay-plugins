@@ -229,16 +229,6 @@ public class MicroblogsEntryLocalServiceWrapper
 		return _microblogsEntryLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _microblogsEntryLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getCompanyMicroblogsEntries(
 		long companyId, int start, int end) {
@@ -359,6 +349,16 @@ public class MicroblogsEntryLocalServiceWrapper
 		return _microblogsEntryLocalService.getMicroblogsEntry(microblogsEntryId);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _microblogsEntryLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getParentMicroblogsEntryMicroblogsEntries(
 		int type, long parentMicroblogsEntryId, int start, int end) {
@@ -419,16 +419,6 @@ public class MicroblogsEntryLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _microblogsEntryLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_microblogsEntryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

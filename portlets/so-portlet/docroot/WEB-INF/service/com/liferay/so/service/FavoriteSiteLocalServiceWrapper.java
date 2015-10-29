@@ -203,16 +203,6 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _favoriteSiteLocalService.getBeanIdentifier();
-	}
-
-	/**
 	* Returns the favorite site with the primary key.
 	*
 	* @param favoriteSiteId the primary key of the favorite site
@@ -276,6 +266,16 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 		return _favoriteSiteLocalService.getFavoriteSitesCount(userId, name);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _favoriteSiteLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -299,16 +299,6 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 	@Override
 	public boolean isFavoriteSite(long userId, long groupId) {
 		return _favoriteSiteLocalService.isFavoriteSite(userId, groupId);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_favoriteSiteLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

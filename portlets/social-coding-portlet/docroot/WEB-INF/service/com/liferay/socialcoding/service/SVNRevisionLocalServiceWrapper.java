@@ -198,16 +198,6 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 		return _svnRevisionLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _svnRevisionLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.socialcoding.model.SVNRevision getFirstSVNRevision(
 		java.lang.String svnUserId)
@@ -220,6 +210,16 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 		java.lang.String svnUserId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _svnRevisionLocalService.getLastSVNRevision(svnUserId);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _svnRevisionLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -313,16 +313,6 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 		throws java.lang.Throwable {
 		return _svnRevisionLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_svnRevisionLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

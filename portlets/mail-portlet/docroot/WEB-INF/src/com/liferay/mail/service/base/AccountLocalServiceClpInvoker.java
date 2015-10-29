@@ -113,17 +113,13 @@ public class AccountLocalServiceClpInvoker {
 
 		_methodParameterTypes18 = new String[] { "com.liferay.mail.model.Account" };
 
-		_methodName53 = "getBeanIdentifier";
+		_methodName53 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes53 = new String[] {  };
 
-		_methodName54 = "setBeanIdentifier";
+		_methodName58 = "addAccount";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
-
-		_methodName59 = "addAccount";
-
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes58 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "int", "boolean",
 				"java.lang.String", "int", "boolean", "java.lang.String",
@@ -131,36 +127,36 @@ public class AccountLocalServiceClpInvoker {
 				"java.lang.String", "long", "long", "long", "long", "boolean"
 			};
 
+		_methodName59 = "deleteAccount";
+
+		_methodParameterTypes59 = new String[] { "com.liferay.mail.model.Account" };
+
 		_methodName60 = "deleteAccount";
 
-		_methodParameterTypes60 = new String[] { "com.liferay.mail.model.Account" };
+		_methodParameterTypes60 = new String[] { "long" };
 
-		_methodName61 = "deleteAccount";
+		_methodName61 = "deleteAccounts";
 
 		_methodParameterTypes61 = new String[] { "long" };
 
-		_methodName62 = "deleteAccounts";
+		_methodName62 = "getAccount";
 
-		_methodParameterTypes62 = new String[] { "long" };
+		_methodParameterTypes62 = new String[] { "long", "java.lang.String" };
 
-		_methodName63 = "getAccount";
+		_methodName63 = "getAccounts";
 
-		_methodParameterTypes63 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes63 = new String[] { "long" };
 
-		_methodName64 = "getAccounts";
+		_methodName64 = "updateAccount";
 
-		_methodParameterTypes64 = new String[] { "long" };
-
-		_methodName65 = "updateAccount";
-
-		_methodParameterTypes65 = new String[] {
+		_methodParameterTypes64 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "boolean",
 				"java.lang.String", "boolean", "java.lang.String", "boolean"
 			};
 
-		_methodName66 = "updateFolders";
+		_methodName65 = "updateFolders";
 
-		_methodParameterTypes66 = new String[] {
+		_methodParameterTypes65 = new String[] {
 				"long", "long", "long", "long", "long"
 			};
 	}
@@ -266,18 +262,11 @@ public class AccountLocalServiceClpInvoker {
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return AccountLocalServiceUtil.getBeanIdentifier();
+			return AccountLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			AccountLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return AccountLocalServiceUtil.addAccount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -299,36 +288,36 @@ public class AccountLocalServiceClpInvoker {
 				((Boolean)arguments[20]).booleanValue());
 		}
 
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+			return AccountLocalServiceUtil.deleteAccount((com.liferay.mail.model.Account)arguments[0]);
+		}
+
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return AccountLocalServiceUtil.deleteAccount((com.liferay.mail.model.Account)arguments[0]);
+			return AccountLocalServiceUtil.deleteAccount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return AccountLocalServiceUtil.deleteAccount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			AccountLocalServiceUtil.deleteAccounts(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return AccountLocalServiceUtil.getAccount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return AccountLocalServiceUtil.getAccounts(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return AccountLocalServiceUtil.updateAccount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Boolean)arguments[3]).booleanValue(),
@@ -338,8 +327,8 @@ public class AccountLocalServiceClpInvoker {
 				((Boolean)arguments[7]).booleanValue());
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return AccountLocalServiceUtil.updateFolders(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -388,8 +377,8 @@ public class AccountLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 	private String _methodName59;
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
@@ -404,6 +393,4 @@ public class AccountLocalServiceClpInvoker {
 	private String[] _methodParameterTypes64;
 	private String _methodName65;
 	private String[] _methodParameterTypes65;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
 }

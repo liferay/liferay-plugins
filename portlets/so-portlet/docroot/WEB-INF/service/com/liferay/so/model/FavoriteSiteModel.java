@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.ShardedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -38,7 +39,7 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface FavoriteSiteModel extends BaseModel<FavoriteSite> {
+public interface FavoriteSiteModel extends BaseModel<FavoriteSite>, ShardedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -92,6 +93,7 @@ public interface FavoriteSiteModel extends BaseModel<FavoriteSite> {
 	 *
 	 * @return the company ID of this favorite site
 	 */
+	@Override
 	public long getCompanyId();
 
 	/**
@@ -99,6 +101,7 @@ public interface FavoriteSiteModel extends BaseModel<FavoriteSite> {
 	 *
 	 * @param companyId the company ID of this favorite site
 	 */
+	@Override
 	public void setCompanyId(long companyId);
 
 	/**

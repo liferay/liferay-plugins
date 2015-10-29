@@ -127,7 +127,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 
 		_methodParameterTypes19 = new String[] {  };
 
-		_methodName20 = "getBeanIdentifier";
+		_methodName20 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes20 = new String[] {  };
 
@@ -135,24 +135,20 @@ public class AccountLocalServiceClp implements AccountLocalService {
 
 		_methodParameterTypes21 = new String[] { "java.io.Serializable" };
 
-		_methodName23 = "setBeanIdentifier";
+		_methodName23 = "updateAccount";
 
-		_methodParameterTypes23 = new String[] { "java.lang.String" };
+		_methodParameterTypes23 = new String[] { "com.liferay.mail.model.Account" };
 
 		_methodName24 = "updateAccount";
 
-		_methodParameterTypes24 = new String[] { "com.liferay.mail.model.Account" };
-
-		_methodName25 = "updateAccount";
-
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "boolean",
 				"java.lang.String", "boolean", "java.lang.String", "boolean"
 			};
 
-		_methodName26 = "updateFolders";
+		_methodName25 = "updateFolders";
 
-		_methodParameterTypes26 = new String[] {
+		_methodParameterTypes25 = new String[] {
 				"long", "long", "long", "long", "long"
 			};
 	}
@@ -743,7 +739,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -803,33 +799,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.mail.model.Account updateAccount(
 		com.liferay.mail.model.Account account) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { ClpSerializer.translateInput(account) });
 		}
 		catch (Throwable t) {
@@ -856,8 +832,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						accountId,
 						
@@ -903,8 +879,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						accountId,
 						
@@ -987,6 +963,4 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
 }

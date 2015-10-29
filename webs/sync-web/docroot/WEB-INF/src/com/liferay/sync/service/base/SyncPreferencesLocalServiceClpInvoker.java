@@ -27,47 +27,36 @@ import java.util.Arrays;
 @ProviderType
 public class SyncPreferencesLocalServiceClpInvoker {
 	public SyncPreferencesLocalServiceClpInvoker() {
-		_methodName32 = "getBeanIdentifier";
+		_methodName32 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes32 = new String[] {  };
 
-		_methodName33 = "setBeanIdentifier";
+		_methodName35 = "enableOAuth";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
-
-		_methodName36 = "enableOAuth";
-
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes35 = new String[] {
 				"long", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName37 = "getPortletPreferences";
+		_methodName36 = "getPortletPreferences";
 
-		_methodParameterTypes37 = new String[] { "long" };
+		_methodParameterTypes36 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
-			return SyncPreferencesLocalServiceUtil.getBeanIdentifier();
+			return SyncPreferencesLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
-			SyncPreferencesLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName36.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+		if (_methodName35.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
-		if (_methodName37.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.getPortletPreferences(((Long)arguments[0]).longValue());
 		}
 
@@ -76,10 +65,8 @@ public class SyncPreferencesLocalServiceClpInvoker {
 
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
+	private String _methodName35;
+	private String[] _methodParameterTypes35;
 	private String _methodName36;
 	private String[] _methodParameterTypes36;
-	private String _methodName37;
-	private String[] _methodParameterTypes37;
 }

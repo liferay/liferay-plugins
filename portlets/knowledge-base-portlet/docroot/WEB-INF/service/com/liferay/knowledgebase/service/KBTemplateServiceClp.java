@@ -42,40 +42,36 @@ public class KBTemplateServiceClp implements KBTemplateService {
 
 		_methodParameterTypes2 = new String[] { "long", "long[][]" };
 
-		_methodName3 = "getBeanIdentifier";
+		_methodName3 = "getGroupKBTemplates";
 
-		_methodParameterTypes3 = new String[] {  };
-
-		_methodName4 = "getGroupKBTemplates";
-
-		_methodParameterTypes4 = new String[] {
+		_methodParameterTypes3 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName5 = "getGroupKBTemplatesCount";
+		_methodName4 = "getGroupKBTemplatesCount";
+
+		_methodParameterTypes4 = new String[] { "long" };
+
+		_methodName5 = "getKBTemplate";
 
 		_methodParameterTypes5 = new String[] { "long" };
 
-		_methodName6 = "getKBTemplate";
+		_methodName6 = "getKBTemplateSearchDisplay";
 
-		_methodParameterTypes6 = new String[] { "long" };
-
-		_methodName7 = "getKBTemplateSearchDisplay";
-
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes6 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "java.util.Date",
 				"java.util.Date", "boolean", "int[][]", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName9 = "setBeanIdentifier";
+		_methodName7 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes9 = new String[] { "java.lang.String" };
+		_methodParameterTypes7 = new String[] {  };
 
-		_methodName10 = "updateKBTemplate";
+		_methodName9 = "updateKBTemplate";
 
-		_methodParameterTypes10 = new String[] {
+		_methodParameterTypes9 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -180,37 +176,14 @@ public class KBTemplateServiceClp implements KBTemplateService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBTemplate> getGroupKBTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate> orderByComparator) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
 					new Object[] {
 						groupId,
 						
@@ -241,8 +214,8 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5, new Object[] { groupId });
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -266,8 +239,8 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6, new Object[] { kbTemplateId });
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { kbTemplateId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -298,8 +271,8 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] {
 						groupId,
 						
@@ -342,18 +315,12 @@ public class KBTemplateServiceClp implements KBTemplateService {
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
-	}
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
 
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableService.invokeMethod(_methodName9,
-				_methodParameterTypes9,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -366,6 +333,15 @@ public class KBTemplateServiceClp implements KBTemplateService {
 					" is not a valid exception");
 			}
 		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -376,8 +352,8 @@ public class KBTemplateServiceClp implements KBTemplateService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
+			returnObj = _invokableService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						kbTemplateId,
 						
@@ -426,6 +402,4 @@ public class KBTemplateServiceClp implements KBTemplateService {
 	private String[] _methodParameterTypes7;
 	private String _methodName9;
 	private String[] _methodParameterTypes9;
-	private String _methodName10;
-	private String[] _methodParameterTypes10;
 }

@@ -27,7 +27,7 @@ public class SocialOfficeServiceClp implements SocialOfficeService {
 	public SocialOfficeServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
 
-		_methodName0 = "getBeanIdentifier";
+		_methodName0 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes0 = new String[] {  };
 
@@ -38,14 +38,10 @@ public class SocialOfficeServiceClp implements SocialOfficeService {
 		_methodName3 = "isSocialOfficeGroup";
 
 		_methodParameterTypes3 = new String[] { "long" };
-
-		_methodName4 = "setBeanIdentifier";
-
-		_methodParameterTypes4 = new String[] { "java.lang.String" };
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -130,26 +126,6 @@ public class SocialOfficeServiceClp implements SocialOfficeService {
 		return ((Boolean)returnObj).booleanValue();
 	}
 
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableService.invokeMethod(_methodName4,
-				_methodParameterTypes4,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -157,6 +133,4 @@ public class SocialOfficeServiceClp implements SocialOfficeService {
 	private String[] _methodParameterTypes1;
 	private String _methodName3;
 	private String[] _methodParameterTypes3;
-	private String _methodName4;
-	private String[] _methodParameterTypes4;
 }

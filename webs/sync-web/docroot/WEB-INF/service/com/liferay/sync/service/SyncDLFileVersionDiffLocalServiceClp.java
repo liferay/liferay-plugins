@@ -117,7 +117,7 @@ public class SyncDLFileVersionDiffLocalServiceClp
 
 		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "getBeanIdentifier";
+		_methodName17 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes17 = new String[] {  };
 
@@ -141,13 +141,9 @@ public class SyncDLFileVersionDiffLocalServiceClp
 
 		_methodParameterTypes23 = new String[] { "long" };
 
-		_methodName24 = "setBeanIdentifier";
+		_methodName24 = "updateSyncDLFileVersionDiff";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String" };
-
-		_methodName25 = "updateSyncDLFileVersionDiff";
-
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"com.liferay.sync.model.SyncDLFileVersionDiff"
 			};
 	}
@@ -633,7 +629,7 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -795,33 +791,13 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff updateSyncDLFileVersionDiff(
 		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] {
 						ClpSerializer.translateInput(syncDLFileVersionDiff)
 					});
@@ -890,6 +866,4 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

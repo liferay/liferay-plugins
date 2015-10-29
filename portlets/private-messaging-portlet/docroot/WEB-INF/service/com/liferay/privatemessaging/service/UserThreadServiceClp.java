@@ -27,13 +27,13 @@ public class UserThreadServiceClp implements UserThreadService {
 	public UserThreadServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
 
-		_methodName0 = "getBeanIdentifier";
+		_methodName0 = "getLastThreadMessage";
 
-		_methodParameterTypes0 = new String[] {  };
+		_methodParameterTypes0 = new String[] { "long" };
 
-		_methodName1 = "getLastThreadMessage";
+		_methodName1 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes1 = new String[] {  };
 
 		_methodName2 = "getThreadMessages";
 
@@ -46,33 +46,6 @@ public class UserThreadServiceClp implements UserThreadService {
 		_methodName4 = "getUserUserThreads";
 
 		_methodParameterTypes4 = new String[] { "boolean" };
-
-		_methodName6 = "setBeanIdentifier";
-
-		_methodParameterTypes6 = new String[] { "java.lang.String" };
-	}
-
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName0,
-					_methodParameterTypes0, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -82,8 +55,8 @@ public class UserThreadServiceClp implements UserThreadService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { mbThreadId });
+			returnObj = _invokableService.invokeMethod(_methodName0,
+					_methodParameterTypes0, new Object[] { mbThreadId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -102,6 +75,29 @@ public class UserThreadServiceClp implements UserThreadService {
 		}
 
 		return (com.liferay.portlet.messageboards.model.MBMessage)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName1,
+					_methodParameterTypes1, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -198,26 +194,6 @@ public class UserThreadServiceClp implements UserThreadService {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableService.invokeMethod(_methodName6,
-				_methodParameterTypes6,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -229,6 +205,4 @@ public class UserThreadServiceClp implements UserThreadService {
 	private String[] _methodParameterTypes3;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
-	private String _methodName6;
-	private String[] _methodParameterTypes6;
 }

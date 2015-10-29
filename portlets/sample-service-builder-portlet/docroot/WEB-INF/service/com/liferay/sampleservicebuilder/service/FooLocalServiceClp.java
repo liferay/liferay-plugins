@@ -108,9 +108,11 @@ public class FooLocalServiceClp implements FooLocalService {
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "getBeanIdentifier";
+		_methodName15 = "getExportActionableDynamicQuery";
 
-		_methodParameterTypes15 = new String[] {  };
+		_methodParameterTypes15 = new String[] {
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
+			};
 
 		_methodName16 = "getFoo";
 
@@ -155,13 +157,13 @@ public class FooLocalServiceClp implements FooLocalService {
 
 		_methodParameterTypes24 = new String[] {  };
 
-		_methodName25 = "getPersistedModel";
+		_methodName25 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes25 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes25 = new String[] {  };
 
-		_methodName27 = "setBeanIdentifier";
+		_methodName26 = "getPersistedModel";
 
-		_methodParameterTypes27 = new String[] { "java.lang.String" };
+		_methodParameterTypes26 = new String[] { "java.io.Serializable" };
 
 		_methodName28 = "updateAsset";
 
@@ -596,12 +598,16 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] {  });
+					_methodParameterTypes15,
+					new Object[] {
+						ClpSerializer.translateInput(portletDataContext)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -615,7 +621,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -863,14 +869,37 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -897,26 +926,6 @@ public class FooLocalServiceClp implements FooLocalService {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName27,
-				_methodParameterTypes27,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
 	}
 
 	@Override
@@ -1073,8 +1082,8 @@ public class FooLocalServiceClp implements FooLocalService {
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 	private String _methodName28;
 	private String[] _methodParameterTypes28;
 	private String _methodName29;

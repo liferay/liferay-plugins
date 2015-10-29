@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.ShardedModel;
 import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -42,7 +43,7 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface GadgetModel extends BaseModel<Gadget>, StagedModel {
+public interface GadgetModel extends BaseModel<Gadget>, ShardedModel, StagedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -192,7 +193,6 @@ public interface GadgetModel extends BaseModel<Gadget>, StagedModel {
 	 *
 	 * @return the last publish date of this gadget
 	 */
-	@Override
 	public Date getLastPublishDate();
 
 	/**
@@ -200,7 +200,6 @@ public interface GadgetModel extends BaseModel<Gadget>, StagedModel {
 	 *
 	 * @param lastPublishDate the last publish date of this gadget
 	 */
-	@Override
 	public void setLastPublishDate(Date lastPublishDate);
 
 	@Override

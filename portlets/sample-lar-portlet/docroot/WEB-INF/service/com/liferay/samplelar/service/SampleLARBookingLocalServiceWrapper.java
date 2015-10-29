@@ -219,20 +219,20 @@ public class SampleLARBookingLocalServiceWrapper
 		return _sampleLARBookingLocalService.getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _sampleLARBookingLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		return _sampleLARBookingLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _sampleLARBookingLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -349,16 +349,6 @@ public class SampleLARBookingLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _sampleLARBookingLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_sampleLARBookingLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

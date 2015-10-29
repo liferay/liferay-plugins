@@ -119,17 +119,13 @@ public class JIRAActionLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.JIRAAction"
 			};
 
-		_methodName71 = "getBeanIdentifier";
+		_methodName71 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes71 = new String[] {  };
 
-		_methodName72 = "setBeanIdentifier";
+		_methodName76 = "getJIRAAction";
 
-		_methodParameterTypes72 = new String[] { "java.lang.String" };
-
-		_methodName77 = "getJIRAAction";
-
-		_methodParameterTypes77 = new String[] { "long" };
+		_methodParameterTypes76 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -233,18 +229,11 @@ public class JIRAActionLocalServiceClpInvoker {
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return JIRAActionLocalServiceUtil.getBeanIdentifier();
+			return JIRAActionLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			JIRAActionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return JIRAActionLocalServiceUtil.getJIRAAction(((Long)arguments[0]).longValue());
 		}
 
@@ -289,8 +278,6 @@ public class JIRAActionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName71;
 	private String[] _methodParameterTypes71;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName77;
-	private String[] _methodParameterTypes77;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
 }

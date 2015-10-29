@@ -114,15 +114,15 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 
 		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName16 = "getExportActionableDynamicQuery";
 
-		_methodParameterTypes16 = new String[] {  };
-
-		_methodName17 = "getExportActionableDynamicQuery";
-
-		_methodParameterTypes17 = new String[] {
+		_methodParameterTypes16 = new String[] {
 				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
+
+		_methodName17 = "getOSGiServiceIdentifier";
+
+		_methodParameterTypes17 = new String[] {  };
 
 		_methodName18 = "getPersistedModel";
 
@@ -168,23 +168,19 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 
 		_methodParameterTypes28 = new String[] { "long" };
 
-		_methodName29 = "setBeanIdentifier";
+		_methodName29 = "updateServiceDescription";
 
-		_methodParameterTypes29 = new String[] { "java.lang.String" };
+		_methodParameterTypes29 = new String[] { "long" };
 
-		_methodName30 = "updateServiceDescription";
+		_methodName30 = "updateWSRPConsumer";
 
-		_methodParameterTypes30 = new String[] { "long" };
+		_methodParameterTypes30 = new String[] {
+				"com.liferay.wsrp.model.WSRPConsumer"
+			};
 
 		_methodName31 = "updateWSRPConsumer";
 
 		_methodParameterTypes31 = new String[] {
-				"com.liferay.wsrp.model.WSRPConsumer"
-			};
-
-		_methodName32 = "updateWSRPConsumer";
-
-		_methodParameterTypes32 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String"
@@ -645,36 +641,13 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17,
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16,
 					new Object[] {
 						ClpSerializer.translateInput(portletDataContext)
 					});
@@ -692,6 +665,29 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		}
 
 		return (com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -981,31 +977,11 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName29,
-				_methodParameterTypes29,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public void updateServiceDescription(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName30,
-				_methodParameterTypes30, new Object[] { wsrpConsumerId });
+			_invokableLocalService.invokeMethod(_methodName29,
+				_methodParameterTypes29, new Object[] { wsrpConsumerId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1030,8 +1006,8 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] { ClpSerializer.translateInput(wsrpConsumer) });
 		}
 		catch (Throwable t) {
@@ -1059,8 +1035,8 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32,
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
 					new Object[] {
 						wsrpConsumerId,
 						
@@ -1159,6 +1135,4 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
 }

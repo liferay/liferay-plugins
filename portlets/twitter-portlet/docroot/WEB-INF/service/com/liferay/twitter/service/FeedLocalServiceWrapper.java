@@ -185,16 +185,6 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _feedLocalService.getBeanIdentifier();
-	}
-
-	/**
 	* Returns the feed with the primary key.
 	*
 	* @param feedId the primary key of the feed
@@ -234,6 +224,16 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		return _feedLocalService.getFeedsCount();
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _feedLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -246,16 +246,6 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _feedLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_feedLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

@@ -191,21 +191,21 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 			modifiedDate, start, end);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _statusLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
 		long modifiedDate, java.lang.String[] groupNames, int start, int end) {
 		return _statusLocalService.getGroupStatuses(userId, modifiedDate,
 			groupNames, start, end);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _statusLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -279,16 +279,6 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _statusLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_statusLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

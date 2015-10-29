@@ -109,7 +109,7 @@ public class PushNotificationsDeviceLocalServiceClp
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "getBeanIdentifier";
+		_methodName15 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes15 = new String[] {  };
 
@@ -159,19 +159,15 @@ public class PushNotificationsDeviceLocalServiceClp
 				"long[][]", "com.liferay.portal.kernel.json.JSONObject"
 			};
 
-		_methodName26 = "setBeanIdentifier";
+		_methodName26 = "updatePushNotificationsDevice";
 
-		_methodParameterTypes26 = new String[] { "java.lang.String" };
-
-		_methodName27 = "updatePushNotificationsDevice";
-
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes26 = new String[] {
 				"com.liferay.pushnotifications.model.PushNotificationsDevice"
 			};
 
-		_methodName28 = "updateToken";
+		_methodName27 = "updateToken";
 
-		_methodParameterTypes28 = new String[] {
+		_methodParameterTypes27 = new String[] {
 				"java.lang.String", "java.lang.String"
 			};
 	}
@@ -595,7 +591,7 @@ public class PushNotificationsDeviceLocalServiceClp
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -882,33 +878,13 @@ public class PushNotificationsDeviceLocalServiceClp
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName26,
-				_methodParameterTypes26,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice updatePushNotificationsDevice(
 		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						ClpSerializer.translateInput(pushNotificationsDevice)
 					});
@@ -932,8 +908,8 @@ public class PushNotificationsDeviceLocalServiceClp
 	public void updateToken(java.lang.String oldToken, java.lang.String newToken)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName28,
-				_methodParameterTypes28,
+			_invokableLocalService.invokeMethod(_methodName27,
+				_methodParameterTypes27,
 				new Object[] {
 					ClpSerializer.translateInput(oldToken),
 					
@@ -1012,6 +988,4 @@ public class PushNotificationsDeviceLocalServiceClp
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
 }

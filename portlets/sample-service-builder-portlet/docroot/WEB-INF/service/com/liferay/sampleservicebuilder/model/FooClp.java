@@ -26,6 +26,9 @@ import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
+
+import com.liferay.portlet.exportimport.lar.StagedModelType;
 
 import com.liferay.sampleservicebuilder.service.ClpSerializer;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
@@ -502,6 +505,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 				throw new UnsupportedOperationException(e);
 			}
 		}
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(PortalUtil.getClassNameId(
+				Foo.class.getName()));
 	}
 
 	public BaseModel<?> getFooRemoteModel() {

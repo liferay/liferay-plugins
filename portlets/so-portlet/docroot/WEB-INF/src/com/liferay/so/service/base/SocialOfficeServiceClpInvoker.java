@@ -27,44 +27,33 @@ import java.util.Arrays;
 @ProviderType
 public class SocialOfficeServiceClpInvoker {
 	public SocialOfficeServiceClpInvoker() {
-		_methodName40 = "getBeanIdentifier";
+		_methodName40 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes40 = new String[] {  };
 
-		_methodName41 = "setBeanIdentifier";
+		_methodName43 = "getUserSocialOfficeGroupIds";
 
-		_methodParameterTypes41 = new String[] { "java.lang.String" };
+		_methodParameterTypes43 = new String[] {  };
 
-		_methodName44 = "getUserSocialOfficeGroupIds";
+		_methodName44 = "isSocialOfficeGroup";
 
-		_methodParameterTypes44 = new String[] {  };
-
-		_methodName45 = "isSocialOfficeGroup";
-
-		_methodParameterTypes45 = new String[] { "long" };
+		_methodParameterTypes44 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
 		if (_methodName40.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
-			return SocialOfficeServiceUtil.getBeanIdentifier();
+			return SocialOfficeServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
-			SocialOfficeServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+			return SocialOfficeServiceUtil.getUserSocialOfficeGroupIds();
 		}
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-			return SocialOfficeServiceUtil.getUserSocialOfficeGroupIds();
-		}
-
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			return SocialOfficeServiceUtil.isSocialOfficeGroup(((Long)arguments[0]).longValue());
 		}
 
@@ -73,10 +62,8 @@ public class SocialOfficeServiceClpInvoker {
 
 	private String _methodName40;
 	private String[] _methodParameterTypes40;
-	private String _methodName41;
-	private String[] _methodParameterTypes41;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
 }

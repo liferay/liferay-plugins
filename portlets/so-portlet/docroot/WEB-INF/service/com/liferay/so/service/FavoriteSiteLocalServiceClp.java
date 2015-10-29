@@ -106,39 +106,39 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "getBeanIdentifier";
+		_methodName15 = "getFavoriteSite";
 
-		_methodParameterTypes15 = new String[] {  };
+		_methodParameterTypes15 = new String[] { "long" };
 
-		_methodName16 = "getFavoriteSite";
+		_methodName16 = "getFavoriteSites";
 
-		_methodParameterTypes16 = new String[] { "long" };
+		_methodParameterTypes16 = new String[] { "int", "int" };
 
 		_methodName17 = "getFavoriteSites";
 
-		_methodParameterTypes17 = new String[] { "int", "int" };
-
-		_methodName18 = "getFavoriteSites";
-
-		_methodParameterTypes18 = new String[] {
+		_methodParameterTypes17 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 
-		_methodName19 = "getFavoriteSites";
+		_methodName18 = "getFavoriteSites";
 
-		_methodParameterTypes19 = new String[] { "long", "int", "int" };
+		_methodParameterTypes18 = new String[] { "long", "int", "int" };
+
+		_methodName19 = "getFavoriteSitesCount";
+
+		_methodParameterTypes19 = new String[] {  };
 
 		_methodName20 = "getFavoriteSitesCount";
 
-		_methodParameterTypes20 = new String[] {  };
+		_methodParameterTypes20 = new String[] { "long" };
 
 		_methodName21 = "getFavoriteSitesCount";
 
-		_methodParameterTypes21 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "long", "java.lang.String" };
 
-		_methodName22 = "getFavoriteSitesCount";
+		_methodName22 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes22 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes22 = new String[] {  };
 
 		_methodName23 = "getPersistedModel";
 
@@ -152,13 +152,9 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 		_methodParameterTypes26 = new String[] { "long", "long" };
 
-		_methodName27 = "setBeanIdentifier";
+		_methodName27 = "updateFavoriteSite";
 
-		_methodParameterTypes27 = new String[] { "java.lang.String" };
-
-		_methodName28 = "updateFavoriteSite";
-
-		_methodParameterTypes28 = new String[] {
+		_methodParameterTypes27 = new String[] {
 				"com.liferay.so.model.FavoriteSite"
 			};
 	}
@@ -567,37 +563,14 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.so.model.FavoriteSite getFavoriteSite(
 		long favoriteSiteId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] { favoriteSiteId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] { favoriteSiteId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -624,8 +597,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -648,8 +621,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18,
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17,
 					new Object[] {
 						userId,
 						
@@ -681,8 +654,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { userId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -704,8 +677,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -727,8 +700,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -750,8 +723,8 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] { userId, ClpSerializer.translateInput(name) });
 		}
 		catch (Throwable t) {
@@ -767,6 +740,29 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 
 		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -853,33 +849,13 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName27,
-				_methodParameterTypes27,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.so.model.FavoriteSite updateFavoriteSite(
 		com.liferay.so.model.FavoriteSite favoriteSite) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { ClpSerializer.translateInput(favoriteSite) });
 		}
 		catch (Throwable t) {
@@ -952,6 +928,4 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
 }

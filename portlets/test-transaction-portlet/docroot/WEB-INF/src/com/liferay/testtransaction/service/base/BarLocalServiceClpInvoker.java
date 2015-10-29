@@ -119,57 +119,53 @@ public class BarLocalServiceClpInvoker {
 				"com.liferay.testtransaction.model.Bar"
 			};
 
-		_methodName41 = "getBeanIdentifier";
+		_methodName41 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes41 = new String[] {  };
 
-		_methodName42 = "setBeanIdentifier";
+		_methodName46 = "addBar_Rollback";
 
-		_methodParameterTypes42 = new String[] { "java.lang.String" };
+		_methodParameterTypes46 = new String[] { "java.lang.String" };
 
-		_methodName47 = "addBar_Rollback";
+		_methodName47 = "addBar_Success";
 
 		_methodParameterTypes47 = new String[] { "java.lang.String" };
 
-		_methodName48 = "addBar_Success";
+		_methodName48 = "addBarAndClassName_PortalRollback";
 
 		_methodParameterTypes48 = new String[] { "java.lang.String" };
 
-		_methodName49 = "addBarAndClassName_PortalRollback";
+		_methodName49 = "addBarAndClassName_PortletRollback";
 
 		_methodParameterTypes49 = new String[] { "java.lang.String" };
 
-		_methodName50 = "addBarAndClassName_PortletRollback";
+		_methodName50 = "deleteBar";
 
-		_methodParameterTypes50 = new String[] { "java.lang.String" };
+		_methodParameterTypes50 = new String[] {
+				"com.liferay.testtransaction.model.Bar"
+			};
 
-		_methodName51 = "deleteBar";
+		_methodName51 = "deleteBarAndClassName";
 
 		_methodParameterTypes51 = new String[] {
 				"com.liferay.testtransaction.model.Bar"
 			};
 
-		_methodName52 = "deleteBarAndClassName";
+		_methodName52 = "getBar";
 
-		_methodParameterTypes52 = new String[] {
-				"com.liferay.testtransaction.model.Bar"
-			};
+		_methodParameterTypes52 = new String[] { "java.lang.String" };
 
-		_methodName53 = "getBar";
+		_methodName53 = "hasBar";
 
 		_methodParameterTypes53 = new String[] { "java.lang.String" };
 
-		_methodName54 = "hasBar";
+		_methodName54 = "hasClassName";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
+		_methodParameterTypes54 = new String[] {  };
 
-		_methodName55 = "hasClassName";
+		_methodName55 = "testAddClassNameAndBar_Success";
 
-		_methodParameterTypes55 = new String[] {  };
-
-		_methodName56 = "testAddClassNameAndBar_Success";
-
-		_methodParameterTypes56 = new String[] { "java.lang.String" };
+		_methodParameterTypes55 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -273,71 +269,64 @@ public class BarLocalServiceClpInvoker {
 
 		if (_methodName41.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
-			return BarLocalServiceUtil.getBeanIdentifier();
+			return BarLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName42.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			BarLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
+			BarLocalServiceUtil.addBar_Rollback((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			BarLocalServiceUtil.addBar_Rollback((java.lang.String)arguments[0]);
-
-			return null;
+			return BarLocalServiceUtil.addBar_Success((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			return BarLocalServiceUtil.addBar_Success((java.lang.String)arguments[0]);
+			BarLocalServiceUtil.addBarAndClassName_PortalRollback((java.lang.String)arguments[0]);
+
+			return null;
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			BarLocalServiceUtil.addBarAndClassName_PortalRollback((java.lang.String)arguments[0]);
+			BarLocalServiceUtil.addBarAndClassName_PortletRollback((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			BarLocalServiceUtil.addBarAndClassName_PortletRollback((java.lang.String)arguments[0]);
-
-			return null;
+			return BarLocalServiceUtil.deleteBar((com.liferay.testtransaction.model.Bar)arguments[0]);
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			return BarLocalServiceUtil.deleteBar((com.liferay.testtransaction.model.Bar)arguments[0]);
-		}
-
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			BarLocalServiceUtil.deleteBarAndClassName((com.liferay.testtransaction.model.Bar)arguments[0]);
 
 			return null;
 		}
 
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+			return BarLocalServiceUtil.getBar((java.lang.String)arguments[0]);
+		}
+
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return BarLocalServiceUtil.getBar((java.lang.String)arguments[0]);
+			return BarLocalServiceUtil.hasBar((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return BarLocalServiceUtil.hasBar((java.lang.String)arguments[0]);
+			return BarLocalServiceUtil.hasClassName();
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return BarLocalServiceUtil.hasClassName();
-		}
-
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			BarLocalServiceUtil.testAddClassNameAndBar_Success((java.lang.String)arguments[0]);
 
 			return null;
@@ -384,8 +373,8 @@ public class BarLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName41;
 	private String[] _methodParameterTypes41;
-	private String _methodName42;
-	private String[] _methodParameterTypes42;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
 	private String _methodName47;
 	private String[] _methodParameterTypes47;
 	private String _methodName48;
@@ -404,6 +393,4 @@ public class BarLocalServiceClpInvoker {
 	private String[] _methodParameterTypes54;
 	private String _methodName55;
 	private String[] _methodParameterTypes55;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
 }

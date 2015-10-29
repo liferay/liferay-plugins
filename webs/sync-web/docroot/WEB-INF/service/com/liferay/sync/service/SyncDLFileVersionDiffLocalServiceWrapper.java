@@ -222,13 +222,13 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
+	* Returns the OSGi service identifier.
 	*
-	* @return the Spring bean ID for this bean
+	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _syncDLFileVersionDiffLocalService.getBeanIdentifier();
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _syncDLFileVersionDiffLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -292,16 +292,6 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 	public void refreshExpirationDate(long syncDLFileVersionDiffId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_syncDLFileVersionDiffLocalService.refreshExpirationDate(syncDLFileVersionDiffId);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_syncDLFileVersionDiffLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

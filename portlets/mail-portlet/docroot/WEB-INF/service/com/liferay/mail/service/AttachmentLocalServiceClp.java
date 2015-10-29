@@ -125,29 +125,25 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 
 		_methodParameterTypes18 = new String[] {  };
 
-		_methodName19 = "getBeanIdentifier";
+		_methodName19 = "getFile";
 
-		_methodParameterTypes19 = new String[] {  };
+		_methodParameterTypes19 = new String[] { "long" };
 
-		_methodName20 = "getFile";
+		_methodName20 = "getInputStream";
 
 		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName21 = "getInputStream";
+		_methodName21 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes21 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] {  };
 
 		_methodName22 = "getPersistedModel";
 
 		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
 
-		_methodName24 = "setBeanIdentifier";
+		_methodName24 = "updateAttachment";
 
-		_methodParameterTypes24 = new String[] { "java.lang.String" };
-
-		_methodName25 = "updateAttachment";
-
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes24 = new String[] {
 				"com.liferay.mail.model.Attachment"
 			};
 	}
@@ -666,36 +662,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.io.File getFile(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { attachmentId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { attachmentId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -722,8 +695,8 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { attachmentId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] { attachmentId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -742,6 +715,29 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		}
 
 		return (java.io.InputStream)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -782,33 +778,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.mail.model.Attachment updateAttachment(
 		com.liferay.mail.model.Attachment attachment) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(attachment) });
 		}
 		catch (Throwable t) {
@@ -875,6 +851,4 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName25;
-	private String[] _methodParameterTypes25;
 }

@@ -113,13 +113,9 @@ public class AssetLocalServiceClpInvoker {
 
 		_methodParameterTypes18 = new String[] { "com.liferay.ams.model.Asset" };
 
-		_methodName53 = "getBeanIdentifier";
+		_methodName53 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes53 = new String[] {  };
-
-		_methodName54 = "setBeanIdentifier";
-
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -223,14 +219,7 @@ public class AssetLocalServiceClpInvoker {
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return AssetLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			AssetLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+			return AssetLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
 		throw new UnsupportedOperationException();
@@ -274,6 +263,4 @@ public class AssetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
 }

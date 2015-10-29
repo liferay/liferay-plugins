@@ -113,81 +113,77 @@ public class FooLocalServiceClpInvoker {
 
 		_methodParameterTypes18 = new String[] { "com.liferay.testpacl.model.Foo" };
 
-		_methodName57 = "getBeanIdentifier";
+		_methodName57 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes57 = new String[] {  };
 
-		_methodName58 = "setBeanIdentifier";
+		_methodName62 = "getCompanyPersistence_FindByPrimaryKey";
 
-		_methodParameterTypes58 = new String[] { "java.lang.String" };
+		_methodParameterTypes62 = new String[] { "long" };
 
-		_methodName63 = "getCompanyPersistence_FindByPrimaryKey";
+		_methodName63 = "getCompanyUtil_FindByPrimaryKey";
 
 		_methodParameterTypes63 = new String[] { "long" };
 
-		_methodName64 = "getCompanyUtil_FindByPrimaryKey";
+		_methodName64 = "getEntryLocalServiceUtil_GetEntries";
 
-		_methodParameterTypes64 = new String[] { "long" };
+		_methodParameterTypes64 = new String[] { "int", "int" };
 
-		_methodName65 = "getEntryLocalServiceUtil_GetEntries";
+		_methodName65 = "getEntryLocalServiceUtil_GetEntry";
 
-		_methodParameterTypes65 = new String[] { "int", "int" };
+		_methodParameterTypes65 = new String[] { "long" };
 
-		_methodName66 = "getEntryLocalServiceUtil_GetEntry";
+		_methodName66 = "getGroupPersistence_FindByPrimaryKey";
 
 		_methodParameterTypes66 = new String[] { "long" };
 
-		_methodName67 = "getGroupPersistence_FindByPrimaryKey";
+		_methodName67 = "getGroupUtil_FindByPrimaryKey";
 
 		_methodParameterTypes67 = new String[] { "long" };
 
-		_methodName68 = "getGroupUtil_FindByPrimaryKey";
+		_methodName68 = "getPortalService_GetBuildNumber";
 
-		_methodParameterTypes68 = new String[] { "long" };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName69 = "getPortalService_GetBuildNumber";
+		_methodName69 = "getPortalService_TestGetBuildNumber";
 
 		_methodParameterTypes69 = new String[] {  };
 
-		_methodName70 = "getPortalService_TestGetBuildNumber";
+		_methodName70 = "getPortalService_TestHasClassName";
 
 		_methodParameterTypes70 = new String[] {  };
 
-		_methodName71 = "getPortalService_TestHasClassName";
+		_methodName71 = "getPortalServiceUtil_GetBuildNumber";
 
 		_methodParameterTypes71 = new String[] {  };
 
-		_methodName72 = "getPortalServiceUtil_GetBuildNumber";
+		_methodName72 = "getPortalServiceUtil_TestGetBuildNumber";
 
 		_methodParameterTypes72 = new String[] {  };
 
-		_methodName73 = "getPortalServiceUtil_TestGetBuildNumber";
+		_methodName73 = "getPortalServiceUtil_TestHasClassName";
 
 		_methodParameterTypes73 = new String[] {  };
 
-		_methodName74 = "getPortalServiceUtil_TestHasClassName";
+		_methodName74 = "getReleaseInfo_GetBuildNumber";
 
 		_methodParameterTypes74 = new String[] {  };
 
-		_methodName75 = "getReleaseInfo_GetBuildNumber";
+		_methodName75 = "getStatusLocalServiceUtil_GetStatus";
 
-		_methodParameterTypes75 = new String[] {  };
+		_methodParameterTypes75 = new String[] { "long" };
 
-		_methodName76 = "getStatusLocalServiceUtil_GetStatus";
+		_methodName76 = "getStatusLocalServiceUtil_GetStatuses";
 
-		_methodParameterTypes76 = new String[] { "long" };
+		_methodParameterTypes76 = new String[] { "int", "int" };
 
-		_methodName77 = "getStatusLocalServiceUtil_GetStatuses";
+		_methodName77 = "getUserPersistence_FindByPrimaryKey";
 
-		_methodParameterTypes77 = new String[] { "int", "int" };
+		_methodParameterTypes77 = new String[] { "long" };
 
-		_methodName78 = "getUserPersistence_FindByPrimaryKey";
+		_methodName78 = "getUserUtil_FindByPrimaryKey";
 
 		_methodParameterTypes78 = new String[] { "long" };
-
-		_methodName79 = "getUserUtil_FindByPrimaryKey";
-
-		_methodParameterTypes79 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -291,100 +287,93 @@ public class FooLocalServiceClpInvoker {
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return FooLocalServiceUtil.getBeanIdentifier();
+			return FooLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			FooLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+			return FooLocalServiceUtil.getCompanyPersistence_FindByPrimaryKey(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
-			return FooLocalServiceUtil.getCompanyPersistence_FindByPrimaryKey(((Long)arguments[0]).longValue());
+			return FooLocalServiceUtil.getCompanyUtil_FindByPrimaryKey(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
-			return FooLocalServiceUtil.getCompanyUtil_FindByPrimaryKey(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntries(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+			return FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return FooLocalServiceUtil.getEntryLocalServiceUtil_GetEntry(((Long)arguments[0]).longValue());
+			return FooLocalServiceUtil.getGroupPersistence_FindByPrimaryKey(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
-			return FooLocalServiceUtil.getGroupPersistence_FindByPrimaryKey(((Long)arguments[0]).longValue());
+			return FooLocalServiceUtil.getGroupUtil_FindByPrimaryKey(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName68.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
-			return FooLocalServiceUtil.getGroupUtil_FindByPrimaryKey(((Long)arguments[0]).longValue());
+			return FooLocalServiceUtil.getPortalService_GetBuildNumber();
 		}
 
 		if (_methodName69.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
-			return FooLocalServiceUtil.getPortalService_GetBuildNumber();
+			return FooLocalServiceUtil.getPortalService_TestGetBuildNumber();
 		}
 
 		if (_methodName70.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
-			return FooLocalServiceUtil.getPortalService_TestGetBuildNumber();
+			return FooLocalServiceUtil.getPortalService_TestHasClassName();
 		}
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return FooLocalServiceUtil.getPortalService_TestHasClassName();
+			return FooLocalServiceUtil.getPortalServiceUtil_GetBuildNumber();
 		}
 
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return FooLocalServiceUtil.getPortalServiceUtil_GetBuildNumber();
+			return FooLocalServiceUtil.getPortalServiceUtil_TestGetBuildNumber();
 		}
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
-			return FooLocalServiceUtil.getPortalServiceUtil_TestGetBuildNumber();
+			return FooLocalServiceUtil.getPortalServiceUtil_TestHasClassName();
 		}
 
 		if (_methodName74.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
-			return FooLocalServiceUtil.getPortalServiceUtil_TestHasClassName();
+			return FooLocalServiceUtil.getReleaseInfo_GetBuildNumber();
 		}
 
 		if (_methodName75.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
-			return FooLocalServiceUtil.getReleaseInfo_GetBuildNumber();
+			return FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName76.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
-			return FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatus(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return FooLocalServiceUtil.getStatusLocalServiceUtil_GetStatuses(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return FooLocalServiceUtil.getUserPersistence_FindByPrimaryKey(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName79.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return FooLocalServiceUtil.getUserUtil_FindByPrimaryKey(((Long)arguments[0]).longValue());
 		}
 
@@ -429,8 +418,8 @@ public class FooLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
+	private String _methodName62;
+	private String[] _methodParameterTypes62;
 	private String _methodName63;
 	private String[] _methodParameterTypes63;
 	private String _methodName64;
@@ -463,6 +452,4 @@ public class FooLocalServiceClpInvoker {
 	private String[] _methodParameterTypes77;
 	private String _methodName78;
 	private String[] _methodParameterTypes78;
-	private String _methodName79;
-	private String[] _methodParameterTypes79;
 }

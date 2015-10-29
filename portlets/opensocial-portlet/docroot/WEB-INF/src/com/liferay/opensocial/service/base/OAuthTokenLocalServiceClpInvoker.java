@@ -119,52 +119,48 @@ public class OAuthTokenLocalServiceClpInvoker {
 				"com.liferay.opensocial.model.OAuthToken"
 			};
 
-		_methodName51 = "getBeanIdentifier";
+		_methodName51 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes51 = new String[] {  };
 
-		_methodName52 = "setBeanIdentifier";
+		_methodName56 = "addOAuthToken";
 
-		_methodParameterTypes52 = new String[] { "java.lang.String" };
-
-		_methodName57 = "addOAuthToken";
-
-		_methodParameterTypes57 = new String[] {
+		_methodParameterTypes56 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "long"
 			};
 
-		_methodName58 = "deleteOAuthToken";
+		_methodName57 = "deleteOAuthToken";
 
-		_methodParameterTypes58 = new String[] {
+		_methodParameterTypes57 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "long",
 				"java.lang.String"
 			};
 
-		_methodName59 = "deleteOAuthTokens";
+		_methodName58 = "deleteOAuthTokens";
 
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes58 = new String[] {
 				"java.lang.String", "java.lang.String"
 			};
 
-		_methodName60 = "fetchOAuthToken";
+		_methodName59 = "fetchOAuthToken";
+
+		_methodParameterTypes59 = new String[] {
+				"long", "java.lang.String", "java.lang.String", "long",
+				"java.lang.String"
+			};
+
+		_methodName60 = "getOAuthToken";
 
 		_methodParameterTypes60 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "long",
 				"java.lang.String"
 			};
 
-		_methodName61 = "getOAuthToken";
+		_methodName61 = "getOAuthTokens";
 
 		_methodParameterTypes61 = new String[] {
-				"long", "java.lang.String", "java.lang.String", "long",
-				"java.lang.String"
-			};
-
-		_methodName62 = "getOAuthTokens";
-
-		_methodParameterTypes62 = new String[] {
 				"java.lang.String", "java.lang.String"
 			};
 	}
@@ -270,18 +266,11 @@ public class OAuthTokenLocalServiceClpInvoker {
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			return OAuthTokenLocalServiceUtil.getBeanIdentifier();
+			return OAuthTokenLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			OAuthTokenLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return OAuthTokenLocalServiceUtil.addOAuthToken(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Long)arguments[3]).longValue(),
@@ -290,8 +279,8 @@ public class OAuthTokenLocalServiceClpInvoker {
 				((Long)arguments[8]).longValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			OAuthTokenLocalServiceUtil.deleteOAuthToken(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Long)arguments[3]).longValue(), (java.lang.String)arguments[4]);
@@ -299,30 +288,30 @@ public class OAuthTokenLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			OAuthTokenLocalServiceUtil.deleteOAuthTokens((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1]);
 
 			return null;
 		}
 
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+			return OAuthTokenLocalServiceUtil.fetchOAuthToken(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
+				((Long)arguments[3]).longValue(), (java.lang.String)arguments[4]);
+		}
+
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return OAuthTokenLocalServiceUtil.fetchOAuthToken(((Long)arguments[0]).longValue(),
+			return OAuthTokenLocalServiceUtil.getOAuthToken(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Long)arguments[3]).longValue(), (java.lang.String)arguments[4]);
 		}
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return OAuthTokenLocalServiceUtil.getOAuthToken(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				((Long)arguments[3]).longValue(), (java.lang.String)arguments[4]);
-		}
-
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return OAuthTokenLocalServiceUtil.getOAuthTokens((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1]);
 		}
@@ -368,8 +357,8 @@ public class OAuthTokenLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
 	private String _methodName58;
@@ -380,6 +369,4 @@ public class OAuthTokenLocalServiceClpInvoker {
 	private String[] _methodParameterTypes60;
 	private String _methodName61;
 	private String[] _methodParameterTypes61;
-	private String _methodName62;
-	private String[] _methodParameterTypes62;
 }

@@ -27,64 +27,60 @@ import java.util.Arrays;
 @ProviderType
 public class MicroblogsEntryServiceClpInvoker {
 	public MicroblogsEntryServiceClpInvoker() {
-		_methodName26 = "getBeanIdentifier";
+		_methodName26 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes26 = new String[] {  };
 
-		_methodName27 = "setBeanIdentifier";
+		_methodName31 = "addMicroblogsEntry";
 
-		_methodParameterTypes27 = new String[] { "java.lang.String" };
-
-		_methodName32 = "addMicroblogsEntry";
-
-		_methodParameterTypes32 = new String[] {
+		_methodParameterTypes31 = new String[] {
 				"long", "java.lang.String", "int", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName33 = "deleteMicroblogsEntry";
+		_methodName32 = "deleteMicroblogsEntry";
 
-		_methodParameterTypes33 = new String[] { "long" };
+		_methodParameterTypes32 = new String[] { "long" };
+
+		_methodName33 = "getMicroblogsEntries";
+
+		_methodParameterTypes33 = new String[] { "int", "int" };
 
 		_methodName34 = "getMicroblogsEntries";
 
-		_methodParameterTypes34 = new String[] { "int", "int" };
+		_methodParameterTypes34 = new String[] { "java.lang.String", "int", "int" };
 
-		_methodName35 = "getMicroblogsEntries";
+		_methodName35 = "getMicroblogsEntriesCount";
 
-		_methodParameterTypes35 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes35 = new String[] {  };
 
 		_methodName36 = "getMicroblogsEntriesCount";
 
-		_methodParameterTypes36 = new String[] {  };
+		_methodParameterTypes36 = new String[] { "java.lang.String" };
 
-		_methodName37 = "getMicroblogsEntriesCount";
+		_methodName37 = "getMicroblogsEntry";
 
-		_methodParameterTypes37 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "long" };
 
-		_methodName38 = "getMicroblogsEntry";
+		_methodName38 = "getUserMicroblogsEntries";
 
-		_methodParameterTypes38 = new String[] { "long" };
+		_methodParameterTypes38 = new String[] { "long", "int", "int" };
 
 		_methodName39 = "getUserMicroblogsEntries";
 
-		_methodParameterTypes39 = new String[] { "long", "int", "int" };
+		_methodParameterTypes39 = new String[] { "long", "int", "int", "int" };
 
-		_methodName40 = "getUserMicroblogsEntries";
+		_methodName40 = "getUserMicroblogsEntriesCount";
 
-		_methodParameterTypes40 = new String[] { "long", "int", "int", "int" };
+		_methodParameterTypes40 = new String[] { "long" };
 
 		_methodName41 = "getUserMicroblogsEntriesCount";
 
-		_methodParameterTypes41 = new String[] { "long" };
+		_methodParameterTypes41 = new String[] { "long", "int" };
 
-		_methodName42 = "getUserMicroblogsEntriesCount";
+		_methodName42 = "updateMicroblogsEntry";
 
-		_methodParameterTypes42 = new String[] { "long", "int" };
-
-		_methodName43 = "updateMicroblogsEntry";
-
-		_methodParameterTypes43 = new String[] {
+		_methodParameterTypes42 = new String[] {
 				"long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -94,18 +90,11 @@ public class MicroblogsEntryServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName26.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
-			return MicroblogsEntryServiceUtil.getBeanIdentifier();
+			return MicroblogsEntryServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName27.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
-			MicroblogsEntryServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+		if (_methodName31.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.addMicroblogsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -114,67 +103,67 @@ public class MicroblogsEntryServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.deleteMicroblogsEntry(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName34.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.getMicroblogsEntries(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName35.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+		if (_methodName34.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.getMicroblogsEntries((java.lang.String)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
+		if (_methodName35.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+			return MicroblogsEntryServiceUtil.getMicroblogsEntriesCount();
+		}
+
 		if (_methodName36.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
-			return MicroblogsEntryServiceUtil.getMicroblogsEntriesCount();
+			return MicroblogsEntryServiceUtil.getMicroblogsEntriesCount((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName37.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
-			return MicroblogsEntryServiceUtil.getMicroblogsEntriesCount((java.lang.String)arguments[0]);
+			return MicroblogsEntryServiceUtil.getMicroblogsEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName38.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
-			return MicroblogsEntryServiceUtil.getMicroblogsEntry(((Long)arguments[0]).longValue());
+			return MicroblogsEntryServiceUtil.getUserMicroblogsEntries(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName39.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.getUserMicroblogsEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
-		}
-
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
-			return MicroblogsEntryServiceUtil.getUserMicroblogsEntries(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.getUserMicroblogsEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName42.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.getUserMicroblogsEntriesCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return MicroblogsEntryServiceUtil.updateMicroblogsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -186,8 +175,8 @@ public class MicroblogsEntryServiceClpInvoker {
 
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
 	private String _methodName33;
@@ -210,6 +199,4 @@ public class MicroblogsEntryServiceClpInvoker {
 	private String[] _methodParameterTypes41;
 	private String _methodName42;
 	private String[] _methodParameterTypes42;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
 }

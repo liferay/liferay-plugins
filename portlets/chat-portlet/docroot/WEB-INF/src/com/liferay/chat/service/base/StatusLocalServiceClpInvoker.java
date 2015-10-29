@@ -113,49 +113,45 @@ public class StatusLocalServiceClpInvoker {
 
 		_methodParameterTypes18 = new String[] { "com.liferay.chat.model.Status" };
 
-		_methodName49 = "getBeanIdentifier";
+		_methodName49 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes49 = new String[] {  };
 
-		_methodName50 = "setBeanIdentifier";
+		_methodName54 = "getAllStatuses";
 
-		_methodParameterTypes50 = new String[] { "java.lang.String" };
-
-		_methodName55 = "getAllStatuses";
-
-		_methodParameterTypes55 = new String[] {
+		_methodParameterTypes54 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
 
-		_methodName56 = "getGroupStatuses";
+		_methodName55 = "getGroupStatuses";
+
+		_methodParameterTypes55 = new String[] {
+				"long", "long", "java.lang.String[][]", "int", "int"
+			};
+
+		_methodName56 = "getSocialStatuses";
 
 		_methodParameterTypes56 = new String[] {
-				"long", "long", "java.lang.String[][]", "int", "int"
+				"long", "int", "long", "int", "int"
 			};
 
 		_methodName57 = "getSocialStatuses";
 
 		_methodParameterTypes57 = new String[] {
-				"long", "int", "long", "int", "int"
-			};
-
-		_methodName58 = "getSocialStatuses";
-
-		_methodParameterTypes58 = new String[] {
 				"long", "int[][]", "long", "int", "int"
 			};
 
-		_methodName59 = "getUserStatus";
+		_methodName58 = "getUserStatus";
 
-		_methodParameterTypes59 = new String[] { "long" };
+		_methodParameterTypes58 = new String[] { "long" };
+
+		_methodName59 = "updateStatus";
+
+		_methodParameterTypes59 = new String[] { "long", "long" };
 
 		_methodName60 = "updateStatus";
 
-		_methodParameterTypes60 = new String[] { "long", "long" };
-
-		_methodName61 = "updateStatus";
-
-		_methodParameterTypes61 = new String[] {
+		_methodParameterTypes60 = new String[] {
 				"long", "long", "int", "int", "java.lang.String",
 				"java.lang.String", "int"
 			};
@@ -262,18 +258,11 @@ public class StatusLocalServiceClpInvoker {
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			return StatusLocalServiceUtil.getBeanIdentifier();
+			return StatusLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			StatusLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return StatusLocalServiceUtil.getAllStatuses(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -281,8 +270,8 @@ public class StatusLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return StatusLocalServiceUtil.getGroupStatuses(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String[])arguments[2],
@@ -290,8 +279,8 @@ public class StatusLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return StatusLocalServiceUtil.getSocialStatuses(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Long)arguments[2]).longValue(),
@@ -299,27 +288,27 @@ public class StatusLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return StatusLocalServiceUtil.getSocialStatuses(((Long)arguments[0]).longValue(),
 				(int[])arguments[1], ((Long)arguments[2]).longValue(),
 				((Integer)arguments[3]).intValue(),
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return StatusLocalServiceUtil.getUserStatus(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return StatusLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return StatusLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -369,8 +358,8 @@ public class StatusLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 	private String _methodName55;
 	private String[] _methodParameterTypes55;
 	private String _methodName56;
@@ -383,6 +372,4 @@ public class StatusLocalServiceClpInvoker {
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
-	private String _methodName61;
-	private String[] _methodParameterTypes61;
 }

@@ -135,15 +135,15 @@ public class WSRPConsumerPortletLocalServiceClp
 
 		_methodParameterTypes19 = new String[] {  };
 
-		_methodName20 = "getBeanIdentifier";
+		_methodName20 = "getExportActionableDynamicQuery";
 
-		_methodParameterTypes20 = new String[] {  };
-
-		_methodName21 = "getExportActionableDynamicQuery";
-
-		_methodParameterTypes21 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"com.liferay.portlet.exportimport.lar.PortletDataContext"
 			};
+
+		_methodName21 = "getOSGiServiceIdentifier";
+
+		_methodParameterTypes21 = new String[] {  };
 
 		_methodName22 = "getPersistedModel";
 
@@ -196,19 +196,15 @@ public class WSRPConsumerPortletLocalServiceClp
 
 		_methodParameterTypes33 = new String[] {  };
 
-		_methodName35 = "setBeanIdentifier";
+		_methodName35 = "updateWSRPConsumerPortlet";
 
-		_methodParameterTypes35 = new String[] { "java.lang.String" };
-
-		_methodName36 = "updateWSRPConsumerPortlet";
-
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes35 = new String[] {
 				"com.liferay.wsrp.model.WSRPConsumerPortlet"
 			};
 
-		_methodName37 = "updateWSRPConsumerPortlet";
+		_methodName36 = "updateWSRPConsumerPortlet";
 
-		_methodParameterTypes37 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes36 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -782,36 +778,13 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] {
 						ClpSerializer.translateInput(portletDataContext)
 					});
@@ -829,6 +802,29 @@ public class WSRPConsumerPortletLocalServiceClp
 		}
 
 		return (com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -1167,33 +1163,13 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName35,
-				_methodParameterTypes35,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName36,
-					_methodParameterTypes36,
+			returnObj = _invokableLocalService.invokeMethod(_methodName35,
+					_methodParameterTypes35,
 					new Object[] {
 						ClpSerializer.translateInput(wsrpConsumerPortlet)
 					});
@@ -1220,8 +1196,8 @@ public class WSRPConsumerPortletLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName37,
-					_methodParameterTypes37,
+			returnObj = _invokableLocalService.invokeMethod(_methodName36,
+					_methodParameterTypes36,
 					new Object[] {
 						wsrpConsumerPortletId,
 						
@@ -1320,6 +1296,4 @@ public class WSRPConsumerPortletLocalServiceClp
 	private String[] _methodParameterTypes35;
 	private String _methodName36;
 	private String[] _methodParameterTypes36;
-	private String _methodName37;
-	private String[] _methodParameterTypes37;
 }

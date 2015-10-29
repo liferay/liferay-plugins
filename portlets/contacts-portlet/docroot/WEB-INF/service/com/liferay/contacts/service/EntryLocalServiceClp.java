@@ -100,29 +100,29 @@ public class EntryLocalServiceClp implements EntryLocalService {
 
 		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "getBeanIdentifier";
+		_methodName14 = "getEntries";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes14 = new String[] { "int", "int" };
 
 		_methodName15 = "getEntries";
 
-		_methodParameterTypes15 = new String[] { "int", "int" };
+		_methodParameterTypes15 = new String[] { "long", "int", "int" };
 
-		_methodName16 = "getEntries";
+		_methodName16 = "getEntriesCount";
 
-		_methodParameterTypes16 = new String[] { "long", "int", "int" };
+		_methodParameterTypes16 = new String[] {  };
 
 		_methodName17 = "getEntriesCount";
 
-		_methodParameterTypes17 = new String[] {  };
+		_methodParameterTypes17 = new String[] { "long" };
 
-		_methodName18 = "getEntriesCount";
+		_methodName18 = "getEntry";
 
 		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName19 = "getEntry";
+		_methodName19 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes19 = new String[] { "long" };
+		_methodParameterTypes19 = new String[] {  };
 
 		_methodName20 = "getPersistedModel";
 
@@ -150,19 +150,15 @@ public class EntryLocalServiceClp implements EntryLocalService {
 				"long", "long", "java.lang.String"
 			};
 
-		_methodName26 = "setBeanIdentifier";
+		_methodName26 = "updateEntry";
 
-		_methodParameterTypes26 = new String[] { "java.lang.String" };
+		_methodParameterTypes26 = new String[] {
+				"com.liferay.contacts.model.Entry"
+			};
 
 		_methodName27 = "updateEntry";
 
 		_methodParameterTypes27 = new String[] {
-				"com.liferay.contacts.model.Entry"
-			};
-
-		_methodName28 = "updateEntry";
-
-		_methodParameterTypes28 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
@@ -555,36 +551,13 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<com.liferay.contacts.model.Entry> getEntries(
 		int start, int end) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -607,8 +580,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] { userId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -630,8 +603,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -653,8 +626,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -677,8 +650,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] { entryId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { entryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -697,6 +670,29 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		}
 
 		return (com.liferay.contacts.model.Entry)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -862,33 +858,13 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName26,
-				_methodParameterTypes26,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.contacts.model.Entry updateEntry(
 		com.liferay.contacts.model.Entry entry) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { ClpSerializer.translateInput(entry) });
 		}
 		catch (Throwable t) {
@@ -914,8 +890,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] {
 						entryId,
 						
@@ -1000,6 +976,4 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
 }

@@ -119,32 +119,28 @@ public class ProjectsEntryLocalServiceClpInvoker {
 				"com.liferay.so.model.ProjectsEntry"
 			};
 
-		_methodName53 = "getBeanIdentifier";
+		_methodName53 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes53 = new String[] {  };
 
-		_methodName54 = "setBeanIdentifier";
+		_methodName58 = "addProjectsEntry";
 
-		_methodParameterTypes54 = new String[] { "java.lang.String" };
-
-		_methodName59 = "addProjectsEntry";
-
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes58 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int", "int",
 				"int", "int", "int", "int", "boolean", "java.lang.String"
 			};
 
-		_methodName60 = "getUserProjectsEntries";
+		_methodName59 = "getUserProjectsEntries";
+
+		_methodParameterTypes59 = new String[] { "long" };
+
+		_methodName60 = "getUserProjectsEntriesCount";
 
 		_methodParameterTypes60 = new String[] { "long" };
 
-		_methodName61 = "getUserProjectsEntriesCount";
+		_methodName61 = "updateProjectsEntry";
 
-		_methodParameterTypes61 = new String[] { "long" };
-
-		_methodName62 = "updateProjectsEntry";
-
-		_methodParameterTypes62 = new String[] {
+		_methodParameterTypes61 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int", "int",
 				"int", "int", "int", "int", "boolean", "java.lang.String"
 			};
@@ -251,18 +247,11 @@ public class ProjectsEntryLocalServiceClpInvoker {
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return ProjectsEntryLocalServiceUtil.getBeanIdentifier();
+			return ProjectsEntryLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			ProjectsEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return ProjectsEntryLocalServiceUtil.addProjectsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -275,18 +264,18 @@ public class ProjectsEntryLocalServiceClpInvoker {
 				(java.lang.String)arguments[10]);
 		}
 
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+			return ProjectsEntryLocalServiceUtil.getUserProjectsEntries(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return ProjectsEntryLocalServiceUtil.getUserProjectsEntries(((Long)arguments[0]).longValue());
+			return ProjectsEntryLocalServiceUtil.getUserProjectsEntriesCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return ProjectsEntryLocalServiceUtil.getUserProjectsEntriesCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return ProjectsEntryLocalServiceUtil.updateProjectsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -340,14 +329,12 @@ public class ProjectsEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 	private String _methodName59;
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
 	private String _methodName61;
 	private String[] _methodParameterTypes61;
-	private String _methodName62;
-	private String[] _methodParameterTypes62;
 }

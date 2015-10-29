@@ -204,15 +204,6 @@ public class MessageLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public static java.lang.String getBeanIdentifier() {
-		return getService().getBeanIdentifier();
-	}
-
 	public static java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
 		long companyId, int start, int end) {
 		return getService().getCompanyMessages(companyId, start, end);
@@ -278,6 +269,15 @@ public class MessageLocalServiceUtil {
 		return getService().getMessagesCount();
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
+	}
+
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -303,15 +303,6 @@ public class MessageLocalServiceUtil {
 		return getService()
 				   .populateMessages(messages, folderId, keywords, pageNumber,
 			messagesPerPage, orderByField, orderByType);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
-		getService().setBeanIdentifier(beanIdentifier);
 	}
 
 	public static com.liferay.mail.model.Message updateContent(long messageId,

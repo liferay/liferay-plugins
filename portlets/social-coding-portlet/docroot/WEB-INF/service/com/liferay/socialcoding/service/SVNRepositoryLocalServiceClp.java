@@ -98,7 +98,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getBeanIdentifier";
+		_methodName13 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes13 = new String[] {  };
 
@@ -122,19 +122,15 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 
 		_methodParameterTypes18 = new String[] { "java.lang.String" };
 
-		_methodName20 = "setBeanIdentifier";
+		_methodName20 = "updateSVNRepository";
 
-		_methodParameterTypes20 = new String[] { "java.lang.String" };
-
-		_methodName21 = "updateSVNRepository";
-
-		_methodParameterTypes21 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"com.liferay.socialcoding.model.SVNRepository"
 			};
 
-		_methodName22 = "updateSVNRepository";
+		_methodName21 = "updateSVNRepository";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String" };
+		_methodParameterTypes21 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -488,7 +484,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -654,33 +650,13 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.socialcoding.model.SVNRepository updateSVNRepository(
 		com.liferay.socialcoding.model.SVNRepository svnRepository) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { ClpSerializer.translateInput(svnRepository) });
 		}
 		catch (Throwable t) {
@@ -702,8 +678,8 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21,
 				new Object[] { ClpSerializer.translateInput(url) });
 		}
 		catch (Throwable t) {
@@ -766,6 +742,4 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
-	private String _methodName22;
-	private String[] _methodParameterTypes22;
 }

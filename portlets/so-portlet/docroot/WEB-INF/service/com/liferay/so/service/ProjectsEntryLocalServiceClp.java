@@ -105,7 +105,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 		_methodParameterTypes13 = new String[] {  };
 
-		_methodName14 = "getBeanIdentifier";
+		_methodName14 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes14 = new String[] {  };
 
@@ -133,19 +133,15 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName22 = "setBeanIdentifier";
+		_methodName22 = "updateProjectsEntry";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String" };
+		_methodParameterTypes22 = new String[] {
+				"com.liferay.so.model.ProjectsEntry"
+			};
 
 		_methodName23 = "updateProjectsEntry";
 
 		_methodParameterTypes23 = new String[] {
-				"com.liferay.so.model.ProjectsEntry"
-			};
-
-		_methodName24 = "updateProjectsEntry";
-
-		_methodParameterTypes24 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int", "int",
 				"int", "int", "int", "int", "boolean", "java.lang.String"
 			};
@@ -557,7 +553,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -740,33 +736,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { ClpSerializer.translateInput(projectsEntry) });
 		}
 		catch (Throwable t) {
@@ -794,8 +770,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						projectsEntryId,
 						
@@ -886,6 +862,4 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
 }

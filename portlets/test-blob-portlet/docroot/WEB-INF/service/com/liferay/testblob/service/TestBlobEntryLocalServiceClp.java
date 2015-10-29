@@ -98,13 +98,13 @@ public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getBeanIdentifier";
+		_methodName13 = "getBlobFieldBlobModel";
 
-		_methodParameterTypes13 = new String[] {  };
+		_methodParameterTypes13 = new String[] { "java.io.Serializable" };
 
-		_methodName14 = "getBlobFieldBlobModel";
+		_methodName14 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes14 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes14 = new String[] {  };
 
 		_methodName15 = "getPersistedModel";
 
@@ -122,13 +122,9 @@ public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
 
 		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName20 = "setBeanIdentifier";
+		_methodName20 = "updateTestBlobEntry";
 
-		_methodParameterTypes20 = new String[] { "java.lang.String" };
-
-		_methodName21 = "updateTestBlobEntry";
-
-		_methodParameterTypes21 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"com.liferay.testblob.model.TestBlobEntry"
 			};
 	}
@@ -484,36 +480,13 @@ public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
 		java.io.Serializable primaryKey) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13,
 					new Object[] { ClpSerializer.translateInput(primaryKey) });
 		}
 		catch (Throwable t) {
@@ -529,6 +502,29 @@ public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
 		}
 
 		return (com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -645,33 +641,13 @@ public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.testblob.model.TestBlobEntry updateTestBlobEntry(
 		com.liferay.testblob.model.TestBlobEntry testBlobEntry) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { ClpSerializer.translateInput(testBlobEntry) });
 		}
 		catch (Throwable t) {
@@ -730,6 +706,4 @@ public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
 	private String[] _methodParameterTypes18;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
-	private String _methodName21;
-	private String[] _methodParameterTypes21;
 }

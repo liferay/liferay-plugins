@@ -33,13 +33,13 @@ public class SkinnyServiceWrapper implements SkinnyService,
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
+	* Returns the OSGi service identifier.
 	*
-	* @return the Spring bean ID for this bean
+	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _skinnyService.getBeanIdentifier();
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _skinnyService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -61,16 +61,6 @@ public class SkinnyServiceWrapper implements SkinnyService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return _skinnyService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_skinnyService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

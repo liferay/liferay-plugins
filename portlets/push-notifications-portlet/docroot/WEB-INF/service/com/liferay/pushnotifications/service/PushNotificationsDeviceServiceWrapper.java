@@ -50,13 +50,13 @@ public class PushNotificationsDeviceServiceWrapper
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
+	* Returns the OSGi service identifier.
 	*
-	* @return the Spring bean ID for this bean
+	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _pushNotificationsDeviceService.getBeanIdentifier();
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _pushNotificationsDeviceService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -79,16 +79,6 @@ public class PushNotificationsDeviceServiceWrapper
 	public void sendPushNotification(long[] toUserIds, java.lang.String payload)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_pushNotificationsDeviceService.sendPushNotification(toUserIds, payload);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_pushNotificationsDeviceService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

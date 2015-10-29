@@ -27,21 +27,17 @@ import java.util.Arrays;
 @ProviderType
 public class SkinnyServiceClpInvoker {
 	public SkinnyServiceClpInvoker() {
-		_methodName44 = "getBeanIdentifier";
+		_methodName44 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes44 = new String[] {  };
 
-		_methodName45 = "setBeanIdentifier";
+		_methodName47 = "getSkinnyDDLRecords";
 
-		_methodParameterTypes45 = new String[] { "java.lang.String" };
+		_methodParameterTypes47 = new String[] { "long" };
 
-		_methodName48 = "getSkinnyDDLRecords";
+		_methodName48 = "getSkinnyJournalArticles";
 
-		_methodParameterTypes48 = new String[] { "long" };
-
-		_methodName49 = "getSkinnyJournalArticles";
-
-		_methodParameterTypes49 = new String[] {
+		_methodParameterTypes48 = new String[] {
 				"long", "java.lang.String", "long", "java.lang.String"
 			};
 	}
@@ -50,23 +46,16 @@ public class SkinnyServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-			return SkinnyServiceUtil.getBeanIdentifier();
+			return SkinnyServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
-			SkinnyServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+			return SkinnyServiceUtil.getSkinnyDDLRecords(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			return SkinnyServiceUtil.getSkinnyDDLRecords(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return SkinnyServiceUtil.getSkinnyJournalArticles(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Long)arguments[2]).longValue(), (java.lang.String)arguments[3]);
@@ -77,10 +66,8 @@ public class SkinnyServiceClpInvoker {
 
 	private String _methodName44;
 	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
-	private String _methodName49;
-	private String[] _methodParameterTypes49;
 }

@@ -144,57 +144,53 @@ public class WSRPProducerLocalServiceClpInvoker {
 				"com.liferay.wsrp.model.WSRPProducer"
 			};
 
-		_methodName66 = "getBeanIdentifier";
+		_methodName66 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes66 = new String[] {  };
 
-		_methodName67 = "setBeanIdentifier";
+		_methodName71 = "addWSRPProducer";
 
-		_methodParameterTypes67 = new String[] { "java.lang.String" };
-
-		_methodName72 = "addWSRPProducer";
-
-		_methodParameterTypes72 = new String[] {
+		_methodParameterTypes71 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName73 = "addWSRPProducer";
+		_methodName72 = "addWSRPProducer";
 
-		_methodParameterTypes73 = new String[] {
+		_methodParameterTypes72 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
+		_methodName73 = "deleteWSRPProducer";
+
+		_methodParameterTypes73 = new String[] { "long" };
+
 		_methodName74 = "deleteWSRPProducer";
 
-		_methodParameterTypes74 = new String[] { "long" };
-
-		_methodName75 = "deleteWSRPProducer";
-
-		_methodParameterTypes75 = new String[] {
+		_methodParameterTypes74 = new String[] {
 				"com.liferay.wsrp.model.WSRPProducer"
 			};
 
-		_methodName76 = "deleteWSRPProducers";
+		_methodName75 = "deleteWSRPProducers";
 
-		_methodParameterTypes76 = new String[] { "long" };
+		_methodParameterTypes75 = new String[] { "long" };
 
-		_methodName77 = "getWSRPProducer";
+		_methodName76 = "getWSRPProducer";
 
-		_methodParameterTypes77 = new String[] { "java.lang.String" };
+		_methodParameterTypes76 = new String[] { "java.lang.String" };
 
-		_methodName78 = "getWSRPProducers";
+		_methodName77 = "getWSRPProducers";
 
-		_methodParameterTypes78 = new String[] { "long", "int", "int" };
+		_methodParameterTypes77 = new String[] { "long", "int", "int" };
 
-		_methodName79 = "getWSRPProducersCount";
+		_methodName78 = "getWSRPProducersCount";
 
-		_methodParameterTypes79 = new String[] { "long" };
+		_methodParameterTypes78 = new String[] { "long" };
 
-		_methodName80 = "updateWSRPProducer";
+		_methodName79 = "updateWSRPProducer";
 
-		_methodParameterTypes80 = new String[] {
+		_methodParameterTypes79 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
@@ -333,18 +329,11 @@ public class WSRPProducerLocalServiceClpInvoker {
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return WSRPProducerLocalServiceUtil.getBeanIdentifier();
+			return WSRPProducerLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
-			WSRPProducerLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.addWSRPProducer(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -352,50 +341,50 @@ public class WSRPProducerLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.addWSRPProducer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3],
 				(com.liferay.portal.service.ServiceContext)arguments[4]);
 		}
 
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			return WSRPProducerLocalServiceUtil.deleteWSRPProducer(((Long)arguments[0]).longValue());
+		}
+
 		if (_methodName74.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
-			return WSRPProducerLocalServiceUtil.deleteWSRPProducer(((Long)arguments[0]).longValue());
+			return WSRPProducerLocalServiceUtil.deleteWSRPProducer((com.liferay.wsrp.model.WSRPProducer)arguments[0]);
 		}
 
 		if (_methodName75.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
-			return WSRPProducerLocalServiceUtil.deleteWSRPProducer((com.liferay.wsrp.model.WSRPProducer)arguments[0]);
-		}
-
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			WSRPProducerLocalServiceUtil.deleteWSRPProducers(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.getWSRPProducer((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.getWSRPProducers(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName79.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.getWSRPProducersCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName80.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.updateWSRPProducer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3]);
@@ -452,8 +441,8 @@ public class WSRPProducerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes23;
 	private String _methodName66;
 	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
+	private String _methodName71;
+	private String[] _methodParameterTypes71;
 	private String _methodName72;
 	private String[] _methodParameterTypes72;
 	private String _methodName73;
@@ -470,6 +459,4 @@ public class WSRPProducerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes78;
 	private String _methodName79;
 	private String[] _methodParameterTypes79;
-	private String _methodName80;
-	private String[] _methodParameterTypes80;
 }

@@ -27,30 +27,26 @@ import java.util.Arrays;
 @ProviderType
 public class GadgetServiceClpInvoker {
 	public GadgetServiceClpInvoker() {
-		_methodName32 = "getBeanIdentifier";
+		_methodName32 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes32 = new String[] {  };
 
-		_methodName33 = "setBeanIdentifier";
+		_methodName37 = "addGadget";
 
-		_methodParameterTypes33 = new String[] { "java.lang.String" };
-
-		_methodName38 = "addGadget";
-
-		_methodParameterTypes38 = new String[] {
+		_methodParameterTypes37 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName39 = "deleteGadget";
+		_methodName38 = "deleteGadget";
 
-		_methodParameterTypes39 = new String[] {
+		_methodParameterTypes38 = new String[] {
 				"long", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName40 = "updateGadget";
+		_methodName39 = "updateGadget";
 
-		_methodParameterTypes40 = new String[] {
+		_methodParameterTypes39 = new String[] {
 				"long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -60,33 +56,26 @@ public class GadgetServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName32.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
-			return GadgetServiceUtil.getBeanIdentifier();
+			return GadgetServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
-			GadgetServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName38.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			return GadgetServiceUtil.addGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName39.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
+		if (_methodName38.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
 			GadgetServiceUtil.deleteGadget(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+		if (_methodName39.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			GadgetServiceUtil.updateGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
@@ -99,12 +88,10 @@ public class GadgetServiceClpInvoker {
 
 	private String _methodName32;
 	private String[] _methodParameterTypes32;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
+	private String _methodName37;
+	private String[] _methodParameterTypes37;
 	private String _methodName38;
 	private String[] _methodParameterTypes38;
 	private String _methodName39;
 	private String[] _methodParameterTypes39;
-	private String _methodName40;
-	private String[] _methodParameterTypes40;
 }

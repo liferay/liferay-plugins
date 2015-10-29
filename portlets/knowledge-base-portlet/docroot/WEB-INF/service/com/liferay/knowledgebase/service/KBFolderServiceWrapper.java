@@ -57,16 +57,6 @@ public class KBFolderServiceWrapper implements KBFolderService,
 			parentKbFolderId, urlTitle);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kbFolderService.getBeanIdentifier();
-	}
-
 	@Override
 	public com.liferay.knowledgebase.model.KBFolder getKBFolder(long kbFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -95,6 +85,16 @@ public class KBFolderServiceWrapper implements KBFolderService,
 		return _kbFolderService.getKBFoldersCount(groupId, parentKBFolderId);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _kbFolderService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
@@ -106,16 +106,6 @@ public class KBFolderServiceWrapper implements KBFolderService,
 	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbFolderService.moveKBFolder(kbFolderId, parentKBFolderId);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kbFolderService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

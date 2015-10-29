@@ -119,13 +119,9 @@ public class JIRAProjectLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.JIRAProject"
 			};
 
-		_methodName71 = "getBeanIdentifier";
+		_methodName71 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes71 = new String[] {  };
-
-		_methodName72 = "setBeanIdentifier";
-
-		_methodParameterTypes72 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -229,14 +225,7 @@ public class JIRAProjectLocalServiceClpInvoker {
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return JIRAProjectLocalServiceUtil.getBeanIdentifier();
-		}
-
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			JIRAProjectLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+			return JIRAProjectLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
 		throw new UnsupportedOperationException();
@@ -280,6 +269,4 @@ public class JIRAProjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName71;
 	private String[] _methodParameterTypes71;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
 }

@@ -186,16 +186,6 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	}
 
 	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _checkoutLocalService.getBeanIdentifier();
-	}
-
-	/**
 	* Returns the checkout with the primary key.
 	*
 	* @param checkoutId the primary key of the checkout
@@ -235,6 +225,16 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		return _checkoutLocalService.getCheckoutsCount();
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _checkoutLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -248,16 +248,6 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		throws java.lang.Throwable {
 		return _checkoutLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_checkoutLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	/**

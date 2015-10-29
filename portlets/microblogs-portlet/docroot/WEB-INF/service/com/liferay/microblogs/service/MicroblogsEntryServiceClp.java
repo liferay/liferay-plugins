@@ -38,29 +38,29 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "getBeanIdentifier";
+		_methodName2 = "getMicroblogsEntries";
 
-		_methodParameterTypes2 = new String[] {  };
+		_methodParameterTypes2 = new String[] { "java.lang.String", "int", "int" };
 
 		_methodName3 = "getMicroblogsEntries";
 
-		_methodParameterTypes3 = new String[] { "java.lang.String", "int", "int" };
+		_methodParameterTypes3 = new String[] { "int", "int" };
 
-		_methodName4 = "getMicroblogsEntries";
+		_methodName4 = "getMicroblogsEntriesCount";
 
-		_methodParameterTypes4 = new String[] { "int", "int" };
+		_methodParameterTypes4 = new String[] {  };
 
 		_methodName5 = "getMicroblogsEntriesCount";
 
-		_methodParameterTypes5 = new String[] {  };
+		_methodParameterTypes5 = new String[] { "java.lang.String" };
 
-		_methodName6 = "getMicroblogsEntriesCount";
+		_methodName6 = "getMicroblogsEntry";
 
-		_methodParameterTypes6 = new String[] { "java.lang.String" };
+		_methodParameterTypes6 = new String[] { "long" };
 
-		_methodName7 = "getMicroblogsEntry";
+		_methodName7 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes7 = new String[] { "long" };
+		_methodParameterTypes7 = new String[] {  };
 
 		_methodName8 = "getUserMicroblogsEntries";
 
@@ -78,13 +78,9 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 
 		_methodParameterTypes11 = new String[] { "long", "int" };
 
-		_methodName13 = "setBeanIdentifier";
+		_methodName13 = "updateMicroblogsEntry";
 
-		_methodParameterTypes13 = new String[] { "java.lang.String" };
-
-		_methodName14 = "updateMicroblogsEntry";
-
-		_methodParameterTypes14 = new String[] {
+		_methodParameterTypes13 = new String[] {
 				"long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -164,37 +160,14 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
+			returnObj = _invokableService.invokeMethod(_methodName2,
+					_methodParameterTypes2,
 					new Object[] {
 						ClpSerializer.translateInput(assetTagName),
 						
@@ -229,8 +202,8 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4, new Object[] { start, end });
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -257,8 +230,8 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -285,8 +258,8 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6,
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
 					new Object[] { ClpSerializer.translateInput(assetTagName) });
 		}
 		catch (Throwable t) {
@@ -315,8 +288,8 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7, new Object[] { microblogsEntryId });
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] { microblogsEntryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -335,6 +308,29 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		}
 
 		return (com.liferay.microblogs.model.MicroblogsEntry)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -463,26 +459,6 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableService.invokeMethod(_methodName13,
-				_methodParameterTypes13,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,
 		int socialRelationType,
@@ -491,8 +467,8 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
+			returnObj = _invokableService.invokeMethod(_methodName13,
+					_methodParameterTypes13,
 					new Object[] {
 						microblogsEntryId,
 						
@@ -549,6 +525,4 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	private String[] _methodParameterTypes11;
 	private String _methodName13;
 	private String[] _methodParameterTypes13;
-	private String _methodName14;
-	private String[] _methodParameterTypes14;
 }

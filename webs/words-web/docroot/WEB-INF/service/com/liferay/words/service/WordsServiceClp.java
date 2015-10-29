@@ -31,17 +31,13 @@ public class WordsServiceClp implements WordsService {
 
 		_methodParameterTypes0 = new String[] { "java.lang.String" };
 
-		_methodName1 = "getBeanIdentifier";
+		_methodName1 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes1 = new String[] {  };
 
 		_methodName2 = "getSuggestions";
 
 		_methodParameterTypes2 = new String[] { "java.lang.String" };
-
-		_methodName4 = "setBeanIdentifier";
-
-		_methodParameterTypes4 = new String[] { "java.lang.String" };
 	}
 
 	@Override
@@ -74,7 +70,7 @@ public class WordsServiceClp implements WordsService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
@@ -132,26 +128,6 @@ public class WordsServiceClp implements WordsService {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		try {
-			_invokableService.invokeMethod(_methodName4,
-				_methodParameterTypes4,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -159,6 +135,4 @@ public class WordsServiceClp implements WordsService {
 	private String[] _methodParameterTypes1;
 	private String _methodName2;
 	private String[] _methodParameterTypes2;
-	private String _methodName4;
-	private String[] _methodParameterTypes4;
 }

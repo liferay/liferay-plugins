@@ -82,13 +82,6 @@ public interface KBArticleService extends BaseService, InvokableService {
 	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
 		long resourcePrimKey, int status) throws PortalException;
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	public java.lang.String getBeanIdentifier();
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
 		long groupId, int status, int start, int end,
@@ -175,6 +168,13 @@ public interface KBArticleService extends BaseService, InvokableService {
 	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
 		long resourcePrimKey, int status) throws PortalException;
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(
 		long groupId, java.lang.String[] sections, int status, int start,
@@ -223,13 +223,6 @@ public interface KBArticleService extends BaseService, InvokableService {
 		long resourcePrimKey, int version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws PortalException;
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
 	public void subscribeGroupKBArticles(long groupId,
 		java.lang.String portletId) throws PortalException;

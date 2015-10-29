@@ -344,16 +344,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 			status, orderByComparator);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _kbArticleLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getCompanyKBArticles(
 		long companyId, int status, int start, int end,
@@ -581,6 +571,16 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 			kbFolderId, urlTitle, status);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _kbArticleLocalService.getOSGiServiceIdentifier();
+	}
+
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
@@ -680,16 +680,6 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator) {
 		return _kbArticleLocalService.search(groupId, title, content, status,
 			startDate, endDate, andOperator, start, end, orderByComparator);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_kbArticleLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

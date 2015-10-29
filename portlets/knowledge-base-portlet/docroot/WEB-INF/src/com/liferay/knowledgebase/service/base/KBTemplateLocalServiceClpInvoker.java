@@ -144,68 +144,64 @@ public class KBTemplateLocalServiceClpInvoker {
 				"com.liferay.knowledgebase.model.KBTemplate"
 			};
 
-		_methodName80 = "getBeanIdentifier";
+		_methodName80 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes80 = new String[] {  };
 
-		_methodName81 = "setBeanIdentifier";
+		_methodName85 = "addKBTemplate";
 
-		_methodParameterTypes81 = new String[] { "java.lang.String" };
-
-		_methodName86 = "addKBTemplate";
-
-		_methodParameterTypes86 = new String[] {
+		_methodParameterTypes85 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName87 = "deleteGroupKBTemplates";
+		_methodName86 = "deleteGroupKBTemplates";
 
-		_methodParameterTypes87 = new String[] { "long" };
+		_methodParameterTypes86 = new String[] { "long" };
 
-		_methodName88 = "deleteKBTemplate";
+		_methodName87 = "deleteKBTemplate";
 
-		_methodParameterTypes88 = new String[] {
+		_methodParameterTypes87 = new String[] {
 				"com.liferay.knowledgebase.model.KBTemplate"
 			};
 
-		_methodName89 = "deleteKBTemplate";
+		_methodName88 = "deleteKBTemplate";
 
-		_methodParameterTypes89 = new String[] { "long" };
+		_methodParameterTypes88 = new String[] { "long" };
 
-		_methodName90 = "deleteKBTemplates";
+		_methodName89 = "deleteKBTemplates";
 
-		_methodParameterTypes90 = new String[] { "long[][]" };
+		_methodParameterTypes89 = new String[] { "long[][]" };
 
-		_methodName91 = "getGroupKBTemplates";
+		_methodName90 = "getGroupKBTemplates";
 
-		_methodParameterTypes91 = new String[] {
+		_methodParameterTypes90 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName92 = "getGroupKBTemplatesCount";
+		_methodName91 = "getGroupKBTemplatesCount";
 
-		_methodParameterTypes92 = new String[] { "long" };
+		_methodParameterTypes91 = new String[] { "long" };
 
-		_methodName93 = "search";
+		_methodName92 = "search";
 
-		_methodParameterTypes93 = new String[] {
+		_methodParameterTypes92 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "java.util.Date",
 				"java.util.Date", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName94 = "updateKBTemplate";
+		_methodName93 = "updateKBTemplate";
 
-		_methodParameterTypes94 = new String[] {
+		_methodParameterTypes93 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName95 = "updateKBTemplateResources";
+		_methodName94 = "updateKBTemplateResources";
 
-		_methodParameterTypes95 = new String[] {
+		_methodParameterTypes94 = new String[] {
 				"com.liferay.knowledgebase.model.KBTemplate",
 				"java.lang.String[][]", "java.lang.String[][]"
 			};
@@ -344,62 +340,55 @@ public class KBTemplateLocalServiceClpInvoker {
 
 		if (_methodName80.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
-			return KBTemplateLocalServiceUtil.getBeanIdentifier();
+			return KBTemplateLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName81.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
-			KBTemplateLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
-		}
-
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			return KBTemplateLocalServiceUtil.addKBTemplate(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName87.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
+		if (_methodName86.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
 			KBTemplateLocalServiceUtil.deleteGroupKBTemplates(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
+		if (_methodName87.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
+			return KBTemplateLocalServiceUtil.deleteKBTemplate((com.liferay.knowledgebase.model.KBTemplate)arguments[0]);
+		}
+
 		if (_methodName88.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes88, parameterTypes)) {
-			return KBTemplateLocalServiceUtil.deleteKBTemplate((com.liferay.knowledgebase.model.KBTemplate)arguments[0]);
+			return KBTemplateLocalServiceUtil.deleteKBTemplate(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName89.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes89, parameterTypes)) {
-			return KBTemplateLocalServiceUtil.deleteKBTemplate(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName90.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes90, parameterTypes)) {
 			KBTemplateLocalServiceUtil.deleteKBTemplates((long[])arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName91.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes91, parameterTypes)) {
+		if (_methodName90.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes90, parameterTypes)) {
 			return KBTemplateLocalServiceUtil.getGroupKBTemplates(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate>)arguments[3]);
 		}
 
-		if (_methodName92.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes92, parameterTypes)) {
+		if (_methodName91.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes91, parameterTypes)) {
 			return KBTemplateLocalServiceUtil.getGroupKBTemplatesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName93.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes93, parameterTypes)) {
+		if (_methodName92.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes92, parameterTypes)) {
 			return KBTemplateLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.util.Date)arguments[3], (java.util.Date)arguments[4],
@@ -409,15 +398,15 @@ public class KBTemplateLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBTemplate>)arguments[8]);
 		}
 
-		if (_methodName94.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes94, parameterTypes)) {
+		if (_methodName93.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes93, parameterTypes)) {
 			return KBTemplateLocalServiceUtil.updateKBTemplate(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName95.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
+		if (_methodName94.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes94, parameterTypes)) {
 			KBTemplateLocalServiceUtil.updateKBTemplateResources((com.liferay.knowledgebase.model.KBTemplate)arguments[0],
 				(java.lang.String[])arguments[1],
 				(java.lang.String[])arguments[2]);
@@ -476,8 +465,8 @@ public class KBTemplateLocalServiceClpInvoker {
 	private String[] _methodParameterTypes23;
 	private String _methodName80;
 	private String[] _methodParameterTypes80;
-	private String _methodName81;
-	private String[] _methodParameterTypes81;
+	private String _methodName85;
+	private String[] _methodParameterTypes85;
 	private String _methodName86;
 	private String[] _methodParameterTypes86;
 	private String _methodName87;
@@ -496,6 +485,4 @@ public class KBTemplateLocalServiceClpInvoker {
 	private String[] _methodParameterTypes93;
 	private String _methodName94;
 	private String[] _methodParameterTypes94;
-	private String _methodName95;
-	private String[] _methodParameterTypes95;
 }

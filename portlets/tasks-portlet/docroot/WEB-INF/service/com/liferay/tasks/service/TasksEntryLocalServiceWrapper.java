@@ -214,16 +214,6 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 		return _tasksEntryLocalService.getAssigneeTasksEntriesCount(assigneeUserId);
 	}
 
-	/**
-	* Returns the Spring bean ID for this bean.
-	*
-	* @return the Spring bean ID for this bean
-	*/
-	@Override
-	public java.lang.String getBeanIdentifier() {
-		return _tasksEntryLocalService.getBeanIdentifier();
-	}
-
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupAssigneeTasksEntries(
 		long groupId, long assigneeUserId, int start, int end) {
@@ -263,6 +253,16 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	public int getGroupUserTasksEntriesCount(long groupId, long userId) {
 		return _tasksEntryLocalService.getGroupUserTasksEntriesCount(groupId,
 			userId);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _tasksEntryLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -370,16 +370,6 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 		throws java.lang.Throwable {
 		return _tasksEntryLocalService.invokeMethod(name, parameterTypes,
 			arguments);
-	}
-
-	/**
-	* Sets the Spring bean ID for this bean.
-	*
-	* @param beanIdentifier the Spring bean ID for this bean
-	*/
-	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
-		_tasksEntryLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
 	@Override

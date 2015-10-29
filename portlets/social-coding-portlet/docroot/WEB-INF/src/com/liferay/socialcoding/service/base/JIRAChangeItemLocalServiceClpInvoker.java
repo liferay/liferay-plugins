@@ -119,21 +119,17 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.JIRAChangeItem"
 			};
 
-		_methodName71 = "getBeanIdentifier";
+		_methodName71 = "getOSGiServiceIdentifier";
 
 		_methodParameterTypes71 = new String[] {  };
 
-		_methodName72 = "setBeanIdentifier";
+		_methodName76 = "getJIRAChangeItem";
 
-		_methodParameterTypes72 = new String[] { "java.lang.String" };
+		_methodParameterTypes76 = new String[] { "long" };
 
-		_methodName77 = "getJIRAChangeItem";
+		_methodName77 = "getJIRAChangeItems";
 
 		_methodParameterTypes77 = new String[] { "long" };
-
-		_methodName78 = "getJIRAChangeItems";
-
-		_methodParameterTypes78 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -237,23 +233,16 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 
 		if (_methodName71.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getBeanIdentifier();
+			return JIRAChangeItemLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			JIRAChangeItemLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName77.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
-			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItem(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return JIRAChangeItemLocalServiceUtil.getJIRAChangeItems(((Long)arguments[0]).longValue());
 		}
 
@@ -298,10 +287,8 @@ public class JIRAChangeItemLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName71;
 	private String[] _methodParameterTypes71;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
 	private String _methodName77;
 	private String[] _methodParameterTypes77;
-	private String _methodName78;
-	private String[] _methodParameterTypes78;
 }

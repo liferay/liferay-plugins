@@ -99,52 +99,54 @@ public class FooLocalServiceClpInvoker {
 
 		_methodParameterTypes13 = new String[] {  };
 
-		_methodName15 = "deletePersistedModel";
+		_methodName15 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes15 = new String[] {
+				"com.liferay.portlet.exportimport.lar.PortletDataContext"
+			};
+
+		_methodName16 = "deletePersistedModel";
+
+		_methodParameterTypes16 = new String[] {
 				"com.liferay.portal.model.PersistedModel"
 			};
 
-		_methodName16 = "getPersistedModel";
+		_methodName17 = "getPersistedModel";
 
-		_methodParameterTypes16 = new String[] { "java.io.Serializable" };
-
-		_methodName17 = "getFoosByUuidAndCompanyId";
-
-		_methodParameterTypes17 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes17 = new String[] { "java.io.Serializable" };
 
 		_methodName18 = "getFoosByUuidAndCompanyId";
 
-		_methodParameterTypes18 = new String[] {
+		_methodParameterTypes18 = new String[] { "java.lang.String", "long" };
+
+		_methodName19 = "getFoosByUuidAndCompanyId";
+
+		_methodParameterTypes19 = new String[] {
 				"java.lang.String", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName19 = "getFooByUuidAndGroupId";
+		_methodName20 = "getFooByUuidAndGroupId";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes20 = new String[] { "java.lang.String", "long" };
 
-		_methodName20 = "getFoos";
+		_methodName21 = "getFoos";
 
-		_methodParameterTypes20 = new String[] { "int", "int" };
+		_methodParameterTypes21 = new String[] { "int", "int" };
 
-		_methodName21 = "getFoosCount";
+		_methodName22 = "getFoosCount";
 
-		_methodParameterTypes21 = new String[] {  };
+		_methodParameterTypes22 = new String[] {  };
 
-		_methodName22 = "updateFoo";
+		_methodName23 = "updateFoo";
 
-		_methodParameterTypes22 = new String[] {
+		_methodParameterTypes23 = new String[] {
 				"com.liferay.sampleservicebuilder.model.Foo"
 			};
 
-		_methodName59 = "getBeanIdentifier";
+		_methodName60 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes59 = new String[] {  };
-
-		_methodName60 = "setBeanIdentifier";
-
-		_methodParameterTypes60 = new String[] { "java.lang.String" };
+		_methodParameterTypes60 = new String[] {  };
 
 		_methodName65 = "addFoo";
 
@@ -275,22 +277,27 @@ public class FooLocalServiceClpInvoker {
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return FooLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return FooLocalServiceUtil.getExportActionableDynamicQuery((com.liferay.portlet.exportimport.lar.PortletDataContext)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return FooLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return FooLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return FooLocalServiceUtil.getFoosByUuidAndCompanyId((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return FooLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
+			return FooLocalServiceUtil.getFoosByUuidAndCompanyId((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName19.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
 			return FooLocalServiceUtil.getFoosByUuidAndCompanyId((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -298,38 +305,31 @@ public class FooLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo>)arguments[4]);
 		}
 
-		if (_methodName19.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
+		if (_methodName20.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes20, parameterTypes)) {
 			return FooLocalServiceUtil.getFooByUuidAndGroupId((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName20.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes20, parameterTypes)) {
+		if (_methodName21.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes21, parameterTypes)) {
 			return FooLocalServiceUtil.getFoos(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName21.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes21, parameterTypes)) {
+		if (_methodName22.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes22, parameterTypes)) {
 			return FooLocalServiceUtil.getFoosCount();
 		}
 
-		if (_methodName22.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes22, parameterTypes)) {
+		if (_methodName23.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes23, parameterTypes)) {
 			return FooLocalServiceUtil.updateFoo((com.liferay.sampleservicebuilder.model.Foo)arguments[0]);
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return FooLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			FooLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
-
-			return null;
+			return FooLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
 		if (_methodName65.equals(name) &&
@@ -438,8 +438,8 @@ public class FooLocalServiceClpInvoker {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
 	private String _methodName65;

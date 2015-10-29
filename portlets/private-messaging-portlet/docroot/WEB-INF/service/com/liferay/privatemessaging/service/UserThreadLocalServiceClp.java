@@ -131,13 +131,13 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 
 		_methodParameterTypes18 = new String[] {  };
 
-		_methodName19 = "getBeanIdentifier";
+		_methodName19 = "getMBThreadUserThreads";
 
-		_methodParameterTypes19 = new String[] {  };
+		_methodParameterTypes19 = new String[] { "long" };
 
-		_methodName20 = "getMBThreadUserThreads";
+		_methodName20 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes20 = new String[] {  };
 
 		_methodName21 = "getPersistedModel";
 
@@ -187,17 +187,13 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 
 		_methodParameterTypes33 = new String[] { "long", "long" };
 
-		_methodName34 = "setBeanIdentifier";
+		_methodName34 = "updateUserName";
 
-		_methodParameterTypes34 = new String[] { "java.lang.String" };
+		_methodParameterTypes34 = new String[] { "com.liferay.portal.model.User" };
 
-		_methodName35 = "updateUserName";
+		_methodName35 = "updateUserThread";
 
-		_methodParameterTypes35 = new String[] { "com.liferay.portal.model.User" };
-
-		_methodName36 = "updateUserThread";
-
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes35 = new String[] {
 				"com.liferay.privatemessaging.model.UserThread"
 			};
 	}
@@ -745,36 +741,13 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	@Override
-	public java.lang.String getBeanIdentifier() {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] {  });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
 		long mbThreadId) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { mbThreadId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { mbThreadId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -789,6 +762,29 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		}
 
 		return (java.util.List<com.liferay.privatemessaging.model.UserThread>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -1103,30 +1099,10 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	@Override
-	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+	public void updateUserName(com.liferay.portal.model.User user) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName34,
 				_methodParameterTypes34,
-				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-	}
-
-	@Override
-	public void updateUserName(com.liferay.portal.model.User user) {
-		try {
-			_invokableLocalService.invokeMethod(_methodName35,
-				_methodParameterTypes35,
 				new Object[] { ClpSerializer.translateInput(user) });
 		}
 		catch (Throwable t) {
@@ -1148,8 +1124,8 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName36,
-					_methodParameterTypes36,
+			returnObj = _invokableLocalService.invokeMethod(_methodName35,
+					_methodParameterTypes35,
 					new Object[] { ClpSerializer.translateInput(userThread) });
 		}
 		catch (Throwable t) {
@@ -1238,6 +1214,4 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	private String[] _methodParameterTypes34;
 	private String _methodName35;
 	private String[] _methodParameterTypes35;
-	private String _methodName36;
-	private String[] _methodParameterTypes36;
 }
