@@ -16,6 +16,7 @@ package com.liferay.calendar.service.test;
 
 import com.liferay.calendar.CalendarBookingRecurrenceException;
 import com.liferay.calendar.model.Calendar;
+import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.recurrence.Frequency;
@@ -25,14 +26,15 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.RandomTestUtil;
+import com.liferay.portal.util.UserTestUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +42,7 @@ import java.util.Collections;
 import org.jboss.arquillian.junit.Arquillian;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,6 +61,35 @@ public class CalendarBookingLocalServiceTest {
 	@After
 	public void tearDown() throws Exception {
 		UserLocalServiceUtil.deleteUser(_user);
+	}
+
+	@Test
+	public void testAddCalendarBooking() throws PortalException {
+		ServiceContext serviceContext = createServiceContext();
+
+		CalendarResource calendarResource =
+			CalendarResourceUtil.getUserCalendarResource(
+				_user.getUserId(), serviceContext);
+
+		Calendar calendar = calendarResource.getDefaultCalendar();
+
+		long startTime = System.currentTimeMillis();
+
+		serviceContext.setLanguageId("fr_FR");
+
+		CalendarBooking calendarBooking =
+			CalendarBookingLocalServiceUtil.addCalendarBooking(
+				_user.getUserId(), calendar.getCalendarId(), new long[0],
+				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+				RandomTestUtil.randomLocaleStringMap(),
+				RandomTestUtil.randomLocaleStringMap(),
+				RandomTestUtil.randomString(), startTime,
+				startTime + (Time.HOUR * 10), false, null, 0, null, 0, null,
+				serviceContext);
+
+		Assert.assertEquals(
+			"fr_FR",
+			LocalizationUtil.getDefaultLanguageId(calendarBooking.getTitle()));
 	}
 
 	@Test
