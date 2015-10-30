@@ -43,7 +43,7 @@ if (kbArticle != null) {
 					<liferay-ui:icon
 						iconCssClass="icon-paper-clip"
 						label="<%= true %>"
-						message='<%= fileEntry.getTitle() + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)" %>'
+						message='<%= HtmlUtil.escape(fileEntry.getTitle() + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)") %>'
 						method="get"
 						url="<%= clipURL %>"
 					/>
