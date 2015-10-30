@@ -163,13 +163,12 @@ public class KBArticleStagedModelDataHandler
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
 
-		long parentResourcePrimKey = MapUtil.getLong(
-			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey(),
-			kbArticle.getParentResourcePrimKey());
-
 		long resourcePrimaryKey = MapUtil.getLong(
 			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(),
 			kbArticle.getResourcePrimKey());
+		long parentResourcePrimKey = MapUtil.getLong(
+			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey(),
+			kbArticle.getParentResourcePrimKey());
 
 		long kbFolderClassNameId = PortalUtil.getClassNameId(
 			KBFolderConstants.getClassName());
