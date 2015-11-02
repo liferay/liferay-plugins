@@ -232,10 +232,10 @@ public class KBArticleStagedModelDataHandler
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			kbArticle);
 
-		String urlTitle = kbArticle.getUrlTitle();
+		if (Validator.isNotNull(kbArticle.getUrlTitle()) &&
+			!kbArticle.getUrlTitle().startsWith(StringPool.SLASH)) {
 
-		if (Validator.isNotNull(urlTitle)) {
-			urlTitle = StringPool.SLASH + kbArticle.getUrlTitle();
+			kbArticle.setUrlTitle(StringPool.SLASH + kbArticle.getUrlTitle());
 		}
 
 		KBArticle importedKBArticle = null;
@@ -259,10 +259,10 @@ public class KBArticleStagedModelDataHandler
 				if (existingKBArticle == null) {
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 						userId, kbArticle.getParentResourceClassNameId(),
-						parentResourcePrimKey, kbArticle.getTitle(), urlTitle,
-						kbArticle.getContent(), kbArticle.getDescription(),
-						kbArticle.getSourceURL(), sections, null,
-						serviceContext);
+						parentResourcePrimKey, kbArticle.getTitle(),
+						kbArticle.getUrlTitle(), kbArticle.getContent(),
+						kbArticle.getDescription(), kbArticle.getSourceURL(),
+						sections, null, serviceContext);
 
 					KBArticleLocalServiceUtil.updatePriority(
 						importedKBArticle.getResourcePrimKey(),
@@ -293,9 +293,10 @@ public class KBArticleStagedModelDataHandler
 		else {
 			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 				userId, kbArticle.getParentResourceClassNameId(),
-				parentResourcePrimKey, kbArticle.getTitle(), urlTitle,
-				kbArticle.getContent(), kbArticle.getDescription(),
-				kbArticle.getSourceURL(), sections, null, serviceContext);
+				parentResourcePrimKey, kbArticle.getTitle(),
+				kbArticle.getUrlTitle(), kbArticle.getContent(),
+				kbArticle.getDescription(), kbArticle.getSourceURL(), sections,
+				null, serviceContext);
 
 			KBArticleLocalServiceUtil.updatePriority(
 				importedKBArticle.getResourcePrimKey(),

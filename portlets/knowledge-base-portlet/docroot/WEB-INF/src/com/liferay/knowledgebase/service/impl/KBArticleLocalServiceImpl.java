@@ -124,6 +124,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		long kbFolderId = KnowledgeBaseUtil.getKBFolderId(
 			parentResourceClassNameId, parentResourcePrimKey);
+
 		urlTitle = StringUtil.toLowerCase(urlTitle);
 
 		validateUrlTitle(groupId, kbFolderId, urlTitle);
