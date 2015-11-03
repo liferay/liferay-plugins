@@ -1124,7 +1124,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
 
-		Calendar calendar = CalendarLocalServiceUtil.getCalendar(calendarId);
+		Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
 
 		String fileName =
 			calendar.getName(themeDisplay.getLocale()) + CharPool.PERIOD +
