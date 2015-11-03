@@ -232,10 +232,12 @@ public class KBArticleStagedModelDataHandler
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			kbArticle);
 
-		if (Validator.isNotNull(kbArticle.getUrlTitle()) &&
-			!kbArticle.getUrlTitle().startsWith(StringPool.SLASH)) {
+		String urlTitle = kbArticle.getUrlTitle();
 
-			kbArticle.setUrlTitle(StringPool.SLASH + kbArticle.getUrlTitle());
+		if (Validator.isNotNull(urlTitle) &&
+			!urlTitle.startsWith(StringPool.SLASH)) {
+
+			kbArticle.setUrlTitle(StringPool.SLASH + urlTitle);
 		}
 
 		KBArticle importedKBArticle = null;
