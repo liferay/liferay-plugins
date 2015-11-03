@@ -77,7 +77,7 @@ public class AkismetMBMessageLocalServiceImpl
 		if (Validator.isNotNull(contentURL)) {
 			ExpandoBridge expandoBridge = message.getExpandoBridge();
 
-			expandoBridge.setAttribute("contentURL", contentURL, false);
+			expandoBridge.setAttribute("akismetContentURL", contentURL, false);
 		}
 
 		AkismetData akismetData = updateAkismetData(message, serviceContext);
