@@ -214,6 +214,18 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	@Override
 	public List<CalendarBooking> getCalendarBookings(
+			long calendarId, int[] statuses)
+		throws PortalException, SystemException {
+
+		List<CalendarBooking> calendarBookings =
+			calendarBookingLocalService.getCalendarBookings(
+				calendarId, statuses);
+
+		return filterCalendarBookings(calendarBookings, ActionKeys.VIEW);
+	}
+
+	@Override
+	public List<CalendarBooking> getCalendarBookings(
 			long calendarId, long startTime, long endTime)
 		throws PortalException, SystemException {
 
