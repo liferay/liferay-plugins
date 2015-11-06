@@ -207,11 +207,6 @@ public class KBArticleStagedModelDataHandler
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 		}
 
-		String[] sections = AdminUtil.unescapeSections(kbArticle.getSections());
-
-		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			kbArticle);
-
 		String urlTitle = kbArticle.getUrlTitle();
 
 		if (Validator.isNotNull(urlTitle) &&
@@ -219,6 +214,11 @@ public class KBArticleStagedModelDataHandler
 
 			kbArticle.setUrlTitle(StringPool.SLASH + urlTitle);
 		}
+
+		String[] sections = AdminUtil.unescapeSections(kbArticle.getSections());
+
+		ServiceContext serviceContext = portletDataContext.createServiceContext(
+			kbArticle);
 
 		KBArticle importedKBArticle = null;
 
