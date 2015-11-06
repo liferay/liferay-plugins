@@ -73,6 +73,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.SystemEventConstants;
@@ -1694,12 +1695,29 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		String uniqueUrlTitle = urlTitle;
 
+		int urlTitleMaxLength = ModelHintsUtil.getMaxLength(
+			KBArticle.class.getName(), "urlTitle");
+
 		if (kbFolderId == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			int kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
 				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 
 			for (int i = 1; kbArticlesCount > 0; i++) {
-				uniqueUrlTitle = urlTitle + StringPool.DASH + i;
+				String suffix = StringPool.DASH + i;
+
+				if ((urlTitle + suffix).length() <= urlTitleMaxLength) {
+					uniqueUrlTitle = urlTitle + suffix;
+				}
+				else {
+					String prefix = uniqueUrlTitle;
+
+					if (uniqueUrlTitle.length() > suffix.length()) {
+						prefix = uniqueUrlTitle.substring(
+							0, uniqueUrlTitle.length() - suffix.length());
+					}
+
+					uniqueUrlTitle = prefix + suffix;
+				}
 
 				kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
 					groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
@@ -1714,7 +1732,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 
 		for (int i = 1; kbArticlesCount > 0; i++) {
-			uniqueUrlTitle = urlTitle + StringPool.DASH + i;
+			String suffix = StringPool.DASH + i;
+
+			if ((urlTitle + suffix).length() <= urlTitleMaxLength) {
+				uniqueUrlTitle = urlTitle + suffix;
+			}
+			else {
+				String prefix = uniqueUrlTitle;
+
+				if (uniqueUrlTitle.length() > suffix.length()) {
+					prefix = uniqueUrlTitle.substring(
+						0, uniqueUrlTitle.length() - suffix.length());
+				}
+
+				uniqueUrlTitle = prefix + suffix;
+			}
 
 			kbArticlesCount = kbArticleFinder.countByUrlTitle(
 				groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
