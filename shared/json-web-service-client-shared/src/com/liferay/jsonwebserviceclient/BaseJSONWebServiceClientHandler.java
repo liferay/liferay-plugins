@@ -167,6 +167,29 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 	}
 
+	protected <T> T doPostToObject(
+			Class<T> clazz, String url, String... parametersArray)
+		throws JSONWebServiceInvocationException {
+
+		String json = doPost(url, parametersArray);
+
+		if ((json == null) || json.equals("") || json.equals("{}")) {
+			return null;
+		}
+
+		if (json.contains("exception\":\"")) {
+			throw new JSONWebServiceInvocationException(
+				getExceptionMessage(json));
+		}
+
+		try {
+			return objectMapper.readValue(json, clazz);
+		}
+		catch (IOException ie) {
+			throw new JSONWebServiceInvocationException(ie);
+		}
+	}
+
 	protected String getExceptionMessage(String json) {
 		int exceptionMessageStart = json.indexOf("exception\":\"") + 12;
 
