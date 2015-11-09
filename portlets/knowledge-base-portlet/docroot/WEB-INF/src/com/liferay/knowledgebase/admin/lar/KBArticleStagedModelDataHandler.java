@@ -24,6 +24,7 @@ import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
@@ -213,8 +214,9 @@ public class KBArticleStagedModelDataHandler
 		KBArticle importedKBArticle = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			KBArticle existingKBArticle = KBArticleUtil.fetchByR_V(
-				resourcePrimaryKey, kbArticle.getVersion());
+			KBArticle existingKBArticle = KBArticleUtil.fetchByR_G_V(
+				resourcePrimaryKey, portletDataContext.getScopeGroupId(),
+				kbArticle.getVersion());
 
 			if (existingKBArticle == null) {
 				existingKBArticle = KBArticleUtil.fetchByUUID_G(
@@ -224,9 +226,9 @@ public class KBArticleStagedModelDataHandler
 			if (existingKBArticle == null) {
 				serviceContext.setUuid(kbArticle.getUuid());
 
-				existingKBArticle =
-					KBArticleLocalServiceUtil.fetchLatestKBArticle(
-						resourcePrimaryKey, WorkflowConstants.STATUS_ANY);
+				existingKBArticle = KBArticleUtil.fetchByR_G_L_First(
+					resourcePrimaryKey, portletDataContext.getScopeGroupId(),
+					true, new KBArticleVersionComparator());
 
 				if (existingKBArticle == null) {
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
