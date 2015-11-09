@@ -3149,6 +3149,62 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public int countByP_S(long[] parentResourcePrimKeies, int status);
 
 	/**
+	* Returns the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or throws a {@link NoSuchArticleException} if it could not be found.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param version the version
+	* @return the matching k b article
+	* @throws NoSuchArticleException if a matching k b article could not be found
+	*/
+	public KBArticle findByR_G_V(long resourcePrimKey, long groupId, int version)
+		throws com.liferay.knowledgebase.NoSuchArticleException;
+
+	/**
+	* Returns the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param version the version
+	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
+	*/
+	public KBArticle fetchByR_G_V(long resourcePrimKey, long groupId,
+		int version);
+
+	/**
+	* Returns the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param version the version
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
+	*/
+	public KBArticle fetchByR_G_V(long resourcePrimKey, long groupId,
+		int version, boolean retrieveFromCache);
+
+	/**
+	* Removes the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param version the version
+	* @return the k b article that was removed
+	*/
+	public KBArticle removeByR_G_V(long resourcePrimKey, long groupId,
+		int version) throws com.liferay.knowledgebase.NoSuchArticleException;
+
+	/**
+	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and version = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key
+	* @param groupId the group ID
+	* @param version the version
+	* @return the number of matching k b articles
+	*/
+	public int countByR_G_V(long resourcePrimKey, long groupId, int version);
+
+	/**
 	* Returns all the k b articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key

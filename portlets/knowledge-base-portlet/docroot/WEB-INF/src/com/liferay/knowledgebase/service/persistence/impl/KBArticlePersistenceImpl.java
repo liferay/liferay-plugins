@@ -12494,6 +12494,256 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	private static final String _FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2 = "kbArticle.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_7 = "kbArticle.parentResourcePrimKey IN (";
 	private static final String _FINDER_COLUMN_P_S_STATUS_2 = "kbArticle.status = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_R_G_V = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
+			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByR_G_V",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
+			},
+			KBArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
+			KBArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			KBArticleModelImpl.VERSION_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_R_G_V = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
+			KBArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_G_V",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
+			});
+
+	/**
+	 * Returns the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or throws a {@link NoSuchArticleException} if it could not be found.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param version the version
+	 * @return the matching k b article
+	 * @throws NoSuchArticleException if a matching k b article could not be found
+	 */
+	@Override
+	public KBArticle findByR_G_V(long resourcePrimKey, long groupId, int version)
+		throws NoSuchArticleException {
+		KBArticle kbArticle = fetchByR_G_V(resourcePrimKey, groupId, version);
+
+		if (kbArticle == null) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("resourcePrimKey=");
+			msg.append(resourcePrimKey);
+
+			msg.append(", groupId=");
+			msg.append(groupId);
+
+			msg.append(", version=");
+			msg.append(version);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+
+		return kbArticle;
+	}
+
+	/**
+	 * Returns the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param version the version
+	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
+	 */
+	@Override
+	public KBArticle fetchByR_G_V(long resourcePrimKey, long groupId,
+		int version) {
+		return fetchByR_G_V(resourcePrimKey, groupId, version, true);
+	}
+
+	/**
+	 * Returns the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param version the version
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
+	 */
+	@Override
+	public KBArticle fetchByR_G_V(long resourcePrimKey, long groupId,
+		int version, boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { resourcePrimKey, groupId, version };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_R_G_V,
+					finderArgs, this);
+		}
+
+		if (result instanceof KBArticle) {
+			KBArticle kbArticle = (KBArticle)result;
+
+			if ((resourcePrimKey != kbArticle.getResourcePrimKey()) ||
+					(groupId != kbArticle.getGroupId()) ||
+					(version != kbArticle.getVersion())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_SELECT_KBARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_R_G_V_RESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_R_G_V_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_R_G_V_VERSION_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(groupId);
+
+				qPos.add(version);
+
+				List<KBArticle> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(FINDER_PATH_FETCH_BY_R_G_V,
+						finderArgs, list);
+				}
+				else {
+					KBArticle kbArticle = list.get(0);
+
+					result = kbArticle;
+
+					cacheResult(kbArticle);
+
+					if ((kbArticle.getResourcePrimKey() != resourcePrimKey) ||
+							(kbArticle.getGroupId() != groupId) ||
+							(kbArticle.getVersion() != version)) {
+						finderCache.putResult(FINDER_PATH_FETCH_BY_R_G_V,
+							finderArgs, kbArticle);
+					}
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_R_G_V, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (KBArticle)result;
+		}
+	}
+
+	/**
+	 * Removes the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; from the database.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param version the version
+	 * @return the k b article that was removed
+	 */
+	@Override
+	public KBArticle removeByR_G_V(long resourcePrimKey, long groupId,
+		int version) throws NoSuchArticleException {
+		KBArticle kbArticle = findByR_G_V(resourcePrimKey, groupId, version);
+
+		return remove(kbArticle);
+	}
+
+	/**
+	 * Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and version = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key
+	 * @param groupId the group ID
+	 * @param version the version
+	 * @return the number of matching k b articles
+	 */
+	@Override
+	public int countByR_G_V(long resourcePrimKey, long groupId, int version) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_R_G_V;
+
+		Object[] finderArgs = new Object[] { resourcePrimKey, groupId, version };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_KBARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_R_G_V_RESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_R_G_V_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_R_G_V_VERSION_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(groupId);
+
+				qPos.add(version);
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_R_G_V_RESOURCEPRIMKEY_2 = "kbArticle.resourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_R_G_V_GROUPID_2 = "kbArticle.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_R_G_V_VERSION_2 = "kbArticle.version = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_R_G_L = new FinderPath(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
 			KBArticleModelImpl.FINDER_CACHE_ENABLED, KBArticleImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_G_L",
@@ -30545,6 +30795,12 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			new Object[] { kbArticle.getResourcePrimKey(), kbArticle.getVersion() },
 			kbArticle);
 
+		finderCache.putResult(FINDER_PATH_FETCH_BY_R_G_V,
+			new Object[] {
+				kbArticle.getResourcePrimKey(), kbArticle.getGroupId(),
+				kbArticle.getVersion()
+			}, kbArticle);
+
 		kbArticle.resetOriginalValues();
 	}
 
@@ -30635,6 +30891,17 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				Long.valueOf(1));
 			finderCache.putResult(FINDER_PATH_FETCH_BY_R_V, args,
 				kbArticleModelImpl);
+
+			args = new Object[] {
+					kbArticleModelImpl.getResourcePrimKey(),
+					kbArticleModelImpl.getGroupId(),
+					kbArticleModelImpl.getVersion()
+				};
+
+			finderCache.putResult(FINDER_PATH_COUNT_BY_R_G_V, args,
+				Long.valueOf(1));
+			finderCache.putResult(FINDER_PATH_FETCH_BY_R_G_V, args,
+				kbArticleModelImpl);
 		}
 		else {
 			if ((kbArticleModelImpl.getColumnBitmask() &
@@ -30660,6 +30927,20 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				finderCache.putResult(FINDER_PATH_COUNT_BY_R_V, args,
 					Long.valueOf(1));
 				finderCache.putResult(FINDER_PATH_FETCH_BY_R_V, args,
+					kbArticleModelImpl);
+			}
+
+			if ((kbArticleModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_R_G_V.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						kbArticleModelImpl.getResourcePrimKey(),
+						kbArticleModelImpl.getGroupId(),
+						kbArticleModelImpl.getVersion()
+					};
+
+				finderCache.putResult(FINDER_PATH_COUNT_BY_R_G_V, args,
+					Long.valueOf(1));
+				finderCache.putResult(FINDER_PATH_FETCH_BY_R_G_V, args,
 					kbArticleModelImpl);
 			}
 		}
@@ -30702,6 +30983,26 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_R_V, args);
 			finderCache.removeResult(FINDER_PATH_FETCH_BY_R_V, args);
+		}
+
+		args = new Object[] {
+				kbArticleModelImpl.getResourcePrimKey(),
+				kbArticleModelImpl.getGroupId(), kbArticleModelImpl.getVersion()
+			};
+
+		finderCache.removeResult(FINDER_PATH_COUNT_BY_R_G_V, args);
+		finderCache.removeResult(FINDER_PATH_FETCH_BY_R_G_V, args);
+
+		if ((kbArticleModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_R_G_V.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					kbArticleModelImpl.getOriginalResourcePrimKey(),
+					kbArticleModelImpl.getOriginalGroupId(),
+					kbArticleModelImpl.getOriginalVersion()
+				};
+
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_R_G_V, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_R_G_V, args);
 		}
 	}
 

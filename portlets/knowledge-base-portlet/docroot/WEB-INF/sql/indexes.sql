@@ -15,6 +15,7 @@ create index IX_2B6103F2 on KBArticle (parentResourcePrimKey, status);
 create index IX_5FEF5F4F on KBArticle (resourcePrimKey, groupId, latest);
 create index IX_8EF92E81 on KBArticle (resourcePrimKey, groupId, main);
 create index IX_49630FA on KBArticle (resourcePrimKey, groupId, status);
+create unique index IX_B5B6C674 on KBArticle (resourcePrimKey, groupId, version);
 create index IX_A9E2C691 on KBArticle (resourcePrimKey, latest);
 create index IX_69C17E43 on KBArticle (resourcePrimKey, main);
 create index IX_4E89983C on KBArticle (resourcePrimKey, status);
