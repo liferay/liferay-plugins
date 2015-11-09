@@ -115,6 +115,11 @@
 			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="status" />
 		</finder>
+		<finder name="R_G_V" return-type="KBArticle" unique="true">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="groupId" />
+			<finder-column name="version" />
+		</finder>
 		<finder name="R_G_L" return-type="Collection">
 			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="groupId" />
