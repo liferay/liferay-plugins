@@ -293,16 +293,23 @@ public class KBArticleStagedModelDataHandler
 			}
 		}
 		else {
-			boolean autoResourcePrimaryKey = true;
+			if (resourcePrimaryKey != kbArticle.getResourcePrimKey()) {
+				KBArticleLocalServiceUtil.updateKBArticle(
+						userId, resourcePrimaryKey, kbArticle.getTitle(),
+						kbArticle.getContent(), kbArticle.getDescription(),
+						kbArticle.getSourceURL(), sections, null, null,
+						serviceContext);
 
-			Long newResourcePrimaryKey = kbArticleResourcePrimKeys.get(
-				kbArticle.getResourcePrimKey());
+				KBArticleLocalServiceUtil.moveKBArticle(
+					userId, resourcePrimaryKey,
+					kbArticle.getParentResourceClassNameId(),
+					parentResourcePrimKey, kbArticle.getPriority());
 
-			if (Validator.isNotNull(newResourcePrimaryKey)) {
-				autoResourcePrimaryKey = false;
+				importedKBArticle =
+					KBArticleLocalServiceUtil.getLatestKBArticle(
+						resourcePrimaryKey, WorkflowConstants.STATUS_APPROVED);
 			}
-
-			if (autoResourcePrimaryKey) {
+			else {
 				importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
 					userId, kbArticle.getParentResourceClassNameId(),
 					parentResourcePrimKey, kbArticle.getTitle(),
@@ -313,22 +320,6 @@ public class KBArticleStagedModelDataHandler
 				KBArticleLocalServiceUtil.updatePriority(
 					importedKBArticle.getResourcePrimKey(),
 					kbArticle.getPriority());
-			}
-			else {
-				KBArticleLocalServiceUtil.updateKBArticle(
-					userId, resourcePrimaryKey, kbArticle.getTitle(),
-					kbArticle.getContent(), kbArticle.getDescription(),
-					kbArticle.getSourceURL(), sections, null, null,
-					serviceContext);
-
-				KBArticleLocalServiceUtil.moveKBArticle(
-					userId, resourcePrimaryKey,
-					kbArticle.getParentResourceClassNameId(),
-					parentResourcePrimKey, kbArticle.getPriority());
-
-				importedKBArticle =
-					KBArticleLocalServiceUtil.getLatestKBArticle(
-						resourcePrimaryKey, WorkflowConstants.STATUS_APPROVED);
 			}
 		}
 
