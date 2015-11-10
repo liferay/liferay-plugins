@@ -24,7 +24,6 @@ import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
@@ -228,7 +227,7 @@ public class KBArticleStagedModelDataHandler
 
 				existingKBArticle = KBArticleUtil.fetchByR_G_L_First(
 					resourcePrimaryKey, portletDataContext.getScopeGroupId(),
-					true, new KBArticleVersionComparator());
+					true, null);
 
 				if (existingKBArticle == null) {
 					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
