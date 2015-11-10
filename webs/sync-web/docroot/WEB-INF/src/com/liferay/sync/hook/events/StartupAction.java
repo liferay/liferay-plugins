@@ -16,8 +16,7 @@ package com.liferay.sync.hook.events;
 
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.sync.hook.upgrade.v1_0_0.UpgradeSyncDLObject;
+import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.VerifyUtil;
 
 /**
@@ -39,9 +38,9 @@ public class StartupAction extends SimpleAction {
 
 		// SYNC-1453
 
-		UpgradeProcess upgradeProcess = new UpgradeSyncDLObject();
+		int count = SyncDLObjectLocalServiceUtil.getSyncDLObjectsCount();
 
-		if (!upgradeProcess.tableHasData("SyncDLObject")) {
+		if (count == 0) {
 			VerifyUtil.verify();
 		}
 	}
