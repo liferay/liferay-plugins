@@ -128,7 +128,7 @@ String currentURL = PortalUtil.getCurrentURL(request);
 
 CalendarBooking calendarBooking = (CalendarBooking)request.getAttribute(WebKeys.CALENDAR_BOOKING);
 
-CalendarResource groupCalendarResource = CalendarResourceUtil.getGroupCalendarResource(liferayPortletRequest, scopeGroupId);
+CalendarResource groupCalendarResource = CalendarResourceUtil.getScopedGroupCalendarResource(liferayPortletRequest, scopeGroupId);
 CalendarResource userCalendarResource = CalendarResourceUtil.getUserCalendarResource(liferayPortletRequest, themeDisplay.getUserId());
 
 Calendar userDefaultCalendar = null;
