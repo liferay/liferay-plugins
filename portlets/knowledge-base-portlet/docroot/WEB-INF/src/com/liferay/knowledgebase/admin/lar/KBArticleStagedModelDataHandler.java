@@ -295,10 +295,10 @@ public class KBArticleStagedModelDataHandler
 		else {
 			if (resourcePrimaryKey != kbArticle.getResourcePrimKey()) {
 				KBArticleLocalServiceUtil.updateKBArticle(
-						userId, resourcePrimaryKey, kbArticle.getTitle(),
-						kbArticle.getContent(), kbArticle.getDescription(),
-						kbArticle.getSourceURL(), sections, null, null,
-						serviceContext);
+					userId, resourcePrimaryKey, kbArticle.getTitle(),
+					kbArticle.getContent(), kbArticle.getDescription(),
+					kbArticle.getSourceURL(), sections, null, null,
+					serviceContext);
 
 				KBArticleLocalServiceUtil.moveKBArticle(
 					userId, resourcePrimaryKey,
