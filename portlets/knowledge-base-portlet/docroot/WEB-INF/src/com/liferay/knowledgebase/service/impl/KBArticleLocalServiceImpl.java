@@ -1711,10 +1711,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				else {
 					String prefix = uniqueUrlTitle;
 
-					if (uniqueUrlTitle.length() > suffix.length()) {
-						prefix = uniqueUrlTitle.substring(
-							0, uniqueUrlTitle.length() - suffix.length());
-					}
+					prefix = uniqueUrlTitle.substring(
+						0, uniqueUrlTitle.length() - suffix.length());
 
 					uniqueUrlTitle = prefix + suffix;
 				}
@@ -1740,10 +1738,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			else {
 				String prefix = uniqueUrlTitle;
 
-				if (uniqueUrlTitle.length() > suffix.length()) {
-					prefix = uniqueUrlTitle.substring(
-						0, uniqueUrlTitle.length() - suffix.length());
-				}
+				prefix = uniqueUrlTitle.substring(
+					0, uniqueUrlTitle.length() - suffix.length());
 
 				uniqueUrlTitle = prefix + suffix;
 			}
