@@ -17,6 +17,7 @@ package com.liferay.mail.util;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -131,8 +132,8 @@ public class AccountIndexer extends BaseIndexer<Account> {
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {
-		final ActionableDynamicQuery actionableDynamicQuery =
-			AccountLocalServiceUtil.getActionableDynamicQuery();
+		final IndexableActionableDynamicQuery actionableDynamicQuery =
+			AccountLocalServiceUtil.getIndexableActionableDynamicQuery();
 
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
