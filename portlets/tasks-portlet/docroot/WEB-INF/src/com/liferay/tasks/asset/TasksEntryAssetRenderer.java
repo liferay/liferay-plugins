@@ -82,6 +82,11 @@ public class TasksEntryAssetRenderer extends BaseJSPAssetRenderer<TasksEntry> {
 	}
 
 	@Override
+	public int getStatus() {
+		return _entry.getStatus();
+	}
+
+	@Override
 	public String getSummary(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 

@@ -78,6 +78,11 @@ public class KBArticleAssetRenderer extends BaseJSPAssetRenderer<KBArticle> {
 	}
 
 	@Override
+	public int getStatus() {
+		return _kbArticle.getStatus();
+	}
+
+	@Override
 	public String getSummary(
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
