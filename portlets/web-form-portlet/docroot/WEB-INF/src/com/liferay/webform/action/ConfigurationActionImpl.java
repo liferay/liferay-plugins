@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portlet.expando.ColumnNameException;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.webform.util.WebFormUtil;
 
@@ -224,6 +225,27 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
+	protected boolean validateFieldNames(ActionRequest actionRequest) {
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
+
+		int[] formFieldsIndexes = StringUtil.split(
+			ParamUtil.getString(actionRequest, "formFieldsIndexes"), 0);
+
+		String languageId = LocaleUtil.toLanguageId(actionRequest.getLocale());
+
+		for (int formFieldsIndex : formFieldsIndexes) {
+			String fieldLabel = ParamUtil.getString(
+				actionRequest,
+				"fieldLabel" + formFieldsIndex + "_" + languageId);
+
+			if (Validator.isNull(fieldLabel)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	protected void validateFields(ActionRequest actionRequest)
 		throws Exception {
 
@@ -297,6 +319,11 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 				fieldLabel = ParamUtil.getString(
 					actionRequest, "fieldLabel" + i + "_" + languageId);
 			}
+		}
+
+		if (!validateFieldNames(actionRequest)) {
+			SessionErrors.add(
+				actionRequest, ColumnNameException.class.getName());
 		}
 
 		if (!validateUniqueFieldNames(actionRequest)) {

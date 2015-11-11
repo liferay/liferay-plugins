@@ -40,6 +40,7 @@ page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.portlet.expando.ColumnNameException" %><%@
 page import="com.liferay.portlet.expando.DuplicateColumnNameException" %><%@
 page import="com.liferay.webform.util.PortletPropsValues" %><%@
 page import="com.liferay.webform.util.WebFormUtil" %>
