@@ -1736,8 +1736,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return urlTitle.substring(1);
 	}
 
-	protected String getUniqueUrlTitle(String baseUrlTitle, int suffix) {
-		String uniqueUrlTitle = baseUrlTitle + StringPool.DASH + suffix;
+	protected String getUniqueUrlTitle(String urlTitle, int suffix) {
+		String uniqueUrlTitle = urlTitle + StringPool.DASH + suffix;
 
 		int maxLength = ModelHintsUtil.getMaxLength(
 			KBArticle.class.getName(), "urlTitle");
