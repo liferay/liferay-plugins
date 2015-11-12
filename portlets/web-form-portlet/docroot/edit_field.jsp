@@ -21,7 +21,7 @@ int index = ParamUtil.getInteger(renderRequest, "index", GetterUtil.getInteger((
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsIndex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
 String fieldLabelXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldLabel" + formFieldsIndex), StringPool.BLANK);
-String fieldLabel = HtmlUtil.escape(LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId()));
+String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId());
 String fieldType = PrefsParamUtil.getString(portletPreferences, renderRequest, "fieldType" + formFieldsIndex);
 boolean fieldOptional = PrefsParamUtil.getBoolean(portletPreferences, renderRequest, "fieldOptional" + formFieldsIndex);
 
@@ -48,7 +48,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 				<span class="field-label"><liferay-ui:message key="paragraph" /></span>
 			</c:when>
 			<c:when test="<%= Validator.isNotNull(fieldLabel) %>">
-				<span class="field-label"><%= fieldLabel %></span>
+				<span class="field-label"><%= HtmlUtil.escape(fieldLabel) %></span>
 			</c:when>
 			<c:otherwise>
 				<liferay-ui:message key="new-item" />
@@ -70,7 +70,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 					<liferay-ui:message key="name" />
 				</dt>
 				<dd>
-					<%= fieldLabel %>
+					<%= HtmlUtil.escape(fieldLabel) %>
 				</dd>
 		</c:otherwise>
 	</c:choose>
