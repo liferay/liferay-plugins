@@ -1745,12 +1745,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		String uniqueUrlTitle = baseUrlTitle + StringPool.DASH + suffix;
 
-		if (uniqueUrlTitle.length() > maxLength) {
-			uniqueUrlTitle = StringUtil.shorten(
-				uniqueUrlTitle, maxLength, StringPool.DASH + suffix);
-		}
-
-		return uniqueUrlTitle;
+		return StringUtil.shorten(
+			uniqueUrlTitle, maxLength, StringPool.DASH + suffix);
 	}
 
 	protected boolean isValidFileName(String name) {
