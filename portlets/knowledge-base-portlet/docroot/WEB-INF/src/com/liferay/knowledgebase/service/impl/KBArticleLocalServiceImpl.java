@@ -1703,18 +1703,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 
 			for (int i = 1; kbArticlesCount > 0; i++) {
-				String suffix = StringPool.DASH + i;
+				uniqueUrlTitle = urlTitle + StringPool.DASH + i;
 
-				if ((urlTitle + suffix).length() <= urlTitleMaxLength) {
-					uniqueUrlTitle = urlTitle + suffix;
-				}
-				else {
-					String prefix = uniqueUrlTitle;
-
-					prefix = uniqueUrlTitle.substring(
-						0, uniqueUrlTitle.length() - suffix.length());
-
-					uniqueUrlTitle = prefix + suffix;
+				if (uniqueUrlTitle.length() > urlTitleMaxLength) {
+					uniqueUrlTitle = StringUtil.shorten(
+						uniqueUrlTitle, urlTitleMaxLength, StringPool.DASH + i);
 				}
 
 				kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
@@ -1730,18 +1723,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 
 		for (int i = 1; kbArticlesCount > 0; i++) {
-			String suffix = StringPool.DASH + i;
+			uniqueUrlTitle = urlTitle + StringPool.DASH + i;
 
-			if ((urlTitle + suffix).length() <= urlTitleMaxLength) {
-				uniqueUrlTitle = urlTitle + suffix;
-			}
-			else {
-				String prefix = uniqueUrlTitle;
-
-				prefix = uniqueUrlTitle.substring(
-					0, uniqueUrlTitle.length() - suffix.length());
-
-				uniqueUrlTitle = prefix + suffix;
+			if (uniqueUrlTitle.length() > urlTitleMaxLength) {
+				uniqueUrlTitle = StringUtil.shorten(
+					uniqueUrlTitle, urlTitleMaxLength, StringPool.DASH + i);
 			}
 
 			kbArticlesCount = kbArticleFinder.countByUrlTitle(
