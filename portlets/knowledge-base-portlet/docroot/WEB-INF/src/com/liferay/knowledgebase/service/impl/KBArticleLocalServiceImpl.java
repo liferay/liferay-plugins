@@ -1703,12 +1703,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 
 			for (int i = 1; kbArticlesCount > 0; i++) {
-				uniqueUrlTitle = urlTitle + StringPool.DASH + i;
-
-				if (uniqueUrlTitle.length() > urlTitleMaxLength) {
-					uniqueUrlTitle = StringUtil.shorten(
-						uniqueUrlTitle, urlTitleMaxLength, StringPool.DASH + i);
-				}
+				uniqueUrlTitle = getUniqueUrlTitle(
+					urlTitle, urlTitleMaxLength, i);
 
 				kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
 					groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
@@ -1723,12 +1719,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 
 		for (int i = 1; kbArticlesCount > 0; i++) {
-			uniqueUrlTitle = urlTitle + StringPool.DASH + i;
-
-			if (uniqueUrlTitle.length() > urlTitleMaxLength) {
-				uniqueUrlTitle = StringUtil.shorten(
-					uniqueUrlTitle, urlTitleMaxLength, StringPool.DASH + i);
-			}
+			uniqueUrlTitle = getUniqueUrlTitle(urlTitle, urlTitleMaxLength, i);
 
 			kbArticlesCount = kbArticleFinder.countByUrlTitle(
 				groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
@@ -1747,6 +1738,19 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return urlTitle.substring(1);
+	}
+
+	protected String getUniqueUrlTitle(
+		String baseUrlTitle, int maxLength, int suffix) {
+
+		String uniqueUrlTitle = baseUrlTitle + StringPool.DASH + suffix;
+
+		if (uniqueUrlTitle.length() > maxLength) {
+			uniqueUrlTitle = StringUtil.shorten(
+				uniqueUrlTitle, maxLength, StringPool.DASH + suffix);
+		}
+
+		return uniqueUrlTitle;
 	}
 
 	protected boolean isValidFileName(String name) {
