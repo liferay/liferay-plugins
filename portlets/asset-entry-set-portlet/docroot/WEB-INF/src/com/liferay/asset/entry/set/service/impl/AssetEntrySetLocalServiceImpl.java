@@ -34,6 +34,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -114,6 +116,11 @@ public class AssetEntrySetLocalServiceImpl
 
 		updateAssetSharingEntries(assetEntrySet);
 
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			AssetEntrySet.class);
+
+		indexer.reindex(assetEntrySet);
+
 		return assetEntrySet;
 	}
 
@@ -160,6 +167,11 @@ public class AssetEntrySetLocalServiceImpl
 			updateChildAssetEntrySetsCount(
 				parentAssetEntrySet.getAssetEntrySetId());
 		}
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			AssetEntrySet.class);
+
+		indexer.delete(assetEntrySet);
 
 		return assetEntrySet;
 	}
@@ -317,6 +329,11 @@ public class AssetEntrySetLocalServiceImpl
 		if (updateAssetSharingEntries) {
 			updateAssetSharingEntries(assetEntrySet);
 		}
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			AssetEntrySet.class);
+
+		indexer.reindex(assetEntrySet);
 
 		return assetEntrySet;
 	}
