@@ -1695,16 +1695,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		String uniqueUrlTitle = urlTitle;
 
-		int urlTitleMaxLength = ModelHintsUtil.getMaxLength(
-			KBArticle.class.getName(), "urlTitle");
-
 		if (kbFolderId == KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			int kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
 				groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
 
 			for (int i = 1; kbArticlesCount > 0; i++) {
-				uniqueUrlTitle = getUniqueUrlTitle(
-					urlTitle, urlTitleMaxLength, i);
+				uniqueUrlTitle = getUniqueUrlTitle(urlTitle, i);
 
 				kbArticlesCount = kbArticlePersistence.countByG_KBFI_UT_ST(
 					groupId, kbFolderId, uniqueUrlTitle, _STATUSES);
@@ -1719,7 +1715,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
 
 		for (int i = 1; kbArticlesCount > 0; i++) {
-			uniqueUrlTitle = getUniqueUrlTitle(urlTitle, urlTitleMaxLength, i);
+			uniqueUrlTitle = getUniqueUrlTitle(urlTitle, i);
 
 			kbArticlesCount = kbArticleFinder.countByUrlTitle(
 				groupId, kbFolder.getUrlTitle(), uniqueUrlTitle, _STATUSES);
@@ -1740,10 +1736,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return urlTitle.substring(1);
 	}
 
-	protected String getUniqueUrlTitle(
-		String baseUrlTitle, int maxLength, int suffix) {
-
+	protected String getUniqueUrlTitle(String baseUrlTitle, int suffix) {
 		String uniqueUrlTitle = baseUrlTitle + StringPool.DASH + suffix;
+
+		int maxLength = ModelHintsUtil.getMaxLength(
+			KBArticle.class.getName(), "urlTitle");
 
 		return StringUtil.shorten(
 			uniqueUrlTitle, maxLength, StringPool.DASH + suffix);
