@@ -233,14 +233,34 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		String languageId = LocaleUtil.toLanguageId(actionRequest.getLocale());
 
+		boolean saveToDatabase = GetterUtil.getBoolean(
+			getParameter(actionRequest, "saveToDatabase"));
+
 		for (int formFieldsIndex : formFieldsIndexes) {
 			String fieldLabel = ParamUtil.getString(
 				actionRequest,
 				"fieldLabel" + formFieldsIndex + "_" + languageId);
 
 			if (Validator.isNull(fieldLabel)) {
+				SessionErrors.add(
+					actionRequest, ColumnNameException.class.getName());
+
 				return false;
 			}
+
+			if (saveToDatabase && (fieldLabel.length() > 75)) {
+				SessionErrors.add(
+					actionRequest, "fieldSizeInvalid" + formFieldsIndex);
+
+				return false;
+			}
+		}
+
+		if (!validateUniqueFieldNames(actionRequest)) {
+			SessionErrors.add(
+				actionRequest, DuplicateColumnNameException.class.getName());
+
+			return false;
 		}
 
 		return true;
@@ -300,36 +320,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 		}
 
-		if (saveToDatabase) {
-			int i = 1;
-
-			String languageId = LocaleUtil.toLanguageId(
-				actionRequest.getLocale());
-
-			String fieldLabel = ParamUtil.getString(
-				actionRequest, "fieldLabel" + i + "_" + languageId);
-
-			while ((i == 1) || Validator.isNotNull(fieldLabel)) {
-				if (fieldLabel.length() > 75 ) {
-					SessionErrors.add(actionRequest, "fieldSizeInvalid" + i);
-				}
-
-				i++;
-
-				fieldLabel = ParamUtil.getString(
-					actionRequest, "fieldLabel" + i + "_" + languageId);
-			}
-		}
-
-		if (!validateFieldNames(actionRequest)) {
-			SessionErrors.add(
-				actionRequest, ColumnNameException.class.getName());
-		}
-
-		if (!validateUniqueFieldNames(actionRequest)) {
-			SessionErrors.add(
-				actionRequest, DuplicateColumnNameException.class.getName());
-		}
+		validateFieldNames(actionRequest);
 	}
 
 	protected boolean validateUniqueFieldNames(ActionRequest actionRequest) {
