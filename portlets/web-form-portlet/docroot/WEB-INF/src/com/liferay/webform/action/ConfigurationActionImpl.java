@@ -259,7 +259,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
-	protected boolean validateFieldNames(ActionRequest actionRequest) {
+	protected boolean validateFieldNameLength(ActionRequest actionRequest) {
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		int[] formFieldsIndexes = StringUtil.split(
@@ -323,7 +323,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			validateEmailFields(actionRequest);
 		}
 
-		validateFieldNames(actionRequest);
+		validateFieldNameLength(actionRequest);
 	}
 
 	protected boolean validateUniqueFieldNames(ActionRequest actionRequest) {
