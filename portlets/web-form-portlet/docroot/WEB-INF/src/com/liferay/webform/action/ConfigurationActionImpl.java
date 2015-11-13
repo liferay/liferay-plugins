@@ -290,13 +290,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			}
 		}
 
-		if (!validateUniqueFieldNames(actionRequest)) {
-			SessionErrors.add(
-				actionRequest, DuplicateColumnNameException.class.getName());
-
-			return false;
-		}
-
 		return true;
 	}
 
@@ -324,6 +317,11 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 
 		validateFieldNameLength(actionRequest);
+
+		if (!validateUniqueFieldNames(actionRequest)) {
+			SessionErrors.add(
+				actionRequest, DuplicateColumnNameException.class.getName());
+		}
 	}
 
 	protected boolean validateUniqueFieldNames(ActionRequest actionRequest) {
