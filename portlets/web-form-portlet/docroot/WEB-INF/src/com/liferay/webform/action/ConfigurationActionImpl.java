@@ -259,9 +259,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
-	protected boolean validateFieldNameLength(ActionRequest actionRequest) {
-		Locale defaultLocale = LocaleUtil.getSiteDefault();
-
+	protected void validateFieldNameLength(ActionRequest actionRequest) {
 		int[] formFieldsIndexes = StringUtil.split(
 			ParamUtil.getString(actionRequest, "formFieldsIndexes"), 0);
 
@@ -279,25 +277,20 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 				SessionErrors.add(
 					actionRequest, ColumnNameException.class.getName());
 
-				return false;
+				return;
 			}
 
 			if (saveToDatabase && (fieldLabel.length() > 75)) {
 				SessionErrors.add(
 					actionRequest, "fieldSizeInvalid" + formFieldsIndex);
 
-				return false;
+				return;
 			}
 		}
-
-		return true;
 	}
 
 	protected void validateFields(ActionRequest actionRequest)
 		throws Exception {
-
-		Locale defaultLocale = LocaleUtil.getSiteDefault();
-		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		boolean sendAsEmail = GetterUtil.getBoolean(
 			getParameter(actionRequest, "sendAsEmail"));
@@ -318,13 +311,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		validateFieldNameLength(actionRequest);
 
-		if (!validateUniqueFieldNames(actionRequest)) {
-			SessionErrors.add(
-				actionRequest, DuplicateColumnNameException.class.getName());
-		}
+		validateUniqueFieldNames(actionRequest);
 	}
 
-	protected boolean validateUniqueFieldNames(ActionRequest actionRequest) {
+	protected void validateUniqueFieldNames(ActionRequest actionRequest) {
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		Set<String> localizedUniqueFieldNames = new HashSet<>();
@@ -353,12 +343,14 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 				if (!localizedUniqueFieldNames.add(
 						languageId + "_" + fieldLabelValue)) {
 
-					return false;
+					SessionErrors.add(
+						actionRequest,
+						DuplicateColumnNameException.class.getName());
+
+					return;
 				}
 			}
 		}
-
-		return true;
 	}
 
 }
