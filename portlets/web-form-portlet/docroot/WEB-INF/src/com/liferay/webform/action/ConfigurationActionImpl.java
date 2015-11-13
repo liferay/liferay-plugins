@@ -225,6 +225,40 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 	}
 
+	protected void validateEmailFields(ActionRequest actionRequest) {
+		String subject = getParameter(actionRequest, "subject");
+
+		if (Validator.isNull(subject)) {
+			SessionErrors.add(actionRequest, "subjectRequired");
+		}
+
+		String[] emailAdresses = WebFormUtil.split(
+			getParameter(actionRequest, "emailAddress"));
+		String emailFromAddress = GetterUtil.getString(
+			getParameter(actionRequest, "emailFromAddress"));
+
+		if ((emailAdresses.length == 0) || Validator.isNull(emailFromAddress)) {
+			SessionErrors.add(actionRequest, "emailAddressRequired");
+		}
+
+		if (Validator.isNotNull(emailFromAddress) &&
+			!Validator.isEmailAddress(emailFromAddress)) {
+
+			SessionErrors.add(actionRequest, "emailAddressInvalid");
+		}
+		else {
+			for (String emailAdress : emailAdresses) {
+				emailAdress = emailAdress.trim();
+
+				if (!Validator.isEmailAddress(emailAdress)) {
+					SessionErrors.add(actionRequest, "emailAddressInvalid");
+
+					break;
+				}
+			}
+		}
+	}
+
 	protected boolean validateFieldNames(ActionRequest actionRequest) {
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
@@ -274,7 +308,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		boolean sendAsEmail = GetterUtil.getBoolean(
 			getParameter(actionRequest, "sendAsEmail"));
-		String subject = getParameter(actionRequest, "subject");
 
 		boolean saveToDatabase = GetterUtil.getBoolean(
 			getParameter(actionRequest, "saveToDatabase"));
@@ -287,37 +320,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 
 		if (sendAsEmail) {
-			if (Validator.isNull(subject)) {
-				SessionErrors.add(actionRequest, "subjectRequired");
-			}
-
-			String[] emailAdresses = WebFormUtil.split(
-				getParameter(actionRequest, "emailAddress"));
-			String emailFromAddress = GetterUtil.getString(
-				getParameter(actionRequest, "emailFromAddress"));
-
-			if ((emailAdresses.length == 0) ||
-				Validator.isNull(emailFromAddress)) {
-
-				SessionErrors.add(actionRequest, "emailAddressRequired");
-			}
-
-			if (Validator.isNotNull(emailFromAddress) &&
-				!Validator.isEmailAddress(emailFromAddress)) {
-
-				SessionErrors.add(actionRequest, "emailAddressInvalid");
-			}
-			else {
-				for (String emailAdress : emailAdresses) {
-					emailAdress = emailAdress.trim();
-
-					if (!Validator.isEmailAddress(emailAdress)) {
-						SessionErrors.add(actionRequest, "emailAddressInvalid");
-
-						break;
-					}
-				}
-			}
+			validateEmailFields(actionRequest);
 		}
 
 		validateFieldNames(actionRequest);
