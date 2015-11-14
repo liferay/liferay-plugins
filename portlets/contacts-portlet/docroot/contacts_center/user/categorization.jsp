@@ -51,10 +51,8 @@ User selUser = (User)request.getAttribute("user.selUser");
 			sb.append(StringPool.SPACE);
 			sb.append(selUser.getJobTitle());
 		}
-
-		String content = HtmlUtil.replaceNewLine(sb.toString());
 		%>
 
-		return '<%= HtmlUtil.escape(content) %>'
+		return '<%= HtmlUtil.escape(HtmlUtil.replaceNewLine(sb.toString())) %>'
 	}
 </aui:script>
