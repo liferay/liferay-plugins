@@ -9,6 +9,10 @@
 			<param-value>/download/*</param-value>
 		</init-param>
 		<init-param>
+			<param-name>auth.verifier.SyncAuthVerifier.urls.includes</param-name>
+			<param-value>/download/*</param-value>
+		</init-param>
+		<init-param>
 			<param-name>filter-class</param-name>
 			<param-value>com.liferay.portal.servlet.filters.authverifier.AuthVerifierFilter</param-value>
 		</init-param>
