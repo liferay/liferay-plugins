@@ -292,16 +292,14 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 	protected void validateFields(ActionRequest actionRequest)
 		throws Exception {
 
+		boolean saveToDatabase = GetterUtil.getBoolean(
+			getParameter(actionRequest, "saveToDatabase"));
+		boolean saveToFile = GetterUtil.getBoolean(
+			getParameter(actionRequest, "saveToFile"));
 		boolean sendAsEmail = GetterUtil.getBoolean(
 			getParameter(actionRequest, "sendAsEmail"));
 
-		boolean saveToDatabase = GetterUtil.getBoolean(
-			getParameter(actionRequest, "saveToDatabase"));
-
-		boolean saveToFile = GetterUtil.getBoolean(
-			getParameter(actionRequest, "saveToFile"));
-
-		if (!sendAsEmail && !saveToDatabase && !saveToFile) {
+		if (!saveToDatabase && !saveToFile && !sendAsEmail) {
 			SessionErrors.add(actionRequest, "handlingRequired");
 		}
 
@@ -310,7 +308,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		}
 
 		validateFieldNameLength(actionRequest);
-
 		validateUniqueFieldNames(actionRequest);
 	}
 
