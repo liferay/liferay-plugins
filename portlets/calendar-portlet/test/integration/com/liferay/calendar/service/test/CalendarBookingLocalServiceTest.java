@@ -26,6 +26,7 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -64,7 +65,9 @@ public class CalendarBookingLocalServiceTest {
 	}
 
 	@Test
-	public void testAddCalendarBooking() throws PortalException {
+	public void testAddCalendarBooking() 
+		throws PortalException, SystemException {
+
 		ServiceContext serviceContext = createServiceContext();
 
 		CalendarResource calendarResource =
@@ -94,7 +97,7 @@ public class CalendarBookingLocalServiceTest {
 
 	@Test
 	public void testDeleteLastCalendarBookingInstanceDeletesCalendarBooking()
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = createServiceContext();
 
@@ -144,7 +147,7 @@ public class CalendarBookingLocalServiceTest {
 
 	@Test(expected = CalendarBookingRecurrenceException.class)
 	public void testStartDateBeforeUntilDateThrowsRecurrenceException()
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = createServiceContext();
 
