@@ -356,9 +356,9 @@ public class KBArticleStagedModelDataHandler
 
 			portletDataContext.addZipEntry(path, fileEntry.getContentStream());
 
-			portletDataContext.addReferenceElement(
-				kbArticle, kbArticleElement, fileEntry,
-				PortletDataContext.REFERENCE_TYPE_WEAK, false);
+			StagedModelDataHandlerUtil.exportReferenceStagedModel(
+				portletDataContext, kbArticle, fileEntry,
+				PortletDataContext.REFERENCE_TYPE_WEAK);
 		}
 	}
 
