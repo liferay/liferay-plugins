@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -1313,6 +1314,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				String checksum = MapUtil.getString(
 					jsonWebServiceActionParametersMap, "checksum");
 
+				serviceContext.setCommand(Constants.ADD);
+
 				return syncDLObjectService.addFileEntry(
 					repositoryId, folderId, sourceFileName, mimeType, title,
 					description, changeLog, tempFile, checksum, serviceContext);
@@ -1346,6 +1349,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				jsonWebServiceActionParametersMap, "sourceFileName");
 			String title = MapUtil.getString(
 				jsonWebServiceActionParametersMap, "title");
+
+			serviceContext.setCommand(Constants.ADD);
 
 			return syncDLObjectService.copyFileEntry(
 				sourceFileEntryId, repositoryId, folderId, sourceFileName,
@@ -1410,6 +1415,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				String checksum = MapUtil.getString(
 					jsonWebServiceActionParametersMap, "checksum");
 
+				serviceContext.setCommand(Constants.UPDATE);
+
 				return syncDLObjectService.patchFileEntry(
 					fileEntryId, sourceVersionId, sourceFileName, mimeType,
 					title, description, changeLog, majorVersion, tempFile,
@@ -1447,6 +1454,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 				String checksum = MapUtil.getString(
 					jsonWebServiceActionParametersMap, "checksum");
+
+				serviceContext.setCommand(Constants.UPDATE);
 
 				return syncDLObjectService.updateFileEntry(
 					fileEntryId, sourceFileName, mimeType, title, description,
