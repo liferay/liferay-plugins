@@ -248,7 +248,7 @@ public class AdminIndexer extends BaseIndexer {
 			}
 
 			@Override
-			protected void performAction(Object object) throws PortalException {
+			protected void performAction(Object object) {
 				KBArticle kbArticle = (KBArticle)object;
 
 					try {
@@ -256,12 +256,12 @@ public class AdminIndexer extends BaseIndexer {
 
 						addDocument(document);
 					}
-					catch (PortalException e) {
+					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"Unable to index knowledge base article " +
 									kbArticle.getKbArticleId(),
-								e);
+								pe);
 						}
 					}
 				}
