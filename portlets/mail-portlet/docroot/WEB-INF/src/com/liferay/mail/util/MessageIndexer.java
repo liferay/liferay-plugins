@@ -116,11 +116,11 @@ public class MessageIndexer extends BaseIndexer<Message> {
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {
-		final IndexableActionableDynamicQuery actionableDynamicQuery =
+		final IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			MessageLocalServiceUtil.getIndexableActionableDynamicQuery();
 
-		actionableDynamicQuery.setCompanyId(companyId);
-		actionableDynamicQuery.setPerformActionMethod(
+		indexableActionableDynamicQuery.setCompanyId(companyId);
+		indexableActionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Message>() {
 
 				@Override
@@ -130,7 +130,7 @@ public class MessageIndexer extends BaseIndexer<Message> {
 					try {
 						Document document = getDocument(message);
 
-						actionableDynamicQuery.addDocument(document);
+						indexableActionableDynamicQuery.addDocument(document);
 					}
 					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {
@@ -143,9 +143,9 @@ public class MessageIndexer extends BaseIndexer<Message> {
 				}
 
 			});
-		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
+		indexableActionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
-		actionableDynamicQuery.performActions();
+		indexableActionableDynamicQuery.performActions();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(MessageIndexer.class);

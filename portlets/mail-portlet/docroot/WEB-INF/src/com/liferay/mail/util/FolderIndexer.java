@@ -134,11 +134,11 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {
-		final IndexableActionableDynamicQuery actionableDynamicQuery =
+		final IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			FolderLocalServiceUtil.getIndexableActionableDynamicQuery();
 
-		actionableDynamicQuery.setCompanyId(companyId);
-		actionableDynamicQuery.setPerformActionMethod(
+		indexableActionableDynamicQuery.setCompanyId(companyId);
+		indexableActionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Folder>() {
 
 				@Override
@@ -148,7 +148,7 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 					try {
 						Document document = getDocument(folder);
 
-						actionableDynamicQuery.addDocument(document);
+						indexableActionableDynamicQuery.addDocument(document);
 					}
 					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {
@@ -161,9 +161,9 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 				}
 
 			});
-		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
+		indexableActionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
-		actionableDynamicQuery.performActions();
+		indexableActionableDynamicQuery.performActions();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(FolderIndexer.class);

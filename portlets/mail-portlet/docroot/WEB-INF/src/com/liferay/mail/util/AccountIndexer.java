@@ -132,11 +132,11 @@ public class AccountIndexer extends BaseIndexer<Account> {
 	}
 
 	protected void reindexMessages(long companyId) throws PortalException {
-		final IndexableActionableDynamicQuery actionableDynamicQuery =
+		final IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			AccountLocalServiceUtil.getIndexableActionableDynamicQuery();
 
-		actionableDynamicQuery.setCompanyId(companyId);
-		actionableDynamicQuery.setPerformActionMethod(
+		indexableActionableDynamicQuery.setCompanyId(companyId);
+		indexableActionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<Account>() {
 
 				@Override
@@ -146,7 +146,7 @@ public class AccountIndexer extends BaseIndexer<Account> {
 					try {
 						Document document = getDocument(account);
 
-						actionableDynamicQuery.addDocument(document);
+						indexableActionableDynamicQuery.addDocument(document);
 					}
 					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {
@@ -159,9 +159,9 @@ public class AccountIndexer extends BaseIndexer<Account> {
 				}
 
 			});
-		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
+		indexableActionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
-		actionableDynamicQuery.performActions();
+		indexableActionableDynamicQuery.performActions();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(AccountIndexer.class);
