@@ -119,63 +119,67 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 		_methodParameterTypes15 = new String[] {  };
 
-		_methodName16 = "getMemberRequest";
+		_methodName16 = "getIndexableActionableDynamicQuery";
 
-		_methodParameterTypes16 = new String[] { "long", "long", "int" };
+		_methodParameterTypes16 = new String[] {  };
 
 		_methodName17 = "getMemberRequest";
 
-		_methodParameterTypes17 = new String[] { "long" };
+		_methodParameterTypes17 = new String[] { "long", "long", "int" };
 
-		_methodName18 = "getMemberRequests";
+		_methodName18 = "getMemberRequest";
 
-		_methodParameterTypes18 = new String[] { "int", "int" };
+		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName19 = "getMemberRequestsCount";
+		_methodName19 = "getMemberRequests";
 
-		_methodParameterTypes19 = new String[] {  };
+		_methodParameterTypes19 = new String[] { "int", "int" };
 
-		_methodName20 = "getOSGiServiceIdentifier";
+		_methodName20 = "getMemberRequestsCount";
 
 		_methodParameterTypes20 = new String[] {  };
 
-		_methodName21 = "getPersistedModel";
+		_methodName21 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes21 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes21 = new String[] {  };
 
-		_methodName22 = "getReceiverMemberRequest";
+		_methodName22 = "getPersistedModel";
 
-		_methodParameterTypes22 = new String[] { "long", "int", "int" };
+		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
 
-		_methodName23 = "getReceiverMemberRequestCount";
+		_methodName23 = "getReceiverMemberRequest";
 
-		_methodParameterTypes23 = new String[] { "long" };
+		_methodParameterTypes23 = new String[] { "long", "int", "int" };
 
-		_methodName24 = "getReceiverStatusMemberRequest";
+		_methodName24 = "getReceiverMemberRequestCount";
 
-		_methodParameterTypes24 = new String[] { "long", "int", "int", "int" };
+		_methodParameterTypes24 = new String[] { "long" };
 
-		_methodName25 = "getReceiverStatusMemberRequestCount";
+		_methodName25 = "getReceiverStatusMemberRequest";
 
-		_methodParameterTypes25 = new String[] { "long", "int" };
+		_methodParameterTypes25 = new String[] { "long", "int", "int", "int" };
 
-		_methodName26 = "hasPendingMemberRequest";
+		_methodName26 = "getReceiverStatusMemberRequestCount";
 
-		_methodParameterTypes26 = new String[] { "long", "long" };
+		_methodParameterTypes26 = new String[] { "long", "int" };
 
-		_methodName28 = "updateMemberRequest";
+		_methodName27 = "hasPendingMemberRequest";
 
-		_methodParameterTypes28 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes27 = new String[] { "long", "long" };
 
 		_methodName29 = "updateMemberRequest";
 
-		_methodParameterTypes29 = new String[] {
-				"com.liferay.so.model.MemberRequest"
-			};
+		_methodParameterTypes29 = new String[] { "java.lang.String", "long" };
 
 		_methodName30 = "updateMemberRequest";
 
-		_methodParameterTypes30 = new String[] { "long", "long", "int" };
+		_methodParameterTypes30 = new String[] {
+				"com.liferay.so.model.MemberRequest"
+			};
+
+		_methodName31 = "updateMemberRequest";
+
+		_methodParameterTypes31 = new String[] { "long", "long", "int" };
 	}
 
 	@Override
@@ -655,14 +659,37 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,
 		long receiverUserId, int status)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16,
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17,
 					new Object[] { groupId, receiverUserId, status });
 		}
 		catch (Throwable t) {
@@ -691,8 +718,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] { memberRequestId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] { memberRequestId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -719,8 +746,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -742,8 +769,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -765,8 +792,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -790,8 +817,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -819,8 +846,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { receiverUserId, start, end });
 		}
 		catch (Throwable t) {
@@ -843,8 +870,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { receiverUserId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24, new Object[] { receiverUserId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -867,8 +894,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] { receiverUserId, status, start, end });
 		}
 		catch (Throwable t) {
@@ -892,8 +919,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { receiverUserId, status });
 		}
 		catch (Throwable t) {
@@ -916,8 +943,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { groupId, receiverUserId });
 		}
 		catch (Throwable t) {
@@ -949,8 +976,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
 						ClpSerializer.translateInput(key),
 						
@@ -982,8 +1009,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] { ClpSerializer.translateInput(memberRequest) });
 		}
 		catch (Throwable t) {
@@ -1007,8 +1034,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30,
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
 					new Object[] { userId, memberRequestId, status });
 		}
 		catch (Throwable t) {
@@ -1085,10 +1112,12 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	private String[] _methodParameterTypes25;
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
-	private String _methodName28;
-	private String[] _methodParameterTypes28;
+	private String _methodName27;
+	private String[] _methodParameterTypes27;
 	private String _methodName29;
 	private String[] _methodParameterTypes29;
 	private String _methodName30;
 	private String[] _methodParameterTypes30;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
 }

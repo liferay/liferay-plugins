@@ -246,6 +246,10 @@ public class AttachmentLocalServiceUtil {
 		return getService().getFile(attachmentId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	public static java.io.InputStream getInputStream(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getInputStream(attachmentId);

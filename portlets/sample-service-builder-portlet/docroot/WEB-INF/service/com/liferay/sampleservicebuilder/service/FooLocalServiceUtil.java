@@ -299,6 +299,10 @@ public class FooLocalServiceUtil {
 		return getService().getFoosCount();
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	public static java.lang.Object getLocalObject() throws java.lang.Exception {
 		return getService().getLocalObject();
 	}

@@ -17,7 +17,7 @@ package com.liferay.ams.service.persistence;
 import com.liferay.ams.model.Checkout;
 import com.liferay.ams.service.CheckoutLocalServiceUtil;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 /**
  * @author Brian Wing Shun Chan
@@ -26,12 +26,13 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
  */
 @Deprecated
 public abstract class CheckoutActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public CheckoutActionableDynamicQuery() {
 		setBaseLocalService(CheckoutLocalServiceUtil.getService());
-		setClass(Checkout.class);
 
 		setClassLoader(com.liferay.ams.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(Checkout.class);
 
 		setPrimaryKeyPropertyName("checkoutId");
 	}

@@ -198,6 +198,11 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 			groupNames, start, end);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _statusLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

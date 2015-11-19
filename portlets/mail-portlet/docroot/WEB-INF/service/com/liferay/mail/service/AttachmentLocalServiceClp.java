@@ -129,21 +129,25 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 
 		_methodParameterTypes19 = new String[] { "long" };
 
-		_methodName20 = "getInputStream";
+		_methodName20 = "getIndexableActionableDynamicQuery";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes20 = new String[] {  };
 
-		_methodName21 = "getOSGiServiceIdentifier";
+		_methodName21 = "getInputStream";
 
-		_methodParameterTypes21 = new String[] {  };
+		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "getPersistedModel";
+		_methodName22 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes22 = new String[] {  };
 
-		_methodName24 = "updateAttachment";
+		_methodName23 = "getPersistedModel";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes23 = new String[] { "java.io.Serializable" };
+
+		_methodName25 = "updateAttachment";
+
+		_methodParameterTypes25 = new String[] {
 				"com.liferay.mail.model.Attachment"
 			};
 	}
@@ -690,13 +694,36 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.io.InputStream getInputStream(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { attachmentId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { attachmentId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -722,8 +749,8 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -747,8 +774,8 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -783,8 +810,8 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] { ClpSerializer.translateInput(attachment) });
 		}
 		catch (Throwable t) {
@@ -849,6 +876,8 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

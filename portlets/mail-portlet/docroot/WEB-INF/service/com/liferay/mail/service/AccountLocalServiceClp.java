@@ -127,28 +127,32 @@ public class AccountLocalServiceClp implements AccountLocalService {
 
 		_methodParameterTypes19 = new String[] {  };
 
-		_methodName20 = "getOSGiServiceIdentifier";
+		_methodName20 = "getIndexableActionableDynamicQuery";
 
 		_methodParameterTypes20 = new String[] {  };
 
-		_methodName21 = "getPersistedModel";
+		_methodName21 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes21 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes21 = new String[] {  };
 
-		_methodName23 = "updateAccount";
+		_methodName22 = "getPersistedModel";
 
-		_methodParameterTypes23 = new String[] { "com.liferay.mail.model.Account" };
+		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
 
 		_methodName24 = "updateAccount";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes24 = new String[] { "com.liferay.mail.model.Account" };
+
+		_methodName25 = "updateAccount";
+
+		_methodParameterTypes25 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "boolean",
 				"java.lang.String", "boolean", "java.lang.String", "boolean"
 			};
 
-		_methodName25 = "updateFolders";
+		_methodName26 = "updateFolders";
 
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes26 = new String[] {
 				"long", "long", "long", "long", "long"
 			};
 	}
@@ -739,12 +743,35 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName20,
 					_methodParameterTypes20, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -768,8 +795,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -804,8 +831,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { ClpSerializer.translateInput(account) });
 		}
 		catch (Throwable t) {
@@ -832,8 +859,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						accountId,
 						
@@ -879,8 +906,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						accountId,
 						
@@ -957,10 +984,12 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 }

@@ -268,6 +268,9 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public int getFoosCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.Object getLocalObject() throws java.lang.Exception;
 
 	/**

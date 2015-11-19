@@ -17,7 +17,7 @@ package com.liferay.knowledgebase.service.persistence;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 /**
  * @author Brian Wing Shun Chan
@@ -26,12 +26,13 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
  */
 @Deprecated
 public abstract class KBTemplateActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public KBTemplateActionableDynamicQuery() {
 		setBaseLocalService(KBTemplateLocalServiceUtil.getService());
-		setClass(KBTemplate.class);
 
 		setClassLoader(com.liferay.knowledgebase.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(KBTemplate.class);
 
 		setPrimaryKeyPropertyName("kbTemplateId");
 	}

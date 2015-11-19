@@ -377,6 +377,11 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 		return _kbArticleLocalService.getGroupKBArticlesCount(groupId, status);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _kbArticleLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the k b article with the primary key.
 	*

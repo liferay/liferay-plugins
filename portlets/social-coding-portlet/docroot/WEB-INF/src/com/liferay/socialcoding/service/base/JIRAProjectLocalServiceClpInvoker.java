@@ -95,33 +95,37 @@ public class JIRAProjectLocalServiceClpInvoker {
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName14 = "deletePersistedModel";
+		_methodName13 = "getIndexableActionableDynamicQuery";
 
-		_methodParameterTypes14 = new String[] {
+		_methodParameterTypes13 = new String[] {  };
+
+		_methodName15 = "deletePersistedModel";
+
+		_methodParameterTypes15 = new String[] {
 				"com.liferay.portal.model.PersistedModel"
 			};
 
-		_methodName15 = "getPersistedModel";
+		_methodName16 = "getPersistedModel";
 
-		_methodParameterTypes15 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-		_methodName16 = "getJIRAProjects";
+		_methodName17 = "getJIRAProjects";
 
-		_methodParameterTypes16 = new String[] { "int", "int" };
+		_methodParameterTypes17 = new String[] { "int", "int" };
 
-		_methodName17 = "getJIRAProjectsCount";
+		_methodName18 = "getJIRAProjectsCount";
 
-		_methodParameterTypes17 = new String[] {  };
+		_methodParameterTypes18 = new String[] {  };
 
-		_methodName18 = "updateJIRAProject";
+		_methodName19 = "updateJIRAProject";
 
-		_methodParameterTypes18 = new String[] {
+		_methodParameterTypes19 = new String[] {
 				"com.liferay.socialcoding.model.JIRAProject"
 			};
 
-		_methodName71 = "getOSGiServiceIdentifier";
+		_methodName72 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes71 = new String[] {  };
+		_methodParameterTypes72 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -197,34 +201,39 @@ public class JIRAProjectLocalServiceClpInvoker {
 			return JIRAProjectLocalServiceUtil.getActionableDynamicQuery();
 		}
 
-		if (_methodName14.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return JIRAProjectLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+		if (_methodName13.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
+			return JIRAProjectLocalServiceUtil.getIndexableActionableDynamicQuery();
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return JIRAProjectLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return JIRAProjectLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return JIRAProjectLocalServiceUtil.getJIRAProjects(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return JIRAProjectLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return JIRAProjectLocalServiceUtil.getJIRAProjectsCount();
+			return JIRAProjectLocalServiceUtil.getJIRAProjects(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName18.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
+			return JIRAProjectLocalServiceUtil.getJIRAProjectsCount();
+		}
+
+		if (_methodName19.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
 			return JIRAProjectLocalServiceUtil.updateJIRAProject((com.liferay.socialcoding.model.JIRAProject)arguments[0]);
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return JIRAProjectLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
@@ -257,8 +266,8 @@ public class JIRAProjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes11;
 	private String _methodName12;
 	private String[] _methodParameterTypes12;
-	private String _methodName14;
-	private String[] _methodParameterTypes14;
+	private String _methodName13;
+	private String[] _methodParameterTypes13;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
@@ -267,6 +276,8 @@ public class JIRAProjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes17;
 	private String _methodName18;
 	private String[] _methodParameterTypes18;
-	private String _methodName71;
-	private String[] _methodParameterTypes71;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
 }

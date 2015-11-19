@@ -162,34 +162,38 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 		_methodParameterTypes27 = new String[] { "long" };
 
-		_methodName28 = "getOSGiServiceIdentifier";
+		_methodName28 = "getIndexableActionableDynamicQuery";
 
 		_methodParameterTypes28 = new String[] {  };
 
-		_methodName29 = "getPersistedModel";
+		_methodName29 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes29 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes29 = new String[] {  };
 
-		_methodName30 = "initGadget";
+		_methodName30 = "getPersistedModel";
 
-		_methodParameterTypes30 = new String[] {
+		_methodParameterTypes30 = new String[] { "java.io.Serializable" };
+
+		_methodName31 = "initGadget";
+
+		_methodParameterTypes31 = new String[] {
 				"java.lang.String", "long", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName31 = "initGadgets";
+		_methodName32 = "initGadgets";
 
-		_methodParameterTypes31 = new String[] {  };
-
-		_methodName33 = "updateGadget";
-
-		_methodParameterTypes33 = new String[] {
-				"com.liferay.opensocial.model.Gadget"
-			};
+		_methodParameterTypes32 = new String[] {  };
 
 		_methodName34 = "updateGadget";
 
-		_methodParameterTypes34 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes34 = new String[] {
+				"com.liferay.opensocial.model.Gadget"
+			};
+
+		_methodName35 = "updateGadget";
+
+		_methodParameterTypes35 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -927,12 +931,35 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName28,
 					_methodParameterTypes28, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -956,8 +983,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -985,8 +1012,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		java.lang.String portletCategoryNames)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName30,
-				_methodParameterTypes30,
+			_invokableLocalService.invokeMethod(_methodName31,
+				_methodParameterTypes31,
 				new Object[] {
 					ClpSerializer.translateInput(uuid),
 					
@@ -1020,8 +1047,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName31,
-				_methodParameterTypes31, new Object[] {  });
+			_invokableLocalService.invokeMethod(_methodName32,
+				_methodParameterTypes32, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1053,8 +1080,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName33,
-					_methodParameterTypes33,
+			returnObj = _invokableLocalService.invokeMethod(_methodName34,
+					_methodParameterTypes34,
 					new Object[] { ClpSerializer.translateInput(gadget) });
 		}
 		catch (Throwable t) {
@@ -1079,8 +1106,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName34,
-					_methodParameterTypes34,
+			returnObj = _invokableLocalService.invokeMethod(_methodName35,
+					_methodParameterTypes35,
 					new Object[] {
 						gadgetId,
 						
@@ -1171,8 +1198,10 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
 	private String _methodName34;
 	private String[] _methodParameterTypes34;
+	private String _methodName35;
+	private String[] _methodParameterTypes35;
 }

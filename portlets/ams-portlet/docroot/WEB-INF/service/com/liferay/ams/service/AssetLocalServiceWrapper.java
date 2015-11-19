@@ -224,6 +224,11 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 		return _assetLocalService.getAssetsCount();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _assetLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

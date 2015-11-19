@@ -241,6 +241,10 @@ public class JIRAIssueLocalServiceUtil {
 				   .getFirstReporterJIRAIssue(projectId, reporterJiraUserId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the j i r a issue with the primary key.
 	*

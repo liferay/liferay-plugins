@@ -17,7 +17,7 @@ package com.liferay.knowledgebase.service.persistence;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.service.KBCommentLocalServiceUtil;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 /**
  * @author Brian Wing Shun Chan
@@ -26,12 +26,13 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
  */
 @Deprecated
 public abstract class KBCommentActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public KBCommentActionableDynamicQuery() {
 		setBaseLocalService(KBCommentLocalServiceUtil.getService());
-		setClass(KBComment.class);
 
 		setClassLoader(com.liferay.knowledgebase.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(KBComment.class);
 
 		setPrimaryKeyPropertyName("kbCommentId");
 	}

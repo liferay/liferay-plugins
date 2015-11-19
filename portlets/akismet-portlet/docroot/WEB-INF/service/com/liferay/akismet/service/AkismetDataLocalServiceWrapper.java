@@ -247,6 +247,11 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 		return _akismetDataLocalService.getAkismetDatasCount();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _akismetDataLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

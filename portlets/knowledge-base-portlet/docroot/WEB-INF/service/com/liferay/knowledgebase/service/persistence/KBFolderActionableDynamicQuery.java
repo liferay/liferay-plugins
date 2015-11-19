@@ -17,7 +17,7 @@ package com.liferay.knowledgebase.service.persistence;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 /**
  * @author Brian Wing Shun Chan
@@ -26,12 +26,13 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
  */
 @Deprecated
 public abstract class KBFolderActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public KBFolderActionableDynamicQuery() {
 		setBaseLocalService(KBFolderLocalServiceUtil.getService());
-		setClass(KBFolder.class);
 
 		setClassLoader(com.liferay.knowledgebase.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(KBFolder.class);
 
 		setPrimaryKeyPropertyName("kbFolderId");
 	}

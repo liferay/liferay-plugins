@@ -17,7 +17,7 @@ package com.liferay.opensocial.service.persistence;
 import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 /**
  * @author Brian Wing Shun Chan
@@ -26,12 +26,13 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
  */
 @Deprecated
 public abstract class OAuthTokenActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public OAuthTokenActionableDynamicQuery() {
 		setBaseLocalService(OAuthTokenLocalServiceUtil.getService());
-		setClass(OAuthToken.class);
 
 		setClassLoader(com.liferay.opensocial.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(OAuthToken.class);
 
 		setPrimaryKeyPropertyName("oAuthTokenId");
 	}

@@ -196,6 +196,11 @@ public class TestBlobEntryLocalServiceWrapper
 		return _testBlobEntryLocalService.getBlobFieldBlobModel(primaryKey);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _testBlobEntryLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

@@ -312,6 +312,11 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _fooLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
 	public java.lang.Object getLocalObject() throws java.lang.Exception {
 		return _fooLocalService.getLocalObject();
 	}

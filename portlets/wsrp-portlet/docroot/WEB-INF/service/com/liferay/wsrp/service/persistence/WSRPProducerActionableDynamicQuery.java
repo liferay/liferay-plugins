@@ -14,7 +14,7 @@
 
 package com.liferay.wsrp.service.persistence;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
@@ -26,12 +26,13 @@ import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
  */
 @Deprecated
 public abstract class WSRPProducerActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public WSRPProducerActionableDynamicQuery() {
 		setBaseLocalService(WSRPProducerLocalServiceUtil.getService());
-		setClass(WSRPProducer.class);
 
 		setClassLoader(com.liferay.wsrp.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(WSRPProducer.class);
 
 		setPrimaryKeyPropertyName("wsrpProducerId");
 	}

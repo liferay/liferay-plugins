@@ -205,6 +205,9 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 		long projectId, java.lang.String reporterJiraUserId)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
 	/**
 	* Returns the j i r a issue with the primary key.
 	*

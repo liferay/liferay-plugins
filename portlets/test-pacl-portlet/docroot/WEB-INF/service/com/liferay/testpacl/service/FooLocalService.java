@@ -225,6 +225,9 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId) throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
 	/**
 	* Returns the OSGi service identifier.
 	*

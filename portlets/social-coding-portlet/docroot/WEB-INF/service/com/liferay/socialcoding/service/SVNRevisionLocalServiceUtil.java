@@ -199,6 +199,10 @@ public class SVNRevisionLocalServiceUtil {
 		return getService().getFirstSVNRevision(svnUserId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	public static com.liferay.socialcoding.model.SVNRevision getLastSVNRevision(
 		java.lang.String svnUserId)
 		throws com.liferay.portal.kernel.exception.PortalException {

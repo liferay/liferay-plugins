@@ -231,6 +231,10 @@ public class KBTemplateLocalServiceUtil {
 		return getService().getGroupKBTemplatesCount(groupId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the k b template with the primary key.
 	*

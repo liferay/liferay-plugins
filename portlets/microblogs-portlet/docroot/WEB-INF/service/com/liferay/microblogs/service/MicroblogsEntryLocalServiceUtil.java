@@ -228,6 +228,10 @@ public class MicroblogsEntryLocalServiceUtil {
 		return getService().getCompanyMicroblogsEntriesCount(companyId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		long creatorClassNameId, java.lang.String assetTagName, int start,
 		int end) {

@@ -14,7 +14,7 @@
 
 package com.liferay.twitter.service.persistence;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
@@ -26,12 +26,13 @@ import com.liferay.twitter.service.FeedLocalServiceUtil;
  */
 @Deprecated
 public abstract class FeedActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public FeedActionableDynamicQuery() {
 		setBaseLocalService(FeedLocalServiceUtil.getService());
-		setClass(Feed.class);
 
 		setClassLoader(com.liferay.twitter.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(Feed.class);
 
 		setPrimaryKeyPropertyName("feedId");
 	}

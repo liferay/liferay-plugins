@@ -224,6 +224,11 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		return _feedLocalService.getFeedsCount();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _feedLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*

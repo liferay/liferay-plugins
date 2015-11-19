@@ -245,6 +245,10 @@ public class FolderLocalServiceUtil {
 		return getService().getFoldersCount();
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	public static int getLocalPageCount(long folderId, int messagesPerPage) {
 		return getService().getLocalPageCount(folderId, messagesPerPage);
 	}

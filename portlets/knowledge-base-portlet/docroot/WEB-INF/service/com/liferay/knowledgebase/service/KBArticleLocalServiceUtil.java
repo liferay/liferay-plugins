@@ -355,6 +355,10 @@ public class KBArticleLocalServiceUtil {
 		return getService().getGroupKBArticlesCount(groupId, status);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the k b article with the primary key.
 	*

@@ -119,25 +119,29 @@ public class EntryLocalServiceClp implements EntryLocalService {
 
 		_methodParameterTypes18 = new String[] { "long" };
 
-		_methodName19 = "getNewEntries";
+		_methodName19 = "getIndexableActionableDynamicQuery";
 
-		_methodParameterTypes19 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes19 = new String[] {  };
 
-		_methodName20 = "getOSGiServiceIdentifier";
+		_methodName20 = "getNewEntries";
 
-		_methodParameterTypes20 = new String[] {  };
+		_methodParameterTypes20 = new String[] { "long", "long", "int", "int" };
 
-		_methodName21 = "getOldEntries";
+		_methodName21 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes21 = new String[] { "long", "int", "int" };
+		_methodParameterTypes21 = new String[] {  };
 
-		_methodName22 = "getPersistedModel";
+		_methodName22 = "getOldEntries";
 
-		_methodParameterTypes22 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes22 = new String[] { "long", "int", "int" };
 
-		_methodName24 = "updateEntry";
+		_methodName23 = "getPersistedModel";
 
-		_methodParameterTypes24 = new String[] { "com.liferay.chat.model.Entry" };
+		_methodParameterTypes23 = new String[] { "java.io.Serializable" };
+
+		_methodName25 = "updateEntry";
+
+		_methodParameterTypes25 = new String[] { "com.liferay.chat.model.Entry" };
 	}
 
 	@Override
@@ -646,13 +650,36 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.List<com.liferay.chat.model.Entry> getNewEntries(
 		long userId, long createDate, int start, int end) {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { userId, createDate, start, end });
 		}
 		catch (Throwable t) {
@@ -675,8 +702,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -699,8 +726,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { createDate, start, end });
 		}
 		catch (Throwable t) {
@@ -725,8 +752,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -761,8 +788,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] { ClpSerializer.translateInput(entry) });
 		}
 		catch (Throwable t) {
@@ -827,6 +854,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

@@ -189,6 +189,11 @@ public class JIRAProjectLocalServiceWrapper implements JIRAProjectLocalService,
 		return _jiraProjectLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _jiraProjectLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the j i r a project with the primary key.
 	*

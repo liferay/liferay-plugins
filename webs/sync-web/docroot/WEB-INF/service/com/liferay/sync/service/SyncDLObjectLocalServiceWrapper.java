@@ -222,6 +222,11 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _syncDLObjectLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
 	public long getLatestModifiedTime() {
 		return _syncDLObjectLocalService.getLatestModifiedTime();
 	}

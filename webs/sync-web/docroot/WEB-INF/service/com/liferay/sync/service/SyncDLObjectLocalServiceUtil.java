@@ -213,6 +213,10 @@ public class SyncDLObjectLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	public static long getLatestModifiedTime() {
 		return getService().getLatestModifiedTime();
 	}

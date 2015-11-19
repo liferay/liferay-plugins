@@ -255,6 +255,11 @@ public class FolderLocalServiceWrapper implements FolderLocalService,
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _folderLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
 	public int getLocalPageCount(long folderId, int messagesPerPage) {
 		return _folderLocalService.getLocalPageCount(folderId, messagesPerPage);
 	}

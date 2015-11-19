@@ -234,6 +234,11 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 		return _kbFolderLocalService.getExportActionableDynamicQuery(portletDataContext);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _kbFolderLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the k b folder with the primary key.
 	*

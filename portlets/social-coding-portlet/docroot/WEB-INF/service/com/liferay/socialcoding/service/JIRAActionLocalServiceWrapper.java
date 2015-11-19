@@ -189,6 +189,11 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 		return _jiraActionLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _jiraActionLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the j i r a action with the primary key.
 	*

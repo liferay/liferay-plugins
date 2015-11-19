@@ -14,7 +14,7 @@
 
 package com.liferay.sync.service.persistence;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
@@ -26,12 +26,13 @@ import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
  */
 @Deprecated
 public abstract class SyncDLObjectActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public SyncDLObjectActionableDynamicQuery() {
 		setBaseLocalService(SyncDLObjectLocalServiceUtil.getService());
-		setClass(SyncDLObject.class);
 
 		setClassLoader(com.liferay.sync.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(SyncDLObject.class);
 
 		setPrimaryKeyPropertyName("syncDLObjectId");
 	}

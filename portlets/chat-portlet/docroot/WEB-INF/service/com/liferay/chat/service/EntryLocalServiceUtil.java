@@ -231,6 +231,10 @@ public class EntryLocalServiceUtil {
 		return getService().getEntry(entryId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
 		long userId, long createDate, int start, int end) {
 		return getService().getNewEntries(userId, createDate, start, end);

@@ -198,6 +198,9 @@ public interface MessageLocalService extends BaseLocalService,
 	public int getFolderUnreadMessagesCount(long folderId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId) throws PortalException;
 

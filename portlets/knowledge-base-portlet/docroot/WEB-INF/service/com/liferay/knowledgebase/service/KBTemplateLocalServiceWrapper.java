@@ -245,6 +245,11 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 		return _kbTemplateLocalService.getGroupKBTemplatesCount(groupId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _kbTemplateLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the k b template with the primary key.
 	*

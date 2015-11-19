@@ -217,6 +217,9 @@ public interface FolderLocalService extends BaseLocalService,
 	public int getFoldersCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getLocalPageCount(long folderId, int messagesPerPage);
 
 	/**

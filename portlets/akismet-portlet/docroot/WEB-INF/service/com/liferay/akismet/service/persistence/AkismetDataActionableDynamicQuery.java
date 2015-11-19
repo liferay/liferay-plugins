@@ -17,7 +17,7 @@ package com.liferay.akismet.service.persistence;
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 
-import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 
 /**
  * @author Brian Wing Shun Chan
@@ -26,12 +26,13 @@ import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
  */
 @Deprecated
 public abstract class AkismetDataActionableDynamicQuery
-	extends BaseActionableDynamicQuery {
+	extends DefaultActionableDynamicQuery {
 	public AkismetDataActionableDynamicQuery() {
 		setBaseLocalService(AkismetDataLocalServiceUtil.getService());
-		setClass(AkismetData.class);
 
 		setClassLoader(com.liferay.akismet.service.ClpSerializer.class.getClassLoader());
+
+		setModelClass(AkismetData.class);
 
 		setPrimaryKeyPropertyName("akismetDataId");
 	}

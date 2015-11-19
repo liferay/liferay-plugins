@@ -238,6 +238,11 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _messageLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
 	public com.liferay.mail.model.Message getMessage(long folderId,
 		long remoteMessageId)
 		throws com.liferay.portal.kernel.exception.PortalException {

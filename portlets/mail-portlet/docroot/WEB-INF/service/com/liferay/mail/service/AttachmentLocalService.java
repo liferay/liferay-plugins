@@ -217,6 +217,9 @@ public interface AttachmentLocalService extends BaseLocalService,
 	public java.io.File getFile(long attachmentId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.io.InputStream getInputStream(long attachmentId)
 		throws PortalException;
 

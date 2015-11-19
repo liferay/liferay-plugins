@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -232,8 +233,8 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
-		actionableDynamicQuery.setClass(PushNotificationsDevice.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
+		actionableDynamicQuery.setModelClass(PushNotificationsDevice.class);
 
 		actionableDynamicQuery.setPrimaryKeyPropertyName(
 			"pushNotificationsDeviceId");
@@ -241,11 +242,25 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 		return actionableDynamicQuery;
 	}
 
+	@Override
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
+		indexableActionableDynamicQuery.setModelClass(PushNotificationsDevice.class);
+
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
+			"pushNotificationsDeviceId");
+
+		return indexableActionableDynamicQuery;
+	}
+
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
-		actionableDynamicQuery.setClass(PushNotificationsDevice.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
+		actionableDynamicQuery.setModelClass(PushNotificationsDevice.class);
 
 		actionableDynamicQuery.setPrimaryKeyPropertyName(
 			"pushNotificationsDeviceId");

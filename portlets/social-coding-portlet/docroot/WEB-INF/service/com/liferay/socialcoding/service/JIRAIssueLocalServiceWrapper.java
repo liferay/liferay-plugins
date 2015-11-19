@@ -248,6 +248,11 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 			reporterJiraUserId);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _jiraIssueLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the j i r a issue with the primary key.
 	*

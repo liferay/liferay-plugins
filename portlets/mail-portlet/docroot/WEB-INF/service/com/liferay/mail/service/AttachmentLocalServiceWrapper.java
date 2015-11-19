@@ -254,6 +254,11 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _attachmentLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
 	public java.io.InputStream getInputStream(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _attachmentLocalService.getInputStream(attachmentId);

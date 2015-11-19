@@ -117,33 +117,37 @@ public class SyncDLFileVersionDiffLocalServiceClp
 
 		_methodParameterTypes16 = new String[] {  };
 
-		_methodName17 = "getOSGiServiceIdentifier";
+		_methodName17 = "getIndexableActionableDynamicQuery";
 
 		_methodParameterTypes17 = new String[] {  };
 
-		_methodName18 = "getPersistedModel";
+		_methodName18 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes18 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes18 = new String[] {  };
 
-		_methodName19 = "getSyncDLFileVersionDiff";
+		_methodName19 = "getPersistedModel";
 
-		_methodParameterTypes19 = new String[] { "long" };
+		_methodParameterTypes19 = new String[] { "java.io.Serializable" };
 
-		_methodName20 = "getSyncDLFileVersionDiffs";
+		_methodName20 = "getSyncDLFileVersionDiff";
 
-		_methodParameterTypes20 = new String[] { "int", "int" };
+		_methodParameterTypes20 = new String[] { "long" };
 
-		_methodName21 = "getSyncDLFileVersionDiffsCount";
+		_methodName21 = "getSyncDLFileVersionDiffs";
 
-		_methodParameterTypes21 = new String[] {  };
+		_methodParameterTypes21 = new String[] { "int", "int" };
 
-		_methodName23 = "refreshExpirationDate";
+		_methodName22 = "getSyncDLFileVersionDiffsCount";
 
-		_methodParameterTypes23 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] {  };
 
-		_methodName24 = "updateSyncDLFileVersionDiff";
+		_methodName24 = "refreshExpirationDate";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes24 = new String[] { "long" };
+
+		_methodName25 = "updateSyncDLFileVersionDiff";
+
+		_methodParameterTypes25 = new String[] {
 				"com.liferay.sync.model.SyncDLFileVersionDiff"
 			};
 	}
@@ -629,12 +633,35 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	}
 
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName17,
 					_methodParameterTypes17, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -658,8 +685,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18,
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -688,8 +715,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] { syncDLFileVersionDiffId });
 		}
 		catch (Throwable t) {
@@ -717,8 +744,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -740,8 +767,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -769,8 +796,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	public void refreshExpirationDate(long syncDLFileVersionDiffId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23,
+			_invokableLocalService.invokeMethod(_methodName24,
+				_methodParameterTypes24,
 				new Object[] { syncDLFileVersionDiffId });
 		}
 		catch (Throwable t) {
@@ -796,8 +823,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						ClpSerializer.translateInput(syncDLFileVersionDiff)
 					});
@@ -862,8 +889,10 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
-	private String _methodName23;
-	private String[] _methodParameterTypes23;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }

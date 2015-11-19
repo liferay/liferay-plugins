@@ -95,106 +95,110 @@ public class UserThreadLocalServiceClpInvoker {
 
 		_methodParameterTypes12 = new String[] {  };
 
-		_methodName14 = "deletePersistedModel";
+		_methodName13 = "getIndexableActionableDynamicQuery";
 
-		_methodParameterTypes14 = new String[] {
+		_methodParameterTypes13 = new String[] {  };
+
+		_methodName15 = "deletePersistedModel";
+
+		_methodParameterTypes15 = new String[] {
 				"com.liferay.portal.model.PersistedModel"
 			};
 
-		_methodName15 = "getPersistedModel";
+		_methodName16 = "getPersistedModel";
 
-		_methodParameterTypes15 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-		_methodName16 = "getUserThreads";
+		_methodName17 = "getUserThreads";
 
-		_methodParameterTypes16 = new String[] { "int", "int" };
+		_methodParameterTypes17 = new String[] { "int", "int" };
 
-		_methodName17 = "getUserThreadsCount";
+		_methodName18 = "getUserThreadsCount";
 
-		_methodParameterTypes17 = new String[] {  };
+		_methodParameterTypes18 = new String[] {  };
 
-		_methodName18 = "updateUserThread";
+		_methodName19 = "updateUserThread";
 
-		_methodParameterTypes18 = new String[] {
+		_methodParameterTypes19 = new String[] {
 				"com.liferay.privatemessaging.model.UserThread"
 			};
 
-		_methodName43 = "getOSGiServiceIdentifier";
+		_methodName44 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes43 = new String[] {  };
+		_methodParameterTypes44 = new String[] {  };
 
-		_methodName48 = "addPrivateMessage";
+		_methodName49 = "addPrivateMessage";
 
-		_methodParameterTypes48 = new String[] {
+		_methodParameterTypes49 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.util.List",
 				"com.liferay.portal.theme.ThemeDisplay"
 			};
 
-		_methodName49 = "addPrivateMessageBranch";
+		_methodName50 = "addPrivateMessageBranch";
 
-		_methodParameterTypes49 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"long", "long", "java.lang.String", "java.util.List",
 				"com.liferay.portal.theme.ThemeDisplay"
 			};
 
-		_methodName50 = "addUserThread";
+		_methodName51 = "addUserThread";
 
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes51 = new String[] {
 				"long", "long", "long", "boolean", "boolean"
 			};
 
-		_methodName51 = "deleteUser";
+		_methodName52 = "deleteUser";
 
-		_methodParameterTypes51 = new String[] { "long" };
+		_methodParameterTypes52 = new String[] { "long" };
 
-		_methodName52 = "deleteUserThread";
-
-		_methodParameterTypes52 = new String[] { "long", "long" };
-
-		_methodName53 = "fetchUserThread";
+		_methodName53 = "deleteUserThread";
 
 		_methodParameterTypes53 = new String[] { "long", "long" };
 
-		_methodName54 = "getMBThreadUserThreads";
+		_methodName54 = "fetchUserThread";
 
-		_methodParameterTypes54 = new String[] { "long" };
+		_methodParameterTypes54 = new String[] { "long", "long" };
 
-		_methodName55 = "getUserThread";
+		_methodName55 = "getMBThreadUserThreads";
 
-		_methodParameterTypes55 = new String[] { "long", "long" };
+		_methodParameterTypes55 = new String[] { "long" };
 
-		_methodName56 = "getUserUserThreadCount";
+		_methodName56 = "getUserThread";
 
-		_methodParameterTypes56 = new String[] { "long", "boolean" };
+		_methodParameterTypes56 = new String[] { "long", "long" };
 
 		_methodName57 = "getUserUserThreadCount";
 
-		_methodParameterTypes57 = new String[] { "long", "boolean", "boolean" };
+		_methodParameterTypes57 = new String[] { "long", "boolean" };
 
-		_methodName58 = "getUserUserThreads";
+		_methodName58 = "getUserUserThreadCount";
 
-		_methodParameterTypes58 = new String[] { "long", "boolean" };
+		_methodParameterTypes58 = new String[] { "long", "boolean", "boolean" };
 
 		_methodName59 = "getUserUserThreads";
 
-		_methodParameterTypes59 = new String[] { "long", "boolean", "boolean" };
+		_methodParameterTypes59 = new String[] { "long", "boolean" };
 
 		_methodName60 = "getUserUserThreads";
 
-		_methodParameterTypes60 = new String[] { "long", "boolean", "int", "int" };
+		_methodParameterTypes60 = new String[] { "long", "boolean", "boolean" };
 
-		_methodName61 = "markUserThreadAsRead";
+		_methodName61 = "getUserUserThreads";
 
-		_methodParameterTypes61 = new String[] { "long", "long" };
+		_methodParameterTypes61 = new String[] { "long", "boolean", "int", "int" };
 
-		_methodName62 = "markUserThreadAsUnread";
+		_methodName62 = "markUserThreadAsRead";
 
 		_methodParameterTypes62 = new String[] { "long", "long" };
 
-		_methodName63 = "updateUserName";
+		_methodName63 = "markUserThreadAsUnread";
 
-		_methodParameterTypes63 = new String[] { "com.liferay.portal.model.User" };
+		_methodParameterTypes63 = new String[] { "long", "long" };
+
+		_methodName64 = "updateUserName";
+
+		_methodParameterTypes64 = new String[] { "com.liferay.portal.model.User" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -270,39 +274,44 @@ public class UserThreadLocalServiceClpInvoker {
 			return UserThreadLocalServiceUtil.getActionableDynamicQuery();
 		}
 
-		if (_methodName14.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return UserThreadLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+		if (_methodName13.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
+			return UserThreadLocalServiceUtil.getIndexableActionableDynamicQuery();
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return UserThreadLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return UserThreadLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return UserThreadLocalServiceUtil.getUserThreads(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return UserThreadLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return UserThreadLocalServiceUtil.getUserThreadsCount();
+			return UserThreadLocalServiceUtil.getUserThreads(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName18.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
+			return UserThreadLocalServiceUtil.getUserThreadsCount();
+		}
+
+		if (_methodName19.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
 			return UserThreadLocalServiceUtil.updateUserThread((com.liferay.privatemessaging.model.UserThread)arguments[0]);
 		}
 
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			return UserThreadLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return UserThreadLocalServiceUtil.addPrivateMessage(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -311,8 +320,8 @@ public class UserThreadLocalServiceClpInvoker {
 				(com.liferay.portal.theme.ThemeDisplay)arguments[6]);
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return UserThreadLocalServiceUtil.addPrivateMessageBranch(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -320,8 +329,8 @@ public class UserThreadLocalServiceClpInvoker {
 				(com.liferay.portal.theme.ThemeDisplay)arguments[4]);
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			UserThreadLocalServiceUtil.addUserThread(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -331,83 +340,75 @@ public class UserThreadLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			UserThreadLocalServiceUtil.deleteUser(((Long)arguments[0]).longValue());
-
-			return null;
-		}
-
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			UserThreadLocalServiceUtil.deleteUserThread(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			UserThreadLocalServiceUtil.deleteUser(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			return UserThreadLocalServiceUtil.fetchUserThread(((Long)arguments[0]).longValue(),
+			UserThreadLocalServiceUtil.deleteUserThread(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			return UserThreadLocalServiceUtil.getMBThreadUserThreads(((Long)arguments[0]).longValue());
+			return UserThreadLocalServiceUtil.fetchUserThread(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName55.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return UserThreadLocalServiceUtil.getUserThread(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return UserThreadLocalServiceUtil.getMBThreadUserThreads(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return UserThreadLocalServiceUtil.getUserUserThreadCount(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue());
+			return UserThreadLocalServiceUtil.getUserThread(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return UserThreadLocalServiceUtil.getUserUserThreadCount(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue(),
-				((Boolean)arguments[2]).booleanValue());
+				((Boolean)arguments[1]).booleanValue());
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return UserThreadLocalServiceUtil.getUserUserThreads(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue());
+			return UserThreadLocalServiceUtil.getUserUserThreadCount(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue(),
+				((Boolean)arguments[2]).booleanValue());
 		}
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return UserThreadLocalServiceUtil.getUserUserThreads(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue(),
-				((Boolean)arguments[2]).booleanValue());
+				((Boolean)arguments[1]).booleanValue());
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return UserThreadLocalServiceUtil.getUserUserThreads(((Long)arguments[0]).longValue(),
 				((Boolean)arguments[1]).booleanValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue());
+				((Boolean)arguments[2]).booleanValue());
 		}
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			UserThreadLocalServiceUtil.markUserThreadAsRead(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
-
-			return null;
+			return UserThreadLocalServiceUtil.getUserUserThreads(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			UserThreadLocalServiceUtil.markUserThreadAsUnread(((Long)arguments[0]).longValue(),
+			UserThreadLocalServiceUtil.markUserThreadAsRead(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
@@ -415,6 +416,14 @@ public class UserThreadLocalServiceClpInvoker {
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+			UserThreadLocalServiceUtil.markUserThreadAsUnread(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+
+			return null;
+		}
+
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			UserThreadLocalServiceUtil.updateUserName((com.liferay.portal.model.User)arguments[0]);
 
 			return null;
@@ -449,8 +458,8 @@ public class UserThreadLocalServiceClpInvoker {
 	private String[] _methodParameterTypes11;
 	private String _methodName12;
 	private String[] _methodParameterTypes12;
-	private String _methodName14;
-	private String[] _methodParameterTypes14;
+	private String _methodName13;
+	private String[] _methodParameterTypes13;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
@@ -459,10 +468,10 @@ public class UserThreadLocalServiceClpInvoker {
 	private String[] _methodParameterTypes17;
 	private String _methodName18;
 	private String[] _methodParameterTypes18;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
-	private String _methodName48;
-	private String[] _methodParameterTypes48;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
+	private String _methodName44;
+	private String[] _methodParameterTypes44;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
@@ -493,4 +502,6 @@ public class UserThreadLocalServiceClpInvoker {
 	private String[] _methodParameterTypes62;
 	private String _methodName63;
 	private String[] _methodParameterTypes63;
+	private String _methodName64;
+	private String[] _methodParameterTypes64;
 }

@@ -190,6 +190,11 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _jiraChangeItemLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the j i r a change item with the primary key.
 	*

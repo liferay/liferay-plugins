@@ -191,6 +191,11 @@ public class JIRAChangeGroupLocalServiceWrapper
 		return _jiraChangeGroupLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _jiraChangeGroupLocalService.getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* Returns the j i r a change group with the primary key.
 	*
