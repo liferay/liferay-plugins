@@ -163,7 +163,8 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"Unable to index asset entry set " +
-								assetEntrySet.getAssetEntrySetId(), pe);
+									assetEntrySet.getAssetEntrySetId(),
+								pe);
 						}
 					}
 				}
