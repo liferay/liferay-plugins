@@ -118,6 +118,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				SyncUtil.setFilePermissions(group, false, serviceContext);
 			}
 
+			serviceContext.setCommand(Constants.ADD);
+
 			FileEntry fileEntry = dlAppService.addFileEntry(
 				repositoryId, folderId, sourceFileName, mimeType, title,
 				description, changeLog, file, serviceContext);
@@ -294,6 +296,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 				SyncUtil.setFilePermissions(group, false, serviceContext);
 			}
+
+			serviceContext.setCommand(Constants.ADD);
 
 			FileEntry fileEntry = dlAppService.addFileEntry(
 				repositoryId, folderId, sourceFileName,
@@ -978,6 +982,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
+			serviceContext.setCommand(Constants.UPDATE);
+
 			fileEntry = dlAppService.updateFileEntry(
 				fileEntryId, sourceFileName, mimeType, title, description,
 				changeLog, majorVersion, file, serviceContext);
@@ -1303,8 +1309,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				String checksum = MapUtil.getString(
 					jsonWebServiceActionParametersMap, "checksum");
 
-				serviceContext.setCommand(Constants.ADD);
-
 				return syncDLObjectService.addFileEntry(
 					repositoryId, folderId, sourceFileName, mimeType, title,
 					description, changeLog, tempFile, checksum, serviceContext);
@@ -1338,8 +1342,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				jsonWebServiceActionParametersMap, "sourceFileName");
 			String title = MapUtil.getString(
 				jsonWebServiceActionParametersMap, "title");
-
-			serviceContext.setCommand(Constants.ADD);
 
 			return syncDLObjectService.copyFileEntry(
 				sourceFileEntryId, repositoryId, folderId, sourceFileName,
@@ -1404,8 +1406,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				String checksum = MapUtil.getString(
 					jsonWebServiceActionParametersMap, "checksum");
 
-				serviceContext.setCommand(Constants.UPDATE);
-
 				return syncDLObjectService.patchFileEntry(
 					fileEntryId, sourceVersionId, sourceFileName, mimeType,
 					title, description, changeLog, majorVersion, tempFile,
@@ -1443,8 +1443,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 				String checksum = MapUtil.getString(
 					jsonWebServiceActionParametersMap, "checksum");
-
-				serviceContext.setCommand(Constants.UPDATE);
 
 				return syncDLObjectService.updateFileEntry(
 					fileEntryId, sourceFileName, mimeType, title, description,
