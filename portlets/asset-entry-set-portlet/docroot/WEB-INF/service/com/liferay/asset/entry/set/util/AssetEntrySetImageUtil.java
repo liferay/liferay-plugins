@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -38,6 +39,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
@@ -52,6 +54,7 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -172,25 +175,60 @@ public class AssetEntrySetImageUtil {
 
 		imageJSONObject.put("fileEntryIds", fileEntryIdsJSONObject);
 
-		try {
-			Image image = ImageToolUtil.getImage(
-				DLFileEntryLocalServiceUtil.getFileAsStream(
-					fileEntry.getFileEntryId(), fileEntry.getVersion(), false));
+		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(
+			fileEntry.getFileEntryId());
 
-			imageJSONObject.put("height_" + imageType, image.getHeight());
-			imageJSONObject.put("width_" + imageType, image.getWidth());
+		UnicodeProperties extraSettingsProperties =
+			dlFileEntry.getExtraSettingsProperties();
+
+		JSONObject fileEntryImageJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		if (extraSettingsProperties.getProperty("fileEntryImageJSONObject") !=
+				null) {
+
+			fileEntryImageJSONObject =
+				JSONFactoryUtil.createJSONObject(
+					extraSettingsProperties.getProperty(
+						"fileEntryImageJSONObject"));
 		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
+		else {
+			try {
+				Image image = ImageToolUtil.getImage(
+					DLFileEntryLocalServiceUtil.getFileAsStream(
+						fileEntry.getFileEntryId(), fileEntry.getVersion(),
+						false));
+
+				fileEntryImageJSONObject.put(
+					"height_" + imageType, image.getHeight());
+				fileEntryImageJSONObject.put(
+					"width_" + imageType, image.getWidth());
+			}
+			catch (IOException ioe) {
+				throw new SystemException(ioe);
+			}
+
+			fileEntryImageJSONObject.put(
+				"imageURL_" + imageType,
+				DLUtil.getPreviewURL(
+					fileEntry, fileEntry.getFileVersion(), null,
+					StringPool.BLANK, false, true));
+			fileEntryImageJSONObject.put("mimeType", fileEntry.getMimeType());
+			fileEntryImageJSONObject.put("name", fileEntry.getTitle());
 		}
 
-		imageJSONObject.put(
-			"imageURL_" + imageType,
-			DLUtil.getPreviewURL(
-				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
-				false, true));
-		imageJSONObject.put("mimeType", fileEntry.getMimeType());
-		imageJSONObject.put("name", fileEntry.getTitle());
+		extraSettingsProperties.put(
+			"fileEntryImageJSONObject", fileEntryImageJSONObject.toString());
+
+		DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
+
+		Iterator<String> keys = fileEntryImageJSONObject.keys();
+
+		while (keys.hasNext()) {
+			String key = keys.next();
+
+			imageJSONObject.put(key, fileEntryImageJSONObject.getString(key));
+		}
 
 		return imageJSONObject;
 	}
