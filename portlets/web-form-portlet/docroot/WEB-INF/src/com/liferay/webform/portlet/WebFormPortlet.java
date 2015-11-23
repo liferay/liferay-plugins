@@ -19,6 +19,7 @@ import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.captcha.CaptchaTextException;
 import com.liferay.portal.kernel.captcha.CaptchaUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
@@ -200,7 +201,8 @@ public class WebFormPortlet extends MVCPortlet {
 				String fileName = WebFormUtil.getFileName(
 					themeDisplay, portletId);
 
-				fileSuccess = saveFile(fieldsMap, fileName);
+				fileSuccess = saveFile(
+					actionRequest, actionResponse, fieldsMap, fileName);
 			}
 
 			if (emailSuccess && databaseSuccess && fileSuccess) {
@@ -381,8 +383,44 @@ public class WebFormPortlet extends MVCPortlet {
 		}
 	}
 
-	protected boolean saveFile(Map<String, String> fieldsMap, String fileName) {
+	protected boolean saveFile(
+		ActionRequest actionRequest, ActionResponse actionResponse,
+		Map<String, String> fieldsMap, String fileName) throws PortalException {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(actionRequest);
+
 		StringBundler sb = new StringBundler();
+
+		List<String> fieldLabels = new ArrayList<>();
+
+		if (!FileUtil.exists(fileName)) {
+			for (int i = 1; true; i++) {
+				String fieldLabel = preferences.getValue(
+					"fieldLabel" + i, StringPool.BLANK);
+
+				String localizedfieldLabel =
+					LocalizationUtil.getPreferencesValue(
+						preferences, "fieldLabel" + i,
+						themeDisplay.getLanguageId());
+
+				if (Validator.isNull(fieldLabel)) {
+					break;
+				}
+
+				fieldLabels.add(fieldLabel);
+
+				sb.append(getCSVFormattedValue(localizedfieldLabel));
+				sb.append(PortletPropsValues.CSV_SEPARATOR);
+			}
+
+			sb.setIndex(sb.index() - 1);
+
+			sb.append(CharPool.NEW_LINE);
+		}
 
 		for (String fieldLabel : fieldsMap.keySet()) {
 			String fieldValue = fieldsMap.get(fieldLabel);
