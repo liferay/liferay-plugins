@@ -78,6 +78,7 @@
 		<exception>AppTitle</exception>
 		<exception>AppVersion</exception>
 		<exception>DuplicateApp</exception>
+		<exception>FileExtension</exception>
 		<exception>ModuleNamespace</exception>
 	</exceptions>
 </service-builder>

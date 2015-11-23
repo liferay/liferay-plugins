@@ -18,6 +18,7 @@
 
 <%@ page import="com.liferay.compat.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.compat.portal.kernel.util.StringUtil" %><%@
+page import="com.liferay.marketplace.FileExtensionException" %><%@
 page import="com.liferay.marketplace.model.App" %><%@
 page import="com.liferay.marketplace.service.AppLocalServiceUtil" %><%@
 page import="com.liferay.marketplace.util.comparator.PluginComparator" %><%@

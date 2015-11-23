@@ -31,9 +31,10 @@
 		<liferay-ui:success key="pluginDownloaded" message="the-plugin-was-downloaded-successfully-and-is-now-being-installed" />
 
 		<div class="install-method local">
+			<liferay-ui:error exception="<%= FileExtensionException.class %>" message="please-upload-a-file-with-a-valid-extension-jar-lpkg-or-war" />
 			<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />
 
-			<aui:input label="file-upload-lpkg-or-war-file" name="installMethod" type="radio" value="local" />
+			<aui:input label="file-upload-jar-lpkg-or-war-file" name="installMethod" type="radio" value="local" />
 
 			<aui:input cssClass="file-input" label="" name="file" type="file" />
 		</div>

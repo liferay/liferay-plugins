@@ -14,6 +14,7 @@
 
 package com.liferay.marketplace.appmanager.portlet;
 
+import com.liferay.marketplace.FileExtensionException;
 import com.liferay.marketplace.service.AppServiceUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
@@ -88,6 +89,12 @@ public class AppManagerPortlet extends MVCPortlet {
 			if (ArrayUtil.isEmpty(bytes)) {
 				SessionErrors.add(
 					actionRequest, UploadException.class.getName());
+			}
+			else if (!fileName.endsWith(".jar") &&
+					 !fileName.endsWith(".lpkg") &&
+					 !fileName.endsWith(".war")) {
+
+				throw new FileExtensionException();
 			}
 			else {
 				String deployDir = PrefsPropsUtil.getString(
