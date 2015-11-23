@@ -309,6 +309,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			getParameter(actionRequest, "saveToFile"));
 		boolean sendAsEmail = GetterUtil.getBoolean(
 			getParameter(actionRequest, "sendAsEmail"));
+        String successURL = getParameter(actionRequest, "successURL");
 
 		if (!saveToDatabase && !saveToFile && !sendAsEmail) {
 			SessionErrors.add(actionRequest, "handlingRequired");
@@ -316,6 +317,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		if (sendAsEmail) {
 			validateEmailFields(actionRequest);
+		}
+
+        if (Validator.isNotNull(successURL) && !Validator.isUrl(successURL)) {
+			SessionErrors.add(actionRequest, "successURLInvalid");
 		}
 
 		validateFieldNameLength(actionRequest);
