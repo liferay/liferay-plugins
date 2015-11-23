@@ -30,6 +30,8 @@ AUI.add(
 
 		var CONTROLS_NODE = 'controlsNode';
 
+		var DAYS_OF_WEEK = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+
 		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
 
 		var STR_BLANK = '';
@@ -47,6 +49,8 @@ AUI.add(
 									'</button>';
 
 		var USER_ID = toInt(themeDisplay.getUserId());
+
+		var WEEKLY = 'WEEKLY';
 
 		var Time = {
 			DAY: 86400000,
@@ -1235,6 +1239,8 @@ AUI.add(
 					}
 				},
 
+				AUGMENTS: [Liferay.RecurrenceConverter],
+
 				EXTENDS: A.Scheduler,
 
 				NAME: 'scheduler-base',
@@ -1447,6 +1453,45 @@ AUI.add(
 						return offset;
 					},
 
+					_getNewRecurrence: function(schedulerEvent, changedAttributes) {
+						var instance = this;
+
+						var recurrence = instance.parseRecurrence(schedulerEvent.get('recurrence'));
+
+						if (!recurrence) {
+							return null;
+						}
+
+						var newDate = changedAttributes.startDate.newVal;
+
+						var prevDate = changedAttributes.startDate.prevVal;
+
+						if (DateMath.isDayOverlap(prevDate, newDate)) {
+							if (recurrence.freq === WEEKLY) {
+								var index = recurrence.byday.indexOf(DAYS_OF_WEEK[prevDate.getDay()]);
+
+								AArray.remove(recurrence.byday, index);
+
+								recurrence.byday.push(DAYS_OF_WEEK[newDate.getDay()]);
+							}
+							else if (recurrence.byday) {
+								recurrence.byday.dayOfWeek = DAYS_OF_WEEK[newDate.getDay()];
+
+								recurrence.byday.position = Math.ceil(newDate.getDate() / DateMath.WEEK_LENGTH);
+
+								if (recurrence.byday.position > 4) {
+									recurrence.byday.position = -1;
+								}
+
+								if (recurrence.bymonth) {
+									recurrence.bymonth = newDate.getMonth() + 1;
+								}
+							}
+						}
+
+						return recurrence;
+					},
+
 					_onClickAddEvent: function(event) {
 						var instance = this;
 
@@ -1538,10 +1583,15 @@ AUI.add(
 
 						var answers = data.answers;
 						var duration = data.duration;
+						var newRecurrence = data.newRecurrence;
 						var offset = data.offset;
 						var schedulerEvent = data.schedulerEvent;
 
 						var showNextQuestion = A.bind(instance.load, instance);
+
+						if (newRecurrence && (!answers.updateInstance || answers.allFollowing)) {
+							schedulerEvent.set('recurrence', instance.encodeRecurrence(newRecurrence));
+						}
 
 						if (answers.cancel) {
 							A.soon(showNextQuestion);
@@ -1565,6 +1615,7 @@ AUI.add(
 								duration: instance._getCalendarBookingDuration(schedulerEvent),
 								hasChild: schedulerEvent.get('hasChildCalendarBookings'),
 								masterBooking: schedulerEvent.isMasterBooking(),
+								newRecurrence: instance._getNewRecurrence(schedulerEvent, changedAttributes),
 								offset: instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
 								recurring: schedulerEvent.isRecurring(),
 								resolver: A.bind(instance._queueableQuestionResolver, instance),
@@ -2102,6 +2153,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['async-queue', 'aui-datatype', 'aui-io', 'aui-scheduler', 'aui-toolbar', 'autocomplete', 'autocomplete-highlighters', 'dd-plugin', 'liferay-calendar-message-util', 'liferay-calendar-recurrence-util', 'liferay-node', 'liferay-portlet-url', 'liferay-store', 'promise', 'resize-plugin', 'scheduler-mobile']
+		requires: ['async-queue', 'aui-datatype', 'aui-io', 'aui-scheduler', 'aui-toolbar', 'autocomplete', 'autocomplete-highlighters', 'dd-plugin', 'liferay-calendar-message-util', 'liferay-calendar-recurrence-converter', 'liferay-calendar-recurrence-util', 'liferay-node', 'liferay-portlet-url', 'liferay-store', 'promise', 'resize-plugin', 'scheduler-mobile']
 	}
 );
