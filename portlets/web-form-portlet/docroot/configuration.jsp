@@ -64,6 +64,8 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 				<aui:input name="preferences--requireCaptcha--" type="checkbox" value="<%= requireCaptcha %>" />
 
+				<liferay-ui:error key="successURLInvalid" message="please-enter-a-valid-url" />
+
 				<aui:input label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" wrapperCssClass="lfr-input-text-container" />
 			</aui:fieldset>
 		</liferay-ui:panel>
