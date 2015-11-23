@@ -182,17 +182,11 @@ public class AssetEntrySetImageUtil {
 			dlFileEntry.getExtraSettingsProperties();
 
 		JSONObject fileEntryImageJSONObject =
-			JSONFactoryUtil.createJSONObject();
+			JSONFactoryUtil.createJSONObject(
+				extraSettingsProperties.getProperty(
+					"fileEntryImageJSONObject"));
 
-		if (extraSettingsProperties.getProperty("fileEntryImageJSONObject") !=
-				null) {
-
-			fileEntryImageJSONObject =
-				JSONFactoryUtil.createJSONObject(
-					extraSettingsProperties.getProperty(
-						"fileEntryImageJSONObject"));
-		}
-		else {
+		if (fileEntryImageJSONObject.length() == 0) {
 			try {
 				Image image = ImageToolUtil.getImage(
 					DLFileEntryLocalServiceUtil.getFileAsStream(
@@ -215,17 +209,18 @@ public class AssetEntrySetImageUtil {
 					StringPool.BLANK, false, true));
 			fileEntryImageJSONObject.put("mimeType", fileEntry.getMimeType());
 			fileEntryImageJSONObject.put("name", fileEntry.getTitle());
+
+			extraSettingsProperties.put(
+				"fileEntryImageJSONObject",
+				fileEntryImageJSONObject.toString());
+
+			DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
 		}
 
-		extraSettingsProperties.put(
-			"fileEntryImageJSONObject", fileEntryImageJSONObject.toString());
+		Iterator<String> iterator = fileEntryImageJSONObject.keys();
 
-		DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
-
-		Iterator<String> keys = fileEntryImageJSONObject.keys();
-
-		while (keys.hasNext()) {
-			String key = keys.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			imageJSONObject.put(key, fileEntryImageJSONObject.getString(key));
 		}
