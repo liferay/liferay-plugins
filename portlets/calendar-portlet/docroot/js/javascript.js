@@ -1590,6 +1590,16 @@ AUI.add(
 						var showNextQuestion = A.bind(instance.load, instance);
 
 						if (newRecurrence && (!answers.updateInstance || answers.allFollowing)) {
+							var oldRecurrence = instance.parseRecurrence(schedulerEvent.get('recurrence'));
+
+							var recurringDaysCount = oldRecurrence.byday.length;
+
+							var isStartDayOfWeek = schedulerEvent.get('instanceIndex') % recurringDaysCount === 0;
+
+							if ((newRecurrence.freq === WEEKLY) && !isStartDayOfWeek) {
+								offset = offset % DateMath.ONE_DAY_MS;
+							}
+
 							schedulerEvent.set('recurrence', instance.encodeRecurrence(newRecurrence));
 						}
 
