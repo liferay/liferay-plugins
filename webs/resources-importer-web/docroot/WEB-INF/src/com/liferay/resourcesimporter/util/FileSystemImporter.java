@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -1259,6 +1260,10 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext.setScopeGroupId(groupId);
 
 		boolean indexReadOnly = SearchEngineUtil.isIndexReadOnly();
+		boolean layoutImportInProcess =
+			ExportImportThreadLocal.isLayoutImportInProcess();
+		boolean portletImportInProcess =
+			ExportImportThreadLocal.isPortletImportInProcess();
 
 		try {
 			SearchEngineUtil.setIndexReadOnly(true);
@@ -1268,6 +1273,9 @@ public class FileSystemImporter extends BaseImporter {
 			setUpSitemap("sitemap.json");
 
 			SearchEngineUtil.setIndexReadOnly(false);
+
+			ExportImportThreadLocal.setLayoutImportInProcess(false);
+			ExportImportThreadLocal.setPortletImportInProcess(false);
 
 			long startTime = System.currentTimeMillis();
 
@@ -1285,6 +1293,11 @@ public class FileSystemImporter extends BaseImporter {
 		}
 		finally {
 			SearchEngineUtil.setIndexReadOnly(indexReadOnly);
+
+			ExportImportThreadLocal.setLayoutImportInProcess(
+				layoutImportInProcess);
+			ExportImportThreadLocal.setPortletImportInProcess(
+				portletImportInProcess);
 		}
 	}
 
