@@ -331,11 +331,6 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	}
 
 	@Override
-	public java.util.Map<java.lang.String, java.lang.String> getPrepackagedApps() {
-		return _appLocalService.getPrepackagedApps();
-	}
-
-	@Override
 	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _appLocalService.getInstalledApps();
@@ -346,6 +341,11 @@ public class AppLocalServiceWrapper implements AppLocalService,
 		java.lang.String category)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _appLocalService.getInstalledApps(category);
+	}
+
+	@Override
+	public java.util.Map<java.lang.String, java.lang.String> getPrepackagedApps() {
+		return _appLocalService.getPrepackagedApps();
 	}
 
 	@Override

@@ -317,10 +317,6 @@ public class AppLocalServiceUtil {
 		return getService().getApps(category);
 	}
 
-	public static java.util.Map<java.lang.String, java.lang.String> getPrepackagedApps() {
-		return getService().getPrepackagedApps();
-	}
-
 	public static java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getInstalledApps();
@@ -330,6 +326,10 @@ public class AppLocalServiceUtil {
 		java.lang.String category)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getInstalledApps(category);
+	}
+
+	public static java.util.Map<java.lang.String, java.lang.String> getPrepackagedApps() {
+		return getService().getPrepackagedApps();
 	}
 
 	public static void installApp(long remoteAppId)

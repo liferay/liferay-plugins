@@ -334,6 +334,11 @@ public class ClpSerializer {
 				throwable.getCause());
 		}
 
+		if (className.equals("com.liferay.marketplace.FileExtensionException")) {
+			return new com.liferay.marketplace.FileExtensionException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
 		if (className.equals("com.liferay.marketplace.ModuleNamespaceException")) {
 			return new com.liferay.marketplace.ModuleNamespaceException(throwable.getMessage(),
 				throwable.getCause());

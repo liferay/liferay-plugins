@@ -144,17 +144,17 @@ public class AppLocalServiceClpInvoker {
 
 		_methodParameterTypes56 = new String[] { "java.lang.String" };
 
-		_methodName57 = "getPrepackagedApps";
+		_methodName57 = "getInstalledApps";
 
 		_methodParameterTypes57 = new String[] {  };
 
 		_methodName58 = "getInstalledApps";
 
-		_methodParameterTypes58 = new String[] {  };
+		_methodParameterTypes58 = new String[] { "java.lang.String" };
 
-		_methodName59 = "getInstalledApps";
+		_methodName59 = "getPrepackagedApps";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
+		_methodParameterTypes59 = new String[] {  };
 
 		_methodName60 = "installApp";
 
@@ -323,17 +323,17 @@ public class AppLocalServiceClpInvoker {
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return AppLocalServiceUtil.getPrepackagedApps();
+			return AppLocalServiceUtil.getInstalledApps();
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return AppLocalServiceUtil.getInstalledApps();
+			return AppLocalServiceUtil.getInstalledApps((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return AppLocalServiceUtil.getInstalledApps((java.lang.String)arguments[0]);
+			return AppLocalServiceUtil.getPrepackagedApps();
 		}
 
 		if (_methodName60.equals(name) &&
