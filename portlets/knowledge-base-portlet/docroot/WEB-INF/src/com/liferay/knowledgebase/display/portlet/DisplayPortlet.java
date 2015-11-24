@@ -165,9 +165,8 @@ public class DisplayPortlet extends BaseKBPortlet {
 				Validator.isNull(previousPreferredKBFolderURLTitle)) {
 
 				kbArticle = findClosestMatchingKBArticle(
-						kbFolder.getGroupId(),
-						previousPreferredKBFolderURLTitle,
-						kbFolder.getKbFolderId(), urlTitle);
+					kbFolder.getGroupId(), previousPreferredKBFolderURLTitle,
+					kbFolder.getKbFolderId(), urlTitle);
 			}
 		}
 
