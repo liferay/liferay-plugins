@@ -193,6 +193,18 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 <c:if test="<%= !fieldsEditingDisabled %>">
 	<aui:script use="aui-base,liferay-auto-fields">
+		var removeChecked = function(event) {
+			var instance = this;
+
+			var formRow = instance.ancestor('.lfr-form-row');
+
+			var optionalControl = formRow.one('.optional-control').ancestor();
+
+			optionalControl.all('input[type="checkbox"]').attr('checked', false);
+
+			formRow.detachAll();
+		};
+
 		var toggleOptions = function(event) {
 			var instance = this;
 
@@ -224,6 +236,8 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				labelName.hide();
 				optionalControl.hide();
 				paragraphDiv.show();
+
+				formRow.delegate(['change', 'click', 'keydown'], removeChecked, 'select');
 
 				optionalControl.all('input[type="checkbox"]').attr('checked', 'true');
 				optionalControl.all('input[type="hidden"]').attr('value', 'true');
