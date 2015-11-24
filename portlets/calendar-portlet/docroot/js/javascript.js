@@ -1475,13 +1475,18 @@ AUI.add(
 								recurrence.byday.push(DAYS_OF_WEEK[newDate.getDay()]);
 							}
 							else if (recurrence.byday) {
-								recurrence.byday.dayOfWeek = DAYS_OF_WEEK[newDate.getDay()];
+								var position = Math.ceil(newDate.getDate() / DateMath.WEEK_LENGTH);
 
-								recurrence.byday.position = Math.ceil(newDate.getDate() / DateMath.WEEK_LENGTH);
+								var futureDate = DateMath.add(newDate, DateMath.WEEK, 1);
 
-								if (recurrence.byday.position > 4) {
-									recurrence.byday.position = -1;
+								var isLastDayOfWeek = futureDate.getMonth() !== newDate.getMonth();
+
+								if ((position > 4) || (isLastDayOfWeek && (recurrence.byday.position === -1))) {
+									position = -1;
 								}
+
+								recurrence.byday.position = position;
+								recurrence.byday.dayOfWeek = DAYS_OF_WEEK[newDate.getDay()];
 
 								if (recurrence.bymonth) {
 									recurrence.bymonth = newDate.getMonth() + 1;
