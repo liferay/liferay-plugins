@@ -3,6 +3,8 @@ AUI.add(
 	function(A) {
 		var Lang = A.Lang;
 
+		var EXDATE = 'EXDATE';
+
 		var RRULE = 'RRULE';
 
 		var STR_COLON = ':';
@@ -32,17 +34,13 @@ AUI.add(
 					if (recurrence) {
 						var components = [];
 
-						for (var key in recurrence) {
-							var value = recurrence[key];
+						components.push(instance._encodeRRule(recurrence.rrule));
 
-							components.push(key.toUpperCase() + STR_EQUALS + instance._encode(value));
+						if (recurrence.exdate) {
+							components.push(instance._encodeExDate(recurrence.exdate));
 						}
 
-						var params = components.join(STR_SEMICOLON);
-
-						if (components.length > 0) {
-							string = RRULE + STR_COLON + params;
-						}
+						string = components.join('\n');
 					}
 
 					return string;
@@ -53,39 +51,20 @@ AUI.add(
 
 					var recurrence = null;
 
-					if (string.startsWith(RRULE + STR_COLON)) {
-						string = string.slice(6);
+					if (string) {
+						var parts = string.split('\n');
 
-						var params = string.split(STR_SEMICOLON);
+						var rrule = instance._parseRRule(parts[0]);
 
-						recurrence = {};
+						if (rrule) {
+							recurrence = {
+								rrule: rrule
+							};
 
-						for (var i in params) {
-							var pair = params[i].split(STR_EQUALS);
+							var exdate = instance._parseExDate(parts[1]);
 
-							recurrence[pair[0].toLowerCase()] = pair[1];
-						}
-
-						if (recurrence.interval) {
-							recurrence.interval = Lang.toInt(recurrence.interval);
-						}
-
-						if (recurrence.count) {
-							recurrence.count = Lang.toInt(recurrence.count);
-						}
-
-						if (recurrence.until) {
-							recurrence.until = instance._parseDate(recurrence.until);
-						}
-
-						if (recurrence.freq === WEEKLY) {
-							recurrence.byday = recurrence.byday.split(STR_COMMA);
-						}
-						else if (recurrence.byday) {
-							recurrence.byday = instance._parsePositionalByDay(recurrence.byday);
-
-							if (recurrence.month) {
-								recurrence.bymonth = Lang.toInt(recurrence.bymonth);
+							if (exdate) {
+								recurrence.exdate = exdate;
 							}
 						}
 					}
@@ -127,6 +106,30 @@ AUI.add(
 					return daysOfWeek.join(STR_COMMA);
 				},
 
+				_encodeExDate: function(exdate) {
+					return EXDATE + STR_SEMICOLON + exdate;
+				},
+
+				_encodeRRule: function(rrule) {
+					var instance = this;
+
+					var string = '';
+
+					var components = [];
+
+					for (var key in rrule) {
+						var value = rrule[key];
+
+						components.push(key.toUpperCase() + STR_EQUALS + instance._encode(value));
+					}
+
+					if (components.length > 0) {
+						string = RRULE + STR_COLON + components.join(STR_SEMICOLON);
+					}
+
+					return string;
+				},
+
 				_parseDate: function(string) {
 					var year = Lang.toInt(string.slice(0, 4));
 
@@ -135,6 +138,18 @@ AUI.add(
 					var day = Lang.toInt(string.slice(6, 8));
 
 					return new Date(year, month, day);
+				},
+
+				_parseExDate: function(string) {
+					var instance = this;
+
+					var exdate = null;
+
+					if (string && string.startsWith(EXDATE + STR_SEMICOLON)) {
+						exdate = string.slice(7);
+					}
+
+					return exdate;
 				},
 
 				_parsePositionalByDay: function(string) {
@@ -147,6 +162,52 @@ AUI.add(
 						position: Lang.toInt(position)
 					};
 				},
+
+				_parseRRule: function(string) {
+					var instance = this;
+
+					var rrule = null;
+
+					if (string && string.startsWith(RRULE + STR_COLON)) {
+						string = string.slice(6);
+
+						var params = string.split(STR_SEMICOLON);
+
+						rrule = {};
+
+						for (var i in params) {
+							var pair = params[i].split(STR_EQUALS);
+
+							rrule[pair[0].toLowerCase()] = pair[1];
+						}
+
+						if (rrule.interval) {
+							rrule.interval = Lang.toInt(rrule.interval);
+						}
+
+						if (rrule.count) {
+							rrule.count = Lang.toInt(rrule.count);
+						}
+
+						if (rrule.until) {
+							rrule.until = instance._parseDate(rrule.until);
+						}
+
+						if (rrule.freq === WEEKLY) {
+							rrule.byday = rrule.byday.split(STR_COMMA);
+						}
+						else if (rrule.byday) {
+							rrule.byday = instance._parsePositionalByDay(rrule.byday);
+
+							if (rrule.month) {
+								rrule.bymonth = Lang.toInt(rrule.bymonth);
+							}
+						}
+					}
+
+					return rrule;
+				},
+
 
 				_twoDigits: function(number) {
 					var paddedNumber = STR_ZERO + number;
