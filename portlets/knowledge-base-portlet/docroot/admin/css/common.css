@@ -300,6 +300,10 @@
 			margin: 10px 0 0;
 		}
 
+		.kb-artile-body {
+		    word-wrap: brea-word;
+		}
+
 		.kb-article-comments, .kb-template-comments {
 			margin-top: 15px;
 
@@ -446,6 +450,7 @@
 
 		.kb-title {
 			font-weight: bold;
+			word-wrap: break-word;
 		}
 	}
 }
