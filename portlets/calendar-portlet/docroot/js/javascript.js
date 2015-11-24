@@ -1462,34 +1462,36 @@ AUI.add(
 							return null;
 						}
 
+						var rrule = recurrence.rrule;
+
 						var newDate = changedAttributes.startDate.newVal;
 
 						var prevDate = changedAttributes.startDate.prevVal;
 
 						if (DateMath.isDayOverlap(prevDate, newDate)) {
-							if (recurrence.freq === WEEKLY) {
-								var index = recurrence.byday.indexOf(DAYS_OF_WEEK[prevDate.getDay()]);
+							if (rrule.freq === WEEKLY) {
+								var index = rrule.byday.indexOf(DAYS_OF_WEEK[prevDate.getDay()]);
 
-								AArray.remove(recurrence.byday, index);
+								AArray.remove(rrule.byday, index);
 
-								recurrence.byday.push(DAYS_OF_WEEK[newDate.getDay()]);
+								rrule.byday.push(DAYS_OF_WEEK[newDate.getDay()]);
 							}
-							else if (recurrence.byday) {
+							else if (rrule.byday) {
 								var position = Math.ceil(newDate.getDate() / DateMath.WEEK_LENGTH);
 
 								var futureDate = DateMath.add(newDate, DateMath.WEEK, 1);
 
 								var lastDayOfWeek = futureDate.getMonth() !== newDate.getMonth();
 
-								if ((position > 4) || (lastDayOfWeek && (recurrence.byday.position === -1))) {
+								if ((position > 4) || (lastDayOfWeek && (rrule.byday.position === -1))) {
 									position = -1;
 								}
 
-								recurrence.byday.position = position;
-								recurrence.byday.dayOfWeek = DAYS_OF_WEEK[newDate.getDay()];
+								rrule.byday.position = position;
+								rrule.byday.dayOfWeek = DAYS_OF_WEEK[newDate.getDay()];
 
-								if (recurrence.bymonth) {
-									recurrence.bymonth = newDate.getMonth() + 1;
+								if (rrule.bymonth) {
+									rrule.bymonth = newDate.getMonth() + 1;
 								}
 							}
 						}
@@ -1597,11 +1599,11 @@ AUI.add(
 						if (newRecurrence && (!answers.updateInstance || answers.allFollowing)) {
 							var oldRecurrence = instance.parseRecurrence(schedulerEvent.get('recurrence'));
 
-							var recurringDaysCount = oldRecurrence.byday.length;
+							var recurringDaysCount = oldRecurrence.rrule.byday.length;
 
 							var startDayOfWeek = schedulerEvent.get('instanceIndex') % recurringDaysCount === 0;
 
-							if ((newRecurrence.freq === WEEKLY) && !startDayOfWeek) {
+							if ((newRecurrence.rrule.freq === WEEKLY) && !startDayOfWeek) {
 								offset %= DateMath.ONE_DAY_MS;
 							}
 
