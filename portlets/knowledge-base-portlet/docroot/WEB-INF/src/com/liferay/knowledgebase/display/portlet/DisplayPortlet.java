@@ -154,36 +154,31 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
 
-		if (Validator.isNull(urlTitle)) {
-			return;
-		}
+		KBArticle kbArticle = null;
 
-		KBArticle kbArticle =
-			KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+		if (Validator.isNotNull(urlTitle)) {
+			kbArticle = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
 				kbFolder.getGroupId(), kbFolder.getUrlTitle(), urlTitle);
 
-		if (kbArticle == null) {
-			if (Validator.isNull(previousPreferredKBFolderURLTitle)) {
-				return;
-			}
+			if ((kbArticle == null) &&
+				Validator.isNull(previousPreferredKBFolderURLTitle)) {
 
-			kbArticle = findClosestMatchingKBArticle(
-				kbFolder.getGroupId(), previousPreferredKBFolderURLTitle,
-				kbFolder.getKbFolderId(), urlTitle);
-
-			if (kbArticle == null) {
-				return;
+				kbArticle = findClosestMatchingKBArticle(
+						kbFolder.getGroupId(),
+						previousPreferredKBFolderURLTitle,
+						kbFolder.getKbFolderId(), urlTitle);
 			}
 		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		if (!KBArticlePermission.contains(
+		if ((kbArticle != null) &&
+			!KBArticlePermission.contains(
 				themeDisplay.getPermissionChecker(), kbArticle,
 				ActionKeys.VIEW)) {
 
-			return;
+			kbArticle = null;
 		}
 
 		PortletURL redirectURL = PortletURLFactoryUtil.create(
@@ -191,7 +186,10 @@ public class DisplayPortlet extends BaseKBPortlet {
 			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
 		redirectURL.setParameter("kbFolderUrlTitle", kbFolder.getUrlTitle());
-		redirectURL.setParameter("urlTitle", kbArticle.getUrlTitle());
+
+		if (kbArticle != null) {
+			redirectURL.setParameter("urlTitle", kbArticle.getUrlTitle());
+		}
 
 		actionResponse.sendRedirect(redirectURL.toString());
 	}
