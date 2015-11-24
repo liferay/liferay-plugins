@@ -1479,9 +1479,9 @@ AUI.add(
 
 								var futureDate = DateMath.add(newDate, DateMath.WEEK, 1);
 
-								var isLastDayOfWeek = futureDate.getMonth() !== newDate.getMonth();
+								var lastDayOfWeek = futureDate.getMonth() !== newDate.getMonth();
 
-								if ((position > 4) || (isLastDayOfWeek && (recurrence.byday.position === -1))) {
+								if ((position > 4) || (lastDayOfWeek && (recurrence.byday.position === -1))) {
 									position = -1;
 								}
 
@@ -1599,10 +1599,10 @@ AUI.add(
 
 							var recurringDaysCount = oldRecurrence.byday.length;
 
-							var isStartDayOfWeek = schedulerEvent.get('instanceIndex') % recurringDaysCount === 0;
+							var startDayOfWeek = schedulerEvent.get('instanceIndex') % recurringDaysCount === 0;
 
-							if ((newRecurrence.freq === WEEKLY) && !isStartDayOfWeek) {
-								offset = offset % DateMath.ONE_DAY_MS;
+							if ((newRecurrence.freq === WEEKLY) && !startDayOfWeek) {
+								offset %= DateMath.ONE_DAY_MS;
 							}
 
 							schedulerEvent.set('recurrence', instance.encodeRecurrence(newRecurrence));

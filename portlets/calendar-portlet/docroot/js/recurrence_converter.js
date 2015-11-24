@@ -1,6 +1,8 @@
 AUI.add(
 	'liferay-calendar-recurrence-converter',
 	function(A) {
+		var Lang = A.Lang;
+
 		var RRULE = 'RRULE';
 
 		var STR_COLON = ':';
@@ -12,6 +14,8 @@ AUI.add(
 		var STR_EQUALS = '=';
 
 		var STR_SEMICOLON = ';';
+
+		var STR_ZERO = '0';
 
 		var WEEKLY = 'WEEKLY';
 
@@ -37,7 +41,7 @@ AUI.add(
 						var params = components.join(STR_SEMICOLON);
 
 						if (components.length > 0) {
-							string =  RRULE + STR_COLON + params;
+							string = RRULE + STR_COLON + params;
 						}
 					}
 
@@ -54,7 +58,7 @@ AUI.add(
 
 						var params = string.split(STR_SEMICOLON);
 
-						var recurrence = {};
+						recurrence = {};
 
 						for (var i in params) {
 							var pair = params[i].split(STR_EQUALS);
@@ -63,11 +67,11 @@ AUI.add(
 						}
 
 						if (recurrence.interval) {
-							recurrence.interval = parseInt(recurrence.interval);
+							recurrence.interval = Lang.toInt(recurrence.interval);
 						}
 
 						if (recurrence.count) {
-							recurrence.count = parseInt(recurrence.count);
+							recurrence.count = Lang.toInt(recurrence.count);
 						}
 
 						if (recurrence.until) {
@@ -81,33 +85,12 @@ AUI.add(
 							recurrence.byday = instance._parsePositionalByDay(recurrence.byday);
 
 							if (recurrence.month) {
-								recurrence.bymonth = parseInt(recurrence.bymonth);
+								recurrence.bymonth = Lang.toInt(recurrence.bymonth);
 							}
 						}
 					}
 
 					return recurrence;
-				},
-
-				_parseDate: function(string) {
-					var year = parseInt(string.slice(0, 4));
-
-					var month = parseInt(string.slice(4, 6)) - 1;
-
-					var day = parseInt(string.slice(6, 8));
-
-					return new Date(year, month, day);
-				},
-
-				_parsePositionalByDay: function(string) {
-					var position = string.split(0, -2);
-
-					var dayOfWeek = string.split(-2);
-
-					return {
-						position: parseInt(position),
-						dayOfWeek: dayOfWeek
-					};
 				},
 
 				_encode: function(value) {
@@ -129,17 +112,40 @@ AUI.add(
 				},
 
 				_encodeDate: function(date) {
+					var instance = this;
+
 					var month = instance._twoDigits(date.getMonth() + 1);
 
 					var day = instance._twoDigits(date.getDate());
 
-					result = [date.getFullYear(), month, day].join(STR_EMPTY);
+					return [date.getFullYear(), month, day].join(STR_EMPTY);
 				},
 
 				_encodeDaysOfWeek: function(daysOfWeek) {
 					daysOfWeek = A.Array.dedupe(daysOfWeek);
 
 					return daysOfWeek.join(STR_COMMA);
+				},
+
+				_parseDate: function(string) {
+					var year = Lang.toInt(string.slice(0, 4));
+
+					var month = Lang.toInt(string.slice(4, 6)) - 1;
+
+					var day = Lang.toInt(string.slice(6, 8));
+
+					return new Date(year, month, day);
+				},
+
+				_parsePositionalByDay: function(string) {
+					var position = string.split(0, -2);
+
+					var dayOfWeek = string.split(-2);
+
+					return {
+						dayOfWeek: dayOfWeek,
+						position: Lang.toInt(position)
+					};
 				},
 
 				_twoDigits: function(number) {
