@@ -82,32 +82,22 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
-		PortletPreferences preferences = actionRequest.getPreferences();
-
 		Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "title");
-
-		for (Map.Entry<Locale, String> entry : titleMap.entrySet()) {
-			preferences.setValue(
-				"title".concat(StringPool.UNDERLINE).concat(
-					LocaleUtil.toLanguageId(entry.getKey())),
-				entry.getValue());
-		}
-
-		preferences.setValue("title", titleMap.get(LocaleUtil.getDefault()));
-
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
-		for (Map.Entry<Locale, String> entry : descriptionMap.entrySet()) {
-			preferences.setValue(
-				"description".concat(StringPool.UNDERLINE).concat(
-					LocaleUtil.toLanguageId(entry.getKey())),
-				entry.getValue());
-		}
+		PortletPreferences preferences = actionRequest.getPreferences();
 
-		preferences.setValue(
-			"description", descriptionMap.get(LocaleUtil.getDefault()));
+		LocalizationUtil.setLocalizedPreferencesValues(
+			actionRequest, preferences, "title");
+
+		preferences.setValue("title", titleMap.get(defaultLocale));
+
+		LocalizationUtil.setLocalizedPreferencesValues(
+			actionRequest, preferences, "description");
+
+		preferences.setValue("description", descriptionMap.get(defaultLocale));
 
 		if (updateFields) {
 			int i = 1;
