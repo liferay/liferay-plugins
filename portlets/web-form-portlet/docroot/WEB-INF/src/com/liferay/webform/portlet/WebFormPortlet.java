@@ -201,8 +201,7 @@ public class WebFormPortlet extends MVCPortlet {
 				String fileName = WebFormUtil.getFileName(
 					themeDisplay, portletId);
 
-				fileSuccess = saveFile(
-					actionRequest, actionResponse, fieldsMap, fileName);
+				fileSuccess = saveFile(fieldsMap, fileName);
 			}
 
 			if (emailSuccess && databaseSuccess && fileSuccess) {
@@ -251,6 +250,34 @@ public class WebFormPortlet extends MVCPortlet {
 		catch (Exception e) {
 			_log.error(e, e);
 		}
+	}
+
+	protected void appendFieldLabels(
+		Map<String, String> fieldsMap, StringBundler sb) {
+
+		for (String fieldLabel : fieldsMap.keySet()) {
+			sb.append(getCSVFormattedValue(fieldLabel));
+			sb.append(PortletPropsValues.CSV_SEPARATOR);
+		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(CharPool.NEW_LINE);
+	}
+
+	protected void appendFieldValues(
+		Map<String, String> fieldsMap, StringBundler sb) {
+
+		for (String fieldLabel : fieldsMap.keySet()) {
+			String fieldValue = fieldsMap.get(fieldLabel);
+
+			sb.append(getCSVFormattedValue(fieldValue));
+			sb.append(PortletPropsValues.CSV_SEPARATOR);
+		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(CharPool.NEW_LINE);
 	}
 
 	protected void exportData(
@@ -383,55 +410,16 @@ public class WebFormPortlet extends MVCPortlet {
 		}
 	}
 
-	protected boolean saveFile(
-		ActionRequest actionRequest, ActionResponse actionResponse,
-		Map<String, String> fieldsMap, String fileName) throws PortalException {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(actionRequest);
+	protected boolean saveFile(Map<String, String> fieldsMap, String fileName)
+		throws PortalException {
 
 		StringBundler sb = new StringBundler();
 
-		List<String> fieldLabels = new ArrayList<>();
-
 		if (!FileUtil.exists(fileName)) {
-			for (int i = 1; true; i++) {
-				String fieldLabel = preferences.getValue(
-					"fieldLabel" + i, StringPool.BLANK);
-
-				String localizedfieldLabel =
-					LocalizationUtil.getPreferencesValue(
-						preferences, "fieldLabel" + i,
-						themeDisplay.getLanguageId());
-
-				if (Validator.isNull(fieldLabel)) {
-					break;
-				}
-
-				fieldLabels.add(fieldLabel);
-
-				sb.append(getCSVFormattedValue(localizedfieldLabel));
-				sb.append(PortletPropsValues.CSV_SEPARATOR);
-			}
-
-			sb.setIndex(sb.index() - 1);
-
-			sb.append(CharPool.NEW_LINE);
+			appendFieldLabels(fieldsMap, sb);
 		}
 
-		for (String fieldLabel : fieldsMap.keySet()) {
-			String fieldValue = fieldsMap.get(fieldLabel);
-
-			sb.append(getCSVFormattedValue(fieldValue));
-			sb.append(PortletPropsValues.CSV_SEPARATOR);
-		}
-
-		sb.setIndex(sb.index() - 1);
-
-		sb.append(CharPool.NEW_LINE);
+		appendFieldValues(fieldsMap, sb);
 
 		try {
 			FileUtil.write(fileName, sb.toString(), false, true);
