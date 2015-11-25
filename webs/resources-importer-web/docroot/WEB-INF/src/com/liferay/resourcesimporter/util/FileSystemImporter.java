@@ -1260,8 +1260,10 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext.setScopeGroupId(groupId);
 
 		boolean indexReadOnly = SearchEngineUtil.isIndexReadOnly();
+
 		boolean layoutImportInProcess =
 			ExportImportThreadLocal.isLayoutImportInProcess();
+
 		boolean portletImportInProcess =
 			ExportImportThreadLocal.isPortletImportInProcess();
 
