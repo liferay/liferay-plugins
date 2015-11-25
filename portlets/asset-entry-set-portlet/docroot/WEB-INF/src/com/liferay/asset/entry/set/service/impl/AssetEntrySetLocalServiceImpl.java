@@ -293,6 +293,9 @@ public class AssetEntrySetLocalServiceImpl
 			oldPayloadJSONObject.getString(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
+		payloadJSONObject = AssetEntrySetManagerUtil.interpret(
+			assetEntrySet.getUserId(), assetEntrySetId, payloadJSONObject);
+
 		JSONArray sharedTOJSONArray = JSONFactoryUtil.createJSONArray(
 			payloadJSONObject.getString(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
@@ -311,10 +314,7 @@ public class AssetEntrySetLocalServiceImpl
 		filterAssetTagNames(payloadJSONObject);
 
 		assetEntrySet.setPayload(
-			JSONFactoryUtil.looseSerialize(
-				AssetEntrySetManagerUtil.interpret(
-					assetEntrySet.getUserId(), assetEntrySetId,
-					payloadJSONObject)));
+			JSONFactoryUtil.looseSerialize(payloadJSONObject));
 
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
 
