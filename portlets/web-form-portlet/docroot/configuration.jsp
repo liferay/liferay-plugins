@@ -54,6 +54,8 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 	<liferay-ui:panel-container extended="<%= Boolean.TRUE %>" id="webFormConfiguration" persistState="<%= true %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="webFormGeneral" persistState="<%= true %>" title="form-information">
 			<aui:fieldset>
+				<liferay-ui:error key="successURLInvalid" message="please-enter-a-valid-url" />
+
 				<aui:field-wrapper cssClass="lfr-input-text-container" label="title">
 					<liferay-ui:input-localized name="title" xml="<%= titleXml %>" />
 				</aui:field-wrapper>
@@ -63,8 +65,6 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				</aui:field-wrapper>
 
 				<aui:input name="preferences--requireCaptcha--" type="checkbox" value="<%= requireCaptcha %>" />
-
-				<liferay-ui:error key="successURLInvalid" message="please-enter-a-valid-url" />
 
 				<aui:input label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" wrapperCssClass="lfr-input-text-container" />
 			</aui:fieldset>
