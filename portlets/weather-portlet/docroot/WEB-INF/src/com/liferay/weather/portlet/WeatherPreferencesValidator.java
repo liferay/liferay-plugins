@@ -38,11 +38,12 @@ public class WeatherPreferencesValidator implements PreferencesValidator {
 		List<String> badZips = new ArrayList<>();
 
 		String apiKey = preferences.getValue("apiKey", StringPool.BLANK);
-		String[] zips = preferences.getValues("zips", new String[0]);
 
 		if (Validator.isNull(apiKey)) {
 			return;
 		}
+
+		String[] zips = preferences.getValues("zips", new String[0]);
 
 		for (String zip : zips) {
 			Weather weather = WeatherUtil.getWeather(zip, apiKey);

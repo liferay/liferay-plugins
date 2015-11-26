@@ -34,6 +34,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 
 	public WeatherWebCacheItem(String apiKey, String zip) {
 		_apiKey = apiKey;
+
 		_zip = zip;
 
 		if (_zip.equals("Frankfurt/Main")) {
@@ -64,7 +65,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		String xml = HttpUtil.URLtoString(
 			"http://api.openweathermap.org/data/2.5/weather?q=" +
 				HttpUtil.encodeURL(_zip) + "&units=imperial&mode=xml&APPID=" +
-				_apiKey);
+					_apiKey);
 
 		Document document = SAXReaderUtil.read(xml);
 
