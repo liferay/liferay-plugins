@@ -79,8 +79,6 @@
 		</c:if>
 	</c:when>
 	<c:otherwise>
-		<div class="alert alert-info">
-			<liferay-ui:message key="please-set-the-api-key-in-the-portlet-configuration" />
-		</div>
+		<liferay-util:include page="/html/portal/portlet_not_setup.jsp" />
 	</c:otherwise>
 </c:choose>
