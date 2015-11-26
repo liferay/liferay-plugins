@@ -24,10 +24,10 @@ import com.liferay.weather.model.Weather;
  */
 public class WeatherUtil {
 
-	public static Weather getWeather(String zip) {
+	public static Weather getWeather(String zip, String apiKey) {
 		String key = WeatherUtil.class.getName() + StringPool.PERIOD + zip;
 
-		WebCacheItem wci = new WeatherWebCacheItem(zip);
+		WebCacheItem wci = new WeatherWebCacheItem(zip, apiKey);
 
 		try {
 			return (Weather)WebCachePoolUtil.get(key, wci);
