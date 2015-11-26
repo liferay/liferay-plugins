@@ -32,14 +32,14 @@ import com.liferay.weather.model.Weather;
  */
 public class WeatherWebCacheItem implements WebCacheItem {
 
-	public WeatherWebCacheItem(String apiKey, String zip) {
-		_apiKey = apiKey;
-
+	public WeatherWebCacheItem(String zip, String apiKey) {
 		_zip = zip;
 
 		if (_zip.equals("Frankfurt/Main")) {
 			_zip = "Frankfurt, Germany";
 		}
+
+		_apiKey = apiKey;
 	}
 
 	@Override
