@@ -53,6 +53,8 @@ zipsString = StringUtil.merge(zips, StringPool.NEW_LINE);
 	</liferay-ui:error>
 
 	<aui:fieldset>
+		<aui:input label="openweathermap-org-api-key" name="preferences--apiKey--" type="text" value="<%= apiKey %>" />
+
 		<aui:input label="enter-one-city-or-zip-code-per-line" name="preferences--zips--" type="textarea" value="<%= zipsString %>" wrapperCssClass="lfr-textarea-container" />
 
 		<aui:select label="temperature-format" name="preferences--fahrenheit--">
