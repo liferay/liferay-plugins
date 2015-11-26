@@ -1263,7 +1263,6 @@ public class FileSystemImporter extends BaseImporter {
 
 		boolean layoutImportInProcess =
 			ExportImportThreadLocal.isLayoutImportInProcess();
-
 		boolean portletImportInProcess =
 			ExportImportThreadLocal.isPortletImportInProcess();
 
