@@ -40,7 +40,7 @@ public class WeatherPreferencesValidator implements PreferencesValidator {
 		String apiKey = preferences.getValue("apiKey", StringPool.BLANK);
 		String[] zips = preferences.getValues("zips", new String[0]);
 
-		if (Validator.isBlank(apiKey)) {
+		if (Validator.isNull(apiKey)) {
 			return;
 		}
 

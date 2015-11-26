@@ -1,5 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.util.Validator" %>
-
 <%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -19,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <c:choose>
-	<c:when test="<%= !Validator.isBlank(apiKey) %>">
+	<c:when test="<%= Validator.isNotNull(apiKey) %>">
 		<form name="<portlet:namespace />fm" onSubmit="submitForm(document.<portlet:namespace />fm, 'http://openweathermap.org/find?q=', false); return false;" target="_blank">
 
 		<table class="lfr-table">
