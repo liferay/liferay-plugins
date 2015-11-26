@@ -18,11 +18,13 @@ import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.PortalService;
 import com.liferay.portal.service.PortalServiceUtil;
 import com.liferay.portal.service.persistence.CompanyUtil;
 import com.liferay.portal.service.persistence.GroupUtil;
@@ -138,5 +140,8 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 		return UserUtil.findByPrimaryKey(userId);
 	}
+
+	@BeanReference(type = PortalService.class)
+	protected PortalService portalService;
 
 }
