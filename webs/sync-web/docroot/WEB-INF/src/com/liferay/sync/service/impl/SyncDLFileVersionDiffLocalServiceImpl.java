@@ -14,6 +14,7 @@
 
 package com.liferay.sync.service.impl;
 
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -27,6 +28,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
+import com.liferay.portlet.documentlibrary.service.DLAppService;
 import com.liferay.sync.model.SyncDLFileVersionDiff;
 import com.liferay.sync.service.base.SyncDLFileVersionDiffLocalServiceBaseImpl;
 import com.liferay.sync.util.PortletPropsValues;
@@ -181,6 +183,9 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 		return sb.toString();
 	}
+
+	@BeanReference(type = DLAppService.class)
+	protected DLAppService dlAppService;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SyncDLFileVersionDiffLocalServiceImpl.class);
