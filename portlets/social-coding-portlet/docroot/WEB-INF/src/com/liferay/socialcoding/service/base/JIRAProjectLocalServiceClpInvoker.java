@@ -123,9 +123,9 @@ public class JIRAProjectLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.JIRAProject"
 			};
 
-		_methodName72 = "getOSGiServiceIdentifier";
+		_methodName68 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes72 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -232,8 +232,8 @@ public class JIRAProjectLocalServiceClpInvoker {
 			return JIRAProjectLocalServiceUtil.updateJIRAProject((com.liferay.socialcoding.model.JIRAProject)arguments[0]);
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return JIRAProjectLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
@@ -278,6 +278,6 @@ public class JIRAProjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
 }

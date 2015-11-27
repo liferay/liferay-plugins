@@ -123,36 +123,36 @@ public class AttachmentLocalServiceClpInvoker {
 				"com.liferay.mail.model.Attachment"
 			};
 
-		_methodName54 = "getOSGiServiceIdentifier";
+		_methodName50 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes54 = new String[] {  };
+		_methodParameterTypes50 = new String[] {  };
 
-		_methodName59 = "addAttachment";
+		_methodName55 = "addAttachment";
 
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes55 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "long",
 				"java.io.File"
 			};
 
-		_methodName60 = "deleteAttachment";
+		_methodName56 = "deleteAttachment";
+
+		_methodParameterTypes56 = new String[] { "long" };
+
+		_methodName57 = "deleteAttachments";
+
+		_methodParameterTypes57 = new String[] { "long", "long" };
+
+		_methodName58 = "getAttachments";
+
+		_methodParameterTypes58 = new String[] { "long" };
+
+		_methodName59 = "getFile";
+
+		_methodParameterTypes59 = new String[] { "long" };
+
+		_methodName60 = "getInputStream";
 
 		_methodParameterTypes60 = new String[] { "long" };
-
-		_methodName61 = "deleteAttachments";
-
-		_methodParameterTypes61 = new String[] { "long", "long" };
-
-		_methodName62 = "getAttachments";
-
-		_methodParameterTypes62 = new String[] { "long" };
-
-		_methodName63 = "getFile";
-
-		_methodParameterTypes63 = new String[] { "long" };
-
-		_methodName64 = "getInputStream";
-
-		_methodParameterTypes64 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -259,44 +259,44 @@ public class AttachmentLocalServiceClpInvoker {
 			return AttachmentLocalServiceUtil.updateAttachment((com.liferay.mail.model.Attachment)arguments[0]);
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return AttachmentLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AttachmentLocalServiceUtil.addAttachment(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				((Long)arguments[4]).longValue(), (java.io.File)arguments[5]);
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return AttachmentLocalServiceUtil.deleteAttachment(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			AttachmentLocalServiceUtil.deleteAttachments(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return AttachmentLocalServiceUtil.getAttachments(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return AttachmentLocalServiceUtil.getFile(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return AttachmentLocalServiceUtil.getInputStream(((Long)arguments[0]).longValue());
 		}
 
@@ -341,18 +341,18 @@ public class AttachmentLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 	private String _methodName59;
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
-	private String _methodName61;
-	private String[] _methodParameterTypes61;
-	private String _methodName62;
-	private String[] _methodParameterTypes62;
-	private String _methodName63;
-	private String[] _methodParameterTypes63;
-	private String _methodName64;
-	private String[] _methodParameterTypes64;
 }

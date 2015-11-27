@@ -148,42 +148,42 @@ public class SampleLARBookingLocalServiceClpInvoker {
 				"com.liferay.samplelar.model.SampleLARBooking"
 			};
 
-		_methodName47 = "getOSGiServiceIdentifier";
+		_methodName43 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes47 = new String[] {  };
+		_methodParameterTypes43 = new String[] {  };
 
-		_methodName52 = "addSampleLARBooking";
+		_methodName48 = "addSampleLARBooking";
 
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes48 = new String[] {
 				"long", "long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName53 = "deleteSampleLARBooking";
+		_methodName49 = "deleteSampleLARBooking";
 
-		_methodParameterTypes53 = new String[] { "long" };
+		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName54 = "deleteSampleLARBooking";
+		_methodName50 = "deleteSampleLARBooking";
 
-		_methodParameterTypes54 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"com.liferay.samplelar.model.SampleLARBooking"
 			};
 
-		_methodName55 = "deleteSampleLARBookings";
+		_methodName51 = "deleteSampleLARBookings";
 
-		_methodParameterTypes55 = new String[] { "long" };
+		_methodParameterTypes51 = new String[] { "long" };
 
-		_methodName56 = "getSampleLARBookings";
+		_methodName52 = "getSampleLARBookings";
 
-		_methodParameterTypes56 = new String[] { "long", "int", "int" };
+		_methodParameterTypes52 = new String[] { "long", "int", "int" };
 
-		_methodName57 = "getSampleLARBookingsCount";
+		_methodName53 = "getSampleLARBookingsCount";
 
-		_methodParameterTypes57 = new String[] { "long" };
+		_methodParameterTypes53 = new String[] { "long" };
 
-		_methodName58 = "updateSampleLARBooking";
+		_methodName54 = "updateSampleLARBooking";
 
-		_methodParameterTypes58 = new String[] {
+		_methodParameterTypes54 = new String[] {
 				"long", "long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -325,50 +325,50 @@ public class SampleLARBookingLocalServiceClpInvoker {
 			return SampleLARBookingLocalServiceUtil.updateSampleLARBooking((com.liferay.samplelar.model.SampleLARBooking)arguments[0]);
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.addSampleLARBooking(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.deleteSampleLARBooking(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.deleteSampleLARBooking((com.liferay.samplelar.model.SampleLARBooking)arguments[0]);
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			SampleLARBookingLocalServiceUtil.deleteSampleLARBookings(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.getSampleLARBookings(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.getSampleLARBookingsCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.updateSampleLARBooking(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -426,20 +426,20 @@ public class SampleLARBookingLocalServiceClpInvoker {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
-	private String _methodName47;
-	private String[] _methodParameterTypes47;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
 	private String _methodName52;
 	private String[] _methodParameterTypes52;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
 }

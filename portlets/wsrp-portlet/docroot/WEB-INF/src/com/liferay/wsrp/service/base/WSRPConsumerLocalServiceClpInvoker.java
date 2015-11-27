@@ -137,63 +137,63 @@ public class WSRPConsumerLocalServiceClpInvoker {
 				"com.liferay.wsrp.model.WSRPConsumer"
 			};
 
-		_methodName53 = "getOSGiServiceIdentifier";
+		_methodName49 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes53 = new String[] {  };
+		_methodParameterTypes49 = new String[] {  };
 
-		_methodName58 = "addWSRPConsumer";
+		_methodName54 = "addWSRPConsumer";
 
-		_methodParameterTypes58 = new String[] {
+		_methodParameterTypes54 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName59 = "deleteWSRPConsumer";
+		_methodName55 = "deleteWSRPConsumer";
 
-		_methodParameterTypes59 = new String[] { "long" };
+		_methodParameterTypes55 = new String[] { "long" };
 
-		_methodName60 = "deleteWSRPConsumer";
+		_methodName56 = "deleteWSRPConsumer";
 
-		_methodParameterTypes60 = new String[] {
+		_methodParameterTypes56 = new String[] {
 				"com.liferay.wsrp.model.WSRPConsumer"
 			};
 
-		_methodName61 = "deleteWSRPConsumers";
+		_methodName57 = "deleteWSRPConsumers";
 
-		_methodParameterTypes61 = new String[] { "long" };
+		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName62 = "getWSRPConsumer";
+		_methodName58 = "getWSRPConsumer";
 
-		_methodParameterTypes62 = new String[] { "java.lang.String" };
+		_methodParameterTypes58 = new String[] { "java.lang.String" };
 
-		_methodName63 = "getWSRPConsumers";
+		_methodName59 = "getWSRPConsumers";
 
-		_methodParameterTypes63 = new String[] { "long", "int", "int" };
+		_methodParameterTypes59 = new String[] { "long", "int", "int" };
 
-		_methodName64 = "getWSRPConsumersCount";
+		_methodName60 = "getWSRPConsumersCount";
 
-		_methodParameterTypes64 = new String[] { "long" };
+		_methodParameterTypes60 = new String[] { "long" };
 
-		_methodName65 = "registerWSRPConsumer";
+		_methodName61 = "registerWSRPConsumer";
 
-		_methodParameterTypes65 = new String[] {
+		_methodParameterTypes61 = new String[] {
 				"long", "java.lang.String",
 				"com.liferay.portal.kernel.util.UnicodeProperties",
 				"java.lang.String"
 			};
 
-		_methodName66 = "restartConsumer";
+		_methodName62 = "restartConsumer";
 
-		_methodParameterTypes66 = new String[] { "long" };
+		_methodParameterTypes62 = new String[] { "long" };
 
-		_methodName67 = "updateServiceDescription";
+		_methodName63 = "updateServiceDescription";
 
-		_methodParameterTypes67 = new String[] { "long" };
+		_methodParameterTypes63 = new String[] { "long" };
 
-		_methodName68 = "updateWSRPConsumer";
+		_methodName64 = "updateWSRPConsumer";
 
-		_methodParameterTypes68 = new String[] {
+		_methodParameterTypes64 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String"
@@ -321,13 +321,13 @@ public class WSRPConsumerLocalServiceClpInvoker {
 			return WSRPConsumerLocalServiceUtil.updateWSRPConsumer((com.liferay.wsrp.model.WSRPConsumer)arguments[0]);
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.addWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -335,64 +335,64 @@ public class WSRPConsumerLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[7]);
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.deleteWSRPConsumer(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.deleteWSRPConsumer((com.liferay.wsrp.model.WSRPConsumer)arguments[0]);
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			WSRPConsumerLocalServiceUtil.deleteWSRPConsumers(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.getWSRPConsumer((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.getWSRPConsumers(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.getWSRPConsumersCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.registerWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(com.liferay.portal.kernel.util.UnicodeProperties)arguments[2],
 				(java.lang.String)arguments[3]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			WSRPConsumerLocalServiceUtil.restartConsumer(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			WSRPConsumerLocalServiceUtil.updateServiceDescription(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return WSRPConsumerLocalServiceUtil.updateWSRPConsumer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
@@ -446,8 +446,16 @@ public class WSRPConsumerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
 	private String _methodName58;
 	private String[] _methodParameterTypes58;
 	private String _methodName59;
@@ -462,12 +470,4 @@ public class WSRPConsumerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes63;
 	private String _methodName64;
 	private String[] _methodParameterTypes64;
-	private String _methodName65;
-	private String[] _methodParameterTypes65;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
 }

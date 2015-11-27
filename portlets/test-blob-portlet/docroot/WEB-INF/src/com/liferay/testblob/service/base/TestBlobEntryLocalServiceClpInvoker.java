@@ -127,9 +127,9 @@ public class TestBlobEntryLocalServiceClpInvoker {
 
 		_methodParameterTypes20 = new String[] { "java.io.Serializable" };
 
-		_methodName43 = "getOSGiServiceIdentifier";
+		_methodName39 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes43 = new String[] {  };
+		_methodParameterTypes39 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -241,8 +241,8 @@ public class TestBlobEntryLocalServiceClpInvoker {
 			return TestBlobEntryLocalServiceUtil.getBlobFieldBlobModel((java.io.Serializable)arguments[0]);
 		}
 
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+		if (_methodName39.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			return TestBlobEntryLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
@@ -289,6 +289,6 @@ public class TestBlobEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
 }

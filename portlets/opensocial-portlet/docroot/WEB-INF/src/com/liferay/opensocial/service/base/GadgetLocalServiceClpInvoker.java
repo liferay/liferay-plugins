@@ -137,73 +137,73 @@ public class GadgetLocalServiceClpInvoker {
 				"com.liferay.opensocial.model.Gadget"
 			};
 
-		_methodName55 = "getOSGiServiceIdentifier";
+		_methodName49 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes55 = new String[] {  };
+		_methodParameterTypes49 = new String[] {  };
 
-		_methodName60 = "addGadget";
+		_methodName54 = "addGadget";
 
-		_methodParameterTypes60 = new String[] {
+		_methodParameterTypes54 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName61 = "deleteGadget";
+		_methodName55 = "deleteGadget";
 
-		_methodParameterTypes61 = new String[] {
+		_methodParameterTypes55 = new String[] {
 				"com.liferay.opensocial.model.Gadget"
 			};
 
-		_methodName62 = "deleteGadget";
+		_methodName56 = "deleteGadget";
 
-		_methodParameterTypes62 = new String[] { "long" };
+		_methodParameterTypes56 = new String[] { "long" };
 
-		_methodName63 = "deleteGadgets";
+		_methodName57 = "deleteGadgets";
 
-		_methodParameterTypes63 = new String[] { "long" };
+		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName64 = "destroyGadget";
+		_methodName58 = "destroyGadget";
 
-		_methodParameterTypes64 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes58 = new String[] { "java.lang.String", "long" };
 
-		_methodName65 = "destroyGadgets";
+		_methodName59 = "destroyGadgets";
 
-		_methodParameterTypes65 = new String[] {  };
+		_methodParameterTypes59 = new String[] {  };
 
-		_methodName66 = "fetchGadget";
+		_methodName60 = "fetchGadget";
 
-		_methodParameterTypes66 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes60 = new String[] { "long", "java.lang.String" };
 
-		_methodName67 = "getGadget";
+		_methodName61 = "getGadget";
 
-		_methodParameterTypes67 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes61 = new String[] { "long", "java.lang.String" };
 
-		_methodName68 = "getGadget";
+		_methodName62 = "getGadget";
 
-		_methodParameterTypes68 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes62 = new String[] { "java.lang.String", "long" };
 
-		_methodName69 = "getGadgets";
+		_methodName63 = "getGadgets";
 
-		_methodParameterTypes69 = new String[] { "long", "int", "int" };
+		_methodParameterTypes63 = new String[] { "long", "int", "int" };
 
-		_methodName70 = "getGadgetsCount";
+		_methodName64 = "getGadgetsCount";
 
-		_methodParameterTypes70 = new String[] { "long" };
+		_methodParameterTypes64 = new String[] { "long" };
 
-		_methodName71 = "initGadget";
+		_methodName65 = "initGadget";
 
-		_methodParameterTypes71 = new String[] {
+		_methodParameterTypes65 = new String[] {
 				"java.lang.String", "long", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName72 = "initGadgets";
+		_methodName66 = "initGadgets";
 
-		_methodParameterTypes72 = new String[] {  };
+		_methodParameterTypes66 = new String[] {  };
 
-		_methodName73 = "updateGadget";
+		_methodName67 = "updateGadget";
 
-		_methodParameterTypes73 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes67 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -327,82 +327,82 @@ public class GadgetLocalServiceClpInvoker {
 			return GadgetLocalServiceUtil.updateGadget((com.liferay.opensocial.model.Gadget)arguments[0]);
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			return GadgetLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return GadgetLocalServiceUtil.addGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return GadgetLocalServiceUtil.deleteGadget((com.liferay.opensocial.model.Gadget)arguments[0]);
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return GadgetLocalServiceUtil.deleteGadget(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			GadgetLocalServiceUtil.deleteGadgets(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			GadgetLocalServiceUtil.destroyGadget((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			GadgetLocalServiceUtil.destroyGadgets();
 
 			return null;
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return GadgetLocalServiceUtil.fetchGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return GadgetLocalServiceUtil.getGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return GadgetLocalServiceUtil.getGadget((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return GadgetLocalServiceUtil.getGadgets(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return GadgetLocalServiceUtil.getGadgetsCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			GadgetLocalServiceUtil.initGadget((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -411,15 +411,15 @@ public class GadgetLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			GadgetLocalServiceUtil.initGadgets();
 
 			return null;
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			return GadgetLocalServiceUtil.updateGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
@@ -471,8 +471,20 @@ public class GadgetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 	private String _methodName55;
 	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
+	private String _methodName59;
+	private String[] _methodParameterTypes59;
 	private String _methodName60;
 	private String[] _methodParameterTypes60;
 	private String _methodName61;
@@ -489,16 +501,4 @@ public class GadgetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes66;
 	private String _methodName67;
 	private String[] _methodParameterTypes67;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
-	private String _methodName69;
-	private String[] _methodParameterTypes69;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
-	private String _methodName71;
-	private String[] _methodParameterTypes71;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
 }

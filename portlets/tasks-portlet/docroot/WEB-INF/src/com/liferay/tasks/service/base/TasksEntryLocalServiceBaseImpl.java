@@ -336,25 +336,6 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the tasks entry remote service.
-	 *
-	 * @return the tasks entry remote service
-	 */
-	public com.liferay.tasks.service.TasksEntryService getTasksEntryService() {
-		return tasksEntryService;
-	}
-
-	/**
-	 * Sets the tasks entry remote service.
-	 *
-	 * @param tasksEntryService the tasks entry remote service
-	 */
-	public void setTasksEntryService(
-		com.liferay.tasks.service.TasksEntryService tasksEntryService) {
-		this.tasksEntryService = tasksEntryService;
-	}
-
-	/**
 	 * Returns the tasks entry persistence.
 	 *
 	 * @return the tasks entry persistence
@@ -430,25 +411,6 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the class name remote service.
-	 *
-	 * @return the class name remote service
-	 */
-	public com.liferay.portal.service.ClassNameService getClassNameService() {
-		return classNameService;
-	}
-
-	/**
-	 * Sets the class name remote service.
-	 *
-	 * @param classNameService the class name remote service
-	 */
-	public void setClassNameService(
-		com.liferay.portal.service.ClassNameService classNameService) {
-		this.classNameService = classNameService;
-	}
-
-	/**
 	 * Returns the class name persistence.
 	 *
 	 * @return the class name persistence
@@ -503,25 +465,6 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	public void setUserLocalService(
 		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
-	}
-
-	/**
-	 * Returns the user remote service.
-	 *
-	 * @return the user remote service
-	 */
-	public com.liferay.portal.service.UserService getUserService() {
-		return userService;
-	}
-
-	/**
-	 * Sets the user remote service.
-	 *
-	 * @param userService the user remote service
-	 */
-	public void setUserService(
-		com.liferay.portal.service.UserService userService) {
-		this.userService = userService;
 	}
 
 	/**
@@ -621,8 +564,6 @@ public abstract class TasksEntryLocalServiceBaseImpl
 
 	@BeanReference(type = com.liferay.tasks.service.TasksEntryLocalService.class)
 	protected TasksEntryLocalService tasksEntryLocalService;
-	@BeanReference(type = com.liferay.tasks.service.TasksEntryService.class)
-	protected com.liferay.tasks.service.TasksEntryService tasksEntryService;
 	@BeanReference(type = TasksEntryPersistence.class)
 	protected TasksEntryPersistence tasksEntryPersistence;
 	@BeanReference(type = TasksEntryFinder.class)
@@ -631,16 +572,12 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
 	protected com.liferay.portal.service.ClassNameLocalService classNameLocalService;
-	@BeanReference(type = com.liferay.portal.service.ClassNameService.class)
-	protected com.liferay.portal.service.ClassNameService classNameService;
 	@BeanReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
 	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
 	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
 	protected com.liferay.portal.service.UserLocalService userLocalService;
-	@BeanReference(type = com.liferay.portal.service.UserService.class)
-	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private ClassLoader _classLoader;

@@ -117,51 +117,51 @@ public class FolderLocalServiceClpInvoker {
 
 		_methodParameterTypes19 = new String[] { "com.liferay.mail.model.Folder" };
 
-		_methodName54 = "getOSGiServiceIdentifier";
+		_methodName50 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes54 = new String[] {  };
+		_methodParameterTypes50 = new String[] {  };
 
-		_methodName59 = "addFolder";
+		_methodName55 = "addFolder";
 
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes55 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "int"
 			};
 
-		_methodName60 = "deleteFolder";
+		_methodName56 = "deleteFolder";
 
-		_methodParameterTypes60 = new String[] { "com.liferay.mail.model.Folder" };
+		_methodParameterTypes56 = new String[] { "com.liferay.mail.model.Folder" };
 
-		_methodName61 = "deleteFolder";
+		_methodName57 = "deleteFolder";
 
-		_methodParameterTypes61 = new String[] { "long" };
+		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName62 = "deleteFolders";
+		_methodName58 = "deleteFolders";
+
+		_methodParameterTypes58 = new String[] { "long" };
+
+		_methodName59 = "getFolder";
+
+		_methodParameterTypes59 = new String[] { "long", "java.lang.String" };
+
+		_methodName60 = "getFolders";
+
+		_methodParameterTypes60 = new String[] { "long" };
+
+		_methodName61 = "getLocalPageCount";
+
+		_methodParameterTypes61 = new String[] { "long", "int" };
+
+		_methodName62 = "getPercentDownloaded";
 
 		_methodParameterTypes62 = new String[] { "long" };
 
-		_methodName63 = "getFolder";
+		_methodName63 = "getRemotePageCount";
 
-		_methodParameterTypes63 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes63 = new String[] { "long", "int" };
 
-		_methodName64 = "getFolders";
+		_methodName64 = "updateFolder";
 
-		_methodParameterTypes64 = new String[] { "long" };
-
-		_methodName65 = "getLocalPageCount";
-
-		_methodParameterTypes65 = new String[] { "long", "int" };
-
-		_methodName66 = "getPercentDownloaded";
-
-		_methodParameterTypes66 = new String[] { "long" };
-
-		_methodName67 = "getRemotePageCount";
-
-		_methodParameterTypes67 = new String[] { "long", "int" };
-
-		_methodName68 = "updateFolder";
-
-		_methodParameterTypes68 = new String[] {
+		_methodParameterTypes64 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int"
 			};
 	}
@@ -270,66 +270,66 @@ public class FolderLocalServiceClpInvoker {
 			return FolderLocalServiceUtil.updateFolder((com.liferay.mail.model.Folder)arguments[0]);
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return FolderLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return FolderLocalServiceUtil.addFolder(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return FolderLocalServiceUtil.deleteFolder((com.liferay.mail.model.Folder)arguments[0]);
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return FolderLocalServiceUtil.deleteFolder(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			FolderLocalServiceUtil.deleteFolders(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return FolderLocalServiceUtil.getFolder(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return FolderLocalServiceUtil.getFolders(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return FolderLocalServiceUtil.getLocalPageCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return FolderLocalServiceUtil.getPercentDownloaded(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return FolderLocalServiceUtil.getRemotePageCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return FolderLocalServiceUtil.updateFolder(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue());
@@ -376,8 +376,16 @@ public class FolderLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
 	private String _methodName59;
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
@@ -390,12 +398,4 @@ public class FolderLocalServiceClpInvoker {
 	private String[] _methodParameterTypes63;
 	private String _methodName64;
 	private String[] _methodParameterTypes64;
-	private String _methodName65;
-	private String[] _methodParameterTypes65;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
 }

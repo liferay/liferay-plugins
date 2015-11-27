@@ -117,45 +117,45 @@ public class StatusLocalServiceClpInvoker {
 
 		_methodParameterTypes19 = new String[] { "com.liferay.chat.model.Status" };
 
-		_methodName50 = "getOSGiServiceIdentifier";
+		_methodName46 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes50 = new String[] {  };
+		_methodParameterTypes46 = new String[] {  };
 
-		_methodName55 = "getAllStatuses";
+		_methodName51 = "getAllStatuses";
 
-		_methodParameterTypes55 = new String[] {
+		_methodParameterTypes51 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
 
-		_methodName56 = "getGroupStatuses";
+		_methodName52 = "getGroupStatuses";
 
-		_methodParameterTypes56 = new String[] {
+		_methodParameterTypes52 = new String[] {
 				"long", "long", "java.lang.String[][]", "int", "int"
 			};
 
-		_methodName57 = "getSocialStatuses";
+		_methodName53 = "getSocialStatuses";
 
-		_methodParameterTypes57 = new String[] {
+		_methodParameterTypes53 = new String[] {
 				"long", "int", "long", "int", "int"
 			};
 
-		_methodName58 = "getSocialStatuses";
+		_methodName54 = "getSocialStatuses";
 
-		_methodParameterTypes58 = new String[] {
+		_methodParameterTypes54 = new String[] {
 				"long", "int[][]", "long", "int", "int"
 			};
 
-		_methodName59 = "getUserStatus";
+		_methodName55 = "getUserStatus";
 
-		_methodParameterTypes59 = new String[] { "long" };
+		_methodParameterTypes55 = new String[] { "long" };
 
-		_methodName60 = "updateStatus";
+		_methodName56 = "updateStatus";
 
-		_methodParameterTypes60 = new String[] { "long", "long" };
+		_methodParameterTypes56 = new String[] { "long", "long" };
 
-		_methodName61 = "updateStatus";
+		_methodName57 = "updateStatus";
 
-		_methodParameterTypes61 = new String[] {
+		_methodParameterTypes57 = new String[] {
 				"long", "long", "int", "int", "java.lang.String",
 				"java.lang.String", "int"
 			};
@@ -265,13 +265,13 @@ public class StatusLocalServiceClpInvoker {
 			return StatusLocalServiceUtil.updateStatus((com.liferay.chat.model.Status)arguments[0]);
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			return StatusLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return StatusLocalServiceUtil.getAllStatuses(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -279,8 +279,8 @@ public class StatusLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return StatusLocalServiceUtil.getGroupStatuses(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String[])arguments[2],
@@ -288,8 +288,8 @@ public class StatusLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return StatusLocalServiceUtil.getSocialStatuses(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Long)arguments[2]).longValue(),
@@ -297,27 +297,27 @@ public class StatusLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return StatusLocalServiceUtil.getSocialStatuses(((Long)arguments[0]).longValue(),
 				(int[])arguments[1], ((Long)arguments[2]).longValue(),
 				((Integer)arguments[3]).intValue(),
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return StatusLocalServiceUtil.getUserStatus(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return StatusLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return StatusLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -367,20 +367,20 @@ public class StatusLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 	private String _methodName55;
 	private String[] _methodParameterTypes55;
 	private String _methodName56;
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
-	private String _methodName60;
-	private String[] _methodParameterTypes60;
-	private String _methodName61;
-	private String[] _methodParameterTypes61;
 }

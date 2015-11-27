@@ -117,33 +117,33 @@ public class EntryLocalServiceClpInvoker {
 
 		_methodParameterTypes19 = new String[] { "com.liferay.chat.model.Entry" };
 
-		_methodName50 = "getOSGiServiceIdentifier";
+		_methodName46 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes50 = new String[] {  };
+		_methodParameterTypes46 = new String[] {  };
 
-		_methodName55 = "addEntry";
+		_methodName51 = "addEntry";
 
-		_methodParameterTypes55 = new String[] {
+		_methodParameterTypes51 = new String[] {
 				"long", "long", "long", "java.lang.String"
 			};
 
-		_methodName56 = "addEntry";
+		_methodName52 = "addEntry";
 
-		_methodParameterTypes56 = new String[] {
+		_methodParameterTypes52 = new String[] {
 				"long", "long", "java.lang.String"
 			};
 
-		_methodName57 = "deleteEntries";
+		_methodName53 = "deleteEntries";
 
-		_methodParameterTypes57 = new String[] { "long" };
+		_methodParameterTypes53 = new String[] { "long" };
 
-		_methodName58 = "getNewEntries";
+		_methodName54 = "getNewEntries";
 
-		_methodParameterTypes58 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes54 = new String[] { "long", "long", "int", "int" };
 
-		_methodName59 = "getOldEntries";
+		_methodName55 = "getOldEntries";
 
-		_methodParameterTypes59 = new String[] { "long", "int", "int" };
+		_methodParameterTypes55 = new String[] { "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -250,41 +250,41 @@ public class EntryLocalServiceClpInvoker {
 			return EntryLocalServiceUtil.updateEntry((com.liferay.chat.model.Entry)arguments[0]);
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			return EntryLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return EntryLocalServiceUtil.addEntry(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(), (java.lang.String)arguments[3]);
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return EntryLocalServiceUtil.addEntry(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (java.lang.String)arguments[2]);
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			EntryLocalServiceUtil.deleteEntries(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return EntryLocalServiceUtil.getNewEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return EntryLocalServiceUtil.getOldEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
@@ -331,16 +331,16 @@ public class EntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 	private String _methodName55;
 	private String[] _methodParameterTypes55;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
 }

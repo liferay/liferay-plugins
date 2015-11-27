@@ -123,25 +123,25 @@ public class AkismetDataLocalServiceClpInvoker {
 				"com.liferay.akismet.model.AkismetData"
 			};
 
-		_methodName42 = "getOSGiServiceIdentifier";
+		_methodName38 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes42 = new String[] {  };
+		_methodParameterTypes38 = new String[] {  };
 
-		_methodName47 = "deleteAkismetData";
+		_methodName43 = "deleteAkismetData";
 
-		_methodParameterTypes47 = new String[] { "java.util.Date" };
+		_methodParameterTypes43 = new String[] { "java.util.Date" };
 
-		_methodName48 = "deleteAkismetData";
+		_methodName44 = "deleteAkismetData";
 
-		_methodParameterTypes48 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes44 = new String[] { "java.lang.String", "long" };
 
-		_methodName49 = "fetchAkismetData";
+		_methodName45 = "fetchAkismetData";
 
-		_methodParameterTypes49 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes45 = new String[] { "java.lang.String", "long" };
 
-		_methodName50 = "updateAkismetData";
+		_methodName46 = "updateAkismetData";
 
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes46 = new String[] {
 				"java.lang.String", "long", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String"
@@ -252,34 +252,34 @@ public class AkismetDataLocalServiceClpInvoker {
 			return AkismetDataLocalServiceUtil.updateAkismetData((com.liferay.akismet.model.AkismetData)arguments[0]);
 		}
 
-		if (_methodName42.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
+		if (_methodName38.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
 			return AkismetDataLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName47.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			AkismetDataLocalServiceUtil.deleteAkismetData((java.util.Date)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			AkismetDataLocalServiceUtil.deleteAkismetData((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			return AkismetDataLocalServiceUtil.fetchAkismetData((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			return AkismetDataLocalServiceUtil.updateAkismetData((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -328,14 +328,14 @@ public class AkismetDataLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName42;
-	private String[] _methodParameterTypes42;
-	private String _methodName47;
-	private String[] _methodParameterTypes47;
-	private String _methodName48;
-	private String[] _methodParameterTypes48;
-	private String _methodName49;
-	private String[] _methodParameterTypes49;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
+	private String _methodName38;
+	private String[] _methodParameterTypes38;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
+	private String _methodName44;
+	private String[] _methodParameterTypes44;
+	private String _methodName45;
+	private String[] _methodParameterTypes45;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
 }

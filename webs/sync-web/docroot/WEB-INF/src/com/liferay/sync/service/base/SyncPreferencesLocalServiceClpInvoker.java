@@ -27,46 +27,46 @@ import java.util.Arrays;
 @ProviderType
 public class SyncPreferencesLocalServiceClpInvoker {
 	public SyncPreferencesLocalServiceClpInvoker() {
-		_methodName32 = "getOSGiServiceIdentifier";
+		_methodName26 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes32 = new String[] {  };
+		_methodParameterTypes26 = new String[] {  };
 
-		_methodName35 = "enableOAuth";
+		_methodName29 = "enableOAuth";
 
-		_methodParameterTypes35 = new String[] {
+		_methodParameterTypes29 = new String[] {
 				"long", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName36 = "getPortletPreferences";
+		_methodName30 = "getPortletPreferences";
 
-		_methodParameterTypes36 = new String[] { "long" };
+		_methodParameterTypes30 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName32.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
+		if (_methodName26.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName35.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+		if (_methodName29.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
-		if (_methodName36.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+		if (_methodName30.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.getPortletPreferences(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName32;
-	private String[] _methodParameterTypes32;
-	private String _methodName35;
-	private String[] _methodParameterTypes35;
-	private String _methodName36;
-	private String[] _methodParameterTypes36;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
+	private String _methodName30;
+	private String[] _methodParameterTypes30;
 }

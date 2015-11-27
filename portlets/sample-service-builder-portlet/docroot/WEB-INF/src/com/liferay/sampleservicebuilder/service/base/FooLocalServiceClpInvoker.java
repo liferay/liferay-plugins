@@ -148,53 +148,53 @@ public class FooLocalServiceClpInvoker {
 				"com.liferay.sampleservicebuilder.model.Foo"
 			};
 
-		_methodName61 = "getOSGiServiceIdentifier";
+		_methodName51 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes61 = new String[] {  };
+		_methodParameterTypes51 = new String[] {  };
 
-		_methodName66 = "addFoo";
+		_methodName56 = "addFoo";
 
-		_methodParameterTypes66 = new String[] {
+		_methodParameterTypes56 = new String[] {
 				"java.lang.String", "boolean", "int", "java.util.Date",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName67 = "deleteFoo";
+		_methodName57 = "deleteFoo";
 
-		_methodParameterTypes67 = new String[] {
+		_methodParameterTypes57 = new String[] {
 				"com.liferay.sampleservicebuilder.model.Foo"
 			};
 
-		_methodName68 = "deleteFoo";
+		_methodName58 = "deleteFoo";
 
-		_methodParameterTypes68 = new String[] { "long" };
+		_methodParameterTypes58 = new String[] { "long" };
 
-		_methodName69 = "getFoos";
+		_methodName59 = "getFoos";
 
-		_methodParameterTypes69 = new String[] {
+		_methodParameterTypes59 = new String[] {
 				"int", "int", "com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName70 = "getFoos";
+		_methodName60 = "getFoos";
 
-		_methodParameterTypes70 = new String[] {
+		_methodParameterTypes60 = new String[] {
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName71 = "getLocalObject";
+		_methodName61 = "getLocalObject";
 
-		_methodParameterTypes71 = new String[] {  };
+		_methodParameterTypes61 = new String[] {  };
 
-		_methodName72 = "updateAsset";
+		_methodName62 = "updateAsset";
 
-		_methodParameterTypes72 = new String[] {
+		_methodParameterTypes62 = new String[] {
 				"long", "com.liferay.sampleservicebuilder.model.Foo", "long[][]",
 				"java.lang.String[][]"
 			};
 
-		_methodName73 = "updateFoo";
+		_methodName63 = "updateFoo";
 
-		_methodParameterTypes73 = new String[] {
+		_methodParameterTypes63 = new String[] {
 				"long", "java.lang.String", "boolean", "int", "java.util.Date",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -336,13 +336,13 @@ public class FooLocalServiceClpInvoker {
 			return FooLocalServiceUtil.updateFoo((com.liferay.sampleservicebuilder.model.Foo)arguments[0]);
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return FooLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			FooLocalServiceUtil.addFoo((java.lang.String)arguments[0],
 				((Boolean)arguments[1]).booleanValue(),
 				((Integer)arguments[2]).intValue(),
@@ -352,35 +352,35 @@ public class FooLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return FooLocalServiceUtil.deleteFoo((com.liferay.sampleservicebuilder.model.Foo)arguments[0]);
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return FooLocalServiceUtil.deleteFoo(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return FooLocalServiceUtil.getFoos(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo>)arguments[2]);
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return FooLocalServiceUtil.getFoos((com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sampleservicebuilder.model.Foo>)arguments[0]);
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return FooLocalServiceUtil.getLocalObject();
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			FooLocalServiceUtil.updateAsset(((Long)arguments[0]).longValue(),
 				(com.liferay.sampleservicebuilder.model.Foo)arguments[1],
 				(long[])arguments[2], (java.lang.String[])arguments[3]);
@@ -388,8 +388,8 @@ public class FooLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			FooLocalServiceUtil.updateFoo(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Boolean)arguments[2]).booleanValue(),
@@ -451,22 +451,22 @@ public class FooLocalServiceClpInvoker {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
+	private String _methodName59;
+	private String[] _methodParameterTypes59;
+	private String _methodName60;
+	private String[] _methodParameterTypes60;
 	private String _methodName61;
 	private String[] _methodParameterTypes61;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
-	private String _methodName69;
-	private String[] _methodParameterTypes69;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
-	private String _methodName71;
-	private String[] _methodParameterTypes71;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
+	private String _methodName62;
+	private String[] _methodParameterTypes62;
+	private String _methodName63;
+	private String[] _methodParameterTypes63;
 }

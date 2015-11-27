@@ -123,28 +123,28 @@ public class ProjectsEntryLocalServiceClpInvoker {
 				"com.liferay.so.model.ProjectsEntry"
 			};
 
-		_methodName54 = "getOSGiServiceIdentifier";
+		_methodName48 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes54 = new String[] {  };
+		_methodParameterTypes48 = new String[] {  };
 
-		_methodName59 = "addProjectsEntry";
+		_methodName53 = "addProjectsEntry";
 
-		_methodParameterTypes59 = new String[] {
+		_methodParameterTypes53 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int", "int",
 				"int", "int", "int", "int", "boolean", "java.lang.String"
 			};
 
-		_methodName60 = "getUserProjectsEntries";
+		_methodName54 = "getUserProjectsEntries";
 
-		_methodParameterTypes60 = new String[] { "long" };
+		_methodParameterTypes54 = new String[] { "long" };
 
-		_methodName61 = "getUserProjectsEntriesCount";
+		_methodName55 = "getUserProjectsEntriesCount";
 
-		_methodParameterTypes61 = new String[] { "long" };
+		_methodParameterTypes55 = new String[] { "long" };
 
-		_methodName62 = "updateProjectsEntry";
+		_methodName56 = "updateProjectsEntry";
 
-		_methodParameterTypes62 = new String[] {
+		_methodParameterTypes56 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int", "int",
 				"int", "int", "int", "int", "boolean", "java.lang.String"
 			};
@@ -254,13 +254,13 @@ public class ProjectsEntryLocalServiceClpInvoker {
 			return ProjectsEntryLocalServiceUtil.updateProjectsEntry((com.liferay.so.model.ProjectsEntry)arguments[0]);
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return ProjectsEntryLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return ProjectsEntryLocalServiceUtil.addProjectsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -273,18 +273,18 @@ public class ProjectsEntryLocalServiceClpInvoker {
 				(java.lang.String)arguments[10]);
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return ProjectsEntryLocalServiceUtil.getUserProjectsEntries(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return ProjectsEntryLocalServiceUtil.getUserProjectsEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return ProjectsEntryLocalServiceUtil.updateProjectsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -338,14 +338,14 @@ public class ProjectsEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
-	private String _methodName60;
-	private String[] _methodParameterTypes60;
-	private String _methodName61;
-	private String[] _methodParameterTypes61;
-	private String _methodName62;
-	private String[] _methodParameterTypes62;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
 }

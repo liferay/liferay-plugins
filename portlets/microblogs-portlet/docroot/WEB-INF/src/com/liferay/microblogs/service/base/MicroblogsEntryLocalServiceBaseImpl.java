@@ -337,25 +337,6 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the microblogs entry remote service.
-	 *
-	 * @return the microblogs entry remote service
-	 */
-	public com.liferay.microblogs.service.MicroblogsEntryService getMicroblogsEntryService() {
-		return microblogsEntryService;
-	}
-
-	/**
-	 * Sets the microblogs entry remote service.
-	 *
-	 * @param microblogsEntryService the microblogs entry remote service
-	 */
-	public void setMicroblogsEntryService(
-		com.liferay.microblogs.service.MicroblogsEntryService microblogsEntryService) {
-		this.microblogsEntryService = microblogsEntryService;
-	}
-
-	/**
 	 * Returns the microblogs entry persistence.
 	 *
 	 * @return the microblogs entry persistence
@@ -432,25 +413,6 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the class name remote service.
-	 *
-	 * @return the class name remote service
-	 */
-	public com.liferay.portal.service.ClassNameService getClassNameService() {
-		return classNameService;
-	}
-
-	/**
-	 * Sets the class name remote service.
-	 *
-	 * @param classNameService the class name remote service
-	 */
-	public void setClassNameService(
-		com.liferay.portal.service.ClassNameService classNameService) {
-		this.classNameService = classNameService;
-	}
-
-	/**
 	 * Returns the class name persistence.
 	 *
 	 * @return the class name persistence
@@ -505,25 +467,6 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	public void setUserLocalService(
 		com.liferay.portal.service.UserLocalService userLocalService) {
 		this.userLocalService = userLocalService;
-	}
-
-	/**
-	 * Returns the user remote service.
-	 *
-	 * @return the user remote service
-	 */
-	public com.liferay.portal.service.UserService getUserService() {
-		return userService;
-	}
-
-	/**
-	 * Sets the user remote service.
-	 *
-	 * @param userService the user remote service
-	 */
-	public void setUserService(
-		com.liferay.portal.service.UserService userService) {
-		this.userService = userService;
 	}
 
 	/**
@@ -623,8 +566,6 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 
 	@BeanReference(type = com.liferay.microblogs.service.MicroblogsEntryLocalService.class)
 	protected MicroblogsEntryLocalService microblogsEntryLocalService;
-	@BeanReference(type = com.liferay.microblogs.service.MicroblogsEntryService.class)
-	protected com.liferay.microblogs.service.MicroblogsEntryService microblogsEntryService;
 	@BeanReference(type = MicroblogsEntryPersistence.class)
 	protected MicroblogsEntryPersistence microblogsEntryPersistence;
 	@BeanReference(type = MicroblogsEntryFinder.class)
@@ -633,16 +574,12 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ClassNameLocalService.class)
 	protected com.liferay.portal.service.ClassNameLocalService classNameLocalService;
-	@BeanReference(type = com.liferay.portal.service.ClassNameService.class)
-	protected com.liferay.portal.service.ClassNameService classNameService;
 	@BeanReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
 	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
 	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
 	protected com.liferay.portal.service.UserLocalService userLocalService;
-	@BeanReference(type = com.liferay.portal.service.UserService.class)
-	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
 	private ClassLoader _classLoader;

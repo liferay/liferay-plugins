@@ -123,13 +123,13 @@ public class JIRAChangeGroupLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.JIRAChangeGroup"
 			};
 
-		_methodName72 = "getOSGiServiceIdentifier";
+		_methodName68 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes72 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName77 = "getJIRAChangeGroup";
+		_methodName73 = "getJIRAChangeGroup";
 
-		_methodParameterTypes77 = new String[] { "long" };
+		_methodParameterTypes73 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -236,13 +236,13 @@ public class JIRAChangeGroupLocalServiceClpInvoker {
 			return JIRAChangeGroupLocalServiceUtil.updateJIRAChangeGroup((com.liferay.socialcoding.model.JIRAChangeGroup)arguments[0]);
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return JIRAChangeGroupLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			return JIRAChangeGroupLocalServiceUtil.getJIRAChangeGroup(((Long)arguments[0]).longValue());
 		}
 
@@ -287,8 +287,8 @@ public class JIRAChangeGroupLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName77;
-	private String[] _methodParameterTypes77;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
 }

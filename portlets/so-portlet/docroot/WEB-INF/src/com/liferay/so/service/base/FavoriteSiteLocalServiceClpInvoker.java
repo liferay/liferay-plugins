@@ -123,47 +123,47 @@ public class FavoriteSiteLocalServiceClpInvoker {
 				"com.liferay.so.model.FavoriteSite"
 			};
 
-		_methodName66 = "getOSGiServiceIdentifier";
+		_methodName56 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes66 = new String[] {  };
+		_methodParameterTypes56 = new String[] {  };
 
-		_methodName71 = "addFavoriteSite";
+		_methodName61 = "addFavoriteSite";
 
-		_methodParameterTypes71 = new String[] { "long", "long" };
+		_methodParameterTypes61 = new String[] { "long", "long" };
 
-		_methodName72 = "deleteFavoriteSite";
+		_methodName62 = "deleteFavoriteSite";
 
-		_methodParameterTypes72 = new String[] { "long" };
+		_methodParameterTypes62 = new String[] { "long" };
 
-		_methodName73 = "deleteFavoriteSites";
+		_methodName63 = "deleteFavoriteSites";
 
-		_methodParameterTypes73 = new String[] { "long", "long" };
+		_methodParameterTypes63 = new String[] { "long", "long" };
 
-		_methodName74 = "getFavoriteSites";
+		_methodName64 = "getFavoriteSites";
 
-		_methodParameterTypes74 = new String[] { "long", "int", "int" };
+		_methodParameterTypes64 = new String[] { "long", "int", "int" };
 
-		_methodName75 = "getFavoriteSites";
+		_methodName65 = "getFavoriteSites";
 
-		_methodParameterTypes75 = new String[] {
+		_methodParameterTypes65 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 
-		_methodName76 = "getFavoriteSitesCount";
+		_methodName66 = "getFavoriteSitesCount";
 
-		_methodParameterTypes76 = new String[] { "long" };
+		_methodParameterTypes66 = new String[] { "long" };
 
-		_methodName77 = "getFavoriteSitesCount";
+		_methodName67 = "getFavoriteSitesCount";
 
-		_methodParameterTypes77 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes67 = new String[] { "long", "java.lang.String" };
 
-		_methodName78 = "isFavoriteSite";
+		_methodName68 = "isFavoriteSite";
 
-		_methodParameterTypes78 = new String[] { "long" };
+		_methodParameterTypes68 = new String[] { "long" };
 
-		_methodName79 = "isFavoriteSite";
+		_methodName69 = "isFavoriteSite";
 
-		_methodParameterTypes79 = new String[] { "long", "long" };
+		_methodParameterTypes69 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -270,63 +270,63 @@ public class FavoriteSiteLocalServiceClpInvoker {
 			return FavoriteSiteLocalServiceUtil.updateFavoriteSite((com.liferay.so.model.FavoriteSite)arguments[0]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.addFavoriteSite(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.deleteFavoriteSite(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			FavoriteSiteLocalServiceUtil.deleteFavoriteSites(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSites(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName75.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSites(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSitesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.getFavoriteSitesCount(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.isFavoriteSite(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName79.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			return FavoriteSiteLocalServiceUtil.isFavoriteSite(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
@@ -372,24 +372,24 @@ public class FavoriteSiteLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName61;
+	private String[] _methodParameterTypes61;
+	private String _methodName62;
+	private String[] _methodParameterTypes62;
+	private String _methodName63;
+	private String[] _methodParameterTypes63;
+	private String _methodName64;
+	private String[] _methodParameterTypes64;
+	private String _methodName65;
+	private String[] _methodParameterTypes65;
 	private String _methodName66;
 	private String[] _methodParameterTypes66;
-	private String _methodName71;
-	private String[] _methodParameterTypes71;
-	private String _methodName72;
-	private String[] _methodParameterTypes72;
-	private String _methodName73;
-	private String[] _methodParameterTypes73;
-	private String _methodName74;
-	private String[] _methodParameterTypes74;
-	private String _methodName75;
-	private String[] _methodParameterTypes75;
-	private String _methodName76;
-	private String[] _methodParameterTypes76;
-	private String _methodName77;
-	private String[] _methodParameterTypes77;
-	private String _methodName78;
-	private String[] _methodParameterTypes78;
-	private String _methodName79;
-	private String[] _methodParameterTypes79;
+	private String _methodName67;
+	private String[] _methodParameterTypes67;
+	private String _methodName68;
+	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
 }

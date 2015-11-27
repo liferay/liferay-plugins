@@ -117,9 +117,9 @@ public class TypeLocalServiceClpInvoker {
 
 		_methodParameterTypes19 = new String[] { "com.liferay.ams.model.Type" };
 
-		_methodName54 = "getOSGiServiceIdentifier";
+		_methodName50 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes54 = new String[] {  };
+		_methodParameterTypes50 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -226,8 +226,8 @@ public class TypeLocalServiceClpInvoker {
 			return TypeLocalServiceUtil.updateType((com.liferay.ams.model.Type)arguments[0]);
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return TypeLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
@@ -272,6 +272,6 @@ public class TypeLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
 }
