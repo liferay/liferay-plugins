@@ -23,7 +23,8 @@ AUI.add(
 
 		var padNumber = A.rbind('padNumber', A.Lang.String, 2);
 
-		var RecurrenceConverter = function() {};
+		var RecurrenceConverter = function() {
+		};
 
 		A.mix(
 			RecurrenceConverter.prototype,
@@ -114,17 +115,15 @@ AUI.add(
 				_encodeRRule: function(rrule) {
 					var instance = this;
 
+					var components = A.Object.map(
+						function(item, index) {
+							return index.toUpperCase() + STR_EQUALS + instance._encode(item);
+						}
+					);
+
 					var string = '';
 
-					var components = [];
-
-					for (var key in rrule) {
-						var value = rrule[key];
-
-						components.push(key.toUpperCase() + STR_EQUALS + instance._encode(value));
-					}
-
-					if (components.length > 0) {
+					if (components.length) {
 						string = RRULE + STR_COLON + components.join(STR_SEMICOLON);
 					}
 
@@ -144,13 +143,13 @@ AUI.add(
 				_parseExDate: function(string) {
 					var instance = this;
 
-					var exdate = null;
+					var exDate = null;
 
 					if (string && string.startsWith(EXDATE + STR_SEMICOLON)) {
-						exdate = string.slice(7);
+						exDate = string.slice(7);
 					}
 
-					return exdate;
+					return exDate;
 				},
 
 				_parsePositionalByDay: function(string) {
