@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
@@ -163,30 +162,36 @@ public class VerifyUtil {
 						return;
 					}
 
-					SyncDLObject syncDLObject =
-						SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-							SyncConstants.TYPE_FOLDER, dlFolder.getFolderId());
+					try {
+						SyncDLObject syncDLObject =
+							SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
+								SyncConstants.TYPE_FOLDER,
+								dlFolder.getFolderId());
 
-					Date modifiedDate = dlFolder.getModifiedDate();
+						Date modifiedDate = dlFolder.getModifiedDate();
 
-					if ((syncDLObject != null) &&
-						(syncDLObject.getModifiedTime() >=
-							modifiedDate.getTime())) {
+						if ((syncDLObject != null) &&
+							(syncDLObject.getModifiedTime() >=
+								modifiedDate.getTime())) {
 
-						return;
+							return;
+						}
+
+						if (dlFolder.getStatus() ==
+								WorkflowConstants.STATUS_APPROVED) {
+
+							addSyncDLObject(
+								SyncUtil.toSyncDLObject(
+									dlFolder, SyncConstants.EVENT_ADD));
+						}
+						else {
+							addSyncDLObject(
+								SyncUtil.toSyncDLObject(
+									dlFolder, SyncConstants.EVENT_TRASH));
+						}
 					}
-
-					if (dlFolder.getStatus() ==
-							WorkflowConstants.STATUS_APPROVED) {
-
-						addSyncDLObject(
-							SyncUtil.toSyncDLObject(
-								dlFolder, SyncConstants.EVENT_ADD));
-					}
-					else {
-						addSyncDLObject(
-							SyncUtil.toSyncDLObject(
-								dlFolder, SyncConstants.EVENT_TRASH));
+					catch (Exception e) {
+						_log.error(e, e);
 					}
 				}
 
@@ -257,12 +262,8 @@ public class VerifyUtil {
 
 						addSyncDLObject(fileEntrySyncDLObject);
 					}
-					catch (NoSuchFileException nsfe) {
-						if (_log.isWarnEnabled()) {
-							_log.warn(
-								"File missing for file entry " +
-									dlFileEntry.getFileEntryId());
-						}
+					catch (Exception e) {
+						_log.error(e, e);
 					}
 				}
 
