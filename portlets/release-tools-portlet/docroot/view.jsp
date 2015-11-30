@@ -94,7 +94,7 @@ An example URL is: <em>http://sourceforge.net/project/showfiles.php?group_id=492
 	<br />
 
 	<div class="portlet-msg-info">
-		Below are a list of plugins that are on SourceForge's download page but not available for the Plugin Installer.
+		Below are a list of plugins that are on SourceForge's download page.
 	</div>
 
 	<%
@@ -107,20 +107,12 @@ An example URL is: <em>http://sourceforge.net/project/showfiles.php?group_id=492
 	while (matcher.find()) {
 		String fileName = matcher.group(1);
 
-		String directDownloadURL = "http://downloads.sourceforge.net/" + projectName + "/" + fileName;
-
-		try {
-			sfPlugins.add(fileName);
-
-			com.liferay.portlet.softwarecatalog.service.SCProductVersionLocalServiceUtil.getProductVersionByDirectDownloadURL(directDownloadURL);
-		}
-		catch (Exception e) {
+		sfPlugins.add(fileName);
 	%>
 
-			<%= fileName %><br />
+		<%= fileName %><br />
 
 	<%
-		}
 	}
 	%>
 
