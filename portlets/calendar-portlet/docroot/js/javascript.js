@@ -1458,40 +1458,38 @@ AUI.add(
 
 						var recurrence = instance.parseRecurrence(schedulerEvent.get('recurrence'));
 
-						if (!recurrence) {
-							return null;
-						}
+						if (recurrence) {
+							var rrule = recurrence.rrule;
 
-						var rrule = recurrence.rrule;
+							var newDate = changedAttributes.startDate.newVal;
 
-						var newDate = changedAttributes.startDate.newVal;
+							var prevDate = changedAttributes.startDate.prevVal;
 
-						var prevDate = changedAttributes.startDate.prevVal;
+							if (DateMath.isDayOverlap(prevDate, newDate)) {
+								if (rrule.freq === WEEKLY) {
+									var index = rrule.byday.indexOf(DAYS_OF_WEEK[prevDate.getDay()]);
 
-						if (DateMath.isDayOverlap(prevDate, newDate)) {
-							if (rrule.freq === WEEKLY) {
-								var index = rrule.byday.indexOf(DAYS_OF_WEEK[prevDate.getDay()]);
+									AArray.remove(rrule.byday, index);
 
-								AArray.remove(rrule.byday, index);
-
-								rrule.byday.push(DAYS_OF_WEEK[newDate.getDay()]);
-							}
-							else if (rrule.byday) {
-								var position = Math.ceil(newDate.getDate() / DateMath.WEEK_LENGTH);
-
-								var futureDate = DateMath.add(newDate, DateMath.WEEK, 1);
-
-								var lastDayOfWeek = futureDate.getMonth() !== newDate.getMonth();
-
-								if ((position > 4) || (lastDayOfWeek && (rrule.byday.position === -1))) {
-									position = -1;
+									rrule.byday.push(DAYS_OF_WEEK[newDate.getDay()]);
 								}
+								else if (rrule.byday) {
+									var position = Math.ceil(newDate.getDate() / DateMath.WEEK_LENGTH);
 
-								rrule.byday.position = position;
-								rrule.byday.dayOfWeek = DAYS_OF_WEEK[newDate.getDay()];
+									var futureDate = DateMath.add(newDate, DateMath.WEEK, 1);
 
-								if (rrule.bymonth) {
-									rrule.bymonth = newDate.getMonth() + 1;
+									var lastDayOfWeek = futureDate.getMonth() !== newDate.getMonth();
+
+									if ((position > 4) || (lastDayOfWeek && (rrule.byday.position === -1))) {
+										position = -1;
+									}
+
+									rrule.byday.position = position;
+									rrule.byday.dayOfWeek = DAYS_OF_WEEK[newDate.getDay()];
+
+									if (rrule.bymonth) {
+										rrule.bymonth = newDate.getMonth() + 1;
+									}
 								}
 							}
 						}
