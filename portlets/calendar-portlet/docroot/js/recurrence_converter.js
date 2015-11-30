@@ -77,10 +77,10 @@ AUI.add(
 
 					var result = value;
 
-					if (value instanceof Date) {
+					if (Lang.isDate(value)) {
 						result = instance._encodeDate(value);
 					}
-					else if (value instanceof Array) {
+					else if (Array.isArray(value)) {
 						result = instance._encodeDaysOfWeek(value);
 					}
 					else if (value.position && value.dayOfWeek) {
