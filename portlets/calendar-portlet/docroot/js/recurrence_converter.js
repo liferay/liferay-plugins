@@ -21,6 +21,8 @@ AUI.add(
 
 		var WEEKLY = 'WEEKLY';
 
+		var padNumber = A.rbind('padNumber', A.Lang.String, 2);
+
 		var RecurrenceConverter = function() {};
 
 		A.mix(
@@ -93,9 +95,8 @@ AUI.add(
 				_encodeDate: function(date) {
 					var instance = this;
 
-					var month = instance._twoDigits(date.getMonth() + 1);
-
-					var day = instance._twoDigits(date.getDate());
+					var day = padNumber(date.getDate());
+					var month = padNumber(date.getMonth() + 1);
 
 					return [date.getFullYear(), month, day].join(STR_EMPTY);
 				},
@@ -206,13 +207,6 @@ AUI.add(
 					}
 
 					return rrule;
-				},
-
-
-				_twoDigits: function(number) {
-					var paddedNumber = STR_ZERO + number;
-
-					return paddedNumber.slice(-2);
 				}
 			}
 		);
