@@ -17,7 +17,6 @@ package com.liferay.amazontools;
 import com.amazonaws.services.autoscaling.model.AutoScalingGroup;
 import com.amazonaws.services.autoscaling.model.CreateOrUpdateTagsRequest;
 import com.amazonaws.services.autoscaling.model.DescribeAutoScalingGroupsResult;
-import com.amazonaws.services.ec2.model.AssociateAddressRequest;
 import com.amazonaws.services.ec2.model.CreateTagsRequest;
 import com.amazonaws.services.ec2.model.Tag;
 
@@ -122,8 +121,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		List<String> instanceIds = checkAutoScalingGroup(
 			autoScalingGroupName, minSize);
 
-		associateElasticIpAddresses(instanceIds);
-
 		deactivateOldScalingGroup(autoScalingGroupName);
 
 		if (openAsgardURLOption) {
@@ -132,34 +129,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		System.out.println(
 			"Deployed Auto Scaling Group " + autoScalingGroupName);
-	}
-
-	protected void associateElasticIpAddresses(List<String> instanceIds) {
-		if (!properties.containsKey("elastic.ip.addresses")) {
-			return;
-		}
-
-		String elasticIpAddressesString = properties.getProperty(
-			"elastic.ip.addresses");
-
-		String[] elasticIpAddresses = elasticIpAddressesString.split(",");
-
-		for (int i = 0;
-				(i < elasticIpAddresses.length) && (i < instanceIds.size());
-					i++) {
-
-			System.out.println(
-				"Associating IP address " + elasticIpAddresses[i] +
-					" with instance " + instanceIds.get(i));
-
-			AssociateAddressRequest associateAddressRequest =
-				new AssociateAddressRequest();
-
-			associateAddressRequest.setInstanceId(instanceIds.get(i));
-			associateAddressRequest.setPublicIp(elasticIpAddresses[i]);
-
-			amazonEC2Client.associateAddress(associateAddressRequest);
-		}
 	}
 
 	protected List<String> checkAutoScalingGroup(
