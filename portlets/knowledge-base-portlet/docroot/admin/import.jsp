@@ -37,6 +37,10 @@ long parentKBFolderId = ParamUtil.getLong(request, "parentKBFolderId");
 		<%= LanguageUtil.format(locale, "an-unexpected-error-occurred-while-importing-articles-x", kbaie.getLocalizedMessage()) %>
 	</liferay-ui:error>
 
+	<liferay-ui:error exception="<%= UploadRequestSizeException.class %>">
+		<liferay-ui:message arguments="<%= TextFormatter.formatStorageSize(PrefsPropsUtil.getLong(PropsKeys.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE), locale) %>" key="request-is-larger-than-x-and-could-not-be-processed" translateArguments="<%= false %>" />
+	</liferay-ui:error>
+
 	<aui:fieldset class="kb-block-labels">
 		<aui:field-wrapper>
 			<div class="alert alert-info">
