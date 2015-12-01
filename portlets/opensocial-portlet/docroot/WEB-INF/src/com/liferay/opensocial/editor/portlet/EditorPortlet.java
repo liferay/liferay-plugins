@@ -66,8 +66,6 @@ public class EditorPortlet extends AdminPortlet {
 		throws IOException, PortletException {
 
 		try {
-			Class<?> clazz = getClass();
-
 			AuthTokenUtil.check(
 				PortalUtil.getHttpServletRequest(resourceRequest));
 

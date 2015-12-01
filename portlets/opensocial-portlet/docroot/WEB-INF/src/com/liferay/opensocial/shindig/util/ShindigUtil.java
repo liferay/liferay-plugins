@@ -229,7 +229,6 @@ public class ShindigUtil {
 					ActionKeys.ADD_DOCUMENT, ActionKeys.DELETE,
 					ActionKeys.UPDATE, ActionKeys.VIEW});
 			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
-
 			serviceContext.setScopeGroupId(repositoryId);
 
 			folder = DLAppServiceUtil.addFolder(
