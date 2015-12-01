@@ -71,7 +71,7 @@ public class EditorPortlet extends AdminPortlet {
 
 			AuthTokenUtil.checkCSRFToken(
 				PortalUtil.getHttpServletRequest(resourceRequest),
-				claszz.getName());
+				clazz.getName());
 
 			String resourceID = resourceRequest.getResourceID();
 
