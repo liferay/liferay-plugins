@@ -133,6 +133,8 @@ public class AdminPortlet extends BaseKBPortlet {
 			UploadPortletRequest uploadPortletRequest =
 				PortalUtil.getUploadPortletRequest(actionRequest);
 
+			checkExceededSizeLimit(actionRequest);
+
 			long parentKBFolderId = ParamUtil.getLong(
 				uploadPortletRequest, "parentKBFolderId",
 				KBFolderConstants.DEFAULT_PARENT_FOLDER_ID);

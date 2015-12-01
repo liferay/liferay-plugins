@@ -69,10 +69,9 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Adolfo Pérez
@@ -85,6 +84,8 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		checkExceededSizeLimit(actionRequest);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -440,11 +441,12 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		return editURL;
 	}
 
-	protected void checkExceededSizeLimit(HttpServletRequest request)
+	protected void checkExceededSizeLimit(PortletRequest portletRequest)
 		throws PortalException {
 
-		UploadException uploadException = (UploadException)request.getAttribute(
-			WebKeys.UPLOAD_EXCEPTION);
+		UploadException uploadException =
+			(UploadException)portletRequest.getAttribute(
+				WebKeys.UPLOAD_EXCEPTION);
 
 		if (uploadException != null) {
 			Throwable cause = uploadException.getCause();
