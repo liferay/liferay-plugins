@@ -116,6 +116,7 @@ AUI.add(
 					var instance = this;
 
 					var components = A.Object.map(
+						rrule,
 						function(item, index) {
 							return index.toUpperCase() + STR_EQUALS + instance._encode(item);
 						}
