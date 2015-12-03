@@ -58,8 +58,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.comparator.GroupNameComparator;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
-import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
-import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
@@ -754,18 +752,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
-			if (TrashUtil.isInTrash(
+			if (!TrashUtil.isInTrash(
 					DLFileEntryConstants.getClassName(), fileEntryId)) {
 
-				return null;
+				fileEntry = dlAppService.moveFileEntryToTrash(fileEntryId);
 			}
 
-			fileEntry = dlAppService.moveFileEntryToTrash(fileEntryId);
-
 			return toSyncDLObject(fileEntry, SyncConstants.EVENT_TRASH);
-		}
-		catch (NoSuchFileEntryException nsfee) {
-			return null;
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -801,18 +794,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(folder.getGroupId());
 
-			if (TrashUtil.isInTrash(
+			if (!TrashUtil.isInTrash(
 					DLFolderConstants.getClassName(), folderId)) {
 
-				return null;
+				folder = dlAppService.moveFolderToTrash(folderId);
 			}
 
-			folder = dlAppService.moveFolderToTrash(folderId);
-
 			return toSyncDLObject(folder, SyncConstants.EVENT_TRASH);
-		}
-		catch (NoSuchFolderException nsfe) {
-			return null;
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
