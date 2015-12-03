@@ -73,8 +73,14 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 		<liferay-ui:message arguments="<%= fileMaxSize %>" key="please-enter-a-file-with-a-valid-file-size-no-larger-than-x" translateArguments="<%= false %>" />
 	</liferay-ui:error>
 
-	<liferay-ui:error exception="<%= InvalidKBArticleUrlTitleException.class %>" message="please-enter-a-friendly-url-that-starts-with-a-slash-and-contains-alphanumeric-characters-dashes-and-underscores" />
-	<liferay-ui:error exception="<%= KBArticleContentException.class %>" message="please-enter-valid-content" />
+	<liferay-ui:error exception="<%= KBArticleUrlTitleException.MustNotContainInvalidCharacters.class %>" message="please-enter-a-friendly-url-that-starts-with-a-slash-and-contains-alphanumeric-characters-dashes-and-underscores" />
+
+	<liferay-ui:error exception="<%= KBArticleUrlTitleException.MustNotExceedMaximumSize.class %>" message="please-enter-a-friendly-url-shorter-than-x-characters" />
+
+	<liferay-ui:error exception="<%= KBArticleContentException.class %>">
+		<liferay-ui:message arguments='<%= ModelHintsUtil.getMaxLength(KBArticle.class.getName(), "urlTitle") %>' key="please-enter-valid-content" />
+	</liferay-ui:error>
+
 	<liferay-ui:error exception="<%= KBArticleSourceURLException.class %>" message="please-enter-a-valid-source-url" />
 	<liferay-ui:error exception="<%= KBArticleTitleException.class %>" message="please-enter-a-valid-title" />
 	<liferay-ui:error exception="<%= NoSuchFileException.class %>" message="the-document-could-not-be-found" />
