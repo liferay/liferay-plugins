@@ -28,13 +28,13 @@
 <%@ page import="com.liferay.compat.portal.kernel.util.ArrayUtil" %><%@
 page import="com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
-page import="com.liferay.knowledgebase.InvalidKBArticleUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.InvalidKBFolderNameException" %><%@
 page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
 page import="com.liferay.knowledgebase.KBArticleImportException" %><%@
 page import="com.liferay.knowledgebase.KBArticlePriorityException" %><%@
 page import="com.liferay.knowledgebase.KBArticleSourceURLException" %><%@
 page import="com.liferay.knowledgebase.KBArticleTitleException" %><%@
+page import="com.liferay.knowledgebase.KBArticleUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.KBCommentContentException" %><%@
 page import="com.liferay.knowledgebase.KBTemplateContentException" %><%@
 page import="com.liferay.knowledgebase.KBTemplateTitleException" %><%@

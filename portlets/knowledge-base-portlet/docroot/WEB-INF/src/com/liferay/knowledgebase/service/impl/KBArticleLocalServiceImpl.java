@@ -16,12 +16,12 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException;
-import com.liferay.knowledgebase.InvalidKBArticleUrlTitleException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticleParentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleSourceURLException;
 import com.liferay.knowledgebase.KBArticleTitleException;
+import com.liferay.knowledgebase.KBArticleUrlTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.importer.KBArticleImporter;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
@@ -2004,9 +2004,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		if (!KnowledgeBaseUtil.isValidUrlTitle(urlTitle)) {
-			throw new InvalidKBArticleUrlTitleException(
-				"URL title must start with a '/' and contain only " +
-					"alphanumeric characters, dashes, and underscores");
+			throw new KBArticleUrlTitleException.
+				MustNotContainInvalidCharacters(urlTitle);
+		}
+
+		int urlTitleMaxSize = ModelHintsUtil.getMaxLength(
+			KBArticle.class.getName(), "urlTitle");
+
+		if (urlTitle.length() > urlTitleMaxSize) {
+			throw new KBArticleUrlTitleException.MustNotExceedMaximumSize(
+				urlTitle, urlTitleMaxSize);
 		}
 
 		Collection<KBArticle> kbArticles = kbArticlePersistence.findByG_KBFI_UT(
