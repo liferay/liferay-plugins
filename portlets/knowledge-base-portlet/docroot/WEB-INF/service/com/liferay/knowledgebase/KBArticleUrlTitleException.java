@@ -39,6 +39,14 @@ public class KBArticleUrlTitleException extends PortalException {
 		super(cause);
 	}
 
+	public static class MustNotBeDuplicate extends KBArticleUrlTitleException {
+
+		public MustNotBeDuplicate(String urlTitle) {
+			super("Duplicate URL title " + urlTitle);
+		}
+
+	}
+
 	public static class MustNotContainInvalidCharacters
 		extends KBArticleUrlTitleException {
 
