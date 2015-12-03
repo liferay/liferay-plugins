@@ -26,7 +26,6 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.journal.model.JournalArticle" %><%@
-page import="com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException" %><%@
 page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
 page import="com.liferay.knowledgebase.InvalidKBFolderNameException" %><%@
 page import="com.liferay.knowledgebase.KBArticleContentException" %><%@

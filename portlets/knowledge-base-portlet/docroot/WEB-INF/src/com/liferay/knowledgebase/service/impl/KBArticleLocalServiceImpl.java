@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticleParentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
@@ -1995,8 +1994,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			groupId, kbFolderId, urlTitle.substring(1));
 
 		if (!kbArticles.isEmpty()) {
-			throw new DuplicateKBArticleUrlTitleException(
-				"Duplicate URL title " + urlTitle);
+			throw new KBArticleUrlTitleException.MustNotBeDuplicate(urlTitle);
 		}
 	}
 
