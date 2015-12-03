@@ -39,4 +39,27 @@ public class KBArticleUrlTitleException extends PortalException {
 		super(cause);
 	}
 
+	public static class MustNotContainInvalidCharacters
+		extends KBArticleUrlTitleException {
+
+		public MustNotContainInvalidCharacters(String urlTitle) {
+			super(
+				"Invalid URL title " + urlTitle + "; URL titles must start " +
+					"with a '/' and contain only alphanumeric characters," +
+						" dashes, and underscores");
+		}
+
+	}
+
+	public static class MustNotExceedMaximumSize
+		extends KBArticleUrlTitleException {
+
+		public MustNotExceedMaximumSize(String urlTitle, int urlTitleMaxSize) {
+			super(
+				"Invalid URL title " + urlTitle + "; URL titles must be " +
+					"shorter than " + urlTitleMaxSize + " characters");
+		}
+
+	}
+
 }
