@@ -867,7 +867,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
-			dlAppService.restoreFileEntryFromTrash(fileEntryId);
+			dlTrashService.restoreFileEntryFromTrash(fileEntryId);
 
 			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
@@ -887,7 +887,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(folder.getGroupId());
 
-			dlAppService.restoreFolderFromTrash(folderId);
+			dlTrashService.restoreFolderFromTrash(folderId);
 
 			folder = dlAppLocalService.getFolder(folderId);
 

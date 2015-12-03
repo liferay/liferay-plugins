@@ -123,6 +123,7 @@
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp" />
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFileEntry" />
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFileVersion" />
+		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLTrash" />
 
 		<!-- Transactions -->
 
