@@ -356,7 +356,6 @@
 	<exceptions>
 		<exception>DuplicateKBArticleUrlTitle</exception>
 		<exception>DuplicateKBFolderName</exception>
-		<exception>InvalidKBArticleUrlTitle</exception>
 		<exception>InvalidKBFolderName</exception>
 		<exception>KBArticleContent</exception>
 		<exception>KBArticleImport</exception>
@@ -364,6 +363,7 @@
 		<exception>KBArticlePriority</exception>
 		<exception>KBArticleSourceURL</exception>
 		<exception>KBArticleTitle</exception>
+		<exception>KBArticleUrlTitle</exception>
 		<exception>KBCommentContent</exception>
 		<exception>KBTemplateContent</exception>
 		<exception>KBTemplateTitle</exception>
