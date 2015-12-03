@@ -422,20 +422,8 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException")) {
-			return new com.liferay.knowledgebase.DuplicateKBArticleUrlTitleException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals(
 					"com.liferay.knowledgebase.DuplicateKBFolderNameException")) {
 			return new com.liferay.knowledgebase.DuplicateKBFolderNameException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals(
-					"com.liferay.knowledgebase.InvalidKBArticleUrlTitleException")) {
-			return new com.liferay.knowledgebase.InvalidKBArticleUrlTitleException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
@@ -478,6 +466,12 @@ public class ClpSerializer {
 		if (className.equals(
 					"com.liferay.knowledgebase.KBArticleTitleException")) {
 			return new com.liferay.knowledgebase.KBArticleTitleException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.knowledgebase.KBArticleUrlTitleException")) {
+			return new com.liferay.knowledgebase.KBArticleUrlTitleException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
