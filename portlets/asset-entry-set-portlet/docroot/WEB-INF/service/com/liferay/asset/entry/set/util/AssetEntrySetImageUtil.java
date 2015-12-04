@@ -78,7 +78,7 @@ public class AssetEntrySetImageUtil {
 
 		FileEntry fileEntry = addFileEntry(
 			userId, classNameId, classPK, portletId, file,
-			AssetEntrySetConstants.IMAGE_TYPE_RAW);
+			AssetEntrySetConstants.IMAGE_TYPE_RAW, file.getName());
 
 		return getImageJSONObject(
 			JSONFactoryUtil.createJSONObject(), fileEntry,
@@ -99,7 +99,7 @@ public class AssetEntrySetImageUtil {
 
 			rawFileEntry = addFileEntry(
 				userId, classNameId, classPK, portletId, file,
-				AssetEntrySetConstants.IMAGE_TYPE_RAW);
+				AssetEntrySetConstants.IMAGE_TYPE_RAW, file.getName());
 
 			imageBag = ImageToolUtil.read(rawFileEntry.getContentStream());
 		}
@@ -120,7 +120,7 @@ public class AssetEntrySetImageUtil {
 
 				fileEntry = addScaledImageFileEntry(
 					userId, classNameId, 0L, portletId, imageBag, imageType,
-					imageMaxSizes.get(imageType));
+					file.getName(), imageMaxSizes.get(imageType));
 			}
 
 			imageJSONObject = getImageJSONObject(
@@ -132,7 +132,8 @@ public class AssetEntrySetImageUtil {
 
 	public static FileEntry addScaledImageFileEntry(
 			long userId, long classNameId, long classPK, String portletId,
-			ImageBag imageBag, String imageType, String imageMaxSize)
+			ImageBag imageBag, String imageType, String originalFileName,
+			String imageMaxSize)
 		throws PortalException, SystemException {
 
 		File scaledFile = null;
@@ -150,7 +151,8 @@ public class AssetEntrySetImageUtil {
 					scaledRenderedImage, imageBag.getType()));
 
 			return addFileEntry(
-				userId, classNameId, classPK, portletId, scaledFile, imageType);
+				userId, classNameId, classPK, portletId, scaledFile, imageType,
+				originalFileName);
 		}
 		catch (IOException ioe) {
 			throw new SystemException(ioe);
@@ -313,7 +315,7 @@ public class AssetEntrySetImageUtil {
 
 	protected static FileEntry addFileEntry(
 			long userId, long classNameId, long classPK, String portletId,
-			File file, String imageType)
+			File file, String imageType, String originalFileName)
 		throws PortalException, SystemException {
 
 		long groupId = 0;
@@ -343,13 +345,13 @@ public class AssetEntrySetImageUtil {
 		serviceContext.setAttribute("classPK", String.valueOf(classPK));
 
 		String fileName =
-			System.currentTimeMillis() + imageType + file.getName();
+			System.currentTimeMillis() + imageType + originalFileName;
 
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
 			repository.getRepositoryId(), 0L, fileName, contentType, fileName,
-			StringPool.BLANK, StringPool.BLANK, file, serviceContext);
+			originalFileName, StringPool.BLANK, file, serviceContext);
 
 		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(
 			fileEntry.getFileEntryId());

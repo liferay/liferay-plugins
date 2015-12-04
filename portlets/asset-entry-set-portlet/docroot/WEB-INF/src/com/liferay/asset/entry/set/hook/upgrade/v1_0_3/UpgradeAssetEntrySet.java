@@ -124,7 +124,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 							AssetEntrySetConstants.
 								ASSET_ENTRY_SET_CLASS_NAME_ID,
 							0L, PortletKeys.ASSET_ENTRY_SET, imageBag,
-							imageType, imageMaxSize);
+							imageType, rawFileEntry.getTitle(), imageMaxSize);
 
 					DLFileEntry dlFileEntry =
 						DLFileEntryLocalServiceUtil.getFileEntry(
