@@ -133,6 +133,20 @@ public class JCalendarUtil {
 		return weekOfMonth;
 	}
 
+	public static boolean isSameDayOfWeek(
+		Calendar jCalendar1, Calendar jCalendar2) {
+
+		int dayOfWeek1 = jCalendar1.get(Calendar.DAY_OF_WEEK);
+		int dayOfWeek2 = jCalendar2.get(Calendar.DAY_OF_WEEK);
+
+		if (dayOfWeek1 == dayOfWeek2) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	public static Calendar mergeJCalendar(
 		Calendar dateJCalendar, Calendar timeJCalendar, TimeZone timeZone) {
 

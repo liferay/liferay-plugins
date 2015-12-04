@@ -147,6 +147,23 @@ public class JCalendarUtilTest {
 	}
 
 	@Test
+	public void testIsSameDayOfWeek() {
+		Calendar jCalendar1 = CalendarFactoryUtil.getCalendar(
+			2015, Calendar.DECEMBER, 4);
+		Calendar jCalendar2 = CalendarFactoryUtil.getCalendar(
+			2015, Calendar.DECEMBER, 11);
+
+		Assert.assertTrue(
+			JCalendarUtil.isSameDayOfWeek(jCalendar1, jCalendar2));
+
+		jCalendar2 = CalendarFactoryUtil.getCalendar(
+			2015, Calendar.DECEMBER, 12);
+
+		Assert.assertFalse(
+			JCalendarUtil.isSameDayOfWeek(jCalendar1, jCalendar2));
+	}
+
+	@Test
 	public void testMergeJCalendar() {
 		Calendar dateJCalendar = CalendarFactoryUtil.getCalendar(
 			randomYear(), randomMonth(), randomDayOfMonth(), randomHour(),
