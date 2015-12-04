@@ -708,6 +708,40 @@ public class CalendarPortlet extends MVCPortlet {
 		return notificationTypeSettingsProperties.toString();
 	}
 
+	protected long getOffset(
+			CalendarBooking calendarBooking, long startTime,
+			Recurrence recurrence)
+		throws PortalException {
+
+		Frequency frequency = null;
+
+		if ((recurrence != null) && (frequency == Frequency.WEEKLY)) {
+			CalendarBooking firstInstance =
+				_calendarBookingService.getCalendarBookingInstance(
+					calendarBooking.getCalendarBookingId(), 0);
+
+			java.util.Calendar startTimeJCalendar =
+				CalendarFactoryUtil.getCalendar(
+					startTime, calendarBooking.getTimeZone());
+
+			java.util.Calendar firstInstanceJCalendar =
+				CalendarFactoryUtil.getCalendar(
+					firstInstance.getStartTime(),
+					calendarBooking.getTimeZone());
+
+			if (!JCalendarUtil.isSameDayOfWeek(
+					startTimeJCalendar, firstInstanceJCalendar)) {
+
+				startTimeJCalendar = JCalendarUtil.mergeJCalendar(
+					firstInstanceJCalendar, startTimeJCalendar,
+					calendarBooking.getTimeZone());
+				startTime = startTimeJCalendar.getTimeInMillis();
+			}
+		}
+
+		return startTime - calendarBooking.getStartTime();
+	}
+
 	protected Recurrence getRecurrence(ActionRequest actionRequest) {
 		boolean repeat = ParamUtil.getBoolean(actionRequest, "repeat");
 
@@ -1356,7 +1390,7 @@ public class CalendarPortlet extends MVCPortlet {
 						calendarBookingId, instanceIndex);
 
 				long duration = endTime - startTime;
-				long offset = startTime - calendarBooking.getStartTime();
+				long offset = getOffset(calendarBooking, startTime, recurrence);
 
 				calendarBooking =
 					CalendarBookingServiceUtil.
