@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -106,18 +105,9 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 			payloadJSONObject.getString(
 				AssetEntrySetConstants.PAYLOAD_KEY_ASSET_TAG_NAMES));
 
-		JSONArray assetTagsJSONArray = null;
-
-		try {
-			assetTagsJSONArray =
-				AssetEntrySetParticipantInfoUtil.getAssetTagsJSONArray(
-					userId, assetTagNames);
-		}
-		catch (Throwable t) {
-			t = ((UndeclaredThrowableException) t).getUndeclaredThrowable();
-
-			throw new PortalException(t.getCause());
-		}
+		JSONArray assetTagsJSONArray =
+			AssetEntrySetParticipantInfoUtil.getAssetTagsJSONArray(
+				userId, assetTagNames);
 
 		for (int i = 0; i < assetTagsJSONArray.length(); i++) {
 			sharedToJSONArray.put(assetTagsJSONArray.getJSONObject(i));

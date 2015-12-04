@@ -451,7 +451,9 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected boolean isValidAssetTagName(String assetTagName) {
-		if (Validator.isDigit(assetTagName.charAt(0))) {
+		if (Validator.isDigit(assetTagName.charAt(0)) ||
+			(assetTagName.length() > 75)) {
+
 			return false;
 		}
 
