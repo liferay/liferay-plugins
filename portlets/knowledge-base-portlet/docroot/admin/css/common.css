@@ -120,7 +120,7 @@
 			width: 100%;
 
 			.kb-article-comment-body {
-				word-break: normal;
+				word-wrap: break-word;
 			}
 
 			.kb-article-comment-user {
