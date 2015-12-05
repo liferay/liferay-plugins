@@ -146,7 +146,7 @@ public class AccountIndexer extends BaseIndexer<Account> {
 					try {
 						Document document = getDocument(account);
 
-						indexableActionableDynamicQuery.addDocument(document);
+						indexableActionableDynamicQuery.addDocuments(document);
 					}
 					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {

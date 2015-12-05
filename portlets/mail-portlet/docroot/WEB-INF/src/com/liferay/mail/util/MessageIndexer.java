@@ -130,7 +130,7 @@ public class MessageIndexer extends BaseIndexer<Message> {
 					try {
 						Document document = getDocument(message);
 
-						indexableActionableDynamicQuery.addDocument(document);
+						indexableActionableDynamicQuery.addDocuments(document);
 					}
 					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {

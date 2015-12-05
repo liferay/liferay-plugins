@@ -148,7 +148,7 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 					try {
 						Document document = getDocument(folder);
 
-						indexableActionableDynamicQuery.addDocument(document);
+						indexableActionableDynamicQuery.addDocuments(document);
 					}
 					catch (PortalException pe) {
 						if (_log.isWarnEnabled()) {
