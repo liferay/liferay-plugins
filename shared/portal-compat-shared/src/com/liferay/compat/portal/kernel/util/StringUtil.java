@@ -189,6 +189,13 @@ public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 		int comparePoint = 0;
 
 		while (sIndex < s.length()) {
+			if (wildcardIndex == wildcard.length()) {
+
+				// Wildcard exhausted before s
+
+				return false;
+			}
+
 			char c = wildcard.charAt(wildcardIndex);
 
 			if (c == multipleWildcardCharacter) {
