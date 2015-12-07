@@ -172,13 +172,11 @@
 	</service>
 	<service name="Plugin_Screens_ScreensJournalArticleService" provider="java:RPC" style="rpc" use="encoded">
 		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getJournalArticleContent" qname="operNS:getJournalArticleContent" returnQName="getJournalArticleContentReturn" returnType="rtns:string" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="classPK" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="ddmTemplateId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.screens.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getJournalArticleContent" qname="operNS:getJournalArticleContent" returnQName="getJournalArticleContentReturn" returnType="rtns:string" soapAction="">
-			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="groupId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="classPK" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="locale" type="tns:string"></parameter>
 		</operation>
