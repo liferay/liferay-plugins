@@ -1,0 +1,24 @@
+{
+  "name": "product-app-theme",
+  "version": "1.0.0",
+  "keywords": [
+    "liferay-theme"
+  ],
+  "liferayTheme": {
+    "baseTheme": "styled",
+    "screenshot": "",
+    "supportCompass": false,
+    "templateLanguage": "vm",
+    "version": "7.0"
+  },
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "liferay-theme-tasks": "*"
+  },
+  "publishConfig": {
+    "tag": "7_0_x"
+  },
+  "devDependencies": {
+    "node-bourbon": "^4.2.3"
+  }
+}
