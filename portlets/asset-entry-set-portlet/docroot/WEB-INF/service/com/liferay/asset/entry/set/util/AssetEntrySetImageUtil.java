@@ -186,37 +186,6 @@ public class AssetEntrySetImageUtil {
 				extraSettingsProperties.getProperty(
 					"fileEntryImageJSONObject"));
 
-		if (fileEntryImageJSONObject.length() == 0) {
-			try {
-				Image image = ImageToolUtil.getImage(
-					DLFileEntryLocalServiceUtil.getFileAsStream(
-						fileEntry.getFileEntryId(), fileEntry.getVersion(),
-						false));
-
-				fileEntryImageJSONObject.put(
-					"height_" + imageType, image.getHeight());
-				fileEntryImageJSONObject.put(
-					"width_" + imageType, image.getWidth());
-			}
-			catch (IOException ioe) {
-				throw new SystemException(ioe);
-			}
-
-			fileEntryImageJSONObject.put(
-				"imageURL_" + imageType,
-				DLUtil.getPreviewURL(
-					fileEntry, fileEntry.getFileVersion(), null,
-					StringPool.BLANK, false, true));
-			fileEntryImageJSONObject.put("mimeType", fileEntry.getMimeType());
-			fileEntryImageJSONObject.put("name", fileEntry.getTitle());
-
-			extraSettingsProperties.put(
-				"fileEntryImageJSONObject",
-				fileEntryImageJSONObject.toString());
-
-			DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
-		}
-
 		Iterator<String> iterator = fileEntryImageJSONObject.keys();
 
 		while (iterator.hasNext()) {
@@ -344,7 +313,7 @@ public class AssetEntrySetImageUtil {
 
 	protected static FileEntry addFileEntry(
 			long userId, long classNameId, long classPK, String portletId,
-			File file, String type)
+			File file, String imageType)
 		throws PortalException, SystemException {
 
 		long groupId = 0;
@@ -373,13 +342,52 @@ public class AssetEntrySetImageUtil {
 			"className", PortalUtil.getClassName(classNameId));
 		serviceContext.setAttribute("classPK", String.valueOf(classPK));
 
-		String fileName = System.currentTimeMillis() + type + file.getName();
+		String fileName = System.currentTimeMillis() + imageType +
+			file.getName();
 
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
-		return DLAppServiceUtil.addFileEntry(
+		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
 			repository.getRepositoryId(), 0L, fileName, contentType, fileName,
 			StringPool.BLANK, StringPool.BLANK, file, serviceContext);
+
+		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(
+			fileEntry.getFileEntryId());
+
+		JSONObject fileEntryImageJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		try {
+			Image image = ImageToolUtil.getImage(
+				DLFileEntryLocalServiceUtil.getFileAsStream(
+					fileEntry.getFileEntryId(), fileEntry.getVersion(), false));
+
+			fileEntryImageJSONObject.put(
+				"height_" + imageType, image.getHeight());
+			fileEntryImageJSONObject.put(
+				"width_" + imageType, image.getWidth());
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
+
+		fileEntryImageJSONObject.put(
+			"imageURL_" + imageType,
+			DLUtil.getPreviewURL(
+				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
+				false, true));
+		fileEntryImageJSONObject.put("mimeType", fileEntry.getMimeType());
+		fileEntryImageJSONObject.put("name", fileEntry.getTitle());
+
+		UnicodeProperties extraSettingsProperties =
+			dlFileEntry.getExtraSettingsProperties();
+
+		extraSettingsProperties.put(
+			"fileEntryImageJSONObject", fileEntryImageJSONObject.toString());
+
+		DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
+
+		return fileEntry;
 	}
 
 	private static final int _ORIENTATION_MIRROR_HORIZONTAL = 2;
