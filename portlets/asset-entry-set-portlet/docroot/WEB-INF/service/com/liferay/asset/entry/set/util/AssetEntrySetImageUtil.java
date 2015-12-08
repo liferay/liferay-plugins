@@ -342,8 +342,8 @@ public class AssetEntrySetImageUtil {
 			"className", PortalUtil.getClassName(classNameId));
 		serviceContext.setAttribute("classPK", String.valueOf(classPK));
 
-		String fileName = System.currentTimeMillis() + imageType +
-			file.getName();
+		String fileName =
+			System.currentTimeMillis() + imageType + file.getName();
 
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
@@ -353,6 +353,9 @@ public class AssetEntrySetImageUtil {
 
 		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(
 			fileEntry.getFileEntryId());
+
+		UnicodeProperties extraSettingsProperties =
+			dlFileEntry.getExtraSettingsProperties();
 
 		JSONObject fileEntryImageJSONObject =
 			JSONFactoryUtil.createJSONObject();
@@ -378,9 +381,6 @@ public class AssetEntrySetImageUtil {
 				false, true));
 		fileEntryImageJSONObject.put("mimeType", fileEntry.getMimeType());
 		fileEntryImageJSONObject.put("name", fileEntry.getTitle());
-
-		UnicodeProperties extraSettingsProperties =
-			dlFileEntry.getExtraSettingsProperties();
 
 		extraSettingsProperties.put(
 			"fileEntryImageJSONObject", fileEntryImageJSONObject.toString());
