@@ -115,9 +115,9 @@ public class AlarmCleaner extends BaseAMITool {
 		return null;
 	}
 
-	protected Map<String, String> getAutoScalingGroupsMetricAlarmNames() {
-		Map<String, String> autoScalingGroupsMetricAlarmNames =
-			new HashMap<String, String>();
+	protected Map<String, List<String>> getAutoScalingGroupsMetricAlarmNames() {
+		Map<String, List<String>> autoScalingGroupsMetricAlarmNames =
+			new HashMap<String, List<String>>();
 
 		DescribeAlarmsResult describeAlarmsResult =
 			amazonCloudWatchClient.describeAlarms();
@@ -147,8 +147,17 @@ public class AlarmCleaner extends BaseAMITool {
 					continue;
 				}
 
+				List<String> alarmNames = autoScalingGroupsMetricAlarmNames.get(
+					autoScalingGroupName);
+
+				if (alarmNames == null) {
+					alarmNames = new ArrayList<String>();
+				}
+
+				alarmNames.add(metricAlarm.getAlarmName());
+
 				autoScalingGroupsMetricAlarmNames.put(
-					autoScalingGroupName, metricAlarm.getAlarmName());
+					autoScalingGroupName, alarmNames);
 			}
 
 			nextToken = describeAlarmsResult.getNextToken();
@@ -159,7 +168,7 @@ public class AlarmCleaner extends BaseAMITool {
 	}
 
 	protected List<String> getInactiveMetricAlarmNames(
-		Map<String, String> autoScalingGroupsMetricAlarmNames,
+		Map<String, List<String>> autoScalingGroupsMetricAlarmNames,
 		List<String> activeAutoScalingGroupNames) {
 
 		List<String> inactiveMetricAlarmNames = new ArrayList<String>();
@@ -171,7 +180,7 @@ public class AlarmCleaner extends BaseAMITool {
 				continue;
 			}
 
-			inactiveMetricAlarmNames.add(
+			inactiveMetricAlarmNames.addAll(
 				autoScalingGroupsMetricAlarmNames.get(autoScalingGroupName));
 		}
 
