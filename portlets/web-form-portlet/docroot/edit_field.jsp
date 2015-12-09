@@ -121,7 +121,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 					<liferay-ui:message key="options" />
 				</dt>
 				<dd>
-					<%= fieldOptions %>
+					<%= HtmlUtil.escape(fieldOptions) %>
 				</dd>
 		</c:when>
 	</c:choose>
@@ -137,7 +137,7 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 					<liferay-ui:message key="paragraph" />
 				</dt>
 				<dd>
-					<%= fieldParagraph %>
+					<%= HtmlUtil.escape(fieldParagraph) %>
 				</dd>
 		</c:when>
 	</c:choose>
