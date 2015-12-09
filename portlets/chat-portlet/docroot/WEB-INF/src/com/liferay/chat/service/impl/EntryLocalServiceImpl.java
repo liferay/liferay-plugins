@@ -19,6 +19,7 @@ import com.liferay.chat.model.Entry;
 import com.liferay.chat.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -48,11 +49,9 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 			DB db = DBFactoryUtil.getDB();
 
-			String dbType = db.getType();
-
 			// LPS-33975
 
-			if (dbType.equals(DB.TYPE_SQLSERVER)) {
+			if (db.getDBType() == DBType.SQLSERVER) {
 				contentMaxLength = 442;
 			}
 

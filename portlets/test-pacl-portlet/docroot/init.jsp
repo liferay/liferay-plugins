@@ -32,6 +32,7 @@ page import="com.liferay.journal.util.JournalContentUtil" %><%@
 page import="com.liferay.portal.kernel.concurrent.ThreadPoolExecutor" %><%@
 page import="com.liferay.portal.kernel.dao.db.DB" %><%@
 page import="com.liferay.portal.kernel.dao.db.DBFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.dao.db.DBType" %><%@
 page import="com.liferay.portal.kernel.dao.jdbc.DataAccess" %><%@
 page import="com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.PortalCustomSQL" %><%@

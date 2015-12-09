@@ -2451,11 +2451,9 @@
 
 <%
 DB db = DBFactoryUtil.getDB();
-
-String dbType = db.getType();
 %>
 
-<c:if test="<%= dbType.equals(DB.TYPE_MYSQL) %>">
+<c:if test="<%= db.getDBType() == DBType.MYSQL %>">
 	<p>
 		<h3>Replace</h3>
 	</p>
@@ -2593,7 +2591,7 @@ String dbType = db.getType();
 
 </p>
 
-<c:if test="<%= dbType.equals(DB.TYPE_MYSQL) %>">
+<c:if test="<%= db.getDBType() == DBType.MYSQL %>">
 	<p>
 		<h3>Truncate</h3>
 	</p>
