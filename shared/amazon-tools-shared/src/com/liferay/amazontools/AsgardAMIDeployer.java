@@ -135,7 +135,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	}
 
 	protected void associateElasticIpAddresses(List<String> instanceIds) {
-
 		System.out.println(
 			"Associating Elastic IP Addresses");
 
@@ -177,7 +176,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		JSONObject loadBalancerJSONObject = null;
 
 		for (int i = 1; i < 50; i++) {
-
 			String json = _jsonWebServiceClient.doGet(
 				"/" + availabilityZone + "/loadBalancer/show/" +
 					asgardClusterName + ".json",
@@ -191,7 +189,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 			if (size != -1) {
 				if (instanceStateJSONObjects.size() < size) {
-
 					System.out.println(
 						"Not enough instances started. Waiting..." + i + "/50");
 
