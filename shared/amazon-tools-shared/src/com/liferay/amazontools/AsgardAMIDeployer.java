@@ -135,8 +135,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	}
 
 	protected void associateElasticIpAddresses(List<String> instanceIds) {
-		System.out.println(
-			"Associating Elastic IP Addresses");
+		System.out.println("Associating Elastic IP addresses");
 
 		if (!properties.containsKey("elastic.ip.addresses")) {
 			return;
@@ -189,8 +188,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 			if (size != -1) {
 				if (instanceStateJSONObjects.size() < size) {
-					System.out.println(
-						"Not enough instances started. Waiting..." + i + "/50");
+					System.out.println("Waiting for started instances");
 
 					sleep(15);
 
@@ -199,8 +197,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			}
 
 			if (!isInService(loadBalancerJSONObject, autoScalingGroupName)) {
-				System.out.println(
-					"Instances not in service. Waiting... " + i + "/50");
+				System.out.println("Waiting for available instances");
 
 				sleep(15);
 			}
