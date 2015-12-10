@@ -114,7 +114,7 @@ public class SyncDLObjectFinderImpl
 
 			if (type == null) {
 				sql = StringUtil.replace(
-					sql, "AND (SyncDLObject.type = ?)", StringPool.BLANK);
+					sql, "AND (SyncDLObject.type_ = ?)", StringPool.BLANK);
 
 				sql = CustomSQLUtil.removeOrderBy(sql);
 			}
