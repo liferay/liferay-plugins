@@ -2450,7 +2450,7 @@
 </p>
 
 <%
-DB db = DBFactoryUtil.getDB();
+DB db = DBManagerUtil.getDB();
 %>
 
 <c:if test="<%= db.getDBType() == DBType.MYSQL %>">
@@ -2996,7 +2996,7 @@ private class SQLSecurityExceptionTest extends SecurityExceptionTest {
 	}
 
 	protected void executeDB(String sql) throws Exception {
-		DB db = DBFactoryUtil.getDB();
+		DB db = DBManagerUtil.getDB();
 
 		db.runSQL(sql);
 	}

@@ -16,7 +16,7 @@ package com.liferay.localization.servlet;
 
 import com.liferay.localization.util.InstanceUtil;
 import com.liferay.portal.kernel.dao.db.DB;
-import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
+import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -123,7 +123,7 @@ public class LocalizationServletContextListener
 	}
 
 	protected void runSQL(String[] sqls) throws Exception {
-		DB db = DBFactoryUtil.getDB();
+		DB db = DBManagerUtil.getDB();
 
 		db.runSQL(sqls);
 	}
