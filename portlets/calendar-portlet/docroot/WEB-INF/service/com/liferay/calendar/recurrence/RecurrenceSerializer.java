@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.text.ParseException;
 
@@ -43,6 +44,10 @@ import java.util.TimeZone;
 public class RecurrenceSerializer {
 
 	public static Recurrence deserialize(String data) {
+		if (Validator.isNull(data)) {
+			return null;
+		}
+
 		try {
 			Recurrence recurrence = new Recurrence();
 
@@ -105,6 +110,10 @@ public class RecurrenceSerializer {
 	}
 
 	public static String serialize(Recurrence recurrence) {
+		if (recurrence == null) {
+			return null;
+		}
+
 		RRule rRule = new RRule();
 
 		List<WeekdayNum> weekdayNums = new ArrayList<WeekdayNum>();

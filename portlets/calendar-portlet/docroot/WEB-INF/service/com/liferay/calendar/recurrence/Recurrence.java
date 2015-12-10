@@ -16,6 +16,7 @@ package com.liferay.calendar.recurrence;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -89,8 +90,9 @@ public class Recurrence {
 	private List<Calendar> _exceptionJCalendars = new ArrayList<Calendar>();
 	private Frequency _frequency;
 	private int _interval;
-	private List<Integer> _months;
-	private List<PositionalWeekday> _positionalWeekdays;
+	private List<Integer> _months = Collections.emptyList();
+	private List<PositionalWeekday> _positionalWeekdays =
+		Collections.emptyList();
 	private Calendar _untilJCalendar;
 
 }
