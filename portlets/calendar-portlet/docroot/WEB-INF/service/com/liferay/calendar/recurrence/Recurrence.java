@@ -48,12 +48,30 @@ public class Recurrence {
 		return _months;
 	}
 
+	public PositionalWeekday getPositionalWeekday() {
+		if (_positionalWeekdays.isEmpty()) {
+			return null;
+		}
+
+		return _positionalWeekdays.get(0);
+	}
+
 	public List<PositionalWeekday> getPositionalWeekdays() {
 		return _positionalWeekdays;
 	}
 
 	public Calendar getUntilJCalendar() {
 		return _untilJCalendar;
+	}
+
+	public List<Weekday> getWeekdays() {
+		List<Weekday> weekdays = new ArrayList<>();
+
+		for (PositionalWeekday positionalWeekday : _positionalWeekdays) {
+			weekdays.add(positionalWeekday.getWeekday());
+		}
+
+		return weekdays;
 	}
 
 	public void setCount(int count) {
