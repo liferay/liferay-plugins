@@ -452,7 +452,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected boolean isValidAssetTagName(String assetTagName) {
 		if (Validator.isDigit(assetTagName.charAt(0)) ||
-			(assetTagName.length() > 75)) {
+			(assetTagName.length() > _ASSET_TAG_NAME_MAX_LENGTH)) {
 
 			return false;
 		}
@@ -610,6 +610,8 @@ public class AssetEntrySetLocalServiceImpl
 
 		assetEntrySetPersistence.update(assetEntrySet);
 	}
+
+	private static final int _ASSET_TAG_NAME_MAX_LENGTH = 75;
 
 	private static Map<String, String> _imageMaxSizes =
 		new HashMap<String, String>();
