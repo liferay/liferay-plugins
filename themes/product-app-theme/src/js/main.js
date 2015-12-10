@@ -14,13 +14,8 @@ AUI().ready(
 		if (fullScreenToggleIcon) {
 			fullScreenToggleIcon.on(
 				'click',
-				function() {
-					if (fullScreenToggleIcon.hasClass('collapsed')) {
-						BODY.addClass('main-nav-opened');
-					}
-					else {
-						BODY.removeClass('main-nav-opened');
-					}
+				function(event) {
+					BODY.toggleClass('main-nav-opened', event.currentTarget.hasClass('collapsed'));
 				}
 			);
 		}

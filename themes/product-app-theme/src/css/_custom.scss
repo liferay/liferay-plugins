@@ -1,8 +1,8 @@
-@import "_portlet_decorator.scss";
+@import "portlet_decorator";
 
-@import "partials/_buttons";
-@import "partials/_footer";
-@import "partials/_navbar";
+@import "partials/buttons";
+@import "partials/footer";
+@import "partials/navbar";
 
 #content {
 	background-color: $color-2;
@@ -111,7 +111,6 @@
 		}
 	}
 }
-
 
 [class$="-background-image"] {
 	background-position: top center;
