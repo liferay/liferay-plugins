@@ -29,6 +29,30 @@ public class Recurrence {
 		_exceptionJCalendars.add(calendar);
 	}
 
+	public Recurrence clone() {
+		Recurrence recurrence = new Recurrence();
+
+		recurrence.setCount(_count);
+		recurrence.setExceptionJCalendars(
+			new ArrayList<Calendar>(_exceptionJCalendars));
+		recurrence.setFrequency(_frequency);
+		recurrence.setInterval(_interval);
+		recurrence.setMonths(new ArrayList<Integer>(_months));
+		recurrence.setPositionalWeekdays(
+			new ArrayList<PositionalWeekday>(_positionalWeekdays));
+
+		Calendar untilJCalendar = null;
+
+		if (_untilJCalendar != null) {
+			untilJCalendar = (Calendar) _untilJCalendar.clone();
+		}
+
+		recurrence.setUntilJCalendar(untilJCalendar);
+		recurrence.setTimeZone(_timeZone);
+
+		return recurrence;
+	}
+
 	public int getCount() {
 		return _count;
 	}
@@ -70,7 +94,7 @@ public class Recurrence {
 	}
 
 	public List<Weekday> getWeekdays() {
-		List<Weekday> weekdays = new ArrayList<>();
+		List<Weekday> weekdays = new ArrayList<Weekday>();
 
 		for (PositionalWeekday positionalWeekday : _positionalWeekdays) {
 			weekdays.add(positionalWeekday.getWeekday());
