@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -289,6 +290,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			FileEntry sourceFileEntry = dlAppLocalService.getFileEntry(
 				sourceFileEntryId);
 
+			FileVersion fileVersion = sourceFileEntry.getLatestFileVersion();
+
 			if (!group.isUser() &&
 				ArrayUtil.isEmpty(serviceContext.getGroupPermissions())) {
 
@@ -300,7 +303,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			FileEntry fileEntry = dlAppService.addFileEntry(
 				repositoryId, folderId, sourceFileName,
 				sourceFileEntry.getMimeType(), title, null, null,
-				sourceFileEntry.getContentStream(), sourceFileEntry.getSize(),
+				fileVersion.getContentStream(false), sourceFileEntry.getSize(),
 				serviceContext);
 
 			return toSyncDLObject(fileEntry, SyncConstants.EVENT_ADD);
