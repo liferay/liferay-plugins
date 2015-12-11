@@ -21,6 +21,9 @@ import com.google.ical.values.DateValue;
 import com.google.ical.values.DateValueImpl;
 
 import com.liferay.calendar.model.CalendarBooking;
+import com.liferay.calendar.recurrence.PositionalWeekday;
+import com.liferay.calendar.recurrence.Recurrence;
+import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -29,6 +32,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author Marcellus Tavares
@@ -151,6 +155,59 @@ public class RecurrenceUtil {
 		}
 
 		return count;
+	}
+
+	public static Recurrence inTimeZone(
+		Recurrence recurrence, Calendar startTimeJCalendar, TimeZone timeZone) {
+
+		recurrence = recurrence.clone();
+
+		Calendar untilJCalendar = recurrence.getUntilJCalendar();
+
+		if (untilJCalendar != null) {
+			untilJCalendar = JCalendarUtil.getJCalendar(
+				recurrence.getUntilJCalendar(), timeZone);
+
+			recurrence.setUntilJCalendar(untilJCalendar);
+		}
+
+		List<Calendar> exceptionJCalendars =
+			recurrence.getExceptionJCalendars();
+		List<Calendar> newExceptionJCalendars = new ArrayList<>();
+
+		for (Calendar exceptionJCalendar : exceptionJCalendars) {
+			exceptionJCalendar = JCalendarUtil.getJCalendar(
+				exceptionJCalendar, timeZone);
+
+			newExceptionJCalendars.add(exceptionJCalendar);
+		}
+
+		recurrence.setExceptionJCalendars(newExceptionJCalendars);
+
+		List<PositionalWeekday> positionalWeekdays =
+			recurrence.getPositionalWeekdays();
+		List<PositionalWeekday> newPositionalWeekdays = new ArrayList<>();
+
+		for (PositionalWeekday positionalWeekday : positionalWeekdays) {
+			Calendar jCalendar = JCalendarUtil.getJCalendar(
+				startTimeJCalendar, recurrence.getTimeZone());
+			Weekday weekday = positionalWeekday.getWeekday();
+
+			jCalendar.set(Calendar.DAY_OF_WEEK, weekday.getCalendarWeekday());
+			jCalendar = JCalendarUtil.getJCalendar(jCalendar, timeZone);
+
+			weekday = Weekday.getWeekday(jCalendar);
+
+			positionalWeekday = new PositionalWeekday(
+				weekday, positionalWeekday.getPosition());
+			newPositionalWeekdays.add(positionalWeekday);
+		}
+
+		recurrence.setPositionalWeekdays(newPositionalWeekdays);
+
+		recurrence.setTimeZone(timeZone);
+
+		return recurrence;
 	}
 
 	private static DateValue _toDateValue(long time) {
