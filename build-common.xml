@@ -1797,33 +1797,6 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="gradle-execute">
-		<attribute default="true" name="failonerror" />
-		<attribute name="task" />
-		<element implicit="true" name="args" optional="true" />
-
-		<sequential>
-			<if>
-				<os family="unix" />
-				<then>
-					<property name="gradlew.suffix" value="" />
-
-					<chmod file="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" perm="a+x" />
-				</then>
-				<else>
-					<property name="gradlew.suffix" value=".bat" />
-				</else>
-			</if>
-
-			<exec executable="${sdk.dir}/tools/gradle/gradlew${gradlew.suffix}" failonerror="@{failonerror}">
-				<arg value="-PpluginsExcludes=${plugins.excludes}" />
-				<arg value="-PpluginsIncludes=${plugins.includes}" />
-				<args />
-				<arg value="@{task}" />
-			</exec>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="jar-javadoc">
 		<attribute name="module.dir" />
 
@@ -2525,16 +2498,6 @@ Please find a solution that does not require portal-impl.jar.
 					</cobertura-report>
 				</then>
 			</if>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="reset-gradle">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<delete file="@{module.dir}/build.gradle" />
-
-			<touch file="@{module.dir}/build.gradle" />
 		</sequential>
 	</macrodef>
 
@@ -3531,10 +3494,6 @@ for (String path : paths) {
 		<delete file="ServiceBuilder.temp" />
 	</target>
 
-	<target name="init-gradle">
-		<gradle-execute task="initGradle" />
-	</target>
-
 	<target name="jar">
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
@@ -3670,33 +3629,6 @@ for (String path : paths) {
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
 			target.name="release"
-		/>
-	</target>
-
-	<target name="reset-gradle">
-		<path id="reset.gradle.path">
-			<dirset dir="${basedir}" excludes="tools/**" includes="**/docroot" />
-			<dirset dir="${basedir}" excludes="**/docroot/WEB-INF/src" includes="**/src" />
-		</path>
-
-		<pathconvert
-			pathsep=","
-			property="reset.gradle.path"
-			refid="reset.gradle.path"
-			targetos="unix"
-		/>
-
-		<propertyregex
-			input="${reset.gradle.path}"
-			override="true"
-			property="reset.gradle.path"
-			regexp="[\\/](?:docroot|src)(,|$)"
-			replace="\1"
-		/>
-
-		<loop-macrodef-or-target
-			module.dirs="${reset.gradle.path}"
-			target.name="reset-gradle"
 		/>
 	</target>
 
