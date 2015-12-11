@@ -195,22 +195,21 @@ public class RecurrenceSerializer {
 	}
 
 	private static Calendar _toJCalendar(DateValue dateValue) {
-		Calendar jCalendar = CalendarFactoryUtil.getCalendar(
-			TimeZone.getTimeZone(StringPool.UTC));
-
-		jCalendar.set(Calendar.DATE, dateValue.day());
-		jCalendar.set(Calendar.MONTH, dateValue.month() - 1);
-		jCalendar.set(Calendar.YEAR, dateValue.year());
+		int hour = 0;
+		int minute = 0;
+		int second = 0;
 
 		if (dateValue instanceof DateTimeValue) {
 			DateTimeValue dateTimeValue = (DateTimeValue)dateValue;
 
-			jCalendar.set(Calendar.HOUR_OF_DAY, dateTimeValue.hour());
-			jCalendar.set(Calendar.MINUTE, dateTimeValue.minute());
-			jCalendar.set(Calendar.SECOND, dateTimeValue.second());
+			hour = dateTimeValue.hour();
+			minute = dateTimeValue.minute();
+			second = dateTimeValue.second();
 		}
 
-		return jCalendar;
+		return CalendarFactoryUtil.getCalendar(
+			dateValue.year(), dateValue.month()-1, dateValue.day(), hour,
+			minute, second, 0, TimeZone.getTimeZone(StringPool.UTC));
 	}
 
 	private static final String _EXDATE = "EXDATE";
