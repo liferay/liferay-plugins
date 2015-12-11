@@ -47,7 +47,7 @@
 						<include name="**/liferay-plugin-package.properties" />
 					</fileset>
 				</copy>
-			</then> 
+			</then>
 			<else>
 				<java
 					classname="com.liferay.portal.tools.PluginsSummaryBuilder"

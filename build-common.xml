@@ -3145,7 +3145,7 @@ for (String path : paths) {
 										includes="WEB-INF/liferay-hook.xml.processed"
 									/>
 									<mappedresources>
-										<fileset 
+										<fileset
 											dir="@{module.dir}/docroot"
 											includes="**/.sass-cache/*.css"
 										/>
@@ -3223,7 +3223,7 @@ for (String path : paths) {
 							includes="WEB-INF/liferay-hook.xml.processed"
 						/>
 						<mappedresources>
-							<fileset 
+							<fileset
 								dir="${docroot.dir}"
 								includes="**/.sass-cache/*.css"
 							/>
@@ -3245,7 +3245,7 @@ for (String path : paths) {
 							includes="WEB-INF/liferay-hook.xml.processed"
 						/>
 						<mappedresources>
-							<fileset 
+							<fileset
 								dir="${docroot.dir}"
 								includes="**/.sass-cache/*.css"
 							/>
