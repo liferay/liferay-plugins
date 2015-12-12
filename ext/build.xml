@@ -5,14 +5,44 @@
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
-		<property name="ext.display.name" value="" />
-		<property name="ext.name" value="" />
+		<if>
+			<not>
+				<isset property="ext.name" />
+			</not>
+			<then>
+				<fail>This task must be called by the create script.</fail>
+			</then>
+		</if>
 
-		<gradle-execute task="createExt">
-			<arg value="--build-file=../sdk.gradle" />
-			<arg value="-PextDisplayName=${ext.display.name}" />
-			<arg value="-PextName=${ext.name}" />
-		</gradle-execute>
+		<property name="ext.parent.dir" value="${user.dir}" />
+		<property name="ext.plugin.dir" value="${ext.parent.dir}/${ext.name}-ext" />
+
+		<if>
+			<available file="${ext.plugin.dir}" />
+			<then>
+				<fail>${ext.name}-ext already exists.</fail>
+			</then>
+		</if>
+
+		<copy todir="${ext.plugin.dir}">
+			<fileset
+				dir="${sdk.dir}/tools/templates/ext_tmpl"
+			/>
+		</copy>
+
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-impl/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/global" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-lib/portal" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-service/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-bridges/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-java/src" />
+		<mkdir dir="${ext.plugin.dir}/docroot/WEB-INF/ext-util-taglib/src" />
+
+		<replace dir="${ext.plugin.dir}">
+			<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
+			<replacefilter token="@ext.name@" value="${ext.name}" />
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
+		</replace>
 	</target>
 
 	<target name="upgrade-ext">
