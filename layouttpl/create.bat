@@ -3,7 +3,7 @@
 if "" == "%1" goto errorCreate
 if "" == "%2" goto errorCreate
 
-call ..\tools\gradle\gradlew.bat --build-file=..\sdk.gradle -PlayouttplName=%1 -PlayouttplDisplayName=%2 createLayouttpl
+call ant -Dlayouttpl.name=%1 -Dlayouttpl.display.name=%2 create
 
 cd %1-layouttpl
 
