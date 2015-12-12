@@ -5,13 +5,40 @@
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
-		<property name="web.display.name" value="" />
-		<property name="web.name" value="" />
+		<if>
+			<or>
+				<not>
+					<isset property="web.display.name" />
+				</not>
+				<not>
+					<isset property="web.name" />
+				</not>
+			</or>
+			<then>
+				<fail>This task must be called by the create script.</fail>
+			</then>
+		</if>
 
-		<gradle-execute task="createWeb">
-			<arg value="--build-file=../sdk.gradle" />
-			<arg value="-PwebDisplayName=${web.display.name}" />
-			<arg value="-PwebName=${web.name}" />
-		</gradle-execute>
+		<property name="web.parent.dir" value="${user.dir}" />
+		<property name="web.dir" value="${web.parent.dir}/${web.name}-web" />
+
+		<if>
+			<available file="${web.dir}" />
+			<then>
+				<fail>${web.name}-web already exists.</fail>
+			</then>
+		</if>
+
+		<copy todir="${web.dir}">
+			<fileset
+				dir="${sdk.dir}/tools/templates/web_tmpl"
+			/>
+		</copy>
+
+		<replace dir="${web.dir}">
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
+			<replacefilter token="@web.display.name@" value="${web.display.name}" />
+			<replacefilter token="@web.name@" value="${web.name}" />
+		</replace>
 	</target>
 </project>
