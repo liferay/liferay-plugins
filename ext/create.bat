@@ -4,7 +4,7 @@ if "" == "%1" goto errorCreate
 
 if "" == "%2" goto errorCreate
 
-call ..\tools\gradle\gradlew.bat --build-file=..\sdk.gradle -PextName=%1 -PextDisplayName=%2 createExt
+call ant -Dext.name=%1 -Dext.display.name=%2 create
 
 rem call ant deploy
 
