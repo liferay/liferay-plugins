@@ -15,9 +15,7 @@ if [ $# -lt 2 ]; then
 	exit 127
 fi
 
-chmod a+x ../tools/gradle/gradlew
-
-../tools/gradle/gradlew --build-file=../sdk.gradle -PlayouttplName=$1 -PlayouttplDisplayName="$2" createLayouttpl
+ant -Dlayouttpl.name=$1 -Dlayouttpl.display.name=\"$2\" create
 
 cd $1-layouttpl
 
