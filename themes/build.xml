@@ -5,13 +5,46 @@
 	<import file="../build-common-plugins.xml" />
 
 	<target name="create">
-		<property name="theme.display.name" value="" />
-		<property name="theme.name" value="" />
+		<if>
+			<or>
+				<not>
+					<isset property="theme.display.name" />
+				</not>
+				<not>
+					<isset property="theme.name" />
+				</not>
+			</or>
+			<then>
+				<fail>This task must be called by the create script.</fail>
+			</then>
+		</if>
 
-		<gradle-execute task="createTheme">
-			<arg value="--build-file=../sdk.gradle" />
-			<arg value="-PthemeDisplayName=${theme.display.name}" />
-			<arg value="-PthemeName=${theme.name}" />
-		</gradle-execute>
+		<property name="theme.parent.dir" value="${user.dir}" />
+		<property name="theme.dir" value="${theme.parent.dir}/${theme.name}-theme" />
+
+		<if>
+			<available file="${theme.dir}" />
+			<then>
+				<fail>${theme.name}-theme already exists.</fail>
+			</then>
+		</if>
+
+		<copy todir="${theme.dir}">
+			<fileset
+				dir="${sdk.dir}/tools/templates/theme_tmpl"
+			/>
+		</copy>
+
+		<mkdir dir="${theme.dir}/docroot/_diffs" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/document_library/documents" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/articles" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/structures" />
+		<mkdir dir="${theme.dir}/docroot/WEB-INF/src/resources-importer/journal/templates" />
+
+		<replace dir="${theme.dir}">
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
+			<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
+			<replacefilter token="@theme.name@" value="${theme.name}" />
+		</replace>
 	</target>
 </project>
