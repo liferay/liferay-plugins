@@ -4,7 +4,7 @@ if "" == "%1" goto errorCreate
 
 if "" == "%2" goto errorCreate
 
-call ..\tools\gradle\gradlew.bat --build-file=..\sdk.gradle -PhookName=%1 -PhookDisplayName=%2 createHook
+call ant -Dhook.name=%1 -Dhook.display.name=%2 create
 
 rem call ant deploy
 
