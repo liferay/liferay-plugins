@@ -195,7 +195,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			if (size != -1) {
 				if (instanceStateJSONObjects.size() < size) {
 					System.out.println(
-						"Not enough instances started. Waiting..." + i + "/50");
+						"Not enough instances started. Waiting " + i + "...");
 
 					sleep(15);
 
@@ -205,7 +205,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 			if (!isInService(loadBalancerJSONObject, autoScalingGroupName)) {
 				System.out.println(
-					"Instances not in service. Waiting... " + i + "/50");
+					"Instances not in service. Waiting " + i + "...");
 
 				sleep(15);
 			}
