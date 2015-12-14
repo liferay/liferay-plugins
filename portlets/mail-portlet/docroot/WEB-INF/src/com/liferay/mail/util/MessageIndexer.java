@@ -23,9 +23,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -52,17 +50,7 @@ public class MessageIndexer extends BaseIndexer<Message> {
 
 	@Override
 	protected void doDelete(Message message) throws Exception {
-		SearchContext searchContext = new SearchContext();
-
-		searchContext.setSearchEngineId(getSearchEngineId());
-
-		Document document = new DocumentImpl();
-
-		document.addUID(CLASS_NAME, message.getMessageId());
-
-		SearchEngineUtil.deleteDocument(
-			getSearchEngineId(), message.getCompanyId(),
-			document.get(Field.UID), isCommitImmediately());
+		deleteDocument(message.getCompanyId(), message.getMessageId());
 	}
 
 	@Override

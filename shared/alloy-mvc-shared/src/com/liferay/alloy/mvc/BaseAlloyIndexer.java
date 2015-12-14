@@ -16,7 +16,6 @@ package com.liferay.alloy.mvc;
 
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
@@ -61,16 +60,11 @@ public abstract class BaseAlloyIndexer extends BaseIndexer<BaseModel<?>> {
 
 	@Override
 	protected void doDelete(BaseModel<?> baseModel) throws Exception {
-		Document document = new DocumentImpl();
-
-		document.addUID(
-			className, String.valueOf(baseModel.getPrimaryKeyObj()));
-
 		AuditedModel auditedModel = (AuditedModel)baseModel;
 
-		SearchEngineUtil.deleteDocument(
-			getSearchEngineId(), auditedModel.getCompanyId(),
-			document.get(Field.UID));
+		deleteDocument(
+			auditedModel.getCompanyId(),
+			String.valueOf(auditedModel.getPrimaryKeyObj()));
 	}
 
 	@Override
