@@ -26,6 +26,8 @@ import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
@@ -99,12 +101,21 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 	}
 
 	@Override
-	public TimeZone getTimeZone() throws PortalException, SystemException {
-		CalendarBooking parentCalendarBooking = getParentCalendarBooking();
+	public TimeZone getTimeZone() throws SystemException {
+		if (isAllDay()) {
+			return TimeZoneUtil.getTimeZone(StringPool.UTC);
+		}
 
-		Calendar calendar = parentCalendarBooking.getCalendar();
+		try {
+			CalendarBooking parentCalendarBooking = getParentCalendarBooking();
 
-		return calendar.getTimeZone();
+			Calendar calendar = parentCalendarBooking.getCalendar();
+
+			return calendar.getTimeZone();
+		}
+		catch (PortalException e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@Override
