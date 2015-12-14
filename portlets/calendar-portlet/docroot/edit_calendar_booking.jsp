@@ -127,7 +127,7 @@ if (calendarBooking != null) {
 		recurring = true;
 	}
 
-	recurrence = calendarBooking.getRecurrenceObj();
+	recurrence = RecurrenceUtil.inTimeZone(calendarBooking.getRecurrenceObj(), startTimeJCalendar, calendarBookingTimeZone);
 }
 else if (calendar != null) {
 	JSONObject calendarJSONObject = CalendarUtil.toCalendarJSONObject(themeDisplay, calendar);

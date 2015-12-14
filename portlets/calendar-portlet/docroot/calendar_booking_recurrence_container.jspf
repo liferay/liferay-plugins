@@ -31,29 +31,15 @@ if (recurrence != null) {
 	frequency = recurrence.getFrequency();
 	interval = recurrence.getInterval();
 
+	if (recurrence.getPositionalWeekday() != null) {
+		positionalWeekday = recurrence.getPositionalWeekday();
+	}
+
 	if (recurrence.getUntilJCalendar() != null) {
-		java.util.Calendar calendarStartTimeJCalendar = JCalendarUtil.getJCalendar(startTimeJCalendar, calendar.getTimeZone());
-
-		java.util.Calendar calendarUntilJCalendar = JCalendarUtil.mergeJCalendar(recurrence.getUntilJCalendar(), calendarStartTimeJCalendar, calendar.getTimeZone());
-
-		untilJCalendar = JCalendarUtil.getJCalendar(calendarUntilJCalendar, userTimeZone);
+		untilJCalendar = recurrence.getUntilJCalendar();
 	}
 
-	for (PositionalWeekday curPositionalWeekday : recurrence.getPositionalWeekdays()) {
-		Weekday weekday = curPositionalWeekday.getWeekday();
-
-		java.util.Calendar weekdayJCalendar = CalendarFactoryUtil.getCalendar(startTimeJCalendar.getTimeInMillis(), calendar.getTimeZone());
-
-		weekdayJCalendar.set(java.util.Calendar.DAY_OF_WEEK, weekday.getCalendarWeekday());
-
-		weekdayJCalendar = JCalendarUtil.getJCalendar(weekdayJCalendar, calendarBookingTimeZone);
-
-		weekday = Weekday.getWeekday(weekdayJCalendar.get(java.util.Calendar.DAY_OF_WEEK));
-
-		weekdays.add(weekday);
-
-		positionalWeekday = curPositionalWeekday;
-	}
+	weekdays = recurrence.getWeekdays();
 
 	if (count > 0) {
 		afterChecked = true;
