@@ -43,7 +43,7 @@ import java.util.TimeZone;
  */
 public class RecurrenceSerializer {
 
-	public static Recurrence deserialize(String data) {
+	public static Recurrence deserialize(String data, TimeZone timeZone) {
 		if (Validator.isNull(data)) {
 			return null;
 		}
@@ -57,11 +57,10 @@ public class RecurrenceSerializer {
 				String exceptionDates = data.substring(
 					index + 1, data.length());
 
-				RDateList rDateList = new RDateList(
-					exceptionDates, TimeZone.getTimeZone(StringPool.UTC));
+				RDateList rDateList = new RDateList(exceptionDates, timeZone);
 
 				for (DateValue dateValue : rDateList.getDatesUtc()) {
-					Calendar jCalendar = _toJCalendar(dateValue);
+					Calendar jCalendar = _toJCalendar(dateValue, timeZone);
 
 					recurrence.addExceptionDate(jCalendar);
 				}
@@ -75,11 +74,12 @@ public class RecurrenceSerializer {
 			recurrence.setFrequency(
 				Frequency.parse(String.valueOf(rRule.getFreq())));
 			recurrence.setInterval(rRule.getInterval());
+			recurrence.setTimeZone(timeZone);
 
 			DateValue dateValue = rRule.getUntil();
 
 			if (dateValue != null) {
-				Calendar jCalendar = _toJCalendar(dateValue);
+				Calendar jCalendar = _toJCalendar(dateValue, timeZone);
 
 				recurrence.setUntilJCalendar(jCalendar);
 			}
@@ -194,7 +194,9 @@ public class RecurrenceSerializer {
 		return dateValue;
 	}
 
-	private static Calendar _toJCalendar(DateValue dateValue) {
+	private static Calendar _toJCalendar(
+		DateValue dateValue, TimeZone timeZone) {
+
 		int hour = 0;
 		int minute = 0;
 		int second = 0;
@@ -209,7 +211,7 @@ public class RecurrenceSerializer {
 
 		return CalendarFactoryUtil.getCalendar(
 			dateValue.year(), dateValue.month()-1, dateValue.day(), hour,
-			minute, second, 0, TimeZone.getTimeZone(StringPool.UTC));
+			minute, second, 0, timeZone);
 	}
 
 	private static final String _EXDATE = "EXDATE";

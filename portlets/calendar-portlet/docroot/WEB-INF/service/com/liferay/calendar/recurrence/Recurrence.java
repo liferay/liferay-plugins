@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author Marcellus Tavares
@@ -60,6 +61,10 @@ public class Recurrence {
 		return _positionalWeekdays;
 	}
 
+	public TimeZone getTimeZone() {
+		return _timeZone;
+	}
+
 	public Calendar getUntilJCalendar() {
 		return _untilJCalendar;
 	}
@@ -100,6 +105,10 @@ public class Recurrence {
 		_positionalWeekdays = positionalWeekdays;
 	}
 
+	public void setTimeZone(TimeZone timeZone) {
+		_timeZone = timeZone;
+	}
+
 	public void setUntilJCalendar(Calendar untilJCalendar) {
 		_untilJCalendar = untilJCalendar;
 	}
@@ -111,6 +120,7 @@ public class Recurrence {
 	private List<Integer> _months = Collections.emptyList();
 	private List<PositionalWeekday> _positionalWeekdays =
 		Collections.emptyList();
+	private TimeZone _timeZone;
 	private Calendar _untilJCalendar;
 
 }

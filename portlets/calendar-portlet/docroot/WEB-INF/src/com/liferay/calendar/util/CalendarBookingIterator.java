@@ -16,7 +16,6 @@ package com.liferay.calendar.util;
 
 import com.google.ical.iter.RecurrenceIterator;
 import com.google.ical.iter.RecurrenceIteratorFactory;
-import com.google.ical.util.TimeUtils;
 import com.google.ical.values.DateValue;
 import com.google.ical.values.DateValueImpl;
 
@@ -47,7 +46,7 @@ public class CalendarBookingIterator implements Iterator<CalendarBooking> {
 			RecurrenceIteratorFactory.createRecurrenceIterator(
 				calendarBooking.getRecurrence(),
 				_toDateValue(calendarBooking.getStartTime()),
-				TimeUtils.utcTimezone());
+				calendarBooking.getTimeZone());
 	}
 
 	@Override

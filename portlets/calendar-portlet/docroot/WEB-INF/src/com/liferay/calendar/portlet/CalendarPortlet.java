@@ -646,7 +646,8 @@ public class CalendarPortlet extends MVCPortlet {
 			return calendarBooking;
 		}
 
-		Recurrence recurrenceObj = RecurrenceSerializer.deserialize(recurrence);
+		Recurrence recurrenceObj = RecurrenceSerializer.deserialize(
+			recurrence, calendarBooking.getTimeZone());
 
 		List<Integer> daysOfWeek = getDaysOfWeek(recurrenceObj);
 
