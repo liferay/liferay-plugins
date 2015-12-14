@@ -1313,6 +1313,20 @@ public class CalendarPortlet extends MVCPortlet {
 
 		CalendarBooking calendarBooking = null;
 
+		TimeZone timeZone = TimeZoneUtil.getTimeZone(StringPool.UTC);
+
+		if (!allDay) {
+			timeZone = calendar.getTimeZone();
+		}
+
+		if (recurrence != null) {
+			java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+				startTime, timeZone);
+
+			recurrence = RecurrenceUtil.inTimeZone(
+				recurrence, startTimeJCalendar, timeZone);
+		}
+
 		if (calendarBookingId <= 0) {
 			calendarBooking = CalendarBookingServiceUtil.addCalendarBooking(
 				calendar.getCalendarId(), childCalendarIds,
@@ -1347,7 +1361,7 @@ public class CalendarPortlet extends MVCPortlet {
 							calendarBookingId, offset, duration);
 
 				calendarBooking = getFirstCalendarBookingInstance(
-					calendarBooking, recurrence, calendar.getTimeZone());
+					calendarBooking, recurrence, timeZone);
 
 				calendarBooking = 
 					CalendarBookingServiceUtil.updateCalendarBooking(
