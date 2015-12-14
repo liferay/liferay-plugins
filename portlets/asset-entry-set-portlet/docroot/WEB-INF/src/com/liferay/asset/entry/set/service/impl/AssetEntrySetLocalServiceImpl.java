@@ -153,7 +153,7 @@ public class AssetEntrySetLocalServiceImpl
 
 		AssetSharingEntryLocalServiceUtil.deleteAssetSharingEntries(
 			AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID,
-			assetEntrySet.getAssetEntryId());
+			assetEntrySet.getAssetEntrySetId());
 
 		if (assetEntrySet.getParentAssetEntrySetId() == 0) {
 			deleteChildAssetEntrySets(assetEntrySet.getAssetEntrySetId());

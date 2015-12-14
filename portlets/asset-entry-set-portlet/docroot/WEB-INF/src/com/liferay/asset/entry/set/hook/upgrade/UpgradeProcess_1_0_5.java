@@ -15,6 +15,7 @@
 package com.liferay.asset.entry.set.hook.upgrade;
 
 import com.liferay.asset.entry.set.hook.upgrade.v1_0_5.UpgradeAssetEntrySet;
+import com.liferay.asset.entry.set.hook.upgrade.v1_0_5.UpgradeAssetSharingEntry;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
@@ -30,6 +31,7 @@ public class UpgradeProcess_1_0_5 extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeAssetEntrySet.class);
+		upgrade(UpgradeAssetSharingEntry.class);
 	}
 
 }
