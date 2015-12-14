@@ -17,6 +17,8 @@ package com.liferay.calendar.util;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.recurrence.Recurrence;
+import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
@@ -265,13 +267,24 @@ public class CalendarUtil {
 		jsonObject.put(
 			"parentCalendarBookingId",
 			calendarBooking.getParentCalendarBookingId());
-		jsonObject.put("recurrence", calendarBooking.getRecurrence());
-		jsonObject.put("secondReminder", calendarBooking.getSecondReminder());
-		jsonObject.put(
-			"secondReminderType", calendarBooking.getSecondReminder());
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartTime(), timeZone);
+		String recurrence = calendarBooking.getRecurrence();
+
+		if (calendarBooking.isRecurring()) {
+			Recurrence recurrenceObj = RecurrenceUtil.inTimeZone(
+				calendarBooking.getRecurrenceObj(), startTimeJCalendar,
+				timeZone);
+
+			recurrence = RecurrenceSerializer.serialize(recurrenceObj);
+		}
+
+		jsonObject.put("recurrence", recurrence);
+
+		jsonObject.put("secondReminder", calendarBooking.getSecondReminder());
+		jsonObject.put(
+			"secondReminderType", calendarBooking.getSecondReminder());
 
 		_addTimeProperties(jsonObject, "startTime", startTimeJCalendar);
 
