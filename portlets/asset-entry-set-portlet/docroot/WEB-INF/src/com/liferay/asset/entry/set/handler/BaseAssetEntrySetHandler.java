@@ -84,7 +84,7 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 
 		jsonObject.put("geolocation", geolocationJSONObject);
 
-		jsonObject.put("linkData", payloadJSONObject.getString("linkData"));
+		jsonObject.put("linkData", payloadJSONObject.getJSONObject("linkData"));
 		jsonObject.put("message", payloadJSONObject.getString("message"));
 		jsonObject.put("rawMessage", payloadJSONObject.getString("rawMessage"));
 		jsonObject.put("type", payloadJSONObject.getString("type"));
