@@ -277,14 +277,14 @@ public class MemberRequestLocalServiceImpl
 			createAccountURL = serviceContext.getPortalURL();
 		}
 
-		createAccountURL = addParameterWithPortletNamespace(
-			createAccountURL, "key", memberRequest.getKey());
-
 		if (!WorkflowDefinitionLinkLocalServiceUtil.hasWorkflowDefinitionLink(
 				memberRequest.getCompanyId(),
 				WorkflowConstants.DEFAULT_GROUP_ID, User.class.getName(), 0)) {
 
 			String redirectURL = getRedirectURL(serviceContext);
+
+			redirectURL = addParameterWithPortletNamespace(
+				redirectURL, "key", memberRequest.getKey());
 
 			createAccountURL = addParameterWithPortletNamespace(
 				createAccountURL, "redirect", redirectURL);
