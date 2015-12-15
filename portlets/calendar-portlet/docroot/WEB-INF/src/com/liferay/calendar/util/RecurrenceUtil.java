@@ -162,7 +162,6 @@ public class RecurrenceUtil {
 
 		recurrence = recurrence.clone();
 
-
 		List<Calendar> newExceptionJCalendars = new ArrayList<>();
 
 		List<Calendar> exceptionJCalendars =
