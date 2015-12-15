@@ -758,7 +758,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			if (!TrashUtil.isInTrash(
 					DLFileEntryConstants.getClassName(), fileEntryId)) {
 
-				fileEntry = dlAppService.moveFileEntryToTrash(fileEntryId);
+				fileEntry = dlTrashService.moveFileEntryToTrash(fileEntryId);
 			}
 
 			return toSyncDLObject(fileEntry, SyncConstants.EVENT_TRASH);
@@ -800,7 +800,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			if (!TrashUtil.isInTrash(
 					DLFolderConstants.getClassName(), folderId)) {
 
-				folder = dlAppService.moveFolderToTrash(folderId);
+				folder = dlTrashService.moveFolderToTrash(folderId);
 			}
 
 			return toSyncDLObject(folder, SyncConstants.EVENT_TRASH);
