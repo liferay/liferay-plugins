@@ -7,13 +7,13 @@
 				components: {
 					base: PATH_CALENDAR_WEB + '/',
 					modules: {
-						'scheduler-mobile': {
-							path: 'js/mobile.js',
-							requires: ['aui-scheduler']
-						},
 						'liferay-calendar-recurrence-converter': {
 							path: 'js/recurrence_converter.js',
 							requires: []
+						},
+						'scheduler-mobile': {
+							path: 'js/mobile.js',
+							requires: ['aui-scheduler']
 						}
 					},
 					root: PATH_CALENDAR_WEB + '/'
