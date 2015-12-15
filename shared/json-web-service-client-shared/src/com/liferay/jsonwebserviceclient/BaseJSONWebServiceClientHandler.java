@@ -25,6 +25,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Igor Beslic
@@ -77,7 +79,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		if (json.contains("exception\":\"")) {
 			throw new JSONWebServiceInvocationException(
-				getExceptionMessage(json));
+				getExceptionMessage(json), getStatus(json));
 		}
 
 		try {
@@ -119,7 +121,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		if (json.contains("exception\":\"")) {
 			throw new JSONWebServiceInvocationException(
-				getExceptionMessage(json));
+				getExceptionMessage(json), getStatus(json));
 		}
 
 		try {
@@ -179,7 +181,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		if (json.contains("exception\":\"")) {
 			throw new JSONWebServiceInvocationException(
-				getExceptionMessage(json));
+				getExceptionMessage(json), getStatus(json));
 		}
 
 		try {
@@ -198,6 +200,18 @@ public abstract class BaseJSONWebServiceClientHandler {
 		return json.substring(exceptionMessageStart, exceptionMessageEnd);
 	}
 
+	protected int getStatus(String json) {
+		Matcher statusMatcher = statusPattern.matcher(json);
+
+		if (!statusMatcher.find()) {
+			return 0;
+		}
+
+		return Integer.parseInt(statusMatcher.group(1));
+	}
+
 	protected ObjectMapper objectMapper = new ObjectMapper();
+
+	private Pattern statusPattern = Pattern.compile("status\":(\\d+)");
 
 }
