@@ -24,6 +24,20 @@ public class JSONWebServiceInvocationException extends Exception {
 		super(message);
 	}
 
+	public JSONWebServiceInvocationException(String message, int status) {
+		super(message);
+
+		_status = status;
+	}
+
+	public JSONWebServiceInvocationException(
+		String message, int status, Throwable cause) {
+
+		super(message, cause);
+
+		_status = status;
+	}
+
 	public JSONWebServiceInvocationException(String message, Throwable cause) {
 		super(message, cause);
 	}
@@ -31,5 +45,15 @@ public class JSONWebServiceInvocationException extends Exception {
 	public JSONWebServiceInvocationException(Throwable cause) {
 		super(cause);
 	}
+
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
+	}
+
+	private int _status;
 
 }
