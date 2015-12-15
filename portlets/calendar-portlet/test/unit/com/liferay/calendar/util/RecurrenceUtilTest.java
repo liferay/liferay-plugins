@@ -43,9 +43,6 @@ public class RecurrenceUtilTest {
 
 	@Test
 	public void testInTimeZoneUpdatesExceptionJCalendars() {
-		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-			2015, Calendar.DECEMBER, 11, 1, 0, 0, 0, _utcTimeZone);
-
 		Recurrence recurrence = RecurrenceSerializer.deserialize(
 			"RRULE:FREQ=DAILY;INTERVAL=1\n" +
 				"EXDATE;TZID=\"UTC\";VALUE=DATE:20151225,20151231",
@@ -53,6 +50,7 @@ public class RecurrenceUtilTest {
 
 		List<Calendar> exceptionJCalendars =
 			recurrence.getExceptionJCalendars();
+
 		Calendar exceptionJCalendar = exceptionJCalendars.get(0);
 
 		Assert.assertEquals(2015, exceptionJCalendar.get(Calendar.YEAR));
@@ -67,11 +65,14 @@ public class RecurrenceUtilTest {
 			Calendar.DECEMBER, exceptionJCalendar.get(Calendar.MONTH));
 		Assert.assertEquals(31, exceptionJCalendar.get(Calendar.DAY_OF_MONTH));
 
+		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			2015, Calendar.DECEMBER, 11, 1, 0, 0, 0, _utcTimeZone);
+
 		recurrence = RecurrenceUtil.inTimeZone(
 			recurrence, startTimeJCalendar, _losAngelesTimeZone);
-		exceptionJCalendar = recurrence.getUntilJCalendar();
 
 		exceptionJCalendars = recurrence.getExceptionJCalendars();
+
 		exceptionJCalendar = exceptionJCalendars.get(0);
 
 		Assert.assertEquals(2015, exceptionJCalendar.get(Calendar.YEAR));
@@ -89,10 +90,9 @@ public class RecurrenceUtilTest {
 
 	@Test
 	public void testInTimeZoneUpdatesUntilJCalendar() {
-		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-			2015, Calendar.DECEMBER, 11, 1, 0, 0, 0, _utcTimeZone);
 		Recurrence recurrence = RecurrenceSerializer.deserialize(
 			"RRULE:FREQ=DAILY;INTERVAL=1;UNTIL=20160116", _utcTimeZone);
+
 		Calendar untilJCalendar = recurrence.getUntilJCalendar();
 
 		Assert.assertEquals(2016, untilJCalendar.get(Calendar.YEAR));
@@ -100,8 +100,12 @@ public class RecurrenceUtilTest {
 			Calendar.JANUARY, untilJCalendar.get(Calendar.MONTH));
 		Assert.assertEquals(16, untilJCalendar.get(Calendar.DAY_OF_MONTH));
 
+		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			2015, Calendar.DECEMBER, 11, 1, 0, 0, 0, _utcTimeZone);
+
 		recurrence = RecurrenceUtil.inTimeZone(
 			recurrence, startTimeJCalendar, _losAngelesTimeZone);
+
 		untilJCalendar = recurrence.getUntilJCalendar();
 
 		Assert.assertEquals(2016, untilJCalendar.get(Calendar.YEAR));
@@ -112,18 +116,21 @@ public class RecurrenceUtilTest {
 
 	@Test
 	public void testInTimeZoneUpdatesWeekdays() {
-		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-			2015, Calendar.DECEMBER, 11, 1, 0, 0, 0, _utcTimeZone);
 		Recurrence recurrence = RecurrenceSerializer.deserialize(
 			"RRULE:FREQ=WEEKLY;INTERVAL=1;BYDAY=MO,WE,FR", _utcTimeZone);
+
 		List<Weekday> weekdays = recurrence.getWeekdays();
 
 		Assert.assertTrue(weekdays.contains(Weekday.MONDAY));
 		Assert.assertTrue(weekdays.contains(Weekday.WEDNESDAY));
 		Assert.assertTrue(weekdays.contains(Weekday.FRIDAY));
 
+		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			2015, Calendar.DECEMBER, 11, 1, 0, 0, 0, _utcTimeZone);
+
 		recurrence = RecurrenceUtil.inTimeZone(
 			recurrence, startTimeJCalendar, _losAngelesTimeZone);
+
 		weekdays = recurrence.getWeekdays();
 
 		Assert.assertTrue(weekdays.contains(Weekday.SUNDAY));

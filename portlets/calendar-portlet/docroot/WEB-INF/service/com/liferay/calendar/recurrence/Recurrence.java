@@ -44,7 +44,7 @@ public class Recurrence {
 		Calendar untilJCalendar = null;
 
 		if (_untilJCalendar != null) {
-			untilJCalendar = (Calendar) _untilJCalendar.clone();
+			untilJCalendar = (Calendar)_untilJCalendar.clone();
 		}
 
 		recurrence.setUntilJCalendar(untilJCalendar);

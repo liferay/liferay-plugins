@@ -173,6 +173,7 @@ public class RecurrenceUtil {
 
 		List<Calendar> exceptionJCalendars =
 			recurrence.getExceptionJCalendars();
+
 		List<Calendar> newExceptionJCalendars = new ArrayList<>();
 
 		for (Calendar exceptionJCalendar : exceptionJCalendars) {
@@ -186,25 +187,28 @@ public class RecurrenceUtil {
 
 		List<PositionalWeekday> positionalWeekdays =
 			recurrence.getPositionalWeekdays();
+
 		List<PositionalWeekday> newPositionalWeekdays = new ArrayList<>();
 
 		for (PositionalWeekday positionalWeekday : positionalWeekdays) {
 			Calendar jCalendar = JCalendarUtil.getJCalendar(
 				startTimeJCalendar, recurrence.getTimeZone());
+
 			Weekday weekday = positionalWeekday.getWeekday();
 
 			jCalendar.set(Calendar.DAY_OF_WEEK, weekday.getCalendarWeekday());
+
 			jCalendar = JCalendarUtil.getJCalendar(jCalendar, timeZone);
 
 			weekday = Weekday.getWeekday(jCalendar);
 
 			positionalWeekday = new PositionalWeekday(
 				weekday, positionalWeekday.getPosition());
+
 			newPositionalWeekdays.add(positionalWeekday);
 		}
 
 		recurrence.setPositionalWeekdays(newPositionalWeekdays);
-
 		recurrence.setTimeZone(timeZone);
 
 		return recurrence;
