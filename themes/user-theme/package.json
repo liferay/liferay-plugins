@@ -1,6 +1,8 @@
 {
-	"name": "user-theme",
-	"version": "0.0.0",
+	"dependencies": {
+		"gulp": "^3.8.10",
+		"liferay-theme-tasks": "*"
+	},
 	"keywords": [
 		"liferay-theme"
 	],
@@ -9,8 +11,6 @@
 		"supportCompass": false,
 		"version": "7.0"
 	},
-	"dependencies": {
-		"gulp": "^3.8.10",
-		"liferay-theme-tasks": "*"
-	}
+	"name": "user-theme",
+	"version": "0.0.0"
 }
