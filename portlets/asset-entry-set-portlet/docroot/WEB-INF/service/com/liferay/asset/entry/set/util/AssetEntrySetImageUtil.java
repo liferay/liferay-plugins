@@ -112,12 +112,16 @@ public class AssetEntrySetImageUtil {
 		for (String imageType : imageMaxSizes.keySet()) {
 			FileEntry fileEntry = rawFileEntry;
 
-			if ((!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_FULL) ||
-				 !Validator.equals(
+			if (imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_FULL) &&
+				Validator.equals(
 					MimeTypesUtil.getContentType(file),
-					ContentTypes.IMAGE_GIF)) &&
-				!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
+					ContentTypes.IMAGE_GIF)) {
 
+				fileEntry = addFileEntry(
+					userId, classNameId, classPK, portletId, file, imageType, 
+					file.getName());
+			}
+			else if (!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
 				fileEntry = addScaledImageFileEntry(
 					userId, classNameId, 0L, portletId, imageBag, imageType,
 					file.getName(), imageMaxSizes.get(imageType));
