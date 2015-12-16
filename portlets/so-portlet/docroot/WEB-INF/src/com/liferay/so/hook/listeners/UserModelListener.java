@@ -57,8 +57,9 @@ public class UserModelListener extends BaseModelListener<User> {
 				refererURL, "p_p_id", false);
 
 			String redirectURL = HttpUtil.getParameter(
-				refererURL, PortalUtil.getPortletNamespace(portletId) +
-				"redirectURL", false);
+				refererURL,
+				PortalUtil.getPortletNamespace(portletId) + "redirectURL",
+				false);
 
 			String key = HttpUtil.getParameter(
 				redirectURL, PortalUtil.getPortletNamespace(portletId) + "key",
