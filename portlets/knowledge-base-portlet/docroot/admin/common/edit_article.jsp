@@ -238,39 +238,42 @@ String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbAr
 </aui:script>
 
 <aui:script use="aui-base,event-input">
+	<c:if test="<%= kbArticle == null %>">
+		var titleInput = A.one('#<portlet:namespace />title');
+		var urlTitleInput = A.one('#<portlet:namespace />urlTitle');
+
+		var urlTitleCustomized = false;
+
+		titleInput.on(
+			'input',
+			function(event) {
+				if (!urlTitleCustomized) {
+					var urlTitle = titleInput.val();
+
+					urlTitle = urlTitle.replace(/[^a-zA-Z0-9_-]/g, '-');
+
+					if (urlTitle[0] === '-') {
+						urlTitle = urlTitle.replace(/^-+/, '');
+					}
+
+					urlTitle = urlTitle.replace(/--+/g, '-');
+
+					urlTitleInput.val('/' + urlTitle.toLowerCase());
+				}
+			}
+		);
+
+		urlTitleInput.on(
+			'input',
+			function() {
+				urlTitleCustomized = true;
+			}
+		);
+	</c:if>
+
 	var form = A.one('#<portlet:namespace />fm');
-	var titleInput = A.one('#<portlet:namespace />title');
-	var urlTitleInput = A.one('#<portlet:namespace />urlTitle');
 
 	var publishButton = form.one('#<portlet:namespace />publish');
-
-	var urlTitleCustomized = false;
-
-	titleInput.on(
-		'input',
-		function(event) {
-			if (!urlTitleCustomized) {
-				var urlTitle = titleInput.val();
-
-				urlTitle = urlTitle.replace(/[^a-zA-Z0-9_-]/g, '-');
-
-				if (urlTitle[0] === '-') {
-					urlTitle = urlTitle.replace(/^-+/, '');
-				}
-
-				urlTitle = urlTitle.replace(/--+/g, '-');
-
-				urlTitleInput.val('/' + urlTitle.toLowerCase());
-			}
-		}
-	);
-
-	urlTitleInput.on(
-		'input',
-		function() {
-			urlTitleCustomized = true;
-		}
-	);
 
 	if (publishButton) {
 		publishButton.on(
