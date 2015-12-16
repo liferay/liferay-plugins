@@ -201,7 +201,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 	}
 
 	protected int getStatus(String json) {
-		Matcher statusMatcher = statusPattern.matcher(json);
+		Matcher statusMatcher = _statusPattern.matcher(json);
 
 		if (!statusMatcher.find()) {
 			return 0;
@@ -212,6 +212,6 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 	protected ObjectMapper objectMapper = new ObjectMapper();
 
-	private Pattern statusPattern = Pattern.compile("status\":(\\d+)");
+	private Pattern _statusPattern = Pattern.compile("status\":(\\d+)");
 
 }
