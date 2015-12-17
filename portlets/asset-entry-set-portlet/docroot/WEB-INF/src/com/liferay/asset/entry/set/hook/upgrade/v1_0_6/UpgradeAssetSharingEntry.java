@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.entry.set.hook.upgrade.v1_0_5;
+package com.liferay.asset.entry.set.hook.upgrade.v1_0_6;
 
 import com.liferay.asset.entry.set.util.AssetEntrySetConstants;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
