@@ -96,8 +96,8 @@ public class UpgradeDLFileEntry extends UpgradeProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
-				"select * from DLFileEntry where (extraSettings is null) or" +
-					" (extraSettings = '')");
+				"select * from DLFileEntry where (extraSettings is null) or " +
+					"(extraSettings = '')");
 
 			rs = ps.executeQuery();
 
