@@ -118,7 +118,7 @@ public class AssetEntrySetImageUtil {
 					ContentTypes.IMAGE_GIF)) {
 
 				fileEntry = addFileEntry(
-					userId, classNameId, classPK, portletId, file, imageType, 
+					userId, classNameId, classPK, portletId, file, imageType,
 					file.getName());
 			}
 			else if (!imageType.equals(AssetEntrySetConstants.IMAGE_TYPE_RAW)) {
