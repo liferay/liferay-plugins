@@ -24,7 +24,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (!tableHasColumn("KBComment", "helpful")) {
+		if (!hasColumn("KBComment", "helpful")) {
 			return;
 		}
 

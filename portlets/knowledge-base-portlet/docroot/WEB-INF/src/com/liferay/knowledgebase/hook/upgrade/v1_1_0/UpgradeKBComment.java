@@ -42,7 +42,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 			String tableSqlCreate, String tableSqlDrop)
 		throws Exception {
 
-		if (tableHasData(newTableName)) {
+		if (hasRows(newTableName)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Not renaming " + oldTableName + " to " + newTableName +
@@ -52,7 +52,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 			return;
 		}
 
-		if (!tableHasData(oldTableName)) {
+		if (!hasRows(oldTableName)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Not renaming " + oldTableName + " to " + newTableName +
@@ -83,7 +83,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 			String tableName, String columnName, String dataType, String data)
 		throws Exception {
 
-		if (tableHasColumn(tableName, columnName)) {
+		if (hasColumn(tableName, columnName)) {
 			return;
 		}
 
@@ -128,7 +128,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 
 		updateColumn(oldTableName, "kbCommentId", "LONG", "commentId");
 
-		if (tableHasColumn(oldTableName, "commentId")) {
+		if (hasColumn(oldTableName, "commentId")) {
 			runSQL("alter table " + oldTableName + " drop column commentId");
 		}
 	}

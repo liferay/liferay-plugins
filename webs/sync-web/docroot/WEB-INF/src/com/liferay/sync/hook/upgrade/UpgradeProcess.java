@@ -28,7 +28,7 @@ public abstract class UpgradeProcess
 
 			// SYNC-1453
 
-			if (!tableHasData("SyncDLObject")) {
+			if (!hasRows("SyncDLObject")) {
 				return;
 			}
 

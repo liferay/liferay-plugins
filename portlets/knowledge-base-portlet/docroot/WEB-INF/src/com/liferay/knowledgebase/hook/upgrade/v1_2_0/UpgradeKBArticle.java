@@ -23,7 +23,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (tableHasColumn("KBArticle", "kbTemplateId")) {
+		if (hasColumn("KBArticle", "kbTemplateId")) {
 			runSQL("alter table KBArticle drop column kbTemplateId");
 		}
 	}

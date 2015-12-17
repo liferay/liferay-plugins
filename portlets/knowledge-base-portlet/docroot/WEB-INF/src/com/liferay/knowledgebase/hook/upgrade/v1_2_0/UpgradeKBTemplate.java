@@ -23,11 +23,11 @@ public class UpgradeKBTemplate extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (tableHasColumn("KBTemplate", "engineType")) {
+		if (hasColumn("KBTemplate", "engineType")) {
 			runSQL("alter table KBTemplate drop column engineType");
 		}
 
-		if (tableHasColumn("KBTemplate", "cacheable")) {
+		if (hasColumn("KBTemplate", "cacheable")) {
 			runSQL("alter table KBTemplate drop column cacheable");
 		}
 	}

@@ -28,7 +28,7 @@ public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		if (!tableHasColumn("Akismet_AkismetData", "mbMessageId")) {
+		if (!hasColumn("Akismet_AkismetData", "mbMessageId")) {
 			return;
 		}
 

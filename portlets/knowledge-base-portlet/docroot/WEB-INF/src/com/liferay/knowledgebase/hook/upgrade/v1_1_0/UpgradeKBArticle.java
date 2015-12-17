@@ -49,7 +49,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			String tableSqlCreate, String tableSqlDrop)
 		throws Exception {
 
-		if (tableHasData(newTableName)) {
+		if (hasRows(newTableName)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Not renaming " + oldTableName + " to " + newTableName +
@@ -59,7 +59,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			return;
 		}
 
-		if (!tableHasData(oldTableName)) {
+		if (!hasRows(oldTableName)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Not renaming " + oldTableName + " to " + newTableName +
@@ -95,7 +95,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			String tableName, String columnName, String dataType, String data)
 		throws Exception {
 
-		if (tableHasColumn(tableName, columnName)) {
+		if (hasColumn(tableName, columnName)) {
 			return;
 		}
 
@@ -150,7 +150,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 		updateColumn(oldTableName, "statusByUserName", "STRING", "userName");
 		updateColumn(oldTableName, "statusDate", "DATE", "modifiedDate");
 
-		if (tableHasColumn(oldTableName, "articleId")) {
+		if (hasColumn(oldTableName, "articleId")) {
 			runSQL("alter table " + oldTableName + " drop column articleId");
 		}
 	}
