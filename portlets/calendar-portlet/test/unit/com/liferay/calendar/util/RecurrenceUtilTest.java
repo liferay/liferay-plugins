@@ -42,6 +42,17 @@ public class RecurrenceUtilTest {
 	}
 
 	@Test
+	public void testInTimeZoneNullRecurrence() {
+		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			2015, Calendar.DECEMBER, 11, 1, 0, 0, 0, _utcTimeZone);
+
+		Recurrence recurrence = RecurrenceUtil.inTimeZone(
+			null, startTimeJCalendar, _losAngelesTimeZone);
+
+		Assert.assertNull(recurrence);
+	}
+
+	@Test
 	public void testInTimeZoneUpdatesExceptionJCalendars() {
 		Recurrence recurrence = RecurrenceSerializer.deserialize(
 			"RRULE:FREQ=DAILY;INTERVAL=1\n" +
