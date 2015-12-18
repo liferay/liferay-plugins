@@ -268,10 +268,10 @@ public class CalendarUtil {
 			"parentCalendarBookingId",
 			calendarBooking.getParentCalendarBookingId());
 
+		String recurrence = calendarBooking.getRecurrence();
+
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartTime(), timeZone);
-
-		String recurrence = calendarBooking.getRecurrence();
 
 		if (calendarBooking.isRecurring()) {
 			Recurrence recurrenceObj = RecurrenceUtil.inTimeZone(
@@ -282,6 +282,7 @@ public class CalendarUtil {
 		}
 
 		jsonObject.put("recurrence", recurrence);
+
 		jsonObject.put("secondReminder", calendarBooking.getSecondReminder());
 		jsonObject.put(
 			"secondReminderType", calendarBooking.getSecondReminder());
