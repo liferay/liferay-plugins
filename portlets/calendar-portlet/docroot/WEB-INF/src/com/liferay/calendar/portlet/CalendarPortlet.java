@@ -1210,7 +1210,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
-		TimeZone timeZone = getTimeZone(resourceRequest);
 
 		long calendarBookingId = ParamUtil.getLong(
 			resourceRequest, "calendarBookingId");
@@ -1231,8 +1230,12 @@ public class CalendarPortlet extends MVCPortlet {
 		java.util.Calendar endTimeJCalendar = getJCalendar(
 			resourceRequest, "endTime");
 		boolean allDay = ParamUtil.getBoolean(resourceRequest, "allDay");
+
+		TimeZone timeZone = getTimeZone(resourceRequest);
+
 		Recurrence recurrence = RecurrenceSerializer.deserialize(
 			ParamUtil.getString(resourceRequest, "recurrence"), timeZone);
+
 		long[] reminders = {0, 0};
 		String[] remindersType = {"email", "email"};
 		int instanceIndex = ParamUtil.getInteger(
