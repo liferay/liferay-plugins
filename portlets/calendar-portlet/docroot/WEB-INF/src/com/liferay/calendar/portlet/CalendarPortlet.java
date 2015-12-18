@@ -715,7 +715,11 @@ public class CalendarPortlet extends MVCPortlet {
 
 		Frequency frequency = null;
 
-		if ((recurrence != null) && (frequency == Frequency.WEEKLY)) {
+		if (recurrence != null) {
+			frequency = recurrence.getFrequency();
+		}
+
+		if (frequency == Frequency.WEEKLY) {
 			CalendarBooking firstInstance =
 				_calendarBookingService.getCalendarBookingInstance(
 					calendarBooking.getCalendarBookingId(), 0);
@@ -735,6 +739,7 @@ public class CalendarPortlet extends MVCPortlet {
 				startTimeJCalendar = JCalendarUtil.mergeJCalendar(
 					firstInstanceJCalendar, startTimeJCalendar,
 					calendarBooking.getTimeZone());
+
 				startTime = startTimeJCalendar.getTimeInMillis();
 			}
 		}
