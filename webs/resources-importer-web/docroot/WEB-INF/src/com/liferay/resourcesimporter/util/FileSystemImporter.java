@@ -36,9 +36,9 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.search.IndexWriterHelperUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -1258,16 +1258,16 @@ public class FileSystemImporter extends BaseImporter {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(groupId);
 
-		boolean indexReadOnly = SearchEngineUtil.isIndexReadOnly();
+		boolean indexReadOnly = IndexWriterHelperUtil.isIndexReadOnly();
 
 		try {
-			SearchEngineUtil.setIndexReadOnly(true);
+			IndexWriterHelperUtil.setIndexReadOnly(true);
 
 			setUpAssets("assets.json");
 			setUpSettings("settings.json");
 			setUpSitemap("sitemap.json");
 
-			SearchEngineUtil.setIndexReadOnly(false);
+			IndexWriterHelperUtil.setIndexReadOnly(false);
 
 			long startTime = System.currentTimeMillis();
 
@@ -1284,7 +1284,7 @@ public class FileSystemImporter extends BaseImporter {
 			}
 		}
 		finally {
-			SearchEngineUtil.setIndexReadOnly(indexReadOnly);
+			IndexWriterHelperUtil.setIndexReadOnly(indexReadOnly);
 		}
 	}
 

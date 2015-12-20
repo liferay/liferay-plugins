@@ -27,8 +27,9 @@ import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.IndexSearcherHelperUtil;
+import com.liferay.portal.kernel.search.IndexWriterHelperUtil;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.search.generic.BooleanQueryImpl;
@@ -71,7 +72,7 @@ public class AccountIndexer extends BaseIndexer<Account> {
 
 		booleanQuery.addRequiredTerm("accountId", account.getAccountId());
 
-		Hits hits = SearchEngineUtil.search(searchContext, booleanQuery);
+		Hits hits = IndexSearcherHelperUtil.search(searchContext, booleanQuery);
 
 		List<String> uids = new ArrayList<>(hits.getLength());
 
@@ -81,7 +82,7 @@ public class AccountIndexer extends BaseIndexer<Account> {
 			uids.add(document.get(Field.UID));
 		}
 
-		SearchEngineUtil.deleteDocuments(
+		IndexWriterHelperUtil.deleteDocuments(
 			getSearchEngineId(), account.getCompanyId(), uids,
 			isCommitImmediately());
 	}
@@ -112,7 +113,7 @@ public class AccountIndexer extends BaseIndexer<Account> {
 	protected void doReindex(Account account) throws Exception {
 		Document document = getDocument(account);
 
-		SearchEngineUtil.updateDocument(
+		IndexWriterHelperUtil.updateDocument(
 			getSearchEngineId(), account.getCompanyId(), document,
 			isCommitImmediately());
 	}
