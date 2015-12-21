@@ -180,7 +180,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		boolean deployed = false;
 		JSONObject loadBalancerJSONObject = null;
 
-		for (int i = 1; i < 50; i++) {
+		int i = 1;
+		while ( true ) {
 			String json = _jsonWebServiceClient.doGet(
 				"/" + availabilityZone + "/loadBalancer/show/" +
 					asgardClusterName + ".json",
@@ -214,6 +215,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 				break;
 			}
+
+			i++;
 		}
 
 		if (!deployed) {
@@ -233,7 +236,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		List<JSONObject> instanceStateJSONObjects = getInstanceStateJSONObjects(
 			loadBalancerJSONObject, autoScalingGroupName);
 
-		for (int i = 0; i < instanceStateJSONObjects.size(); i++) {
+		for (i = 0; i < instanceStateJSONObjects.size(); i++) {
 			JSONObject instanceStateJSONObject = instanceStateJSONObjects.get(
 				i);
 
