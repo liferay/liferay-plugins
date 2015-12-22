@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.CompanyProvider;
+import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
@@ -683,6 +684,8 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		attachment.setNew(true);
 		attachment.setPrimaryKey(attachmentId);
 
+		attachment.setCompanyId(companyProvider.getCompanyId());
+
 		return attachment;
 	}
 
@@ -1256,7 +1259,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = CompanyProvider.class)
+	@BeanReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
 	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
 	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();

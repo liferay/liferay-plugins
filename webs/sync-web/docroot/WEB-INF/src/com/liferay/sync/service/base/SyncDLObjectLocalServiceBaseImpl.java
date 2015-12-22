@@ -755,6 +755,25 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 		this.dlFileVersionPersistence = dlFileVersionPersistence;
 	}
 
+	/**
+	 * Returns the d l trash local service.
+	 *
+	 * @return the d l trash local service
+	 */
+	public com.liferay.portlet.documentlibrary.service.DLTrashLocalService getDLTrashLocalService() {
+		return dlTrashLocalService;
+	}
+
+	/**
+	 * Sets the d l trash local service.
+	 *
+	 * @param dlTrashLocalService the d l trash local service
+	 */
+	public void setDLTrashLocalService(
+		com.liferay.portlet.documentlibrary.service.DLTrashLocalService dlTrashLocalService) {
+		this.dlTrashLocalService = dlTrashLocalService;
+	}
+
 	public void afterPropertiesSet() {
 		Class<?> clazz = getClass();
 
@@ -878,6 +897,8 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	protected com.liferay.portlet.documentlibrary.service.DLFileVersionLocalService dlFileVersionLocalService;
 	@BeanReference(type = DLFileVersionPersistence.class)
 	protected DLFileVersionPersistence dlFileVersionPersistence;
+	@BeanReference(type = com.liferay.portlet.documentlibrary.service.DLTrashLocalService.class)
+	protected com.liferay.portlet.documentlibrary.service.DLTrashLocalService dlTrashLocalService;
 	private ClassLoader _classLoader;
 	private SyncDLObjectLocalServiceClpInvoker _clpInvoker = new SyncDLObjectLocalServiceClpInvoker();
 }

@@ -38,6 +38,7 @@ import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.CompanyProvider;
+import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.samplelar.NoSuchBookingException;
@@ -2150,6 +2151,8 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 		sampleLARBooking.setUuid(uuid);
 
+		sampleLARBooking.setCompanyId(companyProvider.getCompanyId());
+
 		return sampleLARBooking;
 	}
 
@@ -2798,7 +2801,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	@BeanReference(type = CompanyProvider.class)
+	@BeanReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
 	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
 	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();

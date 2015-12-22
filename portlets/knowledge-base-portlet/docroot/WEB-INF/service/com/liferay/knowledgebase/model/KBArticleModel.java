@@ -558,13 +558,6 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	public void setStatusDate(Date statusDate);
 
 	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #isApproved()}
-	 */
-	@Deprecated
-	@Override
-	public boolean getApproved();
-
-	/**
 	 * Returns <code>true</code> if this k b article is approved.
 	 *
 	 * @return <code>true</code> if this k b article is approved; <code>false</code> otherwise
