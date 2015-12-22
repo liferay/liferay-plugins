@@ -61,8 +61,16 @@ public class SuggestionPermission {
 				"Only KB articles support suggestions");
 		}
 
-		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			classPK, WorkflowConstants.STATUS_ANY);
+		KBArticle kbArticle = KBArticleLocalServiceUtil.fetchKBArticle(classPK);
+
+		if (kbArticle != null) {
+			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
+		}
+		else {
+			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				classPK, WorkflowConstants.STATUS_ANY);
+		}
 
 		return contains(permissionChecker, groupId, kbArticle, actionId);
 	}
