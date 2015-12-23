@@ -87,8 +87,6 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		Document document = getBaseModelDocument(PORTLET_ID, assetEntrySet);
 
-		document.addKeyword(
-			Field.MODIFIED_DATE, assetEntrySet.getModifiedTime());
 		document.addKeyword(Field.TYPE, payloadJSONObject.getString("type"));
 
 		document.addText(
@@ -97,6 +95,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 				assetEntrySet.getCreatorClassNameId(),
 				assetEntrySet.getCreatorClassPK()));
 		document.addText("message", payloadJSONObject.getString("message"));
+		document.addKeyword("modifiedTime", assetEntrySet.getModifiedTime());
 		document.addKeyword(
 			"parentAssetEntrySetId", assetEntrySet.getParentAssetEntrySetId());
 		document.addKeyword(
