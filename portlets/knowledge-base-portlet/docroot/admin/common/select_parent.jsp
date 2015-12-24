@@ -163,7 +163,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 							value="choose"
 						/>
 					</liferay-ui:search-container-column-text>
-
 				</liferay-ui:search-container-row>
 
 				<liferay-ui:search-iterator />
