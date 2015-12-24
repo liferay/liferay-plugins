@@ -17,9 +17,9 @@ package com.liferay.alloy.mvc;
 import com.liferay.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.IndexWriterHelperUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -73,8 +73,9 @@ public abstract class BaseAlloyIndexer extends BaseIndexer<BaseModel<?>> {
 
 		AuditedModel auditedModel = (AuditedModel)baseModel;
 
-		SearchEngineUtil.updateDocument(
-			getSearchEngineId(), auditedModel.getCompanyId(), document);
+		IndexWriterHelperUtil.updateDocument(
+			getSearchEngineId(), auditedModel.getCompanyId(), document,
+			isCommitImmediately());
 	}
 
 	@Override
@@ -137,8 +138,8 @@ public abstract class BaseAlloyIndexer extends BaseIndexer<BaseModel<?>> {
 			documents.add(document);
 		}
 
-		SearchEngineUtil.updateDocuments(
-			getSearchEngineId(), companyId, documents);
+		IndexWriterHelperUtil.updateDocuments(
+			getSearchEngineId(), companyId, documents, isCommitImmediately());
 	}
 
 	protected void setAlloyServiceInvoker(
