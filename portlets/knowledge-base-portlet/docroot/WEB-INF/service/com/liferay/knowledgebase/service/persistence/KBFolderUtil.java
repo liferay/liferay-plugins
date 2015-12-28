@@ -1061,12 +1061,5 @@ public class KBFolderUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(KBFolderPersistence persistence) {
-	}
-
 	private static KBFolderPersistence _persistence;
 }

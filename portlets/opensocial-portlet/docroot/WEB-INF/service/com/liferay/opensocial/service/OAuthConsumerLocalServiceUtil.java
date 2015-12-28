@@ -328,12 +328,5 @@ public class OAuthConsumerLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(OAuthConsumerLocalService service) {
-	}
-
 	private static OAuthConsumerLocalService _service;
 }

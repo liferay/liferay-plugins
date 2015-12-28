@@ -299,23 +299,6 @@ public class AkismetDataLocalServiceWrapper implements AkismetDataLocalService,
 			type, permalink, referrer, userAgent, userIP, userURL);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public AkismetDataLocalService getWrappedAkismetDataLocalService() {
-		return _akismetDataLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedAkismetDataLocalService(
-		AkismetDataLocalService akismetDataLocalService) {
-		_akismetDataLocalService = akismetDataLocalService;
-	}
-
 	@Override
 	public AkismetDataLocalService getWrappedService() {
 		return _akismetDataLocalService;

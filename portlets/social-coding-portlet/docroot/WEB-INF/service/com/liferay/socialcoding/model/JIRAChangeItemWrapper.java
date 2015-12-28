@@ -392,14 +392,6 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public JIRAChangeItem getWrappedJIRAChangeItem() {
-		return _jiraChangeItem;
-	}
-
 	@Override
 	public JIRAChangeItem getWrappedModel() {
 		return _jiraChangeItem;

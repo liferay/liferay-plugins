@@ -331,12 +331,5 @@ public class SVNRevisionLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(SVNRevisionLocalService service) {
-	}
-
 	private static SVNRevisionLocalService _service;
 }

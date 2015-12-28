@@ -335,23 +335,6 @@ public class PushNotificationsDeviceLocalServiceWrapper
 		_pushNotificationsDeviceLocalService.updateToken(oldToken, newToken);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public PushNotificationsDeviceLocalService getWrappedPushNotificationsDeviceLocalService() {
-		return _pushNotificationsDeviceLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedPushNotificationsDeviceLocalService(
-		PushNotificationsDeviceLocalService pushNotificationsDeviceLocalService) {
-		_pushNotificationsDeviceLocalService = pushNotificationsDeviceLocalService;
-	}
-
 	@Override
 	public PushNotificationsDeviceLocalService getWrappedService() {
 		return _pushNotificationsDeviceLocalService;

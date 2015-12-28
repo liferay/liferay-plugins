@@ -312,14 +312,6 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public JIRAChangeGroup getWrappedJIRAChangeGroup() {
-		return _jiraChangeGroup;
-	}
-
 	@Override
 	public JIRAChangeGroup getWrappedModel() {
 		return _jiraChangeGroup;

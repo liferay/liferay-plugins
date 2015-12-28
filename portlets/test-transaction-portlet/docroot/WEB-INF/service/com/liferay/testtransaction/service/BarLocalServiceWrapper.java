@@ -313,22 +313,6 @@ public class BarLocalServiceWrapper implements BarLocalService,
 		return _barLocalService.updateBar(bar);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public BarLocalService getWrappedBarLocalService() {
-		return _barLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedBarLocalService(BarLocalService barLocalService) {
-		_barLocalService = barLocalService;
-	}
-
 	@Override
 	public BarLocalService getWrappedService() {
 		return _barLocalService;

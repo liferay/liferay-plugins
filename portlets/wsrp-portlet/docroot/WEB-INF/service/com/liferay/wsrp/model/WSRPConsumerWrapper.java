@@ -616,14 +616,6 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 		return _wsrpConsumer.getStagedModelType();
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public WSRPConsumer getWrappedWSRPConsumer() {
-		return _wsrpConsumer;
-	}
-
 	@Override
 	public WSRPConsumer getWrappedModel() {
 		return _wsrpConsumer;

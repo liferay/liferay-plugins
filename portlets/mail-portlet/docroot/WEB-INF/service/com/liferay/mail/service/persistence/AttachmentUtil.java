@@ -433,12 +433,5 @@ public class AttachmentUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(AttachmentPersistence persistence) {
-	}
-
 	private static AttachmentPersistence _persistence;
 }

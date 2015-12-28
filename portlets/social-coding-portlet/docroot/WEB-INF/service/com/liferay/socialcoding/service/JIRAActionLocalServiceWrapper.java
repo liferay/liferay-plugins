@@ -272,23 +272,6 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 		return _jiraActionLocalService.updateJIRAAction(jiraAction);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public JIRAActionLocalService getWrappedJIRAActionLocalService() {
-		return _jiraActionLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedJIRAActionLocalService(
-		JIRAActionLocalService jiraActionLocalService) {
-		_jiraActionLocalService = jiraActionLocalService;
-	}
-
 	@Override
 	public JIRAActionLocalService getWrappedService() {
 		return _jiraActionLocalService;

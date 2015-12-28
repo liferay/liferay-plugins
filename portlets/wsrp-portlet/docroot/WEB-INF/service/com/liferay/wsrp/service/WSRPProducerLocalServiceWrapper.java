@@ -395,23 +395,6 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 			name, version, portletIds);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public WSRPProducerLocalService getWrappedWSRPProducerLocalService() {
-		return _wsrpProducerLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedWSRPProducerLocalService(
-		WSRPProducerLocalService wsrpProducerLocalService) {
-		_wsrpProducerLocalService = wsrpProducerLocalService;
-	}
-
 	@Override
 	public WSRPProducerLocalService getWrappedService() {
 		return _wsrpProducerLocalService;

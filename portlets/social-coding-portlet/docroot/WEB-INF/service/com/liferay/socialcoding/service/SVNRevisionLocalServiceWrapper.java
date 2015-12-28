@@ -332,23 +332,6 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService,
 		return _svnRevisionLocalService.updateSVNRevision(svnRevision);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public SVNRevisionLocalService getWrappedSVNRevisionLocalService() {
-		return _svnRevisionLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedSVNRevisionLocalService(
-		SVNRevisionLocalService svnRevisionLocalService) {
-		_svnRevisionLocalService = svnRevisionLocalService;
-	}
-
 	@Override
 	public SVNRevisionLocalService getWrappedService() {
 		return _svnRevisionLocalService;

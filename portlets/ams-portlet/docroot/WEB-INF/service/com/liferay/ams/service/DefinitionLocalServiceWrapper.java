@@ -268,23 +268,6 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.updateDefinition(definition);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public DefinitionLocalService getWrappedDefinitionLocalService() {
-		return _definitionLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedDefinitionLocalService(
-		DefinitionLocalService definitionLocalService) {
-		_definitionLocalService = definitionLocalService;
-	}
-
 	@Override
 	public DefinitionLocalService getWrappedService() {
 		return _definitionLocalService;

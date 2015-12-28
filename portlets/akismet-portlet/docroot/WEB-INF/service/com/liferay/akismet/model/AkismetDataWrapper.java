@@ -487,14 +487,6 @@ public class AkismetDataWrapper implements AkismetData,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public AkismetData getWrappedAkismetData() {
-		return _akismetData;
-	}
-
 	@Override
 	public AkismetData getWrappedModel() {
 		return _akismetData;

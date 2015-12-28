@@ -330,23 +330,6 @@ public class OAuthConsumerLocalServiceWrapper
 			consumerKey, consumerSecret, keyType, keyName, callbackURL);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public OAuthConsumerLocalService getWrappedOAuthConsumerLocalService() {
-		return _oAuthConsumerLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedOAuthConsumerLocalService(
-		OAuthConsumerLocalService oAuthConsumerLocalService) {
-		_oAuthConsumerLocalService = oAuthConsumerLocalService;
-	}
-
 	@Override
 	public OAuthConsumerLocalService getWrappedService() {
 		return _oAuthConsumerLocalService;

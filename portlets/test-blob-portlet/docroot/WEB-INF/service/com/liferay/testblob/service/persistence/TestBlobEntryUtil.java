@@ -429,12 +429,5 @@ public class TestBlobEntryUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(TestBlobEntryPersistence persistence) {
-	}
-
 	private static TestBlobEntryPersistence _persistence;
 }

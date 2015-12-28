@@ -89,12 +89,5 @@ public class FooServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(FooService service) {
-	}
-
 	private static FooService _service;
 }

@@ -319,12 +319,5 @@ public class SyncDLObjectLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(SyncDLObjectLocalService service) {
-	}
-
 	private static SyncDLObjectLocalService _service;
 }

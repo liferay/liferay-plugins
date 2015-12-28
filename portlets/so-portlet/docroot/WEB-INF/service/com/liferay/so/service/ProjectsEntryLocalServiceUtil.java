@@ -314,12 +314,5 @@ public class ProjectsEntryLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(ProjectsEntryLocalService service) {
-	}
-
 	private static ProjectsEntryLocalService _service;
 }

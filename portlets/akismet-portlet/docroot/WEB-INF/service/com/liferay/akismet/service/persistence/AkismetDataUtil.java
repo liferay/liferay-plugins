@@ -503,12 +503,5 @@ public class AkismetDataUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(AkismetDataPersistence persistence) {
-	}
-
 	private static AkismetDataPersistence _persistence;
 }

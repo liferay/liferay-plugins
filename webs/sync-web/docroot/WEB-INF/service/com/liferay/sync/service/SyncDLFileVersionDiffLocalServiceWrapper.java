@@ -311,23 +311,6 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 		return _syncDLFileVersionDiffLocalService.updateSyncDLFileVersionDiff(syncDLFileVersionDiff);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public SyncDLFileVersionDiffLocalService getWrappedSyncDLFileVersionDiffLocalService() {
-		return _syncDLFileVersionDiffLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedSyncDLFileVersionDiffLocalService(
-		SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService) {
-		_syncDLFileVersionDiffLocalService = syncDLFileVersionDiffLocalService;
-	}
-
 	@Override
 	public SyncDLFileVersionDiffLocalService getWrappedService() {
 		return _syncDLFileVersionDiffLocalService;

@@ -659,14 +659,6 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public TasksEntry getWrappedTasksEntry() {
-		return _tasksEntry;
-	}
-
 	@Override
 	public TasksEntry getWrappedModel() {
 		return _tasksEntry;

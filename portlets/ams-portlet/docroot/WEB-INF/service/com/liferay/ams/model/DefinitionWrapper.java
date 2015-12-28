@@ -572,14 +572,6 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public Definition getWrappedDefinition() {
-		return _definition;
-	}
-
 	@Override
 	public Definition getWrappedModel() {
 		return _definition;

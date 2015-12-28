@@ -81,22 +81,6 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 			serviceContext);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public TasksEntryService getWrappedTasksEntryService() {
-		return _tasksEntryService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedTasksEntryService(TasksEntryService tasksEntryService) {
-		_tasksEntryService = tasksEntryService;
-	}
-
 	@Override
 	public TasksEntryService getWrappedService() {
 		return _tasksEntryService;

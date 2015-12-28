@@ -406,12 +406,5 @@ public class JIRAIssueLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(JIRAIssueLocalService service) {
-	}
-
 	private static JIRAIssueLocalService _service;
 }

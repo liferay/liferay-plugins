@@ -3165,12 +3165,5 @@ public class TasksEntryUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(TasksEntryPersistence persistence) {
-	}
-
 	private static TasksEntryPersistence _persistence;
 }

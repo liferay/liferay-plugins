@@ -61,22 +61,6 @@ public class FooServiceWrapper implements FooService,
 		return _fooService.invokeMethod(name, parameterTypes, arguments);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public FooService getWrappedFooService() {
-		return _fooService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedFooService(FooService fooService) {
-		_fooService = fooService;
-	}
-
 	@Override
 	public FooService getWrappedService() {
 		return _fooService;

@@ -561,14 +561,6 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public MicroblogsEntry getWrappedMicroblogsEntry() {
-		return _microblogsEntry;
-	}
-
 	@Override
 	public MicroblogsEntry getWrappedModel() {
 		return _microblogsEntry;

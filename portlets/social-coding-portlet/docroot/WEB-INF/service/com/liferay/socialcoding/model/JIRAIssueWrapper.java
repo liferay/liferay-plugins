@@ -503,14 +503,6 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public JIRAIssue getWrappedJIRAIssue() {
-		return _jiraIssue;
-	}
-
 	@Override
 	public JIRAIssue getWrappedModel() {
 		return _jiraIssue;

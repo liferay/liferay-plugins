@@ -380,23 +380,6 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 			markupCharacterSets);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public WSRPConsumerLocalService getWrappedWSRPConsumerLocalService() {
-		return _wsrpConsumerLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedWSRPConsumerLocalService(
-		WSRPConsumerLocalService wsrpConsumerLocalService) {
-		_wsrpConsumerLocalService = wsrpConsumerLocalService;
-	}
-
 	@Override
 	public WSRPConsumerLocalService getWrappedService() {
 		return _wsrpConsumerLocalService;

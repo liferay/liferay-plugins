@@ -67,23 +67,6 @@ public class SyncPreferencesLocalServiceWrapper
 			arguments);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public SyncPreferencesLocalService getWrappedSyncPreferencesLocalService() {
-		return _syncPreferencesLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedSyncPreferencesLocalService(
-		SyncPreferencesLocalService syncPreferencesLocalService) {
-		_syncPreferencesLocalService = syncPreferencesLocalService;
-	}
-
 	@Override
 	public SyncPreferencesLocalService getWrappedService() {
 		return _syncPreferencesLocalService;

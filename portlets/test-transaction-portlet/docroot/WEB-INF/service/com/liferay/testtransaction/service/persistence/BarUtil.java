@@ -421,12 +421,5 @@ public class BarUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(BarPersistence persistence) {
-	}
-
 	private static BarPersistence _persistence;
 }

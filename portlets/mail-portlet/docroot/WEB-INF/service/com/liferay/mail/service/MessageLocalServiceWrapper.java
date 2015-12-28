@@ -366,23 +366,6 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 			to, cc, bcc, sentDate, subject, body, flags, remoteMessageId);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public MessageLocalService getWrappedMessageLocalService() {
-		return _messageLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedMessageLocalService(
-		MessageLocalService messageLocalService) {
-		_messageLocalService = messageLocalService;
-	}
-
 	@Override
 	public MessageLocalService getWrappedService() {
 		return _messageLocalService;

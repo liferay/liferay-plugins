@@ -519,14 +519,6 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public ProjectsEntry getWrappedProjectsEntry() {
-		return _projectsEntry;
-	}
-
 	@Override
 	public ProjectsEntry getWrappedModel() {
 		return _projectsEntry;

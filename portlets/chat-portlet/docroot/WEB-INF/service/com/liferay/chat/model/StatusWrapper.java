@@ -466,14 +466,6 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public Status getWrappedStatus() {
-		return _status;
-	}
-
 	@Override
 	public Status getWrappedModel() {
 		return _status;

@@ -544,12 +544,5 @@ public class OAuthTokenUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(OAuthTokenPersistence persistence) {
-	}
-
 	private static OAuthTokenPersistence _persistence;
 }

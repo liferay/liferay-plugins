@@ -337,12 +337,5 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(PushNotificationsDeviceLocalService service) {
-	}
-
 	private static PushNotificationsDeviceLocalService _service;
 }

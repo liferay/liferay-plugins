@@ -57,22 +57,6 @@ public class EntryServiceWrapper implements EntryService,
 			end);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public EntryService getWrappedEntryService() {
-		return _entryService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedEntryService(EntryService entryService) {
-		_entryService = entryService;
-	}
-
 	@Override
 	public EntryService getWrappedService() {
 		return _entryService;

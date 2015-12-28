@@ -391,12 +391,5 @@ public class WSRPProducerLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(WSRPProducerLocalService service) {
-	}
-
 	private static WSRPProducerLocalService _service;
 }

@@ -2753,12 +2753,5 @@ public class MicroblogsEntryUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(MicroblogsEntryPersistence persistence) {
-	}
-
 	private static MicroblogsEntryPersistence _persistence;
 }

@@ -267,23 +267,6 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 		return _checkoutLocalService.updateCheckout(checkout);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public CheckoutLocalService getWrappedCheckoutLocalService() {
-		return _checkoutLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedCheckoutLocalService(
-		CheckoutLocalService checkoutLocalService) {
-		_checkoutLocalService = checkoutLocalService;
-	}
-
 	@Override
 	public CheckoutLocalService getWrappedService() {
 		return _checkoutLocalService;

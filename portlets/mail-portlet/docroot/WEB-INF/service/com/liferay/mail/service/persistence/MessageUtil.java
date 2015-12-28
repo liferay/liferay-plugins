@@ -647,12 +647,5 @@ public class MessageUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(MessagePersistence persistence) {
-	}
-
 	private static MessagePersistence _persistence;
 }

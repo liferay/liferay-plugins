@@ -264,22 +264,6 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 		return _typeLocalService.updateType(type);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public TypeLocalService getWrappedTypeLocalService() {
-		return _typeLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedTypeLocalService(TypeLocalService typeLocalService) {
-		_typeLocalService = typeLocalService;
-	}
-
 	@Override
 	public TypeLocalService getWrappedService() {
 		return _typeLocalService;

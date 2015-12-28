@@ -113,22 +113,6 @@ public class KBTemplateServiceWrapper implements KBTemplateService,
 			content, serviceContext);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public KBTemplateService getWrappedKBTemplateService() {
-		return _kbTemplateService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedKBTemplateService(KBTemplateService kbTemplateService) {
-		_kbTemplateService = kbTemplateService;
-	}
-
 	@Override
 	public KBTemplateService getWrappedService() {
 		return _kbTemplateService;

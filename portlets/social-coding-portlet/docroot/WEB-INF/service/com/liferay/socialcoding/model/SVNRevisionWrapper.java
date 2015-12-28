@@ -379,14 +379,6 @@ public class SVNRevisionWrapper implements SVNRevision,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public SVNRevision getWrappedSVNRevision() {
-		return _svnRevision;
-	}
-
 	@Override
 	public SVNRevision getWrappedModel() {
 		return _svnRevision;

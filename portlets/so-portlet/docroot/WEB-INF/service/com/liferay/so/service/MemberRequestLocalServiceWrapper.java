@@ -359,23 +359,6 @@ public class MemberRequestLocalServiceWrapper
 			memberRequestId, status);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public MemberRequestLocalService getWrappedMemberRequestLocalService() {
-		return _memberRequestLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedMemberRequestLocalService(
-		MemberRequestLocalService memberRequestLocalService) {
-		_memberRequestLocalService = memberRequestLocalService;
-	}
-
 	@Override
 	public MemberRequestLocalService getWrappedService() {
 		return _memberRequestLocalService;

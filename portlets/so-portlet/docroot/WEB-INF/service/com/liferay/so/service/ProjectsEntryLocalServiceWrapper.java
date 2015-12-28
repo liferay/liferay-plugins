@@ -308,23 +308,6 @@ public class ProjectsEntryLocalServiceWrapper
 			endDateMonth, endDateDay, endDateYear, current, data);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public ProjectsEntryLocalService getWrappedProjectsEntryLocalService() {
-		return _projectsEntryLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedProjectsEntryLocalService(
-		ProjectsEntryLocalService projectsEntryLocalService) {
-		_projectsEntryLocalService = projectsEntryLocalService;
-	}
-
 	@Override
 	public ProjectsEntryLocalService getWrappedService() {
 		return _projectsEntryLocalService;

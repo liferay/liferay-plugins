@@ -371,12 +371,5 @@ public class KBArticleServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(KBArticleService service) {
-	}
-
 	private static KBArticleService _service;
 }

@@ -265,22 +265,6 @@ public class AssetLocalServiceWrapper implements AssetLocalService,
 		return _assetLocalService.updateAsset(asset);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public AssetLocalService getWrappedAssetLocalService() {
-		return _assetLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedAssetLocalService(AssetLocalService assetLocalService) {
-		_assetLocalService = assetLocalService;
-	}
-
 	@Override
 	public AssetLocalService getWrappedService() {
 		return _assetLocalService;

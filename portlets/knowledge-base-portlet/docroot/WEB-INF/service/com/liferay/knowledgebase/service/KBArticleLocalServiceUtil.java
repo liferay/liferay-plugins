@@ -751,12 +751,5 @@ public class KBArticleLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(KBArticleLocalService service) {
-	}
-
 	private static KBArticleLocalService _service;
 }

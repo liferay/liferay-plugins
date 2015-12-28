@@ -141,23 +141,6 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 			content, socialRelationType, serviceContext);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public MicroblogsEntryService getWrappedMicroblogsEntryService() {
-		return _microblogsEntryService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedMicroblogsEntryService(
-		MicroblogsEntryService microblogsEntryService) {
-		_microblogsEntryService = microblogsEntryService;
-	}
-
 	@Override
 	public MicroblogsEntryService getWrappedService() {
 		return _microblogsEntryService;

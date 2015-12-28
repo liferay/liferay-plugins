@@ -313,12 +313,5 @@ public class SyncDLFileVersionDiffLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(SyncDLFileVersionDiffLocalService service) {
-	}
-
 	private static SyncDLFileVersionDiffLocalService _service;
 }

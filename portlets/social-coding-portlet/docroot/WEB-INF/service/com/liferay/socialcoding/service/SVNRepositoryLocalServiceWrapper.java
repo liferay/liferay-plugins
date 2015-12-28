@@ -286,23 +286,6 @@ public class SVNRepositoryLocalServiceWrapper
 		_svnRepositoryLocalService.updateSVNRepository(url);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public SVNRepositoryLocalService getWrappedSVNRepositoryLocalService() {
-		return _svnRepositoryLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedSVNRepositoryLocalService(
-		SVNRepositoryLocalService svnRepositoryLocalService) {
-		_svnRepositoryLocalService = svnRepositoryLocalService;
-	}
-
 	@Override
 	public SVNRepositoryLocalService getWrappedService() {
 		return _svnRepositoryLocalService;

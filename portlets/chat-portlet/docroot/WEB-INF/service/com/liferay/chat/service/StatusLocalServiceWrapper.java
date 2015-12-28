@@ -312,23 +312,6 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 			awake, activePanelIds, message, playSound);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public StatusLocalService getWrappedStatusLocalService() {
-		return _statusLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedStatusLocalService(
-		StatusLocalService statusLocalService) {
-		_statusLocalService = statusLocalService;
-	}
-
 	@Override
 	public StatusLocalService getWrappedService() {
 		return _statusLocalService;

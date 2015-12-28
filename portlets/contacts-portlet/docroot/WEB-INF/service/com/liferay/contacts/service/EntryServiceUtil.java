@@ -87,12 +87,5 @@ public class EntryServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(EntryService service) {
-	}
-
 	private static EntryService _service;
 }

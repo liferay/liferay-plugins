@@ -321,23 +321,6 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService,
 		return _oAuthTokenLocalService.updateOAuthToken(oAuthToken);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public OAuthTokenLocalService getWrappedOAuthTokenLocalService() {
-		return _oAuthTokenLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedOAuthTokenLocalService(
-		OAuthTokenLocalService oAuthTokenLocalService) {
-		_oAuthTokenLocalService = oAuthTokenLocalService;
-	}
-
 	@Override
 	public OAuthTokenLocalService getWrappedService() {
 		return _oAuthTokenLocalService;

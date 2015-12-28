@@ -264,12 +264,5 @@ public class TypeUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(TypePersistence persistence) {
-	}
-
 	private static TypePersistence _persistence;
 }

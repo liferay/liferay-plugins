@@ -404,12 +404,5 @@ public class WSRPConsumerPortletLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(WSRPConsumerPortletLocalService service) {
-	}
-
 	private static WSRPConsumerPortletLocalService _service;
 }

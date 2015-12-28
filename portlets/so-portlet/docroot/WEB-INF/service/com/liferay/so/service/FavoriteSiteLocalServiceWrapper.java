@@ -318,23 +318,6 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 		return _favoriteSiteLocalService.updateFavoriteSite(favoriteSite);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public FavoriteSiteLocalService getWrappedFavoriteSiteLocalService() {
-		return _favoriteSiteLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedFavoriteSiteLocalService(
-		FavoriteSiteLocalService favoriteSiteLocalService) {
-		_favoriteSiteLocalService = favoriteSiteLocalService;
-	}
-
 	@Override
 	public FavoriteSiteLocalService getWrappedService() {
 		return _favoriteSiteLocalService;

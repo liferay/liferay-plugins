@@ -697,12 +697,5 @@ public class SyncDLFileVersionDiffUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(SyncDLFileVersionDiffPersistence persistence) {
-	}
-
 	private static SyncDLFileVersionDiffPersistence _persistence;
 }

@@ -141,12 +141,5 @@ public class KBFolderServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(KBFolderService service) {
-	}
-
 	private static KBFolderService _service;
 }

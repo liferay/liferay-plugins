@@ -824,12 +824,5 @@ public class WSRPProducerUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(WSRPProducerPersistence persistence) {
-	}
-
 	private static WSRPProducerPersistence _persistence;
 }

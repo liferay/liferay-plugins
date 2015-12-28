@@ -361,22 +361,6 @@ public class KBArticleServiceWrapper implements KBArticleService,
 			resourcePrimKeyToPriorityMap);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public KBArticleService getWrappedKBArticleService() {
-		return _kbArticleService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedKBArticleService(KBArticleService kbArticleService) {
-		_kbArticleService = kbArticleService;
-	}
-
 	@Override
 	public KBArticleService getWrappedService() {
 		return _kbArticleService;

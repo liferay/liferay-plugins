@@ -414,23 +414,6 @@ public class WSRPConsumerPortletLocalServiceWrapper
 			name);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public WSRPConsumerPortletLocalService getWrappedWSRPConsumerPortletLocalService() {
-		return _wsrpConsumerPortletLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedWSRPConsumerPortletLocalService(
-		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
-		_wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
-	}
-
 	@Override
 	public WSRPConsumerPortletLocalService getWrappedService() {
 		return _wsrpConsumerPortletLocalService;

@@ -525,14 +525,6 @@ public class KBTemplateWrapper implements KBTemplate, ModelWrapper<KBTemplate> {
 		return _kbTemplate.getStagedModelType();
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public KBTemplate getWrappedKBTemplate() {
-		return _kbTemplate;
-	}
-
 	@Override
 	public KBTemplate getWrappedModel() {
 		return _kbTemplate;

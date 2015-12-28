@@ -279,23 +279,6 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService.updateJIRAChangeItem(jiraChangeItem);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public JIRAChangeItemLocalService getWrappedJIRAChangeItemLocalService() {
-		return _jiraChangeItemLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedJIRAChangeItemLocalService(
-		JIRAChangeItemLocalService jiraChangeItemLocalService) {
-		_jiraChangeItemLocalService = jiraChangeItemLocalService;
-	}
-
 	@Override
 	public JIRAChangeItemLocalService getWrappedService() {
 		return _jiraChangeItemLocalService;

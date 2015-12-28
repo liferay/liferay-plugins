@@ -430,12 +430,5 @@ public class ProjectsEntryUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(ProjectsEntryPersistence persistence) {
-	}
-
 	private static ProjectsEntryPersistence _persistence;
 }

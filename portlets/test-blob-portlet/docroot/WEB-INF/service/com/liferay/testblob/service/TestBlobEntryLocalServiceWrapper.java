@@ -279,23 +279,6 @@ public class TestBlobEntryLocalServiceWrapper
 		return _testBlobEntryLocalService.updateTestBlobEntry(testBlobEntry);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public TestBlobEntryLocalService getWrappedTestBlobEntryLocalService() {
-		return _testBlobEntryLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedTestBlobEntryLocalService(
-		TestBlobEntryLocalService testBlobEntryLocalService) {
-		_testBlobEntryLocalService = testBlobEntryLocalService;
-	}
-
 	@Override
 	public TestBlobEntryLocalService getWrappedService() {
 		return _testBlobEntryLocalService;

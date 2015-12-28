@@ -281,12 +281,5 @@ public class JIRAProjectLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(JIRAProjectLocalService service) {
-	}
-
 	private static JIRAProjectLocalService _service;
 }

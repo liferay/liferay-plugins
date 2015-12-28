@@ -484,14 +484,6 @@ public class WSRPProducerWrapper implements WSRPProducer,
 		return _wsrpProducer.getStagedModelType();
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public WSRPProducer getWrappedWSRPProducer() {
-		return _wsrpProducer;
-	}
-
 	@Override
 	public WSRPProducer getWrappedModel() {
 		return _wsrpProducer;

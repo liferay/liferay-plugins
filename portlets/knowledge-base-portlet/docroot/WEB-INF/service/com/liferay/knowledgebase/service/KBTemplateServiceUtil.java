@@ -137,12 +137,5 @@ public class KBTemplateServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(KBTemplateService service) {
-	}
-
 	private static KBTemplateService _service;
 }

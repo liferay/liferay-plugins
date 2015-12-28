@@ -77,22 +77,6 @@ public class UserThreadServiceWrapper implements UserThreadService,
 		return _userThreadService.invokeMethod(name, parameterTypes, arguments);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public UserThreadService getWrappedUserThreadService() {
-		return _userThreadService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedUserThreadService(UserThreadService userThreadService) {
-		_userThreadService = userThreadService;
-	}
-
 	@Override
 	public UserThreadService getWrappedService() {
 		return _userThreadService;

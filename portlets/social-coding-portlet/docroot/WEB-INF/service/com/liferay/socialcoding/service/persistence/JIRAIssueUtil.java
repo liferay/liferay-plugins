@@ -2147,12 +2147,5 @@ public class JIRAIssueUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(JIRAIssuePersistence persistence) {
-	}
-
 	private static JIRAIssuePersistence _persistence;
 }

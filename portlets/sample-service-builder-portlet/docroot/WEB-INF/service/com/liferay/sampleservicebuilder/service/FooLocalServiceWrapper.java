@@ -375,22 +375,6 @@ public class FooLocalServiceWrapper implements FooLocalService,
 			field5, serviceContext);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public FooLocalService getWrappedFooLocalService() {
-		return _fooLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedFooLocalService(FooLocalService fooLocalService) {
-		_fooLocalService = fooLocalService;
-	}
-
 	@Override
 	public FooLocalService getWrappedService() {
 		return _fooLocalService;

@@ -478,12 +478,5 @@ public class EntryUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(EntryPersistence persistence) {
-	}
-
 	private static EntryPersistence _persistence;
 }

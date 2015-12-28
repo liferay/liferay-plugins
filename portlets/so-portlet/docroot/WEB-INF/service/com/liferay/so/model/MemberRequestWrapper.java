@@ -566,14 +566,6 @@ public class MemberRequestWrapper implements MemberRequest,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public MemberRequest getWrappedMemberRequest() {
-		return _memberRequest;
-	}
-
 	@Override
 	public MemberRequest getWrappedModel() {
 		return _memberRequest;

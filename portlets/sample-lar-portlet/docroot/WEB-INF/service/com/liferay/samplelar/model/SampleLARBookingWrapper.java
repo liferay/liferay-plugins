@@ -501,14 +501,6 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 		return _sampleLARBooking.getStagedModelType();
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public SampleLARBooking getWrappedSampleLARBooking() {
-		return _sampleLARBooking;
-	}
-
 	@Override
 	public SampleLARBooking getWrappedModel() {
 		return _sampleLARBooking;

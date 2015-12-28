@@ -117,22 +117,6 @@ public class KBFolderServiceWrapper implements KBFolderService,
 			parentResourcePrimKey, kbFolderId, name, description);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public KBFolderService getWrappedKBFolderService() {
-		return _kbFolderService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedKBFolderService(KBFolderService kbFolderService) {
-		_kbFolderService = kbFolderService;
-	}
-
 	@Override
 	public KBFolderService getWrappedService() {
 		return _kbFolderService;

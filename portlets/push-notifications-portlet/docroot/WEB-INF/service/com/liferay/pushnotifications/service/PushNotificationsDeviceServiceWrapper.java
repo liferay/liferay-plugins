@@ -81,23 +81,6 @@ public class PushNotificationsDeviceServiceWrapper
 		_pushNotificationsDeviceService.sendPushNotification(toUserIds, payload);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public PushNotificationsDeviceService getWrappedPushNotificationsDeviceService() {
-		return _pushNotificationsDeviceService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedPushNotificationsDeviceService(
-		PushNotificationsDeviceService pushNotificationsDeviceService) {
-		_pushNotificationsDeviceService = pushNotificationsDeviceService;
-	}
-
 	@Override
 	public PushNotificationsDeviceService getWrappedService() {
 		return _pushNotificationsDeviceService;

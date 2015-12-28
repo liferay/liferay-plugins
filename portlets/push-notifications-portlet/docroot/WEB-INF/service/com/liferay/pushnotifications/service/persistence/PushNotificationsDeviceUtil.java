@@ -601,12 +601,5 @@ public class PushNotificationsDeviceUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(PushNotificationsDevicePersistence persistence) {
-	}
-
 	private static PushNotificationsDevicePersistence _persistence;
 }

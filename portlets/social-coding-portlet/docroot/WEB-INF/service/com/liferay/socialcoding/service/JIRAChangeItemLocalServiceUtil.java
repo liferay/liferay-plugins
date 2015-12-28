@@ -286,12 +286,5 @@ public class JIRAChangeItemLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(JIRAChangeItemLocalService service) {
-	}
-
 	private static JIRAChangeItemLocalService _service;
 }

@@ -485,12 +485,5 @@ public class FolderUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(FolderPersistence persistence) {
-	}
-
 	private static FolderPersistence _persistence;
 }

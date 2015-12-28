@@ -596,14 +596,6 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 		return _kbFolder.getStagedModelType();
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public KBFolder getWrappedKBFolder() {
-		return _kbFolder;
-	}
-
 	@Override
 	public KBFolder getWrappedModel() {
 		return _kbFolder;

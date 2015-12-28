@@ -324,12 +324,5 @@ public class SVNRepositoryUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(SVNRepositoryPersistence persistence) {
-	}
-
 	private static SVNRepositoryPersistence _persistence;
 }

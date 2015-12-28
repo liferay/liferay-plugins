@@ -102,12 +102,5 @@ public class UserThreadServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(UserThreadService service) {
-	}
-
 	private static UserThreadService _service;
 }

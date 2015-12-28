@@ -469,23 +469,6 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 			serviceContext);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public KBCommentLocalService getWrappedKBCommentLocalService() {
-		return _kbCommentLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedKBCommentLocalService(
-		KBCommentLocalService kbCommentLocalService) {
-		_kbCommentLocalService = kbCommentLocalService;
-	}
-
 	@Override
 	public KBCommentLocalService getWrappedService() {
 		return _kbCommentLocalService;

@@ -61,23 +61,6 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 		return _socialOfficeService.isSocialOfficeGroup(groupId);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public SocialOfficeService getWrappedSocialOfficeService() {
-		return _socialOfficeService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedSocialOfficeService(
-		SocialOfficeService socialOfficeService) {
-		_socialOfficeService = socialOfficeService;
-	}
-
 	@Override
 	public SocialOfficeService getWrappedService() {
 		return _socialOfficeService;

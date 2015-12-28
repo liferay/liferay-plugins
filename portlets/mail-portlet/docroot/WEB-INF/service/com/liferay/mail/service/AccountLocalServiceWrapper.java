@@ -325,23 +325,6 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 			draftFolderId, sentFolderId, trashFolderId);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public AccountLocalService getWrappedAccountLocalService() {
-		return _accountLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedAccountLocalService(
-		AccountLocalService accountLocalService) {
-		_accountLocalService = accountLocalService;
-	}
-
 	@Override
 	public AccountLocalService getWrappedService() {
 		return _accountLocalService;

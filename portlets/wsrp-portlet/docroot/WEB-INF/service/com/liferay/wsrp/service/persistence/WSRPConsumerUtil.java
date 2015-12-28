@@ -764,12 +764,5 @@ public class WSRPConsumerUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(WSRPConsumerPersistence persistence) {
-	}
-
 	private static WSRPConsumerPersistence _persistence;
 }

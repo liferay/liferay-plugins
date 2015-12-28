@@ -755,12 +755,5 @@ public class JIRAActionUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(JIRAActionPersistence persistence) {
-	}
-
 	private static JIRAActionPersistence _persistence;
 }

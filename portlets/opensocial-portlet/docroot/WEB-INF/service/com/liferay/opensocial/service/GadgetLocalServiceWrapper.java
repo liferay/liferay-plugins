@@ -376,23 +376,6 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 		return _gadgetLocalService.updateGadget(gadgetId, portletCategoryNames);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public GadgetLocalService getWrappedGadgetLocalService() {
-		return _gadgetLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedGadgetLocalService(
-		GadgetLocalService gadgetLocalService) {
-		_gadgetLocalService = gadgetLocalService;
-	}
-
 	@Override
 	public GadgetLocalService getWrappedService() {
 		return _gadgetLocalService;

@@ -293,14 +293,6 @@ public class SVNRepositoryWrapper implements SVNRepository,
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public SVNRepository getWrappedSVNRepository() {
-		return _svnRepository;
-	}
-
 	@Override
 	public SVNRepository getWrappedModel() {
 		return _svnRepository;

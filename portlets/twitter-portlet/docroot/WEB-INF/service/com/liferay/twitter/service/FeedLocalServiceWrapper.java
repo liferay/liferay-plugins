@@ -281,22 +281,6 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		_feedLocalService.updateFeeds(companyId);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public FeedLocalService getWrappedFeedLocalService() {
-		return _feedLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedFeedLocalService(FeedLocalService feedLocalService) {
-		_feedLocalService = feedLocalService;
-	}
-
 	@Override
 	public FeedLocalService getWrappedService() {
 		return _feedLocalService;

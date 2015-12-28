@@ -983,14 +983,6 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public Account getWrappedAccount() {
-		return _account;
-	}
-
 	@Override
 	public Account getWrappedModel() {
 		return _account;

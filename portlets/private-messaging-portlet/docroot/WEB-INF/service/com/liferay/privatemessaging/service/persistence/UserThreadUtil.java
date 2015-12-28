@@ -1007,12 +1007,5 @@ public class UserThreadUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(UserThreadPersistence persistence) {
-	}
-
 	private static UserThreadPersistence _persistence;
 }

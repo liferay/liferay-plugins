@@ -380,23 +380,6 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 		return _userThreadLocalService.updateUserThread(userThread);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public UserThreadLocalService getWrappedUserThreadLocalService() {
-		return _userThreadLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedUserThreadLocalService(
-		UserThreadLocalService userThreadLocalService) {
-		_userThreadLocalService = userThreadLocalService;
-	}
-
 	@Override
 	public UserThreadLocalService getWrappedService() {
 		return _userThreadLocalService;

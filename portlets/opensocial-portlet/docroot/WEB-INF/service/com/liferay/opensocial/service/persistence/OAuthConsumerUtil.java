@@ -502,12 +502,5 @@ public class OAuthConsumerUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(OAuthConsumerPersistence persistence) {
-	}
-
 	private static OAuthConsumerPersistence _persistence;
 }

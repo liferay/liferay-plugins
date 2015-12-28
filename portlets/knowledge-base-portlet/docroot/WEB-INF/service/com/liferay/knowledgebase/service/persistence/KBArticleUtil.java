@@ -9297,12 +9297,5 @@ public class KBArticleUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(KBArticlePersistence persistence) {
-	}
-
 	private static KBArticlePersistence _persistence;
 }

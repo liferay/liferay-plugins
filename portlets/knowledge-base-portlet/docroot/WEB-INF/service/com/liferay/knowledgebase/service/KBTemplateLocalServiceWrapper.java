@@ -404,23 +404,6 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 			groupPermissions, guestPermissions);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public KBTemplateLocalService getWrappedKBTemplateLocalService() {
-		return _kbTemplateLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedKBTemplateLocalService(
-		KBTemplateLocalService kbTemplateLocalService) {
-		_kbTemplateLocalService = kbTemplateLocalService;
-	}
-
 	@Override
 	public KBTemplateLocalService getWrappedService() {
 		return _kbTemplateLocalService;

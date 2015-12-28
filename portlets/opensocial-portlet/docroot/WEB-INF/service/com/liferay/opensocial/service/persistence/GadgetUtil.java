@@ -1045,12 +1045,5 @@ public class GadgetUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(GadgetPersistence persistence) {
-	}
-
 	private static GadgetPersistence _persistence;
 }

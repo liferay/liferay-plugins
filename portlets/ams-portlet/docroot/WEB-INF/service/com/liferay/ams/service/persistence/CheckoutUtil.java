@@ -267,12 +267,5 @@ public class CheckoutUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(CheckoutPersistence persistence) {
-	}
-
 	private static CheckoutPersistence _persistence;
 }

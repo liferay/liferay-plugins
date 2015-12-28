@@ -463,14 +463,6 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 		return false;
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
-	 */
-	@Deprecated
-	public Attachment getWrappedAttachment() {
-		return _attachment;
-	}
-
 	@Override
 	public Attachment getWrappedModel() {
 		return _attachment;

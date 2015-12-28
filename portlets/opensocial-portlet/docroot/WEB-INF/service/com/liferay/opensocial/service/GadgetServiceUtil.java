@@ -102,12 +102,5 @@ public class GadgetServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(GadgetService service) {
-	}
-
 	private static GadgetService _service;
 }

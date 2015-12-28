@@ -366,12 +366,5 @@ public class MessageLocalServiceUtil {
 		return _service;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setService(MessageLocalService service) {
-	}
-
 	private static MessageLocalService _service;
 }

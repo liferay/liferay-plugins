@@ -400,23 +400,6 @@ public class KBFolderLocalServiceWrapper implements KBFolderLocalService,
 			parentResourcePrimKey, kbFolderId, name, description);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public KBFolderLocalService getWrappedKBFolderLocalService() {
-		return _kbFolderLocalService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedKBFolderLocalService(
-		KBFolderLocalService kbFolderLocalService) {
-		_kbFolderLocalService = kbFolderLocalService;
-	}
-
 	@Override
 	public KBFolderLocalService getWrappedService() {
 		return _kbFolderLocalService;

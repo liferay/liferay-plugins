@@ -61,22 +61,6 @@ public class WordsServiceWrapper implements WordsService,
 		return _wordsService.invokeMethod(name, parameterTypes, arguments);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public WordsService getWrappedWordsService() {
-		return _wordsService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedWordsService(WordsService wordsService) {
-		_wordsService = wordsService;
-	}
-
 	@Override
 	public WordsService getWrappedService() {
 		return _wordsService;

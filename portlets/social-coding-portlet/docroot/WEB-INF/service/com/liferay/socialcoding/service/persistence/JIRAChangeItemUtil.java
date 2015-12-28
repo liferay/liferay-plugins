@@ -447,12 +447,5 @@ public class JIRAChangeItemUtil {
 		return _persistence;
 	}
 
-	/**
-	 * @deprecated As of 6.2.0
-	 */
-	@Deprecated
-	public void setPersistence(JIRAChangeItemPersistence persistence) {
-	}
-
 	private static JIRAChangeItemPersistence _persistence;
 }

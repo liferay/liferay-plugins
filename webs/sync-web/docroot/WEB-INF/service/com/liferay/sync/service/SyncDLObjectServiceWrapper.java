@@ -296,23 +296,6 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 			serviceContext);
 	}
 
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
-	 */
-	@Deprecated
-	public SyncDLObjectService getWrappedSyncDLObjectService() {
-		return _syncDLObjectService;
-	}
-
-	/**
-	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
-	 */
-	@Deprecated
-	public void setWrappedSyncDLObjectService(
-		SyncDLObjectService syncDLObjectService) {
-		_syncDLObjectService = syncDLObjectService;
-	}
-
 	@Override
 	public SyncDLObjectService getWrappedService() {
 		return _syncDLObjectService;
