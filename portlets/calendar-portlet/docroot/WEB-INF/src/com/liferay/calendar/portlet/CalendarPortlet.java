@@ -52,6 +52,7 @@ import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.PortletKeys;
 import com.liferay.calendar.util.RSSUtil;
+import com.liferay.calendar.util.RecurrenceUtil;
 import com.liferay.calendar.util.WebKeys;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -70,6 +71,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -333,72 +335,22 @@ public class CalendarPortlet extends MVCPortlet {
 		String[] remindersType = getRemindersType(actionRequest);
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
+		int instanceIndex = ParamUtil.getInteger(
+			actionRequest, "instanceIndex");
+		boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
+			actionRequest, "updateCalendarBookingInstance");
+		boolean allFollowing = ParamUtil.getBoolean(
+			actionRequest, "allFollowing");
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarBooking.class.getName(), actionRequest);
 
-		CalendarBooking calendarBooking = null;
-
-		if (calendarBookingId <= 0) {
-			calendarBooking = CalendarBookingServiceUtil.addCalendarBooking(
-				calendarId, childCalendarIds,
-				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-				titleMap, descriptionMap, location,
-				startTimeJCalendar.getTimeInMillis(),
-				endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
-				reminders[0], remindersType[0], reminders[1], remindersType[1],
-				serviceContext);
-		}
-		else {
-			int instanceIndex = ParamUtil.getInteger(
-				actionRequest, "instanceIndex");
-
-			boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
-				actionRequest, "updateCalendarBookingInstance");
-
-			if (updateCalendarBookingInstance) {
-				calendarBooking =
-					CalendarBookingLocalServiceUtil.getCalendarBooking(
-						calendarBookingId);
-
-				boolean allFollowing = ParamUtil.getBoolean(
-					actionRequest, "allFollowing");
-
-				calendarBooking =
-					CalendarBookingServiceUtil.updateCalendarBookingInstance(
-						calendarBookingId, instanceIndex, calendarId,
-						childCalendarIds, titleMap, descriptionMap, location,
-						startTimeJCalendar.getTimeInMillis(),
-						endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
-						allFollowing, reminders[0], remindersType[0],
-						reminders[1], remindersType[1], status, serviceContext);
-			}
-			else {
-				calendarBooking =
-					CalendarBookingServiceUtil.getCalendarBookingInstance(
-						calendarBookingId, instanceIndex);
-
-				long duration =
-					(endTimeJCalendar.getTimeInMillis() -
-						startTimeJCalendar.getTimeInMillis());
-				long offset =
-					(startTimeJCalendar.getTimeInMillis() -
-						calendarBooking.getStartTime());
-
-				calendarBooking =
-					CalendarBookingServiceUtil.
-						getNewStartTimeAndDurationCalendarBooking(
-							calendarBookingId, offset, duration);
-
-				calendarBooking =
-					CalendarBookingServiceUtil.updateCalendarBooking(
-						calendarBookingId, calendarId, childCalendarIds,
-						titleMap, descriptionMap, location,
-						calendarBooking.getStartTime(),
-						calendarBooking.getEndTime(), allDay, recurrence,
-						reminders[0], remindersType[0], reminders[1],
-						remindersType[1], status, serviceContext);
-			}
-		}
+		CalendarBooking calendarBooking = updateCalendarBooking(
+			calendarBookingId, calendar, childCalendarIds, titleMap,
+			descriptionMap, location, startTimeJCalendar.getTimeInMillis(),
+			endTimeJCalendar.getTimeInMillis(), allDay, recurrence, reminders,
+			remindersType, instanceIndex, updateCalendarBookingInstance,
+			allFollowing, status, serviceContext);
 
 		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
 
@@ -633,6 +585,23 @@ public class CalendarPortlet extends MVCPortlet {
 			WebKeys.CALENDAR_RESOURCE, calendarResource);
 	}
 
+	protected List<Integer> getDaysOfWeek(Recurrence recurrenceObj) {
+		List<Integer> daysOfWeek = new ArrayList<Integer>();
+
+		List<PositionalWeekday> positionalWeekdays =
+			recurrenceObj.getPositionalWeekdays();
+
+		if (positionalWeekdays != null) {
+			for (PositionalWeekday positionalWeekday : positionalWeekdays) {
+				Weekday weekday = positionalWeekday.getWeekday();
+
+				daysOfWeek.add(weekday.getCalendarWeekday());
+			}
+		}
+
+		return daysOfWeek;
+	}
+
 	protected String getEditCalendarURL(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			Calendar calendar)
@@ -665,6 +634,35 @@ public class CalendarPortlet extends MVCPortlet {
 			calendar.getCalendarId());
 
 		return editCalendarURL;
+	}
+
+	protected CalendarBooking getFirstCalendarBookingInstance(
+		CalendarBooking calendarBooking, String recurrence, TimeZone timeZone) {
+
+		if (Validator.isNull(recurrence)) {
+			return calendarBooking;
+		}
+
+		Recurrence recurrenceObj = RecurrenceSerializer.deserialize(recurrence);
+
+		List<Integer> daysOfWeek = getDaysOfWeek(recurrenceObj);
+
+		java.util.Calendar startTimeJCalendar = CalendarFactoryUtil.getCalendar(
+			calendarBooking.getStartTime(), timeZone);
+
+		int startTimeDayOfWeek = startTimeJCalendar.get(
+			java.util.Calendar.DAY_OF_WEEK);
+
+		if ((recurrenceObj.getFrequency() == Frequency.WEEKLY) &&
+			!daysOfWeek.contains(startTimeDayOfWeek)) {
+
+			calendarBooking.setRecurrence(recurrence);
+
+			calendarBooking = RecurrenceUtil.getCalendarBookingInstance(
+				calendarBooking, 1);
+		}
+
+		return calendarBooking;
 	}
 
 	protected java.util.Calendar getJCalendar(
@@ -1228,6 +1226,67 @@ public class CalendarPortlet extends MVCPortlet {
 			SubscriptionLocalServiceUtil.deleteSubscription(
 				themeDisplay.getUserId(), className, classPK);
 		}
+	}
+
+	protected CalendarBooking updateCalendarBooking(
+			long calendarBookingId, Calendar calendar, long[] childCalendarIds,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, long startTime, long endTime, boolean allDay,
+			String recurrence, long[] reminders, String[] remindersType,
+			int instanceIndex, boolean updateInstance, boolean allFollowing,
+			int status, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking = null;
+
+		long calendarId = calendar.getCalendarId();
+
+		if (calendarBookingId <= 0) {
+			calendarBooking = CalendarBookingServiceUtil.addCalendarBooking(
+				calendarId, childCalendarIds,
+				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+				titleMap, descriptionMap, location, startTime, endTime, allDay,
+				recurrence, reminders[0], remindersType[0], reminders[1],
+				remindersType[1], serviceContext);
+		}
+		else {
+			if (updateInstance) {
+				calendarBooking =
+					CalendarBookingServiceUtil.updateCalendarBookingInstance(
+						calendarBookingId, instanceIndex, calendarId,
+						childCalendarIds, titleMap, descriptionMap, location,
+						startTime, endTime, allDay, recurrence, allFollowing,
+						reminders[0], remindersType[0], reminders[1],
+						remindersType[1], status, serviceContext);
+			}
+			else {
+				calendarBooking =
+					CalendarBookingServiceUtil.getCalendarBookingInstance(
+						calendarBookingId, instanceIndex);
+
+				long duration = endTime - startTime;
+				long offset = startTime - calendarBooking.getStartTime();
+
+				calendarBooking =
+					CalendarBookingServiceUtil.
+						getNewStartTimeAndDurationCalendarBooking(
+							calendarBookingId, offset, duration);
+
+				calendarBooking = getFirstCalendarBookingInstance(
+					calendarBooking, recurrence, calendar.getTimeZone());
+
+				calendarBooking = 
+					CalendarBookingServiceUtil.updateCalendarBooking(
+						calendarBookingId, calendarId, childCalendarIds,
+						titleMap, descriptionMap, location,
+						calendarBooking.getStartTime(),
+						calendarBooking.getEndTime(), allDay, recurrence,
+						reminders[0], remindersType[0], reminders[1],
+						remindersType[1], status, serviceContext);
+			}
+		}
+
+		return calendarBooking;
 	}
 
 	protected MBMessage updateMessage(ActionRequest actionRequest)
