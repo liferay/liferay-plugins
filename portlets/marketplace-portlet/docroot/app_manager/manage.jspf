@@ -148,7 +148,7 @@ portletURL.setParameter("category", category);
 					</div>
 
 					<div class="description">
-						<%= app.getDescription() %>
+						<%= HtmlUtil.escape(app.getDescription()) %>
 					</div>
 
 					<div class="plugins well">
