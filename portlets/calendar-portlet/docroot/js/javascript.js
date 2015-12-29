@@ -269,10 +269,10 @@ AUI.add(
 				instance.invokeResourceURL(
 					{
 						callback: callback,
-						resourceId: 'calendarBookingInvitees',
 						queryParameters: {
 							parentCalendarBookingId: calendarBookingId
-						}
+						},
+						resourceId: 'calendarBookingInvitees'
 					}
 				);
 			},
@@ -293,13 +293,13 @@ AUI.add(
 				instance.invokeResourceURL(
 					{
 						callback: callback,
-						resourceId: 'calendarRenderingRules',
 						queryParameters: {
 							calendarIds: calendarIds.join(),
 							endTime: endDate.getTime(),
 							ruleName: ruleName,
 							startTime: startDate.getTime()
-						}
+						},
+						resourceId: 'calendarRenderingRules'
 					}
 				);
 			},
@@ -350,7 +350,6 @@ AUI.add(
 				instance.invokeResourceURL(
 					{
 						callback: callback,
-						resourceId: 'calendarBookings',
 						queryParameters: {
 							calendarIds: calendarIds.join(','),
 							endTimeDay: endDate.getDate(),
@@ -364,7 +363,8 @@ AUI.add(
 							startTimeMonth: startDate.getMonth(),
 							startTimeYear: startDate.getFullYear(),
 							statuses: status.join(',')
-						}
+						},
+						resourceId: 'calendarBookings'
 					}
 				);
 			},
@@ -385,10 +385,10 @@ AUI.add(
 				instance.invokeResourceURL(
 					{
 						callback: callback,
-						resourceId: 'resourceCalendars',
 						queryParameters: {
 							calendarResourceId: calendarResourceId
-						}
+						},
+						resourceId: 'resourceCalendars'
 					}
 				);
 			},
@@ -423,13 +423,13 @@ AUI.add(
 				A.io.request(
 					url.toString(),
 					{
+						data: payload,
 						dataType: 'json',
 						on: {
 							success: function() {
 								params.callback(this.get('responseData'));
 							}
-						},
-						data: payload
+						}
 					}
 				);
 			},
@@ -610,27 +610,6 @@ AUI.add(
 
 				instance.invokeResourceURL(
 					{
-						resourceId: 'updateCalendarBooking',
-						payload: {
-							allDay: schedulerEvent.get('allDay'),
-							allFollowing: allFollowing,
-							calendarBookingId: schedulerEvent.get('calendarBookingId'),
-							calendarId: schedulerEvent.get('calendarId'),
-							endTimeDay: endDate.getDate(),
-							endTimeHour: endDate.getHours(),
-							endTimeMinute: endDate.getMinutes(),
-							endTimeMonth: endDate.getMonth(),
-							endTimeYear: endDate.getFullYear(),
-							instanceIndex: schedulerEvent.get('instanceIndex'),
-							recurrence: schedulerEvent.get('recurrence'),
-							startTimeDay: startDate.getDate(),
-							startTimeHour: startDate.getHours(),
-							startTimeMinute: startDate.getMinutes(),
-							startTimeMonth: startDate.getMonth(),
-							startTimeYear: startDate.getFullYear(),
-							title: LString.unescapeHTML(schedulerEvent.get('content')),
-							updateInstance: updateInstance
-						},
 						callback: function(data) {
 							schedulerEvent.set(
 									'loading',
@@ -652,7 +631,28 @@ AUI.add(
 									}
 								}
 							}
-						}
+						},
+						payload: {
+							allDay: schedulerEvent.get('allDay'),
+							allFollowing: allFollowing,
+							calendarBookingId: schedulerEvent.get('calendarBookingId'),
+							calendarId: schedulerEvent.get('calendarId'),
+							endTimeDay: endDate.getDate(),
+							endTimeHour: endDate.getHours(),
+							endTimeMinute: endDate.getMinutes(),
+							endTimeMonth: endDate.getMonth(),
+							endTimeYear: endDate.getFullYear(),
+							instanceIndex: schedulerEvent.get('instanceIndex'),
+							recurrence: schedulerEvent.get('recurrence'),
+							startTimeDay: startDate.getDate(),
+							startTimeHour: startDate.getHours(),
+							startTimeMinute: startDate.getMinutes(),
+							startTimeMonth: startDate.getMonth(),
+							startTimeYear: startDate.getFullYear(),
+							title: LString.unescapeHTML(schedulerEvent.get('content')),
+							updateInstance: updateInstance
+						},
+						resourceId: 'updateCalendarBooking'
 					}
 				);
 			}
@@ -1476,7 +1476,6 @@ AUI.add(
 						var instance = this;
 
 						var answers = data.answers;
-						var duration = data.duration;
 						var newRecurrence = data.newRecurrence;
 						var offset = data.offset;
 						var schedulerEvent = data.schedulerEvent;
