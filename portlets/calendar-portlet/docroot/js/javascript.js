@@ -411,13 +411,7 @@ AUI.add(
 				var payload;
 
 				if (params.payload) {
-					payload = {};
-					A.Object.each(
-						params.payload,
-						function(value, key) {
-							payload[instance.PORTLET_NAMESPACE + key] = value;
-						}
-					);
+					payload = Liferay.Util.ns(instance.PORTLET_NAMESPACE, params.payload);
 				}
 
 				A.io.request(
