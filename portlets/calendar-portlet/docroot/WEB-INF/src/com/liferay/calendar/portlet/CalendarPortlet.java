@@ -337,14 +337,13 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, calendar.getTimeZone());
 		long[] reminders = getReminders(actionRequest);
 		String[] remindersType = getRemindersType(actionRequest);
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
 		int instanceIndex = ParamUtil.getInteger(
 			actionRequest, "instanceIndex");
 		boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
 			actionRequest, "updateCalendarBookingInstance");
 		boolean allFollowing = ParamUtil.getBoolean(
 			actionRequest, "allFollowing");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarBooking.class.getName(), actionRequest);
@@ -1220,36 +1219,33 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarBookingId = ParamUtil.getLong(
 			resourceRequest, "calendarBookingId");
-		int instanceIndex = ParamUtil.getInteger(
-			resourceRequest, "instanceIndex");
+
+		CalendarBooking calendarBooking =
+			CalendarBookingServiceUtil.fetchCalendarBooking(calendarBookingId);
 
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
 
 		Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
 
-		String title = ParamUtil.getString(resourceRequest, "title");
+		long[] childCalendarIds = {};
+		Map<Locale, String> titleMap = new HashMap<Locale, String>();
+		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
+		String location = null;
 		java.util.Calendar startTimeJCalendar = getJCalendar(
 			resourceRequest, "startTime");
 		java.util.Calendar endTimeJCalendar = getJCalendar(
 			resourceRequest, "endTime");
 		boolean allDay = ParamUtil.getBoolean(resourceRequest, "allDay");
 		String recurrence = ParamUtil.getString(resourceRequest, "recurrence");
-
+		long[] reminders = {0, 0};
+		String[] remindersType = {"email", "email"};
+		int instanceIndex = ParamUtil.getInteger(
+			resourceRequest, "instanceIndex");
 		boolean updateInstance = ParamUtil.getBoolean(
 			resourceRequest, "updateInstance");
 		boolean allFollowing = ParamUtil.getBoolean(
 			resourceRequest, "allFollowing");
-
-		CalendarBooking calendarBooking =
-			CalendarBookingServiceUtil.fetchCalendarBooking(calendarBookingId);
-
-		long[] childCalendarIds;
-		Map<Locale, String> titleMap;
-		Map<Locale, String> descriptionMap;
-		String location;
-		long[] reminders;
-		String[] remindersType;
-		int status;
+		int status = ParamUtil.getInteger(resourceRequest, "status");
 
 		if (calendarBooking != null) {
 			childCalendarIds = 
@@ -1268,15 +1264,8 @@ public class CalendarPortlet extends MVCPortlet {
 			};
 			status = calendarBooking.getStatus();
 		}
-		else {
-			childCalendarIds = new long[0];
-			titleMap = new HashMap<Locale, String>();
-			descriptionMap = new HashMap<Locale, String>();
-			location = null;
-			reminders = new long[] {0, 0};
-			remindersType = new String[] {"email", "email"};
-			status = 0;
-		}
+
+		String title = ParamUtil.getString(resourceRequest, "title");
 
 		titleMap.put(themeDisplay.getLocale(), title);
 
