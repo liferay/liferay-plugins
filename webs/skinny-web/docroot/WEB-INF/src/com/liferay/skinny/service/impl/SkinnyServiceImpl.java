@@ -152,7 +152,10 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 
 		String content = null;
 
-		if (ArrayUtil.contains(journalArticle.getAvailableLocales(), locale)) {
+		if (
+			ArrayUtil.contains(
+				journalArticle.getAvailableLanguageIds(), locale)) {
+
 			content = journalArticle.getContentByLocale(locale);
 		}
 		else {
