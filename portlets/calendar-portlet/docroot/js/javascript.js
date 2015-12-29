@@ -97,81 +97,6 @@ AUI.add(
 			availableCalendars: {},
 			visibleCalendars: {},
 
-			addEvent: function(schedulerEvent, success) {
-				var instance = this;
-
-				var endDate = schedulerEvent.get('endDate');
-				var startDate = schedulerEvent.get('startDate');
-
-				instance.invokeService(
-					{
-						'/calendar-portlet.calendarbooking/add-calendar-booking': {
-							allDay: schedulerEvent.get('allDay'),
-							calendarId: schedulerEvent.get('calendarId'),
-							childCalendarIds: STR_BLANK,
-							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endTimeDay: endDate.getDate(),
-							endTimeHour: endDate.getHours(),
-							endTimeMinute: endDate.getMinutes(),
-							endTimeMonth: endDate.getMonth(),
-							endTimeYear: endDate.getFullYear(),
-							firstReminder: schedulerEvent.get('firstReminder'),
-							firstReminderType: schedulerEvent.get('firstReminderType'),
-							location: schedulerEvent.get('location'),
-							parentCalendarBookingId: schedulerEvent.get('parentCalendarBookingId'),
-							recurrence: schedulerEvent.get('recurrence'),
-							secondReminder: schedulerEvent.get('secondReminder'),
-							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startTimeDay: startDate.getDate(),
-							startTimeHour: startDate.getHours(),
-							startTimeMinute: startDate.getMinutes(),
-							startTimeMonth: startDate.getMonth(),
-							startTimeYear: startDate.getFullYear(),
-							timeZoneId: instance.USER_TIME_ZONE,
-							titleMap: instance.getLocalizationMap(LString.unescapeHTML(schedulerEvent.get('content')))
-						}
-					},
-					{
-						failure: function() {
-							instance.destroyEvent(schedulerEvent);
-						},
-
-						start: function() {
-							schedulerEvent.set(
-								'loading',
-								true,
-								{
-									silent: true
-								}
-							);
-						},
-
-						success: function(data) {
-							schedulerEvent.set(
-								'loading',
-								false,
-								{
-									silent: true
-								}
-							);
-
-							if (data) {
-								if (data.exception) {
-									instance.destroyEvent(schedulerEvent);
-								}
-								else {
-									instance.setEventAttrs(schedulerEvent, data);
-
-									if (success) {
-										success.call(instance, data);
-									}
-								}
-							}
-						}
-					}
-				);
-			},
-
 			adjustSchedulerEventDisplayTime: function(schedulerEvent) {
 				var instance = this;
 
@@ -677,114 +602,55 @@ AUI.add(
 				return DateMath.subtract(date, DateMath.MINUTES, date.getTimezoneOffset());
 			},
 
-			updateEvent: function(schedulerEvent, offset, duration, success) {
-				var instance = this;
-
-				instance.invokeService(
-					{
-						'/calendar-portlet.calendarbooking/update-offset-and-duration': {
-							allDay: schedulerEvent.get('allDay'),
-							calendarBookingId: schedulerEvent.get('calendarBookingId'),
-							calendarId: schedulerEvent.get('calendarId'),
-							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							duration: duration,
-							firstReminder: schedulerEvent.get('firstReminder'),
-							firstReminderType: schedulerEvent.get('firstReminderType'),
-							location: schedulerEvent.get('location'),
-							offset: offset,
-							recurrence: schedulerEvent.get('recurrence'),
-							secondReminder: schedulerEvent.get('secondReminder'),
-							secondReminderType: schedulerEvent.get('secondReminderType'),
-							status: schedulerEvent.get('status'),
-							titleMap: instance.getLocalizationMap(LString.unescapeHTML(schedulerEvent.get('content')))
-						}
-					},
-					{
-						start: function() {
-							schedulerEvent.set(
-								'loading',
-								true,
-								{
-									silent: true
-								}
-							);
-						},
-
-						success: function(data) {
-							schedulerEvent.set(
-								'loading',
-								false,
-								{
-									silent: true
-								}
-							);
-
-							if (success) {
-								success.call(instance, data);
-							}
-						}
-					}
-				);
-			},
-
-			updateEventInstance: function(schedulerEvent, allFollowing, success) {
+			updateEvent: function(schedulerEvent, updateInstance, allFollowing, success) {
 				var instance = this;
 
 				var startDate = schedulerEvent.get('startDate');
 				var endDate = schedulerEvent.get('endDate');
 
-				instance.invokeService(
+				instance.invokeResourceURL(
 					{
-						'/calendar-portlet.calendarbooking/update-calendar-booking-instance': {
+						resourceId: 'updateCalendarBooking',
+						payload: {
 							allDay: schedulerEvent.get('allDay'),
 							allFollowing: allFollowing,
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
-							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
 							endTimeDay: endDate.getDate(),
 							endTimeHour: endDate.getHours(),
 							endTimeMinute: endDate.getMinutes(),
 							endTimeMonth: endDate.getMonth(),
 							endTimeYear: endDate.getFullYear(),
-							firstReminder: schedulerEvent.get('firstReminder'),
-							firstReminderType: schedulerEvent.get('firstReminderType'),
 							instanceIndex: schedulerEvent.get('instanceIndex'),
-							location: schedulerEvent.get('location'),
 							recurrence: schedulerEvent.get('recurrence'),
-							secondReminder: schedulerEvent.get('secondReminder'),
-							secondReminderType: schedulerEvent.get('secondReminderType'),
 							startTimeDay: startDate.getDate(),
 							startTimeHour: startDate.getHours(),
 							startTimeMinute: startDate.getMinutes(),
 							startTimeMonth: startDate.getMonth(),
 							startTimeYear: startDate.getFullYear(),
-							status: schedulerEvent.get('status'),
-							timeZoneId: instance.USER_TIME_ZONE,
-							titleMap: instance.getLocalizationMap(LString.unescapeHTML(schedulerEvent.get('content')))
-						}
-					},
-					{
-						start: function() {
-							schedulerEvent.set(
-								'loading',
-								true,
-								{
-									silent: true
-								}
-							);
+							title: LString.unescapeHTML(schedulerEvent.get('content')),
+							updateInstance: updateInstance
 						},
-
-						success: function(data) {
+						callback: function(data) {
 							schedulerEvent.set(
-								'loading',
-								false,
-								{
-									silent: true
-								}
+									'loading',
+									false,
+									{
+										silent: true
+									}
 							);
 
-							if (success) {
-								success.call(instance, data);
+							if (data) {
+								if (data.exception) {
+									instance.destroyEvent(schedulerEvent);
+								}
+								else {
+									instance.setEventAttrs(schedulerEvent, data);
+
+									if (success) {
+										success.call(instance, data);
+									}
+								}
 							}
 						}
 					}
@@ -1595,8 +1461,10 @@ AUI.add(
 					_onSaveEvent: function(event) {
 						var instance = this;
 
-						CalendarUtil.addEvent(
+						CalendarUtil.updateEvent(
 							event.newSchedulerEvent,
+							false,
+							false,
 							function() {
 								instance.load();
 								instance.get('eventRecorder').hidePopover();
@@ -1632,11 +1500,8 @@ AUI.add(
 						if (answers.cancel) {
 							A.soon(showNextQuestion);
 						}
-						else if (answers.updateInstance) {
-							CalendarUtil.updateEventInstance(schedulerEvent, !!answers.allFollowing, showNextQuestion);
-						}
 						else {
-							CalendarUtil.updateEvent(schedulerEvent, offset, duration, showNextQuestion);
+							CalendarUtil.updateEvent(schedulerEvent, !!answers.updateInstance, !!answers.allFollowing, showNextQuestion);
 						}
 					},
 
