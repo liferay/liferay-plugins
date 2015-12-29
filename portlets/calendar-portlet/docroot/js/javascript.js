@@ -342,11 +342,13 @@ AUI.add(
 				var instance = this;
 
 				instance.invokeResourceURL(
-					'calendarBookingInvitees',
 					{
-						parentCalendarBookingId: calendarBookingId
-					},
-					callback
+						callback: callback,
+						resourceId: 'calendarBookingInvitees',
+						queryParameters: {
+							parentCalendarBookingId: calendarBookingId
+						}
+					}
 				);
 			},
 
@@ -364,14 +366,16 @@ AUI.add(
 				var instance = this;
 
 				instance.invokeResourceURL(
-					'calendarRenderingRules',
 					{
-						calendarIds: calendarIds.join(),
-						endTime: endDate.getTime(),
-						ruleName: ruleName,
-						startTime: startDate.getTime()
-					},
-					callback
+						callback: callback,
+						resourceId: 'calendarRenderingRules',
+						queryParameters: {
+							calendarIds: calendarIds.join(),
+							endTime: endDate.getTime(),
+							ruleName: ruleName,
+							startTime: startDate.getTime()
+						}
+					}
 				);
 			},
 
@@ -419,22 +423,24 @@ AUI.add(
 				var calendarIds = AObject.keys(instance.availableCalendars);
 
 				instance.invokeResourceURL(
-					'calendarBookings',
 					{
-						calendarIds: calendarIds.join(','),
-						endTimeDay: endDate.getDate(),
-						endTimeHour: endDate.getHours(),
-						endTimeMinute: endDate.getMinutes(),
-						endTimeMonth: endDate.getMonth(),
-						endTimeYear: endDate.getFullYear(),
-						startTimeDay: startDate.getDate(),
-						startTimeHour: startDate.getHours(),
-						startTimeMinute: startDate.getMinutes(),
-						startTimeMonth: startDate.getMonth(),
-						startTimeYear: startDate.getFullYear(),
-						statuses: status.join(',')
-					},
-					callback
+						callback: callback,
+						resourceId: 'calendarBookings',
+						queryParameters: {
+							calendarIds: calendarIds.join(','),
+							endTimeDay: endDate.getDate(),
+							endTimeHour: endDate.getHours(),
+							endTimeMinute: endDate.getMinutes(),
+							endTimeMonth: endDate.getMonth(),
+							endTimeYear: endDate.getFullYear(),
+							startTimeDay: startDate.getDate(),
+							startTimeHour: startDate.getHours(),
+							startTimeMinute: startDate.getMinutes(),
+							startTimeMonth: startDate.getMonth(),
+							startTimeYear: startDate.getFullYear(),
+							statuses: status.join(',')
+						}
+					}
 				);
 			},
 
@@ -452,28 +458,42 @@ AUI.add(
 				var instance = this;
 
 				instance.invokeResourceURL(
-					'resourceCalendars',
 					{
-						calendarResourceId: calendarResourceId
-					},
-					callback
+						callback: callback,
+						resourceId: 'resourceCalendars',
+						queryParameters: {
+							calendarResourceId: calendarResourceId
+						}
+					}
 				);
 			},
 
-			invokeResourceURL: function(resourceId, parameters, callback) {
+			invokeResourceURL: function(params) {
 				var instance = this;
 
 				var url = Liferay.PortletURL.createResourceURL();
 
 				url.setPortletId('1_WAR_calendarportlet');
-				url.setResourceId(resourceId);
+				url.setResourceId(params.resourceId);
 
 				A.each(
-					parameters,
+					params.queryParameters,
 					function(item, index, collection) {
 						url.setParameter(index, item);
 					}
 				);
+
+				var payload;
+
+				if (params.payload) {
+					payload = {};
+					A.Object.each(
+						params.payload,
+						function(value, key) {
+							payload[instance.PORTLET_NAMESPACE + key] = value;
+						}
+					);
+				}
 
 				A.io.request(
 					url.toString(),
@@ -481,9 +501,10 @@ AUI.add(
 						dataType: 'json',
 						on: {
 							success: function() {
-								callback(this.get('responseData'));
+								params.callback(this.get('responseData'));
 							}
-						}
+						},
+						data: payload
 					}
 				);
 			},
