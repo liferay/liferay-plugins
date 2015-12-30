@@ -145,18 +145,17 @@ public class SkinnyServiceImpl extends SkinnyServiceBaseImpl {
 	}
 
 	protected SkinnyJournalArticle getSkinnyJournalArticle(
-			JournalArticle journalArticle, String locale)
+			JournalArticle journalArticle, String languageId)
 		throws Exception {
 
 		SkinnyJournalArticle skinnyJournalArticle = new SkinnyJournalArticle();
 
 		String content = null;
 
-		if (
-			ArrayUtil.contains(
-				journalArticle.getAvailableLanguageIds(), locale)) {
+		if (ArrayUtil.contains(
+				journalArticle.getAvailableLanguageIds(), languageId)) {
 
-			content = journalArticle.getContentByLocale(locale);
+			content = journalArticle.getContentByLocale(languageId);
 		}
 		else {
 			content = journalArticle.getContent();
