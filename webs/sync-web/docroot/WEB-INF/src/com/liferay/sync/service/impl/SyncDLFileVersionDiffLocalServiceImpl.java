@@ -54,9 +54,11 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		syncDLFileVersionDiff.setSourceFileVersionId(sourceFileVersionId);
 		syncDLFileVersionDiff.setTargetFileVersionId(targetFileVersionId);
 
+		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+
 		Company company = companyLocalService.getCompanyById(
 			fileEntry.getCompanyId());
-		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+
 		String dataFileName = getDataFileName(
 			fileEntryId, sourceFileVersionId, targetFileVersionId);
 
