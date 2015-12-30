@@ -15,6 +15,7 @@
 package com.liferay.sync.hook.upgrade;
 
 import com.liferay.portal.kernel.upgrade.UpgradeException;
+import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 
 /**
  * @author Shinn Lok
@@ -28,7 +29,9 @@ public abstract class UpgradeProcess
 
 			// SYNC-1453
 
-			if (!hasRows("SyncDLObject")) {
+			int count = SyncDLObjectLocalServiceUtil.getSyncDLObjectsCount();
+
+			if (count == 0) {
 				return;
 			}
 
