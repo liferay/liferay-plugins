@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.BaseAssetRendererFactory;
 
@@ -44,23 +45,27 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 	public static final String TYPE = "article";
 
 	@Override
+	public AssetEntry getAssetEntry(String className, long classPK)
+		throws PortalException, SystemException {
+
+		KBArticle kbArticle = getKBArticle(
+			classPK, WorkflowConstants.STATUS_ANY);
+
+		return super.getAssetEntry(className, kbArticle.getKbArticleId());
+	}
+
+	@Override
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
 
 		KBArticle kbArticle = null;
 
 		if (type == TYPE_LATEST_APPROVED) {
-			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			kbArticle = getKBArticle(
 				classPK, WorkflowConstants.STATUS_APPROVED);
 		}
 		else {
-			try {
-				kbArticle = KBArticleLocalServiceUtil.getKBArticle(classPK);
-			}
-			catch (NoSuchArticleException nsae) {
-				kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-					classPK, WorkflowConstants.STATUS_ANY);
-			}
+			kbArticle = getKBArticle(classPK, WorkflowConstants.STATUS_ANY);
 		}
 
 		KBArticleAssetRenderer kbArticleAssetRenderer =
@@ -131,6 +136,22 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 	@Override
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 		return themeDisplay.getPathThemeImages() + "/trees/page.png";
+	}
+
+	protected KBArticle getKBArticle(long classPK, int status)
+		throws PortalException, SystemException {
+
+		KBArticle kbArticle = null;
+
+		try {
+			kbArticle = KBArticleLocalServiceUtil.getKBArticle(classPK);
+		}
+		catch (NoSuchArticleException nsae) {
+			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				classPK, status);
+		}
+
+		return kbArticle;
 	}
 
 	private static final boolean _LINKABLE = true;
