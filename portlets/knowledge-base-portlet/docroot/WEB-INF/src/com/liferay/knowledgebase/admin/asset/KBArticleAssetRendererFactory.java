@@ -31,6 +31,12 @@ import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.asset.model.AssetRenderer;
+import com.liferay.portlet.asset.model.BaseAssetRendererFactory;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -49,23 +55,27 @@ public class KBArticleAssetRendererFactory
 	}
 
 	@Override
+	public AssetEntry getAssetEntry(String className, long classPK)
+		throws PortalException {
+
+		KBArticle kbArticle = getKBArticle(
+			classPK, WorkflowConstants.STATUS_ANY);
+
+		return super.getAssetEntry(className, kbArticle.getKbArticleId());
+	}
+
+	@Override
 	public AssetRenderer<KBArticle> getAssetRenderer(long classPK, int type)
 		throws PortalException {
 
 		KBArticle kbArticle = null;
 
 		if (type == TYPE_LATEST_APPROVED) {
-			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+			kbArticle = getKBArticle(
 				classPK, WorkflowConstants.STATUS_APPROVED);
 		}
 		else {
-			try {
-				kbArticle = KBArticleLocalServiceUtil.getKBArticle(classPK);
-			}
-			catch (NoSuchArticleException nsae) {
-				kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-					classPK, WorkflowConstants.STATUS_ANY);
-			}
+			kbArticle = getKBArticle(classPK, WorkflowConstants.STATUS_ANY);
 		}
 
 		KBArticleAssetRenderer kbArticleAssetRenderer =
@@ -131,6 +141,22 @@ public class KBArticleAssetRendererFactory
 
 		return KBArticlePermission.contains(
 			permissionChecker, classPK, actionId);
+	}
+
+	protected KBArticle getKBArticle(long classPK, int status)
+		throws PortalException {
+
+		KBArticle kbArticle = null;
+
+		try {
+			kbArticle = KBArticleLocalServiceUtil.getKBArticle(classPK);
+		}
+		catch (NoSuchArticleException nsae) {
+			kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
+				classPK, status);
+		}
+
+		return kbArticle;
 	}
 
 }
