@@ -97,7 +97,7 @@
 		};
 		var width = parseInt(widthNode.val(), 10) || 0;
 
-		var playerOptionsCompiled = [swfURL + id];
+		var playerOptionsCompiled = ['wmode=transparent'];
 		var ratio = Math.min(maxWidth / width, 1);
 
 		height = Math.floor(height * ratio);
@@ -110,17 +110,7 @@
 		}
 
 		if (id) {
-			previewNode.setContent(['<a href="', watchURL, id, '" rel="external" title="watch-this-video-at-youtube"><img alt="youtube-video" height="100%" src="', imageURL.replace('<%= id %>', id), '" width="100%" /></a>'].join(''));
-
-			new A.SWF(
-				{
-					boundingBox: previewNode,
-					height: height,
-					url: playerOptionsCompiled.join('&'),
-					width: width,
-					version: 0
-				}
-			).render();
+			previewNode.setContent(['<iframe src="', embedURL, id, '?', playerOptionsCompiled.join('&'), '" frameborder="0" height="<%= height %>" width="<%= width %>" wmode="Opaque"></iframe>'].join(''));
 		}
 		else {
 			previewNode.setStyles(
@@ -172,8 +162,8 @@
 	var urlNode = A.one('#<portlet:namespace />url');
 	var widthNode = A.one('#<portlet:namespace />width');
 
+	var embedURL = '<%= embedURL %>';
 	var imageURL = '<%= imageURL %>';
-	var swfURL = '<%= swfURL %>';
 	var watchURL = '<%= watchURL %>';
 
 	A.on(

@@ -50,7 +50,7 @@ String id = url.replaceAll("^.*?v=([a-zA-Z0-9_-]+).*$", "$1");
 
 String presetSize = width + "x" + height;
 
+String embedURL = HttpUtil.getProtocol(request) + "://www.youtube.com/embed/";
 String imageURL = HttpUtil.getProtocol(request) + "://img.youtube.com/vi/" + id + "/0.jpg";
-String swfURL = HttpUtil.getProtocol(request) + "://www.youtube.com/v/";
 String watchURL = HttpUtil.getProtocol(request) + "://www.youtube.com/watch?v=";
 %>
