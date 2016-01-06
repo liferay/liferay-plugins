@@ -22,6 +22,8 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	/* TEST */
+
 	public static final String[] SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS =
 		PortletProps.getArray(
 			PortletPropsKeys.SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS);
