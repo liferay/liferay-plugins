@@ -90,10 +90,13 @@
 		var height = parseInt(heightNode.val(), 10) || 0;
 		var maxWidth = (formNode.get('clientWidth') || formNode.get('scrollWidth')) - (controlsNode.get('clientWidth') || controlsNode.get('scrollWidth'));
 		var playerOptions = {
-			cc_load_policy: closedCaptioningNode.val(),
-			disablekb: (!A.DataType.Boolean.parse(enableKeyboardControlsNode.val())).toString(),
-			iv_load_policy: annotationsNode.val(),
-			start: startTimeNode.val()
+			autoplay: autoplayNode.get('checked') + '',
+			cc_load_policy: closedCaptioningNode.get('checked') + '',
+			disablekb: (!A.DataType.Boolean.parse(enableKeyboardControlsNode.get('checked'))).toString(),
+			iv_load_policy: (A.DataType.Boolean.parse(annotationsNode.get('checked'))) ? '1': '3',
+			loop: loopNode.get('checked') + '',
+			start: startTimeNode.val(),
+			playlist: id
 		};
 		var width = parseInt(widthNode.val(), 10) || 0;
 
@@ -105,7 +108,7 @@
 
 		for (var i in playerOptions) {
 			if (playerOptions[i]) {
-				playerOptionsCompiled.push(i + '=' + playerOptions[i].replace(/^true$/, '1').replace(/^false$/, '0'));
+				playerOptionsCompiled.push(i + '=' + playerOptions[i].replace(/^true$|^on$/, '1').replace(/^false$|^off$/, '0'));
 			}
 		}
 
@@ -164,9 +167,11 @@
 	var previewNode = A.one('#<portlet:namespace />preview');
 
 	var annotationsNode = A.one('#<portlet:namespace />annotations');
+	var autoplayNode = A.one('#<portlet:namespace />autoplay');
 	var closedCaptioningNode = A.one('#<portlet:namespace />closedCaptioning');
 	var enableKeyboardControlsNode = A.one('#<portlet:namespace />enableKeyboardControls');
 	var heightNode = A.one('#<portlet:namespace />height');
+	var loopNode = A.one('#<portlet:namespace />loop');
 	var presetSizeNode = A.one('#<portlet:namespace />presetSize');
 	var startTimeNode = A.one('#<portlet:namespace />startTime');
 	var urlNode = A.one('#<portlet:namespace />url');
