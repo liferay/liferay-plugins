@@ -48,7 +48,7 @@ dialect "java"
 function List getAssetEntries(
 	User user, long[] classNameIds, String assetTagName) {
 
-	List<Group> groups = user.getMySites();
+	List<Group> groups = user.getMySiteGroups();
 
 	long[] groupIds = new long[groups.size()];
 
