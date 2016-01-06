@@ -939,6 +939,12 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				catch (Exception e) {
 					String message = e.getMessage();
 
+					if (message == null) {
+						_log.error(e, e);
+
+						message = StringPool.BLANK;
+					}
+
 					if (!message.startsWith(StringPool.QUOTE) &&
 						!message.endsWith(StringPool.QUOTE)) {
 
