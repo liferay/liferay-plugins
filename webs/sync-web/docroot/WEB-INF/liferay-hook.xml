@@ -9,6 +9,7 @@
 	</servlet-filter>
 	<servlet-filter-mapping>
 		<servlet-filter-name>Sync JSON Filter</servlet-filter-name>
+		<after-filter>Upload Servlet Request Filter</after-filter>
 		<url-pattern>/api/jsonws/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
