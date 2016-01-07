@@ -15,6 +15,8 @@
 package com.liferay.sync.filter;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.upload.UploadServletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -69,13 +71,23 @@ public class SyncJSONFilter implements Filter {
 			(HttpServletRequest)servletRequest;
 
 		if (uri.equals("/api/jsonws/invoke")) {
-			SyncJSONHttpServletRequestWrapper
-				syncJSONHttpServletRequestWrapper =
-					new SyncJSONHttpServletRequestWrapper(httpServletRequest);
+			String contentType = httpServletRequest.getHeader(
+				HttpHeaders.CONTENT_TYPE);
 
-			servletRequest = syncJSONHttpServletRequestWrapper;
+			if ((contentType == null) ||
+				!contentType.startsWith(ContentTypes.MULTIPART_FORM_DATA)) {
 
-			if (!syncJSONHttpServletRequestWrapper.isSyncJSONRequest()) {
+				filterChain.doFilter(servletRequest, servletResponse);
+
+				return;
+			}
+
+			if (!(httpServletRequest instanceof UploadServletRequest)) {
+				servletRequest = PortalUtil.getUploadServletRequest(
+					httpServletRequest);
+			}
+
+			if (!isSyncJSONRequest(servletRequest)) {
 				filterChain.doFilter(servletRequest, servletResponse);
 
 				return;
@@ -180,12 +192,12 @@ public class SyncJSONFilter implements Filter {
 	public void init(FilterConfig filterConfig) {
 	}
 
-	public boolean isSyncJSONRequest() {
+	protected boolean isSyncJSONRequest(ServletRequest servletRequest) {
 		try {
-			String cmd = getParameter(Constants.CMD);
+			String cmd = servletRequest.getParameter(Constants.CMD);
 
 			if (cmd == null) {
-				cmd = StringUtil.read(getInputStream());
+				cmd = StringUtil.read(servletRequest.getInputStream());
 			}
 
 			Object jsonObject = JSONFactoryUtil.looseDeserialize(cmd);
