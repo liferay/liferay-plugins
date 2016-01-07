@@ -18,7 +18,7 @@
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post">
+<aui:form action="<%= configurationActionURL %>" method="post" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:layout>
@@ -84,144 +84,166 @@
 	</aui:layout>
 </aui:form>
 
-<aui:script use="aui-datatype,aui-swf-deprecated">
-	var createPlayer = function() {
-		var id = urlToVideoId(urlNode.val());
-		var height = parseInt(heightNode.val(), 10) || 0;
-		var maxWidth = (formNode.get('clientWidth') || formNode.get('scrollWidth')) - (controlsNode.get('clientWidth') || controlsNode.get('scrollWidth'));
-		var playerOptions = {
-			cc_load_policy: closedCaptioningNode.val(),
-			disablekb: (!A.DataType.Boolean.parse(enableKeyboardControlsNode.val())).toString(),
-			iv_load_policy: annotationsNode.val(),
-			start: startTimeNode.val()
-		};
-		var width = parseInt(widthNode.val(), 10) || 0;
-
-		var playerOptionsCompiled = ['wmode=transparent'];
-		var ratio = Math.min(maxWidth / width, 1);
-
-		height = Math.floor(height * ratio);
-		width = Math.floor(width * ratio);
-
-		for (var i in playerOptions) {
-			if (playerOptions[i]) {
-				playerOptionsCompiled.push(i + '=' + playerOptions[i].replace(/^true$/, '1').replace(/^false$/, '0'));
-			}
-		}
-
-		if (id) {
-			previewNode.setContent(['<iframe src="', embedURL, id, '?', playerOptionsCompiled.join('&'), '" frameborder="0" height="<%= height %>" width="<%= width %>" wmode="Opaque"></iframe>'].join(''));
-		}
-		else {
-			previewNode.setStyles(
-				{
-					height: height,
-					width: width
-				}
-			);
-		}
-	};
-
-	var encodeHex = function(hex) {
-		return (hex) ? '0x' + hex.replace('#', '').replace(/^(.)(.)(.)$/, '$1$1$2$2$3$3').toLowerCase() : '';
-	};
-
-	var presetChange = function(e) {
-		if (this.val().indexOf('x') < 0) {
-			A.one('#<portlet:namespace />height').ancestor('.control-group').removeClass('invisible');
-			A.one('#<portlet:namespace />width').ancestor('.control-group').removeClass('invisible');
-
-			return;
-		}
-
-		var dimensions = this.val().split('x');
-
-		heightNode.val(dimensions[1]);
-		widthNode.val(dimensions[0]);
-
-		createPlayer();
-	};
-
-	var urlToVideoId = function(url) {
-		return url.replace(/^.*?v=([a-zA-Z0-9_\-]+).*$/, '$1');
-	};
-
-	var allInputsNode = A.all('#<portlet:namespace />fm input');
+<aui:script use="aui-base,aui-datatype,aui-swf-deprecated">
+	var Lang = A.Lang;
 
 	var formNode = A.one('#<portlet:namespace />fm');
 
-	var controlsNode = A.one('#<portlet:namespace />controls');
-	var previewNode = A.one('#<portlet:namespace />preview');
+	var heightNode = formNode.one('#<portlet:namespace />height');
+	var presetSizeNode = formNode.one('#<portlet:namespace />presetSize');
+	var widthNode = formNode.one('#<portlet:namespace />width');
 
-	var annotationsNode = A.one('#<portlet:namespace />annotations');
-	var closedCaptioningNode = A.one('#<portlet:namespace />closedCaptioning');
-	var enableKeyboardControlsNode = A.one('#<portlet:namespace />enableKeyboardControls');
-	var heightNode = A.one('#<portlet:namespace />height');
-	var presetSizeNode = A.one('#<portlet:namespace />presetSize');
-	var startTimeNode = A.one('#<portlet:namespace />startTime');
-	var urlNode = A.one('#<portlet:namespace />url');
-	var widthNode = A.one('#<portlet:namespace />width');
+	var createPlayer = function() {
+		var height = Lang.toInt(heightNode.val()) || 0;
 
-	var embedURL = '<%= embedURL %>';
-	var imageURL = '<%= imageURL %>';
-	var watchURL = '<%= watchURL %>';
+		var annotationsNode = formNode.one('#<portlet:namespace />annotations');
+		var closedCaptioningNode = formNode.one('#<portlet:namespace />closedCaptioning');
+		var enableKeyboardControlsNode = formNode.one('#<portlet:namespace />enableKeyboardControls');
+		var startTimeNode = formNode.one('#<portlet:namespace />startTime');
 
-	A.on(
+		if (annotationsNode && closedCaptioningNode && enableKeyboardControlsNode && startTimeNode) {
+			var playerOptions = {
+				cc_load_policy: closedCaptioningNode.val(),
+				disablekb: (!A.DataType.Boolean.parse(enableKeyboardControlsNode.val())).toString(),
+				iv_load_policy: annotationsNode.val(),
+				start: startTimeNode.val()
+			};
+
+			var width = Lang.toInt(widthNode.val()) || 0;
+
+			var playerOptionsCompiled = ['wmode=transparent'];
+
+			var controlsNode = formNode.one('#<portlet:namespace />controls');
+
+			if (controlsNode) {
+				var controlsNodeWidth = controlsNode.get('clientWidth') || controlsNode.get('scrollWidth');
+				var formNodeWidth = formNode.get('clientWidth') || formNode.get('scrollWidth');
+
+				var maxWidth = formNodeWidth - controlsNodeWidth;
+
+				var ratio = Math.min(maxWidth / width, 1);
+
+				height = Math.floor(height * ratio);
+				width = Math.floor(width * ratio);
+
+				for (var i in playerOptions) {
+					var currentOption = playerOptions[i];
+
+					if (currentOption) {
+						playerOptionsCompiled.push(i + '=' + currentOption.replace(/^true$/, '1').replace(/^false$/, '0'));
+					}
+				}
+
+				var urlNode = formNode.one('#<portlet:namespace />url');
+
+				if (urlNode) {
+					var urlValue = urlNode.val();
+
+					var id = urlValue.replace(/^.*?v=([a-zA-Z0-9_\-]+).*$/, '$1');
+
+					var previewNode = formNode.one('#<portlet:namespace />preview');
+
+					if (id) {
+						previewNode.setContent(
+							[
+								'<iframe frameborder="0" height="', height, '" src="', '<%= embedURL %>', id, '?', playerOptionsCompiled.join('&'), '" width="', width, '" wmode="Opaque"></iframe>'
+							].join('')
+						);
+					}
+					else {
+						previewNode.setStyles(
+							{
+								height: height,
+								width: width
+							}
+						);
+					}
+				}
+			}
+		}
+	};
+
+	var presetChange = function(event) {
+		var currentTarget = event.currentTarget;
+
+		var presetValue = currentTarget.val();
+
+		if (presetValue) {
+			if (presetValue.indexOf('x') < 0) {
+				var heightNodeControlGroup = heightNode.ancestor('.form-group');
+
+				if (heightNodeControlGroup) {
+					heightNodeControlGroup.removeClass('invisible');
+				}
+
+				var widthNodeControlGroup = widthNode.ancestor('.form-group');
+
+				if (widthNodeControlGroup) {
+					widthNodeControlGroup.removeClass('invisible');
+				}
+			}
+			else {
+				var dimensions = presetValue.split('x');
+
+				heightNode.val(dimensions[1]);
+				widthNode.val(dimensions[0]);
+
+				createPlayer();
+			}
+		}
+	};
+
+	var updatePresetSize = function(event) {
+		presetSizeNode.val('');
+
+		presetSizeNode.val(widthNode.val() + 'x' + heightNode.val());
+	};
+
+	A.delegate(
 		'change',
-		function(e) {
+		function(event) {
 			createPlayer();
 		},
-		allInputsNode
+		formNode.all('input')
 	);
 
-	presetSizeNode.on(
-		{
-			change: presetChange,
-			keypress: presetChange
+	if (presetSizeNode) {
+		presetSizeNode.on(
+			{
+				change: presetChange,
+				keypress: presetChange
+			}
+		);
+	}
+
+	heightNode.on(
+		'change',
+		function(event) {
+			updatePresetSize();
 		}
 	);
 
-	A.on(
+	widthNode.on(
 		'change',
-		function(e) {
-			presetSizeNode.val('');
-
-			presetSizeNode.val(widthNode.val() + 'x' + heightNode.val());
-		},
-		heightNode
-	);
-
-	A.on(
-		'change',
-		function(e) {
-			presetSizeNode.val('');
-
-			presetSizeNode.val(widthNode.val() + 'x' + heightNode.val());
-		},
-		widthNode
-	);
-
-	A.on(
-		'click',
-		function(e) {
-			e.preventDefault();
-
-			submitForm(document['<portlet:namespace />fm']);
-		},
-		'input.button-input-submit'
+		function(event) {
+			updatePresetSize();
+		}
 	);
 
 	A.on(
 		'windowresize',
-		function(e) {
+		function(event) {
 			createPlayer();
 		}
 	);
 
-	if (presetSizeNode.val() == 'custom') {
-		A.one('#<portlet:namespace />height').ancestor('.control-group').removeClass('invisible');
-		A.one('#<portlet:namespace />width').ancestor('.control-group').removeClass('invisible');
-	}
-
 	createPlayer();
+</aui:script>
+
+<aui:script>
+	function <portlet:namespace />saveConfiguration() {
+		var form = AUI.$(document.<portlet:namespace />fm);
+
+		submitForm(form);
+	}
 </aui:script>
