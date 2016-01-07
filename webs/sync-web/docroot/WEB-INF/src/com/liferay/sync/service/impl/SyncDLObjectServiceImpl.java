@@ -133,13 +133,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					FileEntry fileEntry = dlAppService.getFileEntry(
 						repositoryId, folderId, title);
 
-					fileEntry = dlAppService.updateFileEntry(
+					return updateFileEntry(
 						fileEntry.getFileEntryId(), sourceFileName, mimeType,
-						title, description, changeLog, false, file,
+						title, description, changeLog, false, file, checksum,
 						serviceContext);
-
-					return toSyncDLObject(
-						fileEntry, SyncConstants.EVENT_UPDATE);
 				}
 			}
 
@@ -178,11 +175,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					Folder folder = dlAppService.getFolder(
 						repositoryId, parentFolderId, name);
 
-					folder = dlAppService.updateFolder(
+					return updateFolder(
 						folder.getFolderId(), name, description,
 						serviceContext);
-
-					return toSyncDLObject(folder, SyncConstants.EVENT_UPDATE);
 				}
 			}
 
