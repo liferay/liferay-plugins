@@ -1444,7 +1444,8 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	@Override
-	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
+	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj()
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBooking.getRecurrenceObj();
 	}
 
@@ -1455,8 +1456,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 
 	@Override
 	public java.util.TimeZone getTimeZone()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBooking.getTimeZone();
 	}
 

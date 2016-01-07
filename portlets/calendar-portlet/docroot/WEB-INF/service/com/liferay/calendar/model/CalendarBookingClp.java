@@ -1367,15 +1367,15 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	@Override
-	public java.util.TimeZone getTimeZone() {
+	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
 		try {
-			String methodName = "getTimeZone";
+			String methodName = "getRecurrenceObj";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			java.util.TimeZone returnObj = (java.util.TimeZone)invokeOnRemoteModel(methodName,
+			com.liferay.calendar.recurrence.Recurrence returnObj = (com.liferay.calendar.recurrence.Recurrence)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;
@@ -1386,15 +1386,15 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	@Override
-	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj() {
+	public java.util.TimeZone getTimeZone() {
 		try {
-			String methodName = "getRecurrenceObj";
+			String methodName = "getTimeZone";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
-			com.liferay.calendar.recurrence.Recurrence returnObj = (com.liferay.calendar.recurrence.Recurrence)invokeOnRemoteModel(methodName,
+			java.util.TimeZone returnObj = (java.util.TimeZone)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

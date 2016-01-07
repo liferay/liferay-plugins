@@ -53,13 +53,13 @@ public interface CalendarBooking extends CalendarBookingModel, PermissionedModel
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj();
+	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj()
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType();
 
 	public java.util.TimeZone getTimeZone()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public boolean isMasterBooking();
 
