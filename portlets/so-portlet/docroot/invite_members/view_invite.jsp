@@ -63,21 +63,6 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 			</div>
 		</div>
 
-		<div class="email-invited">
-			<h2>
-				<liferay-ui:message key="invite-by-email" />
-			</h2>
-
-			<div class="list">
-			</div>
-
-			<div class="controls">
-				<input id="new-member-email-address" name="<portlet:namespace />emailAddress" size="50" type="text" />
-
-				<input id="so-add-email-address" type="button" value="<liferay-ui:message key="add-email-address" />" />
-			</div>
-		</div>
-
 		<%
 		List<Role> roles = RoleLocalServiceUtil.search(layout.getCompanyId(), null, null, new Integer[] {RoleConstants.TYPE_SITE}, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new RoleNameComparator(false));
 
@@ -137,12 +122,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		<div class="invite-actions">
 			<portlet:actionURL name="sendInvites" var="sentIvitesURL" />
 
-			<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-				<portlet:param name="mvcPath" value="/invite_members/view_invite.jsp" />
-			</portlet:renderURL>
-
 			<aui:form action="<%= sentIvitesURL %>" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
-				<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
 				<aui:input name="groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
 				<aui:input name="receiverUserIds" type="hidden" value="" />
 				<aui:input name="receiverEmailAddresses" type="hidden" value="" />

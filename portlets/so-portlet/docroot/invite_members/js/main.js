@@ -32,7 +32,6 @@ AUI.add(
 
 					instance._findMembersList = instance._inviteMembersContainer.one('.search .list');
 					instance._emailInput = instance._inviteMembersContainer.one('#new-member-email-address');
-					instance._invitedEmailList = instance._inviteMembersContainer.one('.email-invited .list');
 					instance._invitedMembersList = instance._inviteMembersContainer.one('.user-invited .list');
 
 					var form = instance._inviteMembersContainer.one('form');
@@ -107,20 +106,6 @@ AUI.add(
 					);
 				},
 
-				_addMemberEmail: function() {
-					var instance = this;
-
-					var emailAddress = A.Lang.trim(instance._emailInput.val());
-
-					if (emailAddress) {
-						var html = '<div class="user" data-emailAddress="' + emailAddress + '"><span class="email">' + emailAddress + '</span></div>';
-
-						instance._invitedEmailList.append(html);
-					}
-
-					instance._emailInput.val('');
-				},
-
 				_addMemberInvite: function(user) {
 					var instance = this;
 
@@ -152,12 +137,6 @@ AUI.add(
 					instance._invitedMembersList.all('.user').each(
 						function(item, index) {
 							userIds.push(item.attr('data-userId'));
-						}
-					);
-
-					instance._invitedEmailList.all('.user').each(
-						function(item, index) {
-							emailAddresses.push(item.attr('data-emailAddress'));
 						}
 					);
 

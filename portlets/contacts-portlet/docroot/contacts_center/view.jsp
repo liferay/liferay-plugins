@@ -314,7 +314,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						</c:when>
 						<c:otherwise>
 							<aui:layout cssClass="contacts-center-home">
-								
+
 							</aui:layout>
 						</c:otherwise>
 					</c:choose>
