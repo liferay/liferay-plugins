@@ -22,9 +22,7 @@
 		<%
 		StringBundler sb = new StringBundler();
 
-		// wmode=transparent and wmode=Opaque may need for IE z-index issue (iframe covers the portlet's configuration menu in IE)
 		sb.append("?wmode=transparent");
-
 
 		if (autoplay) {
 			sb.append("&amp;autoplay=1");
@@ -62,7 +60,7 @@
 			</aui:a>
 		</c:if>
 
-		<iframe width="<%= width %>" height="<%= height %>" src="<%= embedURL + id + sb.toString() %>" frameborder="0" wmode="Opaque" allowfullscreen/></iframe>
+		<iframe allowfullscreen frameborder="0" height="<%= height %>" src="<%= embedURL + id + sb.toString() %>" width="<%= width %>" wmode="Opaque" /></iframe>
 	</c:when>
 	<c:otherwise>
 		<liferay-util:include page="/html/portal/portlet_not_setup.jsp" />
