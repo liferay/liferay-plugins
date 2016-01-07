@@ -54,12 +54,6 @@
 							<span class="count"><%= unreadActionableUserNotificationsCount %></span>
 						</a>
 					</div>
-
-					<div class="nav">
-						<a class="clearfix manage" href="javascript:;">
-							<span class="title"><liferay-ui:message key="notification-delivery" /></span>
-						</a>
-					</div>
 				</aui:col>
 
 				<aui:col cssClass="user-notifications-list-container" width="<%= 75 %>">
