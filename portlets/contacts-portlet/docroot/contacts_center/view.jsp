@@ -90,7 +90,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			<aui:input name="userIds" type="hidden" value="" />
 			<aui:input name="type" type="hidden" value="" />
 
-			<aui:layout cssClass="toolbar">
+			<aui:layout cssClass="toolbar" style="display:none">
 				<div class="filter-container">
 					<aui:layout cssClass="contact-group-filter">
 						<aui:input label="" name="checkAll" type="checkbox" />
@@ -314,67 +314,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						</c:when>
 						<c:otherwise>
 							<aui:layout cssClass="contacts-center-home">
-								<c:choose>
-									<c:when test="<%= !showOnlySiteMembers %>">
-										<liferay-ui:header title="contacts-center" />
-									</c:when>
-									<c:otherwise>
-										<liferay-ui:header title="members" />
-									</c:otherwise>
-								</c:choose>
-
-								<%
-								int allUsersCount = 0;
-
-								if (userPublicPage || showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT)) {
-									allUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, params);
-								}
-								else {
-									allUsersCount = EntryLocalServiceUtil.searchUsersAndContactsCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), StringPool.BLANK);
-								}
-
-								params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), new Long(SocialRelationConstants.TYPE_BI_CONNECTION)});
-
-								int connectionUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, params);
-
-								params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), new Long(SocialRelationConstants.TYPE_UNI_FOLLOWER)});
-
-								int followingUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, params);
-
-								int followerUsersCount = SocialRelationLocalServiceUtil.getInverseRelationsCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-								%>
-
-								<aui:layout cssClass="contacts-count connections">
-									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(connectionUsersCount) %>" key='<%= showOnlySiteMembers ? "you-have-x-connections-in-this-site" : "you-have-x-connections" %>' translateArguments="<%= false %>" /></a>
-								</aui:layout>
-
-								<aui:layout cssClass="contacts-count followings">
-									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key='<%= showOnlySiteMembers ? "you-are-following-x-people-in-this-site" : "you-are-following-x-people" %>' translateArguments="<%= false %>" /></a>
-								</aui:layout>
-
-								<c:if test="<%= !showOnlySiteMembers %>">
-									<aui:layout cssClass="contacts-count followers">
-										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followerUsersCount) %>" key="you-have-x-followers" translateArguments="<%= false %>" /></a>
-									</aui:layout>
-
-									<%
-									int myContactsCount = EntryLocalServiceUtil.getEntriesCount(user.getUserId());
-									%>
-
-									<aui:layout cssClass="contacts-count contacts">
-										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(myContactsCount) %>" key="view-my-x-contacts" translateArguments="<%= false %>" /></a>
-									</aui:layout>
-								</c:if>
-
-								<aui:layout cssClass="contacts-count all">
-									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(allUsersCount) %>" key="view-all-x-users" translateArguments="<%= false %>" /></a>
-								</aui:layout>
-
-								<c:if test="<%= !showOnlySiteMembers && (connectionUsersCount <= 0) && (followingUsersCount <= 0) %>">
-									<aui:layout cssClass="contacts-center-introduction">
-										<liferay-ui:message key="contacts-center-lets-you-search-view-and-establish-social-relations-with-other-users" />
-									</aui:layout>
-								</c:if>
+								
 							</aui:layout>
 						</c:otherwise>
 					</c:choose>
