@@ -36,8 +36,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class JIRAChangeGroupFinderImpl
-	extends JIRAChangeGroupFinderBaseImpl
-	implements JIRAChangeGroupFinder {
+	extends JIRAChangeGroupFinderBaseImpl implements JIRAChangeGroupFinder {
 
 	public static final String COUNT_BY_CD_P =
 		JIRAChangeGroupFinder.class.getName() + ".countByCD_P";
