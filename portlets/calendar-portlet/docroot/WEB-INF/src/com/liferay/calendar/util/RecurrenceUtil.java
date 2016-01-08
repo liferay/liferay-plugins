@@ -172,7 +172,7 @@ public class RecurrenceUtil {
 
 		recurrence = recurrence.clone();
 
-		List<Calendar> newExceptionJCalendars = new ArrayList<>();
+		List<Calendar> newExceptionJCalendars = new ArrayList<Calendar>();
 
 		List<Calendar> exceptionJCalendars =
 			recurrence.getExceptionJCalendars();
@@ -186,7 +186,8 @@ public class RecurrenceUtil {
 
 		recurrence.setExceptionJCalendars(newExceptionJCalendars);
 
-		List<PositionalWeekday> newPositionalWeekdays = new ArrayList<>();
+		List<PositionalWeekday> newPositionalWeekdays =
+			new ArrayList<PositionalWeekday>();
 
 		List<PositionalWeekday> positionalWeekdays =
 			recurrence.getPositionalWeekdays();

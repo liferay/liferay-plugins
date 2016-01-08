@@ -71,7 +71,6 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -649,7 +648,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		List<Integer> daysOfWeek = getDaysOfWeek(recurrenceObj);
 
-		java.util.Calendar startTimeJCalendar = CalendarFactoryUtil.getCalendar(
+		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartTime(), timeZone);
 
 		int startTimeDayOfWeek = startTimeJCalendar.get(
@@ -722,15 +721,15 @@ public class CalendarPortlet extends MVCPortlet {
 
 		if (frequency == Frequency.WEEKLY) {
 			CalendarBooking firstInstance =
-				_calendarBookingService.getCalendarBookingInstance(
+				CalendarBookingServiceUtil.getCalendarBookingInstance(
 					calendarBooking.getCalendarBookingId(), 0);
 
 			java.util.Calendar startTimeJCalendar =
-				CalendarFactoryUtil.getCalendar(
+				JCalendarUtil.getJCalendar(
 					startTime, calendarBooking.getTimeZone());
 
 			java.util.Calendar firstInstanceJCalendar =
-				CalendarFactoryUtil.getCalendar(
+				JCalendarUtil.getJCalendar(
 					firstInstance.getStartTime(),
 					calendarBooking.getTimeZone());
 
