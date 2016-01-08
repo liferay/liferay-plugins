@@ -806,7 +806,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 					java.util.Calendar weekdayJCalendar =
 						JCalendarUtil.getJCalendar(
-						startTimeJCalendar.getTimeInMillis(), timeZone);
+							startTimeJCalendar.getTimeInMillis(), timeZone);
 
 					weekdayJCalendar.set(
 						java.util.Calendar.DAY_OF_WEEK,
@@ -1286,7 +1286,7 @@ public class CalendarPortlet extends MVCPortlet {
 		int status = ParamUtil.getInteger(resourceRequest, "status");
 
 		if (calendarBooking != null) {
-			childCalendarIds = 
+			childCalendarIds =
 				CalendarBookingLocalServiceUtil.getChildCalendarIds(
 					calendarBookingId, calendarId);
 			titleMap = calendarBooking.getTitleMap();
@@ -1405,15 +1405,15 @@ public class CalendarPortlet extends MVCPortlet {
 				calendarBooking = getFirstCalendarBookingInstance(
 					calendarBooking, recurrence, timeZone);
 
-				calendarBooking = 
+				calendarBooking =
 					CalendarBookingServiceUtil.updateCalendarBooking(
 						calendarBookingId, calendar.getCalendarId(),
 						childCalendarIds, titleMap, descriptionMap, location,
 						calendarBooking.getStartTime(),
-					calendarBooking.getEndTime(), allDay,
-					RecurrenceSerializer.serialize(recurrence), reminders[0],
-					remindersType[0], reminders[1], remindersType[1],
-					status, serviceContext);
+						calendarBooking.getEndTime(), allDay,
+						RecurrenceSerializer.serialize(recurrence),
+						reminders[0], remindersType[0], reminders[1],
+						remindersType[1], status, serviceContext);
 			}
 		}
 
