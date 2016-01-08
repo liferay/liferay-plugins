@@ -49,15 +49,15 @@ AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.
 	String displayPopupHREF = null;
 
 	if (assetRenderer != null) {
-		PortletURL displayPopupURL = assetRenderer.getURLView(liferayPortletResponse, LiferayWindowState.POP_UP);
+		String displayPopupURL = assetRenderer.getURLView(liferayPortletResponse, LiferayWindowState.POP_UP);
 
-		if (displayPopupURL != null) {
+		if (Validator.isNotNull(displayPopupURL)) {
 			StringBundler sb = new StringBundler(7);
 
 			sb.append("javascript:");
 			sb.append(liferayPortletResponse.getNamespace());
 			sb.append("displayPopup('");
-			sb.append(displayPopupURL.toString());
+			sb.append(displayPopupURL);
 			sb.append("', '");
 			sb.append(UnicodeLanguageUtil.get(request, "my-subscription"));
 			sb.append("');");
