@@ -22,16 +22,11 @@ import java.sql.Types;
 public class KBTemplateTable {
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"uuid_", Types.VARCHAR},
-		{"kbTemplateId", Types.BIGINT},
-		{"groupId", Types.BIGINT},
-		{"companyId", Types.BIGINT},
-		{"userId", Types.BIGINT},
-		{"userName", Types.VARCHAR},
-		{"createDate", Types.TIMESTAMP},
-		{"modifiedDate", Types.TIMESTAMP},
-		{"title", Types.VARCHAR},
-		{"content", Types.CLOB},
+		{"uuid_", Types.VARCHAR}, {"kbTemplateId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"title", Types.VARCHAR}, {"content", Types.CLOB},
 		{"engineType", Types.INTEGER},
 		{"cacheable", Types.BOOLEAN}
 	};
