@@ -24,6 +24,7 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.recurrence.PositionalWeekday;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.Weekday;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -40,8 +41,9 @@ import java.util.TimeZone;
 public class RecurrenceUtil {
 
 	public static List<CalendarBooking> expandCalendarBooking(
-		CalendarBooking calendarBooking, long startTime, long endTime,
-		int maxSize) {
+			CalendarBooking calendarBooking, long startTime, long endTime,
+			int maxSize)
+		throws SystemException {
 
 		List<CalendarBooking> expandedCalendarBookings =
 			new ArrayList<CalendarBooking>();
@@ -79,14 +81,17 @@ public class RecurrenceUtil {
 	}
 
 	public static List<CalendarBooking> expandCalendarBookings(
-		List<CalendarBooking> calendarBookings, long startTime, long endTime) {
+			List<CalendarBooking> calendarBookings, long startTime,
+			long endTime)
+		throws SystemException {
 
 		return expandCalendarBookings(calendarBookings, startTime, endTime, 0);
 	}
 
 	public static List<CalendarBooking> expandCalendarBookings(
-		List<CalendarBooking> calendarBookings, long startTime, long endTime,
-		int maxSize) {
+			List<CalendarBooking> calendarBookings, long startTime,
+			long endTime, int maxSize)
+		throws SystemException {
 
 		List<CalendarBooking> expandedCalendarBookings =
 			new ArrayList<CalendarBooking>();
@@ -103,7 +108,8 @@ public class RecurrenceUtil {
 	}
 
 	public static CalendarBooking getCalendarBookingInstance(
-		CalendarBooking calendarBooking, int instanceIndex) {
+			CalendarBooking calendarBooking, int instanceIndex)
+		throws SystemException {
 
 		try {
 			CalendarBookingIterator calendarBookingIterator =

@@ -20,6 +20,7 @@ import com.google.ical.values.DateValue;
 import com.google.ical.values.DateValueImpl;
 
 import com.liferay.calendar.model.CalendarBooking;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -38,7 +39,7 @@ import java.util.TimeZone;
 public class CalendarBookingIterator implements Iterator<CalendarBooking> {
 
 	public CalendarBookingIterator(CalendarBooking calendarBooking)
-		throws ParseException {
+		throws ParseException, SystemException {
 
 		_calendarBooking = calendarBooking;
 

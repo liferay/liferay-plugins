@@ -639,8 +639,9 @@ public class CalendarPortlet extends MVCPortlet {
 	}
 
 	protected CalendarBooking getFirstCalendarBookingInstance(
-		CalendarBooking calendarBooking, Recurrence recurrenceObj,
-		TimeZone timeZone) {
+			CalendarBooking calendarBooking, Recurrence recurrenceObj,
+			TimeZone timeZone)
+		throws SystemException {
 
 		if (recurrenceObj == null) {
 			return calendarBooking;
@@ -711,7 +712,7 @@ public class CalendarPortlet extends MVCPortlet {
 	protected long getOffset(
 			CalendarBooking calendarBooking, long startTime,
 			Recurrence recurrence)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		Frequency frequency = null;
 
