@@ -72,7 +72,10 @@ import com.liferay.so.util.GroupConstants;
 import com.liferay.so.util.PortletKeys;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -552,9 +555,19 @@ public class SitesPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Group.class.getName(), actionRequest);
 
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(serviceContext.getLocale(), name);
+
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
+		descriptionMap.put(serviceContext.getLocale(), description);
+
 		Group group = GroupServiceUtil.addGroup(
-			name, description, type, StringPool.BLANK, true, true,
-			serviceContext);
+			GroupConstants.DEFAULT_PARENT_GROUP_ID,
+			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, descriptionMap, type,
+			true, GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION,
+			StringPool.BLANK, true, true, serviceContext);
 
 		long publicLayoutSetPrototypeId = 0;
 		long privateLayoutSetPrototypeId = 0;

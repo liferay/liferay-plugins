@@ -37,7 +37,7 @@ public class SocialOfficeServiceImpl extends SocialOfficeServiceBaseImpl {
 	public long[] getUserSocialOfficeGroupIds() throws PortalException {
 		List<Group> groups = new ArrayList<>();
 
-		for (Group group : GroupServiceUtil.getUserSites()) {
+		for (Group group : GroupServiceUtil.getUserSitesGroups()) {
 			if (isSocialOfficeGroup(group.getGroupId())) {
 				groups.add(group);
 			}

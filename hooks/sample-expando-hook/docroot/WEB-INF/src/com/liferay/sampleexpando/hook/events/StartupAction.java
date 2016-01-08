@@ -45,12 +45,12 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.addTable(
-				CalEvent.class.getName(),
+				companyId, CalEvent.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 		catch (Exception e) {
 			expandoTable = ExpandoTableLocalServiceUtil.getTable(
-				CalEvent.class.getName(),
+				companyId, CalEvent.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 
