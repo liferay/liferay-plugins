@@ -22,16 +22,11 @@ import java.sql.Types;
 public class KBCommentTable {
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"uuid_", Types.VARCHAR},
-		{"kbCommentId", Types.BIGINT},
-		{"groupId", Types.BIGINT},
-		{"companyId", Types.BIGINT},
-		{"userId", Types.BIGINT},
-		{"userName", Types.VARCHAR},
-		{"createDate", Types.TIMESTAMP},
-		{"modifiedDate", Types.TIMESTAMP},
-		{"classNameId", Types.BIGINT},
-		{"classPK", Types.BIGINT},
+		{"uuid_", Types.VARCHAR}, {"kbCommentId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"classNameId", Types.BIGINT}, {"classPK", Types.BIGINT},
 		{"content", Types.VARCHAR},
 		{"helpful", Types.BOOLEAN}
 	};
