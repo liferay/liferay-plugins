@@ -154,6 +154,105 @@
 
 	<pathconvert pathsep="," property="sdk.dependencies.path" refid="sdk.dependencies.path" targetos="unix" />
 
+	<macrodef name="process-ivy">
+		<attribute default="${basedir}" name="module.dir" />
+
+		<sequential>
+			<for list="@{module.dir},${sdk.dir},${sdk.dependencies.path}" param="ivy.xml.dir">
+				<sequential>
+					<if>
+						<available file="@{ivy.xml.dir}/ivy.xml" />
+						<then>
+							<checksum file="@{ivy.xml.dir}/ivy.xml" verifyproperty="ivy.xml.unmodified" />
+
+							<if>
+								<isfalse value="${ivy.xml.unmodified}" />
+								<then>
+									<var name="plugin.ivy.resolve.transitive.dependencies" unset="true" />
+
+									<if>
+										<and>
+											<available file="@{ivy.xml.dir}/bnd.bnd" />
+											<available file="@{ivy.xml.dir}/build.xml" />
+										</and>
+										<then>
+											<set-module-properties
+												module.dir="@{ivy.xml.dir}"
+											/>
+										</then>
+										<else>
+											<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
+										</else>
+									</if>
+
+									<ivy:settings file="${ivy.custom.settings.file}" />
+
+									<if>
+										<antelope:endswith string="@{module.dir}" with="solr4-shared" />
+										<then>
+											<var name="ivy.checksums" value="" />
+										</then>
+									</if>
+
+									<ivy:resolve
+										conf="default,internal,provided"
+										file="@{ivy.xml.dir}/ivy.xml"
+										log="${ivy.log.level}"
+										transitive="${plugin.ivy.resolve.transitive.dependencies}"
+									/>
+
+									<var name="ivy.checksums" unset="true" />
+
+									<if>
+										<not>
+											<available file="@{ivy.xml.dir}/docroot" />
+										</not>
+										<then>
+											<ivy:retrieve
+												log="${ivy.log.level}"
+												overwriteMode="always"
+												pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
+												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
+											/>
+
+											<ivy:retrieve
+												log="${ivy.log.level}"
+												overwriteMode="always"
+												pattern="@{ivy.xml.dir}/lib/[artifact]-[type]s.[ext]"
+												type="source"
+											/>
+										</then>
+										<else>
+											<ivy:retrieve
+												log="${ivy.log.level}"
+												overwriteMode="always"
+												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
+												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
+											/>
+
+											<ivy:retrieve
+												log="${ivy.log.level}"
+												overwriteMode="always"
+												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact]-[type]s.[ext]"
+												type="source"
+											/>
+										</else>
+									</if>
+
+									<checksum file="@{ivy.xml.dir}/ivy.xml" forceoverwrite="true" />
+								</then>
+							</if>
+
+							<var name="ivy.xml.unmodified" unset="true" />
+						</then>
+					</if>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
+	<process-ivy />
+
 	<macrodef name="record-git-commit-snapshot">
 		<sequential>
 			<loadfile srcfile="maven.deploy.log" property="maven.deploy.log.content" />
@@ -613,105 +712,6 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 			</if>
 		</sequential>
 	</macrodef>
-
-	<macrodef name="process-ivy">
-		<attribute default="${basedir}" name="module.dir" />
-
-		<sequential>
-			<for list="@{module.dir},${sdk.dir},${sdk.dependencies.path}" param="ivy.xml.dir">
-				<sequential>
-					<if>
-						<available file="@{ivy.xml.dir}/ivy.xml" />
-						<then>
-							<checksum file="@{ivy.xml.dir}/ivy.xml" verifyproperty="ivy.xml.unmodified" />
-
-							<if>
-								<isfalse value="${ivy.xml.unmodified}" />
-								<then>
-									<var name="plugin.ivy.resolve.transitive.dependencies" unset="true" />
-
-									<if>
-										<and>
-											<available file="@{ivy.xml.dir}/bnd.bnd" />
-											<available file="@{ivy.xml.dir}/build.xml" />
-										</and>
-										<then>
-											<set-module-properties
-												module.dir="@{ivy.xml.dir}"
-											/>
-										</then>
-										<else>
-											<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
-										</else>
-									</if>
-
-									<ivy:settings file="${ivy.custom.settings.file}" />
-
-									<if>
-										<antelope:endswith string="@{module.dir}" with="solr4-shared" />
-										<then>
-											<var name="ivy.checksums" value="" />
-										</then>
-									</if>
-
-									<ivy:resolve
-										conf="default,internal,provided"
-										file="@{ivy.xml.dir}/ivy.xml"
-										log="${ivy.log.level}"
-										transitive="${plugin.ivy.resolve.transitive.dependencies}"
-									/>
-
-									<var name="ivy.checksums" unset="true" />
-
-									<if>
-										<not>
-											<available file="@{ivy.xml.dir}/docroot" />
-										</not>
-										<then>
-											<ivy:retrieve
-												log="${ivy.log.level}"
-												overwriteMode="always"
-												pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
-												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
-											/>
-
-											<ivy:retrieve
-												log="${ivy.log.level}"
-												overwriteMode="always"
-												pattern="@{ivy.xml.dir}/lib/[artifact]-[type]s.[ext]"
-												type="source"
-											/>
-										</then>
-										<else>
-											<ivy:retrieve
-												log="${ivy.log.level}"
-												overwriteMode="always"
-												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
-												type="bundle,eclipse-plugin,jar,maven-plugin,orbit"
-											/>
-
-											<ivy:retrieve
-												log="${ivy.log.level}"
-												overwriteMode="always"
-												pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact]-[type]s.[ext]"
-												type="source"
-											/>
-										</else>
-									</if>
-
-									<checksum file="@{ivy.xml.dir}/ivy.xml" forceoverwrite="true" />
-								</then>
-							</if>
-
-							<var name="ivy.xml.unmodified" unset="true" />
-						</then>
-					</if>
-				</sequential>
-			</for>
-		</sequential>
-	</macrodef>
-
-	<process-ivy />
 
 	<target name="publish">
 		<ivy:settings file="${sdk.dir}/ivy-settings-publisher.xml" />
