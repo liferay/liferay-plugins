@@ -6,6 +6,7 @@
 		<version>7.0.0+</version>
 	</compatibility>
 	<theme id="so-welcome" name="Social Office Welcome">
+		<template-extension>vm</template-extension>
 		<settings>
 			<setting configurable="false" key="show-site-name-default" value="false" />
 			<setting configurable="false" key="show-site-name-supported" value="true" />

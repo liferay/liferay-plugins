@@ -6,6 +6,7 @@
 		<version>7.0.0+</version>
 	</compatibility>
 	<theme id="sample-wap" name="Sample WAP">
+		<template-extension>vm</template-extension>
 		<wap-theme>true</wap-theme>
 	</theme>
 </look-and-feel>

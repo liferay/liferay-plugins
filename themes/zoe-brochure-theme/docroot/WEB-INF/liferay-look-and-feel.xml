@@ -6,6 +6,7 @@
 		<version>7.0.0+</version>
 	</compatibility>
 	<theme id="zoe-brochure" name="Zoe Brochure">
+		<template-extension>vm</template-extension>
 		<settings>
 			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false" />
 			<setting configurable="false" key="show-site-name-default" value="false" />

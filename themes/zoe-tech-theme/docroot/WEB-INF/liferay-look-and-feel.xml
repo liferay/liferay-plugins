@@ -6,6 +6,7 @@
 		<version>7.0.0+</version>
 	</compatibility>
 	<theme id="zoe-tech" name="Zoe Tech">
+		<template-extension>vm</template-extension>
 		<settings>
 			<setting configurable="true" key="display-company-logo" type="checkbox" value="false" />
 			<setting configurable="true" key="display-footer" type="checkbox" value="true" />

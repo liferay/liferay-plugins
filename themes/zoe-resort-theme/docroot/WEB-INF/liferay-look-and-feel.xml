@@ -6,6 +6,7 @@
 		<version>7.0.0+</version>
 	</compatibility>
 	<theme id="zoe-resort" name="Zoe Resort">
+		<template-extension>vm</template-extension>
 		<settings>
 			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="true" />
 			<setting configurable="true" key="show-breadcrumbs" type="checkbox" value="false" />

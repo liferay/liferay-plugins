@@ -6,6 +6,7 @@
 		<version>7.0.0+</version>
 	</compatibility>
 	<theme id="so" name="Social Office">
+		<template-extension>vm</template-extension>
 		<color-scheme id="01" name="Classic">
 			<default-cs>true</default-cs>
 			<css-class>so-classic</css-class>
