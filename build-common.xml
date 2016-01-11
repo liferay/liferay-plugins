@@ -1306,7 +1306,6 @@ Please find a solution that does not require portal-impl.jar.
 					<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 						<fileset
 							dir="${unstyled.tmp.dir}/_unstyled/templates"
-							excludes="init.${theme.type}"
 							includes="*.${theme.type}"
 						/>
 					</copy>
@@ -1330,7 +1329,6 @@ Please find a solution that does not require portal-impl.jar.
 						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 							<fileset
 								dir="${unstyled.tmp.dir}/_unstyled/templates"
-								excludes="init.${theme.type}"
 								includes="*.${theme.type}"
 							/>
 						</copy>
