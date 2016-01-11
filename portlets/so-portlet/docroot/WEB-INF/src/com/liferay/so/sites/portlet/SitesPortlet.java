@@ -328,7 +328,8 @@ public class SitesPortlet extends MVCPortlet {
 						themeDisplay.getLocale(), "x-wishes-to-join-x",
 						new Object[] {
 							user.getFullName(), group.getDescriptiveName()
-						}, false);
+						},
+						false);
 
 					membershipRequestURL.setParameter("comments", comments);
 					membershipRequestURL.setWindowState(WindowState.NORMAL);
