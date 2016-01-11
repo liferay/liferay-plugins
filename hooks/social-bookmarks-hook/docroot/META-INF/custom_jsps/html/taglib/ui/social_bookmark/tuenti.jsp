@@ -28,4 +28,4 @@ if (displayStyle.equals("simple")) {
 	<script src="<%= HttpUtil.getProtocol(request) %>://widgets.tuenti.com/widgets.js" type="text/javascript"></script>
 </liferay-util:html-bottom>
 
-<a class="tuenti-share-button" <%= tuentiDisplayStyle%> href="<%= HttpUtil.getProtocol(request) %>://www.tuenti.com/share" share-url="<%= url %>"></a>
+<a class="tuenti-share-button" <%= tuentiDisplayStyle %> href="<%= HttpUtil.getProtocol(request) %>://www.tuenti.com/share" share-url="<%= url %>"></a>

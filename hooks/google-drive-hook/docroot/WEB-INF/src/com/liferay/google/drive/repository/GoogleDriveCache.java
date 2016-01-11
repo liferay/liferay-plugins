@@ -100,7 +100,7 @@ public class GoogleDriveCache implements Cloneable {
 	private static Log _log = LogFactoryUtil.getLog(GoogleDriveCache.class);
 
 	private static ThreadLocal<GoogleDriveCache> _googleDriveThreadLocal =
-		new AutoResetThreadLocal<GoogleDriveCache>(
+		new AutoResetThreadLocal<>(
 			GoogleDriveCache.class.getName(), new GoogleDriveCache());
 
 	private Map<String, File> _googleDriveFiles;

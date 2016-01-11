@@ -160,9 +160,7 @@ public class LayoutUtil {
 			else if (portletId.startsWith(BreadcrumbPortletKeys.BREADCRUMB)) {
 				removePortletBorder(layout, portletId);
 			}
-			else if (portletId.startsWith(
-						MBPortletKeys.MESSAGE_BOARDS)) {
-
+			else if (portletId.startsWith(MBPortletKeys.MESSAGE_BOARDS)) {
 				configureMessageBoards(layout);
 				removePortletBorder(layout, portletId);
 			}

@@ -19,8 +19,11 @@
 <%@ taglib uri="http://portals.apache.org/bridges/struts/tags-portlet-html" prefix="html" %>
 
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+
 <%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <%@ page import="com.liferay.portal.util.PortalUtil" %>

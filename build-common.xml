@@ -2910,8 +2910,8 @@ Please find a solution that does not require portal-impl.jar.
 			</if>
 
 			<var name="frontend.theme.web.file" unset="true" />
-			<var name="frontend.theme.web.jar.path" unset="true"/>
-			<var name="theme.tmp.dir" unset="true"/>
+			<var name="frontend.theme.web.jar.path" unset="true" />
+			<var name="theme.tmp.dir" unset="true" />
 		</sequential>
 	</macrodef>
 

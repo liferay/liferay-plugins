@@ -32,7 +32,8 @@ import java.util.List;
 		AbstractCommand.OSGI_COMMAND_FUNCTION + "=users",
 		AbstractCommand.OSGI_COMMAND_SCOPE + "=liferay"
 	},
-	provide = Object.class)
+	provide = Object.class
+)
 public class UsersCommand extends AbstractCommand {
 
 	@Override

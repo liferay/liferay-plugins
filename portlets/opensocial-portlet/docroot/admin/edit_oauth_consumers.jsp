@@ -99,7 +99,7 @@ int oAuthServiceCount = 0;
 
 			<aui:input name="consumerKey" />
 
-			<div id='<%= "consumerSecretField" + oAuthServiceCount %>' >
+			<div id='<%= "consumerSecretField" + oAuthServiceCount %>'>
 				<aui:input name="consumerSecret" />
 			</div>
 		</aui:fieldset>

@@ -13,7 +13,7 @@
 		<path id="jsp.test.classpath">
 			<fileset dir="${app.server.dir}/lib" />
 			<path refid="test.classpath" />
-			<pathelement location="${compile.jsp.jspc.dir}/classes"/>
+			<pathelement location="${compile.jsp.jspc.dir}/classes" />
 		</path>
 
 		<test-unit

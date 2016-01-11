@@ -239,13 +239,13 @@ public class AMIBuilder extends BaseAMITool {
 		DescribeInstancesRequest describeInstancesRequest =
 			new DescribeInstancesRequest();
 
-		List<Filter> filters = new ArrayList<Filter>();
+		List<Filter> filters = new ArrayList<>();
 
 		Filter filter = new Filter();
 
 		filter.setName("instance-state-name");
 
-		List<String> values = new ArrayList<String>();
+		List<String> values = new ArrayList<>();
 
 		values.add(state);
 
@@ -255,7 +255,7 @@ public class AMIBuilder extends BaseAMITool {
 
 		describeInstancesRequest.setFilters(filters);
 
-		List<String> instanceIds = new ArrayList<String>();
+		List<String> instanceIds = new ArrayList<>();
 
 		instanceIds.add(instanceId);
 
@@ -292,7 +292,7 @@ public class AMIBuilder extends BaseAMITool {
 	}
 
 	protected Map<String, String> getProvisioners(Properties properties) {
-		Map<String, String> provisioners = new TreeMap<String, String>();
+		Map<String, String> provisioners = new TreeMap<>();
 
 		Set<String> names = properties.stringPropertyNames();
 
@@ -313,13 +313,13 @@ public class AMIBuilder extends BaseAMITool {
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
 
-		List<Filter> filters = new ArrayList<Filter>();
+		List<Filter> filters = new ArrayList<>();
 
 		Filter filter = new Filter();
 
 		filter.setName("state");
 
-		List<String> values = new ArrayList<String>();
+		List<String> values = new ArrayList<>();
 
 		values.add("available");
 
@@ -329,7 +329,7 @@ public class AMIBuilder extends BaseAMITool {
 
 		describeImagesRequest.setFilters(filters);
 
-		List<String> imageIds = new ArrayList<String>();
+		List<String> imageIds = new ArrayList<>();
 
 		imageIds.add(imageId);
 
@@ -476,7 +476,7 @@ public class AMIBuilder extends BaseAMITool {
 
 		runInstancesRequest.setPlacement(placement);
 
-		List<String> securityGroupsIds = new ArrayList<String>();
+		List<String> securityGroupsIds = new ArrayList<>();
 
 		securityGroupsIds.add(properties.getProperty("security.group.id"));
 

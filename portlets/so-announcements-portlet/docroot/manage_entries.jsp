@@ -168,7 +168,7 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 		function(event) {
 			event.preventDefault();
 
-			if (confirm('<%= UnicodeLanguageUtil.get(request,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
 				var deleteNode = event.currentTarget.ancestor('.delete-entry');
 
 				var entryId = deleteNode.attr('data-entryId');

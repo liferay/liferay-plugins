@@ -22,8 +22,8 @@ import javax.servlet.ServletContextListener;
 /**
  * @author Michael Young
  */
-public class GuiceServletContextListener extends BasePortalLifecycle
-	implements ServletContextListener {
+public class GuiceServletContextListener
+	extends BasePortalLifecycle implements ServletContextListener {
 
 	public static ServletContextEvent getInitializedServletContextEvent() {
 		return _initializedServletContextEvent;

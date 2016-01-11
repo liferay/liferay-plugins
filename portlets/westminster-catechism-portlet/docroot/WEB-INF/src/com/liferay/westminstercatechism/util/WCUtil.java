@@ -45,13 +45,8 @@ public class WCUtil {
 
 	public static String translate(String text) {
 		return StringUtil.replace(
-			text,
-			new String[] {
-				" doth ", " hath "
-			},
-			new String[] {
-				" does ", " has "
-			}
+			text, new String[] {" doth ", " hath "},
+			new String[] {" does ", " has "}
 		);
 	}
 

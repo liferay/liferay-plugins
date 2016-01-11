@@ -39,8 +39,7 @@ import java.util.List;
  * @author Jonathan Lee
  */
 public class MicroblogsEntryFinderImpl
-	extends MicroblogsEntryFinderBaseImpl
-	implements MicroblogsEntryFinder {
+	extends MicroblogsEntryFinderBaseImpl implements MicroblogsEntryFinder {
 
 	public static final String COUNT_BY_USER_ID =
 		MicroblogsEntryFinder.class.getName() + ".countByUserId";

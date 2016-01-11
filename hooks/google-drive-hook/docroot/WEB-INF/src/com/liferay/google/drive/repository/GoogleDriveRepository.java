@@ -672,7 +672,7 @@ public class GoogleDriveRepository
 
 					ExtRepositorySearchResult<GoogleDriveFolder>
 						extRepositorySearchResult =
-							new ExtRepositorySearchResult<GoogleDriveFolder>(
+							new ExtRepositorySearchResult<>(
 								googleDriveFolder, 1.0f, StringPool.BLANK);
 
 					extRepositorySearchResults.add(extRepositorySearchResult);
@@ -683,7 +683,7 @@ public class GoogleDriveRepository
 
 					ExtRepositorySearchResult<GoogleDriveFileEntry>
 						extRepositorySearchResult =
-							new ExtRepositorySearchResult<GoogleDriveFileEntry>(
+							new ExtRepositorySearchResult<>(
 								googleDriveFileEntry, 1.0f, StringPool.BLANK);
 
 					extRepositorySearchResults.add(extRepositorySearchResult);
@@ -986,6 +986,6 @@ public class GoogleDriveRepository
 		GoogleDriveRepository.class);
 
 	private ThreadLocal<GoogleDriveSession> _googleDriveSessionThreadLocal =
-		new AutoResetThreadLocal<GoogleDriveSession>(Drive.class.getName());
+		new AutoResetThreadLocal<>(Drive.class.getName());
 
 }

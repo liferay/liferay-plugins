@@ -77,7 +77,7 @@ public class S3Cleaner extends BaseAMITool {
 				new DeleteObjectsRequest(bucketName);
 
 			List<DeleteObjectsRequest.KeyVersion> keyVersions =
-				new ArrayList<DeleteObjectsRequest.KeyVersion>();
+				new ArrayList<>();
 
 			for (S3ObjectSummary objectSummary : objectSummaries) {
 				keyVersions.add(
@@ -96,7 +96,7 @@ public class S3Cleaner extends BaseAMITool {
 	protected void deleteBuckets() {
 		System.out.println("Deleting buckets");
 
-		List<String> timestamps = new ArrayList<String>();
+		List<String> timestamps = new ArrayList<>();
 
 		List<String> imageNames = getImageNames(
 			getImageIds(getLaunchConfigurationNames()));
@@ -115,7 +115,7 @@ public class S3Cleaner extends BaseAMITool {
 	}
 
 	protected List<String> getBucketNames(List<String> timestamps) {
-		List<String> bucketNames = new ArrayList<String>();
+		List<String> bucketNames = new ArrayList<>();
 
 		List<Bucket> buckets = amazonS3Client.listBuckets();
 
@@ -137,7 +137,7 @@ public class S3Cleaner extends BaseAMITool {
 	}
 
 	protected List<String> getImageIds(List<String> launchConfigurationNames) {
-		List<String> imageIds = new ArrayList<String>();
+		List<String> imageIds = new ArrayList<>();
 
 		DescribeLaunchConfigurationsRequest
 			describeLaunchConfigurationsRequest =
@@ -161,7 +161,7 @@ public class S3Cleaner extends BaseAMITool {
 	}
 
 	protected List<String> getImageNames(List<String> imageIds) {
-		List<String> imageNames = new ArrayList<String>();
+		List<String> imageNames = new ArrayList<>();
 
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
@@ -179,7 +179,7 @@ public class S3Cleaner extends BaseAMITool {
 	}
 
 	protected List<String> getLaunchConfigurationNames() {
-		List<String> launchConfigurationNames = new ArrayList<String>();
+		List<String> launchConfigurationNames = new ArrayList<>();
 
 		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
 			amazonAutoScalingClient.describeAutoScalingGroups();

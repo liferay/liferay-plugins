@@ -33,8 +33,7 @@ import java.util.List;
  * @author Jonathan Lee
  */
 public class FavoriteSiteFinderImpl
-	extends FavoriteSiteFinderBaseImpl
-	implements FavoriteSiteFinder {
+	extends FavoriteSiteFinderBaseImpl implements FavoriteSiteFinder {
 
 	public static final String COUNT_BY_U_N =
 		FavoriteSiteFinder.class.getName() + ".countByU_N";

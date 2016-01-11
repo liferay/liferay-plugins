@@ -258,7 +258,8 @@ public class SitesPortlet extends MVCPortlet {
 			groupJSONObject.put(
 				"description", HtmlUtil.escape(group.getDescription()));
 			groupJSONObject.put(
-				"name", HtmlUtil.escape(
+				"name",
+				HtmlUtil.escape(
 					group.getDescriptiveName(themeDisplay.getLocale())));
 
 			boolean member = GroupLocalServiceUtil.hasUserGroup(

@@ -1,4 +1,4 @@
-<div class="pod button">
+<div class="button pod">
 	#if ($link.data != "")
 		<a href="$link.data">
 	#end

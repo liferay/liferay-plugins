@@ -136,10 +136,10 @@ public class MicroblogsUtil {
 			}
 			else if (hasReplied(rootMicroblogsEntryId, userId) &&
 					 UserNotificationManagerUtil.isDeliver(
-						userId, PortletKeys.MICROBLOGS, 0,
-						MicroblogsEntryConstants.
-							NOTIFICATION_TYPE_REPLY_TO_REPLIED,
-						deliveryType)) {
+						 userId, PortletKeys.MICROBLOGS, 0,
+						 MicroblogsEntryConstants.
+							 NOTIFICATION_TYPE_REPLY_TO_REPLIED,
+						 deliveryType)) {
 
 				return MicroblogsEntryConstants.
 					NOTIFICATION_TYPE_REPLY_TO_REPLIED;
@@ -147,10 +147,10 @@ public class MicroblogsUtil {
 			else if (MicroblogsUtil.isTaggedUser(
 						rootMicroblogsEntryId, true, userId) &&
 					 UserNotificationManagerUtil.isDeliver(
-						userId, PortletKeys.MICROBLOGS, 0,
-						MicroblogsEntryConstants.
-							NOTIFICATION_TYPE_REPLY_TO_TAGGED,
-						deliveryType)) {
+						 userId, PortletKeys.MICROBLOGS, 0,
+						 MicroblogsEntryConstants.
+							 NOTIFICATION_TYPE_REPLY_TO_TAGGED,
+						 deliveryType)) {
 
 				return MicroblogsEntryConstants.
 					NOTIFICATION_TYPE_REPLY_TO_TAGGED;

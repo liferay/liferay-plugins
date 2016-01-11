@@ -462,7 +462,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 		return new Object[] {
 			nodeTitle,
-			getAttachmentTitle(activity, pageResource, serviceContext)};
+			getAttachmentTitle(activity, pageResource, serviceContext)
+		};
 	}
 
 	@Override

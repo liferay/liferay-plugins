@@ -28,7 +28,7 @@
 
 	<target name="build-summary">
 		<exec executable="git" outputproperty="git.branch">
-			<arg line="rev-parse --abbrev-ref HEAD"/>
+			<arg line="rev-parse --abbrev-ref HEAD" />
 		</exec>
 
 		<if>

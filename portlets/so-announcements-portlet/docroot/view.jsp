@@ -76,7 +76,7 @@ if (group.isUser() && !showManageEntries) {
 		function(event) {
 			event.preventDefault();
 
-			if (confirm('<%= UnicodeLanguageUtil.get(request,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
 				var entry = event.currentTarget.ancestor('.entry');
 
 				var entryId = entry.attr('data-entryId');

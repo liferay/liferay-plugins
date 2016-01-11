@@ -254,7 +254,6 @@ taskListURL.setParameter("tabs2", tabs2);
 					</div>
 				</div>
 			</c:if>
-
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 

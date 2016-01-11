@@ -220,7 +220,8 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 
 			if (Validator.isNotNull(folderLink)) {
 				return new Object[] {
-					activitySet.getActivityCount(), folderLink};
+					activitySet.getActivityCount(), folderLink
+				};
 			}
 		}
 

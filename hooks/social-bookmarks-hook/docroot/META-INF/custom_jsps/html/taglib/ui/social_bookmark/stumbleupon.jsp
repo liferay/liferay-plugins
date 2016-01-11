@@ -27,4 +27,4 @@ else if (displayStyle.equals("vertical")) {
 }
 %>
 
-<script src="<%= HttpUtil.getProtocol(request) %>://www.stumbleupon.com/hostedbadge.php?s=<%= stumbleUponDisplayStyle%>&r=<%= HttpUtil.encodeURL(url) %>" type="text/javascript"></script>
+<script src="<%= HttpUtil.getProtocol(request) %>://www.stumbleupon.com/hostedbadge.php?s=<%= stumbleUponDisplayStyle %>&r=<%= HttpUtil.encodeURL(url) %>" type="text/javascript"></script>

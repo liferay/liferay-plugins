@@ -166,7 +166,7 @@ public class AMICleaner extends BaseAMITool {
 	}
 
 	protected Set<String> getImageIds() {
-		Set<String> imageIds = new HashSet<String>();
+		Set<String> imageIds = new HashSet<>();
 
 		DescribeInstancesResult describeInstancesResult =
 			amazonEC2Client.describeInstances();
@@ -185,12 +185,12 @@ public class AMICleaner extends BaseAMITool {
 	protected Set<String> getUnusedImageIds(
 		String userId, Set<String> imageIds) {
 
-		Set<String> unusedImageIds = new HashSet<String>();
+		Set<String> unusedImageIds = new HashSet<>();
 
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
 
-		List<String> owners = new ArrayList<String>();
+		List<String> owners = new ArrayList<>();
 
 		owners.add(userId);
 

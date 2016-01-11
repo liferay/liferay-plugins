@@ -14,7 +14,6 @@
 
 package com.liferay.chat.service.persistence.impl;
 
-import com.liferay.chat.model.Status;
 import com.liferay.chat.service.persistence.StatusFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;

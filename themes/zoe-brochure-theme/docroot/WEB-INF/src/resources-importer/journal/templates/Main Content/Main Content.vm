@@ -21,7 +21,7 @@
 		<div class="divider"></div>
 	#end
 
-	<div class="layout-content content-text">
+	<div class="content-text layout-content">
 		#if ($col_count == 1 && $col-one.data != "")
 			<div class="column span12">
 				$col-one.data

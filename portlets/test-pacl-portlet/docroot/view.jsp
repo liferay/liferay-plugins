@@ -1451,7 +1451,6 @@
 					name="Result"
 					value="PASSED"
 				/>
-
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator />

@@ -56,11 +56,11 @@ public class GoogleDriveObject
 		else if (extRepositoryPermission.equals(
 					ExtRepositoryPermission.ADD_DOCUMENT) ||
 				 extRepositoryPermission.equals(
-					ExtRepositoryPermission.ADD_FOLDER) ||
+					 ExtRepositoryPermission.ADD_FOLDER) ||
 				 extRepositoryPermission.equals(
-					ExtRepositoryPermission.ADD_SUBFOLDER) ||
+					 ExtRepositoryPermission.ADD_SUBFOLDER) ||
 				 extRepositoryPermission.equals(
-					ExtRepositoryPermission.UPDATE)) {
+					 ExtRepositoryPermission.UPDATE)) {
 
 			return isOwnerOrWriter(role);
 		}

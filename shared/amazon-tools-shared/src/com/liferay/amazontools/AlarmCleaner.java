@@ -64,7 +64,7 @@ public class AlarmCleaner extends BaseAMITool {
 	}
 
 	public List<String> getActiveAutoScalingGroupNames() {
-		List<String> autoScalingGroupNames = new ArrayList<String>();
+		List<String> autoScalingGroupNames = new ArrayList<>();
 
 		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
 			amazonAutoScalingClient.describeAutoScalingGroups();
@@ -83,17 +83,16 @@ public class AlarmCleaner extends BaseAMITool {
 	protected void deleteMetricAlarms() {
 		System.out.println("Deleting metric alarms");
 
-		List<String> inactiveMetricAlarmNames =
-			getInactiveMetricAlarmNames(
-				getAutoScalingGroupsMetricAlarmNames(),
-				getActiveAutoScalingGroupNames());
+		List<String> inactiveMetricAlarmNames = getInactiveMetricAlarmNames(
+			getAutoScalingGroupsMetricAlarmNames(),
+			getActiveAutoScalingGroupNames());
 
 		for (String metricAlarmName : inactiveMetricAlarmNames) {
 			System.out.println("Deleting metric alarm " + metricAlarmName);
 
 			DeleteAlarmsRequest deleteAlarmsRequest = new DeleteAlarmsRequest();
 
-			List<String> metricAlarmNames = new ArrayList<String>();
+			List<String> metricAlarmNames = new ArrayList<>();
 
 			metricAlarmNames.add(metricAlarmName);
 
@@ -117,7 +116,7 @@ public class AlarmCleaner extends BaseAMITool {
 
 	protected Map<String, List<String>> getAutoScalingGroupsMetricAlarmNames() {
 		Map<String, List<String>> autoScalingGroupsMetricAlarmNames =
-			new HashMap<String, List<String>>();
+			new HashMap<>();
 
 		DescribeAlarmsResult describeAlarmsResult =
 			amazonCloudWatchClient.describeAlarms();
@@ -131,9 +130,8 @@ public class AlarmCleaner extends BaseAMITool {
 
 				describeAlarmsRequest.setNextToken(nextToken);
 
-				describeAlarmsResult =
-					amazonCloudWatchClient.describeAlarms(
-						describeAlarmsRequest);
+				describeAlarmsResult = amazonCloudWatchClient.describeAlarms(
+					describeAlarmsRequest);
 			}
 
 			List<MetricAlarm> metricAlarms =
@@ -151,7 +149,7 @@ public class AlarmCleaner extends BaseAMITool {
 					autoScalingGroupName);
 
 				if (alarmNames == null) {
-					alarmNames = new ArrayList<String>();
+					alarmNames = new ArrayList<>();
 				}
 
 				alarmNames.add(metricAlarm.getAlarmName());
@@ -171,7 +169,7 @@ public class AlarmCleaner extends BaseAMITool {
 		Map<String, List<String>> autoScalingGroupsMetricAlarmNames,
 		List<String> activeAutoScalingGroupNames) {
 
-		List<String> inactiveMetricAlarmNames = new ArrayList<String>();
+		List<String> inactiveMetricAlarmNames = new ArrayList<>();
 
 		for (String autoScalingGroupName :
 				autoScalingGroupsMetricAlarmNames.keySet()) {
