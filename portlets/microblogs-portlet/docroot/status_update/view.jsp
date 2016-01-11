@@ -23,7 +23,7 @@
 Group group = themeDisplay.getScopeGroup();
 %>
 
-<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (group.isUser() && !layout.isPublicLayout()) %>">
+<c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && group.isUser() && !layout.isPublicLayout() %>">
 	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" servletContext="<%= application %>" />
 </c:if>
 

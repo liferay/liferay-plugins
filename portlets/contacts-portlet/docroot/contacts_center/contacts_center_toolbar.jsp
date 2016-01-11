@@ -189,7 +189,7 @@ if (user2 != null) {
 	ServletContext servletContext = ServletContextPool.get("private-messaging-portlet");
 	%>
 
-	<c:if test="<%= Validator.isNotNull(servletContext) && (user2 == null || (user2.getUserId() != themeDisplay.getUserId())) %>">
+	<c:if test="<%= Validator.isNotNull(servletContext) && ((user2 == null) || (user2.getUserId() != themeDisplay.getUserId())) %>">
 		contactsToolbarChildren.push(
 			{
 				icon: 'icon-envelope',
