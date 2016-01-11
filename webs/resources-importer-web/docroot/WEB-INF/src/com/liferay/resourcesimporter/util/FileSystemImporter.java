@@ -975,10 +975,39 @@ public class FileSystemImporter extends BaseImporter {
 					"layoutPrototypeUuid", layoutPrototypeUuid);
 			}
 
-			Layout layout = LayoutLocalServiceUtil.addLayout(
-				userId, groupId, privateLayout, parentLayoutId, nameMap,
-				titleMap, null, null, null, type, typeSettings, hidden,
-				friendlyURLMap, serviceContext);
+			Layout layout = LayoutLocalServiceUtil.fetchLayoutByFriendlyURL(
+				groupId, privateLayout, friendlyURL);
+
+			if (layout != null) {
+				if (!developerModeEnabled) {
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							"Layout with friendly URL " + friendlyURL +
+								" already exists");
+				}
+
+					return;
+				}
+
+				if (!updateModeEnabled) {
+					LayoutLocalServiceUtil.deleteLayout(layout);
+				}
+			}
+
+			if (!updateModeEnabled || (layout == null)) {
+				layout = LayoutLocalServiceUtil.addLayout(
+					userId, groupId, privateLayout, parentLayoutId, nameMap,
+					titleMap, null, null, null, type, typeSettings, hidden,
+					friendlyURLMap, serviceContext);
+			}
+			else {
+				layout = LayoutLocalServiceUtil.updateLayout(
+					groupId, privateLayout, layout.getLayoutId(),
+					parentLayoutId, nameMap, titleMap,
+					layout.getDescriptionMap(), layout.getKeywordsMap(),
+					layout.getRobotsMap(), type, hidden, friendlyURLMap,
+					layout.getIconImage(), null, serviceContext);
+			}
 
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
