@@ -1285,7 +1285,7 @@ Please find a solution that does not require portal-impl.jar.
 					<isset property="theme.type" />
 				</not>
 				<then>
-					<var name="theme.type" value="vm" />
+					<var name="theme.type" value="ftl" />
 				</then>
 			</if>
 
