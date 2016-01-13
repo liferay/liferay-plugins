@@ -172,13 +172,7 @@ AUI.add(
 
 						var dayOfWeekNodes = instance.get('daysOfWeekCheckboxes').filter(':checked');
 
-						var daysOfWeek = [];
-
-						if (dayOfWeekNodes.size()) {
-							daysOfWeek = dayOfWeekNodes.getAttribute('data-weekday');
-						}
-
-						return daysOfWeek;
+						return dayOfWeekNodes.get('value');
 					},
 
 					_getDaysOfWeekCheckboxes: function() {
