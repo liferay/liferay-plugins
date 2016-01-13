@@ -340,6 +340,8 @@ AUI.add(
 
 						var daysOfWeekCheckboxes = instance.get('daysOfWeekCheckboxes');
 
+						var repeatCheckbox = instance.get('repeatCheckbox');
+
 						var startTimeDayOfWeekInput = instance.get('startTimeDayOfWeekInput');
 
 						startTimeDayOfWeekInput.set('value', dayOfWeek);
@@ -352,11 +354,13 @@ AUI.add(
 								}
 								else if (item.get('disabled')) {
 									item.set('disabled', false);
+
+									if (!repeatCheckbox.get('checked')) {
+										item.set('checked', false);
+									}
 								}
 							}
 						);
-
-						var repeatCheckbox = instance.get('repeatCheckbox');
 
 						if (repeatCheckbox.get('checked')) {
 							instance.fire('recurrenceChange');
