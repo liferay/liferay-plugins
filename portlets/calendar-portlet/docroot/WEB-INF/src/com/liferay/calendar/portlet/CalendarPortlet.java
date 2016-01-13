@@ -796,26 +796,26 @@ public class CalendarPortlet extends MVCPortlet {
 			new ArrayList<PositionalWeekday>();
 
 		if (frequency == Frequency.WEEKLY) {
-			for (Weekday weekday : Weekday.values()) {
-				boolean checked = ParamUtil.getBoolean(
-					actionRequest, weekday.getValue());
+			String[] weekdayValues = ParamUtil.getParameterValues(
+				actionRequest, "weekdays");
 
-				if (checked) {
-					java.util.Calendar startTimeJCalendar = getJCalendar(
-						actionRequest, "startTime");
+			for (String weekdayValue : weekdayValues) {
+				Weekday weekday = Weekday.parse(weekdayValue);
 
-					java.util.Calendar weekdayJCalendar =
-						JCalendarUtil.getJCalendar(
-							startTimeJCalendar.getTimeInMillis(), timeZone);
+				java.util.Calendar startTimeJCalendar = getJCalendar(
+					actionRequest, "startTime");
 
-					weekdayJCalendar.set(
-						java.util.Calendar.DAY_OF_WEEK,
-						weekday.getCalendarWeekday());
+				java.util.Calendar weekdayJCalendar =
+					JCalendarUtil.getJCalendar(
+						startTimeJCalendar.getTimeInMillis(), timeZone);
 
-					weekday = Weekday.getWeekday(weekdayJCalendar);
+				weekdayJCalendar.set(
+					java.util.Calendar.DAY_OF_WEEK,
+					weekday.getCalendarWeekday());
 
-					positionalWeekdays.add(new PositionalWeekday(weekday, 0));
-				}
+				weekday = Weekday.getWeekday(weekdayJCalendar);
+
+				positionalWeekdays.add(new PositionalWeekday(weekday, 0));
 			}
 		}
 		else if ((frequency == Frequency.MONTHLY) ||
