@@ -1461,71 +1461,10 @@
 						bindUI: function() {
 							var instance = this;
 
-							instance._endDatePicker.on(
-								EVENT_SELECTION_CHANGE,
-								function() {
-									instance._setEndDate();
-
-									if (instance._validDate && (instance._startDate.valueOf() >= instance._endDate.valueOf())) {
-										instance._startDate = new Date(instance._endDate.valueOf() - instance._duration);
-
-										instance._setStartDatePickerDate();
-									}
-
-									instance._setDuration();
-									instance._validate();
-								}
-							);
-
-							instance._endTimePicker.on(
-								EVENT_SELECTION_CHANGE,
-								function() {
-									instance._setEndTime();
-
-									if (instance._validDate && (instance._startDate.valueOf() >= instance._endDate.valueOf())) {
-										instance._startDate = new Date(instance._endDate.valueOf() - instance._duration);
-
-										instance._setStartDatePickerDate();
-										instance._setStartTimePickerTime();
-									}
-
-									instance._setDuration();
-									instance._validate();
-								}
-							);
-
-							instance._startDatePicker.on(
-								EVENT_SELECTION_CHANGE,
-								function() {
-									instance._setStartDate();
-
-									if (instance._validDate) {
-										instance._endDate = new Date(instance._startDate.valueOf() + instance._duration);
-
-										instance._setEndDatePickerDate();
-									}
-
-									instance._setDuration();
-									instance._validate();
-								}
-							);
-
-							instance._startTimePicker.on(
-								EVENT_SELECTION_CHANGE,
-								function() {
-									instance._setStartTime();
-
-									if (instance._validDate) {
-										instance._endDate = new Date(instance._startDate.valueOf() + instance._duration);
-
-										instance._setEndDatePickerDate();
-										instance._setEndTimePickerTime();
-									}
-
-									instance._setDuration();
-									instance._validate();
-								}
-							);
+							instance._endDatePicker.on(EVENT_SELECTION_CHANGE, instance._onEndDatePickerSelectionChange, instance);
+							instance._endTimePicker.on(EVENT_SELECTION_CHANGE, instance._onEndTimePickerSelectionChange, instance);
+							instance._startDatePicker.on(EVENT_SELECTION_CHANGE, instance._onStartDatePickerSelectionChange, instance);
+							instance._startTimePicker.on(EVENT_SELECTION_CHANGE, instance._onStartTimePickerSelectionChange, instance);
 						},
 
 						_getComponent: function(name) {
@@ -1542,6 +1481,68 @@
 							var inputNode = A.one(attrs.container._node.children[0]);
 
 							picker.useInputNodeOnce(inputNode);
+						},
+
+						_onEndDatePickerSelectionChange: function() {
+							var instance = this;
+
+							instance._setEndDate();
+
+							if (instance._validDate && (instance._startDate.valueOf() >= instance._endDate.valueOf())) {
+								instance._startDate = new Date(instance._endDate.valueOf() - instance._duration);
+
+								instance._setStartDatePickerDate();
+							}
+
+							instance._setDuration();
+							instance._validate();
+						},
+
+						_onEndTimePickerSelectionChange: function() {
+							var instance = this;
+
+							instance._setEndTime();
+
+							if (instance._validDate && (instance._startDate.valueOf() >= instance._endDate.valueOf())) {
+								instance._startDate = new Date(instance._endDate.valueOf() - instance._duration);
+
+								instance._setStartDatePickerDate();
+								instance._setStartTimePickerTime();
+							}
+
+							instance._setDuration();
+							instance._validate();
+						},
+
+						_onStartDatePickerSelectionChange: function() {
+							var instance = this;
+
+							instance._setStartDate();
+
+							if (instance._validDate) {
+								instance._endDate = new Date(instance._startDate.valueOf() + instance._duration);
+
+								instance._setEndDatePickerDate();
+							}
+
+							instance._setDuration();
+							instance._validate();
+						},
+
+						_onStartTimePickerSelectionChange: function() {
+							var instance = this;
+
+							instance._setStartTime();
+
+							if (instance._validDate) {
+								instance._endDate = new Date(instance._startDate.valueOf() + instance._duration);
+
+								instance._setEndDatePickerDate();
+								instance._setEndTimePickerTime();
+							}
+
+							instance._setDuration();
+							instance._validate();
 						},
 
 						_setDuration: function() {
