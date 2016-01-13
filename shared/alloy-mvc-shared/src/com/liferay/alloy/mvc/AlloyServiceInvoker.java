@@ -46,7 +46,12 @@ public class AlloyServiceInvoker {
 
 		try {
 			Class<?> serviceClass = classLoader.loadClass(serviceClassName);
+			Class<?> modelClass = classLoader.loadClass(className);
 
+			addModelMethod = serviceClass.getMethod(
+				"add" + simpleClassName, new Class[] {modelClass});
+			createModelMethod = serviceClass.getMethod(
+				"create" + simpleClassName, new Class[] {long.class});
 			deleteModelMethod = serviceClass.getMethod(
 				"delete" + simpleClassName, new Class[] {long.class});
 			dynamicQueryCountMethod1 = serviceClass.getMethod(
@@ -75,10 +80,16 @@ public class AlloyServiceInvoker {
 			getModelsMethod = serviceClass.getMethod(
 				"get" + TextFormatter.formatPlural(simpleClassName),
 				new Class[] {int.class, int.class});
+			updateModelMethod = serviceClass.getMethod(
+				"update" + simpleClassName, new Class[] {modelClass});
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public BaseModel addModel(BaseModel baseModel) throws Exception {
+		return (BaseModel<?>)addModelMethod.invoke(false, baseModel);
 	}
 
 	public DynamicQuery buildDynamicQuery() throws Exception {
@@ -106,6 +117,10 @@ public class AlloyServiceInvoker {
 		}
 
 		return dynamicQuery;
+	}
+
+	public BaseModel createModel(long id) throws Exception {
+		return (BaseModel<?>)createModelMethod.invoke(false, id);
 	}
 
 	public BaseModel<?> deleteModel(BaseModel<?> baseModel) throws Exception {
@@ -214,6 +229,12 @@ public class AlloyServiceInvoker {
 		return (Integer)getModelsCountMethod.invoke(false);
 	}
 
+	public BaseModel updateModel(BaseModel baseModel) throws Exception {
+		return (BaseModel<?>)updateModelMethod.invoke(false, baseModel);
+	}
+
+	protected Method addModelMethod;
+	protected Method createModelMethod;
 	protected Method deleteModelMethod;
 	protected Method dynamicQueryCountMethod1;
 	protected Method dynamicQueryCountMethod2;
@@ -224,5 +245,6 @@ public class AlloyServiceInvoker {
 	protected Method fetchModelMethod;
 	protected Method getModelsCountMethod;
 	protected Method getModelsMethod;
+	protected Method updateModelMethod;
 
 }
