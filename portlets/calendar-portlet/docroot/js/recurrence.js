@@ -13,6 +13,8 @@ AUI.add(
 
 		var LIMIT_UNLIMITED = 'never';
 
+		var DAYS_OF_WEEK = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+
 		var RecurrenceDialogController = A.Component.create(
 			{
 
@@ -161,10 +163,14 @@ AUI.add(
 
 						var limitDateDatePicker = instance.get('limitDateDatePicker');
 
+						var startDateDatePicker = instance.get('startDateDatePicker');
+
 						container.delegate('change', A.bind(instance._onInputChange, instance), 'select,input');
 						container.delegate('keypress', A.bind(instance._onInputChange, instance), 'select');
 
 						limitDateDatePicker.after('selectionChange', A.bind(instance._onInputChange, instance));
+
+						startDateDatePicker.after('selectionChange', A.bind(instance._onStartDateDatePickerChange, instance));
 					},
 
 					_getDaysOfWeek: function() {
@@ -311,6 +317,34 @@ AUI.add(
 						limitDateDatePicker.set('disabled', disableLimitDateDatePicker);
 
 						instance.fire('recurrenceChange');
+					},
+
+					_onStartDateDatePickerChange: function(event) {
+						var instance = this;
+
+						var date = event.newSelection[0];
+
+						var dayOfWeek = DAYS_OF_WEEK[date.getDay()];
+
+						var daysOfWeekCheckboxes = instance.get('daysOfWeekCheckboxes');
+
+						daysOfWeekCheckboxes.each(
+							function(item) {
+								if (item.get('value') == dayOfWeek) {
+									item.set('checked', true);
+									item.set('disabled', true);
+								}
+								else if (item.get('disabled')) {
+									item.set('disabled', false);
+								}
+							}
+						);
+
+						var repeatCheckbox = instance.get('repeatCheckbox');
+
+						if (repeatCheckbox.get('checked')) {
+							instance.fire('recurrenceChange');
+						}
 					},
 
 					_toggleView: function(viewName, show) {
