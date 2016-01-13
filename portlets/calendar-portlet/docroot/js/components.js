@@ -1050,6 +1050,7 @@
 					var position = null;
 					var template = [];
 					var weekDay = null;
+					var weekDays = null;
 
 					if (recurrence.interval == 1) {
 						template.push(recurrence.frequency);
@@ -1072,6 +1073,12 @@
 					}
 					else if ((recurrence.frequency == instance.FREQUENCY.WEEKLY) && (recurrence.weekdays.length > 0)) {
 						template.push(STR_SPACE, TPL_SPAN, Liferay.Language.get('on'), TPL_SPAN_CLOSE, ' {weekDays}');
+
+						weekDays = recurrence.weekdays.map(
+							function(item) {
+								return instance.WEEKDAY_LABELS[item];
+							}
+						);
 					}
 
 					if (recurrence.count && (recurrence.endValue === 'after')) {
@@ -1106,7 +1113,7 @@
 							month: month,
 							position: position,
 							weekDay: weekDay,
-							weekDays: recurrence.weekdays.join(', ')
+							weekDays: weekDays
 						}
 					);
 
