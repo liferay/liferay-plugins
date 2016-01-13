@@ -1431,6 +1431,8 @@
 						initializer: function(config) {
 							var instance = this;
 
+							instance.eventHandlers = [];
+
 							instance._containerNode = instance.byId(config.containerId);
 							instance._submitButtonNode = instance.byId(config.submitButtonId);
 
@@ -1461,10 +1463,20 @@
 						bindUI: function() {
 							var instance = this;
 
-							instance._endDatePicker.on(EVENT_SELECTION_CHANGE, instance._onEndDatePickerSelectionChange, instance);
-							instance._endTimePicker.on(EVENT_SELECTION_CHANGE, instance._onEndTimePickerSelectionChange, instance);
-							instance._startDatePicker.on(EVENT_SELECTION_CHANGE, instance._onStartDatePickerSelectionChange, instance);
-							instance._startTimePicker.on(EVENT_SELECTION_CHANGE, instance._onStartTimePickerSelectionChange, instance);
+							instance.eventHandlers.push(
+								instance._endDatePicker.on(EVENT_SELECTION_CHANGE, instance._onEndDatePickerSelectionChange, instance),
+								instance._endTimePicker.on(EVENT_SELECTION_CHANGE, instance._onEndTimePickerSelectionChange, instance),
+								instance._startDatePicker.on(EVENT_SELECTION_CHANGE, instance._onStartDatePickerSelectionChange, instance),
+								instance._startTimePicker.on(EVENT_SELECTION_CHANGE, instance._onStartTimePickerSelectionChange, instance)
+							);
+						},
+
+						destructor: function() {
+							var instance = this;
+
+							AArray.invoke(instance.eventHandlers, 'detach');
+
+							instance.eventHandlers = null;
 						},
 
 						_getComponent: function(name) {
