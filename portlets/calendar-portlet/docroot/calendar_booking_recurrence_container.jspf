@@ -20,6 +20,7 @@ String exceptionDatesString = StringPool.BLANK;
 Frequency frequency = null;
 int interval = 0;
 PositionalWeekday positionalWeekday = new PositionalWeekday(Weekday.getWeekday(startTimeJCalendar), JCalendarUtil.getWeekdayPosition(startTimeJCalendar));
+Weekday startTimeWeekday = Weekday.getWeekday(startTimeJCalendar);
 java.util.Calendar untilJCalendar = startTimeJCalendar;
 List<Weekday> weekdays = new ArrayList<Weekday>();
 
@@ -143,6 +144,8 @@ if (recurrence != null) {
 						<%
 						}
 						%>
+
+						<aui:input name="weekdays" type="hidden" value="<%= startTimeWeekday.getValue() %>" />
 
 					</aui:field-wrapper>
 				</td>

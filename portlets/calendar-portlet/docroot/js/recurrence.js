@@ -137,6 +137,10 @@ AUI.add(
 						value: null
 					},
 
+					startTimeDayOfWeekInput: {
+						getter: '_getStartTimeDayOfWeekInput'
+					},
+
 					summary: {
 						getter: '_getSummary'
 					},
@@ -280,6 +284,14 @@ AUI.add(
 						};
 					},
 
+					_getStartTimeDayOfWeekInput: function() {
+						var instance = this;
+
+						var weeklyRecurrenceOptions = instance.get('weeklyRecurrenceOptions');
+
+						return weeklyRecurrenceOptions.one('input[type=hidden]');
+					},
+
 					_getSummary: function() {
 						var instance = this;
 
@@ -327,6 +339,10 @@ AUI.add(
 						var dayOfWeek = DAYS_OF_WEEK[date.getDay()];
 
 						var daysOfWeekCheckboxes = instance.get('daysOfWeekCheckboxes');
+
+						var startTimeDayOfWeekInput = instance.get('startTimeDayOfWeekInput');
+
+						startTimeDayOfWeekInput.set('value', dayOfWeek);
 
 						daysOfWeekCheckboxes.each(
 							function(item) {
