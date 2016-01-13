@@ -100,16 +100,16 @@ AUI.add(
 						value: null
 					},
 
+					positionSelect: {
+						setter: A.one,
+						value: null
+					},
+
 					positionalDayOfWeek: {
 						getter: '_getPositionalDayOfWeek'
 					},
 
 					positionalDayOfWeekOptions: {
-						setter: A.one,
-						value: null
-					},
-
-					positionSelect: {
 						setter: A.one,
 						value: null
 					},
@@ -131,6 +131,10 @@ AUI.add(
 					repeatOnDayOfWeekRadioButton: {
 						setter: A.one,
 						value: null
+					},
+
+					startDate: {
+						getter: '_getStartDate'
 					},
 
 					startDateDatePicker: {
@@ -255,15 +259,13 @@ AUI.add(
 
 						var repeatOnDayOfWeek = instance.get('repeatOnDayOfWeekRadioButton').get('checked');
 
-						var startDateDatePicker = instance.get('startDateDatePicker');
+						var startDate = instance.get('startDate');
 
-						if ((frequency === FREQUENCY_MONTHLY) || (frequency === FREQUENCY_YEARLY)) {
-							if (repeatOnDayOfWeek) {
-								positionalDayOfWeek = {
-									month: startDateDatePicker.getDate().getMonth(),
-									position: positionSelect.val(),
-									weekday: dayOfWeekSelect.val()
-								};
+						if (instance._isPositionalFrequency() && repeatOnDayOfWeek) {
+							positionalDayOfWeek = {
+								month: startDate.getMonth(),
+								position: positionSelect.val(),
+								weekday: dayOfWeekSelect.val()
 							}
 						}
 
@@ -284,6 +286,14 @@ AUI.add(
 						};
 					},
 
+					_getStartDate: function() {
+						var instance = this;
+
+						var startDateDatePicker = instance.get('startDateDatePicker');
+
+						return startDateDatePicker.getDate();
+					},
+
 					_getStartTimeDayOfWeekInput: function() {
 						var instance = this;
 
@@ -300,27 +310,39 @@ AUI.add(
 						return Liferay.RecurrenceUtil.getSummary(recurrence);
 					},
 
+					_isPositionalFrequency: function() {
+						var instance = this;
+
+						var frequency = instance.get('frequency');
+
+						return (frequency === FREQUENCY_MONTHLY) || (frequency === FREQUENCY_YEARLY);
+					},
+
 					_onInputChange: function(event) {
 						var instance = this;
 
 						var currentTarget = event.currentTarget;
 
 						var limitCountInput = instance.get('limitCountInput');
+
 						var limitDateDatePicker = instance.get('limitDateDatePicker');
+
 						var limitType = instance.get('limitType');
 
+						var startDate = instance.get('startDate');
+
 						if (currentTarget === instance.get('frequencySelect')) {
-							instance._toggleView('weeklyRecurrenceOptions', currentTarget.val() === FREQUENCY_WEEKLY);
-							instance._toggleView('monthlyRecurrenceOptions', (currentTarget.val() === FREQUENCY_MONTHLY) || (currentTarget.val() === FREQUENCY_YEARLY));
+							instance._toggleView('weeklyRecurrenceOptions', instance.get('frequency') === FREQUENCY_WEEKLY);
+							instance._toggleView('monthlyRecurrenceOptions', instance._isPositionalFrequency());
 						}
 
 						if (currentTarget === instance.get('repeatOnDayOfWeekRadioButton')) {
-							instance._toggleView('positionalDayOfWeekOptions', currentTarget.val() === 'true');
+							instance._toggleView('positionalDayOfWeekOptions', currentTarget.get('checked'));
 						}
 
-						var disableLimitcountInput = (limitType === LIMIT_UNLIMITED) || (limitType === LIMIT_DATE);
+						var disableLimitCountInput = (limitType === LIMIT_UNLIMITED) || (limitType === LIMIT_DATE);
 
-						Liferay.Util.toggleDisabled(limitCountInput, disableLimitcountInput);
+						Liferay.Util.toggleDisabled(limitCountInput, disableLimitCountInput);
 
 						limitCountInput.selectText();
 
