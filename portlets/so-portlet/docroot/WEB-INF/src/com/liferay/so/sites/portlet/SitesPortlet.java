@@ -531,8 +531,21 @@ public class SitesPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Map<Locale, String> nameMap = new HashMap<>();
+
 		String name = ParamUtil.getString(actionRequest, "name");
+
+		nameMap.put(themeDisplay.getLocale(), name);
+
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
 		String description = ParamUtil.getString(actionRequest, "description");
+
+		descriptionMap.put(themeDisplay.getLocale(), description);
+
 		long layoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "layoutSetPrototypeId");
 
@@ -554,14 +567,6 @@ public class SitesPortlet extends MVCPortlet {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Group.class.getName(), actionRequest);
-
-		Map<Locale, String> nameMap = new HashMap<>();
-
-		nameMap.put(serviceContext.getLocale(), name);
-
-		Map<Locale, String> descriptionMap = new HashMap<>();
-
-		descriptionMap.put(serviceContext.getLocale(), description);
 
 		Group group = GroupServiceUtil.addGroup(
 			GroupConstants.DEFAULT_PARENT_GROUP_ID,
