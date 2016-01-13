@@ -414,6 +414,20 @@ for (long otherCalendarId : otherCalendarIds) {
 	</c:if>
 </aui:script>
 
+<aui:script use="liferay-calendar-interval-selector">
+	new Liferay.IntervalSelector(
+	{
+	containerId: 'meetingEventDate',
+	endDatePickerName: 'endTime',
+	endTimePickerName: 'endTimeTime',
+	namespace: '<portlet:namespace/>',
+	startDatePickerName: 'startTime',
+	startTimePickerName: 'startTimeTime',
+	submitButtonId: 'submit'
+	}
+	);
+</aui:script>
+
 <aui:script use="json,liferay-calendar-date-picker-util,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-reminders,liferay-calendar-simple-menu">
 	var defaultCalendarId = <%= calendarId %>;
 
