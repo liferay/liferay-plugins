@@ -139,8 +139,8 @@ public class AlloyControllerInvokerManager {
 	}
 
 	protected Class<? extends AlloyControllerInvoker>
-		createAlloyControllerInvokerClass(
-			Class<? extends AlloyController> controllerClass)
+			createAlloyControllerInvokerClass(
+				Class<? extends AlloyController> controllerClass)
 		throws NoClassNecessaryException {
 
 		ClassLoader classLoader = controllerClass.getClassLoader();

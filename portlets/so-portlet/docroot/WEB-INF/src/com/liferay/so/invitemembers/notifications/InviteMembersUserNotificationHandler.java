@@ -91,7 +91,7 @@ public class InviteMembersUserNotificationHandler
 					getUserNameLink(memberRequest.getUserId(), serviceContext),
 					getSiteDescriptiveName(
 						memberRequest.getGroupId(), serviceContext)
-					});
+				});
 		}
 
 		LiferayPortletResponse liferayPortletResponse =

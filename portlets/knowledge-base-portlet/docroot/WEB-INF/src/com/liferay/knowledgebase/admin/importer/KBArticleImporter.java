@@ -314,7 +314,7 @@ public class KBArticleImporter {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Missing Markdown in file entry " +
-							sectionFileEntryName);
+								sectionFileEntryName);
 					}
 				}
 

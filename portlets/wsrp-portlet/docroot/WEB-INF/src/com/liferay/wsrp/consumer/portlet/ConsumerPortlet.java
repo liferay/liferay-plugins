@@ -2090,7 +2090,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		"(?:([^&]+)=([^&]*))(?:&amp;|&)?");
 	private static Pattern _rewritePattern = Pattern.compile(
 		"(wsrp_rewrite_)|(?:wsrp_rewrite\\?([^\\s/]+)/wsrp_rewrite)|" +
-		"(?:location\\.href\\s*=\\s*'(/widget/c/portal/layout(?:[^']+))')|" +
-		"(?:href\\s*=\\s*\"(/widget/c/portal/layout(?:[^\"]+))\")");
+			"(?:location\\.href\\s*=\\s*'(/widget/c/portal/layout(?:[^']+))')" +
+				"|(?:href\\s*=\\s*\"(/widget/c/portal/layout(?:[^\"]+))\")");
 
 }

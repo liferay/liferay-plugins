@@ -303,7 +303,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 
 		InputStream inputStream = getResource(
 			"/META-INF/definitions/" +
-			"single-approver-definition-scripted-assignment.xml");
+				"single-approver-definition-scripted-assignment.xml");
 
 		assertValid(inputStream);
 	}

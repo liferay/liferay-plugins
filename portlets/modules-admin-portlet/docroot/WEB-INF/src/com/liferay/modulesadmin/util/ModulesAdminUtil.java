@@ -186,7 +186,7 @@ public class ModulesAdminUtil {
 
 	private Pattern _pattern = Pattern.compile(
 		"\\(&\\(osgi\\.wiring\\.package=([\\w\\.\\*]+)\\)(\\(version>=?([\\w" +
-		"\\.-]+)\\)|\\(&\\(version>=?([\\w\\.-]+)\\)\\(\\!\\(version>=?([\\w" +
-		"\\.-]+)\\)\\)\\))?(.*)\\)");
+			"\\.-]+)\\)|\\(&\\(version>=?([\\w\\.-]+)\\)\\(\\!\\(version>=?" +
+				"([\\w\\.-]+)\\)\\)\\))?(.*)\\)");
 
 }

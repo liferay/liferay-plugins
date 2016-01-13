@@ -79,7 +79,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 				DLStoreUtil.addDirectory(
 					attachment.getCompanyId(), _REPOSITORY_ID, directoryPath);
 			}
-				catch (DuplicateDirectoryException dde) {
+			catch (DuplicateDirectoryException dde) {
 			}
 
 			String filePath = getFilePath(attachment.getMessageId(), fileName);

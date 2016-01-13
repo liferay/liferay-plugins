@@ -67,7 +67,7 @@ public class ViewChartAction extends Action {
 			HttpSession session = request.getSession();
 
 			String chartName = (String)session.getAttribute(attrName);
-				//(String)_getAttribute(request, attrName);
+			//(String)_getAttribute(request, attrName);
 
 			// Chart
 
