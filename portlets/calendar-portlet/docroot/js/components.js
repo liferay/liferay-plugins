@@ -195,7 +195,7 @@
 										cssClass = CSS_SIMPLE_MENU_SEPARATOR;
 									}
 
-									if (AArray.indexOf(hiddenItems, id) > -1) {
+									if (hiddenItems.indexOf(id) > -1) {
 										cssClass += STR_SPACE + CSS_SIMPLE_MENU_ITEM_HIDDEN;
 									}
 
@@ -244,7 +244,7 @@
 									function(item, index) {
 										var id = item.attr('data-id');
 
-										item.toggleClass(CSS_SIMPLE_MENU_ITEM_HIDDEN, (AArray.indexOf(val, id) > -1));
+										item.toggleClass(CSS_SIMPLE_MENU_ITEM_HIDDEN, val.indexOf(id) > -1);
 									}
 								);
 							}
@@ -445,7 +445,7 @@
 							var calendars = instance.get('calendars');
 
 							if (calendars.length > 0) {
-								var index = AArray.indexOf(calendars, calendar);
+								var index = calendars.indexOf(calendar);
 
 								if (index > -1) {
 									AArray.remove(calendars, index);
@@ -754,7 +754,7 @@
 
 							instance.items.removeClass(CSS_SIMPLE_COLOR_PICKER_ITEM_SELECTED);
 
-							var newNode = instance.items.item(AArray.indexOf(pallete, val));
+							var newNode = instance.items.item(pallete.indexOf(val));
 
 							if (newNode) {
 								newNode.addClass(CSS_SIMPLE_COLOR_PICKER_ITEM_SELECTED);
@@ -1417,6 +1417,8 @@
 	AUI.add(
 		'liferay-calendar-interval-selector',
 		function(A) {
+			var AArray = A.Array;
+
 			var EVENT_SELECTION_CHANGE = 'selectionChange';
 
 			var IntervalSelector = A.Component.create(
