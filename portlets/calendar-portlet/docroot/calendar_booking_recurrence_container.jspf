@@ -242,20 +242,33 @@ if (recurrence != null) {
 	</table>
 </div>
 
-<aui:script use="liferay-util-window">
-	var countNode = A.one('#<portlet:namespace />count');
-	var endsRadioNodes = A.all('[name=<portlet:namespace />ends]');
-	var frequencyNode = A.one('#<portlet:namespace />frequency');
-	var positionInMonthNode = A.one('#<portlet:namespace />viewPositionInMonth');
-	var positionalWeekdayNode = A.one('#<portlet:namespace />viewPositionalWeekday');
+<aui:script use="liferay-util-window,liferay-calendar-recurrence-dialog">
 	var recurrenceContainerNode = A.one('#<portlet:namespace />recurrenceContainer');
 	var repeatCheckboxNode = A.one('#<portlet:namespace />repeatCheckbox');
 	var summaryNode = A.one('#<portlet:namespace />summary');
 
-	var untilDateDatePicker = Liferay.component('<portlet:namespace />untilDateDatePicker');
+	var recurrenceDialogController = new Liferay.RecurrenceDialogController({
+		container: '#<portlet:namespace />recurrenceContainer',
+		dayOfWeekSelect: '#<portlet:namespace />weekday',
+		frequencySelect: '#<portlet:namespace />frequency',
+		intervalSelect: '#<portlet:namespace />interval',
+		limitCountRadioButton: '[name=<portlet:namespace />ends][value=after]',
+		limitCountInput: '#<portlet:namespace />count',
+		limitDateRadioButton: '[name=<portlet:namespace />ends][value=on]',
+		limitDateDatePicker: Liferay.component('<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>'),
+		noLimitRadioButton: '[name=<portlet:namespace />ends][value=never]',
+		monthlyRecurrenceOptions: '#<portlet:namespace />viewPositionInMonth',
+		positionalDayOfWeekOptions: '#<portlet:namespace />viewPositionalWeekday',
+		positionSelect: '#<portlet:namespace />position',
+		repeatCheckbox: '#<portlet:namespace />repeat',
+		repeatOnDayOfWeekRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=true]',
+		repeatOnDayOfMonthRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=false]',
+		startDateDatePicker: Liferay.component('<portlet:namespace />startTimeDatePicker'),
+		weeklyRecurrenceOptions: '#<portlet:namespace />view<%= Frequency.WEEKLY %>'
+	});
 
 	var getRecurrenceDialogTitle = function() {
-		var summary = window.<portlet:namespace />getSummary();
+		var summary = recurrenceDialogController.get('summary');
 
 		return '<liferay-ui:message key="repeat" /> ' + (summary.charAt(0).toLowerCase() + summary.slice(1));
 	};
@@ -301,44 +314,6 @@ if (recurrence != null) {
 		);
 	};
 
-	var onInputChange = function(event) {
-		var target = event.target;
-
-		var value = target.val();
-
-		if (target.test('#<portlet:namespace />frequency')) {
-			window.<portlet:namespace />toggleView('<%= Frequency.WEEKLY %>', (value == '<%= Frequency.WEEKLY %>'));
-			window.<portlet:namespace />toggleView('PositionInMonth', ((value === '<%= Frequency.MONTHLY %>') || (value === '<%= Frequency.YEARLY %>')));
-		}
-
-		if (target.get('name') == '<portlet:namespace />repeatOnWeekday') {
-			window.<portlet:namespace />toggleView('PositionalWeekday', value === 'true');
-		}
-
-		var endValue = endsRadioNodes.filter(':checked').val()[0];
-
-		if ((endValue == 'never') || (endValue == 'on')) {
-			countNode.set('disabled', true);
-		}
-		else {
-			countNode.set('disabled', false);
-		}
-
-		countNode.selectText();
-
-		if ((endValue == 'never') || (endValue == 'after')) {
-			untilDateDatePicker.set('disabled', true);
-		}
-		else {
-			untilDateDatePicker.set('disabled', false);
-		}
-
-		window.<portlet:namespace />updateSummaries();
-	};
-
-	recurrenceContainerNode.delegate('change', onInputChange, 'select,input');
-	recurrenceContainerNode.delegate('keypress', onInputChange, 'select');
-
 	repeatCheckboxNode.on(
 		'change',
 		function(event) {
@@ -361,64 +336,18 @@ if (recurrence != null) {
 		}
 	);
 
-	untilDateDatePicker.after(
-		'selectionChange',
+	recurrenceDialogController.on(
+		'recurrenceChange',
 		function(event) {
 			window.<portlet:namespace />updateSummaries();
 		}
 	);
 
-	window.<portlet:namespace />getSummary = function() {
-		var frequency = frequencyNode.val();
-		var intervalNode = A.one('#<portlet:namespace />interval');
-		var weekdays = A.all('#<portlet:namespace />view<%= Frequency.WEEKLY %> input:checked');
-
-		var selectedWeekdays = [];
-
-		if (weekdays.size()) {
-			selectedWeekdays = weekdays.getAttribute('data-weekday');
-		}
-
-		var positionalWeekday = null;
-
-		if ((frequency == '<%= Frequency.MONTHLY %>') || (frequency == '<%= Frequency.YEARLY %>')) {
-			if (positionInMonthNode.one('input:checked').val() == 'true') {
-				positionalWeekday = {
-					month: parseInt(A.one('#<portlet:namespace />startTimeMonth').val(), 10),
-					position: A.one('#<portlet:namespace />position').val(),
-					weekday: A.one('#<portlet:namespace />weekday').val()
-				};
-			}
-		}
-
-		var endValue = endsRadioNodes.filter(':checked').val()[0];
-
-		var recurrence = {
-			count: countNode.val(),
-			endValue: endValue,
-			frequency: frequency,
-			interval: intervalNode.val(),
-			positionalWeekday: positionalWeekday,
-			untilDate: untilDateDatePicker.getDate(),
-			weekdays: selectedWeekdays
-		}
-
-		return Liferay.RecurrenceUtil.getSummary(recurrence);
-	};
-
-	window.<portlet:namespace />toggleView = function(viewName, show) {
-		var viewNode = A.one('#<portlet:namespace />view' + viewName);
-
-		if (viewNode) {
-			viewNode.toggle(show);
-		}
-	};
-
 	window.<portlet:namespace />updateSummary = function(element) {
 		var previewNode = A.one(element);
 
 		if (previewNode) {
-			previewNode.html(window.<portlet:namespace />getSummary());
+			previewNode.html(recurrenceDialogController.get('summary'));
 		}
 	};
 

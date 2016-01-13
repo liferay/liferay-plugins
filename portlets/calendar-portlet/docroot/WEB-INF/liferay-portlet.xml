@@ -35,6 +35,7 @@
 		<header-portlet-javascript>/js/components.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/config.js</header-portlet-javascript>
 		<header-portlet-javascript>/js/javascript.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/recurrence.js</header-portlet-javascript>
 		<css-class-wrapper>calendar-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
