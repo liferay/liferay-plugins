@@ -167,7 +167,9 @@ if (recurrence != null) {
 						%>
 
 						<aui:input label="repeat-on-month-last-day-of-the-week" name="lastPosition" type="checkbox" />
+
 						<aui:input name="position" type="hidden" value="<%= positionalWeekday.getPosition() %>" />
+
 						<aui:input name="weekday" type="hidden" value="<%= weekday.getValue() %>" />
 					</div>
 				</td>
