@@ -323,9 +323,7 @@ AUI.add(
 						var currentTarget = event.currentTarget;
 
 						var limitCountInput = instance.get('limitCountInput');
-
 						var limitDateDatePicker = instance.get('limitDateDatePicker');
-
 						var limitType = instance.get('limitType');
 
 						if (currentTarget === instance.get('frequencySelect')) {
