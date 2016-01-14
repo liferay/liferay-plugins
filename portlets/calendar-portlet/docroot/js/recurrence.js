@@ -24,7 +24,7 @@ AUI.add(
 						value: null
 					},
 
-					dayOfWeekSelect: {
+					dayOfWeekInput: {
 						setter: A.one,
 						value: null
 					},
@@ -51,6 +51,11 @@ AUI.add(
 					},
 
 					intervalSelect: {
+						setter: A.one,
+						value: null
+					},
+
+					lastPositionCheckbox: {
 						setter: A.one,
 						value: null
 					},
@@ -96,6 +101,16 @@ AUI.add(
 					},
 
 					noLimitRadioButton: {
+						setter: A.one,
+						value: null
+					},
+
+					positionSelect: {
+						setter: A.one,
+						value: null
+					},
+
+					positionInput: {
 						setter: A.one,
 						value: null
 					},
@@ -252,7 +267,8 @@ AUI.add(
 					_getPositionalDayOfWeek: function() {
 						var instance = this;
 
-						var dayOfWeekSelect = instance.get('dayOfWeekSelect');
+						var dayOfWeekInput = instance.get('dayOfWeekInput');
+						var frequency = instance.get('frequency');
 						var positionSelect = instance.get('positionSelect');
 
 						var positionalDayOfWeek = null;

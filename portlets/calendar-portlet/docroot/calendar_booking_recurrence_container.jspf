@@ -161,27 +161,14 @@ if (recurrence != null) {
 					<aui:input checked="<%= ListUtil.isNotEmpty(weekdays) %>" inlineField="<%= true %>" label="day-of-the-week" name="repeatOnWeekday" type="radio" value="true" />
 
 					<div class='<%= ListUtil.isEmpty(weekdays) ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />viewPositionalWeekday">
-						<aui:select inlineField="<%= true %>" label="" name="position">
-							<aui:option label="first" selected="<%= positionalWeekday.getPosition() == 1 %>" value="1" />
-							<aui:option label="second" selected="<%= positionalWeekday.getPosition() == 2 %>" value="2" />
-							<aui:option label="third" selected="<%= positionalWeekday.getPosition() == 3 %>" value="3" />
-							<aui:option label="fourth" selected="<%= positionalWeekday.getPosition() == 4 %>" value="4" />
-							<aui:option label="last" selected="<%= positionalWeekday.getPosition() == -1 %>" value="-1" />
-						</aui:select>
 
-						<aui:select inlineField="<%= true %>" label="" name="weekday">
+						<%
+							Weekday weekday = positionalWeekday.getWeekday();
+						%>
 
-							<%
-							for (Weekday weekday : weekdaysArray) {
-							%>
-
-								<aui:option label='<%= "weekday." + weekday.getValue() %>' selected="<%= weekday == positionalWeekday.getWeekday() %>" value="<%= weekday.getValue() %>" />
-
-							<%
-							}
-							%>
-
-						</aui:select>
+						<aui:input label="repeat-on-month-last-day-of-week" name="lastPosition" type="checkbox" />
+						<aui:input name="position" type="hidden" value="<%= positionalWeekday.getPosition() %>" />
+						<aui:input name="weekday" type="hidden" value="<%= weekday.getValue() %>" />
 					</div>
 				</td>
 			</tr>
@@ -252,17 +239,18 @@ if (recurrence != null) {
 	var recurrenceDialogController = new Liferay.RecurrenceDialogController(
 		{
 			container: '#<portlet:namespace />recurrenceContainer',
-			dayOfWeekSelect: '#<portlet:namespace />weekday',
+			dayOfWeekInput: '#<portlet:namespace />weekday',
 			frequencySelect: '#<portlet:namespace />frequency',
 			intervalSelect: '#<portlet:namespace />interval',
+			lastPositionCheckbox: '#<portlet:namespace />lastPosition',
 			limitCountInput: '#<portlet:namespace />count',
 			limitCountRadioButton: '[name=<portlet:namespace />ends][value=after]',
 			limitDateDatePicker: Liferay.component('<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>'),
 			limitDateRadioButton: '[name=<portlet:namespace />ends][value=on]',
 			monthlyRecurrenceOptions: '#<portlet:namespace />viewPositionInMonth',
 			noLimitRadioButton: '[name=<portlet:namespace />ends][value=never]',
+			positionInput: '#<portlet:namespace />position',
 			positionalDayOfWeekOptions: '#<portlet:namespace />viewPositionalWeekday',
-			positionSelect: '#<portlet:namespace />position',
 			repeatCheckbox: '#<portlet:namespace />repeatCheckbox',
 			repeatOnDayOfMonthRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=false]',
 			repeatOnDayOfWeekRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=true]',
