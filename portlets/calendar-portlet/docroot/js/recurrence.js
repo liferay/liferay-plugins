@@ -230,11 +230,12 @@ AUI.add(
 					_getLimitType: function() {
 						var instance = this;
 
-						var checkedLimitRadioButton = instance.get('limitRadioButtons').filter(
+						var checkedLimitRadioButton = A.Array.find(
+							instance.get('limitRadioButtons'),
 							function(item, index) {
 								return item.get('checked');
 							}
-						)[0];
+						);
 
 						if (checkedLimitRadioButton) {
 							return checkedLimitRadioButton.val();
