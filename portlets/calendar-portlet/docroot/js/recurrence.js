@@ -1,6 +1,8 @@
 AUI.add(
 	'liferay-calendar-recurrence-dialog',
 	function(A) {
+		var DAYS_OF_WEEK = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+
 		var FREQUENCY_MONTHLY = 'MONTHLY';
 
 		var FREQUENCY_WEEKLY = 'WEEKLY';
@@ -12,8 +14,6 @@ AUI.add(
 		var LIMIT_DATE = 'on';
 
 		var LIMIT_UNLIMITED = 'never';
-
-		var DAYS_OF_WEEK = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
 
 		var RecurrenceDialogController = A.Component.create(
 			{
@@ -100,16 +100,16 @@ AUI.add(
 						value: null
 					},
 
-					positionSelect: {
-						setter: A.one,
-						value: null
-					},
-
 					positionalDayOfWeek: {
 						getter: '_getPositionalDayOfWeek'
 					},
 
 					positionalDayOfWeekOptions: {
+						setter: A.one,
+						value: null
+					},
+
+					positionSelect: {
 						setter: A.one,
 						value: null
 					},
@@ -252,7 +252,6 @@ AUI.add(
 						var instance = this;
 
 						var dayOfWeekSelect = instance.get('dayOfWeekSelect');
-						var frequency = instance.get('frequency');
 						var positionSelect = instance.get('positionSelect');
 
 						var positionalDayOfWeek = null;
@@ -328,8 +327,6 @@ AUI.add(
 						var limitDateDatePicker = instance.get('limitDateDatePicker');
 
 						var limitType = instance.get('limitType');
-
-						var startDate = instance.get('startDate');
 
 						if (currentTarget === instance.get('frequencySelect')) {
 							instance._toggleView('weeklyRecurrenceOptions', instance.get('frequency') === FREQUENCY_WEEKLY);
