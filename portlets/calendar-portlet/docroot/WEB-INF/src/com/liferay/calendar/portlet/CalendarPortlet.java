@@ -660,6 +660,22 @@ public class CalendarPortlet extends MVCPortlet {
 			calendarBooking.setRecurrence(
 				RecurrenceSerializer.serialize(recurrenceObj));
 
+			java.util.Calendar firstDayJCalendar = JCalendarUtil.getJCalendar(
+				calendarBooking.getStartTime(), timeZone);
+
+			firstDayJCalendar.set(
+				java.util.Calendar.DAY_OF_WEEK_IN_MONTH,
+				startTimeJCalendar.get(
+					java.util.Calendar.DAY_OF_WEEK_IN_MONTH));
+
+			firstDayJCalendar.set(java.util.Calendar.DAY_OF_WEEK, 7);
+
+			calendarBooking.setEndTime(
+				firstDayJCalendar.getTimeInMillis() +
+				calendarBooking.getDuration());
+
+			calendarBooking.setStartTime(firstDayJCalendar.getTimeInMillis());
+
 			calendarBooking = RecurrenceUtil.getCalendarBookingInstance(
 				calendarBooking, 1);
 		}
@@ -1397,10 +1413,11 @@ public class CalendarPortlet extends MVCPortlet {
 				long duration = endTime - startTime;
 				long offset = getOffset(calendarBooking, startTime, recurrence);
 
-				calendarBooking =
-					CalendarBookingServiceUtil.
-						getNewStartTimeAndDurationCalendarBooking(
-							calendarBookingId, offset, duration);
+				calendarBooking = CalendarUtil.getNewStartTimeCalendarBooking(
+					calendarBooking, offset);
+
+				calendarBooking = CalendarUtil.getNewDurationCalendarBooking(
+					calendarBooking, duration);
 
 				calendarBooking = getFirstCalendarBookingInstance(
 					calendarBooking, recurrence, timeZone);
