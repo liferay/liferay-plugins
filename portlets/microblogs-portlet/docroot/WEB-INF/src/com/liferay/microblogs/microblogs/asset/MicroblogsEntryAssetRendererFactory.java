@@ -71,9 +71,4 @@ public class MicroblogsEntryAssetRendererFactory
 			permissionChecker, classPK, actionId);
 	}
 
-	@Override
-	protected String getIconPath(ThemeDisplay themeDisplay) {
-		return themeDisplay.getPathThemeImages() + "/microblogs/icon.png";
-	}
-
 }
