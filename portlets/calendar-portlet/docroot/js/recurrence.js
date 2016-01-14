@@ -291,21 +291,19 @@ AUI.add(
 					_onInputChange: function(event) {
 						var instance = this;
 
-						var target = event.target;
-
-						var limitType = instance.get('limitType');
+						var currentTarget = event.currentTarget;
 
 						var limitCountInput = instance.get('limitCountInput');
-
 						var limitDateDatePicker = instance.get('limitDateDatePicker');
+						var limitType = instance.get('limitType');
 
-						if (target === instance.get('frequencySelect')) {
-							instance._toggleView('weeklyRecurrenceOptions', target.val() === FREQUENCY_WEEKLY);
-							instance._toggleView('monthlyRecurrenceOptions', (target.val() === FREQUENCY_MONTHLY) || (target.val() === FREQUENCY_YEARLY));
+						if (currentTarget === instance.get('frequencySelect')) {
+							instance._toggleView('weeklyRecurrenceOptions', currentTarget.val() === FREQUENCY_WEEKLY);
+							instance._toggleView('monthlyRecurrenceOptions', (currentTarget.val() === FREQUENCY_MONTHLY) || (currentTarget.val() === FREQUENCY_YEARLY));
 						}
 
-						if (target === instance.get('repeatOnDayOfWeekRadioButton')) {
-							instance._toggleView('positionalDayOfWeekOptions', target.val() === 'true');
+						if (currentTarget === instance.get('repeatOnDayOfWeekRadioButton')) {
+							instance._toggleView('positionalDayOfWeekOptions', currentTarget.val() === 'true');
 						}
 
 						var disableLimitcountInput = (limitType === LIMIT_UNLIMITED) || (limitType === LIMIT_DATE);
