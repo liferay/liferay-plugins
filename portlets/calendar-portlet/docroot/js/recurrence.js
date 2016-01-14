@@ -237,18 +237,14 @@ AUI.add(
 							}
 						);
 
-						if (checkedLimitRadioButton) {
-							return checkedLimitRadioButton.val();
-						}
+						return checkedLimitRadioButton && checkedLimitRadioButton.val();
 					},
 
 					_getPositionalDayOfWeek: function() {
 						var instance = this;
 
 						var dayOfWeekSelect = instance.get('dayOfWeekSelect');
-
 						var frequency = instance.get('frequency');
-
 						var positionSelect = instance.get('positionSelect');
 
 						var positionalDayOfWeek = null;
