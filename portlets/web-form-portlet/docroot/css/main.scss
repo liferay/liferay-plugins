@@ -30,6 +30,7 @@
 			font-size: 120%;
 			font-weight: bold;
 			padding: 3px;
+			word-break: break-all;
 		}
 	}
 
@@ -56,6 +57,14 @@
 }
 
 .web-form-portlet {
+	.description,
+	.form-group label,
+	.format-paragraph,
+	.legend,
+	.lfr-ddm-field-group {
+		word-break: break-all;
+	}
+
 	.description {
 		margin-bottom: 2em;
 	}
