@@ -247,25 +247,27 @@ if (recurrence != null) {
 	var repeatCheckboxNode = A.one('#<portlet:namespace />repeatCheckbox');
 	var summaryNode = A.one('#<portlet:namespace />summary');
 
-	var recurrenceDialogController = new Liferay.RecurrenceDialogController({
-		container: '#<portlet:namespace />recurrenceContainer',
-		dayOfWeekSelect: '#<portlet:namespace />weekday',
-		frequencySelect: '#<portlet:namespace />frequency',
-		intervalSelect: '#<portlet:namespace />interval',
-		limitCountRadioButton: '[name=<portlet:namespace />ends][value=after]',
-		limitCountInput: '#<portlet:namespace />count',
-		limitDateRadioButton: '[name=<portlet:namespace />ends][value=on]',
-		limitDateDatePicker: Liferay.component('<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>'),
-		noLimitRadioButton: '[name=<portlet:namespace />ends][value=never]',
-		monthlyRecurrenceOptions: '#<portlet:namespace />viewPositionInMonth',
-		positionalDayOfWeekOptions: '#<portlet:namespace />viewPositionalWeekday',
-		positionSelect: '#<portlet:namespace />position',
-		repeatCheckbox: '#<portlet:namespace />repeat',
-		repeatOnDayOfWeekRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=true]',
-		repeatOnDayOfMonthRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=false]',
-		startDateDatePicker: Liferay.component('<portlet:namespace />startTimeDatePicker'),
-		weeklyRecurrenceOptions: '#<portlet:namespace />view<%= Frequency.WEEKLY %>'
-	});
+	var recurrenceDialogController = new Liferay.RecurrenceDialogController(
+		{
+			container: '#<portlet:namespace />recurrenceContainer',
+			dayOfWeekSelect: '#<portlet:namespace />weekday',
+			frequencySelect: '#<portlet:namespace />frequency',
+			intervalSelect: '#<portlet:namespace />interval',
+			limitCountInput: '#<portlet:namespace />count',
+			limitCountRadioButton: '[name=<portlet:namespace />ends][value=after]',
+			limitDateDatePicker: Liferay.component('<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>'),
+			limitDateRadioButton: '[name=<portlet:namespace />ends][value=on]',
+			monthlyRecurrenceOptions: '#<portlet:namespace />viewPositionInMonth',
+			noLimitRadioButton: '[name=<portlet:namespace />ends][value=never]',
+			positionalDayOfWeekOptions: '#<portlet:namespace />viewPositionalWeekday',
+			positionSelect: '#<portlet:namespace />position',
+			repeatCheckbox: '#<portlet:namespace />repeat',
+			repeatOnDayOfMonthRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=false]',
+			repeatOnDayOfWeekRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=true]',
+			startDateDatePicker: Liferay.component('<portlet:namespace />startTimeDatePicker'),
+			weeklyRecurrenceOptions: '#<portlet:namespace />view<%= Frequency.WEEKLY %>'
+		}
+	);
 
 	var getRecurrenceDialogTitle = function() {
 		var summary = recurrenceDialogController.get('summary');
