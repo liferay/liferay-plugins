@@ -142,7 +142,8 @@ AUI.add(
 					},
 
 					startTimeDayOfWeekInput: {
-						getter: '_getStartTimeDayOfWeekInput'
+						setter: A.one,
+						value: null
 					},
 
 					summary: {
@@ -291,14 +292,6 @@ AUI.add(
 						var startDateDatePicker = instance.get('startDateDatePicker');
 
 						return startDateDatePicker.getDate();
-					},
-
-					_getStartTimeDayOfWeekInput: function() {
-						var instance = this;
-
-						var weeklyRecurrenceOptions = instance.get('weeklyRecurrenceOptions');
-
-						return weeklyRecurrenceOptions.one('input[type=hidden]');
 					},
 
 					_getSummary: function() {

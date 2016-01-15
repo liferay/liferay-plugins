@@ -797,7 +797,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 		if (frequency == Frequency.WEEKLY) {
 			String[] weekdayValues = ParamUtil.getParameterValues(
-				actionRequest, "weekdays");
+				actionRequest, "weekdaysCheckbox");
 
 			for (String weekdayValue : weekdayValues) {
 				Weekday weekday = Weekday.parse(weekdayValue);

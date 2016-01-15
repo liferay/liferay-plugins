@@ -145,7 +145,7 @@ if (recurrence != null) {
 						}
 						%>
 
-						<aui:input name="weekdays" type="hidden" value="<%= startTimeWeekday.getValue() %>" />
+						<aui:input name="weekdaysCheckbox" type="hidden" value="<%= startTimeWeekday.getValue() %>" />
 					</aui:field-wrapper>
 				</td>
 			</tr>
@@ -263,10 +263,11 @@ if (recurrence != null) {
 			noLimitRadioButton: '[name=<portlet:namespace />ends][value=never]',
 			positionalDayOfWeekOptions: '#<portlet:namespace />viewPositionalWeekday',
 			positionSelect: '#<portlet:namespace />position',
-			repeatCheckbox: '#<portlet:namespace />repeat',
+			repeatCheckbox: '#<portlet:namespace />repeatCheckbox',
 			repeatOnDayOfMonthRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=false]',
 			repeatOnDayOfWeekRadioButton: '[name=<portlet:namespace />repeatOnWeekday][value=true]',
 			startDateDatePicker: Liferay.component('<portlet:namespace />startTimeDatePicker'),
+			startTimeDayOfWeekInput: '#<portlet:namespace />weekdaysCheckbox',
 			weeklyRecurrenceOptions: '#<portlet:namespace />view<%= Frequency.WEEKLY %>'
 		}
 	);
