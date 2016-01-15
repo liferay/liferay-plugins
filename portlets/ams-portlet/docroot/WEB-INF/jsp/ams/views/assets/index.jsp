@@ -38,10 +38,13 @@
 	</aui:fieldset>
 </aui:form>
 
-<liferay-ui:search-container emptyResultsMessage="there-are-no-assets" iteratorURL="${alloySearchResult.portletURL}">
+<liferay-ui:search-container
+	emptyResultsMessage="there-are-no-assets"
+	iteratorURL="${alloySearchResult.portletURL}"
+	total="${alloySearchResult.size}"
+>
 	<liferay-ui:search-container-results
 		results="${alloySearchResult.baseModels}"
-		total="${alloySearchResult.size}"
 	/>
 
 	<liferay-ui:search-container-row
