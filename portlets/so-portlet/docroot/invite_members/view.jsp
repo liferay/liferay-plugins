@@ -20,7 +20,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
+	Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
+	String theState = "collapsed";
+	if (renderRequest.getWindowState().equals(WindowState.MAXIMIZED)) {
+		theState = "open";
+	}
 %>
 
 <c:choose>
@@ -32,8 +36,10 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 			<portlet:param name="mvcPath" value="/invite_members/view_invite.jsp" />
 		</portlet:renderURL>
 
+
+
 		<liferay-ui:panel-container accordion="true" extended="false">
-		<liferay-ui:panel title="invite-members-to-this-site" defaultState="collapsed">
+		<liferay-ui:panel title="invite-members-to-this-site" defaultState="<%=theState%>">
 		<liferay-util:include page="/invite_members/view_invite.jsp" servletContext="<%= application %>" />
 
 
