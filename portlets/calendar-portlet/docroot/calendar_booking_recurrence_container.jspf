@@ -244,7 +244,7 @@ if (recurrence != null) {
 			dayOfWeekInput: '#<portlet:namespace />weekday',
 			frequencySelect: '#<portlet:namespace />frequency',
 			intervalSelect: '#<portlet:namespace />interval',
-			lastPositionCheckbox: '#<portlet:namespace />lastPosition',
+			lastPositionCheckbox: '#<portlet:namespace />lastPositionCheckbox',
 			limitCountInput: '#<portlet:namespace />count',
 			limitCountRadioButton: '[name=<portlet:namespace />ends][value=after]',
 			limitDateDatePicker: Liferay.component('<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>'),
