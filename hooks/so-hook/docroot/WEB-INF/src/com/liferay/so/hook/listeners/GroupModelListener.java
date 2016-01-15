@@ -17,7 +17,7 @@
 
 package com.liferay.so.hook.listeners;
 
-import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.exception.ModelListenerException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;

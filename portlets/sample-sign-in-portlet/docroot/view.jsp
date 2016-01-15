@@ -23,12 +23,12 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.CookieNotSupportedException" %>
-<%@ page import="com.liferay.portal.NoSuchUserException" %>
-<%@ page import="com.liferay.portal.PasswordExpiredException" %>
-<%@ page import="com.liferay.portal.UserEmailAddressException" %>
-<%@ page import="com.liferay.portal.UserLockoutException" %>
-<%@ page import="com.liferay.portal.UserPasswordException" %>
-<%@ page import="com.liferay.portal.UserScreenNameException" %>
+<%@ page import="com.liferay.portal.exception.NoSuchUserException" %>
+<%@ page import="com.liferay.portal.exception.PasswordExpiredException" %>
+<%@ page import="com.liferay.portal.exception.UserEmailAddressException" %>
+<%@ page import="com.liferay.portal.exception.UserLockoutException" %>
+<%@ page import="com.liferay.portal.exception.UserPasswordException" %>
+<%@ page import="com.liferay.portal.exception.UserScreenNameException" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ClassResolverUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>

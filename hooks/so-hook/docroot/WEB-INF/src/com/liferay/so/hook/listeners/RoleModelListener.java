@@ -17,7 +17,7 @@
 
 package com.liferay.so.hook.listeners;
 
-import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.exception.ModelListenerException;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;

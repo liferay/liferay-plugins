@@ -17,8 +17,8 @@
 
 package com.liferay.so.hook.listeners;
 
-import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.NoSuchGroupException;
+import com.liferay.portal.exception.ModelListenerException;
+import com.liferay.portal.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.cache.thread.local.Lifecycle;
 import com.liferay.portal.kernel.cache.thread.local.ThreadLocalCacheManager;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;

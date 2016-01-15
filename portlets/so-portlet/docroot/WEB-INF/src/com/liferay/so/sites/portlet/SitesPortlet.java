@@ -17,8 +17,8 @@
 
 package com.liferay.so.sites.portlet;
 
-import com.liferay.portal.DuplicateGroupException;
-import com.liferay.portal.GroupKeyException;
+import com.liferay.portal.exception.DuplicateGroupException;
+import com.liferay.portal.exception.GroupKeyException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;

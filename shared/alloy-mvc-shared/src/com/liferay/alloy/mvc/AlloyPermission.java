@@ -14,7 +14,7 @@
 
 package com.liferay.alloy.mvc;
 
-import com.liferay.portal.NoSuchResourceActionException;
+import com.liferay.portal.exception.NoSuchResourceActionException;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.CharPool;

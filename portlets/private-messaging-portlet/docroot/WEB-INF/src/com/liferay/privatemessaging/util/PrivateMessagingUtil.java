@@ -17,7 +17,7 @@
 
 package com.liferay.privatemessaging.util;
 
-import com.liferay.portal.NoSuchRoleException;
+import com.liferay.portal.exception.NoSuchRoleException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;

@@ -17,7 +17,7 @@
 
 package com.liferay.so;
 
-import com.liferay.portal.NoSuchModelException;
+import com.liferay.portal.exception.NoSuchModelException;
 
 /**
  * @author Brian Wing Shun Chan

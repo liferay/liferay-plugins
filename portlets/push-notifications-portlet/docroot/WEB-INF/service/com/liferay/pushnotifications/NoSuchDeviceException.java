@@ -14,7 +14,7 @@
 
 package com.liferay.pushnotifications;
 
-import com.liferay.portal.NoSuchModelException;
+import com.liferay.portal.exception.NoSuchModelException;
 
 /**
  * @author Silvio Santos

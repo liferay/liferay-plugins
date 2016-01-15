@@ -14,7 +14,7 @@
 
 package com.liferay.chat;
 
-import com.liferay.portal.NoSuchModelException;
+import com.liferay.portal.exception.NoSuchModelException;
 
 /**
  * @author Brian Wing Shun Chan

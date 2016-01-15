@@ -18,7 +18,7 @@
 package com.liferay.privatemessaging.service.impl;
 
 import com.liferay.mail.service.MailServiceUtil;
-import com.liferay.portal.NoSuchUserException;
+import com.liferay.portal.exception.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;

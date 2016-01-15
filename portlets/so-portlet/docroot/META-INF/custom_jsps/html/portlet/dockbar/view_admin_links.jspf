@@ -17,7 +17,7 @@
  */
 --%>
 
-<%@ page import="com.liferay.portal.NoSuchRoleException" %>
+<%@ page import="com.liferay.portal.exception.NoSuchRoleException" %>
 
 <%
 boolean socialOfficeUser = false;

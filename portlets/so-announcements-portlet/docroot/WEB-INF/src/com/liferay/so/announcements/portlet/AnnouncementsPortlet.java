@@ -28,11 +28,11 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.announcements.EntryContentException;
-import com.liferay.portlet.announcements.EntryDisplayDateException;
-import com.liferay.portlet.announcements.EntryExpirationDateException;
-import com.liferay.portlet.announcements.EntryTitleException;
-import com.liferay.portlet.announcements.EntryURLException;
+import com.liferay.portlet.announcements.exception.EntryContentException;
+import com.liferay.portlet.announcements.exception.EntryDisplayDateException;
+import com.liferay.portlet.announcements.exception.EntryExpirationDateException;
+import com.liferay.portlet.announcements.exception.EntryTitleException;
+import com.liferay.portlet.announcements.exception.EntryURLException;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryServiceUtil;
 
 import java.util.Calendar;
