@@ -187,7 +187,7 @@ public class AttachmentUtil {
 	*/
 	public static Attachment findByMessageId_First(long messageId,
 		OrderByComparator<Attachment> orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException {
+		throws com.liferay.mail.exception.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_First(messageId, orderByComparator);
 	}
@@ -215,7 +215,7 @@ public class AttachmentUtil {
 	*/
 	public static Attachment findByMessageId_Last(long messageId,
 		OrderByComparator<Attachment> orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException {
+		throws com.liferay.mail.exception.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_Last(messageId, orderByComparator);
 	}
@@ -244,7 +244,7 @@ public class AttachmentUtil {
 	*/
 	public static Attachment[] findByMessageId_PrevAndNext(long attachmentId,
 		long messageId, OrderByComparator<Attachment> orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException {
+		throws com.liferay.mail.exception.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_PrevAndNext(attachmentId, messageId,
 			orderByComparator);
@@ -305,7 +305,7 @@ public class AttachmentUtil {
 	* @throws NoSuchAttachmentException if a attachment with the primary key could not be found
 	*/
 	public static Attachment remove(long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException {
+		throws com.liferay.mail.exception.NoSuchAttachmentException {
 		return getPersistence().remove(attachmentId);
 	}
 
@@ -321,7 +321,7 @@ public class AttachmentUtil {
 	* @throws NoSuchAttachmentException if a attachment with the primary key could not be found
 	*/
 	public static Attachment findByPrimaryKey(long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException {
+		throws com.liferay.mail.exception.NoSuchAttachmentException {
 		return getPersistence().findByPrimaryKey(attachmentId);
 	}
 

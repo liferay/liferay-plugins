@@ -117,7 +117,7 @@ public class JIRAProjectUtil {
 	* @throws NoSuchJIRAProjectException if a matching j i r a project could not be found
 	*/
 	public static JIRAProject findByKey(java.lang.String key)
-		throws com.liferay.socialcoding.NoSuchJIRAProjectException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException {
 		return getPersistence().findByKey(key);
 	}
 
@@ -150,7 +150,7 @@ public class JIRAProjectUtil {
 	* @return the j i r a project that was removed
 	*/
 	public static JIRAProject removeByKey(java.lang.String key)
-		throws com.liferay.socialcoding.NoSuchJIRAProjectException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException {
 		return getPersistence().removeByKey(key);
 	}
 
@@ -200,7 +200,7 @@ public class JIRAProjectUtil {
 	* @throws NoSuchJIRAProjectException if a j i r a project with the primary key could not be found
 	*/
 	public static JIRAProject remove(long jiraProjectId)
-		throws com.liferay.socialcoding.NoSuchJIRAProjectException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException {
 		return getPersistence().remove(jiraProjectId);
 	}
 
@@ -216,7 +216,7 @@ public class JIRAProjectUtil {
 	* @throws NoSuchJIRAProjectException if a j i r a project with the primary key could not be found
 	*/
 	public static JIRAProject findByPrimaryKey(long jiraProjectId)
-		throws com.liferay.socialcoding.NoSuchJIRAProjectException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException {
 		return getPersistence().findByPrimaryKey(jiraProjectId);
 	}
 

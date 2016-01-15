@@ -36,7 +36,7 @@ import com.liferay.portal.service.persistence.CompanyProvider;
 import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.so.NoSuchFavoriteSiteException;
+import com.liferay.so.exception.NoSuchFavoriteSiteException;
 import com.liferay.so.model.FavoriteSite;
 import com.liferay.so.model.impl.FavoriteSiteImpl;
 import com.liferay.so.model.impl.FavoriteSiteModelImpl;

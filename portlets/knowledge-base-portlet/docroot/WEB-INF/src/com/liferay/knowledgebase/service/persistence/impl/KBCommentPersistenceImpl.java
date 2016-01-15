@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.knowledgebase.NoSuchCommentException;
+import com.liferay.knowledgebase.exception.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.impl.KBCommentImpl;
 import com.liferay.knowledgebase.model.impl.KBCommentModelImpl;

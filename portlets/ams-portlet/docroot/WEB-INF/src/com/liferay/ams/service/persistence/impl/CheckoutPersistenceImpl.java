@@ -16,7 +16,7 @@ package com.liferay.ams.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.ams.NoSuchCheckoutException;
+import com.liferay.ams.exception.NoSuchCheckoutException;
 import com.liferay.ams.model.Checkout;
 import com.liferay.ams.model.impl.CheckoutImpl;
 import com.liferay.ams.model.impl.CheckoutModelImpl;

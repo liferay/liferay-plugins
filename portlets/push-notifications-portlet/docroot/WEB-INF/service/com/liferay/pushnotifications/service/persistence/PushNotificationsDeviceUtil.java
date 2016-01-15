@@ -120,7 +120,7 @@ public class PushNotificationsDeviceUtil {
 	* @throws NoSuchDeviceException if a matching push notifications device could not be found
 	*/
 	public static PushNotificationsDevice findByToken(java.lang.String token)
-		throws com.liferay.pushnotifications.NoSuchDeviceException {
+		throws com.liferay.pushnotifications.exception.NoSuchDeviceException {
 		return getPersistence().findByToken(token);
 	}
 
@@ -153,7 +153,7 @@ public class PushNotificationsDeviceUtil {
 	* @return the push notifications device that was removed
 	*/
 	public static PushNotificationsDevice removeByToken(java.lang.String token)
-		throws com.liferay.pushnotifications.NoSuchDeviceException {
+		throws com.liferay.pushnotifications.exception.NoSuchDeviceException {
 		return getPersistence().removeByToken(token);
 	}
 
@@ -254,7 +254,7 @@ public class PushNotificationsDeviceUtil {
 	public static PushNotificationsDevice findByU_P_First(long userId,
 		java.lang.String platform,
 		OrderByComparator<PushNotificationsDevice> orderByComparator)
-		throws com.liferay.pushnotifications.NoSuchDeviceException {
+		throws com.liferay.pushnotifications.exception.NoSuchDeviceException {
 		return getPersistence()
 				   .findByU_P_First(userId, platform, orderByComparator);
 	}
@@ -286,7 +286,7 @@ public class PushNotificationsDeviceUtil {
 	public static PushNotificationsDevice findByU_P_Last(long userId,
 		java.lang.String platform,
 		OrderByComparator<PushNotificationsDevice> orderByComparator)
-		throws com.liferay.pushnotifications.NoSuchDeviceException {
+		throws com.liferay.pushnotifications.exception.NoSuchDeviceException {
 		return getPersistence()
 				   .findByU_P_Last(userId, platform, orderByComparator);
 	}
@@ -319,7 +319,7 @@ public class PushNotificationsDeviceUtil {
 	public static PushNotificationsDevice[] findByU_P_PrevAndNext(
 		long pushNotificationsDeviceId, long userId, java.lang.String platform,
 		OrderByComparator<PushNotificationsDevice> orderByComparator)
-		throws com.liferay.pushnotifications.NoSuchDeviceException {
+		throws com.liferay.pushnotifications.exception.NoSuchDeviceException {
 		return getPersistence()
 				   .findByU_P_PrevAndNext(pushNotificationsDeviceId, userId,
 			platform, orderByComparator);
@@ -474,7 +474,7 @@ public class PushNotificationsDeviceUtil {
 	* @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	*/
 	public static PushNotificationsDevice remove(long pushNotificationsDeviceId)
-		throws com.liferay.pushnotifications.NoSuchDeviceException {
+		throws com.liferay.pushnotifications.exception.NoSuchDeviceException {
 		return getPersistence().remove(pushNotificationsDeviceId);
 	}
 
@@ -492,7 +492,7 @@ public class PushNotificationsDeviceUtil {
 	*/
 	public static PushNotificationsDevice findByPrimaryKey(
 		long pushNotificationsDeviceId)
-		throws com.liferay.pushnotifications.NoSuchDeviceException {
+		throws com.liferay.pushnotifications.exception.NoSuchDeviceException {
 		return getPersistence().findByPrimaryKey(pushNotificationsDeviceId);
 	}
 

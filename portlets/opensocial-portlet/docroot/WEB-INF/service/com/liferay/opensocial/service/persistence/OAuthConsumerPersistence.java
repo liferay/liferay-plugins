@@ -110,7 +110,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public OAuthConsumer findByGadgetKey_First(java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator<OAuthConsumer> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 
 	/**
 	* Returns the first o auth consumer in the ordered set where gadgetKey = &#63;.
@@ -132,7 +132,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public OAuthConsumer findByGadgetKey_Last(java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator<OAuthConsumer> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 
 	/**
 	* Returns the last o auth consumer in the ordered set where gadgetKey = &#63;.
@@ -156,7 +156,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	public OAuthConsumer[] findByGadgetKey_PrevAndNext(long oAuthConsumerId,
 		java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator<OAuthConsumer> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 
 	/**
 	* Removes all the o auth consumers where gadgetKey = &#63; from the database.
@@ -183,7 +183,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public OAuthConsumer findByG_S(java.lang.String gadgetKey,
 		java.lang.String serviceName)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 
 	/**
 	* Returns the o auth consumer where gadgetKey = &#63; and serviceName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -215,7 +215,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	*/
 	public OAuthConsumer removeByG_S(java.lang.String gadgetKey,
 		java.lang.String serviceName)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 
 	/**
 	* Returns the number of o auth consumers where gadgetKey = &#63; and serviceName = &#63;.
@@ -257,7 +257,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	* @throws NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	*/
 	public OAuthConsumer remove(long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 
 	public OAuthConsumer updateImpl(OAuthConsumer oAuthConsumer);
 
@@ -269,7 +269,7 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	* @throws NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	*/
 	public OAuthConsumer findByPrimaryKey(long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException;
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 
 	/**
 	* Returns the o auth consumer with the primary key or returns <code>null</code> if it could not be found.

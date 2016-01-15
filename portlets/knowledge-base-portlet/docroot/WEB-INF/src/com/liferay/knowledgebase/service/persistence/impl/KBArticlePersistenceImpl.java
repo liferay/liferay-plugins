@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.knowledgebase.NoSuchArticleException;
+import com.liferay.knowledgebase.exception.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.impl.KBArticleImpl;
 import com.liferay.knowledgebase.model.impl.KBArticleModelImpl;

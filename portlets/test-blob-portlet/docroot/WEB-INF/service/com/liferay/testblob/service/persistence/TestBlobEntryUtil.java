@@ -186,7 +186,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static TestBlobEntry findByUuid_First(java.lang.String uuid,
 		OrderByComparator<TestBlobEntry> orderByComparator)
-		throws com.liferay.testblob.NoSuchEntryException {
+		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -212,7 +212,7 @@ public class TestBlobEntryUtil {
 	*/
 	public static TestBlobEntry findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<TestBlobEntry> orderByComparator)
-		throws com.liferay.testblob.NoSuchEntryException {
+		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -240,7 +240,7 @@ public class TestBlobEntryUtil {
 	public static TestBlobEntry[] findByUuid_PrevAndNext(long testBlobEntryId,
 		java.lang.String uuid,
 		OrderByComparator<TestBlobEntry> orderByComparator)
-		throws com.liferay.testblob.NoSuchEntryException {
+		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(testBlobEntryId, uuid,
 			orderByComparator);
@@ -301,7 +301,7 @@ public class TestBlobEntryUtil {
 	* @throws NoSuchEntryException if a test blob entry with the primary key could not be found
 	*/
 	public static TestBlobEntry remove(long testBlobEntryId)
-		throws com.liferay.testblob.NoSuchEntryException {
+		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence().remove(testBlobEntryId);
 	}
 
@@ -317,7 +317,7 @@ public class TestBlobEntryUtil {
 	* @throws NoSuchEntryException if a test blob entry with the primary key could not be found
 	*/
 	public static TestBlobEntry findByPrimaryKey(long testBlobEntryId)
-		throws com.liferay.testblob.NoSuchEntryException {
+		throws com.liferay.testblob.exception.NoSuchEntryException {
 		return getPersistence().findByPrimaryKey(testBlobEntryId);
 	}
 

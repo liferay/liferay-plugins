@@ -109,7 +109,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public WSRPConsumer findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Returns the first w s r p consumer in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public WSRPConsumer findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Returns the last w s r p consumer in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public WSRPConsumer[] findByUuid_PrevAndNext(long wsrpConsumerId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Removes all the w s r p consumers where uuid = &#63; from the database.
@@ -248,7 +248,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public WSRPConsumer findByUuid_C_First(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Returns the first w s r p consumer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -274,7 +274,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public WSRPConsumer findByUuid_C_Last(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Returns the last w s r p consumer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -301,7 +301,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public WSRPConsumer[] findByUuid_C_PrevAndNext(long wsrpConsumerId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Removes all the w s r p consumers where uuid = &#63; and companyId = &#63; from the database.
@@ -389,7 +389,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public WSRPConsumer findByCompanyId_First(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Returns the first w s r p consumer in the ordered set where companyId = &#63;.
@@ -411,7 +411,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public WSRPConsumer findByCompanyId_Last(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Returns the last w s r p consumer in the ordered set where companyId = &#63;.
@@ -435,7 +435,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public WSRPConsumer[] findByCompanyId_PrevAndNext(long wsrpConsumerId,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Removes all the w s r p consumers where companyId = &#63; from the database.
@@ -482,7 +482,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @throws NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	*/
 	public WSRPConsumer remove(long wsrpConsumerId)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	public WSRPConsumer updateImpl(WSRPConsumer wsrpConsumer);
 
@@ -494,7 +494,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @throws NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	*/
 	public WSRPConsumer findByPrimaryKey(long wsrpConsumerId)
-		throws com.liferay.wsrp.NoSuchConsumerException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerException;
 
 	/**
 	* Returns the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.

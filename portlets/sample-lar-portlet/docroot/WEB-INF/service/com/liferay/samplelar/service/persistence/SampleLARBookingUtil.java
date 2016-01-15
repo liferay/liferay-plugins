@@ -188,7 +188,7 @@ public class SampleLARBookingUtil {
 	*/
 	public static SampleLARBooking findByUuid_First(java.lang.String uuid,
 		OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -214,7 +214,7 @@ public class SampleLARBookingUtil {
 	*/
 	public static SampleLARBooking findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -242,7 +242,7 @@ public class SampleLARBookingUtil {
 	public static SampleLARBooking[] findByUuid_PrevAndNext(
 		long sampleLARBookingId, java.lang.String uuid,
 		OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(sampleLARBookingId, uuid,
 			orderByComparator);
@@ -276,7 +276,8 @@ public class SampleLARBookingUtil {
 	* @throws NoSuchBookingException if a matching sample l a r booking could not be found
 	*/
 	public static SampleLARBooking findByUUID_G(java.lang.String uuid,
-		long groupId) throws com.liferay.samplelar.NoSuchBookingException {
+		long groupId)
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -313,7 +314,8 @@ public class SampleLARBookingUtil {
 	* @return the sample l a r booking that was removed
 	*/
 	public static SampleLARBooking removeByUUID_G(java.lang.String uuid,
-		long groupId) throws com.liferay.samplelar.NoSuchBookingException {
+		long groupId)
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -414,7 +416,7 @@ public class SampleLARBookingUtil {
 	*/
 	public static SampleLARBooking findByUuid_C_First(java.lang.String uuid,
 		long companyId, OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -444,7 +446,7 @@ public class SampleLARBookingUtil {
 	*/
 	public static SampleLARBooking findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -476,7 +478,7 @@ public class SampleLARBookingUtil {
 	public static SampleLARBooking[] findByUuid_C_PrevAndNext(
 		long sampleLARBookingId, java.lang.String uuid, long companyId,
 		OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(sampleLARBookingId, uuid,
 			companyId, orderByComparator);
@@ -581,7 +583,7 @@ public class SampleLARBookingUtil {
 	*/
 	public static SampleLARBooking findByGroupId_First(long groupId,
 		OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -607,7 +609,7 @@ public class SampleLARBookingUtil {
 	*/
 	public static SampleLARBooking findByGroupId_Last(long groupId,
 		OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -635,7 +637,7 @@ public class SampleLARBookingUtil {
 	public static SampleLARBooking[] findByGroupId_PrevAndNext(
 		long sampleLARBookingId, long groupId,
 		OrderByComparator<SampleLARBooking> orderByComparator)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(sampleLARBookingId, groupId,
 			orderByComparator);
@@ -696,7 +698,7 @@ public class SampleLARBookingUtil {
 	* @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	*/
 	public static SampleLARBooking remove(long sampleLARBookingId)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().remove(sampleLARBookingId);
 	}
 
@@ -712,7 +714,7 @@ public class SampleLARBookingUtil {
 	* @throws NoSuchBookingException if a sample l a r booking with the primary key could not be found
 	*/
 	public static SampleLARBooking findByPrimaryKey(long sampleLARBookingId)
-		throws com.liferay.samplelar.NoSuchBookingException {
+		throws com.liferay.samplelar.exception.NoSuchBookingException {
 		return getPersistence().findByPrimaryKey(sampleLARBookingId);
 	}
 

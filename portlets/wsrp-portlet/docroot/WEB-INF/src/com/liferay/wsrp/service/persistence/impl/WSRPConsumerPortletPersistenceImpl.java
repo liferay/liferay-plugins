@@ -42,7 +42,7 @@ import com.liferay.portal.service.persistence.CompanyProvider;
 import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.wsrp.NoSuchConsumerPortletException;
+import com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl;
 import com.liferay.wsrp.model.impl.WSRPConsumerPortletModelImpl;

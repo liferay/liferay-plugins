@@ -16,7 +16,7 @@ package com.liferay.chat.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.chat.NoSuchStatusException;
+import com.liferay.chat.exception.NoSuchStatusException;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.model.impl.StatusImpl;
 import com.liferay.chat.model.impl.StatusModelImpl;

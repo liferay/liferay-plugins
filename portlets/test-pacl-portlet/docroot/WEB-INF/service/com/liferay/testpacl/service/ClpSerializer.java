@@ -264,8 +264,9 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals("com.liferay.testpacl.NoSuchFooException")) {
-			return new com.liferay.testpacl.NoSuchFooException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.testpacl.exception.NoSuchFooException")) {
+			return new com.liferay.testpacl.exception.NoSuchFooException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

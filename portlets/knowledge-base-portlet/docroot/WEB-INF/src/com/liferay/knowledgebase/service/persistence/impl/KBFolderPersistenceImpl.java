@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.knowledgebase.NoSuchFolderException;
+import com.liferay.knowledgebase.exception.NoSuchFolderException;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.impl.KBFolderImpl;
 import com.liferay.knowledgebase.model.impl.KBFolderModelImpl;

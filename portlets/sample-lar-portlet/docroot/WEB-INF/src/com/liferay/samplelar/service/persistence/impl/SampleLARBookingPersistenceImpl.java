@@ -41,7 +41,7 @@ import com.liferay.portal.service.persistence.CompanyProvider;
 import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.samplelar.NoSuchBookingException;
+import com.liferay.samplelar.exception.NoSuchBookingException;
 import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.model.impl.SampleLARBookingImpl;
 import com.liferay.samplelar.model.impl.SampleLARBookingModelImpl;

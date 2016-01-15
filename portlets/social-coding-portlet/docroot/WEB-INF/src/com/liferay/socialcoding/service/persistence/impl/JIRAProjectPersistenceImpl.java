@@ -36,7 +36,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.socialcoding.NoSuchJIRAProjectException;
+import com.liferay.socialcoding.exception.NoSuchJIRAProjectException;
 import com.liferay.socialcoding.model.JIRAProject;
 import com.liferay.socialcoding.model.impl.JIRAProjectImpl;
 import com.liferay.socialcoding.model.impl.JIRAProjectModelImpl;

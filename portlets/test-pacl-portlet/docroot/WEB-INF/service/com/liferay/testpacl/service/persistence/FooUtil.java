@@ -182,7 +182,7 @@ public class FooUtil {
 	*/
 	public static Foo findByField2_First(boolean field2,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.exception.NoSuchFooException {
 		return getPersistence().findByField2_First(field2, orderByComparator);
 	}
 
@@ -208,7 +208,7 @@ public class FooUtil {
 	*/
 	public static Foo findByField2_Last(boolean field2,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.exception.NoSuchFooException {
 		return getPersistence().findByField2_Last(field2, orderByComparator);
 	}
 
@@ -235,7 +235,7 @@ public class FooUtil {
 	*/
 	public static Foo[] findByField2_PrevAndNext(long fooId, boolean field2,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.exception.NoSuchFooException {
 		return getPersistence()
 				   .findByField2_PrevAndNext(fooId, field2, orderByComparator);
 	}
@@ -295,7 +295,7 @@ public class FooUtil {
 	* @throws NoSuchFooException if a foo with the primary key could not be found
 	*/
 	public static Foo remove(long fooId)
-		throws com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.exception.NoSuchFooException {
 		return getPersistence().remove(fooId);
 	}
 
@@ -311,7 +311,7 @@ public class FooUtil {
 	* @throws NoSuchFooException if a foo with the primary key could not be found
 	*/
 	public static Foo findByPrimaryKey(long fooId)
-		throws com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.exception.NoSuchFooException {
 		return getPersistence().findByPrimaryKey(fooId);
 	}
 

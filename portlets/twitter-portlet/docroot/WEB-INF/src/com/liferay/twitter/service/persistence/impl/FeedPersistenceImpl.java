@@ -40,7 +40,7 @@ import com.liferay.portal.service.persistence.CompanyProvider;
 import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.twitter.NoSuchFeedException;
+import com.liferay.twitter.exception.NoSuchFeedException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.model.impl.FeedImpl;
 import com.liferay.twitter.model.impl.FeedModelImpl;

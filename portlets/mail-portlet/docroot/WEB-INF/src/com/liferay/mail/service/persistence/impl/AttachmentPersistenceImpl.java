@@ -16,7 +16,7 @@ package com.liferay.mail.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.mail.NoSuchAttachmentException;
+import com.liferay.mail.exception.NoSuchAttachmentException;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.impl.AttachmentImpl;
 import com.liferay.mail.model.impl.AttachmentModelImpl;

@@ -16,7 +16,7 @@ package com.liferay.opensocial.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.opensocial.NoSuchOAuthTokenException;
+import com.liferay.opensocial.exception.NoSuchOAuthTokenException;
 import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.model.impl.OAuthTokenImpl;
 import com.liferay.opensocial.model.impl.OAuthTokenModelImpl;

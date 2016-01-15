@@ -109,7 +109,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public Bar findByText_First(java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
-		throws com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.exception.NoSuchBarException;
 
 	/**
 	* Returns the first bar in the ordered set where text = &#63;.
@@ -131,7 +131,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public Bar findByText_Last(java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
-		throws com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.exception.NoSuchBarException;
 
 	/**
 	* Returns the last bar in the ordered set where text = &#63;.
@@ -154,7 +154,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public Bar[] findByText_PrevAndNext(long barId, java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
-		throws com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.exception.NoSuchBarException;
 
 	/**
 	* Removes all the bars where text = &#63; from the database.
@@ -201,7 +201,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
 	public Bar remove(long barId)
-		throws com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.exception.NoSuchBarException;
 
 	public Bar updateImpl(Bar bar);
 
@@ -213,7 +213,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
 	public Bar findByPrimaryKey(long barId)
-		throws com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.exception.NoSuchBarException;
 
 	/**
 	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.

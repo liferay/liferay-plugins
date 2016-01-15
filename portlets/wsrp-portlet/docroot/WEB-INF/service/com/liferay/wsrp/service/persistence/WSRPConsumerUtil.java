@@ -186,7 +186,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static WSRPConsumer findByUuid_First(java.lang.String uuid,
 		OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -212,7 +212,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static WSRPConsumer findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -239,7 +239,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static WSRPConsumer[] findByUuid_PrevAndNext(long wsrpConsumerId,
 		java.lang.String uuid, OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(wsrpConsumerId, uuid,
 			orderByComparator);
@@ -350,7 +350,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static WSRPConsumer findByUuid_C_First(java.lang.String uuid,
 		long companyId, OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -380,7 +380,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static WSRPConsumer findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -412,7 +412,7 @@ public class WSRPConsumerUtil {
 	public static WSRPConsumer[] findByUuid_C_PrevAndNext(long wsrpConsumerId,
 		java.lang.String uuid, long companyId,
 		OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(wsrpConsumerId, uuid, companyId,
 			orderByComparator);
@@ -517,7 +517,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static WSRPConsumer findByCompanyId_First(long companyId,
 		OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -545,7 +545,7 @@ public class WSRPConsumerUtil {
 	*/
 	public static WSRPConsumer findByCompanyId_Last(long companyId,
 		OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -575,7 +575,7 @@ public class WSRPConsumerUtil {
 	public static WSRPConsumer[] findByCompanyId_PrevAndNext(
 		long wsrpConsumerId, long companyId,
 		OrderByComparator<WSRPConsumer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(wsrpConsumerId, companyId,
 			orderByComparator);
@@ -636,7 +636,7 @@ public class WSRPConsumerUtil {
 	* @throws NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	*/
 	public static WSRPConsumer remove(long wsrpConsumerId)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence().remove(wsrpConsumerId);
 	}
 
@@ -652,7 +652,7 @@ public class WSRPConsumerUtil {
 	* @throws NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	*/
 	public static WSRPConsumer findByPrimaryKey(long wsrpConsumerId)
-		throws com.liferay.wsrp.NoSuchConsumerException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerException {
 		return getPersistence().findByPrimaryKey(wsrpConsumerId);
 	}
 

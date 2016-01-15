@@ -266,13 +266,14 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.microblogs.UnsupportedMicroblogsEntryException")) {
-			return new com.liferay.microblogs.UnsupportedMicroblogsEntryException(throwable.getMessage(),
+					"com.liferay.microblogs.exception.UnsupportedMicroblogsEntryException")) {
+			return new com.liferay.microblogs.exception.UnsupportedMicroblogsEntryException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.microblogs.NoSuchEntryException")) {
-			return new com.liferay.microblogs.NoSuchEntryException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.microblogs.exception.NoSuchEntryException")) {
+			return new com.liferay.microblogs.exception.NoSuchEntryException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

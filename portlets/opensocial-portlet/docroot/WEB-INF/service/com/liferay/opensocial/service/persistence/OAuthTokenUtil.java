@@ -197,7 +197,7 @@ public class OAuthTokenUtil {
 	public static OAuthToken findByG_S_First(java.lang.String gadgetKey,
 		java.lang.String serviceName,
 		OrderByComparator<OAuthToken> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException {
 		return getPersistence()
 				   .findByG_S_First(gadgetKey, serviceName, orderByComparator);
 	}
@@ -229,7 +229,7 @@ public class OAuthTokenUtil {
 	public static OAuthToken findByG_S_Last(java.lang.String gadgetKey,
 		java.lang.String serviceName,
 		OrderByComparator<OAuthToken> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException {
 		return getPersistence()
 				   .findByG_S_Last(gadgetKey, serviceName, orderByComparator);
 	}
@@ -262,7 +262,7 @@ public class OAuthTokenUtil {
 	public static OAuthToken[] findByG_S_PrevAndNext(long oAuthTokenId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		OrderByComparator<OAuthToken> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException {
 		return getPersistence()
 				   .findByG_S_PrevAndNext(oAuthTokenId, gadgetKey, serviceName,
 			orderByComparator);
@@ -305,7 +305,7 @@ public class OAuthTokenUtil {
 	public static OAuthToken findByU_G_S_M_T(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException {
 		return getPersistence()
 				   .findByU_G_S_M_T(userId, gadgetKey, serviceName, moduleId,
 			tokenName);
@@ -361,7 +361,7 @@ public class OAuthTokenUtil {
 	public static OAuthToken removeByU_G_S_M_T(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException {
 		return getPersistence()
 				   .removeByU_G_S_M_T(userId, gadgetKey, serviceName, moduleId,
 			tokenName);
@@ -420,7 +420,7 @@ public class OAuthTokenUtil {
 	* @throws NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	*/
 	public static OAuthToken remove(long oAuthTokenId)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException {
 		return getPersistence().remove(oAuthTokenId);
 	}
 
@@ -436,7 +436,7 @@ public class OAuthTokenUtil {
 	* @throws NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	*/
 	public static OAuthToken findByPrimaryKey(long oAuthTokenId)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException {
 		return getPersistence().findByPrimaryKey(oAuthTokenId);
 	}
 

@@ -109,7 +109,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public TestBlobEntry findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator)
-		throws com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.exception.NoSuchEntryException;
 
 	/**
 	* Returns the first test blob entry in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*/
 	public TestBlobEntry findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator)
-		throws com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.exception.NoSuchEntryException;
 
 	/**
 	* Returns the last test blob entry in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	public TestBlobEntry[] findByUuid_PrevAndNext(long testBlobEntryId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<TestBlobEntry> orderByComparator)
-		throws com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.exception.NoSuchEntryException;
 
 	/**
 	* Removes all the test blob entries where uuid = &#63; from the database.
@@ -202,7 +202,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @throws NoSuchEntryException if a test blob entry with the primary key could not be found
 	*/
 	public TestBlobEntry remove(long testBlobEntryId)
-		throws com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.exception.NoSuchEntryException;
 
 	public TestBlobEntry updateImpl(TestBlobEntry testBlobEntry);
 
@@ -214,7 +214,7 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @throws NoSuchEntryException if a test blob entry with the primary key could not be found
 	*/
 	public TestBlobEntry findByPrimaryKey(long testBlobEntryId)
-		throws com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.exception.NoSuchEntryException;
 
 	/**
 	* Returns the test blob entry with the primary key or returns <code>null</code> if it could not be found.

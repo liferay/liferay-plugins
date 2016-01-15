@@ -315,13 +315,13 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals("com.liferay.chat.NoSuchEntryException")) {
-			return new com.liferay.chat.NoSuchEntryException(throwable.getMessage(),
+		if (className.equals("com.liferay.chat.exception.NoSuchEntryException")) {
+			return new com.liferay.chat.exception.NoSuchEntryException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.chat.NoSuchStatusException")) {
-			return new com.liferay.chat.NoSuchStatusException(throwable.getMessage(),
+		if (className.equals("com.liferay.chat.exception.NoSuchStatusException")) {
+			return new com.liferay.chat.exception.NoSuchStatusException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

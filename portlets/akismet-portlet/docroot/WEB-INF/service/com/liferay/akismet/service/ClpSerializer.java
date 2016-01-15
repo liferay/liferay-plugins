@@ -265,8 +265,9 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals("com.liferay.akismet.NoSuchDataException")) {
-			return new com.liferay.akismet.NoSuchDataException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.akismet.exception.NoSuchDataException")) {
+			return new com.liferay.akismet.exception.NoSuchDataException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

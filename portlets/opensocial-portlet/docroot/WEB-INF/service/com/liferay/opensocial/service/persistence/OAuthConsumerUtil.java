@@ -191,7 +191,7 @@ public class OAuthConsumerUtil {
 	public static OAuthConsumer findByGadgetKey_First(
 		java.lang.String gadgetKey,
 		OrderByComparator<OAuthConsumer> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_First(gadgetKey, orderByComparator);
 	}
@@ -221,7 +221,7 @@ public class OAuthConsumerUtil {
 	public static OAuthConsumer findByGadgetKey_Last(
 		java.lang.String gadgetKey,
 		OrderByComparator<OAuthConsumer> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_Last(gadgetKey, orderByComparator);
 	}
@@ -252,7 +252,7 @@ public class OAuthConsumerUtil {
 	public static OAuthConsumer[] findByGadgetKey_PrevAndNext(
 		long oAuthConsumerId, java.lang.String gadgetKey,
 		OrderByComparator<OAuthConsumer> orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_PrevAndNext(oAuthConsumerId, gadgetKey,
 			orderByComparator);
@@ -287,7 +287,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static OAuthConsumer findByG_S(java.lang.String gadgetKey,
 		java.lang.String serviceName)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException {
 		return getPersistence().findByG_S(gadgetKey, serviceName);
 	}
 
@@ -326,7 +326,7 @@ public class OAuthConsumerUtil {
 	*/
 	public static OAuthConsumer removeByG_S(java.lang.String gadgetKey,
 		java.lang.String serviceName)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException {
 		return getPersistence().removeByG_S(gadgetKey, serviceName);
 	}
 
@@ -378,7 +378,7 @@ public class OAuthConsumerUtil {
 	* @throws NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	*/
 	public static OAuthConsumer remove(long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException {
 		return getPersistence().remove(oAuthConsumerId);
 	}
 
@@ -394,7 +394,7 @@ public class OAuthConsumerUtil {
 	* @throws NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	*/
 	public static OAuthConsumer findByPrimaryKey(long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
+		throws com.liferay.opensocial.exception.NoSuchOAuthConsumerException {
 		return getPersistence().findByPrimaryKey(oAuthConsumerId);
 	}
 

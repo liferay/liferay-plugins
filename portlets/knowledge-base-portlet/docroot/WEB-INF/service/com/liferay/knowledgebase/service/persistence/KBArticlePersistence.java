@@ -109,7 +109,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByUuid_PrevAndNext(long kbArticleId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where uuid = &#63; from the database.
@@ -181,7 +181,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws NoSuchArticleException if a matching k b article could not be found
 	*/
 	public KBArticle findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the k b article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -211,7 +211,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the k b article that was removed
 	*/
 	public KBArticle removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the number of k b articles where uuid = &#63; and groupId = &#63;.
@@ -297,7 +297,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByUuid_C_First(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -321,7 +321,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByUuid_C_Last(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -347,7 +347,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByUuid_C_PrevAndNext(long kbArticleId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where uuid = &#63; and companyId = &#63; from the database.
@@ -435,7 +435,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByResourcePrimKey_First(long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63;.
@@ -457,7 +457,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByResourcePrimKey_Last(long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63;.
@@ -481,7 +481,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByResourcePrimKey_PrevAndNext(long kbArticleId,
 		long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where resourcePrimKey = &#63; from the database.
@@ -573,7 +573,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_G_First(long resourcePrimKey, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
@@ -597,7 +597,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_G_Last(long resourcePrimKey, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63;.
@@ -623,7 +623,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByR_G_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63;.
@@ -682,7 +682,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByR_G_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where resourcePrimKey = &#63; and groupId = &#63; from the database.
@@ -719,7 +719,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws NoSuchArticleException if a matching k b article could not be found
 	*/
 	public KBArticle findByR_V(long resourcePrimKey, int version)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the k b article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -749,7 +749,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the k b article that was removed
 	*/
 	public KBArticle removeByR_V(long resourcePrimKey, int version)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the number of k b articles where resourcePrimKey = &#63; and version = &#63;.
@@ -835,7 +835,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_L_First(long resourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
@@ -859,7 +859,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_L_Last(long resourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
@@ -885,7 +885,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByR_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles where resourcePrimKey = any &#63; and latest = &#63;.
@@ -1056,7 +1056,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_M_First(long resourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
@@ -1080,7 +1080,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_M_Last(long resourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
@@ -1106,7 +1106,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByR_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles where resourcePrimKey = any &#63; and main = &#63;.
@@ -1276,7 +1276,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_S_First(long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
@@ -1300,7 +1300,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByR_S_Last(long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63; and status = &#63;.
@@ -1326,7 +1326,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByR_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles where resourcePrimKey = any &#63; and status = &#63;.
@@ -1496,7 +1496,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByG_L_First(long groupId, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and latest = &#63;.
@@ -1520,7 +1520,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByG_L_Last(long groupId, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and latest = &#63;.
@@ -1546,7 +1546,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_L_PrevAndNext(long kbArticleId, long groupId,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and latest = &#63;.
@@ -1605,7 +1605,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_L_PrevAndNext(long kbArticleId,
 		long groupId, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where groupId = &#63; and latest = &#63; from the database.
@@ -1707,7 +1707,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByG_M_First(long groupId, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and main = &#63;.
@@ -1731,7 +1731,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByG_M_Last(long groupId, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and main = &#63;.
@@ -1757,7 +1757,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_M_PrevAndNext(long kbArticleId, long groupId,
 		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and main = &#63;.
@@ -1815,7 +1815,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_M_PrevAndNext(long kbArticleId,
 		long groupId, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where groupId = &#63; and main = &#63; from the database.
@@ -1917,7 +1917,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByG_S_First(long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and status = &#63;.
@@ -1941,7 +1941,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByG_S_Last(long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and status = &#63;.
@@ -1967,7 +1967,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_S_PrevAndNext(long kbArticleId, long groupId,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and status = &#63;.
@@ -2025,7 +2025,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_S_PrevAndNext(long kbArticleId,
 		long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where groupId = &#63; and status = &#63; from the database.
@@ -2127,7 +2127,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByC_L_First(long companyId, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where companyId = &#63; and latest = &#63;.
@@ -2151,7 +2151,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByC_L_Last(long companyId, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where companyId = &#63; and latest = &#63;.
@@ -2177,7 +2177,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByC_L_PrevAndNext(long kbArticleId, long companyId,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where companyId = &#63; and latest = &#63; from the database.
@@ -2270,7 +2270,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByC_M_First(long companyId, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where companyId = &#63; and main = &#63;.
@@ -2294,7 +2294,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByC_M_Last(long companyId, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where companyId = &#63; and main = &#63;.
@@ -2320,7 +2320,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByC_M_PrevAndNext(long kbArticleId, long companyId,
 		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where companyId = &#63; and main = &#63; from the database.
@@ -2413,7 +2413,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByC_S_First(long companyId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where companyId = &#63; and status = &#63;.
@@ -2437,7 +2437,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByC_S_Last(long companyId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where companyId = &#63; and status = &#63;.
@@ -2463,7 +2463,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByC_S_PrevAndNext(long kbArticleId, long companyId,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where companyId = &#63; and status = &#63; from the database.
@@ -2558,7 +2558,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByP_L_First(long parentResourcePrimKey,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
@@ -2583,7 +2583,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByP_L_Last(long parentResourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63;.
@@ -2610,7 +2610,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByP_L_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles where parentResourcePrimKey = any &#63; and latest = &#63;.
@@ -2781,7 +2781,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByP_M_First(long parentResourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
@@ -2805,7 +2805,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByP_M_Last(long parentResourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
@@ -2831,7 +2831,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByP_M_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles where parentResourcePrimKey = any &#63; and main = &#63;.
@@ -3002,7 +3002,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByP_S_First(long parentResourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
@@ -3026,7 +3026,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	*/
 	public KBArticle findByP_S_Last(long parentResourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
@@ -3052,7 +3052,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByP_S_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles where parentResourcePrimKey = any &#63; and status = &#63;.
@@ -3158,7 +3158,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws NoSuchArticleException if a matching k b article could not be found
 	*/
 	public KBArticle findByR_G_V(long resourcePrimKey, long groupId, int version)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the k b article where resourcePrimKey = &#63; and groupId = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -3192,7 +3192,8 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @return the k b article that was removed
 	*/
 	public KBArticle removeByR_G_V(long resourcePrimKey, long groupId,
-		int version) throws com.liferay.knowledgebase.NoSuchArticleException;
+		int version)
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the number of k b articles where resourcePrimKey = &#63; and groupId = &#63; and version = &#63;.
@@ -3285,7 +3286,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByR_G_L_First(long resourcePrimKey, long groupId,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
@@ -3313,7 +3314,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByR_G_L_Last(long resourcePrimKey, long groupId,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
@@ -3342,7 +3343,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByR_G_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
@@ -3405,7 +3406,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByR_G_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
@@ -3661,7 +3662,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByR_G_M_First(long resourcePrimKey, long groupId,
 		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
@@ -3689,7 +3690,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByR_G_M_Last(long resourcePrimKey, long groupId,
 		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
@@ -3718,7 +3719,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByR_G_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
@@ -3781,7 +3782,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByR_G_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
@@ -4035,7 +4036,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByR_G_S_First(long resourcePrimKey, long groupId,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
@@ -4063,7 +4064,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByR_G_S_Last(long resourcePrimKey, long groupId,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
@@ -4092,7 +4093,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByR_G_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
@@ -4155,7 +4156,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByR_G_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
@@ -4407,7 +4408,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_P_L_First(long groupId,
 		long parentResourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
@@ -4435,7 +4436,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_P_L_Last(long groupId, long parentResourcePrimKey,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
@@ -4464,7 +4465,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_P_L_PrevAndNext(long kbArticleId, long groupId,
 		long parentResourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
@@ -4527,7 +4528,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_P_L_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
@@ -4783,7 +4784,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_P_M_First(long groupId,
 		long parentResourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
@@ -4811,7 +4812,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_P_M_Last(long groupId, long parentResourcePrimKey,
 		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
@@ -4840,7 +4841,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_P_M_PrevAndNext(long kbArticleId, long groupId,
 		long parentResourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
@@ -4903,7 +4904,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_P_M_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
@@ -5159,7 +5160,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_P_S_First(long groupId,
 		long parentResourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
@@ -5187,7 +5188,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_P_S_Last(long groupId, long parentResourcePrimKey,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
@@ -5216,7 +5217,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_P_S_PrevAndNext(long kbArticleId, long groupId,
 		long parentResourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
@@ -5279,7 +5280,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_P_S_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
@@ -5534,7 +5535,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_KBFI_UT_First(long groupId, long kbFolderId,
 		java.lang.String urlTitle,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
@@ -5562,7 +5563,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_KBFI_UT_Last(long groupId, long kbFolderId,
 		java.lang.String urlTitle,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
@@ -5591,7 +5592,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_KBFI_UT_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, java.lang.String urlTitle,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63;.
@@ -5654,7 +5655,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_KBFI_UT_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, java.lang.String urlTitle,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; from the database.
@@ -5769,7 +5770,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_KBFI_S_First(long groupId, long kbFolderId,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and status = &#63;.
@@ -5797,7 +5798,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_KBFI_S_Last(long groupId, long kbFolderId,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and status = &#63;.
@@ -5826,7 +5827,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_KBFI_S_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and status = &#63;.
@@ -5889,7 +5890,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_KBFI_S_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Removes all the k b articles where groupId = &#63; and kbFolderId = &#63; and status = &#63; from the database.
@@ -6001,7 +6002,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_S_L_First(long groupId, java.lang.String sections,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
@@ -6029,7 +6030,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_S_L_Last(long groupId, java.lang.String sections,
 		boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
@@ -6058,7 +6059,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_S_L_PrevAndNext(long kbArticleId, long groupId,
 		java.lang.String sections, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and latest = &#63;.
@@ -6121,7 +6122,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_S_L_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, boolean latest,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and latest = &#63;.
@@ -6377,7 +6378,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_S_M_First(long groupId, java.lang.String sections,
 		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and main = &#63;.
@@ -6405,7 +6406,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_S_M_Last(long groupId, java.lang.String sections,
 		boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and main = &#63;.
@@ -6434,7 +6435,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_S_M_PrevAndNext(long kbArticleId, long groupId,
 		java.lang.String sections, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and main = &#63;.
@@ -6497,7 +6498,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_S_M_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, boolean main,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and main = &#63;.
@@ -6753,7 +6754,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_S_S_First(long groupId, java.lang.String sections,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and status = &#63;.
@@ -6781,7 +6782,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_S_S_Last(long groupId, java.lang.String sections,
 		int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and sections LIKE &#63; and status = &#63;.
@@ -6810,7 +6811,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_S_S_PrevAndNext(long kbArticleId, long groupId,
 		java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE &#63; and status = &#63;.
@@ -6873,7 +6874,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_S_S_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and sections LIKE any &#63; and status = &#63;.
@@ -7136,7 +7137,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_KBFI_UT_ST_First(long groupId, long kbFolderId,
 		java.lang.String urlTitle, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the first k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7166,7 +7167,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle findByG_KBFI_UT_ST_Last(long groupId, long kbFolderId,
 		java.lang.String urlTitle, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the last k b article in the ordered set where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7197,7 +7198,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] findByG_KBFI_UT_ST_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = &#63;.
@@ -7266,7 +7267,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public KBArticle[] filterFindByG_KBFI_UT_ST_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns all the k b articles that the user has permission to view where groupId = &#63; and kbFolderId = &#63; and urlTitle = &#63; and status = any &#63;.
@@ -7488,7 +7489,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws NoSuchArticleException if a k b article with the primary key could not be found
 	*/
 	public KBArticle remove(long kbArticleId)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	public KBArticle updateImpl(KBArticle kbArticle);
 
@@ -7500,7 +7501,7 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	* @throws NoSuchArticleException if a k b article with the primary key could not be found
 	*/
 	public KBArticle findByPrimaryKey(long kbArticleId)
-		throws com.liferay.knowledgebase.NoSuchArticleException;
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException;
 
 	/**
 	* Returns the k b article with the primary key or returns <code>null</code> if it could not be found.

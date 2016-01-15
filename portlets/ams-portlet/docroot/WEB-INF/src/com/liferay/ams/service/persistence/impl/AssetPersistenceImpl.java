@@ -16,7 +16,7 @@ package com.liferay.ams.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.ams.NoSuchAssetException;
+import com.liferay.ams.exception.NoSuchAssetException;
 import com.liferay.ams.model.Asset;
 import com.liferay.ams.model.impl.AssetImpl;
 import com.liferay.ams.model.impl.AssetModelImpl;

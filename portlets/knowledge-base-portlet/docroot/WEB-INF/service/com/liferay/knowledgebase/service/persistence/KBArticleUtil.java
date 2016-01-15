@@ -186,7 +186,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByUuid_First(java.lang.String uuid,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -212,7 +212,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -239,7 +239,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle[] findByUuid_PrevAndNext(long kbArticleId,
 		java.lang.String uuid, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(kbArticleId, uuid, orderByComparator);
 	}
@@ -272,7 +272,7 @@ public class KBArticleUtil {
 	* @throws NoSuchArticleException if a matching k b article could not be found
 	*/
 	public static KBArticle findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -308,7 +308,7 @@ public class KBArticleUtil {
 	* @return the k b article that was removed
 	*/
 	public static KBArticle removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -409,7 +409,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByUuid_C_First(java.lang.String uuid,
 		long companyId, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -439,7 +439,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -471,7 +471,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByUuid_C_PrevAndNext(long kbArticleId,
 		java.lang.String uuid, long companyId,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(kbArticleId, uuid, companyId,
 			orderByComparator);
@@ -578,7 +578,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByResourcePrimKey_First(long resourcePrimKey,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByResourcePrimKey_First(resourcePrimKey,
 			orderByComparator);
@@ -608,7 +608,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByResourcePrimKey_Last(long resourcePrimKey,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByResourcePrimKey_Last(resourcePrimKey,
 			orderByComparator);
@@ -640,7 +640,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByResourcePrimKey_PrevAndNext(
 		long kbArticleId, long resourcePrimKey,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByResourcePrimKey_PrevAndNext(kbArticleId,
 			resourcePrimKey, orderByComparator);
@@ -749,7 +749,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_G_First(long resourcePrimKey, long groupId,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_First(resourcePrimKey, groupId, orderByComparator);
 	}
@@ -779,7 +779,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_G_Last(long resourcePrimKey, long groupId,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_Last(resourcePrimKey, groupId, orderByComparator);
 	}
@@ -811,7 +811,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByR_G_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, orderByComparator);
@@ -883,7 +883,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByR_G_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByR_G_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, orderByComparator);
@@ -930,7 +930,7 @@ public class KBArticleUtil {
 	* @throws NoSuchArticleException if a matching k b article could not be found
 	*/
 	public static KBArticle findByR_V(long resourcePrimKey, int version)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByR_V(resourcePrimKey, version);
 	}
 
@@ -967,7 +967,7 @@ public class KBArticleUtil {
 	* @return the k b article that was removed
 	*/
 	public static KBArticle removeByR_V(long resourcePrimKey, int version)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().removeByR_V(resourcePrimKey, version);
 	}
 
@@ -1068,7 +1068,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_L_First(long resourcePrimKey,
 		boolean latest, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_L_First(resourcePrimKey, latest, orderByComparator);
 	}
@@ -1098,7 +1098,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_L_Last(long resourcePrimKey,
 		boolean latest, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_L_Last(resourcePrimKey, latest, orderByComparator);
 	}
@@ -1130,7 +1130,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByR_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_L_PrevAndNext(kbArticleId, resourcePrimKey, latest,
 			orderByComparator);
@@ -1332,7 +1332,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_M_First(long resourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_M_First(resourcePrimKey, main, orderByComparator);
 	}
@@ -1362,7 +1362,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_M_Last(long resourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_M_Last(resourcePrimKey, main, orderByComparator);
 	}
@@ -1394,7 +1394,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByR_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_M_PrevAndNext(kbArticleId, resourcePrimKey, main,
 			orderByComparator);
@@ -1596,7 +1596,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_S_First(long resourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_S_First(resourcePrimKey, status, orderByComparator);
 	}
@@ -1626,7 +1626,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_S_Last(long resourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_S_Last(resourcePrimKey, status, orderByComparator);
 	}
@@ -1658,7 +1658,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByR_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_S_PrevAndNext(kbArticleId, resourcePrimKey, status,
 			orderByComparator);
@@ -1858,7 +1858,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_L_First(long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_L_First(groupId, latest, orderByComparator);
 	}
@@ -1888,7 +1888,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_L_Last(long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_L_Last(groupId, latest, orderByComparator);
 	}
@@ -1920,7 +1920,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_L_PrevAndNext(long kbArticleId,
 		long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_L_PrevAndNext(kbArticleId, groupId, latest,
 			orderByComparator);
@@ -1989,7 +1989,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_L_PrevAndNext(long kbArticleId,
 		long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_L_PrevAndNext(kbArticleId, groupId, latest,
 			orderByComparator);
@@ -2110,7 +2110,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_M_First(long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByG_M_First(groupId, main, orderByComparator);
 	}
 
@@ -2139,7 +2139,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_M_Last(long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByG_M_Last(groupId, main, orderByComparator);
 	}
 
@@ -2169,7 +2169,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_M_PrevAndNext(long kbArticleId,
 		long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_M_PrevAndNext(kbArticleId, groupId, main,
 			orderByComparator);
@@ -2237,7 +2237,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_M_PrevAndNext(long kbArticleId,
 		long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_M_PrevAndNext(kbArticleId, groupId, main,
 			orderByComparator);
@@ -2358,7 +2358,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_S_First(long groupId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_First(groupId, status, orderByComparator);
 	}
@@ -2388,7 +2388,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_S_Last(long groupId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_Last(groupId, status, orderByComparator);
 	}
@@ -2419,7 +2419,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle[] findByG_S_PrevAndNext(long kbArticleId,
 		long groupId, int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_PrevAndNext(kbArticleId, groupId, status,
 			orderByComparator);
@@ -2487,7 +2487,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle[] filterFindByG_S_PrevAndNext(long kbArticleId,
 		long groupId, int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_S_PrevAndNext(kbArticleId, groupId, status,
 			orderByComparator);
@@ -2608,7 +2608,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByC_L_First(long companyId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_L_First(companyId, latest, orderByComparator);
 	}
@@ -2638,7 +2638,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByC_L_Last(long companyId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_L_Last(companyId, latest, orderByComparator);
 	}
@@ -2670,7 +2670,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByC_L_PrevAndNext(long kbArticleId,
 		long companyId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_L_PrevAndNext(kbArticleId, companyId, latest,
 			orderByComparator);
@@ -2780,7 +2780,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByC_M_First(long companyId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_M_First(companyId, main, orderByComparator);
 	}
@@ -2810,7 +2810,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByC_M_Last(long companyId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_M_Last(companyId, main, orderByComparator);
 	}
@@ -2842,7 +2842,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByC_M_PrevAndNext(long kbArticleId,
 		long companyId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_M_PrevAndNext(kbArticleId, companyId, main,
 			orderByComparator);
@@ -2952,7 +2952,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByC_S_First(long companyId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_S_First(companyId, status, orderByComparator);
 	}
@@ -2982,7 +2982,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByC_S_Last(long companyId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_S_Last(companyId, status, orderByComparator);
 	}
@@ -3014,7 +3014,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByC_S_PrevAndNext(long kbArticleId,
 		long companyId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByC_S_PrevAndNext(kbArticleId, companyId, status,
 			orderByComparator);
@@ -3129,7 +3129,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByP_L_First(long parentResourcePrimKey,
 		boolean latest, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_L_First(parentResourcePrimKey, latest,
 			orderByComparator);
@@ -3161,7 +3161,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByP_L_Last(long parentResourcePrimKey,
 		boolean latest, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_L_Last(parentResourcePrimKey, latest,
 			orderByComparator);
@@ -3195,7 +3195,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByP_L_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_L_PrevAndNext(kbArticleId, parentResourcePrimKey,
 			latest, orderByComparator);
@@ -3402,7 +3402,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByP_M_First(long parentResourcePrimKey,
 		boolean main, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_M_First(parentResourcePrimKey, main,
 			orderByComparator);
@@ -3434,7 +3434,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByP_M_Last(long parentResourcePrimKey,
 		boolean main, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_M_Last(parentResourcePrimKey, main,
 			orderByComparator);
@@ -3468,7 +3468,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByP_M_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_M_PrevAndNext(kbArticleId, parentResourcePrimKey,
 			main, orderByComparator);
@@ -3675,7 +3675,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByP_S_First(long parentResourcePrimKey,
 		int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_S_First(parentResourcePrimKey, status,
 			orderByComparator);
@@ -3707,7 +3707,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByP_S_Last(long parentResourcePrimKey,
 		int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_S_Last(parentResourcePrimKey, status,
 			orderByComparator);
@@ -3741,7 +3741,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByP_S_PrevAndNext(long kbArticleId,
 		long parentResourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByP_S_PrevAndNext(kbArticleId, parentResourcePrimKey,
 			status, orderByComparator);
@@ -3870,7 +3870,8 @@ public class KBArticleUtil {
 	* @throws NoSuchArticleException if a matching k b article could not be found
 	*/
 	public static KBArticle findByR_G_V(long resourcePrimKey, long groupId,
-		int version) throws com.liferay.knowledgebase.NoSuchArticleException {
+		int version)
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByR_G_V(resourcePrimKey, groupId, version);
 	}
 
@@ -3912,7 +3913,8 @@ public class KBArticleUtil {
 	* @return the k b article that was removed
 	*/
 	public static KBArticle removeByR_G_V(long resourcePrimKey, long groupId,
-		int version) throws com.liferay.knowledgebase.NoSuchArticleException {
+		int version)
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().removeByR_G_V(resourcePrimKey, groupId, version);
 	}
 
@@ -4023,7 +4025,7 @@ public class KBArticleUtil {
 	public static KBArticle findByR_G_L_First(long resourcePrimKey,
 		long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_L_First(resourcePrimKey, groupId, latest,
 			orderByComparator);
@@ -4059,7 +4061,7 @@ public class KBArticleUtil {
 	public static KBArticle findByR_G_L_Last(long resourcePrimKey,
 		long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_L_Last(resourcePrimKey, groupId, latest,
 			orderByComparator);
@@ -4096,7 +4098,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByR_G_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_L_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, latest, orderByComparator);
@@ -4174,7 +4176,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByR_G_L_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByR_G_L_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, latest, orderByComparator);
@@ -4483,7 +4485,7 @@ public class KBArticleUtil {
 	public static KBArticle findByR_G_M_First(long resourcePrimKey,
 		long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_M_First(resourcePrimKey, groupId, main,
 			orderByComparator);
@@ -4519,7 +4521,7 @@ public class KBArticleUtil {
 	public static KBArticle findByR_G_M_Last(long resourcePrimKey,
 		long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_M_Last(resourcePrimKey, groupId, main,
 			orderByComparator);
@@ -4556,7 +4558,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByR_G_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_M_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, main, orderByComparator);
@@ -4632,7 +4634,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByR_G_M_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByR_G_M_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, main, orderByComparator);
@@ -4940,7 +4942,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_G_S_First(long resourcePrimKey,
 		long groupId, int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_S_First(resourcePrimKey, groupId, status,
 			orderByComparator);
@@ -4974,7 +4976,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByR_G_S_Last(long resourcePrimKey,
 		long groupId, int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_S_Last(resourcePrimKey, groupId, status,
 			orderByComparator);
@@ -5010,7 +5012,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByR_G_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByR_G_S_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, status, orderByComparator);
@@ -5088,7 +5090,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByR_G_S_PrevAndNext(long kbArticleId,
 		long resourcePrimKey, long groupId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByR_G_S_PrevAndNext(kbArticleId, resourcePrimKey,
 			groupId, status, orderByComparator);
@@ -5399,7 +5401,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_P_L_First(long groupId,
 		long parentResourcePrimKey, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_L_First(groupId, parentResourcePrimKey, latest,
 			orderByComparator);
@@ -5435,7 +5437,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_P_L_Last(long groupId,
 		long parentResourcePrimKey, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_L_Last(groupId, parentResourcePrimKey, latest,
 			orderByComparator);
@@ -5472,7 +5474,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_P_L_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_L_PrevAndNext(kbArticleId, groupId,
 			parentResourcePrimKey, latest, orderByComparator);
@@ -5550,7 +5552,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_P_L_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_P_L_PrevAndNext(kbArticleId, groupId,
 			parentResourcePrimKey, latest, orderByComparator);
@@ -5863,7 +5865,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_P_M_First(long groupId,
 		long parentResourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_M_First(groupId, parentResourcePrimKey, main,
 			orderByComparator);
@@ -5899,7 +5901,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_P_M_Last(long groupId,
 		long parentResourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_M_Last(groupId, parentResourcePrimKey, main,
 			orderByComparator);
@@ -5936,7 +5938,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_P_M_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_M_PrevAndNext(kbArticleId, groupId,
 			parentResourcePrimKey, main, orderByComparator);
@@ -6014,7 +6016,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_P_M_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_P_M_PrevAndNext(kbArticleId, groupId,
 			parentResourcePrimKey, main, orderByComparator);
@@ -6329,7 +6331,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_P_S_First(long groupId,
 		long parentResourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_S_First(groupId, parentResourcePrimKey, status,
 			orderByComparator);
@@ -6365,7 +6367,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_P_S_Last(long groupId,
 		long parentResourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_S_Last(groupId, parentResourcePrimKey, status,
 			orderByComparator);
@@ -6402,7 +6404,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_P_S_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_P_S_PrevAndNext(kbArticleId, groupId,
 			parentResourcePrimKey, status, orderByComparator);
@@ -6480,7 +6482,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_P_S_PrevAndNext(long kbArticleId,
 		long groupId, long parentResourcePrimKey, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_P_S_PrevAndNext(kbArticleId, groupId,
 			parentResourcePrimKey, status, orderByComparator);
@@ -6793,7 +6795,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_KBFI_UT_First(long groupId,
 		long kbFolderId, java.lang.String urlTitle,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_UT_First(groupId, kbFolderId, urlTitle,
 			orderByComparator);
@@ -6829,7 +6831,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_KBFI_UT_Last(long groupId, long kbFolderId,
 		java.lang.String urlTitle,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_UT_Last(groupId, kbFolderId, urlTitle,
 			orderByComparator);
@@ -6866,7 +6868,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_KBFI_UT_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, java.lang.String urlTitle,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_UT_PrevAndNext(kbArticleId, groupId,
 			kbFolderId, urlTitle, orderByComparator);
@@ -6945,7 +6947,7 @@ public class KBArticleUtil {
 		long kbArticleId, long groupId, long kbFolderId,
 		java.lang.String urlTitle,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_KBFI_UT_PrevAndNext(kbArticleId, groupId,
 			kbFolderId, urlTitle, orderByComparator);
@@ -7083,7 +7085,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_KBFI_S_First(long groupId, long kbFolderId,
 		int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_S_First(groupId, kbFolderId, status,
 			orderByComparator);
@@ -7118,7 +7120,7 @@ public class KBArticleUtil {
 	*/
 	public static KBArticle findByG_KBFI_S_Last(long groupId, long kbFolderId,
 		int status, OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_S_Last(groupId, kbFolderId, status,
 			orderByComparator);
@@ -7154,7 +7156,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_KBFI_S_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_S_PrevAndNext(kbArticleId, groupId,
 			kbFolderId, status, orderByComparator);
@@ -7230,7 +7232,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_KBFI_S_PrevAndNext(
 		long kbArticleId, long groupId, long kbFolderId, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_KBFI_S_PrevAndNext(kbArticleId, groupId,
 			kbFolderId, status, orderByComparator);
@@ -7368,7 +7370,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_S_L_First(long groupId,
 		java.lang.String sections, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_L_First(groupId, sections, latest,
 			orderByComparator);
@@ -7404,7 +7406,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_S_L_Last(long groupId,
 		java.lang.String sections, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_L_Last(groupId, sections, latest,
 			orderByComparator);
@@ -7441,7 +7443,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_S_L_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_L_PrevAndNext(kbArticleId, groupId, sections,
 			latest, orderByComparator);
@@ -7517,7 +7519,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_S_L_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_S_L_PrevAndNext(kbArticleId, groupId,
 			sections, latest, orderByComparator);
@@ -7821,7 +7823,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_S_M_First(long groupId,
 		java.lang.String sections, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_M_First(groupId, sections, main, orderByComparator);
 	}
@@ -7856,7 +7858,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_S_M_Last(long groupId,
 		java.lang.String sections, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_M_Last(groupId, sections, main, orderByComparator);
 	}
@@ -7891,7 +7893,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_S_M_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_M_PrevAndNext(kbArticleId, groupId, sections,
 			main, orderByComparator);
@@ -7967,7 +7969,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_S_M_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_S_M_PrevAndNext(kbArticleId, groupId,
 			sections, main, orderByComparator);
@@ -8272,7 +8274,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_S_S_First(long groupId,
 		java.lang.String sections, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_S_First(groupId, sections, status,
 			orderByComparator);
@@ -8308,7 +8310,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_S_S_Last(long groupId,
 		java.lang.String sections, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_S_Last(groupId, sections, status,
 			orderByComparator);
@@ -8345,7 +8347,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_S_S_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_S_S_PrevAndNext(kbArticleId, groupId, sections,
 			status, orderByComparator);
@@ -8421,7 +8423,7 @@ public class KBArticleUtil {
 	public static KBArticle[] filterFindByG_S_S_PrevAndNext(long kbArticleId,
 		long groupId, java.lang.String sections, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_S_S_PrevAndNext(kbArticleId, groupId,
 			sections, status, orderByComparator);
@@ -8734,7 +8736,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_KBFI_UT_ST_First(long groupId,
 		long kbFolderId, java.lang.String urlTitle, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_UT_ST_First(groupId, kbFolderId, urlTitle,
 			status, orderByComparator);
@@ -8772,7 +8774,7 @@ public class KBArticleUtil {
 	public static KBArticle findByG_KBFI_UT_ST_Last(long groupId,
 		long kbFolderId, java.lang.String urlTitle, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_UT_ST_Last(groupId, kbFolderId, urlTitle,
 			status, orderByComparator);
@@ -8811,7 +8813,7 @@ public class KBArticleUtil {
 	public static KBArticle[] findByG_KBFI_UT_ST_PrevAndNext(long kbArticleId,
 		long groupId, long kbFolderId, java.lang.String urlTitle, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .findByG_KBFI_UT_ST_PrevAndNext(kbArticleId, groupId,
 			kbFolderId, urlTitle, status, orderByComparator);
@@ -8896,7 +8898,7 @@ public class KBArticleUtil {
 		long kbArticleId, long groupId, long kbFolderId,
 		java.lang.String urlTitle, int status,
 		OrderByComparator<KBArticle> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence()
 				   .filterFindByG_KBFI_UT_ST_PrevAndNext(kbArticleId, groupId,
 			kbFolderId, urlTitle, status, orderByComparator);
@@ -9169,7 +9171,7 @@ public class KBArticleUtil {
 	* @throws NoSuchArticleException if a k b article with the primary key could not be found
 	*/
 	public static KBArticle remove(long kbArticleId)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().remove(kbArticleId);
 	}
 
@@ -9185,7 +9187,7 @@ public class KBArticleUtil {
 	* @throws NoSuchArticleException if a k b article with the primary key could not be found
 	*/
 	public static KBArticle findByPrimaryKey(long kbArticleId)
-		throws com.liferay.knowledgebase.NoSuchArticleException {
+		throws com.liferay.knowledgebase.exception.NoSuchArticleException {
 		return getPersistence().findByPrimaryKey(kbArticleId);
 	}
 

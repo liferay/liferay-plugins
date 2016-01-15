@@ -70,7 +70,7 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	* @throws NoSuchAssetException if a asset with the primary key could not be found
 	*/
 	public Asset remove(long assetId)
-		throws com.liferay.ams.NoSuchAssetException;
+		throws com.liferay.ams.exception.NoSuchAssetException;
 
 	public Asset updateImpl(Asset asset);
 
@@ -82,7 +82,7 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	* @throws NoSuchAssetException if a asset with the primary key could not be found
 	*/
 	public Asset findByPrimaryKey(long assetId)
-		throws com.liferay.ams.NoSuchAssetException;
+		throws com.liferay.ams.exception.NoSuchAssetException;
 
 	/**
 	* Returns the asset with the primary key or returns <code>null</code> if it could not be found.

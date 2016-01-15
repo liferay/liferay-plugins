@@ -109,7 +109,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	*/
 	public FavoriteSite findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<FavoriteSite> orderByComparator)
-		throws com.liferay.so.NoSuchFavoriteSiteException;
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException;
 
 	/**
 	* Returns the first favorite site in the ordered set where userId = &#63;.
@@ -131,7 +131,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	*/
 	public FavoriteSite findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<FavoriteSite> orderByComparator)
-		throws com.liferay.so.NoSuchFavoriteSiteException;
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException;
 
 	/**
 	* Returns the last favorite site in the ordered set where userId = &#63;.
@@ -155,7 +155,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	public FavoriteSite[] findByUserId_PrevAndNext(long favoriteSiteId,
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<FavoriteSite> orderByComparator)
-		throws com.liferay.so.NoSuchFavoriteSiteException;
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException;
 
 	/**
 	* Removes all the favorite sites where userId = &#63; from the database.
@@ -181,7 +181,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @throws NoSuchFavoriteSiteException if a matching favorite site could not be found
 	*/
 	public FavoriteSite findByG_U(long groupId, long userId)
-		throws com.liferay.so.NoSuchFavoriteSiteException;
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException;
 
 	/**
 	* Returns the favorite site where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -211,7 +211,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @return the favorite site that was removed
 	*/
 	public FavoriteSite removeByG_U(long groupId, long userId)
-		throws com.liferay.so.NoSuchFavoriteSiteException;
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException;
 
 	/**
 	* Returns the number of favorite sites where groupId = &#63; and userId = &#63;.
@@ -252,7 +252,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	*/
 	public FavoriteSite remove(long favoriteSiteId)
-		throws com.liferay.so.NoSuchFavoriteSiteException;
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException;
 
 	public FavoriteSite updateImpl(FavoriteSite favoriteSite);
 
@@ -264,7 +264,7 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	* @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	*/
 	public FavoriteSite findByPrimaryKey(long favoriteSiteId)
-		throws com.liferay.so.NoSuchFavoriteSiteException;
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException;
 
 	/**
 	* Returns the favorite site with the primary key or returns <code>null</code> if it could not be found.

@@ -37,7 +37,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextThreadLocal;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.socialcoding.NoSuchJIRAIssueException;
+import com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.model.impl.JIRAIssueImpl;
 import com.liferay.socialcoding.model.impl.JIRAIssueModelImpl;

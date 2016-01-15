@@ -114,7 +114,7 @@ public class StatusUtil {
 	* @throws NoSuchStatusException if a matching status could not be found
 	*/
 	public static Status findByUserId(long userId)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -146,7 +146,7 @@ public class StatusUtil {
 	* @return the status that was removed
 	*/
 	public static Status removeByUserId(long userId)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence().removeByUserId(userId);
 	}
 
@@ -239,7 +239,7 @@ public class StatusUtil {
 	*/
 	public static Status findByModifiedDate_First(long modifiedDate,
 		OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence()
 				   .findByModifiedDate_First(modifiedDate, orderByComparator);
 	}
@@ -267,7 +267,7 @@ public class StatusUtil {
 	*/
 	public static Status findByModifiedDate_Last(long modifiedDate,
 		OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence()
 				   .findByModifiedDate_Last(modifiedDate, orderByComparator);
 	}
@@ -296,7 +296,7 @@ public class StatusUtil {
 	*/
 	public static Status[] findByModifiedDate_PrevAndNext(long statusId,
 		long modifiedDate, OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence()
 				   .findByModifiedDate_PrevAndNext(statusId, modifiedDate,
 			orderByComparator);
@@ -397,7 +397,7 @@ public class StatusUtil {
 	*/
 	public static Status findByOnline_First(boolean online,
 		OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence().findByOnline_First(online, orderByComparator);
 	}
 
@@ -423,7 +423,7 @@ public class StatusUtil {
 	*/
 	public static Status findByOnline_Last(boolean online,
 		OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence().findByOnline_Last(online, orderByComparator);
 	}
 
@@ -450,7 +450,7 @@ public class StatusUtil {
 	*/
 	public static Status[] findByOnline_PrevAndNext(long statusId,
 		boolean online, OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence()
 				   .findByOnline_PrevAndNext(statusId, online, orderByComparator);
 	}
@@ -558,7 +558,7 @@ public class StatusUtil {
 	*/
 	public static Status findByM_O_First(long modifiedDate, boolean online,
 		OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence()
 				   .findByM_O_First(modifiedDate, online, orderByComparator);
 	}
@@ -588,7 +588,7 @@ public class StatusUtil {
 	*/
 	public static Status findByM_O_Last(long modifiedDate, boolean online,
 		OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence()
 				   .findByM_O_Last(modifiedDate, online, orderByComparator);
 	}
@@ -620,7 +620,7 @@ public class StatusUtil {
 	public static Status[] findByM_O_PrevAndNext(long statusId,
 		long modifiedDate, boolean online,
 		OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence()
 				   .findByM_O_PrevAndNext(statusId, modifiedDate, online,
 			orderByComparator);
@@ -683,7 +683,7 @@ public class StatusUtil {
 	* @throws NoSuchStatusException if a status with the primary key could not be found
 	*/
 	public static Status remove(long statusId)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence().remove(statusId);
 	}
 
@@ -699,7 +699,7 @@ public class StatusUtil {
 	* @throws NoSuchStatusException if a status with the primary key could not be found
 	*/
 	public static Status findByPrimaryKey(long statusId)
-		throws com.liferay.chat.NoSuchStatusException {
+		throws com.liferay.chat.exception.NoSuchStatusException {
 		return getPersistence().findByPrimaryKey(statusId);
 	}
 

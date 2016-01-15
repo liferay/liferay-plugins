@@ -117,7 +117,7 @@ public class MemberRequestUtil {
 	* @throws NoSuchMemberRequestException if a matching member request could not be found
 	*/
 	public static MemberRequest findByKey(java.lang.String key)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence().findByKey(key);
 	}
 
@@ -150,7 +150,7 @@ public class MemberRequestUtil {
 	* @return the member request that was removed
 	*/
 	public static MemberRequest removeByKey(java.lang.String key)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence().removeByKey(key);
 	}
 
@@ -245,7 +245,7 @@ public class MemberRequestUtil {
 	*/
 	public static MemberRequest findByReceiverUserId_First(
 		long receiverUserId, OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByReceiverUserId_First(receiverUserId, orderByComparator);
 	}
@@ -274,7 +274,7 @@ public class MemberRequestUtil {
 	*/
 	public static MemberRequest findByReceiverUserId_Last(long receiverUserId,
 		OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByReceiverUserId_Last(receiverUserId, orderByComparator);
 	}
@@ -304,7 +304,7 @@ public class MemberRequestUtil {
 	public static MemberRequest[] findByReceiverUserId_PrevAndNext(
 		long memberRequestId, long receiverUserId,
 		OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByReceiverUserId_PrevAndNext(memberRequestId,
 			receiverUserId, orderByComparator);
@@ -415,7 +415,7 @@ public class MemberRequestUtil {
 	*/
 	public static MemberRequest findByR_S_First(long receiverUserId,
 		int status, OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByR_S_First(receiverUserId, status, orderByComparator);
 	}
@@ -445,7 +445,7 @@ public class MemberRequestUtil {
 	*/
 	public static MemberRequest findByR_S_Last(long receiverUserId, int status,
 		OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByR_S_Last(receiverUserId, status, orderByComparator);
 	}
@@ -477,7 +477,7 @@ public class MemberRequestUtil {
 	public static MemberRequest[] findByR_S_PrevAndNext(long memberRequestId,
 		long receiverUserId, int status,
 		OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence()
 				   .findByR_S_PrevAndNext(memberRequestId, receiverUserId,
 			status, orderByComparator);
@@ -514,7 +514,8 @@ public class MemberRequestUtil {
 	* @throws NoSuchMemberRequestException if a matching member request could not be found
 	*/
 	public static MemberRequest findByG_R_S(long groupId, long receiverUserId,
-		int status) throws com.liferay.so.NoSuchMemberRequestException {
+		int status)
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence().findByG_R_S(groupId, receiverUserId, status);
 	}
 
@@ -557,7 +558,7 @@ public class MemberRequestUtil {
 	*/
 	public static MemberRequest removeByG_R_S(long groupId,
 		long receiverUserId, int status)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence().removeByG_R_S(groupId, receiverUserId, status);
 	}
 
@@ -609,7 +610,7 @@ public class MemberRequestUtil {
 	* @throws NoSuchMemberRequestException if a member request with the primary key could not be found
 	*/
 	public static MemberRequest remove(long memberRequestId)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence().remove(memberRequestId);
 	}
 
@@ -625,7 +626,7 @@ public class MemberRequestUtil {
 	* @throws NoSuchMemberRequestException if a member request with the primary key could not be found
 	*/
 	public static MemberRequest findByPrimaryKey(long memberRequestId)
-		throws com.liferay.so.NoSuchMemberRequestException {
+		throws com.liferay.so.exception.NoSuchMemberRequestException {
 		return getPersistence().findByPrimaryKey(memberRequestId);
 	}
 

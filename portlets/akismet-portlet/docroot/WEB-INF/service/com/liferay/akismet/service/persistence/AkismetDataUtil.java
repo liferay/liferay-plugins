@@ -192,7 +192,7 @@ public class AkismetDataUtil {
 	public static AkismetData findByLtModifiedDate_First(
 		java.util.Date modifiedDate,
 		OrderByComparator<AkismetData> orderByComparator)
-		throws com.liferay.akismet.NoSuchDataException {
+		throws com.liferay.akismet.exception.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_First(modifiedDate, orderByComparator);
 	}
@@ -222,7 +222,7 @@ public class AkismetDataUtil {
 	public static AkismetData findByLtModifiedDate_Last(
 		java.util.Date modifiedDate,
 		OrderByComparator<AkismetData> orderByComparator)
-		throws com.liferay.akismet.NoSuchDataException {
+		throws com.liferay.akismet.exception.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_Last(modifiedDate, orderByComparator);
 	}
@@ -253,7 +253,7 @@ public class AkismetDataUtil {
 	public static AkismetData[] findByLtModifiedDate_PrevAndNext(
 		long akismetDataId, java.util.Date modifiedDate,
 		OrderByComparator<AkismetData> orderByComparator)
-		throws com.liferay.akismet.NoSuchDataException {
+		throws com.liferay.akismet.exception.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_PrevAndNext(akismetDataId,
 			modifiedDate, orderByComparator);
@@ -287,7 +287,7 @@ public class AkismetDataUtil {
 	* @throws NoSuchDataException if a matching akismet data could not be found
 	*/
 	public static AkismetData findByC_C(long classNameId, long classPK)
-		throws com.liferay.akismet.NoSuchDataException {
+		throws com.liferay.akismet.exception.NoSuchDataException {
 		return getPersistence().findByC_C(classNameId, classPK);
 	}
 
@@ -324,7 +324,7 @@ public class AkismetDataUtil {
 	* @return the akismet data that was removed
 	*/
 	public static AkismetData removeByC_C(long classNameId, long classPK)
-		throws com.liferay.akismet.NoSuchDataException {
+		throws com.liferay.akismet.exception.NoSuchDataException {
 		return getPersistence().removeByC_C(classNameId, classPK);
 	}
 
@@ -375,7 +375,7 @@ public class AkismetDataUtil {
 	* @throws NoSuchDataException if a akismet data with the primary key could not be found
 	*/
 	public static AkismetData remove(long akismetDataId)
-		throws com.liferay.akismet.NoSuchDataException {
+		throws com.liferay.akismet.exception.NoSuchDataException {
 		return getPersistence().remove(akismetDataId);
 	}
 
@@ -391,7 +391,7 @@ public class AkismetDataUtil {
 	* @throws NoSuchDataException if a akismet data with the primary key could not be found
 	*/
 	public static AkismetData findByPrimaryKey(long akismetDataId)
-		throws com.liferay.akismet.NoSuchDataException {
+		throws com.liferay.akismet.exception.NoSuchDataException {
 		return getPersistence().findByPrimaryKey(akismetDataId);
 	}
 

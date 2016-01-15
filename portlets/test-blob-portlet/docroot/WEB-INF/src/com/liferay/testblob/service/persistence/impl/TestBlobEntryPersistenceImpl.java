@@ -36,7 +36,7 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.testblob.NoSuchEntryException;
+import com.liferay.testblob.exception.NoSuchEntryException;
 import com.liferay.testblob.model.TestBlobEntry;
 import com.liferay.testblob.model.impl.TestBlobEntryImpl;
 import com.liferay.testblob.model.impl.TestBlobEntryModelImpl;

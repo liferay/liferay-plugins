@@ -35,7 +35,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+import com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
 import com.liferay.socialcoding.model.JIRAChangeGroup;
 import com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl;
 import com.liferay.socialcoding.model.impl.JIRAChangeGroupModelImpl;

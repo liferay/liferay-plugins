@@ -190,7 +190,7 @@ public class JIRAActionUtil {
 	public static JIRAAction findByJiraUserId_First(
 		java.lang.String jiraUserId,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence()
 				   .findByJiraUserId_First(jiraUserId, orderByComparator);
 	}
@@ -220,7 +220,7 @@ public class JIRAActionUtil {
 	public static JIRAAction findByJiraUserId_Last(
 		java.lang.String jiraUserId,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence()
 				   .findByJiraUserId_Last(jiraUserId, orderByComparator);
 	}
@@ -251,7 +251,7 @@ public class JIRAActionUtil {
 	public static JIRAAction[] findByJiraUserId_PrevAndNext(long jiraActionId,
 		java.lang.String jiraUserId,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence()
 				   .findByJiraUserId_PrevAndNext(jiraActionId, jiraUserId,
 			orderByComparator);
@@ -354,7 +354,7 @@ public class JIRAActionUtil {
 	*/
 	public static JIRAAction findByJiraIssueId_First(long jiraIssueId,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence()
 				   .findByJiraIssueId_First(jiraIssueId, orderByComparator);
 	}
@@ -382,7 +382,7 @@ public class JIRAActionUtil {
 	*/
 	public static JIRAAction findByJiraIssueId_Last(long jiraIssueId,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence()
 				   .findByJiraIssueId_Last(jiraIssueId, orderByComparator);
 	}
@@ -412,7 +412,7 @@ public class JIRAActionUtil {
 	public static JIRAAction[] findByJiraIssueId_PrevAndNext(
 		long jiraActionId, long jiraIssueId,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence()
 				   .findByJiraIssueId_PrevAndNext(jiraActionId, jiraIssueId,
 			orderByComparator);
@@ -514,7 +514,7 @@ public class JIRAActionUtil {
 	*/
 	public static JIRAAction findByType_First(java.lang.String type,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence().findByType_First(type, orderByComparator);
 	}
 
@@ -540,7 +540,7 @@ public class JIRAActionUtil {
 	*/
 	public static JIRAAction findByType_Last(java.lang.String type,
 		OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence().findByType_Last(type, orderByComparator);
 	}
 
@@ -567,7 +567,7 @@ public class JIRAActionUtil {
 	*/
 	public static JIRAAction[] findByType_PrevAndNext(long jiraActionId,
 		java.lang.String type, OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence()
 				   .findByType_PrevAndNext(jiraActionId, type, orderByComparator);
 	}
@@ -627,7 +627,7 @@ public class JIRAActionUtil {
 	* @throws NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	*/
 	public static JIRAAction remove(long jiraActionId)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence().remove(jiraActionId);
 	}
 
@@ -643,7 +643,7 @@ public class JIRAActionUtil {
 	* @throws NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	*/
 	public static JIRAAction findByPrimaryKey(long jiraActionId)
-		throws com.liferay.socialcoding.NoSuchJIRAActionException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException {
 		return getPersistence().findByPrimaryKey(jiraActionId);
 	}
 

@@ -49,7 +49,7 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @throws NoSuchFeedException if a matching feed could not be found
 	*/
 	public Feed findByU_TSN(long userId, java.lang.String twitterScreenName)
-		throws com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.exception.NoSuchFeedException;
 
 	/**
 	* Returns the feed where userId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -79,7 +79,7 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @return the feed that was removed
 	*/
 	public Feed removeByU_TSN(long userId, java.lang.String twitterScreenName)
-		throws com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.exception.NoSuchFeedException;
 
 	/**
 	* Returns the number of feeds where userId = &#63; and twitterScreenName = &#63;.
@@ -120,7 +120,7 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @throws NoSuchFeedException if a feed with the primary key could not be found
 	*/
 	public Feed remove(long feedId)
-		throws com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.exception.NoSuchFeedException;
 
 	public Feed updateImpl(Feed feed);
 
@@ -132,7 +132,7 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @throws NoSuchFeedException if a feed with the primary key could not be found
 	*/
 	public Feed findByPrimaryKey(long feedId)
-		throws com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.exception.NoSuchFeedException;
 
 	/**
 	* Returns the feed with the primary key or returns <code>null</code> if it could not be found.

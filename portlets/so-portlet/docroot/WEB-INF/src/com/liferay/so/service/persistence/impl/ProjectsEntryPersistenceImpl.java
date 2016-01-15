@@ -39,7 +39,7 @@ import com.liferay.portal.service.persistence.CompanyProvider;
 import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.so.NoSuchProjectsEntryException;
+import com.liferay.so.exception.NoSuchProjectsEntryException;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.model.impl.ProjectsEntryImpl;
 import com.liferay.so.model.impl.ProjectsEntryModelImpl;

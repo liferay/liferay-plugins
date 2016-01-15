@@ -109,7 +109,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public KBTemplate findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the first k b template in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public KBTemplate findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the last k b template in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	public KBTemplate[] findByUuid_PrevAndNext(long kbTemplateId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Removes all the k b templates where uuid = &#63; from the database.
@@ -181,7 +181,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
 	public KBTemplate findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the k b template where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -211,7 +211,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	* @return the k b template that was removed
 	*/
 	public KBTemplate removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the number of k b templates where uuid = &#63; and groupId = &#63;.
@@ -297,7 +297,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public KBTemplate findByUuid_C_First(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the first k b template in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -322,7 +322,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public KBTemplate findByUuid_C_Last(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the last k b template in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -348,7 +348,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	public KBTemplate[] findByUuid_C_PrevAndNext(long kbTemplateId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Removes all the k b templates where uuid = &#63; and companyId = &#63; from the database.
@@ -436,7 +436,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public KBTemplate findByGroupId_First(long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the first k b template in the ordered set where groupId = &#63;.
@@ -458,7 +458,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	*/
 	public KBTemplate findByGroupId_Last(long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the last k b template in the ordered set where groupId = &#63;.
@@ -482,7 +482,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	public KBTemplate[] findByGroupId_PrevAndNext(long kbTemplateId,
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns all the k b templates that the user has permission to view where groupId = &#63;.
@@ -536,7 +536,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	public KBTemplate[] filterFindByGroupId_PrevAndNext(long kbTemplateId,
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Removes all the k b templates where groupId = &#63; from the database.
@@ -591,7 +591,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
 	public KBTemplate remove(long kbTemplateId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	public KBTemplate updateImpl(KBTemplate kbTemplate);
 
@@ -603,7 +603,7 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
 	public KBTemplate findByPrimaryKey(long kbTemplateId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException;
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException;
 
 	/**
 	* Returns the k b template with the primary key or returns <code>null</code> if it could not be found.

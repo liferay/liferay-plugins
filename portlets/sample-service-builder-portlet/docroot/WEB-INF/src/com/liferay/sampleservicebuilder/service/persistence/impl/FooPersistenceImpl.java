@@ -41,7 +41,7 @@ import com.liferay.portal.service.persistence.CompanyProvider;
 import com.liferay.portal.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.sampleservicebuilder.NoSuchFooException;
+import com.liferay.sampleservicebuilder.exception.NoSuchFooException;
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.model.impl.FooImpl;
 import com.liferay.sampleservicebuilder.model.impl.FooModelImpl;

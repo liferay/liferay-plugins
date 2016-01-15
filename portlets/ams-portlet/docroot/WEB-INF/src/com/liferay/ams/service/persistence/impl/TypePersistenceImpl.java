@@ -16,7 +16,7 @@ package com.liferay.ams.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.ams.NoSuchTypeException;
+import com.liferay.ams.exception.NoSuchTypeException;
 import com.liferay.ams.model.Type;
 import com.liferay.ams.model.impl.TypeImpl;
 import com.liferay.ams.model.impl.TypeModelImpl;

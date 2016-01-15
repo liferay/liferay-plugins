@@ -185,7 +185,7 @@ public class MessageUtil {
 	*/
 	public static Message findByCompanyId_First(long companyId,
 		OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -213,7 +213,7 @@ public class MessageUtil {
 	*/
 	public static Message findByCompanyId_Last(long companyId,
 		OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -242,7 +242,7 @@ public class MessageUtil {
 	*/
 	public static Message[] findByCompanyId_PrevAndNext(long messageId,
 		long companyId, OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(messageId, companyId,
 			orderByComparator);
@@ -344,7 +344,7 @@ public class MessageUtil {
 	*/
 	public static Message findByFolderId_First(long folderId,
 		OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence().findByFolderId_First(folderId, orderByComparator);
 	}
 
@@ -371,7 +371,7 @@ public class MessageUtil {
 	*/
 	public static Message findByFolderId_Last(long folderId,
 		OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence().findByFolderId_Last(folderId, orderByComparator);
 	}
 
@@ -398,7 +398,7 @@ public class MessageUtil {
 	*/
 	public static Message[] findByFolderId_PrevAndNext(long messageId,
 		long folderId, OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence()
 				   .findByFolderId_PrevAndNext(messageId, folderId,
 			orderByComparator);
@@ -432,7 +432,7 @@ public class MessageUtil {
 	* @throws NoSuchMessageException if a matching message could not be found
 	*/
 	public static Message findByF_R(long folderId, long remoteMessageId)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence().findByF_R(folderId, remoteMessageId);
 	}
 
@@ -469,7 +469,7 @@ public class MessageUtil {
 	* @return the message that was removed
 	*/
 	public static Message removeByF_R(long folderId, long remoteMessageId)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence().removeByF_R(folderId, remoteMessageId);
 	}
 
@@ -520,7 +520,7 @@ public class MessageUtil {
 	* @throws NoSuchMessageException if a message with the primary key could not be found
 	*/
 	public static Message remove(long messageId)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence().remove(messageId);
 	}
 
@@ -536,7 +536,7 @@ public class MessageUtil {
 	* @throws NoSuchMessageException if a message with the primary key could not be found
 	*/
 	public static Message findByPrimaryKey(long messageId)
-		throws com.liferay.mail.NoSuchMessageException {
+		throws com.liferay.mail.exception.NoSuchMessageException {
 		return getPersistence().findByPrimaryKey(messageId);
 	}
 

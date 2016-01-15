@@ -187,7 +187,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByGroupId_First(long groupId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -213,7 +213,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByGroupId_Last(long groupId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -240,7 +240,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry[] findByGroupId_PrevAndNext(long tasksEntryId,
 		long groupId, OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(tasksEntryId, groupId,
 			orderByComparator);
@@ -304,7 +304,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] filterFindByGroupId_PrevAndNext(
 		long tasksEntryId, long groupId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .filterFindByGroupId_PrevAndNext(tasksEntryId, groupId,
 			orderByComparator);
@@ -416,7 +416,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByUserId_First(long userId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -442,7 +442,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByUserId_Last(long userId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -469,7 +469,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry[] findByUserId_PrevAndNext(long tasksEntryId,
 		long userId, OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(tasksEntryId, userId,
 			orderByComparator);
@@ -573,7 +573,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByAssigneeUserId_First(long assigneeUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByAssigneeUserId_First(assigneeUserId, orderByComparator);
 	}
@@ -602,7 +602,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByAssigneeUserId_Last(long assigneeUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByAssigneeUserId_Last(assigneeUserId, orderByComparator);
 	}
@@ -632,7 +632,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByAssigneeUserId_PrevAndNext(
 		long tasksEntryId, long assigneeUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByAssigneeUserId_PrevAndNext(tasksEntryId,
 			assigneeUserId, orderByComparator);
@@ -736,7 +736,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByResolverUserId_First(long resolverUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByResolverUserId_First(resolverUserId, orderByComparator);
 	}
@@ -765,7 +765,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByResolverUserId_Last(long resolverUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByResolverUserId_Last(resolverUserId, orderByComparator);
 	}
@@ -795,7 +795,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByResolverUserId_PrevAndNext(
 		long tasksEntryId, long resolverUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByResolverUserId_PrevAndNext(tasksEntryId,
 			resolverUserId, orderByComparator);
@@ -903,7 +903,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_U_First(long groupId, long userId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_U_First(groupId, userId, orderByComparator);
 	}
@@ -933,7 +933,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_U_Last(long groupId, long userId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_U_Last(groupId, userId, orderByComparator);
 	}
@@ -965,7 +965,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByG_U_PrevAndNext(long tasksEntryId,
 		long groupId, long userId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_U_PrevAndNext(tasksEntryId, groupId, userId,
 			orderByComparator);
@@ -1034,7 +1034,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] filterFindByG_U_PrevAndNext(long tasksEntryId,
 		long groupId, long userId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .filterFindByG_U_PrevAndNext(tasksEntryId, groupId, userId,
 			orderByComparator);
@@ -1156,7 +1156,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_A_First(long groupId, long assigneeUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_A_First(groupId, assigneeUserId, orderByComparator);
 	}
@@ -1186,7 +1186,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_A_Last(long groupId, long assigneeUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_A_Last(groupId, assigneeUserId, orderByComparator);
 	}
@@ -1218,7 +1218,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByG_A_PrevAndNext(long tasksEntryId,
 		long groupId, long assigneeUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_A_PrevAndNext(tasksEntryId, groupId,
 			assigneeUserId, orderByComparator);
@@ -1290,7 +1290,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] filterFindByG_A_PrevAndNext(long tasksEntryId,
 		long groupId, long assigneeUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .filterFindByG_A_PrevAndNext(tasksEntryId, groupId,
 			assigneeUserId, orderByComparator);
@@ -1412,7 +1412,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_R_First(long groupId, long resolverUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_R_First(groupId, resolverUserId, orderByComparator);
 	}
@@ -1442,7 +1442,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_R_Last(long groupId, long resolverUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_R_Last(groupId, resolverUserId, orderByComparator);
 	}
@@ -1474,7 +1474,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByG_R_PrevAndNext(long tasksEntryId,
 		long groupId, long resolverUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_R_PrevAndNext(tasksEntryId, groupId,
 			resolverUserId, orderByComparator);
@@ -1546,7 +1546,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] filterFindByG_R_PrevAndNext(long tasksEntryId,
 		long groupId, long resolverUserId,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .filterFindByG_R_PrevAndNext(tasksEntryId, groupId,
 			resolverUserId, orderByComparator);
@@ -1667,7 +1667,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByU_S_First(long userId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByU_S_First(userId, status, orderByComparator);
 	}
@@ -1697,7 +1697,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByU_S_Last(long userId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence().findByU_S_Last(userId, status, orderByComparator);
 	}
 
@@ -1727,7 +1727,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry[] findByU_S_PrevAndNext(long tasksEntryId,
 		long userId, int status, OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByU_S_PrevAndNext(tasksEntryId, userId, status,
 			orderByComparator);
@@ -1925,7 +1925,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByA_S_First(long assigneeUserId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByA_S_First(assigneeUserId, status, orderByComparator);
 	}
@@ -1955,7 +1955,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByA_S_Last(long assigneeUserId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByA_S_Last(assigneeUserId, status, orderByComparator);
 	}
@@ -1987,7 +1987,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByA_S_PrevAndNext(long tasksEntryId,
 		long assigneeUserId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByA_S_PrevAndNext(tasksEntryId, assigneeUserId, status,
 			orderByComparator);
@@ -2196,7 +2196,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_U_S_First(long groupId, long userId,
 		int status, OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_U_S_First(groupId, userId, status, orderByComparator);
 	}
@@ -2229,7 +2229,7 @@ public class TasksEntryUtil {
 	*/
 	public static TasksEntry findByG_U_S_Last(long groupId, long userId,
 		int status, OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_U_S_Last(groupId, userId, status, orderByComparator);
 	}
@@ -2263,7 +2263,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByG_U_S_PrevAndNext(long tasksEntryId,
 		long groupId, long userId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_U_S_PrevAndNext(tasksEntryId, groupId, userId,
 			status, orderByComparator);
@@ -2339,7 +2339,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] filterFindByG_U_S_PrevAndNext(
 		long tasksEntryId, long groupId, long userId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .filterFindByG_U_S_PrevAndNext(tasksEntryId, groupId,
 			userId, status, orderByComparator);
@@ -2640,7 +2640,7 @@ public class TasksEntryUtil {
 	public static TasksEntry findByG_A_S_First(long groupId,
 		long assigneeUserId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_A_S_First(groupId, assigneeUserId, status,
 			orderByComparator);
@@ -2676,7 +2676,7 @@ public class TasksEntryUtil {
 	public static TasksEntry findByG_A_S_Last(long groupId,
 		long assigneeUserId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_A_S_Last(groupId, assigneeUserId, status,
 			orderByComparator);
@@ -2713,7 +2713,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] findByG_A_S_PrevAndNext(long tasksEntryId,
 		long groupId, long assigneeUserId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .findByG_A_S_PrevAndNext(tasksEntryId, groupId,
 			assigneeUserId, status, orderByComparator);
@@ -2791,7 +2791,7 @@ public class TasksEntryUtil {
 	public static TasksEntry[] filterFindByG_A_S_PrevAndNext(
 		long tasksEntryId, long groupId, long assigneeUserId, int status,
 		OrderByComparator<TasksEntry> orderByComparator)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence()
 				   .filterFindByG_A_S_PrevAndNext(tasksEntryId, groupId,
 			assigneeUserId, status, orderByComparator);
@@ -3041,7 +3041,7 @@ public class TasksEntryUtil {
 	* @throws NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	*/
 	public static TasksEntry remove(long tasksEntryId)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence().remove(tasksEntryId);
 	}
 
@@ -3057,7 +3057,7 @@ public class TasksEntryUtil {
 	* @throws NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	*/
 	public static TasksEntry findByPrimaryKey(long tasksEntryId)
-		throws com.liferay.tasks.NoSuchTasksEntryException {
+		throws com.liferay.tasks.exception.NoSuchTasksEntryException {
 		return getPersistence().findByPrimaryKey(tasksEntryId);
 	}
 

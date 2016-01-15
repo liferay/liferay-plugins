@@ -578,44 +578,44 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.socialcoding.NoSuchJIRAActionException")) {
-			return new com.liferay.socialcoding.NoSuchJIRAActionException(throwable.getMessage(),
+					"com.liferay.socialcoding.exception.NoSuchJIRAActionException")) {
+			return new com.liferay.socialcoding.exception.NoSuchJIRAActionException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.socialcoding.NoSuchJIRAChangeGroupException")) {
-			return new com.liferay.socialcoding.NoSuchJIRAChangeGroupException(throwable.getMessage(),
+					"com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException")) {
+			return new com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.socialcoding.NoSuchJIRAChangeItemException")) {
-			return new com.liferay.socialcoding.NoSuchJIRAChangeItemException(throwable.getMessage(),
+					"com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException")) {
+			return new com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.socialcoding.NoSuchJIRAIssueException")) {
-			return new com.liferay.socialcoding.NoSuchJIRAIssueException(throwable.getMessage(),
+					"com.liferay.socialcoding.exception.NoSuchJIRAIssueException")) {
+			return new com.liferay.socialcoding.exception.NoSuchJIRAIssueException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.socialcoding.NoSuchJIRAProjectException")) {
-			return new com.liferay.socialcoding.NoSuchJIRAProjectException(throwable.getMessage(),
+					"com.liferay.socialcoding.exception.NoSuchJIRAProjectException")) {
+			return new com.liferay.socialcoding.exception.NoSuchJIRAProjectException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.socialcoding.NoSuchSVNRepositoryException")) {
-			return new com.liferay.socialcoding.NoSuchSVNRepositoryException(throwable.getMessage(),
+					"com.liferay.socialcoding.exception.NoSuchSVNRepositoryException")) {
+			return new com.liferay.socialcoding.exception.NoSuchSVNRepositoryException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.socialcoding.NoSuchSVNRevisionException")) {
-			return new com.liferay.socialcoding.NoSuchSVNRevisionException(throwable.getMessage(),
+					"com.liferay.socialcoding.exception.NoSuchSVNRevisionException")) {
+			return new com.liferay.socialcoding.exception.NoSuchSVNRevisionException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

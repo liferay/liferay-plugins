@@ -183,7 +183,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget findByUuid_First(java.lang.String uuid,
 		OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -209,7 +209,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -236,7 +236,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget[] findByUuid_PrevAndNext(long gadgetId,
 		java.lang.String uuid, OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(gadgetId, uuid, orderByComparator);
 	}
@@ -298,7 +298,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget[] filterFindByUuid_PrevAndNext(long gadgetId,
 		java.lang.String uuid, OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .filterFindByUuid_PrevAndNext(gadgetId, uuid,
 			orderByComparator);
@@ -418,7 +418,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget findByUuid_C_First(java.lang.String uuid,
 		long companyId, OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -448,7 +448,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -480,7 +480,7 @@ public class GadgetUtil {
 	public static Gadget[] findByUuid_C_PrevAndNext(long gadgetId,
 		java.lang.String uuid, long companyId,
 		OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(gadgetId, uuid, companyId,
 			orderByComparator);
@@ -551,7 +551,7 @@ public class GadgetUtil {
 	public static Gadget[] filterFindByUuid_C_PrevAndNext(long gadgetId,
 		java.lang.String uuid, long companyId,
 		OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .filterFindByUuid_C_PrevAndNext(gadgetId, uuid, companyId,
 			orderByComparator);
@@ -667,7 +667,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget findByCompanyId_First(long companyId,
 		OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -695,7 +695,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget findByCompanyId_Last(long companyId,
 		OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -724,7 +724,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget[] findByCompanyId_PrevAndNext(long gadgetId,
 		long companyId, OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(gadgetId, companyId,
 			orderByComparator);
@@ -788,7 +788,7 @@ public class GadgetUtil {
 	*/
 	public static Gadget[] filterFindByCompanyId_PrevAndNext(long gadgetId,
 		long companyId, OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence()
 				   .filterFindByCompanyId_PrevAndNext(gadgetId, companyId,
 			orderByComparator);
@@ -832,7 +832,7 @@ public class GadgetUtil {
 	* @throws NoSuchGadgetException if a matching gadget could not be found
 	*/
 	public static Gadget findByC_U(long companyId, java.lang.String url)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence().findByC_U(companyId, url);
 	}
 
@@ -868,7 +868,7 @@ public class GadgetUtil {
 	* @return the gadget that was removed
 	*/
 	public static Gadget removeByC_U(long companyId, java.lang.String url)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence().removeByC_U(companyId, url);
 	}
 
@@ -919,7 +919,7 @@ public class GadgetUtil {
 	* @throws NoSuchGadgetException if a gadget with the primary key could not be found
 	*/
 	public static Gadget remove(long gadgetId)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence().remove(gadgetId);
 	}
 
@@ -935,7 +935,7 @@ public class GadgetUtil {
 	* @throws NoSuchGadgetException if a gadget with the primary key could not be found
 	*/
 	public static Gadget findByPrimaryKey(long gadgetId)
-		throws com.liferay.opensocial.NoSuchGadgetException {
+		throws com.liferay.opensocial.exception.NoSuchGadgetException {
 		return getPersistence().findByPrimaryKey(gadgetId);
 	}
 

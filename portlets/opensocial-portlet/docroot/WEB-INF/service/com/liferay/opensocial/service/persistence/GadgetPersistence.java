@@ -109,7 +109,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public Gadget findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the first gadget in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public Gadget findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the last gadget in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	public Gadget[] findByUuid_PrevAndNext(long gadgetId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns all the gadgets that the user has permission to view where uuid = &#63;.
@@ -209,7 +209,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	public Gadget[] filterFindByUuid_PrevAndNext(long gadgetId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Removes all the gadgets where uuid = &#63; from the database.
@@ -309,7 +309,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public Gadget findByUuid_C_First(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the first gadget in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -333,7 +333,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public Gadget findByUuid_C_Last(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the last gadget in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -359,7 +359,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	public Gadget[] findByUuid_C_PrevAndNext(long gadgetId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns all the gadgets that the user has permission to view where uuid = &#63; and companyId = &#63;.
@@ -418,7 +418,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	public Gadget[] filterFindByUuid_C_PrevAndNext(long gadgetId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Removes all the gadgets where uuid = &#63; and companyId = &#63; from the database.
@@ -515,7 +515,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public Gadget findByCompanyId_First(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the first gadget in the ordered set where companyId = &#63;.
@@ -537,7 +537,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public Gadget findByCompanyId_Last(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the last gadget in the ordered set where companyId = &#63;.
@@ -560,7 +560,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public Gadget[] findByCompanyId_PrevAndNext(long gadgetId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns all the gadgets that the user has permission to view where companyId = &#63;.
@@ -614,7 +614,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	public Gadget[] filterFindByCompanyId_PrevAndNext(long gadgetId,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Gadget> orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Removes all the gadgets where companyId = &#63; from the database.
@@ -648,7 +648,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @throws NoSuchGadgetException if a matching gadget could not be found
 	*/
 	public Gadget findByC_U(long companyId, java.lang.String url)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -678,7 +678,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @return the gadget that was removed
 	*/
 	public Gadget removeByC_U(long companyId, java.lang.String url)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the number of gadgets where companyId = &#63; and url = &#63;.
@@ -719,7 +719,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @throws NoSuchGadgetException if a gadget with the primary key could not be found
 	*/
 	public Gadget remove(long gadgetId)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	public Gadget updateImpl(Gadget gadget);
 
@@ -731,7 +731,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @throws NoSuchGadgetException if a gadget with the primary key could not be found
 	*/
 	public Gadget findByPrimaryKey(long gadgetId)
-		throws com.liferay.opensocial.NoSuchGadgetException;
+		throws com.liferay.opensocial.exception.NoSuchGadgetException;
 
 	/**
 	* Returns the gadget with the primary key or returns <code>null</code> if it could not be found.

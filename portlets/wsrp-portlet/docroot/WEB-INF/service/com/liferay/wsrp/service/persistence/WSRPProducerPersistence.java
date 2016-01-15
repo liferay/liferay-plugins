@@ -109,7 +109,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*/
 	public WSRPProducer findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the first w s r p producer in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*/
 	public WSRPProducer findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the last w s r p producer in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public WSRPProducer[] findByUuid_PrevAndNext(long wsrpProducerId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Removes all the w s r p producers where uuid = &#63; from the database.
@@ -181,7 +181,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @throws NoSuchProducerException if a matching w s r p producer could not be found
 	*/
 	public WSRPProducer findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the w s r p producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -211,7 +211,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @return the w s r p producer that was removed
 	*/
 	public WSRPProducer removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the number of w s r p producers where uuid = &#63; and groupId = &#63;.
@@ -298,7 +298,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public WSRPProducer findByUuid_C_First(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the first w s r p producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -324,7 +324,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public WSRPProducer findByUuid_C_Last(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the last w s r p producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -351,7 +351,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public WSRPProducer[] findByUuid_C_PrevAndNext(long wsrpProducerId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Removes all the w s r p producers where uuid = &#63; and companyId = &#63; from the database.
@@ -439,7 +439,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*/
 	public WSRPProducer findByCompanyId_First(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the first w s r p producer in the ordered set where companyId = &#63;.
@@ -461,7 +461,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*/
 	public WSRPProducer findByCompanyId_Last(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the last w s r p producer in the ordered set where companyId = &#63;.
@@ -485,7 +485,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public WSRPProducer[] findByCompanyId_PrevAndNext(long wsrpProducerId,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Removes all the w s r p producers where companyId = &#63; from the database.
@@ -532,7 +532,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @throws NoSuchProducerException if a w s r p producer with the primary key could not be found
 	*/
 	public WSRPProducer remove(long wsrpProducerId)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	public WSRPProducer updateImpl(WSRPProducer wsrpProducer);
 
@@ -544,7 +544,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @throws NoSuchProducerException if a w s r p producer with the primary key could not be found
 	*/
 	public WSRPProducer findByPrimaryKey(long wsrpProducerId)
-		throws com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.exception.NoSuchProducerException;
 
 	/**
 	* Returns the w s r p producer with the primary key or returns <code>null</code> if it could not be found.

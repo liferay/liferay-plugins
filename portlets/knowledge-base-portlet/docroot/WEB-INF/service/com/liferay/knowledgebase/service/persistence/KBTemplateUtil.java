@@ -186,7 +186,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate findByUuid_First(java.lang.String uuid,
 		OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -212,7 +212,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -239,7 +239,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate[] findByUuid_PrevAndNext(long kbTemplateId,
 		java.lang.String uuid, OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(kbTemplateId, uuid, orderByComparator);
 	}
@@ -272,7 +272,7 @@ public class KBTemplateUtil {
 	* @throws NoSuchTemplateException if a matching k b template could not be found
 	*/
 	public static KBTemplate findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -308,7 +308,7 @@ public class KBTemplateUtil {
 	* @return the k b template that was removed
 	*/
 	public static KBTemplate removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -409,7 +409,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate findByUuid_C_First(java.lang.String uuid,
 		long companyId, OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -439,7 +439,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -471,7 +471,7 @@ public class KBTemplateUtil {
 	public static KBTemplate[] findByUuid_C_PrevAndNext(long kbTemplateId,
 		java.lang.String uuid, long companyId,
 		OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(kbTemplateId, uuid, companyId,
 			orderByComparator);
@@ -576,7 +576,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate findByGroupId_First(long groupId,
 		OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -602,7 +602,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate findByGroupId_Last(long groupId,
 		OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -629,7 +629,7 @@ public class KBTemplateUtil {
 	*/
 	public static KBTemplate[] findByGroupId_PrevAndNext(long kbTemplateId,
 		long groupId, OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(kbTemplateId, groupId,
 			orderByComparator);
@@ -693,7 +693,7 @@ public class KBTemplateUtil {
 	public static KBTemplate[] filterFindByGroupId_PrevAndNext(
 		long kbTemplateId, long groupId,
 		OrderByComparator<KBTemplate> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence()
 				   .filterFindByGroupId_PrevAndNext(kbTemplateId, groupId,
 			orderByComparator);
@@ -764,7 +764,7 @@ public class KBTemplateUtil {
 	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
 	public static KBTemplate remove(long kbTemplateId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().remove(kbTemplateId);
 	}
 
@@ -780,7 +780,7 @@ public class KBTemplateUtil {
 	* @throws NoSuchTemplateException if a k b template with the primary key could not be found
 	*/
 	public static KBTemplate findByPrimaryKey(long kbTemplateId)
-		throws com.liferay.knowledgebase.NoSuchTemplateException {
+		throws com.liferay.knowledgebase.exception.NoSuchTemplateException {
 		return getPersistence().findByPrimaryKey(kbTemplateId);
 	}
 

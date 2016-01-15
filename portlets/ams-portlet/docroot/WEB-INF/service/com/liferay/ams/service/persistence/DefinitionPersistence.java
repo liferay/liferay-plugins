@@ -70,7 +70,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @throws NoSuchDefinitionException if a definition with the primary key could not be found
 	*/
 	public Definition remove(long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException;
+		throws com.liferay.ams.exception.NoSuchDefinitionException;
 
 	public Definition updateImpl(Definition definition);
 
@@ -82,7 +82,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @throws NoSuchDefinitionException if a definition with the primary key could not be found
 	*/
 	public Definition findByPrimaryKey(long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException;
+		throws com.liferay.ams.exception.NoSuchDefinitionException;
 
 	/**
 	* Returns the definition with the primary key or returns <code>null</code> if it could not be found.

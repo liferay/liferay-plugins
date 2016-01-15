@@ -109,7 +109,7 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	*/
 	public Attachment findByMessageId_First(long messageId,
 		com.liferay.portal.kernel.util.OrderByComparator<Attachment> orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException;
+		throws com.liferay.mail.exception.NoSuchAttachmentException;
 
 	/**
 	* Returns the first attachment in the ordered set where messageId = &#63;.
@@ -131,7 +131,7 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	*/
 	public Attachment findByMessageId_Last(long messageId,
 		com.liferay.portal.kernel.util.OrderByComparator<Attachment> orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException;
+		throws com.liferay.mail.exception.NoSuchAttachmentException;
 
 	/**
 	* Returns the last attachment in the ordered set where messageId = &#63;.
@@ -155,7 +155,7 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	public Attachment[] findByMessageId_PrevAndNext(long attachmentId,
 		long messageId,
 		com.liferay.portal.kernel.util.OrderByComparator<Attachment> orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException;
+		throws com.liferay.mail.exception.NoSuchAttachmentException;
 
 	/**
 	* Removes all the attachments where messageId = &#63; from the database.
@@ -202,7 +202,7 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	* @throws NoSuchAttachmentException if a attachment with the primary key could not be found
 	*/
 	public Attachment remove(long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException;
+		throws com.liferay.mail.exception.NoSuchAttachmentException;
 
 	public Attachment updateImpl(Attachment attachment);
 
@@ -214,7 +214,7 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	* @throws NoSuchAttachmentException if a attachment with the primary key could not be found
 	*/
 	public Attachment findByPrimaryKey(long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException;
+		throws com.liferay.mail.exception.NoSuchAttachmentException;
 
 	/**
 	* Returns the attachment with the primary key or returns <code>null</code> if it could not be found.

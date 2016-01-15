@@ -266,29 +266,32 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.contacts.DuplicateEntryEmailAddressException")) {
-			return new com.liferay.contacts.DuplicateEntryEmailAddressException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals("com.liferay.contacts.EntryEmailAddressException")) {
-			return new com.liferay.contacts.EntryEmailAddressException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals("com.liferay.contacts.EntryFullNameException")) {
-			return new com.liferay.contacts.EntryFullNameException(throwable.getMessage(),
+					"com.liferay.contacts.exception.DuplicateEntryEmailAddressException")) {
+			return new com.liferay.contacts.exception.DuplicateEntryEmailAddressException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.contacts.RequiredEntryEmailAddressException")) {
-			return new com.liferay.contacts.RequiredEntryEmailAddressException(throwable.getMessage(),
+					"com.liferay.contacts.exception.EntryEmailAddressException")) {
+			return new com.liferay.contacts.exception.EntryEmailAddressException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.contacts.NoSuchEntryException")) {
-			return new com.liferay.contacts.NoSuchEntryException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.contacts.exception.EntryFullNameException")) {
+			return new com.liferay.contacts.exception.EntryFullNameException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.contacts.exception.RequiredEntryEmailAddressException")) {
+			return new com.liferay.contacts.exception.RequiredEntryEmailAddressException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.contacts.exception.NoSuchEntryException")) {
+			return new com.liferay.contacts.exception.NoSuchEntryException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

@@ -185,7 +185,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByUuid_First(java.lang.String uuid,
 		OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -211,7 +211,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -238,7 +238,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder[] findByUuid_PrevAndNext(long kbFolderId,
 		java.lang.String uuid, OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(kbFolderId, uuid, orderByComparator);
 	}
@@ -271,7 +271,7 @@ public class KBFolderUtil {
 	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
 	public static KBFolder findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -307,7 +307,7 @@ public class KBFolderUtil {
 	* @return the k b folder that was removed
 	*/
 	public static KBFolder removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -407,7 +407,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByUuid_C_First(java.lang.String uuid,
 		long companyId, OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -437,7 +437,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -469,7 +469,7 @@ public class KBFolderUtil {
 	public static KBFolder[] findByUuid_C_PrevAndNext(long kbFolderId,
 		java.lang.String uuid, long companyId,
 		OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(kbFolderId, uuid, companyId,
 			orderByComparator);
@@ -580,7 +580,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByG_P_First(long groupId, long parentKBFolderId,
 		OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByG_P_First(groupId, parentKBFolderId, orderByComparator);
 	}
@@ -611,7 +611,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByG_P_Last(long groupId, long parentKBFolderId,
 		OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByG_P_Last(groupId, parentKBFolderId, orderByComparator);
 	}
@@ -643,7 +643,7 @@ public class KBFolderUtil {
 	public static KBFolder[] findByG_P_PrevAndNext(long kbFolderId,
 		long groupId, long parentKBFolderId,
 		OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByG_P_PrevAndNext(kbFolderId, groupId,
 			parentKBFolderId, orderByComparator);
@@ -715,7 +715,7 @@ public class KBFolderUtil {
 	public static KBFolder[] filterFindByG_P_PrevAndNext(long kbFolderId,
 		long groupId, long parentKBFolderId,
 		OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .filterFindByG_P_PrevAndNext(kbFolderId, groupId,
 			parentKBFolderId, orderByComparator);
@@ -764,7 +764,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByG_P_N(long groupId, long parentKBFolderId,
 		java.lang.String name)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().findByG_P_N(groupId, parentKBFolderId, name);
 	}
 
@@ -807,7 +807,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder removeByG_P_N(long groupId, long parentKBFolderId,
 		java.lang.String name)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().removeByG_P_N(groupId, parentKBFolderId, name);
 	}
 
@@ -835,7 +835,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder findByG_P_UT(long groupId, long parentKBFolderId,
 		java.lang.String urlTitle)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().findByG_P_UT(groupId, parentKBFolderId, urlTitle);
 	}
 
@@ -879,7 +879,7 @@ public class KBFolderUtil {
 	*/
 	public static KBFolder removeByG_P_UT(long groupId, long parentKBFolderId,
 		java.lang.String urlTitle)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence()
 				   .removeByG_P_UT(groupId, parentKBFolderId, urlTitle);
 	}
@@ -934,7 +934,7 @@ public class KBFolderUtil {
 	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
 	public static KBFolder remove(long kbFolderId)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().remove(kbFolderId);
 	}
 
@@ -950,7 +950,7 @@ public class KBFolderUtil {
 	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
 	public static KBFolder findByPrimaryKey(long kbFolderId)
-		throws com.liferay.knowledgebase.NoSuchFolderException {
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException {
 		return getPersistence().findByPrimaryKey(kbFolderId);
 	}
 

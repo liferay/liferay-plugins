@@ -109,7 +109,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the first k b folder in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the last k b folder in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	public KBFolder[] findByUuid_PrevAndNext(long kbFolderId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Removes all the k b folders where uuid = &#63; from the database.
@@ -181,7 +181,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	* @throws NoSuchFolderException if a matching k b folder could not be found
 	*/
 	public KBFolder findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the k b folder where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -211,7 +211,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	* @return the k b folder that was removed
 	*/
 	public KBFolder removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the number of k b folders where uuid = &#63; and groupId = &#63;.
@@ -297,7 +297,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByUuid_C_First(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the first k b folder in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -321,7 +321,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByUuid_C_Last(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the last k b folder in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -347,7 +347,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	public KBFolder[] findByUuid_C_PrevAndNext(long kbFolderId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Removes all the k b folders where uuid = &#63; and companyId = &#63; from the database.
@@ -441,7 +441,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByG_P_First(long groupId, long parentKBFolderId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the first k b folder in the ordered set where groupId = &#63; and parentKBFolderId = &#63;.
@@ -465,7 +465,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByG_P_Last(long groupId, long parentKBFolderId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the last k b folder in the ordered set where groupId = &#63; and parentKBFolderId = &#63;.
@@ -491,7 +491,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	public KBFolder[] findByG_P_PrevAndNext(long kbFolderId, long groupId,
 		long parentKBFolderId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns all the k b folders that the user has permission to view where groupId = &#63; and parentKBFolderId = &#63;.
@@ -550,7 +550,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	public KBFolder[] filterFindByG_P_PrevAndNext(long kbFolderId,
 		long groupId, long parentKBFolderId,
 		com.liferay.portal.kernel.util.OrderByComparator<KBFolder> orderByComparator)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Removes all the k b folders where groupId = &#63; and parentKBFolderId = &#63; from the database.
@@ -589,7 +589,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByG_P_N(long groupId, long parentKBFolderId,
 		java.lang.String name)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -624,7 +624,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder removeByG_P_N(long groupId, long parentKBFolderId,
 		java.lang.String name)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the number of k b folders where groupId = &#63; and parentKBFolderId = &#63; and name = &#63;.
@@ -648,7 +648,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder findByG_P_UT(long groupId, long parentKBFolderId,
 		java.lang.String urlTitle)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the k b folder where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -683,7 +683,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	*/
 	public KBFolder removeByG_P_UT(long groupId, long parentKBFolderId,
 		java.lang.String urlTitle)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the number of k b folders where groupId = &#63; and parentKBFolderId = &#63; and urlTitle = &#63;.
@@ -726,7 +726,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
 	public KBFolder remove(long kbFolderId)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	public KBFolder updateImpl(KBFolder kbFolder);
 
@@ -738,7 +738,7 @@ public interface KBFolderPersistence extends BasePersistence<KBFolder> {
 	* @throws NoSuchFolderException if a k b folder with the primary key could not be found
 	*/
 	public KBFolder findByPrimaryKey(long kbFolderId)
-		throws com.liferay.knowledgebase.NoSuchFolderException;
+		throws com.liferay.knowledgebase.exception.NoSuchFolderException;
 
 	/**
 	* Returns the k b folder with the primary key or returns <code>null</code> if it could not be found.

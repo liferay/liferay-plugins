@@ -369,38 +369,45 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals("com.liferay.so.MemberRequestAlreadyUsedException")) {
-			return new com.liferay.so.MemberRequestAlreadyUsedException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.so.exception.MemberRequestAlreadyUsedException")) {
+			return new com.liferay.so.exception.MemberRequestAlreadyUsedException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.so.MemberRequestInvalidUserException")) {
-			return new com.liferay.so.MemberRequestInvalidUserException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.so.exception.MemberRequestInvalidUserException")) {
+			return new com.liferay.so.exception.MemberRequestInvalidUserException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.so.ProjectsEntryEndDateException")) {
-			return new com.liferay.so.ProjectsEntryEndDateException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.so.exception.ProjectsEntryEndDateException")) {
+			return new com.liferay.so.exception.ProjectsEntryEndDateException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.so.ProjectsEntryStartDateException")) {
-			return new com.liferay.so.ProjectsEntryStartDateException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.so.exception.ProjectsEntryStartDateException")) {
+			return new com.liferay.so.exception.ProjectsEntryStartDateException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.so.NoSuchFavoriteSiteException")) {
-			return new com.liferay.so.NoSuchFavoriteSiteException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.so.exception.NoSuchFavoriteSiteException")) {
+			return new com.liferay.so.exception.NoSuchFavoriteSiteException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.so.NoSuchMemberRequestException")) {
-			return new com.liferay.so.NoSuchMemberRequestException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.so.exception.NoSuchMemberRequestException")) {
+			return new com.liferay.so.exception.NoSuchMemberRequestException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.so.NoSuchProjectsEntryException")) {
-			return new com.liferay.so.NoSuchProjectsEntryException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.so.exception.NoSuchProjectsEntryException")) {
+			return new com.liferay.so.exception.NoSuchProjectsEntryException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

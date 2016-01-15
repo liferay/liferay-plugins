@@ -16,7 +16,7 @@ package com.liferay.mail.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.mail.NoSuchAccountException;
+import com.liferay.mail.exception.NoSuchAccountException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.impl.AccountImpl;
 import com.liferay.mail.model.impl.AccountModelImpl;

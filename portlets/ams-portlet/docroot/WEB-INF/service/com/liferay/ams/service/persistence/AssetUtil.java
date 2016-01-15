@@ -142,7 +142,7 @@ public class AssetUtil {
 	* @throws NoSuchAssetException if a asset with the primary key could not be found
 	*/
 	public static Asset remove(long assetId)
-		throws com.liferay.ams.NoSuchAssetException {
+		throws com.liferay.ams.exception.NoSuchAssetException {
 		return getPersistence().remove(assetId);
 	}
 
@@ -158,7 +158,7 @@ public class AssetUtil {
 	* @throws NoSuchAssetException if a asset with the primary key could not be found
 	*/
 	public static Asset findByPrimaryKey(long assetId)
-		throws com.liferay.ams.NoSuchAssetException {
+		throws com.liferay.ams.exception.NoSuchAssetException {
 		return getPersistence().findByPrimaryKey(assetId);
 	}
 

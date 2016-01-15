@@ -35,7 +35,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.testtransaction.NoSuchBarException;
+import com.liferay.testtransaction.exception.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.model.impl.BarImpl;
 import com.liferay.testtransaction.model.impl.BarModelImpl;

@@ -265,18 +265,21 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals("com.liferay.tasks.TasksEntryDueDateException")) {
-			return new com.liferay.tasks.TasksEntryDueDateException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.tasks.exception.TasksEntryDueDateException")) {
+			return new com.liferay.tasks.exception.TasksEntryDueDateException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.tasks.TasksEntryTitleException")) {
-			return new com.liferay.tasks.TasksEntryTitleException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.tasks.exception.TasksEntryTitleException")) {
+			return new com.liferay.tasks.exception.TasksEntryTitleException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.tasks.NoSuchTasksEntryException")) {
-			return new com.liferay.tasks.NoSuchTasksEntryException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.tasks.exception.NoSuchTasksEntryException")) {
+			return new com.liferay.tasks.exception.NoSuchTasksEntryException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

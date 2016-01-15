@@ -110,7 +110,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public SVNRevision findBySVNUserId_First(java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Returns the first s v n revision in the ordered set where svnUserId = &#63;.
@@ -132,7 +132,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public SVNRevision findBySVNUserId_Last(java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Returns the last s v n revision in the ordered set where svnUserId = &#63;.
@@ -156,7 +156,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	public SVNRevision[] findBySVNUserId_PrevAndNext(long svnRevisionId,
 		java.lang.String svnUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Removes all the s v n revisions where svnUserId = &#63; from the database.
@@ -243,7 +243,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public SVNRevision findBySVNRepositoryId_First(long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Returns the first s v n revision in the ordered set where svnRepositoryId = &#63;.
@@ -265,7 +265,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public SVNRevision findBySVNRepositoryId_Last(long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Returns the last s v n revision in the ordered set where svnRepositoryId = &#63;.
@@ -289,7 +289,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	public SVNRevision[] findBySVNRepositoryId_PrevAndNext(long svnRevisionId,
 		long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Removes all the s v n revisions where svnRepositoryId = &#63; from the database.
@@ -382,7 +382,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	public SVNRevision findBySVNU_SVNR_First(java.lang.String svnUserId,
 		long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Returns the first s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
@@ -408,7 +408,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	public SVNRevision findBySVNU_SVNR_Last(java.lang.String svnUserId,
 		long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Returns the last s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
@@ -435,7 +435,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	public SVNRevision[] findBySVNU_SVNR_PrevAndNext(long svnRevisionId,
 		java.lang.String svnUserId, long svnRepositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Removes all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63; from the database.
@@ -485,7 +485,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	* @throws NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	*/
 	public SVNRevision remove(long svnRevisionId)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	public SVNRevision updateImpl(SVNRevision svnRevision);
 
@@ -497,7 +497,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	* @throws NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	*/
 	public SVNRevision findByPrimaryKey(long svnRevisionId)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException;
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 
 	/**
 	* Returns the s v n revision with the primary key or returns <code>null</code> if it could not be found.

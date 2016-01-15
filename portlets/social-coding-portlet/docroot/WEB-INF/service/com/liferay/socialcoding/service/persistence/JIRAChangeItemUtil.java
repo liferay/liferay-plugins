@@ -193,7 +193,7 @@ public class JIRAChangeItemUtil {
 	public static JIRAChangeItem findByJiraChangeGroupId_First(
 		long jiraChangeGroupId,
 		OrderByComparator<JIRAChangeItem> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_First(jiraChangeGroupId,
 			orderByComparator);
@@ -225,7 +225,7 @@ public class JIRAChangeItemUtil {
 	public static JIRAChangeItem findByJiraChangeGroupId_Last(
 		long jiraChangeGroupId,
 		OrderByComparator<JIRAChangeItem> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_Last(jiraChangeGroupId,
 			orderByComparator);
@@ -258,7 +258,7 @@ public class JIRAChangeItemUtil {
 	public static JIRAChangeItem[] findByJiraChangeGroupId_PrevAndNext(
 		long jiraChangeItemId, long jiraChangeGroupId,
 		OrderByComparator<JIRAChangeItem> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException {
 		return getPersistence()
 				   .findByJiraChangeGroupId_PrevAndNext(jiraChangeItemId,
 			jiraChangeGroupId, orderByComparator);
@@ -319,7 +319,7 @@ public class JIRAChangeItemUtil {
 	* @throws NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	*/
 	public static JIRAChangeItem remove(long jiraChangeItemId)
-		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException {
 		return getPersistence().remove(jiraChangeItemId);
 	}
 
@@ -335,7 +335,7 @@ public class JIRAChangeItemUtil {
 	* @throws NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	*/
 	public static JIRAChangeItem findByPrimaryKey(long jiraChangeItemId)
-		throws com.liferay.socialcoding.NoSuchJIRAChangeItemException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException {
 		return getPersistence().findByPrimaryKey(jiraChangeItemId);
 	}
 

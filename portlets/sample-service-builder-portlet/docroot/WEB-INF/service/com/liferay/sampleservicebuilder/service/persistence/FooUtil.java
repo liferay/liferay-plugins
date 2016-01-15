@@ -182,7 +182,7 @@ public class FooUtil {
 	*/
 	public static Foo findByUuid_First(java.lang.String uuid,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -208,7 +208,7 @@ public class FooUtil {
 	*/
 	public static Foo findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -235,7 +235,7 @@ public class FooUtil {
 	*/
 	public static Foo[] findByUuid_PrevAndNext(long fooId,
 		java.lang.String uuid, OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(fooId, uuid, orderByComparator);
 	}
@@ -268,7 +268,7 @@ public class FooUtil {
 	* @throws NoSuchFooException if a matching foo could not be found
 	*/
 	public static Foo findByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -304,7 +304,7 @@ public class FooUtil {
 	* @return the foo that was removed
 	*/
 	public static Foo removeByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -402,7 +402,7 @@ public class FooUtil {
 	*/
 	public static Foo findByUuid_C_First(java.lang.String uuid, long companyId,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -432,7 +432,7 @@ public class FooUtil {
 	*/
 	public static Foo findByUuid_C_Last(java.lang.String uuid, long companyId,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -464,7 +464,7 @@ public class FooUtil {
 	public static Foo[] findByUuid_C_PrevAndNext(long fooId,
 		java.lang.String uuid, long companyId,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(fooId, uuid, companyId,
 			orderByComparator);
@@ -567,7 +567,7 @@ public class FooUtil {
 	*/
 	public static Foo findByField2_First(boolean field2,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().findByField2_First(field2, orderByComparator);
 	}
 
@@ -593,7 +593,7 @@ public class FooUtil {
 	*/
 	public static Foo findByField2_Last(boolean field2,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().findByField2_Last(field2, orderByComparator);
 	}
 
@@ -620,7 +620,7 @@ public class FooUtil {
 	*/
 	public static Foo[] findByField2_PrevAndNext(long fooId, boolean field2,
 		OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence()
 				   .findByField2_PrevAndNext(fooId, field2, orderByComparator);
 	}
@@ -680,7 +680,7 @@ public class FooUtil {
 	* @throws NoSuchFooException if a foo with the primary key could not be found
 	*/
 	public static Foo remove(long fooId)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().remove(fooId);
 	}
 
@@ -696,7 +696,7 @@ public class FooUtil {
 	* @throws NoSuchFooException if a foo with the primary key could not be found
 	*/
 	public static Foo findByPrimaryKey(long fooId)
-		throws com.liferay.sampleservicebuilder.NoSuchFooException {
+		throws com.liferay.sampleservicebuilder.exception.NoSuchFooException {
 		return getPersistence().findByPrimaryKey(fooId);
 	}
 

@@ -189,7 +189,7 @@ public class WSRPConsumerPortletUtil {
 	*/
 	public static WSRPConsumerPortlet findByUuid_First(java.lang.String uuid,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -215,7 +215,7 @@ public class WSRPConsumerPortletUtil {
 	*/
 	public static WSRPConsumerPortlet findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -243,7 +243,7 @@ public class WSRPConsumerPortletUtil {
 	public static WSRPConsumerPortlet[] findByUuid_PrevAndNext(
 		long wsrpConsumerPortletId, java.lang.String uuid,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(wsrpConsumerPortletId, uuid,
 			orderByComparator);
@@ -355,7 +355,7 @@ public class WSRPConsumerPortletUtil {
 	public static WSRPConsumerPortlet findByUuid_C_First(
 		java.lang.String uuid, long companyId,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -386,7 +386,7 @@ public class WSRPConsumerPortletUtil {
 	*/
 	public static WSRPConsumerPortlet findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -419,7 +419,7 @@ public class WSRPConsumerPortletUtil {
 	public static WSRPConsumerPortlet[] findByUuid_C_PrevAndNext(
 		long wsrpConsumerPortletId, java.lang.String uuid, long companyId,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(wsrpConsumerPortletId, uuid,
 			companyId, orderByComparator);
@@ -529,7 +529,7 @@ public class WSRPConsumerPortletUtil {
 	public static WSRPConsumerPortlet findByWsrpConsumerId_First(
 		long wsrpConsumerId,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByWsrpConsumerId_First(wsrpConsumerId, orderByComparator);
 	}
@@ -560,7 +560,7 @@ public class WSRPConsumerPortletUtil {
 	public static WSRPConsumerPortlet findByWsrpConsumerId_Last(
 		long wsrpConsumerId,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByWsrpConsumerId_Last(wsrpConsumerId, orderByComparator);
 	}
@@ -591,7 +591,7 @@ public class WSRPConsumerPortletUtil {
 	public static WSRPConsumerPortlet[] findByWsrpConsumerId_PrevAndNext(
 		long wsrpConsumerPortletId, long wsrpConsumerId,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByWsrpConsumerId_PrevAndNext(wsrpConsumerPortletId,
 			wsrpConsumerId, orderByComparator);
@@ -626,7 +626,7 @@ public class WSRPConsumerPortletUtil {
 	*/
 	public static WSRPConsumerPortlet findByW_P(long wsrpConsumerId,
 		java.lang.String portletHandle)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence().findByW_P(wsrpConsumerId, portletHandle);
 	}
 
@@ -665,7 +665,7 @@ public class WSRPConsumerPortletUtil {
 	*/
 	public static WSRPConsumerPortlet removeByW_P(long wsrpConsumerId,
 		java.lang.String portletHandle)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence().removeByW_P(wsrpConsumerId, portletHandle);
 	}
 
@@ -718,7 +718,7 @@ public class WSRPConsumerPortletUtil {
 	* @throws NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	*/
 	public static WSRPConsumerPortlet remove(long wsrpConsumerPortletId)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence().remove(wsrpConsumerPortletId);
 	}
 
@@ -736,7 +736,7 @@ public class WSRPConsumerPortletUtil {
 	*/
 	public static WSRPConsumerPortlet findByPrimaryKey(
 		long wsrpConsumerPortletId)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException {
 		return getPersistence().findByPrimaryKey(wsrpConsumerPortletId);
 	}
 

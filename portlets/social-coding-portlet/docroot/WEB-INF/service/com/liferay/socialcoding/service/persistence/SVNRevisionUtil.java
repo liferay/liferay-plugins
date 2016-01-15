@@ -190,7 +190,7 @@ public class SVNRevisionUtil {
 	public static SVNRevision findBySVNUserId_First(
 		java.lang.String svnUserId,
 		OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNUserId_First(svnUserId, orderByComparator);
 	}
@@ -219,7 +219,7 @@ public class SVNRevisionUtil {
 	*/
 	public static SVNRevision findBySVNUserId_Last(java.lang.String svnUserId,
 		OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNUserId_Last(svnUserId, orderByComparator);
 	}
@@ -250,7 +250,7 @@ public class SVNRevisionUtil {
 	public static SVNRevision[] findBySVNUserId_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId,
 		OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNUserId_PrevAndNext(svnRevisionId, svnUserId,
 			orderByComparator);
@@ -357,7 +357,7 @@ public class SVNRevisionUtil {
 	*/
 	public static SVNRevision findBySVNRepositoryId_First(
 		long svnRepositoryId, OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNRepositoryId_First(svnRepositoryId,
 			orderByComparator);
@@ -387,7 +387,7 @@ public class SVNRevisionUtil {
 	*/
 	public static SVNRevision findBySVNRepositoryId_Last(long svnRepositoryId,
 		OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNRepositoryId_Last(svnRepositoryId,
 			orderByComparator);
@@ -419,7 +419,7 @@ public class SVNRevisionUtil {
 	public static SVNRevision[] findBySVNRepositoryId_PrevAndNext(
 		long svnRevisionId, long svnRepositoryId,
 		OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNRepositoryId_PrevAndNext(svnRevisionId,
 			svnRepositoryId, orderByComparator);
@@ -533,7 +533,7 @@ public class SVNRevisionUtil {
 	public static SVNRevision findBySVNU_SVNR_First(
 		java.lang.String svnUserId, long svnRepositoryId,
 		OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNU_SVNR_First(svnUserId, svnRepositoryId,
 			orderByComparator);
@@ -566,7 +566,7 @@ public class SVNRevisionUtil {
 	*/
 	public static SVNRevision findBySVNU_SVNR_Last(java.lang.String svnUserId,
 		long svnRepositoryId, OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNU_SVNR_Last(svnUserId, svnRepositoryId,
 			orderByComparator);
@@ -601,7 +601,7 @@ public class SVNRevisionUtil {
 	public static SVNRevision[] findBySVNU_SVNR_PrevAndNext(
 		long svnRevisionId, java.lang.String svnUserId, long svnRepositoryId,
 		OrderByComparator<SVNRevision> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence()
 				   .findBySVNU_SVNR_PrevAndNext(svnRevisionId, svnUserId,
 			svnRepositoryId, orderByComparator);
@@ -666,7 +666,7 @@ public class SVNRevisionUtil {
 	* @throws NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	*/
 	public static SVNRevision remove(long svnRevisionId)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence().remove(svnRevisionId);
 	}
 
@@ -682,7 +682,7 @@ public class SVNRevisionUtil {
 	* @throws NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	*/
 	public static SVNRevision findByPrimaryKey(long svnRevisionId)
-		throws com.liferay.socialcoding.NoSuchSVNRevisionException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRevisionException {
 		return getPersistence().findByPrimaryKey(svnRevisionId);
 	}
 

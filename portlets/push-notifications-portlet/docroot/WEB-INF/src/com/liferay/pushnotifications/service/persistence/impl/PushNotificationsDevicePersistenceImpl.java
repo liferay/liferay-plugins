@@ -36,7 +36,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.pushnotifications.NoSuchDeviceException;
+import com.liferay.pushnotifications.exception.NoSuchDeviceException;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.model.impl.PushNotificationsDeviceImpl;
 import com.liferay.pushnotifications.model.impl.PushNotificationsDeviceModelImpl;

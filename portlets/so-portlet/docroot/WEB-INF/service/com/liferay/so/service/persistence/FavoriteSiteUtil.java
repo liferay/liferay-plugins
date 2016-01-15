@@ -187,7 +187,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static FavoriteSite findByUserId_First(long userId,
 		OrderByComparator<FavoriteSite> orderByComparator)
-		throws com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -213,7 +213,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static FavoriteSite findByUserId_Last(long userId,
 		OrderByComparator<FavoriteSite> orderByComparator)
-		throws com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -240,7 +240,7 @@ public class FavoriteSiteUtil {
 	*/
 	public static FavoriteSite[] findByUserId_PrevAndNext(long favoriteSiteId,
 		long userId, OrderByComparator<FavoriteSite> orderByComparator)
-		throws com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(favoriteSiteId, userId,
 			orderByComparator);
@@ -274,7 +274,7 @@ public class FavoriteSiteUtil {
 	* @throws NoSuchFavoriteSiteException if a matching favorite site could not be found
 	*/
 	public static FavoriteSite findByG_U(long groupId, long userId)
-		throws com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException {
 		return getPersistence().findByG_U(groupId, userId);
 	}
 
@@ -310,7 +310,7 @@ public class FavoriteSiteUtil {
 	* @return the favorite site that was removed
 	*/
 	public static FavoriteSite removeByG_U(long groupId, long userId)
-		throws com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException {
 		return getPersistence().removeByG_U(groupId, userId);
 	}
 
@@ -361,7 +361,7 @@ public class FavoriteSiteUtil {
 	* @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	*/
 	public static FavoriteSite remove(long favoriteSiteId)
-		throws com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException {
 		return getPersistence().remove(favoriteSiteId);
 	}
 
@@ -377,7 +377,7 @@ public class FavoriteSiteUtil {
 	* @throws NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
 	*/
 	public static FavoriteSite findByPrimaryKey(long favoriteSiteId)
-		throws com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.exception.NoSuchFavoriteSiteException {
 		return getPersistence().findByPrimaryKey(favoriteSiteId);
 	}
 

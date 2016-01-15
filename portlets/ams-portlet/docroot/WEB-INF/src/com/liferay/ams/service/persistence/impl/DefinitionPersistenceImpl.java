@@ -16,7 +16,7 @@ package com.liferay.ams.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.ams.NoSuchDefinitionException;
+import com.liferay.ams.exception.NoSuchDefinitionException;
 import com.liferay.ams.model.Definition;
 import com.liferay.ams.model.impl.DefinitionImpl;
 import com.liferay.ams.model.impl.DefinitionModelImpl;

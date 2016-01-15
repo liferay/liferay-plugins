@@ -16,7 +16,7 @@ package com.liferay.akismet.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.akismet.NoSuchDataException;
+import com.liferay.akismet.exception.NoSuchDataException;
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.model.impl.AkismetDataImpl;
 import com.liferay.akismet.model.impl.AkismetDataModelImpl;

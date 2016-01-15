@@ -109,7 +109,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*/
 	public WSRPConsumerPortlet findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the first w s r p consumer portlet in the ordered set where uuid = &#63;.
@@ -131,7 +131,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*/
 	public WSRPConsumerPortlet findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the last w s r p consumer portlet in the ordered set where uuid = &#63;.
@@ -155,7 +155,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public WSRPConsumerPortlet[] findByUuid_PrevAndNext(
 		long wsrpConsumerPortletId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Removes all the w s r p consumer portlets where uuid = &#63; from the database.
@@ -248,7 +248,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public WSRPConsumerPortlet findByUuid_C_First(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the first w s r p consumer portlet in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -274,7 +274,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public WSRPConsumerPortlet findByUuid_C_Last(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the last w s r p consumer portlet in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -301,7 +301,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public WSRPConsumerPortlet[] findByUuid_C_PrevAndNext(
 		long wsrpConsumerPortletId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Removes all the w s r p consumer portlets where uuid = &#63; and companyId = &#63; from the database.
@@ -390,7 +390,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*/
 	public WSRPConsumerPortlet findByWsrpConsumerId_First(long wsrpConsumerId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the first w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
@@ -413,7 +413,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*/
 	public WSRPConsumerPortlet findByWsrpConsumerId_Last(long wsrpConsumerId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the last w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
@@ -437,7 +437,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public WSRPConsumerPortlet[] findByWsrpConsumerId_PrevAndNext(
 		long wsrpConsumerPortletId, long wsrpConsumerId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumerPortlet> orderByComparator)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Removes all the w s r p consumer portlets where wsrpConsumerId = &#63; from the database.
@@ -464,7 +464,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*/
 	public WSRPConsumerPortlet findByW_P(long wsrpConsumerId,
 		java.lang.String portletHandle)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -496,7 +496,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*/
 	public WSRPConsumerPortlet removeByW_P(long wsrpConsumerId,
 		java.lang.String portletHandle)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the number of w s r p consumer portlets where wsrpConsumerId = &#63; and portletHandle = &#63;.
@@ -538,7 +538,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	* @throws NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	*/
 	public WSRPConsumerPortlet remove(long wsrpConsumerPortletId)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	public WSRPConsumerPortlet updateImpl(
 		WSRPConsumerPortlet wsrpConsumerPortlet);
@@ -551,7 +551,7 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	* @throws NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	*/
 	public WSRPConsumerPortlet findByPrimaryKey(long wsrpConsumerPortletId)
-		throws com.liferay.wsrp.NoSuchConsumerPortletException;
+		throws com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 
 	/**
 	* Returns the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.

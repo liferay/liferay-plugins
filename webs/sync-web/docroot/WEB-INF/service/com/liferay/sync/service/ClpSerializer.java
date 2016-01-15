@@ -318,19 +318,21 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals("com.liferay.sync.SyncDLObjectChecksumException")) {
-			return new com.liferay.sync.SyncDLObjectChecksumException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.sync.exception.SyncDLObjectChecksumException")) {
+			return new com.liferay.sync.exception.SyncDLObjectChecksumException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.sync.NoSuchDLFileVersionDiffException")) {
-			return new com.liferay.sync.NoSuchDLFileVersionDiffException(throwable.getMessage(),
+					"com.liferay.sync.exception.NoSuchDLFileVersionDiffException")) {
+			return new com.liferay.sync.exception.NoSuchDLFileVersionDiffException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.sync.NoSuchDLObjectException")) {
-			return new com.liferay.sync.NoSuchDLObjectException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.sync.exception.NoSuchDLObjectException")) {
+			return new com.liferay.sync.exception.NoSuchDLObjectException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

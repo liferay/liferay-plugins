@@ -370,35 +370,38 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.opensocial.DuplicateGadgetURLException")) {
-			return new com.liferay.opensocial.DuplicateGadgetURLException(throwable.getMessage(),
+					"com.liferay.opensocial.exception.DuplicateGadgetURLException")) {
+			return new com.liferay.opensocial.exception.DuplicateGadgetURLException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.opensocial.GadgetPortletCategoryNamesException")) {
-			return new com.liferay.opensocial.GadgetPortletCategoryNamesException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals("com.liferay.opensocial.GadgetURLException")) {
-			return new com.liferay.opensocial.GadgetURLException(throwable.getMessage(),
-				throwable.getCause());
-		}
-
-		if (className.equals("com.liferay.opensocial.NoSuchGadgetException")) {
-			return new com.liferay.opensocial.NoSuchGadgetException(throwable.getMessage(),
+					"com.liferay.opensocial.exception.GadgetPortletCategoryNamesException")) {
+			return new com.liferay.opensocial.exception.GadgetPortletCategoryNamesException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		if (className.equals(
-					"com.liferay.opensocial.NoSuchOAuthConsumerException")) {
-			return new com.liferay.opensocial.NoSuchOAuthConsumerException(throwable.getMessage(),
+					"com.liferay.opensocial.exception.GadgetURLException")) {
+			return new com.liferay.opensocial.exception.GadgetURLException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.opensocial.NoSuchOAuthTokenException")) {
-			return new com.liferay.opensocial.NoSuchOAuthTokenException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.opensocial.exception.NoSuchGadgetException")) {
+			return new com.liferay.opensocial.exception.NoSuchGadgetException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.opensocial.exception.NoSuchOAuthConsumerException")) {
+			return new com.liferay.opensocial.exception.NoSuchOAuthConsumerException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals(
+					"com.liferay.opensocial.exception.NoSuchOAuthTokenException")) {
+			return new com.liferay.opensocial.exception.NoSuchOAuthTokenException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

@@ -265,13 +265,14 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.twitter.FeedTwitterScreenNameException")) {
-			return new com.liferay.twitter.FeedTwitterScreenNameException(throwable.getMessage(),
+					"com.liferay.twitter.exception.FeedTwitterScreenNameException")) {
+			return new com.liferay.twitter.exception.FeedTwitterScreenNameException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
-		if (className.equals("com.liferay.twitter.NoSuchFeedException")) {
-			return new com.liferay.twitter.NoSuchFeedException(throwable.getMessage(),
+		if (className.equals(
+					"com.liferay.twitter.exception.NoSuchFeedException")) {
+			return new com.liferay.twitter.exception.NoSuchFeedException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

@@ -266,8 +266,8 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.privatemessaging.NoSuchUserThreadException")) {
-			return new com.liferay.privatemessaging.NoSuchUserThreadException(throwable.getMessage(),
+					"com.liferay.privatemessaging.exception.NoSuchUserThreadException")) {
+			return new com.liferay.privatemessaging.exception.NoSuchUserThreadException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

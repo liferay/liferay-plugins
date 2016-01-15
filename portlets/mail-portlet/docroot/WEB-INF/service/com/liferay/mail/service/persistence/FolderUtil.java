@@ -184,7 +184,7 @@ public class FolderUtil {
 	*/
 	public static Folder findByAccountId_First(long accountId,
 		OrderByComparator<Folder> orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException {
+		throws com.liferay.mail.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_First(accountId, orderByComparator);
 	}
@@ -212,7 +212,7 @@ public class FolderUtil {
 	*/
 	public static Folder findByAccountId_Last(long accountId,
 		OrderByComparator<Folder> orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException {
+		throws com.liferay.mail.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_Last(accountId, orderByComparator);
 	}
@@ -241,7 +241,7 @@ public class FolderUtil {
 	*/
 	public static Folder[] findByAccountId_PrevAndNext(long folderId,
 		long accountId, OrderByComparator<Folder> orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException {
+		throws com.liferay.mail.exception.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_PrevAndNext(folderId, accountId,
 			orderByComparator);
@@ -275,7 +275,7 @@ public class FolderUtil {
 	* @throws NoSuchFolderException if a matching folder could not be found
 	*/
 	public static Folder findByA_F(long accountId, java.lang.String fullName)
-		throws com.liferay.mail.NoSuchFolderException {
+		throws com.liferay.mail.exception.NoSuchFolderException {
 		return getPersistence().findByA_F(accountId, fullName);
 	}
 
@@ -312,7 +312,7 @@ public class FolderUtil {
 	* @return the folder that was removed
 	*/
 	public static Folder removeByA_F(long accountId, java.lang.String fullName)
-		throws com.liferay.mail.NoSuchFolderException {
+		throws com.liferay.mail.exception.NoSuchFolderException {
 		return getPersistence().removeByA_F(accountId, fullName);
 	}
 
@@ -363,7 +363,7 @@ public class FolderUtil {
 	* @throws NoSuchFolderException if a folder with the primary key could not be found
 	*/
 	public static Folder remove(long folderId)
-		throws com.liferay.mail.NoSuchFolderException {
+		throws com.liferay.mail.exception.NoSuchFolderException {
 		return getPersistence().remove(folderId);
 	}
 
@@ -379,7 +379,7 @@ public class FolderUtil {
 	* @throws NoSuchFolderException if a folder with the primary key could not be found
 	*/
 	public static Folder findByPrimaryKey(long folderId)
-		throws com.liferay.mail.NoSuchFolderException {
+		throws com.liferay.mail.exception.NoSuchFolderException {
 		return getPersistence().findByPrimaryKey(folderId);
 	}
 

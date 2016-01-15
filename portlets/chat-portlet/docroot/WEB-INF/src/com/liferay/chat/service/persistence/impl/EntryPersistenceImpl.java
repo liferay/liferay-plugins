@@ -16,7 +16,7 @@ package com.liferay.chat.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.chat.NoSuchEntryException;
+import com.liferay.chat.exception.NoSuchEntryException;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.impl.EntryImpl;
 import com.liferay.chat.model.impl.EntryModelImpl;

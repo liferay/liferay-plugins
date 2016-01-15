@@ -115,7 +115,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public SyncDLObject findByM_R_First(long modifiedTime, long repositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the first sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63;.
@@ -139,7 +139,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public SyncDLObject findByM_R_Last(long modifiedTime, long repositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the last sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63;.
@@ -165,7 +165,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject[] findByM_R_PrevAndNext(long syncDLObjectId,
 		long modifiedTime, long repositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Removes all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; from the database.
@@ -259,7 +259,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public SyncDLObject findByR_P_First(long repositoryId, long parentFolderId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the first sync d l object in the ordered set where repositoryId = &#63; and parentFolderId = &#63;.
@@ -284,7 +284,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	*/
 	public SyncDLObject findByR_P_Last(long repositoryId, long parentFolderId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the last sync d l object in the ordered set where repositoryId = &#63; and parentFolderId = &#63;.
@@ -310,7 +310,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject[] findByR_P_PrevAndNext(long syncDLObjectId,
 		long repositoryId, long parentFolderId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Removes all the sync d l objects where repositoryId = &#63; and parentFolderId = &#63; from the database.
@@ -405,7 +405,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByR_T_First(long repositoryId,
 		java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the first sync d l object in the ordered set where repositoryId = &#63; and type = &#63;.
@@ -431,7 +431,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByR_T_Last(long repositoryId,
 		java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the last sync d l object in the ordered set where repositoryId = &#63; and type = &#63;.
@@ -458,7 +458,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject[] findByR_T_PrevAndNext(long syncDLObjectId,
 		long repositoryId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Removes all the sync d l objects where repositoryId = &#63; and type = &#63; from the database.
@@ -553,7 +553,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByV_T_First(java.lang.String version,
 		java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the first sync d l object in the ordered set where version = &#63; and type = &#63;.
@@ -579,7 +579,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByV_T_Last(java.lang.String version,
 		java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the last sync d l object in the ordered set where version = &#63; and type = &#63;.
@@ -606,7 +606,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject[] findByV_T_PrevAndNext(long syncDLObjectId,
 		java.lang.String version, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Removes all the sync d l objects where version = &#63; and type = &#63; from the database.
@@ -634,7 +634,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	* @throws NoSuchDLObjectException if a matching sync d l object could not be found
 	*/
 	public SyncDLObject findByT_T(java.lang.String type, long typePK)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the sync d l object where type = &#63; and typePK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -664,7 +664,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	* @return the sync d l object that was removed
 	*/
 	public SyncDLObject removeByT_T(java.lang.String type, long typePK)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the number of sync d l objects where type = &#63; and typePK = &#63;.
@@ -756,7 +756,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByM_R_NotE_First(long modifiedTime,
 		long repositoryId, java.lang.String event,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the first sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
@@ -784,7 +784,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByM_R_NotE_Last(long modifiedTime,
 		long repositoryId, java.lang.String event,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the last sync d l object in the ordered set where modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; &#63;.
@@ -813,7 +813,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject[] findByM_R_NotE_PrevAndNext(long syncDLObjectId,
 		long modifiedTime, long repositoryId, java.lang.String event,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns all the sync d l objects where modifiedTime &gt; &#63; and repositoryId = &#63; and event &ne; all &#63;.
@@ -1000,7 +1000,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByR_P_T_First(long repositoryId,
 		long parentFolderId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the first sync d l object in the ordered set where repositoryId = &#63; and parentFolderId = &#63; and type = &#63;.
@@ -1028,7 +1028,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject findByR_P_T_Last(long repositoryId,
 		long parentFolderId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the last sync d l object in the ordered set where repositoryId = &#63; and parentFolderId = &#63; and type = &#63;.
@@ -1057,7 +1057,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public SyncDLObject[] findByR_P_T_PrevAndNext(long syncDLObjectId,
 		long repositoryId, long parentFolderId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLObject> orderByComparator)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns all the sync d l objects where repositoryId = &#63; and parentFolderId = &#63; and type = any &#63;.
@@ -1193,7 +1193,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	* @throws NoSuchDLObjectException if a sync d l object with the primary key could not be found
 	*/
 	public SyncDLObject remove(long syncDLObjectId)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	public SyncDLObject updateImpl(SyncDLObject syncDLObject);
 
@@ -1205,7 +1205,7 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	* @throws NoSuchDLObjectException if a sync d l object with the primary key could not be found
 	*/
 	public SyncDLObject findByPrimaryKey(long syncDLObjectId)
-		throws com.liferay.sync.NoSuchDLObjectException;
+		throws com.liferay.sync.exception.NoSuchDLObjectException;
 
 	/**
 	* Returns the sync d l object with the primary key or returns <code>null</code> if it could not be found.

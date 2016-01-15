@@ -117,7 +117,7 @@ public class SVNRepositoryUtil {
 	* @throws NoSuchSVNRepositoryException if a matching s v n repository could not be found
 	*/
 	public static SVNRepository findByUrl(java.lang.String url)
-		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException {
 		return getPersistence().findByUrl(url);
 	}
 
@@ -150,7 +150,7 @@ public class SVNRepositoryUtil {
 	* @return the s v n repository that was removed
 	*/
 	public static SVNRepository removeByUrl(java.lang.String url)
-		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException {
 		return getPersistence().removeByUrl(url);
 	}
 
@@ -200,7 +200,7 @@ public class SVNRepositoryUtil {
 	* @throws NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	*/
 	public static SVNRepository remove(long svnRepositoryId)
-		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException {
 		return getPersistence().remove(svnRepositoryId);
 	}
 
@@ -216,7 +216,7 @@ public class SVNRepositoryUtil {
 	* @throws NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	*/
 	public static SVNRepository findByPrimaryKey(long svnRepositoryId)
-		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException {
 		return getPersistence().findByPrimaryKey(svnRepositoryId);
 	}
 

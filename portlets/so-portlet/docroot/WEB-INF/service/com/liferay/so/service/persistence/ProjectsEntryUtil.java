@@ -187,7 +187,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static ProjectsEntry findByUserId_First(long userId,
 		OrderByComparator<ProjectsEntry> orderByComparator)
-		throws com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.exception.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -213,7 +213,7 @@ public class ProjectsEntryUtil {
 	*/
 	public static ProjectsEntry findByUserId_Last(long userId,
 		OrderByComparator<ProjectsEntry> orderByComparator)
-		throws com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.exception.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -241,7 +241,7 @@ public class ProjectsEntryUtil {
 	public static ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
 		OrderByComparator<ProjectsEntry> orderByComparator)
-		throws com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.exception.NoSuchProjectsEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(projectsEntryId, userId,
 			orderByComparator);
@@ -302,7 +302,7 @@ public class ProjectsEntryUtil {
 	* @throws NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	*/
 	public static ProjectsEntry remove(long projectsEntryId)
-		throws com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.exception.NoSuchProjectsEntryException {
 		return getPersistence().remove(projectsEntryId);
 	}
 
@@ -318,7 +318,7 @@ public class ProjectsEntryUtil {
 	* @throws NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	*/
 	public static ProjectsEntry findByPrimaryKey(long projectsEntryId)
-		throws com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.exception.NoSuchProjectsEntryException {
 		return getPersistence().findByPrimaryKey(projectsEntryId);
 	}
 

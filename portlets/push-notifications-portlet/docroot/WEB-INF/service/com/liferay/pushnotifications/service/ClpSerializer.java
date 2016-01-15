@@ -267,8 +267,8 @@ public class ClpSerializer {
 		String className = clazz.getName();
 
 		if (className.equals(
-					"com.liferay.pushnotifications.NoSuchDeviceException")) {
-			return new com.liferay.pushnotifications.NoSuchDeviceException(throwable.getMessage(),
+					"com.liferay.pushnotifications.exception.NoSuchDeviceException")) {
+			return new com.liferay.pushnotifications.exception.NoSuchDeviceException(throwable.getMessage(),
 				throwable.getCause());
 		}
 

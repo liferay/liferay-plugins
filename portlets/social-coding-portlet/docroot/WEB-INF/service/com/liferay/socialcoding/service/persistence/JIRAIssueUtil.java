@@ -187,7 +187,7 @@ public class JIRAIssueUtil {
 	*/
 	public static JIRAIssue findByProjectId_First(long projectId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByProjectId_First(projectId, orderByComparator);
 	}
@@ -215,7 +215,7 @@ public class JIRAIssueUtil {
 	*/
 	public static JIRAIssue findByProjectId_Last(long projectId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByProjectId_Last(projectId, orderByComparator);
 	}
@@ -244,7 +244,7 @@ public class JIRAIssueUtil {
 	*/
 	public static JIRAIssue[] findByProjectId_PrevAndNext(long jiraIssueId,
 		long projectId, OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByProjectId_PrevAndNext(jiraIssueId, projectId,
 			orderByComparator);
@@ -353,7 +353,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByReporterJiraUserId_First(
 		java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByReporterJiraUserId_First(reporterJiraUserId,
 			orderByComparator);
@@ -385,7 +385,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByReporterJiraUserId_Last(
 		java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByReporterJiraUserId_Last(reporterJiraUserId,
 			orderByComparator);
@@ -418,7 +418,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue[] findByReporterJiraUserId_PrevAndNext(
 		long jiraIssueId, java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByReporterJiraUserId_PrevAndNext(jiraIssueId,
 			reporterJiraUserId, orderByComparator);
@@ -529,7 +529,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByAssigneeJiraUserId_First(
 		java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByAssigneeJiraUserId_First(assigneeJiraUserId,
 			orderByComparator);
@@ -561,7 +561,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByAssigneeJiraUserId_Last(
 		java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByAssigneeJiraUserId_Last(assigneeJiraUserId,
 			orderByComparator);
@@ -594,7 +594,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue[] findByAssigneeJiraUserId_PrevAndNext(
 		long jiraIssueId, java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByAssigneeJiraUserId_PrevAndNext(jiraIssueId,
 			assigneeJiraUserId, orderByComparator);
@@ -708,7 +708,7 @@ public class JIRAIssueUtil {
 	*/
 	public static JIRAIssue findByMD_P_First(java.util.Date modifiedDate,
 		long projectId, OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_First(modifiedDate, projectId, orderByComparator);
 	}
@@ -738,7 +738,7 @@ public class JIRAIssueUtil {
 	*/
 	public static JIRAIssue findByMD_P_Last(java.util.Date modifiedDate,
 		long projectId, OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_Last(modifiedDate, projectId, orderByComparator);
 	}
@@ -770,7 +770,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue[] findByMD_P_PrevAndNext(long jiraIssueId,
 		java.util.Date modifiedDate, long projectId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_PrevAndNext(jiraIssueId, modifiedDate,
 			projectId, orderByComparator);
@@ -886,7 +886,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_RJUI_First(long projectId,
 		java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_RJUI_First(projectId, reporterJiraUserId,
 			orderByComparator);
@@ -920,7 +920,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_RJUI_Last(long projectId,
 		java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_RJUI_Last(projectId, reporterJiraUserId,
 			orderByComparator);
@@ -955,7 +955,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue[] findByP_RJUI_PrevAndNext(long jiraIssueId,
 		long projectId, java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_RJUI_PrevAndNext(jiraIssueId, projectId,
 			reporterJiraUserId, orderByComparator);
@@ -1073,7 +1073,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_AJUI_First(long projectId,
 		java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_AJUI_First(projectId, assigneeJiraUserId,
 			orderByComparator);
@@ -1107,7 +1107,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_AJUI_Last(long projectId,
 		java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_AJUI_Last(projectId, assigneeJiraUserId,
 			orderByComparator);
@@ -1142,7 +1142,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue[] findByP_AJUI_PrevAndNext(long jiraIssueId,
 		long projectId, java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_AJUI_PrevAndNext(jiraIssueId, projectId,
 			assigneeJiraUserId, orderByComparator);
@@ -1267,7 +1267,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByMD_P_RJUI_First(java.util.Date modifiedDate,
 		long projectId, java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_RJUI_First(modifiedDate, projectId,
 			reporterJiraUserId, orderByComparator);
@@ -1304,7 +1304,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByMD_P_RJUI_Last(java.util.Date modifiedDate,
 		long projectId, java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_RJUI_Last(modifiedDate, projectId,
 			reporterJiraUserId, orderByComparator);
@@ -1342,7 +1342,7 @@ public class JIRAIssueUtil {
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_RJUI_PrevAndNext(jiraIssueId, modifiedDate,
 			projectId, reporterJiraUserId, orderByComparator);
@@ -1471,7 +1471,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByMD_P_AJUI_First(java.util.Date modifiedDate,
 		long projectId, java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_AJUI_First(modifiedDate, projectId,
 			assigneeJiraUserId, orderByComparator);
@@ -1508,7 +1508,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByMD_P_AJUI_Last(java.util.Date modifiedDate,
 		long projectId, java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_AJUI_Last(modifiedDate, projectId,
 			assigneeJiraUserId, orderByComparator);
@@ -1546,7 +1546,7 @@ public class JIRAIssueUtil {
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByMD_P_AJUI_PrevAndNext(jiraIssueId, modifiedDate,
 			projectId, assigneeJiraUserId, orderByComparator);
@@ -1676,7 +1676,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_RJUI_S_First(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_RJUI_S_First(projectId, reporterJiraUserId, status,
 			orderByComparator);
@@ -1712,7 +1712,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_RJUI_S_Last(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_RJUI_S_Last(projectId, reporterJiraUserId, status,
 			orderByComparator);
@@ -1749,7 +1749,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue[] findByP_RJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status, OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_RJUI_S_PrevAndNext(jiraIssueId, projectId,
 			reporterJiraUserId, status, orderByComparator);
@@ -1878,7 +1878,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_AJUI_S_First(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_AJUI_S_First(projectId, assigneeJiraUserId, status,
 			orderByComparator);
@@ -1914,7 +1914,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue findByP_AJUI_S_Last(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status,
 		OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_AJUI_S_Last(projectId, assigneeJiraUserId, status,
 			orderByComparator);
@@ -1951,7 +1951,7 @@ public class JIRAIssueUtil {
 	public static JIRAIssue[] findByP_AJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, java.lang.String assigneeJiraUserId,
 		java.lang.String status, OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence()
 				   .findByP_AJUI_S_PrevAndNext(jiraIssueId, projectId,
 			assigneeJiraUserId, status, orderByComparator);
@@ -2019,7 +2019,7 @@ public class JIRAIssueUtil {
 	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
 	public static JIRAIssue remove(long jiraIssueId)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence().remove(jiraIssueId);
 	}
 
@@ -2035,7 +2035,7 @@ public class JIRAIssueUtil {
 	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
 	public static JIRAIssue findByPrimaryKey(long jiraIssueId)
-		throws com.liferay.socialcoding.NoSuchJIRAIssueException {
+		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException {
 		return getPersistence().findByPrimaryKey(jiraIssueId);
 	}
 

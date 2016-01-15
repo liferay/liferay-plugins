@@ -109,7 +109,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	*/
 	public Folder findByAccountId_First(long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator<Folder> orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException;
+		throws com.liferay.mail.exception.NoSuchFolderException;
 
 	/**
 	* Returns the first folder in the ordered set where accountId = &#63;.
@@ -131,7 +131,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	*/
 	public Folder findByAccountId_Last(long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator<Folder> orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException;
+		throws com.liferay.mail.exception.NoSuchFolderException;
 
 	/**
 	* Returns the last folder in the ordered set where accountId = &#63;.
@@ -154,7 +154,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	*/
 	public Folder[] findByAccountId_PrevAndNext(long folderId, long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator<Folder> orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException;
+		throws com.liferay.mail.exception.NoSuchFolderException;
 
 	/**
 	* Removes all the folders where accountId = &#63; from the database.
@@ -180,7 +180,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	* @throws NoSuchFolderException if a matching folder could not be found
 	*/
 	public Folder findByA_F(long accountId, java.lang.String fullName)
-		throws com.liferay.mail.NoSuchFolderException;
+		throws com.liferay.mail.exception.NoSuchFolderException;
 
 	/**
 	* Returns the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -210,7 +210,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	* @return the folder that was removed
 	*/
 	public Folder removeByA_F(long accountId, java.lang.String fullName)
-		throws com.liferay.mail.NoSuchFolderException;
+		throws com.liferay.mail.exception.NoSuchFolderException;
 
 	/**
 	* Returns the number of folders where accountId = &#63; and fullName = &#63;.
@@ -251,7 +251,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	* @throws NoSuchFolderException if a folder with the primary key could not be found
 	*/
 	public Folder remove(long folderId)
-		throws com.liferay.mail.NoSuchFolderException;
+		throws com.liferay.mail.exception.NoSuchFolderException;
 
 	public Folder updateImpl(Folder folder);
 
@@ -263,7 +263,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	* @throws NoSuchFolderException if a folder with the primary key could not be found
 	*/
 	public Folder findByPrimaryKey(long folderId)
-		throws com.liferay.mail.NoSuchFolderException;
+		throws com.liferay.mail.exception.NoSuchFolderException;
 
 	/**
 	* Returns the folder with the primary key or returns <code>null</code> if it could not be found.

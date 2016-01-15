@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.socialcoding.NoSuchJIRAChangeItemException;
+import com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException;
 import com.liferay.socialcoding.model.JIRAChangeItem;
 import com.liferay.socialcoding.model.impl.JIRAChangeItemImpl;
 import com.liferay.socialcoding.model.impl.JIRAChangeItemModelImpl;

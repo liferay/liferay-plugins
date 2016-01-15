@@ -184,7 +184,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByCreateDate_First(long createDate,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByCreateDate_First(createDate, orderByComparator);
 	}
@@ -212,7 +212,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByCreateDate_Last(long createDate,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByCreateDate_Last(createDate, orderByComparator);
 	}
@@ -241,7 +241,7 @@ public class EntryUtil {
 	*/
 	public static Entry[] findByCreateDate_PrevAndNext(long entryId,
 		long createDate, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByCreateDate_PrevAndNext(entryId, createDate,
 			orderByComparator);
@@ -344,7 +344,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByFromUserId_First(long fromUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByFromUserId_First(fromUserId, orderByComparator);
 	}
@@ -372,7 +372,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByFromUserId_Last(long fromUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByFromUserId_Last(fromUserId, orderByComparator);
 	}
@@ -401,7 +401,7 @@ public class EntryUtil {
 	*/
 	public static Entry[] findByFromUserId_PrevAndNext(long entryId,
 		long fromUserId, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByFromUserId_PrevAndNext(entryId, fromUserId,
 			orderByComparator);
@@ -502,7 +502,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByToUserId_First(long toUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence().findByToUserId_First(toUserId, orderByComparator);
 	}
 
@@ -529,7 +529,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByToUserId_Last(long toUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence().findByToUserId_Last(toUserId, orderByComparator);
 	}
 
@@ -556,7 +556,7 @@ public class EntryUtil {
 	*/
 	public static Entry[] findByToUserId_PrevAndNext(long entryId,
 		long toUserId, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByToUserId_PrevAndNext(entryId, toUserId,
 			orderByComparator);
@@ -665,7 +665,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByC_F_First(long createDate, long fromUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_First(createDate, fromUserId, orderByComparator);
 	}
@@ -695,7 +695,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByC_F_Last(long createDate, long fromUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_Last(createDate, fromUserId, orderByComparator);
 	}
@@ -726,7 +726,7 @@ public class EntryUtil {
 	*/
 	public static Entry[] findByC_F_PrevAndNext(long entryId, long createDate,
 		long fromUserId, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_PrevAndNext(entryId, createDate, fromUserId,
 			orderByComparator);
@@ -837,7 +837,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByC_T_First(long createDate, long toUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_T_First(createDate, toUserId, orderByComparator);
 	}
@@ -867,7 +867,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByC_T_Last(long createDate, long toUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_T_Last(createDate, toUserId, orderByComparator);
 	}
@@ -898,7 +898,7 @@ public class EntryUtil {
 	*/
 	public static Entry[] findByC_T_PrevAndNext(long entryId, long createDate,
 		long toUserId, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_T_PrevAndNext(entryId, createDate, toUserId,
 			orderByComparator);
@@ -1009,7 +1009,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByF_T_First(long fromUserId, long toUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_First(fromUserId, toUserId, orderByComparator);
 	}
@@ -1039,7 +1039,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByF_T_Last(long fromUserId, long toUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_Last(fromUserId, toUserId, orderByComparator);
 	}
@@ -1070,7 +1070,7 @@ public class EntryUtil {
 	*/
 	public static Entry[] findByF_T_PrevAndNext(long entryId, long fromUserId,
 		long toUserId, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_PrevAndNext(entryId, fromUserId, toUserId,
 			orderByComparator);
@@ -1189,7 +1189,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByC_F_T_First(long createDate, long fromUserId,
 		long toUserId, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_T_First(createDate, fromUserId, toUserId,
 			orderByComparator);
@@ -1223,7 +1223,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByC_F_T_Last(long createDate, long fromUserId,
 		long toUserId, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_T_Last(createDate, fromUserId, toUserId,
 			orderByComparator);
@@ -1259,7 +1259,7 @@ public class EntryUtil {
 	public static Entry[] findByC_F_T_PrevAndNext(long entryId,
 		long createDate, long fromUserId, long toUserId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByC_F_T_PrevAndNext(entryId, createDate, fromUserId,
 			toUserId, orderByComparator);
@@ -1382,7 +1382,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByF_T_C_First(long fromUserId, long toUserId,
 		java.lang.String content, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_C_First(fromUserId, toUserId, content,
 			orderByComparator);
@@ -1416,7 +1416,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByF_T_C_Last(long fromUserId, long toUserId,
 		java.lang.String content, OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_C_Last(fromUserId, toUserId, content,
 			orderByComparator);
@@ -1452,7 +1452,7 @@ public class EntryUtil {
 	public static Entry[] findByF_T_C_PrevAndNext(long entryId,
 		long fromUserId, long toUserId, java.lang.String content,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByF_T_C_PrevAndNext(entryId, fromUserId, toUserId,
 			content, orderByComparator);
@@ -1519,7 +1519,7 @@ public class EntryUtil {
 	* @throws NoSuchEntryException if a entry with the primary key could not be found
 	*/
 	public static Entry remove(long entryId)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence().remove(entryId);
 	}
 
@@ -1535,7 +1535,7 @@ public class EntryUtil {
 	* @throws NoSuchEntryException if a entry with the primary key could not be found
 	*/
 	public static Entry findByPrimaryKey(long entryId)
-		throws com.liferay.chat.NoSuchEntryException {
+		throws com.liferay.chat.exception.NoSuchEntryException {
 		return getPersistence().findByPrimaryKey(entryId);
 	}
 

@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.socialcoding.NoSuchSVNRevisionException;
+import com.liferay.socialcoding.exception.NoSuchSVNRevisionException;
 import com.liferay.socialcoding.model.SVNRevision;
 import com.liferay.socialcoding.model.impl.SVNRevisionImpl;
 import com.liferay.socialcoding.model.impl.SVNRevisionModelImpl;

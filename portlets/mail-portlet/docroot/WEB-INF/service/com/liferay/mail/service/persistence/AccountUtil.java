@@ -183,7 +183,7 @@ public class AccountUtil {
 	*/
 	public static Account findByUserId_First(long userId,
 		OrderByComparator<Account> orderByComparator)
-		throws com.liferay.mail.NoSuchAccountException {
+		throws com.liferay.mail.exception.NoSuchAccountException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -209,7 +209,7 @@ public class AccountUtil {
 	*/
 	public static Account findByUserId_Last(long userId,
 		OrderByComparator<Account> orderByComparator)
-		throws com.liferay.mail.NoSuchAccountException {
+		throws com.liferay.mail.exception.NoSuchAccountException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -236,7 +236,7 @@ public class AccountUtil {
 	*/
 	public static Account[] findByUserId_PrevAndNext(long accountId,
 		long userId, OrderByComparator<Account> orderByComparator)
-		throws com.liferay.mail.NoSuchAccountException {
+		throws com.liferay.mail.exception.NoSuchAccountException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(accountId, userId,
 			orderByComparator);
@@ -270,7 +270,7 @@ public class AccountUtil {
 	* @throws NoSuchAccountException if a matching account could not be found
 	*/
 	public static Account findByU_A(long userId, java.lang.String address)
-		throws com.liferay.mail.NoSuchAccountException {
+		throws com.liferay.mail.exception.NoSuchAccountException {
 		return getPersistence().findByU_A(userId, address);
 	}
 
@@ -306,7 +306,7 @@ public class AccountUtil {
 	* @return the account that was removed
 	*/
 	public static Account removeByU_A(long userId, java.lang.String address)
-		throws com.liferay.mail.NoSuchAccountException {
+		throws com.liferay.mail.exception.NoSuchAccountException {
 		return getPersistence().removeByU_A(userId, address);
 	}
 
@@ -357,7 +357,7 @@ public class AccountUtil {
 	* @throws NoSuchAccountException if a account with the primary key could not be found
 	*/
 	public static Account remove(long accountId)
-		throws com.liferay.mail.NoSuchAccountException {
+		throws com.liferay.mail.exception.NoSuchAccountException {
 		return getPersistence().remove(accountId);
 	}
 
@@ -373,7 +373,7 @@ public class AccountUtil {
 	* @throws NoSuchAccountException if a account with the primary key could not be found
 	*/
 	public static Account findByPrimaryKey(long accountId)
-		throws com.liferay.mail.NoSuchAccountException {
+		throws com.liferay.mail.exception.NoSuchAccountException {
 		return getPersistence().findByPrimaryKey(accountId);
 	}
 

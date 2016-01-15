@@ -182,7 +182,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByUserId_First(long userId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.contacts.NoSuchEntryException {
+		throws com.liferay.contacts.exception.NoSuchEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -208,7 +208,7 @@ public class EntryUtil {
 	*/
 	public static Entry findByUserId_Last(long userId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.contacts.NoSuchEntryException {
+		throws com.liferay.contacts.exception.NoSuchEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -235,7 +235,7 @@ public class EntryUtil {
 	*/
 	public static Entry[] findByUserId_PrevAndNext(long entryId, long userId,
 		OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.contacts.NoSuchEntryException {
+		throws com.liferay.contacts.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(entryId, userId, orderByComparator);
 	}
@@ -268,7 +268,7 @@ public class EntryUtil {
 	* @throws NoSuchEntryException if a matching entry could not be found
 	*/
 	public static Entry findByU_EA(long userId, java.lang.String emailAddress)
-		throws com.liferay.contacts.NoSuchEntryException {
+		throws com.liferay.contacts.exception.NoSuchEntryException {
 		return getPersistence().findByU_EA(userId, emailAddress);
 	}
 
@@ -305,7 +305,7 @@ public class EntryUtil {
 	* @return the entry that was removed
 	*/
 	public static Entry removeByU_EA(long userId, java.lang.String emailAddress)
-		throws com.liferay.contacts.NoSuchEntryException {
+		throws com.liferay.contacts.exception.NoSuchEntryException {
 		return getPersistence().removeByU_EA(userId, emailAddress);
 	}
 
@@ -356,7 +356,7 @@ public class EntryUtil {
 	* @throws NoSuchEntryException if a entry with the primary key could not be found
 	*/
 	public static Entry remove(long entryId)
-		throws com.liferay.contacts.NoSuchEntryException {
+		throws com.liferay.contacts.exception.NoSuchEntryException {
 		return getPersistence().remove(entryId);
 	}
 
@@ -372,7 +372,7 @@ public class EntryUtil {
 	* @throws NoSuchEntryException if a entry with the primary key could not be found
 	*/
 	public static Entry findByPrimaryKey(long entryId)
-		throws com.liferay.contacts.NoSuchEntryException {
+		throws com.liferay.contacts.exception.NoSuchEntryException {
 		return getPersistence().findByPrimaryKey(entryId);
 	}
 

@@ -16,7 +16,7 @@ package com.liferay.mail.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.mail.NoSuchFolderException;
+import com.liferay.mail.exception.NoSuchFolderException;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.impl.FolderImpl;
 import com.liferay.mail.model.impl.FolderModelImpl;

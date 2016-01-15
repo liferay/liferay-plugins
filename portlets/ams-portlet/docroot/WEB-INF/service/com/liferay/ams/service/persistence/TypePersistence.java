@@ -69,7 +69,8 @@ public interface TypePersistence extends BasePersistence<Type> {
 	* @return the type that was removed
 	* @throws NoSuchTypeException if a type with the primary key could not be found
 	*/
-	public Type remove(long typeId) throws com.liferay.ams.NoSuchTypeException;
+	public Type remove(long typeId)
+		throws com.liferay.ams.exception.NoSuchTypeException;
 
 	public Type updateImpl(Type type);
 
@@ -81,7 +82,7 @@ public interface TypePersistence extends BasePersistence<Type> {
 	* @throws NoSuchTypeException if a type with the primary key could not be found
 	*/
 	public Type findByPrimaryKey(long typeId)
-		throws com.liferay.ams.NoSuchTypeException;
+		throws com.liferay.ams.exception.NoSuchTypeException;
 
 	/**
 	* Returns the type with the primary key or returns <code>null</code> if it could not be found.

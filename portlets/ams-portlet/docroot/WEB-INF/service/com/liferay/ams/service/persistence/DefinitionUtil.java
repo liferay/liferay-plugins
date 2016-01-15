@@ -145,7 +145,7 @@ public class DefinitionUtil {
 	* @throws NoSuchDefinitionException if a definition with the primary key could not be found
 	*/
 	public static Definition remove(long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException {
+		throws com.liferay.ams.exception.NoSuchDefinitionException {
 		return getPersistence().remove(definitionId);
 	}
 
@@ -161,7 +161,7 @@ public class DefinitionUtil {
 	* @throws NoSuchDefinitionException if a definition with the primary key could not be found
 	*/
 	public static Definition findByPrimaryKey(long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException {
+		throws com.liferay.ams.exception.NoSuchDefinitionException {
 		return getPersistence().findByPrimaryKey(definitionId);
 	}
 

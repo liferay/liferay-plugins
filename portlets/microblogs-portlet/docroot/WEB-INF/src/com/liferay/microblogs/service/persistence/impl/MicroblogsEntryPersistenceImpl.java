@@ -16,7 +16,7 @@ package com.liferay.microblogs.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.microblogs.NoSuchEntryException;
+import com.liferay.microblogs.exception.NoSuchEntryException;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.impl.MicroblogsEntryImpl;
 import com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl;
