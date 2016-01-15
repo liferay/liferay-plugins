@@ -638,6 +638,9 @@ AUI.add(
 							endTimeYear: endDate.getFullYear(),
 							instanceIndex: schedulerEvent.get('instanceIndex'),
 							recurrence: schedulerEvent.get('recurrence'),
+							serviceContext: {
+								languageId: themeDisplay.getLanguageId()
+							},
 							startTimeDay: startDate.getDate(),
 							startTimeHour: startDate.getHours(),
 							startTimeMinute: startDate.getMinutes(),
