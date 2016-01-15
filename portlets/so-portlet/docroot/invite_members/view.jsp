@@ -38,11 +38,13 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 
 		<aui:script position="inline" use="aui-base,aui-io-plugin-deprecated,liferay-so-invite-members,liferay-util-window">
+			AUI().ready('aui-base', 'aui-io-plugin-deprecated', 'liferay-so-invite-members', 'liferay-util-window', function(A) {
 									new Liferay.SO.InviteMembers(
 										{
 											portletNamespace: '<portlet:namespace />'
 										}
 									);
+			});
 		</aui:script>
 		</liferay-ui:panel>
 		</liferay-ui:panel-container>
