@@ -57,7 +57,7 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 
 		List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-		for (long classNameId : AssetRendererFactoryRegistryUtil.getClassNameIds()) {
+		for (long classNameId : AssetRendererFactoryRegistryUtil.getClassNameIds(company.getCompanyId())) {
 			if (!ArrayUtil.contains(classNameIdValues, classNameId)) {
 				String value = (String)PortalClassInvoker.invoke(false, methodKey, pageContext, PortalUtil.getClassName(classNameId));
 
