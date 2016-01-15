@@ -685,7 +685,7 @@ public class SitesPortlet extends MVCPortlet {
 	}
 
 	private static final String _CLASS_NAME =
-		"com.liferay.portlet.sites.util.SitesUtil";
+		"com.liferay.sites.kernel.util.SitesUtil";
 
 	private static MethodKey _mergeLayoutSetPrototypeLayoutsMethodKey =
 		new MethodKey(
