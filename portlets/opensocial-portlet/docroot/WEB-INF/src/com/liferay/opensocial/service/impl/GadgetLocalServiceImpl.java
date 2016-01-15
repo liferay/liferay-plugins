@@ -14,10 +14,10 @@
 
 package com.liferay.opensocial.service.impl;
 
-import com.liferay.opensocial.DuplicateGadgetURLException;
-import com.liferay.opensocial.GadgetPortletCategoryNamesException;
-import com.liferay.opensocial.GadgetURLException;
-import com.liferay.opensocial.NoSuchGadgetException;
+import com.liferay.opensocial.exception.DuplicateGadgetURLException;
+import com.liferay.opensocial.exception.GadgetPortletCategoryNamesException;
+import com.liferay.opensocial.exception.GadgetURLException;
+import com.liferay.opensocial.exception.NoSuchGadgetException;
 import com.liferay.opensocial.gadget.portlet.GadgetPortlet;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.impl.GadgetConstants;

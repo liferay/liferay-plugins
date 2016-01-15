@@ -14,9 +14,9 @@
 
 package com.liferay.mail.mailbox;
 
-import com.liferay.mail.MailException;
-import com.liferay.mail.NoSuchFolderException;
-import com.liferay.mail.NoSuchMessageException;
+import com.liferay.mail.exception.MailException;
+import com.liferay.mail.exception.NoSuchFolderException;
+import com.liferay.mail.exception.NoSuchMessageException;
 import com.liferay.mail.imap.IMAPAccessor;
 import com.liferay.mail.imap.IMAPConnection;
 import com.liferay.mail.model.Account;

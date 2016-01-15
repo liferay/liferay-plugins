@@ -14,7 +14,7 @@
 
 package com.liferay.mail.imap;
 
-import com.liferay.mail.MailException;
+import com.liferay.mail.exception.MailException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.util.PortletPropsValues;
 import com.liferay.portal.kernel.log.Log;

@@ -16,9 +16,9 @@ package com.liferay.knowledgebase.service.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.knowledgebase.DuplicateKBFolderNameException;
-import com.liferay.knowledgebase.InvalidKBFolderNameException;
-import com.liferay.knowledgebase.NoSuchFolderException;
+import com.liferay.knowledgebase.exception.DuplicateKBFolderNameException;
+import com.liferay.knowledgebase.exception.InvalidKBFolderNameException;
+import com.liferay.knowledgebase.exception.NoSuchFolderException;
 import com.liferay.knowledgebase.model.KBFolder;
 import com.liferay.knowledgebase.model.KBFolderConstants;
 import com.liferay.knowledgebase.service.base.KBFolderLocalServiceBaseImpl;

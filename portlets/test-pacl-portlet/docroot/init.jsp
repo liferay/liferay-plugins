@@ -22,7 +22,7 @@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.chat.NoSuchEntryException" %><%@
+<%@ page import="com.liferay.chat.exception.NoSuchEntryException" %><%@
 page import="com.liferay.chat.model.Entry" %><%@
 page import="com.liferay.chat.model.EntryClp" %><%@
 page import="com.liferay.chat.service.EntryLocalService" %><%@

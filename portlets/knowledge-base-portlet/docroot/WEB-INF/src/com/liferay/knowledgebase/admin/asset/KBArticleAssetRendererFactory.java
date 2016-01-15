@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.admin.asset;
 
-import com.liferay.knowledgebase.NoSuchArticleException;
+import com.liferay.knowledgebase.exception.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.AdminPermission;

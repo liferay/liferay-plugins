@@ -25,10 +25,10 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.opensocial.DuplicateGadgetURLException" %><%@
-page import="com.liferay.opensocial.GadgetPortletCategoryNamesException" %><%@
-page import="com.liferay.opensocial.GadgetURLException" %><%@
-page import="com.liferay.opensocial.NoSuchGadgetException" %><%@
+<%@ page import="com.liferay.opensocial.exception.DuplicateGadgetURLException" %><%@
+page import="com.liferay.opensocial.exception.GadgetPortletCategoryNamesException" %><%@
+page import="com.liferay.opensocial.exception.GadgetURLException" %><%@
+page import="com.liferay.opensocial.exception.NoSuchGadgetException" %><%@
 page import="com.liferay.opensocial.model.Gadget" %><%@
 page import="com.liferay.opensocial.model.OAuthConsumer" %><%@
 page import="com.liferay.opensocial.model.OAuthConsumerConstants" %><%@

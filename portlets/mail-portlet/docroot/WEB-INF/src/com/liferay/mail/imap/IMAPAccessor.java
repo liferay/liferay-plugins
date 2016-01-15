@@ -14,8 +14,8 @@
 
 package com.liferay.mail.imap;
 
-import com.liferay.mail.MailException;
-import com.liferay.mail.NoSuchMessageException;
+import com.liferay.mail.exception.MailException;
+import com.liferay.mail.exception.NoSuchMessageException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.MailFile;
 import com.liferay.mail.service.AttachmentLocalServiceUtil;

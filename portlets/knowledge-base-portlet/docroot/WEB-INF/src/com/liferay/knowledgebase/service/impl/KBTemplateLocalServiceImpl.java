@@ -14,9 +14,9 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.knowledgebase.KBTemplateContentException;
-import com.liferay.knowledgebase.KBTemplateTitleException;
-import com.liferay.knowledgebase.NoSuchTemplateException;
+import com.liferay.knowledgebase.exception.KBTemplateContentException;
+import com.liferay.knowledgebase.exception.KBTemplateTitleException;
+import com.liferay.knowledgebase.exception.NoSuchTemplateException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.base.KBTemplateLocalServiceBaseImpl;

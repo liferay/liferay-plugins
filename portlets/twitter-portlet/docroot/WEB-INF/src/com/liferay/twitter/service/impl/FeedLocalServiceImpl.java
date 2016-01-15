@@ -30,7 +30,7 @@ import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.twitter.FeedTwitterScreenNameException;
+import com.liferay.twitter.exception.FeedTwitterScreenNameException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.base.FeedLocalServiceBaseImpl;
 import com.liferay.twitter.social.TwitterActivityKeys;

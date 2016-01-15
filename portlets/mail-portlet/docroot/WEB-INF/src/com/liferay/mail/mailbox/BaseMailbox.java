@@ -14,8 +14,8 @@
 
 package com.liferay.mail.mailbox;
 
-import com.liferay.mail.MailException;
-import com.liferay.mail.NoSuchAccountException;
+import com.liferay.mail.exception.MailException;
+import com.liferay.mail.exception.NoSuchAccountException;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;

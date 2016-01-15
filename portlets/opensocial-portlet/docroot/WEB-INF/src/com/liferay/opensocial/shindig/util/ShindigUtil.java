@@ -16,7 +16,7 @@ package com.liferay.opensocial.shindig.util;
 
 import com.google.inject.Inject;
 
-import com.liferay.opensocial.GadgetURLException;
+import com.liferay.opensocial.exception.GadgetURLException;
 import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;

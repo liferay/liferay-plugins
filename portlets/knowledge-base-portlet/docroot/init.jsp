@@ -26,20 +26,20 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.journal.model.JournalArticle" %><%@
-page import="com.liferay.knowledgebase.DuplicateKBFolderNameException" %><%@
-page import="com.liferay.knowledgebase.InvalidKBFolderNameException" %><%@
-page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
-page import="com.liferay.knowledgebase.KBArticleImportException" %><%@
-page import="com.liferay.knowledgebase.KBArticlePriorityException" %><%@
-page import="com.liferay.knowledgebase.KBArticleSourceURLException" %><%@
-page import="com.liferay.knowledgebase.KBArticleTitleException" %><%@
-page import="com.liferay.knowledgebase.KBArticleUrlTitleException" %><%@
-page import="com.liferay.knowledgebase.KBCommentContentException" %><%@
-page import="com.liferay.knowledgebase.KBTemplateContentException" %><%@
-page import="com.liferay.knowledgebase.KBTemplateTitleException" %><%@
-page import="com.liferay.knowledgebase.NoSuchArticleException" %><%@
-page import="com.liferay.knowledgebase.NoSuchCommentException" %><%@
-page import="com.liferay.knowledgebase.NoSuchTemplateException" %><%@
+page import="com.liferay.knowledgebase.exception.DuplicateKBFolderNameException" %><%@
+page import="com.liferay.knowledgebase.exception.InvalidKBFolderNameException" %><%@
+page import="com.liferay.knowledgebase.exception.KBArticleContentException" %><%@
+page import="com.liferay.knowledgebase.exception.KBArticleImportException" %><%@
+page import="com.liferay.knowledgebase.exception.KBArticlePriorityException" %><%@
+page import="com.liferay.knowledgebase.exception.KBArticleSourceURLException" %><%@
+page import="com.liferay.knowledgebase.exception.KBArticleTitleException" %><%@
+page import="com.liferay.knowledgebase.exception.KBArticleUrlTitleException" %><%@
+page import="com.liferay.knowledgebase.exception.KBCommentContentException" %><%@
+page import="com.liferay.knowledgebase.exception.KBTemplateContentException" %><%@
+page import="com.liferay.knowledgebase.exception.KBTemplateTitleException" %><%@
+page import="com.liferay.knowledgebase.exception.NoSuchArticleException" %><%@
+page import="com.liferay.knowledgebase.exception.NoSuchCommentException" %><%@
+page import="com.liferay.knowledgebase.exception.NoSuchTemplateException" %><%@
 page import="com.liferay.knowledgebase.model.KBArticle" %><%@
 page import="com.liferay.knowledgebase.model.KBArticleConstants" %><%@
 page import="com.liferay.knowledgebase.model.KBArticleSearchDisplay" %><%@

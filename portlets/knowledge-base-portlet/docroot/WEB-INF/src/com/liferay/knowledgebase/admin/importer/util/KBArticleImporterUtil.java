@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.admin.importer.util;
 
-import com.liferay.knowledgebase.KBArticleImportException;
+import com.liferay.knowledgebase.exception.KBArticleImportException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.PortletPropsValues;

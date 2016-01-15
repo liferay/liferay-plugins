@@ -14,12 +14,12 @@
 
 package com.liferay.knowledgebase.admin.portlet;
 
-import com.liferay.knowledgebase.KBArticleImportException;
-import com.liferay.knowledgebase.KBTemplateContentException;
-import com.liferay.knowledgebase.KBTemplateTitleException;
-import com.liferay.knowledgebase.NoSuchArticleException;
-import com.liferay.knowledgebase.NoSuchCommentException;
-import com.liferay.knowledgebase.NoSuchTemplateException;
+import com.liferay.knowledgebase.exception.KBArticleImportException;
+import com.liferay.knowledgebase.exception.KBTemplateContentException;
+import com.liferay.knowledgebase.exception.KBTemplateTitleException;
+import com.liferay.knowledgebase.exception.NoSuchArticleException;
+import com.liferay.knowledgebase.exception.NoSuchCommentException;
+import com.liferay.knowledgebase.exception.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBFolder;

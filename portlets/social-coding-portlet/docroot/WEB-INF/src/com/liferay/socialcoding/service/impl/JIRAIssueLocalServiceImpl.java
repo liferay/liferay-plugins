@@ -26,7 +26,7 @@ import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.socialcoding.NoSuchJIRAIssueException;
+import com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
 import com.liferay.socialcoding.jira.social.JIRAActivityKeys;
 import com.liferay.socialcoding.jira.util.JIRAUtil;
 import com.liferay.socialcoding.model.JIRAAction;

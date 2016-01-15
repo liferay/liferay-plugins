@@ -14,7 +14,7 @@
 
 package com.liferay.mail.service.impl;
 
-import com.liferay.mail.NoSuchMessageException;
+import com.liferay.mail.exception.NoSuchMessageException;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.model.Message;

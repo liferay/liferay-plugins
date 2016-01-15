@@ -30,8 +30,8 @@ import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.wsrp.NoSuchProducerException;
-import com.liferay.wsrp.WSRPProducerNameException;
+import com.liferay.wsrp.exception.NoSuchProducerException;
+import com.liferay.wsrp.exception.WSRPProducerNameException;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
 

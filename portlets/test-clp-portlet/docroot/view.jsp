@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ page import="com.liferay.chat.NoSuchStatusException" %>
+<%@ page import="com.liferay.chat.exception.NoSuchStatusException" %>
 <%@ page import="com.liferay.chat.model.Status" %>
 <%@ page import="com.liferay.chat.service.StatusLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>

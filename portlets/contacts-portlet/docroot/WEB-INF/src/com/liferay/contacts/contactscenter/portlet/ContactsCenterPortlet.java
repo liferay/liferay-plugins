@@ -17,8 +17,8 @@
 
 package com.liferay.contacts.contactscenter.portlet;
 
-import com.liferay.contacts.DuplicateEntryEmailAddressException;
-import com.liferay.contacts.EntryEmailAddressException;
+import com.liferay.contacts.exception.DuplicateEntryEmailAddressException;
+import com.liferay.contacts.exception.EntryEmailAddressException;
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.service.EntryLocalServiceUtil;
 import com.liferay.contacts.util.ContactsConstants;

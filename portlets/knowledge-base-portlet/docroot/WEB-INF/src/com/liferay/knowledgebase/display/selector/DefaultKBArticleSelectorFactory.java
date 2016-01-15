@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.display.selector;
 
-import com.liferay.knowledgebase.NoSuchKBArticleSelectorException;
+import com.liferay.knowledgebase.exception.NoSuchKBArticleSelectorException;
 import com.liferay.knowledgebase.util.PortletPropsKeys;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;

@@ -17,7 +17,7 @@
 
 package com.liferay.microblogs.service.impl;
 
-import com.liferay.microblogs.UnsupportedMicroblogsEntryException;
+import com.liferay.microblogs.exception.UnsupportedMicroblogsEntryException;
 import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;

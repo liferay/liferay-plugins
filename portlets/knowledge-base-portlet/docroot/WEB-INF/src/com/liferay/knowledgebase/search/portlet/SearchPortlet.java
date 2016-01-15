@@ -14,8 +14,8 @@
 
 package com.liferay.knowledgebase.search.portlet;
 
-import com.liferay.knowledgebase.NoSuchArticleException;
-import com.liferay.knowledgebase.NoSuchCommentException;
+import com.liferay.knowledgebase.exception.NoSuchArticleException;
+import com.liferay.knowledgebase.exception.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.portlet.BaseKBPortlet;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;

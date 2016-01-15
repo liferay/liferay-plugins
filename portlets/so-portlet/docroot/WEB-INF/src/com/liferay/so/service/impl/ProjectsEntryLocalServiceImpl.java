@@ -20,8 +20,8 @@ package com.liferay.so.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.so.ProjectsEntryEndDateException;
-import com.liferay.so.ProjectsEntryStartDateException;
+import com.liferay.so.exception.ProjectsEntryEndDateException;
+import com.liferay.so.exception.ProjectsEntryStartDateException;
 import com.liferay.so.model.ProjectsEntry;
 import com.liferay.so.service.base.ProjectsEntryLocalServiceBaseImpl;
 

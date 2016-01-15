@@ -14,13 +14,13 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.knowledgebase.KBArticleContentException;
-import com.liferay.knowledgebase.KBArticleParentException;
-import com.liferay.knowledgebase.KBArticlePriorityException;
-import com.liferay.knowledgebase.KBArticleSourceURLException;
-import com.liferay.knowledgebase.KBArticleTitleException;
-import com.liferay.knowledgebase.KBArticleUrlTitleException;
-import com.liferay.knowledgebase.NoSuchArticleException;
+import com.liferay.knowledgebase.exception.KBArticleContentException;
+import com.liferay.knowledgebase.exception.KBArticleParentException;
+import com.liferay.knowledgebase.exception.KBArticlePriorityException;
+import com.liferay.knowledgebase.exception.KBArticleSourceURLException;
+import com.liferay.knowledgebase.exception.KBArticleTitleException;
+import com.liferay.knowledgebase.exception.KBArticleUrlTitleException;
+import com.liferay.knowledgebase.exception.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.importer.KBArticleImporter;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;

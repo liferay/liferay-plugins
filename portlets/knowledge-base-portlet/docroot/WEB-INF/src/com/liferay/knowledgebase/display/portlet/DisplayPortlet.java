@@ -14,8 +14,8 @@
 
 package com.liferay.knowledgebase.display.portlet;
 
-import com.liferay.knowledgebase.NoSuchArticleException;
-import com.liferay.knowledgebase.NoSuchCommentException;
+import com.liferay.knowledgebase.exception.NoSuchArticleException;
+import com.liferay.knowledgebase.exception.NoSuchCommentException;
 import com.liferay.knowledgebase.display.selector.KBArticleSelection;
 import com.liferay.knowledgebase.display.selector.KBArticleSelector;
 import com.liferay.knowledgebase.display.selector.KBArticleSelectorFactoryUtil;

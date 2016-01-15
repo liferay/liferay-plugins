@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.admin.importer.util;
 
-import com.liferay.knowledgebase.KBArticleImportException;
+import com.liferay.knowledgebase.exception.KBArticleImportException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.markdown.converter.MarkdownConverter;
 import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;

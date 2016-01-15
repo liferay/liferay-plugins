@@ -17,7 +17,7 @@ package com.liferay.testtransaction.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.PortalServiceUtil;
-import com.liferay.testtransaction.NoSuchBarException;
+import com.liferay.testtransaction.exception.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.service.base.BarLocalServiceBaseImpl;
 

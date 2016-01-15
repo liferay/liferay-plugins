@@ -14,7 +14,7 @@
 
 package com.liferay.mail.util;
 
-import com.liferay.mail.MailException;
+import com.liferay.mail.exception.MailException;
 import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.mailbox.PasswordRetriever;

@@ -26,7 +26,7 @@ import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.ServletUtil;
-import com.liferay.wsrp.NoSuchProducerException;
+import com.liferay.wsrp.exception.NoSuchProducerException;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.util.ExtensionHelperUtil;
 
