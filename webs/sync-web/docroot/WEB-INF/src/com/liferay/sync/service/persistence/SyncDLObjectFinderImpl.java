@@ -133,7 +133,7 @@ public class SyncDLObjectFinderImpl
 			qPos.add(repositoryId);
 
 			if (parentFolderId != 0) {
-				qPos.add("/" + parentFolderId + "/%");
+				qPos.add("%/" + parentFolderId + "/%");
 			}
 
 			if (type != null) {
