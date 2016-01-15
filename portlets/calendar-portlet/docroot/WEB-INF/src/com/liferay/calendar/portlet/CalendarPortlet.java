@@ -71,6 +71,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -752,8 +753,13 @@ public class CalendarPortlet extends MVCPortlet {
 			if (!JCalendarUtil.isSameDayOfWeek(
 					startTimeJCalendar, firstInstanceJCalendar)) {
 
+				java.util.Calendar currentInstanceJCalendar =
+					CalendarFactoryUtil.getCalendar(
+						calendarBooking.getStartTime(),
+						calendarBooking.getTimeZone());
+
 				startTimeJCalendar = JCalendarUtil.mergeJCalendar(
-					firstInstanceJCalendar, startTimeJCalendar,
+					currentInstanceJCalendar, startTimeJCalendar,
 					calendarBooking.getTimeZone());
 
 				startTime = startTimeJCalendar.getTimeInMillis();
@@ -1413,11 +1419,10 @@ public class CalendarPortlet extends MVCPortlet {
 				long duration = endTime - startTime;
 				long offset = getOffset(calendarBooking, startTime, recurrence);
 
-				calendarBooking = CalendarUtil.getNewStartTimeCalendarBooking(
-					calendarBooking, offset);
-
-				calendarBooking = CalendarUtil.getNewDurationCalendarBooking(
-					calendarBooking, duration);
+				calendarBooking =
+					CalendarBookingServiceUtil.
+						getNewStartTimeAndDurationCalendarBooking(
+							calendarBookingId, offset, duration);
 
 				calendarBooking = getFirstCalendarBookingInstance(
 					calendarBooking, recurrence, timeZone);
