@@ -77,7 +77,7 @@ page import="com.liferay.portlet.documentlibrary.model.DLFolder" %><%@
 page import="com.liferay.portlet.documentlibrary.model.DLFolderConstants" %><%@
 page import="com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil" %><%@
 page import="com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil" %><%@
-page import="com.liferay.portlet.dynamicdatamapping.NoSuchStructureException" %><%@
+page import="com.liferay.dynamic.data.mapping.kernel.NoSuchStructureException" %><%@
 page import="com.liferay.portlet.exportimport.lar.PortletDataHandlerKeys" %><%@
 page import="com.liferay.wiki.model.WikiPage" %>
 
