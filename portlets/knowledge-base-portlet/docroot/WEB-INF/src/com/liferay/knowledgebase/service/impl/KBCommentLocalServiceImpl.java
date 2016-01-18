@@ -14,10 +14,10 @@
 
 package com.liferay.knowledgebase.service.impl;
 
-import com.liferay.knowledgebase.exception.KBCommentContentException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
+import com.liferay.knowledgebase.exception.KBCommentContentException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBCommentConstants;

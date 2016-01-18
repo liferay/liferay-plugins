@@ -71,7 +71,7 @@ public interface UserThreadService extends BaseService, InvokableService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
 		boolean deleted)
-		throws com.liferay.portal.security.auth.PrincipalException;
+		throws com.liferay.portal.kernel.security.auth.PrincipalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

@@ -17,7 +17,7 @@ package com.liferay.knowledgebase.service.permission;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**

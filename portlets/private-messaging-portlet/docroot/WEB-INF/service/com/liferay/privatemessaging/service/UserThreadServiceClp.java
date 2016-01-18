@@ -161,7 +161,7 @@ public class UserThreadServiceClp implements UserThreadService {
 	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
 		boolean deleted)
-		throws com.liferay.portal.security.auth.PrincipalException {
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 		Object returnObj = null;
 
 		try {
@@ -171,8 +171,8 @@ public class UserThreadServiceClp implements UserThreadService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.security.auth.PrincipalException) {
-				throw (com.liferay.portal.security.auth.PrincipalException)t;
+			if (t instanceof com.liferay.portal.kernel.security.auth.PrincipalException) {
+				throw (com.liferay.portal.kernel.security.auth.PrincipalException)t;
 			}
 
 			if (t instanceof RuntimeException) {

@@ -19,7 +19,7 @@ Import-Package:\
 	com.liferay.portal.kernel.upload,\
 	com.liferay.portal.kernel.util,\
 	com.liferay.portal.model,\
-	com.liferay.portal.security.auth,\
+	com.liferay.portal.kernel.security.auth,\
 	com.liferay.portal.security.permission,\
 	com.liferay.portal.service,\
 	com.liferay.portal.servlet.filters.aggregate,\
