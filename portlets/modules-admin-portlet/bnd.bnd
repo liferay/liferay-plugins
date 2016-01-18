@@ -14,13 +14,13 @@ Import-Package:\
 	com.liferay.portal.freemarker,\
 	com.liferay.portal.kernel.exception,\
 	com.liferay.portal.kernel.language,\
+	com.liferay.portal.kernel.security.auth,\
+	com.liferay.portal.kernel.security.permission,\
 	com.liferay.portal.kernel.servlet,\
 	com.liferay.portal.kernel.servlet.filters.invoker,\
 	com.liferay.portal.kernel.upload,\
 	com.liferay.portal.kernel.util,\
 	com.liferay.portal.model,\
-	com.liferay.portal.kernel.security.auth,\
-	com.liferay.portal.security.permission,\
 	com.liferay.portal.service,\
 	com.liferay.portal.servlet.filters.aggregate,\
 	com.liferay.portal.servlet.filters.dynamiccss,\

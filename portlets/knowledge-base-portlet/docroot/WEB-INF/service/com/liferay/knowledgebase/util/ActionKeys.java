@@ -19,7 +19,7 @@ package com.liferay.knowledgebase.util;
  * @author Brian Wing Shun Chan
  */
 public class ActionKeys
-	extends com.liferay.portal.security.permission.ActionKeys {
+	extends com.liferay.portal.kernel.security.permission.ActionKeys {
 
 	public static final String ADD_KB_ARTICLE = "ADD_KB_ARTICLE";
 

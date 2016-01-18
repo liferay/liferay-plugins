@@ -9,7 +9,7 @@ Import-Package:\
 	com.liferay.portal.kernel.servlet.filters.invoker,\
 	com.liferay.portal.model,\
 	com.liferay.portal.security.auth,\
-	com.liferay.portal.security.permission,\
+	com.liferay.portal.kernel.security.permission,\
 	com.liferay.portal.service,\
 	com.liferay.portal.servlet.filters.aggregate,\
 	com.liferay.portal.servlet.filters.dynamiccss,\

@@ -101,7 +101,7 @@
 			<name>hasViewPermission</name>
 			<param>
 				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -185,7 +185,7 @@
 			<name>hasPermission</name>
 			<param>
 				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -433,7 +433,7 @@
 			<name>hasPermissions</name>
 			<param>
 				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>

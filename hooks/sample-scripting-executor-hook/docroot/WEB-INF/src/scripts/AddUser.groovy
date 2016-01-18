@@ -12,7 +12,7 @@
  * details.
  */
 
-import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.util.PortletKeys;
 
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyRole;

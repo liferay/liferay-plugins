@@ -18,7 +18,7 @@
 package com.liferay.tasks.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.base.TasksEntryServiceBaseImpl;

@@ -29,6 +29,7 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.InstanceFactory" %><%@
@@ -42,7 +43,6 @@ page import="com.liferay.portal.model.LayoutConstants" %><%@
 page import="com.liferay.portal.model.OrganizationConstants" %><%@
 page import="com.liferay.portal.model.ResourceConstants" %><%@
 page import="com.liferay.portal.model.Role" %><%@
-page import="com.liferay.portal.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PortletPreferencesLocalServiceUtil" %><%@

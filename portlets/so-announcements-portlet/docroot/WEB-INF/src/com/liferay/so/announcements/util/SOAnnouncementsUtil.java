@@ -17,12 +17,12 @@
 
 package com.liferay.so.announcements.util;
 
+import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.Team;
 import com.liferay.portal.model.UserGroup;
-import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;

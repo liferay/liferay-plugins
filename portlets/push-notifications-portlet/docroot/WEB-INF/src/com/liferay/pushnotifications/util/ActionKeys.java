@@ -18,7 +18,7 @@ package com.liferay.pushnotifications.util;
  * @author Bruno Farache
  */
 public class ActionKeys
-	extends com.liferay.portal.security.permission.ActionKeys {
+	extends com.liferay.portal.kernel.security.permission.ActionKeys {
 
 	public static final String MANAGE_DEVICES = "MANAGE_DEVICES";
 

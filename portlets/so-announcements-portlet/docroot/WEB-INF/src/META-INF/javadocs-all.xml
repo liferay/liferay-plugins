@@ -137,7 +137,7 @@
 			<name>contains</name>
 			<param>
 				<name>permissionChecker</name>
-				<type>com.liferay.portal.security.permission.PermissionChecker</type>
+				<type>com.liferay.portal.kernel.security.permission.PermissionChecker</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
