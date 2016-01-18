@@ -538,8 +538,8 @@ public class InstanceUtil {
 			"Social Office Users have access to the Social Office Suite.");
 
 		Role role = RoleLocalServiceUtil.addRole(
-			defaultUserId, companyId, RoleConstants.SOCIAL_OFFICE_USER, null,
-			descriptionMap, RoleConstants.TYPE_REGULAR);
+			defaultUserId, null, 0, RoleConstants.SOCIAL_OFFICE_USER, null,
+			descriptionMap, RoleConstants.TYPE_REGULAR, null, null);
 
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, PortletKeys.PORTAL, ResourceConstants.SCOPE_COMPANY,
