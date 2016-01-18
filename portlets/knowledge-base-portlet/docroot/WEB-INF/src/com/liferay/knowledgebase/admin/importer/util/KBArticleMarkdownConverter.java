@@ -65,8 +65,12 @@ public class KBArticleMarkdownConverter {
 		String heading = getHeading(html);
 
 		if (Validator.isNull(heading)) {
-			throw new KBArticleImportException(
-				"Unable to extract heading from converted HTML: " + html);
+			StringBundler sb = new StringBundler(2);
+
+			sb.append("Unable to extract title heading from file: ");
+			sb.append(fileEntryName);
+
+			throw new KBArticleImportException(sb.toString());
 		}
 
 		_urlTitle = getUrlTitle(heading);
