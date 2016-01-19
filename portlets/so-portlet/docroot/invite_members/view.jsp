@@ -54,6 +54,7 @@
 			});
 		</aui:script>
 		</liferay-ui:panel>
+			<div class="clearfix"></div>
 		</liferay-ui:panel-container>
 	</c:when>
 	<c:otherwise>
