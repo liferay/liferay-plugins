@@ -65,11 +65,11 @@ public class LayoutUtil {
 			String layoutTemplateId)
 		throws Exception {
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		Map<Locale, String> friendlyURLMap = new HashMap<>();
 
 		friendlyURLMap.put(LocaleUtil.getDefault(), friendlyURL);
+
+		ServiceContext serviceContext = new ServiceContext();
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			group.getCreatorUserId(), group.getGroupId(), privateLayout,
