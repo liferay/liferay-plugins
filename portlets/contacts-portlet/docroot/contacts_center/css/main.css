@@ -8,6 +8,10 @@ $section-header-bg: #CCE6F7;
 	padding: 0;
 }
 
+.contacts-portlet .portlet-body {
+	min-height: 500px;
+}
+
 .contacts-portlet {
 	.clear {
 		clear: both;
@@ -171,7 +175,7 @@ $section-header-bg: #CCE6F7;
 			overflow-y: scroll;
 			position: absolute;
 			top: 40px;
-			width: 250px;
+			width: 100%;
 
 			.more-results a {
 				border: 1px solid #CCC;

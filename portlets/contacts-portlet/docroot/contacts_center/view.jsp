@@ -141,8 +141,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 			</aui:layout>
 		</aui:form>
 
-		<aui:layout cssClass="contacts-result-container lfr-app-column-view">
-			<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
+		<%--<aui:layout cssClass="contacts-result-container lfr-app-column-view">
+			<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">--%>
 				<div class="toggle-user">
 					<i class="icon-chevron-left"></i>
 				</div>
@@ -188,9 +188,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 								</c:if>
 
 								<div class="lfr-contact">
+									<%--
 									<div class="lfr-contact-checkbox">
 										<input class="contact-ids" <%= themeDisplay.getUserId() == user2.getUserId() ? "disabled=\"true\"" : StringPool.BLANK %> name="contact-ids-<%= user2.getUserId() %>" type="checkbox" value="<%= user2.getUserId() %>" />
 									</div>
+									--%>
 
 									<liferay-portlet:renderURL var="viewUserSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 										<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
@@ -249,9 +251,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 								</c:if>
 
 								<div class="lfr-contact">
+									<%--
 									<div class="lfr-contact-checkbox">
 										<input class="contact-ids" disabled="true" label="" name="contact-ids-<%= entry.getEntryId() %>" type="checkbox" value="<%= entry.getEntryId() %>" />
 									</div>
+									--%>
 
 									<liferay-portlet:renderURL var="viewContactSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 										<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
@@ -291,8 +295,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						</div>
 					</c:if>
 				</aui:layout>
-			</aui:column>
-
+			<%--</aui:column>
 			<aui:column columnWidth="70" cssClass="contacts-container">
 				<div id="<portlet:namespace />userToolbarButtons"><!-- --></div>
 
@@ -322,7 +325,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 				<div id="<portlet:namespace />selectedUsersView"><!-- --></div>
 			</aui:column>
-		</aui:layout>
+
+		</aui:layout>--%>
 
 		<aui:script use="aui-io-deprecated,aui-loading-mask-deprecated,datatype-number,liferay-contacts-center">
 			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
@@ -378,142 +382,142 @@ portletURL.setWindowState(WindowState.NORMAL);
 			}
 
 			var contactsResult = A.one('.contacts-portlet .contacts-result');
+			<%--
+                        contactsResult.delegate(
+                            'click',
+                            function(event) {
+                                contactsCenterNode.toggleClass('show-user', true);
 
-			contactsResult.delegate(
-				'click',
-				function(event) {
-					contactsCenterNode.toggleClass('show-user', true);
+                                var contactsContainer = A.one('.contacts-portlet .contacts-container');
 
-					var contactsContainer = A.one('.contacts-portlet .contacts-container');
+                                contactsContainer.plug(A.LoadingMask);
 
-					contactsContainer.plug(A.LoadingMask);
+                                contactsContainer.loadingmask.show();
 
-					contactsContainer.loadingmask.show();
+                                var node = event.currentTarget;
 
-					var node = event.currentTarget;
+                                A.io.request(
+                                    node.getAttribute('data-viewSummaryURL'),
+                                    {
+                                        after: {
+                                            failure: function(event, id, obj) {
+                                                contactsContainer.loadingmask.hide();
 
-					A.io.request(
-						node.getAttribute('data-viewSummaryURL'),
-						{
-							after: {
-								failure: function(event, id, obj) {
-									contactsContainer.loadingmask.hide();
+                                                contactsCenter.showMessage(false);
+                                            },
+                                            success: function(event, id, obj) {
+                                                contactsCenter.renderContent(this.get('responseData'), true);
 
-									contactsCenter.showMessage(false);
-								},
-								success: function(event, id, obj) {
-									contactsCenter.renderContent(this.get('responseData'), true);
+                                                window.scrollTo(0,0);
 
-									window.scrollTo(0,0);
+                                                contactsContainer.loadingmask.hide();
+                                            }
+                                        }
+                                    }
+                                );
+                            },
+                            '.lfr-contact-grid-item'
+                        );
 
-									contactsContainer.loadingmask.hide();
-								}
-							}
-						}
-					);
-				},
-				'.lfr-contact-grid-item'
-			);
+                        contactsResult.delegate(
+                            'click',
+                            function(event) {
+                                var node = event.currentTarget;
 
-			contactsResult.delegate(
-				'click',
-				function(event) {
-					var node = event.currentTarget;
+                                var start = A.DataType.Number.parse(node.getAttribute('data-end'));
+                                var end = start + <%= ContactsConstants.MAX_RESULT_COUNT %>;
 
-					var start = A.DataType.Number.parse(node.getAttribute('data-end'));
-					var end = start + <%= ContactsConstants.MAX_RESULT_COUNT %>;
+                                var lastNameAnchor = node.getAttribute('data-lastNameAnchor');
 
-					var lastNameAnchor = node.getAttribute('data-lastNameAnchor');
+                                A.io.request(
+                                    '<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:resourceURL>',
+                                    {
+                                        after: {
+                                            success: function(event, id, obj) {
+                                                var responseData = this.get('responseData');
 
-					A.io.request(
-						'<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:resourceURL>',
-						{
-							after: {
-								success: function(event, id, obj) {
-									var responseData = this.get('responseData');
+                                                contactsCenter.showMoreResult(responseData, lastNameAnchor);
+                                            }
+                                        },
+                                        data: {
+                                            <portlet:namespace />end: end,
+                                            <portlet:namespace />filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
+                                            <portlet:namespace />keywords: searchInput.get('value'),
+                                            <portlet:namespace />start: start
+                                        },
+                                        dataType: 'json'
+                                    }
+                                );
+                            },
+                            '.more-results a'
+                        );
 
-									contactsCenter.showMoreResult(responseData, lastNameAnchor);
-								}
-							},
-							data: {
-								<portlet:namespace />end: end,
-								<portlet:namespace />filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
-								<portlet:namespace />keywords: searchInput.get('value'),
-								<portlet:namespace />start: start
-							},
-							dataType: 'json'
-						}
-					);
-				},
-				'.more-results a'
-			);
+                        contactsResult.delegate(
+                            'click',
+                            function(event) {
+                                var checkBox = event.target;
 
-			contactsResult.delegate(
-				'click',
-				function(event) {
-					var checkBox = event.target;
+                                var userId = checkBox.val();
 
-					var userId = checkBox.val();
+                                if (checkBox.get('checked')) {
+                                    A.io.request(
+                                        '<portlet:resourceURL id="getContact"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
+                                        {
+                                            after: {
+                                                failure: function(event, id, obj) {
+                                                    contactsCenter.showMessage(false, responseData.message);
+                                                },
+                                                success: function(event, id, obj) {
+                                                    var responseData = this.get('responseData');
 
-					if (checkBox.get('checked')) {
-						A.io.request(
-							'<portlet:resourceURL id="getContact"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
-							{
-								after: {
-									failure: function(event, id, obj) {
-										contactsCenter.showMessage(false, responseData.message);
-									},
-									success: function(event, id, obj) {
-										var responseData = this.get('responseData');
+                                                    if (responseData.success) {
+                                                        contactsCenter.addContactResult(responseData);
+                                                    }
+                                                }
+                                            },
+                                            data: {
+                                                <portlet:namespace />userId: userId
+                                            },
+                                            dataType: 'json'
+                                        }
+                                    );
+                                }
+                                else {
+                                    contactsCenter.deleteContactResult(userId);
+                                }
+                            },
+                            '.contact-ids'
+                        );
+                        A.one('.contacts-container-content').delegate(
+                            'click',
+                            function(event) {
+                                var instance = this;
 
-										if (responseData.success) {
-											contactsCenter.addContactResult(responseData);
-										}
-									}
-								},
-								data: {
-									<portlet:namespace />userId: userId
-								},
-								dataType: 'json'
-							}
-						);
-					}
-					else {
-						contactsCenter.deleteContactResult(userId);
-					}
-				},
-				'.contact-ids'
-			);
+                                var node = event.currentTarget;
 
-			A.one('.contacts-container-content').delegate(
-				'click',
-				function(event) {
-					var instance = this;
+                                var userId = instance.one('input').val();
 
-					var node = event.currentTarget;
-
-					var userId = instance.one('input').val();
-
-					var ioRequest = A.io.request(
-						node.getAttribute('data-viewSummaryURL'),
-						{
-							after: {
-								failure: function(event, id, obj) {
-									contactsCenter.showMessage(false);
-								},
-								success: function(event, id, obj) {
-									contactsCenter.renderContent(this.get('responseData'));
-								}
-							},
-							data: {
-								<portlet:namespace />showDetailView: true,
-								<portlet:namespace />userId: userId
-							}
-						}
-					);
-				},
-				'.lfr-contact-grid-item'
-			);
+                                var ioRequest = A.io.request(
+                                    node.getAttribute('data-viewSummaryURL'),
+                                    {
+                                        after: {
+                                            failure: function(event, id, obj) {
+                                                contactsCenter.showMessage(false);
+                                            },
+                                            success: function(event, id, obj) {
+                                                contactsCenter.renderContent(this.get('responseData'));
+                                            }
+                                        },
+                                        data: {
+                                            <portlet:namespace />showDetailView: true,
+                                            <portlet:namespace />userId: userId
+                                        }
+                                    }
+                                );
+                            },
+                            '.lfr-contact-grid-item'
+                        );
+                        --%>
 
 			<c:if test="<%= !userPublicPage %>">
 				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
@@ -545,6 +549,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					}
 				</c:if>
 
+				<%--
 				var connections = contactsCenterHome.one('.connections');
 
 				if (connections) {
@@ -587,6 +592,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					);
 				}
 
+
 				var all = contactsCenterHome.one('.all');
 
 				if (all) {
@@ -602,6 +608,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						'a'
 					);
 				}
+				--%>
 			</c:if>
 		</aui:script>
 	</c:otherwise>

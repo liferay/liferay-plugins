@@ -36,9 +36,9 @@ AUI.add(
 		var TPL_ENTRY_DATA =
 			'{lastNameAnchor}' +
 			'<div class="lfr-contact">' +
-				'<div class="lfr-contact-checkbox">' +
-					'<input type="checkbox" value="{entryId}" disabled="true" name="contact-ids-{entryId}" class="contact-ids" label="" />' +
-				'</div>' +
+				//'<div class="lfr-contact-checkbox">' +
+//					'<input type="checkbox" value="{entryId}" disabled="true" name="contact-ids-{entryId}" class="contact-ids" label="" />' +
+				//'</div>' +
 				'<div class="lfr-contact-grid-item" data-viewSummaryURL="{viewSummaryURL}" data-contactId="{entryId}">' +
 					'<div class="lfr-contact-thumb">' +
 						'<img alt="{fullName}" src="{portraitURL}" />' +
@@ -89,9 +89,9 @@ AUI.add(
 		var TPL_USER_DATA =
 			'{lastNameAnchor}' +
 			'<div class="lfr-contact">' +
-				'<div class="lfr-contact-checkbox">' +
-					'<input type="checkbox" value="{userId}" {disabled} {checked} name="contact-ids-{userId}" class="contact-ids" label="" />' +
-				'</div>' +
+				//'<div class="lfr-contact-checkbox">' +
+//					'<input type="checkbox" value="{userId}" {disabled} {checked} name="contact-ids-{userId}" class="contact-ids" label="" />' +
+				//'</div>' +
 				'<div class="lfr-contact-grid-item" data-viewSummaryURL="{viewSummaryURL}" data-userId="{userId}">' +
 					'<div class="lfr-contact-thumb">' +
 						'<img alt="{fullName}" src="{portraitURL}" />' +
