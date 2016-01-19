@@ -8,8 +8,8 @@
 			<scheduler-event-listener-class>com.liferay.testmisc.messaging.TestPortletConfigMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
-					<simple-trigger-value>1</simple-trigger-value>
-					<time-unit>hour</time-unit>
+					<simple-trigger-value>10</simple-trigger-value>
+					<time-unit>second</time-unit>
 				</simple>
 			</trigger>
 		</scheduler-entry>

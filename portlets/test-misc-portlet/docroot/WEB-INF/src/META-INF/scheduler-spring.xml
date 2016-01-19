@@ -18,9 +18,9 @@
 						<bean class="com.liferay.portal.kernel.scheduler.TriggerFactoryUtil" factory-method="createTrigger">
 							<constructor-arg value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
 							<constructor-arg value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
-							<constructor-arg value="1" />
+							<constructor-arg value="10" />
 							<constructor-arg>
-								<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.HOUR" />
+								<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.SECOND" />
 							</constructor-arg>
 						</bean>
 					</property>
