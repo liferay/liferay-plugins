@@ -22,7 +22,8 @@
 <%
 	Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 	String theState = "collapsed";
-	if (renderRequest.getWindowState().equals(WindowState.MAXIMIZED)) {
+	//if (renderRequest.getWindowState.equals(WindowState.MAXIMIZED)) {
+	if ("true".equals(renderRequest.getParameter("displayImmediately"))) {
 		theState = "open";
 	}
 %>
