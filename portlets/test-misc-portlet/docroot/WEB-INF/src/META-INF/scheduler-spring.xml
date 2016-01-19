@@ -15,12 +15,12 @@
 					<property name="description" value="" />
 					<property name="eventListenerClass" value="com.liferay.testmisc.messaging.TestSpringConfigMessageListener" />
 					<property name="timeUnit">
-						<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.HOUR" />
+						<util:constant static-field="com.liferay.portal.kernel.scheduler.TimeUnit.SECOND" />
 					</property>
 					<property name="triggerType">
 						<util:constant static-field="com.liferay.portal.kernel.scheduler.TriggerType.SIMPLE" />
 					</property>
-					<property name="triggerValue" value="1" />
+					<property name="triggerValue" value="10" />
 				</bean>
 			</list>
 		</property>
