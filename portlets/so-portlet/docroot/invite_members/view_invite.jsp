@@ -35,7 +35,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 			<liferay-ui:message key="find-members" />
 		</h2>
 
-		<input class="invite-user-search" id="<portlet:namespace />inviteUserSearch" name="<portlet:namespace />userName" type="text" />
+		<input class="invite-user-search" id="<portlet:namespace />inviteUserSearch" name="<portlet:namespace />userName" type="text" placeholder="<liferay-ui:message key="write-name-here" />"/>
 
 		<div class="search">
 			<div class="list"></div>
@@ -55,7 +55,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				<liferay-ui:message key="members-to-invite" />
 
 				<span>
-					<liferay-ui:message key="to-add,-click-members-on-the-left" />
+					<%--<liferay-ui:message key="to-add,-click-members-on-the-left" />--%>
 				</span>
 			</h2>
 
