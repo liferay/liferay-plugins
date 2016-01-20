@@ -18,10 +18,8 @@
 --%>
 
 <%
-Date now = new Date();
-
 int daysBetween = -1;
-
+Date now = new Date();
 ServiceContext serviceContext = ServiceContextFactory.getInstance(themeDisplay.getRequest());
 
 for (SocialActivity activity : results) {
