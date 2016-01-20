@@ -22,8 +22,10 @@ Date now = new Date();
 
 int daysBetween = -1;
 
+ServiceContext serviceContext = ServiceContextFactory.getInstance(themeDisplay.getRequest());
+
 for (SocialActivity activity : results) {
-	SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret(activity, themeDisplay);
+	SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret(StringPool.BLANK, activity, serviceContext);
 
 	start++;
 

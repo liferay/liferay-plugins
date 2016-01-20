@@ -49,10 +49,10 @@ public class SOAnnouncementsEntryServiceImpl
 			long plid, long classNameId, long classPK, String title,
 			String content, String url, String type, int displayDateMonth,
 			int displayDateDay, int displayDateYear, int displayDateHour,
-			int displayDateMinute, int expirationDateMonth,
-			int expirationDateDay, int expirationDateYear,
-			int expirationDateHour, int expirationDateMinute, int priority,
-			boolean alert)
+			int displayDateMinute, boolean displayImmediately, 
+			int expirationDateMonth, int expirationDateDay,
+			int expirationDateYear, int expirationDateHour,
+			int expirationDateMinute, int priority, boolean alert)
 		throws PortalException {
 
 		AnnouncementsEntry announcementEntry = null;
@@ -61,9 +61,9 @@ public class SOAnnouncementsEntryServiceImpl
 			announcementEntry = super.addEntry(
 				plid, classNameId, classPK, title, content, url, type,
 				displayDateMonth, displayDateDay, displayDateYear,
-				displayDateHour, displayDateMinute, expirationDateMonth,
-				expirationDateDay, expirationDateYear, expirationDateHour,
-				expirationDateMinute, priority, alert);
+				displayDateHour, displayDateMinute, displayImmediately,
+				expirationDateMonth, expirationDateDay, expirationDateYear,
+				expirationDateHour, expirationDateMinute, priority, alert);
 		}
 		catch (PrincipalException pe) {
 			String className = PortalUtil.getClassName(classNameId);
@@ -82,7 +82,7 @@ public class SOAnnouncementsEntryServiceImpl
 				announcementEntry = AnnouncementsEntryLocalServiceUtil.addEntry(
 					permissionChecker.getUserId(), classNameId, classPK, title,
 					content, url, type, displayDateMonth, displayDateDay,
-					displayDateYear, displayDateHour, displayDateMinute,
+					displayDateYear, displayDateHour, displayDateMinute, false,
 					expirationDateMonth, expirationDateDay, expirationDateYear,
 					expirationDateHour, expirationDateMinute, priority, alert);
 			}
