@@ -17,6 +17,10 @@
 
 package com.liferay.so.hook.service.impl;
 
+import com.liferay.announcements.kernel.model.AnnouncementsEntry;
+import com.liferay.announcements.kernel.service.AnnouncementsEntryLocalService;
+import com.liferay.announcements.kernel.service.AnnouncementsEntryLocalServiceWrapper;
+import com.liferay.announcements.kernel.service.persistence.AnnouncementsEntryFinderUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -46,10 +50,6 @@ import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portlet.announcements.model.AnnouncementsEntry;
-import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalService;
-import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceWrapper;
-import com.liferay.portlet.announcements.service.persistence.AnnouncementsEntryFinderUtil;
 import com.liferay.so.util.PortletKeys;
 
 import java.io.Serializable;

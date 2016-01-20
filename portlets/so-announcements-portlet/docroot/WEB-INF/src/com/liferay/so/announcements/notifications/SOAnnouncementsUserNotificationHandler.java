@@ -17,6 +17,8 @@
 
 package com.liferay.so.announcements.notifications;
 
+import com.liferay.announcements.kernel.model.AnnouncementsEntry;
+import com.liferay.announcements.kernel.service.AnnouncementsEntryLocalServiceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
@@ -33,8 +35,6 @@ import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
-import com.liferay.portlet.announcements.model.AnnouncementsEntry;
-import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceUtil;
 import com.liferay.so.announcements.util.PortletKeys;
 
 import javax.portlet.PortletRequest;

@@ -21,7 +21,15 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
+<%@ page import="com.liferay.announcements.kernel.constants.AnnouncementsConstants" %><%@
+page import="com.liferay.announcements.kernel.exception.NoSuchFlagException" %><%@
+page import="com.liferay.announcements.kernel.model.AnnouncementsEntry" %><%@
+page import="com.liferay.announcements.kernel.model.AnnouncementsEntryConstants" %><%@
+page import="com.liferay.announcements.kernel.model.AnnouncementsFlagConstants" %><%@
+page import="com.liferay.announcements.kernel.service.AnnouncementsEntryLocalServiceUtil" %><%@
+page import="com.liferay.announcements.kernel.service.AnnouncementsFlagLocalServiceUtil" %><%@
+page import="com.liferay.announcements.kernel.util.AnnouncementsUtil" %><%@
+page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchPaginationUtil" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
@@ -60,14 +68,6 @@ page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.permission.GroupPermissionUtil" %><%@
 page import="com.liferay.portal.service.permission.PortalPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.announcements.constants.AnnouncementsConstants" %><%@
-page import="com.liferay.portlet.announcements.exception.NoSuchFlagException" %><%@
-page import="com.liferay.portlet.announcements.model.AnnouncementsEntry" %><%@
-page import="com.liferay.portlet.announcements.model.AnnouncementsEntryConstants" %><%@
-page import="com.liferay.portlet.announcements.model.AnnouncementsFlagConstants" %><%@
-page import="com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceUtil" %><%@
-page import="com.liferay.portlet.announcements.service.AnnouncementsFlagLocalServiceUtil" %><%@
-page import="com.liferay.portlet.announcements.util.AnnouncementsUtil" %><%@
 page import="com.liferay.so.announcements.service.permission.AnnouncementsEntryPermission" %><%@
 page import="com.liferay.so.announcements.util.SOAnnouncementsUtil" %><%@
 page import="com.liferay.taglib.search.ResultRow" %>
