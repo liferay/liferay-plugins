@@ -49,7 +49,7 @@ public class SOAnnouncementsEntryServiceImpl
 			long plid, long classNameId, long classPK, String title,
 			String content, String url, String type, int displayDateMonth,
 			int displayDateDay, int displayDateYear, int displayDateHour,
-			int displayDateMinute, boolean displayImmediately, 
+			int displayDateMinute, boolean displayImmediately,
 			int expirationDateMonth, int expirationDateDay,
 			int expirationDateYear, int expirationDateHour,
 			int expirationDateMinute, int priority, boolean alert)
@@ -82,9 +82,10 @@ public class SOAnnouncementsEntryServiceImpl
 				announcementEntry = AnnouncementsEntryLocalServiceUtil.addEntry(
 					permissionChecker.getUserId(), classNameId, classPK, title,
 					content, url, type, displayDateMonth, displayDateDay,
-					displayDateYear, displayDateHour, displayDateMinute, false,
-					expirationDateMonth, expirationDateDay, expirationDateYear,
-					expirationDateHour, expirationDateMinute, priority, alert);
+					displayDateYear, displayDateHour, displayDateMinute,
+					displayImmediately, expirationDateMonth, expirationDateDay,
+					expirationDateYear, expirationDateHour,
+					expirationDateMinute, priority, alert);
 			}
 			else {
 				throw pe;
