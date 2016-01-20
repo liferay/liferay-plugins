@@ -56,6 +56,9 @@ AUI.add(
 						'<div class="lfr-contact-extra">' +
 							'{emailAddress}' +
 						'</div>' +
+						'<div class="lfr-contact-vcard">' +
+							'<a href="{vcardUrl}" title="{vcardText}">{vcardText}</a>' +
+						'</div>' +
 					'</div>' +
 					'<div class="clear"></div>' +
 				'</div>' +
@@ -114,6 +117,9 @@ AUI.add(
 			            '</div>' +
 						'<div class="lfr-contact-extra">' +
 							'{emailAddress}' +
+						'</div>' +
+						'<div class="lfr-contact-vcard">' +
+							'<a href="{vcardUrl}" title="{vcardText}">{vcardText}</a>' +
 						'</div>' +
 					'</div>' +
 					'<div class="clear"></div>' +
@@ -806,6 +812,13 @@ AUI.add(
 											lastNameAnchor = nameAnchor;
 										}
 
+										var config = instance._config;
+
+										var vcardURL = new Liferay.PortletURL.createURL(config.baseResourceURL);
+
+										vcardURL.setParameter('userId', result.userId);
+										vcardURL.setParameter('p_p_resource_id', 'exportVCard');
+
 										if (result.portalUser) {
 											return Lang.sub(
 												TPL_USER_DATA,
@@ -818,6 +831,8 @@ AUI.add(
 													fullName: (result.fullName ? result.fullName : ''),
 													lastName: (result.lastName ? result.lastName + ',' : ''),
 													owner: (result.owner ? Liferay.Language.get('site-owner') : ''),
+													vcardUrl: (vcardURL.toString()),
+													vcardText: (Liferay.Language.get('download-vcard')),
 													jobTitle: (result.jobTitle ? result.jobTitle : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
 													userId: result.userId,
@@ -835,6 +850,8 @@ AUI.add(
 													fullName: (result.fullName ? result.fullName : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
 													owner: (result.owner ? Liferay.Language.get('site-owner') : ''),
+													vcardUrl: (vcardURL.toString()),
+													vcardText: (Liferay.Language.get('download-vcard')),
 													jobTitle: (result.jobTitle ? result.jobTitle : ''),
 													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
 												}

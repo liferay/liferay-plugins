@@ -220,19 +220,21 @@ portletURL.setWindowState(WindowState.NORMAL);
 											<% if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(user2.getUserId(), themeDisplay.getSiteGroupId(), theRole.getRoleId())) { %>
 											<div class="lfr-group-owner">
 												<liferay-ui:message key="site-owner" />
-												TODO: In javascript as well, todo, need language
 											</div>
 											<% } %>
-
-
 											<div class="lfr-contact-title">
 												<c:if test="<%= Validator.isNotNull(user2.getJobTitle()) %>">
 													<%= HtmlUtil.escape(user2.getJobTitle()) %>,
 												</c:if>
 											</div>
-
 											<div class="lfr-contact-extra">
 												<%= HtmlUtil.escape(user2.getEmailAddress()) %>
+											</div>
+											<div class="lfr-contact-vcard">
+												<portlet:resourceURL id="exportVCard" var="exportURL">
+													<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+												</portlet:resourceURL>
+												<a href="<%=exportURL.toString()%>" title="<liferay-ui:message key="download-vcard" />"><liferay-ui:message key="download-vcard" /></a>
 											</div>
 										</div>
 
@@ -353,6 +355,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						{
 							baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 							baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+			                baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
 							contactsResult: '.contacts-portlet .contacts-result-content',
 							contactsResultContainer: '.contacts-portlet .contacts-result',
 							contactsResultURL: '<portlet:resourceURL id="getContacts"><portlet:param name="portletResource" value="<%= portletResource %>" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:resourceURL>',
