@@ -47,6 +47,12 @@ AUI.add(
 						'<div class="lfr-contact-name">' +
 							'<a>{fullName}</a>' +
 						'</div>' +
+						'<div class="lfr-group-owner">' +
+							'<a>{owner}</a>' +
+						'</div>' +
+						'<div class="lfr-contact-title">' +
+							'<a>{jobTitle}</a>' +
+						'</div>' +
 						'<div class="lfr-contact-extra">' +
 							'{emailAddress}' +
 						'</div>' +
@@ -100,6 +106,12 @@ AUI.add(
 						'<div class="lfr-contact-name">' +
 							'<a>{lastName} {firstName}</a>' +
 						'</div>' +
+						'<div class="lfr-group-owner">' +
+							'<a>{owner}</a>' +
+						'</div>' +
+			            '<div class="lfr-contact-title">' +
+			                '<a>{jobTitle}</a>' +
+			            '</div>' +
 						'<div class="lfr-contact-extra">' +
 							'{emailAddress}' +
 						'</div>' +
@@ -805,6 +817,8 @@ AUI.add(
 													firstName: (result.firstName ? result.firstName : ''),
 													fullName: (result.fullName ? result.fullName : ''),
 													lastName: (result.lastName ? result.lastName + ',' : ''),
+													owner: (result.owner ? Liferay.Language.get('site-owner') : ''),
+													jobTitle: (result.jobTitle ? result.jobTitle : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
 													userId: result.userId,
 													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
@@ -820,6 +834,8 @@ AUI.add(
 													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 													fullName: (result.fullName ? result.fullName : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
+													owner: (result.owner ? Liferay.Language.get('site-owner') : ''),
+													jobTitle: (result.jobTitle ? result.jobTitle : ''),
 													viewSummaryURL: (result.viewSummaryURL ? result.viewSummaryURL : '')
 												}
 											);

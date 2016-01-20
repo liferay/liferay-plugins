@@ -96,6 +96,9 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -255,12 +258,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		JSONObject contactListJSONObject = getContactsJSONObject(
 			resourceRequest, resourceResponse);
 
+
 		writeJSON(resourceRequest, resourceResponse, contactListJSONObject);
 	}
 
 	public void getSelectedContacts(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
+
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -1031,6 +1036,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 		jsonObject.put("viewSummaryURL", viewSummaryURL.toString());
+
+		Role theRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Site Owner");
+		jsonObject.put("owner", UserGroupRoleLocalServiceUtil.hasUserGroupRole(user.getUserId(), themeDisplay.getSiteGroupId(), theRole.getRoleId()));
 
 		return jsonObject;
 	}

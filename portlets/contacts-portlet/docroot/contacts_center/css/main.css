@@ -150,8 +150,6 @@ $section-header-bg: #CCE6F7;
 
 	.contacts-result, .my-contacts {
 		.lfr-contact-grid-item {
-			cursor: pointer;
-			height: 35px;
 			padding: 5px;
 
 			.lfr-contact-thumb {

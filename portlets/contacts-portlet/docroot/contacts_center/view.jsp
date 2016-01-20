@@ -32,6 +32,8 @@ if (group.isUser() && layout.isPublicLayout()) {
 	userPublicPage = true;
 }
 
+Role theRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Site Owner");
+
 LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
 
 params.put("inherit", Boolean.TRUE);
@@ -214,6 +216,19 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 													<%= HtmlUtil.escape(user2.getFirstName()) %>
 												</a>
+											</div>
+											<% if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(user2.getUserId(), themeDisplay.getSiteGroupId(), theRole.getRoleId())) { %>
+											<div class="lfr-group-owner">
+												<liferay-ui:message key="site-owner" />
+												TODO: In javascript as well, todo, need language
+											</div>
+											<% } %>
+
+
+											<div class="lfr-contact-title">
+												<c:if test="<%= Validator.isNotNull(user2.getJobTitle()) %>">
+													<%= HtmlUtil.escape(user2.getJobTitle()) %>,
+												</c:if>
 											</div>
 
 											<div class="lfr-contact-extra">

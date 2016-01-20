@@ -88,6 +88,9 @@ page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" 
 page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %><%@
 page import="com.liferay.portlet.usersadmin.util.UsersAdminUtil" %><%@
 page import="com.liferay.so.service.SocialOfficeServiceUtil" %>
+<%@	page import="com.liferay.portal.model.Role" %>
+<%@	page import="com.liferay.portal.service.RoleLocalServiceUtil" %>
+<%@	page import="com.liferay.portal.service.UserGroupRoleLocalServiceUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.LinkedHashMap" %><%@
