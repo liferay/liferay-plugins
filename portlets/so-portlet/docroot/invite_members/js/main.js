@@ -36,6 +36,12 @@ AUI.add(
 
 					var form = instance._inviteMembersContainer.one('form');
 
+					var cancelButton = form.one('#cancel');
+					cancelButton.on('click', function(event) {
+						instance._removeAll();
+						event.halt();
+					});
+
 					form.on(
 						'submit',
 						function(event) {
@@ -115,7 +121,13 @@ AUI.add(
 				_removeEmailInvite: function(user) {
 					user.remove();
 				},
-
+				_removeAll: function() {
+					var instance = this;
+					instance._findMembersList.all('.invited').each(function (node) {
+						instance._removeMemberInvite(null, node.getAttribute('data-userId'));
+					});
+				}
+				,
 				_removeMemberInvite: function(user, userId) {
 					var instance = this;
 

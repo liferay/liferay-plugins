@@ -129,6 +129,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				<aui:input name="invitedRoleId" type="hidden" value="" />
 				<aui:input name="invitedTeamId" type="hidden" value="" />
 
+				<aui:button id="cancel" value="cancel" />
 				<aui:button id="submit" type="submit" value="send-invitations" />
 			</aui:form>
 		</div>
