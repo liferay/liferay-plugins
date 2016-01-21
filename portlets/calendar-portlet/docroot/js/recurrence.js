@@ -395,7 +395,10 @@ AUI.add(
 							instance._toggleView('monthlyRecurrenceOptions', instance._isPositionalFrequency());
 						}
 
-						if (currentTarget === instance.get('repeatOnDayOfWeekRadioButton')) {
+						if (currentTarget === instance.get('repeatOnDayOfMonthRadioButton')) {
+							instance._toggleView('positionalDayOfWeekOptions', !currentTarget.get('checked'));
+						}
+						else if (currentTarget === instance.get('repeatOnDayOfWeekRadioButton')) {
 							instance._toggleView('positionalDayOfWeekOptions', currentTarget.get('checked') && instance._canChooseLastDayOfWeek());
 						}
 
