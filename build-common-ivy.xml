@@ -251,8 +251,6 @@
 		</sequential>
 	</macrodef>
 
-	<process-ivy />
-
 	<macrodef name="record-git-commit-snapshot">
 		<sequential>
 			<loadfile srcfile="maven.deploy.log" property="maven.deploy.log.content" />
@@ -712,6 +710,8 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 			</if>
 		</sequential>
 	</macrodef>
+
+	<process-ivy />
 
 	<target name="publish">
 		<ivy:settings file="${sdk.dir}/ivy-settings-publisher.xml" />
