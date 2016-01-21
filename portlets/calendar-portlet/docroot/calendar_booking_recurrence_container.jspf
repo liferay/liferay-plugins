@@ -166,7 +166,7 @@ if (recurrence != null) {
 						Weekday weekday = positionalWeekday.getWeekday();
 						%>
 
-						<aui:input label="repeat-on-month-last-day-of-the-week" name="lastPosition" type="checkbox" />
+						<aui:input checked="<%= positionalWeekday.getPosition() == -1 %>" label="repeat-on-month-last-day-of-the-week" name="lastPosition" type="checkbox" />
 
 						<aui:input name="position" type="hidden" value="<%= positionalWeekday.getPosition() %>" />
 
