@@ -44,7 +44,7 @@
 		<liferay-util:include page="/invite_members/view_invite.jsp" servletContext="<%= application %>" />
 
 
-		<aui:script position="inline" use="aui-base,aui-io-plugin-deprecated,liferay-so-invite-members,liferay-util-window">
+		<aui:script position="inline" use="aui-base,liferay-so-invite-members,liferay-util-window">
 			AUI().ready('aui-base', 'aui-io-plugin-deprecated', 'liferay-so-invite-members', 'liferay-util-window', function(A) {
 									new Liferay.SO.InviteMembers(
 										{

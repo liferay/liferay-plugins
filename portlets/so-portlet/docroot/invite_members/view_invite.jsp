@@ -122,7 +122,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		<div class="invite-actions">
 			<portlet:actionURL name="sendInvites" var="sentIvitesURL" />
 
-			<aui:form action="<%= sentIvitesURL %>" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+			<aui:form action="<%= sentIvitesURL %>" id="inviteform" method="post" name="inviteform">
 				<aui:input name="groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
 				<aui:input name="receiverUserIds" type="hidden" value="" />
 				<aui:input name="receiverEmailAddresses" type="hidden" value="" />
@@ -130,7 +130,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				<aui:input name="invitedTeamId" type="hidden" value="" />
 
 				<aui:button id="cancel" value="cancel" />
-				<aui:button id="submit" type="submit" value="send-invitations" />
+				<aui:button id="submitBtn" value="send-invitations" />
 			</aui:form>
 		</div>
 	</div>
