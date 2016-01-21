@@ -86,6 +86,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 		</aui:layout>
 	</c:when>
 	<c:otherwise>
+		<%
+			int memberCounter = UserLocalServiceUtil.getGroupUsersCount(themeDisplay.getSiteGroupId());
+		%>
+		<h2 title="<liferay-ui:message key="members" />"><liferay-ui:message key="members" /> (<%=memberCounter%>)</h2>
 		<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
 			<aui:input name="redirect" type="hidden" value="" />
