@@ -26,31 +26,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[default-web-content-hook]]></artifact-id>
-		<name><![CDATA[Default Web Content]]></name>
-		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[hooks/default-web-content-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[deploy-listener-hook]]></artifact-id>
 		<name><![CDATA[Power Deploy]]></name>
 		<type><![CDATA[hook]]></type>
