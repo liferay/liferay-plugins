@@ -3449,6 +3449,7 @@ for (String path : paths) {
 			newenvironment="true"
 		>
 			<jvmarg value="-Xmx512m" />
+			<arg value="javadoc.generate.xml=${generate.xml}" />
 			<arg value="javadoc.init=${init}" />
 			<arg value="javadoc.input.dir=${input.dir}" />
 			<arg value="javadoc.limit=${limit}" />
