@@ -16,6 +16,7 @@ package com.liferay.testblob.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
@@ -28,6 +29,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.testblob.model.impl.TestBlobEntryModelImpl
  * @generated
  */
+@ImplementationClassName("com.liferay.testblob.model.impl.TestBlobEntryImpl")
 @ProviderType
 public interface TestBlobEntry extends TestBlobEntryModel, PersistedModel {
 	/*

@@ -16,6 +16,7 @@ package com.liferay.contacts.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
@@ -28,6 +29,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.contacts.model.impl.EntryModelImpl
  * @generated
  */
+@ImplementationClassName("com.liferay.contacts.model.impl.EntryImpl")
 @ProviderType
 public interface Entry extends EntryModel, PersistedModel {
 	/*

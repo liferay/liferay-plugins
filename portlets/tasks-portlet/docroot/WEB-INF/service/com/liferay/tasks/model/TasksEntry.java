@@ -16,6 +16,7 @@ package com.liferay.tasks.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
@@ -28,6 +29,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.tasks.model.impl.TasksEntryModelImpl
  * @generated
  */
+@ImplementationClassName("com.liferay.tasks.model.impl.TasksEntryImpl")
 @ProviderType
 public interface TasksEntry extends TasksEntryModel, PersistedModel {
 	/*

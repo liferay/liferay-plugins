@@ -16,6 +16,7 @@ package com.liferay.mail.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
@@ -28,6 +29,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.mail.model.impl.MessageModelImpl
  * @generated
  */
+@ImplementationClassName("com.liferay.mail.model.impl.MessageImpl")
 @ProviderType
 public interface Message extends MessageModel, PersistedModel {
 	/*

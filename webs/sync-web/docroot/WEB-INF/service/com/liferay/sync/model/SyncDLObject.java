@@ -16,6 +16,7 @@ package com.liferay.sync.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.model.TreeModel;
@@ -29,6 +30,7 @@ import com.liferay.portal.model.TreeModel;
  * @see com.liferay.sync.model.impl.SyncDLObjectModelImpl
  * @generated
  */
+@ImplementationClassName("com.liferay.sync.model.impl.SyncDLObjectImpl")
 @ProviderType
 public interface SyncDLObject extends SyncDLObjectModel, PersistedModel,
 	TreeModel {

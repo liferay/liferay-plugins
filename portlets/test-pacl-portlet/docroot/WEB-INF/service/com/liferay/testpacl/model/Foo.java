@@ -16,6 +16,7 @@ package com.liferay.testpacl.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.model.PersistedModel;
 
@@ -28,6 +29,7 @@ import com.liferay.portal.model.PersistedModel;
  * @see com.liferay.testpacl.model.impl.FooModelImpl
  * @generated
  */
+@ImplementationClassName("com.liferay.testpacl.model.impl.FooImpl")
 @ProviderType
 public interface Foo extends FooModel, PersistedModel {
 	/*
