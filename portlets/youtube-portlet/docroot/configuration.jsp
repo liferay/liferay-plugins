@@ -242,7 +242,7 @@
 
 <aui:script>
 	function <portlet:namespace />saveConfiguration() {
-		var form = AUI.$(document.<portlet:namespace />fm);
+		var form = document.<portlet:namespace />fm;
 
 		submitForm(form);
 	}
