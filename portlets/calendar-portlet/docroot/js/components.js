@@ -436,7 +436,7 @@
 
 							var calendars = instance.get('calendars');
 
-							return instance.items.item(AArray.indexOf(calendars, calendar));
+							return instance.items.item(calendars.indexOf(calendar));
 						},
 
 						remove: function(calendar) {
