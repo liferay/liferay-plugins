@@ -107,11 +107,6 @@ AUI.add(
 						value: null
 					},
 
-					positionSelect: {
-						setter: A.one,
-						value: null
-					},
-
 					position: {
 						getter: '_getPosition'
 					},
