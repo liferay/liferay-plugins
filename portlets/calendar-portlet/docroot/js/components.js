@@ -1113,7 +1113,7 @@
 							month: month,
 							position: position,
 							weekDay: weekDay,
-							weekDays: weekDays
+							weekDays: weekDays.join(', ')
 						}
 					);
 
