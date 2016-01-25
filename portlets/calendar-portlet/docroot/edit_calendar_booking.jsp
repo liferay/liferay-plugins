@@ -416,15 +416,15 @@ for (long otherCalendarId : otherCalendarIds) {
 
 <aui:script use="liferay-calendar-interval-selector">
 	new Liferay.IntervalSelector(
-	{
-	containerId: 'meetingEventDate',
-	endDatePickerName: 'endTime',
-	endTimePickerName: 'endTimeTime',
-	namespace: '<portlet:namespace/>',
-	startDatePickerName: 'startTime',
-	startTimePickerName: 'startTimeTime',
-	submitButtonId: 'submit'
-	}
+		{
+			containerId: 'meetingEventDate',
+			endDatePickerName: 'endTime',
+			endTimePickerName: 'endTimeTime',
+			namespace: '<portlet:namespace/>',
+			startDatePickerName: 'startTime',
+			startTimePickerName: 'startTimeTime',
+			submitButtonId: 'submit'
+		}
 	);
 </aui:script>
 
