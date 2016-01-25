@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/WEB-INF/jsp/ams/views/init.jsp" %>
+<%@ include file="/WEB-INF/jsp/sample_alloy_mvc/views/init.jsp" %>
 
 <portlet:renderURL var="editAssetURL">
 	<portlet:param name="controller" value="assets" />
@@ -48,7 +48,7 @@
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.ams.model.Asset"
+		className="com.liferay.samplealloymvc.model.Asset"
 		escapedModel="${true}"
 		keyProperty="assetId"
 		modelVar="asset"

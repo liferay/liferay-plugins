@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/WEB-INF/jsp/ams/controllers/init.jspf" %>
+<%@ include file="/WEB-INF/jsp/sample_alloy_mvc/controllers/init.jspf" %>
 <%@ include file="/WEB-INF/jsp/util/asset_indexer.jspf" %>
 
 <%!

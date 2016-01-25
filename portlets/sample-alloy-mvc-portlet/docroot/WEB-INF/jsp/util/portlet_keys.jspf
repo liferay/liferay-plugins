@@ -17,7 +17,7 @@
 <%!
 public static class PortletKeys {
 
-	public static final String AMS = "1_WAR_amsportlet";
+	public static final String AMS = "1_WAR_samplealloymvcportlet";
 
 }
 %>
