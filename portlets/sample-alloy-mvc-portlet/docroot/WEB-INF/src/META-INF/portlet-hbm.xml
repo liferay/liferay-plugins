@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.samplealloymvc.model.Asset" />
+	<import class="com.liferay.samplealloymvc.model.Checkout" />
+	<import class="com.liferay.samplealloymvc.model.Definition" />
+	<import class="com.liferay.samplealloymvc.model.Type" />
+	<class name="com.liferay.samplealloymvc.model.impl.AssetImpl" table="SAMVC_Asset">
+		<id name="assetId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="definitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="serialNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="inactiveDate" type="org.hibernate.type.TimestampType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
+	</class>
+	<class name="com.liferay.samplealloymvc.model.impl.CheckoutImpl" table="SAMVC_Checkout">
+		<id name="checkoutId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="assetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="checkOutDate" type="org.hibernate.type.TimestampType" />
+		<property name="expectedCheckInDate" type="org.hibernate.type.TimestampType" />
+		<property name="actualCheckInDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.samplealloymvc.model.impl.DefinitionImpl" table="SAMVC_Definition">
+		<id name="definitionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="typeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="manufacturer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="model" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="orderDate" type="org.hibernate.type.TimestampType" />
+		<property name="quantity" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="price" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+	</class>
+	<class name="com.liferay.samplealloymvc.model.impl.TypeImpl" table="SAMVC_Type">
+		<id name="typeId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
