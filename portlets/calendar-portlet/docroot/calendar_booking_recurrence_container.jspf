@@ -163,7 +163,7 @@ if (recurrence != null) {
 					<div class='<%= ListUtil.isEmpty(weekdays) ? "hide" : StringPool.BLANK %>' id="<portlet:namespace />viewPositionalWeekday">
 
 						<%
-							Weekday weekday = positionalWeekday.getWeekday();
+						Weekday weekday = positionalWeekday.getWeekday();
 						%>
 
 						<aui:input label="repeat-on-month-last-day-of-the-week" name="lastPosition" type="checkbox" />
