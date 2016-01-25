@@ -1502,8 +1502,10 @@
 
 							instance._setEndDate();
 
-							if (instance._validDate && (instance._startDate.valueOf() >= instance._endDate.valueOf())) {
-								instance._startDate = new Date(instance._endDate.valueOf() - instance._duration);
+							var endDateValue = instance._endDate.valueOf();
+
+							if (instance._validDate && (instance._startDate.valueOf() >= endDateValue)) {
+								instance._startDate = new Date(endDateValue - instance._duration);
 
 								instance._setStartDatePickerDate();
 							}
@@ -1517,8 +1519,10 @@
 
 							instance._setEndTime();
 
-							if (instance._validDate && (instance._startDate.valueOf() >= instance._endDate.valueOf())) {
-								instance._startDate = new Date(instance._endDate.valueOf() - instance._duration);
+							var endDateValue = instance._endDate.valueOf();
+
+							if (instance._validDate && (instance._startDate.valueOf() >= endDateValue)) {
+								instance._startDate = new Date(endDateValue - instance._duration);
 
 								instance._setStartDatePickerDate();
 								instance._setStartTimePickerTime();
@@ -1568,11 +1572,13 @@
 						_setEndDate: function() {
 							var instance = this;
 
-							var endDate = instance._endDatePicker.getDate();
+							var endDateObj = instance._endDatePicker.getDate();
 
-							instance._endDate.setDate(endDate.getDate());
-							instance._endDate.setMonth(endDate.getMonth());
-							instance._endDate.setYear(endDate.getFullYear());
+							var endDate = instance._endDate;
+
+							endDate.setDate(endDateObj.getDate());
+							endDate.setMonth(endDateObj.getMonth());
+							endDate.setYear(endDateObj.getFullYear());
 						},
 
 						_setEndDatePickerDate: function() {
@@ -1601,19 +1607,23 @@
 						_setStartDate: function() {
 							var instance = this;
 
-							var startDate = instance._startDatePicker.getDate();
+							var startDateObj = instance._startDatePicker.getDate();
 
-							instance._startDate.setDate(startDate.getDate());
-							instance._startDate.setMonth(startDate.getMonth());
-							instance._startDate.setYear(startDate.getFullYear());
+							var startDate = instance._startDate;
+
+							startDate.setDate(startDateObj.getDate());
+							startDate.setMonth(startDateObj.getMonth());
+							startDate.setYear(startDateObj.getFullYear());
 						},
 
 						_setStartDatePickerDate: function() {
 							var instance = this;
 
-							instance._startDatePicker.clearSelection(true);
+							var startDatePicker = instance._startDatePicker;
 
-							instance._startDatePicker.selectDates([instance._startDate]);
+							startDatePicker.clearSelection(true);
+
+							startDatePicker.selectDates([instance._startDate]);
 						},
 
 						_setStartTime: function() {
@@ -1621,8 +1631,10 @@
 
 							var startTime = instance._startTimePicker.getTime();
 
-							instance._startDate.setHours(startTime.getHours());
-							instance._startDate.setMinutes(startTime.getMinutes());
+							var startDate = instance._startDate;
+
+							startDate.setHours(startTime.getHours());
+							startDate.setMinutes(startTime.getMinutes());
 						},
 
 						_setStartTimePickerTime: function() {
@@ -1634,9 +1646,9 @@
 						_validate: function() {
 							var instance = this;
 
-							instance._validDate = (instance._duration > 0);
+							var validDate = (instance._duration > 0);
 
-							var validDate = instance._validDate;
+							instance._validDate = validDate;
 
 							var meetingEventDate = instance._containerNode;
 
