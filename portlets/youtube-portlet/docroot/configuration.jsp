@@ -170,13 +170,13 @@
 
 		if (presetValue) {
 			if (presetValue.indexOf('x') < 0) {
-				var heightNodeControlGroup = heightNode.ancestor('.form-group');
+				var heightNodeControlGroup = heightNode.ancestor('.control-group');
 
 				if (heightNodeControlGroup) {
 					heightNodeControlGroup.removeClass('invisible');
 				}
 
-				var widthNodeControlGroup = widthNode.ancestor('.form-group');
+				var widthNodeControlGroup = widthNode.ancestor('.control-group');
 
 				if (widthNodeControlGroup) {
 					widthNodeControlGroup.removeClass('invisible');
