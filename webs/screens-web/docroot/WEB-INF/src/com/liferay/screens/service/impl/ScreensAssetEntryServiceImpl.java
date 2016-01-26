@@ -129,7 +129,7 @@ public class ScreensAssetEntryServiceImpl
 				List<AssetEntry> assetEntries =
 					AssetPublisherUtil.getAssetEntries(
 						null, portletPreferences, permissionChecker,
-						new long[] { groupId },
+						new long[] {groupId},
 						portletPreferences.getValues(
 							"assetEntryXml", new String[0]),
 						false, false);
@@ -173,9 +173,8 @@ public class ScreensAssetEntryServiceImpl
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(
 			assetEntry.getClassPK());
 
-		JSONObject fileEntryJSONObject =
-			JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(fileEntry));
+		JSONObject fileEntryJSONObject = JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(fileEntry));
 
 		fileEntryJSONObject.put("url", getFileEntryPreviewURL(fileEntry));
 
@@ -217,9 +216,8 @@ public class ScreensAssetEntryServiceImpl
 				journalArticleResource.getArticleId());
 		}
 
-		JSONObject journalArticleJSONObject =
-			JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(journalArticle));
+		JSONObject journalArticleJSONObject = JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(journalArticle));
 
 		journalArticleJSONObject.remove("content");
 
