@@ -145,7 +145,7 @@ public class SOAnnouncementsUserNotificationHandler
 				PortletKeys.SO_ANNOUNCEMENTS);
 
 			portletURL.setParameter("mvcPath", "/view.jsp");
-			portletURL.setWindowState(WindowState.MAXIMIZED);
+			portletURL.setWindowState(WindowState.NORMAL);
 		}
 
 		return portletURL.toString();
