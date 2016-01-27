@@ -23,9 +23,9 @@ html = <<-EOF
 
 <script type="text/javascript">
 	// <![CDATA[
-		function #{namespace}execute() {
-			var content = #{namespace}consoleInput.getCode();
-
+		function #{namespace}execute() {		
+			var content = $('textarea##{namespace}consoleInput').val();
+			
 			jQuery.get(
 				'#{$renderResponse.createResourceURL}',
 				{
@@ -52,7 +52,7 @@ html = <<-EOF
 
 	<br />
 
-	<textarea class="codepress ruby" id="#{namespace}consoleInput" name="#{namespace}consoleInput" style="height: 300px; width: 98%;" wrap="off">
+	<textarea id="#{namespace}consoleInput" name="#{namespace}consoleInput" style="height: 300px; width: 98%;" wrap="off">
 \$resourceResponse.setContentType "text/html"
 
 out = $resourceResponse.getPortletOutputStream
@@ -77,7 +77,6 @@ out.println `date`
 	<pre id="#{namespace}consoleOutput"><!--//--></pre>
 </form>
 
-<script src="#{themeDisplay.getPathContext}/html/js/editor/codepress/codepress.js" type="text/javascript"></script>
 EOF
 
 out.print html
