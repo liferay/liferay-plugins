@@ -277,6 +277,8 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		boolean saveToDatabase = GetterUtil.getBoolean(
 			getParameter(actionRequest, "saveToDatabase"));
 
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
+
 		for (int formFieldsIndex : formFieldsIndexes) {
 			Map<Locale, String> fieldLabelMap =
 					LocalizationUtil.getLocalizationMap(
@@ -285,14 +287,18 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			for (Locale locale : fieldLabelMap.keySet()) {
 				String fieldLabelValue = fieldLabelMap.get(locale);
 
-				if (Validator.isNull(fieldLabelValue)) {
-					SessionErrors.add(
-						actionRequest, ColumnNameException.class.getName());
+				if (locale.equals(defaultLocale)) {
+					if (Validator.isNull(fieldLabelValue)) {
+						SessionErrors.add(
+							actionRequest, ColumnNameException.class.getName());
 
-					return;
+						return;
+					}	
 				}
 
-				if (saveToDatabase && (fieldLabelValue.length() > 75)) {
+				if (Validator.isNotNull(fieldLabelValue) &&
+					saveToDatabase && (fieldLabelValue.length() > 75)) {
+					
 					SessionErrors.add(
 						actionRequest, "fieldSizeInvalid" + formFieldsIndex);
 
