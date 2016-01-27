@@ -102,6 +102,6 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 	}
 
 	private static final String _DL_RESOURCE_NAME =
-		"com.liferay.portlet.documentlibrary";
+		"com.liferay.document.library.kernel";
 
 }

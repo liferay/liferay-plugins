@@ -17,6 +17,7 @@
 
 package com.liferay.microblogs.microblogs.notifications;
 
+import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
@@ -29,7 +30,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.AssetRenderer;
 
 /**
  * @author Jonathan Lee

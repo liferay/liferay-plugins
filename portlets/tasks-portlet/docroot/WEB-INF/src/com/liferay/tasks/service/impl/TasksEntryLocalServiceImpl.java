@@ -17,6 +17,7 @@
 
 package com.liferay.tasks.service.impl;
 
+import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -31,7 +32,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
 import com.liferay.tasks.exception.TasksEntryDueDateException;
 import com.liferay.tasks.exception.TasksEntryTitleException;

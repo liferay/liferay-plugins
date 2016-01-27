@@ -17,6 +17,8 @@
 
 package com.liferay.tasks.portlet;
 
+import com.liferay.asset.kernel.exception.AssetTagException;
+import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
@@ -33,8 +35,6 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.exception.AssetTagException;
-import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 import com.liferay.tasks.service.TasksEntryServiceUtil;

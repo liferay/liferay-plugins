@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.portlet;
 
+import com.liferay.asset.kernel.exception.AssetCategoryException;
+import com.liferay.asset.kernel.exception.AssetTagException;
 import com.liferay.knowledgebase.exception.KBArticleContentException;
 import com.liferay.knowledgebase.exception.KBArticlePriorityException;
 import com.liferay.knowledgebase.exception.KBArticleTitleException;
@@ -55,8 +57,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.exception.AssetCategoryException;
-import com.liferay.portlet.asset.exception.AssetTagException;
 import com.liferay.portlet.documentlibrary.exception.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.exception.FileNameException;
 import com.liferay.portlet.documentlibrary.exception.FileSizeException;

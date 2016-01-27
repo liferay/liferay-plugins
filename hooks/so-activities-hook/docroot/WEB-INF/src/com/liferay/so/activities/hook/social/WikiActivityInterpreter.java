@@ -14,6 +14,7 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.portal.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -32,7 +33,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.so.activities.util.SocialActivityKeyConstants;
 import com.liferay.social.kernel.model.SocialActivity;
 import com.liferay.social.kernel.model.SocialActivityConstants;

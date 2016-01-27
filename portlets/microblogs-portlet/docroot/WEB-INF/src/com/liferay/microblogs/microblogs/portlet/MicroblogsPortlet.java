@@ -17,6 +17,7 @@
 
 package com.liferay.microblogs.microblogs.portlet;
 
+import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.MicroblogsEntryServiceUtil;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;

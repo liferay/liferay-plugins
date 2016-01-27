@@ -17,6 +17,7 @@
 
 package com.liferay.microblogs.microblogs.asset;
 
+import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.microblogs.util.WebKeys;
@@ -30,7 +31,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.asset.model.BaseJSPAssetRenderer;
 
 import java.util.Locale;
 

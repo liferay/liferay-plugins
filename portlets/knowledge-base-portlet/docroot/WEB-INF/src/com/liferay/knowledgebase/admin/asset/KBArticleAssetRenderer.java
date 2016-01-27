@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.admin.asset;
 
+import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.permission.KBArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.asset.model.BaseJSPAssetRenderer;
 
 import java.util.Locale;
 
