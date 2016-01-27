@@ -89,6 +89,7 @@
 				newenvironment="true"
 				outputproperty="build-service.output"
 			>
+				<jvmarg value="-Dfile.encoding=UTF-8" />
 				<jvmarg value="-Xms512m" />
 				<jvmarg value="-Xmx1024m" />
 				<jvmarg value="-Xss2048k" />
