@@ -26,11 +26,12 @@ html = <<-EOF
 		function #{namespace}execute() {		
 			var content = $('textarea##{namespace}consoleInput').val();
 			
-			jQuery.get(
+			jQuery.post(
 				'#{$renderResponse.createResourceURL}',
 				{
 					#{namespace}cmd: "exec",
-					#{namespace}consoleInput: content
+					#{namespace}consoleInput: content,
+					p_auth: Liferay.authToken
 				},
 				function(data) {
 					if (!data.match(/^@ERROR@$/m) && document.#{namespace}fm.#{namespace}outputMode.checked) {

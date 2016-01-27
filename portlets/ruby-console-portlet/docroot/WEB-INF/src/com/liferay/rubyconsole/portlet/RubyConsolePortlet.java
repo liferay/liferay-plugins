@@ -17,10 +17,13 @@ package com.liferay.rubyconsole.portlet;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.scripting.ScriptingException;
+import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.ruby.RubyPortlet;
 
 import java.io.IOException;
@@ -43,6 +46,16 @@ public class RubyConsolePortlet extends RubyPortlet {
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
+
+		try {
+			AuthTokenUtil.checkCSRFToken(
+				PortalUtil.getOriginalServletRequest(
+					PortalUtil.getHttpServletRequest(resourceRequest)),
+				RubyConsolePortlet.class.getName());
+		}
+		catch (PrincipalException e) {
+			return;
+		}
 
 		String cmd = ParamUtil.getString(resourceRequest, Constants.CMD);
 
