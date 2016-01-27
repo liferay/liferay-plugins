@@ -6,6 +6,10 @@
 		<display-name>Ruby Console</display-name>
 		<portlet-class>com.liferay.rubyconsole.portlet.RubyConsolePortlet</portlet-class>
 		<init-param>
+			<name>file-path</name>
+			<value>/WEB-INF/ruby/</value>
+		</init-param>
+		<init-param>
 			<name>global-files</name>
 			<value>/WEB-INF/ruby/global/liferay_portlet.rb</value>
 		</init-param>
