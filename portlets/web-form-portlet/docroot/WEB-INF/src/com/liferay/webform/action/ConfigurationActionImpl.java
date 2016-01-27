@@ -281,8 +281,8 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		for (int formFieldsIndex : formFieldsIndexes) {
 			Map<Locale, String> fieldLabelMap =
-					LocalizationUtil.getLocalizationMap(
-						actionRequest, "fieldLabel" + formFieldsIndex);
+				LocalizationUtil.getLocalizationMap(
+					actionRequest, "fieldLabel" + formFieldsIndex);
 
 			for (Locale locale : fieldLabelMap.keySet()) {
 				String fieldLabelValue = fieldLabelMap.get(locale);
@@ -293,12 +293,12 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 							actionRequest, ColumnNameException.class.getName());
 
 						return;
-					}	
+					}
 				}
 
 				if (Validator.isNotNull(fieldLabelValue) &&
 					saveToDatabase && (fieldLabelValue.length() > 75)) {
-					
+
 					SessionErrors.add(
 						actionRequest, "fieldSizeInvalid" + formFieldsIndex);
 

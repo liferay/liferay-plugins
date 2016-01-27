@@ -47,9 +47,9 @@ page import="com.liferay.webform.util.WebFormUtil" %>
 
 <%@ page import="javax.portlet.ActionRequest" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
