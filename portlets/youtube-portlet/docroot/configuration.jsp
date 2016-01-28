@@ -84,7 +84,7 @@
 	</aui:layout>
 </aui:form>
 
-<aui:script use="aui-base,aui-datatype,aui-swf-deprecated">
+<aui:script use="aui-base">
 	var Lang = A.Lang;
 
 	var formNode = A.one('#<portlet:namespace />fm');
@@ -104,7 +104,7 @@
 		if (annotationsNode && closedCaptioningNode && enableKeyboardControlsNode && startTimeNode) {
 			var playerOptions = {
 				cc_load_policy: closedCaptioningNode.val(),
-				disablekb: (!A.DataType.Boolean.parse(enableKeyboardControlsNode.val())).toString(),
+				disablekb: !enableKeyboardControlsNode.get('checked'),
 				iv_load_policy: annotationsNode.val(),
 				start: startTimeNode.val()
 			};
