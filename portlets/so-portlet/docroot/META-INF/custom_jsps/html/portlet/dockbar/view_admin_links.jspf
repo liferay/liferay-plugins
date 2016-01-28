@@ -31,11 +31,11 @@ catch (NoSuchRoleException nsre) {
 
 }
 %>
-
+<%--
 <c:if test="<%= themeDisplay.isSignedIn() && socialOfficeUser %>">
 	<li class="go-to">
 		<liferay-portlet:runtime portletName="5_WAR_soportlet" />
 	</li>
 </c:if>
-
+--%>
 <%@ include file="/html/portlet/dockbar/view_admin_links.portal.jspf" %>

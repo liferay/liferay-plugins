@@ -199,8 +199,9 @@ public class InviteMembersUserNotificationHandler
 
 			String userName = user.getFullName();
 
-			String userDisplayURL = user.getDisplayURL(
-				serviceContext.getThemeDisplay());
+			String userDisplayURL /*= user.getDisplayURL(
+				serviceContext.getThemeDisplay());*/
+			= "https://hioa.no/tilsatt/"+user.getScreenName();
 
 			return "<a href=\"" + userDisplayURL + "\">" +
 				HtmlUtil.escape(userName) + "</a>";
