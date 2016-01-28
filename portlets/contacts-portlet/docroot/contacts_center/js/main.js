@@ -45,7 +45,7 @@ AUI.add(
 					'</div>' +
 					'<div class="lfr-contact-info">' +
 						'<div class="lfr-contact-name">' +
-							'<a>{fullName}</a>' +
+							'<a href="{personLink}">{fullName}</a>' +
 						'</div>' +
 						'<div class="lfr-group-owner">' +
 							'<a>{owner}</a>' +
@@ -107,7 +107,7 @@ AUI.add(
 					'</div>' +
 					'<div class="lfr-contact-info">' +
 						'<div class="lfr-contact-name">' +
-							'<a>{lastName} {firstName}</a>' +
+							'<a href="{personLink}">{lastName} {firstName}</a>' +
 						'</div>' +
 						'<div class="lfr-group-owner">' +
 							'<a>{owner}</a>' +
@@ -830,6 +830,7 @@ AUI.add(
 													firstName: (result.firstName ? result.firstName : ''),
 													fullName: (result.fullName ? result.fullName : ''),
 													lastName: (result.lastName ? result.lastName + ',' : ''),
+													personLink: (result.personLink ? result.personLink  : ''),
 													owner: (result.owner ? Liferay.Language.get('site-owner') : ''),
 													vcardUrl: (vcardURL.toString()),
 													vcardText: (Liferay.Language.get('download-vcard')),

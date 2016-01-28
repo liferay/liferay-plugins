@@ -1039,6 +1039,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		Role theRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Site Owner");
 		jsonObject.put("owner", UserGroupRoleLocalServiceUtil.hasUserGroupRole(user.getUserId(), themeDisplay.getSiteGroupId(), theRole.getRoleId()));
+		jsonObject.put("personLink", "https://hioa.no/tilsatt/"+user.getScreenName());
 
 		return jsonObject;
 	}

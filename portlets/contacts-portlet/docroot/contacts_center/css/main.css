@@ -172,7 +172,7 @@ $section-header-bg: #CCE6F7;
 			overflow-x: hidden;
 			overflow-y: scroll;
 			position: absolute;
-			top: 40px;
+			top: 100px;
 			width: 100%;
 
 			.more-results a {
