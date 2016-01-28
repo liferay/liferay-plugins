@@ -80,11 +80,13 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 					<%
 					for (Role role : roles) {
+						if (GetterUtil.getBoolean(role.getExpandoBridge().getAttribute("forgroups"),false)) {
 					%>
 
 						<option value="<%= role.getRoleId() %>"><%= HtmlUtil.escape(role.getTitle(locale)) %></option>
 
 					<%
+							}
 					}
 					%>
 
@@ -142,7 +144,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 	var invitedMembersList = inviteMembersContainer.one('.user-invited .list');
 	var searchList = inviteMembersContainer.one('.search .list');
 
-	var pageDelta = 50;
+	var pageDelta = 400;
 
 	var createDataSource = function(url) {
 		return new A.DataSource.IO(

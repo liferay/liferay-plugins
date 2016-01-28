@@ -47,6 +47,8 @@ import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.so.invitemembers.util.InviteMembersUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
+import com.liferay.portal.model.UserGroup;
 
 import java.util.List;
 
@@ -80,11 +82,16 @@ public class InviteMembersPortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put(
+		List<User> users =
+				InviteMembersUtil.getAvailableUsers(
+						themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+						keywords, start, end);
+
+		/*jsonObject.put(
 			"count",
 			InviteMembersUtil.getAvailableUsersCount(
 				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				keywords));
+				keywords));*/
 
 		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -94,26 +101,30 @@ public class InviteMembersPortlet extends MVCPortlet {
 
 		jsonObject.put("options", optionsJSONObject);
 
-		List<User> users =
-			InviteMembersUtil.getAvailableUsers(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				keywords, start, end);
-
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
+		int cnt = 0;
+
+		UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(themeDisplay.getCompanyId(), "alle-sap");
+
 		for (User user : users) {
-			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+			if (user.getUserGroups().contains(userGroup)) {
+				JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-			userJSONObject.put(
-				"hasPendingMemberRequest",
-				MemberRequestLocalServiceUtil.hasPendingMemberRequest(
-					themeDisplay.getScopeGroupId(), user.getUserId()));
-			userJSONObject.put("userEmailAddress", user.getEmailAddress());
-			userJSONObject.put("userFullName", user.getFullName());
-			userJSONObject.put("userId", user.getUserId());
+				userJSONObject.put(
+						"hasPendingMemberRequest",
+						MemberRequestLocalServiceUtil.hasPendingMemberRequest(
+								themeDisplay.getScopeGroupId(), user.getUserId()));
+				userJSONObject.put("userEmailAddress", user.getEmailAddress());
+				userJSONObject.put("userFullName", user.getFullName());
+				userJSONObject.put("userId", user.getUserId());
 
-			jsonArray.put(userJSONObject);
+				jsonArray.put(userJSONObject);
+				cnt++;
+			}
 		}
+
+		jsonObject.put("count",cnt);
 
 		jsonObject.put("users", jsonArray);
 
