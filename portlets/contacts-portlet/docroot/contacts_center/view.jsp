@@ -213,7 +213,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 										<div class="lfr-contact-info">
 											<div class="lfr-contact-name">
-												<a>
+												<a href="https://hioa.no/tilsatt/<%= HtmlUtil.escape(user2.getScreenName()) %>">
 													<c:if test="<%= Validator.isNotNull(user2.getLastName()) %>">
 														<%= HtmlUtil.escape(user2.getLastName()) %>,
 													</c:if>
