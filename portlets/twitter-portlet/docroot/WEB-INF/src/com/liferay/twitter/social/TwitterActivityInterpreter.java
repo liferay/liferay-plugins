@@ -15,7 +15,9 @@
 package com.liferay.twitter.social;
 
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Contact;
@@ -69,6 +71,11 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	@Override
+	protected ResourceBundleLoader getResourceBundleLoader() {
+		return _resourceBundleLoader;
+	}
+
+	@Override
 	protected Object[] getTitleArguments(
 			String groupName, SocialActivity activity, String link,
 			String title, ServiceContext serviceContext)
@@ -96,5 +103,9 @@ public class TwitterActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = {Feed.class.getName()};
+
+	private final ResourceBundleLoader _resourceBundleLoader =
+		new ClassResourceBundleLoader(
+			"content.Language", TwitterActivityInterpreter.class);
 
 }

@@ -25,6 +25,8 @@ import com.liferay.knowledgebase.service.permission.KBTemplatePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -125,6 +127,11 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		}
 
 		return StringPool.BLANK;
+	}
+
+	@Override
+	protected ResourceBundleLoader getResourceBundleLoader() {
+		return _resourceBundleLoader;
 	}
 
 	@Override
@@ -239,5 +246,9 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		KBArticle.class.getName(), KBComment.class.getName(),
 		KBTemplate.class.getName()
 	};
+
+	private final ResourceBundleLoader _resourceBundleLoader =
+		new ClassResourceBundleLoader(
+			"content.Language", AdminActivityInterpreter.class);
 
 }

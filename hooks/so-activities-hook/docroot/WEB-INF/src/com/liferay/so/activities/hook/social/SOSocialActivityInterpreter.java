@@ -23,8 +23,10 @@ import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -239,6 +241,11 @@ public abstract class SOSocialActivityInterpreter
 			linkURL,
 			HtmlUtil.escape(
 				assetRenderer.getTitle(serviceContext.getLocale())));
+	}
+
+	@Override
+	protected ResourceBundleLoader getResourceBundleLoader() {
+		return _resourceBundleLoader;
 	}
 
 	protected SocialActivityFeedEntry getSubfeedEntry(
@@ -561,5 +568,9 @@ public abstract class SOSocialActivityInterpreter
 	}
 
 	private static final String _SELECTOR = "SO";
+
+	private final ResourceBundleLoader _resourceBundleLoader =
+		new ClassResourceBundleLoader(
+			"content.Language", SOSocialActivityInterpreter.class);
 
 }

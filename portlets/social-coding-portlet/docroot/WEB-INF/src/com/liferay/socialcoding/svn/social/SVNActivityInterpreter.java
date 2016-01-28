@@ -15,7 +15,9 @@
 package com.liferay.socialcoding.svn.social;
 
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
@@ -56,6 +58,11 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 			activity.getClassPK());
 
 		return svnRevision.getWebRevisionNumberURL();
+	}
+
+	@Override
+	protected ResourceBundleLoader getResourceBundleLoader() {
+		return _resourceBundleLoader;
 	}
 
 	@Override
@@ -106,5 +113,9 @@ public class SVNActivityInterpreter extends BaseSocialActivityInterpreter {
 	}
 
 	private static final String[] _CLASS_NAMES = {SVNRevision.class.getName()};
+
+	private final ResourceBundleLoader _resourceBundleLoader =
+		new ClassResourceBundleLoader(
+			"content.Language", SVNActivityInterpreter.class);
 
 }

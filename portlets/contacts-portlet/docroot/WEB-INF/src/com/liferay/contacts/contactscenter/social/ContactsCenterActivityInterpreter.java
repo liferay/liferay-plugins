@@ -18,6 +18,8 @@
 package com.liferay.contacts.contactscenter.social;
 
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -41,6 +43,11 @@ public class ContactsCenterActivityInterpreter
 		SocialActivity activity, ServiceContext serviceContext) {
 
 		return getUserName(activity.getReceiverUserId(), serviceContext);
+	}
+
+	@Override
+	protected ResourceBundleLoader getResourceBundleLoader() {
+		return _resourceBundleLoader;
 	}
 
 	@Override
@@ -80,5 +87,9 @@ public class ContactsCenterActivityInterpreter
 	}
 
 	private static final String[] _CLASS_NAMES = {User.class.getName()};
+
+	private final ResourceBundleLoader _resourceBundleLoader =
+		new ClassResourceBundleLoader(
+			"content.Language", ContactsCenterActivityInterpreter.class);
 
 }
