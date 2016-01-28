@@ -631,7 +631,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 
 			if (orderByComparator != null) {
 				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_CHECKOUT);
 

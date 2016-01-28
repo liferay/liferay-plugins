@@ -951,7 +951,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 			if (orderByComparator != null) {
 				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 3));
+						(orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_FEED);
 
