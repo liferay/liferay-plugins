@@ -68,7 +68,7 @@
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="requestId" value="<%= String.valueOf(socialRequest.getRequestId()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
-				</portlet:actionURL >
+				</portlet:actionURL>
 
 				<span class="lfr-user-action-confirm lfr-user-action-item">
 					<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
@@ -78,7 +78,7 @@
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="requestId" value="<%= String.valueOf(socialRequest.getRequestId()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
-				</portlet:actionURL >
+				</portlet:actionURL>
 
 				<span class="lfr-user-action-ignore lfr-user-action-item">
 					<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
