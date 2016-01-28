@@ -77,6 +77,9 @@
 		submitForm(form);
 	}
 
+	var customHeight;
+	var customWidth;
+
 	function <portlet:namespace />updateFrameSize(value) {
 		var Util = Liferay.Util;
 
@@ -93,6 +96,17 @@
 
 			heightNode.val(dimensions[1]);
 			widthNode.val(dimensions[0]);
+		} else {
+			heightNode.on('keyup', function() {
+				customHeight = heightNode.val();
+			});
+
+			widthNode.on('keyup', function() {
+				customWidth = widthNode.val();
+			});
+
+			heightNode.val(customHeight);
+			widthNode.val(customWidth);
 		}
 	}
 </aui:script>
