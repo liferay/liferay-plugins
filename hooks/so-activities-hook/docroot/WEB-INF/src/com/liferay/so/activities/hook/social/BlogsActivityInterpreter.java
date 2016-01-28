@@ -14,14 +14,14 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.blogs.kernel.model.BlogsEntry;
+import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.blogs.model.BlogsEntry;
-import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.so.activities.util.SocialActivityKeyConstants;
 import com.liferay.social.kernel.model.SocialActivity;
 import com.liferay.social.kernel.model.SocialActivityConstants;

@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.admin.util;
 
+import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.knowledgebase.model.KBArticle;
@@ -36,7 +37,6 @@ import com.liferay.portlet.asset.service.AssetEntryServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
-import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.service.WikiPageLocalServiceUtil;

@@ -14,11 +14,11 @@
 		<indexer-post-processor-impl>com.liferay.testpacl.hook.indexer.UserIndexerPostProcessor</indexer-post-processor-impl>
 	</indexer-post-processor>
 	<service>
-		<service-type>com.liferay.portlet.blogs.service.BlogsEntryLocalService</service-type>
+		<service-type>com.liferay.blogs.kernel.service.BlogsEntryLocalService</service-type>
 		<service-impl>com.liferay.testpacl.hook.service.impl.TestPACLBlogsEntryLocalServiceImpl</service-impl>
 	</service>
 	<service>
-		<service-type>com.liferay.portlet.blogs.service.BlogsStatsUserLocalService</service-type>
+		<service-type>com.liferay.blogs.kernel.service.BlogsStatsUserLocalService</service-type>
 		<service-impl>com.liferay.testpacl.hook.service.impl.TestPACLBlogsStatsUserLocalServiceImpl</service-impl>
 	</service>
 	<servlet-filter>

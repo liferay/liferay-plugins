@@ -204,7 +204,7 @@
 		};
 		%>
 
-	com.liferay.portlet.blogs.service.BlogsEntryLocalService#getClass#getClassLoader=
+	com.liferay.blogs.kernel.service.BlogsEntryLocalService#getClass#getClassLoader=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {

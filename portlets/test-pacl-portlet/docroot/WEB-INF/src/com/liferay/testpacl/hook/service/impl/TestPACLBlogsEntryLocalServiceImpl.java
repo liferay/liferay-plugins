@@ -14,8 +14,8 @@
 
 package com.liferay.testpacl.hook.service.impl;
 
-import com.liferay.portlet.blogs.service.BlogsEntryLocalService;
-import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceWrapper;
+import com.liferay.blogs.kernel.service.BlogsEntryLocalService;
+import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceWrapper;
 
 /**
  * @author Brian Wing Shun Chan

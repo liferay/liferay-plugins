@@ -26,6 +26,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.admin.kernel.util.PortalSearchApplicationType" %><%@
+page import="com.liferay.blogs.kernel.model.BlogsEntry" %><%@
 page import="com.liferay.journal.model.JournalArticle" %><%@
 page import="com.liferay.knowledgebase.exception.DuplicateKBFolderNameException" %><%@
 page import="com.liferay.knowledgebase.exception.InvalidKBFolderNameException" %><%@
@@ -135,7 +136,6 @@ page import="com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil" %>
 page import="com.liferay.portlet.asset.service.AssetEntryServiceUtil" %><%@
 page import="com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil" %><%@
 page import="com.liferay.portlet.asset.service.persistence.AssetEntryQuery" %><%@
-page import="com.liferay.portlet.blogs.model.BlogsEntry" %><%@
 page import="com.liferay.portlet.configuration.kernel.util.PortletConfigurationApplicationType" %><%@
 page import="com.liferay.portlet.documentlibrary.exception.DuplicateFileException" %><%@
 page import="com.liferay.portlet.documentlibrary.exception.FileNameException" %><%@

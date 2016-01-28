@@ -22,7 +22,10 @@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.chat.exception.NoSuchEntryException" %><%@
+<%@ page import="com.liferay.blogs.kernel.service.BlogsEntryLocalService" %><%@
+page import="com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil" %><%@
+page import="com.liferay.blogs.kernel.service.BlogsStatsUserLocalServiceUtil" %><%@
+page import="com.liferay.chat.exception.NoSuchEntryException" %><%@
 page import="com.liferay.chat.model.Entry" %><%@
 page import="com.liferay.chat.model.EntryClp" %><%@
 page import="com.liferay.chat.service.EntryLocalService" %><%@
@@ -65,9 +68,6 @@ page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.theme.ThemeDisplay" %><%@
 page import="com.liferay.portal.util.Portal" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.blogs.service.BlogsEntryLocalService" %><%@
-page import="com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil" %><%@
-page import="com.liferay.portlet.blogs.service.BlogsStatsUserLocalServiceUtil" %><%@
 page import="com.liferay.testpacl.hook.action.FailureStrutsAction" %><%@
 page import="com.liferay.testpacl.hook.action.SuccessStrutsAction" %><%@
 page import="com.liferay.testpacl.hook.indexer.OrganizationIndexerPostProcessor" %><%@

@@ -14,10 +14,10 @@
 
 package com.liferay.so.activities.hook.listeners;
 
+import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.portal.exception.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.so.activities.util.SocialActivityKeyConstants;
 import com.liferay.social.kernel.model.SocialActivitySet;
 import com.liferay.social.kernel.service.SocialActivitySetLocalServiceUtil;
