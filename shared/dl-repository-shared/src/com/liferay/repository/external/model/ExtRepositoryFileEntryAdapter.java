@@ -159,6 +159,13 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
+	public int getFileVersionsCount(int status) {
+		List<FileVersion> fileVersions = getFileVersions(status);
+
+		return fileVersions.size();
+	}
+
+	@Override
 	public Folder getFolder() {
 		Folder parentFolder = null;
 
