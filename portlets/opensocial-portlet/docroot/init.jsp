@@ -25,7 +25,8 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.opensocial.exception.DuplicateGadgetURLException" %><%@
+<%@ page import="com.liferay.expando.kernel.service.ExpandoValueServiceUtil" %><%@
+page import="com.liferay.opensocial.exception.DuplicateGadgetURLException" %><%@
 page import="com.liferay.opensocial.exception.GadgetPortletCategoryNamesException" %><%@
 page import="com.liferay.opensocial.exception.GadgetURLException" %><%@
 page import="com.liferay.opensocial.exception.NoSuchGadgetException" %><%@
@@ -59,7 +60,6 @@ page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletLister" %><%@
 page import="com.liferay.portal.util.PortletListerFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
-page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %><%@
 page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.util.Locale" %><%@

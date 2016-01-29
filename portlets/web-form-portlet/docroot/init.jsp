@@ -24,7 +24,9 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.captcha.CaptchaMaxChallengesException" %><%@
+<%@ page import="com.liferay.expando.kernel.exception.ColumnNameException" %><%@
+page import="com.liferay.expando.kernel.exception.DuplicateColumnNameException" %><%@
+page import="com.liferay.portal.kernel.captcha.CaptchaMaxChallengesException" %><%@
 page import="com.liferay.portal.kernel.captcha.CaptchaTextException" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.security.permission.ActionKeys" %><%@
@@ -40,8 +42,6 @@ page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.expando.exception.ColumnNameException" %><%@
-page import="com.liferay.portlet.expando.exception.DuplicateColumnNameException" %><%@
 page import="com.liferay.webform.util.PortletPropsValues" %><%@
 page import="com.liferay.webform.util.WebFormUtil" %>
 

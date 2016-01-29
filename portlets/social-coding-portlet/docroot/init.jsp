@@ -23,7 +23,8 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
+<%@ page import="com.liferay.expando.kernel.service.ExpandoValueLocalServiceUtil" %><%@
+page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.log.Log" %><%@
 page import="com.liferay.portal.kernel.log.LogFactoryUtil" %><%@
@@ -42,7 +43,6 @@ page import="com.liferay.portal.service.OrganizationLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.permission.UserPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.exception.NoSuchSVNRepositoryException" %><%@
 page import="com.liferay.socialcoding.jira.util.JIRAConstants" %><%@
 page import="com.liferay.socialcoding.jira.util.JIRAUtil" %><%@
