@@ -4,19 +4,19 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<service>
-		<service-type>com.liferay.portlet.expando.service.ExpandoColumnLocalService</service-type>
+		<service-type>com.liferay.expando.kernel.service.ExpandoColumnLocalService</service-type>
 		<service-impl>com.liferay.mongodb.hook.service.impl.MongoExpandoColumnLocalServiceImpl</service-impl>
 	</service>
 	<service>
-		<service-type>com.liferay.portlet.expando.service.ExpandoRowLocalService</service-type>
+		<service-type>com.liferay.expando.kernel.service.ExpandoRowLocalService</service-type>
 		<service-impl>com.liferay.mongodb.hook.service.impl.MongoExpandoRowLocalServiceImpl</service-impl>
 	</service>
 	<service>
-		<service-type>com.liferay.portlet.expando.service.ExpandoTableLocalService</service-type>
+		<service-type>com.liferay.expando.kernel.service.ExpandoTableLocalService</service-type>
 		<service-impl>com.liferay.mongodb.hook.service.impl.MongoExpandoTableLocalServiceImpl</service-impl>
 	</service>
 	<service>
-		<service-type>com.liferay.portlet.expando.service.ExpandoValueLocalService</service-type>
+		<service-type>com.liferay.expando.kernel.service.ExpandoValueLocalService</service-type>
 		<service-impl>com.liferay.mongodb.hook.service.impl.MongoExpandoValueLocalServiceImpl</service-impl>
 	</service>
 </hook>
