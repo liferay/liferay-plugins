@@ -18,6 +18,10 @@ import com.google.api.services.admin.directory.model.Member;
 import com.google.api.services.admin.directory.model.Members;
 import com.google.api.services.groupssettings.model.Groups;
 
+import com.liferay.expando.kernel.model.ExpandoBridge;
+import com.liferay.expando.kernel.model.ExpandoTableConstants;
+import com.liferay.expando.kernel.model.ExpandoValue;
+import com.liferay.expando.kernel.service.ExpandoValueLocalServiceUtil;
 import com.liferay.google.apps.connector.util.GoogleDirectoryUtil;
 import com.liferay.google.apps.connector.util.GoogleGroupssettingsUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
@@ -39,10 +43,6 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.model.ExpandoTableConstants;
-import com.liferay.portlet.expando.model.ExpandoValue;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

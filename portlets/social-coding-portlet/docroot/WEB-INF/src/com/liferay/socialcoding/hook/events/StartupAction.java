@@ -14,17 +14,17 @@
 
 package com.liferay.socialcoding.hook.events;
 
+import com.liferay.expando.kernel.exception.DuplicateColumnNameException;
+import com.liferay.expando.kernel.exception.DuplicateTableNameException;
+import com.liferay.expando.kernel.model.ExpandoColumnConstants;
+import com.liferay.expando.kernel.model.ExpandoTable;
+import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceUtil;
+import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.expando.exception.DuplicateColumnNameException;
-import com.liferay.portlet.expando.exception.DuplicateTableNameException;
-import com.liferay.portlet.expando.model.ExpandoColumnConstants;
-import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan

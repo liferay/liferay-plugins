@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.messaging;
 
+import com.liferay.expando.kernel.exception.NoSuchTableException;
+import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
@@ -29,8 +31,6 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
-import com.liferay.portlet.expando.exception.NoSuchTableException;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 import java.util.List;
 

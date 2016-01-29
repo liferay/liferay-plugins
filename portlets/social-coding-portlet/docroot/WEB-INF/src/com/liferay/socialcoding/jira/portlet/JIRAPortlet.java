@@ -14,6 +14,7 @@
 
 package com.liferay.socialcoding.jira.portlet;
 
+import com.liferay.expando.kernel.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
@@ -26,7 +27,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

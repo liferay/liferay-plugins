@@ -14,13 +14,13 @@
 
 package com.liferay.mongodb.hook.listeners;
 
+import com.liferay.expando.kernel.model.ExpandoColumn;
+import com.liferay.expando.kernel.model.ExpandoTable;
+import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.mongodb.lang.MongoOperator;
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.exception.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
-import com.liferay.portlet.expando.model.ExpandoColumn;
-import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;

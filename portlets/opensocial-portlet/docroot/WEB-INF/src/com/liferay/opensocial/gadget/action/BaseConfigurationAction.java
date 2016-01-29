@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.gadget.action;
 
+import com.liferay.expando.kernel.service.ExpandoValueServiceUtil;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.expando.service.ExpandoValueServiceUtil;
 
 import java.util.Map;
 

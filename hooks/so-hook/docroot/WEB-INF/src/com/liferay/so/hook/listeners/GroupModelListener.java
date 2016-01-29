@@ -17,6 +17,8 @@
 
 package com.liferay.so.hook.listeners;
 
+import com.liferay.expando.kernel.model.ExpandoTableConstants;
+import com.liferay.expando.kernel.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portal.exception.ModelListenerException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -25,8 +27,6 @@ import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.TeamLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.expando.model.ExpandoTableConstants;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.so.util.PortletPropsValues;
 
 import java.util.Set;

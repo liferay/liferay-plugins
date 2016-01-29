@@ -14,7 +14,7 @@
 
 package com.liferay.sampleservicebuilder;
 
-import com.liferay.portlet.expando.model.BaseCustomAttributesDisplay;
+import com.liferay.expando.kernel.model.BaseCustomAttributesDisplay;
 import com.liferay.sampleservicebuilder.model.Foo;
 
 /**

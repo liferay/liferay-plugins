@@ -14,6 +14,8 @@
 
 package com.liferay.webform.action;
 
+import com.liferay.expando.kernel.exception.ColumnNameException;
+import com.liferay.expando.kernel.exception.DuplicateColumnNameException;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
@@ -24,8 +26,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.expando.exception.ColumnNameException;
-import com.liferay.portlet.expando.exception.DuplicateColumnNameException;
 import com.liferay.webform.util.WebFormUtil;
 
 import java.util.HashSet;

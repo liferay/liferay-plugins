@@ -15,6 +15,18 @@
 package com.liferay.mongodb.hook.service.impl;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
+import com.liferay.expando.kernel.exception.NoSuchColumnException;
+import com.liferay.expando.kernel.exception.NoSuchTableException;
+import com.liferay.expando.kernel.model.ExpandoColumn;
+import com.liferay.expando.kernel.model.ExpandoColumnConstants;
+import com.liferay.expando.kernel.model.ExpandoTable;
+import com.liferay.expando.kernel.model.ExpandoValue;
+import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceUtil;
+import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
+import com.liferay.expando.kernel.service.ExpandoValueLocalService;
+import com.liferay.expando.kernel.service.ExpandoValueLocalServiceWrapper;
+import com.liferay.expando.kernel.service.persistence.ExpandoColumnUtil;
+import com.liferay.expando.kernel.service.persistence.ExpandoValueUtil;
 import com.liferay.mongodb.lang.MongoOperator;
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -23,18 +35,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.expando.exception.NoSuchColumnException;
-import com.liferay.portlet.expando.exception.NoSuchTableException;
-import com.liferay.portlet.expando.model.ExpandoColumn;
-import com.liferay.portlet.expando.model.ExpandoColumnConstants;
-import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.model.ExpandoValue;
-import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.portlet.expando.service.ExpandoValueLocalService;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceWrapper;
-import com.liferay.portlet.expando.service.persistence.ExpandoColumnUtil;
-import com.liferay.portlet.expando.service.persistence.ExpandoValueUtil;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;

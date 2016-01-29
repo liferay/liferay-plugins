@@ -14,17 +14,17 @@
 
 package com.liferay.mongodb.hook.service.impl;
 
+import com.liferay.expando.kernel.model.ExpandoColumn;
+import com.liferay.expando.kernel.model.ExpandoColumnConstants;
+import com.liferay.expando.kernel.model.ExpandoTable;
+import com.liferay.expando.kernel.service.ExpandoColumnLocalService;
+import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceWrapper;
+import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.mongodb.lang.MongoOperator;
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portlet.expando.model.ExpandoColumn;
-import com.liferay.portlet.expando.model.ExpandoColumnConstants;
-import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.service.ExpandoColumnLocalService;
-import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceWrapper;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;

@@ -14,12 +14,12 @@
 
 package com.liferay.mongodb.hook.service.impl;
 
+import com.liferay.expando.kernel.exception.DuplicateTableNameException;
+import com.liferay.expando.kernel.model.ExpandoTable;
+import com.liferay.expando.kernel.service.ExpandoTableLocalService;
+import com.liferay.expando.kernel.service.ExpandoTableLocalServiceWrapper;
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portlet.expando.exception.DuplicateTableNameException;
-import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.service.ExpandoTableLocalService;
-import com.liferay.portlet.expando.service.ExpandoTableLocalServiceWrapper;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;

@@ -31,6 +31,7 @@ import com.google.api.services.drive.model.ParentReference;
 import com.google.api.services.drive.model.Revision;
 import com.google.api.services.drive.model.RevisionList;
 
+import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.google.drive.repository.model.GoogleDriveFileEntry;
 import com.liferay.google.drive.repository.model.GoogleDriveFileVersion;
 import com.liferay.google.drive.repository.model.GoogleDriveFolder;
@@ -57,7 +58,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.exception.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.exception.NoSuchFolderException;
-import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.repository.external.CredentialsProvider;
 import com.liferay.repository.external.ExtRepository;
 import com.liferay.repository.external.ExtRepositoryAdapter;
