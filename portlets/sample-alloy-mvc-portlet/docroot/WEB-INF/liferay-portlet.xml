@@ -7,6 +7,6 @@
 		<friendly-url-mapper-class>com.liferay.alloy.mvc.AlloyFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>ams</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/alloy/mvc/alloy-friendly-url-routes.xml?controller=assets</friendly-url-routes>
-		<css-class-wrapper>ams-portlet</css-class-wrapper>
+		<css-class-wrapper>sample-alloy-mvc-portlet</css-class-wrapper>
 	</portlet>
 </liferay-portlet-app>
