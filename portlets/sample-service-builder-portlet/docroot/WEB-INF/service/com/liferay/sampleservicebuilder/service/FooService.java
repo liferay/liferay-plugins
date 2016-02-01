@@ -23,8 +23,12 @@ import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
+
+import java.util.List;
 
 /**
  * Provides the remote service interface for Foo. Methods of this
@@ -57,12 +61,10 @@ public interface FooService extends BaseService, InvokableService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.User getUser(long userId)
-		throws PortalException;
+	public User getUser(long userId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
-		throws PortalException;
+	public List<Group> getUserSitesGroups() throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

@@ -16,15 +16,34 @@ package com.liferay.testpacl.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.chat.model.Entry;
+import com.liferay.chat.model.Status;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.PersistedModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.testpacl.model.Foo;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for Foo. Methods of this
@@ -55,9 +74,8 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param foo the foo
 	* @return the foo that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.testpacl.model.Foo addFoo(
-		com.liferay.testpacl.model.Foo foo);
+	@Indexable(type = IndexableType.REINDEX)
+	public Foo addFoo(Foo foo);
 
 	/**
 	* Creates a new foo with the primary key. Does not add the foo to the database.
@@ -65,7 +83,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param fooId the primary key for the new foo
 	* @return the new foo
 	*/
-	public com.liferay.testpacl.model.Foo createFoo(long fooId);
+	public Foo createFoo(long fooId);
 
 	/**
 	* Deletes the foo from the database. Also notifies the appropriate model listeners.
@@ -73,9 +91,8 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param foo the foo
 	* @return the foo that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.testpacl.model.Foo deleteFoo(
-		com.liferay.testpacl.model.Foo foo);
+	@Indexable(type = IndexableType.DELETE)
+	public Foo deleteFoo(Foo foo);
 
 	/**
 	* Deletes the foo with the primary key from the database. Also notifies the appropriate model listeners.
@@ -84,19 +101,17 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.testpacl.model.Foo deleteFoo(long fooId)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public Foo deleteFoo(long fooId) throws PortalException;
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -104,8 +119,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -119,8 +133,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -136,10 +149,8 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -147,8 +158,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -157,31 +167,29 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testpacl.model.Foo fetchFoo(long fooId);
+	public Foo fetchFoo(long fooId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
-		long companyId) throws PortalException;
+	public Company getCompanyPersistence_FindByPrimaryKey(long companyId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
-		long companyId) throws PortalException;
+	public Company getCompanyUtil_FindByPrimaryKey(long companyId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
-		int start, int end);
+	public List<Entry> getEntryLocalServiceUtil_GetEntries(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
-		long entryId) throws PortalException;
+	public Entry getEntryLocalServiceUtil_GetEntry(long entryId)
+		throws PortalException;
 
 	/**
 	* Returns the foo with the primary key.
@@ -191,8 +199,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @throws PortalException if a foo with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testpacl.model.Foo getFoo(long fooId)
-		throws PortalException;
+	public Foo getFoo(long fooId) throws PortalException;
 
 	/**
 	* Returns a range of all the foos.
@@ -206,8 +213,7 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @return the range of foos
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.testpacl.model.Foo> getFoos(int start,
-		int end);
+	public List<Foo> getFoos(int start, int end);
 
 	/**
 	* Returns the number of foos.
@@ -218,15 +224,15 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public int getFoosCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
-		long groupId) throws PortalException;
+	public Group getGroupPersistence_FindByPrimaryKey(long groupId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
-		long groupId) throws PortalException;
+	public Group getGroupUtil_FindByPrimaryKey(long groupId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -237,8 +243,8 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getPortalServiceUtil_GetBuildNumber();
@@ -262,20 +268,19 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public int getReleaseInfo_GetBuildNumber();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
-		long statusId) throws PortalException;
+	public Status getStatusLocalServiceUtil_GetStatus(long statusId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
-		int start, int end);
+	public List<Status> getStatusLocalServiceUtil_GetStatuses(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
-		long userId) throws PortalException;
+	public User getUserPersistence_FindByPrimaryKey(long userId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
-		long userId) throws PortalException;
+	public User getUserUtil_FindByPrimaryKey(long userId)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -288,7 +293,6 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	* @param foo the foo
 	* @return the foo that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.testpacl.model.Foo updateFoo(
-		com.liferay.testpacl.model.Foo foo);
+	@Indexable(type = IndexableType.REINDEX)
+	public Foo updateFoo(Foo foo);
 }

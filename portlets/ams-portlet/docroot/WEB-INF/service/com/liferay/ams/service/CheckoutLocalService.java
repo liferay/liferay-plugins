@@ -16,15 +16,28 @@ package com.liferay.ams.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.ams.model.Checkout;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for Checkout. Methods of this
@@ -55,9 +68,8 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param checkout the checkout
 	* @return the checkout that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.ams.model.Checkout addCheckout(
-		com.liferay.ams.model.Checkout checkout);
+	@Indexable(type = IndexableType.REINDEX)
+	public Checkout addCheckout(Checkout checkout);
 
 	/**
 	* Creates a new checkout with the primary key. Does not add the checkout to the database.
@@ -65,7 +77,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param checkoutId the primary key for the new checkout
 	* @return the new checkout
 	*/
-	public com.liferay.ams.model.Checkout createCheckout(long checkoutId);
+	public Checkout createCheckout(long checkoutId);
 
 	/**
 	* Deletes the checkout from the database. Also notifies the appropriate model listeners.
@@ -73,9 +85,8 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param checkout the checkout
 	* @return the checkout that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.ams.model.Checkout deleteCheckout(
-		com.liferay.ams.model.Checkout checkout);
+	@Indexable(type = IndexableType.DELETE)
+	public Checkout deleteCheckout(Checkout checkout);
 
 	/**
 	* Deletes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
@@ -84,19 +95,17 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @return the checkout that was removed
 	* @throws PortalException if a checkout with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.ams.model.Checkout deleteCheckout(long checkoutId)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public Checkout deleteCheckout(long checkoutId) throws PortalException;
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -104,8 +113,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -119,8 +127,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -136,10 +143,8 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -147,8 +152,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -157,15 +161,14 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.ams.model.Checkout fetchCheckout(long checkoutId);
+	public Checkout fetchCheckout(long checkoutId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	* Returns the checkout with the primary key.
@@ -175,8 +178,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @throws PortalException if a checkout with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
-		throws PortalException;
+	public Checkout getCheckout(long checkoutId) throws PortalException;
 
 	/**
 	* Returns a range of all the checkouts.
@@ -190,8 +192,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @return the range of checkouts
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.ams.model.Checkout> getCheckouts(
-		int start, int end);
+	public List<Checkout> getCheckouts(int start, int end);
 
 	/**
 	* Returns the number of checkouts.
@@ -202,7 +203,7 @@ public interface CheckoutLocalService extends BaseLocalService,
 	public int getCheckoutsCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -213,8 +214,8 @@ public interface CheckoutLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -227,7 +228,6 @@ public interface CheckoutLocalService extends BaseLocalService,
 	* @param checkout the checkout
 	* @return the checkout that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.ams.model.Checkout updateCheckout(
-		com.liferay.ams.model.Checkout checkout);
+	@Indexable(type = IndexableType.REINDEX)
+	public Checkout updateCheckout(Checkout checkout);
 }

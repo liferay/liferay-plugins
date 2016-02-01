@@ -16,15 +16,29 @@ package com.liferay.sync.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.sync.model.SyncDLFileVersionDiff;
+
+import java.io.File;
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for SyncDLFileVersionDiff. Methods of this
@@ -48,9 +62,9 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncDLFileVersionDiffLocalServiceUtil} to access the sync d l file version diff local service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDLFileVersionDiffLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.sync.model.SyncDLFileVersionDiff addSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
-		java.io.File file) throws PortalException;
+	public SyncDLFileVersionDiff addSyncDLFileVersionDiff(long fileEntryId,
+		long sourceFileVersionId, long targetFileVersionId, File file)
+		throws PortalException;
 
 	/**
 	* Adds the sync d l file version diff to the database. Also notifies the appropriate model listeners.
@@ -58,9 +72,9 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param syncDLFileVersionDiff the sync d l file version diff
 	* @return the sync d l file version diff that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.sync.model.SyncDLFileVersionDiff addSyncDLFileVersionDiff(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff);
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDLFileVersionDiff addSyncDLFileVersionDiff(
+		SyncDLFileVersionDiff syncDLFileVersionDiff);
 
 	/**
 	* Creates a new sync d l file version diff with the primary key. Does not add the sync d l file version diff to the database.
@@ -68,7 +82,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param syncDLFileVersionDiffId the primary key for the new sync d l file version diff
 	* @return the new sync d l file version diff
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff createSyncDLFileVersionDiff(
+	public SyncDLFileVersionDiff createSyncDLFileVersionDiff(
 		long syncDLFileVersionDiffId);
 
 	public void deleteExpiredSyncDLFileVersionDiffs() throws PortalException;
@@ -77,8 +91,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -88,10 +101,9 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @return the sync d l file version diff that was removed
 	* @throws PortalException
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
+		SyncDLFileVersionDiff syncDLFileVersionDiff) throws PortalException;
 
 	/**
 	* Deletes the sync d l file version diff with the primary key from the database. Also notifies the appropriate model listeners.
@@ -100,14 +112,14 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @return the sync d l file version diff that was removed
 	* @throws PortalException if a sync d l file version diff with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.sync.model.SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
+	@Indexable(type = IndexableType.DELETE)
+	public SyncDLFileVersionDiff deleteSyncDLFileVersionDiff(
 		long syncDLFileVersionDiffId) throws PortalException;
 
 	public void deleteSyncDLFileVersionDiffs(long fileEntryId)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -115,8 +127,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -130,8 +141,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -147,10 +157,8 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -158,8 +166,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -168,23 +175,22 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId);
+	public SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(long fileEntryId,
+		long sourceFileVersionId, long targetFileVersionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
+	public SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
 		long syncDLFileVersionDiffId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -195,8 +201,8 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Returns the sync d l file version diff with the primary key.
@@ -206,7 +212,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @throws PortalException if a sync d l file version diff with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLFileVersionDiff getSyncDLFileVersionDiff(
+	public SyncDLFileVersionDiff getSyncDLFileVersionDiff(
 		long syncDLFileVersionDiffId) throws PortalException;
 
 	/**
@@ -221,8 +227,8 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @return the range of sync d l file version diffs
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> getSyncDLFileVersionDiffs(
-		int start, int end);
+	public List<SyncDLFileVersionDiff> getSyncDLFileVersionDiffs(int start,
+		int end);
 
 	/**
 	* Returns the number of sync d l file version diffs.
@@ -246,7 +252,7 @@ public interface SyncDLFileVersionDiffLocalService extends BaseLocalService,
 	* @param syncDLFileVersionDiff the sync d l file version diff
 	* @return the sync d l file version diff that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.sync.model.SyncDLFileVersionDiff updateSyncDLFileVersionDiff(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff);
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDLFileVersionDiff updateSyncDLFileVersionDiff(
+		SyncDLFileVersionDiff syncDLFileVersionDiff);
 }

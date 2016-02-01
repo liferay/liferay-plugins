@@ -16,15 +16,29 @@ package com.liferay.socialcoding.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.socialcoding.model.JIRAIssue;
+
+import java.io.Serializable;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Provides the local service interface for JIRAIssue. Methods of this
@@ -55,9 +69,8 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.socialcoding.model.JIRAIssue addJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue);
+	@Indexable(type = IndexableType.REINDEX)
+	public JIRAIssue addJIRAIssue(JIRAIssue jiraIssue);
 
 	/**
 	* Creates a new j i r a issue with the primary key. Does not add the j i r a issue to the database.
@@ -65,8 +78,7 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param jiraIssueId the primary key for the new j i r a issue
 	* @return the new j i r a issue
 	*/
-	public com.liferay.socialcoding.model.JIRAIssue createJIRAIssue(
-		long jiraIssueId);
+	public JIRAIssue createJIRAIssue(long jiraIssueId);
 
 	/**
 	* Deletes the j i r a issue from the database. Also notifies the appropriate model listeners.
@@ -74,9 +86,8 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue);
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAIssue deleteJIRAIssue(JIRAIssue jiraIssue);
 
 	/**
 	* Deletes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
@@ -85,19 +96,18 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @return the j i r a issue that was removed
 	* @throws PortalException if a j i r a issue with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
-		long jiraIssueId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAIssue deleteJIRAIssue(long jiraIssueId)
+		throws PortalException;
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -105,8 +115,7 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -120,8 +129,7 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -137,10 +145,8 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -148,8 +154,7 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -158,34 +163,31 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
-		long jiraIssueId);
+	public JIRAIssue fetchJIRAIssue(long jiraIssueId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String assigneeJiraUserId, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
+	public List<JIRAIssue> getAssigneeJIRAIssues(Date modifiedDate,
 		long projectId, java.lang.String assigneeJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
-		long projectId, java.lang.String assigneeJiraUserId,
-		java.lang.String status, int start, int end);
+	public List<JIRAIssue> getAssigneeJIRAIssues(long projectId,
+		java.lang.String assigneeJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String assigneeJiraUserId);
+	public List<JIRAIssue> getAssigneeJIRAIssues(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status,
+		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAssigneeJIRAIssuesCount(Date modifiedDate, long projectId,
+		java.lang.String assigneeJiraUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAssigneeJIRAIssuesCount(long projectId,
@@ -196,17 +198,15 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 		java.lang.String assigneeJiraUserId, java.lang.String status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAIssue getFirstAssigneeJIRAIssue(
-		long projectId, java.lang.String assigneeJiraUserId)
-		throws PortalException;
+	public JIRAIssue getFirstAssigneeJIRAIssue(long projectId,
+		java.lang.String assigneeJiraUserId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAIssue getFirstReporterJIRAIssue(
-		long projectId, java.lang.String reporterJiraUserId)
-		throws PortalException;
+	public JIRAIssue getFirstReporterJIRAIssue(long projectId,
+		java.lang.String reporterJiraUserId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the j i r a issue with the primary key.
@@ -216,12 +216,11 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @throws PortalException if a j i r a issue with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
-		long jiraIssueId) throws PortalException;
+	public JIRAIssue getJIRAIssue(long jiraIssueId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
-		java.lang.String key) throws PortalException;
+	public JIRAIssue getJIRAIssue(java.lang.String key)
+		throws PortalException;
 
 	/**
 	* Returns a range of all the j i r a issues.
@@ -235,8 +234,7 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @return the range of j i r a issues
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getJIRAIssues(
-		int start, int end);
+	public List<JIRAIssue> getJIRAIssues(int start, int end);
 
 	/**
 	* Returns the number of j i r a issues.
@@ -247,14 +245,12 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	public int getJIRAIssuesCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAIssue getLastAssigneeJIRAIssue(
-		long projectId, java.lang.String assigneeJiraUserId)
-		throws PortalException;
+	public JIRAIssue getLastAssigneeJIRAIssue(long projectId,
+		java.lang.String assigneeJiraUserId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAIssue getLastreporterJIRAIssue(
-		long projectId, java.lang.String reporterJiraUserId)
-		throws PortalException;
+	public JIRAIssue getLastreporterJIRAIssue(long projectId,
+		java.lang.String reporterJiraUserId) throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -265,26 +261,25 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
-		java.util.Date modifiedDate, long projectId,
-		java.lang.String reporterJiraUserId, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
+	public List<JIRAIssue> getReporterJIRAIssues(Date modifiedDate,
 		long projectId, java.lang.String reporterJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
-		long projectId, java.lang.String reporterJiraUserId,
-		java.lang.String status, int start, int end);
+	public List<JIRAIssue> getReporterJIRAIssues(long projectId,
+		java.lang.String reporterJiraUserId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String reporterJiraUserId);
+	public List<JIRAIssue> getReporterJIRAIssues(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status,
+		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getReporterJIRAIssuesCount(Date modifiedDate, long projectId,
+		java.lang.String reporterJiraUserId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getReporterJIRAIssuesCount(long projectId,
@@ -305,9 +300,8 @@ public interface JIRAIssueLocalService extends BaseLocalService,
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.socialcoding.model.JIRAIssue updateJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue);
+	@Indexable(type = IndexableType.REINDEX)
+	public JIRAIssue updateJIRAIssue(JIRAIssue jiraIssue);
 
 	public void updateJIRAIssues(long projectId) throws PortalException;
 }

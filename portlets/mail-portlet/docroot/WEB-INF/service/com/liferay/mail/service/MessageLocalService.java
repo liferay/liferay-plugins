@@ -16,15 +16,29 @@ package com.liferay.mail.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.mail.model.Message;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import java.io.Serializable;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Provides the local service interface for Message. Methods of this
@@ -55,15 +69,13 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param message the message
 	* @return the message that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.mail.model.Message addMessage(
-		com.liferay.mail.model.Message message);
+	@Indexable(type = IndexableType.REINDEX)
+	public Message addMessage(Message message);
 
-	public com.liferay.mail.model.Message addMessage(long userId,
-		long folderId, java.lang.String sender, java.lang.String to,
-		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
-		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long remoteMessageId,
+	public Message addMessage(long userId, long folderId,
+		java.lang.String sender, java.lang.String to, java.lang.String cc,
+		java.lang.String bcc, Date sentDate, java.lang.String subject,
+		java.lang.String body, java.lang.String flags, long remoteMessageId,
 		java.lang.String contentType) throws PortalException;
 
 	/**
@@ -72,7 +84,7 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param messageId the primary key for the new message
 	* @return the new message
 	*/
-	public com.liferay.mail.model.Message createMessage(long messageId);
+	public Message createMessage(long messageId);
 
 	/**
 	* Deletes the message from the database. Also notifies the appropriate model listeners.
@@ -81,9 +93,8 @@ public interface MessageLocalService extends BaseLocalService,
 	* @return the message that was removed
 	* @throws PortalException
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.mail.model.Message deleteMessage(
-		com.liferay.mail.model.Message message) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public Message deleteMessage(Message message) throws PortalException;
 
 	/**
 	* Deletes the message with the primary key from the database. Also notifies the appropriate model listeners.
@@ -92,9 +103,8 @@ public interface MessageLocalService extends BaseLocalService,
 	* @return the message that was removed
 	* @throws PortalException if a message with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.mail.model.Message deleteMessage(long messageId)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public Message deleteMessage(long messageId) throws PortalException;
 
 	public void deleteMessages(long folderId) throws PortalException;
 
@@ -102,11 +112,10 @@ public interface MessageLocalService extends BaseLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -114,8 +123,7 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -129,8 +137,7 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -146,10 +153,8 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -157,8 +162,7 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -167,29 +171,26 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Message fetchMessage(long messageId);
+	public Message fetchMessage(long messageId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAccountUnreadMessagesCount(long accountId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.mail.model.Message> getCompanyMessages(
-		long companyId, int start, int end);
+	public List<Message> getCompanyMessages(long companyId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCompanyMessagesCount(long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.mail.model.Message> getFolderMessages(
-		long folderId);
+	public List<Message> getFolderMessages(long folderId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFolderMessagesCount(long folderId);
@@ -198,11 +199,11 @@ public interface MessageLocalService extends BaseLocalService,
 	public int getFolderUnreadMessagesCount(long folderId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Message getMessage(long folderId,
-		long remoteMessageId) throws PortalException;
+	public Message getMessage(long folderId, long remoteMessageId)
+		throws PortalException;
 
 	/**
 	* Returns the message with the primary key.
@@ -212,8 +213,7 @@ public interface MessageLocalService extends BaseLocalService,
 	* @throws PortalException if a message with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Message getMessage(long messageId)
-		throws PortalException;
+	public Message getMessage(long messageId) throws PortalException;
 
 	/**
 	* Returns a range of all the messages.
@@ -227,8 +227,7 @@ public interface MessageLocalService extends BaseLocalService,
 	* @return the range of messages
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.mail.model.Message> getMessages(
-		int start, int end);
+	public List<Message> getMessages(int start, int end);
 
 	/**
 	* Returns the number of messages.
@@ -247,29 +246,27 @@ public interface MessageLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Message getRemoteMessage(long folderId,
-		boolean oldest) throws PortalException;
+	public Message getRemoteMessage(long folderId, boolean oldest)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public int populateMessages(
-		java.util.List<com.liferay.mail.model.Message> messages, long folderId,
+	public int populateMessages(List<Message> messages, long folderId,
 		java.lang.String keywords, int pageNumber, int messagesPerPage,
 		java.lang.String orderByField, java.lang.String orderByType);
 
-	public com.liferay.mail.model.Message updateContent(long messageId,
-		java.lang.String body, java.lang.String flags)
-		throws PortalException;
+	public Message updateContent(long messageId, java.lang.String body,
+		java.lang.String flags) throws PortalException;
 
-	public com.liferay.mail.model.Message updateFlag(long messageId, int flag,
-		boolean value) throws PortalException;
+	public Message updateFlag(long messageId, int flag, boolean value)
+		throws PortalException;
 
 	/**
 	* Updates the message in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -277,13 +274,12 @@ public interface MessageLocalService extends BaseLocalService,
 	* @param message the message
 	* @return the message that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.mail.model.Message updateMessage(
-		com.liferay.mail.model.Message message);
+	@Indexable(type = IndexableType.REINDEX)
+	public Message updateMessage(Message message);
 
-	public com.liferay.mail.model.Message updateMessage(long messageId,
-		long folderId, java.lang.String sender, java.lang.String to,
-		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,
-		java.lang.String subject, java.lang.String body,
-		java.lang.String flags, long remoteMessageId) throws PortalException;
+	public Message updateMessage(long messageId, long folderId,
+		java.lang.String sender, java.lang.String to, java.lang.String cc,
+		java.lang.String bcc, Date sentDate, java.lang.String subject,
+		java.lang.String body, java.lang.String flags, long remoteMessageId)
+		throws PortalException;
 }

@@ -41,6 +41,7 @@ import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -1104,7 +1105,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
-	public java.lang.String getParentTitle(java.util.Locale locale, int status) {
+	public java.lang.String getParentTitle(Locale locale, int status) {
 		try {
 			String methodName = "getParentTitle";
 

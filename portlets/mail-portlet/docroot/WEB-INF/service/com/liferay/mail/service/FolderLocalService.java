@@ -16,15 +16,28 @@ package com.liferay.mail.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.mail.model.Folder;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for Folder. Methods of this
@@ -55,11 +68,10 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param folder the folder
 	* @return the folder that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.mail.model.Folder addFolder(
-		com.liferay.mail.model.Folder folder);
+	@Indexable(type = IndexableType.REINDEX)
+	public Folder addFolder(Folder folder);
 
-	public com.liferay.mail.model.Folder addFolder(long userId, long accountId,
+	public Folder addFolder(long userId, long accountId,
 		java.lang.String fullName, java.lang.String displayName,
 		int remoteMessageCount) throws PortalException;
 
@@ -69,7 +81,7 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param folderId the primary key for the new folder
 	* @return the new folder
 	*/
-	public com.liferay.mail.model.Folder createFolder(long folderId);
+	public Folder createFolder(long folderId);
 
 	/**
 	* Deletes the folder from the database. Also notifies the appropriate model listeners.
@@ -78,9 +90,8 @@ public interface FolderLocalService extends BaseLocalService,
 	* @return the folder that was removed
 	* @throws PortalException
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.mail.model.Folder deleteFolder(
-		com.liferay.mail.model.Folder folder) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public Folder deleteFolder(Folder folder) throws PortalException;
 
 	/**
 	* Deletes the folder with the primary key from the database. Also notifies the appropriate model listeners.
@@ -89,9 +100,8 @@ public interface FolderLocalService extends BaseLocalService,
 	* @return the folder that was removed
 	* @throws PortalException if a folder with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.mail.model.Folder deleteFolder(long folderId)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public Folder deleteFolder(long folderId) throws PortalException;
 
 	public void deleteFolders(long accountId) throws PortalException;
 
@@ -99,11 +109,10 @@ public interface FolderLocalService extends BaseLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -111,8 +120,7 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -126,8 +134,7 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -143,10 +150,8 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -154,8 +159,7 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -164,19 +168,18 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Folder fetchFolder(long folderId);
+	public Folder fetchFolder(long folderId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Folder getFolder(long accountId,
-		java.lang.String fullName) throws PortalException;
+	public Folder getFolder(long accountId, java.lang.String fullName)
+		throws PortalException;
 
 	/**
 	* Returns the folder with the primary key.
@@ -186,12 +189,10 @@ public interface FolderLocalService extends BaseLocalService,
 	* @throws PortalException if a folder with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.mail.model.Folder getFolder(long folderId)
-		throws PortalException;
+	public Folder getFolder(long folderId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.mail.model.Folder> getFolders(
-		long accountId);
+	public List<Folder> getFolders(long accountId);
 
 	/**
 	* Returns a range of all the folders.
@@ -205,8 +206,7 @@ public interface FolderLocalService extends BaseLocalService,
 	* @return the range of folders
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.mail.model.Folder> getFolders(int start,
-		int end);
+	public List<Folder> getFolders(int start, int end);
 
 	/**
 	* Returns the number of folders.
@@ -217,7 +217,7 @@ public interface FolderLocalService extends BaseLocalService,
 	public int getFoldersCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getLocalPageCount(long folderId, int messagesPerPage);
@@ -234,8 +234,8 @@ public interface FolderLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getRemotePageCount(long folderId, int messagesPerPage)
@@ -252,11 +252,10 @@ public interface FolderLocalService extends BaseLocalService,
 	* @param folder the folder
 	* @return the folder that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.mail.model.Folder updateFolder(
-		com.liferay.mail.model.Folder folder);
+	@Indexable(type = IndexableType.REINDEX)
+	public Folder updateFolder(Folder folder);
 
-	public com.liferay.mail.model.Folder updateFolder(long folderId,
-		java.lang.String fullName, java.lang.String displayName,
-		int remoteMessageCount) throws PortalException;
+	public Folder updateFolder(long folderId, java.lang.String fullName,
+		java.lang.String displayName, int remoteMessageCount)
+		throws PortalException;
 }

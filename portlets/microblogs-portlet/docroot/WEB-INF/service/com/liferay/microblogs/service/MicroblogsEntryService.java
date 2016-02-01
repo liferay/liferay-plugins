@@ -16,6 +16,8 @@ package com.liferay.microblogs.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.microblogs.model.MicroblogsEntry;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -25,6 +27,9 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.service.ServiceContext;
+
+import java.util.List;
 
 /**
  * Provides the remote service interface for MicroblogsEntry. Methods of this
@@ -48,23 +53,22 @@ public interface MicroblogsEntryService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link MicroblogsEntryServiceUtil} to access the microblogs entry remote service. Add custom service methods to {@link com.liferay.microblogs.service.impl.MicroblogsEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
-		long userId, java.lang.String content, int type,
-		long parentMicroblogsEntryId, int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public MicroblogsEntry addMicroblogsEntry(long userId,
+		java.lang.String content, int type, long parentMicroblogsEntryId,
+		int socialRelationType, ServiceContext serviceContext)
 		throws PortalException;
 
-	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
-		long microblogsEntryId) throws PortalException;
+	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+	public List<MicroblogsEntry> getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		int start, int end) throws PortalException;
+	public List<MicroblogsEntry> getMicroblogsEntries(int start, int end)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getMicroblogsEntriesCount() throws PortalException;
@@ -74,8 +78,8 @@ public interface MicroblogsEntryService extends BaseService, InvokableService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.microblogs.model.MicroblogsEntry getMicroblogsEntry(
-		long microblogsEntryId) throws PortalException;
+	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -85,12 +89,12 @@ public interface MicroblogsEntryService extends BaseService, InvokableService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntries(
+	public List<MicroblogsEntry> getUserMicroblogsEntries(
 		long microblogsEntryUserId, int start, int end)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntries(
+	public List<MicroblogsEntry> getUserMicroblogsEntries(
 		long microblogsEntryUserId, int type, int start, int end)
 		throws PortalException;
 
@@ -107,9 +111,7 @@ public interface MicroblogsEntryService extends BaseService, InvokableService {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
-		long microblogsEntryId, java.lang.String content,
-		int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public MicroblogsEntry updateMicroblogsEntry(long microblogsEntryId,
+		java.lang.String content, int socialRelationType,
+		ServiceContext serviceContext) throws PortalException;
 }

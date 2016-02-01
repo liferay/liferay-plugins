@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -2283,7 +2284,7 @@ public class MicroblogsEntryUtil {
 	* @return the matching microblogs entries
 	*/
 	public static List<MicroblogsEntry> findByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType) {
+		Date createDate, int type, int socialRelationType) {
 		return getPersistence()
 				   .findByU_C_T_S(userId, createDate, type, socialRelationType);
 	}
@@ -2304,8 +2305,7 @@ public class MicroblogsEntryUtil {
 	* @return the range of matching microblogs entries
 	*/
 	public static List<MicroblogsEntry> findByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType, int start,
-		int end) {
+		Date createDate, int type, int socialRelationType, int start, int end) {
 		return getPersistence()
 				   .findByU_C_T_S(userId, createDate, type, socialRelationType,
 			start, end);
@@ -2328,8 +2328,8 @@ public class MicroblogsEntryUtil {
 	* @return the ordered range of matching microblogs entries
 	*/
 	public static List<MicroblogsEntry> findByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType, int start,
-		int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
+		Date createDate, int type, int socialRelationType, int start, int end,
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByU_C_T_S(userId, createDate, type, socialRelationType,
 			start, end, orderByComparator);
@@ -2353,8 +2353,8 @@ public class MicroblogsEntryUtil {
 	* @return the ordered range of matching microblogs entries
 	*/
 	public static List<MicroblogsEntry> findByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType, int start,
-		int end, OrderByComparator<MicroblogsEntry> orderByComparator,
+		Date createDate, int type, int socialRelationType, int start, int end,
+		OrderByComparator<MicroblogsEntry> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByU_C_T_S(userId, createDate, type, socialRelationType,
@@ -2373,7 +2373,7 @@ public class MicroblogsEntryUtil {
 	* @throws NoSuchEntryException if a matching microblogs entry could not be found
 	*/
 	public static MicroblogsEntry findByU_C_T_S_First(long userId,
-		java.util.Date createDate, int type, int socialRelationType,
+		Date createDate, int type, int socialRelationType,
 		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.exception.NoSuchEntryException {
 		return getPersistence()
@@ -2392,7 +2392,7 @@ public class MicroblogsEntryUtil {
 	* @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
 	*/
 	public static MicroblogsEntry fetchByU_C_T_S_First(long userId,
-		java.util.Date createDate, int type, int socialRelationType,
+		Date createDate, int type, int socialRelationType,
 		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_C_T_S_First(userId, createDate, type,
@@ -2411,7 +2411,7 @@ public class MicroblogsEntryUtil {
 	* @throws NoSuchEntryException if a matching microblogs entry could not be found
 	*/
 	public static MicroblogsEntry findByU_C_T_S_Last(long userId,
-		java.util.Date createDate, int type, int socialRelationType,
+		Date createDate, int type, int socialRelationType,
 		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.exception.NoSuchEntryException {
 		return getPersistence()
@@ -2430,7 +2430,7 @@ public class MicroblogsEntryUtil {
 	* @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
 	*/
 	public static MicroblogsEntry fetchByU_C_T_S_Last(long userId,
-		java.util.Date createDate, int type, int socialRelationType,
+		Date createDate, int type, int socialRelationType,
 		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByU_C_T_S_Last(userId, createDate, type,
@@ -2450,8 +2450,8 @@ public class MicroblogsEntryUtil {
 	* @throws NoSuchEntryException if a microblogs entry with the primary key could not be found
 	*/
 	public static MicroblogsEntry[] findByU_C_T_S_PrevAndNext(
-		long microblogsEntryId, long userId, java.util.Date createDate,
-		int type, int socialRelationType,
+		long microblogsEntryId, long userId, Date createDate, int type,
+		int socialRelationType,
 		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.exception.NoSuchEntryException {
 		return getPersistence()
@@ -2469,7 +2469,7 @@ public class MicroblogsEntryUtil {
 	* @return the matching microblogs entries that the user has permission to view
 	*/
 	public static List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType) {
+		Date createDate, int type, int socialRelationType) {
 		return getPersistence()
 				   .filterFindByU_C_T_S(userId, createDate, type,
 			socialRelationType);
@@ -2491,8 +2491,7 @@ public class MicroblogsEntryUtil {
 	* @return the range of matching microblogs entries that the user has permission to view
 	*/
 	public static List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType, int start,
-		int end) {
+		Date createDate, int type, int socialRelationType, int start, int end) {
 		return getPersistence()
 				   .filterFindByU_C_T_S(userId, createDate, type,
 			socialRelationType, start, end);
@@ -2515,8 +2514,8 @@ public class MicroblogsEntryUtil {
 	* @return the ordered range of matching microblogs entries that the user has permission to view
 	*/
 	public static List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType, int start,
-		int end, OrderByComparator<MicroblogsEntry> orderByComparator) {
+		Date createDate, int type, int socialRelationType, int start, int end,
+		OrderByComparator<MicroblogsEntry> orderByComparator) {
 		return getPersistence()
 				   .filterFindByU_C_T_S(userId, createDate, type,
 			socialRelationType, start, end, orderByComparator);
@@ -2535,8 +2534,8 @@ public class MicroblogsEntryUtil {
 	* @throws NoSuchEntryException if a microblogs entry with the primary key could not be found
 	*/
 	public static MicroblogsEntry[] filterFindByU_C_T_S_PrevAndNext(
-		long microblogsEntryId, long userId, java.util.Date createDate,
-		int type, int socialRelationType,
+		long microblogsEntryId, long userId, Date createDate, int type,
+		int socialRelationType,
 		OrderByComparator<MicroblogsEntry> orderByComparator)
 		throws com.liferay.microblogs.exception.NoSuchEntryException {
 		return getPersistence()
@@ -2552,8 +2551,8 @@ public class MicroblogsEntryUtil {
 	* @param type the type
 	* @param socialRelationType the social relation type
 	*/
-	public static void removeByU_C_T_S(long userId, java.util.Date createDate,
-		int type, int socialRelationType) {
+	public static void removeByU_C_T_S(long userId, Date createDate, int type,
+		int socialRelationType) {
 		getPersistence()
 			.removeByU_C_T_S(userId, createDate, type, socialRelationType);
 	}
@@ -2567,8 +2566,8 @@ public class MicroblogsEntryUtil {
 	* @param socialRelationType the social relation type
 	* @return the number of matching microblogs entries
 	*/
-	public static int countByU_C_T_S(long userId, java.util.Date createDate,
-		int type, int socialRelationType) {
+	public static int countByU_C_T_S(long userId, Date createDate, int type,
+		int socialRelationType) {
 		return getPersistence()
 				   .countByU_C_T_S(userId, createDate, type, socialRelationType);
 	}
@@ -2582,8 +2581,8 @@ public class MicroblogsEntryUtil {
 	* @param socialRelationType the social relation type
 	* @return the number of matching microblogs entries that the user has permission to view
 	*/
-	public static int filterCountByU_C_T_S(long userId,
-		java.util.Date createDate, int type, int socialRelationType) {
+	public static int filterCountByU_C_T_S(long userId, Date createDate,
+		int type, int socialRelationType) {
 		return getPersistence()
 				   .filterCountByU_C_T_S(userId, createDate, type,
 			socialRelationType);

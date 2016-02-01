@@ -16,6 +16,8 @@ package com.liferay.opensocial.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.opensocial.model.Gadget;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -24,6 +26,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.service.ServiceContext;
 
 /**
  * Provides the remote service interface for Gadget. Methods of this
@@ -47,13 +50,11 @@ public interface GadgetService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link GadgetServiceUtil} to access the gadget remote service. Add custom service methods to {@link com.liferay.opensocial.service.impl.GadgetServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
-		java.lang.String url, java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public Gadget addGadget(long companyId, java.lang.String url,
+		java.lang.String portletCategoryNames, ServiceContext serviceContext)
 		throws PortalException;
 
-	public void deleteGadget(long gadgetId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public void deleteGadget(long gadgetId, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
@@ -69,7 +70,6 @@ public interface GadgetService extends BaseService, InvokableService {
 		throws java.lang.Throwable;
 
 	public void updateGadget(long gadgetId,
-		java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		java.lang.String portletCategoryNames, ServiceContext serviceContext)
 		throws PortalException;
 }

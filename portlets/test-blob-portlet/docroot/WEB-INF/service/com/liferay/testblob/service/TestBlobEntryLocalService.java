@@ -16,15 +16,29 @@ package com.liferay.testblob.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.testblob.model.TestBlobEntry;
+import com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for TestBlobEntry. Methods of this
@@ -55,9 +69,8 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param testBlobEntry the test blob entry
 	* @return the test blob entry that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.testblob.model.TestBlobEntry addTestBlobEntry(
-		com.liferay.testblob.model.TestBlobEntry testBlobEntry);
+	@Indexable(type = IndexableType.REINDEX)
+	public TestBlobEntry addTestBlobEntry(TestBlobEntry testBlobEntry);
 
 	/**
 	* Creates a new test blob entry with the primary key. Does not add the test blob entry to the database.
@@ -65,15 +78,13 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param testBlobEntryId the primary key for the new test blob entry
 	* @return the new test blob entry
 	*/
-	public com.liferay.testblob.model.TestBlobEntry createTestBlobEntry(
-		long testBlobEntryId);
+	public TestBlobEntry createTestBlobEntry(long testBlobEntryId);
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -82,9 +93,8 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param testBlobEntry the test blob entry
 	* @return the test blob entry that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.testblob.model.TestBlobEntry deleteTestBlobEntry(
-		com.liferay.testblob.model.TestBlobEntry testBlobEntry);
+	@Indexable(type = IndexableType.DELETE)
+	public TestBlobEntry deleteTestBlobEntry(TestBlobEntry testBlobEntry);
 
 	/**
 	* Deletes the test blob entry with the primary key from the database. Also notifies the appropriate model listeners.
@@ -93,11 +103,11 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @return the test blob entry that was removed
 	* @throws PortalException if a test blob entry with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.testblob.model.TestBlobEntry deleteTestBlobEntry(
-		long testBlobEntryId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public TestBlobEntry deleteTestBlobEntry(long testBlobEntryId)
+		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -105,8 +115,7 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -120,8 +129,7 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -137,10 +145,8 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -148,8 +154,7 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -158,23 +163,21 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testblob.model.TestBlobEntry fetchTestBlobEntry(
-		long testBlobEntryId);
+	public TestBlobEntry fetchTestBlobEntry(long testBlobEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
-		java.io.Serializable primaryKey);
+	public TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
+		Serializable primaryKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -185,8 +188,8 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Returns a range of all the test blob entries.
@@ -200,8 +203,7 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @return the range of test blob entries
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.testblob.model.TestBlobEntry> getTestBlobEntries(
-		int start, int end);
+	public List<TestBlobEntry> getTestBlobEntries(int start, int end);
 
 	/**
 	* Returns the number of test blob entries.
@@ -219,8 +221,8 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @throws PortalException if a test blob entry with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testblob.model.TestBlobEntry getTestBlobEntry(
-		long testBlobEntryId) throws PortalException;
+	public TestBlobEntry getTestBlobEntry(long testBlobEntryId)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -233,7 +235,6 @@ public interface TestBlobEntryLocalService extends BaseLocalService,
 	* @param testBlobEntry the test blob entry
 	* @return the test blob entry that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.testblob.model.TestBlobEntry updateTestBlobEntry(
-		com.liferay.testblob.model.TestBlobEntry testBlobEntry);
+	@Indexable(type = IndexableType.REINDEX)
+	public TestBlobEntry updateTestBlobEntry(TestBlobEntry testBlobEntry);
 }

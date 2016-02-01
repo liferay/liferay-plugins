@@ -16,15 +16,29 @@ package com.liferay.microblogs.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.microblogs.model.MicroblogsEntry;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+import com.liferay.portal.service.ServiceContext;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for MicroblogsEntry. Methods of this
@@ -55,22 +69,18 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param microblogsEntry the microblogs entry
 	* @return the microblogs entry that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry);
+	@Indexable(type = IndexableType.REINDEX)
+	public MicroblogsEntry addMicroblogsEntry(MicroblogsEntry microblogsEntry);
 
-	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
-		long userId, java.lang.String content, int type,
-		long parentMicroblogsEntryId, int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
-
-	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
-		long userId, long creatorClassNameId, long creatorClassPK,
+	public MicroblogsEntry addMicroblogsEntry(long userId,
 		java.lang.String content, int type, long parentMicroblogsEntryId,
-		int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		int socialRelationType, ServiceContext serviceContext)
 		throws PortalException;
+
+	public MicroblogsEntry addMicroblogsEntry(long userId,
+		long creatorClassNameId, long creatorClassPK, java.lang.String content,
+		int type, long parentMicroblogsEntryId, int socialRelationType,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Creates a new microblogs entry with the primary key. Does not add the microblogs entry to the database.
@@ -78,8 +88,7 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param microblogsEntryId the primary key for the new microblogs entry
 	* @return the new microblogs entry
 	*/
-	public com.liferay.microblogs.model.MicroblogsEntry createMicroblogsEntry(
-		long microblogsEntryId);
+	public MicroblogsEntry createMicroblogsEntry(long microblogsEntryId);
 
 	public void deleteMicroblogsEntries(long creatorClassNameId,
 		long creatorClassPK) throws PortalException;
@@ -91,10 +100,9 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @return the microblogs entry that was removed
 	* @throws PortalException
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public MicroblogsEntry deleteMicroblogsEntry(
+		MicroblogsEntry microblogsEntry) throws PortalException;
 
 	/**
 	* Deletes the microblogs entry with the primary key from the database. Also notifies the appropriate model listeners.
@@ -103,22 +111,21 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @return the microblogs entry that was removed
 	* @throws PortalException if a microblogs entry with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
-		long microblogsEntryId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
+		throws PortalException;
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	public void deleteUserMicroblogsEntries(long userId)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -126,8 +133,7 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -141,8 +147,7 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -158,10 +163,8 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -169,8 +172,7 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -179,50 +181,45 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.microblogs.model.MicroblogsEntry fetchMicroblogsEntry(
-		long microblogsEntryId);
+	public MicroblogsEntry fetchMicroblogsEntry(long microblogsEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getCompanyMicroblogsEntries(
-		long companyId, int start, int end);
+	public List<MicroblogsEntry> getCompanyMicroblogsEntries(long companyId,
+		int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCompanyMicroblogsEntriesCount(long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long creatorClassNameId, java.lang.String assetTagName, int start,
-		int end);
+	public List<MicroblogsEntry> getMicroblogsEntries(long creatorClassNameId,
+		java.lang.String assetTagName, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long creatorClassNameId, long creatorClassPK,
-		java.lang.String assetTagName, boolean andOperator, int start, int end);
+	public List<MicroblogsEntry> getMicroblogsEntries(long creatorClassNameId,
+		long creatorClassPK, java.lang.String assetTagName,
+		boolean andOperator, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long creatorClassNameId, long creatorClassPK, int start, int end);
+	public List<MicroblogsEntry> getMicroblogsEntries(long creatorClassNameId,
+		long creatorClassPK, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long creatorClassNameId, long creatorClassPK, int type, int start,
-		int end);
+	public List<MicroblogsEntry> getMicroblogsEntries(long creatorClassNameId,
+		long creatorClassPK, int type, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long creatorClassNameId, int type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc);
+	public List<MicroblogsEntry> getMicroblogsEntries(long creatorClassNameId,
+		int type, int start, int end, OrderByComparator obc);
 
 	/**
 	* Returns a range of all the microblogs entries.
@@ -236,8 +233,7 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @return the range of microblogs entries
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		int start, int end);
+	public List<MicroblogsEntry> getMicroblogsEntries(int start, int end);
 
 	/**
 	* Returns the number of microblogs entries.
@@ -271,8 +267,8 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @throws PortalException if a microblogs entry with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.microblogs.model.MicroblogsEntry getMicroblogsEntry(
-		long microblogsEntryId) throws PortalException;
+	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -282,13 +278,13 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getParentMicroblogsEntryMicroblogsEntries(
+	public List<MicroblogsEntry> getParentMicroblogsEntryMicroblogsEntries(
 		int type, long parentMicroblogsEntryId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getParentMicroblogsEntryMicroblogsEntries(
+	public List<MicroblogsEntry> getParentMicroblogsEntryMicroblogsEntries(
 		int type, long parentMicroblogsEntryId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.microblogs.model.MicroblogsEntry> orderByComparator);
+		OrderByComparator<MicroblogsEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getParentMicroblogsEntryMicroblogsEntriesCount(int type,
@@ -296,16 +292,16 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntries(
-		long userId, int start, int end);
+	public List<MicroblogsEntry> getUserMicroblogsEntries(long userId,
+		int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntries(
-		long userId, int type, int start, int end);
+	public List<MicroblogsEntry> getUserMicroblogsEntries(long userId,
+		int type, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserMicroblogsEntriesCount(long userId);
@@ -318,8 +314,7 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void updateAsset(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry,
+	public void updateAsset(MicroblogsEntry microblogsEntry,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
 		throws PortalException;
 
@@ -329,13 +324,11 @@ public interface MicroblogsEntryLocalService extends BaseLocalService,
 	* @param microblogsEntry the microblogs entry
 	* @return the microblogs entry that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry);
+	@Indexable(type = IndexableType.REINDEX)
+	public MicroblogsEntry updateMicroblogsEntry(
+		MicroblogsEntry microblogsEntry);
 
-	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
-		long microblogsEntryId, java.lang.String content,
-		int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public MicroblogsEntry updateMicroblogsEntry(long microblogsEntryId,
+		java.lang.String content, int socialRelationType,
+		ServiceContext serviceContext) throws PortalException;
 }

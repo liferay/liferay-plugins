@@ -39,6 +39,7 @@ import java.lang.reflect.Method;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -542,7 +543,7 @@ public class KBFolderClp extends BaseModelImpl<KBFolder> implements KBFolder {
 	}
 
 	@Override
-	public java.lang.String getParentTitle(java.util.Locale locale) {
+	public java.lang.String getParentTitle(Locale locale) {
 		try {
 			String methodName = "getParentTitle";
 

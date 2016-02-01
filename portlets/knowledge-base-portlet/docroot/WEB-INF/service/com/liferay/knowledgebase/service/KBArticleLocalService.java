@@ -16,16 +16,37 @@ package com.liferay.knowledgebase.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.knowledgebase.model.KBArticle;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.exportimport.lar.PortletDataContext;
+
+import java.io.InputStream;
+import java.io.Serializable;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Provides the local service interface for KBArticle. Methods of this
@@ -56,26 +77,21 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param kbArticle the k b article
 	* @return the k b article that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		com.liferay.knowledgebase.model.KBArticle kbArticle);
+	@Indexable(type = IndexableType.REINDEX)
+	public KBArticle addKBArticle(KBArticle kbArticle);
 
-	public com.liferay.knowledgebase.model.KBArticle addKBArticle(long userId,
-		long parentResourceClassNameId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String urlTitle,
-		java.lang.String content, java.lang.String description,
-		java.lang.String sourceURL, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public KBArticle addKBArticle(long userId, long parentResourceClassNameId,
+		long parentResourcePrimKey, java.lang.String title,
+		java.lang.String urlTitle, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		ServiceContext serviceContext) throws PortalException;
 
-	public void addKBArticleResources(
-		com.liferay.knowledgebase.model.KBArticle kbArticle,
+	public void addKBArticleResources(KBArticle kbArticle,
 		boolean addGroupPermissions, boolean addGuestPermissions)
 		throws PortalException;
 
-	public void addKBArticleResources(
-		com.liferay.knowledgebase.model.KBArticle kbArticle,
+	public void addKBArticleResources(KBArticle kbArticle,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws PortalException;
 
@@ -89,13 +105,12 @@ public interface KBArticleLocalService extends BaseLocalService,
 
 	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
-		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		boolean prioritizeByNumericalPrefix, InputStream inputStream,
+		ServiceContext serviceContext) throws PortalException;
 
 	public void addTempAttachment(long groupId, long userId,
 		java.lang.String fileName, java.lang.String tempFolderName,
-		java.io.InputStream inputStream, java.lang.String mimeType)
+		InputStream inputStream, java.lang.String mimeType)
 		throws PortalException;
 
 	/**
@@ -104,8 +119,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param kbArticleId the primary key for the new k b article
 	* @return the new k b article
 	*/
-	public com.liferay.knowledgebase.model.KBArticle createKBArticle(
-		long kbArticleId);
+	public KBArticle createKBArticle(long kbArticleId);
 
 	public void deleteGroupKBArticles(long groupId) throws PortalException;
 
@@ -116,10 +130,9 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @return the k b article that was removed
 	* @throws PortalException
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	@com.liferay.portal.kernel.systemevent.SystemEvent(action = SystemEventConstants.ACTION_SKIP, type = SystemEventConstants.TYPE_DELETE)
-	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
-		com.liferay.knowledgebase.model.KBArticle kbArticle)
+	@Indexable(type = IndexableType.DELETE)
+	@SystemEvent(action = SystemEventConstants.ACTION_SKIP, type = SystemEventConstants.TYPE_DELETE)
+	public KBArticle deleteKBArticle(KBArticle kbArticle)
 		throws PortalException;
 
 	/**
@@ -129,9 +142,9 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @return the k b article that was removed
 	* @throws PortalException if a k b article with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
-		long kbArticleId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public KBArticle deleteKBArticle(long kbArticleId)
+		throws PortalException;
 
 	public void deleteKBArticles(long groupId, long parentResourcePrimKey)
 		throws PortalException;
@@ -143,15 +156,14 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	public void deleteTempAttachment(long groupId, long userId,
 		java.lang.String fileName, java.lang.String tempFolderName)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -159,8 +171,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -174,8 +185,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -191,10 +201,8 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -202,8 +210,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -212,26 +219,24 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchFirstChildKBArticle(
-		long groupId, long parentResourcePrimKey);
+	public KBArticle fetchFirstChildKBArticle(long groupId,
+		long parentResourcePrimKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
-		long kbArticleId);
+	public KBArticle fetchKBArticle(long kbArticleId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
-		long groupId, long kbFolderId, java.lang.String urlTitle);
+	public KBArticle fetchKBArticleByUrlTitle(long groupId, long kbFolderId,
+		java.lang.String urlTitle);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUrlTitle(
-		long groupId, java.lang.String kbFolderUrlTitle,
-		java.lang.String urlTitle) throws PortalException;
+	public KBArticle fetchKBArticleByUrlTitle(long groupId,
+		java.lang.String kbFolderUrlTitle, java.lang.String urlTitle)
+		throws PortalException;
 
 	/**
 	* Returns the k b article matching the UUID and group.
@@ -241,47 +246,43 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUuidAndGroupId(
-		java.lang.String uuid, long groupId);
+	public KBArticle fetchKBArticleByUuidAndGroupId(java.lang.String uuid,
+		long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
-		long resourcePrimKey, int status);
+	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticleByUrlTitle(
-		long groupId, long kbFolderId, java.lang.String urlTitle, int status);
+	public KBArticle fetchLatestKBArticleByUrlTitle(long groupId,
+		long kbFolderId, java.lang.String urlTitle, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getAllDescendantKBArticles(
-		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getAllDescendantKBArticles(long resourcePrimKey,
+		int status, OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getCompanyKBArticles(
-		long companyId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getCompanyKBArticles(long companyId, int status,
+		int start, int end, OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCompanyKBArticlesCount(long companyId, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext);
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
-		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getGroupKBArticles(long groupId, int status,
+		int start, int end, OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupKBArticlesCount(long groupId, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the k b article with the primary key.
@@ -291,38 +292,35 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @throws PortalException if a k b article with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getKBArticle(
-		long kbArticleId) throws PortalException;
+	public KBArticle getKBArticle(long kbArticleId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getKBArticle(
-		long resourcePrimKey, int version) throws PortalException;
+	public KBArticle getKBArticle(long resourcePrimKey, int version)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendantKBArticles(
+	public List<KBArticle> getKBArticleAndAllDescendantKBArticles(
 		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+		OrderByComparator<KBArticle> orderByComparator);
 
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link
 	#getKBArticleAndAllDescendantKBArticles(long, int,
-	com.liferay.portal.kernel.util.OrderByComparator)}
+	OrderByComparator)}
 	*/
 	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendants(
-		long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticleAndAllDescendants(long resourcePrimKey,
+		int status, OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
-		long groupId, long kbFolderId, java.lang.String urlTitle)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
-		long groupId, java.lang.String kbFolderUrlTitle,
+	public KBArticle getKBArticleByUrlTitle(long groupId, long kbFolderId,
 		java.lang.String urlTitle) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBArticle getKBArticleByUrlTitle(long groupId,
+		java.lang.String kbFolderUrlTitle, java.lang.String urlTitle)
+		throws PortalException;
 
 	/**
 	* Returns the k b article matching the UUID and group.
@@ -333,27 +331,25 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @throws PortalException if a matching k b article could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndGroupId(
-		java.lang.String uuid, long groupId) throws PortalException;
+	public KBArticle getKBArticleByUuidAndGroupId(java.lang.String uuid,
+		long groupId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleVersions(
-		long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticleVersions(long resourcePrimKey,
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBArticleVersionsCount(long resourcePrimKey, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long parentResourcePrimKey, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticles(long groupId,
+		long parentResourcePrimKey, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long[] resourcePrimKeys, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticles(long[] resourcePrimKeys, int status,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	/**
 	* Returns a range of all the k b articles.
@@ -367,8 +363,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @return the range of k b articles
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		int start, int end);
+	public List<KBArticle> getKBArticles(int start, int end);
 
 	/**
 	* Returns all the k b articles matching the UUID and company.
@@ -378,7 +373,7 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @return the matching k b articles, or an empty list if no matches were found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticlesByUuidAndCompanyId(
+	public List<KBArticle> getKBArticlesByUuidAndCompanyId(
 		java.lang.String uuid, long companyId);
 
 	/**
@@ -392,9 +387,9 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @return the range of matching k b articles, or an empty list if no matches were found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticlesByUuidAndCompanyId(
+	public List<KBArticle> getKBArticlesByUuidAndCompanyId(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+		OrderByComparator<KBArticle> orderByComparator);
 
 	/**
 	* Returns the number of k b articles.
@@ -413,12 +408,12 @@ public interface KBArticleLocalService extends BaseLocalService,
 		int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
-		long resourcePrimKey, int status) throws PortalException;
+	public KBArticle getLatestKBArticle(long resourcePrimKey, int status)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticleByUrlTitle(
-		long groupId, long kbFolderId, java.lang.String urlTitle, int status)
+	public KBArticle getLatestKBArticleByUrlTitle(long groupId,
+		long kbFolderId, java.lang.String urlTitle, int status)
 		throws PortalException;
 
 	/**
@@ -430,18 +425,17 @@ public interface KBArticleLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle[] getPreviousAndNextKBArticles(
-		long kbArticleId) throws PortalException;
+	public KBArticle[] getPreviousAndNextKBArticles(long kbArticleId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(
-		long groupId, java.lang.String[] sections, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getSectionsKBArticles(long groupId,
+		java.lang.String[] sections, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSectionsKBArticlesCount(long groupId,
@@ -450,14 +444,13 @@ public interface KBArticleLocalService extends BaseLocalService,
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link #getKBArticles(long, long,
 	int, int, int,
-	com.liferay.portal.kernel.util.OrderByComparator)}
+	OrderByComparator)}
 	*/
 	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
-		long groupId, long parentResourcePrimKey, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getSiblingKBArticles(long groupId,
+		long parentResourcePrimKey, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link #getKBArticlesCount(long,
@@ -481,17 +474,14 @@ public interface KBArticleLocalService extends BaseLocalService,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority) throws PortalException;
 
-	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
-		long userId, long resourcePrimKey, int version,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public KBArticle revertKBArticle(long userId, long resourcePrimKey,
+		int version, ServiceContext serviceContext) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> search(
-		long groupId, java.lang.String title, java.lang.String content,
-		int status, java.util.Date startDate, java.util.Date endDate,
+	public List<KBArticle> search(long groupId, java.lang.String title,
+		java.lang.String content, int status, Date startDate, Date endDate,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+		OrderByComparator<KBArticle> orderByComparator);
 
 	public void subscribeGroupKBArticles(long userId, long groupId)
 		throws PortalException;
@@ -511,38 +501,32 @@ public interface KBArticleLocalService extends BaseLocalService,
 	* @param kbArticle the k b article
 	* @return the k b article that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
-		com.liferay.knowledgebase.model.KBArticle kbArticle);
+	@Indexable(type = IndexableType.REINDEX)
+	public KBArticle updateKBArticle(KBArticle kbArticle);
 
-	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
-		long userId, long resourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description,
-		java.lang.String sourceURL, java.lang.String[] sections,
-		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public KBArticle updateKBArticle(long userId, long resourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long[] removeFileEntryIds, ServiceContext serviceContext)
 		throws PortalException;
 
-	public void updateKBArticleAsset(long userId,
-		com.liferay.knowledgebase.model.KBArticle kbArticle,
+	public void updateKBArticleAsset(long userId, KBArticle kbArticle,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames,
 		long[] assetLinkEntryIds) throws PortalException;
 
-	public void updateKBArticleResources(
-		com.liferay.knowledgebase.model.KBArticle kbArticle,
+	public void updateKBArticleResources(KBArticle kbArticle,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
 		throws PortalException;
 
 	public void updateKBArticlesPriorities(
-		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+		Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws PortalException;
 
 	public void updatePriority(long resourcePrimKey, double priority);
 
-	public com.liferay.knowledgebase.model.KBArticle updateStatus(long userId,
-		long resourcePrimKey, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public KBArticle updateStatus(long userId, long resourcePrimKey,
+		int status, ServiceContext serviceContext) throws PortalException;
 
 	public void updateViewCount(long userId, long resourcePrimKey, int viewCount)
 		throws PortalException;

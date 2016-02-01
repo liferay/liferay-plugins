@@ -26,6 +26,11 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
 
+import com.liferay.skinny.model.SkinnyDDLRecord;
+import com.liferay.skinny.model.SkinnyJournalArticle;
+
+import java.util.List;
+
 /**
  * Provides the remote service interface for Skinny. Methods of this
  * service are expected to have security checks based on the propagated JAAS
@@ -58,14 +63,14 @@ public interface SkinnyService extends BaseService, InvokableService {
 
 	@AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.skinny.model.SkinnyDDLRecord> getSkinnyDDLRecords(
-		long ddlRecordSetId) throws java.lang.Exception;
+	public List<SkinnyDDLRecord> getSkinnyDDLRecords(long ddlRecordSetId)
+		throws java.lang.Exception;
 
 	@AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.skinny.model.SkinnyJournalArticle> getSkinnyJournalArticles(
-		long companyId, java.lang.String groupName, long ddmStructureId,
-		java.lang.String locale) throws java.lang.Exception;
+	public List<SkinnyJournalArticle> getSkinnyJournalArticles(long companyId,
+		java.lang.String groupName, long ddmStructureId, java.lang.String locale)
+		throws java.lang.Exception;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,

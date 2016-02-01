@@ -16,15 +16,28 @@ package com.liferay.so.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.so.model.FavoriteSite;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for FavoriteSite. Methods of this
@@ -55,12 +68,11 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param favoriteSite the favorite site
 	* @return the favorite site that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.so.model.FavoriteSite addFavoriteSite(
-		com.liferay.so.model.FavoriteSite favoriteSite);
+	@Indexable(type = IndexableType.REINDEX)
+	public FavoriteSite addFavoriteSite(FavoriteSite favoriteSite);
 
-	public com.liferay.so.model.FavoriteSite addFavoriteSite(long userId,
-		long groupId) throws PortalException;
+	public FavoriteSite addFavoriteSite(long userId, long groupId)
+		throws PortalException;
 
 	/**
 	* Creates a new favorite site with the primary key. Does not add the favorite site to the database.
@@ -68,8 +80,7 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param favoriteSiteId the primary key for the new favorite site
 	* @return the new favorite site
 	*/
-	public com.liferay.so.model.FavoriteSite createFavoriteSite(
-		long favoriteSiteId);
+	public FavoriteSite createFavoriteSite(long favoriteSiteId);
 
 	/**
 	* Deletes the favorite site from the database. Also notifies the appropriate model listeners.
@@ -77,9 +88,8 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param favoriteSite the favorite site
 	* @return the favorite site that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
-		com.liferay.so.model.FavoriteSite favoriteSite);
+	@Indexable(type = IndexableType.DELETE)
+	public FavoriteSite deleteFavoriteSite(FavoriteSite favoriteSite);
 
 	/**
 	* Deletes the favorite site with the primary key from the database. Also notifies the appropriate model listeners.
@@ -88,9 +98,9 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @return the favorite site that was removed
 	* @throws PortalException if a favorite site with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
-		long favoriteSiteId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public FavoriteSite deleteFavoriteSite(long favoriteSiteId)
+		throws PortalException;
 
 	public void deleteFavoriteSites(long userId, long groupId)
 		throws PortalException;
@@ -99,11 +109,10 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -111,8 +120,7 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -126,8 +134,7 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -143,10 +150,8 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -154,8 +159,7 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -164,16 +168,14 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.so.model.FavoriteSite fetchFavoriteSite(
-		long favoriteSiteId);
+	public FavoriteSite fetchFavoriteSite(long favoriteSiteId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	* Returns the favorite site with the primary key.
@@ -183,8 +185,8 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @throws PortalException if a favorite site with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.so.model.FavoriteSite getFavoriteSite(
-		long favoriteSiteId) throws PortalException;
+	public FavoriteSite getFavoriteSite(long favoriteSiteId)
+		throws PortalException;
 
 	/**
 	* Returns a range of all the favorite sites.
@@ -198,16 +200,14 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @return the range of favorite sites
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
-		int start, int end);
+	public List<FavoriteSite> getFavoriteSites(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<java.lang.Object[]> getFavoriteSites(long userId,
+	public List<java.lang.Object[]> getFavoriteSites(long userId,
 		java.lang.String name, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
-		long userId, int start, int end);
+	public List<FavoriteSite> getFavoriteSites(long userId, int start, int end);
 
 	/**
 	* Returns the number of favorite sites.
@@ -224,7 +224,7 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	public int getFavoriteSitesCount(long userId, java.lang.String name);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -235,8 +235,8 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -255,7 +255,6 @@ public interface FavoriteSiteLocalService extends BaseLocalService,
 	* @param favoriteSite the favorite site
 	* @return the favorite site that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.so.model.FavoriteSite updateFavoriteSite(
-		com.liferay.so.model.FavoriteSite favoriteSite);
+	@Indexable(type = IndexableType.REINDEX)
+	public FavoriteSite updateFavoriteSite(FavoriteSite favoriteSite);
 }

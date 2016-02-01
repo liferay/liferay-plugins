@@ -16,15 +16,28 @@ package com.liferay.ams.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.ams.model.Definition;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for Definition. Methods of this
@@ -55,9 +68,8 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param definition the definition
 	* @return the definition that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.ams.model.Definition addDefinition(
-		com.liferay.ams.model.Definition definition);
+	@Indexable(type = IndexableType.REINDEX)
+	public Definition addDefinition(Definition definition);
 
 	/**
 	* Creates a new definition with the primary key. Does not add the definition to the database.
@@ -65,7 +77,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param definitionId the primary key for the new definition
 	* @return the new definition
 	*/
-	public com.liferay.ams.model.Definition createDefinition(long definitionId);
+	public Definition createDefinition(long definitionId);
 
 	/**
 	* Deletes the definition from the database. Also notifies the appropriate model listeners.
@@ -73,9 +85,8 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param definition the definition
 	* @return the definition that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.ams.model.Definition deleteDefinition(
-		com.liferay.ams.model.Definition definition);
+	@Indexable(type = IndexableType.DELETE)
+	public Definition deleteDefinition(Definition definition);
 
 	/**
 	* Deletes the definition with the primary key from the database. Also notifies the appropriate model listeners.
@@ -84,19 +95,18 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @return the definition that was removed
 	* @throws PortalException if a definition with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.ams.model.Definition deleteDefinition(long definitionId)
+	@Indexable(type = IndexableType.DELETE)
+	public Definition deleteDefinition(long definitionId)
 		throws PortalException;
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -104,8 +114,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -119,8 +128,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -136,10 +144,8 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -147,8 +153,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -157,15 +162,14 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.ams.model.Definition fetchDefinition(long definitionId);
+	public Definition fetchDefinition(long definitionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	* Returns the definition with the primary key.
@@ -175,7 +179,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @throws PortalException if a definition with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.ams.model.Definition getDefinition(long definitionId)
+	public Definition getDefinition(long definitionId)
 		throws PortalException;
 
 	/**
@@ -190,8 +194,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @return the range of definitions
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.ams.model.Definition> getDefinitions(
-		int start, int end);
+	public List<Definition> getDefinitions(int start, int end);
 
 	/**
 	* Returns the number of definitions.
@@ -202,7 +205,7 @@ public interface DefinitionLocalService extends BaseLocalService,
 	public int getDefinitionsCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -213,8 +216,8 @@ public interface DefinitionLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -227,7 +230,6 @@ public interface DefinitionLocalService extends BaseLocalService,
 	* @param definition the definition
 	* @return the definition that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.ams.model.Definition updateDefinition(
-		com.liferay.ams.model.Definition definition);
+	@Indexable(type = IndexableType.REINDEX)
+	public Definition updateDefinition(Definition definition);
 }

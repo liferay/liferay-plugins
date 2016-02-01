@@ -16,15 +16,30 @@ package com.liferay.pushnotifications.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.pushnotifications.model.PushNotificationsDevice;
+
+import java.io.Serializable;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Provides the local service interface for PushNotificationsDevice. Methods of this
@@ -55,12 +70,12 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param pushNotificationsDevice the push notifications device
 	* @return the push notifications device that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice);
+	@Indexable(type = IndexableType.REINDEX)
+	public PushNotificationsDevice addPushNotificationsDevice(
+		PushNotificationsDevice pushNotificationsDevice);
 
-	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
-		long userId, java.lang.String platform, java.lang.String token);
+	public PushNotificationsDevice addPushNotificationsDevice(long userId,
+		java.lang.String platform, java.lang.String token);
 
 	/**
 	* Creates a new push notifications device with the primary key. Does not add the push notifications device to the database.
@@ -68,15 +83,14 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param pushNotificationsDeviceId the primary key for the new push notifications device
 	* @return the new push notifications device
 	*/
-	public com.liferay.pushnotifications.model.PushNotificationsDevice createPushNotificationsDevice(
+	public PushNotificationsDevice createPushNotificationsDevice(
 		long pushNotificationsDeviceId);
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -85,9 +99,9 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param pushNotificationsDevice the push notifications device
 	* @return the push notifications device that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice);
+	@Indexable(type = IndexableType.DELETE)
+	public PushNotificationsDevice deletePushNotificationsDevice(
+		PushNotificationsDevice pushNotificationsDevice);
 
 	/**
 	* Deletes the push notifications device with the primary key from the database. Also notifies the appropriate model listeners.
@@ -96,14 +110,14 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @return the push notifications device that was removed
 	* @throws PortalException if a push notifications device with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
+	@Indexable(type = IndexableType.DELETE)
+	public PushNotificationsDevice deletePushNotificationsDevice(
 		long pushNotificationsDeviceId) throws PortalException;
 
-	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
+	public PushNotificationsDevice deletePushNotificationsDevice(
 		java.lang.String token) throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -111,8 +125,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -126,8 +139,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -143,10 +155,8 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -154,8 +164,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -164,19 +173,18 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchPushNotificationsDevice(
+	public PushNotificationsDevice fetchPushNotificationsDevice(
 		long pushNotificationsDeviceId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -187,8 +195,8 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Returns the push notifications device with the primary key.
@@ -198,7 +206,7 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @throws PortalException if a push notifications device with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevice(
+	public PushNotificationsDevice getPushNotificationsDevice(
 		long pushNotificationsDeviceId) throws PortalException;
 
 	/**
@@ -213,13 +221,12 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @return the range of push notifications devices
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
+	public List<PushNotificationsDevice> getPushNotificationsDevices(
 		int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
+	public List<PushNotificationsDevice> getPushNotificationsDevices(
+		int start, int end, OrderByComparator orderByComparator);
 
 	/**
 	* Returns the number of push notifications devices.
@@ -237,19 +244,16 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	public void resetPushNotificationSenders();
 
 	public void sendPushNotification(java.lang.String platform,
-		java.util.List<java.lang.String> tokens,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
+		List<java.lang.String> tokens, JSONObject payloadJSONObject)
 		throws PortalException;
 
 	public void sendPushNotification(java.lang.String platform,
-		java.util.List<java.lang.String> tokens,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		java.util.Map<java.lang.String, java.lang.Object> configuration)
+		List<java.lang.String> tokens, JSONObject payloadJSONObject,
+		Map<java.lang.String, java.lang.Object> configuration)
 		throws PortalException;
 
 	public void sendPushNotification(long[] toUserIds,
-		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
-		throws PortalException;
+		JSONObject payloadJSONObject) throws PortalException;
 
 	/**
 	* Updates the push notifications device in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -257,9 +261,9 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	* @param pushNotificationsDevice the push notifications device
 	* @return the push notifications device that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.pushnotifications.model.PushNotificationsDevice updatePushNotificationsDevice(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice);
+	@Indexable(type = IndexableType.REINDEX)
+	public PushNotificationsDevice updatePushNotificationsDevice(
+		PushNotificationsDevice pushNotificationsDevice);
 
 	public void updateToken(java.lang.String oldToken, java.lang.String newToken)
 		throws PortalException;

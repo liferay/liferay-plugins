@@ -25,6 +25,9 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.tasks.model.TasksEntry;
 
 /**
  * Provides the remote service interface for TasksEntry. Methods of this
@@ -48,12 +51,10 @@ public interface TasksEntryService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link TasksEntryServiceUtil} to access the tasks entry remote service. Add custom service methods to {@link com.liferay.tasks.service.impl.TasksEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.tasks.model.TasksEntry addTasksEntry(
-		java.lang.String title, int priority, long assigneeUserId,
-		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
-		int dueDateMinute, boolean neverDue,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public TasksEntry addTasksEntry(java.lang.String title, int priority,
+		long assigneeUserId, int dueDateMonth, int dueDateDay, int dueDateYear,
+		int dueDateHour, int dueDateMinute, boolean neverDue,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -63,7 +64,7 @@ public interface TasksEntryService extends BaseService, InvokableService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
+	public TasksEntry getTasksEntry(long tasksEntryId)
 		throws PortalException;
 
 	@Override
@@ -71,11 +72,9 @@ public interface TasksEntryService extends BaseService, InvokableService {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.tasks.model.TasksEntry updateTasksEntry(
-		long tasksEntryId, java.lang.String title, int priority,
-		long assigneeUserId, long resolverUserId, int dueDateMonth,
-		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
-		boolean neverDue, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public TasksEntry updateTasksEntry(long tasksEntryId,
+		java.lang.String title, int priority, long assigneeUserId,
+		long resolverUserId, int dueDateMonth, int dueDateDay, int dueDateYear,
+		int dueDateHour, int dueDateMinute, boolean neverDue, int status,
+		ServiceContext serviceContext) throws PortalException;
 }

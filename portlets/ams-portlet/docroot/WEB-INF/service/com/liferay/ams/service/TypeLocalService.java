@@ -16,15 +16,28 @@ package com.liferay.ams.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.ams.model.Type;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for Type. Methods of this
@@ -55,8 +68,8 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param type the type
 	* @return the type that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type);
+	@Indexable(type = IndexableType.REINDEX)
+	public Type addType(Type type);
 
 	/**
 	* Creates a new type with the primary key. Does not add the type to the database.
@@ -64,14 +77,13 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param typeId the primary key for the new type
 	* @return the new type
 	*/
-	public com.liferay.ams.model.Type createType(long typeId);
+	public Type createType(long typeId);
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -80,9 +92,8 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param type the type
 	* @return the type that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.ams.model.Type deleteType(
-		com.liferay.ams.model.Type type);
+	@Indexable(type = IndexableType.DELETE)
+	public Type deleteType(Type type);
 
 	/**
 	* Deletes the type with the primary key from the database. Also notifies the appropriate model listeners.
@@ -91,11 +102,10 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @return the type that was removed
 	* @throws PortalException if a type with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.ams.model.Type deleteType(long typeId)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public Type deleteType(long typeId) throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -103,8 +113,7 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -118,8 +127,7 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -135,10 +143,8 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -146,8 +152,7 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -156,18 +161,17 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.ams.model.Type fetchType(long typeId);
+	public Type fetchType(long typeId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -178,8 +182,8 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Returns the type with the primary key.
@@ -189,8 +193,7 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @throws PortalException if a type with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.ams.model.Type getType(long typeId)
-		throws PortalException;
+	public Type getType(long typeId) throws PortalException;
 
 	/**
 	* Returns a range of all the types.
@@ -204,8 +207,7 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @return the range of types
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.ams.model.Type> getTypes(int start,
-		int end);
+	public List<Type> getTypes(int start, int end);
 
 	/**
 	* Returns the number of types.
@@ -226,7 +228,6 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param type the type
 	* @return the type that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.ams.model.Type updateType(
-		com.liferay.ams.model.Type type);
+	@Indexable(type = IndexableType.REINDEX)
+	public Type updateType(Type type);
 }

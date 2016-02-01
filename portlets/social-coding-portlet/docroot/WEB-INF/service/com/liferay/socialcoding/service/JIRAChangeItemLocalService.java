@@ -16,15 +16,28 @@ package com.liferay.socialcoding.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.socialcoding.model.JIRAChangeItem;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for JIRAChangeItem. Methods of this
@@ -55,9 +68,8 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.socialcoding.model.JIRAChangeItem addJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem);
+	@Indexable(type = IndexableType.REINDEX)
+	public JIRAChangeItem addJIRAChangeItem(JIRAChangeItem jiraChangeItem);
 
 	/**
 	* Creates a new j i r a change item with the primary key. Does not add the j i r a change item to the database.
@@ -65,8 +77,7 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param jiraChangeItemId the primary key for the new j i r a change item
 	* @return the new j i r a change item
 	*/
-	public com.liferay.socialcoding.model.JIRAChangeItem createJIRAChangeItem(
-		long jiraChangeItemId);
+	public JIRAChangeItem createJIRAChangeItem(long jiraChangeItemId);
 
 	/**
 	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
@@ -74,9 +85,8 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem);
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAChangeItem deleteJIRAChangeItem(JIRAChangeItem jiraChangeItem);
 
 	/**
 	* Deletes the j i r a change item with the primary key from the database. Also notifies the appropriate model listeners.
@@ -85,19 +95,18 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @return the j i r a change item that was removed
 	* @throws PortalException if a j i r a change item with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
-		long jiraChangeItemId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public JIRAChangeItem deleteJIRAChangeItem(long jiraChangeItemId)
+		throws PortalException;
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -105,8 +114,7 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -120,8 +128,7 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -137,10 +144,8 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -148,8 +153,7 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -158,19 +162,17 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAChangeItem fetchJIRAChangeItem(
-		long jiraChangeItemId);
+	public JIRAChangeItem fetchJIRAChangeItem(long jiraChangeItemId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the j i r a change item with the primary key.
@@ -180,12 +182,11 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @throws PortalException if a j i r a change item with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.socialcoding.model.JIRAChangeItem getJIRAChangeItem(
-		long jiraChangeItemId) throws PortalException;
+	public JIRAChangeItem getJIRAChangeItem(long jiraChangeItemId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
-		long jiraChangeGroupId);
+	public List<JIRAChangeItem> getJIRAChangeItems(long jiraChangeGroupId);
 
 	/**
 	* Returns a range of all the j i r a change items.
@@ -199,8 +200,7 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @return the range of j i r a change items
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
-		int start, int end);
+	public List<JIRAChangeItem> getJIRAChangeItems(int start, int end);
 
 	/**
 	* Returns the number of j i r a change items.
@@ -219,8 +219,8 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -233,7 +233,6 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem);
+	@Indexable(type = IndexableType.REINDEX)
+	public JIRAChangeItem updateJIRAChangeItem(JIRAChangeItem jiraChangeItem);
 }

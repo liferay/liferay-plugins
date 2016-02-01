@@ -16,6 +16,9 @@ package com.liferay.knowledgebase.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleSearchDisplay;
+
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -23,8 +26,17 @@ import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.theme.ThemeDisplay;
+
+import java.io.InputStream;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Provides the remote service interface for KBArticle. Methods of this
@@ -48,28 +60,26 @@ public interface KBArticleService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link KBArticleServiceUtil} to access the k b article remote service. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.KBArticleServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		java.lang.String portletId, long parentResourceClassNameId,
-		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String urlTitle, java.lang.String content,
-		java.lang.String description, java.lang.String sourceURL,
-		java.lang.String[] sections, java.lang.String[] selectedFileNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public KBArticle addKBArticle(java.lang.String portletId,
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		java.lang.String title, java.lang.String urlTitle,
+		java.lang.String content, java.lang.String description,
+		java.lang.String sourceURL, java.lang.String[] sections,
+		java.lang.String[] selectedFileNames, ServiceContext serviceContext)
 		throws PortalException;
 
 	public int addKBArticlesMarkdown(long groupId, long parentKBFolderId,
 		java.lang.String fileName, boolean prioritizeByNumericalPrefix,
-		java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		InputStream inputStream, ServiceContext serviceContext)
 		throws PortalException;
 
 	public void addTempAttachment(long groupId, long resourcePrimKey,
 		java.lang.String fileName, java.lang.String tempFolderName,
-		java.io.InputStream inputStream, java.lang.String mimeType)
+		InputStream inputStream, java.lang.String mimeType)
 		throws PortalException;
 
-	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
-		long resourcePrimKey) throws PortalException;
+	public KBArticle deleteKBArticle(long resourcePrimKey)
+		throws PortalException;
 
 	public void deleteKBArticles(long groupId, long[] resourcePrimKeys)
 		throws PortalException;
@@ -79,13 +89,12 @@ public interface KBArticleService extends BaseService, InvokableService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle fetchLatestKBArticle(
-		long resourcePrimKey, int status) throws PortalException;
+	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
-		long groupId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getGroupKBArticles(long groupId, int status,
+		int start, int end, OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupKBArticlesCount(long groupId, int status);
@@ -93,68 +102,64 @@ public interface KBArticleService extends BaseService, InvokableService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getGroupKBArticlesRSS(int status, int rssDelta,
 		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		ThemeDisplay themeDisplay) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBArticle getKBArticle(long resourcePrimKey, int version)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getKBArticle(
-		long resourcePrimKey, int version) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendantKBArticles(
+	public List<KBArticle> getKBArticleAndAllDescendantKBArticles(
 		long groupId, long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+		OrderByComparator<KBArticle> orderByComparator);
 
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link
 	#getKBArticleAndAllDescendantKBArticles(long, long, int,
-	com.liferay.portal.kernel.util.OrderByComparator)}
+	OrderByComparator)}
 	*/
 	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleAndAllDescendants(
-		long groupId, long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticleAndAllDescendants(long groupId,
+		long resourcePrimKey, int status,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getKBArticleRSS(long resourcePrimKey, int status,
 		int rssDelta, java.lang.String rssDisplayStyle,
-		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		java.lang.String rssFormat, ThemeDisplay themeDisplay)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticleSearchDisplay getKBArticleSearchDisplay(
-		long groupId, java.lang.String title, java.lang.String content,
-		int status, java.util.Date startDate, java.util.Date endDate,
-		boolean andOperator, int[] curStartValues, int cur, int delta,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator)
+	public KBArticleSearchDisplay getKBArticleSearchDisplay(long groupId,
+		java.lang.String title, java.lang.String content, int status,
+		Date startDate, Date endDate, boolean andOperator,
+		int[] curStartValues, int cur, int delta,
+		OrderByComparator<KBArticle> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticleVersions(
-		long groupId, long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticleVersions(long groupId,
+		long resourcePrimKey, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBArticleVersionsCount(long groupId, long resourcePrimKey,
 		int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long parentResourcePrimKey, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticles(long groupId,
+		long parentResourcePrimKey, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticles(long groupId, long[] resourcePrimKeys,
+		int status, OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		long groupId, long[] resourcePrimKeys, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getKBArticles(long groupId, long[] resourcePrimKeys,
+		int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBArticlesCount(long groupId, long parentResourcePrimKey,
@@ -165,8 +170,8 @@ public interface KBArticleService extends BaseService, InvokableService {
 		int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.knowledgebase.model.KBArticle getLatestKBArticle(
-		long resourcePrimKey, int status) throws PortalException;
+	public KBArticle getLatestKBArticle(long resourcePrimKey, int status)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -176,10 +181,9 @@ public interface KBArticleService extends BaseService, InvokableService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(
-		long groupId, java.lang.String[] sections, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getSectionsKBArticles(long groupId,
+		java.lang.String[] sections, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSectionsKBArticlesCount(long groupId,
@@ -188,14 +192,13 @@ public interface KBArticleService extends BaseService, InvokableService {
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link #getKBArticles(long, long,
 	int, int, int,
-	com.liferay.portal.kernel.util.OrderByComparator)}
+	OrderByComparator)}
 	*/
 	@java.lang.Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getSiblingKBArticles(
-		long groupId, long parentResourcePrimKey, int status, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.knowledgebase.model.KBArticle> orderByComparator);
+	public List<KBArticle> getSiblingKBArticles(long groupId,
+		long parentResourcePrimKey, int status, int start, int end,
+		OrderByComparator<KBArticle> orderByComparator);
 
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link #getKBArticlesCount(long,
@@ -219,10 +222,8 @@ public interface KBArticleService extends BaseService, InvokableService {
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority) throws PortalException;
 
-	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
-		long resourcePrimKey, int version,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public KBArticle revertKBArticle(long resourcePrimKey, int version,
+		ServiceContext serviceContext) throws PortalException;
 
 	public void subscribeGroupKBArticles(long groupId,
 		java.lang.String portletId) throws PortalException;
@@ -236,15 +237,14 @@ public interface KBArticleService extends BaseService, InvokableService {
 	public void unsubscribeKBArticle(long resourcePrimKey)
 		throws PortalException;
 
-	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
-		long resourcePrimKey, java.lang.String title, java.lang.String content,
+	public KBArticle updateKBArticle(long resourcePrimKey,
+		java.lang.String title, java.lang.String content,
 		java.lang.String description, java.lang.String sourceURL,
 		java.lang.String[] sections, java.lang.String[] selectedFileNames,
-		long[] removeFileEntryIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		long[] removeFileEntryIds, ServiceContext serviceContext)
 		throws PortalException;
 
 	public void updateKBArticlesPriorities(long groupId,
-		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+		Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws PortalException;
 }

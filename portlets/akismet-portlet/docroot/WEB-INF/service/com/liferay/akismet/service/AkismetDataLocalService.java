@@ -16,15 +16,29 @@ package com.liferay.akismet.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.akismet.model.AkismetData;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import java.io.Serializable;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Provides the local service interface for AkismetData. Methods of this
@@ -55,9 +69,8 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param akismetData the akismet data
 	* @return the akismet data that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.akismet.model.AkismetData addAkismetData(
-		com.liferay.akismet.model.AkismetData akismetData);
+	@Indexable(type = IndexableType.REINDEX)
+	public AkismetData addAkismetData(AkismetData akismetData);
 
 	/**
 	* Creates a new akismet data with the primary key. Does not add the akismet data to the database.
@@ -65,8 +78,7 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param akismetDataId the primary key for the new akismet data
 	* @return the new akismet data
 	*/
-	public com.liferay.akismet.model.AkismetData createAkismetData(
-		long akismetDataId);
+	public AkismetData createAkismetData(long akismetDataId);
 
 	/**
 	* Deletes the akismet data from the database. Also notifies the appropriate model listeners.
@@ -74,9 +86,8 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param akismetData the akismet data
 	* @return the akismet data that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.akismet.model.AkismetData deleteAkismetData(
-		com.liferay.akismet.model.AkismetData akismetData);
+	@Indexable(type = IndexableType.DELETE)
+	public AkismetData deleteAkismetData(AkismetData akismetData);
 
 	/**
 	* Deletes the akismet data with the primary key from the database. Also notifies the appropriate model listeners.
@@ -85,24 +96,23 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @return the akismet data that was removed
 	* @throws PortalException if a akismet data with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.akismet.model.AkismetData deleteAkismetData(
-		long akismetDataId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public AkismetData deleteAkismetData(long akismetDataId)
+		throws PortalException;
 
 	public void deleteAkismetData(java.lang.String className, long classPK)
 		throws PortalException;
 
-	public void deleteAkismetData(java.util.Date modifiedDate);
+	public void deleteAkismetData(Date modifiedDate);
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -110,8 +120,7 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -125,8 +134,7 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -142,10 +150,8 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -153,8 +159,7 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -163,20 +168,17 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.akismet.model.AkismetData fetchAkismetData(
-		long akismetDataId);
+	public AkismetData fetchAkismetData(long akismetDataId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.akismet.model.AkismetData fetchAkismetData(
-		java.lang.String className, long classPK);
+	public AkismetData fetchAkismetData(java.lang.String className, long classPK);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	/**
 	* Returns the akismet data with the primary key.
@@ -186,8 +188,8 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @throws PortalException if a akismet data with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.akismet.model.AkismetData getAkismetData(
-		long akismetDataId) throws PortalException;
+	public AkismetData getAkismetData(long akismetDataId)
+		throws PortalException;
 
 	/**
 	* Returns a range of all the akismet datas.
@@ -201,8 +203,7 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @return the range of akismet datas
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.akismet.model.AkismetData> getAkismetDatas(
-		int start, int end);
+	public List<AkismetData> getAkismetDatas(int start, int end);
 
 	/**
 	* Returns the number of akismet datas.
@@ -213,7 +214,7 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	public int getAkismetDatasCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -224,8 +225,8 @@ public interface AkismetDataLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
@@ -238,13 +239,11 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	* @param akismetData the akismet data
 	* @return the akismet data that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.akismet.model.AkismetData updateAkismetData(
-		com.liferay.akismet.model.AkismetData akismetData);
+	@Indexable(type = IndexableType.REINDEX)
+	public AkismetData updateAkismetData(AkismetData akismetData);
 
-	public com.liferay.akismet.model.AkismetData updateAkismetData(
-		java.lang.String className, long classPK, java.lang.String type,
-		java.lang.String permalink, java.lang.String referrer,
-		java.lang.String userAgent, java.lang.String userIP,
-		java.lang.String userURL);
+	public AkismetData updateAkismetData(java.lang.String className,
+		long classPK, java.lang.String type, java.lang.String permalink,
+		java.lang.String referrer, java.lang.String userAgent,
+		java.lang.String userIP, java.lang.String userURL);
 }

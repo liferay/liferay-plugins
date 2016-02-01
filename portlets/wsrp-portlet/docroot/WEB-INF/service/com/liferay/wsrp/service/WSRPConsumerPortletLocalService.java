@@ -16,16 +16,35 @@ package com.liferay.wsrp.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.cluster.Clusterable;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.portlet.exportimport.lar.PortletDataContext;
+
+import com.liferay.wsrp.model.WSRPConsumerPortlet;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for WSRPConsumerPortlet. Methods of this
@@ -49,11 +68,9 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPConsumerPortletLocalServiceUtil} to access the w s r p consumer portlet local service. Add custom service methods to {@link com.liferay.wsrp.service.impl.WSRPConsumerPortletLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
-		long wsrpConsumerId, java.lang.String name,
-		java.lang.String portletHandle,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public WSRPConsumerPortlet addWSRPConsumerPortlet(long wsrpConsumerId,
+		java.lang.String name, java.lang.String portletHandle,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Adds the w s r p consumer portlet to the database. Also notifies the appropriate model listeners.
@@ -61,14 +78,13 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param wsrpConsumerPortlet the w s r p consumer portlet
 	* @return the w s r p consumer portlet that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet);
+	@Indexable(type = IndexableType.REINDEX)
+	public WSRPConsumerPortlet addWSRPConsumerPortlet(
+		WSRPConsumerPortlet wsrpConsumerPortlet);
 
-	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
+	public WSRPConsumerPortlet addWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerUuid, java.lang.String name,
-		java.lang.String portletHandle,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		java.lang.String portletHandle, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
@@ -77,15 +93,14 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param wsrpConsumerPortletId the primary key for the new w s r p consumer portlet
 	* @return the new w s r p consumer portlet
 	*/
-	public com.liferay.wsrp.model.WSRPConsumerPortlet createWSRPConsumerPortlet(
+	public WSRPConsumerPortlet createWSRPConsumerPortlet(
 		long wsrpConsumerPortletId);
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -95,11 +110,10 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @return the w s r p consumer portlet that was removed
 	* @throws PortalException
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	@com.liferay.portal.kernel.systemevent.SystemEvent(type = SystemEventConstants.TYPE_DELETE)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet deleteWSRPConsumerPortlet(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
+	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
+		WSRPConsumerPortlet wsrpConsumerPortlet) throws PortalException;
 
 	/**
 	* Deletes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
@@ -108,8 +122,8 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @return the w s r p consumer portlet that was removed
 	* @throws PortalException if a w s r p consumer portlet with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet deleteWSRPConsumerPortlet(
+	@Indexable(type = IndexableType.DELETE)
+	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
 		long wsrpConsumerPortletId) throws PortalException;
 
 	public void deleteWSRPConsumerPortlet(
@@ -118,13 +132,13 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	public void deleteWSRPConsumerPortlets(long wsrpConsumerId)
 		throws PortalException;
 
-	@com.liferay.portal.kernel.cluster.Clusterable
+	@Clusterable
 	public void destroyWSRPConsumerPortlet(long wsrpConsumerPortletId,
 		java.lang.String wsrpConsumerPortletUuid, java.lang.String url);
 
 	public void destroyWSRPConsumerPortlets() throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -132,8 +146,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -147,8 +160,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -164,10 +176,8 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -175,8 +185,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -185,12 +194,11 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchWSRPConsumerPortlet(
+	public WSRPConsumerPortlet fetchWSRPConsumerPortlet(
 		long wsrpConsumerPortletId);
 
 	/**
@@ -201,18 +209,18 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchWSRPConsumerPortletByUuidAndCompanyId(
+	public WSRPConsumerPortlet fetchWSRPConsumerPortletByUuidAndCompanyId(
 		java.lang.String uuid, long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext);
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -223,13 +231,12 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
-		long wsrpConsumerId, java.lang.String portletHandle)
-		throws PortalException;
+	public WSRPConsumerPortlet getWSRPConsumerPortlet(long wsrpConsumerId,
+		java.lang.String portletHandle) throws PortalException;
 
 	/**
 	* Returns the w s r p consumer portlet with the primary key.
@@ -239,11 +246,11 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @throws PortalException if a w s r p consumer portlet with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
+	public WSRPConsumerPortlet getWSRPConsumerPortlet(
 		long wsrpConsumerPortletId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
+	public WSRPConsumerPortlet getWSRPConsumerPortlet(
 		java.lang.String wsrpConsumerPortletUuid) throws PortalException;
 
 	/**
@@ -255,7 +262,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @throws PortalException if a matching w s r p consumer portlet could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortletByUuidAndCompanyId(
+	public WSRPConsumerPortlet getWSRPConsumerPortletByUuidAndCompanyId(
 		java.lang.String uuid, long companyId) throws PortalException;
 
 	/**
@@ -270,11 +277,10 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @return the range of w s r p consumer portlets
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> getWSRPConsumerPortlets(
-		int start, int end);
+	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> getWSRPConsumerPortlets(
+	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(
 		long wsrpConsumerId, int start, int end);
 
 	/**
@@ -288,11 +294,11 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWSRPConsumerPortletsCount(long wsrpConsumerId);
 
-	@com.liferay.portal.kernel.cluster.Clusterable
+	@Clusterable
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initFailedWSRPConsumerPortlets();
 
-	@com.liferay.portal.kernel.cluster.Clusterable
+	@Clusterable
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
 		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
@@ -313,11 +319,11 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	* @param wsrpConsumerPortlet the w s r p consumer portlet
 	* @return the w s r p consumer portlet that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.wsrp.model.WSRPConsumerPortlet updateWSRPConsumerPortlet(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet);
+	@Indexable(type = IndexableType.REINDEX)
+	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
+		WSRPConsumerPortlet wsrpConsumerPortlet);
 
-	public com.liferay.wsrp.model.WSRPConsumerPortlet updateWSRPConsumerPortlet(
+	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		long wsrpConsumerPortletId, java.lang.String name)
 		throws PortalException;
 }
