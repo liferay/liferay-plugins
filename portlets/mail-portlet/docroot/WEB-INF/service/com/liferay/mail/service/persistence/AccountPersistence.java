@@ -16,6 +16,7 @@ package com.liferay.mail.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.mail.exception.NoSuchAccountException;
 import com.liferay.mail.model.Account;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -108,7 +109,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public Account findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Account> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchAccountException;
+		throws NoSuchAccountException;
 
 	/**
 	* Returns the first account in the ordered set where userId = &#63;.
@@ -130,7 +131,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public Account findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Account> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchAccountException;
+		throws NoSuchAccountException;
 
 	/**
 	* Returns the last account in the ordered set where userId = &#63;.
@@ -153,7 +154,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public Account[] findByUserId_PrevAndNext(long accountId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Account> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchAccountException;
+		throws NoSuchAccountException;
 
 	/**
 	* Removes all the accounts where userId = &#63; from the database.
@@ -179,7 +180,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @throws NoSuchAccountException if a matching account could not be found
 	*/
 	public Account findByU_A(long userId, java.lang.String address)
-		throws com.liferay.mail.exception.NoSuchAccountException;
+		throws NoSuchAccountException;
 
 	/**
 	* Returns the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -209,7 +210,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @return the account that was removed
 	*/
 	public Account removeByU_A(long userId, java.lang.String address)
-		throws com.liferay.mail.exception.NoSuchAccountException;
+		throws NoSuchAccountException;
 
 	/**
 	* Returns the number of accounts where userId = &#63; and address = &#63;.
@@ -249,8 +250,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @return the account that was removed
 	* @throws NoSuchAccountException if a account with the primary key could not be found
 	*/
-	public Account remove(long accountId)
-		throws com.liferay.mail.exception.NoSuchAccountException;
+	public Account remove(long accountId) throws NoSuchAccountException;
 
 	public Account updateImpl(Account account);
 
@@ -262,7 +262,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @throws NoSuchAccountException if a account with the primary key could not be found
 	*/
 	public Account findByPrimaryKey(long accountId)
-		throws com.liferay.mail.exception.NoSuchAccountException;
+		throws NoSuchAccountException;
 
 	/**
 	* Returns the account with the primary key or returns <code>null</code> if it could not be found.

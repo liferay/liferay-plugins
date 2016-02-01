@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.testpacl.exception.NoSuchFooException;
 import com.liferay.testpacl.model.Foo;
 
 /**
@@ -106,7 +107,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public Foo findByField2_First(boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.testpacl.exception.NoSuchFooException;
+		throws NoSuchFooException;
 
 	/**
 	* Returns the first foo in the ordered set where field2 = &#63;.
@@ -128,7 +129,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public Foo findByField2_Last(boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.testpacl.exception.NoSuchFooException;
+		throws NoSuchFooException;
 
 	/**
 	* Returns the last foo in the ordered set where field2 = &#63;.
@@ -151,7 +152,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public Foo[] findByField2_PrevAndNext(long fooId, boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator<Foo> orderByComparator)
-		throws com.liferay.testpacl.exception.NoSuchFooException;
+		throws NoSuchFooException;
 
 	/**
 	* Removes all the foos where field2 = &#63; from the database.
@@ -197,8 +198,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* @return the foo that was removed
 	* @throws NoSuchFooException if a foo with the primary key could not be found
 	*/
-	public Foo remove(long fooId)
-		throws com.liferay.testpacl.exception.NoSuchFooException;
+	public Foo remove(long fooId) throws NoSuchFooException;
 
 	public Foo updateImpl(Foo foo);
 
@@ -209,8 +209,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* @return the foo
 	* @throws NoSuchFooException if a foo with the primary key could not be found
 	*/
-	public Foo findByPrimaryKey(long fooId)
-		throws com.liferay.testpacl.exception.NoSuchFooException;
+	public Foo findByPrimaryKey(long fooId) throws NoSuchFooException;
 
 	/**
 	* Returns the foo with the primary key or returns <code>null</code> if it could not be found.

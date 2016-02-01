@@ -16,6 +16,7 @@ package com.liferay.akismet.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.akismet.exception.NoSuchDataException;
 import com.liferay.akismet.model.AkismetData;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -111,7 +112,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public AkismetData findByLtModifiedDate_First(Date modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator<AkismetData> orderByComparator)
-		throws com.liferay.akismet.exception.NoSuchDataException;
+		throws NoSuchDataException;
 
 	/**
 	* Returns the first akismet data in the ordered set where modifiedDate &lt; &#63;.
@@ -133,7 +134,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	*/
 	public AkismetData findByLtModifiedDate_Last(Date modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator<AkismetData> orderByComparator)
-		throws com.liferay.akismet.exception.NoSuchDataException;
+		throws NoSuchDataException;
 
 	/**
 	* Returns the last akismet data in the ordered set where modifiedDate &lt; &#63;.
@@ -157,7 +158,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	public AkismetData[] findByLtModifiedDate_PrevAndNext(long akismetDataId,
 		Date modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator<AkismetData> orderByComparator)
-		throws com.liferay.akismet.exception.NoSuchDataException;
+		throws NoSuchDataException;
 
 	/**
 	* Removes all the akismet datas where modifiedDate &lt; &#63; from the database.
@@ -183,7 +184,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	* @throws NoSuchDataException if a matching akismet data could not be found
 	*/
 	public AkismetData findByC_C(long classNameId, long classPK)
-		throws com.liferay.akismet.exception.NoSuchDataException;
+		throws NoSuchDataException;
 
 	/**
 	* Returns the akismet data where classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -213,7 +214,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	* @return the akismet data that was removed
 	*/
 	public AkismetData removeByC_C(long classNameId, long classPK)
-		throws com.liferay.akismet.exception.NoSuchDataException;
+		throws NoSuchDataException;
 
 	/**
 	* Returns the number of akismet datas where classNameId = &#63; and classPK = &#63;.
@@ -253,8 +254,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	* @return the akismet data that was removed
 	* @throws NoSuchDataException if a akismet data with the primary key could not be found
 	*/
-	public AkismetData remove(long akismetDataId)
-		throws com.liferay.akismet.exception.NoSuchDataException;
+	public AkismetData remove(long akismetDataId) throws NoSuchDataException;
 
 	public AkismetData updateImpl(AkismetData akismetData);
 
@@ -266,7 +266,7 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	* @throws NoSuchDataException if a akismet data with the primary key could not be found
 	*/
 	public AkismetData findByPrimaryKey(long akismetDataId)
-		throws com.liferay.akismet.exception.NoSuchDataException;
+		throws NoSuchDataException;
 
 	/**
 	* Returns the akismet data with the primary key or returns <code>null</code> if it could not be found.

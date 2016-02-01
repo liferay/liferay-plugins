@@ -16,6 +16,7 @@ package com.liferay.contacts.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.contacts.exception.NoSuchEntryException;
 import com.liferay.contacts.model.Entry;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -106,7 +107,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public Entry findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.contacts.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where userId = &#63;.
@@ -128,7 +129,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public Entry findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.contacts.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where userId = &#63;.
@@ -151,7 +152,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public Entry[] findByUserId_PrevAndNext(long entryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<Entry> orderByComparator)
-		throws com.liferay.contacts.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the entries where userId = &#63; from the database.
@@ -177,7 +178,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @throws NoSuchEntryException if a matching entry could not be found
 	*/
 	public Entry findByU_EA(long userId, java.lang.String emailAddress)
-		throws com.liferay.contacts.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the entry where userId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -207,7 +208,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @return the entry that was removed
 	*/
 	public Entry removeByU_EA(long userId, java.lang.String emailAddress)
-		throws com.liferay.contacts.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the number of entries where userId = &#63; and emailAddress = &#63;.
@@ -247,8 +248,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @return the entry that was removed
 	* @throws NoSuchEntryException if a entry with the primary key could not be found
 	*/
-	public Entry remove(long entryId)
-		throws com.liferay.contacts.exception.NoSuchEntryException;
+	public Entry remove(long entryId) throws NoSuchEntryException;
 
 	public Entry updateImpl(Entry entry);
 
@@ -259,8 +259,7 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @return the entry
 	* @throws NoSuchEntryException if a entry with the primary key could not be found
 	*/
-	public Entry findByPrimaryKey(long entryId)
-		throws com.liferay.contacts.exception.NoSuchEntryException;
+	public Entry findByPrimaryKey(long entryId) throws NoSuchEntryException;
 
 	/**
 	* Returns the entry with the primary key or returns <code>null</code> if it could not be found.

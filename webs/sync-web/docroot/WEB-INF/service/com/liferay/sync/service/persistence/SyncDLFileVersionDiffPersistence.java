@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
 import com.liferay.sync.model.SyncDLFileVersionDiff;
 
 import java.util.Date;
@@ -112,7 +113,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	*/
 	public SyncDLFileVersionDiff findByFileEntryId_First(long fileEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Returns the first sync d l file version diff in the ordered set where fileEntryId = &#63;.
@@ -134,7 +135,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	*/
 	public SyncDLFileVersionDiff findByFileEntryId_Last(long fileEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Returns the last sync d l file version diff in the ordered set where fileEntryId = &#63;.
@@ -158,7 +159,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	public SyncDLFileVersionDiff[] findByFileEntryId_PrevAndNext(
 		long syncDLFileVersionDiffId, long fileEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Removes all the sync d l file version diffs where fileEntryId = &#63; from the database.
@@ -246,7 +247,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	public SyncDLFileVersionDiff findByExpirationDate_First(
 		Date expirationDate,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Returns the first sync d l file version diff in the ordered set where expirationDate &lt; &#63;.
@@ -270,7 +271,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	public SyncDLFileVersionDiff findByExpirationDate_Last(
 		Date expirationDate,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Returns the last sync d l file version diff in the ordered set where expirationDate &lt; &#63;.
@@ -295,7 +296,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	public SyncDLFileVersionDiff[] findByExpirationDate_PrevAndNext(
 		long syncDLFileVersionDiffId, Date expirationDate,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Removes all the sync d l file version diffs where expirationDate &lt; &#63; from the database.
@@ -323,7 +324,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	*/
 	public SyncDLFileVersionDiff findByF_S_T(long fileEntryId,
 		long sourceFileVersionId, long targetFileVersionId)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Returns the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -359,7 +360,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	*/
 	public SyncDLFileVersionDiff removeByF_S_T(long fileEntryId,
 		long sourceFileVersionId, long targetFileVersionId)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Returns the number of sync d l file version diffs where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63;.
@@ -403,7 +404,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @throws NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
 	*/
 	public SyncDLFileVersionDiff remove(long syncDLFileVersionDiffId)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	public SyncDLFileVersionDiff updateImpl(
 		SyncDLFileVersionDiff syncDLFileVersionDiff);
@@ -416,7 +417,7 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	* @throws NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
 	*/
 	public SyncDLFileVersionDiff findByPrimaryKey(long syncDLFileVersionDiffId)
-		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException;
+		throws NoSuchDLFileVersionDiffException;
 
 	/**
 	* Returns the sync d l file version diff with the primary key or returns <code>null</code> if it could not be found.

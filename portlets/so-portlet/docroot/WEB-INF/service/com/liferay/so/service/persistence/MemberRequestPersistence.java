@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.so.exception.NoSuchMemberRequestException;
 import com.liferay.so.model.MemberRequest;
 
 /**
@@ -48,7 +49,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @throws NoSuchMemberRequestException if a matching member request could not be found
 	*/
 	public MemberRequest findByKey(java.lang.String key)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the member request where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -75,7 +76,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @return the member request that was removed
 	*/
 	public MemberRequest removeByKey(java.lang.String key)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the number of member requests where key = &#63;.
@@ -155,7 +156,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public MemberRequest findByReceiverUserId_First(long receiverUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the first member request in the ordered set where receiverUserId = &#63;.
@@ -177,7 +178,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public MemberRequest findByReceiverUserId_Last(long receiverUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the last member request in the ordered set where receiverUserId = &#63;.
@@ -201,7 +202,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	public MemberRequest[] findByReceiverUserId_PrevAndNext(
 		long memberRequestId, long receiverUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Removes all the member requests where receiverUserId = &#63; from the database.
@@ -293,7 +294,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public MemberRequest findByR_S_First(long receiverUserId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -317,7 +318,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	*/
 	public MemberRequest findByR_S_Last(long receiverUserId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
@@ -343,7 +344,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	public MemberRequest[] findByR_S_PrevAndNext(long memberRequestId,
 		long receiverUserId, int status,
 		com.liferay.portal.kernel.util.OrderByComparator<MemberRequest> orderByComparator)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Removes all the member requests where receiverUserId = &#63; and status = &#63; from the database.
@@ -372,8 +373,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @throws NoSuchMemberRequestException if a matching member request could not be found
 	*/
 	public MemberRequest findByG_R_S(long groupId, long receiverUserId,
-		int status)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		int status) throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -407,8 +407,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @return the member request that was removed
 	*/
 	public MemberRequest removeByG_R_S(long groupId, long receiverUserId,
-		int status)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		int status) throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the number of member requests where groupId = &#63; and receiverUserId = &#63; and status = &#63;.
@@ -450,7 +449,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @throws NoSuchMemberRequestException if a member request with the primary key could not be found
 	*/
 	public MemberRequest remove(long memberRequestId)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	public MemberRequest updateImpl(MemberRequest memberRequest);
 
@@ -462,7 +461,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* @throws NoSuchMemberRequestException if a member request with the primary key could not be found
 	*/
 	public MemberRequest findByPrimaryKey(long memberRequestId)
-		throws com.liferay.so.exception.NoSuchMemberRequestException;
+		throws NoSuchMemberRequestException;
 
 	/**
 	* Returns the member request with the primary key or returns <code>null</code> if it could not be found.

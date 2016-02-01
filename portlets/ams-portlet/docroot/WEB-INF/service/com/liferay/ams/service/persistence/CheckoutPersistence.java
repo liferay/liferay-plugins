@@ -16,6 +16,7 @@ package com.liferay.ams.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.ams.exception.NoSuchCheckoutException;
 import com.liferay.ams.model.Checkout;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -69,8 +70,7 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	* @return the checkout that was removed
 	* @throws NoSuchCheckoutException if a checkout with the primary key could not be found
 	*/
-	public Checkout remove(long checkoutId)
-		throws com.liferay.ams.exception.NoSuchCheckoutException;
+	public Checkout remove(long checkoutId) throws NoSuchCheckoutException;
 
 	public Checkout updateImpl(Checkout checkout);
 
@@ -82,7 +82,7 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	* @throws NoSuchCheckoutException if a checkout with the primary key could not be found
 	*/
 	public Checkout findByPrimaryKey(long checkoutId)
-		throws com.liferay.ams.exception.NoSuchCheckoutException;
+		throws NoSuchCheckoutException;
 
 	/**
 	* Returns the checkout with the primary key or returns <code>null</code> if it could not be found.

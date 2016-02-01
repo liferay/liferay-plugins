@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
 import com.liferay.socialcoding.model.JIRAIssue;
 
 import java.util.Date;
@@ -111,7 +112,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	*/
 	public JIRAIssue findByProjectId_First(long projectId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63;.
@@ -133,7 +134,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	*/
 	public JIRAIssue findByProjectId_Last(long projectId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63;.
@@ -157,7 +158,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByProjectId_PrevAndNext(long jiraIssueId,
 		long projectId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where projectId = &#63; from the database.
@@ -245,7 +246,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByReporterJiraUserId_First(
 		java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where reporterJiraUserId = &#63;.
@@ -269,7 +270,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByReporterJiraUserId_Last(
 		java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where reporterJiraUserId = &#63;.
@@ -294,7 +295,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByReporterJiraUserId_PrevAndNext(long jiraIssueId,
 		java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where reporterJiraUserId = &#63; from the database.
@@ -382,7 +383,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByAssigneeJiraUserId_First(
 		java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
@@ -406,7 +407,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByAssigneeJiraUserId_Last(
 		java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
@@ -431,7 +432,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByAssigneeJiraUserId_PrevAndNext(long jiraIssueId,
 		java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where assigneeJiraUserId = &#63; from the database.
@@ -523,7 +524,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	*/
 	public JIRAIssue findByMD_P_First(Date modifiedDate, long projectId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
@@ -547,7 +548,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	*/
 	public JIRAIssue findByMD_P_Last(Date modifiedDate, long projectId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
@@ -573,7 +574,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByMD_P_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; from the database.
@@ -668,7 +669,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_RJUI_First(long projectId,
 		java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
@@ -694,7 +695,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_RJUI_Last(long projectId,
 		java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
@@ -721,7 +722,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByP_RJUI_PrevAndNext(long jiraIssueId,
 		long projectId, java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; from the database.
@@ -817,7 +818,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_AJUI_First(long projectId,
 		java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -843,7 +844,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_AJUI_Last(long projectId,
 		java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -870,7 +871,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByP_AJUI_PrevAndNext(long jiraIssueId,
 		long projectId, java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; from the database.
@@ -973,7 +974,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByMD_P_RJUI_First(Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
@@ -1001,7 +1002,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByMD_P_RJUI_Last(Date modifiedDate, long projectId,
 		java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
@@ -1030,7 +1031,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByMD_P_RJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, java.lang.String reporterJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63; from the database.
@@ -1136,7 +1137,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByMD_P_AJUI_First(Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -1164,7 +1165,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByMD_P_AJUI_Last(Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
@@ -1193,7 +1194,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue[] findByMD_P_AJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, java.lang.String assigneeJiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63; from the database.
@@ -1300,7 +1301,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_RJUI_S_First(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
@@ -1328,7 +1329,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_RJUI_S_Last(long projectId,
 		java.lang.String reporterJiraUserId, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
@@ -1358,7 +1359,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 		long projectId, java.lang.String reporterJiraUserId,
 		java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63; from the database.
@@ -1465,7 +1466,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_AJUI_S_First(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
@@ -1493,7 +1494,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public JIRAIssue findByP_AJUI_S_Last(long projectId,
 		java.lang.String assigneeJiraUserId, java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
@@ -1523,7 +1524,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 		long projectId, java.lang.String assigneeJiraUserId,
 		java.lang.String status,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAIssue> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Removes all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63; from the database.
@@ -1575,8 +1576,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @return the j i r a issue that was removed
 	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
-	public JIRAIssue remove(long jiraIssueId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+	public JIRAIssue remove(long jiraIssueId) throws NoSuchJIRAIssueException;
 
 	public JIRAIssue updateImpl(JIRAIssue jiraIssue);
 
@@ -1588,7 +1588,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	* @throws NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
 	*/
 	public JIRAIssue findByPrimaryKey(long jiraIssueId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAIssueException;
+		throws NoSuchJIRAIssueException;
 
 	/**
 	* Returns the j i r a issue with the primary key or returns <code>null</code> if it could not be found.

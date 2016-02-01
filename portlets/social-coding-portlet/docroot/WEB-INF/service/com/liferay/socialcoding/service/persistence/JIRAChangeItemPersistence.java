@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException;
 import com.liferay.socialcoding.model.JIRAChangeItem;
 
 /**
@@ -111,7 +112,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	public JIRAChangeItem findByJiraChangeGroupId_First(
 		long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeItem> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException;
+		throws NoSuchJIRAChangeItemException;
 
 	/**
 	* Returns the first j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
@@ -134,7 +135,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	*/
 	public JIRAChangeItem findByJiraChangeGroupId_Last(long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeItem> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException;
+		throws NoSuchJIRAChangeItemException;
 
 	/**
 	* Returns the last j i r a change item in the ordered set where jiraChangeGroupId = &#63;.
@@ -159,7 +160,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	public JIRAChangeItem[] findByJiraChangeGroupId_PrevAndNext(
 		long jiraChangeItemId, long jiraChangeGroupId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeItem> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException;
+		throws NoSuchJIRAChangeItemException;
 
 	/**
 	* Removes all the j i r a change items where jiraChangeGroupId = &#63; from the database.
@@ -206,7 +207,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	* @throws NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	*/
 	public JIRAChangeItem remove(long jiraChangeItemId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException;
+		throws NoSuchJIRAChangeItemException;
 
 	public JIRAChangeItem updateImpl(JIRAChangeItem jiraChangeItem);
 
@@ -218,7 +219,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	* @throws NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	*/
 	public JIRAChangeItem findByPrimaryKey(long jiraChangeItemId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeItemException;
+		throws NoSuchJIRAChangeItemException;
 
 	/**
 	* Returns the j i r a change item with the primary key or returns <code>null</code> if it could not be found.

@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.so.exception.NoSuchProjectsEntryException;
 import com.liferay.so.model.ProjectsEntry;
 
 /**
@@ -109,7 +110,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	*/
 	public ProjectsEntry findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<ProjectsEntry> orderByComparator)
-		throws com.liferay.so.exception.NoSuchProjectsEntryException;
+		throws NoSuchProjectsEntryException;
 
 	/**
 	* Returns the first projects entry in the ordered set where userId = &#63;.
@@ -131,7 +132,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	*/
 	public ProjectsEntry findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<ProjectsEntry> orderByComparator)
-		throws com.liferay.so.exception.NoSuchProjectsEntryException;
+		throws NoSuchProjectsEntryException;
 
 	/**
 	* Returns the last projects entry in the ordered set where userId = &#63;.
@@ -155,7 +156,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	public ProjectsEntry[] findByUserId_PrevAndNext(long projectsEntryId,
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<ProjectsEntry> orderByComparator)
-		throws com.liferay.so.exception.NoSuchProjectsEntryException;
+		throws NoSuchProjectsEntryException;
 
 	/**
 	* Removes all the projects entries where userId = &#63; from the database.
@@ -202,7 +203,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @throws NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	*/
 	public ProjectsEntry remove(long projectsEntryId)
-		throws com.liferay.so.exception.NoSuchProjectsEntryException;
+		throws NoSuchProjectsEntryException;
 
 	public ProjectsEntry updateImpl(ProjectsEntry projectsEntry);
 
@@ -214,7 +215,7 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @throws NoSuchProjectsEntryException if a projects entry with the primary key could not be found
 	*/
 	public ProjectsEntry findByPrimaryKey(long projectsEntryId)
-		throws com.liferay.so.exception.NoSuchProjectsEntryException;
+		throws NoSuchProjectsEntryException;
 
 	/**
 	* Returns the projects entry with the primary key or returns <code>null</code> if it could not be found.

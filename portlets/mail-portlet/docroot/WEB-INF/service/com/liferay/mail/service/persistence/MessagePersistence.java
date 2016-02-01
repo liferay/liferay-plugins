@@ -16,6 +16,7 @@ package com.liferay.mail.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.mail.exception.NoSuchMessageException;
 import com.liferay.mail.model.Message;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -109,7 +110,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public Message findByCompanyId_First(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Returns the first message in the ordered set where companyId = &#63;.
@@ -131,7 +132,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public Message findByCompanyId_Last(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Returns the last message in the ordered set where companyId = &#63;.
@@ -155,7 +156,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	public Message[] findByCompanyId_PrevAndNext(long messageId,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Removes all the messages where companyId = &#63; from the database.
@@ -241,7 +242,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public Message findByFolderId_First(long folderId,
 		com.liferay.portal.kernel.util.OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Returns the first message in the ordered set where folderId = &#63;.
@@ -263,7 +264,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public Message findByFolderId_Last(long folderId,
 		com.liferay.portal.kernel.util.OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Returns the last message in the ordered set where folderId = &#63;.
@@ -286,7 +287,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public Message[] findByFolderId_PrevAndNext(long messageId, long folderId,
 		com.liferay.portal.kernel.util.OrderByComparator<Message> orderByComparator)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Removes all the messages where folderId = &#63; from the database.
@@ -312,7 +313,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @throws NoSuchMessageException if a matching message could not be found
 	*/
 	public Message findByF_R(long folderId, long remoteMessageId)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Returns the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -342,7 +343,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @return the message that was removed
 	*/
 	public Message removeByF_R(long folderId, long remoteMessageId)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Returns the number of messages where folderId = &#63; and remoteMessageId = &#63;.
@@ -382,8 +383,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @return the message that was removed
 	* @throws NoSuchMessageException if a message with the primary key could not be found
 	*/
-	public Message remove(long messageId)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+	public Message remove(long messageId) throws NoSuchMessageException;
 
 	public Message updateImpl(Message message);
 
@@ -395,7 +395,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* @throws NoSuchMessageException if a message with the primary key could not be found
 	*/
 	public Message findByPrimaryKey(long messageId)
-		throws com.liferay.mail.exception.NoSuchMessageException;
+		throws NoSuchMessageException;
 
 	/**
 	* Returns the message with the primary key or returns <code>null</code> if it could not be found.

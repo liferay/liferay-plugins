@@ -16,6 +16,7 @@ package com.liferay.microblogs.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.microblogs.exception.NoSuchEntryException;
 import com.liferay.microblogs.model.MicroblogsEntry;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -111,7 +112,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public MicroblogsEntry findByCompanyId_First(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where companyId = &#63;.
@@ -133,7 +134,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public MicroblogsEntry findByCompanyId_Last(long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where companyId = &#63;.
@@ -157,7 +158,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] findByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where companyId = &#63;.
@@ -211,7 +212,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] filterFindByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the microblogs entries where companyId = &#63; from the database.
@@ -305,7 +306,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public MicroblogsEntry findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where userId = &#63;.
@@ -327,7 +328,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public MicroblogsEntry findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where userId = &#63;.
@@ -351,7 +352,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] findByUserId_PrevAndNext(long microblogsEntryId,
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where userId = &#63;.
@@ -405,7 +406,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] filterFindByUserId_PrevAndNext(
 		long microblogsEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the microblogs entries where userId = &#63; from the database.
@@ -504,7 +505,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public MicroblogsEntry findByU_T_First(long userId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where userId = &#63; and type = &#63;.
@@ -528,7 +529,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public MicroblogsEntry findByU_T_Last(long userId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where userId = &#63; and type = &#63;.
@@ -554,7 +555,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] findByU_T_PrevAndNext(long microblogsEntryId,
 		long userId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where userId = &#63; and type = &#63;.
@@ -612,7 +613,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] filterFindByU_T_PrevAndNext(
 		long microblogsEntryId, long userId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the microblogs entries where userId = &#63; and type = &#63; from the database.
@@ -716,7 +717,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByCCNI_CCPK_First(long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where creatorClassNameId = &#63; and creatorClassPK = &#63;.
@@ -742,7 +743,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByCCNI_CCPK_Last(long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where creatorClassNameId = &#63; and creatorClassPK = &#63;.
@@ -769,7 +770,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] findByCCNI_CCPK_PrevAndNext(
 		long microblogsEntryId, long creatorClassNameId, long creatorClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where creatorClassNameId = &#63; and creatorClassPK = &#63;.
@@ -828,7 +829,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] filterFindByCCNI_CCPK_PrevAndNext(
 		long microblogsEntryId, long creatorClassNameId, long creatorClassPK,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where creatorClassNameId = &#63; and creatorClassPK = any &#63;.
@@ -1064,7 +1065,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByCCNI_T_First(long creatorClassNameId,
 		int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where creatorClassNameId = &#63; and type = &#63;.
@@ -1089,7 +1090,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	*/
 	public MicroblogsEntry findByCCNI_T_Last(long creatorClassNameId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where creatorClassNameId = &#63; and type = &#63;.
@@ -1116,7 +1117,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] findByCCNI_T_PrevAndNext(long microblogsEntryId,
 		long creatorClassNameId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where creatorClassNameId = &#63; and type = &#63;.
@@ -1175,7 +1176,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] filterFindByCCNI_T_PrevAndNext(
 		long microblogsEntryId, long creatorClassNameId, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the microblogs entries where creatorClassNameId = &#63; and type = &#63; from the database.
@@ -1279,7 +1280,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByT_P_First(int type,
 		long parentMicroblogsEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where type = &#63; and parentMicroblogsEntryId = &#63;.
@@ -1305,7 +1306,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByT_P_Last(int type,
 		long parentMicroblogsEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where type = &#63; and parentMicroblogsEntryId = &#63;.
@@ -1332,7 +1333,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] findByT_P_PrevAndNext(long microblogsEntryId,
 		int type, long parentMicroblogsEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where type = &#63; and parentMicroblogsEntryId = &#63;.
@@ -1391,7 +1392,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] filterFindByT_P_PrevAndNext(
 		long microblogsEntryId, int type, long parentMicroblogsEntryId,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the microblogs entries where type = &#63; and parentMicroblogsEntryId = &#63; from the database.
@@ -1503,7 +1504,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByCCNI_CCPK_T_First(long creatorClassNameId,
 		long creatorClassPK, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where creatorClassNameId = &#63; and creatorClassPK = &#63; and type = &#63;.
@@ -1531,7 +1532,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByCCNI_CCPK_T_Last(long creatorClassNameId,
 		long creatorClassPK, int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where creatorClassNameId = &#63; and creatorClassPK = &#63; and type = &#63;.
@@ -1561,7 +1562,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		long microblogsEntryId, long creatorClassNameId, long creatorClassPK,
 		int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where creatorClassNameId = &#63; and creatorClassPK = &#63; and type = &#63;.
@@ -1627,7 +1628,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		long microblogsEntryId, long creatorClassNameId, long creatorClassPK,
 		int type,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where creatorClassNameId = &#63; and creatorClassPK = any &#63; and type = &#63;.
@@ -1893,7 +1894,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByU_C_T_S_First(long userId, Date createDate,
 		int type, int socialRelationType,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first microblogs entry in the ordered set where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
@@ -1923,7 +1924,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry findByU_C_T_S_Last(long userId, Date createDate,
 		int type, int socialRelationType,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last microblogs entry in the ordered set where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
@@ -1954,7 +1955,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	public MicroblogsEntry[] findByU_C_T_S_PrevAndNext(long microblogsEntryId,
 		long userId, Date createDate, int type, int socialRelationType,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns all the microblogs entries that the user has permission to view where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
@@ -2022,7 +2023,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 		long microblogsEntryId, long userId, Date createDate, int type,
 		int socialRelationType,
 		com.liferay.portal.kernel.util.OrderByComparator<MicroblogsEntry> orderByComparator)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the microblogs entries where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63; from the database.
@@ -2089,7 +2090,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	* @throws NoSuchEntryException if a microblogs entry with the primary key could not be found
 	*/
 	public MicroblogsEntry remove(long microblogsEntryId)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	public MicroblogsEntry updateImpl(MicroblogsEntry microblogsEntry);
 
@@ -2101,7 +2102,7 @@ public interface MicroblogsEntryPersistence extends BasePersistence<MicroblogsEn
 	* @throws NoSuchEntryException if a microblogs entry with the primary key could not be found
 	*/
 	public MicroblogsEntry findByPrimaryKey(long microblogsEntryId)
-		throws com.liferay.microblogs.exception.NoSuchEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the microblogs entry with the primary key or returns <code>null</code> if it could not be found.

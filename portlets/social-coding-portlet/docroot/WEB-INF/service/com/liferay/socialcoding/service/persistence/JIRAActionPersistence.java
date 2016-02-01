@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.exception.NoSuchJIRAActionException;
 import com.liferay.socialcoding.model.JIRAAction;
 
 /**
@@ -110,7 +111,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*/
 	public JIRAAction findByJiraUserId_First(java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
@@ -132,7 +133,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*/
 	public JIRAAction findByJiraUserId_Last(java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
@@ -156,7 +157,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	public JIRAAction[] findByJiraUserId_PrevAndNext(long jiraActionId,
 		java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Removes all the j i r a actions where jiraUserId = &#63; from the database.
@@ -242,7 +243,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*/
 	public JIRAAction findByJiraIssueId_First(long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
@@ -264,7 +265,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*/
 	public JIRAAction findByJiraIssueId_Last(long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
@@ -288,7 +289,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	public JIRAAction[] findByJiraIssueId_PrevAndNext(long jiraActionId,
 		long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Removes all the j i r a actions where jiraIssueId = &#63; from the database.
@@ -374,7 +375,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*/
 	public JIRAAction findByType_First(java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Returns the first j i r a action in the ordered set where type = &#63;.
@@ -396,7 +397,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*/
 	public JIRAAction findByType_Last(java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Returns the last j i r a action in the ordered set where type = &#63;.
@@ -420,7 +421,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	public JIRAAction[] findByType_PrevAndNext(long jiraActionId,
 		java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAAction> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Removes all the j i r a actions where type = &#63; from the database.
@@ -467,7 +468,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @throws NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	*/
 	public JIRAAction remove(long jiraActionId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	public JIRAAction updateImpl(JIRAAction jiraAction);
 
@@ -479,7 +480,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @throws NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	*/
 	public JIRAAction findByPrimaryKey(long jiraActionId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAActionException;
+		throws NoSuchJIRAActionException;
 
 	/**
 	* Returns the j i r a action with the primary key or returns <code>null</code> if it could not be found.

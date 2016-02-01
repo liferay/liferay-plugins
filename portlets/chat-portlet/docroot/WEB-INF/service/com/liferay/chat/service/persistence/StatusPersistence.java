@@ -16,6 +16,7 @@ package com.liferay.chat.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.chat.exception.NoSuchStatusException;
 import com.liferay.chat.model.Status;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -47,8 +48,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @return the matching status
 	* @throws NoSuchStatusException if a matching status could not be found
 	*/
-	public Status findByUserId(long userId)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+	public Status findByUserId(long userId) throws NoSuchStatusException;
 
 	/**
 	* Returns the status where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -73,8 +73,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @param userId the user ID
 	* @return the status that was removed
 	*/
-	public Status removeByUserId(long userId)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+	public Status removeByUserId(long userId) throws NoSuchStatusException;
 
 	/**
 	* Returns the number of statuses where userId = &#63;.
@@ -153,7 +152,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public Status findByModifiedDate_First(long modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Returns the first status in the ordered set where modifiedDate = &#63;.
@@ -175,7 +174,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public Status findByModifiedDate_Last(long modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Returns the last status in the ordered set where modifiedDate = &#63;.
@@ -199,7 +198,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	public Status[] findByModifiedDate_PrevAndNext(long statusId,
 		long modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Removes all the statuses where modifiedDate = &#63; from the database.
@@ -285,7 +284,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public Status findByOnline_First(boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Returns the first status in the ordered set where online = &#63;.
@@ -307,7 +306,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public Status findByOnline_Last(boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Returns the last status in the ordered set where online = &#63;.
@@ -330,7 +329,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public Status[] findByOnline_PrevAndNext(long statusId, boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Removes all the statuses where online = &#63; from the database.
@@ -421,7 +420,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public Status findByM_O_First(long modifiedDate, boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Returns the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
@@ -445,7 +444,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	*/
 	public Status findByM_O_Last(long modifiedDate, boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Returns the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
@@ -471,7 +470,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	public Status[] findByM_O_PrevAndNext(long statusId, long modifiedDate,
 		boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator<Status> orderByComparator)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+		throws NoSuchStatusException;
 
 	/**
 	* Removes all the statuses where modifiedDate = &#63; and online = &#63; from the database.
@@ -519,8 +518,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @return the status that was removed
 	* @throws NoSuchStatusException if a status with the primary key could not be found
 	*/
-	public Status remove(long statusId)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+	public Status remove(long statusId) throws NoSuchStatusException;
 
 	public Status updateImpl(Status status);
 
@@ -531,8 +529,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	* @return the status
 	* @throws NoSuchStatusException if a status with the primary key could not be found
 	*/
-	public Status findByPrimaryKey(long statusId)
-		throws com.liferay.chat.exception.NoSuchStatusException;
+	public Status findByPrimaryKey(long statusId) throws NoSuchStatusException;
 
 	/**
 	* Returns the status with the primary key or returns <code>null</code> if it could not be found.

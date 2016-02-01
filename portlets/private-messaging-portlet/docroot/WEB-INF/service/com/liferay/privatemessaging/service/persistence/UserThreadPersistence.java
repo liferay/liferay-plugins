@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.privatemessaging.exception.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
 
 /**
@@ -109,7 +110,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public UserThread findByMBThreadId_First(long mbThreadId,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the first user thread in the ordered set where mbThreadId = &#63;.
@@ -131,7 +132,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public UserThread findByMBThreadId_Last(long mbThreadId,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the last user thread in the ordered set where mbThreadId = &#63;.
@@ -155,7 +156,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public UserThread[] findByMBThreadId_PrevAndNext(long userThreadId,
 		long mbThreadId,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Removes all the user threads where mbThreadId = &#63; from the database.
@@ -241,7 +242,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public UserThread findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63;.
@@ -263,7 +264,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public UserThread findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the last user thread in the ordered set where userId = &#63;.
@@ -287,7 +288,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public UserThread[] findByUserId_PrevAndNext(long userThreadId,
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Removes all the user threads where userId = &#63; from the database.
@@ -313,7 +314,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	* @throws NoSuchUserThreadException if a matching user thread could not be found
 	*/
 	public UserThread findByU_M(long userId, long mbThreadId)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -343,7 +344,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	* @return the user thread that was removed
 	*/
 	public UserThread removeByU_M(long userId, long mbThreadId)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the number of user threads where userId = &#63; and mbThreadId = &#63;.
@@ -428,7 +429,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public UserThread findByU_D_First(long userId, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63; and deleted = &#63;.
@@ -452,7 +453,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public UserThread findByU_D_Last(long userId, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the last user thread in the ordered set where userId = &#63; and deleted = &#63;.
@@ -478,7 +479,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public UserThread[] findByU_D_PrevAndNext(long userThreadId, long userId,
 		boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Removes all the user threads where userId = &#63; and deleted = &#63; from the database.
@@ -578,7 +579,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public UserThread findByU_R_D_First(long userId, boolean read,
 		boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the first user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
@@ -606,7 +607,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public UserThread findByU_R_D_Last(long userId, boolean read,
 		boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the last user thread in the ordered set where userId = &#63; and read = &#63; and deleted = &#63;.
@@ -635,7 +636,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public UserThread[] findByU_R_D_PrevAndNext(long userThreadId, long userId,
 		boolean read, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator<UserThread> orderByComparator)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Removes all the user threads where userId = &#63; and read = &#63; and deleted = &#63; from the database.
@@ -686,7 +687,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	* @throws NoSuchUserThreadException if a user thread with the primary key could not be found
 	*/
 	public UserThread remove(long userThreadId)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	public UserThread updateImpl(UserThread userThread);
 
@@ -698,7 +699,7 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	* @throws NoSuchUserThreadException if a user thread with the primary key could not be found
 	*/
 	public UserThread findByPrimaryKey(long userThreadId)
-		throws com.liferay.privatemessaging.exception.NoSuchUserThreadException;
+		throws NoSuchUserThreadException;
 
 	/**
 	* Returns the user thread with the primary key or returns <code>null</code> if it could not be found.

@@ -16,6 +16,7 @@ package com.liferay.opensocial.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.opensocial.exception.NoSuchOAuthTokenException;
 import com.liferay.opensocial.model.OAuthToken;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -116,7 +117,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	public OAuthToken findByG_S_First(java.lang.String gadgetKey,
 		java.lang.String serviceName,
 		com.liferay.portal.kernel.util.OrderByComparator<OAuthToken> orderByComparator)
-		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException;
+		throws NoSuchOAuthTokenException;
 
 	/**
 	* Returns the first o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -142,7 +143,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	public OAuthToken findByG_S_Last(java.lang.String gadgetKey,
 		java.lang.String serviceName,
 		com.liferay.portal.kernel.util.OrderByComparator<OAuthToken> orderByComparator)
-		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException;
+		throws NoSuchOAuthTokenException;
 
 	/**
 	* Returns the last o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -169,7 +170,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	public OAuthToken[] findByG_S_PrevAndNext(long oAuthTokenId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		com.liferay.portal.kernel.util.OrderByComparator<OAuthToken> orderByComparator)
-		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException;
+		throws NoSuchOAuthTokenException;
 
 	/**
 	* Removes all the o auth tokens where gadgetKey = &#63; and serviceName = &#63; from the database.
@@ -203,7 +204,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	*/
 	public OAuthToken findByU_G_S_M_T(long userId, java.lang.String gadgetKey,
 		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
-		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException;
+		throws NoSuchOAuthTokenException;
 
 	/**
 	* Returns the o auth token where userId = &#63; and gadgetKey = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -246,7 +247,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	public OAuthToken removeByU_G_S_M_T(long userId,
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException;
+		throws NoSuchOAuthTokenException;
 
 	/**
 	* Returns the number of o auth tokens where userId = &#63; and gadgetKey = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63;.
@@ -291,7 +292,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @throws NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	*/
 	public OAuthToken remove(long oAuthTokenId)
-		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException;
+		throws NoSuchOAuthTokenException;
 
 	public OAuthToken updateImpl(OAuthToken oAuthToken);
 
@@ -303,7 +304,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @throws NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	*/
 	public OAuthToken findByPrimaryKey(long oAuthTokenId)
-		throws com.liferay.opensocial.exception.NoSuchOAuthTokenException;
+		throws NoSuchOAuthTokenException;
 
 	/**
 	* Returns the o auth token with the primary key or returns <code>null</code> if it could not be found.

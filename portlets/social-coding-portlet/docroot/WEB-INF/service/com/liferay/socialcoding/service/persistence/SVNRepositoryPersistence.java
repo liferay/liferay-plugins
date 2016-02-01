@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.exception.NoSuchSVNRepositoryException;
 import com.liferay.socialcoding.model.SVNRepository;
 
 /**
@@ -48,7 +49,7 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @throws NoSuchSVNRepositoryException if a matching s v n repository could not be found
 	*/
 	public SVNRepository findByUrl(java.lang.String url)
-		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException;
+		throws NoSuchSVNRepositoryException;
 
 	/**
 	* Returns the s v n repository where url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -75,7 +76,7 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @return the s v n repository that was removed
 	*/
 	public SVNRepository removeByUrl(java.lang.String url)
-		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException;
+		throws NoSuchSVNRepositoryException;
 
 	/**
 	* Returns the number of s v n repositories where url = &#63;.
@@ -115,7 +116,7 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @throws NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	*/
 	public SVNRepository remove(long svnRepositoryId)
-		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException;
+		throws NoSuchSVNRepositoryException;
 
 	public SVNRepository updateImpl(SVNRepository svnRepository);
 
@@ -127,7 +128,7 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @throws NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
 	*/
 	public SVNRepository findByPrimaryKey(long svnRepositoryId)
-		throws com.liferay.socialcoding.exception.NoSuchSVNRepositoryException;
+		throws NoSuchSVNRepositoryException;
 
 	/**
 	* Returns the s v n repository with the primary key or returns <code>null</code> if it could not be found.

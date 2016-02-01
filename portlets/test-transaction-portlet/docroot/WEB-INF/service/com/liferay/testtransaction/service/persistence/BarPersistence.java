@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.testtransaction.exception.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
 
 /**
@@ -109,7 +110,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public Bar findByText_First(java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
-		throws com.liferay.testtransaction.exception.NoSuchBarException;
+		throws NoSuchBarException;
 
 	/**
 	* Returns the first bar in the ordered set where text = &#63;.
@@ -131,7 +132,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public Bar findByText_Last(java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
-		throws com.liferay.testtransaction.exception.NoSuchBarException;
+		throws NoSuchBarException;
 
 	/**
 	* Returns the last bar in the ordered set where text = &#63;.
@@ -154,7 +155,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public Bar[] findByText_PrevAndNext(long barId, java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator<Bar> orderByComparator)
-		throws com.liferay.testtransaction.exception.NoSuchBarException;
+		throws NoSuchBarException;
 
 	/**
 	* Removes all the bars where text = &#63; from the database.
@@ -200,8 +201,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @return the bar that was removed
 	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
-	public Bar remove(long barId)
-		throws com.liferay.testtransaction.exception.NoSuchBarException;
+	public Bar remove(long barId) throws NoSuchBarException;
 
 	public Bar updateImpl(Bar bar);
 
@@ -212,8 +212,7 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @return the bar
 	* @throws NoSuchBarException if a bar with the primary key could not be found
 	*/
-	public Bar findByPrimaryKey(long barId)
-		throws com.liferay.testtransaction.exception.NoSuchBarException;
+	public Bar findByPrimaryKey(long barId) throws NoSuchBarException;
 
 	/**
 	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.

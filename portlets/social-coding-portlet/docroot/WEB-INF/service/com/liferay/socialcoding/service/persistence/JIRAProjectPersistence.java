@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.exception.NoSuchJIRAProjectException;
 import com.liferay.socialcoding.model.JIRAProject;
 
 /**
@@ -48,7 +49,7 @@ public interface JIRAProjectPersistence extends BasePersistence<JIRAProject> {
 	* @throws NoSuchJIRAProjectException if a matching j i r a project could not be found
 	*/
 	public JIRAProject findByKey(java.lang.String key)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException;
+		throws NoSuchJIRAProjectException;
 
 	/**
 	* Returns the j i r a project where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -75,7 +76,7 @@ public interface JIRAProjectPersistence extends BasePersistence<JIRAProject> {
 	* @return the j i r a project that was removed
 	*/
 	public JIRAProject removeByKey(java.lang.String key)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException;
+		throws NoSuchJIRAProjectException;
 
 	/**
 	* Returns the number of j i r a projects where key = &#63;.
@@ -115,7 +116,7 @@ public interface JIRAProjectPersistence extends BasePersistence<JIRAProject> {
 	* @throws NoSuchJIRAProjectException if a j i r a project with the primary key could not be found
 	*/
 	public JIRAProject remove(long jiraProjectId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException;
+		throws NoSuchJIRAProjectException;
 
 	public JIRAProject updateImpl(JIRAProject jiraProject);
 
@@ -127,7 +128,7 @@ public interface JIRAProjectPersistence extends BasePersistence<JIRAProject> {
 	* @throws NoSuchJIRAProjectException if a j i r a project with the primary key could not be found
 	*/
 	public JIRAProject findByPrimaryKey(long jiraProjectId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAProjectException;
+		throws NoSuchJIRAProjectException;
 
 	/**
 	* Returns the j i r a project with the primary key or returns <code>null</code> if it could not be found.

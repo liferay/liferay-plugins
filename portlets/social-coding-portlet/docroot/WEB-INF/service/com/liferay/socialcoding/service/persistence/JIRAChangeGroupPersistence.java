@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
 import com.liferay.socialcoding.model.JIRAChangeGroup;
 
 /**
@@ -110,7 +111,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	*/
 	public JIRAChangeGroup findByJiraUserId_First(java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeGroup> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the first j i r a change group in the ordered set where jiraUserId = &#63;.
@@ -133,7 +134,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	*/
 	public JIRAChangeGroup findByJiraUserId_Last(java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeGroup> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the last j i r a change group in the ordered set where jiraUserId = &#63;.
@@ -157,7 +158,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	public JIRAChangeGroup[] findByJiraUserId_PrevAndNext(
 		long jiraChangeGroupId, java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeGroup> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	/**
 	* Removes all the j i r a change groups where jiraUserId = &#63; from the database.
@@ -243,7 +244,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	*/
 	public JIRAChangeGroup findByJiraIssueId_First(long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeGroup> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the first j i r a change group in the ordered set where jiraIssueId = &#63;.
@@ -265,7 +266,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	*/
 	public JIRAChangeGroup findByJiraIssueId_Last(long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeGroup> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the last j i r a change group in the ordered set where jiraIssueId = &#63;.
@@ -289,7 +290,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	public JIRAChangeGroup[] findByJiraIssueId_PrevAndNext(
 		long jiraChangeGroupId, long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator<JIRAChangeGroup> orderByComparator)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	/**
 	* Removes all the j i r a change groups where jiraIssueId = &#63; from the database.
@@ -336,7 +337,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @throws NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
 	*/
 	public JIRAChangeGroup remove(long jiraChangeGroupId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	public JIRAChangeGroup updateImpl(JIRAChangeGroup jiraChangeGroup);
 
@@ -348,7 +349,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @throws NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
 	*/
 	public JIRAChangeGroup findByPrimaryKey(long jiraChangeGroupId)
-		throws com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
+		throws NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the j i r a change group with the primary key or returns <code>null</code> if it could not be found.

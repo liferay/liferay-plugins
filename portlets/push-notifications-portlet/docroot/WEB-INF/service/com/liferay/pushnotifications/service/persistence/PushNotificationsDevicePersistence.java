@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.pushnotifications.exception.NoSuchDeviceException;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 
 /**
@@ -48,7 +49,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @throws NoSuchDeviceException if a matching push notifications device could not be found
 	*/
 	public PushNotificationsDevice findByToken(java.lang.String token)
-		throws com.liferay.pushnotifications.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the push notifications device where token = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -75,7 +76,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @return the push notifications device that was removed
 	*/
 	public PushNotificationsDevice removeByToken(java.lang.String token)
-		throws com.liferay.pushnotifications.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the number of push notifications devices where token = &#63;.
@@ -161,7 +162,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	public PushNotificationsDevice findByU_P_First(long userId,
 		java.lang.String platform,
 		com.liferay.portal.kernel.util.OrderByComparator<PushNotificationsDevice> orderByComparator)
-		throws com.liferay.pushnotifications.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the first push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -187,7 +188,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	public PushNotificationsDevice findByU_P_Last(long userId,
 		java.lang.String platform,
 		com.liferay.portal.kernel.util.OrderByComparator<PushNotificationsDevice> orderByComparator)
-		throws com.liferay.pushnotifications.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the last push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -214,7 +215,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	public PushNotificationsDevice[] findByU_P_PrevAndNext(
 		long pushNotificationsDeviceId, long userId, java.lang.String platform,
 		com.liferay.portal.kernel.util.OrderByComparator<PushNotificationsDevice> orderByComparator)
-		throws com.liferay.pushnotifications.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns all the push notifications devices where userId = any &#63; and platform = &#63;.
@@ -341,7 +342,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	*/
 	public PushNotificationsDevice remove(long pushNotificationsDeviceId)
-		throws com.liferay.pushnotifications.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	public PushNotificationsDevice updateImpl(
 		PushNotificationsDevice pushNotificationsDevice);
@@ -354,8 +355,7 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @throws NoSuchDeviceException if a push notifications device with the primary key could not be found
 	*/
 	public PushNotificationsDevice findByPrimaryKey(
-		long pushNotificationsDeviceId)
-		throws com.liferay.pushnotifications.exception.NoSuchDeviceException;
+		long pushNotificationsDeviceId) throws NoSuchDeviceException;
 
 	/**
 	* Returns the push notifications device with the primary key or returns <code>null</code> if it could not be found.

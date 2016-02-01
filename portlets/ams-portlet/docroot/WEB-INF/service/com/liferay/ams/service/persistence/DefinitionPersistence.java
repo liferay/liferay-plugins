@@ -16,6 +16,7 @@ package com.liferay.ams.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.ams.exception.NoSuchDefinitionException;
 import com.liferay.ams.model.Definition;
 
 import com.liferay.portal.service.persistence.BasePersistence;
@@ -70,7 +71,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @throws NoSuchDefinitionException if a definition with the primary key could not be found
 	*/
 	public Definition remove(long definitionId)
-		throws com.liferay.ams.exception.NoSuchDefinitionException;
+		throws NoSuchDefinitionException;
 
 	public Definition updateImpl(Definition definition);
 
@@ -82,7 +83,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @throws NoSuchDefinitionException if a definition with the primary key could not be found
 	*/
 	public Definition findByPrimaryKey(long definitionId)
-		throws com.liferay.ams.exception.NoSuchDefinitionException;
+		throws NoSuchDefinitionException;
 
 	/**
 	* Returns the definition with the primary key or returns <code>null</code> if it could not be found.
