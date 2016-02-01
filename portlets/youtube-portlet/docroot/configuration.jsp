@@ -74,6 +74,16 @@
 	var heightNode = AUI.$('#<portlet:namespace />height');
 	var widthNode = AUI.$('#<portlet:namespace />width');
 
+	var customHeight;
+	var customWidth;
+
+	var selectNode = AUI.$('#<portlet:namespace />presetSize');
+
+	if (selectNode.val() == 'custom') {
+		customHeight = heightNode.val();
+		customWidth = widthNode.val();
+	}
+
 	function <portlet:namespace />saveConfiguration() {
 		var form = AUI.$(document.<portlet:namespace />fm);
 
@@ -83,9 +93,6 @@
 			submitForm(form);
 		}
 	}
-
-	var customHeight;
-	var customWidth;
 
 	function <portlet:namespace />updateFrameSize(value) {
 		var Util = Liferay.Util;
