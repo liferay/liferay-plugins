@@ -37,6 +37,7 @@ import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -73,6 +74,7 @@ public class AssetEntrySetFinderImpl
 	 * Pattern for finding reference objects {@link
 	 * com.liferay.portal.service.persistence.LayoutFinderImpl#findByC_P_P}
 	 */
+	@Override
 	public List<AssetEntrySetReference>findAssetEntrySetReferenceByPAESI_CNI(
 			long parentAssetEntrySetId)
 		throws SystemException {
@@ -118,6 +120,7 @@ public class AssetEntrySetFinderImpl
 		}
 	}
 
+	@Override
 	public List<AssetEntrySet> findByCT_PAESI_CNI(
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId, long stickyTime,
@@ -154,17 +157,21 @@ public class AssetEntrySetFinderImpl
 					sql, "[$CREATE_TIME_COMPARATOR$]", "<=");
 			}
 
-			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]",
+			List<String> sharedToList = new ArrayList<String>();
+
+			sharedToList.add(
 				getSharedTo(classNameId, classPK, sharedToJSONArray));
-			sql = StringUtil.replace(
-				sql, "[$ASSET_TAG_NAMES$]",
-				getAssetTagNames(
-					classNameId, classPK, sharedToJSONArray, assetTagNames));
-			sql = StringUtil.replace(
-				sql, "[$INCLUDE_ASSET_ENTRY_SET_IDS$]",
+			sharedToList.add(
+				getAssetTagNames(classNameId, classPK, assetTagNames));
+			sharedToList.add(
 				getIncludeAssetEntrySetIds(
 					classNameId, classPK, includeAssetEntrySetIds));
+
+			sharedToList.removeAll(Arrays.asList(StringPool.BLANK));
+
+			sql = StringUtil.replace(
+				sql, "[$SHARED_TO$]",
+					StringUtil.merge( sharedToList.toArray(), " OR "));
 			sql = StringUtil.replace(
 				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
 				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
@@ -193,6 +200,7 @@ public class AssetEntrySetFinderImpl
 		}
 	}
 
+	@Override
 	public List<AssetEntrySet> findByMT_PAESI_CNI(
 			long classNameId, long classPK, long modifiedTime,
 			boolean gtModifiedTime, long parentAssetEntrySetId, long stickyTime,
@@ -229,17 +237,21 @@ public class AssetEntrySetFinderImpl
 					sql, "[$MODIFIED_TIME_COMPARATOR$]", "<=");
 			}
 
-			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]",
+			List<String> sharedToList = new ArrayList<String>();
+
+			sharedToList.add(
 				getSharedTo(classNameId, classPK, sharedToJSONArray));
-			sql = StringUtil.replace(
-				sql, "[$ASSET_TAG_NAMES$]",
-				getAssetTagNames(
-					classNameId, classPK, sharedToJSONArray, assetTagNames));
-			sql = StringUtil.replace(
-				sql, "[$INCLUDE_ASSET_ENTRY_SET_IDS$]",
+			sharedToList.add(
+				getAssetTagNames(classNameId, classPK, assetTagNames));
+			sharedToList.add(
 				getIncludeAssetEntrySetIds(
 					classNameId, classPK, includeAssetEntrySetIds));
+
+			sharedToList.removeAll(Arrays.asList(StringPool.BLANK));
+
+			sql = StringUtil.replace(
+				sql, "[$SHARED_TO$]",
+					StringUtil.merge(sharedToList.toArray(), " OR "));
 			sql = StringUtil.replace(
 				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
 				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
@@ -331,7 +343,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected String getAssetTagNames(
-		long classNameId, long classPK, JSONArray sharedToJSONArray,
+		long classNameId, long classPK,
 		String[] assetTagNames) {
 
 		if (ArrayUtil.isEmpty(assetTagNames)) {
@@ -339,10 +351,6 @@ public class AssetEntrySetFinderImpl
 		}
 
 		StringBundler sb = new StringBundler(assetTagNames.length * 4);
-
-		if ((sharedToJSONArray != null) && (sharedToJSONArray.length() > 0)) {
-			sb.append(" OR ");
-		}
 
 		for (int i = 0; i < assetTagNames.length; i++) {
 			sb.append("((AssetTag.name = ?) AND ");
@@ -388,7 +396,6 @@ public class AssetEntrySetFinderImpl
 
 		StringBundler sb = new StringBundler((assetEntrySetIds.length * 7) + 3);
 
-		sb.append(" OR ");
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
 		for (long assetEntrySetId : assetEntrySetIds) {

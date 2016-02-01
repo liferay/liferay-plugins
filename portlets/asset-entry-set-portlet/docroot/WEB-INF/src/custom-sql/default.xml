@@ -18,8 +18,6 @@
 				(AssetSharingEntry1.classNameId = ?) AND
 				(
 					[$SHARED_TO$]
-					[$ASSET_TAG_NAMES$]
-					[$INCLUDE_ASSET_ENTRY_SET_IDS$]
 				)
 				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
@@ -43,8 +41,6 @@
 				(AssetSharingEntry1.classNameId = ?) AND
 				(
 					[$SHARED_TO$]
-					[$ASSET_TAG_NAMES$]
-					[$INCLUDE_ASSET_ENTRY_SET_IDS$]
 				)
 				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
