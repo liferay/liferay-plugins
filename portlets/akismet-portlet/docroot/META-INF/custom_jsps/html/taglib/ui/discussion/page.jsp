@@ -16,10 +16,10 @@
 
 <%@ include file="/html/taglib/init.jsp" %>
 
-<%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
-<%@ page import="com.liferay.portlet.messageboards.model.MBMessageDisplay" %>
-<%@ page import="com.liferay.portlet.messageboards.model.MBTreeWalker" %>
-<%@ page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
+<%@ page import="com.liferay.message.boards.kernel.model.MBMessage" %>
+<%@ page import="com.liferay.message.boards.kernel.model.MBMessageDisplay" %>
+<%@ page import="com.liferay.message.boards.kernel.model.MBTreeWalker" %>
+<%@ page import="com.liferay.message.boards.kernel.service.MBMessageLocalServiceUtil" %>
 
 <%
 String className = (String)request.getAttribute("liferay-ui:discussion:className");

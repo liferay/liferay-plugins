@@ -38,7 +38,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portlet.messageboards.model.MBCategory"
+		className="com.liferay.message.boards.kernel.model.MBCategory"
 		escapedModel="<%= true %>"
 		keyProperty="categoryId"
 		modelVar="mbCategory"

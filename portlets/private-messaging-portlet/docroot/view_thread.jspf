@@ -129,7 +129,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portlet.messageboards.model.MBMessage"
+		className="com.liferay.message.boards.kernel.model.MBMessage"
 		escapedModel="<%= true %>"
 		keyProperty="messageId"
 		modelVar="mbMessage"

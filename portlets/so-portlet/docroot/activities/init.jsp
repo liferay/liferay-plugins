@@ -19,7 +19,9 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
+<%@ page import="com.liferay.message.boards.kernel.model.MBMessage" %><%@
+page import="com.liferay.message.boards.kernel.service.MBMessageLocalServiceUtil" %><%@
+page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
 page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
 page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
@@ -28,14 +30,11 @@ page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.Time" %><%@
 page import="com.liferay.portal.service.ServiceContext" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
-page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
-page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
 page import="com.liferay.so.activities.util.ActivitiesUtil" %><%@
 page import="com.liferay.social.kernel.model.SocialActivity" %><%@
 page import="com.liferay.social.kernel.model.SocialActivitySet" %><%@
 page import="com.liferay.social.kernel.service.SocialActivityLocalServiceUtil" %><%@
 page import="com.liferay.social.kernel.service.SocialActivitySetLocalServiceUtil" %>
-
 
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "all");

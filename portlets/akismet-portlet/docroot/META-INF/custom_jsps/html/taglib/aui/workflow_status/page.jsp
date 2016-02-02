@@ -16,7 +16,7 @@
 
 <%@ include file="/html/taglib/init.jsp" %>
 
-<%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
+<%@ page import="com.liferay.message.boards.kernel.model.MBMessage" %>
 <%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
 
 <%
