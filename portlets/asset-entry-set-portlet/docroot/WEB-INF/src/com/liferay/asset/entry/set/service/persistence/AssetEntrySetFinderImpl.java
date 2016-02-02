@@ -22,6 +22,7 @@ import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.sharing.model.AssetSharingEntry;
 import com.liferay.asset.sharing.service.AssetSharingEntryLocalServiceUtil;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -157,21 +158,22 @@ public class AssetEntrySetFinderImpl
 					sql, "[$CREATE_TIME_COMPARATOR$]", "<=");
 			}
 
-			List<String> sharedToList = new ArrayList<String>();
+			List<String> whereClauses = new ArrayList<String>();
 
-			sharedToList.add(
+			whereClauses.add(
 				getSharedTo(classNameId, classPK, sharedToJSONArray));
-			sharedToList.add(
+			whereClauses.add(
 				getAssetTagNames(classNameId, classPK, assetTagNames));
-			sharedToList.add(
+			whereClauses.add(
 				getIncludeAssetEntrySetIds(
 					classNameId, classPK, includeAssetEntrySetIds));
 
-			sharedToList.removeAll(Arrays.asList(StringPool.BLANK));
+			whereClauses.removeAll(_emptyList);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]",
-					StringUtil.merge( sharedToList.toArray(), " OR "));
+				sql, "[$WHERE$]",
+				ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
+
 			sql = StringUtil.replace(
 				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
 				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
@@ -237,21 +239,22 @@ public class AssetEntrySetFinderImpl
 					sql, "[$MODIFIED_TIME_COMPARATOR$]", "<=");
 			}
 
-			List<String> sharedToList = new ArrayList<String>();
+			List<String> whereClauses = new ArrayList<String>();
 
-			sharedToList.add(
+			whereClauses.add(
 				getSharedTo(classNameId, classPK, sharedToJSONArray));
-			sharedToList.add(
+			whereClauses.add(
 				getAssetTagNames(classNameId, classPK, assetTagNames));
-			sharedToList.add(
+			whereClauses.add(
 				getIncludeAssetEntrySetIds(
 					classNameId, classPK, includeAssetEntrySetIds));
 
-			sharedToList.removeAll(Arrays.asList(StringPool.BLANK));
+			whereClauses.removeAll(_emptyList);
 
 			sql = StringUtil.replace(
-				sql, "[$SHARED_TO$]",
-					StringUtil.merge(sharedToList.toArray(), " OR "));
+				sql, "[$WHERE$]",
+				ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
+
 			sql = StringUtil.replace(
 				sql, "[$EXCLUDE_ASSET_ENTRY_SET_IDS$]",
 				getExcludeAssetEntrySetIds(excludeAssetEntrySetIds));
@@ -343,8 +346,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	protected String getAssetTagNames(
-		long classNameId, long classPK,
-		String[] assetTagNames) {
+		long classNameId, long classPK, String[] assetTagNames) {
 
 		if (ArrayUtil.isEmpty(assetTagNames)) {
 			return StringPool.BLANK;
@@ -394,7 +396,7 @@ public class AssetEntrySetFinderImpl
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler((assetEntrySetIds.length * 7) + 3);
+		StringBundler sb = new StringBundler((assetEntrySetIds.length * 7) + 2);
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
@@ -535,5 +537,8 @@ public class AssetEntrySetFinderImpl
 			qPos.add(StringUtil.toLowerCase(assetTagName));
 		}
 	}
+
+	private static final List<String> _emptyList = Arrays.asList(
+		StringPool.BLANK);
 
 }

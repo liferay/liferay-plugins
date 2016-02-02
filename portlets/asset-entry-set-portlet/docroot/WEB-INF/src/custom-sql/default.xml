@@ -16,9 +16,7 @@
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
 				(AssetEntrySet.stickyTime < ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
-				(
-					[$SHARED_TO$]
-				)
+				([$WHERE$])
 				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
 				AssetEntrySet.createTime DESC
@@ -39,9 +37,7 @@
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
 				(AssetEntrySet.stickyTime < ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
-				(
-					[$SHARED_TO$]
-				)
+				([$WHERE$])
 				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
 				AssetEntrySet.createTime DESC
