@@ -144,6 +144,24 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		_methodName23 = "getSyncDLObjects";
 
 		_methodParameterTypes23 = new String[] { "long", "long" };
+
+		_methodName24 = "moveDependentSyncDLObjects";
+
+		_methodParameterTypes24 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
+
+		_methodName25 = "restoreDependentSyncDLObjects";
+
+		_methodParameterTypes25 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
+
+		_methodName26 = "trashDependentSyncDLObjects";
+
+		_methodParameterTypes26 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
 	}
 
 	@Override
@@ -906,6 +924,99 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 		return (java.util.List<com.liferay.sync.model.SyncDLObject>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public void moveDependentSyncDLObjects(
+		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName24,
+				_methodParameterTypes24,
+				new Object[] { ClpSerializer.translateInput(parentSyncDLObject) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void restoreDependentSyncDLObjects(
+		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName25,
+				_methodParameterTypes25,
+				new Object[] { ClpSerializer.translateInput(parentSyncDLObject) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void trashDependentSyncDLObjects(
+		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName26,
+				_methodParameterTypes26,
+				new Object[] { ClpSerializer.translateInput(parentSyncDLObject) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -953,4 +1064,10 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
 }

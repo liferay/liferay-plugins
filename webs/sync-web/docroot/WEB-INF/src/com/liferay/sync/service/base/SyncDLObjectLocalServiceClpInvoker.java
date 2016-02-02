@@ -143,6 +143,30 @@ public class SyncDLObjectLocalServiceClpInvoker {
 		_methodName92 = "getSyncDLObjects";
 
 		_methodParameterTypes92 = new String[] { "long", "long" };
+
+		_methodName93 = "moveDependentSyncDLObjects";
+
+		_methodParameterTypes93 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
+
+		_methodName94 = "restoreDependentSyncDLObjects";
+
+		_methodParameterTypes94 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
+
+		_methodName95 = "trashDependentSyncDLObjects";
+
+		_methodParameterTypes95 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
+
+		_methodName96 = "updateSyncDLObject";
+
+		_methodParameterTypes96 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -296,6 +320,32 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue());
 		}
 
+		if (_methodName93.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes93, parameterTypes)) {
+			SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName94.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes94, parameterTypes)) {
+			SyncDLObjectLocalServiceUtil.restoreDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName95.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes95, parameterTypes)) {
+			SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName96.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes96, parameterTypes)) {
+			return SyncDLObjectLocalServiceUtil.updateSyncDLObject((com.liferay.sync.model.SyncDLObject)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -345,4 +395,12 @@ public class SyncDLObjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes91;
 	private String _methodName92;
 	private String[] _methodParameterTypes92;
+	private String _methodName93;
+	private String[] _methodParameterTypes93;
+	private String _methodName94;
+	private String[] _methodParameterTypes94;
+	private String _methodName95;
+	private String[] _methodParameterTypes95;
+	private String _methodName96;
+	private String[] _methodParameterTypes96;
 }
