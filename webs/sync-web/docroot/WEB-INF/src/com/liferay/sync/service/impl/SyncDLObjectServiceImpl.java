@@ -727,7 +727,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 
 		catch (PortalException pe) {
-			throw new PortalException(pe.getClass().getName(), pe);
+			Class clazz = pe.getClass();
+
+			throw new PortalException(clazz.getName(), pe);
 		}
 	}
 
