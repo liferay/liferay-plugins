@@ -84,10 +84,16 @@ public class CalendarUtil {
 				displayTimeZone = _utcTimeZone;
 			}
 
+			long maxStartTime = Math.max(
+				calendarBooking.getStartTime(), startTime);
+
 			java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-				calendarBooking.getStartTime(), displayTimeZone);
+				maxStartTime, displayTimeZone);
+
+			long minEndTime = Math.min(calendarBooking.getEndTime(), endTime);
+
 			java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
-				calendarBooking.getEndTime(), displayTimeZone);
+				minEndTime, displayTimeZone);
 
 			long days = JCalendarUtil.getDaysBetween(
 				startTimeJCalendar, endTimeJCalendar);
