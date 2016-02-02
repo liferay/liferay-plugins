@@ -14,10 +14,12 @@
 
 package com.liferay.sync.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -26,6 +28,9 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.sync.model.SyncConstants;
@@ -217,6 +222,165 @@ public class SyncDLObjectLocalServiceImpl
 		long repositoryId, long parentFolderId) {
 
 		return syncDLObjectPersistence.findByR_P(repositoryId, parentFolderId);
+	}
+
+	@Override
+	public void moveDependentSyncDLObjects(
+			final SyncDLObject parentSyncDLObject)
+		throws PortalException {
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(StringPool.SLASH);
+		sb.append(parentSyncDLObject.getTypePK());
+		sb.append(StringPool.SLASH);
+
+		final String searchTreePath = sb.toString();
+
+		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+			getActionableDynamicQuery();
+
+		syncDLObjectActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
+
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					StringBundler sb = new StringBundler(3);
+
+					sb.append(StringPool.PERCENT);
+					sb.append(searchTreePath);
+					sb.append(StringPool.PERCENT);
+
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.like(
+							"treePath", sb.toString()));
+				}
+
+			});
+		syncDLObjectActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<SyncDLObject>() {
+
+				@Override
+				public void performAction(SyncDLObject dependentSyncDLObject)
+					throws PortalException {
+
+					String treePath = dependentSyncDLObject.getTreePath();
+
+					String oldParentTreePath = treePath.substring(
+						0,
+						treePath.indexOf(searchTreePath) +
+							searchTreePath.length());
+
+					treePath = StringUtil.replaceFirst(
+						treePath, oldParentTreePath,
+						parentSyncDLObject.getTreePath());
+
+					dependentSyncDLObject.setTreePath(treePath);
+					dependentSyncDLObject.setUserId(
+						parentSyncDLObject.getUserId());
+					dependentSyncDLObject.setUserName(
+						parentSyncDLObject.getUserName());
+
+					syncDLObjectPersistence.update(dependentSyncDLObject);
+				}
+
+			});
+
+		syncDLObjectActionableDynamicQuery.performActions();
+	}
+
+	@Override
+	public void restoreDependentSyncDLObjects(
+			final SyncDLObject parentSyncDLObject)
+		throws PortalException {
+
+		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+			getActionableDynamicQuery();
+
+		syncDLObjectActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
+
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.eq(
+							"event", SyncConstants.EVENT_TRASH));
+
+					String treePath = parentSyncDLObject.getTreePath();
+
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.like(
+							"treePath", treePath + StringPool.PERCENT));
+				}
+
+			});
+		syncDLObjectActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<SyncDLObject>() {
+
+				@Override
+				public void performAction(SyncDLObject dependentSyncDLObject)
+					throws PortalException {
+
+					dependentSyncDLObject.setUserId(
+						parentSyncDLObject.getUserId());
+					dependentSyncDLObject.setUserName(
+						parentSyncDLObject.getUserName());
+					dependentSyncDLObject.setModifiedTime(
+						parentSyncDLObject.getModifiedTime());
+					dependentSyncDLObject.setEvent(SyncConstants.EVENT_RESTORE);
+
+					syncDLObjectPersistence.update(dependentSyncDLObject);
+				}
+
+			});
+
+		syncDLObjectActionableDynamicQuery.performActions();
+	}
+
+	@Override
+	public void trashDependentSyncDLObjects(
+			final SyncDLObject parentSyncDLObject)
+		throws PortalException {
+
+		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+			getActionableDynamicQuery();
+
+		syncDLObjectActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
+
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.ne(
+							"event", SyncConstants.EVENT_TRASH));
+
+					String treePath = parentSyncDLObject.getTreePath();
+
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.like(
+							"treePath", treePath + StringPool.PERCENT));
+				}
+
+			});
+		syncDLObjectActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<SyncDLObject>() {
+
+				@Override
+				public void performAction(SyncDLObject dependentSyncDLObject)
+					throws PortalException {
+
+					dependentSyncDLObject.setUserId(
+						parentSyncDLObject.getUserId());
+					dependentSyncDLObject.setUserName(
+						parentSyncDLObject.getUserName());
+					dependentSyncDLObject.setEvent(SyncConstants.EVENT_TRASH);
+
+					syncDLObjectPersistence.update(dependentSyncDLObject);
+				}
+
+			});
+
+		syncDLObjectActionableDynamicQuery.performActions();
 	}
 
 	protected boolean isDefaultRepository(long folderId)
