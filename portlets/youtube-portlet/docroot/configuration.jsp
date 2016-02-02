@@ -89,7 +89,8 @@
 
 		if (!/^\d+$/.test(heightNode.val()) || !/^\d+$/.test(widthNode.val())) {
 			alert('Please make sure that both fields are valid numbers.');
-		} else {
+		}
+		else {
 			submitForm(form);
 		}
 	}
@@ -107,14 +108,21 @@
 
 			heightNode.val(dimensions[1]);
 			widthNode.val(dimensions[0]);
-		} else {
-			heightNode.on('keyup', function() {
-				customHeight = heightNode.val();
-			});
+		}
+		else {
+			heightNode.on(
+				'keyup',
+				function() {
+					customHeight = heightNode.val();
+				}
+			);
 
-			widthNode.on('keyup', function() {
-				customWidth = widthNode.val();
-			});
+			widthNode.on(
+				'keyup',
+				function() {
+					customWidth = widthNode.val();
+				}
+			);
 
 			heightNode.val(customHeight);
 			widthNode.val(customWidth);
