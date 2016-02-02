@@ -14,6 +14,8 @@
 
 package com.liferay.mbsubscriptionmanager.util;
 
+import com.liferay.message.boards.kernel.model.MBCategory;
+import com.liferay.message.boards.kernel.service.MBCategoryLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
@@ -22,8 +24,6 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.messageboards.model.MBCategory;
-import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
 
 import java.util.List;
 

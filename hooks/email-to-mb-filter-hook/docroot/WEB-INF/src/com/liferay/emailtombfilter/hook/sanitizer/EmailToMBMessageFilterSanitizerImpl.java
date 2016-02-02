@@ -15,6 +15,7 @@
 package com.liferay.emailtombfilter.hook.sanitizer;
 
 import com.liferay.emailtombfilter.util.PortletPropsValues;
+import com.liferay.message.boards.kernel.model.MBMessage;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
@@ -23,7 +24,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.messageboards.model.MBMessage;
 
 import java.io.IOException;
 import java.io.InputStream;

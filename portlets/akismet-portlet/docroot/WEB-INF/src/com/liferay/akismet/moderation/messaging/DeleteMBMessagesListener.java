@@ -15,6 +15,9 @@
 package com.liferay.akismet.moderation.messaging;
 
 import com.liferay.akismet.util.AkismetUtil;
+import com.liferay.message.boards.kernel.exception.NoSuchMessageException;
+import com.liferay.message.boards.kernel.model.MBMessage;
+import com.liferay.message.boards.kernel.service.MBMessageLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -25,9 +28,6 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.messageboards.exception.NoSuchMessageException;
-import com.liferay.portlet.messageboards.model.MBMessage;
-import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import java.util.List;
 

@@ -16,6 +16,7 @@ package com.liferay.akismet.util;
 
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
+import com.liferay.message.boards.kernel.model.MBMessage;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
@@ -39,7 +40,6 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.service.WikiPageLocalServiceUtil;
 import com.liferay.wiki.util.comparator.PageVersionComparator;
