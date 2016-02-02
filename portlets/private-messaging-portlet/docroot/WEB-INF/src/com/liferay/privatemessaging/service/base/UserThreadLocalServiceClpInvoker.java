@@ -132,14 +132,14 @@ public class UserThreadLocalServiceClpInvoker {
 		_methodParameterTypes43 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.util.List",
-				"com.liferay.portal.theme.ThemeDisplay"
+				"com.liferay.portal.kernel.theme.ThemeDisplay"
 			};
 
 		_methodName44 = "addPrivateMessageBranch";
 
 		_methodParameterTypes44 = new String[] {
 				"long", "long", "java.lang.String", "java.util.List",
-				"com.liferay.portal.theme.ThemeDisplay"
+				"com.liferay.portal.kernel.theme.ThemeDisplay"
 			};
 
 		_methodName45 = "addUserThread";
@@ -317,7 +317,7 @@ public class UserThreadLocalServiceClpInvoker {
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4],
 				(java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>>)arguments[5],
-				(com.liferay.portal.theme.ThemeDisplay)arguments[6]);
+				(com.liferay.portal.kernel.theme.ThemeDisplay)arguments[6]);
 		}
 
 		if (_methodName44.equals(name) &&
@@ -326,7 +326,7 @@ public class UserThreadLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
 				(java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>>)arguments[3],
-				(com.liferay.portal.theme.ThemeDisplay)arguments[4]);
+				(com.liferay.portal.kernel.theme.ThemeDisplay)arguments[4]);
 		}
 
 		if (_methodName45.equals(name) &&

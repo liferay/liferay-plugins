@@ -14,10 +14,10 @@
 
 package com.liferay.alloy.mvc;
 
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
-import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;

@@ -111,7 +111,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	@Override
 	public java.lang.String getGroupKBArticlesRSS(int status, int rssDelta,
 		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.getGroupKBArticlesRSS(status, rssDelta,
 			rssDisplayStyle, rssFormat, themeDisplay);
@@ -150,7 +150,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	public java.lang.String getKBArticleRSS(long resourcePrimKey, int status,
 		int rssDelta, java.lang.String rssDisplayStyle,
 		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.getKBArticleRSS(resourcePrimKey, status,
 			rssDelta, rssDisplayStyle, rssFormat, themeDisplay);

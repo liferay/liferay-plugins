@@ -114,7 +114,7 @@ public class KBArticleServiceUtil {
 	public static java.lang.String getGroupKBArticlesRSS(int status,
 		int rssDelta, java.lang.String rssDisplayStyle,
 		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getGroupKBArticlesRSS(status, rssDelta, rssDisplayStyle,
@@ -152,7 +152,7 @@ public class KBArticleServiceUtil {
 	public static java.lang.String getKBArticleRSS(long resourcePrimKey,
 		int status, int rssDelta, java.lang.String rssDisplayStyle,
 		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .getKBArticleRSS(resourcePrimKey, status, rssDelta,

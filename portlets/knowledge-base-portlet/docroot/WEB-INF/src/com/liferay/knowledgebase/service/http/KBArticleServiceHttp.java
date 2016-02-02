@@ -344,7 +344,7 @@ public class KBArticleServiceHttp {
 	public static java.lang.String getGroupKBArticlesRSS(
 		HttpPrincipal httpPrincipal, int status, int rssDelta,
 		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBArticleServiceUtil.class,
@@ -472,7 +472,7 @@ public class KBArticleServiceHttp {
 		HttpPrincipal httpPrincipal, long resourcePrimKey, int status,
 		int rssDelta, java.lang.String rssDisplayStyle,
 		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBArticleServiceUtil.class,
@@ -1211,7 +1211,7 @@ public class KBArticleServiceHttp {
 		};
 	private static final Class<?>[] _getGroupKBArticlesRSSParameterTypes9 = new Class[] {
 			int.class, int.class, java.lang.String.class, java.lang.String.class,
-			com.liferay.portal.theme.ThemeDisplay.class
+			com.liferay.portal.kernel.theme.ThemeDisplay.class
 		};
 	private static final Class<?>[] _getKBArticleParameterTypes10 = new Class[] {
 			long.class, int.class
@@ -1228,7 +1228,8 @@ public class KBArticleServiceHttp {
 		};
 	private static final Class<?>[] _getKBArticleRSSParameterTypes13 = new Class[] {
 			long.class, int.class, int.class, java.lang.String.class,
-			java.lang.String.class, com.liferay.portal.theme.ThemeDisplay.class
+			java.lang.String.class,
+			com.liferay.portal.kernel.theme.ThemeDisplay.class
 		};
 	private static final Class<?>[] _getKBArticlesParameterTypes14 = new Class[] {
 			long.class, long.class, int.class, int.class, int.class,
