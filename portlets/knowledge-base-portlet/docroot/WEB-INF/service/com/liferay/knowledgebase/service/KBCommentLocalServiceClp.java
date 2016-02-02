@@ -153,13 +153,13 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		_methodName23 = "getKBComments";
 
 		_methodParameterTypes23 = new String[] {
-				"java.lang.String", "long", "int[][]", "int", "int"
+				"java.lang.String", "long", "int", "int", "int"
 			};
 
 		_methodName24 = "getKBComments";
 
 		_methodParameterTypes24 = new String[] {
-				"java.lang.String", "long", "int", "int", "int"
+				"java.lang.String", "long", "int[][]", "int", "int"
 			};
 
 		_methodName25 = "getKBComments";
@@ -924,8 +924,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
-		java.lang.String className, long classPK, int[] status, int start,
-		int end) {
+		java.lang.String className, long classPK, int status, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -936,7 +935,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 						
 					classPK,
 						
-					ClpSerializer.translateInput(status),
+					status,
 						
 					start,
 						
@@ -960,7 +959,8 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
-		java.lang.String className, long classPK, int status, int start, int end) {
+		java.lang.String className, long classPK, int[] status, int start,
+		int end) {
 		Object returnObj = null;
 
 		try {
@@ -971,7 +971,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 						
 					classPK,
 						
-					status,
+					ClpSerializer.translateInput(status),
 						
 					start,
 						

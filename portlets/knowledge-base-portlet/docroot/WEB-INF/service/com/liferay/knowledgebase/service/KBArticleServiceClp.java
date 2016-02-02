@@ -85,7 +85,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 		_methodParameterTypes9 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.theme.ThemeDisplay"
+				"com.liferay.portal.kernel.theme.ThemeDisplay"
 			};
 
 		_methodName10 = "getKBArticle";
@@ -110,7 +110,7 @@ public class KBArticleServiceClp implements KBArticleService {
 
 		_methodParameterTypes13 = new String[] {
 				"long", "int", "int", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.theme.ThemeDisplay"
+				"com.liferay.portal.kernel.theme.ThemeDisplay"
 			};
 
 		_methodName14 = "getKBArticleSearchDisplay";
@@ -561,7 +561,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	@Override
 	public java.lang.String getGroupKBArticlesRSS(int status, int rssDelta,
 		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -701,7 +701,7 @@ public class KBArticleServiceClp implements KBArticleService {
 	public java.lang.String getKBArticleRSS(long resourcePrimKey, int status,
 		int rssDelta, java.lang.String rssDisplayStyle,
 		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

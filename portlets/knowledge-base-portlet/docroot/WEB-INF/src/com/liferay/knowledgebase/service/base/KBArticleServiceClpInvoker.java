@@ -89,7 +89,7 @@ public class KBArticleServiceClpInvoker {
 
 		_methodParameterTypes114 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.theme.ThemeDisplay"
+				"com.liferay.portal.kernel.theme.ThemeDisplay"
 			};
 
 		_methodName115 = "getKBArticle";
@@ -114,7 +114,7 @@ public class KBArticleServiceClpInvoker {
 
 		_methodParameterTypes118 = new String[] {
 				"long", "int", "int", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.theme.ThemeDisplay"
+				"com.liferay.portal.kernel.theme.ThemeDisplay"
 			};
 
 		_methodName119 = "getKBArticles";
@@ -326,7 +326,7 @@ public class KBArticleServiceClpInvoker {
 			return KBArticleServiceUtil.getGroupKBArticlesRSS(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(com.liferay.portal.theme.ThemeDisplay)arguments[4]);
+				(com.liferay.portal.kernel.theme.ThemeDisplay)arguments[4]);
 		}
 
 		if (_methodName115.equals(name) &&
@@ -357,7 +357,7 @@ public class KBArticleServiceClpInvoker {
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(com.liferay.portal.theme.ThemeDisplay)arguments[5]);
+				(com.liferay.portal.kernel.theme.ThemeDisplay)arguments[5]);
 		}
 
 		if (_methodName119.equals(name) &&
