@@ -19,11 +19,11 @@ import com.liferay.akismet.util.PortletPropsKeys;
 import com.liferay.akismet.util.PrefsPortletPropsUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

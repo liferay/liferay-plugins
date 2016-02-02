@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.so.util.GroupConstants;
 

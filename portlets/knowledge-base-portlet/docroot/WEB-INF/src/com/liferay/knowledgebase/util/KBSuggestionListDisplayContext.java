@@ -24,9 +24,9 @@ import com.liferay.knowledgebase.service.KBCommentServiceUtil;
 import com.liferay.knowledgebase.service.KBFolderLocalServiceUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.theme.PortletDisplay;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.theme.PortletDisplay;
-import com.liferay.portal.theme.ThemeDisplay;
 
 import java.util.List;
 

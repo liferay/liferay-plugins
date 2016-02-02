@@ -17,8 +17,8 @@ package com.liferay.alloy.mvc.jsonwebservice;
 import com.liferay.alloy.mvc.AlloyController;
 import com.liferay.alloy.mvc.AlloyPortlet;
 import com.liferay.portal.kernel.json.JSONSerializable;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.model.Portlet;
-import com.liferay.portal.theme.ThemeDisplay;
 
 /**
  * @author Ethan Bustad
