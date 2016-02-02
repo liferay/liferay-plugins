@@ -469,8 +469,9 @@ public class DownloadServlet extends HttpServlet {
 				}
 			}
 			catch (Exception e) {
-				processException(
-					zipFileId, e.getClass().getName(), errorsJSONObject);
+				Class clazz = e.getClass();
+
+				processException(zipFileId, clazz.getName(), errorsJSONObject);
 			}
 		}
 
