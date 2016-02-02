@@ -112,10 +112,15 @@ public class SyncDLFileVersionDiffCacheModel implements CacheModel<SyncDLFileVer
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		syncDLFileVersionDiffId = objectInput.readLong();
+
 		fileEntryId = objectInput.readLong();
+
 		sourceFileVersionId = objectInput.readLong();
+
 		targetFileVersionId = objectInput.readLong();
+
 		dataFileEntryId = objectInput.readLong();
+
 		size = objectInput.readLong();
 		expirationDate = objectInput.readLong();
 	}
@@ -124,10 +129,15 @@ public class SyncDLFileVersionDiffCacheModel implements CacheModel<SyncDLFileVer
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(syncDLFileVersionDiffId);
+
 		objectOutput.writeLong(fileEntryId);
+
 		objectOutput.writeLong(sourceFileVersionId);
+
 		objectOutput.writeLong(targetFileVersionId);
+
 		objectOutput.writeLong(dataFileEntryId);
+
 		objectOutput.writeLong(size);
 		objectOutput.writeLong(expirationDate);
 	}

@@ -156,6 +156,24 @@ public class SyncDLObjectLocalServiceClpInvoker {
 		_methodName79 = "getSyncDLObjects";
 
 		_methodParameterTypes79 = new String[] { "long", "long" };
+
+		_methodName81 = "moveDependentSyncDLObjects";
+
+		_methodParameterTypes81 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
+
+		_methodName82 = "restoreDependentSyncDLObjects";
+
+		_methodParameterTypes82 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
+
+		_methodName83 = "trashDependentSyncDLObjects";
+
+		_methodParameterTypes83 = new String[] {
+				"com.liferay.sync.model.SyncDLObject"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -317,6 +335,27 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue());
 		}
 
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+			SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName82.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
+			SyncDLObjectLocalServiceUtil.restoreDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName83.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
+			SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+
+			return null;
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -370,4 +409,10 @@ public class SyncDLObjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes78;
 	private String _methodName79;
 	private String[] _methodParameterTypes79;
+	private String _methodName81;
+	private String[] _methodParameterTypes81;
+	private String _methodName82;
+	private String[] _methodParameterTypes82;
+	private String _methodName83;
+	private String[] _methodParameterTypes83;
 }

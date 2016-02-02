@@ -285,6 +285,27 @@ public class SyncDLObjectLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void moveDependentSyncDLObjects(
+		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().moveDependentSyncDLObjects(parentSyncDLObject);
+	}
+
+	public static void restoreDependentSyncDLObjects(
+		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().restoreDependentSyncDLObjects(parentSyncDLObject);
+	}
+
+	public static void trashDependentSyncDLObjects(
+		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().trashDependentSyncDLObjects(parentSyncDLObject);
+	}
+
 	/**
 	* Updates the sync d l object in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*

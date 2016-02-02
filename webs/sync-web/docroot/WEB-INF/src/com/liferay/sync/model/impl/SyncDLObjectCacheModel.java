@@ -268,12 +268,18 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		syncDLObjectId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
+
 		createTime = objectInput.readLong();
+
 		modifiedTime = objectInput.readLong();
+
 		repositoryId = objectInput.readLong();
+
 		parentFolderId = objectInput.readLong();
 		treePath = objectInput.readUTF();
 		name = objectInput.readUTF();
@@ -283,15 +289,19 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		changeLog = objectInput.readUTF();
 		extraSettings = objectInput.readUTF();
 		version = objectInput.readUTF();
+
 		versionId = objectInput.readLong();
+
 		size = objectInput.readLong();
 		checksum = objectInput.readUTF();
 		event = objectInput.readUTF();
 		lastPermissionChangeDate = objectInput.readLong();
 		lockExpirationDate = objectInput.readLong();
+
 		lockUserId = objectInput.readLong();
 		lockUserName = objectInput.readUTF();
 		type = objectInput.readUTF();
+
 		typePK = objectInput.readLong();
 		typeUuid = objectInput.readUTF();
 	}
@@ -300,7 +310,9 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(syncDLObjectId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -311,8 +323,11 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		}
 
 		objectOutput.writeLong(createTime);
+
 		objectOutput.writeLong(modifiedTime);
+
 		objectOutput.writeLong(repositoryId);
+
 		objectOutput.writeLong(parentFolderId);
 
 		if (treePath == null) {
@@ -372,6 +387,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 		}
 
 		objectOutput.writeLong(versionId);
+
 		objectOutput.writeLong(size);
 
 		if (checksum == null) {
@@ -390,6 +406,7 @@ public class SyncDLObjectCacheModel implements CacheModel<SyncDLObject>,
 
 		objectOutput.writeLong(lastPermissionChangeDate);
 		objectOutput.writeLong(lockExpirationDate);
+
 		objectOutput.writeLong(lockUserId);
 
 		if (lockUserName == null) {
