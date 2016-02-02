@@ -172,8 +172,7 @@ public class SyncDLObjectLocalServiceImpl
 			}
 		}
 
-		if ((event.equals(SyncConstants.EVENT_DELETE) ||
-			 event.equals(SyncConstants.EVENT_TRASH)) &&
+		if (event.equals(SyncConstants.EVENT_DELETE) &&
 			!type.equals(SyncConstants.TYPE_FOLDER)) {
 
 			try {
