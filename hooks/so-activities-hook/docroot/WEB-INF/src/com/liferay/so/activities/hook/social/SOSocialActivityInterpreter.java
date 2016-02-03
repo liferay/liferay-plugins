@@ -48,8 +48,8 @@ import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
-import com.liferay.portlet.trash.util.TrashUtil;
 import com.liferay.so.activities.util.PortletPropsValues;
+import com.liferay.trash.kernel.util.TrashUtil;
 import com.liferay.wiki.model.WikiPageResource;
 
 import java.text.DateFormat;

@@ -64,7 +64,6 @@ import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
-import com.liferay.portlet.trash.util.TrashUtil;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
@@ -75,6 +74,7 @@ import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
 import com.liferay.sync.util.comparator.SyncDLObjectModifiedTimeComparator;
+import com.liferay.trash.kernel.util.TrashUtil;
 
 import java.io.File;
 import java.io.InputStream;
