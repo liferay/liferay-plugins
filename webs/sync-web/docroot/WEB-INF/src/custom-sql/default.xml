@@ -27,8 +27,8 @@
 			WHERE
 				(companyId = ?) AND
 				(
-					(name = CAST_TEXT('com.liferay.portlet.documentlibrary.model.DLFileEntry')) OR
-					(name = CAST_TEXT('com.liferay.portlet.documentlibrary.model.DLFolder'))
+					(name = CAST_TEXT('com.liferay.document.library.kernel.model.DLFileEntry')) OR
+					(name = CAST_TEXT('com.liferay.document.library.kernel.model.DLFolder'))
 				) AND
 				(scope = ?) AND
 				[$TYPE_PKS$] AND
