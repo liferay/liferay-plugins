@@ -104,7 +104,7 @@
 		if (annotationsNode && closedCaptioningNode && enableKeyboardControlsNode && startTimeNode) {
 			var playerOptions = {
 				cc_load_policy: closedCaptioningNode.val(),
-				disablekb: !enableKeyboardControlsNode.get('checked'),
+				disablekb: (enableKeyboardControlsNode.val()==="false").toString(),
 				iv_load_policy: annotationsNode.val(),
 				start: startTimeNode.val()
 			};
