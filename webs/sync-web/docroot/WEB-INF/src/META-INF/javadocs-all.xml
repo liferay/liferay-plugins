@@ -370,6 +370,19 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+	</javadoc>
+	<javadoc>
+		<name>SyncConstants</name>
+		<type>com.liferay.sync.model.SyncDLObjectConstants</type>
+		<author><![CDATA[Dennis Ju]]></author>
+		<field>
+			<name>TYPE_PRIVATE_WORKING_COPY</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>SyncDLFileVersionDiffImpl</name>
+		<type>com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl</type>
+		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<method>
 			<name>writeDeltaBlocks</name>
 			<throws>

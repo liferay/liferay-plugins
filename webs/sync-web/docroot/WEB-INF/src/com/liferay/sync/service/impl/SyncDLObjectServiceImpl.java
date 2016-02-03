@@ -67,9 +67,9 @@ import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
 import com.liferay.portlet.trash.util.TrashUtil;
-import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.model.SyncDLObjectUpdate;
 import com.liferay.sync.service.base.SyncDLObjectServiceBaseImpl;
 import com.liferay.sync.util.JSONWebServiceActionParametersMap;
@@ -125,7 +125,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				repositoryId, folderId, sourceFileName, mimeType, title,
 				description, changeLog, file, serviceContext);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_ADD);
+			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_ADD);
 		}
 		catch (PortalException pe) {
 			if (pe instanceof DuplicateFileException) {
@@ -167,7 +167,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				repositoryId, parentFolderId, name, description,
 				serviceContext);
 
-			return toSyncDLObject(folder, SyncConstants.EVENT_ADD);
+			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_ADD);
 		}
 		catch (PortalException pe) {
 			if (pe instanceof DuplicateFolderNameException) {
@@ -201,7 +201,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
 			return toSyncDLObject(
-				fileEntry, SyncConstants.EVENT_CANCEL_CHECK_OUT);
+				fileEntry, SyncDLObjectConstants.EVENT_CANCEL_CHECK_OUT);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -224,7 +224,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_CHECK_IN);
+			return toSyncDLObject(
+				fileEntry, SyncDLObjectConstants.EVENT_CHECK_IN);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -245,7 +246,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_CHECK_OUT);
+			return toSyncDLObject(
+				fileEntry, SyncDLObjectConstants.EVENT_CHECK_OUT);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -266,7 +268,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			fileEntry = dlAppService.checkOutFileEntry(
 				fileEntryId, owner, expirationTime, serviceContext);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_CHECK_OUT);
+			return toSyncDLObject(
+				fileEntry, SyncDLObjectConstants.EVENT_CHECK_OUT);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -303,7 +306,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				fileVersion.getContentStream(false), sourceFileEntry.getSize(),
 				serviceContext);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_ADD);
+			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_ADD);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -321,7 +324,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			List<SyncDLObject> syncDLObjects =
 				syncDLObjectFinder.findByModifiedTime(
-					-1, repositoryId, 0, SyncConstants.TYPE_FOLDER,
+					-1, repositoryId, 0, SyncDLObjectConstants.TYPE_FOLDER,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			return checkSyncDLObjects(syncDLObjects, repositoryId, 0);
@@ -342,7 +345,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			FileEntry fileEntry = dlAppService.getFileEntry(
 				repositoryId, folderId, title);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_GET);
+			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_GET);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -365,7 +368,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			for (FileEntry fileEntry : fileEntries) {
 				SyncDLObject syncDLObject = toSyncDLObject(
-					fileEntry, SyncConstants.EVENT_GET);
+					fileEntry, SyncDLObjectConstants.EVENT_GET);
 
 				syncDLObjects.add(syncDLObject);
 			}
@@ -392,7 +395,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				return null;
 			}
 
-			return toSyncDLObject(folder, SyncConstants.EVENT_GET);
+			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_GET);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -414,7 +417,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				return null;
 			}
 
-			return toSyncDLObject(folder, SyncConstants.EVENT_GET);
+			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_GET);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -441,7 +444,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 
 				SyncDLObject syncDLObject = toSyncDLObject(
-					folder, SyncConstants.EVENT_GET);
+					folder, SyncDLObjectConstants.EVENT_GET);
 
 				syncDLObjects.add(syncDLObject);
 			}
@@ -567,7 +570,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			}
 			else {
 				events = new String[] {
-					SyncConstants.EVENT_DELETE, SyncConstants.EVENT_TRASH
+					SyncDLObjectConstants.EVENT_DELETE,
+					SyncDLObjectConstants.EVENT_TRASH
 				};
 			}
 
@@ -746,7 +750,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			fileEntry = dlAppService.moveFileEntry(
 				fileEntryId, newFolderId, serviceContext);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_MOVE);
+			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_MOVE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -770,7 +774,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			fileEntry = dlAppService.moveFileEntryToTrash(fileEntryId);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_TRASH);
+			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_TRASH);
 		}
 		catch (NoSuchFileEntryException nsfee) {
 			return null;
@@ -793,7 +797,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			folder = dlAppService.moveFolder(
 				folderId, parentFolderId, serviceContext);
 
-			return toSyncDLObject(folder, SyncConstants.EVENT_MOVE);
+			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_MOVE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -817,7 +821,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			folder = dlAppService.moveFolderToTrash(folderId);
 
-			return toSyncDLObject(folder, SyncConstants.EVENT_TRASH);
+			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_TRASH);
 		}
 		catch (NoSuchFolderException nsfe) {
 			return null;
@@ -891,7 +895,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_RESTORE);
+			return toSyncDLObject(
+				fileEntry, SyncDLObjectConstants.EVENT_RESTORE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -911,7 +916,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			folder = dlAppLocalService.getFolder(folderId);
 
-			return toSyncDLObject(folder, SyncConstants.EVENT_RESTORE);
+			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_RESTORE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -1002,7 +1007,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				fileEntryId, sourceFileName, mimeType, title, description,
 				changeLog, majorVersion, file, serviceContext);
 
-			return toSyncDLObject(fileEntry, SyncConstants.EVENT_UPDATE);
+			return toSyncDLObject(
+				fileEntry, SyncDLObjectConstants.EVENT_UPDATE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -1023,7 +1029,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			folder = dlAppService.updateFolder(
 				folderId, name, description, serviceContext);
 
-			return toSyncDLObject(folder, SyncConstants.EVENT_UPDATE);
+			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_UPDATE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
@@ -1103,8 +1109,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			String event = syncDLObject.getEvent();
 
-			if (event.equals(SyncConstants.EVENT_DELETE) ||
-				event.equals(SyncConstants.EVENT_TRASH) ||
+			if (event.equals(SyncDLObjectConstants.EVENT_DELETE) ||
+				event.equals(SyncDLObjectConstants.EVENT_TRASH) ||
 				hasPermission(
 					checkedTypePKs, syncDLObject, hasFileModelPermission,
 					hasFolderModelPermission)) {
@@ -1120,7 +1126,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			if ((lastPermissionChangeDate != null) &&
 				lastPermissionChangeDate.after(lastAccessDate)) {
 
-				syncDLObject.setEvent(SyncConstants.EVENT_DELETE);
+				syncDLObject.setEvent(SyncDLObjectConstants.EVENT_DELETE);
 
 				checkedSyncDLObjects.add(syncDLObject);
 			}
@@ -1227,9 +1233,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		String type = syncDLObject.getType();
 
-		if ((!type.equals(SyncConstants.TYPE_FILE) ||
+		if ((!type.equals(SyncDLObjectConstants.TYPE_FILE) ||
 			 !hasFileModelPermission) &&
-			(!type.equals(SyncConstants.TYPE_FOLDER) ||
+			(!type.equals(SyncDLObjectConstants.TYPE_FOLDER) ||
 			 !hasFolderModelPermission) &&
 			!checkedTypePKs.contains(syncDLObject.getTypePK())) {
 

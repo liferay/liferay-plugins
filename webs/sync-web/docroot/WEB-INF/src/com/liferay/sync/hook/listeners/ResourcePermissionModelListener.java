@@ -23,8 +23,8 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
-import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 
 import java.util.Date;
@@ -47,12 +47,12 @@ public class ResourcePermissionModelListener
 
 			if (modelName.equals(DLFileEntry.class.getName())) {
 				syncDLObject = SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-					SyncConstants.TYPE_FILE,
+					SyncDLObjectConstants.TYPE_FILE,
 					GetterUtil.getLong(resourcePermission.getPrimKey()));
 			}
 			else if (modelName.equals(DLFolder.class.getName())) {
 				syncDLObject = SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-					SyncConstants.TYPE_FOLDER,
+					SyncDLObjectConstants.TYPE_FOLDER,
 					GetterUtil.getLong(resourcePermission.getPrimKey()));
 			}
 
@@ -92,7 +92,7 @@ public class ResourcePermissionModelListener
 
 		String type = syncDLObject.getType();
 
-		if (!type.equals(SyncConstants.TYPE_FOLDER)) {
+		if (!type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
 			return;
 		}
 

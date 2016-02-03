@@ -19,7 +19,7 @@ import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
 /**
  * @author Dennis Ju
  */
-public class SyncConstants extends DLSyncConstants {
+public class SyncDLObjectConstants extends DLSyncConstants {
 
 	public static final String EVENT_RESTORE = EVENT_RESTORE_FROM_TRASH;
 

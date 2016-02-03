@@ -17,8 +17,8 @@ package com.liferay.sync.hook.upgrade.v1_0_2;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 
 import java.util.List;
@@ -33,9 +33,11 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		DynamicQuery dynamicQuery = SyncDLObjectLocalServiceUtil.dynamicQuery();
 
 		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq("event", SyncConstants.EVENT_MOVE));
+			RestrictionsFactoryUtil.eq(
+				"event", SyncDLObjectConstants.EVENT_MOVE));
 		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq("type", SyncConstants.TYPE_FOLDER));
+			RestrictionsFactoryUtil.eq(
+				"type", SyncDLObjectConstants.TYPE_FOLDER));
 
 		List<SyncDLObject> syncDLObjects =
 			SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
@@ -48,9 +50,11 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		dynamicQuery = SyncDLObjectLocalServiceUtil.dynamicQuery();
 
 		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq("event", SyncConstants.EVENT_TRASH));
+			RestrictionsFactoryUtil.eq(
+				"event", SyncDLObjectConstants.EVENT_TRASH));
 		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq("type", SyncConstants.TYPE_FOLDER));
+			RestrictionsFactoryUtil.eq(
+				"type", SyncDLObjectConstants.TYPE_FOLDER));
 
 		syncDLObjects = SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
 
