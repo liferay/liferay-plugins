@@ -27,7 +27,9 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.contacts.model.Entry" %><%@
+<%@ page import="com.liferay.asset.kernel.model.AssetTag" %><%@
+page import="com.liferay.asset.kernel.service.AssetTagLocalServiceUtil" %><%@
+page import="com.liferay.contacts.model.Entry" %><%@
 page import="com.liferay.contacts.service.EntryLocalServiceUtil" %><%@
 page import="com.liferay.contacts.util.ContactsConstants" %><%@
 page import="com.liferay.contacts.util.ContactsExtensionsUtil" %><%@
@@ -78,8 +80,6 @@ page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.WebsiteServiceUtil" %><%@
 page import="com.liferay.portal.service.permission.UserPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.asset.model.AssetTag" %><%@
-page import="com.liferay.portlet.asset.service.AssetTagLocalServiceUtil" %><%@
 page import="com.liferay.so.service.SocialOfficeServiceUtil" %><%@
 page import="com.liferay.social.kernel.model.SocialRequestConstants" %><%@
 page import="com.liferay.social.kernel.service.SocialActivityLocalServiceUtil" %><%@

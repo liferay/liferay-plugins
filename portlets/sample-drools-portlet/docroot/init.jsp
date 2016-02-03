@@ -24,7 +24,11 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.bi.rules.Fact" %><%@
+<%@ page import="com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil" %><%@
+page import="com.liferay.asset.kernel.model.AssetEntry" %><%@
+page import="com.liferay.asset.kernel.model.AssetRenderer" %><%@
+page import="com.liferay.asset.kernel.model.AssetRendererFactory" %><%@
+page import="com.liferay.portal.kernel.bi.rules.Fact" %><%@
 page import="com.liferay.portal.kernel.bi.rules.Query" %><%@
 page import="com.liferay.portal.kernel.bi.rules.RulesEngineUtil" %><%@
 page import="com.liferay.portal.kernel.bi.rules.RulesLanguage" %><%@
@@ -49,10 +53,6 @@ page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil" %><%@
-page import="com.liferay.portlet.asset.model.AssetEntry" %><%@
-page import="com.liferay.portlet.asset.model.AssetRenderer" %><%@
-page import="com.liferay.portlet.asset.model.AssetRendererFactory" %><%@
 page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.util.ArrayList" %><%@

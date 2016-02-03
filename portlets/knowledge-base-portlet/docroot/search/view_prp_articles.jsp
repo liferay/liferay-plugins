@@ -52,7 +52,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	%>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portlet.asset.model.AssetEntry"
+		className="com.liferay.asset.kernel.model.AssetEntry"
 		keyProperty="entryId"
 		modelVar="assetEntry"
 	>

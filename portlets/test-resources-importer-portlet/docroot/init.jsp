@@ -22,6 +22,10 @@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.asset.categories.admin.web.constants.AssetCategoriesAdminPortletKeys" %><%@
+page import="com.liferay.asset.kernel.model.AssetCategory" %><%@
+page import="com.liferay.asset.kernel.model.AssetEntry" %><%@
+page import="com.liferay.asset.kernel.model.AssetTag" %><%@
+page import="com.liferay.asset.kernel.service.AssetTagLocalServiceUtil" %><%@
 page import="com.liferay.blogs.kernel.model.BlogsEntry" %><%@
 page import="com.liferay.dynamic.data.lists.model.DDLRecordSet" %><%@
 page import="com.liferay.dynamic.data.mapping.exception.NoSuchTemplateException" %><%@
@@ -70,10 +74,6 @@ page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.LayoutLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.LayoutPrototypeLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.asset.model.AssetCategory" %><%@
-page import="com.liferay.portlet.asset.model.AssetEntry" %><%@
-page import="com.liferay.portlet.asset.model.AssetTag" %><%@
-page import="com.liferay.portlet.asset.service.AssetTagLocalServiceUtil" %><%@
 page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %><%@
 page import="com.liferay.portlet.documentlibrary.model.DLFolder" %><%@
 page import="com.liferay.portlet.documentlibrary.model.DLFolderConstants" %><%@

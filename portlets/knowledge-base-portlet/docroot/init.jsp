@@ -26,6 +26,16 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.admin.kernel.util.PortalSearchApplicationType" %><%@
+page import="com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil" %><%@
+page import="com.liferay.asset.kernel.model.AssetCategory" %><%@
+page import="com.liferay.asset.kernel.model.AssetEntry" %><%@
+page import="com.liferay.asset.kernel.model.AssetRenderer" %><%@
+page import="com.liferay.asset.kernel.model.AssetRendererFactory" %><%@
+page import="com.liferay.asset.kernel.model.AssetVocabulary" %><%@
+page import="com.liferay.asset.kernel.service.AssetCategoryLocalServiceUtil" %><%@
+page import="com.liferay.asset.kernel.service.AssetEntryServiceUtil" %><%@
+page import="com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil" %><%@
+page import="com.liferay.asset.kernel.service.persistence.AssetEntryQuery" %><%@
 page import="com.liferay.blogs.kernel.model.BlogsEntry" %><%@
 page import="com.liferay.journal.model.JournalArticle" %><%@
 page import="com.liferay.knowledgebase.exception.DuplicateKBFolderNameException" %><%@
@@ -127,16 +137,6 @@ page import="com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil" 
 page import="com.liferay.portal.service.permission.GroupPermissionUtil" %><%@
 page import="com.liferay.portal.service.permission.PortletPermissionUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil" %><%@
-page import="com.liferay.portlet.asset.model.AssetCategory" %><%@
-page import="com.liferay.portlet.asset.model.AssetEntry" %><%@
-page import="com.liferay.portlet.asset.model.AssetRenderer" %><%@
-page import="com.liferay.portlet.asset.model.AssetRendererFactory" %><%@
-page import="com.liferay.portlet.asset.model.AssetVocabulary" %><%@
-page import="com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil" %><%@
-page import="com.liferay.portlet.asset.service.AssetEntryServiceUtil" %><%@
-page import="com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil" %><%@
-page import="com.liferay.portlet.asset.service.persistence.AssetEntryQuery" %><%@
 page import="com.liferay.portlet.configuration.kernel.util.PortletConfigurationApplicationType" %><%@
 page import="com.liferay.portlet.documentlibrary.exception.DuplicateFileException" %><%@
 page import="com.liferay.portlet.documentlibrary.exception.FileNameException" %><%@
