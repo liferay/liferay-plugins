@@ -37,3 +37,17 @@ create table SyncDLObject (
 	typePK LONG,
 	typeUuid VARCHAR(75) null
 );
+
+create table SyncDevice (
+	uuid_ VARCHAR(75) null,
+	syncDeviceId LONG not null primary key,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(75) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	type_ VARCHAR(75) null,
+	buildNumber LONG,
+	featureSet INTEGER,
+	status INTEGER
+);

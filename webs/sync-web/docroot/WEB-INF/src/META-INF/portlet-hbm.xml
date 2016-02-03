@@ -2,9 +2,25 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.sync.model.SyncDevice" />
 	<import class="com.liferay.sync.model.SyncDLFileVersionDiff" />
 	<import class="com.liferay.sync.model.SyncDLObject" />
 	<import class="com.liferay.sync.model.SyncPreferences" />
+	<class name="com.liferay.sync.model.impl.SyncDeviceImpl" table="SyncDevice">
+		<id name="syncDeviceId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.StringType" column="type_" />
+		<property name="buildNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="featureSet" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
 	<class name="com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl" table="SyncDLFileVersionDiff">
 		<id name="syncDLFileVersionDiffId" type="long">
 			<generator class="assigned" />

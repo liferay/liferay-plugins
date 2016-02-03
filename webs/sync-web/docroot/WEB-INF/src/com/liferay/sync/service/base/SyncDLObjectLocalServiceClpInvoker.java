@@ -123,13 +123,13 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 
-		_methodName70 = "getOSGiServiceIdentifier";
+		_methodName74 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes70 = new String[] {  };
+		_methodParameterTypes74 = new String[] {  };
 
-		_methodName75 = "addSyncDLObject";
+		_methodName79 = "addSyncDLObject";
 
-		_methodParameterTypes75 = new String[] {
+		_methodParameterTypes79 = new String[] {
 				"long", "long", "java.lang.String", "long", "long", "long",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
@@ -139,39 +139,39 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				"java.lang.String"
 			};
 
-		_methodName76 = "deleteSyncDLObjects";
+		_methodName80 = "deleteSyncDLObjects";
 
-		_methodParameterTypes76 = new String[] {
+		_methodParameterTypes80 = new String[] {
 				"java.lang.String", "java.lang.String"
 			};
 
-		_methodName77 = "fetchSyncDLObject";
+		_methodName81 = "fetchSyncDLObject";
 
-		_methodParameterTypes77 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes81 = new String[] { "java.lang.String", "long" };
 
-		_methodName78 = "getLatestModifiedTime";
+		_methodName82 = "getLatestModifiedTime";
 
-		_methodParameterTypes78 = new String[] {  };
+		_methodParameterTypes82 = new String[] {  };
 
-		_methodName79 = "getSyncDLObjects";
+		_methodName83 = "getSyncDLObjects";
 
-		_methodParameterTypes79 = new String[] { "long", "long" };
+		_methodParameterTypes83 = new String[] { "long", "long" };
 
-		_methodName80 = "moveDependentSyncDLObjects";
+		_methodName84 = "moveDependentSyncDLObjects";
 
-		_methodParameterTypes80 = new String[] {
+		_methodParameterTypes84 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 
-		_methodName81 = "restoreDependentSyncDLObjects";
+		_methodName85 = "restoreDependentSyncDLObjects";
 
-		_methodParameterTypes81 = new String[] {
+		_methodParameterTypes85 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 
-		_methodName82 = "trashDependentSyncDLObjects";
+		_methodName86 = "trashDependentSyncDLObjects";
 
-		_methodParameterTypes82 = new String[] {
+		_methodParameterTypes86 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 	}
@@ -280,13 +280,13 @@ public class SyncDLObjectLocalServiceClpInvoker {
 			return SyncDLObjectLocalServiceUtil.updateSyncDLObject((com.liferay.sync.model.SyncDLObject)arguments[0]);
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return SyncDLObjectLocalServiceUtil.getOSGiServiceIdentifier();
 		}
 
-		if (_methodName75.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
 			return SyncDLObjectLocalServiceUtil.addSyncDLObject(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -310,47 +310,47 @@ public class SyncDLObjectLocalServiceClpInvoker {
 				(java.lang.String)arguments[23]);
 		}
 
-		if (_methodName76.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
+		if (_methodName80.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
 			SyncDLObjectLocalServiceUtil.deleteSyncDLObjects((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1]);
 
 			return null;
 		}
 
-		if (_methodName77.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
+		if (_methodName81.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
 			return SyncDLObjectLocalServiceUtil.fetchSyncDLObject((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName78.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
+		if (_methodName82.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
 			return SyncDLObjectLocalServiceUtil.getLatestModifiedTime();
 		}
 
-		if (_methodName79.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
+		if (_methodName83.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes83, parameterTypes)) {
 			return SyncDLObjectLocalServiceUtil.getSyncDLObjects(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName80.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+		if (_methodName84.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes84, parameterTypes)) {
 			SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName81.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+		if (_methodName85.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes85, parameterTypes)) {
 			SyncDLObjectLocalServiceUtil.restoreDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName82.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes82, parameterTypes)) {
+		if (_methodName86.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
 			SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
 
 			return null;
@@ -397,16 +397,8 @@ public class SyncDLObjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName70;
-	private String[] _methodParameterTypes70;
-	private String _methodName75;
-	private String[] _methodParameterTypes75;
-	private String _methodName76;
-	private String[] _methodParameterTypes76;
-	private String _methodName77;
-	private String[] _methodParameterTypes77;
-	private String _methodName78;
-	private String[] _methodParameterTypes78;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
 	private String _methodName79;
 	private String[] _methodParameterTypes79;
 	private String _methodName80;
@@ -415,4 +407,12 @@ public class SyncDLObjectLocalServiceClpInvoker {
 	private String[] _methodParameterTypes81;
 	private String _methodName82;
 	private String[] _methodParameterTypes82;
+	private String _methodName83;
+	private String[] _methodParameterTypes83;
+	private String _methodName84;
+	private String[] _methodParameterTypes84;
+	private String _methodName85;
+	private String[] _methodParameterTypes85;
+	private String _methodName86;
+	private String[] _methodParameterTypes86;
 }

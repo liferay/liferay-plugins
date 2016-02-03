@@ -18,11 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
-import com.liferay.portal.service.ServiceContext;
-
-import com.liferay.portlet.expando.model.ExpandoBridge;
-
-import java.io.Serializable;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -138,7 +133,7 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	}
 
 	@Override
-	public ExpandoBridge getExpandoBridge() {
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
 		return _syncDLFileVersionDiff.getExpandoBridge();
 	}
 
@@ -173,7 +168,7 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	}
 
 	@Override
-	public Serializable getPrimaryKeyObj() {
+	public java.io.Serializable getPrimaryKeyObj() {
 		return _syncDLFileVersionDiff.getPrimaryKeyObj();
 	}
 
@@ -264,12 +259,14 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+	public void setExpandoBridgeAttributes(
+		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
 		_syncDLFileVersionDiff.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.service.ServiceContext serviceContext) {
 		_syncDLFileVersionDiff.setExpandoBridgeAttributes(serviceContext);
 	}
 
@@ -309,7 +306,7 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	}
 
 	@Override
-	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
+	public void setPrimaryKeyObj(java.io.Serializable primaryKeyObj) {
 		_syncDLFileVersionDiff.setPrimaryKeyObj(primaryKeyObj);
 	}
 

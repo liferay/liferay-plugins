@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="com.liferay.sync.model.SyncDevice">
+		<field name="uuid" type="String" />
+		<field name="syncDeviceId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="type" type="String" />
+		<field name="buildNumber" type="long" />
+		<field name="featureSet" type="int" />
+		<field name="status" type="int" />
+	</model>
 	<model name="com.liferay.sync.model.SyncDLFileVersionDiff">
 		<field name="syncDLFileVersionDiffId" type="long" />
 		<field name="fileEntryId" type="long" />

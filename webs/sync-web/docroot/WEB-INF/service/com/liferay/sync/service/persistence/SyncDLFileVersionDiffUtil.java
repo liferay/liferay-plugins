@@ -24,7 +24,6 @@ import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.sync.model.SyncDLFileVersionDiff;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -287,7 +286,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @return the matching sync d l file version diffs
 	*/
 	public static List<SyncDLFileVersionDiff> findByExpirationDate(
-		Date expirationDate) {
+		java.util.Date expirationDate) {
 		return getPersistence().findByExpirationDate(expirationDate);
 	}
 
@@ -304,7 +303,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @return the range of matching sync d l file version diffs
 	*/
 	public static List<SyncDLFileVersionDiff> findByExpirationDate(
-		Date expirationDate, int start, int end) {
+		java.util.Date expirationDate, int start, int end) {
 		return getPersistence().findByExpirationDate(expirationDate, start, end);
 	}
 
@@ -322,7 +321,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @return the ordered range of matching sync d l file version diffs
 	*/
 	public static List<SyncDLFileVersionDiff> findByExpirationDate(
-		Date expirationDate, int start, int end,
+		java.util.Date expirationDate, int start, int end,
 		OrderByComparator<SyncDLFileVersionDiff> orderByComparator) {
 		return getPersistence()
 				   .findByExpirationDate(expirationDate, start, end,
@@ -344,7 +343,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @return the ordered range of matching sync d l file version diffs
 	*/
 	public static List<SyncDLFileVersionDiff> findByExpirationDate(
-		Date expirationDate, int start, int end,
+		java.util.Date expirationDate, int start, int end,
 		OrderByComparator<SyncDLFileVersionDiff> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
@@ -361,7 +360,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @throws NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	*/
 	public static SyncDLFileVersionDiff findByExpirationDate_First(
-		Date expirationDate,
+		java.util.Date expirationDate,
 		OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException {
 		return getPersistence()
@@ -376,7 +375,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @return the first matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
 	public static SyncDLFileVersionDiff fetchByExpirationDate_First(
-		Date expirationDate,
+		java.util.Date expirationDate,
 		OrderByComparator<SyncDLFileVersionDiff> orderByComparator) {
 		return getPersistence()
 				   .fetchByExpirationDate_First(expirationDate,
@@ -392,7 +391,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @throws NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	*/
 	public static SyncDLFileVersionDiff findByExpirationDate_Last(
-		Date expirationDate,
+		java.util.Date expirationDate,
 		OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException {
 		return getPersistence()
@@ -407,7 +406,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @return the last matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	*/
 	public static SyncDLFileVersionDiff fetchByExpirationDate_Last(
-		Date expirationDate,
+		java.util.Date expirationDate,
 		OrderByComparator<SyncDLFileVersionDiff> orderByComparator) {
 		return getPersistence()
 				   .fetchByExpirationDate_Last(expirationDate, orderByComparator);
@@ -423,7 +422,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @throws NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
 	*/
 	public static SyncDLFileVersionDiff[] findByExpirationDate_PrevAndNext(
-		long syncDLFileVersionDiffId, Date expirationDate,
+		long syncDLFileVersionDiffId, java.util.Date expirationDate,
 		OrderByComparator<SyncDLFileVersionDiff> orderByComparator)
 		throws com.liferay.sync.exception.NoSuchDLFileVersionDiffException {
 		return getPersistence()
@@ -436,7 +435,7 @@ public class SyncDLFileVersionDiffUtil {
 	*
 	* @param expirationDate the expiration date
 	*/
-	public static void removeByExpirationDate(Date expirationDate) {
+	public static void removeByExpirationDate(java.util.Date expirationDate) {
 		getPersistence().removeByExpirationDate(expirationDate);
 	}
 
@@ -446,7 +445,7 @@ public class SyncDLFileVersionDiffUtil {
 	* @param expirationDate the expiration date
 	* @return the number of matching sync d l file version diffs
 	*/
-	public static int countByExpirationDate(Date expirationDate) {
+	public static int countByExpirationDate(java.util.Date expirationDate) {
 		return getPersistence().countByExpirationDate(expirationDate);
 	}
 

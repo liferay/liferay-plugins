@@ -8,3 +8,6 @@ create index IX_57F62914 on SyncDLObject (repositoryId, type_[$COLUMN_LENGTH:75$
 create unique index IX_E3F57BD6 on SyncDLObject (type_[$COLUMN_LENGTH:75$], typePK);
 create index IX_28CD54BB on SyncDLObject (type_[$COLUMN_LENGTH:75$], version[$COLUMN_LENGTH:75$]);
 create index IX_1CCA3B5 on SyncDLObject (version[$COLUMN_LENGTH:75$], type_[$COLUMN_LENGTH:75$]);
+
+create index IX_176DF87B on SyncDevice (companyId, userName[$COLUMN_LENGTH:75$]);
+create index IX_AE38DEAB on SyncDevice (uuid_[$COLUMN_LENGTH:75$], companyId);
