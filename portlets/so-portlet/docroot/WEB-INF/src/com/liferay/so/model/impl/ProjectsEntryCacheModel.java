@@ -167,7 +167,9 @@ public class ProjectsEntryCacheModel implements CacheModel<ProjectsEntry>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		projectsEntryId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
@@ -183,7 +185,9 @@ public class ProjectsEntryCacheModel implements CacheModel<ProjectsEntry>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(projectsEntryId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {

@@ -155,6 +155,7 @@ public class OAuthConsumerCacheModel implements CacheModel<OAuthConsumer>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		oAuthConsumerId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
@@ -169,6 +170,7 @@ public class OAuthConsumerCacheModel implements CacheModel<OAuthConsumer>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(oAuthConsumerId);
+
 		objectOutput.writeLong(companyId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);

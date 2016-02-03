@@ -147,14 +147,18 @@ public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		folderId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		accountId = objectInput.readLong();
 		fullName = objectInput.readUTF();
 		displayName = objectInput.readUTF();
+
 		remoteMessageCount = objectInput.readInt();
 	}
 
@@ -162,7 +166,9 @@ public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(folderId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -174,6 +180,7 @@ public class FolderCacheModel implements CacheModel<Folder>, Externalizable {
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(accountId);
 
 		if (fullName == null) {

@@ -240,7 +240,9 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		accountId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
@@ -249,21 +251,32 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		personalName = objectInput.readUTF();
 		protocol = objectInput.readUTF();
 		incomingHostName = objectInput.readUTF();
+
 		incomingPort = objectInput.readInt();
+
 		incomingSecure = objectInput.readBoolean();
 		outgoingHostName = objectInput.readUTF();
+
 		outgoingPort = objectInput.readInt();
+
 		outgoingSecure = objectInput.readBoolean();
 		login = objectInput.readUTF();
 		password = objectInput.readUTF();
+
 		savePassword = objectInput.readBoolean();
 		signature = objectInput.readUTF();
+
 		useSignature = objectInput.readBoolean();
 		folderPrefix = objectInput.readUTF();
+
 		inboxFolderId = objectInput.readLong();
+
 		draftFolderId = objectInput.readLong();
+
 		sentFolderId = objectInput.readLong();
+
 		trashFolderId = objectInput.readLong();
+
 		defaultSender = objectInput.readBoolean();
 	}
 
@@ -271,7 +284,9 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(accountId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -313,6 +328,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		}
 
 		objectOutput.writeInt(incomingPort);
+
 		objectOutput.writeBoolean(incomingSecure);
 
 		if (outgoingHostName == null) {
@@ -323,6 +339,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		}
 
 		objectOutput.writeInt(outgoingPort);
+
 		objectOutput.writeBoolean(outgoingSecure);
 
 		if (login == null) {
@@ -358,9 +375,13 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		}
 
 		objectOutput.writeLong(inboxFolderId);
+
 		objectOutput.writeLong(draftFolderId);
+
 		objectOutput.writeLong(sentFolderId);
+
 		objectOutput.writeLong(trashFolderId);
+
 		objectOutput.writeBoolean(defaultSender);
 	}
 

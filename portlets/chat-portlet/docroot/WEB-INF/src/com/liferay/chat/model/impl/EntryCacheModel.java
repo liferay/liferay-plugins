@@ -108,10 +108,14 @@ public class EntryCacheModel implements CacheModel<Entry>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		entryId = objectInput.readLong();
+
 		createDate = objectInput.readLong();
+
 		fromUserId = objectInput.readLong();
+
 		toUserId = objectInput.readLong();
 		content = objectInput.readUTF();
+
 		flag = objectInput.readInt();
 	}
 
@@ -119,8 +123,11 @@ public class EntryCacheModel implements CacheModel<Entry>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(entryId);
+
 		objectOutput.writeLong(createDate);
+
 		objectOutput.writeLong(fromUserId);
+
 		objectOutput.writeLong(toUserId);
 
 		if (content == null) {

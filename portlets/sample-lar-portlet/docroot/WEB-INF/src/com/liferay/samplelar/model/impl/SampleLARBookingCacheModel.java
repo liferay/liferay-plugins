@@ -152,9 +152,13 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		sampleLARBookingId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
@@ -174,8 +178,11 @@ public class SampleLARBookingCacheModel implements CacheModel<SampleLARBooking>,
 		}
 
 		objectOutput.writeLong(sampleLARBookingId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {

@@ -113,6 +113,7 @@ public class JIRAChangeGroupCacheModel implements CacheModel<JIRAChangeGroup>,
 		jiraChangeGroupId = objectInput.readLong();
 		jiraUserId = objectInput.readUTF();
 		createDate = objectInput.readLong();
+
 		jiraIssueId = objectInput.readLong();
 	}
 
@@ -129,6 +130,7 @@ public class JIRAChangeGroupCacheModel implements CacheModel<JIRAChangeGroup>,
 		}
 
 		objectOutput.writeLong(createDate);
+
 		objectOutput.writeLong(jiraIssueId);
 	}
 

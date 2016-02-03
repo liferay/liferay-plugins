@@ -163,17 +163,23 @@ public class DefinitionCacheModel implements CacheModel<Definition>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		definitionId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		typeId = objectInput.readLong();
 		manufacturer = objectInput.readUTF();
 		model = objectInput.readUTF();
 		orderDate = objectInput.readLong();
+
 		quantity = objectInput.readInt();
+
 		price = objectInput.readDouble();
 	}
 
@@ -181,8 +187,11 @@ public class DefinitionCacheModel implements CacheModel<Definition>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(definitionId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -194,6 +203,7 @@ public class DefinitionCacheModel implements CacheModel<Definition>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(typeId);
 
 		if (manufacturer == null) {
@@ -211,7 +221,9 @@ public class DefinitionCacheModel implements CacheModel<Definition>,
 		}
 
 		objectOutput.writeLong(orderDate);
+
 		objectOutput.writeInt(quantity);
+
 		objectOutput.writeDouble(price);
 	}
 

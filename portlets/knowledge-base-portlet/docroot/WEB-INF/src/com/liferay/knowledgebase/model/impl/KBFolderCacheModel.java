@@ -173,13 +173,18 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		kbFolderId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		parentKBFolderId = objectInput.readLong();
 		name = objectInput.readUTF();
 		urlTitle = objectInput.readUTF();
@@ -198,8 +203,11 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 		}
 
 		objectOutput.writeLong(kbFolderId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -211,6 +219,7 @@ public class KBFolderCacheModel implements CacheModel<KBFolder>, Externalizable 
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(parentKBFolderId);
 
 		if (name == null) {

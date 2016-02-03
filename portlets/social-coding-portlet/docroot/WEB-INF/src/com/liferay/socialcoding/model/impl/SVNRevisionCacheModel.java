@@ -125,7 +125,9 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		svnRevisionId = objectInput.readLong();
 		svnUserId = objectInput.readUTF();
 		createDate = objectInput.readLong();
+
 		svnRepositoryId = objectInput.readLong();
+
 		revisionNumber = objectInput.readLong();
 		comments = objectInput.readUTF();
 	}
@@ -143,7 +145,9 @@ public class SVNRevisionCacheModel implements CacheModel<SVNRevision>,
 		}
 
 		objectOutput.writeLong(createDate);
+
 		objectOutput.writeLong(svnRepositoryId);
+
 		objectOutput.writeLong(revisionNumber);
 
 		if (comments == null) {

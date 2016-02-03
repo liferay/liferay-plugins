@@ -135,14 +135,20 @@ public class UserThreadCacheModel implements CacheModel<UserThread>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		userThreadId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		mbThreadId = objectInput.readLong();
+
 		topMBMessageId = objectInput.readLong();
+
 		read = objectInput.readBoolean();
+
 		deleted = objectInput.readBoolean();
 	}
 
@@ -150,7 +156,9 @@ public class UserThreadCacheModel implements CacheModel<UserThread>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(userThreadId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -162,9 +170,13 @@ public class UserThreadCacheModel implements CacheModel<UserThread>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(mbThreadId);
+
 		objectOutput.writeLong(topMBMessageId);
+
 		objectOutput.writeBoolean(read);
+
 		objectOutput.writeBoolean(deleted);
 	}
 

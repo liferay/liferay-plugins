@@ -158,8 +158,11 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		wsrpProducerId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
@@ -180,7 +183,9 @@ public class WSRPProducerCacheModel implements CacheModel<WSRPProducer>,
 		}
 
 		objectOutput.writeLong(wsrpProducerId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);

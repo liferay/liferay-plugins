@@ -255,31 +255,47 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		kbArticleId = objectInput.readLong();
+
 		resourcePrimKey = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		rootResourcePrimKey = objectInput.readLong();
+
 		parentResourceClassNameId = objectInput.readLong();
+
 		parentResourcePrimKey = objectInput.readLong();
+
 		kbFolderId = objectInput.readLong();
+
 		version = objectInput.readInt();
 		title = objectInput.readUTF();
 		urlTitle = objectInput.readUTF();
 		content = objectInput.readUTF();
 		description = objectInput.readUTF();
+
 		priority = objectInput.readDouble();
 		sections = objectInput.readUTF();
+
 		viewCount = objectInput.readInt();
+
 		latest = objectInput.readBoolean();
+
 		main = objectInput.readBoolean();
 		sourceURL = objectInput.readUTF();
 		lastPublishDate = objectInput.readLong();
+
 		status = objectInput.readInt();
+
 		statusByUserId = objectInput.readLong();
 		statusByUserName = objectInput.readUTF();
 		statusDate = objectInput.readLong();
@@ -296,9 +312,13 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		}
 
 		objectOutput.writeLong(kbArticleId);
+
 		objectOutput.writeLong(resourcePrimKey);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -310,10 +330,15 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(rootResourcePrimKey);
+
 		objectOutput.writeLong(parentResourceClassNameId);
+
 		objectOutput.writeLong(parentResourcePrimKey);
+
 		objectOutput.writeLong(kbFolderId);
+
 		objectOutput.writeInt(version);
 
 		if (title == null) {
@@ -354,7 +379,9 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		}
 
 		objectOutput.writeInt(viewCount);
+
 		objectOutput.writeBoolean(latest);
+
 		objectOutput.writeBoolean(main);
 
 		if (sourceURL == null) {
@@ -365,7 +392,9 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		}
 
 		objectOutput.writeLong(lastPublishDate);
+
 		objectOutput.writeInt(status);
+
 		objectOutput.writeLong(statusByUserId);
 
 		if (statusByUserName == null) {

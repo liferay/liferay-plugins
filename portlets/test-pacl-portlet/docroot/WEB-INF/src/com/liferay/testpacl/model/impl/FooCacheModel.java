@@ -158,14 +158,19 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		fooId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 		field1 = objectInput.readUTF();
+
 		field2 = objectInput.readBoolean();
+
 		field3 = objectInput.readInt();
 		field4 = objectInput.readLong();
 		field5 = objectInput.readUTF();
@@ -175,8 +180,11 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(fooId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -197,6 +205,7 @@ public class FooCacheModel implements CacheModel<Foo>, Externalizable {
 		}
 
 		objectOutput.writeBoolean(field2);
+
 		objectOutput.writeInt(field3);
 		objectOutput.writeLong(field4);
 

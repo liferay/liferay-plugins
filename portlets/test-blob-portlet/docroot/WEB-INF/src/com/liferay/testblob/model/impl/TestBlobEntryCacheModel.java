@@ -95,6 +95,7 @@ public class TestBlobEntryCacheModel implements CacheModel<TestBlobEntry>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		testBlobEntryId = objectInput.readLong();
 	}
 

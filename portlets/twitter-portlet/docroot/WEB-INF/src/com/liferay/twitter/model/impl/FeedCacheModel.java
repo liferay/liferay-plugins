@@ -138,13 +138,17 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		feedId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		twitterUserId = objectInput.readLong();
 		twitterScreenName = objectInput.readUTF();
+
 		lastStatusId = objectInput.readLong();
 	}
 
@@ -152,7 +156,9 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(feedId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -164,6 +170,7 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(twitterUserId);
 
 		if (twitterScreenName == null) {

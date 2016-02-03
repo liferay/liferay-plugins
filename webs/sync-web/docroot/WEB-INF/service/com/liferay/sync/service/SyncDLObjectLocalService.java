@@ -249,13 +249,13 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	public void moveDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void restoreDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	public void trashDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
-		throws PortalException, SystemException;
+		throws PortalException;
 
 	/**
 	* Updates the sync d l object in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

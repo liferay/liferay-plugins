@@ -150,10 +150,13 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		wsrpConsumerPortletId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		wsrpConsumerId = objectInput.readLong();
 		name = objectInput.readUTF();
 		portletHandle = objectInput.readUTF();
@@ -171,9 +174,11 @@ public class WSRPConsumerPortletCacheModel implements CacheModel<WSRPConsumerPor
 		}
 
 		objectOutput.writeLong(wsrpConsumerPortletId);
+
 		objectOutput.writeLong(companyId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(wsrpConsumerId);
 
 		if (name == null) {

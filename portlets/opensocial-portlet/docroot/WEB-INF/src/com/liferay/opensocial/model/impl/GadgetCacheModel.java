@@ -154,7 +154,9 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		gadgetId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
@@ -175,6 +177,7 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 		}
 
 		objectOutput.writeLong(gadgetId);
+
 		objectOutput.writeLong(companyId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);

@@ -150,6 +150,7 @@ public class JIRAActionCacheModel implements CacheModel<JIRAAction>,
 		jiraUserId = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		jiraIssueId = objectInput.readLong();
 		type = objectInput.readUTF();
 		body = objectInput.readUTF();
@@ -170,6 +171,7 @@ public class JIRAActionCacheModel implements CacheModel<JIRAAction>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(jiraIssueId);
 
 		if (type == null) {

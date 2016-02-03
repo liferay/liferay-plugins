@@ -167,18 +167,26 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		kbCommentId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		classNameId = objectInput.readLong();
+
 		classPK = objectInput.readLong();
 		content = objectInput.readUTF();
+
 		userRating = objectInput.readInt();
 		lastPublishDate = objectInput.readLong();
+
 		status = objectInput.readInt();
 	}
 
@@ -193,8 +201,11 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 		}
 
 		objectOutput.writeLong(kbCommentId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -206,7 +217,9 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(classNameId);
+
 		objectOutput.writeLong(classPK);
 
 		if (content == null) {
@@ -218,6 +231,7 @@ public class KBCommentCacheModel implements CacheModel<KBComment>,
 
 		objectOutput.writeInt(userRating);
 		objectOutput.writeLong(lastPublishDate);
+
 		objectOutput.writeInt(status);
 	}
 

@@ -874,8 +874,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	@Override
 	public void moveDependentSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName25,
 				_methodParameterTypes25,
@@ -886,10 +885,6 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -905,8 +900,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	@Override
 	public void restoreDependentSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName26,
 				_methodParameterTypes26,
@@ -917,10 +911,6 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -936,8 +926,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	@Override
 	public void trashDependentSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName27,
 				_methodParameterTypes27,
@@ -948,10 +937,6 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

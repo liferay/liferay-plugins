@@ -147,14 +147,18 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		assetId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		definitionId = objectInput.readLong();
 		serialNumber = objectInput.readUTF();
 		inactiveDate = objectInput.readLong();
+
 		active = objectInput.readBoolean();
 	}
 
@@ -162,7 +166,9 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(assetId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -174,6 +180,7 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(definitionId);
 
 		if (serialNumber == null) {
@@ -184,6 +191,7 @@ public class AssetCacheModel implements CacheModel<Asset>, Externalizable {
 		}
 
 		objectOutput.writeLong(inactiveDate);
+
 		objectOutput.writeBoolean(active);
 	}
 

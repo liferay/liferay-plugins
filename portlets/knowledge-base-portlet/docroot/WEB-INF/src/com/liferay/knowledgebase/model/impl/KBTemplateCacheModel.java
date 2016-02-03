@@ -161,9 +161,13 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
+
 		kbTemplateId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
@@ -184,8 +188,11 @@ public class KBTemplateCacheModel implements CacheModel<KBTemplate>,
 		}
 
 		objectOutput.writeLong(kbTemplateId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {

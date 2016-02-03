@@ -170,7 +170,9 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		jiraIssueId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		projectId = objectInput.readLong();
+
 		issueNumber = objectInput.readLong();
 		summary = objectInput.readUTF();
 		description = objectInput.readUTF();
@@ -186,7 +188,9 @@ public class JIRAIssueCacheModel implements CacheModel<JIRAIssue>,
 		objectOutput.writeLong(jiraIssueId);
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(projectId);
+
 		objectOutput.writeLong(issueNumber);
 
 		if (summary == null) {

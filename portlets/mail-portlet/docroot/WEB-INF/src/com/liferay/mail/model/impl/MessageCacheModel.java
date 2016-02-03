@@ -225,12 +225,16 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		messageId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		accountId = objectInput.readLong();
+
 		folderId = objectInput.readLong();
 		sender = objectInput.readUTF();
 		to = objectInput.readUTF();
@@ -241,7 +245,9 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 		preview = objectInput.readUTF();
 		body = objectInput.readUTF();
 		flags = objectInput.readUTF();
+
 		size = objectInput.readLong();
+
 		remoteMessageId = objectInput.readLong();
 		contentType = objectInput.readUTF();
 	}
@@ -250,7 +256,9 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(messageId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -262,7 +270,9 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(accountId);
+
 		objectOutput.writeLong(folderId);
 
 		if (sender == null) {
@@ -324,6 +334,7 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 		}
 
 		objectOutput.writeLong(size);
+
 		objectOutput.writeLong(remoteMessageId);
 
 		if (contentType == null) {

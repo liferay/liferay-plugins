@@ -124,13 +124,19 @@ public class AttachmentCacheModel implements CacheModel<Attachment>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		attachmentId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
+
 		accountId = objectInput.readLong();
+
 		folderId = objectInput.readLong();
+
 		messageId = objectInput.readLong();
 		contentPath = objectInput.readUTF();
 		fileName = objectInput.readUTF();
+
 		size = objectInput.readLong();
 	}
 
@@ -138,10 +144,15 @@ public class AttachmentCacheModel implements CacheModel<Attachment>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(attachmentId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
+
 		objectOutput.writeLong(accountId);
+
 		objectOutput.writeLong(folderId);
+
 		objectOutput.writeLong(messageId);
 
 		if (contentPath == null) {

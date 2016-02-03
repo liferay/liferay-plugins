@@ -119,6 +119,7 @@ public class PushNotificationsDeviceCacheModel implements CacheModel<PushNotific
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		pushNotificationsDeviceId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		platform = objectInput.readUTF();
@@ -129,6 +130,7 @@ public class PushNotificationsDeviceCacheModel implements CacheModel<PushNotific
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(pushNotificationsDeviceId);
+
 		objectOutput.writeLong(userId);
 		objectOutput.writeLong(createDate);
 

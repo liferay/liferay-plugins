@@ -152,11 +152,14 @@ public class CheckoutCacheModel implements CacheModel<Checkout>, Externalizable 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		checkoutId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+
 		assetId = objectInput.readLong();
 		checkOutDate = objectInput.readLong();
 		expectedCheckInDate = objectInput.readLong();
@@ -167,7 +170,9 @@ public class CheckoutCacheModel implements CacheModel<Checkout>, Externalizable 
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(checkoutId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -179,6 +184,7 @@ public class CheckoutCacheModel implements CacheModel<Checkout>, Externalizable 
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+
 		objectOutput.writeLong(assetId);
 		objectOutput.writeLong(checkOutDate);
 		objectOutput.writeLong(expectedCheckInDate);

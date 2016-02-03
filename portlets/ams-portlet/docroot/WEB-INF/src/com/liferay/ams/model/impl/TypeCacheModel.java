@@ -98,6 +98,7 @@ public class TypeCacheModel implements CacheModel<Type>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		typeId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
 		name = objectInput.readUTF();
 	}
@@ -106,6 +107,7 @@ public class TypeCacheModel implements CacheModel<Type>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(typeId);
+
 		objectOutput.writeLong(groupId);
 
 		if (name == null) {

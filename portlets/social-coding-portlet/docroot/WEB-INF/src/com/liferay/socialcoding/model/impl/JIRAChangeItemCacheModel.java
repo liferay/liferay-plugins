@@ -135,6 +135,7 @@ public class JIRAChangeItemCacheModel implements CacheModel<JIRAChangeItem>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		jiraChangeItemId = objectInput.readLong();
+
 		jiraChangeGroupId = objectInput.readLong();
 		field = objectInput.readUTF();
 		oldValue = objectInput.readUTF();
@@ -147,6 +148,7 @@ public class JIRAChangeItemCacheModel implements CacheModel<JIRAChangeItem>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(jiraChangeItemId);
+
 		objectOutput.writeLong(jiraChangeGroupId);
 
 		if (field == null) {

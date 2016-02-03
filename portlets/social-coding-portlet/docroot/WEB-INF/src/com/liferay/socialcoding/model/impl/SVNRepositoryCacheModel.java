@@ -101,6 +101,7 @@ public class SVNRepositoryCacheModel implements CacheModel<SVNRepository>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		svnRepositoryId = objectInput.readLong();
 		url = objectInput.readUTF();
+
 		revisionNumber = objectInput.readLong();
 	}
 

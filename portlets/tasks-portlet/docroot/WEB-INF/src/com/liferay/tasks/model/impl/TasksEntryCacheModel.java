@@ -166,18 +166,25 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		tasksEntryId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 		title = objectInput.readUTF();
+
 		priority = objectInput.readInt();
+
 		assigneeUserId = objectInput.readLong();
+
 		resolverUserId = objectInput.readLong();
 		dueDate = objectInput.readLong();
 		finishDate = objectInput.readLong();
+
 		status = objectInput.readInt();
 	}
 
@@ -185,8 +192,11 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(tasksEntryId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 
 		if (userName == null) {
@@ -207,10 +217,13 @@ public class TasksEntryCacheModel implements CacheModel<TasksEntry>,
 		}
 
 		objectOutput.writeInt(priority);
+
 		objectOutput.writeLong(assigneeUserId);
+
 		objectOutput.writeLong(resolverUserId);
 		objectOutput.writeLong(dueDate);
 		objectOutput.writeLong(finishDate);
+
 		objectOutput.writeInt(status);
 	}
 

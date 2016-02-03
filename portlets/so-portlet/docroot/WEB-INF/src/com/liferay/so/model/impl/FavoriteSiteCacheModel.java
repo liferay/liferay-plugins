@@ -95,8 +95,11 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		favoriteSiteId = objectInput.readLong();
+
 		groupId = objectInput.readLong();
+
 		companyId = objectInput.readLong();
+
 		userId = objectInput.readLong();
 	}
 
@@ -104,8 +107,11 @@ public class FavoriteSiteCacheModel implements CacheModel<FavoriteSite>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(favoriteSiteId);
+
 		objectOutput.writeLong(groupId);
+
 		objectOutput.writeLong(companyId);
+
 		objectOutput.writeLong(userId);
 	}
 
