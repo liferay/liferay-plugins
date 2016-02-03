@@ -14,6 +14,10 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.knowledgebase.admin.importer.KBArticleImporter;
+import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
+import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.exception.KBArticleContentException;
 import com.liferay.knowledgebase.exception.KBArticleParentException;
 import com.liferay.knowledgebase.exception.KBArticlePriorityException;
@@ -21,10 +25,6 @@ import com.liferay.knowledgebase.exception.KBArticleSourceURLException;
 import com.liferay.knowledgebase.exception.KBArticleTitleException;
 import com.liferay.knowledgebase.exception.KBArticleUrlTitleException;
 import com.liferay.knowledgebase.exception.NoSuchArticleException;
-import com.liferay.knowledgebase.admin.importer.KBArticleImporter;
-import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
-import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
-import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBFolder;

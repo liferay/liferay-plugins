@@ -14,10 +14,10 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.exception.KBTemplateContentException;
 import com.liferay.knowledgebase.exception.KBTemplateTitleException;
 import com.liferay.knowledgebase.exception.NoSuchTemplateException;
-import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.base.KBTemplateLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
