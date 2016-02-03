@@ -3,6 +3,34 @@
 
 <service-builder package-path="com.liferay.sync" auto-namespace-tables="false">
 	<namespace>Sync</namespace>
+	<entity name="SyncDevice" local-service="true" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="syncDeviceId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="type" type="String" />
+		<column name="buildNumber" type="long" />
+		<column name="featureSet" type="int" />
+		<column name="status" type="int" />
+
+		<!-- Finder methods -->
+
+		<finder name="C_U" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="userName" case-sensitive="false" comparator="LIKE" />
+		</finder>
+	</entity>
 	<entity name="SyncDLFileVersionDiff" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
@@ -131,6 +159,8 @@
 	</entity>
 	<entity name="SyncPreferences" local-service="true" remote-service="false" tx-manager="false" />
 	<exceptions>
+		<exception>SyncDeviceActive</exception>
+		<exception>SyncDeviceWipe</exception>
 		<exception>SyncDLObjectChecksum</exception>
 	</exceptions>
 </service-builder>

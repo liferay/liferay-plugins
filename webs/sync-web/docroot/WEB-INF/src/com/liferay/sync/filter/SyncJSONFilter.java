@@ -28,8 +28,11 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.sync.SyncClientMinBuildException;
 import com.liferay.sync.SyncDeviceHeaderException;
 import com.liferay.sync.SyncServicesUnavailableException;
+import com.liferay.sync.model.SyncDevice;
+import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
+import com.liferay.sync.util.SyncDeviceThreadLocal;
 import com.liferay.sync.util.SyncUtil;
 
 import java.io.IOException;
@@ -69,6 +72,20 @@ public class SyncJSONFilter implements Filter {
 
 		HttpServletRequest httpServletRequest =
 			(HttpServletRequest)servletRequest;
+
+		String uuid = httpServletRequest.getHeader("Sync-UUID");
+
+		if (uuid != null) {
+			SyncDevice syncDevice =
+				SyncDeviceLocalServiceUtil.fetchSyncDeviceByUuidAndCompanyId(
+					uuid, PortalUtil.getCompanyId(httpServletRequest));
+
+			SyncDeviceThreadLocal.setSyncDevice(syncDevice);
+
+			filterChain.doFilter(servletRequest, servletResponse);
+
+			return;
+		}
 
 		if (uri.equals("/api/jsonws/invoke")) {
 			String contentType = httpServletRequest.getHeader(
