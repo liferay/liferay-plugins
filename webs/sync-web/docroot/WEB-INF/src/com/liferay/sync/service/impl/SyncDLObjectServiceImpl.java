@@ -471,8 +471,17 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
-	public long getLatestModifiedTime() throws SystemException {
-		return syncDLObjectLocalService.getLatestModifiedTime();
+	public long getLatestModifiedTime()
+		throws PortalException, SystemException {
+
+		try {
+			SyncUtil.checkSyncEnabled(0);
+
+			return syncDLObjectLocalService.getLatestModifiedTime();
+		}
+		catch (PortalException pe) {
+			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
+		}
 	}
 
 	@AccessControlled(guestAccessEnabled = true)
@@ -481,6 +490,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
+			SyncUtil.checkSyncEnabled(0);
+
 			User user = getGuestOrUser();
 
 			SyncContext syncContext = new SyncContext();
@@ -657,6 +668,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
+			SyncUtil.checkSyncEnabled(0);
+
 			User user = getUser();
 
 			List<Group> groups = new ArrayList<Group>();
@@ -933,6 +946,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		ZipReader zipReader = null;
 
 		try {
+			SyncUtil.checkSyncEnabled(0);
+
 			zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
 
 			String manifest = zipReader.getEntryAsString("/manifest.json");
@@ -980,6 +995,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			}
 
 			return responseMap;
+		}
+		catch (PortalException pe) {
+			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
 		}
 		finally {
 			if (zipReader != null) {

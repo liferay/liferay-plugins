@@ -50,6 +50,7 @@ import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil
 import com.liferay.sync.SyncSiteUnavailableException;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
+import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
 import com.liferay.sync.shared.util.SyncPermissionsConstants;
 
@@ -140,6 +141,16 @@ public class SyncUtil {
 
 	public static void checkSyncEnabled(long groupId)
 		throws PortalException, SystemException {
+
+		SyncDevice syncDevice = SyncDeviceThreadLocal.getSyncDevice();
+
+		if (syncDevice != null) {
+			syncDevice.checkStatus();
+		}
+
+		if (groupId == 0) {
+			return;
+		}
 
 		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
