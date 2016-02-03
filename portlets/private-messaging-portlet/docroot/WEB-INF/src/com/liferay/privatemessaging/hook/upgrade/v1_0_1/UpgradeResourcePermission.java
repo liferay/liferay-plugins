@@ -17,6 +17,7 @@
 
 package com.liferay.privatemessaging.hook.upgrade.v1_0_1;
 
+import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.message.boards.web.constants.MBPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -33,7 +34,6 @@ import com.liferay.portal.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
 
 import java.util.List;
 

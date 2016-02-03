@@ -14,6 +14,12 @@
 
 package com.liferay.repository.external;
 
+import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
+import com.liferay.document.library.kernel.exception.NoSuchFileVersionException;
+import com.liferay.document.library.kernel.exception.NoSuchFolderException;
+import com.liferay.document.library.kernel.model.DLFileEntryTypeConstants;
+import com.liferay.document.library.kernel.model.DLFolder;
+import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
 import com.liferay.portal.exception.NoSuchRepositoryEntryException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -52,12 +58,6 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.RepositoryEntry;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.documentlibrary.exception.NoSuchFileEntryException;
-import com.liferay.portlet.documentlibrary.exception.NoSuchFileVersionException;
-import com.liferay.portlet.documentlibrary.exception.NoSuchFolderException;
-import com.liferay.portlet.documentlibrary.model.DLFileEntryTypeConstants;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
-import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 import com.liferay.repository.external.model.ExtRepositoryFileEntryAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFileVersionAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFolderAdapter;
@@ -1155,16 +1155,16 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		dlAppHelperLocalService.checkAssetEntry(
 			PrincipalThreadLocal.getUserId(), extRepositoryFileEntryAdapter,
-			extRepositoryFileEntryAdapter.getFileVersion() );
+			extRepositoryFileEntryAdapter.getFileVersion());
 	}
 
 	private User _fetchDefaultUser() {
 		try {
 			return userLocalService.getDefaultUser(getCompanyId());
 		}
-		catch (PortalException e) {
+		catch (PortalException pe) {
 			_log.error(
-				"Unable to get default user for company " + getCompanyId(), e);
+				"Unable to get default user for company " + getCompanyId(), pe);
 
 			return null;
 		}

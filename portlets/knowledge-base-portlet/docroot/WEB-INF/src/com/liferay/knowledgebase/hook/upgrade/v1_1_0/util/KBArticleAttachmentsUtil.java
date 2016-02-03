@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0.util;
 
+import com.liferay.document.library.kernel.store.DLStoreUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -21,7 +22,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
 /**
  * @author Peter Shin

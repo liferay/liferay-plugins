@@ -14,7 +14,7 @@
 
 package com.liferay.sync.model;
 
-import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
+import com.liferay.document.library.kernel.model.DLSyncConstants;
 
 /**
  * @author Dennis Ju

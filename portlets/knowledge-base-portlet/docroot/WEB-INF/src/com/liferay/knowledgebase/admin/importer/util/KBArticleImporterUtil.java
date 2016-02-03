@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.admin.importer.util;
 
+import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
 import com.liferay.knowledgebase.exception.KBArticleImportException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -28,7 +29,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
-import com.liferay.portlet.documentlibrary.exception.NoSuchFileEntryException;
 
 import java.io.InputStream;
 
