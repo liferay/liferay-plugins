@@ -1947,7 +1947,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	protected void validate(double priority) throws PortalException {
 		if (priority <= 0) {
 			throw new KBArticlePriorityException(
-				"Invalid article priority: " + priority);
+				"Invalid priority " + priority);
 		}
 	}
 
@@ -1955,11 +1955,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException {
 
 		if (Validator.isNull(title)) {
-			throw new KBArticleTitleException("Missing title");
+			throw new KBArticleTitleException("Title is null");
 		}
 
 		if (Validator.isNull(content)) {
-			throw new KBArticleContentException("No content found after title");
+			throw new KBArticleContentException("Content is null");
 		}
 
 		validateSourceURL(sourceURL);
