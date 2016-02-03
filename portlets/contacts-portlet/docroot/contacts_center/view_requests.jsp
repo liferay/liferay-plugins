@@ -30,7 +30,7 @@
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portlet.social.model.SocialRequest"
+		className="com.liferay.social.kernel.model.SocialRequest"
 		escapedModel="<%= true %>"
 		keyProperty="requestId"
 		modelVar="socialRequest"

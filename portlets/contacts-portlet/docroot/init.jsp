@@ -80,11 +80,11 @@ page import="com.liferay.portal.util.comparator.UserLastNameComparator" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.asset.model.AssetTag" %><%@
 page import="com.liferay.portlet.asset.service.AssetTagLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.model.SocialRequestConstants" %><%@
-page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %><%@
 page import="com.liferay.so.service.SocialOfficeServiceUtil" %><%@
+page import="com.liferay.social.kernel.model.SocialRequestConstants" %><%@
+page import="com.liferay.social.kernel.service.SocialActivityLocalServiceUtil" %><%@
+page import="com.liferay.social.kernel.service.SocialRelationLocalServiceUtil" %><%@
+page import="com.liferay.social.kernel.service.SocialRequestLocalServiceUtil" %><%@
 page import="com.liferay.users.admin.kernel.util.UsersAdminUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@

@@ -30,11 +30,12 @@ page import="com.liferay.portal.service.ServiceContext" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.model.SocialActivity" %><%@
-page import="com.liferay.portlet.social.model.SocialActivitySet" %><%@
-page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %><%@
-page import="com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil" %><%@
-page import="com.liferay.so.activities.util.ActivitiesUtil" %>
+page import="com.liferay.so.activities.util.ActivitiesUtil" %><%@
+page import="com.liferay.social.kernel.model.SocialActivity" %><%@
+page import="com.liferay.social.kernel.model.SocialActivitySet" %><%@
+page import="com.liferay.social.kernel.service.SocialActivityLocalServiceUtil" %><%@
+page import="com.liferay.social.kernel.service.SocialActivitySetLocalServiceUtil" %>
+
 
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "all");
