@@ -24,7 +24,8 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.oauth.service.OAuthApplicationLocalServiceUtil" %><%@
+<%@ page import="com.liferay.document.library.kernel.model.DLFileEntry" %><%@
+page import="com.liferay.oauth.service.OAuthApplicationLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.RowChecker" %><%@
@@ -45,7 +46,6 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.model.Group" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
-page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %><%@
 page import="com.liferay.sync.OAuthPortletUndeployedException" %><%@
 page import="com.liferay.sync.service.SyncPreferencesLocalServiceUtil" %><%@
 page import="com.liferay.sync.shared.util.PortletPropsKeys" %><%@

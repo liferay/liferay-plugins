@@ -16,7 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.knowledgebase.admin.search.KBArticleDisplayTerms" %><%@
+<%@ page import="com.liferay.document.library.kernel.util.DLUtil" %><%@
+page import="com.liferay.knowledgebase.admin.search.KBArticleDisplayTerms" %><%@
 page import="com.liferay.knowledgebase.admin.search.KBArticleSearch" %><%@
 page import="com.liferay.knowledgebase.admin.search.KBArticleSearchTerms" %><%@
 page import="com.liferay.knowledgebase.admin.search.KBTemplateDisplayTerms" %><%@
@@ -28,8 +29,7 @@ page import="com.liferay.knowledgebase.model.KBCommentConstants" %><%@
 page import="com.liferay.knowledgebase.util.KBSuggestionListDisplayContext" %><%@
 page import="com.liferay.portal.kernel.servlet.SessionMessages" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
-page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
-page import="com.liferay.portlet.documentlibrary.util.DLUtil" %>
+page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 
 <%
 String kbArticlesOrderByCol = portletPreferences.getValue("kbArticlesOrderByCol", StringPool.BLANK);
