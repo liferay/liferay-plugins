@@ -60,27 +60,27 @@ public class SyncDeviceImpl extends SyncDeviceBaseImpl {
 
 	@Override
 	public boolean isSupported() {
-		int minimumBuild = 0;
+		int minBuild = 0;
 
 		String type = getType();
 
 		if (type.startsWith("desktop")) {
-			minimumBuild = PrefsPropsUtil.getInteger(
+			minBuild = PrefsPropsUtil.getInteger(
 				getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_DESKTOP,
 				PortletPropsValues.SYNC_CLIENT_MIN_BUILD_DESKTOP);
 		}
 		else if (type.equals("mobile-android")) {
-			minimumBuild = PrefsPropsUtil.getInteger(
+			minBuild = PrefsPropsUtil.getInteger(
 				getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_ANDROID,
 				PortletPropsValues.SYNC_CLIENT_MIN_BUILD_ANDROID);
 		}
 		else if (type.equals("mobile-ios")) {
-			minimumBuild = PrefsPropsUtil.getInteger(
+			minBuild = PrefsPropsUtil.getInteger(
 				getCompanyId(), PortletPropsKeys.SYNC_CLIENT_MIN_BUILD_IOS,
 				PortletPropsValues.SYNC_CLIENT_MIN_BUILD_IOS);
 		}
 
-		if (getBuildNumber() >= minimumBuild) {
+		if (getBuildNumber() >= minBuild) {
 			return true;
 		}
 
