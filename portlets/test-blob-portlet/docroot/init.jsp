@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ page import="com.liferay.counter.service.CounterLocalServiceUtil" %><%@
+<%@ page import="com.liferay.counter.kernel.service.CounterLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.dao.jdbc.OutputBlob" %><%@
 page import="com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream" %><%@
 page import="com.liferay.testblob.model.TestBlobEntry" %><%@
