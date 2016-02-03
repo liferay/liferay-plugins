@@ -29,8 +29,8 @@ import com.liferay.portlet.documentlibrary.exception.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
-import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.SyncUtil;
 
@@ -102,7 +102,7 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 			long modifiedTime, String event, String type, long typePK)
 		throws Exception {
 
-		if (event.equals(SyncConstants.EVENT_DELETE)) {
+		if (event.equals(SyncDLObjectConstants.EVENT_DELETE)) {
 			long userId = 0;
 			String userName = StringPool.BLANK;
 
@@ -128,7 +128,7 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 
 		SyncDLObject syncDLObject = null;
 
-		if (type.equals(SyncConstants.TYPE_FILE)) {
+		if (type.equals(SyncDLObjectConstants.TYPE_FILE)) {
 			FileEntry fileEntry = null;
 
 			try {
@@ -161,16 +161,16 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 
 		addSyncDLObject(syncDLObject);
 
-		if (type.equals(SyncConstants.TYPE_FOLDER)) {
-			if (event.equals(SyncConstants.EVENT_MOVE)) {
+		if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
+			if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
 				SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects(
 					syncDLObject);
 			}
-			else if (event.equals(SyncConstants.EVENT_RESTORE)) {
+			else if (event.equals(SyncDLObjectConstants.EVENT_RESTORE)) {
 				SyncDLObjectLocalServiceUtil.restoreDependentSyncDLObjects(
 					syncDLObject);
 			}
-			else if (event.equals(SyncConstants.EVENT_TRASH)) {
+			else if (event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
 				SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects(
 					syncDLObject);
 			}

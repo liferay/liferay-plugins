@@ -19,7 +19,7 @@ import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
 /**
  * @author Dennis Ju
  */
-public class SyncConstants extends DLSyncConstants {
+public class SyncDLObjectConstants extends DLSyncConstants {
 
 	public static final String TYPE_PRIVATE_WORKING_COPY = "privateWorkingCopy";
 

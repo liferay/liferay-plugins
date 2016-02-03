@@ -291,7 +291,7 @@
 	</javadoc>
 	<javadoc>
 		<name>SyncConstants</name>
-		<type>com.liferay.sync.model.SyncConstants</type>
+		<type>com.liferay.sync.model.SyncDLObjectConstants</type>
 		<author><![CDATA[Dennis Ju]]></author>
 		<field>
 			<name>TYPE_PRIVATE_WORKING_COPY</name>

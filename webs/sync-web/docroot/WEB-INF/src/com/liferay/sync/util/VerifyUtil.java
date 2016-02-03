@@ -30,8 +30,8 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
-import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 
 import java.util.Date;
@@ -53,8 +53,8 @@ public class VerifyUtil {
 
 		String event = syncDLObject.getEvent();
 
-		if (event.equals(SyncConstants.EVENT_DELETE) ||
-			event.equals(SyncConstants.EVENT_TRASH)) {
+		if (event.equals(SyncDLObjectConstants.EVENT_DELETE) ||
+			event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
 
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				0, syncDLObject.getUserId(), syncDLObject.getUserName(),
@@ -165,7 +165,7 @@ public class VerifyUtil {
 					try {
 						SyncDLObject syncDLObject =
 							SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-								SyncConstants.TYPE_FOLDER,
+								SyncDLObjectConstants.TYPE_FOLDER,
 								dlFolder.getFolderId());
 
 						Date modifiedDate = dlFolder.getModifiedDate();
@@ -182,12 +182,13 @@ public class VerifyUtil {
 
 							addSyncDLObject(
 								SyncUtil.toSyncDLObject(
-									dlFolder, SyncConstants.EVENT_ADD));
+									dlFolder, SyncDLObjectConstants.EVENT_ADD));
 						}
 						else {
 							addSyncDLObject(
 								SyncUtil.toSyncDLObject(
-									dlFolder, SyncConstants.EVENT_TRASH));
+									dlFolder,
+									SyncDLObjectConstants.EVENT_TRASH));
 						}
 					}
 					catch (Exception e) {
@@ -226,7 +227,7 @@ public class VerifyUtil {
 					try {
 						SyncDLObject fileEntrySyncDLObject =
 							SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-								SyncConstants.TYPE_FILE,
+								SyncDLObjectConstants.TYPE_FILE,
 								dlFileEntry.getFileEntryId());
 
 						Date modifiedDate = dlFileEntry.getModifiedDate();
@@ -243,10 +244,10 @@ public class VerifyUtil {
 						if (dlFileEntry.getStatus() ==
 								WorkflowConstants.STATUS_APPROVED) {
 
-							event = SyncConstants.EVENT_ADD;
+							event = SyncDLObjectConstants.EVENT_ADD;
 						}
 						else {
-							event = SyncConstants.EVENT_TRASH;
+							event = SyncDLObjectConstants.EVENT_TRASH;
 						}
 
 						if (dlFileEntry.isCheckedOut()) {
@@ -297,7 +298,7 @@ public class VerifyUtil {
 						"event");
 
 					dynamicQuery.add(
-						eventProperty.ne(SyncConstants.EVENT_DELETE));
+						eventProperty.ne(SyncDLObjectConstants.EVENT_DELETE));
 
 					Property repositoryIdProperty = PropertyFactoryUtil.forName(
 						"repositoryId");
@@ -321,26 +322,28 @@ public class VerifyUtil {
 
 					String type = syncDLObject.getType();
 
-					if (type.equals(SyncConstants.TYPE_FILE)) {
+					if (type.equals(SyncDLObjectConstants.TYPE_FILE)) {
 						DLFileEntry dlFileEntry =
 							DLFileEntryLocalServiceUtil.fetchDLFileEntry(
 								syncDLObject.getTypePK());
 
 						if (dlFileEntry == null) {
-							syncDLObject.setEvent(SyncConstants.EVENT_DELETE);
+							syncDLObject.setEvent(
+								SyncDLObjectConstants.EVENT_DELETE);
 							syncDLObject.setModifiedTime(
 								System.currentTimeMillis());
 
 							addSyncDLObject(syncDLObject);
 						}
 					}
-					else if (type.equals(SyncConstants.TYPE_FOLDER)) {
+					else if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
 						DLFolder dlFolder =
 							DLFolderLocalServiceUtil.fetchDLFolder(
 								syncDLObject.getTypePK());
 
 						if (dlFolder == null) {
-							syncDLObject.setEvent(SyncConstants.EVENT_DELETE);
+							syncDLObject.setEvent(
+								SyncDLObjectConstants.EVENT_DELETE);
 							syncDLObject.setModifiedTime(
 								System.currentTimeMillis());
 
@@ -348,7 +351,8 @@ public class VerifyUtil {
 						}
 					}
 					else if (type.equals(
-								SyncConstants.TYPE_PRIVATE_WORKING_COPY)) {
+								SyncDLObjectConstants.
+									TYPE_PRIVATE_WORKING_COPY)) {
 
 						DLFileEntry dlFileEntry =
 							DLFileEntryLocalServiceUtil.fetchDLFileEntry(

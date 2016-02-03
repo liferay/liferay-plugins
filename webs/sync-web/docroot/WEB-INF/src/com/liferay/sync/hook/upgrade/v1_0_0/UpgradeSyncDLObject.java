@@ -16,7 +16,7 @@ package com.liferay.sync.hook.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
-import com.liferay.sync.model.SyncConstants;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.VerifyUtil;
 
@@ -29,7 +29,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		SyncDLObjectLocalServiceUtil.deleteSyncDLObjects(
 			DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION,
-			SyncConstants.TYPE_FILE);
+			SyncDLObjectConstants.TYPE_FILE);
 
 		VerifyUtil.verify();
 	}

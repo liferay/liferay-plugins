@@ -47,8 +47,8 @@ import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
 import com.liferay.sync.SyncSiteUnavailableException;
-import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
 import com.liferay.sync.shared.util.SyncPermissionsConstants;
 
@@ -399,7 +399,7 @@ public class SyncUtil {
 			dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
 				dlFileEntry.getFileEntryId(), dlFileEntry.getVersion());
 
-			type = SyncConstants.TYPE_FILE;
+			type = SyncDLObjectConstants.TYPE_FILE;
 		}
 		else {
 			try {
@@ -410,7 +410,7 @@ public class SyncUtil {
 				lockExpirationDate = lock.getExpirationDate();
 				lockUserId = lock.getUserId();
 				lockUserName = lock.getUserName();
-				type = SyncConstants.TYPE_PRIVATE_WORKING_COPY;
+				type = SyncDLObjectConstants.TYPE_PRIVATE_WORKING_COPY;
 			}
 			catch (NoSuchFileVersionException nsfve) {
 
@@ -421,7 +421,7 @@ public class SyncUtil {
 				dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
 					dlFileEntry.getFileEntryId(), dlFileEntry.getVersion());
 
-				type = SyncConstants.TYPE_FILE;
+				type = SyncDLObjectConstants.TYPE_FILE;
 			}
 		}
 
@@ -504,7 +504,7 @@ public class SyncUtil {
 		syncDLObject.setLockExpirationDate(null);
 		syncDLObject.setLockUserId(0);
 		syncDLObject.setLockUserName(StringPool.BLANK);
-		syncDLObject.setType(SyncConstants.TYPE_FOLDER);
+		syncDLObject.setType(SyncDLObjectConstants.TYPE_FOLDER);
 		syncDLObject.setTypePK(dlFolder.getFolderId());
 		syncDLObject.setTypeUuid(dlFolder.getUuid());
 

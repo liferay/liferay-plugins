@@ -17,7 +17,7 @@ package com.liferay.sync.hook.upgrade.v1_0_1;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.sync.model.SyncConstants;
+import com.liferay.sync.model.SyncDLObjectConstants;
 
 /**
  * @author Shinn Lok
@@ -29,35 +29,39 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		updateColumn(
 			"DLFileEntry", "userId", "userId", null, "fileEntryId", 0,
 			new String[] {
-				SyncConstants.TYPE_FILE, SyncConstants.TYPE_PRIVATE_WORKING_COPY
+				SyncDLObjectConstants.TYPE_FILE,
+				SyncDLObjectConstants.TYPE_PRIVATE_WORKING_COPY
 			});
 		updateColumn(
 			"DLFolder", "userId", "userId", null, "folderId", 0,
-			new String[] {SyncConstants.TYPE_FOLDER});
+			new String[] {SyncDLObjectConstants.TYPE_FOLDER});
 
 		updateColumn(
 			"DLFileEntry", "userName", "userName", null, "fileEntryId", "''",
 			new String[] {
-				SyncConstants.TYPE_FILE, SyncConstants.TYPE_PRIVATE_WORKING_COPY
+				SyncDLObjectConstants.TYPE_FILE,
+				SyncDLObjectConstants.TYPE_PRIVATE_WORKING_COPY
 			});
 		updateColumn(
 			"DLFolder", "userName", "userName", null, "folderId", "''",
-			new String[] {SyncConstants.TYPE_FOLDER});
+			new String[] {SyncDLObjectConstants.TYPE_FOLDER});
 
 		updateColumn(
 			"DLFileEntry", "treePath", "treePath", null, "fileEntryId", "''",
 			new String[] {
-				SyncConstants.TYPE_FILE, SyncConstants.TYPE_PRIVATE_WORKING_COPY
+				SyncDLObjectConstants.TYPE_FILE,
+				SyncDLObjectConstants.TYPE_PRIVATE_WORKING_COPY
 			});
 		updateColumn(
 			"DLFolder", "treePath", "treePath", null, "folderId", "''",
-			new String[] {SyncConstants.TYPE_FOLDER});
+			new String[] {SyncDLObjectConstants.TYPE_FOLDER});
 
 		updateColumn(
 			"DLFileVersion", "versionId", "fileVersionId", "version",
 			"fileEntryId", 0,
 			new String[] {
-				SyncConstants.TYPE_FILE, SyncConstants.TYPE_PRIVATE_WORKING_COPY
+				SyncDLObjectConstants.TYPE_FILE,
+				SyncDLObjectConstants.TYPE_PRIVATE_WORKING_COPY
 			});
 	}
 
