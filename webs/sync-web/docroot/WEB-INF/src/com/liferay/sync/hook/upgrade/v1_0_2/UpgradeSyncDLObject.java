@@ -52,8 +52,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq("type", SyncConstants.TYPE_FOLDER));
 
-		syncDLObjects =
-			SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
+		syncDLObjects = SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects(

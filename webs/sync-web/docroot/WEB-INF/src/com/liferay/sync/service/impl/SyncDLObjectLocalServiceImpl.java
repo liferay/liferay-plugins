@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
@@ -228,13 +227,8 @@ public class SyncDLObjectLocalServiceImpl
 			final SyncDLObject parentSyncDLObject)
 		throws PortalException {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(StringPool.SLASH);
-		sb.append(parentSyncDLObject.getTypePK());
-		sb.append(StringPool.SLASH);
-
-		final String searchTreePath = sb.toString();
+		final String searchTreePath = StringUtil.quote(
+			String.valueOf(parentSyncDLObject.getTypePK()), StringPool.SLASH);
 
 		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
 			getActionableDynamicQuery();
@@ -244,15 +238,11 @@ public class SyncDLObjectLocalServiceImpl
 
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-					StringBundler sb = new StringBundler(3);
-
-					sb.append(StringPool.PERCENT);
-					sb.append(searchTreePath);
-					sb.append(StringPool.PERCENT);
-
 					dynamicQuery.add(
 						RestrictionsFactoryUtil.like(
-							"treePath", sb.toString()));
+							"treePath",
+							StringUtil.quote(
+								searchTreePath, StringPool.PERCENT)));
 				}
 
 			});
