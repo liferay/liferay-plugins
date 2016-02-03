@@ -1921,8 +1921,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	protected void validate(double priority) throws PortalException {
 		if (priority <= 0) {
-			throw new KBArticlePriorityException("Invalid article priority: " +
-				priority);
+			throw new KBArticlePriorityException(
+				"Invalid article priority: " + priority);
 		}
 	}
 
