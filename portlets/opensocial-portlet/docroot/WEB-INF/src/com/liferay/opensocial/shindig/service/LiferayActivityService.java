@@ -31,10 +31,10 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-import com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.social.kernel.model.SocialActivity;
+import com.liferay.social.kernel.model.SocialActivityFeedEntry;
+import com.liferay.social.kernel.service.SocialActivityInterpreterLocalServiceUtil;
+import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;

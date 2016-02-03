@@ -32,7 +32,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
 import com.liferay.tasks.exception.TasksEntryDueDateException;
 import com.liferay.tasks.exception.TasksEntryTitleException;
 import com.liferay.tasks.model.TasksEntry;

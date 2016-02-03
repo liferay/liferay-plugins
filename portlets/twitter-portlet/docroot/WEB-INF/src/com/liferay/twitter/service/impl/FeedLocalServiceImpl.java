@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
 import com.liferay.twitter.exception.FeedTwitterScreenNameException;
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.service.base.FeedLocalServiceBaseImpl;

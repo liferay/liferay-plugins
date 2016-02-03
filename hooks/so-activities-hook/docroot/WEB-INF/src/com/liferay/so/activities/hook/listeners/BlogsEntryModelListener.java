@@ -18,9 +18,9 @@ import com.liferay.portal.exception.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
-import com.liferay.portlet.social.model.SocialActivitySet;
-import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.so.activities.util.SocialActivityKeyConstants;
+import com.liferay.social.kernel.model.SocialActivitySet;
+import com.liferay.social.kernel.service.SocialActivitySetLocalServiceUtil;
 
 import java.util.Date;
 

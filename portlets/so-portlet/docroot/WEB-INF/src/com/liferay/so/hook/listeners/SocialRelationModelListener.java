@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.User;
-import com.liferay.portlet.social.model.SocialRelation;
+import com.liferay.social.kernel.model.SocialRelation;
 
 import java.util.HashSet;
 import java.util.Set;

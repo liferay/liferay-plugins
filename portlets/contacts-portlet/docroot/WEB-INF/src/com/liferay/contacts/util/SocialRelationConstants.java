@@ -21,7 +21,7 @@ package com.liferay.contacts.util;
  * @author Eudaldo Alonso
  */
 public class SocialRelationConstants
-	extends com.liferay.portlet.social.model.SocialRelationConstants {
+	extends com.liferay.social.kernel.model.SocialRelationConstants {
 
 	public static final int SOCIAL_RELATION_REQUEST = 1001;
 

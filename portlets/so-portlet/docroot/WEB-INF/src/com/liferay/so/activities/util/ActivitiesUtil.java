@@ -18,7 +18,7 @@
 package com.liferay.so.activities.util;
 
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.social.kernel.model.SocialActivitySet;
 
 /**
  * @author Matthew Kong

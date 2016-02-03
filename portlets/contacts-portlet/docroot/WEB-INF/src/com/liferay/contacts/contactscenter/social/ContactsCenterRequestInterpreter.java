@@ -24,12 +24,12 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.BaseSocialRequestInterpreter;
-import com.liferay.portlet.social.model.SocialRelationConstants;
-import com.liferay.portlet.social.model.SocialRequest;
-import com.liferay.portlet.social.model.SocialRequestFeedEntry;
-import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
+import com.liferay.social.kernel.model.BaseSocialRequestInterpreter;
+import com.liferay.social.kernel.model.SocialRelationConstants;
+import com.liferay.social.kernel.model.SocialRequest;
+import com.liferay.social.kernel.model.SocialRequestFeedEntry;
+import com.liferay.social.kernel.service.SocialActivityLocalServiceUtil;
+import com.liferay.social.kernel.service.SocialRelationLocalServiceUtil;
 
 /**
  * @author Hai Yu
