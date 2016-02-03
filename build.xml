@@ -4,6 +4,15 @@
 <project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<condition property="plugins.includes.path" value="">
+		<or>
+			<equals arg1="${plugins.includes}" arg2="" />
+			<not>
+				<isset property="plugins.includes" />
+			</not>
+		</or>
+	</condition>
+
 	<path id="plugins.includes.path">
 		<dirset dir="hooks" excludes="${plugins.excludes}" includes="${plugins.includes}" />
 		<dirset dir="layouttpl" excludes="${plugins.excludes}" includes="${plugins.includes}" />
