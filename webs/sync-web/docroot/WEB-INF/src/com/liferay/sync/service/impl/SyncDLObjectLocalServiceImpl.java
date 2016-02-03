@@ -276,11 +276,11 @@ public class SyncDLObjectLocalServiceImpl
 						treePath, oldParentTreePath,
 						parentSyncDLObject.getTreePath());
 
-					dependentSyncDLObject.setTreePath(treePath);
 					dependentSyncDLObject.setUserId(
 						parentSyncDLObject.getUserId());
 					dependentSyncDLObject.setUserName(
 						parentSyncDLObject.getUserName());
+					dependentSyncDLObject.setTreePath(treePath);
 
 					syncDLObjectPersistence.update(dependentSyncDLObject);
 				}

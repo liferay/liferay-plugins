@@ -30,12 +30,6 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		moveSyncDLObjects();
-
-		trashSyncDLObjects();
-	}
-
-	protected void moveSyncDLObjects() throws Exception {
 		DynamicQuery dynamicQuery = SyncDLObjectLocalServiceUtil.dynamicQuery();
 
 		dynamicQuery.add(
@@ -50,17 +44,15 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 			SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects(
 				syncDLObject);
 		}
-	}
 
-	protected void trashSyncDLObjects() throws Exception {
-		DynamicQuery dynamicQuery = SyncDLObjectLocalServiceUtil.dynamicQuery();
+		dynamicQuery = SyncDLObjectLocalServiceUtil.dynamicQuery();
 
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq("event", SyncConstants.EVENT_TRASH));
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq("type", SyncConstants.TYPE_FOLDER));
 
-		List<SyncDLObject> syncDLObjects =
+		syncDLObjects =
 			SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
