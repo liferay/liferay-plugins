@@ -2110,7 +2110,7 @@ Please find a solution that does not require portal-impl.jar.
 					for (moduleDir in moduleDirs) {
 						File buildXml = new File(moduleDir + "/build.xml")
 
-						if (buildXml.exists() && moduleDir != "") {
+						if (buildXml.exists() && (moduleDir != "")) {
 							String buildXmlContent = buildXml.text
 
 							ant."set-module-properties"("module.dir": moduleDir)
