@@ -14,7 +14,7 @@
 
 package com.liferay.mongodb.hook.service.impl;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.mongodb.lang.MongoOperator;
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
