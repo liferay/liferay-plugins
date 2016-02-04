@@ -11,3 +11,7 @@ create index IX_57F62914 on SyncDLObject (repositoryId, type_);
 create unique index IX_E3F57BD6 on SyncDLObject (type_, typePK);
 create index IX_28CD54BB on SyncDLObject (type_, version);
 create index IX_1CCA3B5 on SyncDLObject (version, type_);
+
+create index IX_176DF87B on SyncDevice (companyId, userName);
+create index IX_42A0995D on SyncDevice (uuid_);
+create index IX_AE38DEAB on SyncDevice (uuid_, companyId);

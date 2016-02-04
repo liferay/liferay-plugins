@@ -25,6 +25,7 @@ import com.liferay.portal.model.BaseModel;
 
 import com.liferay.sync.model.SyncDLFileVersionDiffClp;
 import com.liferay.sync.model.SyncDLObjectClp;
+import com.liferay.sync.model.SyncDeviceClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -101,6 +102,10 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals(SyncDeviceClp.class.getName())) {
+			return translateInputSyncDevice(oldModel);
+		}
+
 		if (oldModelClassName.equals(SyncDLFileVersionDiffClp.class.getName())) {
 			return translateInputSyncDLFileVersionDiff(oldModel);
 		}
@@ -122,6 +127,16 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputSyncDevice(BaseModel<?> oldModel) {
+		SyncDeviceClp oldClpModel = (SyncDeviceClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getSyncDeviceRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
 	}
 
 	public static Object translateInputSyncDLFileVersionDiff(
@@ -161,6 +176,43 @@ public class ClpSerializer {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(
+					"com.liferay.sync.model.impl.SyncDeviceImpl")) {
+			return translateOutputSyncDevice(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
 
 		if (oldModelClassName.equals(
 					"com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl")) {
@@ -320,6 +372,21 @@ public class ClpSerializer {
 				throwable.getCause());
 		}
 
+		if (className.equals("com.liferay.sync.SyncDeviceActiveException")) {
+			return new com.liferay.sync.SyncDeviceActiveException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals("com.liferay.sync.SyncDeviceWipeException")) {
+			return new com.liferay.sync.SyncDeviceWipeException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
+		if (className.equals("com.liferay.sync.NoSuchDeviceException")) {
+			return new com.liferay.sync.NoSuchDeviceException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
 		if (className.equals(
 					"com.liferay.sync.NoSuchDLFileVersionDiffException")) {
 			return new com.liferay.sync.NoSuchDLFileVersionDiffException(throwable.getMessage(),
@@ -332,6 +399,16 @@ public class ClpSerializer {
 		}
 
 		return throwable;
+	}
+
+	public static Object translateOutputSyncDevice(BaseModel<?> oldModel) {
+		SyncDeviceClp newModel = new SyncDeviceClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setSyncDeviceRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputSyncDLFileVersionDiff(
