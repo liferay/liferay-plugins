@@ -14,7 +14,7 @@
  */
 --%>
 
-<aui:column columnWidth="50">
+<aui:col width="<%= 50 %>">
 	<aui:input name='<%= "addressId" + addressesIndex %>' type="hidden" value="<%= address.getAddressId() %>" />
 
 	<aui:select label="country" name='<%= "addressCountryId" + addressesIndex %>' />
@@ -30,12 +30,12 @@
 	<aui:input fieldParam='<%= "addressStreet2_" + addressesIndex %>' id='<%= "addressStreet2_" + addressesIndex %>' name="street2" />
 
 	<aui:input fieldParam='<%= "addressZip" + addressesIndex %>' id='<%= "addressZip" + addressesIndex %>' label="postal-code" name="zip" />
-</aui:column>
+</aui:col>
 
-<aui:column columnWidth="50">
+<aui:col width="<%= 50 %>">
 	<aui:select label="type" listType="<%= className + ListTypeConstants.ADDRESS %>" name='<%= "addressTypeId" + addressesIndex %>' />
 
 	<aui:input checked="<%= address.isPrimary() %>" cssClass="primary-ctrl" id='<%= "addressPrimary" + addressesIndex %>' label="primary" name="addressPrimary" type="radio" value="<%= addressesIndex %>" />
 
 	<aui:input cssClass="mailing-ctrl" fieldParam='<%= "addressMailing" + addressesIndex %>' id='<%= "addressMailing" + addressesIndex %>' name="mailing" />
-</aui:column>
+</aui:col>

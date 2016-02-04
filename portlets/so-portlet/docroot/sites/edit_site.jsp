@@ -117,7 +117,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 				</p>
 
 				<aui:layout>
-					<aui:column columnWidth="<%= 30 %>" first="<%= true %>">
+					<aui:col width="<%= 30 %>">
 						<span class="included-pages"><liferay-ui:message key="included-pages" />:</span>
 
 						<aui:input name="deleteLayoutIds" type="hidden" />
@@ -145,9 +145,9 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 							</c:if>
 						</div>
-					</aui:column>
+					</aui:col>
 
-					<aui:column columnWidth="<%= 70 %>">
+					<aui:col width="<%= 70 %>">
 						<div class="type-details">
 							<div class="permission">
 								<liferay-ui:message key="permissions" />:
@@ -175,7 +175,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 								<liferay-ui:message key="<%= description %>" />
 							</div>
 						</div>
-					</aui:column>
+					</aui:col>
 				</aui:layout>
 			</div>
 		</div>

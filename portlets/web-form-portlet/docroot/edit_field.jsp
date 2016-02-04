@@ -151,16 +151,17 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 					<aui:a cssClass="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</aui:a>
 
 					<div class='validation-input <%= Validator.isNull(fieldValidationScript) ? "hide" : "" %>'>
-						<aui:column columnWidth="50">
+						<aui:col width="<%= 50 %>">
 							<aui:input cols="80" cssClass="validation-script" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
 
 							<aui:input cols="80" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + index %>' size="80" value="<%= fieldValidationErrorMessage %>" wrapperCssClass="lfr-input-text-container" />
-						</aui:column>
-						<aui:column columnWidth="50">
+						</aui:col>
+
+						<aui:col width="<%= 50 %>">
 							<div class="syntax-help">
 								<liferay-util:include page="/script_help.jsp" servletContext="<%= application %>" />
 							</div>
-						</aui:column>
+						</aui:col>
 					</div>
 				</div>
 			</c:when>

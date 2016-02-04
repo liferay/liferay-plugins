@@ -92,7 +92,7 @@ String namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
 				<div style="clear: both;"><!-- --></div>
 
 				<aui:layout cssClass="lfr-form-row-inline">
-					<aui:column>
+					<aui:col>
 
 						<%
 						String fieldParam = "projectsEntryStartDate";
@@ -105,8 +105,9 @@ String namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
 
 							<%@ include file="/projects/select_date.jspf" %>
 						</div>
-					</aui:column>
-					<aui:column>
+					</aui:col>
+
+					<aui:col>
 
 						<%
 						String fieldParam = "projectsEntryEndDate";
@@ -119,8 +120,9 @@ String namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
 
 							<%@ include file="/projects/select_date.jspf" %>
 						</div>
-					</aui:column>
-					<aui:column>
+					</aui:col>
+
+					<aui:col>
 
 						<%
 						String fieldParam = "projectsEntryCurrent" + projectsEntriesIndex;
@@ -131,7 +133,7 @@ String namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
 
 							<liferay-ui:input-checkbox defaultValue="<%= current %>" param="<%= fieldParam %>" />
 						</div>
-					</aui:column>
+					</aui:col>
 				</aui:layout>
 
 				<aui:input fieldParam='<%= "projectsEntryDescription" + projectsEntriesIndex %>' name="description" />

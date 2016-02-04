@@ -22,7 +22,7 @@
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:layout>
-		<aui:column columnWidth="50" id="controls">
+		<aui:col id="controls" width="<%= 50 %>">
 			<div class="field-row">
 				<aui:input cssClass="url" inlineField="true" label="url" name="preferences--url--" value="<%= url %>" />
 			</div>
@@ -68,13 +68,13 @@
 					</div>
 				</liferay-ui:panel>
 			</liferay-ui:panel-container>
-		</aui:column>
+		</aui:col>
 
-		<aui:column columnWidth="50">
+		<aui:col width="<%= 50 %>">
 			<div class="field-wrapper-content preview" id="<portlet:namespace />preview">
 				<i class="icon-youtube-play preview-play"></i>
 			</div>
-		</aui:column>
+		</aui:col>
 	</aui:layout>
 
 	<aui:button-row>
