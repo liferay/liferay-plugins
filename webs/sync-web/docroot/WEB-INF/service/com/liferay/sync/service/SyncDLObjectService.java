@@ -23,8 +23,19 @@ import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.service.BaseService;
 import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.service.ServiceContext;
+
+import com.liferay.sync.model.SyncContext;
+import com.liferay.sync.model.SyncDLObject;
+import com.liferay.sync.model.SyncDLObjectUpdate;
+
+import java.io.File;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Provides the remote service interface for SyncDLObject. Methods of this
@@ -48,73 +59,61 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncDLObjectServiceUtil} to access the sync d l object remote service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDLObjectServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.sync.model.SyncDLObject addFileEntry(long repositoryId,
-		long folderId, java.lang.String sourceFileName,
-		java.lang.String mimeType, java.lang.String title,
-		java.lang.String description, java.lang.String changeLog,
-		java.io.File file, java.lang.String checksum,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public SyncDLObject addFileEntry(long repositoryId, long folderId,
+		java.lang.String sourceFileName, java.lang.String mimeType,
+		java.lang.String title, java.lang.String description,
+		java.lang.String changeLog, File file, java.lang.String checksum,
+		ServiceContext serviceContext) throws PortalException;
+
+	public SyncDLObject addFolder(long repositoryId, long parentFolderId,
+		java.lang.String name, java.lang.String description,
+		ServiceContext serviceContext) throws PortalException;
+
+	public SyncDLObject cancelCheckOut(long fileEntryId)
 		throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject addFolder(long repositoryId,
-		long parentFolderId, java.lang.String name,
-		java.lang.String description,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public SyncDLObject checkInFileEntry(long fileEntryId,
+		boolean majorVersion, java.lang.String changeLog,
+		ServiceContext serviceContext) throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject cancelCheckOut(long fileEntryId)
-		throws PortalException;
+	public SyncDLObject checkOutFileEntry(long fileEntryId,
+		java.lang.String owner, long expirationTime,
+		ServiceContext serviceContext) throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject checkInFileEntry(
-		long fileEntryId, boolean majorVersion, java.lang.String changeLog,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+	public SyncDLObject checkOutFileEntry(long fileEntryId,
+		ServiceContext serviceContext) throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
-		long fileEntryId, java.lang.String owner, long expirationTime,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
-
-	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
-		long fileEntryId,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
-
-	public com.liferay.sync.model.SyncDLObject copyFileEntry(
-		long sourceFileEntryId, long repositoryId, long folderId,
-		java.lang.String sourceFileName, java.lang.String title,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public SyncDLObject copyFileEntry(long sourceFileEntryId,
+		long repositoryId, long folderId, java.lang.String sourceFileName,
+		java.lang.String title, ServiceContext serviceContext)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDLObject> getAllFolderSyncDLObjects(
-		long repositoryId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObject getFileEntrySyncDLObject(
-		long repositoryId, long folderId, java.lang.String title)
+	public List<SyncDLObject> getAllFolderSyncDLObjects(long repositoryId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDLObject> getFileEntrySyncDLObjects(
-		long repositoryId, long folderId) throws PortalException;
+	public SyncDLObject getFileEntrySyncDLObject(long repositoryId,
+		long folderId, java.lang.String title) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObject getFolderSyncDLObject(
+	public List<SyncDLObject> getFileEntrySyncDLObjects(long repositoryId,
 		long folderId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObject getFolderSyncDLObject(
-		long repositoryId, long parentFolderId, java.lang.String name)
+	public SyncDLObject getFolderSyncDLObject(long folderId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDLObject> getFolderSyncDLObjects(
-		long repositoryId, long parentFolderId) throws PortalException;
+	public SyncDLObject getFolderSyncDLObject(long repositoryId,
+		long parentFolderId, java.lang.String name) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.Group getGroup(long groupId)
-		throws PortalException;
+	public List<SyncDLObject> getFolderSyncDLObjects(long repositoryId,
+		long parentFolderId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Group getGroup(long groupId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getLatestModifiedTime() throws PortalException;
@@ -128,8 +127,7 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 
 	@AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncContext getSyncContext()
-		throws PortalException;
+	public SyncContext getSyncContext() throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
@@ -141,64 +139,54 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long parentFolderId, long lastAccessTime)
-		throws PortalException;
+	public SyncDLObjectUpdate getSyncDLObjectUpdate(long repositoryId,
+		long parentFolderId, long lastAccessTime) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
-		throws PortalException;
+	public List<Group> getUserSitesGroups() throws PortalException;
 
 	@Override
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.sync.model.SyncDLObject moveFileEntry(long fileEntryId,
-		long newFolderId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public SyncDLObject moveFileEntry(long fileEntryId, long newFolderId,
+		ServiceContext serviceContext) throws PortalException;
+
+	public SyncDLObject moveFileEntryToTrash(long fileEntryId)
 		throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject moveFileEntryToTrash(
-		long fileEntryId) throws PortalException;
+	public SyncDLObject moveFolder(long folderId, long parentFolderId,
+		ServiceContext serviceContext) throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject moveFolder(long folderId,
-		long parentFolderId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public SyncDLObject moveFolderToTrash(long folderId)
 		throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject moveFolderToTrash(long folderId)
-		throws PortalException;
-
-	public com.liferay.sync.model.SyncDLObject patchFileEntry(
-		long fileEntryId, long sourceVersionId,
+	public SyncDLObject patchFileEntry(long fileEntryId, long sourceVersionId,
 		java.lang.String sourceFileName, java.lang.String mimeType,
 		java.lang.String title, java.lang.String description,
-		java.lang.String changeLog, boolean majorVersion,
-		java.io.File deltaFile, java.lang.String checksum,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		java.lang.String changeLog, boolean majorVersion, File deltaFile,
+		java.lang.String checksum, ServiceContext serviceContext)
 		throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject restoreFileEntryFromTrash(
-		long fileEntryId) throws PortalException;
+	public SyncDLObject restoreFileEntryFromTrash(long fileEntryId)
+		throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject restoreFolderFromTrash(
-		long folderId) throws PortalException;
+	public SyncDLObject restoreFolderFromTrash(long folderId)
+		throws PortalException;
 
 	@Transactional(enabled = false)
-	public java.util.Map<java.lang.String, java.lang.Object> updateFileEntries(
-		java.io.File zipFile) throws PortalException;
+	public Map<java.lang.String, java.lang.Object> updateFileEntries(
+		File zipFile) throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject updateFileEntry(
-		long fileEntryId, java.lang.String sourceFileName,
-		java.lang.String mimeType, java.lang.String title,
-		java.lang.String description, java.lang.String changeLog,
-		boolean majorVersion, java.io.File file, java.lang.String checksum,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public SyncDLObject updateFileEntry(long fileEntryId,
+		java.lang.String sourceFileName, java.lang.String mimeType,
+		java.lang.String title, java.lang.String description,
+		java.lang.String changeLog, boolean majorVersion, File file,
+		java.lang.String checksum, ServiceContext serviceContext)
 		throws PortalException;
 
-	public com.liferay.sync.model.SyncDLObject updateFolder(long folderId,
-		java.lang.String name, java.lang.String description,
-		com.liferay.portal.service.ServiceContext serviceContext)
+	public SyncDLObject updateFolder(long folderId, java.lang.String name,
+		java.lang.String description, ServiceContext serviceContext)
 		throws PortalException;
 }

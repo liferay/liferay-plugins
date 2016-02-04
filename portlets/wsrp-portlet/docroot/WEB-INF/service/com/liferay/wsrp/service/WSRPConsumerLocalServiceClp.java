@@ -117,7 +117,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		_methodName16 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes16 = new String[] {
-				"com.liferay.portlet.exportimport.lar.PortletDataContext"
+				"com.liferay.exportimport.kernel.lar.PortletDataContext"
 			};
 
 		_methodName17 = "getIndexableActionableDynamicQuery";
@@ -646,7 +646,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
+		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

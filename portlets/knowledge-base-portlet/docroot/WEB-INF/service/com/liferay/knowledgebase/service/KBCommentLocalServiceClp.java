@@ -122,7 +122,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 		_methodName17 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes17 = new String[] {
-				"com.liferay.portlet.exportimport.lar.PortletDataContext"
+				"com.liferay.exportimport.kernel.lar.PortletDataContext"
 			};
 
 		_methodName18 = "getIndexableActionableDynamicQuery";
@@ -743,7 +743,7 @@ public class KBCommentLocalServiceClp implements KBCommentLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
+		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

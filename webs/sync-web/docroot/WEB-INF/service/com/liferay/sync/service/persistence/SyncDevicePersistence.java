@@ -18,6 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.service.persistence.BasePersistence;
 
+import com.liferay.sync.exception.NoSuchDeviceException;
 import com.liferay.sync.model.SyncDevice;
 
 /**
@@ -109,7 +110,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	*/
 	public SyncDevice findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the first sync device in the ordered set where uuid = &#63;.
@@ -131,7 +132,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	*/
 	public SyncDevice findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the last sync device in the ordered set where uuid = &#63;.
@@ -155,7 +156,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	public SyncDevice[] findByUuid_PrevAndNext(long syncDeviceId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Removes all the sync devices where uuid = &#63; from the database.
@@ -247,7 +248,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	*/
 	public SyncDevice findByUuid_C_First(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the first sync device in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -272,7 +273,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	*/
 	public SyncDevice findByUuid_C_Last(java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the last sync device in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -298,7 +299,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	public SyncDevice[] findByUuid_C_PrevAndNext(long syncDeviceId,
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Removes all the sync devices where uuid = &#63; and companyId = &#63; from the database.
@@ -393,7 +394,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	public SyncDevice findByC_U_First(long companyId,
 		java.lang.String userName,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the first sync device in the ordered set where companyId = &#63; and userName LIKE &#63;.
@@ -418,7 +419,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	*/
 	public SyncDevice findByC_U_Last(long companyId, java.lang.String userName,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the last sync device in the ordered set where companyId = &#63; and userName LIKE &#63;.
@@ -445,7 +446,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	public SyncDevice[] findByC_U_PrevAndNext(long syncDeviceId,
 		long companyId, java.lang.String userName,
 		com.liferay.portal.kernel.util.OrderByComparator<SyncDevice> orderByComparator)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Removes all the sync devices where companyId = &#63; and userName LIKE &#63; from the database.
@@ -493,8 +494,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	* @return the sync device that was removed
 	* @throws NoSuchDeviceException if a sync device with the primary key could not be found
 	*/
-	public SyncDevice remove(long syncDeviceId)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+	public SyncDevice remove(long syncDeviceId) throws NoSuchDeviceException;
 
 	public SyncDevice updateImpl(SyncDevice syncDevice);
 
@@ -506,7 +506,7 @@ public interface SyncDevicePersistence extends BasePersistence<SyncDevice> {
 	* @throws NoSuchDeviceException if a sync device with the primary key could not be found
 	*/
 	public SyncDevice findByPrimaryKey(long syncDeviceId)
-		throws com.liferay.sync.exception.NoSuchDeviceException;
+		throws NoSuchDeviceException;
 
 	/**
 	* Returns the sync device with the primary key or returns <code>null</code> if it could not be found.

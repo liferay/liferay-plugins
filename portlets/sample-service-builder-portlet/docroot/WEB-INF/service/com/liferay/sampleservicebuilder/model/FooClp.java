@@ -16,6 +16,8 @@ package com.liferay.sampleservicebuilder.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.exportimport.kernel.lar.StagedModelType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -27,8 +29,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-
-import com.liferay.portlet.exportimport.lar.StagedModelType;
 
 import com.liferay.sampleservicebuilder.service.ClpSerializer;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;

@@ -16,6 +16,8 @@ package com.liferay.opensocial.model.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.exportimport.kernel.lar.StagedModelType;
+
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.GadgetModel;
 import com.liferay.opensocial.model.GadgetSoap;
@@ -33,7 +35,6 @@ import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
-import com.liferay.portlet.exportimport.lar.StagedModelType;
 
 import java.io.Serializable;
 

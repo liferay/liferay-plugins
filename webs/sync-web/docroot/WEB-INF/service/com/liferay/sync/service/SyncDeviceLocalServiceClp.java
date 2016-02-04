@@ -111,7 +111,7 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 		_methodName15 = "getExportActionableDynamicQuery";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.portlet.exportimport.lar.PortletDataContext"
+				"com.liferay.exportimport.kernel.lar.PortletDataContext"
 			};
 
 		_methodName16 = "getIndexableActionableDynamicQuery";
@@ -578,7 +578,7 @@ public class SyncDeviceLocalServiceClp implements SyncDeviceLocalService {
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext) {
+		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
 		Object returnObj = null;
 
 		try {

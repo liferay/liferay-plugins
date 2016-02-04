@@ -16,6 +16,8 @@ package com.liferay.sync.model;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.exportimport.kernel.lar.StagedModelType;
+
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -27,8 +29,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-
-import com.liferay.portlet.exportimport.lar.StagedModelType;
 
 import com.liferay.sync.service.ClpSerializer;
 import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
@@ -444,9 +444,9 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 	}
 
 	@Override
-	public boolean hasSetModifiedDate() {
+	public boolean isSupported() {
 		try {
-			String methodName = "hasSetModifiedDate";
+			String methodName = "isSupported";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -463,9 +463,9 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 	}
 
 	@Override
-	public boolean isSupported() {
+	public boolean hasSetModifiedDate() {
 		try {
-			String methodName = "isSupported";
+			String methodName = "hasSetModifiedDate";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 

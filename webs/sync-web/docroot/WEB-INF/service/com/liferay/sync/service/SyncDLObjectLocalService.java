@@ -16,15 +16,29 @@ package com.liferay.sync.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.sync.model.SyncDLObject;
+
+import java.io.Serializable;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Provides the local service interface for SyncDLObject. Methods of this
@@ -48,15 +62,14 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncDLObjectLocalServiceUtil} to access the sync d l object local service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDLObjectLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public com.liferay.sync.model.SyncDLObject addSyncDLObject(long companyId,
-		long userId, java.lang.String userName, long modifiedTime,
-		long repositoryId, long parentFolderId, java.lang.String treePath,
-		java.lang.String name, java.lang.String extension,
-		java.lang.String mimeType, java.lang.String description,
-		java.lang.String changeLog, java.lang.String extraSettings,
-		java.lang.String version, long versionId, long size,
-		java.lang.String checksum, java.lang.String event,
-		java.util.Date lockExpirationDate, long lockUserId,
+	public SyncDLObject addSyncDLObject(long companyId, long userId,
+		java.lang.String userName, long modifiedTime, long repositoryId,
+		long parentFolderId, java.lang.String treePath, java.lang.String name,
+		java.lang.String extension, java.lang.String mimeType,
+		java.lang.String description, java.lang.String changeLog,
+		java.lang.String extraSettings, java.lang.String version,
+		long versionId, long size, java.lang.String checksum,
+		java.lang.String event, Date lockExpirationDate, long lockUserId,
 		java.lang.String lockUserName, java.lang.String type, long typePK,
 		java.lang.String typeUuid) throws PortalException;
 
@@ -66,9 +79,8 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param syncDLObject the sync d l object
 	* @return the sync d l object that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.sync.model.SyncDLObject addSyncDLObject(
-		com.liferay.sync.model.SyncDLObject syncDLObject);
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDLObject addSyncDLObject(SyncDLObject syncDLObject);
 
 	/**
 	* Creates a new sync d l object with the primary key. Does not add the sync d l object to the database.
@@ -76,15 +88,13 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param syncDLObjectId the primary key for the new sync d l object
 	* @return the new sync d l object
 	*/
-	public com.liferay.sync.model.SyncDLObject createSyncDLObject(
-		long syncDLObjectId);
+	public SyncDLObject createSyncDLObject(long syncDLObjectId);
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -93,9 +103,8 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param syncDLObject the sync d l object
 	* @return the sync d l object that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.sync.model.SyncDLObject deleteSyncDLObject(
-		com.liferay.sync.model.SyncDLObject syncDLObject);
+	@Indexable(type = IndexableType.DELETE)
+	public SyncDLObject deleteSyncDLObject(SyncDLObject syncDLObject);
 
 	/**
 	* Deletes the sync d l object with the primary key from the database. Also notifies the appropriate model listeners.
@@ -104,14 +113,14 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @return the sync d l object that was removed
 	* @throws PortalException if a sync d l object with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.sync.model.SyncDLObject deleteSyncDLObject(
-		long syncDLObjectId) throws PortalException;
+	@Indexable(type = IndexableType.DELETE)
+	public SyncDLObject deleteSyncDLObject(long syncDLObjectId)
+		throws PortalException;
 
 	public void deleteSyncDLObjects(java.lang.String version,
 		java.lang.String type);
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -119,8 +128,7 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -134,8 +142,7 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -151,10 +158,8 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -162,8 +167,7 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -172,23 +176,20 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
-		long syncDLObjectId);
+	public SyncDLObject fetchSyncDLObject(long syncDLObjectId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
-		java.lang.String type, long typePK);
+	public SyncDLObject fetchSyncDLObject(java.lang.String type, long typePK);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getLatestModifiedTime();
@@ -202,8 +203,8 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Returns the sync d l object with the primary key.
@@ -213,12 +214,12 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @throws PortalException if a sync d l object with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
-		long syncDLObjectId) throws PortalException;
+	public SyncDLObject getSyncDLObject(long syncDLObjectId)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
-		long repositoryId, long parentFolderId);
+	public List<SyncDLObject> getSyncDLObjects(long repositoryId,
+		long parentFolderId);
 
 	/**
 	* Returns a range of all the sync d l objects.
@@ -232,8 +233,7 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @return the range of sync d l objects
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDLObject> getSyncDLObjects(
-		int start, int end);
+	public List<SyncDLObject> getSyncDLObjects(int start, int end);
 
 	/**
 	* Returns the number of sync d l objects.
@@ -248,16 +248,13 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void moveDependentSyncDLObjects(
-		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+	public void moveDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
 
-	public void restoreDependentSyncDLObjects(
-		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+	public void restoreDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
 
-	public void trashDependentSyncDLObjects(
-		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
+	public void trashDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
 
 	/**
@@ -266,7 +263,6 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	* @param syncDLObject the sync d l object
 	* @return the sync d l object that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.sync.model.SyncDLObject updateSyncDLObject(
-		com.liferay.sync.model.SyncDLObject syncDLObject);
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDLObject updateSyncDLObject(SyncDLObject syncDLObject);
 }

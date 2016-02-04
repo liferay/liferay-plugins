@@ -16,15 +16,31 @@ package com.liferay.sync.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.exportimport.kernel.lar.PortletDataContext;
+
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.service.BaseLocalService;
 import com.liferay.portal.service.InvokableLocalService;
 import com.liferay.portal.service.PersistedModelLocalService;
+
+import com.liferay.sync.model.SyncDevice;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service interface for SyncDevice. Methods of this
@@ -55,13 +71,11 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param syncDevice the sync device
 	* @return the sync device that was added
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.sync.model.SyncDevice addSyncDevice(
-		com.liferay.sync.model.SyncDevice syncDevice);
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDevice addSyncDevice(SyncDevice syncDevice);
 
-	public com.liferay.sync.model.SyncDevice addSyncDevice(long userId,
-		java.lang.String type, int buildNumber, int featureSet)
-		throws PortalException;
+	public SyncDevice addSyncDevice(long userId, java.lang.String type,
+		int buildNumber, int featureSet) throws PortalException;
 
 	/**
 	* Creates a new sync device with the primary key. Does not add the sync device to the database.
@@ -69,14 +83,13 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param syncDeviceId the primary key for the new sync device
 	* @return the new sync device
 	*/
-	public com.liferay.sync.model.SyncDevice createSyncDevice(long syncDeviceId);
+	public SyncDevice createSyncDevice(long syncDeviceId);
 
 	/**
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
@@ -85,9 +98,8 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param syncDevice the sync device
 	* @return the sync device that was removed
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.sync.model.SyncDevice deleteSyncDevice(
-		com.liferay.sync.model.SyncDevice syncDevice);
+	@Indexable(type = IndexableType.DELETE)
+	public SyncDevice deleteSyncDevice(SyncDevice syncDevice);
 
 	/**
 	* Deletes the sync device with the primary key from the database. Also notifies the appropriate model listeners.
@@ -96,11 +108,11 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @return the sync device that was removed
 	* @throws PortalException if a sync device with the primary key could not be found
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
-	public com.liferay.sync.model.SyncDevice deleteSyncDevice(long syncDeviceId)
+	@Indexable(type = IndexableType.DELETE)
+	public SyncDevice deleteSyncDevice(long syncDeviceId)
 		throws PortalException;
 
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -108,8 +120,7 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -123,8 +134,7 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end);
 
 	/**
@@ -140,10 +150,8 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	*/
-	public <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -151,8 +159,7 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
@@ -161,12 +168,11 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param projection the projection to apply to the query
 	* @return the number of rows matching the dynamic query
 	*/
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDevice fetchSyncDevice(long syncDeviceId);
+	public SyncDevice fetchSyncDevice(long syncDeviceId);
 
 	/**
 	* Returns the sync device with the matching UUID and company.
@@ -176,18 +182,18 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @return the matching sync device, or <code>null</code> if a matching sync device could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDevice fetchSyncDeviceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
+	public SyncDevice fetchSyncDeviceByUuidAndCompanyId(java.lang.String uuid,
+		long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portlet.exportimport.lar.PortletDataContext portletDataContext);
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* Returns the OSGi service identifier.
@@ -198,8 +204,8 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Returns the sync device with the primary key.
@@ -209,7 +215,7 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @throws PortalException if a sync device with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDevice getSyncDevice(long syncDeviceId)
+	public SyncDevice getSyncDevice(long syncDeviceId)
 		throws PortalException;
 
 	/**
@@ -221,8 +227,8 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @throws PortalException if a matching sync device could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.sync.model.SyncDevice getSyncDeviceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) throws PortalException;
+	public SyncDevice getSyncDeviceByUuidAndCompanyId(java.lang.String uuid,
+		long companyId) throws PortalException;
 
 	/**
 	* Returns a range of all the sync devices.
@@ -236,8 +242,7 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @return the range of sync devices
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDevice> getSyncDevices(
-		int start, int end);
+	public List<SyncDevice> getSyncDevices(int start, int end);
 
 	/**
 	* Returns the number of sync devices.
@@ -253,9 +258,8 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.sync.model.SyncDevice> search(
-		long companyId, java.lang.String keywords, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.sync.model.SyncDevice> orderByComparator);
+	public List<SyncDevice> search(long companyId, java.lang.String keywords,
+		int start, int end, OrderByComparator<SyncDevice> orderByComparator);
 
 	public void updateStatus(long syncDeviceId, int status)
 		throws PortalException;
@@ -266,11 +270,10 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	* @param syncDevice the sync device
 	* @return the sync device that was updated
 	*/
-	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.REINDEX)
-	public com.liferay.sync.model.SyncDevice updateSyncDevice(
-		com.liferay.sync.model.SyncDevice syncDevice);
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDevice updateSyncDevice(SyncDevice syncDevice);
 
-	public com.liferay.sync.model.SyncDevice updateSyncDevice(
-		long syncDeviceId, java.lang.String type, int buildNumber,
-		int featureSet, int status) throws PortalException;
+	public SyncDevice updateSyncDevice(long syncDeviceId,
+		java.lang.String type, int buildNumber, int featureSet, int status)
+		throws PortalException;
 }
