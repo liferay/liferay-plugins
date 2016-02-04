@@ -41,7 +41,7 @@ public class UserThreadServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.privatemessaging.service.impl.UserThreadServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static com.liferay.portlet.messageboards.model.MBMessage getLastThreadMessage(
+	public static com.liferay.message.boards.kernel.model.MBMessage getLastThreadMessage(
 		long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getLastThreadMessage(mbThreadId);
@@ -56,7 +56,7 @@ public class UserThreadServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static java.util.List<com.liferay.portlet.messageboards.model.MBMessage> getThreadMessages(
+	public static java.util.List<com.liferay.message.boards.kernel.model.MBMessage> getThreadMessages(
 		long mbThreadId, int start, int end, boolean ascending)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getThreadMessages(mbThreadId, start, end, ascending);

@@ -33,7 +33,7 @@ public class UserThreadServiceWrapper implements UserThreadService,
 	}
 
 	@Override
-	public com.liferay.portlet.messageboards.model.MBMessage getLastThreadMessage(
+	public com.liferay.message.boards.kernel.model.MBMessage getLastThreadMessage(
 		long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadService.getLastThreadMessage(mbThreadId);
@@ -50,7 +50,7 @@ public class UserThreadServiceWrapper implements UserThreadService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.portlet.messageboards.model.MBMessage> getThreadMessages(
+	public java.util.List<com.liferay.message.boards.kernel.model.MBMessage> getThreadMessages(
 		long mbThreadId, int start, int end, boolean ascending)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadService.getThreadMessages(mbThreadId, start, end,

@@ -65,10 +65,10 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class UserThreadServiceSoap {
-	public static com.liferay.portlet.messageboards.model.MBMessage getLastThreadMessage(
+	public static com.liferay.message.boards.kernel.model.MBMessage getLastThreadMessage(
 		long mbThreadId) throws RemoteException {
 		try {
-			com.liferay.portlet.messageboards.model.MBMessage returnValue = UserThreadServiceUtil.getLastThreadMessage(mbThreadId);
+			com.liferay.message.boards.kernel.model.MBMessage returnValue = UserThreadServiceUtil.getLastThreadMessage(mbThreadId);
 
 			return returnValue;
 		}
@@ -79,15 +79,15 @@ public class UserThreadServiceSoap {
 		}
 	}
 
-	public static com.liferay.portlet.messageboards.model.MBMessageSoap[] getThreadMessages(
+	public static com.liferay.message.boards.kernel.model.MBMessageSoap[] getThreadMessages(
 		long mbThreadId, int start, int end, boolean ascending)
 		throws RemoteException {
 		try {
-			java.util.List<com.liferay.portlet.messageboards.model.MBMessage> returnValue =
+			java.util.List<com.liferay.message.boards.kernel.model.MBMessage> returnValue =
 				UserThreadServiceUtil.getThreadMessages(mbThreadId, start, end,
 					ascending);
 
-			return com.liferay.portlet.messageboards.model.MBMessageSoap.toSoapModels(returnValue);
+			return com.liferay.message.boards.kernel.model.MBMessageSoap.toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

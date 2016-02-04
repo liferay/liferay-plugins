@@ -55,7 +55,7 @@ import com.liferay.privatemessaging.service.UserThreadServiceUtil;
  */
 @ProviderType
 public class UserThreadServiceHttp {
-	public static com.liferay.portlet.messageboards.model.MBMessage getLastThreadMessage(
+	public static com.liferay.message.boards.kernel.model.MBMessage getLastThreadMessage(
 		HttpPrincipal httpPrincipal, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -78,7 +78,7 @@ public class UserThreadServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (com.liferay.portlet.messageboards.model.MBMessage)returnObj;
+			return (com.liferay.message.boards.kernel.model.MBMessage)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -87,7 +87,7 @@ public class UserThreadServiceHttp {
 		}
 	}
 
-	public static java.util.List<com.liferay.portlet.messageboards.model.MBMessage> getThreadMessages(
+	public static java.util.List<com.liferay.message.boards.kernel.model.MBMessage> getThreadMessages(
 		HttpPrincipal httpPrincipal, long mbThreadId, int start, int end,
 		boolean ascending)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -111,7 +111,7 @@ public class UserThreadServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.util.List<com.liferay.portlet.messageboards.model.MBMessage>)returnObj;
+			return (java.util.List<com.liferay.message.boards.kernel.model.MBMessage>)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);

@@ -203,7 +203,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	@Override
-	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
+	public com.liferay.message.boards.kernel.model.MBMessage addPrivateMessage(
 		long userId, long mbThreadId, java.lang.String to,
 		java.lang.String subject, java.lang.String body,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
@@ -246,11 +246,11 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			}
 		}
 
-		return (com.liferay.portlet.messageboards.model.MBMessage)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.message.boards.kernel.model.MBMessage)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessageBranch(
+	public com.liferay.message.boards.kernel.model.MBMessage addPrivateMessageBranch(
 		long userId, long parentMBMessageId, java.lang.String body,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
@@ -288,7 +288,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			}
 		}
 
-		return (com.liferay.portlet.messageboards.model.MBMessage)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.message.boards.kernel.model.MBMessage)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
