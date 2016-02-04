@@ -84,6 +84,22 @@
 </p>
 
 <p>
+	com.liferay.blogs.kernel.service.BlogsEntryLocalService#getClass#getClassLoader=
+
+		<%
+		new SecurityExceptionTest(out, themeDisplay, true) {
+
+			protected void test() throws Exception {
+				BlogsEntryLocalService blogsEntryLocalService = BlogsEntryLocalServiceUtil.getService();
+
+				Class<?> clazz = blogsEntryLocalService.getClass();
+
+				clazz.getClassLoader();
+			}
+
+		};
+		%>
+
 	com.liferay.chat.model.EntryClp#toEscapedModel=
 
 		<%
@@ -197,22 +213,6 @@
 				Portal portal = PortalUtil.getPortal();
 
 				Class<?> clazz = portal.getClass();
-
-				clazz.getClassLoader();
-			}
-
-		};
-		%>
-
-	com.liferay.blogs.kernel.service.BlogsEntryLocalService#getClass#getClassLoader=
-
-		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
-
-			protected void test() throws Exception {
-				BlogsEntryLocalService blogsEntryLocalService = BlogsEntryLocalServiceUtil.getService();
-
-				Class<?> clazz = blogsEntryLocalService.getClass();
 
 				clazz.getClassLoader();
 			}
