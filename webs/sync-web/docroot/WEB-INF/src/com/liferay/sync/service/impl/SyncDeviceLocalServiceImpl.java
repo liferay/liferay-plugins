@@ -19,6 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.User;
 import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.service.base.SyncDeviceLocalServiceBaseImpl;
@@ -67,7 +69,8 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 		throws SystemException {
 
 		return syncDevicePersistence.findByC_U(
-			companyId, "%" + keywords + "%", start, end, orderByComparator);
+			companyId, StringUtil.quote(keywords, StringPool.PERCENT), start,
+			end, orderByComparator);
 	}
 
 	@Override
