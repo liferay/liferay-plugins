@@ -18,10 +18,10 @@
 package com.liferay.so.invitemembers.util;
 
 import com.liferay.portal.kernel.dao.orm.CustomSQLParam;
+import com.liferay.portal.kernel.util.comparator.UserFirstNameComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.LinkedHashMap;
