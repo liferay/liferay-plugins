@@ -287,13 +287,13 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			for (Locale locale : fieldLabelMap.keySet()) {
 				String fieldLabelValue = fieldLabelMap.get(locale);
 
-				if (locale.equals(defaultLocale)) {
-					if (Validator.isNull(fieldLabelValue)) {
-						SessionErrors.add(
-							actionRequest, ColumnNameException.class.getName());
+				if (locale.equals(defaultLocale) &&
+					Validator.isNull(fieldLabelValue)) {
 
-						return;
-					}
+					SessionErrors.add(
+						actionRequest, ColumnNameException.class.getName());
+
+					return;
 				}
 
 				if (Validator.isNotNull(fieldLabelValue) &&
