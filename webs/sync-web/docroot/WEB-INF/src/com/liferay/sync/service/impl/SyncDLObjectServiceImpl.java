@@ -1159,6 +1159,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		User user = getUser();
 
+		portletPreferencesMap.put(
+			PortletPropsKeys.SYNC_CLIENT_AUTHENTICATION_RETRY_INTERVAL,
+			String.valueOf(
+				PortletPropsValues.SYNC_CLIENT_AUTHENTICATION_RETRY_INTERVAL));
+
 		int batchFileMaxSize = PrefsPropsUtil.getInteger(
 			user.getCompanyId(),
 			PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE,
