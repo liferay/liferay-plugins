@@ -26,6 +26,11 @@ public class PortletPropsValues {
 		GetterUtil.getBoolean(
 			PortletProps.get(PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES));
 
+	public static final int SYNC_CLIENT_AUTHENTICATION_RETRY_INTERVAL =
+		GetterUtil.getInteger(
+			PortletProps.get(
+				PortletPropsKeys.SYNC_CLIENT_AUTHENTICATION_RETRY_INTERVAL));
+
 	public static final int SYNC_CLIENT_BATCH_FILE_MAX_SIZE =
 		GetterUtil.getInteger(
 			PortletProps.get(PortletPropsKeys.SYNC_CLIENT_BATCH_FILE_MAX_SIZE));
