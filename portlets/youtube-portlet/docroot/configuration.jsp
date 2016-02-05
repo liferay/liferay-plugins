@@ -36,9 +36,9 @@
 			<aui:option label="full-hd-1080-16-9" value="1920x1080" />
 		</aui:select>
 
-		<aui:input disabled="<%= true %>" inlineField="<%= true %>" label="frame-width" name="preferences--width--" value="<%= width %>" />
+		<aui:input inlineField="<%= true %>" label="frame-width" name="preferences--width--" type="number" value="<%= width %>" />
 
-		<aui:input disabled="<%= true %>" inlineField="<%= true %>" label="frame-height" name="preferences--height--" value="<%= height %>" />
+		<aui:input inlineField="<%= true %>" label="frame-height" name="preferences--height--" type="number" value="<%= height %>" />
 
 		<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="advanced-options">
@@ -71,19 +71,34 @@
 </aui:form>
 
 <aui:script>
+	var heightNode = AUI.$('#<portlet:namespace />height');
+	var widthNode = AUI.$('#<portlet:namespace />width');
+
+	var customHeight;
+	var customWidth;
+
+	var selectNode = AUI.$('#<portlet:namespace />presetSize');
+
+	if (selectNode.val() == 'custom') {
+		customHeight = heightNode.val();
+		customWidth = widthNode.val();
+	}
+
 	function <portlet:namespace />saveConfiguration() {
 		var form = AUI.$(document.<portlet:namespace />fm);
 
-		submitForm(form);
+		if (!/^\d+$/.test(heightNode.val()) || !/^\d+$/.test(widthNode.val())) {
+			alert('Please make sure that both fields are valid numbers.');
+		}
+		else {
+			submitForm(form);
+		}
 	}
 
 	function <portlet:namespace />updateFrameSize(value) {
 		var Util = Liferay.Util;
 
 		var notCustom = value != 'custom';
-
-		var heightNode = AUI.$('#<portlet:namespace />height');
-		var widthNode = AUI.$('#<portlet:namespace />width');
 
 		Util.toggleDisabled(heightNode, notCustom);
 		Util.toggleDisabled(widthNode, notCustom);
@@ -93,6 +108,24 @@
 
 			heightNode.val(dimensions[1]);
 			widthNode.val(dimensions[0]);
+		}
+		else {
+			heightNode.on(
+				'keyup',
+				function() {
+					customHeight = heightNode.val();
+				}
+			);
+
+			widthNode.on(
+				'keyup',
+				function() {
+					customWidth = widthNode.val();
+				}
+			);
+
+			heightNode.val(customHeight);
+			widthNode.val(customWidth);
 		}
 	}
 </aui:script>
