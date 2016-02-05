@@ -55,12 +55,5 @@
 			file="${layouttpl.dir}/docroot/blank_columns.tpl"
 			tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.tpl"
 		/>
-
-		<move
-			file="${layouttpl.dir}/docroot/blank_columns.wap.tpl"
-			tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.wap.tpl"
-		/>
-
-		<touch file="${layouttpl.dir}/docroot/${layouttpl.template.name}.wap.tpl" />
 	</target>
 </project>

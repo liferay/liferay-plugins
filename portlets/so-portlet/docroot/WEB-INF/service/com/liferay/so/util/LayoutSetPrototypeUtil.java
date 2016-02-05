@@ -90,7 +90,7 @@ public class LayoutSetPrototypeUtil {
 		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), null, null, StringPool.BLANK, false);
+			group.getGroupId(), null, null, StringPool.BLANK);
 
 		LayoutSetPrototype layoutSetPrototype = fetchLayoutSetPrototype(
 			group.getCompanyId(), layoutSetPrototypeKey);

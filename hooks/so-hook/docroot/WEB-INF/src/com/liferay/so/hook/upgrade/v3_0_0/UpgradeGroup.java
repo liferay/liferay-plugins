@@ -65,7 +65,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				long classPK = rs.getLong("classPK");
 
 				LayoutSetLocalServiceUtil.updateLookAndFeel(
-					classPK, "so_WAR_sotheme", "01", StringPool.BLANK, false);
+					classPK, "so_WAR_sotheme", "01", StringPool.BLANK);
 			}
 		}
 		finally {

@@ -16,7 +16,6 @@
 			<custom>
 				<layout-template id="3-3-3-columns" name="3-3-3 Columns Layout">
 					<template-path>/layouttpl/custom/3-3-3-columns-layouttpl/3_3_3_columns.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/3-3-3-columns-layouttpl/3_3_3_columns.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/custom/3-3-3-columns-layouttpl/3_3_3_columns.png</thumbnail-path>
 				</layout-template>
 			</custom>

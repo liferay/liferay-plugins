@@ -1,3 +1,0 @@
-#foreach ($nav_item in $nav_items)
-	<a href="$nav_item.getURL()" $nav_item.getTarget()>$nav_item.getName()</a><br />
-#end

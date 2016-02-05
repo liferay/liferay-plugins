@@ -21,12 +21,10 @@
 			<custom>
 				<layout-template id="1-2-3-columns" name="1-2-3 Columns Layout">
 					<template-path>/layouttpl/custom/1-2-3-columns-layouttpl/1_2_3_columns.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/1-2-3-columns-layouttpl/1_2_3_columns.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/custom/1-2-3-columns-layouttpl/1_2_3_columns.png</thumbnail-path>
 				</layout-template>
 				<layout-template id="2-1-2-4-columns" name="2-1-2-4 Columns Layout">
 					<template-path>/layouttpl/custom/2-1-2-4-columns-layouttpl/2_1_2_4_columns.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/2-1-2-4-columns-layouttpl/2_1_2_4_columns.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/custom/2-1-2-4-columns-layouttpl/2_1_2_4_columns.png</thumbnail-path>
 				</layout-template>
 			</custom>

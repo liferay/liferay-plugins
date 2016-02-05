@@ -16,7 +16,6 @@
 			<custom>
 				<layout-template id="2_1_2_columns" name="2-1-2 Columns Layout">
 					<template-path>/layouttpl/custom/2-1-2-columns-layouttpl/2_1_2_columns.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/2-1-2-columns-layouttpl/2_1_2_columns.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/custom/2-1-2-columns-layouttpl/2_1_2_columns.png</thumbnail-path>
 				</layout-template>
 			</custom>

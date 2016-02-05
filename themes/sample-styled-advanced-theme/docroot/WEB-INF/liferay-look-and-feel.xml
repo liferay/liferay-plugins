@@ -27,14 +27,12 @@
 			<standard>
 				<layout-template id="max">
 					<template-path>/layouttpl/standard/max.tpl</template-path>
-					<wap-template-path>/layouttpl/standard/max.wap.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/standard/max.png</thumbnail-path>
 				</layout-template>
 			</standard>
 			<custom>
 				<layout-template id="custom" name="Custom">
 					<template-path>/layouttpl/custom/custom.tpl</template-path>
-					<wap-template-path>/layouttpl/custom/custom.wap.tpl</wap-template-path>
 					<thumbnail-path>/layouttpl/custom/custom.png</thumbnail-path>
 				</layout-template>
 			</custom>

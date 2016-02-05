@@ -1903,30 +1903,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[sample-wap-portlet]]></artifact-id>
-		<name><![CDATA[Sample WAP]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[sample]]></tags>
-		<short-description><![CDATA[This plugin contains several portlets for WAP clients.]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[so-announcements-portlet]]></artifact-id>
 		<name><![CDATA[Social Office Announcements]]></name>
 		<type><![CDATA[portlet]]></type>
@@ -2996,30 +2972,6 @@
 	<plugin>
 		<artifact-id><![CDATA[sample-unstyled-theme]]></artifact-id>
 		<name><![CDATA[Sample Unstyled]]></name>
-		<type><![CDATA[theme]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[sample-wap-theme]]></artifact-id>
-		<name><![CDATA[Sample WAP]]></name>
 		<type><![CDATA[theme]]></type>
 		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>

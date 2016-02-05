@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="sample-wap-theme" basedir="." default="deploy">
-	<property name="plugin.version" value="1" />
-	<property name="theme.type" value="vm" />
-
-	<import file="../build-common-theme.xml" />
-</project>

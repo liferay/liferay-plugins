@@ -254,7 +254,7 @@ public class SODeployListenerMessageListener
 		LayoutSetLocalServiceUtil.updateLayoutSet(layoutSet);
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			layoutSet.getGroupId(), null, null, StringPool.BLANK, false);
+			layoutSet.getGroupId(), null, null, StringPool.BLANK);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
