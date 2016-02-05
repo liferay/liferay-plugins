@@ -8,7 +8,7 @@
 		<struts-path>o/${Bundle-SymbolicName}</struts-path>
 		<control-panel-entry-category>apps</control-panel-entry-category>
 		<control-panel-entry-weight>23.0</control-panel-entry-weight>
-		<control-panel-entry-class>com.liferay.portlet.OmniadminControlPanelEntry</control-panel-entry-class>
+		<control-panel-entry-class>com.liferay.portal.kernel.portlet.OmniadminControlPanelEntry</control-panel-entry-class>
 		<use-default-template>false</use-default-template>
 		<render-weight>1</render-weight>
 		<header-portlet-css>/css/main.css</header-portlet-css>

@@ -7,7 +7,7 @@
 		<icon>/icon.png</icon>
 		<control-panel-entry-category>my</control-panel-entry-category>
 		<control-panel-entry-weight>1.5</control-panel-entry-weight>
-		<control-panel-entry-class>com.liferay.portlet.LiberalControlPanelEntry</control-panel-entry-class>
+		<control-panel-entry-class>com.liferay.portal.kernel.portlet.LiberalControlPanelEntry</control-panel-entry-class>
 		<preferences-owned-by-group>true</preferences-owned-by-group>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>my-subscriptions-portlet</css-class-wrapper>
