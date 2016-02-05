@@ -24,7 +24,7 @@ MailManager mailManager = MailManager.getInstance(request);
 Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 %>
 
-<aui:layout cssClass="mail-status" />
+<div class="mail-status"></div>
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
 	<aui:fieldset column="<%= true %>" cssClass="span6" label="general">

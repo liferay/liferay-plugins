@@ -116,7 +116,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 					<%= defaultLayoutSetPrototype.getDescription() %>
 				</p>
 
-				<aui:layout>
+				<aui:row>
 					<aui:col width="<%= 30 %>">
 						<span class="included-pages"><liferay-ui:message key="included-pages" />:</span>
 
@@ -176,7 +176,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 							</div>
 						</div>
 					</aui:col>
-				</aui:layout>
+				</aui:row>
 			</div>
 		</div>
 	</div>

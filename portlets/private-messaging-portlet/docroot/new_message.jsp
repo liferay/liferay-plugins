@@ -63,7 +63,7 @@ to = sb.toString() + to;
 
 <div class="message-container" id="<portlet:namespace />messageContainer"></div>
 
-<aui:layout cssClass="message-body-container">
+<div class="message-body-container">
 	<aui:form enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
@@ -112,7 +112,7 @@ to = sb.toString() + to;
 			<aui:button primary="<%= true %>" type="submit" value="send" />
 		</aui:button-row>
 	</aui:form>
-</aui:layout>
+</div>
 
 <aui:script use="aui-io-request-deprecated,aui-loading-mask-deprecated,autocomplete,io-upload-iframe,json-parse">
 	var form = A.one('#<portlet:namespace />fm');

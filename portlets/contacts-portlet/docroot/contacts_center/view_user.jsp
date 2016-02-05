@@ -41,7 +41,7 @@ request.setAttribute("view_user.jsp-user", user2);
 <c:if test="<%= user2 != null %>">
 	<div class="contacts-profile <%= (user.getUserId() == user2.getUserId()) ? "my-profile" : StringPool.BLANK %>" id="<portlet:namespace />contactsProfile">
 		<c:if test="<%= (displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) %>">
-			<aui:layout cssClass="social-relations">
+			<div class="social-relations">
 
 				<%
 				boolean connection = SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
@@ -77,7 +77,7 @@ request.setAttribute("view_user.jsp-user", user2);
 					</div>
 				</c:if>
 
-				<aui:layout cssClass="contacts-action">
+				<div class="contacts-action">
 					<c:choose>
 						<c:when test="<%= portletId.equals(PortletKeys.CONTACTS_CENTER) || portletId.equals(PortletKeys.MEMBERS) %>">
 
@@ -129,8 +129,8 @@ request.setAttribute("view_user.jsp-user", user2);
 							<liferay-util:include page="/contacts_center/user_toolbar.jsp" servletContext="<%= application %>" />
 						</c:otherwise>
 					</c:choose>
-				</aui:layout>
-			</aui:layout>
+				</div>
+			</div>
 
 			<div class="field-group lfr-detail-info" data-sectionId="details" data-title="<%= LanguageUtil.get(request, "details") %>">
 				<i class="icon-edit"></i>
@@ -161,7 +161,7 @@ request.setAttribute("view_user.jsp-user", user2);
 
 		<c:if test="<%= ((displayStyle == ContactsConstants.DISPLAY_STYLE_DETAIL) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) || ((themeDisplay.getUserId() == user2.getUserId()) && showCompleteYourProfile)) && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
 			<div class="user-information" id="<portlet:namespace />userInformation">
-				<aui:layout>
+				<aui:row>
 					<c:if test="<%= showUsersInformation %>">
 						<aui:col cssClass="user-information-column-1" width="<%= showSites ? 80 : 100 %>">
 							<div class="user-information-title">
@@ -316,7 +316,7 @@ request.setAttribute("view_user.jsp-user", user2);
 							</c:if>
 						</aui:col>
 					</c:if>
-				</aui:layout>
+				</aui:row>
 			</div>
 
 			<c:if test="<%= showRecentActivity && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">

@@ -21,7 +21,7 @@
 <aui:form action="<%= configurationActionURL %>" method="post">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-	<aui:layout>
+	<aui:row>
 		<aui:col id="controls" width="<%= 50 %>">
 			<div class="field-row">
 				<aui:input cssClass="url" inlineField="true" label="url" name="preferences--url--" value="<%= url %>" />
@@ -75,7 +75,7 @@
 				<i class="icon-youtube-play preview-play"></i>
 			</div>
 		</aui:col>
-	</aui:layout>
+	</aui:row>
 
 	<aui:button-row>
 		<aui:button type="submit" />

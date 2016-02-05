@@ -71,7 +71,7 @@ MailManager mailManager = MailManager.getInstance(request);
 
 	<c:choose>
 		<c:when test="<%= messagesDisplay.getMessageCount() == 0 %>">
-			<aui:layout>
+			<div class="alert alert-info">
 				<c:choose>
 					<c:when test="<%= Validator.isNull(keywords) %>">
 						<liferay-ui:message key="there-are-no-message-in-this-folder" />
@@ -80,7 +80,7 @@ MailManager mailManager = MailManager.getInstance(request);
 						<liferay-ui:message key="no-messages-matched-your-search" />
 					</c:otherwise>
 				</c:choose>
-			</aui:layout>
+			</div>
 		</c:when>
 		<c:otherwise>
 			<div class="table-container">

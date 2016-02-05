@@ -48,7 +48,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	title="<%= subject %>"
 />
 
-<aui:layout cssClass="thread-info">
+<div class="thread-info">
 	<liferay-ui:message key="between" />
 
 	<%
@@ -111,7 +111,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 			<span class="profile-link"><liferay-ui:message key="you" /></span>
 		</c:otherwise>
 	</c:choose>
-</aui:layout>
+</div>
 
 <%
 PortletURL iteratorURL = renderResponse.createRenderURL();
@@ -273,7 +273,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 <div class="message-container" id="<portlet:namespace />messageContainer"></div>
 
 <c:if test="<%= hasExistingRecipients %>">
-	<aui:layout cssClass="message-body-container">
+	<div class="message-body-container">
 		<aui:form enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
 			<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 			<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
@@ -300,7 +300,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 				<aui:button cssClass="back-button" href="<%= backURL %>" value="back-to-messages" />
 			</aui:button-row>
 		</aui:form>
-	</aui:layout>
+	</div>
 </c:if>
 
 <aui:script use="aui-image-viewer-gallery,aui-io-request-deprecated">

@@ -26,12 +26,10 @@ String[] category3 = {"section5"};
 String[][] categorySections = {category1, category2, category3};
 %>
 
-<aui:layout>
-	<aui:form action="" name="fm">
-		<liferay-ui:form-navigator
-			categoryNames="<%= categoryNames %>"
-			categorySections="<%= categorySections %>"
-			jspPath="/sections/"
-		/>
-	</aui:form>
-</aui:layout>
+<aui:form action="" name="fm">
+	<liferay-ui:form-navigator
+		categoryNames="<%= categoryNames %>"
+		categorySections="<%= categorySections %>"
+		jspPath="/sections/"
+	/>
+</aui:form>

@@ -52,13 +52,13 @@ Group group = themeDisplay.getScopeGroup();
 				</div>
 			</c:when>
 			<c:otherwise>
-				<aui:layout cssClass="my-contacts">
+				<div class="my-contacts">
 
 					<%
 					for (User user2 : users) {
 					%>
 
-						<aui:layout cssClass="lfr-contact-grid-item">
+						<div class="lfr-contact-grid-item">
 							<div class="lfr-contact-thumb">
 								<a href="<%= user2.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escapeAttribute(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 							</div>
@@ -74,7 +74,7 @@ Group group = themeDisplay.getScopeGroup();
 							</div>
 
 							<div class="clear"><!-- --></div>
-						</aui:layout>
+						</div>
 
 					<%
 					}
@@ -83,7 +83,7 @@ Group group = themeDisplay.getScopeGroup();
 					<c:if test="<%= portletURL != null %>">
 						<a class="lfr-contact-grid-item" href="<%= portletURL %>"><liferay-ui:message arguments="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>" key="view-all-x-connections" translateArguments="<%= false %>" /></a>
 					</c:if>
-				</aui:layout>
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</c:when>

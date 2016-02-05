@@ -23,7 +23,7 @@ long inboxFolderId = ParamUtil.getLong(request, "inboxFolderId");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<aui:layout cssClass="mail-status" />
+<div class="mail-status"></div>
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
 	<aui:input name="accountId" type="hidden" value="<%= accountId %>" />

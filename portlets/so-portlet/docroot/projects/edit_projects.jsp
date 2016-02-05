@@ -91,7 +91,7 @@ String namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
 
 				<div style="clear: both;"><!-- --></div>
 
-				<aui:layout cssClass="lfr-form-row-inline">
+				<aui:row cssClass="lfr-form-row-inline">
 					<aui:col>
 
 						<%
@@ -134,7 +134,7 @@ String namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
 							<liferay-ui:input-checkbox defaultValue="<%= current %>" param="<%= fieldParam %>" />
 						</div>
 					</aui:col>
-				</aui:layout>
+				</aui:row>
 
 				<aui:input fieldParam='<%= "projectsEntryDescription" + projectsEntriesIndex %>' name="description" />
 			</div>
