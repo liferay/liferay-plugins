@@ -45,7 +45,7 @@ public class UserThreadLocalServiceUtil {
 		long userId, long mbThreadId, java.lang.String to,
 		java.lang.String subject, java.lang.String body,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addPrivateMessage(userId, mbThreadId, to, subject, body,
@@ -55,7 +55,7 @@ public class UserThreadLocalServiceUtil {
 	public static com.liferay.message.boards.kernel.model.MBMessage addPrivateMessageBranch(
 		long userId, long parentMBMessageId, java.lang.String body,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addPrivateMessageBranch(userId, parentMBMessageId, body,
