@@ -44,6 +44,7 @@ page import="com.liferay.opensocial.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
+page import="com.liferay.portal.kernel.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.repository.model.Folder" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
@@ -59,7 +60,6 @@ page import="com.liferay.portal.model.Layout" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletLister" %><%@
 page import="com.liferay.portal.util.PortletListerFactoryUtil" %><%@
-page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.util.Locale" %><%@

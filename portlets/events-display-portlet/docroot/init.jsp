@@ -34,6 +34,7 @@ page import="com.liferay.calendar.service.CalendarResourceLocalServiceUtil" %><%
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
+page import="com.liferay.portal.kernel.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.ArrayUtil" %><%@
 page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
@@ -56,7 +57,6 @@ page import="com.liferay.portal.model.LayoutConstants" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
-page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.eventsdisplay.util.comparator.CalendarBookingTimeComparator" %><%@
 page import="com.liferay.site.my.sites.web.constants.MySitesPortletKeys" %>
 
