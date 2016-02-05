@@ -14,6 +14,8 @@
 
 package com.liferay.knowledgebase.service.base;
 
+import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
+
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBTemplateService;
 import com.liferay.knowledgebase.service.persistence.KBArticleFinder;
@@ -33,8 +35,6 @@ import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.persistence.ClassNamePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.util.PortalUtil;
-
-import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 
 import com.liferay.social.kernel.service.persistence.SocialActivityPersistence;
 
@@ -460,7 +460,7 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the asset entry local service
 	 */
-	public com.liferay.portlet.asset.service.AssetEntryLocalService getAssetEntryLocalService() {
+	public com.liferay.asset.kernel.service.AssetEntryLocalService getAssetEntryLocalService() {
 		return assetEntryLocalService;
 	}
 
@@ -470,7 +470,7 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	 * @param assetEntryLocalService the asset entry local service
 	 */
 	public void setAssetEntryLocalService(
-		com.liferay.portlet.asset.service.AssetEntryLocalService assetEntryLocalService) {
+		com.liferay.asset.kernel.service.AssetEntryLocalService assetEntryLocalService) {
 		this.assetEntryLocalService = assetEntryLocalService;
 	}
 
@@ -479,7 +479,7 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the asset entry remote service
 	 */
-	public com.liferay.portlet.asset.service.AssetEntryService getAssetEntryService() {
+	public com.liferay.asset.kernel.service.AssetEntryService getAssetEntryService() {
 		return assetEntryService;
 	}
 
@@ -489,7 +489,7 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	 * @param assetEntryService the asset entry remote service
 	 */
 	public void setAssetEntryService(
-		com.liferay.portlet.asset.service.AssetEntryService assetEntryService) {
+		com.liferay.asset.kernel.service.AssetEntryService assetEntryService) {
 		this.assetEntryService = assetEntryService;
 	}
 
@@ -683,10 +683,10 @@ public abstract class KBTemplateServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.portal.service.UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = com.liferay.portlet.asset.service.AssetEntryLocalService.class)
-	protected com.liferay.portlet.asset.service.AssetEntryLocalService assetEntryLocalService;
-	@BeanReference(type = com.liferay.portlet.asset.service.AssetEntryService.class)
-	protected com.liferay.portlet.asset.service.AssetEntryService assetEntryService;
+	@BeanReference(type = com.liferay.asset.kernel.service.AssetEntryLocalService.class)
+	protected com.liferay.asset.kernel.service.AssetEntryLocalService assetEntryLocalService;
+	@BeanReference(type = com.liferay.asset.kernel.service.AssetEntryService.class)
+	protected com.liferay.asset.kernel.service.AssetEntryService assetEntryService;
 	@BeanReference(type = AssetEntryPersistence.class)
 	protected AssetEntryPersistence assetEntryPersistence;
 	@BeanReference(type = com.liferay.social.kernel.service.SocialActivityLocalService.class)
