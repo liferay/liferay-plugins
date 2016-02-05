@@ -19,6 +19,8 @@ import com.liferay.alloy.mvc.AlloyPortlet;
 import com.liferay.alloy.mvc.BaseAlloyControllerImpl;
 import com.liferay.portal.kernel.json.JSONSerializable;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
+import com.liferay.portal.kernel.portlet.PortletConfigFactoryUtil;
+import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.servlet.DynamicServletRequest;
@@ -29,8 +31,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portlet.PortletConfigFactoryUtil;
-import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.lang.reflect.Constructor;
 

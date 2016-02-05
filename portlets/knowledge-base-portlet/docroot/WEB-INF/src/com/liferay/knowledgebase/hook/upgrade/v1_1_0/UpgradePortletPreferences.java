@@ -14,10 +14,10 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
+import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.upgrade.CamelCaseUpgradePortletPreferences;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.PortletConstants;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
