@@ -18,7 +18,7 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.service.persistence.StatusPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 
 import java.util.Set;
 

@@ -18,7 +18,7 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 
 import java.util.Set;
 

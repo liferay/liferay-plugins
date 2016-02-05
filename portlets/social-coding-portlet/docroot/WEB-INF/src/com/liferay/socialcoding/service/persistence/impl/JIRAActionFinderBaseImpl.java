@@ -15,7 +15,7 @@
 package com.liferay.socialcoding.service.persistence.impl;
 
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.service.persistence.JIRAActionPersistence;
