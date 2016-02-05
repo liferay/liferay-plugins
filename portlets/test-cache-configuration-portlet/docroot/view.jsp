@@ -29,7 +29,7 @@
 
 <p>
 
-	<%= _testAttributeList("SINGLE_VM_PORTAL_CACHE_MANAGER", "com.liferay.portal.util.WebCachePool", false, 1, 10) %>
+	<%= _testAttributeList("SINGLE_VM_PORTAL_CACHE_MANAGER", "com.liferay.portal.kernel.webcache.WebCachePool", false, 1, 10) %>
 
 </p>
 
