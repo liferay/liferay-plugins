@@ -16,8 +16,8 @@ package com.liferay.google.mail.users.hook.mail;
 
 import com.liferay.google.apps.connector.util.GoogleDirectoryUtil;
 import com.liferay.google.apps.connector.util.GoogleGmailSettingsUtil;
-import com.liferay.mail.model.Filter;
-import com.liferay.mail.util.Hook;
+import com.liferay.mail.kernel.model.Filter;
+import com.liferay.mail.kernel.util.Hook;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
