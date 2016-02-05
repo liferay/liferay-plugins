@@ -13,7 +13,7 @@
  */
 
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.util.PortletKeys;
+import com.liferay.portal.kernel.util.PortletKeys;
 
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyRole;
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyScriptingContext;

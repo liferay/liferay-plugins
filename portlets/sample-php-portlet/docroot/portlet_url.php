@@ -1,6 +1,6 @@
 <?php
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.util.PortletKeys;
+import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 
 import javax.portlet.PortletMode;

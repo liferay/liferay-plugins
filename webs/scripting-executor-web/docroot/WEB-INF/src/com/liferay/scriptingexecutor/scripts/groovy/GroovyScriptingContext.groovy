@@ -17,7 +17,7 @@ package com.liferay.scriptingexecutor.scripts.groovy;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.HashMap;
 import java.util.Locale;
