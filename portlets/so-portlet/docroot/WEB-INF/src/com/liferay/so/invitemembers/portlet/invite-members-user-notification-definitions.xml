@@ -3,11 +3,11 @@
 
 <user-notification-definitions>
 	<definition>
-		<notification-type>${com.liferay.portal.model.MembershipRequestConstants.STATUS_PENDING}</notification-type>
+		<notification-type>${com.liferay.portal.kernel.model.MembershipRequestConstants.STATUS_PENDING}</notification-type>
 		<description>receive-a-notification-when-someone-sends-you-a-membership-request</description>
 		<delivery-type>
 			<name>website</name>
-			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
+			<type>${com.liferay.portal.kernel.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
 			<default>true</default>
 			<modifiable>false</modifiable>
 		</delivery-type>

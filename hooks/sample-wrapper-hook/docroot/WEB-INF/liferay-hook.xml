@@ -3,7 +3,7 @@
 
 <hook>
 	<service>
-		<service-type>com.liferay.portal.service.UserLocalService</service-type>
+		<service-type>com.liferay.portal.kernel.service.UserLocalService</service-type>
 		<service-impl>com.liferay.samplewrapper.hook.service.impl.SampleWrapperUserLocalServiceImpl</service-impl>
 	</service>
 </hook>

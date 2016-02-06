@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.portal.service.persistence.UserFinder.filterByUsersGroupsGroupId">
+	<sql id="com.liferay.portal.kernel.service.persistence.UserFinder.filterByUsersGroupsGroupId">
 		<![CDATA[
 			WHERE (
 				User_.userId NOT IN (

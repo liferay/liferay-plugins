@@ -6,7 +6,7 @@
 	<language-properties>content/Language*.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<service>
-		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
+		<service-type>com.liferay.portal.kernel.service.CompanyLocalService</service-type>
 		<service-impl>com.liferay.localization.hook.service.impl.LocalizationCompanyLocalServiceImpl</service-impl>
 	</service>
 </hook>

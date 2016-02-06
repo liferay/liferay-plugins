@@ -4,7 +4,7 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<service>
-		<service-type>com.liferay.portal.service.GroupLocalService</service-type>
+		<service-type>com.liferay.portal.kernel.service.GroupLocalService</service-type>
 		<service-impl>com.liferay.google.mail.groups.hook.service.impl.GoogleMailGroupsGroupLocalServiceImpl</service-impl>
 	</service>
 </hook>

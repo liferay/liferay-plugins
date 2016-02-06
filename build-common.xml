@@ -2972,8 +2972,8 @@ Please find a solution that does not require portal-impl.jar.
 
 <%@ include file="init.jsp" %>
 
-<%@ page import="com.liferay.portal.model.Portlet" %>
-<%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.model.Portlet" %>
+<%@ page import="com.liferay.portal.kernel.service.PortletLocalServiceUtil" %>
 
 <%@ page import="java.util.Set" %>
 

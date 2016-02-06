@@ -6,11 +6,11 @@
 	<language-properties>content/Language*.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<indexer-post-processor>
-		<indexer-class-name>com.liferay.portal.model.Organization</indexer-class-name>
+		<indexer-class-name>com.liferay.portal.kernel.model.Organization</indexer-class-name>
 		<indexer-post-processor-impl>com.liferay.testpacl.hook.indexer.OrganizationIndexerPostProcessor</indexer-post-processor-impl>
 	</indexer-post-processor>
 	<indexer-post-processor>
-		<indexer-class-name>com.liferay.portal.model.User</indexer-class-name>
+		<indexer-class-name>com.liferay.portal.kernel.model.User</indexer-class-name>
 		<indexer-post-processor-impl>com.liferay.testpacl.hook.indexer.UserIndexerPostProcessor</indexer-post-processor-impl>
 	</indexer-post-processor>
 	<service>

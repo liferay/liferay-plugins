@@ -6,7 +6,7 @@
 	<language-properties>content/Language*.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<indexer-post-processor>
-		<indexer-class-name>com.liferay.portal.model.User</indexer-class-name>
+		<indexer-class-name>com.liferay.portal.kernel.model.User</indexer-class-name>
 		<indexer-post-processor-impl>com.liferay.so.hook.indexer.UserIndexerPostProcessor</indexer-post-processor-impl>
 	</indexer-post-processor>
 	<struts-action>

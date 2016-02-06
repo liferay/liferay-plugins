@@ -7,7 +7,7 @@
 		<description>receive-a-notification-when-someone-sends-you-a-social-relationship-request</description>
 		<delivery-type>
 			<name>website</name>
-			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
+			<type>${com.liferay.portal.kernel.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
 			<default>true</default>
 			<modifiable>false</modifiable>
 		</delivery-type>
