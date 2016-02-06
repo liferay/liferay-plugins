@@ -588,7 +588,7 @@ AUI.add(
 						);
 					},
 
-					_CLASS_NAME: 'com.liferay.portal.model.Layout',
+					_CLASS_NAME: 'com.liferay.portal.kernel.model.Layout',
 					_TABLE_NAME: 'OPEN_SOCIAL_DATA_'
 				}
 			}
