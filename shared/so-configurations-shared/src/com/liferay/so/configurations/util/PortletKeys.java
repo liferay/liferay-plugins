@@ -20,7 +20,7 @@ package com.liferay.so.configurations.util;
 /**
  * @author Matthew Kong
  */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+public class PortletKeys extends com.liferay.portal.kernel.util.PortletKeys {
 
 	public static final String SO_CONFIGURATIONS =
 		"1_WAR_soconfigurationsportlet";

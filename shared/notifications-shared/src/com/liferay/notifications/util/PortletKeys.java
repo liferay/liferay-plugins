@@ -20,7 +20,7 @@ package com.liferay.notifications.util;
 /**
  * @author Lin Cui
  */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+public class PortletKeys extends com.liferay.portal.kernel.util.PortletKeys {
 
 	public static final String CONTACTS_CENTER =
 		com.liferay.contacts.util.PortletKeys.CONTACTS_CENTER;

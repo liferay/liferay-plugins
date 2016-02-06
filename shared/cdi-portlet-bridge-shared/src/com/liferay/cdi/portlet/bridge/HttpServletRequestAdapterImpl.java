@@ -14,7 +14,7 @@
 
 package com.liferay.cdi.portlet.bridge;
 
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;

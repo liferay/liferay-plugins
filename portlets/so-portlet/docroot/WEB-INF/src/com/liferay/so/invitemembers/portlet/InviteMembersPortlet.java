@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -44,7 +45,6 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.invitemembers.util.InviteMembersUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 
@@ -262,7 +262,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 			themeDisplay.getCompanyId(), GroupConstants.GUEST);
 
 		PortletURL createAccountURL = PortletURLFactoryUtil.create(
-			request, com.liferay.portal.util.PortletKeys.LOGIN,
+			request, com.liferay.portal.kernel.util.PortletKeys.LOGIN,
 			group.getDefaultPublicPlid(), PortletRequest.RENDER_PHASE);
 
 		createAccountURL.setParameter("struts_action", "/login/create_account");

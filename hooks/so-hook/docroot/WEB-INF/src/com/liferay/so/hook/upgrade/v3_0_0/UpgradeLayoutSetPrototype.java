@@ -18,8 +18,8 @@
 package com.liferay.so.hook.upgrade.v3_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.model.LayoutSetPrototype;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.SocialOfficeConstants;

@@ -29,8 +29,8 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Jonathan Lee

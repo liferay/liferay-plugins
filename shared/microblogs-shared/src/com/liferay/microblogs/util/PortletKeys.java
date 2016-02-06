@@ -20,7 +20,7 @@ package com.liferay.microblogs.util;
 /**
  * @author Jonathan Lee
  */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+public class PortletKeys extends com.liferay.portal.kernel.util.PortletKeys {
 
 	public static final String MICROBLOGS = "1_WAR_microblogsportlet";
 

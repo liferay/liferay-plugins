@@ -18,7 +18,7 @@ import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 import com.liferay.akismet.util.AkismetUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 /**
  * @author Amos Fong

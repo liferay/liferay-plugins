@@ -17,7 +17,7 @@ package com.liferay.testmisc.util;
 /**
  * @author Sergio González
  */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+public class PortletKeys extends com.liferay.portal.kernel.util.PortletKeys {
 
 	public static final String TEST_MISC = "1_WAR_testmiscportlet";
 

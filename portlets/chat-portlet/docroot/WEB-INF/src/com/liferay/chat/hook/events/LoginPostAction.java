@@ -16,7 +16,7 @@ package com.liferay.chat.hook.events;
 
 import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.portal.kernel.events.Action;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
