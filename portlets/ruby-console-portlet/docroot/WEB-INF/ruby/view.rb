@@ -23,9 +23,9 @@ html = <<-EOF
 
 <script type="text/javascript">
 	// <![CDATA[
-		function #{namespace}execute() {		
+		function #{namespace}execute() {
 			var content = $('textarea##{namespace}consoleInput').val();
-			
+
 			jQuery.post(
 				'#{$renderResponse.createResourceURL}',
 				{
