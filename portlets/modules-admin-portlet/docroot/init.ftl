@@ -31,8 +31,8 @@
 <#assign FastDateFormatFactoryUtil = staticUtil["com.liferay.portal.kernel.util.FastDateFormatFactoryUtil"] />
 <#assign ListUtil = staticUtil["com.liferay.portal.kernel.util.ListUtil"] />
 <#assign ParamUtil = staticUtil["com.liferay.portal.kernel.util.ParamUtil"] />
-<#assign Validator = staticUtil["com.liferay.portal.kernel.util.Validator"] />
 <#assign PortalUtil = staticUtil["com.liferay.portal.kernel.util.PortalUtil"] />
+<#assign Validator = staticUtil["com.liferay.portal.kernel.util.Validator"] />
 <#assign PropsValues = staticUtil["com.liferay.portal.util.PropsValues"] />
 <#assign WebKeys = staticUtil["com.liferay.portal.util.WebKeys"] />
 
