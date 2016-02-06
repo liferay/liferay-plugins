@@ -271,13 +271,12 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 	}
 
 	protected void validateFieldNameLength(ActionRequest actionRequest) {
+		Locale defaultLocale = LocaleUtil.getSiteDefault();
+
 		int[] formFieldsIndexes = StringUtil.split(
 			ParamUtil.getString(actionRequest, "formFieldsIndexes"), 0);
-
 		boolean saveToDatabase = GetterUtil.getBoolean(
 			getParameter(actionRequest, "saveToDatabase"));
-
-		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		for (int formFieldsIndex : formFieldsIndexes) {
 			Map<Locale, String> fieldLabelMap =
