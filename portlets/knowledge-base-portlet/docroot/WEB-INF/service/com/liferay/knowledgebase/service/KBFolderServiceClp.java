@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.kernel.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,7 +31,7 @@ public class KBFolderServiceClp implements KBFolderService {
 
 		_methodParameterTypes0 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "deleteKBFolder";
@@ -77,7 +77,7 @@ public class KBFolderServiceClp implements KBFolderService {
 	public com.liferay.knowledgebase.model.KBFolder addKBFolder(long groupId,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		java.lang.String name, java.lang.String description,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

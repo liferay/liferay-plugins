@@ -16,7 +16,7 @@ package com.liferay.microblogs.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.ServiceWrapper;
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link MicroblogsEntryService}.
@@ -37,7 +37,7 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type,
 		long parentMicroblogsEntryId, int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _microblogsEntryService.addMicroblogsEntry(userId, content,
 			type, parentMicroblogsEntryId, socialRelationType, serviceContext);
@@ -135,7 +135,7 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService,
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,
 		int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _microblogsEntryService.updateMicroblogsEntry(microblogsEntryId,
 			content, socialRelationType, serviceContext);

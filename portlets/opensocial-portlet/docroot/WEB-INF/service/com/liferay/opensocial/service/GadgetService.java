@@ -24,9 +24,9 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
-import com.liferay.portal.service.BaseService;
-import com.liferay.portal.service.InvokableService;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.service.BaseService;
+import com.liferay.portal.kernel.service.InvokableService;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 /**
  * Provides the remote service interface for Gadget. Methods of this

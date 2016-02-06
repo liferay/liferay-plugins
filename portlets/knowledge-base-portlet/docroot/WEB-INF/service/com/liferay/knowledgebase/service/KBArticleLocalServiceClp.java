@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableLocalService;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -39,7 +39,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String[][]", "java.lang.String[][]",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName2 = "addKBArticleResources";
@@ -71,7 +71,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		_methodParameterTypes6 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean",
 				"java.io.InputStream",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName7 = "addTempAttachment";
@@ -110,7 +110,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		_methodName14 = "deletePersistedModel";
 
 		_methodParameterTypes14 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName15 = "deleteTempAttachment";
@@ -384,7 +384,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodParameterTypes66 = new String[] {
 				"long", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName67 = "search";
@@ -423,7 +423,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName74 = "updateKBArticleAsset";
@@ -452,7 +452,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 
 		_methodParameterTypes78 = new String[] {
 				"long", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName79 = "updateViewCount";
@@ -492,7 +492,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		java.lang.String content, java.lang.String description,
 		java.lang.String sourceURL, java.lang.String[] sections,
 		java.lang.String[] selectedFileNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -676,7 +676,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	public int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
 		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -915,8 +915,8 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -941,7 +941,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -2178,7 +2178,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -2204,7 +2204,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -2453,7 +2453,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
 		long userId, long resourcePrimKey, int version,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -2667,7 +2667,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 		java.lang.String content, java.lang.String description,
 		java.lang.String sourceURL, java.lang.String[] sections,
 		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -2837,7 +2837,7 @@ public class KBArticleLocalServiceClp implements KBArticleLocalService {
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateStatus(long userId,
 		long resourcePrimKey, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

@@ -112,7 +112,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 		_methodName17 = "deletePersistedModel";
 
 		_methodParameterTypes17 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName18 = "getPersistedModel";
@@ -146,7 +146,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 		_methodParameterTypes54 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName55 = "deleteWSRPConsumer";
@@ -291,7 +291,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return WSRPConsumerLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return WSRPConsumerLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
@@ -332,7 +332,7 @@ public class WSRPConsumerLocalServiceClpInvoker {
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[7]);
 		}
 
 		if (_methodName55.equals(name) &&

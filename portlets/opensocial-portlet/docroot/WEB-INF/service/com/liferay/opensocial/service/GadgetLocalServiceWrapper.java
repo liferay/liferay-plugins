@@ -16,7 +16,7 @@ package com.liferay.opensocial.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.ServiceWrapper;
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link GadgetLocalService}.
@@ -35,7 +35,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	@Override
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetLocalService.addGadget(companyId, url,
 			portletCategoryNames, serviceContext);
@@ -98,8 +98,8 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetLocalService.deletePersistedModel(persistedModel);
 	}
@@ -329,7 +329,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetLocalService.getPersistedModel(primaryKeyObj);

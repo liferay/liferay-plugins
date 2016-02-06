@@ -58,7 +58,7 @@ public class GadgetServiceHttp {
 	public static com.liferay.opensocial.model.Gadget addGadget(
 		HttpPrincipal httpPrincipal, long companyId, java.lang.String url,
 		java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(GadgetServiceUtil.class,
@@ -90,7 +90,7 @@ public class GadgetServiceHttp {
 	}
 
 	public static void deleteGadget(HttpPrincipal httpPrincipal, long gadgetId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(GadgetServiceUtil.class,
@@ -119,7 +119,7 @@ public class GadgetServiceHttp {
 
 	public static void updateGadget(HttpPrincipal httpPrincipal, long gadgetId,
 		java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(GadgetServiceUtil.class,
@@ -149,13 +149,13 @@ public class GadgetServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(GadgetServiceHttp.class);
 	private static final Class<?>[] _addGadgetParameterTypes0 = new Class[] {
 			long.class, java.lang.String.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _deleteGadgetParameterTypes1 = new Class[] {
-			long.class, com.liferay.portal.service.ServiceContext.class
+			long.class, com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _updateGadgetParameterTypes2 = new Class[] {
 			long.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 }

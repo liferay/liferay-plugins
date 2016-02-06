@@ -38,7 +38,7 @@ public class KBArticleServiceClpInvoker {
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName106 = "addKBArticlesMarkdown";
@@ -46,7 +46,7 @@ public class KBArticleServiceClpInvoker {
 		_methodParameterTypes106 = new String[] {
 				"long", "long", "java.lang.String", "boolean",
 				"java.io.InputStream",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName107 = "addTempAttachment";
@@ -204,7 +204,7 @@ public class KBArticleServiceClpInvoker {
 		_methodName134 = "revertKBArticle";
 
 		_methodParameterTypes134 = new String[] {
-				"long", "int", "com.liferay.portal.service.ServiceContext"
+				"long", "int", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName135 = "subscribeGroupKBArticles";
@@ -229,7 +229,7 @@ public class KBArticleServiceClpInvoker {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName140 = "updateKBArticlesPriorities";
@@ -254,7 +254,7 @@ public class KBArticleServiceClpInvoker {
 				(java.lang.String)arguments[7],
 				(java.lang.String[])arguments[8],
 				(java.lang.String[])arguments[9],
-				(com.liferay.portal.service.ServiceContext)arguments[10]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[10]);
 		}
 
 		if (_methodName106.equals(name) &&
@@ -264,7 +264,7 @@ public class KBArticleServiceClpInvoker {
 				(java.lang.String)arguments[2],
 				((Boolean)arguments[3]).booleanValue(),
 				(java.io.InputStream)arguments[4],
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName107.equals(name) &&
@@ -488,7 +488,7 @@ public class KBArticleServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes134, parameterTypes)) {
 			return KBArticleServiceUtil.revertKBArticle(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[2]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[2]);
 		}
 
 		if (_methodName135.equals(name) &&
@@ -529,7 +529,7 @@ public class KBArticleServiceClpInvoker {
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
 				(java.lang.String[])arguments[5],
 				(java.lang.String[])arguments[6], (long[])arguments[7],
-				(com.liferay.portal.service.ServiceContext)arguments[8]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[8]);
 		}
 
 		if (_methodName140.equals(name) &&

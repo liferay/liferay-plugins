@@ -16,7 +16,7 @@ package com.liferay.microblogs.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.kernel.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,7 +31,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 
 		_methodParameterTypes0 = new String[] {
 				"long", "java.lang.String", "int", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "deleteMicroblogsEntry";
@@ -82,7 +82,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 
 		_methodParameterTypes13 = new String[] {
 				"long", "java.lang.String", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -90,7 +90,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type,
 		long parentMicroblogsEntryId, int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -462,7 +462,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,
 		int socialRelationType,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

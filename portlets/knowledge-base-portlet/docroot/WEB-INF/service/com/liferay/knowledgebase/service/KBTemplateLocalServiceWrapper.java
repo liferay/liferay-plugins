@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.ServiceWrapper;
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link KBTemplateLocalService}.
@@ -48,7 +48,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	@Override
 	public com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		long userId, java.lang.String title, java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbTemplateLocalService.addKBTemplate(userId, title, content,
 			serviceContext);
@@ -110,8 +110,8 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbTemplateLocalService.deletePersistedModel(persistedModel);
 	}
@@ -350,7 +350,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbTemplateLocalService.getPersistedModel(primaryKeyObj);
@@ -389,7 +389,7 @@ public class KBTemplateLocalServiceWrapper implements KBTemplateLocalService,
 	@Override
 	public com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbTemplateLocalService.updateKBTemplate(kbTemplateId, title,
 			content, serviceContext);

@@ -16,7 +16,7 @@ package com.liferay.sync.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableLocalService;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -32,7 +32,7 @@ public class SyncPreferencesLocalServiceClp
 		_methodName0 = "enableOAuth";
 
 		_methodParameterTypes0 = new String[] {
-				"long", "com.liferay.portal.service.ServiceContext"
+				"long", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "getOSGiServiceIdentifier";
@@ -46,7 +46,7 @@ public class SyncPreferencesLocalServiceClp
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication enableOAuth(
-		long companyId, com.liferay.portal.service.ServiceContext serviceContext)
+		long companyId, com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

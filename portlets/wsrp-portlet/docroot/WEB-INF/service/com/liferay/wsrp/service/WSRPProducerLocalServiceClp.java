@@ -16,7 +16,7 @@ package com.liferay.wsrp.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableLocalService;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -32,14 +32,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 
 		_methodParameterTypes0 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "addWSRPProducer";
 
 		_methodParameterTypes1 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName2 = "addWSRPProducer";
@@ -55,7 +55,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		_methodName4 = "deletePersistedModel";
 
 		_methodParameterTypes4 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName5 = "deleteWSRPProducer";
@@ -195,7 +195,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
 		long groupId, java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -239,7 +239,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
 		java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -327,8 +327,8 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -353,7 +353,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -755,7 +755,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -781,7 +781,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

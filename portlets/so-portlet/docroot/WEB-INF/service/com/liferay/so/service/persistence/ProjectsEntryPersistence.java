@@ -16,7 +16,7 @@ package com.liferay.so.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 import com.liferay.so.exception.NoSuchProjectsEntryException;
 import com.liferay.so.model.ProjectsEntry;

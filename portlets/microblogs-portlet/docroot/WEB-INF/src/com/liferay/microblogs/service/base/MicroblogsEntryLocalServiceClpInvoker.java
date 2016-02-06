@@ -102,7 +102,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 		_methodName15 = "deletePersistedModel";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName16 = "getPersistedModel";
@@ -131,14 +131,14 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 
 		_methodParameterTypes45 = new String[] {
 				"long", "long", "long", "java.lang.String", "int", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName46 = "addMicroblogsEntry";
 
 		_methodParameterTypes46 = new String[] {
 				"long", "java.lang.String", "int", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName47 = "deleteMicroblogsEntries";
@@ -260,7 +260,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 
 		_methodParameterTypes71 = new String[] {
 				"long", "java.lang.String", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -344,7 +344,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return MicroblogsEntryLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return MicroblogsEntryLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
@@ -382,7 +382,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue(),
 				((Long)arguments[5]).longValue(),
 				((Integer)arguments[6]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[7]);
 		}
 
 		if (_methodName46.equals(name) &&
@@ -392,7 +392,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 				((Integer)arguments[2]).intValue(),
 				((Long)arguments[3]).longValue(),
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName47.equals(name) &&
@@ -570,7 +570,7 @@ public class MicroblogsEntryLocalServiceClpInvoker {
 			return MicroblogsEntryLocalServiceUtil.updateMicroblogsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();

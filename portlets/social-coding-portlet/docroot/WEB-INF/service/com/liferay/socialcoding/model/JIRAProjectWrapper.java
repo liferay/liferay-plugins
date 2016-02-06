@@ -19,8 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ModelWrapper;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.model.ModelWrapper;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
@@ -177,7 +177,7 @@ public class JIRAProjectWrapper implements JIRAProject,
 
 	@Override
 	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_jiraProject.setExpandoBridgeAttributes(baseModel);
 	}
 
@@ -242,7 +242,7 @@ public class JIRAProjectWrapper implements JIRAProject,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.socialcoding.model.JIRAProject> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.socialcoding.model.JIRAProject> toCacheModel() {
 		return _jiraProject.toCacheModel();
 	}
 

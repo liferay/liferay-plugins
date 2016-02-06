@@ -19,7 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.opensocial.exception.NoSuchOAuthConsumerException;
 import com.liferay.opensocial.model.OAuthConsumer;
 
-import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 /**
  * The persistence interface for the o auth consumer service.

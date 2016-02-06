@@ -19,7 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.knowledgebase.exception.NoSuchTemplateException;
 import com.liferay.knowledgebase.model.KBTemplate;
 
-import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 /**
  * The persistence interface for the k b template service.

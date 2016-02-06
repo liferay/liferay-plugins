@@ -58,7 +58,7 @@ public class KBTemplateServiceHttp {
 	public static com.liferay.knowledgebase.model.KBTemplate addKBTemplate(
 		HttpPrincipal httpPrincipal, java.lang.String portletId,
 		java.lang.String title, java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBTemplateServiceUtil.class,
@@ -277,7 +277,7 @@ public class KBTemplateServiceHttp {
 	public static com.liferay.knowledgebase.model.KBTemplate updateKBTemplate(
 		HttpPrincipal httpPrincipal, long kbTemplateId, java.lang.String title,
 		java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBTemplateServiceUtil.class,
@@ -312,7 +312,7 @@ public class KBTemplateServiceHttp {
 	private static final Class<?>[] _addKBTemplateParameterTypes0 = new Class[] {
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _deleteKBTemplateParameterTypes1 = new Class[] {
 			long.class
@@ -338,6 +338,6 @@ public class KBTemplateServiceHttp {
 		};
 	private static final Class<?>[] _updateKBTemplateParameterTypes7 = new Class[] {
 			long.class, java.lang.String.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 }

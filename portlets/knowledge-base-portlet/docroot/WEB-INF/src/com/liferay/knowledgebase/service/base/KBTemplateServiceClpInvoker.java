@@ -35,7 +35,7 @@ public class KBTemplateServiceClpInvoker {
 
 		_methodParameterTypes61 = new String[] {
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName62 = "deleteKBTemplate";
@@ -73,7 +73,7 @@ public class KBTemplateServiceClpInvoker {
 
 		_methodParameterTypes68 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -88,7 +88,7 @@ public class KBTemplateServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return KBTemplateServiceUtil.addKBTemplate((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName62.equals(name) &&
@@ -137,7 +137,7 @@ public class KBTemplateServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			return KBTemplateServiceUtil.updateKBTemplate(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();

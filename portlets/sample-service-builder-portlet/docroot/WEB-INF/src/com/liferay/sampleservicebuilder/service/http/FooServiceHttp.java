@@ -55,7 +55,7 @@ import com.liferay.sampleservicebuilder.service.FooServiceUtil;
  */
 @ProviderType
 public class FooServiceHttp {
-	public static com.liferay.portal.model.User getUser(
+	public static com.liferay.portal.kernel.model.User getUser(
 		HttpPrincipal httpPrincipal, long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -77,7 +77,7 @@ public class FooServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (com.liferay.portal.model.User)returnObj;
+			return (com.liferay.portal.kernel.model.User)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -86,7 +86,7 @@ public class FooServiceHttp {
 		}
 	}
 
-	public static java.util.List<com.liferay.portal.model.Group> getUserSitesGroups(
+	public static java.util.List<com.liferay.portal.kernel.model.Group> getUserSitesGroups(
 		HttpPrincipal httpPrincipal)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -108,7 +108,7 @@ public class FooServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.util.List<com.liferay.portal.model.Group>)returnObj;
+			return (java.util.List<com.liferay.portal.kernel.model.Group>)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);

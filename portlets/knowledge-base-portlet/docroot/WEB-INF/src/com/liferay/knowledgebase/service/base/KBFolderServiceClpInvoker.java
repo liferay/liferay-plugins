@@ -35,7 +35,7 @@ public class KBFolderServiceClpInvoker {
 
 		_methodParameterTypes49 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName50 = "deleteKBFolder";
@@ -90,7 +90,7 @@ public class KBFolderServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName50.equals(name) &&

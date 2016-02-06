@@ -102,7 +102,7 @@ public class SVNRepositoryLocalServiceClpInvoker {
 		_methodName15 = "deletePersistedModel";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName16 = "getPersistedModel";
@@ -220,7 +220,7 @@ public class SVNRepositoryLocalServiceClpInvoker {
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return SVNRepositoryLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return SVNRepositoryLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&

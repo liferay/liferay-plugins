@@ -34,7 +34,7 @@ public class SyncPreferencesLocalServiceClpInvoker {
 		_methodName33 = "enableOAuth";
 
 		_methodParameterTypes33 = new String[] {
-				"long", "com.liferay.portal.service.ServiceContext"
+				"long", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName34 = "getPortletPreferences";
@@ -52,7 +52,7 @@ public class SyncPreferencesLocalServiceClpInvoker {
 		if (_methodName33.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[1]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[1]);
 		}
 
 		if (_methodName34.equals(name) &&

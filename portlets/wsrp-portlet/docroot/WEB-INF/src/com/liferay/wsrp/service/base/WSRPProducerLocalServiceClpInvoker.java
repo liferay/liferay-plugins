@@ -112,7 +112,7 @@ public class WSRPProducerLocalServiceClpInvoker {
 		_methodName17 = "deletePersistedModel";
 
 		_methodParameterTypes17 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName18 = "getPersistedModel";
@@ -156,14 +156,14 @@ public class WSRPProducerLocalServiceClpInvoker {
 
 		_methodParameterTypes64 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName65 = "addWSRPProducer";
 
 		_methodParameterTypes65 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName66 = "deleteWSRPProducer";
@@ -291,7 +291,7 @@ public class WSRPProducerLocalServiceClpInvoker {
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return WSRPProducerLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return WSRPProducerLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
@@ -347,7 +347,7 @@ public class WSRPProducerLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
 				(java.lang.String)arguments[4],
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName65.equals(name) &&
@@ -355,7 +355,7 @@ public class WSRPProducerLocalServiceClpInvoker {
 			return WSRPProducerLocalServiceUtil.addWSRPProducer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3],
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[4]);
 		}
 
 		if (_methodName66.equals(name) &&

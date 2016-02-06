@@ -36,7 +36,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.kernel.model.CacheModel;
 
 import java.io.Serializable;
 
@@ -317,7 +317,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	}
 
 	/**
-	 * Returns the type with the primary key or throws a {@link com.liferay.portal.exception.NoSuchModelException} if it could not be found.
+	 * Returns the type with the primary key or throws a {@link com.liferay.portal.kernel.exception.NoSuchModelException} if it could not be found.
 	 *
 	 * @param primaryKey the primary key of the type
 	 * @return the type

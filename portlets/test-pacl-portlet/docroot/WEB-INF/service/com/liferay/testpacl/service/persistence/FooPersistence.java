@@ -16,7 +16,7 @@ package com.liferay.testpacl.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 import com.liferay.testpacl.exception.NoSuchFooException;
 import com.liferay.testpacl.model.Foo;

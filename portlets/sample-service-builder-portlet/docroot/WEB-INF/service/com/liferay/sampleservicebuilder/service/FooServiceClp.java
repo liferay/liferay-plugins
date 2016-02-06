@@ -16,7 +16,7 @@ package com.liferay.sampleservicebuilder.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.kernel.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -64,7 +64,7 @@ public class FooServiceClp implements FooService {
 	}
 
 	@Override
-	public com.liferay.portal.model.User getUser(long userId)
+	public com.liferay.portal.kernel.model.User getUser(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -88,11 +88,11 @@ public class FooServiceClp implements FooService {
 			}
 		}
 
-		return (com.liferay.portal.model.User)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.User)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
+	public java.util.List<com.liferay.portal.kernel.model.Group> getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -116,7 +116,7 @@ public class FooServiceClp implements FooService {
 			}
 		}
 
-		return (java.util.List<com.liferay.portal.model.Group>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.portal.kernel.model.Group>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

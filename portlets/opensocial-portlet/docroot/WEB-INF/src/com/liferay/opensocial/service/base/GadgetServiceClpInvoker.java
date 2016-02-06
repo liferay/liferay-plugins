@@ -35,20 +35,20 @@ public class GadgetServiceClpInvoker {
 
 		_methodParameterTypes37 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName38 = "deleteGadget";
 
 		_methodParameterTypes38 = new String[] {
-				"long", "com.liferay.portal.service.ServiceContext"
+				"long", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName39 = "updateGadget";
 
 		_methodParameterTypes39 = new String[] {
 				"long", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -63,13 +63,13 @@ public class GadgetServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			return GadgetServiceUtil.addGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName38.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes38, parameterTypes)) {
 			GadgetServiceUtil.deleteGadget(((Long)arguments[0]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[1]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[1]);
 
 			return null;
 		}
@@ -78,7 +78,7 @@ public class GadgetServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			GadgetServiceUtil.updateGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
-				(com.liferay.portal.service.ServiceContext)arguments[2]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[2]);
 
 			return null;
 		}

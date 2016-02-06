@@ -112,7 +112,7 @@ public class KBCommentLocalServiceClpInvoker {
 		_methodName17 = "deletePersistedModel";
 
 		_methodParameterTypes17 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName18 = "getPersistedModel";
@@ -156,14 +156,14 @@ public class KBCommentLocalServiceClpInvoker {
 
 		_methodParameterTypes74 = new String[] {
 				"long", "long", "long", "java.lang.String", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName75 = "addKBComment";
 
 		_methodParameterTypes75 = new String[] {
 				"long", "long", "long", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName76 = "deleteKBComment";
@@ -244,21 +244,21 @@ public class KBCommentLocalServiceClpInvoker {
 
 		_methodParameterTypes90 = new String[] {
 				"long", "long", "long", "java.lang.String", "int", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName91 = "updateKBComment";
 
 		_methodParameterTypes91 = new String[] {
 				"long", "long", "long", "java.lang.String", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName92 = "updateStatus";
 
 		_methodParameterTypes92 = new String[] {
 				"long", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -353,7 +353,7 @@ public class KBCommentLocalServiceClpInvoker {
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return KBCommentLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return KBCommentLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
@@ -410,7 +410,7 @@ public class KBCommentLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3],
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName75.equals(name) &&
@@ -419,7 +419,7 @@ public class KBCommentLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3],
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[4]);
 		}
 
 		if (_methodName76.equals(name) &&
@@ -529,7 +529,7 @@ public class KBCommentLocalServiceClpInvoker {
 				(java.lang.String)arguments[3],
 				((Integer)arguments[4]).intValue(),
 				((Integer)arguments[5]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[6]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[6]);
 		}
 
 		if (_methodName91.equals(name) &&
@@ -539,7 +539,7 @@ public class KBCommentLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3],
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName92.equals(name) &&
@@ -547,7 +547,7 @@ public class KBCommentLocalServiceClpInvoker {
 			return KBCommentLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();

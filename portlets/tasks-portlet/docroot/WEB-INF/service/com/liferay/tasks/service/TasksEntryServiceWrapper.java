@@ -16,7 +16,7 @@ package com.liferay.tasks.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.ServiceWrapper;
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link TasksEntryService}.
@@ -37,7 +37,7 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 		java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _tasksEntryService.addTasksEntry(title, priority,
 			assigneeUserId, dueDateMonth, dueDateDay, dueDateYear, dueDateHour,
@@ -73,7 +73,7 @@ public class TasksEntryServiceWrapper implements TasksEntryService,
 		long assigneeUserId, long resolverUserId, int dueDateMonth,
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean neverDue, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _tasksEntryService.updateTasksEntry(tasksEntryId, title,
 			priority, assigneeUserId, resolverUserId, dueDateMonth, dueDateDay,

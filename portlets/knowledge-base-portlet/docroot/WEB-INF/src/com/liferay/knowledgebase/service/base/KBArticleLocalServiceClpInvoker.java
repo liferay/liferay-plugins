@@ -112,7 +112,7 @@ public class KBArticleLocalServiceClpInvoker {
 		_methodName17 = "deletePersistedModel";
 
 		_methodParameterTypes17 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName18 = "getPersistedModel";
@@ -158,7 +158,7 @@ public class KBArticleLocalServiceClpInvoker {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.lang.String[][]", "java.lang.String[][]",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName107 = "addKBArticleResources";
@@ -190,7 +190,7 @@ public class KBArticleLocalServiceClpInvoker {
 		_methodParameterTypes111 = new String[] {
 				"long", "long", "long", "java.lang.String", "boolean",
 				"java.io.InputStream",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName112 = "addTempAttachment";
@@ -400,7 +400,7 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodParameterTypes149 = new String[] {
 				"long", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName150 = "search";
@@ -433,7 +433,7 @@ public class KBArticleLocalServiceClpInvoker {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String[][]",
 				"java.lang.String[][]", "long[][]",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName156 = "updateKBArticleAsset";
@@ -462,7 +462,7 @@ public class KBArticleLocalServiceClpInvoker {
 
 		_methodParameterTypes160 = new String[] {
 				"long", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName161 = "updateViewCount";
@@ -561,7 +561,7 @@ public class KBArticleLocalServiceClpInvoker {
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return KBArticleLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return KBArticleLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
@@ -621,7 +621,7 @@ public class KBArticleLocalServiceClpInvoker {
 				(java.lang.String)arguments[7],
 				(java.lang.String[])arguments[8],
 				(java.lang.String[])arguments[9],
-				(com.liferay.portal.service.ServiceContext)arguments[10]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[10]);
 		}
 
 		if (_methodName107.equals(name) &&
@@ -668,7 +668,7 @@ public class KBArticleLocalServiceClpInvoker {
 				(java.lang.String)arguments[3],
 				((Boolean)arguments[4]).booleanValue(),
 				(java.io.InputStream)arguments[5],
-				(com.liferay.portal.service.ServiceContext)arguments[6]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[6]);
 		}
 
 		if (_methodName112.equals(name) &&
@@ -945,7 +945,7 @@ public class KBArticleLocalServiceClpInvoker {
 			return KBArticleLocalServiceUtil.revertKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName150.equals(name) &&
@@ -1001,7 +1001,7 @@ public class KBArticleLocalServiceClpInvoker {
 				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
 				(java.lang.String[])arguments[6],
 				(java.lang.String[])arguments[7], (long[])arguments[8],
-				(com.liferay.portal.service.ServiceContext)arguments[9]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[9]);
 		}
 
 		if (_methodName156.equals(name) &&
@@ -1043,7 +1043,7 @@ public class KBArticleLocalServiceClpInvoker {
 			return KBArticleLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName161.equals(name) &&

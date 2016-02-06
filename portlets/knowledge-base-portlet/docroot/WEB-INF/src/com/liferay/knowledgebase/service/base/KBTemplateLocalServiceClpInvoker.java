@@ -112,7 +112,7 @@ public class KBTemplateLocalServiceClpInvoker {
 		_methodName17 = "deletePersistedModel";
 
 		_methodParameterTypes17 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName18 = "getPersistedModel";
@@ -156,7 +156,7 @@ public class KBTemplateLocalServiceClpInvoker {
 
 		_methodParameterTypes70 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName71 = "deleteGroupKBTemplates";
@@ -200,7 +200,7 @@ public class KBTemplateLocalServiceClpInvoker {
 
 		_methodParameterTypes78 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName79 = "updateKBTemplateResources";
@@ -302,7 +302,7 @@ public class KBTemplateLocalServiceClpInvoker {
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return KBTemplateLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return KBTemplateLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
@@ -356,7 +356,7 @@ public class KBTemplateLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			return KBTemplateLocalServiceUtil.addKBTemplate(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName71.equals(name) &&
@@ -411,7 +411,7 @@ public class KBTemplateLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return KBTemplateLocalServiceUtil.updateKBTemplate(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		if (_methodName79.equals(name) &&

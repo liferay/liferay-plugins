@@ -58,7 +58,7 @@ public class WebExSiteServiceHttp {
 	public static void addWebExSite(HttpPrincipal httpPrincipal, long groupId,
 		java.lang.String name, java.lang.String apiURL, java.lang.String login,
 		java.lang.String password, java.lang.String partnerKey, long siteKey,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(WebExSiteServiceUtil.class,
@@ -239,7 +239,7 @@ public class WebExSiteServiceHttp {
 	public static void updateWebExSite(HttpPrincipal httpPrincipal,
 		long webExSiteId, java.lang.String apiURL, java.lang.String login,
 		java.lang.String password,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(WebExSiteServiceUtil.class,
@@ -271,7 +271,7 @@ public class WebExSiteServiceHttp {
 			long.class, java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, long.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _deleteWebExSiteParameterTypes1 = new Class[] {
 			long.class
@@ -292,6 +292,6 @@ public class WebExSiteServiceHttp {
 	private static final Class<?>[] _updateWebExSiteParameterTypes6 = new Class[] {
 			long.class, java.lang.String.class, java.lang.String.class,
 			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 }

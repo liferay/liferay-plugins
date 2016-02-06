@@ -68,7 +68,7 @@ public class GadgetServiceSoap {
 	public static com.liferay.opensocial.model.GadgetSoap addGadget(
 		long companyId, java.lang.String url,
 		java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.opensocial.model.Gadget returnValue = GadgetServiceUtil.addGadget(companyId,
@@ -84,7 +84,7 @@ public class GadgetServiceSoap {
 	}
 
 	public static void deleteGadget(long gadgetId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			GadgetServiceUtil.deleteGadget(gadgetId, serviceContext);
@@ -98,7 +98,7 @@ public class GadgetServiceSoap {
 
 	public static void updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			GadgetServiceUtil.updateGadget(gadgetId, portletCategoryNames,

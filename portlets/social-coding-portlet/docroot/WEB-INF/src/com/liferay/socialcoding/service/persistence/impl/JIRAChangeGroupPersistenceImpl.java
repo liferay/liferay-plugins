@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.kernel.model.CacheModel;
 
 import com.liferay.socialcoding.exception.NoSuchJIRAChangeGroupException;
 import com.liferay.socialcoding.model.JIRAChangeGroup;
@@ -1435,7 +1435,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	}
 
 	/**
-	 * Returns the j i r a change group with the primary key or throws a {@link com.liferay.portal.exception.NoSuchModelException} if it could not be found.
+	 * Returns the j i r a change group with the primary key or throws a {@link com.liferay.portal.kernel.exception.NoSuchModelException} if it could not be found.
 	 *
 	 * @param primaryKey the primary key of the j i r a change group
 	 * @return the j i r a change group

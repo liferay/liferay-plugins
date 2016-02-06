@@ -18,7 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
-import com.liferay.portal.service.InvokableLocalService;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 
 /**
  * Provides the local service utility for KBArticle. This utility wraps
@@ -59,7 +59,7 @@ public class KBArticleLocalServiceUtil {
 		java.lang.String urlTitle, java.lang.String content,
 		java.lang.String description, java.lang.String sourceURL,
 		java.lang.String[] sections, java.lang.String[] selectedFileNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBArticle(userId, parentResourceClassNameId,
@@ -103,7 +103,7 @@ public class KBArticleLocalServiceUtil {
 	public static int addKBArticlesMarkdown(long userId, long groupId,
 		long parentKbFolderId, java.lang.String fileName,
 		boolean prioritizeByNumericalPrefix, java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBArticlesMarkdown(userId, groupId, parentKbFolderId,
@@ -174,8 +174,8 @@ public class KBArticleLocalServiceUtil {
 	/**
 	* @throws PortalException
 	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deletePersistedModel(persistedModel);
 	}
@@ -546,7 +546,7 @@ public class KBArticleLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
@@ -623,7 +623,7 @@ public class KBArticleLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBArticle revertKBArticle(
 		long userId, long resourcePrimKey, int version,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .revertKBArticle(userId, resourcePrimKey, version,
@@ -677,7 +677,7 @@ public class KBArticleLocalServiceUtil {
 		java.lang.String content, java.lang.String description,
 		java.lang.String sourceURL, java.lang.String[] sections,
 		java.lang.String[] selectedFileNames, long[] removeFileEntryIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateKBArticle(userId, resourcePrimKey, title, content,
@@ -716,7 +716,7 @@ public class KBArticleLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBArticle updateStatus(
 		long userId, long resourcePrimKey, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateStatus(userId, resourcePrimKey, status, serviceContext);

@@ -102,7 +102,7 @@ public class TasksEntryLocalServiceClpInvoker {
 		_methodName15 = "deletePersistedModel";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName16 = "getPersistedModel";
@@ -132,7 +132,7 @@ public class TasksEntryLocalServiceClpInvoker {
 		_methodParameterTypes45 = new String[] {
 				"long", "java.lang.String", "int", "long", "int", "int", "int",
 				"int", "int", "boolean",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName46 = "deleteTasksEntry";
@@ -230,14 +230,14 @@ public class TasksEntryLocalServiceClpInvoker {
 		_methodParameterTypes66 = new String[] {
 				"long", "java.lang.String", "int", "long", "long", "int", "int",
 				"int", "int", "int", "boolean", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName67 = "updateTasksEntryStatus";
 
 		_methodParameterTypes67 = new String[] {
 				"long", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -321,7 +321,7 @@ public class TasksEntryLocalServiceClpInvoker {
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return TasksEntryLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return TasksEntryLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
@@ -362,7 +362,7 @@ public class TasksEntryLocalServiceClpInvoker {
 				((Integer)arguments[7]).intValue(),
 				((Integer)arguments[8]).intValue(),
 				((Boolean)arguments[9]).booleanValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[10]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[10]);
 		}
 
 		if (_methodName46.equals(name) &&
@@ -514,7 +514,7 @@ public class TasksEntryLocalServiceClpInvoker {
 				((Integer)arguments[9]).intValue(),
 				((Boolean)arguments[10]).booleanValue(),
 				((Integer)arguments[11]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[12]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[12]);
 		}
 
 		if (_methodName67.equals(name) &&
@@ -522,7 +522,7 @@ public class TasksEntryLocalServiceClpInvoker {
 			return TasksEntryLocalServiceUtil.updateTasksEntryStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();

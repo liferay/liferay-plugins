@@ -21,8 +21,8 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ModelWrapper;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.model.ModelWrapper;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
@@ -371,7 +371,7 @@ public class SyncDeviceWrapper implements SyncDevice, ModelWrapper<SyncDevice> {
 
 	@Override
 	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_syncDevice.setExpandoBridgeAttributes(baseModel);
 	}
 
@@ -496,7 +496,7 @@ public class SyncDeviceWrapper implements SyncDevice, ModelWrapper<SyncDevice> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.sync.model.SyncDevice> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.sync.model.SyncDevice> toCacheModel() {
 		return _syncDevice.toCacheModel();
 	}
 

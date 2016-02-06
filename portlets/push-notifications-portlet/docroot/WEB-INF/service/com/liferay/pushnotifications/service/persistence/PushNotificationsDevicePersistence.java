@@ -16,7 +16,7 @@ package com.liferay.pushnotifications.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 import com.liferay.pushnotifications.exception.NoSuchDeviceException;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;

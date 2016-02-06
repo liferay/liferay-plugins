@@ -68,7 +68,7 @@ public class KBTemplateServiceSoap {
 	public static com.liferay.knowledgebase.model.KBTemplateSoap addKBTemplate(
 		java.lang.String portletId, java.lang.String title,
 		java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBTemplate returnValue = KBTemplateServiceUtil.addKBTemplate(portletId,
@@ -177,7 +177,7 @@ public class KBTemplateServiceSoap {
 
 	public static com.liferay.knowledgebase.model.KBTemplateSoap updateKBTemplate(
 		long kbTemplateId, java.lang.String title, java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBTemplate returnValue = KBTemplateServiceUtil.updateKBTemplate(kbTemplateId,

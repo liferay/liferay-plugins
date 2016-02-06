@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.ServiceWrapper;
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link KBArticleService}.
@@ -39,7 +39,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 		java.lang.String urlTitle, java.lang.String content,
 		java.lang.String description, java.lang.String sourceURL,
 		java.lang.String[] sections, java.lang.String[] selectedFileNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.addKBArticle(portletId,
 			parentResourceClassNameId, parentResourcePrimKey, title, urlTitle,
@@ -51,7 +51,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	public int addKBArticlesMarkdown(long groupId, long parentKBFolderId,
 		java.lang.String fileName, boolean prioritizeByNumericalPrefix,
 		java.io.InputStream inputStream,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.addKBArticlesMarkdown(groupId,
 			parentKBFolderId, fileName, prioritizeByNumericalPrefix,
@@ -308,7 +308,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle revertKBArticle(
 		long resourcePrimKey, int version,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.revertKBArticle(resourcePrimKey, version,
 			serviceContext);
@@ -346,7 +346,7 @@ public class KBArticleServiceWrapper implements KBArticleService,
 		java.lang.String description, java.lang.String sourceURL,
 		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		long[] removeFileEntryIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleService.updateKBArticle(resourcePrimKey, title,
 			content, description, sourceURL, sections, selectedFileNames,

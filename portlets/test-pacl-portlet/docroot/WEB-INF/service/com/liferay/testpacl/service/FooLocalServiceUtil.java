@@ -18,7 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
-import com.liferay.portal.service.InvokableLocalService;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 
 /**
  * Provides the local service utility for Foo. This utility wraps
@@ -89,8 +89,8 @@ public class FooLocalServiceUtil {
 	/**
 	* @throws PortalException
 	*/
-	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deletePersistedModel(persistedModel);
 	}
@@ -181,13 +181,13 @@ public class FooLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
-	public static com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
+	public static com.liferay.portal.kernel.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getCompanyPersistence_FindByPrimaryKey(companyId);
 	}
 
-	public static com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
+	public static com.liferay.portal.kernel.model.Company getCompanyUtil_FindByPrimaryKey(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getCompanyUtil_FindByPrimaryKey(companyId);
@@ -241,13 +241,13 @@ public class FooLocalServiceUtil {
 		return getService().getFoosCount();
 	}
 
-	public static com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
+	public static com.liferay.portal.kernel.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGroupPersistence_FindByPrimaryKey(groupId);
 	}
 
-	public static com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
+	public static com.liferay.portal.kernel.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getGroupUtil_FindByPrimaryKey(groupId);
@@ -266,7 +266,7 @@ public class FooLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static com.liferay.portal.model.PersistedModel getPersistedModel(
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
@@ -311,12 +311,12 @@ public class FooLocalServiceUtil {
 		return getService().getStatusLocalServiceUtil_GetStatuses(start, end);
 	}
 
-	public static com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
+	public static com.liferay.portal.kernel.model.User getUserPersistence_FindByPrimaryKey(
 		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserPersistence_FindByPrimaryKey(userId);
 	}
 
-	public static com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
+	public static com.liferay.portal.kernel.model.User getUserUtil_FindByPrimaryKey(
 		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserUtil_FindByPrimaryKey(userId);
 	}

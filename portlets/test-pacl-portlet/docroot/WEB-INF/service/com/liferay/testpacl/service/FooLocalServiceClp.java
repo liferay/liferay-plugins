@@ -16,7 +16,7 @@ package com.liferay.testpacl.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableLocalService;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -46,7 +46,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		_methodName4 = "deletePersistedModel";
 
 		_methodParameterTypes4 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName5 = "dynamicQuery";
@@ -292,8 +292,8 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -318,7 +318,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -538,7 +538,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.Company getCompanyPersistence_FindByPrimaryKey(
+	public com.liferay.portal.kernel.model.Company getCompanyPersistence_FindByPrimaryKey(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -563,11 +563,11 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.Company)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.Company)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.portal.model.Company getCompanyUtil_FindByPrimaryKey(
+	public com.liferay.portal.kernel.model.Company getCompanyUtil_FindByPrimaryKey(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -592,7 +592,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.Company)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.Company)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -724,7 +724,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.Group getGroupPersistence_FindByPrimaryKey(
+	public com.liferay.portal.kernel.model.Group getGroupPersistence_FindByPrimaryKey(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -749,11 +749,11 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.Group)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.Group)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.portal.model.Group getGroupUtil_FindByPrimaryKey(
+	public com.liferay.portal.kernel.model.Group getGroupUtil_FindByPrimaryKey(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -778,7 +778,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.Group)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.Group)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -828,7 +828,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -854,7 +854,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -1072,7 +1072,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.User getUserPersistence_FindByPrimaryKey(
+	public com.liferay.portal.kernel.model.User getUserPersistence_FindByPrimaryKey(
 		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -1096,11 +1096,11 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.User)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.User)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.portal.model.User getUserUtil_FindByPrimaryKey(
+	public com.liferay.portal.kernel.model.User getUserUtil_FindByPrimaryKey(
 		long userId) throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -1124,7 +1124,7 @@ public class FooLocalServiceClp implements FooLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.User)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.User)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

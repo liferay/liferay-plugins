@@ -59,7 +59,7 @@ public class TasksEntryServiceHttp {
 		HttpPrincipal httpPrincipal, java.lang.String title, int priority,
 		long assigneeUserId, int dueDateMonth, int dueDateDay, int dueDateYear,
 		int dueDateHour, int dueDateMinute, boolean neverDue,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(TasksEntryServiceUtil.class,
@@ -129,7 +129,7 @@ public class TasksEntryServiceHttp {
 		int priority, long assigneeUserId, long resolverUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(TasksEntryServiceUtil.class,
@@ -166,7 +166,7 @@ public class TasksEntryServiceHttp {
 	private static final Class<?>[] _addTasksEntryParameterTypes0 = new Class[] {
 			java.lang.String.class, int.class, long.class, int.class, int.class,
 			int.class, int.class, int.class, boolean.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _getTasksEntryParameterTypes1 = new Class[] {
 			long.class
@@ -175,6 +175,6 @@ public class TasksEntryServiceHttp {
 			long.class, java.lang.String.class, int.class, long.class,
 			long.class, int.class, int.class, int.class, int.class, int.class,
 			boolean.class, int.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 }

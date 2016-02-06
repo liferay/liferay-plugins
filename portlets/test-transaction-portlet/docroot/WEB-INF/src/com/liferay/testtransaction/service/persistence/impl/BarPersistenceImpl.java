@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.kernel.model.CacheModel;
 
 import com.liferay.testtransaction.exception.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;
@@ -873,7 +873,7 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	}
 
 	/**
-	 * Returns the bar with the primary key or throws a {@link com.liferay.portal.exception.NoSuchModelException} if it could not be found.
+	 * Returns the bar with the primary key or throws a {@link com.liferay.portal.kernel.exception.NoSuchModelException} if it could not be found.
 	 *
 	 * @param primaryKey the primary key of the bar
 	 * @return the bar

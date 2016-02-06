@@ -16,7 +16,7 @@ package com.liferay.tasks.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.kernel.service.InvokableService;
 
 /**
  * @author Ryan Park
@@ -31,7 +31,7 @@ public class TasksEntryServiceClp implements TasksEntryService {
 
 		_methodParameterTypes0 = new String[] {
 				"java.lang.String", "int", "long", "int", "int", "int", "int",
-				"int", "boolean", "com.liferay.portal.service.ServiceContext"
+				"int", "boolean", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "getOSGiServiceIdentifier";
@@ -47,7 +47,7 @@ public class TasksEntryServiceClp implements TasksEntryService {
 		_methodParameterTypes4 = new String[] {
 				"long", "java.lang.String", "int", "long", "long", "int", "int",
 				"int", "int", "int", "boolean", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -56,7 +56,7 @@ public class TasksEntryServiceClp implements TasksEntryService {
 		java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -168,7 +168,7 @@ public class TasksEntryServiceClp implements TasksEntryService {
 		long assigneeUserId, long resolverUserId, int dueDateMonth,
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean neverDue, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

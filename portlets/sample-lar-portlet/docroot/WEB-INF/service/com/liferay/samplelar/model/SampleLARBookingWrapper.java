@@ -21,8 +21,8 @@ import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ModelWrapper;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.model.ModelWrapper;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
@@ -340,7 +340,7 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 
 	@Override
 	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_sampleLARBooking.setExpandoBridgeAttributes(baseModel);
 	}
 
@@ -455,7 +455,7 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.samplelar.model.SampleLARBooking> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplelar.model.SampleLARBooking> toCacheModel() {
 		return _sampleLARBooking.toCacheModel();
 	}
 

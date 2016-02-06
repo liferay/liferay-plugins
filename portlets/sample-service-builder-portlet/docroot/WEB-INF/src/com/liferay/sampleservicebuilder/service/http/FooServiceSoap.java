@@ -65,10 +65,10 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class FooServiceSoap {
-	public static com.liferay.portal.model.User getUser(long userId)
+	public static com.liferay.portal.kernel.model.User getUser(long userId)
 		throws RemoteException {
 		try {
-			com.liferay.portal.model.User returnValue = FooServiceUtil.getUser(userId);
+			com.liferay.portal.kernel.model.User returnValue = FooServiceUtil.getUser(userId);
 
 			return returnValue;
 		}
@@ -79,12 +79,12 @@ public class FooServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.model.GroupSoap[] getUserSitesGroups()
+	public static com.liferay.portal.kernel.model.GroupSoap[] getUserSitesGroups()
 		throws RemoteException {
 		try {
-			java.util.List<com.liferay.portal.model.Group> returnValue = FooServiceUtil.getUserSitesGroups();
+			java.util.List<com.liferay.portal.kernel.model.Group> returnValue = FooServiceUtil.getUserSitesGroups();
 
-			return com.liferay.portal.model.GroupSoap.toSoapModels(returnValue);
+			return com.liferay.portal.kernel.model.GroupSoap.toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

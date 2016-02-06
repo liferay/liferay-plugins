@@ -71,7 +71,7 @@ public class KBArticleServiceSoap {
 		java.lang.String urlTitle, java.lang.String content,
 		java.lang.String description, java.lang.String sourceURL,
 		java.lang.String[] sections, java.lang.String[] selectedFileNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.addKBArticle(portletId,
@@ -496,7 +496,7 @@ public class KBArticleServiceSoap {
 
 	public static com.liferay.knowledgebase.model.KBArticleSoap revertKBArticle(
 		long resourcePrimKey, int version,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.revertKBArticle(resourcePrimKey,
@@ -564,7 +564,7 @@ public class KBArticleServiceSoap {
 		java.lang.String description, java.lang.String sourceURL,
 		java.lang.String[] sections, java.lang.String[] selectedFileNames,
 		long[] removeFileEntryIds,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBArticle returnValue = KBArticleServiceUtil.updateKBArticle(resourcePrimKey,

@@ -16,7 +16,7 @@ package com.liferay.sync.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.kernel.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -33,14 +33,14 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"java.io.File", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "addFolder";
 
 		_methodParameterTypes1 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName2 = "cancelCheckOut";
@@ -51,27 +51,27 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 
 		_methodParameterTypes3 = new String[] {
 				"long", "boolean", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName4 = "checkOutFileEntry";
 
 		_methodParameterTypes4 = new String[] {
 				"long", "java.lang.String", "long",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName5 = "checkOutFileEntry";
 
 		_methodParameterTypes5 = new String[] {
-				"long", "com.liferay.portal.service.ServiceContext"
+				"long", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName6 = "copyFileEntry";
 
 		_methodParameterTypes6 = new String[] {
 				"long", "long", "long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName7 = "getAllFolderSyncDLObjects";
@@ -135,7 +135,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		_methodName22 = "moveFileEntry";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "long", "com.liferay.portal.service.ServiceContext"
+				"long", "long", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName23 = "moveFileEntryToTrash";
@@ -145,7 +145,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		_methodName24 = "moveFolder";
 
 		_methodParameterTypes24 = new String[] {
-				"long", "long", "com.liferay.portal.service.ServiceContext"
+				"long", "long", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName25 = "moveFolderToTrash";
@@ -158,7 +158,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"boolean", "java.io.File", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName27 = "restoreFileEntryFromTrash";
@@ -179,14 +179,14 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"boolean", "java.io.File", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName31 = "updateFolder";
 
 		_methodParameterTypes31 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -196,7 +196,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		java.lang.String mimeType, java.lang.String title,
 		java.lang.String description, java.lang.String changeLog,
 		java.io.File file, java.lang.String checksum,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -248,7 +248,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	public com.liferay.sync.model.SyncDLObject addFolder(long repositoryId,
 		long parentFolderId, java.lang.String name,
 		java.lang.String description,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -317,7 +317,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	@Override
 	public com.liferay.sync.model.SyncDLObject checkInFileEntry(
 		long fileEntryId, boolean majorVersion, java.lang.String changeLog,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -356,7 +356,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	@Override
 	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
 		long fileEntryId, java.lang.String owner, long expirationTime,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -395,7 +395,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	@Override
 	public com.liferay.sync.model.SyncDLObject checkOutFileEntry(
 		long fileEntryId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -431,7 +431,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	public com.liferay.sync.model.SyncDLObject copyFileEntry(
 		long sourceFileEntryId, long repositoryId, long folderId,
 		java.lang.String sourceFileName, java.lang.String title,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -662,7 +662,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	}
 
 	@Override
-	public com.liferay.portal.model.Group getGroup(long groupId)
+	public com.liferay.portal.kernel.model.Group getGroup(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -686,7 +686,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 			}
 		}
 
-		return (com.liferay.portal.model.Group)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.Group)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -867,7 +867,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.model.Group> getUserSitesGroups()
+	public java.util.List<com.liferay.portal.kernel.model.Group> getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -891,7 +891,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 			}
 		}
 
-		return (java.util.List<com.liferay.portal.model.Group>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.portal.kernel.model.Group>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -904,7 +904,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	@Override
 	public com.liferay.sync.model.SyncDLObject moveFileEntry(long fileEntryId,
 		long newFolderId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -970,7 +970,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	@Override
 	public com.liferay.sync.model.SyncDLObject moveFolder(long folderId,
 		long parentFolderId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -1039,7 +1039,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		java.lang.String title, java.lang.String description,
 		java.lang.String changeLog, boolean majorVersion,
 		java.io.File deltaFile, java.lang.String checksum,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -1183,7 +1183,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		java.lang.String mimeType, java.lang.String title,
 		java.lang.String description, java.lang.String changeLog,
 		boolean majorVersion, java.io.File file, java.lang.String checksum,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -1234,7 +1234,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	@Override
 	public com.liferay.sync.model.SyncDLObject updateFolder(long folderId,
 		java.lang.String name, java.lang.String description,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

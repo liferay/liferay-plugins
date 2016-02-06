@@ -16,7 +16,7 @@ package com.liferay.socialcoding.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 import com.liferay.socialcoding.exception.NoSuchJIRAActionException;
 import com.liferay.socialcoding.model.JIRAAction;

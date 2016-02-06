@@ -175,7 +175,7 @@ public class KBCommentServiceSoap {
 	public static com.liferay.knowledgebase.model.KBCommentSoap updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBComment returnValue = KBCommentServiceUtil.updateKBComment(kbCommentId,
@@ -193,7 +193,7 @@ public class KBCommentServiceSoap {
 	public static com.liferay.knowledgebase.model.KBCommentSoap updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBComment returnValue = KBCommentServiceUtil.updateKBComment(kbCommentId,
@@ -210,7 +210,7 @@ public class KBCommentServiceSoap {
 
 	public static com.liferay.knowledgebase.model.KBCommentSoap updateStatus(
 		long kbCommentId, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBComment returnValue = KBCommentServiceUtil.updateStatus(kbCommentId,

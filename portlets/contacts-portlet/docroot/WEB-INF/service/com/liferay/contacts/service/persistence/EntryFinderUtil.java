@@ -34,7 +34,7 @@ public class EntryFinderUtil {
 		return getFinder().countByKeywords(userId, keywords);
 	}
 
-	public static java.util.List<com.liferay.portal.model.BaseModel<?>> findByKeywords(
+	public static java.util.List<com.liferay.portal.kernel.model.BaseModel<?>> findByKeywords(
 		long companyId, long userId, java.lang.String keywords, int start,
 		int end) {
 		return getFinder()

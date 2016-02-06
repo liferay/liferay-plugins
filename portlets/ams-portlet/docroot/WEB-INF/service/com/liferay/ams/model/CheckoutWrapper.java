@@ -19,8 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ModelWrapper;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.model.ModelWrapper;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
@@ -366,7 +366,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 
 	@Override
 	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_checkout.setExpandoBridgeAttributes(baseModel);
 	}
 
@@ -451,7 +451,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.ams.model.Checkout> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.ams.model.Checkout> toCacheModel() {
 		return _checkout.toCacheModel();
 	}
 

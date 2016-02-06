@@ -19,8 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ModelWrapper;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.model.ModelWrapper;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
@@ -374,7 +374,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 
 	@Override
 	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_projectsEntry.setExpandoBridgeAttributes(baseModel);
 	}
 
@@ -479,7 +479,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.so.model.ProjectsEntry> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.so.model.ProjectsEntry> toCacheModel() {
 		return _projectsEntry.toCacheModel();
 	}
 

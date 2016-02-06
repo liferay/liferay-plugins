@@ -16,7 +16,7 @@ package com.liferay.privatemessaging.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableLocalService;
+import com.liferay.portal.kernel.service.InvokableLocalService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -62,7 +62,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		_methodName5 = "deletePersistedModel";
 
 		_methodParameterTypes5 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName6 = "deleteUser";
@@ -193,7 +193,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 
 		_methodName35 = "updateUserName";
 
-		_methodParameterTypes35 = new String[] { "com.liferay.portal.model.User" };
+		_methodParameterTypes35 = new String[] { "com.liferay.portal.kernel.model.User" };
 
 		_methodName36 = "updateUserThread";
 
@@ -367,8 +367,8 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -393,7 +393,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -815,7 +815,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
@@ -841,7 +841,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			}
 		}
 
-		return (com.liferay.portal.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.portal.kernel.model.PersistedModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -1126,7 +1126,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	@Override
-	public void updateUserName(com.liferay.portal.model.User user) {
+	public void updateUserName(com.liferay.portal.kernel.model.User user) {
 		try {
 			_invokableLocalService.invokeMethod(_methodName35,
 				_methodParameterTypes35,

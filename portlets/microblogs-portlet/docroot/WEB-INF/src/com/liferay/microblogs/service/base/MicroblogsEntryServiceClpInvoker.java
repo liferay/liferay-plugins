@@ -35,7 +35,7 @@ public class MicroblogsEntryServiceClpInvoker {
 
 		_methodParameterTypes31 = new String[] {
 				"long", "java.lang.String", "int", "long", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName32 = "deleteMicroblogsEntry";
@@ -82,7 +82,7 @@ public class MicroblogsEntryServiceClpInvoker {
 
 		_methodParameterTypes42 = new String[] {
 				"long", "java.lang.String", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -100,7 +100,7 @@ public class MicroblogsEntryServiceClpInvoker {
 				((Integer)arguments[2]).intValue(),
 				((Long)arguments[3]).longValue(),
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName32.equals(name) &&
@@ -167,7 +167,7 @@ public class MicroblogsEntryServiceClpInvoker {
 			return MicroblogsEntryServiceUtil.updateMicroblogsEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[3]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();

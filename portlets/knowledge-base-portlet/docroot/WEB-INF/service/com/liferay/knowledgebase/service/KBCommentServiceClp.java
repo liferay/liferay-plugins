@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.kernel.service.InvokableService;
 
 /**
  * @author Brian Wing Shun Chan
@@ -69,20 +69,20 @@ public class KBCommentServiceClp implements KBCommentService {
 
 		_methodParameterTypes9 = new String[] {
 				"long", "long", "long", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName10 = "updateKBComment";
 
 		_methodParameterTypes10 = new String[] {
 				"long", "long", "long", "java.lang.String", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName11 = "updateStatus";
 
 		_methodParameterTypes11 = new String[] {
-				"long", "int", "com.liferay.portal.service.ServiceContext"
+				"long", "int", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -347,7 +347,7 @@ public class KBCommentServiceClp implements KBCommentService {
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -389,7 +389,7 @@ public class KBCommentServiceClp implements KBCommentService {
 	public com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -432,7 +432,7 @@ public class KBCommentServiceClp implements KBCommentService {
 	@Override
 	public com.liferay.knowledgebase.model.KBComment updateStatus(
 		long kbCommentId, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

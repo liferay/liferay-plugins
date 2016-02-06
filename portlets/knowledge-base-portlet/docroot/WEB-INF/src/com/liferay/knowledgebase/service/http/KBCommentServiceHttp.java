@@ -283,7 +283,7 @@ public class KBCommentServiceHttp {
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
 		HttpPrincipal httpPrincipal, long kbCommentId, long classNameId,
 		long classPK, java.lang.String content, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBCommentServiceUtil.class,
@@ -318,7 +318,7 @@ public class KBCommentServiceHttp {
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
 		HttpPrincipal httpPrincipal, long kbCommentId, long classNameId,
 		long classPK, java.lang.String content,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBCommentServiceUtil.class,
@@ -351,7 +351,7 @@ public class KBCommentServiceHttp {
 
 	public static com.liferay.knowledgebase.model.KBComment updateStatus(
 		HttpPrincipal httpPrincipal, long kbCommentId, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBCommentServiceUtil.class,
@@ -407,14 +407,14 @@ public class KBCommentServiceHttp {
 		};
 	private static final Class<?>[] _updateKBCommentParameterTypes7 = new Class[] {
 			long.class, long.class, long.class, java.lang.String.class,
-			int.class, com.liferay.portal.service.ServiceContext.class
+			int.class, com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _updateKBCommentParameterTypes8 = new Class[] {
 			long.class, long.class, long.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _updateStatusParameterTypes9 = new Class[] {
 			long.class, int.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 }

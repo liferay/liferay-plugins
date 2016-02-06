@@ -102,7 +102,7 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 		_methodName15 = "deletePersistedModel";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName16 = "getPersistedModel";
@@ -254,7 +254,7 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return PushNotificationsDeviceLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&

@@ -59,7 +59,7 @@ public class KBFolderServiceHttp {
 		HttpPrincipal httpPrincipal, long groupId,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		java.lang.String name, java.lang.String description,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(KBFolderServiceUtil.class,
@@ -355,7 +355,7 @@ public class KBFolderServiceHttp {
 	private static final Class<?>[] _addKBFolderParameterTypes0 = new Class[] {
 			long.class, long.class, long.class, java.lang.String.class,
 			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _deleteKBFolderParameterTypes1 = new Class[] {
 			long.class

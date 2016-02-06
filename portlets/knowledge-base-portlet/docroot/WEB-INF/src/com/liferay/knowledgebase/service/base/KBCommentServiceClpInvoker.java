@@ -69,20 +69,20 @@ public class KBCommentServiceClpInvoker {
 
 		_methodParameterTypes74 = new String[] {
 				"long", "long", "long", "java.lang.String", "int",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName75 = "updateKBComment";
 
 		_methodParameterTypes75 = new String[] {
 				"long", "long", "long", "java.lang.String",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName76 = "updateStatus";
 
 		_methodParameterTypes76 = new String[] {
-				"long", "int", "com.liferay.portal.service.ServiceContext"
+				"long", "int", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -147,7 +147,7 @@ public class KBCommentServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3],
 				((Integer)arguments[4]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 		}
 
 		if (_methodName75.equals(name) &&
@@ -156,14 +156,14 @@ public class KBCommentServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				(java.lang.String)arguments[3],
-				(com.liferay.portal.service.ServiceContext)arguments[4]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[4]);
 		}
 
 		if (_methodName76.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return KBCommentServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[2]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[2]);
 		}
 
 		throw new UnsupportedOperationException();

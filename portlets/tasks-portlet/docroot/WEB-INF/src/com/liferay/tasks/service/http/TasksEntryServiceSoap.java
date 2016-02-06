@@ -69,7 +69,7 @@ public class TasksEntryServiceSoap {
 		java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.tasks.model.TasksEntry returnValue = TasksEntryServiceUtil.addTasksEntry(title,
@@ -105,7 +105,7 @@ public class TasksEntryServiceSoap {
 		long assigneeUserId, long resolverUserId, int dueDateMonth,
 		int dueDateDay, int dueDateYear, int dueDateHour, int dueDateMinute,
 		boolean neverDue, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.tasks.model.TasksEntry returnValue = TasksEntryServiceUtil.updateTasksEntry(tasksEntryId,

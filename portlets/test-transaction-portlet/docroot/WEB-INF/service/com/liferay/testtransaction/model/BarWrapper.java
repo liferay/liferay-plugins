@@ -19,8 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ModelWrapper;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.model.ModelWrapper;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
@@ -169,7 +169,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 
 	@Override
 	public void setExpandoBridgeAttributes(
-		com.liferay.portal.model.BaseModel<?> baseModel) {
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_bar.setExpandoBridgeAttributes(baseModel);
 	}
 
@@ -214,7 +214,7 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
 		return _bar.toCacheModel();
 	}
 

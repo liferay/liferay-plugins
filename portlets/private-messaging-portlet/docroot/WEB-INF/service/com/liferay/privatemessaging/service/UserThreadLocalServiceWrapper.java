@@ -16,7 +16,7 @@ package com.liferay.privatemessaging.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.ServiceWrapper;
+import com.liferay.portal.kernel.service.ServiceWrapper;
 
 /**
  * Provides a wrapper for {@link UserThreadLocalService}.
@@ -90,8 +90,8 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	* @throws PortalException
 	*/
 	@Override
-	public com.liferay.portal.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.model.PersistedModel persistedModel)
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.deletePersistedModel(persistedModel);
 	}
@@ -259,7 +259,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.model.PersistedModel getPersistedModel(
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.getPersistedModel(primaryKeyObj);
@@ -364,7 +364,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	}
 
 	@Override
-	public void updateUserName(com.liferay.portal.model.User user) {
+	public void updateUserName(com.liferay.portal.kernel.model.User user) {
 		_userThreadLocalService.updateUserName(user);
 	}
 

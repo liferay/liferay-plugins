@@ -16,7 +16,7 @@ package com.liferay.testtransaction.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.service.persistence.BasePersistence;
+import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
 import com.liferay.testtransaction.exception.NoSuchBarException;
 import com.liferay.testtransaction.model.Bar;

@@ -60,7 +60,7 @@ public class SPIDefinitionServiceHttp {
 		java.lang.String description, java.lang.String jvmArguments,
 		java.lang.String portletIds, java.lang.String servletContextNames,
 		java.lang.String typeSettings,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(SPIDefinitionServiceUtil.class,
@@ -377,7 +377,7 @@ public class SPIDefinitionServiceHttp {
 		java.lang.String description, java.lang.String jvmArguments,
 		java.lang.String portletIds, java.lang.String servletContextNames,
 		java.lang.String typeSettings,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(SPIDefinitionServiceUtil.class,
@@ -413,7 +413,7 @@ public class SPIDefinitionServiceHttp {
 	public static com.liferay.portal.resiliency.spi.model.SPIDefinition updateTypeSettings(
 		HttpPrincipal httpPrincipal, long userId, long spiDefinitionId,
 		java.lang.String recoveryOptions,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(SPIDefinitionServiceUtil.class,
@@ -450,7 +450,7 @@ public class SPIDefinitionServiceHttp {
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _deleteSPIDefinitionParameterTypes1 = new Class[] {
 			long.class
@@ -483,10 +483,10 @@ public class SPIDefinitionServiceHttp {
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _updateTypeSettingsParameterTypes11 = new Class[] {
 			long.class, long.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class
+			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 }

@@ -102,7 +102,7 @@ public class MemberRequestLocalServiceClpInvoker {
 		_methodName15 = "deletePersistedModel";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName16 = "getPersistedModel";
@@ -131,21 +131,21 @@ public class MemberRequestLocalServiceClpInvoker {
 
 		_methodParameterTypes65 = new String[] {
 				"long", "long", "long", "java.lang.String", "long", "long",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName66 = "addMemberRequests";
 
 		_methodParameterTypes66 = new String[] {
 				"long", "long", "long[][]", "long", "long",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName67 = "addMemberRequests";
 
 		_methodParameterTypes67 = new String[] {
 				"long", "long", "java.lang.String[][]", "long", "long",
-				"com.liferay.portal.service.ServiceContext"
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName68 = "getMemberRequest";
@@ -261,7 +261,7 @@ public class MemberRequestLocalServiceClpInvoker {
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return MemberRequestLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return MemberRequestLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
@@ -298,7 +298,7 @@ public class MemberRequestLocalServiceClpInvoker {
 				(java.lang.String)arguments[3],
 				((Long)arguments[4]).longValue(),
 				((Long)arguments[5]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[6]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[6]);
 		}
 
 		if (_methodName66.equals(name) &&
@@ -307,7 +307,7 @@ public class MemberRequestLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(), (long[])arguments[2],
 				((Long)arguments[3]).longValue(),
 				((Long)arguments[4]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 
 			return null;
 		}
@@ -319,7 +319,7 @@ public class MemberRequestLocalServiceClpInvoker {
 				(java.lang.String[])arguments[2],
 				((Long)arguments[3]).longValue(),
 				((Long)arguments[4]).longValue(),
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 
 			return null;
 		}

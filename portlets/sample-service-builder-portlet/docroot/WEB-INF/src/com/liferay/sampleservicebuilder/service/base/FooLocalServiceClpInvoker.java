@@ -112,7 +112,7 @@ public class FooLocalServiceClpInvoker {
 		_methodName17 = "deletePersistedModel";
 
 		_methodParameterTypes17 = new String[] {
-				"com.liferay.portal.model.PersistedModel"
+				"com.liferay.portal.kernel.model.PersistedModel"
 			};
 
 		_methodName18 = "getPersistedModel";
@@ -156,7 +156,7 @@ public class FooLocalServiceClpInvoker {
 
 		_methodParameterTypes56 = new String[] {
 				"java.lang.String", "boolean", "int", "java.util.Date",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName57 = "deleteFoo";
@@ -196,7 +196,7 @@ public class FooLocalServiceClpInvoker {
 
 		_methodParameterTypes63 = new String[] {
 				"long", "java.lang.String", "boolean", "int", "java.util.Date",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
@@ -291,7 +291,7 @@ public class FooLocalServiceClpInvoker {
 
 		if (_methodName17.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
-			return FooLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
+			return FooLocalServiceUtil.deletePersistedModel((com.liferay.portal.kernel.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName18.equals(name) &&
@@ -347,7 +347,7 @@ public class FooLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue(),
 				((Integer)arguments[2]).intValue(),
 				(java.util.Date)arguments[3], (java.lang.String)arguments[4],
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[5]);
 
 			return null;
 		}
@@ -395,7 +395,7 @@ public class FooLocalServiceClpInvoker {
 				((Boolean)arguments[2]).booleanValue(),
 				((Integer)arguments[3]).intValue(),
 				(java.util.Date)arguments[4], (java.lang.String)arguments[5],
-				(com.liferay.portal.service.ServiceContext)arguments[6]);
+				(com.liferay.portal.kernel.service.ServiceContext)arguments[6]);
 
 			return null;
 		}

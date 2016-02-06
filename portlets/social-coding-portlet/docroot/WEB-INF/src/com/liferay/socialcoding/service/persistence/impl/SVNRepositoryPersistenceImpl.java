@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.kernel.model.CacheModel;
 
 import com.liferay.socialcoding.exception.NoSuchSVNRepositoryException;
 import com.liferay.socialcoding.model.SVNRepository;
@@ -620,7 +620,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	}
 
 	/**
-	 * Returns the s v n repository with the primary key or throws a {@link com.liferay.portal.exception.NoSuchModelException} if it could not be found.
+	 * Returns the s v n repository with the primary key or throws a {@link com.liferay.portal.kernel.exception.NoSuchModelException} if it could not be found.
 	 *
 	 * @param primaryKey the primary key of the s v n repository
 	 * @return the s v n repository

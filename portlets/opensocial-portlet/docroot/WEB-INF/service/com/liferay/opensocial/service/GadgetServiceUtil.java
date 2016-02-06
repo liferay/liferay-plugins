@@ -18,7 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
-import com.liferay.portal.service.InvokableService;
+import com.liferay.portal.kernel.service.InvokableService;
 
 /**
  * Provides the remote service utility for Gadget. This utility wraps
@@ -44,7 +44,7 @@ public class GadgetServiceUtil {
 	public static com.liferay.opensocial.model.Gadget addGadget(
 		long companyId, java.lang.String url,
 		java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addGadget(companyId, url, portletCategoryNames,
@@ -52,7 +52,7 @@ public class GadgetServiceUtil {
 	}
 
 	public static void deleteGadget(long gadgetId,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteGadget(gadgetId, serviceContext);
 	}
@@ -74,7 +74,7 @@ public class GadgetServiceUtil {
 
 	public static void updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().updateGadget(gadgetId, portletCategoryNames, serviceContext);
 	}

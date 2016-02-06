@@ -69,7 +69,7 @@ public class KBFolderServiceSoap {
 		long groupId, long parentResourceClassNameId,
 		long parentResourcePrimKey, java.lang.String name,
 		java.lang.String description,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.KBFolder returnValue = KBFolderServiceUtil.addKBFolder(groupId,
