@@ -45,5 +45,5 @@ PortletURL currentURLObj = PortletURLUtil.getCurrent(liferayPortletRequest, life
 
 String currentURL = currentURLObj.toString();
 
-String layoutURL = com.liferay.portal.util.PortalUtil.getLayoutURL(layout, themeDisplay);
+String layoutURL = com.liferay.portal.kernel.util.PortalUtil.getLayoutURL(layout, themeDisplay);
 %>

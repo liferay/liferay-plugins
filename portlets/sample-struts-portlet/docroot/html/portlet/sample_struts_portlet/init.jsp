@@ -26,7 +26,7 @@
 
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.PortalUtil" %>
 
 <%@ page import="java.util.HashMap" %><%@
 page import="java.util.Locale" %><%@
