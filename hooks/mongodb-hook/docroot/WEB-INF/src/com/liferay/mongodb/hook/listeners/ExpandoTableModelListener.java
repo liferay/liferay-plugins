@@ -16,7 +16,7 @@ package com.liferay.mongodb.hook.listeners;
 
 import com.liferay.expando.kernel.model.ExpandoTable;
 import com.liferay.mongodb.util.MongoDBUtil;
-import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portal.kernel.model.BaseModelListener;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;

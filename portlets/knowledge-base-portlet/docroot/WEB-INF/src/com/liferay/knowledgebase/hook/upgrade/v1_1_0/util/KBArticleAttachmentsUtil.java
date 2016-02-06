@@ -18,10 +18,10 @@ import com.liferay.document.library.kernel.store.DLStoreUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.CompanyConstants;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.service.ServiceContext;
 
 /**
  * @author Peter Shin

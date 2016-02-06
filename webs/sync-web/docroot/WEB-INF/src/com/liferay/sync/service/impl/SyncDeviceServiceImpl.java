@@ -17,8 +17,8 @@ package com.liferay.sync.service.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
-import com.liferay.portal.model.User;
 import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.service.base.SyncDeviceServiceBaseImpl;
 import com.liferay.sync.shared.util.SyncDeviceConstants;

@@ -18,10 +18,10 @@
 package com.liferay.so.invitemembers.util;
 
 import com.liferay.portal.kernel.dao.orm.CustomSQLParam;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.comparator.UserFirstNameComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.LinkedHashMap;
@@ -42,7 +42,7 @@ public class InviteMembersUtil {
 			"usersInvited",
 			new CustomSQLParam(
 				CustomSQLUtil.get(
-					"com.liferay.portal.service.persistence.UserFinder." +
+					"com.liferay.portal.kernel.service.persistence.UserFinder." +
 						"filterByUsersGroupsGroupId"),
 				groupId));
 
@@ -61,7 +61,7 @@ public class InviteMembersUtil {
 			"usersInvited",
 			new CustomSQLParam(
 				CustomSQLUtil.get(
-					"com.liferay.portal.service.persistence.UserFinder." +
+					"com.liferay.portal.kernel.service.persistence.UserFinder." +
 						"filterByUsersGroupsGroupId"),
 				groupId));
 

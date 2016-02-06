@@ -21,7 +21,7 @@ import com.liferay.mail.model.Message;
 import com.liferay.mail.model.MessagesDisplay;
 import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.model.User;
+import com.liferay.portal.kernel.model.User;
 
 import java.io.IOException;
 

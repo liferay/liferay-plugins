@@ -17,9 +17,9 @@
 
 package com.liferay.microblogs.hook.upgrade.v1_0_0;
 
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.model.User;
 
 /**
  * @author Calvin Keum

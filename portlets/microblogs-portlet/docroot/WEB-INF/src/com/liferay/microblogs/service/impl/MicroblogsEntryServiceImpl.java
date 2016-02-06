@@ -23,7 +23,7 @@ import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.microblogs.service.permission.MicroblogsPermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.util.List;
 

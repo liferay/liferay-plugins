@@ -14,7 +14,7 @@
 
 package com.liferay.chat.util.comparator;
 
-import com.liferay.portal.model.ContactConstants;
+import com.liferay.portal.kernel.model.ContactConstants;
 
 import java.util.Comparator;
 

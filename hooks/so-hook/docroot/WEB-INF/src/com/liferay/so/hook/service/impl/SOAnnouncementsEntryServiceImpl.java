@@ -22,6 +22,7 @@ import com.liferay.announcements.kernel.service.AnnouncementsEntryLocalServiceUt
 import com.liferay.announcements.kernel.service.AnnouncementsEntryService;
 import com.liferay.announcements.kernel.service.AnnouncementsEntryServiceWrapper;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.model.Group;
 
 /**
  * @author Jonathan Lee

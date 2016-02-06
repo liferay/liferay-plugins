@@ -15,7 +15,7 @@
 package com.liferay.akismet.hook.listeners;
 
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
-import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.wiki.model.WikiPage;
 
 /**

@@ -17,11 +17,11 @@ package com.liferay.mail.service.impl;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.base.AccountLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.User;
 
 import java.util.Date;
 import java.util.List;

@@ -15,9 +15,9 @@
 package com.liferay.samplewrapper.hook.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalService;
-import com.liferay.portal.service.UserLocalServiceWrapper;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.service.UserLocalServiceWrapper;
 import com.liferay.samplewrapper.hook.model.impl.SampleWrapperUserImpl;
 
 /**

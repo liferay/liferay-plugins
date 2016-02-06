@@ -19,10 +19,10 @@ package com.liferay.so.messaging;
 
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
-import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.so.service.ClpSerializer;
 
 /**

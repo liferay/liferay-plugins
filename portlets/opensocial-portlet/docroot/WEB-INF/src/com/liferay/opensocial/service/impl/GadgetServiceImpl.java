@@ -19,7 +19,7 @@ import com.liferay.opensocial.service.base.GadgetServiceBaseImpl;
 import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.opensocial.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 /**
  * @author Brian Wing Shun Chan

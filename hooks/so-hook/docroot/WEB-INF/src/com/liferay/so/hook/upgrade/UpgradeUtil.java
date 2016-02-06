@@ -17,8 +17,8 @@
 
 package com.liferay.so.hook.upgrade;
 
-import com.liferay.portal.model.Company;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.so.util.InstanceUtil;
 
 import java.util.List;

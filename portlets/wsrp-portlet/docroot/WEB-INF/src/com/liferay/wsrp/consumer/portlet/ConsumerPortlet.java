@@ -16,10 +16,22 @@ package com.liferay.wsrp.consumer.portlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Address;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.EmailAddress;
+import com.liferay.portal.kernel.model.ListType;
+import com.liferay.portal.kernel.model.Phone;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.Website;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
+import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
+import com.liferay.portal.kernel.service.EmailAddressLocalServiceUtil;
+import com.liferay.portal.kernel.service.ListTypeServiceUtil;
+import com.liferay.portal.kernel.service.PhoneLocalServiceUtil;
+import com.liferay.portal.kernel.service.WebsiteLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -39,18 +51,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
-import com.liferay.portal.model.Address;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.model.EmailAddress;
-import com.liferay.portal.model.ListType;
-import com.liferay.portal.model.Phone;
-import com.liferay.portal.model.User;
-import com.liferay.portal.model.Website;
-import com.liferay.portal.service.AddressLocalServiceUtil;
-import com.liferay.portal.service.EmailAddressLocalServiceUtil;
-import com.liferay.portal.service.ListTypeServiceUtil;
-import com.liferay.portal.service.PhoneLocalServiceUtil;
-import com.liferay.portal.service.WebsiteLocalServiceUtil;
 import com.liferay.util.Encryptor;
 import com.liferay.wsrp.axis.WSRPHTTPSender;
 import com.liferay.wsrp.model.WSRPConsumer;
@@ -608,7 +608,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		List<EmailAddress> emailAddresses =
 			EmailAddressLocalServiceUtil.getEmailAddresses(
 				user.getCompanyId(),
-				com.liferay.portal.model.Contact.class.getName(),
+				com.liferay.portal.kernel.model.Contact.class.getName(),
 				user.getContactId());
 
 		for (EmailAddress emailAddress : emailAddresses) {
@@ -629,7 +629,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
 			user.getCompanyId(),
-			com.liferay.portal.model.Contact.class.getName(),
+			com.liferay.portal.kernel.model.Contact.class.getName(),
 			user.getContactId());
 
 		for (Website website : websites) {
@@ -653,7 +653,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		personName.setMiddle(user.getMiddleName());
 		personName.setNickname(user.getScreenName());
 
-		com.liferay.portal.model.Contact contact = user.getContact();
+		com.liferay.portal.kernel.model.Contact contact = user.getContact();
 
 		try {
 			ListType listType = ListTypeServiceUtil.getListType(
@@ -691,7 +691,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
 			user.getCompanyId(),
-			com.liferay.portal.model.Contact.class.getName(),
+			com.liferay.portal.kernel.model.Contact.class.getName(),
 			user.getContactId());
 
 		for (Address address : addresses) {
@@ -895,7 +895,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		List<Phone> phones = PhoneLocalServiceUtil.getPhones(
 			user.getCompanyId(),
-			com.liferay.portal.model.Contact.class.getName(),
+			com.liferay.portal.kernel.model.Contact.class.getName(),
 			user.getContactId());
 
 		for (Phone phone : phones) {

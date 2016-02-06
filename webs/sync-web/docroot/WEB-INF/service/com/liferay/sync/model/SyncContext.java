@@ -15,8 +15,8 @@
 package com.liferay.sync.model;
 
 import com.liferay.portal.kernel.json.JSON;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.User;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.User;
 
 import java.util.List;
 import java.util.Map;

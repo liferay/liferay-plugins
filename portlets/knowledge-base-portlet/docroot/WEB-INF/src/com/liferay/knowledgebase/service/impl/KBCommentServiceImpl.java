@@ -21,7 +21,7 @@ import com.liferay.knowledgebase.service.permission.KBCommentPermission;
 import com.liferay.knowledgebase.service.permission.SuggestionPermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.util.Collections;
 import java.util.List;

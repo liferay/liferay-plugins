@@ -19,11 +19,11 @@ package com.liferay.so.hook.upgrade.v3_0_0;
 
 import com.liferay.expando.kernel.model.ExpandoTableConstants;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

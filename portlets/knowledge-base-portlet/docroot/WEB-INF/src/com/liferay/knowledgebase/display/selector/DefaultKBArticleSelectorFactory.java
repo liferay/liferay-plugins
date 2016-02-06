@@ -18,9 +18,9 @@ import com.liferay.knowledgebase.exception.NoSuchKBArticleSelectorException;
 import com.liferay.knowledgebase.util.PortletPropsKeys;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.ClassName;
+import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.ClassName;
-import com.liferay.portal.service.ClassNameLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.util.Map;

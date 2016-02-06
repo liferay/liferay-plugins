@@ -19,9 +19,9 @@ import com.google.gdata.sample.appsforyourdomain.gmailsettings.GmailSettingsServ
 import com.google.gdata.util.AuthenticationException;
 
 import com.liferay.google.apps.connector.auth.GoogleCredentialUtil;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.Company;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;

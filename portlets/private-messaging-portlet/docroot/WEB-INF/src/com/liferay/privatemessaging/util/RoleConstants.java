@@ -20,7 +20,8 @@ package com.liferay.privatemessaging.util;
 /**
  * @author Eudaldo Alonso
  */
-public class RoleConstants extends com.liferay.portal.model.RoleConstants {
+public class RoleConstants
+	extends com.liferay.portal.kernel.model.RoleConstants {
 
 	public static final String SOCIAL_OFFICE_USER = "Social Office User";
 

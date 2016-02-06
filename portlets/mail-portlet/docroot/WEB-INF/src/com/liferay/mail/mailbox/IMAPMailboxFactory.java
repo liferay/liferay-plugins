@@ -15,8 +15,8 @@
 package com.liferay.mail.mailbox;
 
 import com.liferay.mail.model.Account;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.User;
 
 /**
  * @author Scott Lee

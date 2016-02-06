@@ -17,8 +17,8 @@ package com.liferay.opensocial.service.impl;
 import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.service.base.OAuthTokenLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;

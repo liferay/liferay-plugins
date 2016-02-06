@@ -19,9 +19,9 @@ package com.liferay.so.hook.filter;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.servlet.BaseFilter;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.model.User;
 import com.liferay.so.util.PortletPropsValues;
 
 import javax.servlet.FilterChain;

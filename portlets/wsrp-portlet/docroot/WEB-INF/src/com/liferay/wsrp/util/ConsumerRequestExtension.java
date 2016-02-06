@@ -14,7 +14,7 @@
 
 package com.liferay.wsrp.util;
 
-import com.liferay.portal.model.User;
+import com.liferay.portal.kernel.model.User;
 
 import java.util.List;
 

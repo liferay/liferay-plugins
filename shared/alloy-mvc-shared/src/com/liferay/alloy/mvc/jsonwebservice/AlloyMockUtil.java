@@ -14,9 +14,9 @@
 
 package com.liferay.alloy.mvc.jsonwebservice;
 
+import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
-import com.liferay.portal.model.Portlet;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

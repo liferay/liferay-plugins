@@ -16,7 +16,7 @@ package com.liferay.akismet.hook.listeners;
 
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 import com.liferay.message.boards.kernel.model.MBMessage;
-import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portal.kernel.model.BaseModelListener;
 
 /**
  * @author Amos Fong

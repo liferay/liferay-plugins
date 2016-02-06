@@ -20,9 +20,9 @@ import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.BaseModelListener;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.BaseModelListener;
-import com.liferay.portal.model.User;
 
 import java.util.List;
 

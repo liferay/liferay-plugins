@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.util;
 
-import com.liferay.portal.model.PortletConstants;
+import com.liferay.portal.kernel.model.PortletConstants;
 
 /**
  * @author Brian Wing Shun Chan

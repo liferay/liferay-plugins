@@ -14,8 +14,8 @@
 
 package com.liferay.akismet.util;
 
+import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import javax.portlet.PortletPreferences;

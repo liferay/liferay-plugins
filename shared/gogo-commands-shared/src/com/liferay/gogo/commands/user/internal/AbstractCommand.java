@@ -14,7 +14,7 @@
 
 package com.liferay.gogo.commands.user.internal;
 
-import com.liferay.portal.service.UserLocalService;
+import com.liferay.portal.kernel.service.UserLocalService;
 
 /**
  * @author Miguel Pastor

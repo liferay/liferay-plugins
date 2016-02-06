@@ -18,9 +18,9 @@ import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.util.PortletPropsValues;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.service.UserLocalServiceUtil;
 
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.MessageListener;

@@ -16,8 +16,8 @@ package com.liferay.wsrp.util;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.InstanceFactory;
-import com.liferay.portal.model.User;
 
 import java.util.ArrayList;
 import java.util.Collections;

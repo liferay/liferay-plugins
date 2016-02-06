@@ -20,7 +20,7 @@ import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.model.User;
+import com.liferay.portal.kernel.model.User;
 
 import javax.mail.Folder;
 import javax.mail.Message;

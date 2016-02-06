@@ -19,8 +19,8 @@ import com.liferay.expando.kernel.model.ExpandoTable;
 import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.mongodb.lang.MongoOperator;
 import com.liferay.mongodb.util.MongoDBUtil;
-import com.liferay.portal.exception.ModelListenerException;
-import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portal.kernel.exception.ModelListenerException;
+import com.liferay.portal.kernel.model.BaseModelListener;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
