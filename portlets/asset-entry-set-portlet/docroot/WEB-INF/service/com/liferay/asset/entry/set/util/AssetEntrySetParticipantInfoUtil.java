@@ -61,7 +61,7 @@ public class AssetEntrySetParticipantInfoUtil {
 			classNameId, classPK, sharedToClassNameId, sharedToClassPK);
 	}
 
-	public void setAssetEntrySetParticipantInfo(
+	public static void setAssetEntrySetParticipantInfo(
 		AssetEntrySetParticipantInfo assetEntrySetParticipantInfo) {
 
 		_assetEntrySetParticipantInfo = assetEntrySetParticipantInfo;

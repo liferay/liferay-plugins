@@ -16,6 +16,8 @@ package com.liferay.asset.entry.set.hook.events;
 
 import com.liferay.asset.entry.set.handler.AssetEntrySetHandler;
 import com.liferay.asset.entry.set.util.AssetEntrySetManagerUtil;
+import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoImpl;
+import com.liferay.asset.entry.set.util.AssetEntrySetParticipantInfoUtil;
 import com.liferay.asset.entry.set.util.PortletPropsKeys;
 import com.liferay.asset.entry.set.util.PortletPropsValues;
 import com.liferay.portal.kernel.configuration.Filter;
@@ -45,6 +47,7 @@ public class StartupAction extends SimpleAction {
 	protected void doRun() throws Exception {
 		initAssetEntrySetPortletIds();
 		initAssetEntrySetHandlers();
+		initAssetEntrySetParticipantInfo();
 	}
 
 	protected void initAssetEntrySetHandlers() throws PortalException {
@@ -76,6 +79,11 @@ public class StartupAction extends SimpleAction {
 				}
 			}
 		}
+	}
+
+	protected void initAssetEntrySetParticipantInfo() throws Exception {
+		AssetEntrySetParticipantInfoUtil.setAssetEntrySetParticipantInfo(
+			new AssetEntrySetParticipantInfoImpl());
 	}
 
 	protected void initAssetEntrySetPortletIds() throws PortalException {
