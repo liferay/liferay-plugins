@@ -5,7 +5,7 @@
 #set ($so_logo = $images_folder + "/custom/so_logo.png")
 #set ($user_dashboard_portlet_url = $site_default_url)
 #set ($user_dashboard_url = $site_default_url)
-#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.kernel.service.UserLocalService"))
 #set ($user_profile_url = $community_default_public_url)
 
 #set ($current_user = $user_local_service.getUserById($page_group.getClassPK()))
@@ -52,7 +52,7 @@
 	#set ($is_user_dashboard = ($page_group.getGroupId() == $current_user.getGroupId()))
 	#set ($user_group = $user.getGroup())
 
-	#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutLocalService"))
+	#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.kernel.service.LayoutLocalService"))
 	#set ($user_layout = $layoutLocalService.getLayouts($user_group.getGroupId(), true))
 
 #end
@@ -69,11 +69,11 @@
 	#end
 
 	#if (($current_user.getUserId() == $user.getUserId()) && $layout.isPublicLayout())
-		#set ($group_local_service = $serviceLocator.findService('com.liferay.portal.service.GroupLocalService'))
+		#set ($group_local_service = $serviceLocator.findService('com.liferay.portal.kernel.service.GroupLocalService'))
 
 		#set ($control_panel_group = $group_local_service.getGroup($company_id, "Control Panel"))
 
-		#set ($layout_local_service = $serviceLocator.findService('com.liferay.portal.service.LayoutLocalService'))
+		#set ($layout_local_service = $serviceLocator.findService('com.liferay.portal.kernel.service.LayoutLocalService'))
 
 		#set ($control_panel_plid = $layout_local_service.getDefaultPlid($control_panel_group.getGroupId(), true))
 
