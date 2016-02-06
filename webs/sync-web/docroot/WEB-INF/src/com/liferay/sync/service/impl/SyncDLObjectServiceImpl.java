@@ -16,8 +16,11 @@ package com.liferay.sync.service.impl;
 
 import com.liferay.document.library.kernel.exception.DuplicateFileException;
 import com.liferay.document.library.kernel.exception.DuplicateFolderNameException;
+import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
+import com.liferay.document.library.kernel.exception.NoSuchFolderException;
 import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.document.library.kernel.model.DLFileVersion;
+import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.model.DLSyncEvent;
 import com.liferay.document.library.kernel.service.DLSyncEventLocalServiceUtil;
@@ -74,7 +77,6 @@ import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
 import com.liferay.sync.util.comparator.SyncDLObjectModifiedTimeComparator;
-import com.liferay.trash.kernel.util.TrashUtil;
 
 import java.io.File;
 import java.io.InputStream;
@@ -110,6 +112,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			Group group = groupLocalService.getGroup(repositoryId);
 
 			SyncUtil.checkSyncEnabled(group.getGroupId());
+
+			checkFolder(folderId);
 
 			if (!group.isUser() &&
 				ArrayUtil.isEmpty(serviceContext.getGroupPermissions())) {
@@ -155,6 +159,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(group.getGroupId());
 
+			checkFolder(parentFolderId);
+
 			if (!group.isUser() &&
 				ArrayUtil.isEmpty(serviceContext.getGroupPermissions())) {
 
@@ -194,6 +200,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
+			checkFileEntry(fileEntry);
+
 			dlAppService.cancelCheckOut(fileEntryId);
 
 			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
@@ -216,6 +224,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
+
+			checkFileEntry(fileEntry);
 
 			dlAppService.checkInFileEntry(
 				fileEntryId, majorVersion, changeLog, serviceContext);
@@ -240,6 +250,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
+			checkFileEntry(fileEntry);
+
 			dlAppService.checkOutFileEntry(fileEntryId, serviceContext);
 
 			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
@@ -263,6 +275,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
+			checkFileEntry(fileEntry);
+
 			fileEntry = dlAppService.checkOutFileEntry(
 				fileEntryId, owner, expirationTime, serviceContext);
 
@@ -284,6 +298,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			Group group = groupLocalService.getGroup(repositoryId);
 
 			SyncUtil.checkSyncEnabled(group.getGroupId());
+
+			checkFolder(folderId);
 
 			FileEntry sourceFileEntry = dlAppLocalService.getFileEntry(
 				sourceFileEntryId);
@@ -748,6 +764,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
+			checkFileEntry(fileEntry);
+
 			fileEntry = dlAppService.moveFileEntry(
 				fileEntryId, newFolderId, serviceContext);
 
@@ -767,11 +785,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
-			if (!TrashUtil.isInTrash(
-					DLFileEntryConstants.getClassName(), fileEntryId)) {
+			checkFileEntry(fileEntry);
 
-				fileEntry = dlTrashService.moveFileEntryToTrash(fileEntryId);
-			}
+			fileEntry = dlTrashService.moveFileEntryToTrash(fileEntryId);
 
 			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_TRASH);
 		}
@@ -789,6 +805,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			Folder folder = dlAppLocalService.getFolder(folderId);
 
 			SyncUtil.checkSyncEnabled(folder.getGroupId());
+
+			checkFolder(folder);
 
 			folder = dlAppService.moveFolder(
 				folderId, parentFolderId, serviceContext);
@@ -809,11 +827,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(folder.getGroupId());
 
-			if (!TrashUtil.isInTrash(
-					DLFolderConstants.getClassName(), folderId)) {
+			checkFolder(folderId);
 
-				folder = dlTrashService.moveFolderToTrash(folderId);
-			}
+			folder = dlTrashService.moveFolderToTrash(folderId);
 
 			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_TRASH);
 		}
@@ -836,6 +852,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
+
+			checkFileEntry(fileEntry);
 
 			DLFileVersion dlFileVersion =
 				dlFileVersionLocalService.getDLFileVersion(sourceVersionId);
@@ -997,6 +1015,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(fileEntry.getGroupId());
 
+			checkFileEntry(fileEntry);
+
 			serviceContext.setCommand(Constants.UPDATE);
 
 			fileEntry = dlAppService.updateFileEntry(
@@ -1022,6 +1042,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			SyncUtil.checkSyncEnabled(folder.getGroupId());
 
+			checkFolder(folder);
+
 			folder = dlAppService.updateFolder(
 				folderId, name, description, serviceContext);
 
@@ -1030,6 +1052,36 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
 		}
+	}
+
+	protected void checkFileEntry(FileEntry fileEntry) throws PortalException {
+
+		// SYNC-1542
+
+		if (fileEntry.isInTrash()) {
+			throw new NoSuchFileEntryException();
+		}
+	}
+
+	protected void checkFolder(Folder folder) throws PortalException {
+
+		// SYNC-1542
+
+		if (folder.getModel() instanceof DLFolder) {
+			DLFolder dlFolder = (DLFolder)folder.getModel();
+
+			if (dlFolder.isInTrash()) {
+				throw new NoSuchFolderException();
+			}
+		}
+
+		throw new PortalException("Folder must be an instance of DLFolder");
+	}
+
+	protected void checkFolder(long folderId) throws PortalException {
+		Folder folder = dlAppService.getFolder(folderId);
+
+		checkFolder(folder);
 	}
 
 	protected SyncDLObject checkModifiedTime(
