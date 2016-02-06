@@ -17,8 +17,8 @@ package com.liferay.sync.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.kernel.service.InvokableLocalService;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for SyncPreferences. This utility wraps
@@ -42,7 +42,8 @@ public class SyncPreferencesLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.sync.service.impl.SyncPreferencesLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.oauth.model.OAuthApplication enableOAuth(
-		long companyId, com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		long companyId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().enableOAuth(companyId, serviceContext);
 	}

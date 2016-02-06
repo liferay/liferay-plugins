@@ -46,7 +46,8 @@ public class SyncPreferencesLocalServiceClp
 
 	@Override
 	public com.liferay.oauth.model.OAuthApplication enableOAuth(
-		long companyId, com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		long companyId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 

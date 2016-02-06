@@ -156,14 +156,16 @@ public class WSRPProducerLocalServiceClpInvoker {
 
 		_methodParameterTypes64 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName65 = "addWSRPProducer";
 
 		_methodParameterTypes65 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName66 = "deleteWSRPProducer";

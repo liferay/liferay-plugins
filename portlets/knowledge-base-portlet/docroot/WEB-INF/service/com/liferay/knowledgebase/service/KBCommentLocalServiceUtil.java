@@ -17,8 +17,8 @@ package com.liferay.knowledgebase.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
-import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.kernel.service.InvokableLocalService;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the local service utility for KBComment. This utility wraps
@@ -64,7 +64,8 @@ public class KBCommentLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBComment addKBComment(
 		long userId, long classNameId, long classPK, java.lang.String content,
-		int userRating, com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		int userRating,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addKBComment(userId, classNameId, classPK, content,

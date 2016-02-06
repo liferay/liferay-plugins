@@ -57,7 +57,8 @@ public class KBCommentLocalServiceWrapper implements KBCommentLocalService,
 	@Override
 	public com.liferay.knowledgebase.model.KBComment addKBComment(long userId,
 		long classNameId, long classPK, java.lang.String content,
-		int userRating, com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		int userRating,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbCommentLocalService.addKBComment(userId, classNameId,
 			classPK, content, userRating, serviceContext);

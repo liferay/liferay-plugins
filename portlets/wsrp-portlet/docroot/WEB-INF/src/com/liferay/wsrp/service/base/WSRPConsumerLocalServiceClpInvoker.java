@@ -146,7 +146,8 @@ public class WSRPConsumerLocalServiceClpInvoker {
 		_methodParameterTypes54 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName55 = "deleteWSRPConsumer";

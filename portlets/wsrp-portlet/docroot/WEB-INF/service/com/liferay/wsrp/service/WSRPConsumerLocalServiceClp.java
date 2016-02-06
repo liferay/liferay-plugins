@@ -33,7 +33,8 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		_methodParameterTypes0 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "addWSRPConsumer";

@@ -193,7 +193,9 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 
 		_methodName35 = "updateUserName";
 
-		_methodParameterTypes35 = new String[] { "com.liferay.portal.kernel.model.User" };
+		_methodParameterTypes35 = new String[] {
+				"com.liferay.portal.kernel.model.User"
+			};
 
 		_methodName36 = "updateUserThread";
 

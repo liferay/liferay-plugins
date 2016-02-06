@@ -135,7 +135,8 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		_methodName22 = "moveFileEntry";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "long", "com.liferay.portal.kernel.service.ServiceContext"
+				"long", "long",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName23 = "moveFileEntryToTrash";
@@ -145,7 +146,8 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 		_methodName24 = "moveFolder";
 
 		_methodParameterTypes24 = new String[] {
-				"long", "long", "com.liferay.portal.kernel.service.ServiceContext"
+				"long", "long",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName25 = "moveFolderToTrash";

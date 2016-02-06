@@ -37,7 +37,8 @@ public class KBFolderLocalServiceClp implements KBFolderLocalService {
 
 		_methodParameterTypes1 = new String[] {
 				"long", "long", "long", "long", "java.lang.String",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName2 = "createKBFolder";

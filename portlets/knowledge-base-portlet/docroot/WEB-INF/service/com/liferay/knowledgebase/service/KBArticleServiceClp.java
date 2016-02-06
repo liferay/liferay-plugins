@@ -204,7 +204,8 @@ public class KBArticleServiceClp implements KBArticleService {
 		_methodName31 = "revertKBArticle";
 
 		_methodParameterTypes31 = new String[] {
-				"long", "int", "com.liferay.portal.kernel.service.ServiceContext"
+				"long", "int",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName32 = "subscribeGroupKBArticles";

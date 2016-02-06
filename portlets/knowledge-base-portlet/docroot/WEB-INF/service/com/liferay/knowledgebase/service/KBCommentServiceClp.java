@@ -82,7 +82,8 @@ public class KBCommentServiceClp implements KBCommentService {
 		_methodName11 = "updateStatus";
 
 		_methodParameterTypes11 = new String[] {
-				"long", "int", "com.liferay.portal.kernel.service.ServiceContext"
+				"long", "int",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 

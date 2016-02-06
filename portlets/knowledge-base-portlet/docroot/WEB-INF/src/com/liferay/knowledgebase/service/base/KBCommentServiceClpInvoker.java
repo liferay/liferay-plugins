@@ -82,7 +82,8 @@ public class KBCommentServiceClpInvoker {
 		_methodName76 = "updateStatus";
 
 		_methodParameterTypes76 = new String[] {
-				"long", "int", "com.liferay.portal.kernel.service.ServiceContext"
+				"long", "int",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 

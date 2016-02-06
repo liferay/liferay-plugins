@@ -31,7 +31,8 @@ public class FooLocalServiceClp implements FooLocalService {
 
 		_methodParameterTypes0 = new String[] {
 				"java.lang.String", "boolean", "int", "java.util.Date",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "addFoo";
@@ -186,7 +187,8 @@ public class FooLocalServiceClp implements FooLocalService {
 
 		_methodParameterTypes31 = new String[] {
 				"long", "java.lang.String", "boolean", "int", "java.util.Date",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 

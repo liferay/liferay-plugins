@@ -31,7 +31,8 @@ public class TasksEntryServiceClp implements TasksEntryService {
 
 		_methodParameterTypes0 = new String[] {
 				"java.lang.String", "int", "long", "int", "int", "int", "int",
-				"int", "boolean", "com.liferay.portal.kernel.service.ServiceContext"
+				"int", "boolean",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName1 = "getOSGiServiceIdentifier";

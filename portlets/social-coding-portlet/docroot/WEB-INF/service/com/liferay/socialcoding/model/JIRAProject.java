@@ -17,8 +17,8 @@ package com.liferay.socialcoding.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.annotation.ImplementationClassName;
-import com.liferay.portal.kernel.util.Accessor;
 import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.Accessor;
 
 /**
  * The extended model interface for the JIRAProject service. Represents a row in the &quot;project&quot; database table, with each column mapped to a property of this class.

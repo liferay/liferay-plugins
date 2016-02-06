@@ -198,7 +198,9 @@ public class UserThreadLocalServiceClpInvoker {
 
 		_methodName58 = "updateUserName";
 
-		_methodParameterTypes58 = new String[] { "com.liferay.portal.kernel.model.User" };
+		_methodParameterTypes58 = new String[] {
+				"com.liferay.portal.kernel.model.User"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,

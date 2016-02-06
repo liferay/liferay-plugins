@@ -204,7 +204,8 @@ public class KBArticleServiceClpInvoker {
 		_methodName134 = "revertKBArticle";
 
 		_methodParameterTypes134 = new String[] {
-				"long", "int", "com.liferay.portal.kernel.service.ServiceContext"
+				"long", "int",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName135 = "subscribeGroupKBArticles";

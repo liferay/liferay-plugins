@@ -156,7 +156,8 @@ public class FooLocalServiceClpInvoker {
 
 		_methodParameterTypes56 = new String[] {
 				"java.lang.String", "boolean", "int", "java.util.Date",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 
 		_methodName57 = "deleteFoo";
@@ -196,7 +197,8 @@ public class FooLocalServiceClpInvoker {
 
 		_methodParameterTypes63 = new String[] {
 				"long", "java.lang.String", "boolean", "int", "java.util.Date",
-				"java.lang.String", "com.liferay.portal.kernel.service.ServiceContext"
+				"java.lang.String",
+				"com.liferay.portal.kernel.service.ServiceContext"
 			};
 	}
 
