@@ -14,8 +14,8 @@
 
 package com.liferay.scriptingexecutor.scripts.groovy;
 
-import com.liferay.portal.model.UserGroup;
-import com.liferay.portal.service.UserGroupLocalServiceUtil;
+import com.liferay.portal.kernel.model.UserGroup;
+import com.liferay.portal.kernel.service.UserGroupLocalServiceUtil;
 
 /**
  * @author Michael C. Han

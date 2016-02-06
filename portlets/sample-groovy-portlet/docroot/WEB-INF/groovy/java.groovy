@@ -1,4 +1,4 @@
-import com.liferay.portal.service.OrganizationServiceUtil;
+import com.liferay.portal.kernel.service.OrganizationServiceUtil;
 
 renderResponse.setContentType("text/html");
 
