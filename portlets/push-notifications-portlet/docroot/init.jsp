@@ -25,12 +25,12 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.model.User" %><%@
+page import="com.liferay.portal.kernel.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.util.OrderByComparator" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
-page import="com.liferay.portal.model.User" %><%@
-page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.pushnotifications.model.PushNotificationsDevice" %><%@
 page import="com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil" %><%@
 page import="com.liferay.pushnotifications.service.permission.PushNotificationsPermission" %><%@

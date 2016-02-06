@@ -43,6 +43,7 @@ page import="com.liferay.opensocial.util.PortletPropsValues" %><%@
 page import="com.liferay.opensocial.util.WebKeys" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.model.Layout" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.repository.model.Folder" %><%@
@@ -59,7 +60,6 @@ page import="com.liferay.portal.kernel.util.TreeNodeView" %><%@
 page import="com.liferay.portal.kernel.util.TreeView" %><%@
 page import="com.liferay.portal.kernel.util.UnicodeFormatter" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.portal.model.Layout" %><%@
 page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.util.Locale" %><%@

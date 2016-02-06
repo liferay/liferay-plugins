@@ -16,8 +16,8 @@
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
-<%@ page import="com.liferay.portal.model.Organization" %>
-<%@ page import="com.liferay.portal.service.OrganizationServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.model.Organization" %>
+<%@ page import="com.liferay.portal.kernel.service.OrganizationServiceUtil" %>
 
 <%@ page import="java.util.List" %>
 

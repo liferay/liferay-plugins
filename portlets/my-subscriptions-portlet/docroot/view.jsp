@@ -46,7 +46,7 @@
 			%>
 
 			<liferay-ui:search-container-row
-				className="com.liferay.portal.model.Subscription"
+				className="com.liferay.portal.kernel.model.Subscription"
 				escapedModel="<%= true %>"
 				keyProperty="subscriptionId"
 				modelVar="subscription"

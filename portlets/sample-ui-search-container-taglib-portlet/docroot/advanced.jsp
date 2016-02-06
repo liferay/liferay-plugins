@@ -33,7 +33,7 @@ portletURL.setParameter("mvcPath", "/advanced.jsp");
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.portal.model.User"
+		className="com.liferay.portal.kernel.model.User"
 		escapedModel="<%= true %>"
 		keyProperty="userId"
 		modelVar="curUser"

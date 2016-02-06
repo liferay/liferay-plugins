@@ -15,8 +15,8 @@
 --%>
 
 <%@ page import="com.liferay.portal.kernel.exception.SystemException" %>
-<%@ page import="com.liferay.portal.service.PortalService" %>
-<%@ page import="com.liferay.portal.service.PortalServiceUtil" %>
+<%@ page import="com.liferay.portal.kernel.service.PortalService" %>
+<%@ page import="com.liferay.portal.kernel.service.PortalServiceUtil" %>
 <%@ page import="com.liferay.testtransaction.model.Bar" %>
 <%@ page import="com.liferay.testtransaction.service.BarLocalServiceUtil" %>
 

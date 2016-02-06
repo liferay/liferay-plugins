@@ -25,6 +25,7 @@ page import="com.liferay.ams.model.Type" %><%@
 page import="com.liferay.ams.service.AssetLocalServiceUtil" %><%@
 page import="com.liferay.ams.service.DefinitionLocalServiceUtil" %><%@
 page import="com.liferay.ams.service.TypeLocalServiceUtil" %><%@
+page import="com.liferay.portal.kernel.model.BaseModel" %><%@
 page import="com.liferay.portal.kernel.search.BooleanQuery" %><%@
 page import="com.liferay.portal.kernel.search.Document" %><%@
 page import="com.liferay.portal.kernel.search.Field" %><%@
@@ -32,8 +33,7 @@ page import="com.liferay.portal.kernel.search.Indexer" %><%@
 page import="com.liferay.portal.kernel.search.SearchContext" %><%@
 page import="com.liferay.portal.kernel.search.Summary" %><%@
 page import="com.liferay.portal.kernel.search.filter.BooleanFilter" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.model.BaseModel" %>
+page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <%@ page import="java.util.Locale" %><%@
 page import="java.util.regex.Matcher" %><%@

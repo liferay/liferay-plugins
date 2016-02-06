@@ -19,11 +19,11 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.servlet.BrowserSnifferUtil" %><%@
+<%@ page import="com.liferay.portal.kernel.model.Portlet" %><%@
+page import="com.liferay.portal.kernel.service.PortletLocalServiceUtil" %><%@
+page import="com.liferay.portal.kernel.servlet.BrowserSnifferUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
-page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
-page import="com.liferay.portal.model.Portlet" %><%@
-page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
+page import="com.liferay.portal.kernel.util.PropsUtil" %>
 
 <liferay-theme:defineObjects />
