@@ -17,11 +17,11 @@ package com.liferay.socialcoding.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.liferay.socialcoding.service.ClpSerializer;
 import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Brian Wing Shun Chan
+ * @generated
  */
 @ProviderType
 public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
