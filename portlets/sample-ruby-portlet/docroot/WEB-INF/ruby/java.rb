@@ -1,6 +1,6 @@
 require 'java'
 
-include_class 'com.liferay.portal.service.OrganizationServiceUtil'
+include_class 'com.liferay.portal.kernel.service.OrganizationServiceUtil'
 include_class 'java.util.TreeSet'
 
 $renderResponse.setContentType "text/html"
