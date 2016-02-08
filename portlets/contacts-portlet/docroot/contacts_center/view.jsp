@@ -464,7 +464,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								success: function(event, id, obj) {
 									contactsCenter.renderContent(this.get('responseData'), true);
 
-									window.scrollTo(0,0);
+									window.scrollTo(0, 0);
 
 									contactsContainer.loadingmask.hide();
 								}
@@ -481,6 +481,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					var node = event.currentTarget;
 
 					var start = A.DataType.Number.parse(node.getAttribute('data-end'));
+
 					var end = start + <%= ContactsConstants.MAX_RESULT_COUNT %>;
 
 					var lastNameAnchor = node.getAttribute('data-lastNameAnchor');
@@ -521,6 +522,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 							{
 								after: {
 									failure: function(event, id, obj) {
+										var responseData = this.get('responseData');
+
 										contactsCenter.showMessage(false, responseData.message);
 									},
 									success: function(event, id, obj) {
@@ -554,7 +557,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 					var userId = instance.one('input').val();
 
-					var ioRequest = A.io.request(
+					A.io.request(
 						node.getAttribute('data-viewSummaryURL'),
 						{
 							after: {

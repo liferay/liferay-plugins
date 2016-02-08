@@ -200,146 +200,206 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-base,aui-io-request-deprecated,aui-loading-mask-deprecated">
-	var form = A.one(document.<portlet:namespace />dialogFm);
-
-	var sectionContainer = A.one('.so-portlet-sites-dialog .section-container');
-
-	var previousButton = A.one('.so-portlet-sites-dialog #previous');
-	var nextButton = A.one('.so-portlet-sites-dialog #next');
-
+<aui:script>
 	Liferay.provide(
 		window,
 		'<portlet:namespace />save',
 		function() {
-			nextButton.set('disabled', true);
+			var A = AUI();
 
-			var loadingMask = new A.LoadingMask(
-				{
-					'strings.loading': '<%= UnicodeLanguageUtil.get(request, "creating-a-new-site") %>',
-					target: A.one('.so-portlet-sites-dialog')
+			var dialog = A.one('.so-portlet-sites-dialog');
+
+			if (dialog) {
+				var nextButton = dialog.one('#next');
+
+				if (nextButton) {
+					nextButton.set('disabled', true);
 				}
-			);
 
-			loadingMask.show();
+				var loadingMask = new A.LoadingMask(
+					{
+						'strings.loading': '<%= UnicodeLanguageUtil.get(request, "creating-a-new-site") %>',
+						target: dialog
+					}
+				);
 
-			var layoutElems = sectionContainer.all('.delete-layouts-container .page input:not(:checked)');
+				loadingMask.show();
 
-			var deleteLayoutIds = [];
+				var sectionContainer = dialog.one('.section-container');
 
-			layoutElems.each(
-				function(item, index) {
-					deleteLayoutIds.push(item.getAttribute('data-layoutId'));
+				if (sectionContainer) {
+					var layoutElems = sectionContainer.all('.delete-layouts-container .page input:not(:checked)');
+
+					var deleteLayoutIds = [];
+
+					layoutElems.each(
+						function(item, index) {
+							deleteLayoutIds.push(item.getAttribute('data-layoutId'));
+						}
+					);
 				}
-			);
 
-			var deleteLayoutIdsElem = A.one('#<portlet:namespace />deleteLayoutIds');
+				var deleteLayoutIdsElem = A.one('#<portlet:namespace />deleteLayoutIds');
 
-			deleteLayoutIdsElem.set('value', deleteLayoutIds.join(','));
+				if (deleteLayoutIdsElem) {
+					deleteLayoutIdsElem.set('value', deleteLayoutIds.join(','));
+				}
 
-			A.io.request(
-				form.getAttribute('action'),
-				{
-					after: {
-						success: function(event, id, obj) {
-							var data = this.get('responseData');
+				var form = A.one(document.<portlet:namespace />dialogFm);
 
-							if (data.result == 'success') {
-								form.one('.portlet-msg-error').hide();
+				if (form) {
+					A.io.request(
+						form.getAttribute('action'),
+						{
+							after: {
+								success: function(event, id, obj) {
+									var data = this.get('responseData');
 
-								Liferay.SO.Sites.updateSites(true);
+									if (data.result == 'success') {
+										form.one('.portlet-msg-error').hide();
 
-								var callback = function() {
-									var dialog = Liferay.SO.Sites.getPopup();
+										var sites = Liferay.SO.Sites;
 
-									dialog.hide();
+										sites.updateSites(true);
 
-									loadingMask.hide();
+										var callback = function() {
+											var popup = sites.getPopup();
+
+											popup.hide();
+
+											loadingMask.hide();
+										};
+
+										setTimeout(callback, 1000);
+									}
+									else if (data.result == 'failure') {
+										var errorMsg = form.one('.portlet-msg-error');
+
+										if (data.message) {
+											errorMsg.html(data.message);
+										}
+
+										errorMsg.show();
+
+										var section = dialog.one('.section');
+
+										<portlet:namespace />showSection(section);
+
+										loadingMask.hide();
+									}
 								}
-
-								setTimeout(callback, 1000);
-							}
-							else if (data.result == 'failure') {
-								var errorMsg = form.one('.portlet-msg-error');
-
-								if (data.message) {
-									errorMsg.html(data.message);
-								}
-
-								errorMsg.show();
-
-								var section = A.one('.so-portlet-sites-dialog .section');
-
-								<portlet:namespace />showSection(section);
-
-								loadingMask.hide();
+							},
+							dataType: 'JSON',
+							form: {
+								id: form.getDOM()
 							}
 						}
-					},
-					dataType: 'JSON',
-					form: {
-						id: form.getDOM()
-					}
+					);
 				}
-			);
-		}
+			}
+		},
+		['aui-base', 'aui-io-request-deprecated', 'aui-loading-mask-deprecated']
 	);
 
 	Liferay.provide(
 		window,
 		'<portlet:namespace />previous',
 		function() {
-			var section = A.one('.so-portlet-sites-dialog .section:not(.hide)').previous();
+			var A = AUI();
 
-			<portlet:namespace />showSection(section);
-		}
+			var dialog = A.one('.so-portlet-sites-dialog');
+
+			if (dialog) {
+				var section = dialog.one('.section:not(.hide)').previous();
+
+				if (section) {
+					<portlet:namespace />showSection(section);
+				}
+			}
+		},
+		['aui-base']
 	);
 
 	Liferay.provide(
 		window,
 		'<portlet:namespace />showSection',
 		function(section) {
-			Liferay.SO.Sites.setTitle(section.getAttribute('data-title'));
+			var A = AUI();
 
-			A.one('#<portlet:namespace />step').html('<span>' + section.getAttribute('data-step') + '</span>');
+			var dialog = A.one('.so-portlet-sites-dialog');
 
-			sectionContainer.all('.section').hide();
+			if (dialog) {
+				var sites = Liferay.SO.Sites;
 
-			if (!section.previous('.section')) {
-				Liferay.SO.Sites.disableButton(previousButton);
+				sites.setTitle(section.getAttribute('data-title'));
+
+				var step = A.one('#<portlet:namespace />step');
+
+				if (step) {
+					step.html('<span>' + section.getAttribute('data-step') + '</span>');
+				}
+
+				var sectionContainer = dialog.one('.section-container');
+
+				if (sectionContainer) {
+					sectionContainer.all('.section').hide();
+				}
+
+				var previousButton = dialog.one('#previous');
+
+				if (previousButton) {
+					if (!section.previous('.section')) {
+						sites.disableButton(previousButton);
+					}
+					else {
+						sites.enableButton(previousButton);
+					}
+
+					previousButton.blur();
+				}
+
+				var nextButton = dialog.one('#next');
+
+				if (nextButton) {
+					if (!section.next('.section')) {
+						sites.disableButton(nextButton);
+					}
+					else {
+						sites.enableButton(nextButton);
+					}
+
+					nextButton.blur();
+				}
+
+				section.show();
 			}
-			else {
-				Liferay.SO.Sites.enableButton(previousButton);
-			}
-
-			if (!section.next('.section')) {
-				Liferay.SO.Sites.disableButton(nextButton);
-			}
-			else {
-				Liferay.SO.Sites.enableButton(nextButton);
-			}
-
-			previousButton.blur();
-			nextButton.blur();
-
-			section.show();
-		}
+		},
+		['aui-base']
 	);
 
 	Liferay.provide(
 		window,
 		'<portlet:namespace />next',
 		function() {
-			var section = A.one('.so-portlet-sites-dialog .section:not(.hide)').next();
+			var A = AUI();
 
-			<portlet:namespace />showSection(section);
-		}
+			var dialog = A.one('.so-portlet-sites-dialog');
+
+			if (dialog) {
+				var section = dialog.one('.section:not(.hide)').next();
+
+				if (section) {
+					<portlet:namespace />showSection(section);
+				}
+			}
+		},
+		['aui-base']
 	);
-
-	Liferay.Util.focusFormField(document.<portlet:namespace />dialogFm.<portlet:namespace />name);
 </aui:script>
 
 <aui:script use="aui-base,aui-io-deprecated">
+	Liferay.Util.focusFormField(document.<portlet:namespace />dialogFm.<portlet:namespace />name);
+
 	var form = A.one(document.<portlet:namespace />dialogFm);
 
 	form.on(
@@ -349,15 +409,16 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		}
 	);
 
-	var templateSelect = A.one('.so-portlet-sites-dialog #<portlet:namespace />layoutSetPrototypeSelect');
+	var dialog = A.one('.so-portlet-sites-dialog');
 
-	var descriptionContainer = A.one('.so-portlet-sites-dialog .template-details');
+	var descriptionContainer = dialog.one('.template-details');
 
-	var name = descriptionContainer.one('.name');
 	var description = descriptionContainer.one('.description');
-	var pages = descriptionContainer.one('.pages');
+	var name = descriptionContainer.one('.name');
 
-	var deleteLayoutsContainer = A.one('.so-portlet-sites-dialog .delete-layouts-container');
+	var deleteLayoutsContainer = dialog.one('.delete-layouts-container');
+
+	var templateSelect = dialog.one('#<portlet:namespace />layoutSetPrototypeSelect');
 
 	templateSelect.on(
 		'change',
@@ -387,10 +448,13 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 									'<div class="page">' +
 										'<input checked data-layoutId="' + layout.layoutId + '" id="layout' + layout.layoutId + '" type="checkbox" />' +
 										'<label for="layout' + layout.layoutId + '">' + layout.name + '</label>' +
-									'</div>');
+									'</div>'
+								);
 							}
 
-							deleteLayoutsContainer.html(inputBuffer.join(''));
+							deleteLayoutsContainer.html(
+								inputBuffer.join('')
+							);
 						}
 					},
 					data: {
@@ -402,7 +466,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		}
 	);
 
-	var typeSelect = A.one('.so-portlet-sites-dialog #<portlet:namespace />typeSelect');
+	var typeSelect = dialog.one('#<portlet:namespace />typeSelect');
 
 	typeSelect.on(
 		'change',
@@ -424,7 +488,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 				message = '<%= UnicodeLanguageUtil.get(request, "private-sites-are-not-listed-pages-are-private-and-users-must-be-invited-to-collaborate") %>';
 			}
 
-			A.one('.so-portlet-sites-dialog .type-details .message').html(message);
+			dialog.one('.type-details .message').html(message);
 		}
 	);
 </aui:script>

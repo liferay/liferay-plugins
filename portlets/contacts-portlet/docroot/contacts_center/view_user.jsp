@@ -52,7 +52,7 @@ request.setAttribute("view_user.jsp-user", user2);
 				<c:if test="<%= connection || follower || following %>">
 					<div class="lfr-asset-metadata">
 						<c:if test="<%= connection %>">
-							<span class="lfr-asset-icon lfr-asset-connection<%= (following || follower) ? StringPool.BLANK : " last" %>">
+							<span class="lfr-asset-connection<%= (following || follower) ? StringPool.BLANK : " last" %> lfr-asset-icon">
 								<i class="icon-user"></i>
 
 								<liferay-ui:message key="connection" />
@@ -60,7 +60,7 @@ request.setAttribute("view_user.jsp-user", user2);
 						</c:if>
 
 						<c:if test="<%= following %>">
-							<span class="lfr-asset-icon lfr-asset-following<%= follower ? StringPool.BLANK : " last" %>">
+							<span class="lfr-asset-following<%= follower ? StringPool.BLANK : " last" %> lfr-asset-icon">
 								<i class="icon-user"></i>
 
 								<liferay-ui:message key="following" />
@@ -364,7 +364,7 @@ request.setAttribute("view_user.jsp-user", user2);
 					uri = Liferay.Util.addParams('<portlet:namespace />extension=' + node.getAttribute('data-extension'), uri) || uri;
 				}
 
-				var dialog = Liferay.Util.Window.getWindow(
+				Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							align: {
@@ -382,7 +382,7 @@ request.setAttribute("view_user.jsp-user", user2);
 						title: node.getAttribute('data-title'),
 						uri: uri
 					}
-				)
+				);
 			};
 	</aui:script>
 </c:if>

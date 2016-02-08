@@ -84,7 +84,6 @@
 
 <aui:script use="aui-color-picker-popover,aui-datatype,aui-swf-deprecated">
 	var swfURL = '<%= HttpUtil.getProtocol(request) + _SWF_URL %>';
-	var watchURL = '<%= HttpUtil.getProtocol(request) + _WATCH_URL %>';
 
 	var allInputsNode = A.all('#<portlet:namespace />fm input');
 
@@ -135,8 +134,8 @@
 	}
 
 	function createPlayer() {
-		var id = urlToVideoId(urlNode.val());
 		var height = parseInt(heightNode.val(), 10) || 0;
+		var id = urlToVideoId(urlNode.val());
 		var maxWidth = (formNode.get('clientWidth') || formNode.get('scrollWidth')) - (controlsNode.get('clientWidth') || controlsNode.get('scrollWidth'));
 		var playerOptions = {
 			autoplay: encodeBinary(autoplayNode.val()),

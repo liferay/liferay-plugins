@@ -180,8 +180,6 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 							Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 						},
 						success: function(event, id, obj) {
-							var responseData = this.get('responseData');
-
 							Liferay.Mail.setStatus('success', '<liferay-ui:message key="synchronizing-messages-in-the-background" />');
 						}
 					}

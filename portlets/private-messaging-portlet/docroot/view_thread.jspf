@@ -278,11 +278,11 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 			<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 			<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
-			<div>
+			<aui:field-wrapper>
 				<textarea class="message-body" name="<portlet:namespace />body"></textarea>
-			</div>
+			</aui:field-wrapper>
 
-			<div>
+			<aui:fieldset>
 				<label class="field-label">
 					<liferay-ui:message key="attachments" />
 				</label>
@@ -292,7 +292,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 				<aui:input label="" name="msgFile2" type="file" />
 
 				<aui:input label="" name="msgFile3" type="file" />
-			</div>
+			</aui:fieldset>
 
 			<aui:button-row>
 				<aui:button name="send" type="submit" value="send" />
@@ -357,7 +357,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 
 	var viewportRegion = A.getDoc().get('viewportRegion');
 
-	var imageGallery = new A.ImageGallery(
+	new A.ImageGallery(
 		{
 			caption: '<%= HtmlUtil.escapeJS(subject) %>',
 			delay: 2000,
