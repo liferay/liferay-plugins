@@ -15,9 +15,9 @@
 package com.liferay.scriptingexecutor.scripts.groovy;
 
 import com.liferay.portal.NoSuchOrganizationException;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 
 /**
