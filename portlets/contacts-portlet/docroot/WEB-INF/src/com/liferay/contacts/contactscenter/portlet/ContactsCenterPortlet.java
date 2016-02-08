@@ -99,6 +99,11 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
+import com.liferay.portal.kernel.portlet.LiferayPortletURL;
+import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.UserGroupRole;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -107,6 +112,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
+import javax.portlet.PortletModeException;
+import javax.portlet.WindowStateException;
+import javax.portlet.WindowState;
+import javax.portlet.PortletMode;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
@@ -244,7 +253,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		jsonObject.put("success", Boolean.TRUE);
 
 		JSONObject userJSONObject = getUserJSONObject(
-			resourceResponse, themeDisplay, userId);
+			resourceRequest, resourceResponse, themeDisplay, userId);
 
 		jsonObject.put("user", userJSONObject);
 
@@ -284,7 +293,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				userJSONObject.put("success", Boolean.TRUE);
 				userJSONObject.put(
 					"user",
-					getUserJSONObject(resourceResponse, themeDisplay, userId));
+						getUserJSONObject(resourceRequest, resourceResponse, themeDisplay, userId));
 
 				jsonArray.put(userJSONObject);
 			}
@@ -701,7 +710,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			userJSONObject.put("success", Boolean.TRUE);
 			userJSONObject.put(
 				"user",
-				getUserJSONObject(actionResponse, themeDisplay, userId));
+					getUserJSONObject(actionRequest, actionResponse, themeDisplay, userId));
 
 			jsonArray.put(userJSONObject);
 		}
@@ -766,7 +775,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 				if (contact instanceof User) {
 					contactJSONObject = getUserJSONObject(
-						portletResponse, themeDisplay, (User)contact);
+						portletRequest, portletResponse, themeDisplay, (User)contact);
 				}
 				else {
 					contactJSONObject = getEntryJSONObject(
@@ -788,7 +797,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 			for (SocialRelation socialRelation : socialRelations) {
 				jsonArray.put(
-					getUserJSONObject(
+					getUserJSONObject( portletRequest,
 						portletResponse, themeDisplay,
 						socialRelation.getUserId1()));
 			}
@@ -902,7 +911,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 
 			for (User user : usersList) {
-				JSONObject userJSONObject = getUserJSONObject(
+				JSONObject userJSONObject = getUserJSONObject(portletRequest,
 					portletResponse, themeDisplay, user);
 
 				jsonArray.put(userJSONObject);
@@ -1002,18 +1011,18 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		return userIds;
 	}
 
-	protected JSONObject getUserJSONObject(
+	protected JSONObject getUserJSONObject(PortletRequest portletRequest,
 			PortletResponse portletResponse, ThemeDisplay themeDisplay,
 			long userId)
 		throws Exception {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		return getUserJSONObject(portletResponse, themeDisplay, user);
+		return getUserJSONObject(portletRequest, portletResponse, themeDisplay, user);
 	}
 
 	protected JSONObject getUserJSONObject(
-			PortletResponse portletResponse, ThemeDisplay themeDisplay,
+			PortletRequest portletRequest, PortletResponse portletResponse, ThemeDisplay themeDisplay,
 			User user)
 		throws Exception {
 
@@ -1038,11 +1047,59 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		jsonObject.put("viewSummaryURL", viewSummaryURL.toString());
 
 		Role theRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), "Site Owner");
-		jsonObject.put("owner", UserGroupRoleLocalServiceUtil.hasUserGroupRole(user.getUserId(), themeDisplay.getSiteGroupId(), theRole.getRoleId()));
+		//jsonObject.put("owner", UserGroupRoleLocalServiceUtil.hasUserGroupRole(user.getUserId(), themeDisplay.getSiteGroupId(), theRole.getRoleId()));
+		jsonObject.put("owner", UserGroupRoleLocalServiceUtil.getUserGroupRoles(user.getUserId(), themeDisplay.getSiteGroupId()).get(0).getRole().getName());
 		jsonObject.put("personLink", "https://hioa.no/tilsatt/"+user.getScreenName());
+
+		if (isOwner(themeDisplay.getUser(), themeDisplay) && !isOwner(user, themeDisplay)) {
+			LiferayPortletURL rmUrl = getPortletActionUrl(portletRequest, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "removeUser");
+			rmUrl.setParameter("userId", String.valueOf(user.getUserId()));
+			LiferayPortletURL chUrl = getPortletRenderUrl(portletRequest, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "changeRole");
+			chUrl.setParameter("userId", String.valueOf(user.getUserId()));
+			jsonObject.put("rmUrl", rmUrl.toString());
+			jsonObject.put("chUrl", chUrl.toString());
+		}
 
 		return jsonObject;
 	}
+
+
+	public boolean isOwner(User user, ThemeDisplay themeDisplay) throws SystemException, PortalException {
+		Role ownerRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), RoleConstants.SITE_OWNER);
+		List<UserGroupRole> usergrouproles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(themeDisplay.getSiteGroupId(), ownerRole.getRoleId());
+		for (UserGroupRole userGroupRole : usergrouproles) {
+			if (userGroupRole.getUserId() == user.getUserId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public LiferayPortletURL getPortletActionUrl(PortletRequest request, long groupId, String portlet, String action)
+			throws SystemException, PortalException, PortletModeException, WindowStateException {
+		long plid = PortalUtil.getPlidFromPortletId(groupId, portlet);
+		LiferayPortletURL url = PortletURLFactoryUtil.getPortletURLFactory()
+				.create(request, portlet, plid, PortletRequest.ACTION_PHASE);
+		url.setWindowState(WindowState.NORMAL);
+		url.setPortletMode(PortletMode.VIEW);
+		url.setParameter("javax.portlet.action", action);
+		url.setAnchor(false);
+		return url;
+	}
+
+	public LiferayPortletURL getPortletRenderUrl(PortletRequest request, long groupId, String portlet, String action)
+			throws SystemException, PortalException, PortletModeException, WindowStateException {
+		long plid = PortalUtil.getPlidFromPortletId(groupId, portlet);
+		LiferayPortletURL url = PortletURLFactoryUtil.getPortletURLFactory()
+				.create(request, portlet, plid, PortletRequest.RENDER_PHASE);
+		url.setWindowState(WindowState.NORMAL);
+		url.setPortletMode(PortletMode.VIEW);
+		url.setParameter("action", action);
+		url.setAnchor(false);
+		return url;
+	}
+
 
 	protected void sendNotificationEvent(SocialRequest socialRequest)
 		throws Exception {

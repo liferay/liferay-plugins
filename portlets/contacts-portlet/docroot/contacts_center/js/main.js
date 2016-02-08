@@ -47,6 +47,8 @@ AUI.add(
 						'<div class="lfr-contact-name">' +
 							'<a href="{personLink}">{fullName}</a>' +
 						'</div>' +
+			            '{rmUrl}'+
+			            '{chUrl}'+
 						'<div class="lfr-group-owner">' +
 							'<a>{owner}</a>' +
 						'</div>' +
@@ -56,9 +58,9 @@ AUI.add(
 						'<div class="lfr-contact-extra">' +
 							'{emailAddress}' +
 						'</div>' +
-						'<div class="lfr-contact-vcard">' +
+						/*'<div class="lfr-contact-vcard">' +
 							'<a href="{vcardUrl}" title="{vcardText}">{vcardText}</a>' +
-						'</div>' +
+						'</div>' +*/
 					'</div>' +
 					'<div class="clear"></div>' +
 				'</div>' +
@@ -109,18 +111,20 @@ AUI.add(
 						'<div class="lfr-contact-name">' +
 							'<a href="{personLink}">{lastName} {firstName}</a>' +
 						'</div>' +
+			            '{rmUrl}'+
+			            '{chUrl}'+
 						'<div class="lfr-group-owner">' +
-							'<a>{owner}</a>' +
+							'{owner}' +
 						'</div>' +
 			            '<div class="lfr-contact-title">' +
-			                '<a>{jobTitle}</a>' +
+			                '{jobTitle}' +
 			            '</div>' +
 						'<div class="lfr-contact-extra">' +
 							'{emailAddress}' +
 						'</div>' +
-						'<div class="lfr-contact-vcard">' +
+						/*'<div class="lfr-contact-vcard">' +
 							'<a href="{vcardUrl}" title="{vcardText}">{vcardText}</a>' +
-						'</div>' +
+						'</div>' +*/
 					'</div>' +
 					'<div class="clear"></div>' +
 				'</div>' +
@@ -831,7 +835,9 @@ AUI.add(
 													fullName: (result.fullName ? result.fullName : ''),
 													lastName: (result.lastName ? result.lastName + ',' : ''),
 													personLink: (result.personLink ? result.personLink  : ''),
-													owner: (result.owner ? Liferay.Language.get('site-owner') : ''),
+													rmUrl: (result.rmUrl ? '<div class="lfr-actions-remove"><a title="'+Liferay.Language.get('remove-member')+'" href="'+result.rmUrl+'">'+Liferay.Language.get('remove-member')+'</a></div>' : ''),
+													chUrl: (result.chUrl ? '<div class="lfr-actions-change-role"><a title="'+Liferay.Language.get('change-member-role')+'" href="'+result.chUrl+'">'+Liferay.Language.get('change-member-role')+'</a></div>' : ''),
+													owner: (result.owner ? result.owner : ''),
 													vcardUrl: (vcardURL.toString()),
 													vcardText: (Liferay.Language.get('download-vcard')),
 													jobTitle: (result.jobTitle ? result.jobTitle : ''),
@@ -850,7 +856,9 @@ AUI.add(
 													lastNameAnchor: (displayLastNameAnchor ? '<div class="last-name-anchor"><a>' + lastNameAnchor + '</a></div>' : ''),
 													fullName: (result.fullName ? result.fullName : ''),
 													portraitURL: (result.portraitURL ? result.portraitURL : ''),
-													owner: (result.owner ? Liferay.Language.get('site-owner') : ''),
+													rmUrl: (result.rmUrl ? '<div class="lfr-actions-remove"><a title="'+Liferay.Language.get('remove-member')+'" href="'+result.rmUrl+'">'+Liferay.Language.get('remove-member')+'</a></div>' : ''),
+													chUrl: (result.chUrl ? '<div class="lfr-actions-change-role"><a title="'+Liferay.Language.get('change-member-role')+'" href="'+result.chUrl+'">'+Liferay.Language.get('change-member-role')+'</a></div>' : ''),
+													owner: (result.owner ? result.owner : ''),
 													vcardUrl: (vcardURL.toString()),
 													vcardText: (Liferay.Language.get('download-vcard')),
 													jobTitle: (result.jobTitle ? result.jobTitle : ''),

@@ -91,6 +91,16 @@ page import="com.liferay.so.service.SocialOfficeServiceUtil" %>
 <%@	page import="com.liferay.portal.model.Role" %>
 <%@	page import="com.liferay.portal.service.RoleLocalServiceUtil" %>
 <%@	page import="com.liferay.portal.service.UserGroupRoleLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.model.RoleConstants" %>
+<%@page import="com.liferay.portal.model.UserGroupRole" %>
+<%@page import="com.liferay.portal.theme.ThemeDisplay" %>
+<%@page import="com.liferay.portal.kernel.exception.SystemException" %>
+<%@page import="com.liferay.portal.kernel.exception.PortalException" %>
+<%@page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %>
+<%@page import="javax.portlet.PortletModeException" %>
+<%@page import="javax.portlet.WindowStateException" %>
+<%@page import="javax.portlet.PortletMode"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.LinkedHashMap" %><%@

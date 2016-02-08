@@ -167,6 +167,46 @@ portletURL.setWindowState(WindowState.NORMAL);
 					for (BaseModel<?> curContact : contacts) {
 					%>
 
+					<%!
+						public boolean isOwner(User user, ThemeDisplay themeDisplay) throws SystemException, PortalException {
+							Role ownerRole = RoleLocalServiceUtil.getRole(themeDisplay.getCompanyId(), RoleConstants.SITE_OWNER);
+							List<UserGroupRole> usergrouproles =
+									UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(themeDisplay.getSiteGroupId(), ownerRole.getRoleId());
+							for (UserGroupRole userGroupRole : usergrouproles) {
+								if (userGroupRole.getUserId() == user.getUserId()) {
+									return true;
+								}
+							}
+							return false;
+						}
+					%>
+					<%!
+						public LiferayPortletURL getPortletActionUrl(HttpServletRequest request, long groupId, String portlet, String action)
+								throws SystemException, PortalException, PortletModeException, WindowStateException {
+							long plid = PortalUtil.getPlidFromPortletId(groupId, portlet);
+							LiferayPortletURL url = PortletURLFactoryUtil.getPortletURLFactory()
+									.create(request, portlet, plid, PortletRequest.ACTION_PHASE);
+							url.setWindowState(WindowState.NORMAL);
+							url.setPortletMode(PortletMode.VIEW);
+							url.setParameter("javax.portlet.action", action);
+							url.setAnchor(false);
+							return url;
+						}
+					%>
+					<%!
+						public LiferayPortletURL getPortletRenderUrl(HttpServletRequest request, long groupId, String portlet, String action)
+								throws SystemException, PortalException, PortletModeException, WindowStateException {
+							long plid = PortalUtil.getPlidFromPortletId(groupId, portlet);
+							LiferayPortletURL url = PortletURLFactoryUtil.getPortletURLFactory()
+									.create(request, portlet, plid, PortletRequest.RENDER_PHASE);
+							url.setWindowState(WindowState.NORMAL);
+							url.setPortletMode(PortletMode.VIEW);
+							url.setParameter("action", action);
+							url.setAnchor(false);
+							return url;
+						}
+					%>
+
 						<c:choose>
 							<c:when test="<%= curContact instanceof User %>">
 
@@ -221,11 +261,25 @@ portletURL.setWindowState(WindowState.NORMAL);
 													<%= HtmlUtil.escape(user2.getFirstName()) %>
 												</a>
 											</div>
-											<% if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(user2.getUserId(), themeDisplay.getSiteGroupId(), theRole.getRoleId())) { %>
-											<div class="lfr-group-owner">
-												<liferay-ui:message key="site-owner" />
+											<% if (isOwner(user, themeDisplay) && !isOwner(user2, themeDisplay)) { %>
+											<div class="lfr-actions-remove">
+													<%
+														LiferayPortletURL rmUrl = getPortletActionUrl(request, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "removeUser");
+														rmUrl.setParameter("userId", String.valueOf(user2.getUserId()));
+													%>
+												<a title="<liferay-ui:message key="remove-member"/>" href="<%=rmUrl%>"><liferay-ui:message key="remove-member"/></a>
+											</div>
+											<div class="lfr-actions-change-role">
+												<%
+													LiferayPortletURL chUrl = getPortletRenderUrl(request, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "changeRole");
+													chUrl.setParameter("userId", String.valueOf(user2.getUserId()));
+												%>
+												<a title="<liferay-ui:message key="change-member-role"/>" href="<%=chUrl%>"><liferay-ui:message key="change-member-role"/></a>
 											</div>
 											<% } %>
+											<div class="lfr-group-owner">
+												<%=UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), themeDisplay.getSiteGroupId()).get(0).getRole().getName()%>
+											</div>
 											<div class="lfr-contact-title">
 												<c:if test="<%= Validator.isNotNull(user2.getJobTitle()) %>">
 													<%= HtmlUtil.escape(user2.getJobTitle()) %>,
@@ -234,12 +288,14 @@ portletURL.setWindowState(WindowState.NORMAL);
 											<div class="lfr-contact-extra">
 												<%= HtmlUtil.escape(user2.getEmailAddress()) %>
 											</div>
+											<%--
 											<div class="lfr-contact-vcard">
 												<portlet:resourceURL id="exportVCard" var="exportURL">
 													<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 												</portlet:resourceURL>
 												<a href="<%=exportURL.toString()%>" title="<liferay-ui:message key="download-vcard" />"><liferay-ui:message key="download-vcard" /></a>
 											</div>
+											--%>
 										</div>
 
 										<div class="clear"><!-- --></div>
