@@ -81,16 +81,16 @@
 		submitForm(form);
 	}
 
-	var customHeight;
-	var customWidth;
+	var <portlet:namespace />customHeight;
+	var <portlet:namespace />customWidth;
 
 	function <portlet:namespace />updateFrameSize(value) {
 		var Util = Liferay.Util;
 
-		var notCustom = value != 'custom';
-
 		var heightNode = AUI.$('#<portlet:namespace />height');
 		var widthNode = AUI.$('#<portlet:namespace />width');
+
+		var notCustom = value != 'custom';
 
 		Util.toggleDisabled(heightNode, notCustom);
 		Util.toggleDisabled(widthNode, notCustom);
@@ -100,17 +100,29 @@
 
 			heightNode.val(dimensions[1]);
 			widthNode.val(dimensions[0]);
-		} else {
-			heightNode.on('keyup', function() {
-				customHeight = heightNode.val();
-			});
+		}
+		else {
+			heightNode.on(
+				'blur',
+				function(event) {
+					var currentTarget = event.currentTarget;
 
-			widthNode.on('keyup', function() {
-				customWidth = widthNode.val();
-			});
+					<portlet:namespace />customHeight = currentTarget.value;
+				}
+			);
 
-			heightNode.val(customHeight);
-			widthNode.val(customWidth);
+			heightNode.val(<portlet:namespace />customHeight);
+
+			widthNode.on(
+				'blur',
+				function(event) {
+					var currentTarget = event.currentTarget;
+
+					<portlet:namespace />customWidth = currentTarget.value;
+				}
+			);
+
+			widthNode.val(<portlet:namespace />customWidth);
 		}
 	}
 </aui:script>
