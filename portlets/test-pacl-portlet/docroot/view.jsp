@@ -204,7 +204,7 @@
 		};
 		%>
 
-	com.liferay.portal.util.Portal#getClass#getClassLoader=
+	com.liferay.portal.kernel.util.Portal#getClass#getClassLoader=
 
 		<%
 		new SecurityExceptionTest(out, themeDisplay, true) {
