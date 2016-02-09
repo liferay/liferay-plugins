@@ -36,9 +36,13 @@
 			<aui:option label="full-hd-1080-16-9" value="1920x1080" />
 		</aui:select>
 
-		<aui:input disabled="<%= true %>" inlineField="<%= true %>" label="frame-width" name="preferences--width--" value="<%= width %>" />
+		<aui:input disabled="<%= true %>" inlineField="<%= true %>" label="frame-width" name="preferences--width--" value="<%= width %>">
+			<aui:validator name="digits" />
+		</aui:input>
 
-		<aui:input disabled="<%= true %>" inlineField="<%= true %>" label="frame-height" name="preferences--height--" value="<%= height %>" />
+		<aui:input disabled="<%= true %>" inlineField="<%= true %>" label="frame-height" name="preferences--height--" value="<%= height %>">
+			<aui:validator name="digits" />
+		</aui:input>
 
 		<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="advanced-options">
