@@ -732,13 +732,19 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					PortletPropsKeys.SYNC_ALLOW_USER_PERSONAL_SITES,
 					PortletPropsValues.SYNC_ALLOW_USER_PERSONAL_SITES)) {
 
-				groups.add(user.getGroup());
+				Group userGroup = user.getGroup();
+
+				userGroup.setName(user.getScreenName());
+
+				groups.add(userGroup);
 			}
 
 			Group companyGroup = groupLocalService.getCompanyGroup(
 				user.getCompanyId());
 
 			if (SyncUtil.isSyncEnabled(companyGroup)) {
+				companyGroup.setName(companyGroup.getDescriptiveName());
+
 				groups.add(companyGroup);
 			}
 
