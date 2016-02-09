@@ -171,9 +171,21 @@ public class SyncDLObjectLocalServiceImpl
 			}
 		}
 
-		if (event.equals(SyncDLObjectConstants.EVENT_DELETE) &&
-			!type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
-
+		if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
+			if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
+				syncDLObjectLocalService.moveDependentSyncDLObjects(
+					syncDLObject);
+			}
+			else if (event.equals(SyncDLObjectConstants.EVENT_RESTORE)) {
+				syncDLObjectLocalService.restoreDependentSyncDLObjects(
+					syncDLObject);
+			}
+			else if (event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
+				syncDLObjectLocalService.trashDependentSyncDLObjects(
+					syncDLObject);
+			}
+		}
+		else if (event.equals(SyncDLObjectConstants.EVENT_DELETE)) {
 			try {
 				syncDLFileVersionDiffLocalService.deleteSyncDLFileVersionDiffs(
 					typePK);
