@@ -160,21 +160,6 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 		syncDLObject.setModifiedTime(modifiedTime);
 
 		addSyncDLObject(syncDLObject);
-
-		if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
-			if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
-				SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects(
-					syncDLObject);
-			}
-			else if (event.equals(SyncDLObjectConstants.EVENT_RESTORE)) {
-				SyncDLObjectLocalServiceUtil.restoreDependentSyncDLObjects(
-					syncDLObject);
-			}
-			else if (event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
-				SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects(
-					syncDLObject);
-			}
-		}
 	}
 
 }
