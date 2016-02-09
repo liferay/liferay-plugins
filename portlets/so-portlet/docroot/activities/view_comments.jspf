@@ -19,9 +19,30 @@
 
 <div class="comments-container">
 	<div class="comments-list"></div>
+	<%!
+		public boolean isOwner(User user, long groupId, long companyId) throws SystemException, PortalException {
+			Role ownerRole = RoleLocalServiceUtil.getRole(companyId, RoleConstants.SITE_OWNER);
+			List<UserGroupRole> usergrouproles =
+					UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(groupId, ownerRole.getRoleId());
+			for (UserGroupRole userGroupRole : usergrouproles) {
+				if (userGroupRole.getUserId() == user.getUserId()) {
+					return true;
+				}
+			}
+			Role writeRole = RoleLocalServiceUtil.getRole(companyId, "Skrivetilgang Gruppe");
+			usergrouproles =
+					UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(groupId, writeRole.getRoleId());
+			for (UserGroupRole userGroupRole : usergrouproles) {
+				if (userGroupRole.getUserId() == user.getUserId()) {
+					return true;
+				}
+			}
+			return false;
+		}
+	%>
 
+	<%	if(isOwner(themeDisplay.getUser(), activitySet.getGroupId(), themeDisplay.getCompanyId())) {%>
 	<portlet:actionURL name="updateComment" var="updateCommentURL" />
-
 	<aui:form action="<%= updateCommentURL %>" method="post" name='<%= "fm" + activitySet.getActivitySetId() %>'>
 		<aui:input name="mvcPath" type="hidden" value="/activities/view.jsp" />
 		<aui:input name="redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
@@ -44,8 +65,10 @@
 			<aui:input name="submit" type="hidden" value="post" />
 		</div>
 	</aui:form>
+	<%}%>
 </div>
 
+<%	if(isOwner(themeDisplay.getUser(), activitySet.getGroupId(), themeDisplay.getCompanyId())) {%>
 <aui:script use="aui-base">
 	var form = A.one('#<portlet:namespace />fm<%= activitySet.getActivitySetId() %>');
 
@@ -111,3 +134,4 @@
 		);
 	}
 </aui:script>
+<%}%>
