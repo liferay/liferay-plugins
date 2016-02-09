@@ -76,8 +76,6 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				</h2>
 
 				<select name="<portlet:namespace />roleId">
-					<option selected value="0"></option>
-
 					<%
 					for (Role role : roles) {
 						if (GetterUtil.getBoolean(role.getExpandoBridge().getAttribute("forgroups"),false)) {

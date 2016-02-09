@@ -278,7 +278,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 											</div>
 											<% } %>
 											<div class="lfr-group-owner">
-												<%=UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), themeDisplay.getSiteGroupId()).get(0).getRole().getName()%>
+												<%=UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), themeDisplay.getSiteGroupId()).get(0).getRole().getTitle(themeDisplay.getLocale())%>
 											</div>
 											<div class="lfr-contact-title">
 												<c:if test="<%= Validator.isNotNull(user2.getJobTitle()) %>">
