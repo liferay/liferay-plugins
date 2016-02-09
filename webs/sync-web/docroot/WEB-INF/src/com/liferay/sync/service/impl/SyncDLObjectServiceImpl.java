@@ -801,9 +801,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			return toSyncDLObject(fileEntry, SyncDLObjectConstants.EVENT_TRASH);
 		}
-		catch (NoSuchFileEntryException nsfee) {
-			return null;
-		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
 		}
@@ -845,9 +842,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			folder = dlAppService.moveFolderToTrash(folderId);
 
 			return toSyncDLObject(folder, SyncDLObjectConstants.EVENT_TRASH);
-		}
-		catch (NoSuchFolderException nsfe) {
-			return null;
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
