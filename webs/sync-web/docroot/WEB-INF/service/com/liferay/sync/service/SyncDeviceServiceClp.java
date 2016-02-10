@@ -73,8 +73,9 @@ public class SyncDeviceServiceClp implements SyncDeviceService {
 	}
 
 	@Override
-	public java.lang.String registerSyncDevice(java.lang.String type,
-		int buildNumber, int featureSet, java.lang.String uuid)
+	public com.liferay.sync.model.SyncDevice registerSyncDevice(
+		java.lang.String type, int buildNumber, int featureSet,
+		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -107,7 +108,7 @@ public class SyncDeviceServiceClp implements SyncDeviceService {
 			}
 		}
 
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.sync.model.SyncDevice)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

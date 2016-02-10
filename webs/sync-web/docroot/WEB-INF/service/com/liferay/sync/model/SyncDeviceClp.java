@@ -444,9 +444,28 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 	}
 
 	@Override
-	public boolean isSupported() {
+	public boolean supports(int featureSet) {
 		try {
-			String methodName = "isSupported";
+			String methodName = "supports";
+
+			Class<?>[] parameterTypes = new Class<?>[] { int.class };
+
+			Object[] parameterValues = new Object[] { featureSet };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public boolean hasSetModifiedDate() {
+		try {
+			String methodName = "hasSetModifiedDate";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -463,9 +482,9 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 	}
 
 	@Override
-	public boolean hasSetModifiedDate() {
+	public boolean isSupported() {
 		try {
-			String methodName = "hasSetModifiedDate";
+			String methodName = "isSupported";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 

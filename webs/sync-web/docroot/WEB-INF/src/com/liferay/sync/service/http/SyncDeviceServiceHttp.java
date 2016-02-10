@@ -55,7 +55,7 @@ import com.liferay.sync.service.SyncDeviceServiceUtil;
  */
 @ProviderType
 public class SyncDeviceServiceHttp {
-	public static java.lang.String registerSyncDevice(
+	public static com.liferay.sync.model.SyncDevice registerSyncDevice(
 		HttpPrincipal httpPrincipal, java.lang.String type, int buildNumber,
 		int featureSet, java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -79,7 +79,7 @@ public class SyncDeviceServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.lang.String)returnObj;
+			return (com.liferay.sync.model.SyncDevice)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);

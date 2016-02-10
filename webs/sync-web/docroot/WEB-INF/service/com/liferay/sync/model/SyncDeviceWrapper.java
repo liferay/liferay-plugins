@@ -496,6 +496,11 @@ public class SyncDeviceWrapper implements SyncDevice, ModelWrapper<SyncDevice> {
 	}
 
 	@Override
+	public boolean supports(int featureSet) {
+		return _syncDevice.supports(featureSet);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.model.CacheModel<com.liferay.sync.model.SyncDevice> toCacheModel() {
 		return _syncDevice.toCacheModel();
 	}

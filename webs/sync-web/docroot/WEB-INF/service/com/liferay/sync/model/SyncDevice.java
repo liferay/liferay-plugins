@@ -60,4 +60,6 @@ public interface SyncDevice extends SyncDeviceModel, PersistedModel {
 	public boolean hasSetModifiedDate();
 
 	public boolean isSupported();
+
+	public boolean supports(int featureSet);
 }

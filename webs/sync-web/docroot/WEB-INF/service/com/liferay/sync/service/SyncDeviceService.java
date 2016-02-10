@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.service.InvokableService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import com.liferay.sync.model.SyncDevice;
+
 /**
  * Provides the remote service interface for SyncDevice. Methods of this
  * service are expected to have security checks based on the propagated JAAS
@@ -60,7 +62,7 @@ public interface SyncDeviceService extends BaseService, InvokableService {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public java.lang.String registerSyncDevice(java.lang.String type,
+	public SyncDevice registerSyncDevice(java.lang.String type,
 		int buildNumber, int featureSet, java.lang.String uuid)
 		throws PortalException;
 
