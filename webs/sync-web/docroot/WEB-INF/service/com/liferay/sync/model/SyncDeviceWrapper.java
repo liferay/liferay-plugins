@@ -514,6 +514,11 @@ public class SyncDeviceWrapper implements SyncDevice, ModelWrapper<SyncDevice> {
 	}
 
 	@Override
+	public boolean supports(int featureSet) {
+		return _syncDevice.supports(featureSet);
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

@@ -37,4 +37,6 @@ public interface SyncDevice extends SyncDeviceModel, PersistedModel {
 
 	public boolean isSupported()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public boolean supports(int featureSet);
 }

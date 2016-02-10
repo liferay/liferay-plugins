@@ -459,6 +459,25 @@ public class SyncDeviceClp extends BaseModelImpl<SyncDevice>
 	}
 
 	@Override
+	public boolean supports(int featureSet) {
+		try {
+			String methodName = "supports";
+
+			Class<?>[] parameterTypes = new Class<?>[] { int.class };
+
+			Object[] parameterValues = new Object[] { featureSet };
+
+			Boolean returnObj = (Boolean)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				SyncDevice.class.getName()));

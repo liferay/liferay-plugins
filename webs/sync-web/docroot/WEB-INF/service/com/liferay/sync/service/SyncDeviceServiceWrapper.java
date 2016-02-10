@@ -57,8 +57,9 @@ public class SyncDeviceServiceWrapper implements SyncDeviceService,
 	}
 
 	@Override
-	public java.lang.String registerSyncDevice(java.lang.String type,
-		int buildNumber, int featureSet, java.lang.String uuid)
+	public com.liferay.sync.model.SyncDevice registerSyncDevice(
+		java.lang.String type, int buildNumber, int featureSet,
+		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDeviceService.registerSyncDevice(type, buildNumber,

@@ -62,14 +62,14 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class SyncDeviceServiceSoap {
-	public static java.lang.String registerSyncDevice(java.lang.String type,
-		int buildNumber, int featureSet, java.lang.String uuid)
-		throws RemoteException {
+	public static com.liferay.sync.model.SyncDeviceSoap registerSyncDevice(
+		java.lang.String type, int buildNumber, int featureSet,
+		java.lang.String uuid) throws RemoteException {
 		try {
-			java.lang.String returnValue = SyncDeviceServiceUtil.registerSyncDevice(type,
+			com.liferay.sync.model.SyncDevice returnValue = SyncDeviceServiceUtil.registerSyncDevice(type,
 					buildNumber, featureSet, uuid);
 
-			return returnValue;
+			return com.liferay.sync.model.SyncDeviceSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
