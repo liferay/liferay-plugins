@@ -13,7 +13,6 @@ package com.liferay.sampledrools.dependencies;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
