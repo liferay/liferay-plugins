@@ -82,4 +82,14 @@ public class SyncDeviceImpl extends SyncDeviceBaseImpl {
 		return false;
 	}
 
+	@Override
+	public boolean supports(int featureSet) {
+		if (getFeatureSet() >= featureSet) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 }

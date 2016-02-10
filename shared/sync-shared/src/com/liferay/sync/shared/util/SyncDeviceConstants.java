@@ -19,6 +19,14 @@ package com.liferay.sync.shared.util;
  */
 public class SyncDeviceConstants {
 
+	/*
+	 * Feature set 1:
+	 *
+	 *  OAuth support
+	 *  Sites removed from Sync context
+	 */
+	public static final int FEATURE_SET_1 = 1;
+
 	public static final int STATUS_ACTIVE = 0;
 
 	public static final int STATUS_INACTIVE = 1;
