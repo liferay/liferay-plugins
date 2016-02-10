@@ -31,7 +31,7 @@ import com.liferay.sync.shared.util.SyncDeviceConstants;
 public class SyncDeviceServiceImpl extends SyncDeviceServiceBaseImpl {
 
 	@Override
-	public String registerSyncDevice(
+	public SyncDevice registerSyncDevice(
 			String type, int buildNumber, int featureSet, String uuid)
 		throws PortalException, SystemException {
 
@@ -42,21 +42,17 @@ public class SyncDeviceServiceImpl extends SyncDeviceServiceBaseImpl {
 				uuid, user.getCompanyId());
 
 		if (syncDevice == null) {
-			syncDevice = syncDeviceLocalService.addSyncDevice(
+			return syncDeviceLocalService.addSyncDevice(
 				user.getUserId(), type, buildNumber, featureSet);
-
-			return syncDevice.getUuid();
 		}
 
 		if (syncDevice.getUserId() != user.getUserId()) {
 			throw new PrincipalException();
 		}
 
-		syncDeviceLocalService.updateSyncDevice(
+		return syncDeviceLocalService.updateSyncDevice(
 			syncDevice.getSyncDeviceId(), type, buildNumber, featureSet,
 			syncDevice.getStatus());
-
-		return syncDevice.getUuid();
 	}
 
 	@Override
