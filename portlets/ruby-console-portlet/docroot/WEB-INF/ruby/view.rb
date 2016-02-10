@@ -23,24 +23,34 @@ html = <<-EOF
 
 <script type="text/javascript">
 	// <![CDATA[
-		function #{namespace}execute() {		
-			var content = $('textarea##{namespace}consoleInput').val();
+		function #{namespace}execute() {
 			
-			jQuery.get(
-				'#{$renderResponse.createResourceURL}',
-				{
-					#{namespace}cmd: "exec",
-					#{namespace}consoleInput: content
-				},
-				function(data) {
-					if (!data.match(/^@ERROR@$/m) && document.#{namespace}fm.#{namespace}outputMode.checked) {
-						jQuery("\##{namespace}consoleOutput").empty().append(data);
+			AUI().use('aui-node', 'aui-io-request', function(A) {
+				
+				var content = A.one('textarea##{namespace}consoleInput').get('value');
+				
+				A.io.request('#{$renderResponse.createResourceURL}', {
+					dataType: 'json',
+					method: 'GET',
+					data:{
+						#{namespace}cmd: 'exec',
+						#{namespace}consoleInput: content
+					},
+					on: {
+						success: function() {
+							var data = this.get('responseData');
+							
+							if (!data.match(/^@ERROR@$/m) && document.#{namespace}fm.#{namespace}outputMode.checked) {
+								A.one('##{namespace}consoleOutput').empty().append(data);
+							}
+							else {
+								A.one('##{namespace}consoleOutput').empty().text(data);
+							}
+							
+						}
 					}
-					else {
-						jQuery("\##{namespace}consoleOutput").empty().text(data);
-					}
-				}
-			);
+				});
+			});
 
 			return false;
 		}
