@@ -55,8 +55,9 @@
 						</a>
 					</div>
 				</aui:col>
-
-				<aui:col cssClass="user-notifications-list-container" width="<%= 75 %>">
+			</aui:row>
+			<aui:row>
+				<aui:col cssClass="user-notifications-list-container" width="<%= 100 %>">
 					<ul class="unstyled user-notifications-list">
 						<li class="clearfix pagination top">
 							<span class="hide left-nav previous"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
