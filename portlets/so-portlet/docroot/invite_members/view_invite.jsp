@@ -31,11 +31,9 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 <div id="<portlet:namespace />inviteMembersContainer">
 	<div class="user-search-wrapper">
-		<h2>
-			<liferay-ui:message key="find-members" />
-		</h2>
+		<label for="<portlet:namespace />inviteUserSearch"><liferay-ui:message key="choose-invitees" /></label>
 
-		<input class="invite-user-search" id="<portlet:namespace />inviteUserSearch" name="<portlet:namespace />userName" type="text" placeholder="<liferay-ui:message key="write-name-here" />"/>
+		<input class="invite-user-search" id="<portlet:namespace />inviteUserSearch" name="<portlet:namespace />userName" type="text"/>
 
 		<div class="search">
 			<div class="list"></div>
@@ -51,13 +49,9 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 	<div class="invited-users-wrapper">
 		<div class="user-invited">
-			<h2>
-				<liferay-ui:message key="members-to-invite" />
-
-				<span>
-					<%--<liferay-ui:message key="to-add,-click-members-on-the-left" />--%>
-				</span>
-			</h2>
+			<p class="fake-label">
+				<liferay-ui:message key="invitees" />
+			</p>
 
 			<div class="list">
 			</div>
@@ -71,11 +65,9 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 		<c:if test="<%= !roles.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
 			<div class="invite-to">
-				<h2>
-					<liferay-ui:message key="invite-to-role" />
-				</h2>
+				<label for="<portlet:namespace />roleId"><liferay-ui:message key="invite-choose-permissions" /></label>
 
-				<select name="<portlet:namespace />roleId">
+				<select name="<portlet:namespace />roleId" id="<portlet:namespace />roleId">
 					<%
 					for (Role role : roles) {
 						if (GetterUtil.getBoolean(role.getExpandoBridge().getAttribute("forgroups"),false)) {
@@ -98,11 +90,10 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 		<c:if test="<%= !teams.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
 			<div class="invite-to">
-				<h2>
-					<liferay-ui:message key="invite-to-team" />
-				</h2>
 
-				<select name="<portlet:namespace />teamId">
+
+
+				<select name="<portlet:namespace />teamId" id="<portlet:namespace />teamId">
 					<option selected value="0"></option>
 
 					<%
@@ -129,8 +120,8 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				<aui:input name="invitedRoleId" type="hidden" value="" />
 				<aui:input name="invitedTeamId" type="hidden" value="" />
 
-				<aui:button id="cancel" value="cancel" />
 				<aui:button id="submitBtn" value="send-invitations" />
+				<aui:button id="cancel" value="cancel" />
 			</aui:form>
 		</div>
 	</div>
