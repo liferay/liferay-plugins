@@ -116,7 +116,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 					%>
 
 				</select>
-			</div>
+			</div>o
 		</c:if>
 
 		<div class="invite-actions">

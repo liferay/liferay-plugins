@@ -154,7 +154,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</div>
 
 				<div class="lfr-search-column contacts-search search-bar">
-					<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+					<aui:input cssClass="search-input" id="name" label="member-search-label" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 
 					<i class="icon-search"></i>
 				</div>
