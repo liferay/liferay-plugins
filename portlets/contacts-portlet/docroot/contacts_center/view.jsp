@@ -156,7 +156,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				<div class="lfr-search-column contacts-search search-bar">
 					<aui:input cssClass="search-input" id="name" label="member-search-label" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 
-					<i class="icon-search"></i>
+					<span class="icon-hioa-search2 grp-src-icn"></span>
 				</div>
 
 				<aui:layout cssClass='<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>'>
