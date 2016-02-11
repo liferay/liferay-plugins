@@ -80,16 +80,16 @@ portletURL.setWindowState(WindowState.NORMAL);
 <c:choose>
 	<c:when test="<%= userPublicPage && (contactsCount <= 0) %>">
 		<aui:layout cssClass="contacts-center-home">
-			<h3 class="header-title">
+			<h5 class="header-title">
 				<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(group.getDescriptiveName(locale)), String.valueOf(contactsCount)} %>" key='<%= userPublicPage ? "x-has-no-connections" : "x-has-no-contacts" %>' translateArguments="<%= false %>" />
-			</h3>
+			</h5>
 		</aui:layout>
 	</c:when>
 	<c:otherwise>
 		<%
 			int memberCounter = UserLocalServiceUtil.getGroupUsersCount(themeDisplay.getSiteGroupId());
 		%>
-		<h2 title="<liferay-ui:message key="members" />"><liferay-ui:message key="members" /> (<%=memberCounter%>)</h2>
+		<h5 title="<liferay-ui:message key="members" />"><liferay-ui:message key="members" /> (<%=memberCounter%>)</h5>
 		<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
 			<aui:input name="redirect" type="hidden" value="" />
