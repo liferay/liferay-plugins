@@ -178,24 +178,10 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			SearchContext searchContext, Collection<Document> documents)
 		throws SearchException {
 
-		if (documents.isEmpty()) {
-			return;
+		for (Document document : documents) {
+			deleteDocument(searchContext, document.getUID());
 		}
-
-		// LPS-41388
-
-		Iterator<Document> itr = documents.iterator();
-
-		Document firstDocument = itr.next();
-
-		String uid = firstDocument.getUID();
-
-		int pos = uid.indexOf(StringPool.UNDERLINE);
-
-		String portletId = uid.substring(0, pos);
-
-		deletePortletDocuments(searchContext, portletId);
-
+		
 		addDocuments(searchContext, documents);
 	}
 
