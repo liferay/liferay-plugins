@@ -35,6 +35,8 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 		<input class="invite-user-search" id="<portlet:namespace />inviteUserSearch" name="<portlet:namespace />userName" type="text"/>
 
+		<span class="icon-hioa-search2 grp-src-icn"></span>
+
 		<div class="search">
 			<div class="list"></div>
 		</div>
