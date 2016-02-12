@@ -192,6 +192,27 @@ public abstract class BaseJSONWebServiceClientHandler {
 		}
 	}
 
+	protected String doPut(
+		String url, Map<String, String> parameters,
+		Map<String, String> headers) {
+
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
+		return jsonWebServiceClient.doPut(url, parameters, headers);
+	}
+
+	protected String doPut(String url, String... parametersArray) {
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
+		Map<String, String> parameters = new HashMap<String, String>();
+
+		for (int i = 0; i < parametersArray.length; i += 2) {
+			parameters.put(parametersArray[i], parametersArray[i + 1]);
+		}
+
+		return jsonWebServiceClient.doPut(url, parameters);
+	}
+
 	protected String getExceptionMessage(String json) {
 		int exceptionMessageStart = json.indexOf("exception\":\"") + 12;
 
