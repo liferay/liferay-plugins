@@ -53,7 +53,7 @@ public class RubyConsolePortlet extends RubyPortlet {
 					PortalUtil.getHttpServletRequest(resourceRequest)),
 				RubyConsolePortlet.class.getName());
 		}
-		catch (PrincipalException e) {
+		catch (PrincipalException pe) {
 			return;
 		}
 
