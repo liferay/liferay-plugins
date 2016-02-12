@@ -142,8 +142,9 @@ AUI.add(
 
 					var user = instance._findMembersList.one('[data-userId="' + userId + '"]');
 					var invitedUser = instance._invitedMembersList.one('[data-userId="' + userId + '"]');
-
-					user.removeClass('invited');
+					if (user !== null) {
+						user.removeClass('invited');
+					}
 					invitedUser.remove();
 				},
 
