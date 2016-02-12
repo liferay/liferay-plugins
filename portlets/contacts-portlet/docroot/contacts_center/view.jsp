@@ -277,16 +277,16 @@ portletURL.setWindowState(WindowState.NORMAL);
 												<a title="<liferay-ui:message key="change-member-role"/>" href="<%=chUrl%>"><liferay-ui:message key="change-member-role"/></a>
 											</div>
 											<% } %>
+											<div class="lfr-contact-title">
+												<c:if test="<%= Validator.isNotNull(user2.getJobTitle()) %>">
+													<%= HtmlUtil.escape(user2.getJobTitle()) %>
+												</c:if>
+											</div>
 											<div class="lfr-group-owner">
 												<%=UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), themeDisplay.getSiteGroupId()).get(0).getRole().getTitle(themeDisplay.getLocale())%>
 											</div>
-											<div class="lfr-contact-title">
-												<c:if test="<%= Validator.isNotNull(user2.getJobTitle()) %>">
-													<%= HtmlUtil.escape(user2.getJobTitle()) %>,
-												</c:if>
-											</div>
 											<div class="lfr-contact-extra">
-												<%= HtmlUtil.escape(user2.getEmailAddress()) %>
+												<a href="mailto:<%= HtmlUtil.escape(user2.getEmailAddress()) %>"><%= HtmlUtil.escape(user2.getEmailAddress()) %></a>
 											</div>
 											<%--
 											<div class="lfr-contact-vcard">

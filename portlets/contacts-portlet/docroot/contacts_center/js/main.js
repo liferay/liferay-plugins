@@ -49,14 +49,14 @@ AUI.add(
 						'</div>' +
 			            '{rmUrl}'+
 			            '{chUrl}'+
+			            '<div class="lfr-contact-title">' +
+			                '{jobTitle}' +
+			            '</div>' +
 						'<div class="lfr-group-owner">' +
-							'<a>{owner}</a>' +
-						'</div>' +
-						'<div class="lfr-contact-title">' +
-							'<a>{jobTitle}</a>' +
+							'{owner}' +
 						'</div>' +
 						'<div class="lfr-contact-extra">' +
-							'{emailAddress}' +
+							'<a href="mailto:{emailAddress}">{emailAddress}</a>' +
 						'</div>' +
 						/*'<div class="lfr-contact-vcard">' +
 							'<a href="{vcardUrl}" title="{vcardText}">{vcardText}</a>' +
@@ -113,12 +113,12 @@ AUI.add(
 						'</div>' +
 			            '{rmUrl}'+
 			            '{chUrl}'+
-						'<div class="lfr-group-owner">' +
-							'{owner}' +
-						'</div>' +
 			            '<div class="lfr-contact-title">' +
 			                '{jobTitle}' +
 			            '</div>' +
+						'<div class="lfr-group-owner">' +
+							'{owner}' +
+						'</div>' +
 						'<div class="lfr-contact-extra">' +
 							'{emailAddress}' +
 						'</div>' +
