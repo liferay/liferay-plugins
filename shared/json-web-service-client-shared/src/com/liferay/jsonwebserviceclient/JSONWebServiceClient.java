@@ -47,6 +47,14 @@ public interface JSONWebServiceClient {
 			String url, String json, Map<String, String> headers)
 		throws JSONWebServiceTransportException;
 
+	public String doPut(String url, Map<String, String> parameters)
+		throws JSONWebServiceTransportException;
+
+	public String doPut(
+		String url, Map<String, String> parameters,
+		Map<String, String> headers)
+	throws JSONWebServiceTransportException;
+
 	public String getHostName();
 
 	public int getHostPort();
