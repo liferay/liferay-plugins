@@ -31,10 +31,11 @@ html = <<-EOF
 				
 				A.io.request('#{$renderResponse.createResourceURL}', {
 					dataType: 'json',
-					method: 'GET',
+					method: 'POST',
 					data:{
 						#{namespace}cmd: 'exec',
-						#{namespace}consoleInput: content
+						#{namespace}consoleInput: content,
+						p_auth: Liferay.authToken
 					},
 					on: {
 						success: function() {
