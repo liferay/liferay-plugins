@@ -21,6 +21,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import java.nio.charset.StandardCharsets;
+
 import java.security.KeyStore;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -56,6 +58,7 @@ import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.client.protocol.HttpClientContext;
@@ -178,7 +181,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
-			String queryString = URLEncodedUtils.format(nameValuePairs, "utf8");
+			String queryString = URLEncodedUtils.format(
+				nameValuePairs, StandardCharsets.UTF_8);
 
 			url += "?" + queryString;
 		}
@@ -219,30 +223,24 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 				"Sending POST request to " + _login + "@" + _hostName + url);
 		}
 
-		try {
-			HttpPost httpPost = new HttpPost(url);
+		HttpPost httpPost = new HttpPost(url);
 
-			List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
+		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
-			HttpEntity httpEntity = new UrlEncodedFormEntity(
-				nameValuePairs, "utf8");
+		HttpEntity httpEntity = new UrlEncodedFormEntity(
+			nameValuePairs, StandardCharsets.UTF_8);
 
-			for (String key : headers.keySet()) {
-				httpPost.addHeader(key, headers.get(key));
-			}
-
-			for (String key : _headers.keySet()) {
-				httpPost.addHeader(key, _headers.get(key));
-			}
-
-			httpPost.setEntity(httpEntity);
-
-			return execute(httpPost);
+		for (String key : headers.keySet()) {
+			httpPost.addHeader(key, headers.get(key));
 		}
-		catch (UnsupportedEncodingException uee) {
-			throw new JSONWebServiceTransportException.CommunicationFailure(
-				uee);
+
+		for (String key : _headers.keySet()) {
+			httpPost.addHeader(key, _headers.get(key));
 		}
+
+		httpPost.setEntity(httpEntity);
+
+		return execute(httpPost);
 	}
 
 	@Override
@@ -267,13 +265,56 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			httpPost.addHeader(key, _headers.get(key));
 		}
 
-		StringEntity stringEntity = new StringEntity(json.toString(), "utf8");
+		StringEntity stringEntity = new StringEntity(
+			json.toString(), StandardCharsets.UTF_8);
 
 		stringEntity.setContentType("application/json");
 
 		httpPost.setEntity(stringEntity);
 
 		return execute(httpPost);
+	}
+
+	@Override
+	public String doPut(String url, Map<String, String> parameters)
+		throws JSONWebServiceTransportException {
+
+		return doPut(url, parameters, Collections.<String, String>emptyMap());
+	}
+
+	@Override
+	public String doPut(
+			String url, Map<String, String> parameters,
+			Map<String, String> headers)
+		throws JSONWebServiceTransportException {
+
+		if (!isNull(_contextPath)) {
+			url = _contextPath + url;
+		}
+
+		if (_logger.isDebugEnabled()) {
+			_logger.debug(
+				"Sending PUT request to " + _login + "@" + _hostName + url);
+		}
+
+		HttpPut httpPut = new HttpPut(url);
+
+		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
+
+		HttpEntity httpEntity = new UrlEncodedFormEntity(
+			nameValuePairs, StandardCharsets.UTF_8);
+
+		for (String key : headers.keySet()) {
+			httpPut.addHeader(key, headers.get(key));
+		}
+
+		for (String key : _headers.keySet()) {
+			httpPut.addHeader(key, _headers.get(key));
+		}
+
+		httpPut.setEntity(httpEntity);
+
+		return execute(httpPut);
 	}
 
 	public Map<String, String> getHeaders() {
@@ -401,14 +442,16 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 				if (httpResponse.getEntity() != null) {
 					HttpEntity httpEntity = httpResponse.getEntity();
 
-					message = EntityUtils.toString(httpEntity, "utf8");
+					message = EntityUtils.toString(
+						httpEntity, StandardCharsets.UTF_8);
 				}
 
 				throw new JSONWebServiceTransportException.CommunicationFailure(
 					message, statusLine.getStatusCode());
 			}
 
-			return EntityUtils.toString(httpResponse.getEntity(), "utf8");
+			return EntityUtils.toString(
+				httpResponse.getEntity(), StandardCharsets.UTF_8);
 		}
 		catch (IOException ioe) {
 			throw new JSONWebServiceTransportException.CommunicationFailure(
