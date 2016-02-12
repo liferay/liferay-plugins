@@ -49,7 +49,6 @@ html = <<-EOF
 									else {
 										A.one('##{namespace}consoleOutput').empty().text(data);
 									}
-
 								}
 							}
 						});
