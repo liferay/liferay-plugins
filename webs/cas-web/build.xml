@@ -11,9 +11,7 @@
 
 		<!-- Merge -->
 
-		<merge
-			module.dir="${basedir}"
-		/>
+		<antcall target="build-common-plugin.merge" />
 
 		<!-- Fix backingMap parameters -->
 
