@@ -181,7 +181,7 @@ public class SolrIndexWriter extends BaseIndexWriter {
 		for (Document document : documents) {
 			deleteDocument(searchContext, document.getUID());
 		}
-		
+
 		addDocuments(searchContext, documents);
 	}
 
