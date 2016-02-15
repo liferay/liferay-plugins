@@ -18,18 +18,18 @@
 		<!-- Fix backingMap parameters -->
 
 		<replace file="tmp/WEB-INF/deployerConfigContext.xml">
-			<replacefilter
-				token="&lt;entry key=&quot;uid&quot; value=&quot;uid&quot; /&gt;"
-				value="&lt;entry key=&quot;uid&quot;&gt;&lt;list&gt;&lt;value&gt;uid&lt;/value&gt;&lt;/list&gt;&lt;/entry&gt;"
-			/>
-			<replacefilter
-				token="&lt;entry key=&quot;eduPersonAffiliation&quot; value=&quot;eduPersonAffiliation&quot; /&gt;"
-				value="&lt;entry key=&quot;eduPersonAffiliation&quot;&gt;&lt;list&gt;&lt;value&gt;eduPersonAffiliation&lt;/value&gt;&lt;/list&gt;&lt;/entry&gt;"
-			/>
-			<replacefilter
-				token="&lt;entry key=&quot;groupMembership&quot; value=&quot;groupMembership&quot; /&gt;"
-				value="&lt;entry key=&quot;groupMembership&quot;&gt;&lt;list&gt;&lt;value&gt;groupMembership&lt;/value&gt;&lt;/list&gt;&lt;/entry&gt;"
-			/>
+			<replacetoken><![CDATA[<entry key="uid" value="uid" />]]></replacetoken>
+			<replacevalue><![CDATA[<entry key="uid"><list><value>uid</value></list></entry>]]></replacevalue>
+		</replace>
+
+		<replace file="tmp/WEB-INF/deployerConfigContext.xml">
+			<replacetoken><![CDATA[<entry key="eduPersonAffiliation" value="eduPersonAffiliation" />]]></replacetoken>
+			<replacevalue><![CDATA[<entry key="eduPersonAffiliation"><list><value>eduPersonAffiliation</value></list></entry>]]></replacevalue>
+		</replace>
+
+		<replace file="tmp/WEB-INF/deployerConfigContext.xml">
+			<replacetoken><![CDATA[<entry key="groupMembership" value="groupMembership" />]]></replacetoken>
+			<replacevalue><![CDATA[<entry key="groupMembership"><list><value>groupMembership</value></list></entry>]]></replacevalue>
 		</replace>
 	</target>
 </project>
