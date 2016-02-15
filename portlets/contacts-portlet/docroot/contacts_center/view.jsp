@@ -283,7 +283,14 @@ portletURL.setWindowState(WindowState.NORMAL);
 												</c:if>
 											</div>
 											<div class="lfr-group-owner">
-												<%=UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), themeDisplay.getSiteGroupId()).get(0).getRole().getTitle(themeDisplay.getLocale())%>
+												<%
+													String own = "";
+													List<UserGroupRole> ugr = UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), themeDisplay.getSiteGroupId());
+													if(ugr.size()>0) {
+														own = ugr.get(0).getRole().getTitle(themeDisplay.getLocale());
+													}
+												%>
+												<%=own%>
 											</div>
 											<div class="lfr-contact-extra">
 												<a href="mailto:<%= HtmlUtil.escape(user2.getEmailAddress()) %>"><%= HtmlUtil.escape(user2.getEmailAddress()) %></a>
