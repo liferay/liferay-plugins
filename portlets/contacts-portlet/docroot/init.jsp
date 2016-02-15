@@ -101,6 +101,9 @@ page import="com.liferay.so.service.SocialOfficeServiceUtil" %>
 <%@page import="javax.portlet.WindowStateException" %>
 <%@page import="javax.portlet.PortletMode"%>
 <%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="com.liferay.portal.model.UserGroup" %>
+<%@page import="com.liferay.portal.service.UserLocalServiceUtil" %>
+<%@page import="com.liferay.portal.service.UserGroupLocalServiceUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.LinkedHashMap" %><%@

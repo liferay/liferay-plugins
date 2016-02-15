@@ -88,6 +88,9 @@ portletURL.setWindowState(WindowState.NORMAL);
 	<c:otherwise>
 		<%
 			int memberCounter = UserLocalServiceUtil.getGroupUsersCount(themeDisplay.getSiteGroupId());
+			for (UserGroup userGroup : UserGroupLocalServiceUtil.getGroupUserGroups(themeDisplay.getSiteGroupId())) {
+				memberCounter += UserLocalServiceUtil.getUserGroupUsersCount(userGroup.getUserGroupId());
+			}
 		%>
 		<h5 title="<liferay-ui:message key="members" />"><liferay-ui:message key="members" /> (<%=memberCounter%>)</h5>
 		<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
