@@ -104,6 +104,8 @@ import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1055,12 +1057,20 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		jsonObject.put("personLink", "https://hioa.no/tilsatt/"+user.getScreenName());
 
 		if (isOwner(themeDisplay.getUser(), themeDisplay) && !isOwner(user, themeDisplay)) {
-			LiferayPortletURL rmUrl = getPortletActionUrl(portletRequest, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "removeUser");
-			rmUrl.setParameter("userId", String.valueOf(user.getUserId()));
-			LiferayPortletURL chUrl = getPortletRenderUrl(portletRequest, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "changeRole");
-			chUrl.setParameter("userId", String.valueOf(user.getUserId()));
-			jsonObject.put("rmUrl", rmUrl.toString());
-			jsonObject.put("chUrl", chUrl.toString());
+			boolean isUsergroupMembership = false;
+			for (UserGroup userGroup : UserGroupLocalServiceUtil.getGroupUserGroups(themeDisplay.getSiteGroupId())) {
+				if (user.getUserGroups().contains(userGroup)) {
+					isUsergroupMembership = true;
+				}
+			}
+			if (!isUsergroupMembership) {
+				LiferayPortletURL rmUrl = getPortletActionUrl(portletRequest, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "removeUser");
+				rmUrl.setParameter("userId", String.valueOf(user.getUserId()));
+				LiferayPortletURL chUrl = getPortletRenderUrl(portletRequest, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "changeRole");
+				chUrl.setParameter("userId", String.valueOf(user.getUserId()));
+				jsonObject.put("rmUrl", rmUrl.toString());
+				jsonObject.put("chUrl", chUrl.toString());
+			}
 		}
 
 		return jsonObject;

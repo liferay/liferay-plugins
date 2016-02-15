@@ -23,7 +23,6 @@
 String filterBy = ParamUtil.getString(request, "filterBy", ContactsConstants.FILTER_BY_DEFAULT);
 
 String name = ParamUtil.getString(request, "name");
-
 boolean userPublicPage = false;
 
 Group group = themeDisplay.getScopeGroup();
@@ -57,13 +56,11 @@ int contactsCount = 0;
 
 if (userPublicPage) {
 	List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, 0, ContactsConstants.MAX_RESULT_COUNT, new UserLastNameComparator(true));
-
 	contacts = new ArrayList<BaseModel<?>>(users);
 	contactsCount = UserLocalServiceUtil.getSocialUsersCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
 }
 else if (showOnlySiteMembers || !filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT)) {
 	List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params, 0, ContactsConstants.MAX_RESULT_COUNT, new UserLastNameComparator(true));
-
 	contacts = new ArrayList<BaseModel<?>>(users);
 	contactsCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), name, WorkflowConstants.STATUS_APPROVED, params);
 }
@@ -264,7 +261,15 @@ portletURL.setWindowState(WindowState.NORMAL);
 													<%= HtmlUtil.escape(user2.getFirstName()) %>
 												</a>
 											</div>
-											<% if (isOwner(user, themeDisplay) && !isOwner(user2, themeDisplay)) { %>
+											<% if (isOwner(user, themeDisplay) && !isOwner(user2, themeDisplay)) {
+												boolean isUsergroupMembership = false;
+												for (UserGroup userGroup : UserGroupLocalServiceUtil.getGroupUserGroups(themeDisplay.getSiteGroupId())) {
+													if (user2.getUserGroups().contains(userGroup)) {
+														isUsergroupMembership = true;
+													}
+												}
+												if (!isUsergroupMembership) {
+											%>
 											<div class="lfr-actions-remove">
 													<%
 														LiferayPortletURL rmUrl = getPortletActionUrl(request, themeDisplay.getSiteGroupId(), "groupmembershipportlet_WAR_groupmembershipportlet", "removeUser");
@@ -279,7 +284,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 												%>
 												<a title="<liferay-ui:message key="change-member-role"/>" href="<%=chUrl%>"><liferay-ui:message key="change-member-role"/></a>
 											</div>
-											<% } %>
+											<% } }%>
 											<div class="lfr-contact-title">
 												<c:if test="<%= Validator.isNotNull(user2.getJobTitle()) %>">
 													<%= HtmlUtil.escape(user2.getJobTitle()) %>
