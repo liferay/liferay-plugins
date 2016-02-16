@@ -411,13 +411,13 @@ public class DownloadServlet extends HttpServlet {
 		if (request.getHeader(HttpHeaders.RANGE) != null) {
 			sendFileWithRangeHeader(
 				request, response, downloadServletInputStream.getFileName(),
-				downloadServletInputStream.getInputStream(),
+				downloadServletInputStream,
 				downloadServletInputStream.getSize(),
 				downloadServletInputStream.getMimeType());
 		}
 		else {
 			ServletResponseUtil.write(
-				response, downloadServletInputStream.getInputStream(),
+				response, downloadServletInputStream,
 				downloadServletInputStream.getSize());
 		}
 	}
@@ -508,7 +508,7 @@ public class DownloadServlet extends HttpServlet {
 				userId, groupId, uuid, sourceVersionId, targetVersionId);
 
 		ServletResponseUtil.write(
-			response, downloadServletInputStream.getInputStream(),
+			response, downloadServletInputStream,
 			downloadServletInputStream.getSize());
 	}
 
@@ -552,8 +552,7 @@ public class DownloadServlet extends HttpServlet {
 							userId, groupId, uuid, sourceVersionId,
 							targetVersionId);
 
-					zipWriter.addEntry(
-						zipFileId, downloadServletInputStream.getInputStream());
+					zipWriter.addEntry(zipFileId, downloadServletInputStream);
 				}
 				else {
 					DownloadServletInputStream downloadServletInputStream =
@@ -562,8 +561,7 @@ public class DownloadServlet extends HttpServlet {
 							zipObjectJSONObject.getString("version"),
 							zipObjectJSONObject.getLong("versionId"));
 
-					zipWriter.addEntry(
-						zipFileId, downloadServletInputStream.getInputStream());
+					zipWriter.addEntry(zipFileId, downloadServletInputStream);
 				}
 			}
 			catch (Exception e) {
