@@ -1106,6 +1106,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			if (dlFolder.isInTrash()) {
 				throw new NoSuchFolderException();
 			}
+
+			return;
 		}
 
 		throw new PortalException("Folder must be an instance of DLFolder");
@@ -1113,6 +1115,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	protected void checkFolder(long folderId)
 		throws PortalException, SystemException {
+
+		if (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			return;
+		}
 
 		Folder folder = dlAppService.getFolder(folderId);
 
