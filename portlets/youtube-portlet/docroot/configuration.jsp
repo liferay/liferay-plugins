@@ -90,12 +90,12 @@
 		var heightNode = AUI.$('#<portlet:namespace />height');
 		var widthNode = AUI.$('#<portlet:namespace />width');
 
-		var notCustom = value != 'custom';
+		var useDefaults = value != 'custom';
 
-		Util.toggleDisabled(heightNode, notCustom);
-		Util.toggleDisabled(widthNode, notCustom);
+		Util.toggleDisabled(heightNode, useDefaults);
+		Util.toggleDisabled(widthNode, useDefaults);
 
-		if (notCustom) {
+		if (useDefaults) {
 			var dimensions = value.split('x');
 
 			heightNode.val(dimensions[1]);
@@ -105,9 +105,7 @@
 			heightNode.on(
 				'blur',
 				function(event) {
-					var currentTarget = event.currentTarget;
-
-					<portlet:namespace />customHeight = currentTarget.value;
+					<portlet:namespace />customHeight = event.currentTarget.value;
 				}
 			);
 
@@ -116,9 +114,7 @@
 			widthNode.on(
 				'blur',
 				function(event) {
-					var currentTarget = event.currentTarget;
-
-					<portlet:namespace />customWidth = currentTarget.value;
+					<portlet:namespace />customWidth = event.currentTarget.value;
 				}
 			);
 
