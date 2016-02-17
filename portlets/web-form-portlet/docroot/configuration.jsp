@@ -266,7 +266,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				fieldIndexes: '<portlet:namespace />formFieldsIndexes',
 				namespace: '<portlet:namespace />',
 				sortable: true,
-				sortableHandle: '.field-label',
+				sortableHandle: '.lfr-form-row',
 
 				<liferay-portlet:renderURL portletConfiguration="true" var="editFieldURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
