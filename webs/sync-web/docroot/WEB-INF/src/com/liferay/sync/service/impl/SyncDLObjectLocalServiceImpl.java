@@ -254,7 +254,7 @@ public class SyncDLObjectLocalServiceImpl
 		final String searchTreePath = StringUtil.quote(
 			String.valueOf(parentSyncDLObject.getTypePK()), StringPool.SLASH);
 
-		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			new SyncDLObjectActionableDynamicQuery() {
 
 				@Override
@@ -294,7 +294,7 @@ public class SyncDLObjectLocalServiceImpl
 
 			};
 
-		syncDLObjectActionableDynamicQuery.performActions();
+		actionableDynamicQuery.performActions();
 	}
 
 	@Override
@@ -302,7 +302,7 @@ public class SyncDLObjectLocalServiceImpl
 			final SyncDLObject parentSyncDLObject)
 		throws PortalException, SystemException {
 
-		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			new SyncDLObjectActionableDynamicQuery() {
 
 				@Override
@@ -338,7 +338,7 @@ public class SyncDLObjectLocalServiceImpl
 
 			};
 
-		syncDLObjectActionableDynamicQuery.performActions();
+		actionableDynamicQuery.performActions();
 	}
 
 	@Override
@@ -346,7 +346,7 @@ public class SyncDLObjectLocalServiceImpl
 			final SyncDLObject parentSyncDLObject)
 		throws PortalException, SystemException {
 
-		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			new SyncDLObjectActionableDynamicQuery() {
 
 				@Override
@@ -380,7 +380,7 @@ public class SyncDLObjectLocalServiceImpl
 
 			};
 
-		syncDLObjectActionableDynamicQuery.performActions();
+		actionableDynamicQuery.performActions();
 	}
 
 	protected boolean isDefaultRepository(long folderId)

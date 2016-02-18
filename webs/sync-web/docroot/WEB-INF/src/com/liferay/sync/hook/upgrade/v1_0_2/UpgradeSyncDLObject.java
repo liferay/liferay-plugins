@@ -14,16 +14,18 @@
 
 package com.liferay.sync.hook.upgrade.v1_0_2;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
-
-import java.util.List;
+import com.liferay.sync.service.persistence.SyncDLObjectActionableDynamicQuery;
 
 /**
  * @author Dennis Ju
@@ -76,22 +78,30 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	}
 
 	protected void upgradeTrashEvents() throws Exception {
-		DynamicQuery dynamicQuery = SyncDLObjectLocalServiceUtil.dynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new SyncDLObjectActionableDynamicQuery() {
 
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq(
-				"event", SyncDLObjectConstants.EVENT_TRASH));
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq(
-				"type", SyncDLObjectConstants.TYPE_FOLDER));
+				@Override
+				protected void addCriteria(DynamicQuery dynamicQuery) {
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.eq(
+							"event", SyncDLObjectConstants.EVENT_TRASH));
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.eq(
+							"type", SyncDLObjectConstants.TYPE_FOLDER));
+				}
 
-		List<SyncDLObject> syncDLObjects =
-			SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
+				@Override
+				protected void performAction(Object object)
+					throws PortalException, SystemException {
 
-		for (SyncDLObject syncDLObject : syncDLObjects) {
-			SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects(
-				syncDLObject);
-		}
+					SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects(
+						(SyncDLObject)object);
+				}
+
+			};
+
+		actionableDynamicQuery.performActions();
 	}
 
 }

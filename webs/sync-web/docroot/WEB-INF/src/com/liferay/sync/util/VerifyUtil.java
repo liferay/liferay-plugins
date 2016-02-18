@@ -251,7 +251,7 @@ public class VerifyUtil {
 	protected void verifySyncDLObjects(final long groupId) throws Exception {
 		_syncDLObjectsCount = 0;
 
-		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			new SyncDLObjectActionableDynamicQuery() {
 
 				@Override
@@ -330,10 +330,9 @@ public class VerifyUtil {
 
 			};
 
-		_syncDLObjectsTotalCount =
-			syncDLObjectActionableDynamicQuery.performCount();
+		_syncDLObjectsTotalCount = actionableDynamicQuery.performCount();
 
-		syncDLObjectActionableDynamicQuery.performActions();
+		actionableDynamicQuery.performActions();
 
 		logCount(
 			_syncDLObjectsTotalCount, _syncDLObjectsTotalCount,
