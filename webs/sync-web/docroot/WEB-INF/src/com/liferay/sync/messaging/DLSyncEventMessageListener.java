@@ -31,6 +31,7 @@ import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
+import com.liferay.sync.model.impl.SyncDLObjectImpl;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.SyncUtil;
 
@@ -42,19 +43,36 @@ import java.util.List;
 public class DLSyncEventMessageListener extends BaseMessageListener {
 
 	protected void addSyncDLObject(SyncDLObject syncDLObject) throws Exception {
-		SyncDLObjectLocalServiceUtil.addSyncDLObject(
-			syncDLObject.getCompanyId(), syncDLObject.getUserId(),
-			syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
-			syncDLObject.getRepositoryId(), syncDLObject.getParentFolderId(),
-			syncDLObject.getTreePath(), syncDLObject.getName(),
-			syncDLObject.getExtension(), syncDLObject.getMimeType(),
-			syncDLObject.getDescription(), syncDLObject.getChangeLog(),
-			syncDLObject.getExtraSettings(), syncDLObject.getVersion(),
-			syncDLObject.getVersionId(), syncDLObject.getSize(),
-			syncDLObject.getChecksum(), syncDLObject.getEvent(),
-			syncDLObject.getLockExpirationDate(), syncDLObject.getLockUserId(),
-			syncDLObject.getLockUserName(), syncDLObject.getType(),
-			syncDLObject.getTypePK(), syncDLObject.getTypeUuid());
+		String event = syncDLObject.getEvent();
+
+		if (event.equals(SyncDLObjectConstants.EVENT_DELETE) ||
+			event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
+
+			SyncDLObjectLocalServiceUtil.addSyncDLObject(
+				0, syncDLObject.getUserId(), syncDLObject.getUserName(),
+				syncDLObject.getModifiedTime(), 0, 0, StringPool.BLANK,
+				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
+				StringPool.BLANK, syncDLObject.getType(),
+				syncDLObject.getTypePK(), StringPool.BLANK);
+		}
+		else {
+			SyncDLObjectLocalServiceUtil.addSyncDLObject(
+				syncDLObject.getCompanyId(), syncDLObject.getUserId(),
+				syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
+				syncDLObject.getRepositoryId(),
+				syncDLObject.getParentFolderId(), syncDLObject.getTreePath(),
+				syncDLObject.getName(), syncDLObject.getExtension(),
+				syncDLObject.getMimeType(), syncDLObject.getDescription(),
+				syncDLObject.getChangeLog(), syncDLObject.getExtraSettings(),
+				syncDLObject.getVersion(), syncDLObject.getVersionId(),
+				syncDLObject.getSize(), syncDLObject.getChecksum(),
+				syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
+				syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
+				syncDLObject.getType(), syncDLObject.getTypePK(),
+				syncDLObject.getTypeUuid());
+		}
 	}
 
 	protected void deleteDLSyncEvent(
@@ -102,6 +120,8 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 			long modifiedTime, String event, String type, long typePK)
 		throws Exception {
 
+		SyncDLObject syncDLObject = null;
+
 		if (event.equals(SyncDLObjectConstants.EVENT_DELETE)) {
 			long userId = 0;
 			String userName = StringPool.BLANK;
@@ -116,19 +136,15 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 				userName = user.getFullName();
 			}
 
-			SyncDLObjectLocalServiceUtil.addSyncDLObject(
-				0, userId, userName, modifiedTime, 0, 0, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
-				StringPool.BLANK, type, typePK, StringPool.BLANK);
+			syncDLObject = new SyncDLObjectImpl();
 
-			return;
+			syncDLObject.setUserId(userId);
+			syncDLObject.setUserName(userName);
+			syncDLObject.setEvent(event);
+			syncDLObject.setType(type);
+			syncDLObject.setTypePK(typePK);
 		}
-
-		SyncDLObject syncDLObject = null;
-
-		if (type.equals(SyncDLObjectConstants.TYPE_FILE)) {
+		else if (type.equals(SyncDLObjectConstants.TYPE_FILE)) {
 			FileEntry fileEntry = null;
 
 			try {
