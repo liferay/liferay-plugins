@@ -490,7 +490,6 @@ public class SyncUtil {
 		syncDLObject.setMimeType(dlFileVersion.getMimeType());
 		syncDLObject.setDescription(dlFileVersion.getDescription());
 		syncDLObject.setChangeLog(dlFileVersion.getChangeLog());
-		syncDLObject.setExtraSettings(StringPool.BLANK);
 		syncDLObject.setVersion(dlFileVersion.getVersion());
 		syncDLObject.setVersionId(dlFileVersion.getFileVersionId());
 		syncDLObject.setSize(dlFileVersion.getSize());
@@ -515,24 +514,12 @@ public class SyncUtil {
 		return syncDLObject;
 	}
 
-	public static SyncDLObject toSyncDLObject(DLFolder dlFolder, String event) {
+	public static SyncDLObject toSyncDLObject(
+		DLFolder dlFolder, long userId, String userName, String event) {
+
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
 		syncDLObject.setCompanyId(dlFolder.getCompanyId());
-
-		long userId = 0;
-		String userName = StringPool.BLANK;
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		if (permissionChecker != null) {
-			User user = permissionChecker.getUser();
-
-			userId = user.getUserId();
-			userName = user.getFullName();
-		}
-
 		syncDLObject.setUserId(userId);
 		syncDLObject.setUserName(userName);
 		syncDLObject.setCreateDate(dlFolder.getCreateDate());
@@ -541,24 +528,27 @@ public class SyncUtil {
 		syncDLObject.setParentFolderId(dlFolder.getParentFolderId());
 		syncDLObject.setTreePath(dlFolder.getTreePath());
 		syncDLObject.setName(dlFolder.getName());
-		syncDLObject.setExtension(StringPool.BLANK);
-		syncDLObject.setMimeType(StringPool.BLANK);
 		syncDLObject.setDescription(dlFolder.getDescription());
-		syncDLObject.setChangeLog(StringPool.BLANK);
-		syncDLObject.setExtraSettings(StringPool.BLANK);
-		syncDLObject.setVersion(StringPool.BLANK);
-		syncDLObject.setVersionId(0);
-		syncDLObject.setSize(0);
-		syncDLObject.setChecksum(StringPool.BLANK);
 		syncDLObject.setEvent(event);
-		syncDLObject.setLockExpirationDate(null);
-		syncDLObject.setLockUserId(0);
-		syncDLObject.setLockUserName(StringPool.BLANK);
 		syncDLObject.setType(SyncDLObjectConstants.TYPE_FOLDER);
 		syncDLObject.setTypePK(dlFolder.getFolderId());
 		syncDLObject.setTypeUuid(dlFolder.getUuid());
 
 		return syncDLObject;
+	}
+
+	public static SyncDLObject toSyncDLObject(DLFolder dlFolder, String event) {
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (permissionChecker == null) {
+			return toSyncDLObject(dlFolder, 0, StringPool.BLANK, event);
+		}
+
+		User user = permissionChecker.getUser();
+
+		return toSyncDLObject(
+			dlFolder, user.getUserId(), user.getFullName(), event);
 	}
 
 	public static SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
