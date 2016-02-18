@@ -184,8 +184,8 @@ public class VerifyUtil {
 						if (syncDLObject != null) {
 							Date modifiedDate = dlFileEntry.getModifiedDate();
 
-							if ((syncDLObject.getModifiedTime() >=
-									modifiedDate.getTime())) {
+							if (syncDLObject.getModifiedTime() >=
+									modifiedDate.getTime()) {
 
 								return;
 							}

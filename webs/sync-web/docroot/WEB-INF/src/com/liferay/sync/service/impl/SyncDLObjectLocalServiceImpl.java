@@ -16,7 +16,6 @@ package com.liferay.sync.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
@@ -180,13 +179,13 @@ public class SyncDLObjectLocalServiceImpl
 			}
 
 			if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
-				moveDependentSyncDLObjects(syncDLObject);
+				moveSyncDLObjects(syncDLObject);
 			}
 			else if (event.equals(SyncDLObjectConstants.EVENT_RESTORE)) {
-				restoreDependentSyncDLObjects(syncDLObject);
+				restoreSyncDLObjects(syncDLObject);
 			}
 			else if (event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
-				trashDependentSyncDLObjects(syncDLObject);
+				trashSyncDLObjects(syncDLObject);
 			}
 		}
 		else if (event.equals(SyncDLObjectConstants.EVENT_DELETE)) {
@@ -218,8 +217,7 @@ public class SyncDLObjectLocalServiceImpl
 
 	@Override
 	public long getLatestModifiedTime() throws SystemException {
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			SyncDLObject.class, SyncDLObject.class.getClassLoader());
+		DynamicQuery dynamicQuery = dynamicQuery();
 
 		Projection projection = ProjectionFactoryUtil.max("modifiedTime");
 
@@ -244,8 +242,7 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
-	public void moveDependentSyncDLObjects(
-			final SyncDLObject parentSyncDLObject)
+	public void moveSyncDLObjects(final SyncDLObject parentSyncDLObject)
 		throws PortalException, SystemException {
 
 		final String searchTreePath = StringUtil.quote(
@@ -267,9 +264,12 @@ public class SyncDLObjectLocalServiceImpl
 				protected void performAction(Object object)
 					throws PortalException, SystemException {
 
-					SyncDLObject dependentSyncDLObject = (SyncDLObject)object;
+					SyncDLObject syncDLObject = (SyncDLObject)object;
 
-					String treePath = dependentSyncDLObject.getTreePath();
+					syncDLObject.setUserId(parentSyncDLObject.getUserId());
+					syncDLObject.setUserName(parentSyncDLObject.getUserName());
+
+					String treePath = syncDLObject.getTreePath();
 
 					String oldParentTreePath = treePath.substring(
 						0,
@@ -280,13 +280,9 @@ public class SyncDLObjectLocalServiceImpl
 						treePath, oldParentTreePath,
 						parentSyncDLObject.getTreePath());
 
-					dependentSyncDLObject.setUserId(
-						parentSyncDLObject.getUserId());
-					dependentSyncDLObject.setUserName(
-						parentSyncDLObject.getUserName());
-					dependentSyncDLObject.setTreePath(treePath);
+					syncDLObject.setTreePath(treePath);
 
-					syncDLObjectPersistence.update(dependentSyncDLObject);
+					syncDLObjectPersistence.update(syncDLObject);
 				}
 
 			};
@@ -295,8 +291,7 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
-	public void restoreDependentSyncDLObjects(
-			final SyncDLObject parentSyncDLObject)
+	public void restoreSyncDLObjects(final SyncDLObject parentSyncDLObject)
 		throws PortalException, SystemException {
 
 		ActionableDynamicQuery actionableDynamicQuery =
@@ -319,18 +314,15 @@ public class SyncDLObjectLocalServiceImpl
 				protected void performAction(Object object)
 					throws PortalException, SystemException {
 
-					SyncDLObject dependentSyncDLObject = (SyncDLObject)object;
+					SyncDLObject syncDLObject = (SyncDLObject)object;
 
-					dependentSyncDLObject.setUserId(
-						parentSyncDLObject.getUserId());
-					dependentSyncDLObject.setUserName(
-						parentSyncDLObject.getUserName());
-					dependentSyncDLObject.setModifiedTime(
+					syncDLObject.setUserId(parentSyncDLObject.getUserId());
+					syncDLObject.setUserName(parentSyncDLObject.getUserName());
+					syncDLObject.setModifiedTime(
 						parentSyncDLObject.getModifiedTime());
-					dependentSyncDLObject.setEvent(
-						SyncDLObjectConstants.EVENT_RESTORE);
+					syncDLObject.setEvent(SyncDLObjectConstants.EVENT_RESTORE);
 
-					syncDLObjectPersistence.update(dependentSyncDLObject);
+					syncDLObjectPersistence.update(syncDLObject);
 				}
 
 			};
@@ -339,8 +331,7 @@ public class SyncDLObjectLocalServiceImpl
 	}
 
 	@Override
-	public void trashDependentSyncDLObjects(
-			final SyncDLObject parentSyncDLObject)
+	public void trashSyncDLObjects(final SyncDLObject parentSyncDLObject)
 		throws PortalException, SystemException {
 
 		ActionableDynamicQuery actionableDynamicQuery =
@@ -363,16 +354,13 @@ public class SyncDLObjectLocalServiceImpl
 				protected void performAction(Object object)
 					throws PortalException, SystemException {
 
-					SyncDLObject dependentSyncDLObject = (SyncDLObject)object;
+					SyncDLObject syncDLObject = (SyncDLObject)object;
 
-					dependentSyncDLObject.setUserId(
-						parentSyncDLObject.getUserId());
-					dependentSyncDLObject.setUserName(
-						parentSyncDLObject.getUserName());
-					dependentSyncDLObject.setEvent(
-						SyncDLObjectConstants.EVENT_TRASH);
+					syncDLObject.setUserId(parentSyncDLObject.getUserId());
+					syncDLObject.setUserName(parentSyncDLObject.getUserName());
+					syncDLObject.setEvent(SyncDLObjectConstants.EVENT_TRASH);
 
-					syncDLObjectPersistence.update(dependentSyncDLObject);
+					syncDLObjectPersistence.update(syncDLObject);
 				}
 
 			};
