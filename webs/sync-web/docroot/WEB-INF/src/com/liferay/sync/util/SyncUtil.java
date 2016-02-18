@@ -85,11 +85,11 @@ public class SyncUtil {
 
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				0, syncDLObject.getUserId(), syncDLObject.getUserName(),
-				syncDLObject.getModifiedTime(), 0, 0, StringPool.BLANK,
+				syncDLObject.getModifiedTime(), 0, 0,
+				syncDLObject.getTreePath(), StringPool.BLANK, StringPool.BLANK,
 				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
-				StringPool.BLANK, syncDLObject.getType(),
+				StringPool.BLANK, StringPool.BLANK, 0, 0, StringPool.BLANK,
+				event, null, 0, StringPool.BLANK, syncDLObject.getType(),
 				syncDLObject.getTypePK(), StringPool.BLANK);
 		}
 		else {
