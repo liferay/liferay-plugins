@@ -145,19 +145,19 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 
 		_methodParameterTypes23 = new String[] { "long", "long" };
 
-		_methodName24 = "moveDependentSyncDLObjects";
+		_methodName24 = "moveSyncDLObjects";
 
 		_methodParameterTypes24 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 
-		_methodName25 = "restoreDependentSyncDLObjects";
+		_methodName25 = "restoreSyncDLObjects";
 
 		_methodParameterTypes25 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 
-		_methodName26 = "trashDependentSyncDLObjects";
+		_methodName26 = "trashSyncDLObjects";
 
 		_methodParameterTypes26 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
@@ -925,7 +925,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public void moveDependentSyncDLObjects(
+	public void moveSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -956,7 +956,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public void restoreDependentSyncDLObjects(
+	public void restoreSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -987,7 +987,7 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public void trashDependentSyncDLObjects(
+	public void trashSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

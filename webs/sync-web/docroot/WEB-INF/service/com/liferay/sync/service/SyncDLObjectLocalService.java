@@ -286,17 +286,17 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		long repositoryId, long parentFolderId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void moveDependentSyncDLObjects(
+	public void moveSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void restoreDependentSyncDLObjects(
+	public void restoreSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void trashDependentSyncDLObjects(
+	public void trashSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

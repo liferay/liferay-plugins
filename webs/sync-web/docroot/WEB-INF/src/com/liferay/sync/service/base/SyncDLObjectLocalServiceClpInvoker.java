@@ -144,19 +144,19 @@ public class SyncDLObjectLocalServiceClpInvoker {
 
 		_methodParameterTypes98 = new String[] { "long", "long" };
 
-		_methodName99 = "moveDependentSyncDLObjects";
+		_methodName99 = "moveSyncDLObjects";
 
 		_methodParameterTypes99 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 
-		_methodName100 = "restoreDependentSyncDLObjects";
+		_methodName100 = "restoreSyncDLObjects";
 
 		_methodParameterTypes100 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
 			};
 
-		_methodName101 = "trashDependentSyncDLObjects";
+		_methodName101 = "trashSyncDLObjects";
 
 		_methodParameterTypes101 = new String[] {
 				"com.liferay.sync.model.SyncDLObject"
@@ -316,21 +316,21 @@ public class SyncDLObjectLocalServiceClpInvoker {
 
 		if (_methodName99.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes99, parameterTypes)) {
-			SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+			SyncDLObjectLocalServiceUtil.moveSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName100.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes100, parameterTypes)) {
-			SyncDLObjectLocalServiceUtil.restoreDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+			SyncDLObjectLocalServiceUtil.restoreSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName101.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
-			SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
+			SyncDLObjectLocalServiceUtil.trashSyncDLObjects((com.liferay.sync.model.SyncDLObject)arguments[0]);
 
 			return null;
 		}
