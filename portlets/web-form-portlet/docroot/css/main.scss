@@ -16,6 +16,10 @@
 	}
 
 	.lfr-form-row {
+		&:hover {
+			cursor: move;
+		}
+
 		.field {
 			margin-left: 2em;
 		}
@@ -71,11 +75,5 @@
 
 	.format-paragraph {
 		margin-bottom: 30px;
-	}
-}
-
-.webFields {
-	.lfr-form-row:hover {
-		cursor: move;
 	}
 }
