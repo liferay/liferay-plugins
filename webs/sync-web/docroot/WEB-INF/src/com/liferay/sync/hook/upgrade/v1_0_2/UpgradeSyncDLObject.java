@@ -34,29 +34,13 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
-				"event", SyncDLObjectConstants.EVENT_MOVE));
+				"event", SyncDLObjectConstants.EVENT_TRASH));
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
 				"type", SyncDLObjectConstants.TYPE_FOLDER));
 
 		List<SyncDLObject> syncDLObjects =
 			SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
-
-		for (SyncDLObject syncDLObject : syncDLObjects) {
-			SyncDLObjectLocalServiceUtil.moveDependentSyncDLObjects(
-				syncDLObject);
-		}
-
-		dynamicQuery = SyncDLObjectLocalServiceUtil.dynamicQuery();
-
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq(
-				"event", SyncDLObjectConstants.EVENT_TRASH));
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq(
-				"type", SyncDLObjectConstants.TYPE_FOLDER));
-
-		syncDLObjects = SyncDLObjectLocalServiceUtil.dynamicQuery(dynamicQuery);
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
 			SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects(
