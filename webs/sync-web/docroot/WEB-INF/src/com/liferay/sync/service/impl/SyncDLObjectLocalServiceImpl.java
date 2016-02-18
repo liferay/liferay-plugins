@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.sync.model.SyncDLObject;
@@ -174,6 +175,10 @@ public class SyncDLObjectLocalServiceImpl
 		}
 
 		if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
+			if (Validator.isNull(treePath)) {
+				return syncDLObject;
+			}
+
 			if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
 				syncDLObjectLocalService.moveDependentSyncDLObjects(
 					syncDLObject);
