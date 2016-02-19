@@ -14,18 +14,17 @@
 
 package com.liferay.sync.messaging;
 
-import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
-import com.liferay.document.library.kernel.exception.NoSuchFolderException;
+import com.liferay.document.library.kernel.model.DLFileEntry;
+import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLSyncEvent;
-import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
+import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
+import com.liferay.document.library.kernel.service.DLFolderLocalServiceUtil;
 import com.liferay.document.library.kernel.service.DLSyncEventLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.util.StringPool;
@@ -111,32 +110,23 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 			syncDLObject.setTypePK(typePK);
 		}
 		else if (type.equals(SyncDLObjectConstants.TYPE_FILE)) {
-			FileEntry fileEntry = null;
+			DLFileEntry dlFileEntry =
+				DLFileEntryLocalServiceUtil.fetchDLFileEntry(typePK);
 
-			try {
-				fileEntry = DLAppLocalServiceUtil.getFileEntry(typePK);
-			}
-			catch (NoSuchFileEntryException nsfee) {
+			if (dlFileEntry == null) {
 				return;
 			}
 
-			syncDLObject = SyncUtil.toSyncDLObject(fileEntry, event, true);
+			syncDLObject = SyncUtil.toSyncDLObject(dlFileEntry, event, true);
 		}
 		else {
-			Folder folder = null;
+			DLFolder dlFolder = DLFolderLocalServiceUtil.fetchDLFolder(typePK);
 
-			try {
-				folder = DLAppLocalServiceUtil.getFolder(typePK);
-			}
-			catch (NoSuchFolderException nsfe) {
+			if ((dlFolder == null) || !SyncUtil.isSupportedFolder(dlFolder)) {
 				return;
 			}
 
-			if (!SyncUtil.isSupportedFolder(folder)) {
-				return;
-			}
-
-			syncDLObject = SyncUtil.toSyncDLObject(folder, event);
+			syncDLObject = SyncUtil.toSyncDLObject(dlFolder, event);
 		}
 
 		syncDLObject.setModifiedTime(modifiedTime);

@@ -100,7 +100,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				public void performAction(SyncDLObject syncDLObject)
 					throws PortalException {
 
-					SyncDLObjectLocalServiceUtil.trashDependentSyncDLObjects(
+					SyncDLObjectLocalServiceUtil.trashSyncDLObjects(
 						syncDLObject);
 				}
 
