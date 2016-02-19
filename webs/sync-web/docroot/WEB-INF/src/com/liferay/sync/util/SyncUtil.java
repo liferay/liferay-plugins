@@ -52,6 +52,7 @@ import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
+import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.shared.util.SyncPermissionsConstants;
 
 import java.io.File;
@@ -73,6 +74,41 @@ import java.util.Date;
  * @author Dennis Ju
  */
 public class SyncUtil {
+
+	public static void addSyncDLObject(SyncDLObject syncDLObject)
+		throws PortalException, SystemException {
+
+		String event = syncDLObject.getEvent();
+
+		if (event.equals(SyncDLObjectConstants.EVENT_DELETE) ||
+			event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
+
+			SyncDLObjectLocalServiceUtil.addSyncDLObject(
+				0, syncDLObject.getUserId(), syncDLObject.getUserName(),
+				syncDLObject.getModifiedTime(), 0, 0, StringPool.BLANK,
+				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
+				StringPool.BLANK, syncDLObject.getType(),
+				syncDLObject.getTypePK(), StringPool.BLANK);
+		}
+		else {
+			SyncDLObjectLocalServiceUtil.addSyncDLObject(
+				syncDLObject.getCompanyId(), syncDLObject.getUserId(),
+				syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
+				syncDLObject.getRepositoryId(),
+				syncDLObject.getParentFolderId(), syncDLObject.getTreePath(),
+				syncDLObject.getName(), syncDLObject.getExtension(),
+				syncDLObject.getMimeType(), syncDLObject.getDescription(),
+				syncDLObject.getChangeLog(), syncDLObject.getExtraSettings(),
+				syncDLObject.getVersion(), syncDLObject.getVersionId(),
+				syncDLObject.getSize(), syncDLObject.getChecksum(),
+				syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
+				syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
+				syncDLObject.getType(), syncDLObject.getTypePK(),
+				syncDLObject.getTypeUuid());
+		}
+	}
 
 	public static String buildExceptionMessage(Throwable throwable) {
 

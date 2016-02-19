@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -50,41 +49,6 @@ public class VerifyUtil {
 		VerifyUtil verifyUtil = new VerifyUtil();
 
 		verifyUtil.doVerify();
-	}
-
-	protected void addSyncDLObject(SyncDLObject syncDLObject)
-		throws PortalException, SystemException {
-
-		String event = syncDLObject.getEvent();
-
-		if (event.equals(SyncDLObjectConstants.EVENT_DELETE) ||
-			event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
-
-			SyncDLObjectLocalServiceUtil.addSyncDLObject(
-				0, syncDLObject.getUserId(), syncDLObject.getUserName(),
-				syncDLObject.getModifiedTime(), 0, 0, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
-				StringPool.BLANK, syncDLObject.getType(),
-				syncDLObject.getTypePK(), StringPool.BLANK);
-		}
-		else {
-			SyncDLObjectLocalServiceUtil.addSyncDLObject(
-				syncDLObject.getCompanyId(), syncDLObject.getUserId(),
-				syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
-				syncDLObject.getRepositoryId(),
-				syncDLObject.getParentFolderId(), syncDLObject.getTreePath(),
-				syncDLObject.getName(), syncDLObject.getExtension(),
-				syncDLObject.getMimeType(), syncDLObject.getDescription(),
-				syncDLObject.getChangeLog(), syncDLObject.getExtraSettings(),
-				syncDLObject.getVersion(), syncDLObject.getVersionId(),
-				syncDLObject.getSize(), syncDLObject.getChecksum(),
-				syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
-				syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
-				syncDLObject.getType(), syncDLObject.getTypePK(),
-				syncDLObject.getTypeUuid());
-		}
 	}
 
 	protected void doVerify() throws Exception {
@@ -178,12 +142,12 @@ public class VerifyUtil {
 						if (dlFolder.getStatus() ==
 								WorkflowConstants.STATUS_APPROVED) {
 
-							addSyncDLObject(
+							SyncUtil.addSyncDLObject(
 								SyncUtil.toSyncDLObject(
 									dlFolder, SyncDLObjectConstants.EVENT_ADD));
 						}
 						else {
-							addSyncDLObject(
+							SyncUtil.addSyncDLObject(
 								SyncUtil.toSyncDLObject(
 									dlFolder,
 									SyncDLObjectConstants.EVENT_TRASH));
@@ -253,13 +217,14 @@ public class VerifyUtil {
 								SyncUtil.toSyncDLObject(
 									dlFileEntry, event, true, true);
 
-							addSyncDLObject(approvedFileEntrySyncDLObject);
+							SyncUtil.addSyncDLObject(
+								approvedFileEntrySyncDLObject);
 						}
 
 						fileEntrySyncDLObject = SyncUtil.toSyncDLObject(
 							dlFileEntry, event, true);
 
-						addSyncDLObject(fileEntrySyncDLObject);
+						SyncUtil.addSyncDLObject(fileEntrySyncDLObject);
 					}
 					catch (Exception e) {
 						_log.error(e, e);
@@ -328,7 +293,7 @@ public class VerifyUtil {
 							syncDLObject.setModifiedTime(
 								System.currentTimeMillis());
 
-							addSyncDLObject(syncDLObject);
+							SyncUtil.addSyncDLObject(syncDLObject);
 						}
 					}
 					else if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
@@ -342,7 +307,7 @@ public class VerifyUtil {
 							syncDLObject.setModifiedTime(
 								System.currentTimeMillis());
 
-							addSyncDLObject(syncDLObject);
+							SyncUtil.addSyncDLObject(syncDLObject);
 						}
 					}
 					else if (type.equals(
