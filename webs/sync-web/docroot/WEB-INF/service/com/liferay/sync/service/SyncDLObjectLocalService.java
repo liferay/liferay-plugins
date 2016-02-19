@@ -248,13 +248,13 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public void moveDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
+	public void moveSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
 
-	public void restoreDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
+	public void restoreSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
 
-	public void trashDependentSyncDLObjects(SyncDLObject parentSyncDLObject)
+	public void trashSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
 
 	/**

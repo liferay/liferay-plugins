@@ -305,24 +305,24 @@ public class SyncDLObjectLocalServiceWrapper implements SyncDLObjectLocalService
 	}
 
 	@Override
-	public void moveDependentSyncDLObjects(
+	public void moveSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_syncDLObjectLocalService.moveDependentSyncDLObjects(parentSyncDLObject);
+		_syncDLObjectLocalService.moveSyncDLObjects(parentSyncDLObject);
 	}
 
 	@Override
-	public void restoreDependentSyncDLObjects(
+	public void restoreSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_syncDLObjectLocalService.restoreDependentSyncDLObjects(parentSyncDLObject);
+		_syncDLObjectLocalService.restoreSyncDLObjects(parentSyncDLObject);
 	}
 
 	@Override
-	public void trashDependentSyncDLObjects(
+	public void trashSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_syncDLObjectLocalService.trashDependentSyncDLObjects(parentSyncDLObject);
+		_syncDLObjectLocalService.trashSyncDLObjects(parentSyncDLObject);
 	}
 
 	/**

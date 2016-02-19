@@ -285,22 +285,22 @@ public class SyncDLObjectLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
-	public static void moveDependentSyncDLObjects(
+	public static void moveSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().moveDependentSyncDLObjects(parentSyncDLObject);
+		getService().moveSyncDLObjects(parentSyncDLObject);
 	}
 
-	public static void restoreDependentSyncDLObjects(
+	public static void restoreSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().restoreDependentSyncDLObjects(parentSyncDLObject);
+		getService().restoreSyncDLObjects(parentSyncDLObject);
 	}
 
-	public static void trashDependentSyncDLObjects(
+	public static void trashSyncDLObjects(
 		com.liferay.sync.model.SyncDLObject parentSyncDLObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().trashDependentSyncDLObjects(parentSyncDLObject);
+		getService().trashSyncDLObjects(parentSyncDLObject);
 	}
 
 	/**

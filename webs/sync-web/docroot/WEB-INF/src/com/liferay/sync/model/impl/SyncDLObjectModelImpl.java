@@ -150,9 +150,10 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	public static final long MODIFIEDTIME_COLUMN_BITMASK = 2L;
 	public static final long PARENTFOLDERID_COLUMN_BITMASK = 4L;
 	public static final long REPOSITORYID_COLUMN_BITMASK = 8L;
-	public static final long TYPE_COLUMN_BITMASK = 16L;
-	public static final long TYPEPK_COLUMN_BITMASK = 32L;
-	public static final long VERSION_COLUMN_BITMASK = 64L;
+	public static final long TREEPATH_COLUMN_BITMASK = 16L;
+	public static final long TYPE_COLUMN_BITMASK = 32L;
+	public static final long TYPEPK_COLUMN_BITMASK = 64L;
+	public static final long VERSION_COLUMN_BITMASK = 128L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -616,7 +617,17 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public void setTreePath(String treePath) {
+		_columnBitmask |= TREEPATH_COLUMN_BITMASK;
+
+		if (_originalTreePath == null) {
+			_originalTreePath = _treePath;
+		}
+
 		_treePath = treePath;
+	}
+
+	public String getOriginalTreePath() {
+		return GetterUtil.getString(_originalTreePath);
 	}
 
 	@JSON
@@ -1087,6 +1098,8 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 		syncDLObjectModelImpl._setOriginalParentFolderId = false;
 
+		syncDLObjectModelImpl._originalTreePath = syncDLObjectModelImpl._treePath;
+
 		syncDLObjectModelImpl._originalVersion = syncDLObjectModelImpl._version;
 
 		syncDLObjectModelImpl._originalEvent = syncDLObjectModelImpl._event;
@@ -1463,6 +1476,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	private long _originalParentFolderId;
 	private boolean _setOriginalParentFolderId;
 	private String _treePath;
+	private String _originalTreePath;
 	private String _name;
 	private String _extension;
 	private String _mimeType;
