@@ -57,6 +57,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 			<div class="list">
 			</div>
+			<p><span id="selected-users">0</span> <liferay-ui:message key="invited-counter" /></p>
 		</div>
 
 		<%

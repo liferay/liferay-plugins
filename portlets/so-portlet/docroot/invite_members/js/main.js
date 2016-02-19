@@ -33,6 +33,7 @@ AUI.add(
 					instance._findMembersList = instance._inviteMembersContainer.one('.search .list');
 					instance._emailInput = instance._inviteMembersContainer.one('#new-member-email-address');
 					instance._invitedMembersList = instance._inviteMembersContainer.one('.user-invited .list');
+					instance._memberCounter = instance._inviteMembersContainer.one('.user-invited #selected-users');
 
 					var form = instance._inviteMembersContainer.one('form');
 
@@ -123,6 +124,7 @@ AUI.add(
 					var instance = this;
 
 					user.addClass('invited').cloneNode(true).appendTo(instance._invitedMembersList);
+					instance._updateCounter();
 				},
 
 				_removeEmailInvite: function(user) {
@@ -133,6 +135,7 @@ AUI.add(
 					instance._findMembersList.all('.invited').each(function (node) {
 						instance._removeMemberInvite(null, node.getAttribute('data-userId'));
 					});
+					instance._updateCounter();
 				}
 				,
 				_removeMemberInvite: function(user, userId) {
@@ -146,8 +149,13 @@ AUI.add(
 						user.removeClass('invited');
 					}
 					invitedUser.remove();
+					instance._updateCounter();
 				},
 
+				_updateCounter: function() {
+					var instance = this;
+					instance._memberCounter.setContent(instance._findMembersList.all('.invited').size());
+				},
 				_syncFields: function(form) {
 					var instance = this;
 
