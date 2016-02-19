@@ -70,7 +70,7 @@ public class AssetEntrySetLocalServiceImpl
 	public AssetEntrySet addAssetEntrySet(
 			long userId, long parentAssetEntrySetId, long creatorClassNameId,
 			long creatorClassPK, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet)
+			boolean privateAssetEntrySet, long stickyTime, int type)
 		throws PortalException, SystemException {
 
 		long assetEntrySetId = counterLocalService.increment();
@@ -101,7 +101,10 @@ public class AssetEntrySetLocalServiceImpl
 			JSONFactoryUtil.looseSerialize(
 				AssetEntrySetManagerUtil.interpret(
 					user.getUserId(), assetEntrySetId, payloadJSONObject)));
+
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
+		assetEntrySet.setStickyTime(stickyTime);
+		assetEntrySet.setType(type);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
@@ -278,7 +281,7 @@ public class AssetEntrySetLocalServiceImpl
 	@Override
 	public AssetEntrySet updateAssetEntrySet(
 			long assetEntrySetId, JSONObject payloadJSONObject,
-			boolean privateAssetEntrySet)
+			boolean privateAssetEntrySet, long stickyTime, int type)
 		throws PortalException, SystemException {
 
 		AssetEntrySet assetEntrySet = assetEntrySetPersistence.findByPrimaryKey(
@@ -317,6 +320,8 @@ public class AssetEntrySetLocalServiceImpl
 			JSONFactoryUtil.looseSerialize(payloadJSONObject));
 
 		assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
+		assetEntrySet.setStickyTime(stickyTime);
+		assetEntrySet.setType(type);
 
 		assetEntrySetPersistence.update(assetEntrySet);
 
