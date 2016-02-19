@@ -178,16 +178,13 @@ public class SyncDLObjectLocalServiceImpl
 			}
 
 			if (event.equals(SyncDLObjectConstants.EVENT_MOVE)) {
-				syncDLObjectLocalService.moveDependentSyncDLObjects(
-					syncDLObject);
+				moveDependentSyncDLObjects(syncDLObject);
 			}
 			else if (event.equals(SyncDLObjectConstants.EVENT_RESTORE)) {
-				syncDLObjectLocalService.restoreDependentSyncDLObjects(
-					syncDLObject);
+				restoreDependentSyncDLObjects(syncDLObject);
 			}
 			else if (event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
-				syncDLObjectLocalService.trashDependentSyncDLObjects(
-					syncDLObject);
+				trashDependentSyncDLObjects(syncDLObject);
 			}
 		}
 		else if (event.equals(SyncDLObjectConstants.EVENT_DELETE)) {

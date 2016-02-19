@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
@@ -90,6 +91,11 @@ public class VerifyUtil {
 
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
+					Property hiddenProperty = PropertyFactoryUtil.forName(
+						"hidden");
+
+					dynamicQuery.add(hiddenProperty.eq(false));
+
 					Property mountPointProperty = PropertyFactoryUtil.forName(
 						"mountPoint");
 
@@ -122,36 +128,19 @@ public class VerifyUtil {
 						_dlFoldersAndFileEntriesTotalCount,
 						"DL folders and DL file entries");
 
-					if (!SyncUtil.isSupportedFolder(dlFolder)) {
-						return;
-					}
-
 					try {
-						SyncDLObject syncDLObject =
-							SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
-								SyncDLObjectConstants.TYPE_FOLDER,
-								dlFolder.getFolderId());
-
-						Date modifiedDate = dlFolder.getModifiedDate();
-
-						if ((syncDLObject != null) &&
-							(syncDLObject.getModifiedTime() >=
-								modifiedDate.getTime())) {
-
-							return;
-						}
-
 						if (dlFolder.getStatus() ==
 								WorkflowConstants.STATUS_APPROVED) {
 
 							SyncUtil.addSyncDLObject(
 								SyncUtil.toSyncDLObject(
-									dlFolder, SyncDLObjectConstants.EVENT_ADD));
+									dlFolder, 0, StringPool.BLANK,
+									SyncDLObjectConstants.EVENT_ADD));
 						}
 						else {
 							SyncUtil.addSyncDLObject(
 								SyncUtil.toSyncDLObject(
-									dlFolder,
+									dlFolder, 0, StringPool.BLANK,
 									SyncDLObjectConstants.EVENT_TRASH));
 						}
 					}
@@ -189,18 +178,19 @@ public class VerifyUtil {
 					}
 
 					try {
-						SyncDLObject fileEntrySyncDLObject =
+						SyncDLObject syncDLObject =
 							SyncDLObjectLocalServiceUtil.fetchSyncDLObject(
 								SyncDLObjectConstants.TYPE_FILE,
 								dlFileEntry.getFileEntryId());
 
-						Date modifiedDate = dlFileEntry.getModifiedDate();
+						if (syncDLObject != null) {
+							Date modifiedDate = dlFileEntry.getModifiedDate();
 
-						if ((fileEntrySyncDLObject != null) &&
-							(fileEntrySyncDLObject.getModifiedTime() >=
-								modifiedDate.getTime())) {
+							if ((syncDLObject.getModifiedTime() >=
+									modifiedDate.getTime())) {
 
-							return;
+								return;
+							}
 						}
 
 						String event = null;
@@ -223,10 +213,8 @@ public class VerifyUtil {
 								approvedFileEntrySyncDLObject);
 						}
 
-						fileEntrySyncDLObject = SyncUtil.toSyncDLObject(
-							dlFileEntry, event, true);
-
-						SyncUtil.addSyncDLObject(fileEntrySyncDLObject);
+						SyncUtil.addSyncDLObject(
+							SyncUtil.toSyncDLObject(dlFileEntry, event, true));
 					}
 					catch (Exception e) {
 						_log.error(e, e);
