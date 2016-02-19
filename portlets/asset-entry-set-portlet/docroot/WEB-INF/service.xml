@@ -27,6 +27,8 @@
 		<column name="childAssetEntrySetsCount" type="int" />
 		<column name="assetEntrySetLikesCount" type="int" />
 		<column name="privateAssetEntrySet" type="boolean" />
+		<column name="stickyTime" type="long" />
+		<column name="type" type="int" />
 
 		<!-- Order -->
 
