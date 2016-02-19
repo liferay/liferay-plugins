@@ -171,8 +171,7 @@ public class VerifyUtil {
 
 					if ((dlFileEntry.getStatus() !=
 							WorkflowConstants.STATUS_APPROVED) &&
-						(dlFileEntry.getStatus() !=
-							WorkflowConstants.STATUS_IN_TRASH)) {
+						!dlFileEntry.isInTrash()) {
 
 						return;
 					}
@@ -207,14 +206,16 @@ public class VerifyUtil {
 						if (dlFileEntry.isCheckedOut()) {
 							SyncDLObject approvedFileEntrySyncDLObject =
 								SyncUtil.toSyncDLObject(
-									dlFileEntry, event, true, true);
+									dlFileEntry, event,
+									!dlFileEntry.isInTrash(), true);
 
 							SyncUtil.addSyncDLObject(
 								approvedFileEntrySyncDLObject);
 						}
 
 						SyncUtil.addSyncDLObject(
-							SyncUtil.toSyncDLObject(dlFileEntry, event, true));
+							SyncUtil.toSyncDLObject(
+								dlFileEntry, event, !dlFileEntry.isInTrash()));
 					}
 					catch (Exception e) {
 						_log.error(e, e);
