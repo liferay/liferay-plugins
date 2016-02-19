@@ -247,10 +247,10 @@ public class SyncDLObjectLocalServiceImpl
 		final String searchTreePath = StringUtil.quote(
 			String.valueOf(parentSyncDLObject.getTypePK()), StringPool.SLASH);
 
-		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
-		syncDLObjectActionableDynamicQuery.setAddCriteriaMethod(
+		actionableDynamicQuery.setAddCriteriaMethod(
 			new ActionableDynamicQuery.AddCriteriaMethod() {
 
 				@Override
@@ -263,7 +263,7 @@ public class SyncDLObjectLocalServiceImpl
 				}
 
 			});
-		syncDLObjectActionableDynamicQuery.setPerformActionMethod(
+		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<SyncDLObject>() {
 
 				@Override
@@ -292,7 +292,7 @@ public class SyncDLObjectLocalServiceImpl
 
 			});
 
-		syncDLObjectActionableDynamicQuery.performActions();
+		actionableDynamicQuery.performActions();
 	}
 
 	@Override
@@ -300,10 +300,10 @@ public class SyncDLObjectLocalServiceImpl
 			final SyncDLObject parentSyncDLObject)
 		throws PortalException {
 
-		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
-		syncDLObjectActionableDynamicQuery.setAddCriteriaMethod(
+		actionableDynamicQuery.setAddCriteriaMethod(
 			new ActionableDynamicQuery.AddCriteriaMethod() {
 
 				@Override
@@ -320,7 +320,7 @@ public class SyncDLObjectLocalServiceImpl
 				}
 
 			});
-		syncDLObjectActionableDynamicQuery.setPerformActionMethod(
+		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<SyncDLObject>() {
 
 				@Override
@@ -341,7 +341,7 @@ public class SyncDLObjectLocalServiceImpl
 
 			});
 
-		syncDLObjectActionableDynamicQuery.performActions();
+		actionableDynamicQuery.performActions();
 	}
 
 	@Override
@@ -349,10 +349,10 @@ public class SyncDLObjectLocalServiceImpl
 			final SyncDLObject parentSyncDLObject)
 		throws PortalException {
 
-		ActionableDynamicQuery syncDLObjectActionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
-		syncDLObjectActionableDynamicQuery.setAddCriteriaMethod(
+		actionableDynamicQuery.setAddCriteriaMethod(
 			new ActionableDynamicQuery.AddCriteriaMethod() {
 
 				@Override
@@ -369,7 +369,7 @@ public class SyncDLObjectLocalServiceImpl
 				}
 
 			});
-		syncDLObjectActionableDynamicQuery.setPerformActionMethod(
+		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<SyncDLObject>() {
 
 				@Override
@@ -388,7 +388,7 @@ public class SyncDLObjectLocalServiceImpl
 
 			});
 
-		syncDLObjectActionableDynamicQuery.performActions();
+		actionableDynamicQuery.performActions();
 	}
 
 	protected boolean isDefaultRepository(long folderId)
