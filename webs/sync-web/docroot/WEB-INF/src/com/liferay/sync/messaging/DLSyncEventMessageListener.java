@@ -117,7 +117,8 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 				return;
 			}
 
-			syncDLObject = SyncUtil.toSyncDLObject(dlFileEntry, event, true);
+			syncDLObject = SyncUtil.toSyncDLObject(
+				dlFileEntry, event, !dlFileEntry.isInTrash());
 		}
 		else {
 			DLFolder dlFolder = DLFolderLocalServiceUtil.fetchDLFolder(typePK);
