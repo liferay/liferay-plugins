@@ -63,6 +63,8 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
+		attributes.put("stickyTime", getStickyTime());
+		attributes.put("type", getType());
 
 		return attributes;
 	}
@@ -155,6 +157,18 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 
 		if (privateAssetEntrySet != null) {
 			setPrivateAssetEntrySet(privateAssetEntrySet);
+		}
+
+		Long stickyTime = (Long)attributes.get("stickyTime");
+
+		if (stickyTime != null) {
+			setStickyTime(stickyTime);
+		}
+
+		Integer type = (Integer)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
 		}
 	}
 
@@ -488,6 +502,46 @@ public class AssetEntrySetWrapper implements AssetEntrySet,
 	@Override
 	public void setPrivateAssetEntrySet(boolean privateAssetEntrySet) {
 		_assetEntrySet.setPrivateAssetEntrySet(privateAssetEntrySet);
+	}
+
+	/**
+	* Returns the sticky time of this asset entry set.
+	*
+	* @return the sticky time of this asset entry set
+	*/
+	@Override
+	public long getStickyTime() {
+		return _assetEntrySet.getStickyTime();
+	}
+
+	/**
+	* Sets the sticky time of this asset entry set.
+	*
+	* @param stickyTime the sticky time of this asset entry set
+	*/
+	@Override
+	public void setStickyTime(long stickyTime) {
+		_assetEntrySet.setStickyTime(stickyTime);
+	}
+
+	/**
+	* Returns the type of this asset entry set.
+	*
+	* @return the type of this asset entry set
+	*/
+	@Override
+	public int getType() {
+		return _assetEntrySet.getType();
+	}
+
+	/**
+	* Sets the type of this asset entry set.
+	*
+	* @param type the type of this asset entry set
+	*/
+	@Override
+	public void setType(int type) {
+		_assetEntrySet.setType(type);
 	}
 
 	@Override

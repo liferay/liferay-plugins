@@ -12,7 +12,9 @@ create table AssetEntrySet (
 	payload STRING null,
 	childAssetEntrySetsCount INTEGER,
 	assetEntrySetLikesCount INTEGER,
-	privateAssetEntrySet BOOLEAN
+	privateAssetEntrySet BOOLEAN,
+	stickyTime LONG,
+	type_ INTEGER
 );
 
 create table AssetEntrySetLike (

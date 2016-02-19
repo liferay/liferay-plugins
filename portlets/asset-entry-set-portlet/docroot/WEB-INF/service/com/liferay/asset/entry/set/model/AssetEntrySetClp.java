@@ -88,6 +88,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		attributes.put("childAssetEntrySetsCount", getChildAssetEntrySetsCount());
 		attributes.put("assetEntrySetLikesCount", getAssetEntrySetLikesCount());
 		attributes.put("privateAssetEntrySet", getPrivateAssetEntrySet());
+		attributes.put("stickyTime", getStickyTime());
+		attributes.put("type", getType());
 
 		return attributes;
 	}
@@ -180,6 +182,18 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 		if (privateAssetEntrySet != null) {
 			setPrivateAssetEntrySet(privateAssetEntrySet);
+		}
+
+		Long stickyTime = (Long)attributes.get("stickyTime");
+
+		if (stickyTime != null) {
+			setStickyTime(stickyTime);
+		}
+
+		Integer type = (Integer)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
 		}
 	}
 
@@ -527,6 +541,52 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	}
 
 	@Override
+	public long getStickyTime() {
+		return _stickyTime;
+	}
+
+	@Override
+	public void setStickyTime(long stickyTime) {
+		_stickyTime = stickyTime;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStickyTime", long.class);
+
+				method.invoke(_assetEntrySetRemoteModel, stickyTime);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public int getType() {
+		return _type;
+	}
+
+	@Override
+	public void setType(int type) {
+		_type = type;
+
+		if (_assetEntrySetRemoteModel != null) {
+			try {
+				Class<?> clazz = _assetEntrySetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setType", int.class);
+
+				method.invoke(_assetEntrySetRemoteModel, type);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets() {
 		try {
 			String methodName = "getChildAssetEntrySets";
@@ -647,6 +707,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		clone.setChildAssetEntrySetsCount(getChildAssetEntrySetsCount());
 		clone.setAssetEntrySetLikesCount(getAssetEntrySetLikesCount());
 		clone.setPrivateAssetEntrySet(getPrivateAssetEntrySet());
+		clone.setStickyTime(getStickyTime());
+		clone.setType(getType());
 
 		return clone;
 	}
@@ -707,7 +769,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(getAssetEntrySetId());
@@ -737,6 +799,10 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 		sb.append(getAssetEntrySetLikesCount());
 		sb.append(", privateAssetEntrySet=");
 		sb.append(getPrivateAssetEntrySet());
+		sb.append(", stickyTime=");
+		sb.append(getStickyTime());
+		sb.append(", type=");
+		sb.append(getType());
 		sb.append("}");
 
 		return sb.toString();
@@ -744,7 +810,7 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		StringBundler sb = new StringBundler(52);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.asset.entry.set.model.AssetEntrySet");
@@ -806,6 +872,14 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 			"<column><column-name>privateAssetEntrySet</column-name><column-value><![CDATA[");
 		sb.append(getPrivateAssetEntrySet());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>stickyTime</column-name><column-value><![CDATA[");
+		sb.append(getStickyTime());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -827,6 +901,8 @@ public class AssetEntrySetClp extends BaseModelImpl<AssetEntrySet>
 	private int _childAssetEntrySetsCount;
 	private int _assetEntrySetLikesCount;
 	private boolean _privateAssetEntrySet;
+	private long _stickyTime;
+	private int _type;
 	private BaseModel<?> _assetEntrySetRemoteModel;
 	private Class<?> _clpSerializerClass = com.liferay.asset.entry.set.service.ClpSerializer.class;
 }

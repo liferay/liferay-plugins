@@ -260,7 +260,7 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -328,7 +328,7 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

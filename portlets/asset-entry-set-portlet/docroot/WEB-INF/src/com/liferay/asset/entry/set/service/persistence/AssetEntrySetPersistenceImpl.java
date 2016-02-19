@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -50,6 +51,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * The persistence implementation for the asset entry set service.
@@ -4390,6 +4392,8 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		assetEntrySetImpl.setChildAssetEntrySetsCount(assetEntrySet.getChildAssetEntrySetsCount());
 		assetEntrySetImpl.setAssetEntrySetLikesCount(assetEntrySet.getAssetEntrySetLikesCount());
 		assetEntrySetImpl.setPrivateAssetEntrySet(assetEntrySet.isPrivateAssetEntrySet());
+		assetEntrySetImpl.setStickyTime(assetEntrySet.getStickyTime());
+		assetEntrySetImpl.setType(assetEntrySet.getType());
 
 		return assetEntrySetImpl;
 	}
@@ -4667,6 +4671,11 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 		return count.intValue();
 	}
 
+	@Override
+	protected Set<String> getBadColumnNames() {
+		return _badColumnNames;
+	}
+
 	/**
 	 * Initializes the asset entry set persistence.
 	 */
@@ -4719,6 +4728,9 @@ public class AssetEntrySetPersistenceImpl extends BasePersistenceImpl<AssetEntry
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(AssetEntrySetPersistenceImpl.class);
+	private static Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
+				"type"
+			});
 	private static AssetEntrySet _nullAssetEntrySet = new AssetEntrySetImpl() {
 			@Override
 			public Object clone() {

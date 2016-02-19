@@ -44,6 +44,8 @@ public class AssetEntrySetSoap implements Serializable {
 		soapModel.setChildAssetEntrySetsCount(model.getChildAssetEntrySetsCount());
 		soapModel.setAssetEntrySetLikesCount(model.getAssetEntrySetLikesCount());
 		soapModel.setPrivateAssetEntrySet(model.getPrivateAssetEntrySet());
+		soapModel.setStickyTime(model.getStickyTime());
+		soapModel.setType(model.getType());
 
 		return soapModel;
 	}
@@ -212,6 +214,22 @@ public class AssetEntrySetSoap implements Serializable {
 		_privateAssetEntrySet = privateAssetEntrySet;
 	}
 
+	public long getStickyTime() {
+		return _stickyTime;
+	}
+
+	public void setStickyTime(long stickyTime) {
+		_stickyTime = stickyTime;
+	}
+
+	public int getType() {
+		return _type;
+	}
+
+	public void setType(int type) {
+		_type = type;
+	}
+
 	private long _assetEntrySetId;
 	private long _companyId;
 	private long _userId;
@@ -226,4 +244,6 @@ public class AssetEntrySetSoap implements Serializable {
 	private int _childAssetEntrySetsCount;
 	private int _assetEntrySetLikesCount;
 	private boolean _privateAssetEntrySet;
+	private long _stickyTime;
+	private int _type;
 }

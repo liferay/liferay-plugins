@@ -295,12 +295,12 @@ public class AssetEntrySetLocalServiceWrapper
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.addAssetEntrySet(userId,
 			parentAssetEntrySetId, creatorClassNameId, creatorClassPK,
-			payloadJSONObject, privateAssetEntrySet);
+			payloadJSONObject, privateAssetEntrySet, stickyTime, type);
 	}
 
 	@Override
@@ -401,11 +401,11 @@ public class AssetEntrySetLocalServiceWrapper
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.updateAssetEntrySet(assetEntrySetId,
-			payloadJSONObject, privateAssetEntrySet);
+			payloadJSONObject, privateAssetEntrySet, stickyTime, type);
 	}
 
 	/**

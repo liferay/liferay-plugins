@@ -119,7 +119,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes19 = new String[] {
 				"long", "long", "long", "long",
-				"com.liferay.portal.kernel.json.JSONObject", "boolean"
+				"com.liferay.portal.kernel.json.JSONObject", "boolean", "long",
+				"int"
 			};
 
 		_methodName20 = "addFileAttachment";
@@ -175,7 +176,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		_methodName29 = "updateAssetEntrySet";
 
 		_methodParameterTypes29 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean"
+				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean",
+				"long", "int"
 			};
 	}
 
@@ -739,7 +741,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -758,7 +760,11 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 						
 					ClpSerializer.translateInput(payloadJSONObject),
 						
-					privateAssetEntrySet
+					privateAssetEntrySet,
+						
+					stickyTime,
+						
+					type
 					});
 		}
 		catch (Throwable t) {
@@ -1174,7 +1180,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	public com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1187,7 +1193,11 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 						
 					ClpSerializer.translateInput(payloadJSONObject),
 						
-					privateAssetEntrySet
+					privateAssetEntrySet,
+						
+					stickyTime,
+						
+					type
 					});
 		}
 		catch (Throwable t) {

@@ -23,6 +23,10 @@
 			<basic name="childAssetEntrySetsCount" />
 			<basic name="assetEntrySetLikesCount" />
 			<basic name="privateAssetEntrySet" />
+			<basic name="stickyTime" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

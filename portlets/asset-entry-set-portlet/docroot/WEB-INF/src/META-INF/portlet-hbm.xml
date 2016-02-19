@@ -22,6 +22,8 @@
 		<property name="childAssetEntrySetsCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="assetEntrySetLikesCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="privateAssetEntrySet" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="stickyTime" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
 	</class>
 	<class name="com.liferay.asset.entry.set.model.impl.AssetEntrySetLikeImpl" table="AssetEntrySetLike">
 		<cache usage="read-write" />

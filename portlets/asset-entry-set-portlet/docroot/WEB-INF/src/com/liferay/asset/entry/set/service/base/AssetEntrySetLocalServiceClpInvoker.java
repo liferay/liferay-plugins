@@ -118,7 +118,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 
 		_methodParameterTypes66 = new String[] {
 				"long", "long", "long", "long",
-				"com.liferay.portal.kernel.json.JSONObject", "boolean"
+				"com.liferay.portal.kernel.json.JSONObject", "boolean", "long",
+				"int"
 			};
 
 		_methodName67 = "addFileAttachment";
@@ -184,7 +185,8 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName78 = "updateAssetEntrySet";
 
 		_methodParameterTypes78 = new String[] {
-				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean"
+				"long", "com.liferay.portal.kernel.json.JSONObject", "boolean",
+				"long", "int"
 			};
 	}
 
@@ -296,7 +298,9 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[2]).longValue(),
 				((Long)arguments[3]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[4],
-				((Boolean)arguments[5]).booleanValue());
+				((Boolean)arguments[5]).booleanValue(),
+				((Long)arguments[6]).longValue(),
+				((Integer)arguments[7]).intValue());
 		}
 
 		if (_methodName67.equals(name) &&
@@ -390,7 +394,9 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return AssetEntrySetLocalServiceUtil.updateAssetEntrySet(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.kernel.json.JSONObject)arguments[1],
-				((Boolean)arguments[2]).booleanValue());
+				((Boolean)arguments[2]).booleanValue(),
+				((Long)arguments[3]).longValue(),
+				((Integer)arguments[4]).intValue());
 		}
 
 		throw new UnsupportedOperationException();

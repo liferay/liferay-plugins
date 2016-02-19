@@ -36,7 +36,7 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{assetEntrySetId=");
 		sb.append(assetEntrySetId);
@@ -66,6 +66,10 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		sb.append(assetEntrySetLikesCount);
 		sb.append(", privateAssetEntrySet=");
 		sb.append(privateAssetEntrySet);
+		sb.append(", stickyTime=");
+		sb.append(stickyTime);
+		sb.append(", type=");
+		sb.append(type);
 		sb.append("}");
 
 		return sb.toString();
@@ -102,6 +106,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		assetEntrySetImpl.setChildAssetEntrySetsCount(childAssetEntrySetsCount);
 		assetEntrySetImpl.setAssetEntrySetLikesCount(assetEntrySetLikesCount);
 		assetEntrySetImpl.setPrivateAssetEntrySet(privateAssetEntrySet);
+		assetEntrySetImpl.setStickyTime(stickyTime);
+		assetEntrySetImpl.setType(type);
 
 		assetEntrySetImpl.resetOriginalValues();
 
@@ -124,6 +130,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		childAssetEntrySetsCount = objectInput.readInt();
 		assetEntrySetLikesCount = objectInput.readInt();
 		privateAssetEntrySet = objectInput.readBoolean();
+		stickyTime = objectInput.readLong();
+		type = objectInput.readInt();
 	}
 
 	@Override
@@ -156,6 +164,8 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 		objectOutput.writeInt(childAssetEntrySetsCount);
 		objectOutput.writeInt(assetEntrySetLikesCount);
 		objectOutput.writeBoolean(privateAssetEntrySet);
+		objectOutput.writeLong(stickyTime);
+		objectOutput.writeInt(type);
 	}
 
 	public long assetEntrySetId;
@@ -172,4 +182,6 @@ public class AssetEntrySetCacheModel implements CacheModel<AssetEntrySet>,
 	public int childAssetEntrySetsCount;
 	public int assetEntrySetLikesCount;
 	public boolean privateAssetEntrySet;
+	public long stickyTime;
+	public int type;
 }

@@ -281,13 +281,13 @@ public class AssetEntrySetLocalServiceUtil {
 		long userId, long parentAssetEntrySetId, long creatorClassNameId,
 		long creatorClassPK,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addAssetEntrySet(userId, parentAssetEntrySetId,
 			creatorClassNameId, creatorClassPK, payloadJSONObject,
-			privateAssetEntrySet);
+			privateAssetEntrySet, stickyTime, type);
 	}
 
 	public static com.liferay.portal.kernel.json.JSONObject addFileAttachment(
@@ -377,12 +377,12 @@ public class AssetEntrySetLocalServiceUtil {
 	public static com.liferay.asset.entry.set.model.AssetEntrySet updateAssetEntrySet(
 		long assetEntrySetId,
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject,
-		boolean privateAssetEntrySet)
+		boolean privateAssetEntrySet, long stickyTime, int type)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateAssetEntrySet(assetEntrySetId, payloadJSONObject,
-			privateAssetEntrySet);
+			privateAssetEntrySet, stickyTime, type);
 	}
 
 	public static void clearService() {

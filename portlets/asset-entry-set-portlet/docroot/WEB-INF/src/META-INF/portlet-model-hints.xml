@@ -18,6 +18,8 @@
 		<field name="childAssetEntrySetsCount" type="int" />
 		<field name="assetEntrySetLikesCount" type="int" />
 		<field name="privateAssetEntrySet" type="boolean" />
+		<field name="stickyTime" type="long" />
+		<field name="type" type="int" />
 	</model>
 	<model name="com.liferay.asset.entry.set.model.AssetEntrySetLike">
 		<field name="assetEntrySetId" type="long" />
