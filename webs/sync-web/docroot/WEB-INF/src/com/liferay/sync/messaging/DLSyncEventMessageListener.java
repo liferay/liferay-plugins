@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
-import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.SyncUtil;
 
 import java.util.List;
@@ -41,39 +40,6 @@ import java.util.List;
  * @author Dennis Ju
  */
 public class DLSyncEventMessageListener extends BaseMessageListener {
-
-	protected void addSyncDLObject(SyncDLObject syncDLObject) throws Exception {
-		String event = syncDLObject.getEvent();
-
-		if (event.equals(SyncDLObjectConstants.EVENT_DELETE) ||
-			event.equals(SyncDLObjectConstants.EVENT_TRASH)) {
-
-			SyncDLObjectLocalServiceUtil.addSyncDLObject(
-				0, syncDLObject.getUserId(), syncDLObject.getUserName(),
-				syncDLObject.getModifiedTime(), 0, 0, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, 0, 0, StringPool.BLANK, event, null, 0,
-				StringPool.BLANK, syncDLObject.getType(),
-				syncDLObject.getTypePK(), StringPool.BLANK);
-		}
-		else {
-			SyncDLObjectLocalServiceUtil.addSyncDLObject(
-				syncDLObject.getCompanyId(), syncDLObject.getUserId(),
-				syncDLObject.getUserName(), syncDLObject.getModifiedTime(),
-				syncDLObject.getRepositoryId(),
-				syncDLObject.getParentFolderId(), syncDLObject.getTreePath(),
-				syncDLObject.getName(), syncDLObject.getExtension(),
-				syncDLObject.getMimeType(), syncDLObject.getDescription(),
-				syncDLObject.getChangeLog(), syncDLObject.getExtraSettings(),
-				syncDLObject.getVersion(), syncDLObject.getVersionId(),
-				syncDLObject.getSize(), syncDLObject.getChecksum(),
-				syncDLObject.getEvent(), syncDLObject.getLockExpirationDate(),
-				syncDLObject.getLockUserId(), syncDLObject.getLockUserName(),
-				syncDLObject.getType(), syncDLObject.getTypePK(),
-				syncDLObject.getTypeUuid());
-		}
-	}
 
 	protected void deleteDLSyncEvent(
 			long modifiedTime, long syncEventId, long typePK)
@@ -175,7 +141,7 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 
 		syncDLObject.setModifiedTime(modifiedTime);
 
-		addSyncDLObject(syncDLObject);
+		SyncUtil.addSyncDLObject(syncDLObject);
 	}
 
 }
