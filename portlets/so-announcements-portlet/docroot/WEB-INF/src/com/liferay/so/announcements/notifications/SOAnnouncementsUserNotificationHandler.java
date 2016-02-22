@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
-import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -126,10 +125,15 @@ public class SOAnnouncementsUserNotificationHandler
 			group = user.getGroup();
 		}
 
+		PortletURL portletURL = null;
+
 		long portletPlid = PortalUtil.getPlidFromPortletId(
 			group.getGroupId(), true, PortletKeys.SO_ANNOUNCEMENTS);
 
-		PortletURL portletURL = null;
+		if (portletPlid == 0) {
+			portletPlid = PortalUtil.getPlidFromPortletId(
+				group.getGroupId(), false, PortletKeys.SO_ANNOUNCEMENTS);
+		}
 
 		if (portletPlid != 0) {
 			portletURL = PortletURLFactoryUtil.create(
@@ -138,14 +142,14 @@ public class SOAnnouncementsUserNotificationHandler
 				PortletRequest.RENDER_PHASE);
 		}
 		else {
-			LiferayPortletResponse liferayPortletResponse =
-				serviceContext.getLiferayPortletResponse();
+			long defaultPublicPlid = group.getDefaultPublicPlid();
 
-			portletURL = liferayPortletResponse.createRenderURL(
-				PortletKeys.SO_ANNOUNCEMENTS);
+			portletURL = PortletURLFactoryUtil.create(
+				serviceContext.getLiferayPortletRequest(),
+				PortletKeys.SO_ANNOUNCEMENTS, defaultPublicPlid,
+				PortletRequest.RENDER_PHASE);
 
-			portletURL.setParameter("mvcPath", "/view.jsp");
-			portletURL.setWindowState(WindowState.NORMAL);
+			portletURL.setWindowState(WindowState.MAXIMIZED);
 		}
 
 		return portletURL.toString();
