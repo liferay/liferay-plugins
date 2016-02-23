@@ -37,4 +37,11 @@ public interface AssetEntrySetFinder {
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByPAESI_ST_T_CNI(
+		long classNameId, long classPK, long parentAssetEntrySetId,
+		long stickyTime, int type,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		java.lang.String[] assetTagNames, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -312,6 +312,18 @@ public class AssetEntrySetLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getAssetEntrySets(
+		long userId, long parentAssetEntrySetId, long stickyTime, int type,
+		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
+		java.lang.String[] assetTagNames, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntrySetLocalService.getAssetEntrySets(userId,
+			parentAssetEntrySetId, stickyTime, type, sharedToJSONArray,
+			assetTagNames, start, end);
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getChildAssetEntrySets(
 		long parentAssetEntrySetId)
 		throws com.liferay.portal.kernel.exception.SystemException {
