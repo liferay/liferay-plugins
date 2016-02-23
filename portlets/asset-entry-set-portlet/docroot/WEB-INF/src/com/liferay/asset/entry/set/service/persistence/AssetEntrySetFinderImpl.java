@@ -120,7 +120,7 @@ public class AssetEntrySetFinderImpl
 
 	public List<AssetEntrySet> findByCT_PAESI_CNI(
 			long classNameId, long classPK, long createTime,
-			boolean gtCreateTime, long parentAssetEntrySetId,
+			boolean gtCreateTime, long parentAssetEntrySetId, long stickyTime,
 			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
 			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
@@ -177,6 +177,7 @@ public class AssetEntrySetFinderImpl
 
 			qPos.add(createTime);
 			qPos.add(parentAssetEntrySetId);
+			qPos.add(stickyTime);
 			qPos.add(AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			setAssetTagNames(qPos, assetTagNames);
@@ -194,7 +195,7 @@ public class AssetEntrySetFinderImpl
 
 	public List<AssetEntrySet> findByMT_PAESI_CNI(
 			long classNameId, long classPK, long modifiedTime,
-			boolean gtModifiedTime, long parentAssetEntrySetId,
+			boolean gtModifiedTime, long parentAssetEntrySetId, long stickyTime,
 			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
 			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
 			int end)
@@ -251,6 +252,7 @@ public class AssetEntrySetFinderImpl
 
 			qPos.add(modifiedTime);
 			qPos.add(parentAssetEntrySetId);
+			qPos.add(stickyTime);
 			qPos.add(AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			setAssetTagNames(qPos, assetTagNames);

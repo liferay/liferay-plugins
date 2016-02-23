@@ -14,6 +14,7 @@
 			WHERE
 				(AssetEntrySet.createTime [$CREATE_TIME_COMPARATOR$] ?) AND
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
+				(AssetEntrySet.stickyTime < ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
 				(
 					[$SHARED_TO$]
@@ -38,6 +39,7 @@
 			WHERE
 				(AssetEntrySet.modifiedTime [$MODIFIED_TIME_COMPARATOR$] ?) AND
 				(AssetEntrySet.parentAssetEntrySetId = ?) AND
+				(AssetEntrySet.stickyTime < ?) AND
 				(AssetSharingEntry1.classNameId = ?) AND
 				(
 					[$SHARED_TO$]
