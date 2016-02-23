@@ -49,6 +49,26 @@
 				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByPAESI_ST_T_CNI">
+		<![CDATA[
+			SELECT
+				DISTINCT {AssetEntrySet.*}
+			FROM
+				AssetEntrySet
+			INNER JOIN
+				AssetSharingEntry AS AssetSharingEntry1 ON
+					(AssetSharingEntry1.classPK = AssetEntrySet.assetEntrySetId)
+			[$JOIN_BY$]
+			WHERE
+				(AssetEntrySet.parentAssetEntrySetId = ?) AND
+				(AssetEntrySet.stickyTime > ?) AND
+				(AssetEntrySet.type_ = ?) AND
+				(AssetSharingEntry1.classNameId = ?) AND
+				([$WHERE$])
+			ORDER BY
+				AssetEntrySet.stickyTime DESC
+		]]>
+	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.joinByAssetSharingEntry">
 		<![CDATA[
 			INNER JOIN

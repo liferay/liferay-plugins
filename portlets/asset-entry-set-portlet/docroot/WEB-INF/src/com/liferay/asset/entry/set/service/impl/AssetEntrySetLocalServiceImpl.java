@@ -189,6 +189,22 @@ public class AssetEntrySetLocalServiceImpl
 		return deleteAssetEntrySet(assetEntrySet);
 	}
 
+	public List<AssetEntrySet> getAssetEntrySets(
+			long userId, long parentAssetEntrySetId, long stickyTime, int type,
+			JSONArray sharedToJSONArray, String[] assetTagNames, int start,
+			int end)
+		throws PortalException, SystemException {
+
+		ObjectValuePair<Long, Long> classNameIdAndClassPKOVP =
+			AssetEntrySetParticipantInfoUtil.getClassNameIdAndClassPKOVP(
+				userId);
+
+		return assetEntrySetFinder.findByPAESI_ST_T_CNI(
+			classNameIdAndClassPKOVP.getKey(),
+			classNameIdAndClassPKOVP.getValue(), parentAssetEntrySetId,
+			stickyTime, type, sharedToJSONArray, assetTagNames, start, end);
+	}
+
 	@Override
 	public List<AssetEntrySet> getChildAssetEntrySets(
 			long parentAssetEntrySetId)

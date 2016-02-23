@@ -60,6 +60,9 @@ public class AssetEntrySetFinderImpl
 	public static final String FIND_BY_MT_PAESI_CNI =
 		AssetEntrySetFinder.class.getName() + ".findByMT_PAESI_CNI";
 
+	public static final String FIND_BY_PAESI_ST_T_CNI =
+		AssetEntrySetFinder.class.getName() + ".findByPAESI_ST_T_CNI";
+
 	public static final String JOIN_BY_ASSET_SHARING_ENTRY =
 		AssetEntrySetFinder.class.getName() + ".joinByAssetSharingEntry";
 
@@ -248,6 +251,68 @@ public class AssetEntrySetFinderImpl
 
 			qPos.add(modifiedTime);
 			qPos.add(parentAssetEntrySetId);
+			qPos.add(AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID);
+
+			setAssetTagNames(qPos, assetTagNames);
+
+			return (List<AssetEntrySet>)QueryUtil.list(
+				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
+	public List<AssetEntrySet> findByPAESI_ST_T_CNI(
+			long classNameId, long classPK, long parentAssetEntrySetId,
+			long stickyTime, int type, JSONArray sharedToJSONArray,
+			String[] assetTagNames, int start, int end)
+		throws SystemException {
+
+		if (((sharedToJSONArray == null) ||
+			 (sharedToJSONArray.length() == 0)) &&
+			ArrayUtil.isEmpty(assetTagNames)) {
+
+			return Collections.emptyList();
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_PAESI_ST_T_CNI);
+
+			sql = StringUtil.replace(
+				sql, "[$JOIN_BY$]",
+				getJoinBy(sharedToJSONArray, assetTagNames));
+
+			List<String> whereClauses = new ArrayList<String>();
+
+			whereClauses.add(
+				getSharedTo(classNameId, classPK, sharedToJSONArray));
+			whereClauses.add(
+				getAssetTagNames(classNameId, classPK, assetTagNames));
+
+			whereClauses.removeAll(_emptyList);
+
+			sql = StringUtil.replace(
+				sql, "[$WHERE$]",
+				ListUtil.toString(whereClauses, StringPool.BLANK, " OR "));
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("AssetEntrySet", AssetEntrySetImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(parentAssetEntrySetId);
+			qPos.add(stickyTime);
+			qPos.add(type);
 			qPos.add(AssetEntrySetConstants.ASSET_ENTRY_SET_CLASS_NAME_ID);
 
 			setAssetTagNames(qPos, assetTagNames);
