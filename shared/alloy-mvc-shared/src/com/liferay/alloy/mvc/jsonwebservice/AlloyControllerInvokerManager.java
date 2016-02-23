@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.File;
 
@@ -254,6 +255,12 @@ public class AlloyControllerInvokerManager {
 
 			jsonWebServiceMethodsPresent = true;
 
+			String methodName = jsonWebServiceMethod.methodName();
+
+			if (Validator.isNull(methodName)) {
+				methodName = method.getName();
+			}
+
 			Class<?>[] parameterTypes = jsonWebServiceMethod.parameterTypes();
 
 			StringBundler sb = new StringBundler(parameterTypes.length + 3);
@@ -270,7 +277,7 @@ public class AlloyControllerInvokerManager {
 			String methodDescriptor = sb.toString();
 
 			methodVisitor = classWriter.visitMethod(
-				Opcodes.ACC_PUBLIC, method.getName(), methodDescriptor, null,
+				Opcodes.ACC_PUBLIC, methodName, methodDescriptor, null,
 				new String[] {getClassBinaryName(Exception.class.getName())});
 
 			methodVisitor.visitCode();
