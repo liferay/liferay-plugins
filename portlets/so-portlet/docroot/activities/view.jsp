@@ -53,7 +53,7 @@ portletURL.setParameter("tabs1", tabs1);
 	win.plug(
 		Liferay.SO.Scroll,
 		{
-			edgeProximity: 0.4
+			edgeProximity: 1 - (activities.height() / win.height())
 		}
 	);
 
