@@ -16,7 +16,6 @@ package com.liferay.jsonwebserviceclient;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
-import java.io.UnsupportedEncodingException;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -56,6 +55,7 @@ import org.apache.http.client.AuthCache;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -163,6 +163,51 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		_closeableHttpClient = null;
 
 		_idleConnectionMonitorThread.shutdown();
+	}
+
+	@Override
+	public String doDelete(String url, Map<String, String> parameters)
+		throws JSONWebServiceTransportException {
+
+		return doDelete(
+			url, parameters, Collections.<String, String>emptyMap());
+	}
+
+	@Override
+	public String doDelete(
+			String url, Map<String, String> parameters,
+			Map<String, String> headers)
+		throws JSONWebServiceTransportException {
+
+		if (!isNull(_contextPath)) {
+			url = _contextPath + url;
+		}
+
+		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
+
+		if (!nameValuePairs.isEmpty()) {
+			String queryString = URLEncodedUtils.format(
+				nameValuePairs, StandardCharsets.UTF_8);
+
+			url += "?" + queryString;
+		}
+
+		if (_logger.isDebugEnabled()) {
+			_logger.debug(
+				"Sending DELETE request to " + _login + "@" + _hostName + url);
+		}
+
+		HttpDelete httpDelete = new HttpDelete(url);
+
+		for (String key : headers.keySet()) {
+			httpDelete.addHeader(key, headers.get(key));
+		}
+
+		for (String key : _headers.keySet()) {
+			httpDelete.addHeader(key, _headers.get(key));
+		}
+
+		return execute(httpDelete);
 	}
 
 	@Override

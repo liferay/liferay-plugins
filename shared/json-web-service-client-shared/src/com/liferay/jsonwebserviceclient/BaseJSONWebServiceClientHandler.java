@@ -43,6 +43,27 @@ public abstract class BaseJSONWebServiceClientHandler {
 			ObjectMapper.DefaultTyping.JAVA_LANG_OBJECT, "class");
 	}
 
+	protected String doDelete(
+		String url, Map<String, String> parameters,
+		Map<String, String> headers) {
+
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
+		return jsonWebServiceClient.doDelete(url, parameters, headers);
+	}
+
+	protected String doDelete(String url, String... parametersArray) {
+		JSONWebServiceClient jsonWebServiceClient = getJSONWebServiceClient();
+
+		Map<String, String> parameters = new HashMap<String, String>();
+
+		for (int i = 0; i < parametersArray.length; i += 2) {
+			parameters.put(parametersArray[i], parametersArray[i + 1]);
+		}
+
+		return jsonWebServiceClient.doDelete(url, parameters);
+	}
+
 	protected String doGet(
 		String url, Map<String, String> parameters,
 		Map<String, String> headers) {
