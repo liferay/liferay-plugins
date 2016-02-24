@@ -68,21 +68,21 @@
 			<div class="chat-tabs-container">
 				<ul class="chat-tabs">
 					<li class="buddy-list loading <%= openPanelId.equals("buddylist") ? "selected" : "" %>">
-						<div class="panel-trigger" panelId="buddylist" tabindex="0">
+						<div class="chat-panel-trigger" panelId="buddylist" tabindex="0">
 							<span class="trigger-name"><%= LanguageUtil.format(request, "online-friends-x", "(" + buddiesCount + ")", false) %></span>
 						</div>
 
 						<div class="chat-panel">
-							<div class="panel-window">
-								<div class="minimize panel-button"></div>
+							<div class="chat-panel-window">
+								<div class="minimize chat-panel-button"></div>
 
-								<div class="panel-title">
+								<div class="chat-panel-title">
 									<%= LanguageUtil.format(request, "online-friends-x", "(" + buddiesCount + ")", false) %>
 								</div>
 
 								<aui:input cssClass="search-buddies" label="" name="searchBuddies" placeholder="search" />
 
-								<div class="panel-content">
+								<div class="chat-panel-content">
 									<ul class="lfr-component online-users">
 
 										<%
@@ -120,15 +120,15 @@
 						</div>
 					</li>
 					<li class="chat-settings <%= openPanelId.equals("settings") ? "selected" : "" %>">
-						<div class="panel-trigger" panelId="settings" tabindex="0">
+						<div class="chat-panel-trigger" panelId="settings" tabindex="0">
 							<span class="trigger-name"><liferay-ui:message key="settings" /></span>
 						</div>
 
 						<div class="chat-panel">
-							<div class="panel-window">
-								<div class="minimize panel-button"></div>
+							<div class="chat-panel-window">
+								<div class="minimize chat-panel-button"></div>
 
-								<div class="panel-title"><liferay-ui:message key="settings" /></div>
+								<div class="chat-panel-title"><liferay-ui:message key="settings" /></div>
 
 								<ul class="lfr-component settings">
 									<li>
