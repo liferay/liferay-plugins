@@ -152,6 +152,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
 			workflowContext.put(
 				WorkflowConstants.CONTEXT_TRANSITION_NAME, transitionName);
+			workflowContext.put(
+				WorkflowConstants.CONTEXT_USER_ID, String.valueOf(userId));
 
 			ExecutionContext executionContext = new ExecutionContext(
 				kaleoInstanceToken, kaleoTaskInstanceToken, workflowContext,
