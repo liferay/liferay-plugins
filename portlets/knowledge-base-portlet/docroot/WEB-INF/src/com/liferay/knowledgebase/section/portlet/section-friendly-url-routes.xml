@@ -7,7 +7,7 @@
 		<implicit-parameter name="mvcPath">/section/view.jsp</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/rss</pattern>
+		<pattern>/{userIdAndInstanceId}/rss</pattern>
 		<ignored-parameter name="mvcPath" />
 		<ignored-parameter name="p_p_state" />
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
@@ -15,29 +15,29 @@
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}</pattern>
+		<pattern>/{userIdAndInstanceId}/{resourcePrimKey:\d+}</pattern>
 		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{urlTitle}</pattern>
+		<pattern>/{userIdAndInstanceId}/{urlTitle}</pattern>
 		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{p_p_state}</pattern>
+		<pattern>/{userIdAndInstanceId}/{resourcePrimKey:\d+}/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{kbFolderUrlTitle}/{urlTitle}</pattern>
+		<pattern>/{userIdAndInstanceId}/{kbFolderUrlTitle}/{urlTitle}</pattern>
 		<implicit-parameter name="mvcPath">/section/view_article.jsp</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{status:-?\d+}/history</pattern>
+		<pattern>/{userIdAndInstanceId}/{resourcePrimKey:\d+}/{status:-?\d+}/history</pattern>
 		<implicit-parameter name="mvcPath">/section/history.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{instanceId}/{resourcePrimKey:\d+}/{status:-?\d+}/history/{p_p_state}</pattern>
+		<pattern>/{userIdAndInstanceId}/{resourcePrimKey:\d+}/{status:-?\d+}/history/{p_p_state}</pattern>
 		<implicit-parameter name="mvcPath">/section/history.jsp</implicit-parameter>
 	</route>
 </routes>
