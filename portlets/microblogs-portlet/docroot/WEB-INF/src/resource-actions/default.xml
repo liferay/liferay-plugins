@@ -23,6 +23,7 @@
 			<portlet-name>1</portlet-name>
 			<portlet-name>2</portlet-name>
 		</portlet-ref>
+		<root>true</root>
 		<permissions>
 			<supports>
 				<action-key>ADD_ENTRY</action-key>

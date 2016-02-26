@@ -100,6 +100,7 @@
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
+		<root>true</root>
 		<permissions>
 			<supports>
 				<action-key>ADD_KB_ARTICLE</action-key>
@@ -136,6 +137,7 @@
 		<portlet-ref>
 			<portlet-name>2</portlet-name>
 		</portlet-ref>
+		<root>true</root>
 		<permissions>
 			<supports>
 				<action-key>ADD_KB_ARTICLE</action-key>

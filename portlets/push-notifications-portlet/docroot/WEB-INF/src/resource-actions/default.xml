@@ -19,6 +19,7 @@
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>
+		<root>true</root>
 		<permissions>
 			<supports>
 				<action-key>MANAGE_DEVICES</action-key>
