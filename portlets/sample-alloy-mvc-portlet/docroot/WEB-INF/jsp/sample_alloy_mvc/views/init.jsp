@@ -27,11 +27,11 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %><%@
 taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.portlet.PortletURLUtil" %>
+<%@ taglib prefix="liferay-frontend" uri="http://liferay.com/tld/theme" %>
 
-<%@ page import="javax.portlet.PortletMode" %><%@
-page import="javax.portlet.PortletURL" %><%@
-page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.PortletMode" %>
+
+<liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />
 
@@ -39,11 +39,6 @@ page import="javax.portlet.WindowState" %>
 
 <%
 PortletMode portletMode = liferayPortletRequest.getPortletMode();
-WindowState windowState = liferayPortletRequest.getWindowState();
-
-PortletURL currentURLObj = PortletURLUtil.getCurrent(liferayPortletRequest, liferayPortletResponse);
-
-String currentURL = currentURLObj.toString();
 
 String layoutURL = com.liferay.portal.kernel.util.PortalUtil.getLayoutURL(layout, themeDisplay);
 %>
