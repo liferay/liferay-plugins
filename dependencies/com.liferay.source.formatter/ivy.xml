@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency name="com.liferay.source.formatter" org="com.liferay" rev="1.0.149" />
+		<dependency name="com.liferay.source.formatter" org="com.liferay" rev="1.0.150" />
 	</dependencies>
 </ivy-module>
