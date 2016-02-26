@@ -127,15 +127,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			BaseModel<?> baseModel, Company company, User user)
 		throws Exception {
 
-		if (!(baseModel instanceof AuditedModel)) {
-			return;
-		}
+		if (!(baseModel instanceof AuditedModel) || (company == null) ||
+			(user == null)) {
 
-		if (company == null) {
-			return;
-		}
-
-		if (user == null) {
 			return;
 		}
 
@@ -157,40 +151,29 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			BaseModel<?> baseModel, HttpServletRequest request)
 		throws Exception {
 
-		if (!(baseModel instanceof AuditedModel)) {
-			return;
-		}
-
-		if (request == null) {
+		if (!(baseModel instanceof AuditedModel) || (request == null)) {
 			return;
 		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Company company = themeDisplay.getCompany();
-		User user = themeDisplay.getUser();
-
-		setAuditedModel(baseModel, company, user);
+		setAuditedModel(
+			baseModel, themeDisplay.getCompany(), themeDisplay.getUser());
 	}
 
 	public static void setAuditedModel(BaseModel<?> baseModel, User user)
 		throws Exception {
 
-		if (!(baseModel instanceof AuditedModel)) {
-			return;
-		}
-
-		if (user == null) {
+		if (!(baseModel instanceof AuditedModel) || (user == null)) {
 			return;
 		}
 
 		long companyId = CompanyLocalServiceUtil.getCompanyIdByUserId(
 			user.getUserId());
 
-		Company company = CompanyLocalServiceUtil.getCompany(companyId);
-
-		setAuditedModel(baseModel, company, user);
+		setAuditedModel(
+			baseModel, CompanyLocalServiceUtil.getCompany(companyId), user);
 	}
 
 	@Override
