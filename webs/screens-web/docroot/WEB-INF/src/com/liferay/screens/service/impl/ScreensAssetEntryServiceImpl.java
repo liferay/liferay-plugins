@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.PortletItem;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.service.persistence.LayoutUtil;
@@ -46,6 +47,7 @@ import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleResource;
 import com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil;
 import com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl;
+import com.liferay.screens.service.permission.AssetEntryPermission;
 
 import java.util.List;
 import java.util.Locale;
@@ -151,6 +153,9 @@ public class ScreensAssetEntryServiceImpl
 
 	protected JSONObject getAssetObjectJSONObject(AssetEntry assetEntry)
 		throws PortalException, SystemException {
+
+		AssetEntryPermission.check(
+			getPermissionChecker(), assetEntry, ActionKeys.VIEW);
 
 		String className = assetEntry.getClassName();
 
