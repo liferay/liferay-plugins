@@ -403,7 +403,7 @@ public class AssetEntrySetLocalServiceImpl
 				userId);
 
 		if (!modifiedTime) {
-			return assetEntrySetFinder.findByCT_PAESI_CNI(
+			return assetEntrySetFinder.findByCT_PAESI_ST_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
 				parentAssetEntrySetId, stickyTime, sharedToJSONArray,
@@ -411,7 +411,7 @@ public class AssetEntrySetLocalServiceImpl
 				start, end);
 		}
 		else {
-			return assetEntrySetFinder.findByMT_PAESI_CNI(
+			return assetEntrySetFinder.findByMT_PAESI_ST_CNI(
 				classNameIdAndClassPKOVP.getKey(),
 				classNameIdAndClassPKOVP.getValue(), time, gtTime,
 				parentAssetEntrySetId, stickyTime, sharedToJSONArray,

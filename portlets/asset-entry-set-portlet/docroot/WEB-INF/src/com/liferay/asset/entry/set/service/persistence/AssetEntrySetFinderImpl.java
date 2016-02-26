@@ -56,11 +56,11 @@ public class AssetEntrySetFinderImpl
 			AssetEntrySetFinder.class.getName() +
 				".findAssetEntrySetReferenceByPAESI_CNI";
 
-	public static final String FIND_BY_CT_PAESI_CNI =
-		AssetEntrySetFinder.class.getName() + ".findByCT_PAESI_CNI";
+	public static final String FIND_BY_CT_PAESI_ST_CNI =
+		AssetEntrySetFinder.class.getName() + ".findByCT_PAESI_ST_CNI";
 
-	public static final String FIND_BY_MT_PAESI_CNI =
-		AssetEntrySetFinder.class.getName() + ".findByMT_PAESI_CNI";
+	public static final String FIND_BY_MT_PAESI_ST_CNI =
+		AssetEntrySetFinder.class.getName() + ".findByMT_PAESI_ST_CNI";
 
 	public static final String FIND_BY_PAESI_ST_T_CNI =
 		AssetEntrySetFinder.class.getName() + ".findByPAESI_ST_T_CNI";
@@ -122,7 +122,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	@Override
-	public List<AssetEntrySet> findByCT_PAESI_CNI(
+	public List<AssetEntrySet> findByCT_PAESI_ST_CNI(
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId, long stickyTime,
 			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
@@ -143,7 +143,7 @@ public class AssetEntrySetFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_CT_PAESI_CNI);
+			String sql = CustomSQLUtil.get(FIND_BY_CT_PAESI_ST_CNI);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY$]",
@@ -203,7 +203,7 @@ public class AssetEntrySetFinderImpl
 	}
 
 	@Override
-	public List<AssetEntrySet> findByMT_PAESI_CNI(
+	public List<AssetEntrySet> findByMT_PAESI_ST_CNI(
 			long classNameId, long classPK, long modifiedTime,
 			boolean gtModifiedTime, long parentAssetEntrySetId, long stickyTime,
 			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
@@ -224,7 +224,7 @@ public class AssetEntrySetFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_MT_PAESI_CNI);
+			String sql = CustomSQLUtil.get(FIND_BY_MT_PAESI_ST_CNI);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY$]",

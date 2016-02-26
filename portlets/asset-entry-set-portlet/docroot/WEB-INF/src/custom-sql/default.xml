@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PAESI_CNI">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByCT_PAESI_ST_CNI">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}
@@ -22,7 +22,7 @@
 				AssetEntrySet.createTime DESC
 		]]>
 	</sql>
-	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByMT_PAESI_CNI">
+	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByMT_PAESI_ST_CNI">
 		<![CDATA[
 			SELECT
 				DISTINCT {AssetEntrySet.*}
