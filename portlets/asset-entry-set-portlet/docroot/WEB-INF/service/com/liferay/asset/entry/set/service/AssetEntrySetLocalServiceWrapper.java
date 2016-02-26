@@ -333,14 +333,14 @@ public class AssetEntrySetLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId,
+		long parentAssetEntrySetId, long stickyTime,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.getNewAssetEntrySets(userId, time,
-			modifiedTime, parentAssetEntrySetId, sharedToJSONArray,
+			modifiedTime, parentAssetEntrySetId, stickyTime, sharedToJSONArray,
 			includeAssetEntrySetIds, excludeAssetEntrySetIds, assetTagNames,
 			start, end);
 	}
@@ -359,14 +359,14 @@ public class AssetEntrySetLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId,
+		long parentAssetEntrySetId, long stickyTime,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntrySetLocalService.getOldAssetEntrySets(userId, time,
-			modifiedTime, parentAssetEntrySetId, sharedToJSONArray,
+			modifiedTime, parentAssetEntrySetId, stickyTime, sharedToJSONArray,
 			includeAssetEntrySetIds, excludeAssetEntrySetIds, assetTagNames,
 			start, end);
 	}

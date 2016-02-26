@@ -285,7 +285,7 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId,
+		long parentAssetEntrySetId, long stickyTime,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
@@ -303,7 +303,7 @@ public interface AssetEntrySetLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
-		long parentAssetEntrySetId,
+		long parentAssetEntrySetId, long stickyTime,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)

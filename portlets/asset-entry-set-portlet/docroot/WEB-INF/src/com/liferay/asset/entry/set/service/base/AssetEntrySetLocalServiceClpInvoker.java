@@ -151,7 +151,7 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName72 = "getNewAssetEntrySets";
 
 		_methodParameterTypes72 = new String[] {
-				"long", "long", "boolean", "long",
+				"long", "long", "boolean", "long", "long",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
 			};
@@ -166,7 +166,7 @@ public class AssetEntrySetLocalServiceClpInvoker {
 		_methodName74 = "getOldAssetEntrySets";
 
 		_methodParameterTypes74 = new String[] {
-				"long", "long", "boolean", "long",
+				"long", "long", "boolean", "long", "long",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
 			};
@@ -350,11 +350,12 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Boolean)arguments[2]).booleanValue(),
 				((Long)arguments[3]).longValue(),
-				(com.liferay.portal.kernel.json.JSONArray)arguments[4],
-				(long[])arguments[5], (long[])arguments[6],
-				(java.lang.String[])arguments[7],
-				((Integer)arguments[8]).intValue(),
-				((Integer)arguments[9]).intValue());
+				((Long)arguments[4]).longValue(),
+				(com.liferay.portal.kernel.json.JSONArray)arguments[5],
+				(long[])arguments[6], (long[])arguments[7],
+				(java.lang.String[])arguments[8],
+				((Integer)arguments[9]).intValue(),
+				((Integer)arguments[10]).intValue());
 		}
 
 		if (_methodName73.equals(name) &&
@@ -373,11 +374,12 @@ public class AssetEntrySetLocalServiceClpInvoker {
 				((Long)arguments[1]).longValue(),
 				((Boolean)arguments[2]).booleanValue(),
 				((Long)arguments[3]).longValue(),
-				(com.liferay.portal.kernel.json.JSONArray)arguments[4],
-				(long[])arguments[5], (long[])arguments[6],
-				(java.lang.String[])arguments[7],
-				((Integer)arguments[8]).intValue(),
-				((Integer)arguments[9]).intValue());
+				((Long)arguments[4]).longValue(),
+				(com.liferay.portal.kernel.json.JSONArray)arguments[5],
+				(long[])arguments[6], (long[])arguments[7],
+				(java.lang.String[])arguments[8],
+				((Integer)arguments[9]).intValue(),
+				((Integer)arguments[10]).intValue());
 		}
 
 		if (_methodName75.equals(name) &&
