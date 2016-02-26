@@ -87,13 +87,15 @@ public class ScreensDDLRecordServiceWrapper implements ScreensDDLRecordService,
 
 	@Override
 	public int getDDLRecordsCount(long ddlRecordSetId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _screensDDLRecordService.getDDLRecordsCount(ddlRecordSetId);
 	}
 
 	@Override
 	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return _screensDDLRecordService.getDDLRecordsCount(ddlRecordSetId,
 			userId);
 	}
