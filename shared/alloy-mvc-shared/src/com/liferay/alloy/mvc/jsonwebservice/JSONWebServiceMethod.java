@@ -14,6 +14,8 @@
 
 package com.liferay.alloy.mvc.jsonwebservice;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -33,6 +35,8 @@ import javax.portlet.PortletRequest;
 public @interface JSONWebServiceMethod {
 
 	public String lifecycle() default PortletRequest.RENDER_PHASE;
+
+	public String methodName() default StringPool.BLANK;
 
 	public String[] parameterNames() default {};
 
