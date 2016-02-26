@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.PortletItem;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -62,7 +63,7 @@ public class ScreensAssetEntryServiceImpl
 			AssetEntryQuery assetEntryQuery, Locale locale)
 		throws PortalException, SystemException {
 
-		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
+		List<AssetEntry> assetEntries = assetEntryService.getEntries(
 			assetEntryQuery);
 
 		return toJSONArray(assetEntries, locale);
@@ -203,7 +204,7 @@ public class ScreensAssetEntryServiceImpl
 		JournalArticle journalArticle = null;
 
 		try {
-			journalArticle = journalArticleLocalService.getArticle(
+			journalArticle = journalArticleService.getArticle(
 				assetEntry.getClassPK());
 		}
 		catch (NoSuchArticleException nsae) {
@@ -211,9 +212,10 @@ public class ScreensAssetEntryServiceImpl
 				JournalArticleResourceLocalServiceUtil.getArticleResource(
 					assetEntry.getClassPK());
 
-			journalArticle = journalArticleLocalService.getLatestArticle(
+			journalArticleService.getLatestArticle(
 				journalArticleResource.getGroupId(),
-				journalArticleResource.getArticleId());
+				journalArticleResource.getArticleId(),
+				WorkflowConstants.STATUS_APPROVED);
 		}
 
 		JSONObject journalArticleJSONObject = JSONFactoryUtil.createJSONObject(
