@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,6 +43,7 @@ public class AssetEntrySetImpl extends AssetEntrySetBaseImpl {
 		_childAssetEntrySets = childAssetEntrySets;
 	}
 
-	private List<AssetEntrySet> _childAssetEntrySets;
+	private List<AssetEntrySet> _childAssetEntrySets =
+		new ArrayList<AssetEntrySet>();
 
 }

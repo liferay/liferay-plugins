@@ -40,7 +40,7 @@
 				([$WHERE$])
 				[$EXCLUDE_ASSET_ENTRY_SET_IDS$]
 			ORDER BY
-				AssetEntrySet.createTime DESC
+				AssetEntrySet.modifiedTime DESC
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.entry.set.service.persistence.AssetEntrySetFinder.findByPAESI_ST_T_CNI">

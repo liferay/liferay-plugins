@@ -62,6 +62,14 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 	}
 
 	@Override
+	public void postProcessContextQuery(
+			BooleanQuery contextQuery, SearchContext searchContext)
+		throws Exception {
+
+		contextQuery.addRequiredTerm("parentAssetEntrySetId", 0);
+	}
+
+	@Override
 	public void postProcessSearchQuery(
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {

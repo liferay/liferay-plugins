@@ -162,13 +162,15 @@ public class AssetEntrySetLocalServiceImpl
 			deleteChildAssetEntrySets(assetEntrySet.getAssetEntrySetId());
 		}
 		else {
-			AssetEntrySet parentAssetEntrySet = getAssetEntrySet(
+			AssetEntrySet parentAssetEntrySet = fetchAssetEntrySet(
 				assetEntrySet.getParentAssetEntrySetId());
 
-			updateAssetSharingEntries(parentAssetEntrySet);
+			if (parentAssetEntrySet != null) {
+				updateAssetSharingEntries(parentAssetEntrySet);
 
-			updateChildAssetEntrySetsCount(
-				parentAssetEntrySet.getAssetEntrySetId());
+				updateChildAssetEntrySetsCount(
+					parentAssetEntrySet.getAssetEntrySetId());
+			}
 		}
 
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(

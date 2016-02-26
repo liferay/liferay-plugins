@@ -4,6 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<indexer-class>com.liferay.asset.entry.set.util.AssetEntrySetIndexer</indexer-class>
 		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.asset.entry.set.messaging.CleanDLFileEntryMessageListener</scheduler-event-listener-class>
 			<trigger>
