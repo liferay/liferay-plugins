@@ -123,8 +123,8 @@ public class ScreensDDLRecordServiceImpl
 
 		try {
 			PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKey1, permissionChecker,
-				recordSet, actionId);
+				false, _checkPermissionMethodKey1, permissionChecker, recordSet,
+				actionId);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -144,8 +144,8 @@ public class ScreensDDLRecordServiceImpl
 
 		try {
 			PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKey2,
-				permissionChecker, recordSetId, actionId);
+				false, _checkPermissionMethodKey2, permissionChecker,
+				recordSetId, actionId);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -275,13 +275,13 @@ public class ScreensDDLRecordServiceImpl
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.dynamicdatalists.service.permission." +
-			"DDLRecordSetPermission"),
+					"DDLRecordSetPermission"),
 			"check", PermissionChecker.class, DDLRecordSet.class, String.class);
 	private static final MethodKey _checkPermissionMethodKey2 =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.dynamicdatalists.service.permission." +
-			"DDLRecordSetPermission"),
+					"DDLRecordSetPermission"),
 			"check", PermissionChecker.class, long.class, String.class);
 
 	private static Log _log = LogFactoryUtil.getLog(
