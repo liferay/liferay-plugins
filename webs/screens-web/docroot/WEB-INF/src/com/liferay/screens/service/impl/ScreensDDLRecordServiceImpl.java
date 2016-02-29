@@ -133,7 +133,7 @@ public class ScreensDDLRecordServiceImpl
 			throw se;
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
@@ -154,7 +154,7 @@ public class ScreensDDLRecordServiceImpl
 			throw se;
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 	}
 
