@@ -29,8 +29,6 @@ long assigneeUserId = BeanParamUtil.getLong(tasksEntry, request, "assigneeUserId
 
 boolean addDueDate = false;
 
-String dueDateControlGroupCssClass = renderResponse.getNamespace() + "dueDateControlGroup";
-
 String dueDateHideClass = "hide";
 String dueDateToggleText = LanguageUtil.get(request, "add-due-date");
 
@@ -39,6 +37,8 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 	dueDateHideClass = StringPool.BLANK;
 	dueDateToggleText = LanguageUtil.get(request, "remove-due-date");
 }
+
+String dueDateControlGroupCssClass = renderResponse.getNamespace() + "dueDateControlGroup";
 
 String dueDateWrapperCssClass = dueDateControlGroupCssClass + StringPool.SPACE + dueDateHideClass;
 %>
