@@ -28,7 +28,6 @@ long priority = BeanParamUtil.getLong(tasksEntry, request, "priority", TasksEntr
 long assigneeUserId = BeanParamUtil.getLong(tasksEntry, request, "assigneeUserId");
 
 boolean addDueDate = false;
-
 String dueDateHideClass = "hide";
 String dueDateToggleText = LanguageUtil.get(request, "add-due-date");
 
