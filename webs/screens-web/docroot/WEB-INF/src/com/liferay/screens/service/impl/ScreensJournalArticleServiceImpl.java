@@ -88,7 +88,7 @@ public class ScreensJournalArticleServiceImpl
 
 		try {
 			PortalClassInvoker.invoke(
-				false, _checkPermissionByResourcePrimKeyMethodKey,
+				false, _checkPermissionMethodKey1,
 				permissionChecker, resourcePrimKey, actionId);
 		}
 		catch (PortalException pe) {
@@ -109,7 +109,7 @@ public class ScreensJournalArticleServiceImpl
 
 		try {
 			PortalClassInvoker.invoke(
-				false, _checkPermissionByArticleIdMethodKey, permissionChecker,
+				false, _checkPermissionMethodKey2, permissionChecker,
 				groupId, articleId, actionId);
 		}
 		catch (PortalException pe) {
@@ -146,21 +146,19 @@ public class ScreensJournalArticleServiceImpl
 		return LocaleUtil.toLanguageId(locale);
 	}
 
-	private static final String JOURNAL_ARTICLE_PERMISSION_CLASSNAME =
-		"com.liferay.portlet.journal.service.permission." +
-			"JournalArticlePermission";
-
-	private static final MethodKey _checkPermissionByArticleIdMethodKey =
+	private static final MethodKey _checkPermissionMethodKey1 =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
-				JOURNAL_ARTICLE_PERMISSION_CLASSNAME),
+				"com.liferay.portlet.journal.service.permission." +
+			"JournalArticlePermission"),
+			"check", PermissionChecker.class, long.class, String.class);
+	private static final MethodKey _checkPermissionMethodKey2 =
+		new MethodKey(
+			ClassResolverUtil.resolveByPortalClassLoader(
+				"com.liferay.portlet.journal.service.permission." +
+			"JournalArticlePermission"),
 			"check", PermissionChecker.class, long.class, String.class,
 			String.class);
-	private static final MethodKey _checkPermissionByResourcePrimKeyMethodKey =
-		new MethodKey(
-			ClassResolverUtil.resolveByPortalClassLoader(
-				JOURNAL_ARTICLE_PERMISSION_CLASSNAME),
-			"check", PermissionChecker.class, long.class, String.class);
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ScreensJournalArticleServiceImpl.class);
