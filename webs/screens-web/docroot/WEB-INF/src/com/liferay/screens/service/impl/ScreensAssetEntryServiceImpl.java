@@ -23,10 +23,15 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -47,7 +52,6 @@ import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleResource;
 import com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil;
 import com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl;
-import com.liferay.screens.service.permission.AssetEntryPermission;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,6 +160,26 @@ public class ScreensAssetEntryServiceImpl
 		}
 	}
 
+	protected boolean containsPermission(
+			PermissionChecker permissionChecker, AssetEntry assetEntry,
+			String actionId)
+		throws PortalException {
+
+		try {
+			return (Boolean)PortalClassInvoker.invoke(
+				false, _containsPermissionMethodKey, permissionChecker,
+				assetEntry, actionId);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (Exception e) {
+			_log.error(e);
+		}
+
+		return false;
+	}
+
 	protected List<AssetEntry> filterAssetEntries(List<AssetEntry> assetEntries)
 		throws PortalException {
 
@@ -163,7 +187,7 @@ public class ScreensAssetEntryServiceImpl
 			assetEntries.size());
 
 		for (AssetEntry assetEntry : assetEntries) {
-			if (AssetEntryPermission.contains(
+			if (containsPermission(
 					getPermissionChecker(), assetEntry, ActionKeys.VIEW)) {
 
 				filteredAssetEntries.add(assetEntry);
@@ -273,5 +297,18 @@ public class ScreensAssetEntryServiceImpl
 
 		return jsonArray;
 	}
+
+	private static final String ASSET_ENTRY_PERMISSION_CLASSNAME =
+		"com.liferay.portlet.asset.service.permission.AssetEntryPermission";
+
+	private static final MethodKey _containsPermissionMethodKey =
+		new MethodKey(
+			ClassResolverUtil.resolveByPortalClassLoader(
+				ASSET_ENTRY_PERMISSION_CLASSNAME),
+			"contains", PermissionChecker.class, AssetEntry.class,
+			String.class);
+
+	private static Log _log = LogFactoryUtil.getLog(
+		ScreensAssetEntryServiceImpl.class);
 
 }

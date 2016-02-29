@@ -19,15 +19,21 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
+import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
+import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 import com.liferay.screens.service.base.ScreensDDLRecordServiceBaseImpl;
-import com.liferay.screens.service.permission.DDLRecordSetPermission;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +54,7 @@ public class ScreensDDLRecordServiceImpl
 		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
 			ddlRecordId);
 
-		DDLRecordSetPermission.check(
+		checkPermission(
 			getPermissionChecker(), ddlRecord.getRecordSet(), ActionKeys.VIEW);
 
 		Fields fields = ddlRecord.getFields();
@@ -67,7 +73,7 @@ public class ScreensDDLRecordServiceImpl
 			long ddlRecordSetId, Locale locale, int start, int end)
 		throws PortalException, SystemException {
 
-		DDLRecordSetPermission.check(
+		checkPermission(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
 		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByRecordSetId(
@@ -81,7 +87,7 @@ public class ScreensDDLRecordServiceImpl
 			long ddlRecordSetId, long userId, Locale locale, int start, int end)
 		throws PortalException, SystemException {
 
-		DDLRecordSetPermission.check(
+		checkPermission(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
 		List<DDLRecord> ddlRecords = ddlRecordPersistence.findByR_U(
@@ -94,7 +100,7 @@ public class ScreensDDLRecordServiceImpl
 	public int getDDLRecordsCount(long ddlRecordSetId)
 		throws PortalException, SystemException {
 
-		DDLRecordSetPermission.check(
+		checkPermission(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
 		return ddlRecordPersistence.countByRecordSetId(ddlRecordSetId);
@@ -104,10 +110,52 @@ public class ScreensDDLRecordServiceImpl
 	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
 		throws PortalException, SystemException {
 
-		DDLRecordSetPermission.check(
+		checkPermission(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
 		return ddlRecordPersistence.countByR_U(ddlRecordSetId, userId);
+	}
+
+	protected void checkPermission(
+			PermissionChecker permissionChecker, DDLRecordSet recordSet,
+			String actionId)
+		throws PortalException, SystemException {
+
+		try {
+			PortalClassInvoker.invoke(
+				false, _checkPermissionByRecordSetMethodKey, permissionChecker,
+				recordSet, actionId);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			_log.error(e);
+		}
+	}
+
+	protected void checkPermission(
+			PermissionChecker permissionChecker, long recordSetId,
+			String actionId)
+		throws PortalException, SystemException {
+
+		try {
+			PortalClassInvoker.invoke(
+				false, _checkPermissionByRecordSetIdMethodKey,
+				permissionChecker, recordSetId, actionId);
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			_log.error(e);
+		}
 	}
 
 	protected JSONObject getDDLRecordJSONObject(
@@ -222,5 +270,23 @@ public class ScreensDDLRecordServiceImpl
 
 		return fieldValueString;
 	}
+
+	private static final String DDL_RECORDSET_PERMISSION_CLASSNAME =
+		"com.liferay.portlet.dynamicdatalists.service.permission." +
+			"DDLRecordSetPermission";
+
+	private static final MethodKey _checkPermissionByRecordSetIdMethodKey =
+		new MethodKey(
+			ClassResolverUtil.resolveByPortalClassLoader(
+				DDL_RECORDSET_PERMISSION_CLASSNAME),
+			"check", PermissionChecker.class, long.class, String.class);
+	private static final MethodKey _checkPermissionByRecordSetMethodKey =
+		new MethodKey(
+			ClassResolverUtil.resolveByPortalClassLoader(
+				DDL_RECORDSET_PERMISSION_CLASSNAME),
+			"check", PermissionChecker.class, DDLRecordSet.class, String.class);
+
+	private static Log _log = LogFactoryUtil.getLog(
+		ScreensDDLRecordServiceImpl.class);
 
 }
