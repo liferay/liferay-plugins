@@ -76,7 +76,10 @@ public class URLMetadataScraperProcessor {
 		}
 
 		jsonObject.put(
-			"description", getContent(document, _SELECTORS_DESCRIPTION));
+			"description",
+			StringUtil.shorten(
+				getContent(document, _SELECTORS_DESCRIPTION),
+				_DESCRIPTION_LENGTH_MAXIMUM));
 		jsonObject.put(
 			"imageURLs", getImageURLs(document, protocol, userAgent));
 		jsonObject.put("videoURL", getContent(document, _SELECTORS_VIDEO_URL_));
@@ -220,6 +223,8 @@ public class URLMetadataScraperProcessor {
 
 		return false;
 	}
+
+	private static final int _DESCRIPTION_LENGTH_MAXIMUM = 300;
 
 	private static final int _IMAGE_AREA_MINIMUM = 1000;
 
