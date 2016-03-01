@@ -60,7 +60,7 @@ boolean appleSandbox = PrefsPropsUtil.getBoolean(PortletPropsKeys.APPLE_SANDBOX,
 			<aui:input helpMessage="apple-certificate-password-help" label="apple-certificate-password" name="appleCertificatePassword" type="password" value="<%= appleCertificatePassword %>" wrapperCssClass="lfr-input-text-container" />
 
 			<aui:fieldset>
-				<aui:input helpMessage="apple-sandbox-help" label="apple-sandbox"  name="appleSandbox" type="checkbox" value="<%= appleSandbox %>" />
+				<aui:input helpMessage="apple-sandbox-help" label="apple-sandbox" name="appleSandbox" type="checkbox" value="<%= appleSandbox %>" />
 			</aui:fieldset>
 
 			<aui:button-row>

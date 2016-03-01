@@ -35,6 +35,6 @@ long pushNotificationsDeviceId = pushNotificationsDevice.getPushNotificationsDev
 			<portlet:param name="pushNotificationsDeviceId" value="<%= String.valueOf(pushNotificationsDeviceId) %>" />
 		</liferay-portlet:actionURL>
 
-		<liferay-ui:icon-delete confirmation="are-you-sure-you-want-to-delete-this-device" url="<%= deleteURL %>"  />
+		<liferay-ui:icon-delete confirmation="are-you-sure-you-want-to-delete-this-device" url="<%= deleteURL %>" />
 	</c:if>
 </liferay-ui:icon-menu>
