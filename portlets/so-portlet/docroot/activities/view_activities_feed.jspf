@@ -23,16 +23,16 @@ Date now = new Date();
 ServiceContext serviceContext = ServiceContextFactory.getInstance(themeDisplay.getRequest());
 
 for (SocialActivity activity : results) {
+	if (count >= _DELTA) {
+		break;
+	}
+
 	SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret(StringPool.BLANK, activity, serviceContext);
 
 	start++;
 
 	if (activityFeedEntry == null) {
 		continue;
-	}
-
-	if (count >= _DELTA) {
-		break;
 	}
 
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), activityFeedEntry.getPortletId());
