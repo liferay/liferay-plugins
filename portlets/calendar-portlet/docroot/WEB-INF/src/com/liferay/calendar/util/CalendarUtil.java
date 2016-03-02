@@ -19,7 +19,7 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
-import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
+import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.comparator.CalendarNameComparator;
@@ -66,10 +66,10 @@ public class CalendarUtil {
 	public static JSONObject getCalendarRenderingRules(
 			ThemeDisplay themeDisplay, long[] calendarIds, int[] statuses,
 			long startTime, long endTime, String ruleName, TimeZone timeZone)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		List<CalendarBooking> calendarBookings =
-			CalendarBookingLocalServiceUtil.search(
+			CalendarBookingServiceUtil.search(
 				themeDisplay.getCompanyId(), null, calendarIds, new long[0], -1,
 				null, startTime, endTime, true, statuses, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
