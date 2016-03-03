@@ -134,31 +134,35 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 
 		_methodParameterTypes46 = new String[] { "long", "long" };
 
-		_methodName47 = "getAssetSharingEntries";
+		_methodName47 = "deleteSharedToAssetSharingEntries";
 
 		_methodParameterTypes47 = new String[] { "long", "long" };
 
 		_methodName48 = "getAssetSharingEntries";
 
-		_methodParameterTypes48 = new String[] { "long", "long", "long" };
+		_methodParameterTypes48 = new String[] { "long", "long" };
 
-		_methodName49 = "getSharedToAssetSharingEntries";
+		_methodName49 = "getAssetSharingEntries";
 
-		_methodParameterTypes49 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes49 = new String[] { "long", "long", "long" };
 
 		_methodName50 = "getSharedToAssetSharingEntries";
 
-		_methodParameterTypes50 = new String[] {
+		_methodParameterTypes50 = new String[] { "long", "long", "int", "int" };
+
+		_methodName51 = "getSharedToAssetSharingEntries";
+
+		_methodParameterTypes51 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
 
-		_methodName51 = "getSharedToAssetSharingEntriesCount";
-
-		_methodParameterTypes51 = new String[] { "long", "long" };
-
 		_methodName52 = "getSharedToAssetSharingEntriesCount";
 
-		_methodParameterTypes52 = new String[] { "long", "long", "long" };
+		_methodParameterTypes52 = new String[] { "long", "long" };
+
+		_methodName53 = "getSharedToAssetSharingEntriesCount";
+
+		_methodParameterTypes53 = new String[] { "long", "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -291,27 +295,35 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			return AssetSharingEntryLocalServiceUtil.getAssetSharingEntries(((Long)arguments[0]).longValue(),
+			AssetSharingEntryLocalServiceUtil.deleteSharedToAssetSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
+
+			return null;
 		}
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return AssetSharingEntryLocalServiceUtil.getAssetSharingEntries(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue());
+				((Long)arguments[1]).longValue());
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+			return AssetSharingEntryLocalServiceUtil.getAssetSharingEntries(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue());
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -319,14 +331,14 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 				((Integer)arguments[4]).intValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntriesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return AssetSharingEntryLocalServiceUtil.getSharedToAssetSharingEntriesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
@@ -389,4 +401,6 @@ public class AssetSharingEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes51;
 	private String _methodName52;
 	private String[] _methodParameterTypes52;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
 }

@@ -295,6 +295,14 @@ public class AssetSharingEntryLocalServiceUtil {
 		getService().deleteAssetSharingEntries(classNameId, classPK);
 	}
 
+	public static void deleteSharedToAssetSharingEntries(
+		long sharedToClassNameId, long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.deleteSharedToAssetSharingEntries(sharedToClassNameId,
+			sharedToClassPK);
+	}
+
 	public static java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
 		long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {

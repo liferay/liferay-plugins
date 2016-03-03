@@ -313,6 +313,14 @@ public class AssetSharingEntryLocalServiceWrapper
 	}
 
 	@Override
+	public void deleteSharedToAssetSharingEntries(long sharedToClassNameId,
+		long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_assetSharingEntryLocalService.deleteSharedToAssetSharingEntries(sharedToClassNameId,
+			sharedToClassPK);
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
 		long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {

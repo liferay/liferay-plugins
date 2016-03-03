@@ -136,31 +136,35 @@ public class AssetSharingEntryLocalServiceClp
 
 		_methodParameterTypes21 = new String[] { "long", "long" };
 
-		_methodName22 = "getAssetSharingEntries";
+		_methodName22 = "deleteSharedToAssetSharingEntries";
 
 		_methodParameterTypes22 = new String[] { "long", "long" };
 
 		_methodName23 = "getAssetSharingEntries";
 
-		_methodParameterTypes23 = new String[] { "long", "long", "long" };
+		_methodParameterTypes23 = new String[] { "long", "long" };
 
-		_methodName24 = "getSharedToAssetSharingEntries";
+		_methodName24 = "getAssetSharingEntries";
 
-		_methodParameterTypes24 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes24 = new String[] { "long", "long", "long" };
 
 		_methodName25 = "getSharedToAssetSharingEntries";
 
-		_methodParameterTypes25 = new String[] {
+		_methodParameterTypes25 = new String[] { "long", "long", "int", "int" };
+
+		_methodName26 = "getSharedToAssetSharingEntries";
+
+		_methodParameterTypes26 = new String[] {
 				"long", "long", "long", "int", "int"
 			};
 
-		_methodName26 = "getSharedToAssetSharingEntriesCount";
-
-		_methodParameterTypes26 = new String[] { "long", "long" };
-
 		_methodName27 = "getSharedToAssetSharingEntriesCount";
 
-		_methodParameterTypes27 = new String[] { "long", "long", "long" };
+		_methodParameterTypes27 = new String[] { "long", "long" };
+
+		_methodName28 = "getSharedToAssetSharingEntriesCount";
+
+		_methodParameterTypes28 = new String[] { "long", "long", "long" };
 	}
 
 	@Override
@@ -819,14 +823,40 @@ public class AssetSharingEntryLocalServiceClp
 	}
 
 	@Override
+	public void deleteSharedToAssetSharingEntries(long sharedToClassNameId,
+		long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName22,
+				_methodParameterTypes22,
+				new Object[] { sharedToClassNameId, sharedToClassPK });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
 		long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] { classNameId, classPK });
 		}
 		catch (Throwable t) {
@@ -855,8 +885,8 @@ public class AssetSharingEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { classNameId, classPK, sharedToClassNameId });
 		}
 		catch (Throwable t) {
@@ -885,8 +915,8 @@ public class AssetSharingEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						sharedToClassNameId,
 						
@@ -924,8 +954,8 @@ public class AssetSharingEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] {
 						classNameId,
 						
@@ -964,8 +994,8 @@ public class AssetSharingEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { sharedToClassNameId, sharedToClassPK });
 		}
 		catch (Throwable t) {
@@ -994,8 +1024,8 @@ public class AssetSharingEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] {
 						classNameId,
 						
@@ -1078,4 +1108,6 @@ public class AssetSharingEntryLocalServiceClp
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
 }

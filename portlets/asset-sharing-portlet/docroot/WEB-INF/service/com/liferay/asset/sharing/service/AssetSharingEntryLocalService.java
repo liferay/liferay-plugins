@@ -265,6 +265,10 @@ public interface AssetSharingEntryLocalService extends BaseLocalService,
 	public void deleteAssetSharingEntries(long classNameId, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteSharedToAssetSharingEntries(long sharedToClassNameId,
+		long sharedToClassPK)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.asset.sharing.model.AssetSharingEntry> getAssetSharingEntries(
 		long classNameId, long classPK)
