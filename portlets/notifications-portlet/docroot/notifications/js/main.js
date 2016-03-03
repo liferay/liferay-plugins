@@ -291,7 +291,7 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io', 'liferay-portlet-base', 'liferay-portlet-url', 'node-load']
+		requires: ['aui-base', 'aui-io', 'aui-parse-content', 'liferay-portlet-base', 'liferay-portlet-url', 'node-load']
 	}
 
 );
