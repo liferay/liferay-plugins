@@ -77,6 +77,14 @@ public class AssetSharingEntryLocalServiceImpl
 		assetSharingEntryPersistence.removeByC_C(classNameId, classPK);
 	}
 
+	public void deleteSharedToAssetSharingEntries(
+			long sharedToClassNameId, long sharedToClassPK)
+		throws SystemException {
+
+		assetSharingEntryPersistence.removeByS_S(
+			sharedToClassNameId, sharedToClassPK);
+	}
+
 	@Override
 	public List<AssetSharingEntry> getAssetSharingEntries(
 			long classNameId, long classPK)
