@@ -48,6 +48,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -199,14 +200,20 @@ public class DownloadServlet extends HttpServlet {
 			repositoryId, folderId);
 
 		for (FileEntry fileEntry : fileEntries) {
-			InputStream inputStream =
-				DLFileEntryLocalServiceUtil.getFileAsStream(
+			InputStream inputStream = null;
+
+			try {
+				inputStream = DLFileEntryLocalServiceUtil.getFileAsStream(
 					userId, fileEntry.getFileEntryId(), fileEntry.getVersion(),
 					false);
 
-			String filePath = folderPath + fileEntry.getTitle();
+				String filePath = folderPath + fileEntry.getTitle();
 
-			zipWriter.addEntry(filePath, inputStream);
+				zipWriter.addEntry(filePath, inputStream);
+			}
+			finally {
+				StreamUtil.cleanUp(inputStream);
+			}
 		}
 
 		List<Folder> childFolders = DLAppServiceUtil.getFolders(
@@ -455,6 +462,8 @@ public class DownloadServlet extends HttpServlet {
 				continue;
 			}
 
+			InputStream inputStream = null;
+
 			try {
 				String uuid = zipObjectJSONObject.getString("uuid");
 
@@ -464,27 +473,28 @@ public class DownloadServlet extends HttpServlet {
 					long targetVersionId = zipObjectJSONObject.getLong(
 						"targetVersionId", 0);
 
-					DownloadServletInputStream downloadServletInputStream =
-						getPatchDownloadServletInputStream(
-							userId, groupId, uuid, sourceVersionId,
-							targetVersionId);
+					inputStream = getPatchDownloadServletInputStream(
+						userId, groupId, uuid, sourceVersionId,
+						targetVersionId);
 
-					zipWriter.addEntry(zipFileId, downloadServletInputStream);
+					zipWriter.addEntry(zipFileId, inputStream);
 				}
 				else {
-					DownloadServletInputStream downloadServletInputStream =
-						getFileDownloadServletInputStream(
-							userId, groupId, uuid,
-							zipObjectJSONObject.getString("version"),
-							zipObjectJSONObject.getLong("versionId"));
+					inputStream = getFileDownloadServletInputStream(
+						userId, groupId, uuid,
+						zipObjectJSONObject.getString("version"),
+						zipObjectJSONObject.getLong("versionId"));
 
-					zipWriter.addEntry(zipFileId, downloadServletInputStream);
+					zipWriter.addEntry(zipFileId, inputStream);
 				}
 			}
 			catch (Exception e) {
 				Class clazz = e.getClass();
 
 				processException(zipFileId, clazz.getName(), errorsJSONObject);
+			}
+			finally {
+				StreamUtil.cleanUp(inputStream);
 			}
 		}
 

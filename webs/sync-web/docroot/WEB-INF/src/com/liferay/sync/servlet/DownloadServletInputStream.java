@@ -39,6 +39,11 @@ public class DownloadServletInputStream extends InputStream {
 		_size = size;
 	}
 
+	@Override
+	public void close() throws IOException {
+		_inputStream.close();
+	}
+
 	public String getFileName() {
 		return _fileName;
 	}
