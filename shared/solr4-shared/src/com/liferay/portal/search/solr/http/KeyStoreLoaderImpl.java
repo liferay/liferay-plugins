@@ -67,7 +67,7 @@ public class KeyStoreLoaderImpl implements KeyStoreLoader {
 	protected void dumpKeyStore(KeyStore keyStore) throws KeyStoreException {
 		Enumeration<String> aliases = keyStore.aliases();
 
-		Log log = SanitizerLogWrapper.allowCRLF(_log);
+		Log log = new SanitizerLogWrapper(_log);
 
 		while (aliases.hasMoreElements()) {
 			String alias = aliases.nextElement();
