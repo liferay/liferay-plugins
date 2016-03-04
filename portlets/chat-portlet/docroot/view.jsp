@@ -74,7 +74,7 @@
 
 						<div class="chat-panel">
 							<div class="chat-panel-window">
-								<div class="minimize chat-panel-button"></div>
+								<div class="chat-panel-button minimize"></div>
 
 								<div class="chat-panel-title">
 									<%= LanguageUtil.format(request, "online-friends-x", "(" + buddiesCount + ")", false) %>
@@ -126,7 +126,7 @@
 
 						<div class="chat-panel">
 							<div class="chat-panel-window">
-								<div class="minimize chat-panel-button"></div>
+								<div class="chat-panel-button minimize"></div>
 
 								<div class="chat-panel-title"><liferay-ui:message key="settings" /></div>
 
