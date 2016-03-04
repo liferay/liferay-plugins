@@ -143,6 +143,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes23 = new String[] {
 				"long", "long", "boolean", "long", "long",
+				"com.liferay.portal.kernel.json.JSONArray",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
 			};
@@ -158,6 +159,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 
 		_methodParameterTypes25 = new String[] {
 				"long", "long", "boolean", "long", "long",
+				"com.liferay.portal.kernel.json.JSONArray",
 				"com.liferay.portal.kernel.json.JSONArray", "long[][]",
 				"long[][]", "java.lang.String[][]", "int", "int"
 			};
@@ -920,6 +922,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getNewAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
 		long parentAssetEntrySetId, long stickyTime,
+		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
@@ -940,6 +943,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					parentAssetEntrySetId,
 						
 					stickyTime,
+						
+					ClpSerializer.translateInput(creatorJSONArray),
 						
 					ClpSerializer.translateInput(sharedToJSONArray),
 						
@@ -1030,6 +1035,7 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 	public java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> getOldAssetEntrySets(
 		long userId, long time, boolean modifiedTime,
 		long parentAssetEntrySetId, long stickyTime,
+		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
@@ -1050,6 +1056,8 @@ public class AssetEntrySetLocalServiceClp implements AssetEntrySetLocalService {
 					parentAssetEntrySetId,
 						
 					stickyTime,
+						
+					ClpSerializer.translateInput(creatorJSONArray),
 						
 					ClpSerializer.translateInput(sharedToJSONArray),
 						

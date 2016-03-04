@@ -31,20 +31,22 @@ public class AssetEntrySetFinderUtil {
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByCT_PAESI_ST_CNI(
 		long classNameId, long classPK, long createTime, boolean gtCreateTime,
 		long parentAssetEntrySetId, long stickyTime,
+		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .findByCT_PAESI_ST_CNI(classNameId, classPK, createTime,
-			gtCreateTime, parentAssetEntrySetId, stickyTime, sharedToJSONArray,
-			includeAssetEntrySetIds, excludeAssetEntrySetIds, assetTagNames,
-			start, end);
+			gtCreateTime, parentAssetEntrySetId, stickyTime, creatorJSONArray,
+			sharedToJSONArray, includeAssetEntrySetIds,
+			excludeAssetEntrySetIds, assetTagNames, start, end);
 	}
 
 	public static java.util.List<com.liferay.asset.entry.set.model.AssetEntrySet> findByMT_PAESI_ST_CNI(
 		long classNameId, long classPK, long modifiedTime,
 		boolean gtModifiedTime, long parentAssetEntrySetId, long stickyTime,
+		com.liferay.portal.kernel.json.JSONArray creatorJSONArray,
 		com.liferay.portal.kernel.json.JSONArray sharedToJSONArray,
 		long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
 		java.lang.String[] assetTagNames, int start, int end)
@@ -52,7 +54,7 @@ public class AssetEntrySetFinderUtil {
 		return getFinder()
 				   .findByMT_PAESI_ST_CNI(classNameId, classPK, modifiedTime,
 			gtModifiedTime, parentAssetEntrySetId, stickyTime,
-			sharedToJSONArray, includeAssetEntrySetIds,
+			creatorJSONArray, sharedToJSONArray, includeAssetEntrySetIds,
 			excludeAssetEntrySetIds, assetTagNames, start, end);
 	}
 
