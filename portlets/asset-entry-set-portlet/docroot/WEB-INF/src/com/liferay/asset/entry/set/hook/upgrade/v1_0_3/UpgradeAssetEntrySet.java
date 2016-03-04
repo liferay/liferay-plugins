@@ -51,10 +51,6 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeAssetEntrySet("full");
-	}
-
-	protected void upgradeAssetEntrySet(String imageType) throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -116,7 +112,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 					String imageMaxSize = PortletProps.get(
 						PortletPropsKeys.ASSET_ENTRY_SET_IMAGE_MAX_SIZE,
-						new Filter(imageType));
+						new Filter(_IMAGE_TYPE_FULL));
 
 					FileEntry fileEntry =
 						AssetEntrySetImageUtil.addScaledImageFileEntry(
@@ -124,7 +120,8 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 							AssetEntrySetConstants.
 								ASSET_ENTRY_SET_CLASS_NAME_ID,
 							0L, PortletKeys.ASSET_ENTRY_SET, imageBag,
-							imageType, rawFileEntry.getTitle(), imageMaxSize);
+							_IMAGE_TYPE_FULL, rawFileEntry.getTitle(),
+							imageMaxSize);
 
 					DLFileEntry dlFileEntry =
 						DLFileEntryLocalServiceUtil.getFileEntry(
@@ -150,7 +147,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 					newImageDataJSONArray.put(
 						AssetEntrySetImageUtil.getImageJSONObject(
-							imageJSONObject, fileEntry, imageType));
+							imageJSONObject, fileEntry, _IMAGE_TYPE_FULL));
 				}
 
 				payloadJSONObject.put("assetEntryIds", assetEntryIds);
@@ -167,5 +164,7 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
+
+	private static final String _IMAGE_TYPE_FULL = "full";
 
 }

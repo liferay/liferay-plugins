@@ -38,7 +38,50 @@ public class UpgradeDLFileEntry extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeDLFileEntry();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select * from DLFileEntry where (extraSettings is null) or " +
+					"(extraSettings = '')");
+
+			rs = ps.executeQuery();
+
+			ps = con.prepareStatement(
+				"update DLFileEntry set extraSettings = ? where " +
+					"fileEntryId = ?");
+
+			while (rs.next()) {
+				long fileEntryId = rs.getLong("fileEntryId");
+
+				JSONObject fileEntryImageJSONObject =
+					getFileEntryImageJSONObject(fileEntryId);
+
+				if (fileEntryImageJSONObject == null) {
+					continue;
+				}
+
+				UnicodeProperties extraSettingsProperties =
+					new UnicodeProperties();
+
+				extraSettingsProperties.put(
+					"fileEntryImageJSONObject",
+					fileEntryImageJSONObject.toString());
+
+				ps.setString(1, extraSettingsProperties.toString());
+
+				ps.setLong(2, fileEntryId);
+
+				ps.executeUpdate();
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
 	}
 
 	protected JSONObject getFileEntryImageJSONObject(long fileEntryId)
@@ -85,53 +128,6 @@ public class UpgradeDLFileEntry extends UpgradeProcess {
 		}
 
 		return "raw";
-	}
-
-	protected void upgradeDLFileEntry() throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
-
-			ps = con.prepareStatement(
-				"select * from DLFileEntry where (extraSettings is null) or " +
-					"(extraSettings = '')");
-
-			rs = ps.executeQuery();
-
-			ps = con.prepareStatement(
-				"update DLFileEntry set extraSettings = ? where " +
-					"fileEntryId = ?");
-
-			while (rs.next()) {
-				long fileEntryId = rs.getLong("fileEntryId");
-
-				JSONObject fileEntryImageJSONObject =
-					getFileEntryImageJSONObject(fileEntryId);
-
-				if (fileEntryImageJSONObject == null) {
-					continue;
-				}
-
-				UnicodeProperties extraSettingsProperties =
-					new UnicodeProperties();
-
-				extraSettingsProperties.put(
-					"fileEntryImageJSONObject",
-					fileEntryImageJSONObject.toString());
-
-				ps.setString(1, extraSettingsProperties.toString());
-
-				ps.setLong(2, fileEntryId);
-
-				ps.executeUpdate();
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
 	}
 
 	private final static String[] _IMAGE_TYPES =

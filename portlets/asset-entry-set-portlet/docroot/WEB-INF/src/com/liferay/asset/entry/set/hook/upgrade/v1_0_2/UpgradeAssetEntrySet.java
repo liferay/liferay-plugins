@@ -28,37 +28,6 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeAssetEntrySet();
-	}
-
-	protected int getChildAssetEntrySetCount(long assetEntrySetId)
-		throws Exception {
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
-
-			ps = con.prepareStatement(
-				"select count(*) from AssetEntrySet where " +
-					"parentAssetEntrySetId = " + assetEntrySetId);
-
-			rs = ps.executeQuery();
-
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-
-			return 0;
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
-	protected void upgradeAssetEntrySet() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -83,6 +52,33 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 				ps.executeUpdate();
 			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
+	protected int getChildAssetEntrySetCount(long assetEntrySetId)
+		throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select count(*) from AssetEntrySet where " +
+					"parentAssetEntrySetId = " + assetEntrySetId);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+
+			return 0;
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);

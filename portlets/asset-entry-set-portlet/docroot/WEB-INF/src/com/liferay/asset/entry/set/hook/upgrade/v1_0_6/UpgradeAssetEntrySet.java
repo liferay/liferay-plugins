@@ -31,10 +31,6 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		updateLinkData();
-	}
-
-	protected void updateLinkData() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

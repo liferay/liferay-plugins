@@ -37,10 +37,6 @@ public class UpgradeAssetEntrySet extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeAssetEntrySet();
-	}
-
-	protected void upgradeAssetEntrySet() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

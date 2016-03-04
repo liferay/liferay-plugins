@@ -25,10 +25,6 @@ public class UpgradeAssetSharingEntry extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeAssetSharingEntry();
-	}
-
-	protected void upgradeAssetSharingEntry() throws Exception {
 		StringBundler sb = new StringBundler(6);
 
 		sb.append("delete AssetSharingEntry from AssetSharingEntry left join ");
