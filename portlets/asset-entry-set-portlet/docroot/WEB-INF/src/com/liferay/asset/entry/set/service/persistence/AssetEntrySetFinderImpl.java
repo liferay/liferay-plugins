@@ -125,9 +125,9 @@ public class AssetEntrySetFinderImpl
 	public List<AssetEntrySet> findByCT_PAESI_ST_CNI(
 			long classNameId, long classPK, long createTime,
 			boolean gtCreateTime, long parentAssetEntrySetId, long stickyTime,
-			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
-			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
-			int end)
+			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
+			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
+			String[] assetTagNames, int start, int end)
 		throws SystemException {
 
 		if (((sharedToJSONArray == null) ||
@@ -161,12 +161,14 @@ public class AssetEntrySetFinderImpl
 			List<String> whereClauses = new ArrayList<String>();
 
 			whereClauses.add(
-				getSharedTo(classNameId, classPK, sharedToJSONArray));
-			whereClauses.add(
 				getAssetTagNames(classNameId, classPK, assetTagNames));
+			whereClauses.add(
+				getCreator(classNameId, classPK, creatorJSONArray));
 			whereClauses.add(
 				getIncludeAssetEntrySetIds(
 					classNameId, classPK, includeAssetEntrySetIds));
+			whereClauses.add(
+				getSharedTo(classNameId, classPK, sharedToJSONArray));
 
 			whereClauses.removeAll(_emptyList);
 
@@ -206,9 +208,9 @@ public class AssetEntrySetFinderImpl
 	public List<AssetEntrySet> findByMT_PAESI_ST_CNI(
 			long classNameId, long classPK, long modifiedTime,
 			boolean gtModifiedTime, long parentAssetEntrySetId, long stickyTime,
-			JSONArray sharedToJSONArray, long[] includeAssetEntrySetIds,
-			long[] excludeAssetEntrySetIds, String[] assetTagNames, int start,
-			int end)
+			JSONArray creatorJSONArray, JSONArray sharedToJSONArray,
+			long[] includeAssetEntrySetIds, long[] excludeAssetEntrySetIds,
+			String[] assetTagNames, int start, int end)
 		throws SystemException {
 
 		if (((sharedToJSONArray == null) ||
@@ -242,12 +244,14 @@ public class AssetEntrySetFinderImpl
 			List<String> whereClauses = new ArrayList<String>();
 
 			whereClauses.add(
-				getSharedTo(classNameId, classPK, sharedToJSONArray));
-			whereClauses.add(
 				getAssetTagNames(classNameId, classPK, assetTagNames));
+			whereClauses.add(
+				getCreator(classNameId, classPK, creatorJSONArray));
 			whereClauses.add(
 				getIncludeAssetEntrySetIds(
 					classNameId, classPK, includeAssetEntrySetIds));
+			whereClauses.add(
+				getSharedTo(classNameId, classPK, sharedToJSONArray));
 
 			whereClauses.removeAll(_emptyList);
 
@@ -362,6 +366,46 @@ public class AssetEntrySetFinderImpl
 		}
 
 		sb.setIndex(sb.index() - 1);
+
+		return sb.toString();
+	}
+
+	protected String getCreator(
+		long classNameId, long classPK, JSONArray creatorJSONArray) {
+
+		if ((creatorJSONArray == null) || (creatorJSONArray.length() == 0)) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler();
+
+		sb.append(StringPool.OPEN_PARENTHESIS);
+
+		for (int i = 0; i < creatorJSONArray.length(); i++) {
+			JSONObject jsonObject = creatorJSONArray.getJSONObject(i);
+
+			long creatorClassNameId = jsonObject.getLong("classNameId");
+			long creatorClassPK = jsonObject.getLong("classPK");
+
+			sb.append("(AssetEntrySet.creatorClassNameId = ");
+			sb.append(creatorClassNameId);
+			sb.append(" AND AssetEntrySet.creatorClassPK = ");
+			sb.append(creatorClassPK);
+
+			if (!AssetEntrySetParticipantInfoUtil.isMember(
+					classNameId, classPK, creatorClassNameId, creatorClassPK)) {
+
+				sb.append(" AND ");
+				sb.append(getViewable(classNameId, classPK));
+			}
+
+			sb.append(StringPool.CLOSE_PARENTHESIS);
+			sb.append(" OR ");
+		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		return sb.toString();
 	}
