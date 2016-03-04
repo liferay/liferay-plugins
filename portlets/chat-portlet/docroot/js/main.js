@@ -544,8 +544,6 @@ AUI().use(
 						heightMonitor.setStyle('width', instance._chatInputWidth);
 					}
 
-					var chatInputEl = chatInput.getDOM();
-
 					var content = LString.escapeHTML(chatInput.val());
 					var textNode = DOC.createTextNode(content);
 
@@ -786,12 +784,22 @@ AUI().use(
 
 				AUI.Env.add(window, 'storage', storageFn);
 
-				A.getWin().on(
-					'beforeunload',
-					function(event) {
-						AUI.Env.remove(window, 'storage', storageFn);
+				var clearStorage = function() {
+					AUI.Env.remove(window, 'storage', storageFn);
 
-						localStorage.setItem('liferay.chat.messages', null);
+					localStorage.setItem('liferay.chat.messages', null);
+				};
+
+				var beforeUnload = A.getWin().on('beforeunload', clearStorage);
+
+				Liferay.on(
+					'screenLoad',
+					function() {
+						beforeUnload.detach();
+
+						clearStorage();
+
+						Liferay.Poller.removeListener(instance._portletId);
 					}
 				);
 			},
@@ -1667,16 +1675,10 @@ AUI().use(
 		Liferay.publish(
 			'chatPortletReady',
 			{
-				defaultFn: A.bind('init', Liferay.Chat.Manager),
-				fireOnce: true
+				defaultFn: A.bind('init', Liferay.Chat.Manager)
 			}
 		);
 
-		A.on(
-			'domready',
-			function() {
-				Liferay.fire('chatPortletReady');
-			}
-		);
+		Liferay.fire('chatPortletReady');
 	}
 );

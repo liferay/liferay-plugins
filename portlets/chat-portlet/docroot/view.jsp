@@ -23,7 +23,7 @@
 	%>
 
 	<liferay-util:html-top>
-		<link href="<%= PortalUtil.getStaticResourceURL(request, PortalUtil.getPathContext(request) + "/css/main.css", portlet.getTimestamp()) %>" rel="stylesheet" type="text/css" />
+		<link data-senna-track="permanent" href="<%= PortalUtil.getStaticResourceURL(request, PortalUtil.getPathContext(request) + "/css/main.css", portlet.getTimestamp()) %>" rel="stylesheet" type="text/css" />
 	</liferay-util:html-top>
 
 	<liferay-util:html-bottom>
