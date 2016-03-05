@@ -19,16 +19,16 @@
 
 <%
 for (SocialActivitySet activitySet : results) {
+	if (count >= _DELTA) {
+		break;
+	}
+
 	SocialActivityFeedEntry activityFeedEntry = SocialActivityInterpreterLocalServiceUtil.interpret("SO", activitySet, ServiceContextFactory.getInstance(request));
 
 	start++;
 
 	if (activityFeedEntry == null) {
 		continue;
-	}
-
-	if (count >= _DELTA) {
-		break;
 	}
 
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(activityFeedEntry.getPortletId());
