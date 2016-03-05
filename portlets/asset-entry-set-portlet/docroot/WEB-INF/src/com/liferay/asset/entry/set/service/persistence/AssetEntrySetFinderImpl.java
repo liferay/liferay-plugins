@@ -377,7 +377,8 @@ public class AssetEntrySetFinderImpl
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(
+			(creatorJSONArray.length() * 8) + 2);
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
 
