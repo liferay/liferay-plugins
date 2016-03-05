@@ -154,28 +154,6 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 	@Override
 	public List<SyncDevice> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		return findByUuid(uuid, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the sync devices where uuid = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param uuid the uuid
-	 * @param start the lower bound of the range of sync devices
-	 * @param end the upper bound of the range of sync devices (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
-	 * @return the ordered range of matching sync devices
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<SyncDevice> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator, boolean retrieveFromCache)
-		throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -191,19 +169,15 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 			finderArgs = new Object[] { uuid, start, end, orderByComparator };
 		}
 
-		List<SyncDevice> list = null;
+		List<SyncDevice> list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
-		if (retrieveFromCache) {
-			list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDevice syncDevice : list) {
+				if (!Validator.equals(uuid, syncDevice.getUuid())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SyncDevice syncDevice : list) {
-					if (!Validator.equals(uuid, syncDevice.getUuid())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -717,29 +691,6 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 	public List<SyncDevice> findByUuid_C(String uuid, long companyId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the sync devices where uuid = &#63; and companyId = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param uuid the uuid
-	 * @param companyId the company ID
-	 * @param start the lower bound of the range of sync devices
-	 * @param end the upper bound of the range of sync devices (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
-	 * @return the ordered range of matching sync devices
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<SyncDevice> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator,
-		boolean retrieveFromCache) throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -759,20 +710,16 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 				};
 		}
 
-		List<SyncDevice> list = null;
+		List<SyncDevice> list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
-		if (retrieveFromCache) {
-			list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDevice syncDevice : list) {
+				if (!Validator.equals(uuid, syncDevice.getUuid()) ||
+						(companyId != syncDevice.getCompanyId())) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SyncDevice syncDevice : list) {
-					if (!Validator.equals(uuid, syncDevice.getUuid()) ||
-							(companyId != syncDevice.getCompanyId())) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -1310,30 +1257,6 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 	public List<SyncDevice> findByC_U(long companyId, String userName,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		return findByC_U(companyId, userName, start, end, orderByComparator,
-			true);
-	}
-
-	/**
-	 * Returns an ordered range of all the sync devices where companyId = &#63; and userName LIKE &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param companyId the company ID
-	 * @param userName the user name
-	 * @param start the lower bound of the range of sync devices
-	 * @param end the upper bound of the range of sync devices (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
-	 * @return the ordered range of matching sync devices
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<SyncDevice> findByC_U(long companyId, String userName,
-		int start, int end, OrderByComparator orderByComparator,
-		boolean retrieveFromCache) throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1345,23 +1268,18 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 				start, end, orderByComparator
 			};
 
-		List<SyncDevice> list = null;
+		List<SyncDevice> list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
-		if (retrieveFromCache) {
-			list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+		if ((list != null) && !list.isEmpty()) {
+			for (SyncDevice syncDevice : list) {
+				if ((companyId != syncDevice.getCompanyId()) ||
+						!StringUtil.wildcardMatches(syncDevice.getUserName(),
+							userName, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, false)) {
+					list = null;
 
-			if ((list != null) && !list.isEmpty()) {
-				for (SyncDevice syncDevice : list) {
-					if ((companyId != syncDevice.getCompanyId()) ||
-							!StringUtil.wildcardMatches(
-								syncDevice.getUserName(), userName,
-								CharPool.UNDERLINE, CharPool.PERCENT,
-								CharPool.BACK_SLASH, false)) {
-						list = null;
-
-						break;
-					}
+					break;
 				}
 			}
 		}
@@ -2281,27 +2199,6 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 	@Override
 	public List<SyncDevice> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
-		return findAll(start, end, orderByComparator, true);
-	}
-
-	/**
-	 * Returns an ordered range of all the sync devices.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	 * </p>
-	 *
-	 * @param start the lower bound of the range of sync devices
-	 * @param end the upper bound of the range of sync devices (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @param retrieveFromCache whether to retrieve from the finder cache
-	 * @return the ordered range of sync devices
-	 * @throws SystemException if a system exception occurred
-	 */
-	@Override
-	public List<SyncDevice> findAll(int start, int end,
-		OrderByComparator orderByComparator, boolean retrieveFromCache)
-		throws SystemException {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2317,12 +2214,8 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
-		List<SyncDevice> list = null;
-
-		if (retrieveFromCache) {
-			list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
-		}
+		List<SyncDevice> list = (List<SyncDevice>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
 
 		if (list == null) {
 			StringBundler query = null;
