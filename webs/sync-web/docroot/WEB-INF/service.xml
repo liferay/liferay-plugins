@@ -112,9 +112,6 @@
 
 		<!-- Finder methods -->
 
-		<finder name="TreePath" return-type="Collection">
-			<finder-column name="treePath" comparator="LIKE" />
-		</finder>
 		<finder name="M_R" return-type="Collection">
 			<finder-column name="modifiedTime" comparator="&gt;" />
 			<finder-column name="repositoryId" />
@@ -130,10 +127,6 @@
 		<finder name="R_T" return-type="Collection">
 			<finder-column name="repositoryId" />
 			<finder-column name="type" />
-		</finder>
-		<finder name="T_NotE" return-type="Collection">
-			<finder-column name="treePath" comparator="LIKE" />
-			<finder-column name="event" comparator="!=" />
 		</finder>
 		<finder name="V_T" return-type="Collection">
 			<finder-column name="version" />
