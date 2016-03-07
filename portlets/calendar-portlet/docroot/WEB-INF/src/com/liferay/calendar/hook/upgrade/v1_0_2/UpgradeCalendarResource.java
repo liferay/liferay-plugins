@@ -27,7 +27,6 @@ import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,6 +38,16 @@ import java.util.List;
  * @author Adam Brandizzi
  */
 public class UpgradeCalendarResource extends UpgradeProcess {
+
+	public UpgradeCalendarResource(
+			ClassNameLocalService classNameLocalService,
+			CompanyLocalService companyLocaService,
+			UserLocalService userLocalService) {
+
+		_classNameLocalService = classNameLocalService;
+		_companyLocaService = companyLocaService;
+		_userLocalService = userLocalService;
+	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
@@ -132,10 +141,11 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 		throws PortalException, SQLException {
 
 		List<Company> companies = _companyLocaService.getCompanies();
-		long classNameId = classNameLocalService.getClassNameId(Group.class);
 
 		for (Company company : companies) {
 			long adminUserId = getCompanyAdminUserId(company);
+			long classNameId = _classNameLocalService.getClassNameId(
+				Group.class);
 			long defaultUserId = _userLocalService.getDefaultUserId(
 				company.getCompanyId());
 
@@ -145,13 +155,8 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 		}
 	}
 
-	@ServiceReference(type = CompanyLocalService.class)
-	protected CompanyLocalService _companyLocaService;
-
-	@ServiceReference(type = UserLocalService.class)
-	protected UserLocalService _userLocalService;
-
-	@ServiceReference(type = ClassNameLocalService.class)
-	protected ClassNameLocalService classNameLocalService;
+	private final ClassNameLocalService _classNameLocalService;
+	private final CompanyLocalService _companyLocaService;
+	private final UserLocalService _userLocalService;
 
 }
