@@ -425,7 +425,7 @@ public class AssetEntrySetLocalServiceImpl
 
 	protected Map<Long, Set<Long>> getSharedToClassPKsMap(
 			AssetEntrySet assetEntrySet)
-		throws PortalException {
+		throws PortalException, SystemException {
 
 		Map<Long, Set<Long>> sharedToClassPKsMap =
 			new LinkedHashMap<Long, Set<Long>>();
@@ -475,8 +475,16 @@ public class AssetEntrySetLocalServiceImpl
 	}
 
 	protected void setSharedToClassPKsMap(
-		Map<Long, Set<Long>> sharedToClassPKsMap, long classNameId,
-		long classPK) {
+			Map<Long, Set<Long>> sharedToClassPKsMap, long classNameId,
+			long classPK)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(
+				AssetEntrySetParticipantInfoUtil.getParticipantName(
+					classNameId, classPK))) {
+
+			return;
+		}
 
 		Set<Long> classNamePks = new HashSet<Long>();
 
