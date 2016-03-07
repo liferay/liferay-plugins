@@ -32,8 +32,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import java.util.List;
-
 /**
  * @author Adam Brandizzi
  */
@@ -84,18 +82,19 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 	}
 
 	protected void updateCalendarUserIds(
-			long groupClassNameId, long adminUserId, long defaultUserId)
+			long groupClassNameId, long defaultUserId, long adminUserId)
 		throws SQLException {
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
-			StringBundler sb = new StringBundler(6);
+			StringBundler sb = new StringBundler(4);
 
-			sb.append("select Calendar.calendarId from Calendar join ");
-			sb.append("CalendarResource where CalendarResource.");
-			sb.append("classNameId = ? and CalendarResource.userId = ?");
+			sb.append("select Calendar.calendarId from Calendar ");
+			sb.append("join CalendarResource where ");
+			sb.append("CalendarResource.classNameId = ? ");
+			sb.append("and CalendarResource.userId = ?");
 
 			ps = connection.prepareStatement(sb.toString());
 
@@ -122,9 +121,13 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 		PreparedStatement ps = null;
 
 		try {
-			ps = connection.prepareStatement(
-				"update CalendarResource set userId = ? where userId = ? and " +
-				"and classNameId = ?");
+			StringBundler sb = new StringBundler(3);
+
+			sb.append("update CalendarResource set userId = ? ");
+			sb.append("where userId = ? ");
+			sb.append("and classNameId = ?");
+
+			ps = connection.prepareStatement(sb.toString());
 
 			ps.setLong(1, adminUserId);
 			ps.setLong(2, defaultUserId);
@@ -140,9 +143,7 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 	protected void upgradeCalendarResourceUserIds()
 		throws PortalException, SQLException {
 
-		List<Company> companies = _companyLocaService.getCompanies();
-
-		for (Company company : companies) {
+		for (Company company : _companyLocaService.getCompanies()) {
 			long adminUserId = getCompanyAdminUserId(company);
 			long classNameId = _classNameLocalService.getClassNameId(
 				Group.class);
