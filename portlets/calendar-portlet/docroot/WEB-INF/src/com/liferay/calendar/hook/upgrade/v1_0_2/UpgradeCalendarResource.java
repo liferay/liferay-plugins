@@ -17,7 +17,6 @@ package com.liferay.calendar.hook.upgrade.v1_0_2;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
@@ -57,6 +56,7 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 
 		Role role = RoleLocalServiceUtil.getRole(
 			company.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
 		long[] userIds = UserLocalServiceUtil.getRoleUserIds(role.getRoleId());
 
 		return userIds[0];
@@ -89,14 +89,10 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 		ResultSet rs = null;
 
 		try {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("select Calendar.calendarId from Calendar ");
-			sb.append("join CalendarResource where ");
-			sb.append("CalendarResource.classNameId = ? ");
-			sb.append("and CalendarResource.userId = ?");
-
-			ps = connection.prepareStatement(sb.toString());
+			ps = connection.prepareStatement(
+				"select Calendar.calendarId from Calendar join " +
+					"CalendarResource where CalendarResource.classNameId = " +
+						"? and CalendarResource.userId = ?");
 
 			ps.setLong(1, groupClassNameId);
 			ps.setLong(2, defaultUserId);
@@ -121,13 +117,9 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 		PreparedStatement ps = null;
 
 		try {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("update CalendarResource set userId = ? ");
-			sb.append("where userId = ? ");
-			sb.append("and classNameId = ?");
-
-			ps = connection.prepareStatement(sb.toString());
+			ps = connection.prepareStatement(
+				"update CalendarResource set userId = ? where userId = ? and " +
+					"classNameId = ?");
 
 			ps.setLong(1, adminUserId);
 			ps.setLong(2, defaultUserId);
