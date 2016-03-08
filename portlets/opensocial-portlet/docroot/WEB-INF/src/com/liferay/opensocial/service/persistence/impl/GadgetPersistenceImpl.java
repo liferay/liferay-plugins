@@ -1578,7 +1578,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	@Override
 	public List<Gadget> filterFindByUuid_C(String uuid, long companyId,
 		int start, int end, OrderByComparator<Gadget> orderByComparator) {
-		if (!InlineSQLHelperUtil.isEnabled()) {
+		if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 			return findByUuid_C(uuid, companyId, start, end, orderByComparator);
 		}
 
@@ -1687,7 +1687,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public Gadget[] filterFindByUuid_C_PrevAndNext(long gadgetId, String uuid,
 		long companyId, OrderByComparator<Gadget> orderByComparator)
 		throws NoSuchGadgetException {
-		if (!InlineSQLHelperUtil.isEnabled()) {
+		if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 			return findByUuid_C_PrevAndNext(gadgetId, uuid, companyId,
 				orderByComparator);
 		}
@@ -1970,7 +1970,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	@Override
 	public int filterCountByUuid_C(String uuid, long companyId) {
-		if (!InlineSQLHelperUtil.isEnabled()) {
+		if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 			return countByUuid_C(uuid, companyId);
 		}
 
@@ -2516,7 +2516,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	@Override
 	public List<Gadget> filterFindByCompanyId(long companyId, int start,
 		int end, OrderByComparator<Gadget> orderByComparator) {
-		if (!InlineSQLHelperUtil.isEnabled()) {
+		if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 			return findByCompanyId(companyId, start, end, orderByComparator);
 		}
 
@@ -2606,7 +2606,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public Gadget[] filterFindByCompanyId_PrevAndNext(long gadgetId,
 		long companyId, OrderByComparator<Gadget> orderByComparator)
 		throws NoSuchGadgetException {
-		if (!InlineSQLHelperUtil.isEnabled()) {
+		if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 			return findByCompanyId_PrevAndNext(gadgetId, companyId,
 				orderByComparator);
 		}
@@ -2850,7 +2850,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	@Override
 	public int filterCountByCompanyId(long companyId) {
-		if (!InlineSQLHelperUtil.isEnabled()) {
+		if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 			return countByCompanyId(companyId);
 		}
 
