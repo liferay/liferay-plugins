@@ -22,10 +22,9 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.service.ClassNameLocalService;
-import com.liferay.portal.service.CompanyLocalService;
+import com.liferay.portal.service.ClassNameLocalServiceUtil;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
-import com.liferay.portal.service.UserLocalService;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.sql.Connection;
@@ -37,16 +36,6 @@ import java.sql.SQLException;
  * @author Adam Brandizzi
  */
 public class UpgradeCalendarResource extends UpgradeProcess {
-
-	public UpgradeCalendarResource(
-			ClassNameLocalService classNameLocalService,
-			CompanyLocalService companyLocaService,
-			UserLocalService userLocalService) {
-
-		_classNameLocalService = classNameLocalService;
-		_companyLocaService = companyLocaService;
-		_userLocalService = userLocalService;
-	}
 
 	@Override
 	protected void doUpgrade() throws Exception {
@@ -146,11 +135,11 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 	protected void upgradeCalendarResourceUserIds()
 		throws PortalException, SQLException, SystemException {
 
-		for (Company company : _companyLocaService.getCompanies()) {
+		for (Company company : CompanyLocalServiceUtil.getCompanies()) {
 			long adminUserId = getCompanyAdminUserId(company);
-			long classNameId = _classNameLocalService.getClassNameId(
+			long classNameId = ClassNameLocalServiceUtil.getClassNameId(
 				Group.class);
-			long defaultUserId = _userLocalService.getDefaultUserId(
+			long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
 				company.getCompanyId());
 
 			upgradeCalendarResourceUserId(
@@ -158,9 +147,5 @@ public class UpgradeCalendarResource extends UpgradeProcess {
 			updateCalendarUserIds(classNameId, defaultUserId, adminUserId);
 		}
 	}
-
-	private final ClassNameLocalService _classNameLocalService;
-	private final CompanyLocalService _companyLocaService;
-	private final UserLocalService _userLocalService;
 
 }
