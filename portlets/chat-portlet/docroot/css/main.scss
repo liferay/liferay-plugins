@@ -136,6 +136,10 @@ html body {
 /* ---------- Online users ---------- */
 
 .buddy-list {
+	.form-group {
+		margin-bottom: 0;
+	}
+
 	.field.search-buddies {
 		padding-right: 2px;
 	}
@@ -166,10 +170,12 @@ html body {
 		padding: 2px 0;
 
 		.online-users li {
+			align-items: center;
 			border: 1px solid #FFF;
 			cursor: pointer;
-			float: left;
-			height: 24px;
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
 			list-style-type: none;
 			margin: 0;
 			padding: 2px;
@@ -188,16 +194,13 @@ html body {
 		}
 
 		div {
-			font: 12px/24px Arial, Helvetica, sans-serif;
-			overflow-x: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
 
 		img {
 			background: #333;
-			display: block;
-			float: left;
+			display: inline-block;
 			height: 24px;
 			margin: 0 6px 0 0;
 			width: 24px;
@@ -441,8 +444,9 @@ pre.chat-height-monitor {
 .chat-bar {
 	.online-users .buddy-services {
 		display: none;
-		float: right;
-		margin-top: 4px;
+		flex-shrink: 0;
+		max-width: 50%;
+		text-align: right;
 	}
 
 	.chat-panel-content {
@@ -451,16 +455,16 @@ pre.chat-height-monitor {
 		}
 
 		.name {
-			float: left;
-			max-width: 150px;
+			flex-grow: 1;
 		}
 	}
 
 	.buddy-services div {
 		background: transparent no-repeat;
-		float: left;
+		display: inline-block;
 		height: 16px;
 		margin-right: 3px;
+		overflow: visible;
 		width: 16px;
 	}
 }
