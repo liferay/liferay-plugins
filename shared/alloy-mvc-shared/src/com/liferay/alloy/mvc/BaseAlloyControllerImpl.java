@@ -382,36 +382,36 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		SessionMessages.add(portletRequest, "requestProcessed", successMessage);
 	}
 
-	protected PortletURL buildAlloyURL(
+	protected PortletURL getPortletURL(
 			String controller, String action, PortletMode portletMode,
 			String lifecycle)
 		throws Exception {
 
-		return buildAlloyURL(
+		return getPortletURL(
 			controller, action, portletMode, lifecycle,
 			portletRequest.getWindowState(), null);
 	}
 
-	protected PortletURL buildAlloyURL(
+	protected PortletURL getPortletURL(
 			String controller, String action, PortletMode portletMode,
 			String lifecycle, Object... parameters)
 		throws Exception {
 
-		return buildAlloyURL(
+		return getPortletURL(
 			controller, action, portletMode, lifecycle,
 			portletRequest.getWindowState(), parameters);
 	}
 
-	protected PortletURL buildAlloyURL(
+	protected PortletURL getPortletURL(
 			String controller, String action, PortletMode portletMode,
 			String lifecycle, WindowState windowState)
 		throws Exception {
 
-		return buildAlloyURL(
+		return getPortletURL(
 			controller, action, portletMode, lifecycle, windowState, null);
 	}
 
-	protected PortletURL buildAlloyURL(
+	protected PortletURL getPortletURL(
 			String controller, String action, PortletMode portletMode,
 			String lifecycle, WindowState windowState, Object... parameters)
 		throws Exception {
