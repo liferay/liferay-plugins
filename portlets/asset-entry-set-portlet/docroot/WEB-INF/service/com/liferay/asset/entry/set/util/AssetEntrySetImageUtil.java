@@ -40,7 +40,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.dynamicdatamapping.storage.Field;
@@ -353,9 +353,9 @@ public class AssetEntrySetImageUtil {
 
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
-		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
-			repository.getRepositoryId(), 0L, fileName, contentType, fileName,
-			originalFileName, StringPool.BLANK, file, serviceContext);
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
+			userId, repository.getRepositoryId(), 0L, fileName, contentType,
+			fileName, originalFileName, StringPool.BLANK, file, serviceContext);
 
 		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(
 			fileEntry.getFileEntryId());
