@@ -382,70 +382,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		SessionMessages.add(portletRequest, "requestProcessed", successMessage);
 	}
 
-	protected PortletURL getPortletURL(
-			String controller, String action, PortletMode portletMode,
-			String lifecycle)
-		throws Exception {
-
-		return getPortletURL(
-			controller, action, portletMode, lifecycle,
-			portletRequest.getWindowState(), null);
-	}
-
-	protected PortletURL getPortletURL(
-			String controller, String action, PortletMode portletMode,
-			String lifecycle, Object... parameters)
-		throws Exception {
-
-		return getPortletURL(
-			controller, action, portletMode, lifecycle,
-			portletRequest.getWindowState(), parameters);
-	}
-
-	protected PortletURL getPortletURL(
-			String controller, String action, PortletMode portletMode,
-			String lifecycle, WindowState windowState)
-		throws Exception {
-
-		return getPortletURL(
-			controller, action, portletMode, lifecycle, windowState, null);
-	}
-
-	protected PortletURL getPortletURL(
-			String controller, String action, PortletMode portletMode,
-			String lifecycle, WindowState windowState, Object... parameters)
-		throws Exception {
-
-		Layout layout = themeDisplay.getLayout();
-
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, portlet.getPortletId(), layout.getPlid(), lifecycle);
-
-		portletURL.setParameter("action", action);
-		portletURL.setParameter("controller", controller);
-
-		portletURL.setPortletMode(portletMode);
-		portletURL.setWindowState(windowState);
-
-		if (parameters == null) {
-			return portletURL;
-		}
-
-		if ((parameters.length % 2) != 0) {
-			throw new IllegalArgumentException(
-				"Parameters length is not an even number");
-		}
-
-		for (int i = 0; i < parameters.length; i += 2) {
-			String parameterName = String.valueOf(parameters[i]);
-			String parameterValue = String.valueOf(parameters[i + 1]);
-
-			portletURL.setParameter(parameterName, parameterValue);
-		}
-
-		return portletURL;
-	}
-
 	protected MessageListener buildControllerMessageListener() {
 		return null;
 	}
@@ -629,6 +565,70 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		return sb.toString();
+	}
+
+	protected PortletURL getPortletURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle)
+		throws Exception {
+
+		return getPortletURL(
+			controller, action, portletMode, lifecycle,
+			portletRequest.getWindowState(), null);
+	}
+
+	protected PortletURL getPortletURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle, Object... parameters)
+		throws Exception {
+
+		return getPortletURL(
+			controller, action, portletMode, lifecycle,
+			portletRequest.getWindowState(), parameters);
+	}
+
+	protected PortletURL getPortletURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle, WindowState windowState)
+		throws Exception {
+
+		return getPortletURL(
+			controller, action, portletMode, lifecycle, windowState, null);
+	}
+
+	protected PortletURL getPortletURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle, WindowState windowState, Object... parameters)
+		throws Exception {
+
+		Layout layout = themeDisplay.getLayout();
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, portlet.getPortletId(), layout.getPlid(), lifecycle);
+
+		portletURL.setParameter("action", action);
+		portletURL.setParameter("controller", controller);
+
+		portletURL.setPortletMode(portletMode);
+		portletURL.setWindowState(windowState);
+
+		if (parameters == null) {
+			return portletURL;
+		}
+
+		if ((parameters.length % 2) != 0) {
+			throw new IllegalArgumentException(
+				"Parameters length is not an even number");
+		}
+
+		for (int i = 0; i < parameters.length; i += 2) {
+			String parameterName = String.valueOf(parameters[i]);
+			String parameterValue = String.valueOf(parameters[i + 1]);
+
+			portletURL.setParameter(parameterName, parameterValue);
+		}
+
+		return portletURL;
 	}
 
 	protected Throwable getRootCause(Throwable throwable) {
