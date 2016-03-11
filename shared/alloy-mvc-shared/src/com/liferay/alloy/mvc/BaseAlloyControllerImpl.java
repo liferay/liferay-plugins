@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.GroupedModel;
+import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.User;
@@ -44,6 +45,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.portlet.PortletConfigFactoryUtil;
+import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.TimeUnit;
@@ -101,6 +103,7 @@ import javax.portlet.EventResponse;
 import javax.portlet.MimeResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
+import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletRequestDispatcher;
 import javax.portlet.PortletResponse;
@@ -109,6 +112,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.WindowState;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -386,6 +390,70 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			portletRequest, "successMessage");
 
 		SessionMessages.add(portletRequest, "requestProcessed", successMessage);
+	}
+
+	protected PortletURL buildAlloyURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle)
+		throws Exception {
+
+		return buildAlloyURL(
+			controller, action, portletMode, lifecycle,
+			portletRequest.getWindowState(), null);
+	}
+
+	protected PortletURL buildAlloyURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle, Object... parameters)
+		throws Exception {
+
+		return buildAlloyURL(
+			controller, action, portletMode, lifecycle,
+			portletRequest.getWindowState(), parameters);
+	}
+
+	protected PortletURL buildAlloyURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle, WindowState windowState)
+		throws Exception {
+
+		return buildAlloyURL(
+			controller, action, portletMode, lifecycle, windowState, null);
+	}
+
+	protected PortletURL buildAlloyURL(
+			String controller, String action, PortletMode portletMode,
+			String lifecycle, WindowState windowState, Object... parameters)
+		throws Exception {
+
+		Layout layout = themeDisplay.getLayout();
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, portlet.getPortletId(), layout.getPlid(), lifecycle);
+
+		portletURL.setParameter("action", action);
+		portletURL.setParameter("controller", controller);
+
+		portletURL.setPortletMode(portletMode);
+		portletURL.setWindowState(windowState);
+
+		if (parameters == null) {
+			return portletURL;
+		}
+
+		if ((parameters.length % 2) != 0) {
+			throw new IllegalArgumentException(
+				"Parameters length is not an even number");
+		}
+
+		for (int i = 0; i < parameters.length; i += 2) {
+			String parameterName = String.valueOf(parameters[i]);
+			String parameterValue = String.valueOf(parameters[i + 1]);
+
+			portletURL.setParameter(parameterName, parameterValue);
+		}
+
+		return portletURL;
 	}
 
 	protected MessageListener buildControllerMessageListener() {
