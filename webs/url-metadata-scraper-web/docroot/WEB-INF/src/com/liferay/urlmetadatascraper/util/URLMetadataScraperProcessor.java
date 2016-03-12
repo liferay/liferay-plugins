@@ -233,16 +233,17 @@ public class URLMetadataScraperProcessor {
 	private static final int _IMAGE_URLS_MAXIMUM = 10;
 
 	private static final String[] _SELECTORS_DESCRIPTION = {
-		"meta[property=og:description]", "meta[name=description]"
+		"meta[property=og:description]", "meta[name=og:description]",
+		"meta[name=description]"
 	};
 
 	private static final String[] _SELECTORS_IMAGE = {
-		"meta[property=og:image]"
+		"meta[property=og:image]", "meta[name=og:image]"
 	};
 
 	private static final String[] _SELECTORS_TITLE = {
-		"meta[property=og:title]", "meta[name=title]", "title",
-		"meta[property=og:site_name]"
+		"meta[property=og:title]", "meta[name=og:title]", "meta[name=title]",
+		"title", "meta[property=og:site_name]"
 	};
 
 	private static final String[] _SELECTORS_VIDEO_URL_ = {
