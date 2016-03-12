@@ -108,13 +108,6 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 			curUserJSONObject.put("awake", awake);
 
-			String fullName = ContactConstants.getFullName(
-				firstName, middleName, lastName);
-
-			curUserJSONObject.put("fullName", fullName);
-			curUserJSONObject.put("groupId", groupId);
-			curUserJSONObject.put("portraitId", portraitId);
-
 			String displayURL = StringPool.BLANK;
 
 			try {
@@ -132,6 +125,13 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			}
 
 			curUserJSONObject.put("displayURL", displayURL);
+
+			String fullName = ContactConstants.getFullName(
+				firstName, middleName, lastName);
+
+			curUserJSONObject.put("fullName", fullName);
+			curUserJSONObject.put("groupId", groupId);
+			curUserJSONObject.put("portraitId", portraitId);
 
 			String portraitURL = UserConstants.getPortraitURL(
 				StringPool.BLANK, male, portraitId, userUuid);
