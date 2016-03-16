@@ -22,7 +22,6 @@ import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.KBArticleExportActionableDynamicQuery;
 import com.liferay.knowledgebase.service.persistence.KBCommentExportActionableDynamicQuery;
 import com.liferay.knowledgebase.service.persistence.KBTemplateExportActionableDynamicQuery;
-import com.liferay.knowledgebase.util.comparator.KBArticleVersionComparator;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
@@ -189,9 +188,12 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			@Override
 			protected void addCriteria(DynamicQuery dynamicQuery) {
 				super.addCriteria(dynamicQuery);
+			}
 
-				OrderFactoryUtil.addOrderByComparator(
-					dynamicQuery, new KBArticleVersionComparator(true));
+			@Override
+			protected void addOrderCriteria(DynamicQuery dynamicQuery) {
+
+				dynamicQuery.addOrder(OrderFactoryUtil.asc("version"));
 			}
 
 		};
