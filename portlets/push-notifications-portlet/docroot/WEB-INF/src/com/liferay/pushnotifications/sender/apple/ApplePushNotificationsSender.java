@@ -137,6 +137,11 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	protected String buildPayload(JSONObject payloadJSONObject) {
 		PayloadBuilder builder = PayloadBuilder.newPayload();
 
+		if (payloadJSONObject.has(PushNotificationsConstants.KEY_BADGE)) {
+			builder.badge(
+				payloadJSONObject.getInt(PushNotificationsConstants.KEY_BADGE));
+		}
+
 		String body = payloadJSONObject.getString(
 			PushNotificationsConstants.KEY_BODY);
 
@@ -173,6 +178,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			builder.sound(sound);
 		}
 
+		payloadJSONObject.remove(PushNotificationsConstants.KEY_BADGE);
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY);
 		payloadJSONObject.remove(PushNotificationsConstants.KEY_BODY_LOCALIZED);
 		payloadJSONObject.remove(
