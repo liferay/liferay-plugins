@@ -394,13 +394,13 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	@Override
-	public java.lang.String getURL(java.lang.String portalURL) {
+	public java.lang.String getURL(java.lang.String prefixURL) {
 		try {
 			String methodName = "getURL";
 
 			Class<?>[] parameterTypes = new Class<?>[] { java.lang.String.class };
 
-			Object[] parameterValues = new Object[] { portalURL };
+			Object[] parameterValues = new Object[] { prefixURL };
 
 			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
