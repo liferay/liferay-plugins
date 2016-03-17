@@ -49,7 +49,6 @@ import com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUti
 import com.liferay.screens.service.base.ScreensAssetEntryServiceBaseImpl;
 import com.liferay.screens.service.permission.AssetEntryPermission;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -119,8 +118,6 @@ public class ScreensAssetEntryServiceImpl
 					AssetPublisherUtil.getAssetEntries(
 						portletPreferences, layout, groupId, max, false);
 
-				assetEntries = filterAssetEntries(assetEntries);
-
 				return toJSONArray(assetEntries, locale);
 			}
 			else {
@@ -140,8 +137,6 @@ public class ScreensAssetEntryServiceImpl
 							"assetEntryXml", new String[0]),
 						false, false);
 
-				assetEntries = filterAssetEntries(assetEntries);
-
 				return toJSONArray(assetEntries, locale);
 			}
 			catch (PortalException pe) {
@@ -154,23 +149,6 @@ public class ScreensAssetEntryServiceImpl
 				throw new PortalException(e);
 			}
 		}
-	}
-
-	protected List<AssetEntry> filterAssetEntries(List<AssetEntry> assetEntries)
-		throws PortalException {
-
-		List<AssetEntry> filteredAssetEntries = new ArrayList<AssetEntry>(
-			assetEntries.size());
-
-		for (AssetEntry assetEntry : assetEntries) {
-			if (AssetEntryPermission.contains(
-					getPermissionChecker(), assetEntry, ActionKeys.VIEW)) {
-
-				filteredAssetEntries.add(assetEntry);
-			}
-		}
-
-		return filteredAssetEntries;
 	}
 
 	protected JSONObject getAssetObjectJSONObject(AssetEntry assetEntry)
