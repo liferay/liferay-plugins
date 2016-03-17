@@ -176,7 +176,7 @@ public class ScreensAssetEntryServiceImpl
 			throw pe;
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 
 		return false;
@@ -297,13 +297,11 @@ public class ScreensAssetEntryServiceImpl
 		return jsonArray;
 	}
 
-	private static final String ASSET_ENTRY_PERMISSION_CLASSNAME =
-		"com.liferay.portlet.asset.service.permission.AssetEntryPermission";
-
 	private static final MethodKey _containsPermissionMethodKey =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
-				ASSET_ENTRY_PERMISSION_CLASSNAME),
+				"com.liferay.portlet.asset.service.permission." +
+					"AssetEntryPermission"),
 			"contains", PermissionChecker.class, AssetEntry.class,
 			String.class);
 
