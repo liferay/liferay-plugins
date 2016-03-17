@@ -72,6 +72,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -423,7 +424,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long groupId, long kbFolderId, String urlTitle) {
 
 		urlTitle = StringUtil.replaceFirst(
-			urlTitle, StringPool.SLASH, StringPool.BLANK);
+			urlTitle, CharPool.SLASH, StringPool.BLANK);
 
 		KBArticle kbArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, kbFolderId, urlTitle, WorkflowConstants.STATUS_APPROVED);
@@ -443,7 +444,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException {
 
 		urlTitle = StringUtil.replaceFirst(
-			urlTitle, StringPool.SLASH, StringPool.BLANK);
+			urlTitle, CharPool.SLASH, StringPool.BLANK);
 
 		List<KBArticle> kbArticles = kbArticleFinder.findByUrlTitle(
 			groupId, kbFolderUrlTitle, urlTitle, _STATUSES, 0, 1);
@@ -471,7 +472,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long groupId, long kbFolderId, String urlTitle, int status) {
 
 		urlTitle = StringUtil.replaceFirst(
-			urlTitle, StringPool.SLASH, StringPool.BLANK);
+			urlTitle, CharPool.SLASH, StringPool.BLANK);
 
 		List<KBArticle> kbArticles = null;
 
@@ -600,7 +601,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException {
 
 		urlTitle = StringUtil.replaceFirst(
-			urlTitle, StringPool.SLASH, StringPool.BLANK);
+			urlTitle, CharPool.SLASH, StringPool.BLANK);
 
 		// Get the latest KB article that is approved, if none are approved, get
 		// the latest unapproved KB article
@@ -624,7 +625,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException {
 
 		urlTitle = StringUtil.replaceFirst(
-			urlTitle, StringPool.SLASH, StringPool.BLANK);
+			urlTitle, CharPool.SLASH, StringPool.BLANK);
 
 		KBArticle kbArticle = fetchKBArticleByUrlTitle(
 			groupId, kbFolderUrlTitle, urlTitle);
@@ -765,7 +766,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		throws PortalException {
 
 		urlTitle = StringUtil.replaceFirst(
-			urlTitle, StringPool.SLASH, StringPool.BLANK);
+			urlTitle, CharPool.SLASH, StringPool.BLANK);
 
 		KBArticle latestKBArticle = fetchLatestKBArticleByUrlTitle(
 			groupId, kbFolderId, urlTitle, status);

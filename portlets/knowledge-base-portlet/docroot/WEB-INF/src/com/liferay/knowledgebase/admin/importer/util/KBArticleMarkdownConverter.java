@@ -249,7 +249,7 @@ public class KBArticleMarkdownConverter {
 			urlTitle = heading.substring(equalsSign + 1, y);
 
 			urlTitle = StringUtil.replace(
-				urlTitle, StringPool.SPACE, StringPool.DASH);
+				urlTitle, CharPool.SPACE, CharPool.DASH);
 
 			urlTitle = StringUtil.toLowerCase(urlTitle);
 		}
