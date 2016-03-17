@@ -368,6 +368,22 @@
 			</analyzer>
 		</fieldType>
 
+		<!-- Japanese for Lucene 3.6.0 and later -->
+
+		<!--
+		<fieldType autoGeneratePhraseQueries="false" class="solr.TextField" name="text_ja" positionIncrementGap="100">
+			<analyzer>
+				<tokenizer class="solr.JapaneseTokenizerFactory" mode="search" />
+				<filter class="solr.JapaneseBaseFormFilterFactory" />
+				<filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt" />
+				<filter class="solr.CJKWidthFilterFactory" />
+				<filter class="solr.StopFilterFactory" ignoreCase="true" words="lang/stopwords_ja.txt" />
+				<filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4" />
+				<filter class="solr.LowerCaseFilterFactory" />
+			</analyzer>
+		</fieldType>
+		-->
+
 		<!-- Dutch -->
 
 		<fieldType class="solr.TextField" name="text_nl" positionIncrementGap="100">
