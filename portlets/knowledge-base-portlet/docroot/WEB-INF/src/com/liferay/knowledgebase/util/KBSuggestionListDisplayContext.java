@@ -46,9 +46,10 @@ public class KBSuggestionListDisplayContext {
 
 		_request = request;
 		_templatePath = templatePath;
-		_groupId = kbArticle.getGroupId();
 		_kbArticle = kbArticle;
 		_selectedNavItem = selectedNavItem;
+
+		_groupId = kbArticle.getGroupId();
 	}
 
 	public KBSuggestionListDisplayContext(
