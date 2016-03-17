@@ -73,8 +73,6 @@ public class ScreensAssetEntryServiceImpl
 		List<AssetEntry> assetEntries = assetEntryService.getEntries(
 			assetEntryQuery);
 
-		assetEntries = filterAssetEntries(assetEntries);
-
 		return toJSONArray(assetEntries, locale);
 	}
 
@@ -201,6 +199,9 @@ public class ScreensAssetEntryServiceImpl
 
 	protected JSONObject getAssetObjectJSONObject(AssetEntry assetEntry)
 		throws PortalException, SystemException {
+
+		AssetEntryPermission.check(
+			getPermissionChecker(), assetEntry, ActionKeys.VIEW);
 
 		String className = assetEntry.getClassName();
 
