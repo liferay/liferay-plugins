@@ -98,7 +98,7 @@ public class ScreensJournalArticleServiceImpl
 			throw se;
 		}
 		catch (Exception e) {
-			_log.error(e, e);
+			_log.error(e);
 		}
 	}
 
@@ -119,7 +119,7 @@ public class ScreensJournalArticleServiceImpl
 			throw se;
 		}
 		catch (Exception e) {
-			_log.error(e, e);
+			_log.error(e);
 		}
 	}
 
