@@ -23,7 +23,7 @@ public class WSRPProducerImpl extends WSRPProducerBaseImpl {
 	}
 
 	public String getURL(String portalURL) {
-		return portalURL + "/wsrp-portlet/wsdl/" + getUuid();
+		return portalURL + "/wsdl/" + getUuid();
 	}
 
 }
