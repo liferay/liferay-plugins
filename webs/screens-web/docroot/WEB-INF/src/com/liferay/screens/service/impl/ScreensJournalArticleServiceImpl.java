@@ -88,8 +88,8 @@ public class ScreensJournalArticleServiceImpl
 
 		try {
 			PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKey1, permissionChecker,
-				resourcePrimKey, actionId);
+				false, _checkPermissionMethodKey1,
+				permissionChecker, resourcePrimKey, actionId);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -109,8 +109,8 @@ public class ScreensJournalArticleServiceImpl
 
 		try {
 			PortalClassInvoker.invoke(
-				false, _checkPermissionMethodKey2, permissionChecker, groupId,
-				articleId, actionId);
+				false, _checkPermissionMethodKey2, permissionChecker,
+				groupId, articleId, actionId);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -150,13 +150,13 @@ public class ScreensJournalArticleServiceImpl
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.journal.service.permission." +
-					"JournalArticlePermission"),
+			"JournalArticlePermission"),
 			"check", PermissionChecker.class, long.class, String.class);
 	private static final MethodKey _checkPermissionMethodKey2 =
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.journal.service.permission." +
-					"JournalArticlePermission"),
+			"JournalArticlePermission"),
 			"check", PermissionChecker.class, long.class, String.class,
 			String.class);
 
