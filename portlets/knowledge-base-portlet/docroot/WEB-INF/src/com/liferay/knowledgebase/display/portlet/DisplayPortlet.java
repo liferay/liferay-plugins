@@ -248,6 +248,10 @@ public class DisplayPortlet extends MVCPortlet {
 			kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
+		if (contentType.equals(ContentTypes.APPLICATION_X_GZIP)) {
+			contentType = ContentTypes.APPLICATION_ZIP;
+		}
+
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, shortFileName, is, contentType);
 	}

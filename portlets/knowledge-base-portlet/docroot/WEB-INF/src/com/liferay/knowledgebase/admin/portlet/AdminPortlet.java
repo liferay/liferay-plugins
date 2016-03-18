@@ -41,6 +41,7 @@ import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -275,6 +276,10 @@ public class AdminPortlet extends MVCPortlet {
 		InputStream is = DLStoreUtil.getFileAsStream(
 			kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 		String contentType = MimeTypesUtil.getContentType(fileName);
+
+		if (contentType.equals(ContentTypes.APPLICATION_X_GZIP)) {
+			contentType = ContentTypes.APPLICATION_ZIP;
+		}
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, shortFileName, is, contentType);
