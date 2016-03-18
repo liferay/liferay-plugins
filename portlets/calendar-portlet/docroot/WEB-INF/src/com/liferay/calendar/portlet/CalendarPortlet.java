@@ -718,7 +718,7 @@ public class CalendarPortlet extends MVCPortlet {
 	}
 
 	protected long getOffset(
-			CalendarBooking calendarBooking, long startTime,
+			CalendarBooking editedCalendarBookingInstance, long newStartTime,
 			Recurrence recurrence)
 		throws PortalException, SystemException {
 
@@ -728,37 +728,35 @@ public class CalendarPortlet extends MVCPortlet {
 			frequency = recurrence.getFrequency();
 		}
 
+		long oldStartTime = editedCalendarBookingInstance.getStartTime();
+		TimeZone timeZone = editedCalendarBookingInstance.getTimeZone();
+
 		if (frequency == Frequency.WEEKLY) {
 			CalendarBooking firstInstance =
 				CalendarBookingServiceUtil.getCalendarBookingInstance(
-					calendarBooking.getCalendarBookingId(), 0);
+					editedCalendarBookingInstance.getCalendarBookingId(), 0);
 
-			java.util.Calendar currentInstanceJCalendar =
-				CalendarFactoryUtil.getCalendar(
-					calendarBooking.getStartTime(),
-					calendarBooking.getTimeZone());
-
-			java.util.Calendar startTimeJCalendar =
-				JCalendarUtil.getJCalendar(
-					startTime, calendarBooking.getTimeZone());
+			java.util.Calendar oldStartTimeJCalendar =
+				CalendarFactoryUtil.getCalendar(oldStartTime, timeZone);
 
 			java.util.Calendar firstInstanceJCalendar =
-				JCalendarUtil.getJCalendar(
-					firstInstance.getStartTime(),
-					calendarBooking.getTimeZone());
+				CalendarFactoryUtil.getCalendar(
+					firstInstance.getStartTime(), timeZone);
 
 			if (!JCalendarUtil.isSameDayOfWeek(
-					currentInstanceJCalendar, firstInstanceJCalendar)) {
+					oldStartTimeJCalendar, firstInstanceJCalendar)) {
 
-				startTimeJCalendar = JCalendarUtil.mergeJCalendar(
-					currentInstanceJCalendar, startTimeJCalendar,
-					calendarBooking.getTimeZone());
+				java.util.Calendar newStartTimeJCalendar =
+					CalendarFactoryUtil.getCalendar(newStartTime, timeZone);
 
-				startTime = startTimeJCalendar.getTimeInMillis();
+				newStartTimeJCalendar = JCalendarUtil.mergeJCalendar(
+					oldStartTimeJCalendar, newStartTimeJCalendar, timeZone);
+
+				newStartTime = newStartTimeJCalendar.getTimeInMillis();
 			}
 		}
 
-		return startTime - calendarBooking.getStartTime();
+		return newStartTime - oldStartTime;
 	}
 
 	protected Recurrence getRecurrence(ActionRequest actionRequest) {
