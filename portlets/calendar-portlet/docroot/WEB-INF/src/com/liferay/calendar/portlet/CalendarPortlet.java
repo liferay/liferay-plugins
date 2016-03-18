@@ -71,6 +71,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CalendarFactory;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
@@ -731,23 +732,26 @@ public class CalendarPortlet extends MVCPortlet {
 		long oldStartTime = editedCalendarBookingInstance.getStartTime();
 		TimeZone timeZone = editedCalendarBookingInstance.getTimeZone();
 
+		CalendarFactory calendarFactory =
+			CalendarFactoryUtil.getCalendarFactory();
+
 		if (frequency == Frequency.WEEKLY) {
 			CalendarBooking firstInstance =
 				CalendarBookingServiceUtil.getCalendarBookingInstance(
 					editedCalendarBookingInstance.getCalendarBookingId(), 0);
 
 			java.util.Calendar oldStartTimeJCalendar =
-				CalendarFactoryUtil.getCalendar(oldStartTime, timeZone);
+					calendarFactory.getCalendar(oldStartTime, timeZone);
 
 			java.util.Calendar firstInstanceJCalendar =
-				CalendarFactoryUtil.getCalendar(
+					calendarFactory.getCalendar(
 					firstInstance.getStartTime(), timeZone);
 
 			if (!JCalendarUtil.isSameDayOfWeek(
 					oldStartTimeJCalendar, firstInstanceJCalendar)) {
 
 				java.util.Calendar newStartTimeJCalendar =
-					CalendarFactoryUtil.getCalendar(newStartTime, timeZone);
+						calendarFactory.getCalendar(newStartTime, timeZone);
 
 				newStartTimeJCalendar = JCalendarUtil.mergeJCalendar(
 					oldStartTimeJCalendar, newStartTimeJCalendar, timeZone);
