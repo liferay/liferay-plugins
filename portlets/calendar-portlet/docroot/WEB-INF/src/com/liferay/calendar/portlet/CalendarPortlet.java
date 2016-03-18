@@ -740,6 +740,11 @@ public class CalendarPortlet extends MVCPortlet {
 				CalendarBookingServiceUtil.getCalendarBookingInstance(
 					calendarBooking.getCalendarBookingId(), 0);
 
+			java.util.Calendar currentInstanceJCalendar =
+				CalendarFactoryUtil.getCalendar(
+					calendarBooking.getStartTime(),
+					calendarBooking.getTimeZone());
+
 			java.util.Calendar startTimeJCalendar =
 				JCalendarUtil.getJCalendar(
 					startTime, calendarBooking.getTimeZone());
@@ -750,12 +755,7 @@ public class CalendarPortlet extends MVCPortlet {
 					calendarBooking.getTimeZone());
 
 			if (!JCalendarUtil.isSameDayOfWeek(
-					startTimeJCalendar, firstInstanceJCalendar)) {
-
-				java.util.Calendar currentInstanceJCalendar =
-					CalendarFactoryUtil.getCalendar(
-						calendarBooking.getStartTime(),
-						calendarBooking.getTimeZone());
+					currentInstanceJCalendar, firstInstanceJCalendar)) {
 
 				startTimeJCalendar = JCalendarUtil.mergeJCalendar(
 					currentInstanceJCalendar, startTimeJCalendar,
