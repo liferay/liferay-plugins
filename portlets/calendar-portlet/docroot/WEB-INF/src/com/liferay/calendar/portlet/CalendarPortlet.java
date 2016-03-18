@@ -661,13 +661,6 @@ public class CalendarPortlet extends MVCPortlet {
 			java.util.Calendar firstDayJCalendar = JCalendarUtil.getJCalendar(
 				calendarBooking.getStartTime(), timeZone);
 
-			firstDayJCalendar.set(
-				java.util.Calendar.DAY_OF_WEEK_IN_MONTH,
-				startTimeJCalendar.get(
-					java.util.Calendar.DAY_OF_WEEK_IN_MONTH));
-
-			firstDayJCalendar.set(java.util.Calendar.DAY_OF_WEEK, 7);
-
 			long startTime = firstDayJCalendar.getTimeInMillis();
 			long endTime = startTime + calendarBooking.getDuration();
 
