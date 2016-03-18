@@ -392,7 +392,8 @@ public class NotificationsPortlet extends MVCPortlet {
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			themeDisplay.getCompanyId(), userNotificationEvent.getType());
 
-		String portletName = portlet.getDisplayName();
+		String portletName = PortalUtil.getPortletTitle(
+			portlet.getPortletId(), themeDisplay.getLocale());
 		String portletIcon = portlet.getContextPath() + portlet.getIcon();
 
 		JSONObject userNotificationEventJSONObject =
