@@ -21,14 +21,10 @@ public class AlloyException extends Exception {
 
 	public AlloyException() {
 		super();
-
-		log = true;
 	}
 
 	public AlloyException(String msg) {
 		super(msg);
-
-		log = true;
 	}
 
 	public AlloyException(String msg, boolean log) {
@@ -39,16 +35,12 @@ public class AlloyException extends Exception {
 
 	public AlloyException(String msg, Throwable cause) {
 		super(msg, cause);
-
-		log = true;
 	}
 
 	public AlloyException(Throwable cause) {
 		super(cause);
-
-		log = true;
 	}
 
-	protected boolean log;
+	protected boolean log = true;
 
 }
