@@ -25,13 +25,12 @@
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
-	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
+	<classpathentry kind="lib" path="/portal-master/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.io.delta.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
-	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-lang.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-collections.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/gson.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore.jar" />
