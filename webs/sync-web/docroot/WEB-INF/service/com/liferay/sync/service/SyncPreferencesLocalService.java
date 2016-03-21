@@ -16,8 +16,6 @@ package com.liferay.sync.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.oauth.model.OAuthApplication;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.service.BaseLocalService;
@@ -51,8 +49,8 @@ public interface SyncPreferencesLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncPreferencesLocalServiceUtil} to access the sync preferences local service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncPreferencesLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public OAuthApplication enableOAuth(long companyId,
-		ServiceContext serviceContext) throws PortalException;
+	public void enableOAuth(long companyId, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -69,4 +67,7 @@ public interface SyncPreferencesLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isOAuthApplicationAvailable(long oAuthApplicationId);
 }

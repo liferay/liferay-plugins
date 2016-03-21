@@ -743,7 +743,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncContext getSyncContext()
+	public java.lang.Object getSyncContext()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -767,7 +767,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 			}
 		}
 
-		return (com.liferay.sync.model.SyncContext)ClpSerializer.translateOutput(returnObj);
+		return (java.lang.Object)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -839,8 +839,8 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long parentFolderId, long lastAccessTime)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long parentFolderId, long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
@@ -865,7 +865,7 @@ public class SyncDLObjectServiceClp implements SyncDLObjectService {
 			}
 		}
 
-		return (com.liferay.sync.model.SyncDLObjectUpdate)ClpSerializer.translateOutput(returnObj);
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override

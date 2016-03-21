@@ -557,8 +557,7 @@ public class SyncDLObjectServiceHttp {
 		}
 	}
 
-	public static com.liferay.sync.model.SyncContext getSyncContext(
-		HttpPrincipal httpPrincipal)
+	public static java.lang.Object getSyncContext(HttpPrincipal httpPrincipal)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(SyncDLObjectServiceUtil.class,
@@ -579,7 +578,7 @@ public class SyncDLObjectServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (com.liferay.sync.model.SyncContext)returnObj;
+			return returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -655,7 +654,7 @@ public class SyncDLObjectServiceHttp {
 		}
 	}
 
-	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
+	public static java.lang.String getSyncDLObjectUpdate(
 		HttpPrincipal httpPrincipal, long repositoryId, long parentFolderId,
 		long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -680,7 +679,7 @@ public class SyncDLObjectServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (com.liferay.sync.model.SyncDLObjectUpdate)returnObj;
+			return (java.lang.String)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);

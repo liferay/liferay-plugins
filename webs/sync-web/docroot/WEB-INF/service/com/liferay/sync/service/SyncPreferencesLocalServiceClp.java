@@ -42,23 +42,24 @@ public class SyncPreferencesLocalServiceClp
 		_methodName2 = "getPortletPreferences";
 
 		_methodParameterTypes2 = new String[] { "long" };
+
+		_methodName4 = "isOAuthApplicationAvailable";
+
+		_methodParameterTypes4 = new String[] { "long" };
 	}
 
 	@Override
-	public com.liferay.oauth.model.OAuthApplication enableOAuth(
-		long companyId,
+	public void enableOAuth(long companyId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		Object returnObj = null;
-
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName0,
-					_methodParameterTypes0,
-					new Object[] {
-						companyId,
-						
-					ClpSerializer.translateInput(serviceContext)
-					});
+			_invokableLocalService.invokeMethod(_methodName0,
+				_methodParameterTypes0,
+				new Object[] {
+					companyId,
+					
+				ClpSerializer.translateInput(serviceContext)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -75,8 +76,6 @@ public class SyncPreferencesLocalServiceClp
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.oauth.model.OAuthApplication)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -138,6 +137,29 @@ public class SyncPreferencesLocalServiceClp
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public boolean isOAuthApplicationAvailable(long oAuthApplicationId) {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] { oAuthApplicationId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Boolean)returnObj).booleanValue();
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -145,4 +167,6 @@ public class SyncPreferencesLocalServiceClp
 	private String[] _methodParameterTypes1;
 	private String _methodName2;
 	private String[] _methodParameterTypes2;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
 }

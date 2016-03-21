@@ -35,12 +35,10 @@ public class SyncPreferencesLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.oauth.model.OAuthApplication enableOAuth(
-		long companyId,
+	public void enableOAuth(long companyId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _syncPreferencesLocalService.enableOAuth(companyId,
-			serviceContext);
+		_syncPreferencesLocalService.enableOAuth(companyId, serviceContext);
 	}
 
 	/**
@@ -66,6 +64,11 @@ public class SyncPreferencesLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _syncPreferencesLocalService.invokeMethod(name, parameterTypes,
 			arguments);
+	}
+
+	@Override
+	public boolean isOAuthApplicationAvailable(long oAuthApplicationId) {
+		return _syncPreferencesLocalService.isOAuthApplicationAvailable(oAuthApplicationId);
 	}
 
 	@Override

@@ -40,6 +40,10 @@ public class SyncPreferencesLocalServiceClpInvoker {
 		_methodName34 = "getPortletPreferences";
 
 		_methodParameterTypes34 = new String[] { "long" };
+
+		_methodName35 = "isOAuthApplicationAvailable";
+
+		_methodParameterTypes35 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -51,13 +55,20 @@ public class SyncPreferencesLocalServiceClpInvoker {
 
 		if (_methodName33.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
-			return SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
+			SyncPreferencesLocalServiceUtil.enableOAuth(((Long)arguments[0]).longValue(),
 				(com.liferay.portal.kernel.service.ServiceContext)arguments[1]);
+
+			return null;
 		}
 
 		if (_methodName34.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
 			return SyncPreferencesLocalServiceUtil.getPortletPreferences(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName35.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+			return SyncPreferencesLocalServiceUtil.isOAuthApplicationAvailable(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -69,4 +80,6 @@ public class SyncPreferencesLocalServiceClpInvoker {
 	private String[] _methodParameterTypes33;
 	private String _methodName34;
 	private String[] _methodParameterTypes34;
+	private String _methodName35;
+	private String[] _methodParameterTypes35;
 }

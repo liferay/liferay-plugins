@@ -28,9 +28,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
-import com.liferay.sync.model.SyncDLObjectUpdate;
 
 import java.io.File;
 
@@ -127,7 +125,7 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 
 	@AccessControlled(guestAccessEnabled = true)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncContext getSyncContext() throws PortalException;
+	public java.lang.Object getSyncContext() throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
@@ -139,7 +137,7 @@ public interface SyncDLObjectService extends BaseService, InvokableService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDLObjectUpdate getSyncDLObjectUpdate(long repositoryId,
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
 		long parentFolderId, long lastAccessTime) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

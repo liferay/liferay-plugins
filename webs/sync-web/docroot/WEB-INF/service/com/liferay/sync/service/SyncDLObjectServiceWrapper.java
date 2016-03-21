@@ -167,7 +167,7 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncContext getSyncContext()
+	public java.lang.Object getSyncContext()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _syncDLObjectService.getSyncContext();
 	}
@@ -189,8 +189,8 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long parentFolderId, long lastAccessTime)
+	public java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long parentFolderId, long lastAccessTime)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _syncDLObjectService.getSyncDLObjectUpdate(repositoryId,
 			parentFolderId, lastAccessTime);
