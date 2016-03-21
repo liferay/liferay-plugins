@@ -515,14 +515,21 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			}
 		}
 		catch (Exception e) {
-			log.error(e, e);
-
 			String message = "an-unexpected-system-error-occurred";
 
 			Throwable rootCause = getRootCause(e);
 
 			if (rootCause instanceof AlloyException) {
+				AlloyException ae = (AlloyException)rootCause;
+
+				if (ae.log) {
+					log.error(rootCause, rootCause);
+				}
+
 				message = rootCause.getMessage();
+			}
+			else {
+				log.error(e, e);
 			}
 
 			renderError(HttpServletResponse.SC_BAD_REQUEST, e, message);
