@@ -12,11 +12,12 @@
  * details.
  */
 
-package com.liferay.sync.model;
+package com.liferay.sync.util;
 
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.sync.model.SyncDLObject;
 
 import java.util.Date;
 import java.util.List;
