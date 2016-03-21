@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.impl.KBArticleImpl;
 import com.liferay.knowledgebase.model.impl.KBArticleModelImpl;
-import com.liferay.knowledgebase.service.persistence.KBArticlePersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
