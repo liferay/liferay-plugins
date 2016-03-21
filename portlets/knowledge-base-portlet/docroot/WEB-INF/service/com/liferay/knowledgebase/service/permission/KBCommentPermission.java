@@ -81,7 +81,7 @@ public class KBCommentPermission {
 
 			return permissionChecker.hasPermission(
 				kbArticle.getGroupId(), KBArticle.class.getName(),
-				kbArticle.getPrimaryKey(), ActionKeys.UPDATE);
+				kbArticle.getResourcePrimKey(), ActionKeys.UPDATE);
 		}
 		else if (className.equals(KBTemplate.class.getName())) {
 			KBTemplate kbTemplate = KBTemplateLocalServiceUtil.getKBTemplate(
