@@ -125,6 +125,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long kbFolderId = KnowledgeBaseUtil.getKBFolderId(
 			parentResourceClassNameId, parentResourcePrimKey);
 
+		urlTitle = forceUrlStartBySlash(urlTitle);
 		validateUrlTitle(groupId, kbFolderId, urlTitle);
 
 		long kbArticleId = counterLocalService.increment();
@@ -2023,6 +2024,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (!kbArticles.isEmpty()) {
 			throw new KBArticleUrlTitleException.MustNotBeDuplicate(urlTitle);
 		}
+	}
+
+	private String forceUrlStartBySlash(String urlTitle) {
+		if (urlTitle == null) {
+			return null;
+		}
+
+		return urlTitle.charAt(0) == '/'?
+			urlTitle:
+			"/" + urlTitle;
 	}
 
 	private static final int[] _STATUSES = {
