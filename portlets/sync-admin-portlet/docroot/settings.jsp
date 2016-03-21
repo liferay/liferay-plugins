@@ -27,13 +27,13 @@ int maxConnections = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.
 boolean oAuthEnabled = PrefsPropsUtil.getBoolean(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_ENABLED);
 int pollInterval = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL);
 
-boolean oAuthApplicationMissing = false;
+boolean oAuthApplicationAvailable = false;
 
 if (oAuthEnabled) {
 	long oAuthApplicationId = PrefsPropsUtil.getInteger(portletPreferences, themeDisplay.getCompanyId(), PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID, 0);
 
-	if (OAuthApplicationLocalServiceUtil.fetchOAuthApplication(oAuthApplicationId) == null) {
-		oAuthApplicationMissing = true;
+	if (SyncPreferencesLocalServiceUtil.isOAuthApplicationAvailable(oAuthApplicationId)) {
+		oAuthApplicationAvailable = true;
 	}
 }
 %>
@@ -44,7 +44,7 @@ if (oAuthEnabled) {
 	</div>
 </c:if>
 
-<c:if test="<%= oAuthEnabled && oAuthApplicationMissing %>">
+<c:if test="<%= oAuthEnabled && !oAuthApplicationAvailable %>">
 	<div class="alert alert-warning">
 		<liferay-ui:message key="the-oauth-application-for-liferay-sync-is-missing" />
 	</div>
