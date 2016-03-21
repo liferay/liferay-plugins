@@ -20,7 +20,6 @@ package com.liferay.alloy.mvc;
 public class AlloyException extends Exception {
 
 	public AlloyException() {
-		super();
 	}
 
 	public AlloyException(String msg) {
