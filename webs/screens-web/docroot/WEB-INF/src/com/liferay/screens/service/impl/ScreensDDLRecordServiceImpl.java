@@ -200,6 +200,7 @@ public class ScreensDDLRecordServiceImpl
 
 				if (fieldValue != null) {
 					ddlRecordMap.put(field.getName(), fieldValue);
+
 					break;
 				}
 			}
