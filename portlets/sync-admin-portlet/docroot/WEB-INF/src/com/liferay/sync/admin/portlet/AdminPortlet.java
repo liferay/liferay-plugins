@@ -27,7 +27,7 @@ import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.sync.OAuthPortletUndeployedException;
+import com.liferay.sync.admin.OAuthPortletUndeployedException;
 import com.liferay.sync.service.SyncPreferencesLocalServiceUtil;
 import com.liferay.sync.shared.util.PortletPropsKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
