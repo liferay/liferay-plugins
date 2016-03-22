@@ -14,7 +14,6 @@
 
 package com.liferay.sync.servlet;
 
-import com.liferay.oauth.model.OAuthApplication;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -48,8 +47,6 @@ import com.liferay.sync.util.VerifyUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.portlet.PortletPreferences;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -152,24 +149,8 @@ public class SyncServletContextListener
 
 				serviceContext.setUserId(user.getUserId());
 
-				OAuthApplication oAuthApplication =
-					SyncPreferencesLocalServiceUtil.enableOAuth(
-						company.getCompanyId(), serviceContext);
-
-				PortletPreferences portletPreferences =
-					PrefsPropsUtil.getPreferences(company.getCompanyId());
-
-				portletPreferences.setValue(
-					PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID,
-					String.valueOf(oAuthApplication.getOAuthApplicationId()));
-				portletPreferences.setValue(
-					PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY,
-					oAuthApplication.getConsumerKey());
-				portletPreferences.setValue(
-					PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET,
-					oAuthApplication.getConsumerSecret());
-
-				portletPreferences.store();
+				SyncPreferencesLocalServiceUtil.enableOAuth(
+					company.getCompanyId(), serviceContext);
 			}
 		}
 		catch (Exception e) {

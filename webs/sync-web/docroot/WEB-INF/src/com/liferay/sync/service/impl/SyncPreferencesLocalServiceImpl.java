@@ -42,8 +42,7 @@ public class SyncPreferencesLocalServiceImpl
 	extends SyncPreferencesLocalServiceBaseImpl {
 
 	@Override
-	public OAuthApplication enableOAuth(
-			long companyId, ServiceContext serviceContext)
+	public void enableOAuth(long companyId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		long oAuthApplicationId = PrefsPropsUtil.getLong(
@@ -54,7 +53,7 @@ public class SyncPreferencesLocalServiceImpl
 				oAuthApplicationId);
 
 		if (oAuthApplication != null) {
-			return oAuthApplication;
+			return;
 		}
 
 		oAuthApplication = OAuthApplicationLocalServiceUtil.addOAuthApplication(
@@ -70,7 +69,25 @@ public class SyncPreferencesLocalServiceImpl
 		OAuthApplicationLocalServiceUtil.updateLogo(
 			oAuthApplication.getOAuthApplicationId(), inputStream);
 
-		return oAuthApplication;
+		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
+			companyId);
+
+		try {
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_OAUTH_APPLICATION_ID,
+				String.valueOf(oAuthApplication.getOAuthApplicationId()));
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_OAUTH_CONSUMER_KEY,
+				oAuthApplication.getConsumerKey());
+			portletPreferences.setValue(
+				PortletPropsKeys.SYNC_OAUTH_CONSUMER_SECRET,
+				oAuthApplication.getConsumerSecret());
+
+			portletPreferences.store();
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
 	}
 
 	@Override
@@ -99,6 +116,21 @@ public class SyncPreferencesLocalServiceImpl
 		}
 
 		return portletPreferences;
+	}
+
+	@Override
+	public boolean isOAuthApplicationAvailable(long oAuthApplicationId)
+		throws SystemException {
+
+		OAuthApplication oAuthApplication =
+			OAuthApplicationLocalServiceUtil.fetchOAuthApplication(
+				oAuthApplicationId);
+
+		if (oAuthApplication == null) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
