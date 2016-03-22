@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.model;
+package com.liferay.sync.util;
 
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.model.Group;

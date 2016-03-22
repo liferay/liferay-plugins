@@ -67,16 +67,16 @@ import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
-import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectConstants;
-import com.liferay.sync.model.SyncDLObjectUpdate;
 import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.service.base.SyncDLObjectServiceBaseImpl;
 import com.liferay.sync.shared.util.SyncDeviceConstants;
 import com.liferay.sync.util.JSONWebServiceActionParametersMap;
 import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
+import com.liferay.sync.util.SyncContext;
+import com.liferay.sync.util.SyncDLObjectUpdate;
 import com.liferay.sync.util.SyncDeviceThreadLocal;
 import com.liferay.sync.util.SyncUtil;
 import com.liferay.sync.util.comparator.SyncDLObjectModifiedTimeComparator;
@@ -503,9 +503,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@AccessControlled(guestAccessEnabled = true)
 	@Override
-	public SyncContext getSyncContext()
-		throws PortalException, SystemException {
-
+	public Object getSyncContext() throws PortalException, SystemException {
 		try {
 			SyncUtil.checkSyncEnabled(0);
 
@@ -657,7 +655,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
-	public SyncDLObjectUpdate getSyncDLObjectUpdate(
+	public String getSyncDLObjectUpdate(
 			long repositoryId, long parentFolderId, long lastAccessTime)
 		throws PortalException, SystemException {
 
@@ -674,9 +672,11 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			SyncDLObject syncDLObject = syncDLObjects.get(
 				syncDLObjects.size() - 1);
 
-			return new SyncDLObjectUpdate(
+			SyncDLObjectUpdate syncDLObjectUpdate = new SyncDLObjectUpdate(
 				checkSyncDLObjects(syncDLObjects, repositoryId, lastAccessTime),
 				syncDLObjects.size(), syncDLObject.getModifiedTime());
+
+			return syncDLObjectUpdate.toString();
 		}
 		catch (PortalException pe) {
 			throw new PortalException(SyncUtil.buildExceptionMessage(pe), pe);
