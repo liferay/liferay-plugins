@@ -63,8 +63,8 @@ public interface SyncPreferencesLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.oauth.model.OAuthApplication enableOAuth(
-		long companyId, com.liferay.portal.service.ServiceContext serviceContext)
+	public void enableOAuth(long companyId,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -73,4 +73,8 @@ public interface SyncPreferencesLocalService extends BaseLocalService,
 		long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isOAuthApplicationAvailable(long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -43,6 +43,10 @@ public class SyncPreferencesLocalServiceClp
 		_methodName4 = "getPortletPreferences";
 
 		_methodParameterTypes4 = new String[] { "long" };
+
+		_methodName5 = "isOAuthApplicationAvailable";
+
+		_methodParameterTypes5 = new String[] { "long" };
 	}
 
 	@Override
@@ -96,20 +100,18 @@ public class SyncPreferencesLocalServiceClp
 	}
 
 	@Override
-	public com.liferay.oauth.model.OAuthApplication enableOAuth(
-		long companyId, com.liferay.portal.service.ServiceContext serviceContext)
+	public void enableOAuth(long companyId,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
-					new Object[] {
-						companyId,
-						
-					ClpSerializer.translateInput(serviceContext)
-					});
+			_invokableLocalService.invokeMethod(_methodName3,
+				_methodParameterTypes3,
+				new Object[] {
+					companyId,
+					
+				ClpSerializer.translateInput(serviceContext)
+				});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -130,8 +132,6 @@ public class SyncPreferencesLocalServiceClp
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.oauth.model.OAuthApplication)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -168,6 +168,34 @@ public class SyncPreferencesLocalServiceClp
 		return (javax.portlet.PortletPreferences)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public boolean isOAuthApplicationAvailable(long oAuthApplicationId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { oAuthApplicationId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Boolean)returnObj).booleanValue();
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -177,4 +205,6 @@ public class SyncPreferencesLocalServiceClp
 	private String[] _methodParameterTypes3;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
 }

@@ -281,10 +281,9 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
-	public static com.liferay.sync.model.SyncContext getSyncContext()
-		throws RemoteException {
+	public static java.lang.Object getSyncContext() throws RemoteException {
 		try {
-			com.liferay.sync.model.SyncContext returnValue = SyncDLObjectServiceUtil.getSyncContext();
+			java.lang.Object returnValue = SyncDLObjectServiceUtil.getSyncContext();
 
 			return returnValue;
 		}
@@ -326,11 +325,10 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
-	public static com.liferay.sync.model.SyncDLObjectUpdate getSyncDLObjectUpdate(
-		long repositoryId, long parentFolderId, long lastAccessTime)
-		throws RemoteException {
+	public static java.lang.String getSyncDLObjectUpdate(long repositoryId,
+		long parentFolderId, long lastAccessTime) throws RemoteException {
 		try {
-			com.liferay.sync.model.SyncDLObjectUpdate returnValue = SyncDLObjectServiceUtil.getSyncDLObjectUpdate(repositoryId,
+			java.lang.String returnValue = SyncDLObjectServiceUtil.getSyncDLObjectUpdate(repositoryId,
 					parentFolderId, lastAccessTime);
 
 			return returnValue;
