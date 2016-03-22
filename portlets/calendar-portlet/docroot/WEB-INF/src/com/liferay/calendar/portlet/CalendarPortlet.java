@@ -663,6 +663,7 @@ public class CalendarPortlet extends MVCPortlet {
 				calendarBooking.getStartTime(), timeZone);
 
 			long startTime = firstDayJCalendar.getTimeInMillis();
+
 			long endTime = startTime + calendarBooking.getDuration();
 
 			calendarBooking.setStartTime(startTime);
@@ -741,17 +742,17 @@ public class CalendarPortlet extends MVCPortlet {
 					editedCalendarBookingInstance.getCalendarBookingId(), 0);
 
 			java.util.Calendar oldStartTimeJCalendar =
-					calendarFactory.getCalendar(oldStartTime, timeZone);
+				calendarFactory.getCalendar(oldStartTime, timeZone);
 
 			java.util.Calendar firstInstanceJCalendar =
-					calendarFactory.getCalendar(
+				calendarFactory.getCalendar(
 					firstInstance.getStartTime(), timeZone);
 
 			if (!JCalendarUtil.isSameDayOfWeek(
 					oldStartTimeJCalendar, firstInstanceJCalendar)) {
 
 				java.util.Calendar newStartTimeJCalendar =
-						calendarFactory.getCalendar(newStartTime, timeZone);
+					calendarFactory.getCalendar(newStartTime, timeZone);
 
 				newStartTimeJCalendar = JCalendarUtil.mergeJCalendar(
 					oldStartTimeJCalendar, newStartTimeJCalendar, timeZone);
