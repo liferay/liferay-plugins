@@ -149,7 +149,7 @@
 			</analyzer>
 		</fieldType>
 
-		<!-- CJK bigram (for Chinese, Japanese and Korean) -->
+		<!-- CJK bigram (for Chinese, Japanese, and Korean) -->
 
 		<fieldType class="solr.TextField" name="text_cjk" positionIncrementGap="100">
 			<analyzer>
@@ -368,7 +368,7 @@
 			</analyzer>
 		</fieldType>
 
-		<!-- Japanese Kuromoji - requires matching analyzer in search-spring.xml, upgrade to Lucene 3.6.0+ in Portal -->
+		<!-- Japanese Kuromoji (requires matching analyzer in search-spring.xml and upgrading to Lucene 3.6.0+ in the portal) -->
 
 		<fieldType autoGeneratePhraseQueries="false" class="solr.TextField" name="text_ja" positionIncrementGap="100">
 			<analyzer>
