@@ -194,14 +194,15 @@ public class ScreensDDLRecordServiceImpl
 			if (fieldValue != null) {
 				ddlRecordMap.put(field.getName(), fieldValue);
 			}
+			else {
+				for (Locale availableLocale : availableLocales) {
+					fieldValue = getFieldValue(field, availableLocale);
 
-			for (Locale availableLocale : availableLocales) {
-				fieldValue = getFieldValue(field, availableLocale);
+					if (fieldValue != null) {
+						ddlRecordMap.put(field.getName(), fieldValue);
 
-				if (fieldValue != null) {
-					ddlRecordMap.put(field.getName(), fieldValue);
-
-					break;
+						break;
+					}
 				}
 			}
 		}
