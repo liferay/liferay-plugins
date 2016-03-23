@@ -26,11 +26,13 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import javax.portlet.PortletRequest;
@@ -111,9 +113,10 @@ public class KBArticleAssetRendererFactory
 			(ThemeDisplay)liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			liferayPortletRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
-			getControlPanelPlid(themeDisplay), PortletRequest.RENDER_PHASE);
+		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
+			liferayPortletRequest, getGroup(liferayPortletRequest),
+			PortletKeys.KNOWLEDGE_BASE_ADMIN, 0, 0,
+			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcPath", "/admin/edit_article.jsp");
 
