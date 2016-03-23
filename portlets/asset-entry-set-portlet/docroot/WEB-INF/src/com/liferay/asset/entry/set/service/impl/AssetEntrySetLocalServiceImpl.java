@@ -46,6 +46,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.File;
@@ -54,6 +56,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -171,6 +174,13 @@ public class AssetEntrySetLocalServiceImpl
 				updateChildAssetEntrySetsCount(
 					parentAssetEntrySet.getAssetEntrySetId());
 			}
+		}
+
+		List<Long> fileEntryIds = getFileEntryIds(
+			JSONFactoryUtil.createJSONObject(assetEntrySet.getPayload()));
+
+		for (long fileEntryId : fileEntryIds) {
+			DLFileEntryLocalServiceUtil.deleteFileEntry(fileEntryId);
 		}
 
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
@@ -313,7 +323,18 @@ public class AssetEntrySetLocalServiceImpl
 		JSONObject oldPayloadJSONObject = JSONFactoryUtil.createJSONObject(
 			assetEntrySet.getPayload());
 
-		JSONArray oldSharedTOJSONArray = JSONFactoryUtil.createJSONArray(
+		List<Long> fileEntryIds = getFileEntryIds(oldPayloadJSONObject);
+
+		for (long fileEntryId : fileEntryIds) {
+			DLFileEntry dlFileEntry =
+				DLFileEntryLocalServiceUtil.getDLFileEntry(fileEntryId);
+
+			dlFileEntry.setClassPK(0);
+
+			DLFileEntryLocalServiceUtil.updateDLFileEntry(dlFileEntry);
+		}
+
+		JSONArray oldSharedToJSONArray = JSONFactoryUtil.createJSONArray(
 			oldPayloadJSONObject.getString(
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
@@ -325,7 +346,7 @@ public class AssetEntrySetLocalServiceImpl
 				AssetEntrySetConstants.PAYLOAD_KEY_SHARED_TO));
 
 		if (Validator.equals(
-				oldSharedTOJSONArray.toString(),
+				oldSharedToJSONArray.toString(),
 				sharedTOJSONArray.toString())) {
 
 			updateAssetSharingEntries = false;
@@ -421,6 +442,35 @@ public class AssetEntrySetLocalServiceImpl
 				sharedToJSONArray, includeAssetEntrySetIds,
 				excludeAssetEntrySetIds, assetTagNames, start, end);
 		}
+	}
+
+	protected List<Long> getFileEntryIds(JSONObject payloadJSONObject)
+		throws PortalException, SystemException {
+
+		List<Long> fileEntryIds = new ArrayList<Long>();
+
+		JSONArray imageDataJSONArray = payloadJSONObject.getJSONArray(
+			"imageData");
+
+		if (imageDataJSONArray != null) {
+			for (int i = 0; i < imageDataJSONArray.length(); i++) {
+				JSONObject imageDataJSONObject =
+					imageDataJSONArray.getJSONObject(i);
+
+				JSONObject fileEntryIdsJSONObject =
+					imageDataJSONObject.getJSONObject("fileEntryIds");
+
+				Iterator<String> iterator = fileEntryIdsJSONObject.keys();
+
+				while (iterator.hasNext()) {
+					String key = iterator.next();
+
+					fileEntryIds.add(fileEntryIdsJSONObject.getLong(key));
+				}
+			}
+		}
+
+		return fileEntryIds;
 	}
 
 	protected Map<Long, Set<Long>> getSharedToClassPKsMap(
