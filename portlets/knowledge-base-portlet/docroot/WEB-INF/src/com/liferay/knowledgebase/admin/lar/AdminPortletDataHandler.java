@@ -193,7 +193,6 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 			@Override
 			protected void addOrderCriteria(DynamicQuery dynamicQuery) {
-
 				OrderFactoryUtil.addOrderByComparator(
 					dynamicQuery, new KBArticleVersionComparator(true));
 			}
