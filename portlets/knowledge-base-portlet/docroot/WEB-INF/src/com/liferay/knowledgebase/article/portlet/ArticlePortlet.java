@@ -224,6 +224,7 @@ public class ArticlePortlet extends MVCPortlet {
 		String shortFileName = FileUtil.getShortFileName(fileName);
 		InputStream is = DLStoreUtil.getFileAsStream(
 			kbArticle.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		if (contentType.equals(ContentTypes.APPLICATION_X_GZIP)) {
