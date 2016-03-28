@@ -1777,6 +1777,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return true;
 	}
 
+	protected String normalizeUrlTitle(String urlTitle) {
+		if (urlTitle == null) {
+			return null;
+		}
+
+		if (StringUtil.startsWith(urlTitle, CharPool.SLASH)) {
+			return urlTitle;
+		}
+
+		return StringPool.SLASH + urlTitle;
+	}
+
 	protected void notifySubscribers(
 			KBArticle kbArticle, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -2024,18 +2036,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		if (!kbArticles.isEmpty()) {
 			throw new KBArticleUrlTitleException.MustNotBeDuplicate(urlTitle);
 		}
-	}
-
-	protected String normalizeUrlTitle(String urlTitle) {
-		if (urlTitle == null) {
-			return null;
-		}
-
-		if (StringUtil.startsWith(urlTitle, CharPool.SLASH)) {
-			return urlTitle;
-		}
-
-		return StringPool.SLASH + urlTitle;
 	}
 
 	private static final int[] _STATUSES = {
