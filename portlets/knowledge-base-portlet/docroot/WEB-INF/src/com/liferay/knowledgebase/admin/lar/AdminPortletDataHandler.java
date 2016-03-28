@@ -187,11 +187,6 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		return new KBArticleExportActionableDynamicQuery(portletDataContext) {
 
 			@Override
-			protected void addCriteria(DynamicQuery dynamicQuery) {
-				super.addCriteria(dynamicQuery);
-			}
-
-			@Override
 			protected void addOrderCriteria(DynamicQuery dynamicQuery) {
 				OrderFactoryUtil.addOrderByComparator(
 					dynamicQuery, new KBArticleVersionComparator(true));
