@@ -116,6 +116,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
+		urlTitle = normalizeUrlTitle(urlTitle);
 		double priority = getPriority(groupId, parentResourcePrimKey);
 		Date now = new Date();
 
@@ -125,7 +126,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		long kbFolderId = KnowledgeBaseUtil.getKBFolderId(
 			parentResourceClassNameId, parentResourcePrimKey);
 
-		urlTitle = normalizeUrlTitle(urlTitle);
 		validateUrlTitle(groupId, kbFolderId, urlTitle);
 
 		long kbArticleId = counterLocalService.increment();
