@@ -206,6 +206,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 					OrderFactoryUtil.addOrderByComparator(
 						dynamicQuery, new KBArticleVersionComparator(true));
 				}
+
 			});
 
 		return exportActionableDynamicQuery;
