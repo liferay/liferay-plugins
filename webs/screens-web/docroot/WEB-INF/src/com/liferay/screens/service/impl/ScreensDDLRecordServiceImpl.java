@@ -97,13 +97,11 @@ public class ScreensDDLRecordServiceImpl
 	}
 
 	@Override
-	public int getDDLRecordsCount(long ddlRecordSetId)
-		throws SystemException {
-
+	public int getDDLRecordsCount(long ddlRecordSetId) throws SystemException {
 		try {
 			checkPermission(
 				getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
-		}	
+		}
 		catch (PortalException pe) {
 			throw new SystemException(pe);
 		}
@@ -118,7 +116,7 @@ public class ScreensDDLRecordServiceImpl
 		try {
 			checkPermission(
 				getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
-		}	
+		}
 		catch (PortalException pe) {
 			throw new SystemException(pe);
 		}
