@@ -198,20 +198,14 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			KBArticleLocalServiceUtil.getExportActionableDynamicQuery(
 				portletDataContext);
 
-		final ActionableDynamicQuery.AddCriteriaMethod addCriteriaMethod =
-			exportActionableDynamicQuery.getAddCriteriaMethod();
-
-		exportActionableDynamicQuery.setAddCriteriaMethod(
-			new ActionableDynamicQuery.AddCriteriaMethod() {
+		exportActionableDynamicQuery.setAddOrderCriteriaMethod(
+			new ActionableDynamicQuery.AddOrderCriteriaMethod() {
 
 				@Override
-				public void addCriteria(DynamicQuery dynamicQuery) {
-					addCriteriaMethod.addCriteria(dynamicQuery);
-
+				public void addOrderCriteria(DynamicQuery dynamicQuery) {
 					OrderFactoryUtil.addOrderByComparator(
 						dynamicQuery, new KBArticleVersionComparator(true));
 				}
-
 			});
 
 		return exportActionableDynamicQuery;
