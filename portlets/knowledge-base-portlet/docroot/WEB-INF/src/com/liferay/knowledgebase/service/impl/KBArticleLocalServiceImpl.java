@@ -117,6 +117,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
+		urlTitle = normalizeUrlTitle(urlTitle);
 		double priority = getPriority(groupId, parentResourcePrimKey);
 		Date now = new Date();
 
@@ -1754,6 +1755,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 
 		return true;
+	}
+
+	protected String normalizeUrlTitle(String urlTitle) {
+		if (urlTitle == null) {
+			return null;
+		}
+
+		if (StringUtil.startsWith(urlTitle, CharPool.SLASH)) {
+			return urlTitle;
+		}
+
+		return StringPool.SLASH + urlTitle;
 	}
 
 	protected void notifySubscribers(
