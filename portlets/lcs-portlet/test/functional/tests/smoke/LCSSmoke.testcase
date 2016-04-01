@@ -1,0 +1,9 @@
+<definition component-name="liferay-connected-services-project-administration">
+	<property name="lcs.acceptance" value="true" />
+	<property name="portlet.plugins.includes" value="lcs-portlet" />
+	<property name="testray.main.component.name" value="Liferay Connected Services" />
+
+	<command name="Smoke" priority="5">
+		<execute function="Open" locator1="http://localhost:8080/" />
+	</command>
+</definition>
