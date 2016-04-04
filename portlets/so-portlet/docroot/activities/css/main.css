@@ -379,6 +379,10 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
+	.toggler-content-collapsed {
+		display: block;
+	}
+
 	.toggler-content-collapsed .activity-footer-toolbar {
 		border-top: 1px solid #EFEFEF;
 
