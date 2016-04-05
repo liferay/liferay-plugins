@@ -674,8 +674,8 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchFolderException(msg.toString());
@@ -2442,8 +2442,8 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchFolderException(msg.toString());
@@ -2730,8 +2730,8 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchFolderException(msg.toString());
@@ -3262,8 +3262,8 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 					primaryKey);
 
 			if (kbFolder == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchFolderException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -3488,8 +3488,8 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		KBFolder kbFolder = fetchByPrimaryKey(primaryKey);
 
 		if (kbFolder == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchFolderException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

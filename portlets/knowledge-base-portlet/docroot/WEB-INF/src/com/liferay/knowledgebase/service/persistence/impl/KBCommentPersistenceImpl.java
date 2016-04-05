@@ -676,8 +676,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchCommentException(msg.toString());
@@ -5268,8 +5268,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 					primaryKey);
 
 			if (kbComment == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchCommentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -5602,8 +5602,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		KBComment kbComment = fetchByPrimaryKey(primaryKey);
 
 		if (kbComment == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchCommentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

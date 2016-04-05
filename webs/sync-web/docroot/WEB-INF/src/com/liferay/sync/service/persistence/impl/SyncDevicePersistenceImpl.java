@@ -1931,8 +1931,8 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 					primaryKey);
 
 			if (syncDevice == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchDeviceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -2133,8 +2133,8 @@ public class SyncDevicePersistenceImpl extends BasePersistenceImpl<SyncDevice>
 		SyncDevice syncDevice = fetchByPrimaryKey(primaryKey);
 
 		if (syncDevice == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchDeviceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

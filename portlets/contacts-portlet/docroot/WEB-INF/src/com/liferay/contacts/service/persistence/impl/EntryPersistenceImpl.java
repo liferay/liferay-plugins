@@ -625,8 +625,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchEntryException(msg.toString());
@@ -1030,8 +1030,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			Entry entry = (Entry)session.get(EntryImpl.class, primaryKey);
 
 			if (entry == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -1205,8 +1205,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		Entry entry = fetchByPrimaryKey(primaryKey);
 
 		if (entry == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

@@ -679,8 +679,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchArticleException(msg.toString());
@@ -2952,8 +2952,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchArticleException(msg.toString());
@@ -12565,8 +12565,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchArticleException(msg.toString());
@@ -31106,8 +31106,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 					primaryKey);
 
 			if (kbArticle == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchArticleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -31830,8 +31830,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		KBArticle kbArticle = fetchByPrimaryKey(primaryKey);
 
 		if (kbArticle == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchArticleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

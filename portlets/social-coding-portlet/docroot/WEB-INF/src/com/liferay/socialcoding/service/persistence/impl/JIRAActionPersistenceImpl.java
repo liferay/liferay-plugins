@@ -1819,8 +1819,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					primaryKey);
 
 			if (jiraAction == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchJIRAActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -2025,8 +2025,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		JIRAAction jiraAction = fetchByPrimaryKey(primaryKey);
 
 		if (jiraAction == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchJIRAActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

@@ -744,8 +744,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 			Bar bar = (Bar)session.get(BarImpl.class, primaryKey);
 
 			if (bar == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchBarException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -885,8 +885,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		Bar bar = fetchByPrimaryKey(primaryKey);
 
 		if (bar == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchBarException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

@@ -206,8 +206,8 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			Type type = (Type)session.get(TypeImpl.class, primaryKey);
 
 			if (type == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchTypeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -329,8 +329,8 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		Type type = fetchByPrimaryKey(primaryKey);
 
 		if (type == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchTypeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

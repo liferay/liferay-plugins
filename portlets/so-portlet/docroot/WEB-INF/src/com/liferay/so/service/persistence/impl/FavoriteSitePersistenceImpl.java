@@ -624,8 +624,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchFavoriteSiteException(msg.toString());
@@ -999,8 +999,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 					primaryKey);
 
 			if (favoriteSite == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchFavoriteSiteException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -1149,8 +1149,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		FavoriteSite favoriteSite = fetchByPrimaryKey(primaryKey);
 
 		if (favoriteSite == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchFavoriteSiteException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

@@ -1868,8 +1868,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					primaryKey);
 
 			if (svnRevision == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchSVNRevisionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -2057,8 +2057,8 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		SVNRevision svnRevision = fetchByPrimaryKey(primaryKey);
 
 		if (svnRevision == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchSVNRevisionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

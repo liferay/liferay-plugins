@@ -765,8 +765,8 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 					primaryKey);
 
 			if (testBlobEntry == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -921,8 +921,8 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		TestBlobEntry testBlobEntry = fetchByPrimaryKey(primaryKey);
 
 		if (testBlobEntry == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

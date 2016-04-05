@@ -710,8 +710,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			Foo foo = (Foo)session.get(FooImpl.class, primaryKey);
 
 			if (foo == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchFooException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -883,8 +883,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		Foo foo = fetchByPrimaryKey(primaryKey);
 
 		if (foo == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchFooException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

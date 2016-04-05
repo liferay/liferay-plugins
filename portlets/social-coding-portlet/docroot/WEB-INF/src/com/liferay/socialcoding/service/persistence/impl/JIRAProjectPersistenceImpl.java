@@ -117,8 +117,8 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchJIRAProjectException(msg.toString());
@@ -499,8 +499,8 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 					primaryKey);
 
 			if (jiraProject == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchJIRAProjectException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -629,8 +629,8 @@ public class JIRAProjectPersistenceImpl extends BasePersistenceImpl<JIRAProject>
 		JIRAProject jiraProject = fetchByPrimaryKey(primaryKey);
 
 		if (jiraProject == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchJIRAProjectException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

@@ -215,8 +215,8 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			Asset asset = (Asset)session.get(AssetImpl.class, primaryKey);
 
 			if (asset == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchAssetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -370,8 +370,8 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		Asset asset = fetchByPrimaryKey(primaryKey);
 
 		if (asset == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchAssetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +

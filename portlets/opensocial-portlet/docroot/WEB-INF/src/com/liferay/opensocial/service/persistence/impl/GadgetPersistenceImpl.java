@@ -2927,8 +2927,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
 			}
 
 			throw new NoSuchGadgetException(msg.toString());
@@ -3328,8 +3328,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			Gadget gadget = (Gadget)session.get(GadgetImpl.class, primaryKey);
 
 			if (gadget == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+				if (_log.isDebugEnabled()) {
+					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
 				throw new NoSuchGadgetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
@@ -3546,8 +3546,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		Gadget gadget = fetchByPrimaryKey(primaryKey);
 
 		if (gadget == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
+			if (_log.isDebugEnabled()) {
+				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			throw new NoSuchGadgetException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
