@@ -55,15 +55,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 		int notificationType =
 			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY;
 
-		String subscriptionClassName = _WIKI_NODE_CLASS_NAME;
-		long subscriptionClassPK = wikiPage.getNodeId();
-
 		if (serviceContext.isCommandUpdate()) {
 			notificationType =
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
-
-			subscriptionClassName = _WIKI_PAGE_CLASS_NAME;
-			subscriptionClassPK = wikiPage.getResourcePrimKey();
 		}
 
 		AssetRenderer assetRenderer = _assetRendererFactory.getAssetRenderer(
@@ -79,14 +73,18 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			Validator.isNotNull(entryURL)) {
 
+			List<ObjectValuePair<String, Long>> subscribersOVPs =
+				getSubscribersOVPs(wikiPage, _WIKI_NODE_CLASS_NAME,
+					wikiPage.getNodeId());
+
+			subscribersOVPs.addAll(getSubscribersOVPs(wikiPage,
+				_WIKI_PAGE_CLASS_NAME, wikiPage.getResourcePrimKey()));
+
 			NotificationsUtil.sendNotificationEvent(
 				wikiPage.getCompanyId(), PortletKeys.WIKI,
 				_WIKI_PAGE_CLASS_NAME, wikiPage.getPageId(),
 				assetRenderer.getTitle(serviceContext.getLocale()), entryURL,
-				notificationType,
-				getSubscribersOVPs(
-					wikiPage, subscriptionClassName, subscriptionClassPK),
-				userId);
+				notificationType, subscribersOVPs, userId);
 		}
 		else {
 			serviceContext.setAttribute("entryURL", entryURL);
