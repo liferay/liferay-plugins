@@ -14,5 +14,6 @@
 		<dependency name="com.liferay.journal.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
 		<dependency name="com.liferay.markdown.converter" org="com.liferay" rev="1.0.2" />
 		<dependency name="com.liferay.wiki.api" org="com.liferay" rev="1.0.0-SNAPSHOT" />
+		<dependency name="jericho-html" org="net.htmlparser.jericho" rev="3.1"/>
 	</dependencies>
 </ivy-module>
