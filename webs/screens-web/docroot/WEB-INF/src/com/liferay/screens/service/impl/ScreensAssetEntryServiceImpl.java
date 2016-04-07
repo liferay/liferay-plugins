@@ -282,15 +282,6 @@ public class ScreensAssetEntryServiceImpl
 		JSONObject journalArticleJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.looseSerialize(journalArticle));
-
-		journalArticleJSONObject.put("modelAttributes", jsonObject);
-		journalArticleJSONObject.put(
-			"modelValues", jsonObject.getString("content"));
-
-		jsonObject.remove("content");
-
 		ClassName journalArticleClassName = classNameLocalService.getClassName(
 			JournalArticle.class.getName());
 
@@ -308,6 +299,15 @@ public class ScreensAssetEntryServiceImpl
 		catch (NoSuchStructureException nsse) {
 			_log.error(nsse, nsse);
 		}
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(journalArticle));
+
+		journalArticleJSONObject.put("modelAttributes", jsonObject);
+		journalArticleJSONObject.put(
+			"modelValues", jsonObject.getString("content"));
+
+		jsonObject.remove("content");
 
 		return journalArticleJSONObject;
 	}
