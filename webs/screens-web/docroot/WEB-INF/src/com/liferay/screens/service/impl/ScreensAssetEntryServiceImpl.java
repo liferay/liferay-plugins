@@ -284,6 +284,7 @@ public class ScreensAssetEntryServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			JSONFactoryUtil.looseSerialize(journalArticle));
+
 		journalArticleJSONObject.put("modelAttributes", jsonObject);
 		journalArticleJSONObject.put(
 			"modelValues", jsonObject.getString("content"));
