@@ -301,7 +301,8 @@ public class ScreensAssetEntryServiceImpl
 				journalArticle.getStructureId());
 
 			journalArticleJSONObject.put(
-				"DDMStructure", JSONFactoryUtil.createJSONObject(
+				"DDMStructure",
+				JSONFactoryUtil.createJSONObject(
 					JSONFactoryUtil.looseSerialize(ddmStructure)));
 		}
 		catch (NoSuchStructureException nsse) {
