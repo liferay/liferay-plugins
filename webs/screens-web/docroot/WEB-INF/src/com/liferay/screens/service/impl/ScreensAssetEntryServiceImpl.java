@@ -211,10 +211,8 @@ public class ScreensAssetEntryServiceImpl
 		String className = assetEntry.getClassName();
 
 		if (className.equals(DDLRecord.class.getName())) {
-			JSONObject ddlRecord = screensDDLRecordService.getDDLRecord(
+			return screensDDLRecordService.getDDLRecord(
 				assetEntry.getClassPK(), locale);
-
-			return ddlRecord;
 		}
 		else if (className.equals(DLFileEntry.class.getName())) {
 			return getFileEntryJSONObject(assetEntry);
