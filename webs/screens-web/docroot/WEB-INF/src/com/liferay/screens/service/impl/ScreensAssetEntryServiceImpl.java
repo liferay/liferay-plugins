@@ -146,7 +146,7 @@ public class ScreensAssetEntryServiceImpl
 				List<AssetEntry> assetEntries =
 					AssetPublisherUtil.getAssetEntries(
 						null, portletPreferences, permissionChecker,
-						new long[]{groupId},
+						new long[] {groupId},
 						portletPreferences.getValues(
 							"assetEntryXml", new String[0]),
 						false, false);
