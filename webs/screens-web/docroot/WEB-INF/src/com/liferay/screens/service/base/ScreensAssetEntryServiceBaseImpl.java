@@ -28,6 +28,9 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 import com.liferay.portlet.documentlibrary.service.persistence.DLFileEntryPersistence;
+import com.liferay.portlet.dynamicdatalists.service.persistence.DDLRecordPersistence;
+import com.liferay.portlet.dynamicdatalists.service.persistence.DDLRecordSetPersistence;
+import com.liferay.portlet.dynamicdatamapping.service.persistence.DDMStructurePersistence;
 import com.liferay.portlet.journal.service.persistence.JournalArticlePersistence;
 
 import com.liferay.screens.service.ScreensAssetEntryService;
@@ -491,6 +494,177 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the d d l record local service.
+	 *
+	 * @return the d d l record local service
+	 */
+	public com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalService getDDLRecordLocalService() {
+		return ddlRecordLocalService;
+	}
+
+	/**
+	 * Sets the d d l record local service.
+	 *
+	 * @param ddlRecordLocalService the d d l record local service
+	 */
+	public void setDDLRecordLocalService(
+		com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalService ddlRecordLocalService) {
+		this.ddlRecordLocalService = ddlRecordLocalService;
+	}
+
+	/**
+	 * Returns the d d l record remote service.
+	 *
+	 * @return the d d l record remote service
+	 */
+	public com.liferay.portlet.dynamicdatalists.service.DDLRecordService getDDLRecordService() {
+		return ddlRecordService;
+	}
+
+	/**
+	 * Sets the d d l record remote service.
+	 *
+	 * @param ddlRecordService the d d l record remote service
+	 */
+	public void setDDLRecordService(
+		com.liferay.portlet.dynamicdatalists.service.DDLRecordService ddlRecordService) {
+		this.ddlRecordService = ddlRecordService;
+	}
+
+	/**
+	 * Returns the d d l record persistence.
+	 *
+	 * @return the d d l record persistence
+	 */
+	public DDLRecordPersistence getDDLRecordPersistence() {
+		return ddlRecordPersistence;
+	}
+
+	/**
+	 * Sets the d d l record persistence.
+	 *
+	 * @param ddlRecordPersistence the d d l record persistence
+	 */
+	public void setDDLRecordPersistence(
+		DDLRecordPersistence ddlRecordPersistence) {
+		this.ddlRecordPersistence = ddlRecordPersistence;
+	}
+
+	/**
+	 * Returns the d d l record set local service.
+	 *
+	 * @return the d d l record set local service
+	 */
+	public com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalService getDDLRecordSetLocalService() {
+		return ddlRecordSetLocalService;
+	}
+
+	/**
+	 * Sets the d d l record set local service.
+	 *
+	 * @param ddlRecordSetLocalService the d d l record set local service
+	 */
+	public void setDDLRecordSetLocalService(
+		com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalService ddlRecordSetLocalService) {
+		this.ddlRecordSetLocalService = ddlRecordSetLocalService;
+	}
+
+	/**
+	 * Returns the d d l record set remote service.
+	 *
+	 * @return the d d l record set remote service
+	 */
+	public com.liferay.portlet.dynamicdatalists.service.DDLRecordSetService getDDLRecordSetService() {
+		return ddlRecordSetService;
+	}
+
+	/**
+	 * Sets the d d l record set remote service.
+	 *
+	 * @param ddlRecordSetService the d d l record set remote service
+	 */
+	public void setDDLRecordSetService(
+		com.liferay.portlet.dynamicdatalists.service.DDLRecordSetService ddlRecordSetService) {
+		this.ddlRecordSetService = ddlRecordSetService;
+	}
+
+	/**
+	 * Returns the d d l record set persistence.
+	 *
+	 * @return the d d l record set persistence
+	 */
+	public DDLRecordSetPersistence getDDLRecordSetPersistence() {
+		return ddlRecordSetPersistence;
+	}
+
+	/**
+	 * Sets the d d l record set persistence.
+	 *
+	 * @param ddlRecordSetPersistence the d d l record set persistence
+	 */
+	public void setDDLRecordSetPersistence(
+		DDLRecordSetPersistence ddlRecordSetPersistence) {
+		this.ddlRecordSetPersistence = ddlRecordSetPersistence;
+	}
+
+	/**
+	 * Returns the d d m structure local service.
+	 *
+	 * @return the d d m structure local service
+	 */
+	public com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService getDDMStructureLocalService() {
+		return ddmStructureLocalService;
+	}
+
+	/**
+	 * Sets the d d m structure local service.
+	 *
+	 * @param ddmStructureLocalService the d d m structure local service
+	 */
+	public void setDDMStructureLocalService(
+		com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService ddmStructureLocalService) {
+		this.ddmStructureLocalService = ddmStructureLocalService;
+	}
+
+	/**
+	 * Returns the d d m structure remote service.
+	 *
+	 * @return the d d m structure remote service
+	 */
+	public com.liferay.portlet.dynamicdatamapping.service.DDMStructureService getDDMStructureService() {
+		return ddmStructureService;
+	}
+
+	/**
+	 * Sets the d d m structure remote service.
+	 *
+	 * @param ddmStructureService the d d m structure remote service
+	 */
+	public void setDDMStructureService(
+		com.liferay.portlet.dynamicdatamapping.service.DDMStructureService ddmStructureService) {
+		this.ddmStructureService = ddmStructureService;
+	}
+
+	/**
+	 * Returns the d d m structure persistence.
+	 *
+	 * @return the d d m structure persistence
+	 */
+	public DDMStructurePersistence getDDMStructurePersistence() {
+		return ddmStructurePersistence;
+	}
+
+	/**
+	 * Sets the d d m structure persistence.
+	 *
+	 * @param ddmStructurePersistence the d d m structure persistence
+	 */
+	public void setDDMStructurePersistence(
+		DDMStructurePersistence ddmStructurePersistence) {
+		this.ddmStructurePersistence = ddmStructurePersistence;
+	}
+
+	/**
 	 * Returns the journal article local service.
 	 *
 	 * @return the journal article local service
@@ -662,6 +836,24 @@ public abstract class ScreensAssetEntryServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.portlet.documentlibrary.service.DLFileEntryService dlFileEntryService;
 	@BeanReference(type = DLFileEntryPersistence.class)
 	protected DLFileEntryPersistence dlFileEntryPersistence;
+	@BeanReference(type = com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalService.class)
+	protected com.liferay.portlet.dynamicdatalists.service.DDLRecordLocalService ddlRecordLocalService;
+	@BeanReference(type = com.liferay.portlet.dynamicdatalists.service.DDLRecordService.class)
+	protected com.liferay.portlet.dynamicdatalists.service.DDLRecordService ddlRecordService;
+	@BeanReference(type = DDLRecordPersistence.class)
+	protected DDLRecordPersistence ddlRecordPersistence;
+	@BeanReference(type = com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalService.class)
+	protected com.liferay.portlet.dynamicdatalists.service.DDLRecordSetLocalService ddlRecordSetLocalService;
+	@BeanReference(type = com.liferay.portlet.dynamicdatalists.service.DDLRecordSetService.class)
+	protected com.liferay.portlet.dynamicdatalists.service.DDLRecordSetService ddlRecordSetService;
+	@BeanReference(type = DDLRecordSetPersistence.class)
+	protected DDLRecordSetPersistence ddlRecordSetPersistence;
+	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService.class)
+	protected com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService ddmStructureLocalService;
+	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMStructureService.class)
+	protected com.liferay.portlet.dynamicdatamapping.service.DDMStructureService ddmStructureService;
+	@BeanReference(type = DDMStructurePersistence.class)
+	protected DDMStructurePersistence ddmStructurePersistence;
 	@BeanReference(type = com.liferay.portlet.journal.service.JournalArticleLocalService.class)
 	protected com.liferay.portlet.journal.service.JournalArticleLocalService journalArticleLocalService;
 	@BeanReference(type = com.liferay.portlet.journal.service.JournalArticleService.class)
