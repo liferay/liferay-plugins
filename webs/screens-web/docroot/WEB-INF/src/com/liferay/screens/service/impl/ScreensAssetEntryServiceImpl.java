@@ -210,17 +210,17 @@ public class ScreensAssetEntryServiceImpl
 
 		String className = assetEntry.getClassName();
 
-		if (className.equals(DLFileEntry.class.getName())) {
-			return getFileEntryJSONObject(assetEntry);
-		}
-		else if (className.equals(JournalArticle.class.getName())) {
-			return getJournalArticleJSONObject(assetEntry);
-		}
-		else if (className.equals(DDLRecord.class.getName())) {
+		if (className.equals(DDLRecord.class.getName())) {
 			JSONObject ddlRecord = screensDDLRecordService.getDDLRecord(
 				assetEntry.getClassPK(), locale);
 
 			return ddlRecord;
+		}
+		else if (className.equals(DLFileEntry.class.getName())) {
+			return getFileEntryJSONObject(assetEntry);
+		}
+		else if (className.equals(JournalArticle.class.getName())) {
+			return getJournalArticleJSONObject(assetEntry);
 		}
 
 		return JSONFactoryUtil.createJSONObject();
