@@ -9,6 +9,9 @@
 		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFileEntry" />
+		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecord" />
+		<reference package-path="com.liferay.portlet.dynamicdatalists" entity="DDLRecordSet" />
+		<reference package-path="com.liferay.portlet.dynamicdatamapping" entity="DDMStructure" />
 		<reference package-path="com.liferay.portlet.journal" entity="JournalArticle" />
 	</entity>
 	<entity name="ScreensDDLRecord" local-service="false" remote-service="true">

@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.ClassName;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.PortletItem;
 import com.liferay.portal.security.permission.ActionKeys;
@@ -46,7 +47,11 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
+import com.liferay.portlet.dynamicdatamapping.NoSuchStructureException;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.journal.NoSuchArticleException;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleResource;
@@ -199,20 +204,22 @@ public class ScreensAssetEntryServiceImpl
 		return filteredAssetEntries;
 	}
 
-	protected JSONObject getAssetObjectJSONObject(AssetEntry assetEntry)
+	protected JSONObject getAssetObjectJSONObject(
+			AssetEntry assetEntry, Locale locale)
 		throws PortalException, SystemException {
 
 		String className = assetEntry.getClassName();
 
-		if (className.equals(
-				"com.liferay.portlet.documentlibrary.model.DLFileEntry")) {
-
+		if (className.equals(DLFileEntry.class.getName())) {
 			return getFileEntryJSONObject(assetEntry);
 		}
-		else if (className.equals(
-					"com.liferay.portlet.journal.model.JournalArticle")) {
-
+		else if (className.equals(JournalArticle.class.getName())) {
 			return getJournalArticleJSONObject(assetEntry);
+		}
+		else if (className.equals(DDLRecord.class.getName())) {
+			JSONObject ddlRecord = screensDDLRecordService.getDDLRecord(
+				assetEntry.getClassPK(), locale);
+			return ddlRecord;
 		}
 
 		return JSONFactoryUtil.createJSONObject();
@@ -224,8 +231,10 @@ public class ScreensAssetEntryServiceImpl
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(
 			assetEntry.getClassPK());
 
-		JSONObject fileEntryJSONObject = JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.looseSerialize(fileEntry));
+		JSONObject fileEntryJSONObject = JSONFactoryUtil.createJSONObject();
+
+		fileEntryJSONObject.put("fileEntry", JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(fileEntry)));
 
 		fileEntryJSONObject.put("url", getFileEntryPreviewURL(fileEntry));
 
@@ -262,16 +271,39 @@ public class ScreensAssetEntryServiceImpl
 				JournalArticleResourceLocalServiceUtil.getArticleResource(
 					assetEntry.getClassPK());
 
-			journalArticleService.getLatestArticle(
+			journalArticle = journalArticleService.getLatestArticle(
 				journalArticleResource.getGroupId(),
 				journalArticleResource.getArticleId(),
 				WorkflowConstants.STATUS_APPROVED);
 		}
 
-		JSONObject journalArticleJSONObject = JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.looseSerialize(journalArticle));
+		JSONObject journalArticleJSONObject =
+			JSONFactoryUtil.createJSONObject();
 
-		journalArticleJSONObject.remove("content");
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(journalArticle));
+		journalArticleJSONObject.put("modelAttributes", jsonObject);
+		journalArticleJSONObject.put(
+			"modelValues", jsonObject.getString("content"));
+
+		jsonObject.remove("content");
+
+		ClassName journalArticleClassName = classNameLocalService.getClassName(
+			JournalArticle.class.getName());
+
+		try {
+			DDMStructure ddmStructure = ddmStructureLocalService.getStructure(
+				journalArticle.getGroupId(),
+				journalArticleClassName.getClassNameId(),
+				journalArticle.getStructureId());
+
+			journalArticleJSONObject.put(
+				"DDMStructure", JSONFactoryUtil.createJSONObject(
+					JSONFactoryUtil.looseSerialize(ddmStructure)));
+		}
+		catch (NoSuchStructureException nsse) {
+			_log.error(nsse, nsse);
+		}
 
 		return journalArticleJSONObject;
 	}
@@ -287,7 +319,8 @@ public class ScreensAssetEntryServiceImpl
 				JSONFactoryUtil.looseSerialize(assetEntry));
 
 			jsonObject.put("description", assetEntry.getDescription(locale));
-			jsonObject.put("object", getAssetObjectJSONObject(assetEntry));
+			jsonObject.put(
+				"object", getAssetObjectJSONObject(assetEntry, locale));
 			jsonObject.put("summary", assetEntry.getSummary(locale));
 			jsonObject.put("title", assetEntry.getTitle(locale));
 
