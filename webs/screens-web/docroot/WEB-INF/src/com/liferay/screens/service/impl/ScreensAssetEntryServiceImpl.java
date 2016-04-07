@@ -104,7 +104,7 @@ public class ScreensAssetEntryServiceImpl
 		if (portletItems.isEmpty()) {
 			throw new PortalException(
 				"No portlet items associated with portlet item name " +
-					portletItemName);
+				portletItemName);
 		}
 
 		PortletItem portletItem = portletItems.get(0);
@@ -146,7 +146,7 @@ public class ScreensAssetEntryServiceImpl
 				List<AssetEntry> assetEntries =
 					AssetPublisherUtil.getAssetEntries(
 						null, portletPreferences, permissionChecker,
-						new long[] {groupId},
+						new long[]{groupId},
 						portletPreferences.getValues(
 							"assetEntryXml", new String[0]),
 						false, false);
@@ -335,7 +335,7 @@ public class ScreensAssetEntryServiceImpl
 		new MethodKey(
 			ClassResolverUtil.resolveByPortalClassLoader(
 				"com.liferay.portlet.asset.service.permission." +
-					"AssetEntryPermission"),
+				"AssetEntryPermission"),
 			"contains", PermissionChecker.class, AssetEntry.class,
 			String.class);
 
