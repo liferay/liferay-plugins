@@ -134,7 +134,9 @@ public class DLAppHelperLocalServiceImpl
 			DLFileEntryTypeLocalServiceUtil.getDLFileEntryType(
 				dlFileEntry.getFileEntryTypeId());
 
-		if (dlFileEntryType.getFileEntryTypeId() ==
+		long dlFileEntryTypeId = dlFileEntryType.getFileEntryTypeId();
+
+		if (dlFileEntryTypeId ==
 				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT) {
 
 			subscribersOVPs.add(
@@ -144,8 +146,7 @@ public class DLAppHelperLocalServiceImpl
 		else {
 			subscribersOVPs.add(
 				new ObjectValuePair<String, Long>(
-					DLFileEntryType.class.getName(),
-					dlFileEntryType.getFileEntryTypeId()));
+					DLFileEntryType.class.getName(), dlFileEntryTypeId));
 		}
 
 		subscribersOVPs.add(
