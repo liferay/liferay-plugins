@@ -74,11 +74,13 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 			Validator.isNotNull(entryURL)) {
 
 			List<ObjectValuePair<String, Long>> subscribersOVPs =
-				getSubscribersOVPs(wikiPage, _WIKI_NODE_CLASS_NAME,
-					wikiPage.getNodeId());
+				getSubscribersOVPs(
+					wikiPage, _WIKI_NODE_CLASS_NAME, wikiPage.getNodeId());
 
-			subscribersOVPs.addAll(getSubscribersOVPs(wikiPage,
-				_WIKI_PAGE_CLASS_NAME, wikiPage.getResourcePrimKey()));
+			subscribersOVPs.addAll(
+				getSubscribersOVPs(
+					wikiPage, _WIKI_PAGE_CLASS_NAME,
+					wikiPage.getResourcePrimKey()));
 
 			NotificationsUtil.sendNotificationEvent(
 				wikiPage.getCompanyId(), PortletKeys.WIKI,
