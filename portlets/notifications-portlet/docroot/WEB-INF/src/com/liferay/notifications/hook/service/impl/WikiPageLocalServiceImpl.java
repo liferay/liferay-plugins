@@ -28,6 +28,7 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.portlet.wiki.model.WikiPageConstants;
 import com.liferay.portlet.wiki.service.WikiPageLocalService;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceWrapper;
 
@@ -55,7 +56,13 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 		int notificationType =
 			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY;
 
-		if (serviceContext.isCommandUpdate()) {
+		boolean update = false;
+
+		if (wikiPage.getVersion() > WikiPageConstants.VERSION_DEFAULT) {
+			update = true;
+		}
+
+		if (update) {
 			notificationType =
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
