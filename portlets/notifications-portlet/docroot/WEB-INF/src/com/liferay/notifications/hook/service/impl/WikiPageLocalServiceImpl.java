@@ -56,13 +56,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceWrapper {
 		int notificationType =
 			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY;
 
-		boolean update = false;
-
 		if (wikiPage.getVersion() > WikiPageConstants.VERSION_DEFAULT) {
-			update = true;
-		}
-
-		if (update) {
 			notificationType =
 				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
 		}
