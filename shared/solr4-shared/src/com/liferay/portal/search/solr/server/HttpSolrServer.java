@@ -16,20 +16,37 @@ package com.liferay.portal.search.solr.server;
 
 import com.liferay.portal.search.solr.http.HttpClientFactory;
 
+import java.util.Map;
+
 /**
  * @author László Csontos
  * @author André de Oliveira
+ * @author Tibor Lipusz
  */
 public class HttpSolrServer extends BaseHttpSolrServer {
 
 	public void afterPropertiesSet() throws Exception {
-		initHttpSolrServer(_httpClientFactory.createInstance());
+		HttpClientFactory httpClientFactory = _httpClientFactories.get(_auth);
+
+		if (httpClientFactory == null) {
+			throw new IllegalStateException(
+				"No HTTP client factory for " + _auth);
+		}
+
+		initHttpSolrServer(httpClientFactory.createInstance());
 	}
 
-	public void setHttpClientFactory(HttpClientFactory httpClientFactory) {
-		_httpClientFactory = httpClientFactory;
+	public void setAuth(String auth) {
+		_auth = auth;
 	}
 
-	private HttpClientFactory _httpClientFactory;
+	public void setHttpClientFactories(
+		Map<String, HttpClientFactory> httpClientFactories) {
+
+		_httpClientFactories = httpClientFactories;
+	}
+
+	private String _auth;
+	private Map<String, HttpClientFactory> _httpClientFactories;
 
 }
