@@ -58,7 +58,11 @@ public class UpgradeResourceAction extends UpgradeProcess {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				return rs.getInt(1) > 0;
+				if (rs.getInt(1) > 0) {
+					return true;
+				}
+
+				return false;
 			}
 
 			return false;
