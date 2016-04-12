@@ -162,7 +162,11 @@ public class KBSuggestionListDisplayContext {
 	}
 
 	public boolean isShowKBArticleTitle() {
-		return _kbArticle == null;
+		if (_kbArticle == null) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private long _groupId;

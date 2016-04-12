@@ -45,7 +45,7 @@ KBArticleDisplayTerms displayTerms = (KBArticleDisplayTerms)request.getAttribute
 				<aui:option label="between" selected="<%= !displayTerms.isAnytime() %>" value="<%= false %>" />
 			</aui:select>
 
-			<span class='kb-date-field <%= displayTerms.isAnytime() ? "hide" : "" %>' id="<portlet:namespace />datesOptions">
+			<span class="kb-date-field <%= displayTerms.isAnytime() ? "hide" : "" %>" id="<portlet:namespace />datesOptions">
 				<liferay-ui:input-date
 					dayParam="<%= KBArticleDisplayTerms.START_DATE_DAY %>"
 					dayValue="<%= displayTerms.getStartDateDay() %>"

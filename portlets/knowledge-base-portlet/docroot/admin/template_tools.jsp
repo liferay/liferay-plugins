@@ -22,24 +22,24 @@ KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_
 
 <div class="kb-template-tools">
 	<table class="lfr-table">
-	<tr>
-		<td>
-			<liferay-portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="mvcPath" value='<%= templatePath + "print_template.jsp" %>' />
-				<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-			</liferay-portlet:renderURL>
+		<tr>
+			<td>
+				<liferay-portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+					<portlet:param name="mvcPath" value='<%= templatePath + "print_template.jsp" %>' />
+					<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
+				</liferay-portlet:renderURL>
 
-			<%
-			String taglibURL = "javascript:var printKBTemplateWindow = window.open('" + printURL + "', 'printKBTemplate', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printKBTemplateWindow.focus();";
-			%>
+				<%
+				String taglibURL = "javascript:var printKBTemplateWindow = window.open('" + printURL + "', 'printKBTemplate', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printKBTemplateWindow.focus();";
+				%>
 
-			<liferay-ui:icon
-				iconCssClass="icon-print"
-				label="<%= true %>"
-				message="print"
-				url="<%= taglibURL %>"
-			/>
-		</td>
-	</tr>
+				<liferay-ui:icon
+					iconCssClass="icon-print"
+					label="<%= true %>"
+					message="print"
+					url="<%= taglibURL %>"
+				/>
+			</td>
+		</tr>
 	</table>
 </div>

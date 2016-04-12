@@ -39,81 +39,81 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		<c:if test="<%= !mostPopularAssetEntries.isEmpty() || !mostRecentAssetEntries.isEmpty() %>">
 			<div class="kb-article-asset-entries">
 				<table class="lfr-table" width="100%">
-				<tr>
-					<td class="kb-most-recent-column">
-						<div class="kb-header">
-							<liferay-ui:message key="most-recent" />
-						</div>
-
-						<c:if test="<%= mostRecentAssetEntries.isEmpty() %>">
-							<liferay-ui:message key="there-are-no-entries" />
-						</c:if>
-
-						<%
-						for (AssetEntry assetEntry : mostRecentAssetEntries) {
-							AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetEntry.getClassName());
-
-							AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());
-						%>
-
-							<div class="kb-title">
-								<liferay-ui:icon
-									iconCssClass="<%= assetRenderer.getIconCssClass() %>"
-									label="<%= true %>"
-									message="<%= assetRenderer.getTitle(locale) %>"
-									url="<%= KBArticleAssetEntriesUtil.getURL(request, themeDisplay, assetRendererFactory, assetRenderer) %>"
-								/>
-
-								<span class="kb-info"><%= dateFormatDate.format(assetEntry.getModifiedDate()) %></span>
+					<tr>
+						<td class="kb-most-recent-column">
+							<div class="kb-header">
+								<liferay-ui:message key="most-recent" />
 							</div>
 
-						<%
-						}
-						%>
+							<c:if test="<%= mostRecentAssetEntries.isEmpty() %>">
+								<liferay-ui:message key="there-are-no-entries" />
+							</c:if>
 
-					</td>
-					<td class="kb-most-popular-column">
-						<div class="kb-header">
-							<liferay-ui:message key="most-popular" />
-						</div>
+							<%
+							for (AssetEntry assetEntry : mostRecentAssetEntries) {
+								AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetEntry.getClassName());
 
-						<c:if test="<%= mostPopularAssetEntries.isEmpty() %>">
-							<liferay-ui:message key="there-are-no-entries" />
-						</c:if>
+								AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());
+							%>
 
-						<%
-						for (AssetEntry assetEntry : mostPopularAssetEntries) {
-							AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetEntry.getClassName());
+								<div class="kb-title">
+									<liferay-ui:icon
+										iconCssClass="<%= assetRenderer.getIconCssClass() %>"
+										label="<%= true %>"
+										message="<%= assetRenderer.getTitle(locale) %>"
+										url="<%= KBArticleAssetEntriesUtil.getURL(request, themeDisplay, assetRendererFactory, assetRenderer) %>"
+									/>
 
-							AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());
-						%>
+									<span class="kb-info"><%= dateFormatDate.format(assetEntry.getModifiedDate()) %></span>
+								</div>
 
-							<div class="kb-title">
-								<liferay-ui:icon
-									iconCssClass="<%= assetRenderer.getIconCssClass() %>"
-									label="<%= true %>"
-									message="<%= assetRenderer.getTitle(locale) %>"
-									url="<%= KBArticleAssetEntriesUtil.getURL(request, themeDisplay, assetRendererFactory, assetRenderer) %>"
-								/>
+							<%
+							}
+							%>
 
-								<span class="kb-info">
-									<c:choose>
-										<c:when test="<%= assetEntry.getViewCount() == 1 %>">
-											<%= assetEntry.getViewCount() %> <liferay-ui:message key="view" />
-										</c:when>
-										<c:otherwise>
-											<%= assetEntry.getViewCount() %> <liferay-ui:message key="views" />
-										</c:otherwise>
-									</c:choose>
-								</span>
+						</td>
+						<td class="kb-most-popular-column">
+							<div class="kb-header">
+								<liferay-ui:message key="most-popular" />
 							</div>
 
-						<%
-						}
-						%>
+							<c:if test="<%= mostPopularAssetEntries.isEmpty() %>">
+								<liferay-ui:message key="there-are-no-entries" />
+							</c:if>
 
-					</td>
-				</tr>
+							<%
+							for (AssetEntry assetEntry : mostPopularAssetEntries) {
+								AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetEntry.getClassName());
+
+								AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());
+							%>
+
+								<div class="kb-title">
+									<liferay-ui:icon
+										iconCssClass="<%= assetRenderer.getIconCssClass() %>"
+										label="<%= true %>"
+										message="<%= assetRenderer.getTitle(locale) %>"
+										url="<%= KBArticleAssetEntriesUtil.getURL(request, themeDisplay, assetRendererFactory, assetRenderer) %>"
+									/>
+
+									<span class="kb-info">
+										<c:choose>
+											<c:when test="<%= assetEntry.getViewCount() == 1 %>">
+												<%= assetEntry.getViewCount() %> <liferay-ui:message key="view" />
+											</c:when>
+											<c:otherwise>
+												<%= assetEntry.getViewCount() %> <liferay-ui:message key="views" />
+											</c:otherwise>
+										</c:choose>
+									</span>
+								</div>
+
+							<%
+							}
+							%>
+
+						</td>
+					</tr>
 				</table>
 			</div>
 		</c:if>

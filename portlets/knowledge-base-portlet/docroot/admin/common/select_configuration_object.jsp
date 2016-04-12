@@ -78,7 +78,6 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 			id="kbFoldersAdminSearchContainer"
 			total="<%= KBFolderServiceUtil.getKBFoldersCount(scopeGroupId, parentResourcePrimKey) %>"
 		>
-
 			<liferay-ui:search-container-results
 				results="<%= KBFolderServiceUtil.getKBFolders(scopeGroupId, parentResourcePrimKey, searchContainer.getStart(), searchContainer.getEnd()) %>"
 			/>
@@ -89,7 +88,6 @@ String eventName = PortalUtil.getPortletNamespace(portletId) + "selectConfigurat
 				keyProperty="kbFolderId"
 				modelVar="kbFolder"
 			>
-
 				<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value='<%= templatePath + "select_configuration_object.jsp" %>' />
 					<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolderClassNameId) %>" />

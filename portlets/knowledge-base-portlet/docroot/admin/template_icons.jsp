@@ -25,80 +25,80 @@ long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 <c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) || KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) || KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.PERMISSIONS) || KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
 	<div class="kb-template-icons">
 		<table class="lfr-table">
-		<tr>
-			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
-				<td>
-					<liferay-portlet:renderURL var="useThisKBTemplateURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
-						<portlet:param name="redirect" value="<%= redirect %>" />
-						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-					</liferay-portlet:renderURL>
+			<tr>
+				<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
+					<td>
+						<liferay-portlet:renderURL var="useThisKBTemplateURL">
+							<portlet:param name="mvcPath" value='<%= templatePath + "edit_article.jsp" %>' />
+							<portlet:param name="redirect" value="<%= redirect %>" />
+							<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
+						</liferay-portlet:renderURL>
 
-					<liferay-ui:icon
-						iconCssClass="icon-check"
-						label="<%= true %>"
-						message="use-this-template"
-						url="<%= useThisKBTemplateURL %>"
-					/>
-				</td>
-			</c:if>
+						<liferay-ui:icon
+							iconCssClass="icon-check"
+							label="<%= true %>"
+							message="use-this-template"
+							url="<%= useThisKBTemplateURL %>"
+						/>
+					</td>
+				</c:if>
 
-			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
-				<td>
-					<liferay-portlet:renderURL var="editURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "edit_template.jsp" %>' />
-						<portlet:param name="redirect" value="<%= redirect %>" />
-						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-					</liferay-portlet:renderURL>
+				<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.UPDATE) %>">
+					<td>
+						<liferay-portlet:renderURL var="editURL">
+							<portlet:param name="mvcPath" value='<%= templatePath + "edit_template.jsp" %>' />
+							<portlet:param name="redirect" value="<%= redirect %>" />
+							<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
+						</liferay-portlet:renderURL>
 
-					<liferay-ui:icon
-						iconCssClass="icon-edit"
-						label="<%= true %>"
-						message="edit"
-						url="<%= editURL %>"
-					/>
-				</td>
-			</c:if>
+						<liferay-ui:icon
+							iconCssClass="icon-edit"
+							label="<%= true %>"
+							message="edit"
+							url="<%= editURL %>"
+						/>
+					</td>
+				</c:if>
 
-			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.PERMISSIONS) %>">
-				<td>
-					<liferay-security:permissionsURL
-						modelResource="<%= KBTemplate.class.getName() %>"
-						modelResourceDescription="<%= kbTemplate.getTitle() %>"
-						resourcePrimKey="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>"
-						var="permissionsURL"
-						windowState="<%= LiferayWindowState.POP_UP.toString() %>"
-					/>
+				<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.PERMISSIONS) %>">
+					<td>
+						<liferay-security:permissionsURL
+							modelResource="<%= KBTemplate.class.getName() %>"
+							modelResourceDescription="<%= kbTemplate.getTitle() %>"
+							resourcePrimKey="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>"
+							var="permissionsURL"
+							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
+						/>
 
-					<liferay-ui:icon
-						iconCssClass="icon-lock"
-						label="<%= true %>"
-						message="permissions"
-						url="<%= permissionsURL %>"
-						useDialog="<%= true %>"
-					/>
-				</td>
-			</c:if>
+						<liferay-ui:icon
+							iconCssClass="icon-lock"
+							label="<%= true %>"
+							message="permissions"
+							url="<%= permissionsURL %>"
+							useDialog="<%= true %>"
+						/>
+					</td>
+				</c:if>
 
-			<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) %>">
-				<td>
-					<liferay-portlet:renderURL var="homeURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "view.jsp" %>' />
-					</liferay-portlet:renderURL>
+				<c:if test="<%= KBTemplatePermission.contains(permissionChecker, kbTemplate, ActionKeys.DELETE) %>">
+					<td>
+						<liferay-portlet:renderURL var="homeURL">
+							<portlet:param name="mvcPath" value='<%= templatePath + "view.jsp" %>' />
+						</liferay-portlet:renderURL>
 
-					<liferay-portlet:actionURL name="deleteKBTemplate" var="deleteURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "view_template.jsp" %>' />
-						<portlet:param name="redirect" value="<%= (kbTemplate.getKbTemplateId() == kbTemplateId) ? homeURL : currentURL %>" />
-						<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
-					</liferay-portlet:actionURL>
+						<liferay-portlet:actionURL name="deleteKBTemplate" var="deleteURL">
+							<portlet:param name="mvcPath" value='<%= templatePath + "view_template.jsp" %>' />
+							<portlet:param name="redirect" value="<%= (kbTemplate.getKbTemplateId() == kbTemplateId) ? homeURL : currentURL %>" />
+							<portlet:param name="kbTemplateId" value="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>" />
+						</liferay-portlet:actionURL>
 
-					<liferay-ui:icon-delete
-						label="<%= true %>"
-						url="<%= deleteURL %>"
-					/>
-				</td>
-			</c:if>
-		</tr>
+						<liferay-ui:icon-delete
+							label="<%= true %>"
+							url="<%= deleteURL %>"
+						/>
+					</td>
+				</c:if>
+			</tr>
 		</table>
 	</div>
 </c:if>

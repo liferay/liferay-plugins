@@ -204,7 +204,6 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 					keyProperty="kbFolderId"
 					modelVar="kbFolder"
 				>
-
 					<liferay-portlet:renderURL varImpl="rowURL">
 						<portlet:param name="mvcPath" value="/admin/view.jsp" />
 						<portlet:param name="parentResourceClassNameId" value="<%= String.valueOf(kbFolder.getClassNameId()) %>" />

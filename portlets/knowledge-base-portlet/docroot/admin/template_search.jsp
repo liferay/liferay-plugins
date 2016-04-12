@@ -40,7 +40,7 @@ KBTemplateDisplayTerms displayTerms = (KBTemplateDisplayTerms)searchContainer.ge
 				<aui:option label="between" selected="<%= !displayTerms.isAnytime() %>" value="<%= false %>" />
 			</aui:select>
 
-			<span class='<%= displayTerms.isAnytime() ? "hide kb-date-field" : "kb-date-field" %>' id="<portlet:namespace />datesOptions">
+			<span class="<%= displayTerms.isAnytime() ? "hide kb-date-field" : "kb-date-field" %>" id="<portlet:namespace />datesOptions">
 				<liferay-ui:input-date
 					dayParam="<%= KBTemplateDisplayTerms.START_DATE_DAY %>"
 					dayValue="<%= displayTerms.getStartDateDay() %>"

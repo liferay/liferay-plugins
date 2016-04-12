@@ -160,12 +160,12 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 				request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_SUGGESTION_LIST_DISPLAY_CONTEXT, kbSuggestionListDisplayContext);
 				%>
 
-				<div class='kb-article-previous-comments <%= expanded ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
+				<div class="kb-article-previous-comments <%= expanded ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />previousCommentsContainer">
 					<liferay-util:include page="/admin/common/view_suggestions_by_status.jsp" servletContext="<%= application %>" />
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class='kb-article-previous-comments <%= expanded ? "" : "hide" %>' id="<portlet:namespace />previousCommentsContainer">
+				<div class="kb-article-previous-comments <%= expanded ? "" : "hide" %>" id="<portlet:namespace />previousCommentsContainer">
 					<c:if test="<%= kbCommentsCount > 0 %>">
 						<liferay-portlet:renderURL varImpl="iteratorURL">
 							<portlet:param name="expanded" value="<%= Boolean.TRUE.toString() %>" />
@@ -177,7 +177,6 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 							orderByComparator='<%= KnowledgeBaseUtil.getKBCommentOrderByComparator("modified-date", "desc") %>'
 							total="<%= kbCommentsCount %>"
 						>
-
 							<liferay-ui:search-container-results
 								results="<%= KBCommentLocalServiceUtil.getKBComments(themeDisplay.getUserId(), KBArticle.class.getName(), kbArticle.getClassPK(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
 							/>

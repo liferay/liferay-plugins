@@ -33,7 +33,7 @@ request.setAttribute(WebKeys.KNOWLEDGE_BASE_KB_NAVIGATION_DISPLAY_CONTEXT, kbNav
 				</div>
 			</c:if>
 
-			<div class='<%= kbNavigationDisplayContext.isLeftNavigationVisible() ? "col-md-9" : "col-md-12" %>'>
+			<div class="<%= kbNavigationDisplayContext.isLeftNavigationVisible() ? "col-md-9" : "col-md-12" %>">
 				<c:if test="<%= kbNavigationDisplayContext.isTopNavigationVisible() %>">
 					<div class="kbarticle-navigation">
 						<liferay-util:include page="/display/content_root_selector.jsp" servletContext="<%= application %>" />
