@@ -20,12 +20,14 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
+import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
@@ -46,7 +48,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 /**
  * @author Lin Cui
@@ -201,14 +202,15 @@ public class NotificationsUtil {
 		notificationEventJSONObject.put("notificationType", notificationType);
 		notificationEventJSONObject.put("userId", userId);
 
-		TransactionCommitCallbackRegistryUtil.registerCallback(
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
 			new NotificationProcessCallable(
 				companyId, portletKey, notificationEventJSONObject,
 				subscribersOVPs));
 	}
 
 	private static class NotificationProcessCallable
-		implements Callable<Serializable> {
+		implements ProcessCallable<Serializable> {
 
 		public NotificationProcessCallable(
 			long companyId, String portletKey,
