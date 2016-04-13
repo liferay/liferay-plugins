@@ -31,14 +31,9 @@ import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
-import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserNotificationDeliveryConstants;
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.service.permission.SubscriptionPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
@@ -237,22 +232,6 @@ public class NotificationsUtil {
 			return null;
 		}
 
-		protected boolean hasPermission(
-				Subscription subscription, String inferredClassName,
-				long inferredClassPK, long userId)
-			throws Exception {
-
-			User user = UserLocalServiceUtil.fetchUserById(
-				subscription.getUserId());
-
-			PermissionChecker permissionChecker =
-				PermissionCheckerFactoryUtil.create(user);
-
-			return SubscriptionPermissionUtil.contains(
-				permissionChecker, subscription.getClassName(),
-				subscription.getClassPK(), inferredClassName, inferredClassPK);
-		}
-
 		protected void sendUserNotifications(
 				long companyId, String portletKey,
 				JSONObject notificationEventJSONObject,
@@ -265,17 +244,6 @@ public class NotificationsUtil {
 			long userId = notificationEventJSONObject.getLong("userId");
 
 			Set<Long> subscriberUserIds = new HashSet<Long>();
-
-			String inferredClassName = null;
-			long inferredClassPK = 0;
-
-			if (subscribersOVPs.size() > 1) {
-				ObjectValuePair<String, Long> objectValuePair =
-					subscribersOVPs.get(subscribersOVPs.size() - 1);
-
-				inferredClassName = objectValuePair.getKey();
-				inferredClassPK = objectValuePair.getValue();
-			}
 
 			for (ObjectValuePair<String, Long> ovp : subscribersOVPs) {
 				String className = ovp.getKey();
@@ -293,18 +261,6 @@ public class NotificationsUtil {
 					}
 
 					if (subscriberUserIds.contains(subscriberUserId)) {
-						continue;
-					}
-
-					try {
-						if (!hasPermission(
-								subscription, inferredClassName,
-								inferredClassPK, subscriberUserId)) {
-
-							continue;
-						}
-					}
-					catch (Exception e) {
 						continue;
 					}
 
