@@ -24,6 +24,8 @@ import org.apache.solr.client.solrj.SolrQuery;
 
 /**
  * @author Michael C. Han
+ * @author André de Oliveira
+ * @author Tibor Lipusz
  */
 public class RangeFacetProcessor implements FacetProcessor<SolrQuery> {
 
@@ -32,6 +34,12 @@ public class RangeFacetProcessor implements FacetProcessor<SolrQuery> {
 		FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
 
 		solrQuery.addFacetField(facetConfiguration.getFieldName());
+
+		addConfigurationRanges(facetConfiguration, solrQuery);
+	}
+
+	protected void addConfigurationRanges(
+		FacetConfiguration facetConfiguration, SolrQuery solrQuery) {
 
 		JSONObject dataJSONObject = facetConfiguration.getData();
 
