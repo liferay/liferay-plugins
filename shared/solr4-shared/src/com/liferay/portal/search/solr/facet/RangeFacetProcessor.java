@@ -41,16 +41,16 @@ public class RangeFacetProcessor implements FacetProcessor<SolrQuery> {
 	protected void addConfigurationRanges(
 		FacetConfiguration facetConfiguration, SolrQuery solrQuery) {
 
-		JSONObject dataJSONObject = facetConfiguration.getData();
+		JSONObject jsonObject = facetConfiguration.getData();
 
-		JSONArray rangesJSONArray = dataJSONObject.getJSONArray("ranges");
+		JSONArray jsonArray = jsonObject.getJSONArray("ranges");
 
-		if (rangesJSONArray == null) {
+		if (jsonArray == null) {
 			return;
 		}
 
-		for (int i = 0; i < rangesJSONArray.length(); i++) {
-			JSONObject rangeJSONObject = rangesJSONArray.getJSONObject(i);
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject rangeJSONObject = jsonArray.getJSONObject(i);
 
 			String range = rangeJSONObject.getString("range");
 
