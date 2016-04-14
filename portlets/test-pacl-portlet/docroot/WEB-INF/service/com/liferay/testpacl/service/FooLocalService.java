@@ -67,6 +67,63 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	 *
 	 * Never modify or reference this interface directly. Always use {@link FooLocalServiceUtil} to access the foo local service. Add custom service methods to {@link com.liferay.testpacl.service.impl.FooLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean getPortalServiceUtil_TestHasClassName();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean getPortalService_TestHasClassName();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Entry getEntryLocalServiceUtil_GetEntry(long entryId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Status getStatusLocalServiceUtil_GetStatus(long statusId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Company getCompanyPersistence_FindByPrimaryKey(long companyId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Company getCompanyUtil_FindByPrimaryKey(long companyId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Group getGroupPersistence_FindByPrimaryKey(long groupId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Group getGroupUtil_FindByPrimaryKey(long groupId)
+		throws PortalException;
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public User getUserPersistence_FindByPrimaryKey(long userId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public User getUserUtil_FindByPrimaryKey(long userId)
+		throws PortalException;
 
 	/**
 	* Adds the foo to the database. Also notifies the appropriate model listeners.
@@ -104,14 +161,62 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	@Indexable(type = IndexableType.DELETE)
 	public Foo deleteFoo(long fooId) throws PortalException;
 
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Foo fetchFoo(long fooId);
 
-	public DynamicQuery dynamicQuery();
+	/**
+	* Returns the foo with the primary key.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo
+	* @throws PortalException if a foo with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Foo getFoo(long fooId) throws PortalException;
+
+	/**
+	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param foo the foo
+	* @return the foo that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public Foo updateFoo(Foo foo);
+
+	/**
+	* Returns the number of foos.
+	*
+	* @return the number of foos
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getFoosCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPortalServiceUtil_GetBuildNumber();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPortalServiceUtil_TestGetBuildNumber();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPortalService_GetBuildNumber();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPortalService_TestGetBuildNumber();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getReleaseInfo_GetBuildNumber();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -152,6 +257,26 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Entry> getEntryLocalServiceUtil_GetEntries(int start, int end);
+
+	/**
+	* Returns a range of all the foos.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testpacl.model.impl.FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
+	* @return the range of foos
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Foo> getFoos(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Status> getStatusLocalServiceUtil_GetStatuses(int start, int end);
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*
@@ -169,130 +294,4 @@ public interface FooLocalService extends BaseLocalService, InvokableLocalService
 	*/
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Foo fetchFoo(long fooId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Company getCompanyPersistence_FindByPrimaryKey(long companyId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Company getCompanyUtil_FindByPrimaryKey(long companyId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Entry> getEntryLocalServiceUtil_GetEntries(int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Entry getEntryLocalServiceUtil_GetEntry(long entryId)
-		throws PortalException;
-
-	/**
-	* Returns the foo with the primary key.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo
-	* @throws PortalException if a foo with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Foo getFoo(long fooId) throws PortalException;
-
-	/**
-	* Returns a range of all the foos.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testpacl.model.impl.FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of foos
-	* @param end the upper bound of the range of foos (not inclusive)
-	* @return the range of foos
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Foo> getFoos(int start, int end);
-
-	/**
-	* Returns the number of foos.
-	*
-	* @return the number of foos
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getFoosCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Group getGroupPersistence_FindByPrimaryKey(long groupId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Group getGroupUtil_FindByPrimaryKey(long groupId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPortalServiceUtil_GetBuildNumber();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPortalServiceUtil_TestGetBuildNumber();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean getPortalServiceUtil_TestHasClassName();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPortalService_GetBuildNumber();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPortalService_TestGetBuildNumber();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean getPortalService_TestHasClassName();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getReleaseInfo_GetBuildNumber();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Status getStatusLocalServiceUtil_GetStatus(long statusId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Status> getStatusLocalServiceUtil_GetStatuses(int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public User getUserPersistence_FindByPrimaryKey(long userId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public User getUserUtil_FindByPrimaryKey(long userId)
-		throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	/**
-	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public Foo updateFoo(Foo foo);
 }

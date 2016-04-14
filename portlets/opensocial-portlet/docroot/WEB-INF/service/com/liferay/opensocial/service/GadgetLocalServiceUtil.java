@@ -41,15 +41,6 @@ public class GadgetLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.opensocial.service.impl.GadgetLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static com.liferay.opensocial.model.Gadget addGadget(
-		long companyId, java.lang.String url,
-		java.lang.String portletCategoryNames,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addGadget(companyId, url, portletCategoryNames,
-			serviceContext);
-	}
 
 	/**
 	* Adds the gadget to the database. Also notifies the appropriate model listeners.
@@ -60,6 +51,16 @@ public class GadgetLocalServiceUtil {
 	public static com.liferay.opensocial.model.Gadget addGadget(
 		com.liferay.opensocial.model.Gadget gadget) {
 		return getService().addGadget(gadget);
+	}
+
+	public static com.liferay.opensocial.model.Gadget addGadget(
+		long companyId, java.lang.String url,
+		java.lang.String portletCategoryNames,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addGadget(companyId, url, portletCategoryNames,
+			serviceContext);
 	}
 
 	/**
@@ -97,8 +98,97 @@ public class GadgetLocalServiceUtil {
 		return getService().deleteGadget(gadgetId);
 	}
 
-	public static void deleteGadgets(long companyId) {
-		getService().deleteGadgets(companyId);
+	public static com.liferay.opensocial.model.Gadget fetchGadget(
+		long companyId, java.lang.String url) {
+		return getService().fetchGadget(companyId, url);
+	}
+
+	public static com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId) {
+		return getService().fetchGadget(gadgetId);
+	}
+
+	/**
+	* Returns the gadget with the matching UUID and company.
+	*
+	* @param uuid the gadget's UUID
+	* @param companyId the primary key of the company
+	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
+	*/
+	public static com.liferay.opensocial.model.Gadget fetchGadgetByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) {
+		return getService().fetchGadgetByUuidAndCompanyId(uuid, companyId);
+	}
+
+	public static com.liferay.opensocial.model.Gadget getGadget(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGadget(uuid, companyId);
+	}
+
+	public static com.liferay.opensocial.model.Gadget getGadget(
+		long companyId, java.lang.String url)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGadget(companyId, url);
+	}
+
+	/**
+	* Returns the gadget with the primary key.
+	*
+	* @param gadgetId the primary key of the gadget
+	* @return the gadget
+	* @throws PortalException if a gadget with the primary key could not be found
+	*/
+	public static com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGadget(gadgetId);
+	}
+
+	/**
+	* Returns the gadget with the matching UUID and company.
+	*
+	* @param uuid the gadget's UUID
+	* @param companyId the primary key of the company
+	* @return the matching gadget
+	* @throws PortalException if a matching gadget could not be found
+	*/
+	public static com.liferay.opensocial.model.Gadget getGadgetByUuidAndCompanyId(
+		java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGadgetByUuidAndCompanyId(uuid, companyId);
+	}
+
+	/**
+	* Updates the gadget in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param gadget the gadget
+	* @return the gadget that was updated
+	*/
+	public static com.liferay.opensocial.model.Gadget updateGadget(
+		com.liferay.opensocial.model.Gadget gadget) {
+		return getService().updateGadget(gadget);
+	}
+
+	public static com.liferay.opensocial.model.Gadget updateGadget(
+		long gadgetId, java.lang.String portletCategoryNames)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().updateGadget(gadgetId, portletCategoryNames);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
 	}
 
 	/**
@@ -110,16 +200,38 @@ public class GadgetLocalServiceUtil {
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static void destroyGadget(java.lang.String uuid, long companyId) {
-		getService().destroyGadget(uuid, companyId);
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	public static void destroyGadgets() {
-		getService().destroyGadgets();
+	/**
+	* Returns the number of gadgets.
+	*
+	* @return the number of gadgets
+	*/
+	public static int getGadgetsCount() {
+		return getService().getGadgetsCount();
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static int getGadgetsCount(long companyId) {
+		return getService().getGadgetsCount(companyId);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -173,6 +285,27 @@ public class GadgetLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the gadgets.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.GadgetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of gadgets
+	* @param end the upper bound of the range of gadgets (not inclusive)
+	* @return the range of gadgets
+	*/
+	public static java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
+		int start, int end) {
+		return getService().getGadgets(start, end);
+	}
+
+	public static java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
+		long companyId, int start, int end) {
+		return getService().getGadgets(companyId, start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -196,125 +329,16 @@ public class GadgetLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.opensocial.model.Gadget fetchGadget(
-		long companyId, java.lang.String url) {
-		return getService().fetchGadget(companyId, url);
+	public static void deleteGadgets(long companyId) {
+		getService().deleteGadgets(companyId);
 	}
 
-	public static com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId) {
-		return getService().fetchGadget(gadgetId);
+	public static void destroyGadget(java.lang.String uuid, long companyId) {
+		getService().destroyGadget(uuid, companyId);
 	}
 
-	/**
-	* Returns the gadget with the matching UUID and company.
-	*
-	* @param uuid the gadget's UUID
-	* @param companyId the primary key of the company
-	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
-	*/
-	public static com.liferay.opensocial.model.Gadget fetchGadgetByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
-		return getService().fetchGadgetByUuidAndCompanyId(uuid, companyId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
-		return getService().getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	public static com.liferay.opensocial.model.Gadget getGadget(
-		long companyId, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getGadget(companyId, url);
-	}
-
-	/**
-	* Returns the gadget with the primary key.
-	*
-	* @param gadgetId the primary key of the gadget
-	* @return the gadget
-	* @throws PortalException if a gadget with the primary key could not be found
-	*/
-	public static com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getGadget(gadgetId);
-	}
-
-	public static com.liferay.opensocial.model.Gadget getGadget(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getGadget(uuid, companyId);
-	}
-
-	/**
-	* Returns the gadget with the matching UUID and company.
-	*
-	* @param uuid the gadget's UUID
-	* @param companyId the primary key of the company
-	* @return the matching gadget
-	* @throws PortalException if a matching gadget could not be found
-	*/
-	public static com.liferay.opensocial.model.Gadget getGadgetByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getGadgetByUuidAndCompanyId(uuid, companyId);
-	}
-
-	public static java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
-		long companyId, int start, int end) {
-		return getService().getGadgets(companyId, start, end);
-	}
-
-	/**
-	* Returns a range of all the gadgets.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.GadgetModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of gadgets
-	* @param end the upper bound of the range of gadgets (not inclusive)
-	* @return the range of gadgets
-	*/
-	public static java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
-		int start, int end) {
-		return getService().getGadgets(start, end);
-	}
-
-	/**
-	* Returns the number of gadgets.
-	*
-	* @return the number of gadgets
-	*/
-	public static int getGadgetsCount() {
-		return getService().getGadgetsCount();
-	}
-
-	public static int getGadgetsCount(long companyId) {
-		return getService().getGadgetsCount(companyId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
+	public static void destroyGadgets() {
+		getService().destroyGadgets();
 	}
 
 	public static void initGadget(java.lang.String uuid, long companyId,
@@ -328,29 +352,6 @@ public class GadgetLocalServiceUtil {
 	public static void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().initGadgets();
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the gadget in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param gadget the gadget
-	* @return the gadget that was updated
-	*/
-	public static com.liferay.opensocial.model.Gadget updateGadget(
-		com.liferay.opensocial.model.Gadget gadget) {
-		return getService().updateGadget(gadget);
-	}
-
-	public static com.liferay.opensocial.model.Gadget updateGadget(
-		long gadgetId, java.lang.String portletCategoryNames)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().updateGadget(gadgetId, portletCategoryNames);
 	}
 
 	public static void clearService() {

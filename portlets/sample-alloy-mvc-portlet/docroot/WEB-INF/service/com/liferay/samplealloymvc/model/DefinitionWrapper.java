@@ -156,8 +156,48 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new DefinitionWrapper((Definition)_definition.clone());
+	public boolean isCachedModel() {
+		return _definition.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _definition.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _definition.isNew();
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _definition.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Definition> toCacheModel() {
+		return _definition.toCacheModel();
+	}
+
+	@Override
+	public com.liferay.samplealloymvc.model.Definition toEscapedModel() {
+		return new DefinitionWrapper(_definition.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.samplealloymvc.model.Definition toUnescapedModel() {
+		return new DefinitionWrapper(_definition.toUnescapedModel());
+	}
+
+	/**
+	* Returns the price of this definition.
+	*
+	* @return the price of this definition
+	*/
+	@Override
+	public double getPrice() {
+		return _definition.getPrice();
 	}
 
 	@Override
@@ -166,48 +206,28 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	}
 
 	/**
-	* Returns the company ID of this definition.
+	* Returns the quantity of this definition.
 	*
-	* @return the company ID of this definition
+	* @return the quantity of this definition
 	*/
 	@Override
-	public long getCompanyId() {
-		return _definition.getCompanyId();
-	}
-
-	/**
-	* Returns the create date of this definition.
-	*
-	* @return the create date of this definition
-	*/
-	@Override
-	public Date getCreateDate() {
-		return _definition.getCreateDate();
-	}
-
-	/**
-	* Returns the definition ID of this definition.
-	*
-	* @return the definition ID of this definition
-	*/
-	@Override
-	public long getDefinitionId() {
-		return _definition.getDefinitionId();
+	public int getQuantity() {
+		return _definition.getQuantity();
 	}
 
 	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _definition.getExpandoBridge();
+	public int hashCode() {
+		return _definition.hashCode();
 	}
 
-	/**
-	* Returns the group ID of this definition.
-	*
-	* @return the group ID of this definition
-	*/
 	@Override
-	public long getGroupId() {
-		return _definition.getGroupId();
+	public Serializable getPrimaryKeyObj() {
+		return _definition.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new DefinitionWrapper((Definition)_definition.clone());
 	}
 
 	/**
@@ -231,81 +251,6 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	}
 
 	/**
-	* Returns the modified date of this definition.
-	*
-	* @return the modified date of this definition
-	*/
-	@Override
-	public Date getModifiedDate() {
-		return _definition.getModifiedDate();
-	}
-
-	/**
-	* Returns the order date of this definition.
-	*
-	* @return the order date of this definition
-	*/
-	@Override
-	public Date getOrderDate() {
-		return _definition.getOrderDate();
-	}
-
-	/**
-	* Returns the price of this definition.
-	*
-	* @return the price of this definition
-	*/
-	@Override
-	public double getPrice() {
-		return _definition.getPrice();
-	}
-
-	/**
-	* Returns the primary key of this definition.
-	*
-	* @return the primary key of this definition
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _definition.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _definition.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the quantity of this definition.
-	*
-	* @return the quantity of this definition
-	*/
-	@Override
-	public int getQuantity() {
-		return _definition.getQuantity();
-	}
-
-	/**
-	* Returns the type ID of this definition.
-	*
-	* @return the type ID of this definition
-	*/
-	@Override
-	public long getTypeId() {
-		return _definition.getTypeId();
-	}
-
-	/**
-	* Returns the user ID of this definition.
-	*
-	* @return the user ID of this definition
-	*/
-	@Override
-	public long getUserId() {
-		return _definition.getUserId();
-	}
-
-	/**
 	* Returns the user name of this definition.
 	*
 	* @return the user name of this definition
@@ -326,23 +271,103 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	}
 
 	@Override
-	public int hashCode() {
-		return _definition.hashCode();
+	public java.lang.String toString() {
+		return _definition.toString();
 	}
 
 	@Override
-	public boolean isCachedModel() {
-		return _definition.isCachedModel();
+	public java.lang.String toXmlString() {
+		return _definition.toXmlString();
 	}
 
+	/**
+	* Returns the create date of this definition.
+	*
+	* @return the create date of this definition
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _definition.isEscapedModel();
+	public Date getCreateDate() {
+		return _definition.getCreateDate();
 	}
 
+	/**
+	* Returns the modified date of this definition.
+	*
+	* @return the modified date of this definition
+	*/
 	@Override
-	public boolean isNew() {
-		return _definition.isNew();
+	public Date getModifiedDate() {
+		return _definition.getModifiedDate();
+	}
+
+	/**
+	* Returns the order date of this definition.
+	*
+	* @return the order date of this definition
+	*/
+	@Override
+	public Date getOrderDate() {
+		return _definition.getOrderDate();
+	}
+
+	/**
+	* Returns the company ID of this definition.
+	*
+	* @return the company ID of this definition
+	*/
+	@Override
+	public long getCompanyId() {
+		return _definition.getCompanyId();
+	}
+
+	/**
+	* Returns the definition ID of this definition.
+	*
+	* @return the definition ID of this definition
+	*/
+	@Override
+	public long getDefinitionId() {
+		return _definition.getDefinitionId();
+	}
+
+	/**
+	* Returns the group ID of this definition.
+	*
+	* @return the group ID of this definition
+	*/
+	@Override
+	public long getGroupId() {
+		return _definition.getGroupId();
+	}
+
+	/**
+	* Returns the primary key of this definition.
+	*
+	* @return the primary key of this definition
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _definition.getPrimaryKey();
+	}
+
+	/**
+	* Returns the type ID of this definition.
+	*
+	* @return the type ID of this definition
+	*/
+	@Override
+	public long getTypeId() {
+		return _definition.getTypeId();
+	}
+
+	/**
+	* Returns the user ID of this definition.
+	*
+	* @return the user ID of this definition
+	*/
+	@Override
+	public long getUserId() {
+		return _definition.getUserId();
 	}
 
 	@Override
@@ -386,14 +411,14 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_definition.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_definition.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_definition.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_definition.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -529,31 +554,6 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_definition.setUserUuid(userUuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Definition> toCacheModel() {
-		return _definition.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Definition toEscapedModel() {
-		return new DefinitionWrapper(_definition.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _definition.toString();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Definition toUnescapedModel() {
-		return new DefinitionWrapper(_definition.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _definition.toXmlString();
 	}
 
 	@Override

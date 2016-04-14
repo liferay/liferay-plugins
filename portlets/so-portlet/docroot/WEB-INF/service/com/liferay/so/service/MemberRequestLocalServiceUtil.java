@@ -41,6 +41,37 @@ public class MemberRequestLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.so.service.impl.MemberRequestLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static boolean hasPendingMemberRequest(long groupId,
+		long receiverUserId) {
+		return getService().hasPendingMemberRequest(groupId, receiverUserId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
 
 	/**
 	* Adds the member request to the database. Also notifies the appropriate model listeners.
@@ -62,25 +93,6 @@ public class MemberRequestLocalServiceUtil {
 		return getService()
 				   .addMemberRequest(userId, groupId, receiverUserId,
 			receiverEmailAddress, invitedRoleId, invitedTeamId, serviceContext);
-	}
-
-	public static void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses, long invitedRoleId,
-		long invitedTeamId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addMemberRequests(userId, groupId, emailAddresses, invitedRoleId,
-			invitedTeamId, serviceContext);
-	}
-
-	public static void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.addMemberRequests(userId, groupId, receiverUserIds, invitedRoleId,
-			invitedTeamId, serviceContext);
 	}
 
 	/**
@@ -118,17 +130,85 @@ public class MemberRequestLocalServiceUtil {
 		return getService().deleteMemberRequest(memberRequestId);
 	}
 
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static com.liferay.so.model.MemberRequest fetchMemberRequest(
+		long memberRequestId) {
+		return getService().fetchMemberRequest(memberRequestId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.so.model.MemberRequest getMemberRequest(
+		long groupId, long receiverUserId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getMemberRequest(groupId, receiverUserId, status);
+	}
+
+	/**
+	* Returns the member request with the primary key.
+	*
+	* @param memberRequestId the primary key of the member request
+	* @return the member request
+	* @throws PortalException if a member request with the primary key could not be found
+	*/
+	public static com.liferay.so.model.MemberRequest getMemberRequest(
+		long memberRequestId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getMemberRequest(memberRequestId);
+	}
+
+	/**
+	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request
+	* @return the member request that was updated
+	*/
+	public static com.liferay.so.model.MemberRequest updateMemberRequest(
+		com.liferay.so.model.MemberRequest memberRequest) {
+		return getService().updateMemberRequest(memberRequest);
+	}
+
+	public static com.liferay.so.model.MemberRequest updateMemberRequest(
+		java.lang.String key, long receiverUserId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().updateMemberRequest(key, receiverUserId);
+	}
+
+	public static com.liferay.so.model.MemberRequest updateMemberRequest(
+		long userId, long memberRequestId, int status)
+		throws java.lang.Exception {
+		return getService().updateMemberRequest(userId, memberRequestId, status);
+	}
+
+	/**
+	* Returns the number of member requests.
+	*
+	* @return the number of member requests
+	*/
+	public static int getMemberRequestsCount() {
+		return getService().getMemberRequestsCount();
+	}
+
+	public static int getReceiverMemberRequestCount(long receiverUserId) {
+		return getService().getReceiverMemberRequestCount(receiverUserId);
+	}
+
+	public static int getReceiverStatusMemberRequestCount(long receiverUserId,
+		int status) {
+		return getService()
+				   .getReceiverStatusMemberRequestCount(receiverUserId, status);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -182,6 +262,34 @@ public class MemberRequestLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the member requests.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.MemberRequestModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
+	* @return the range of member requests
+	*/
+	public static java.util.List<com.liferay.so.model.MemberRequest> getMemberRequests(
+		int start, int end) {
+		return getService().getMemberRequests(start, end);
+	}
+
+	public static java.util.List<com.liferay.so.model.MemberRequest> getReceiverMemberRequest(
+		long receiverUserId, int start, int end) {
+		return getService().getReceiverMemberRequest(receiverUserId, start, end);
+	}
+
+	public static java.util.List<com.liferay.so.model.MemberRequest> getReceiverStatusMemberRequest(
+		long receiverUserId, int status, int start, int end) {
+		return getService()
+				   .getReceiverStatusMemberRequest(receiverUserId, status,
+			start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -205,132 +313,23 @@ public class MemberRequestLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.so.model.MemberRequest fetchMemberRequest(
-		long memberRequestId) {
-		return getService().fetchMemberRequest(memberRequestId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	public static com.liferay.so.model.MemberRequest getMemberRequest(
-		long groupId, long receiverUserId, int status)
+	public static void addMemberRequests(long userId, long groupId,
+		java.lang.String[] emailAddresses, long invitedRoleId,
+		long invitedTeamId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getMemberRequest(groupId, receiverUserId, status);
+		getService()
+			.addMemberRequests(userId, groupId, emailAddresses, invitedRoleId,
+			invitedTeamId, serviceContext);
 	}
 
-	/**
-	* Returns the member request with the primary key.
-	*
-	* @param memberRequestId the primary key of the member request
-	* @return the member request
-	* @throws PortalException if a member request with the primary key could not be found
-	*/
-	public static com.liferay.so.model.MemberRequest getMemberRequest(
-		long memberRequestId)
+	public static void addMemberRequests(long userId, long groupId,
+		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getMemberRequest(memberRequestId);
-	}
-
-	/**
-	* Returns a range of all the member requests.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.MemberRequestModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of member requests
-	* @param end the upper bound of the range of member requests (not inclusive)
-	* @return the range of member requests
-	*/
-	public static java.util.List<com.liferay.so.model.MemberRequest> getMemberRequests(
-		int start, int end) {
-		return getService().getMemberRequests(start, end);
-	}
-
-	/**
-	* Returns the number of member requests.
-	*
-	* @return the number of member requests
-	*/
-	public static int getMemberRequestsCount() {
-		return getService().getMemberRequestsCount();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static java.util.List<com.liferay.so.model.MemberRequest> getReceiverMemberRequest(
-		long receiverUserId, int start, int end) {
-		return getService().getReceiverMemberRequest(receiverUserId, start, end);
-	}
-
-	public static int getReceiverMemberRequestCount(long receiverUserId) {
-		return getService().getReceiverMemberRequestCount(receiverUserId);
-	}
-
-	public static java.util.List<com.liferay.so.model.MemberRequest> getReceiverStatusMemberRequest(
-		long receiverUserId, int status, int start, int end) {
-		return getService()
-				   .getReceiverStatusMemberRequest(receiverUserId, status,
-			start, end);
-	}
-
-	public static int getReceiverStatusMemberRequestCount(long receiverUserId,
-		int status) {
-		return getService()
-				   .getReceiverStatusMemberRequestCount(receiverUserId, status);
-	}
-
-	public static boolean hasPendingMemberRequest(long groupId,
-		long receiverUserId) {
-		return getService().hasPendingMemberRequest(groupId, receiverUserId);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static com.liferay.so.model.MemberRequest updateMemberRequest(
-		java.lang.String key, long receiverUserId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().updateMemberRequest(key, receiverUserId);
-	}
-
-	/**
-	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param memberRequest the member request
-	* @return the member request that was updated
-	*/
-	public static com.liferay.so.model.MemberRequest updateMemberRequest(
-		com.liferay.so.model.MemberRequest memberRequest) {
-		return getService().updateMemberRequest(memberRequest);
-	}
-
-	public static com.liferay.so.model.MemberRequest updateMemberRequest(
-		long userId, long memberRequestId, int status)
-		throws java.lang.Exception {
-		return getService().updateMemberRequest(userId, memberRequestId, status);
+		getService()
+			.addMemberRequests(userId, groupId, receiverUserIds, invitedRoleId,
+			invitedTeamId, serviceContext);
 	}
 
 	public static void clearService() {

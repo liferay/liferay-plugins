@@ -158,8 +158,44 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new KBFolderWrapper((KBFolder)_kbFolder.clone());
+	public boolean isCachedModel() {
+		return _kbFolder.isCachedModel();
+	}
+
+	@Override
+	public boolean isEmpty()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolder.isEmpty();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _kbFolder.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _kbFolder.isNew();
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _kbFolder.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder toEscapedModel() {
+		return new KBFolderWrapper(_kbFolder.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBFolder toUnescapedModel() {
+		return new KBFolderWrapper(_kbFolder.toUnescapedModel());
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.knowledgebase.model.KBFolder> toCacheModel() {
+		return _kbFolder.toCacheModel();
 	}
 
 	@Override
@@ -168,28 +204,18 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	}
 
 	@Override
-	public long getClassNameId() {
-		return _kbFolder.getClassNameId();
+	public int hashCode() {
+		return _kbFolder.hashCode();
 	}
 
-	/**
-	* Returns the company ID of this k b folder.
-	*
-	* @return the company ID of this k b folder
-	*/
 	@Override
-	public long getCompanyId() {
-		return _kbFolder.getCompanyId();
+	public Serializable getPrimaryKeyObj() {
+		return _kbFolder.getPrimaryKeyObj();
 	}
 
-	/**
-	* Returns the create date of this k b folder.
-	*
-	* @return the create date of this k b folder
-	*/
 	@Override
-	public Date getCreateDate() {
-		return _kbFolder.getCreateDate();
+	public java.lang.Object clone() {
+		return new KBFolderWrapper((KBFolder)_kbFolder.clone());
 	}
 
 	/**
@@ -202,51 +228,6 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 		return _kbFolder.getDescription();
 	}
 
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _kbFolder.getExpandoBridge();
-	}
-
-	/**
-	* Returns the group ID of this k b folder.
-	*
-	* @return the group ID of this k b folder
-	*/
-	@Override
-	public long getGroupId() {
-		return _kbFolder.getGroupId();
-	}
-
-	/**
-	* Returns the kb folder ID of this k b folder.
-	*
-	* @return the kb folder ID of this k b folder
-	*/
-	@Override
-	public long getKbFolderId() {
-		return _kbFolder.getKbFolderId();
-	}
-
-	/**
-	* Returns the last publish date of this k b folder.
-	*
-	* @return the last publish date of this k b folder
-	*/
-	@Override
-	public Date getLastPublishDate() {
-		return _kbFolder.getLastPublishDate();
-	}
-
-	/**
-	* Returns the modified date of this k b folder.
-	*
-	* @return the modified date of this k b folder
-	*/
-	@Override
-	public Date getModifiedDate() {
-		return _kbFolder.getModifiedDate();
-	}
-
 	/**
 	* Returns the name of this k b folder.
 	*
@@ -257,35 +238,10 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 		return _kbFolder.getName();
 	}
 
-	/**
-	* Returns the parent k b folder ID of this k b folder.
-	*
-	* @return the parent k b folder ID of this k b folder
-	*/
-	@Override
-	public long getParentKBFolderId() {
-		return _kbFolder.getParentKBFolderId();
-	}
-
 	@Override
 	public java.lang.String getParentTitle(java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbFolder.getParentTitle(locale);
-	}
-
-	/**
-	* Returns the primary key of this k b folder.
-	*
-	* @return the primary key of this k b folder
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _kbFolder.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _kbFolder.getPrimaryKeyObj();
 	}
 
 	/**
@@ -296,16 +252,6 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	@Override
 	public java.lang.String getUrlTitle() {
 		return _kbFolder.getUrlTitle();
-	}
-
-	/**
-	* Returns the user ID of this k b folder.
-	*
-	* @return the user ID of this k b folder
-	*/
-	@Override
-	public long getUserId() {
-		return _kbFolder.getUserId();
 	}
 
 	/**
@@ -339,29 +285,108 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	}
 
 	@Override
-	public int hashCode() {
-		return _kbFolder.hashCode();
+	public java.lang.String toString() {
+		return _kbFolder.toString();
 	}
 
 	@Override
-	public boolean isCachedModel() {
-		return _kbFolder.isCachedModel();
+	public java.lang.String toXmlString() {
+		return _kbFolder.toXmlString();
+	}
+
+	/**
+	* Returns the create date of this k b folder.
+	*
+	* @return the create date of this k b folder
+	*/
+	@Override
+	public Date getCreateDate() {
+		return _kbFolder.getCreateDate();
+	}
+
+	/**
+	* Returns the last publish date of this k b folder.
+	*
+	* @return the last publish date of this k b folder
+	*/
+	@Override
+	public Date getLastPublishDate() {
+		return _kbFolder.getLastPublishDate();
+	}
+
+	/**
+	* Returns the modified date of this k b folder.
+	*
+	* @return the modified date of this k b folder
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _kbFolder.getModifiedDate();
 	}
 
 	@Override
-	public boolean isEmpty()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbFolder.isEmpty();
+	public long getClassNameId() {
+		return _kbFolder.getClassNameId();
 	}
 
+	/**
+	* Returns the company ID of this k b folder.
+	*
+	* @return the company ID of this k b folder
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _kbFolder.isEscapedModel();
+	public long getCompanyId() {
+		return _kbFolder.getCompanyId();
 	}
 
+	/**
+	* Returns the group ID of this k b folder.
+	*
+	* @return the group ID of this k b folder
+	*/
 	@Override
-	public boolean isNew() {
-		return _kbFolder.isNew();
+	public long getGroupId() {
+		return _kbFolder.getGroupId();
+	}
+
+	/**
+	* Returns the kb folder ID of this k b folder.
+	*
+	* @return the kb folder ID of this k b folder
+	*/
+	@Override
+	public long getKbFolderId() {
+		return _kbFolder.getKbFolderId();
+	}
+
+	/**
+	* Returns the parent k b folder ID of this k b folder.
+	*
+	* @return the parent k b folder ID of this k b folder
+	*/
+	@Override
+	public long getParentKBFolderId() {
+		return _kbFolder.getParentKBFolderId();
+	}
+
+	/**
+	* Returns the primary key of this k b folder.
+	*
+	* @return the primary key of this k b folder
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _kbFolder.getPrimaryKey();
+	}
+
+	/**
+	* Returns the user ID of this k b folder.
+	*
+	* @return the user ID of this k b folder
+	*/
+	@Override
+	public long getUserId() {
+		return _kbFolder.getUserId();
 	}
 
 	@Override
@@ -405,14 +430,14 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_kbFolder.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kbFolder.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kbFolder.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_kbFolder.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -548,31 +573,6 @@ public class KBFolderWrapper implements KBFolder, ModelWrapper<KBFolder> {
 	@Override
 	public void setUuid(java.lang.String uuid) {
 		_kbFolder.setUuid(uuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.knowledgebase.model.KBFolder> toCacheModel() {
-		return _kbFolder.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.knowledgebase.model.KBFolder toEscapedModel() {
-		return new KBFolderWrapper(_kbFolder.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _kbFolder.toString();
-	}
-
-	@Override
-	public com.liferay.knowledgebase.model.KBFolder toUnescapedModel() {
-		return new KBFolderWrapper(_kbFolder.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _kbFolder.toXmlString();
 	}
 
 	@Override

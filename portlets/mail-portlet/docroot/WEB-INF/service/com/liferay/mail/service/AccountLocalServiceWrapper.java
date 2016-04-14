@@ -102,9 +102,75 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	}
 
 	@Override
-	public void deleteAccounts(long userId)
+	public com.liferay.mail.model.Account fetchAccount(long accountId) {
+		return _accountLocalService.fetchAccount(accountId);
+	}
+
+	/**
+	* Returns the account with the primary key.
+	*
+	* @param accountId the primary key of the account
+	* @return the account
+	* @throws PortalException if a account with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.mail.model.Account getAccount(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_accountLocalService.deleteAccounts(userId);
+		return _accountLocalService.getAccount(accountId);
+	}
+
+	@Override
+	public com.liferay.mail.model.Account getAccount(long userId,
+		java.lang.String address)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _accountLocalService.getAccount(userId, address);
+	}
+
+	/**
+	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param account the account
+	* @return the account that was updated
+	*/
+	@Override
+	public com.liferay.mail.model.Account updateAccount(
+		com.liferay.mail.model.Account account) {
+		return _accountLocalService.updateAccount(account);
+	}
+
+	@Override
+	public com.liferay.mail.model.Account updateAccount(long accountId,
+		java.lang.String personalName, java.lang.String password,
+		boolean savePassword, java.lang.String signature, boolean useSignature,
+		java.lang.String folderPrefix, boolean defaultSender)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _accountLocalService.updateAccount(accountId, personalName,
+			password, savePassword, signature, useSignature, folderPrefix,
+			defaultSender);
+	}
+
+	@Override
+	public com.liferay.mail.model.Account updateFolders(long accountId,
+		long inboxFolderId, long draftFolderId, long sentFolderId,
+		long trashFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _accountLocalService.updateFolders(accountId, inboxFolderId,
+			draftFolderId, sentFolderId, trashFolderId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _accountLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _accountLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _accountLocalService.getIndexableActionableDynamicQuery();
 	}
 
 	/**
@@ -118,8 +184,37 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _accountLocalService.dynamicQuery();
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _accountLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the number of accounts.
+	*
+	* @return the number of accounts
+	*/
+	@Override
+	public int getAccountsCount() {
+		return _accountLocalService.getAccountsCount();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _accountLocalService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _accountLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -176,6 +271,29 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	}
 
 	/**
+	* Returns a range of all the accounts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.mail.model.impl.AccountModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of accounts
+	* @param end the upper bound of the range of accounts (not inclusive)
+	* @return the range of accounts
+	*/
+	@Override
+	public java.util.List<com.liferay.mail.model.Account> getAccounts(
+		int start, int end) {
+		return _accountLocalService.getAccounts(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.mail.model.Account> getAccounts(
+		long userId) {
+		return _accountLocalService.getAccounts(userId);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -202,127 +320,9 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	}
 
 	@Override
-	public com.liferay.mail.model.Account fetchAccount(long accountId) {
-		return _accountLocalService.fetchAccount(accountId);
-	}
-
-	/**
-	* Returns the account with the primary key.
-	*
-	* @param accountId the primary key of the account
-	* @return the account
-	* @throws PortalException if a account with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.mail.model.Account getAccount(long accountId)
+	public void deleteAccounts(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _accountLocalService.getAccount(accountId);
-	}
-
-	@Override
-	public com.liferay.mail.model.Account getAccount(long userId,
-		java.lang.String address)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _accountLocalService.getAccount(userId, address);
-	}
-
-	/**
-	* Returns a range of all the accounts.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.mail.model.impl.AccountModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of accounts
-	* @param end the upper bound of the range of accounts (not inclusive)
-	* @return the range of accounts
-	*/
-	@Override
-	public java.util.List<com.liferay.mail.model.Account> getAccounts(
-		int start, int end) {
-		return _accountLocalService.getAccounts(start, end);
-	}
-
-	@Override
-	public java.util.List<com.liferay.mail.model.Account> getAccounts(
-		long userId) {
-		return _accountLocalService.getAccounts(userId);
-	}
-
-	/**
-	* Returns the number of accounts.
-	*
-	* @return the number of accounts
-	*/
-	@Override
-	public int getAccountsCount() {
-		return _accountLocalService.getAccountsCount();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _accountLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _accountLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _accountLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _accountLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _accountLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param account the account
-	* @return the account that was updated
-	*/
-	@Override
-	public com.liferay.mail.model.Account updateAccount(
-		com.liferay.mail.model.Account account) {
-		return _accountLocalService.updateAccount(account);
-	}
-
-	@Override
-	public com.liferay.mail.model.Account updateAccount(long accountId,
-		java.lang.String personalName, java.lang.String password,
-		boolean savePassword, java.lang.String signature, boolean useSignature,
-		java.lang.String folderPrefix, boolean defaultSender)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _accountLocalService.updateAccount(accountId, personalName,
-			password, savePassword, signature, useSignature, folderPrefix,
-			defaultSender);
-	}
-
-	@Override
-	public com.liferay.mail.model.Account updateFolders(long accountId,
-		long inboxFolderId, long draftFolderId, long sentFolderId,
-		long trashFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _accountLocalService.updateFolders(accountId, inboxFolderId,
-			draftFolderId, sentFolderId, trashFolderId);
+		_accountLocalService.deleteAccounts(userId);
 	}
 
 	@Override

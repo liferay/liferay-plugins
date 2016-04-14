@@ -34,6 +34,38 @@ public class ProjectsEntryLocalServiceWrapper
 		_projectsEntryLocalService = projectsEntryLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _projectsEntryLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _projectsEntryLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _projectsEntryLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _projectsEntryLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _projectsEntryLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Adds the projects entry to the database. Also notifies the appropriate model listeners.
 	*
@@ -71,16 +103,6 @@ public class ProjectsEntryLocalServiceWrapper
 	}
 
 	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _projectsEntryLocalService.deletePersistedModel(persistedModel);
-	}
-
-	/**
 	* Deletes the projects entry from the database. Also notifies the appropriate model listeners.
 	*
 	* @param projectsEntry the projects entry
@@ -107,8 +129,80 @@ public class ProjectsEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _projectsEntryLocalService.dynamicQuery();
+	public com.liferay.so.model.ProjectsEntry fetchProjectsEntry(
+		long projectsEntryId) {
+		return _projectsEntryLocalService.fetchProjectsEntry(projectsEntryId);
+	}
+
+	/**
+	* Returns the projects entry with the primary key.
+	*
+	* @param projectsEntryId the primary key of the projects entry
+	* @return the projects entry
+	* @throws PortalException if a projects entry with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
+		long projectsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _projectsEntryLocalService.getProjectsEntry(projectsEntryId);
+	}
+
+	/**
+	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param projectsEntry the projects entry
+	* @return the projects entry that was updated
+	*/
+	@Override
+	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
+		com.liferay.so.model.ProjectsEntry projectsEntry) {
+		return _projectsEntryLocalService.updateProjectsEntry(projectsEntry);
+	}
+
+	@Override
+	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
+		long projectsEntryId, java.lang.String title,
+		java.lang.String description, int startDateMonth, int startDateDay,
+		int startDateYear, int endDateMonth, int endDateDay, int endDateYear,
+		boolean current, java.lang.String data)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _projectsEntryLocalService.updateProjectsEntry(projectsEntryId,
+			title, description, startDateMonth, startDateDay, startDateYear,
+			endDateMonth, endDateDay, endDateYear, current, data);
+	}
+
+	/**
+	* Returns the number of projects entries.
+	*
+	* @return the number of projects entries
+	*/
+	@Override
+	public int getProjectsEntriesCount() {
+		return _projectsEntryLocalService.getProjectsEntriesCount();
+	}
+
+	@Override
+	public int getUserProjectsEntriesCount(long userId) {
+		return _projectsEntryLocalService.getUserProjectsEntriesCount(userId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _projectsEntryLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _projectsEntryLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -165,6 +259,29 @@ public class ProjectsEntryLocalServiceWrapper
 	}
 
 	/**
+	* Returns a range of all the projects entries.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.ProjectsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of projects entries
+	* @param end the upper bound of the range of projects entries (not inclusive)
+	* @return the range of projects entries
+	*/
+	@Override
+	public java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(
+		int start, int end) {
+		return _projectsEntryLocalService.getProjectsEntries(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
+		long userId) {
+		return _projectsEntryLocalService.getUserProjectsEntries(userId);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -189,123 +306,6 @@ public class ProjectsEntryLocalServiceWrapper
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _projectsEntryLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
-	}
-
-	@Override
-	public com.liferay.so.model.ProjectsEntry fetchProjectsEntry(
-		long projectsEntryId) {
-		return _projectsEntryLocalService.fetchProjectsEntry(projectsEntryId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _projectsEntryLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _projectsEntryLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _projectsEntryLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _projectsEntryLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	/**
-	* Returns a range of all the projects entries.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.ProjectsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of projects entries
-	* @param end the upper bound of the range of projects entries (not inclusive)
-	* @return the range of projects entries
-	*/
-	@Override
-	public java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(
-		int start, int end) {
-		return _projectsEntryLocalService.getProjectsEntries(start, end);
-	}
-
-	/**
-	* Returns the number of projects entries.
-	*
-	* @return the number of projects entries
-	*/
-	@Override
-	public int getProjectsEntriesCount() {
-		return _projectsEntryLocalService.getProjectsEntriesCount();
-	}
-
-	/**
-	* Returns the projects entry with the primary key.
-	*
-	* @param projectsEntryId the primary key of the projects entry
-	* @return the projects entry
-	* @throws PortalException if a projects entry with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.so.model.ProjectsEntry getProjectsEntry(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _projectsEntryLocalService.getProjectsEntry(projectsEntryId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
-		long userId) {
-		return _projectsEntryLocalService.getUserProjectsEntries(userId);
-	}
-
-	@Override
-	public int getUserProjectsEntriesCount(long userId) {
-		return _projectsEntryLocalService.getUserProjectsEntriesCount(userId);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _projectsEntryLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	/**
-	* Updates the projects entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param projectsEntry the projects entry
-	* @return the projects entry that was updated
-	*/
-	@Override
-	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
-		com.liferay.so.model.ProjectsEntry projectsEntry) {
-		return _projectsEntryLocalService.updateProjectsEntry(projectsEntry);
-	}
-
-	@Override
-	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
-		long projectsEntryId, java.lang.String title,
-		java.lang.String description, int startDateMonth, int startDateDay,
-		int startDateYear, int endDateMonth, int endDateDay, int endDateYear,
-		boolean current, java.lang.String data)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _projectsEntryLocalService.updateProjectsEntry(projectsEntryId,
-			title, description, startDateMonth, startDateDay, startDateYear,
-			endDateMonth, endDateDay, endDateYear, current, data);
 	}
 
 	@Override

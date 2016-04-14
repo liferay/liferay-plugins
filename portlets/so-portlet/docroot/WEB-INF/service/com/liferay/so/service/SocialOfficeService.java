@@ -48,6 +48,13 @@ public interface SocialOfficeService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SocialOfficeServiceUtil} to access the social office remote service. Add custom service methods to {@link com.liferay.so.service.impl.SocialOfficeServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isSocialOfficeGroup(long groupId) throws PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -58,12 +65,4 @@ public interface SocialOfficeService extends BaseService, InvokableService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long[] getUserSocialOfficeGroupIds() throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isSocialOfficeGroup(long groupId) throws PortalException;
 }

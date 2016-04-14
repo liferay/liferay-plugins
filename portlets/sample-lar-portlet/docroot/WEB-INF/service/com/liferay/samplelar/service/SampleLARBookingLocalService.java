@@ -67,6 +67,29 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SampleLARBookingLocalServiceUtil} to access the sample l a r booking local service. Add custom service methods to {@link com.liferay.samplelar.service.impl.SampleLARBookingLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Adds the sample l a r booking to the database. Also notifies the appropriate model listeners.
@@ -91,13 +114,6 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	public SampleLARBooking createSampleLARBooking(long sampleLARBookingId);
 
 	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
-
-	/**
 	* Deletes the sample l a r booking from the database. Also notifies the appropriate model listeners.
 	*
 	* @param sampleLARBooking the sample l a r booking
@@ -119,9 +135,79 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	public SampleLARBooking deleteSampleLARBooking(long sampleLARBookingId)
 		throws PortalException;
 
-	public void deleteSampleLARBookings(long groupId);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SampleLARBooking fetchSampleLARBooking(long sampleLARBookingId);
 
-	public DynamicQuery dynamicQuery();
+	/**
+	* Returns the sample l a r booking matching the UUID and group.
+	*
+	* @param uuid the sample l a r booking's UUID
+	* @param groupId the primary key of the group
+	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SampleLARBooking fetchSampleLARBookingByUuidAndGroupId(
+		java.lang.String uuid, long groupId);
+
+	/**
+	* Returns the sample l a r booking with the primary key.
+	*
+	* @param sampleLARBookingId the primary key of the sample l a r booking
+	* @return the sample l a r booking
+	* @throws PortalException if a sample l a r booking with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SampleLARBooking getSampleLARBooking(long sampleLARBookingId)
+		throws PortalException;
+
+	/**
+	* Returns the sample l a r booking matching the UUID and group.
+	*
+	* @param uuid the sample l a r booking's UUID
+	* @param groupId the primary key of the group
+	* @return the matching sample l a r booking
+	* @throws PortalException if a matching sample l a r booking could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SampleLARBooking getSampleLARBookingByUuidAndGroupId(
+		java.lang.String uuid, long groupId) throws PortalException;
+
+	/**
+	* Updates the sample l a r booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param sampleLARBooking the sample l a r booking
+	* @return the sample l a r booking that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public SampleLARBooking updateSampleLARBooking(
+		SampleLARBooking sampleLARBooking);
+
+	public SampleLARBooking updateSampleLARBooking(long userId,
+		long sampleLARBookingId, java.lang.String bookingNumber,
+		ServiceContext serviceContext) throws PortalException;
+
+	/**
+	* Returns the number of sample l a r bookings.
+	*
+	* @return the number of sample l a r bookings
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSampleLARBookingsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSampleLARBookingsCount(long groupId);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -163,87 +249,6 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SampleLARBooking fetchSampleLARBooking(long sampleLARBookingId);
-
-	/**
-	* Returns the sample l a r booking matching the UUID and group.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param groupId the primary key of the group
-	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SampleLARBooking fetchSampleLARBookingByUuidAndGroupId(
-		java.lang.String uuid, long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		PortletDataContext portletDataContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	/**
-	* Returns the sample l a r booking with the primary key.
-	*
-	* @param sampleLARBookingId the primary key of the sample l a r booking
-	* @return the sample l a r booking
-	* @throws PortalException if a sample l a r booking with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SampleLARBooking getSampleLARBooking(long sampleLARBookingId)
-		throws PortalException;
-
-	/**
-	* Returns the sample l a r booking matching the UUID and group.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param groupId the primary key of the group
-	* @return the matching sample l a r booking
-	* @throws PortalException if a matching sample l a r booking could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SampleLARBooking getSampleLARBookingByUuidAndGroupId(
-		java.lang.String uuid, long groupId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SampleLARBooking> getSampleLARBookings(long groupId, int start,
-		int end);
-
-	/**
 	* Returns a range of all the sample l a r bookings.
 	*
 	* <p>
@@ -256,6 +261,10 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SampleLARBooking> getSampleLARBookings(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SampleLARBooking> getSampleLARBookings(long groupId, int start,
+		int end);
 
 	/**
 	* Returns all the sample l a r bookings matching the UUID and company.
@@ -284,32 +293,22 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 		OrderByComparator<SampleLARBooking> orderByComparator);
 
 	/**
-	* Returns the number of sample l a r bookings.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of sample l a r bookings
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSampleLARBookingsCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSampleLARBookingsCount(long groupId);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
-	* Updates the sample l a r booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @param sampleLARBooking the sample l a r booking
-	* @return the sample l a r booking that was updated
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
 	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public SampleLARBooking updateSampleLARBooking(
-		SampleLARBooking sampleLARBooking);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
-	public SampleLARBooking updateSampleLARBooking(long userId,
-		long sampleLARBookingId, java.lang.String bookingNumber,
-		ServiceContext serviceContext) throws PortalException;
+	public void deleteSampleLARBookings(long groupId);
 }

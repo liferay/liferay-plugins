@@ -50,8 +50,10 @@ public interface WordsService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WordsServiceUtil} to access the words remote service. Add custom service methods to {@link com.liferay.words.service.impl.WordsServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public List<java.lang.String> checkSpelling(java.lang.String text)
-		throws java.lang.Exception;
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -60,12 +62,10 @@ public interface WordsService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
+	public List<java.lang.String> checkSpelling(java.lang.String text)
+		throws java.lang.Exception;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<java.lang.String> getSuggestions(java.lang.String word)
 		throws java.lang.Exception;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
 }

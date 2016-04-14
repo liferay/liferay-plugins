@@ -90,8 +90,6 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	*/
 	public KBTemplate createKBTemplate(long kbTemplateId);
 
-	public void deleteGroupKBTemplates(long groupId) throws PortalException;
-
 	/**
 	* Deletes the k b template from the database. Also notifies the appropriate model listeners.
 	*
@@ -115,8 +113,67 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	public KBTemplate deleteKBTemplate(long kbTemplateId)
 		throws PortalException;
 
-	public void deleteKBTemplates(long[] kbTemplateIds)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBTemplate fetchKBTemplate(long kbTemplateId);
+
+	/**
+	* Returns the k b template matching the UUID and group.
+	*
+	* @param uuid the k b template's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBTemplate fetchKBTemplateByUuidAndGroupId(java.lang.String uuid,
+		long groupId);
+
+	/**
+	* Returns the k b template with the primary key.
+	*
+	* @param kbTemplateId the primary key of the k b template
+	* @return the k b template
+	* @throws PortalException if a k b template with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBTemplate getKBTemplate(long kbTemplateId)
 		throws PortalException;
+
+	/**
+	* Returns the k b template matching the UUID and group.
+	*
+	* @param uuid the k b template's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b template
+	* @throws PortalException if a matching k b template could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBTemplate getKBTemplateByUuidAndGroupId(java.lang.String uuid,
+		long groupId) throws PortalException;
+
+	/**
+	* Updates the k b template in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kbTemplate the k b template
+	* @return the k b template that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public KBTemplate updateKBTemplate(KBTemplate kbTemplate);
+
+	public KBTemplate updateKBTemplate(long kbTemplateId,
+		java.lang.String title, java.lang.String content,
+		ServiceContext serviceContext) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* @throws PortalException
@@ -125,7 +182,33 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public DynamicQuery dynamicQuery();
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupKBTemplatesCount(long groupId);
+
+	/**
+	* Returns the number of k b templates.
+	*
+	* @return the number of k b templates
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBTemplatesCount();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -166,77 +249,9 @@ public interface KBTemplateLocalService extends BaseLocalService,
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
 
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBTemplate fetchKBTemplate(long kbTemplateId);
-
-	/**
-	* Returns the k b template matching the UUID and group.
-	*
-	* @param uuid the k b template's UUID
-	* @param groupId the primary key of the group
-	* @return the matching k b template, or <code>null</code> if a matching k b template could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBTemplate fetchKBTemplateByUuidAndGroupId(java.lang.String uuid,
-		long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		PortletDataContext portletDataContext);
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBTemplate> getGroupKBTemplates(long groupId, int start,
 		int end, OrderByComparator<KBTemplate> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupKBTemplatesCount(long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the k b template with the primary key.
-	*
-	* @param kbTemplateId the primary key of the k b template
-	* @return the k b template
-	* @throws PortalException if a k b template with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBTemplate getKBTemplate(long kbTemplateId)
-		throws PortalException;
-
-	/**
-	* Returns the k b template matching the UUID and group.
-	*
-	* @param uuid the k b template's UUID
-	* @param groupId the primary key of the group
-	* @return the matching k b template
-	* @throws PortalException if a matching k b template could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBTemplate getKBTemplateByUuidAndGroupId(java.lang.String uuid,
-		long groupId) throws PortalException;
 
 	/**
 	* Returns a range of all the k b templates.
@@ -278,31 +293,6 @@ public interface KBTemplateLocalService extends BaseLocalService,
 		java.lang.String uuid, long companyId, int start, int end,
 		OrderByComparator<KBTemplate> orderByComparator);
 
-	/**
-	* Returns the number of k b templates.
-	*
-	* @return the number of k b templates
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBTemplatesCount();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBTemplate> search(long groupId, java.lang.String title,
 		java.lang.String content, Date startDate, Date endDate,
@@ -310,17 +300,27 @@ public interface KBTemplateLocalService extends BaseLocalService,
 		OrderByComparator<KBTemplate> orderByComparator);
 
 	/**
-	* Updates the k b template in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @param kbTemplate the k b template
-	* @return the k b template that was updated
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public KBTemplate updateKBTemplate(KBTemplate kbTemplate);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
-	public KBTemplate updateKBTemplate(long kbTemplateId,
-		java.lang.String title, java.lang.String content,
-		ServiceContext serviceContext) throws PortalException;
+	/**
+	* Returns the number of rows matching the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
+	*/
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
+
+	public void deleteGroupKBTemplates(long groupId) throws PortalException;
+
+	public void deleteKBTemplates(long[] kbTemplateIds)
+		throws PortalException;
 
 	public void updateKBTemplateResources(KBTemplate kbTemplate,
 		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)

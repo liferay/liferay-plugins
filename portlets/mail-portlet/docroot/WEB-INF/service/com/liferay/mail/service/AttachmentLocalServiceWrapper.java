@@ -91,9 +91,48 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	}
 
 	@Override
-	public void deleteAttachments(long companyId, long messageId)
+	public com.liferay.mail.model.Attachment fetchAttachment(long attachmentId) {
+		return _attachmentLocalService.fetchAttachment(attachmentId);
+	}
+
+	/**
+	* Returns the attachment with the primary key.
+	*
+	* @param attachmentId the primary key of the attachment
+	* @return the attachment
+	* @throws PortalException if a attachment with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.mail.model.Attachment getAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_attachmentLocalService.deleteAttachments(companyId, messageId);
+		return _attachmentLocalService.getAttachment(attachmentId);
+	}
+
+	/**
+	* Updates the attachment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param attachment the attachment
+	* @return the attachment that was updated
+	*/
+	@Override
+	public com.liferay.mail.model.Attachment updateAttachment(
+		com.liferay.mail.model.Attachment attachment) {
+		return _attachmentLocalService.updateAttachment(attachment);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _attachmentLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _attachmentLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _attachmentLocalService.getIndexableActionableDynamicQuery();
 	}
 
 	/**
@@ -107,8 +146,50 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _attachmentLocalService.dynamicQuery();
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _attachmentLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the number of attachments.
+	*
+	* @return the number of attachments
+	*/
+	@Override
+	public int getAttachmentsCount() {
+		return _attachmentLocalService.getAttachmentsCount();
+	}
+
+	@Override
+	public java.io.File getFile(long attachmentId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _attachmentLocalService.getFile(attachmentId);
+	}
+
+	@Override
+	public java.io.InputStream getInputStream(long attachmentId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _attachmentLocalService.getInputStream(attachmentId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _attachmentLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _attachmentLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -165,6 +246,29 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	}
 
 	/**
+	* Returns a range of all the attachments.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.mail.model.impl.AttachmentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of attachments
+	* @param end the upper bound of the range of attachments (not inclusive)
+	* @return the range of attachments
+	*/
+	@Override
+	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
+		int start, int end) {
+		return _attachmentLocalService.getAttachments(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
+		long messageId) {
+		return _attachmentLocalService.getAttachments(messageId);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -192,113 +296,9 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	}
 
 	@Override
-	public com.liferay.mail.model.Attachment fetchAttachment(long attachmentId) {
-		return _attachmentLocalService.fetchAttachment(attachmentId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _attachmentLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the attachment with the primary key.
-	*
-	* @param attachmentId the primary key of the attachment
-	* @return the attachment
-	* @throws PortalException if a attachment with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.mail.model.Attachment getAttachment(long attachmentId)
+	public void deleteAttachments(long companyId, long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _attachmentLocalService.getAttachment(attachmentId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
-		long messageId) {
-		return _attachmentLocalService.getAttachments(messageId);
-	}
-
-	/**
-	* Returns a range of all the attachments.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.mail.model.impl.AttachmentModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of attachments
-	* @param end the upper bound of the range of attachments (not inclusive)
-	* @return the range of attachments
-	*/
-	@Override
-	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
-		int start, int end) {
-		return _attachmentLocalService.getAttachments(start, end);
-	}
-
-	/**
-	* Returns the number of attachments.
-	*
-	* @return the number of attachments
-	*/
-	@Override
-	public int getAttachmentsCount() {
-		return _attachmentLocalService.getAttachmentsCount();
-	}
-
-	@Override
-	public java.io.File getFile(long attachmentId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _attachmentLocalService.getFile(attachmentId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _attachmentLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	@Override
-	public java.io.InputStream getInputStream(long attachmentId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _attachmentLocalService.getInputStream(attachmentId);
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _attachmentLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _attachmentLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _attachmentLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	/**
-	* Updates the attachment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param attachment the attachment
-	* @return the attachment that was updated
-	*/
-	@Override
-	public com.liferay.mail.model.Attachment updateAttachment(
-		com.liferay.mail.model.Attachment attachment) {
-		return _attachmentLocalService.updateAttachment(attachment);
+		_attachmentLocalService.deleteAttachments(companyId, messageId);
 	}
 
 	@Override

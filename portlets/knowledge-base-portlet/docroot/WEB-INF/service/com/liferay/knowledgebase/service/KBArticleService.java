@@ -68,24 +68,7 @@ public interface KBArticleService extends BaseService, InvokableService {
 		java.lang.String[] selectedFileNames, ServiceContext serviceContext)
 		throws PortalException;
 
-	public int addKBArticlesMarkdown(long groupId, long parentKBFolderId,
-		java.lang.String fileName, boolean prioritizeByNumericalPrefix,
-		InputStream inputStream, ServiceContext serviceContext)
-		throws PortalException;
-
-	public void addTempAttachment(long groupId, long resourcePrimKey,
-		java.lang.String fileName, java.lang.String tempFolderName,
-		InputStream inputStream, java.lang.String mimeType)
-		throws PortalException;
-
 	public KBArticle deleteKBArticle(long resourcePrimKey)
-		throws PortalException;
-
-	public void deleteKBArticles(long groupId, long[] resourcePrimKeys)
-		throws PortalException;
-
-	public void deleteTempAttachment(long groupId, long resourcePrimKey,
-		java.lang.String fileName, java.lang.String tempFolderName)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -93,11 +76,68 @@ public interface KBArticleService extends BaseService, InvokableService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KBArticle> getGroupKBArticles(long groupId, int status,
-		int start, int end, OrderByComparator<KBArticle> orderByComparator);
+	public KBArticle getKBArticle(long resourcePrimKey, int version)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBArticle getLatestKBArticle(long resourcePrimKey, int status)
+		throws PortalException;
+
+	public KBArticle revertKBArticle(long resourcePrimKey, int version,
+		ServiceContext serviceContext) throws PortalException;
+
+	public KBArticle updateKBArticle(long resourcePrimKey,
+		java.lang.String title, java.lang.String content,
+		java.lang.String description, java.lang.String sourceURL,
+		java.lang.String[] sections, java.lang.String[] selectedFileNames,
+		long[] removeFileEntryIds, ServiceContext serviceContext)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBArticleSearchDisplay getKBArticleSearchDisplay(long groupId,
+		java.lang.String title, java.lang.String content, int status,
+		Date startDate, Date endDate, boolean andOperator,
+		int[] curStartValues, int cur, int delta,
+		OrderByComparator<KBArticle> orderByComparator)
+		throws PortalException;
+
+	public int addKBArticlesMarkdown(long groupId, long parentKBFolderId,
+		java.lang.String fileName, boolean prioritizeByNumericalPrefix,
+		InputStream inputStream, ServiceContext serviceContext)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupKBArticlesCount(long groupId, int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBArticleVersionsCount(long groupId, long resourcePrimKey,
+		int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBArticlesCount(long groupId, long parentResourcePrimKey,
+		int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
+		int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSectionsKBArticlesCount(long groupId,
+		java.lang.String[] sections, int status);
+
+	/**
+	* @deprecated As of 7.0.0, replaced by {@link #getKBArticlesCount(long,
+	long, int)}
+	*/
+	@java.lang.Deprecated
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSiblingKBArticlesCount(long groupId,
+		long parentResourcePrimKey, int status);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getGroupKBArticlesRSS(int status, int rssDelta,
@@ -105,8 +145,25 @@ public interface KBArticleService extends BaseService, InvokableService {
 		ThemeDisplay themeDisplay) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBArticle getKBArticle(long resourcePrimKey, int version)
+	public java.lang.String getKBArticleRSS(long resourcePrimKey, int status,
+		int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat, ThemeDisplay themeDisplay)
 		throws PortalException;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String[] getTempAttachmentNames(long groupId,
+		java.lang.String tempFolderName) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KBArticle> getGroupKBArticles(long groupId, int status,
+		int start, int end, OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBArticle> getKBArticleAndAllDescendantKBArticles(
@@ -125,27 +182,9 @@ public interface KBArticleService extends BaseService, InvokableService {
 		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.lang.String getKBArticleRSS(long resourcePrimKey, int status,
-		int rssDelta, java.lang.String rssDisplayStyle,
-		java.lang.String rssFormat, ThemeDisplay themeDisplay)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBArticleSearchDisplay getKBArticleSearchDisplay(long groupId,
-		java.lang.String title, java.lang.String content, int status,
-		Date startDate, Date endDate, boolean andOperator,
-		int[] curStartValues, int cur, int delta,
-		OrderByComparator<KBArticle> orderByComparator)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBArticle> getKBArticleVersions(long groupId,
 		long resourcePrimKey, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBArticleVersionsCount(long groupId, long resourcePrimKey,
-		int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBArticle> getKBArticles(long groupId,
@@ -162,32 +201,9 @@ public interface KBArticleService extends BaseService, InvokableService {
 		OrderByComparator<KBArticle> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBArticlesCount(long groupId, long parentResourcePrimKey,
-		int status);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
-		int status);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBArticle getLatestKBArticle(long resourcePrimKey, int status)
-		throws PortalException;
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBArticle> getSectionsKBArticles(long groupId,
 		java.lang.String[] sections, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSectionsKBArticlesCount(long groupId,
-		java.lang.String[] sections, int status);
 
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link #getKBArticles(long, long,
@@ -200,30 +216,21 @@ public interface KBArticleService extends BaseService, InvokableService {
 		long parentResourcePrimKey, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator);
 
-	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getKBArticlesCount(long,
-	long, int)}
-	*/
-	@java.lang.Deprecated
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSiblingKBArticlesCount(long groupId,
-		long parentResourcePrimKey, int status);
+	public void addTempAttachment(long groupId, long resourcePrimKey,
+		java.lang.String fileName, java.lang.String tempFolderName,
+		InputStream inputStream, java.lang.String mimeType)
+		throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.lang.String[] getTempAttachmentNames(long groupId,
-		java.lang.String tempFolderName) throws PortalException;
+	public void deleteKBArticles(long groupId, long[] resourcePrimKeys)
+		throws PortalException;
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	public void deleteTempAttachment(long groupId, long resourcePrimKey,
+		java.lang.String fileName, java.lang.String tempFolderName)
+		throws PortalException;
 
 	public void moveKBArticle(long resourcePrimKey,
 		long parentResourceClassNameId, long parentResourcePrimKey,
 		double priority) throws PortalException;
-
-	public KBArticle revertKBArticle(long resourcePrimKey, int version,
-		ServiceContext serviceContext) throws PortalException;
 
 	public void subscribeGroupKBArticles(long groupId,
 		java.lang.String portletId) throws PortalException;
@@ -235,13 +242,6 @@ public interface KBArticleService extends BaseService, InvokableService {
 		java.lang.String portletId) throws PortalException;
 
 	public void unsubscribeKBArticle(long resourcePrimKey)
-		throws PortalException;
-
-	public KBArticle updateKBArticle(long resourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, java.lang.String sourceURL,
-		java.lang.String[] sections, java.lang.String[] selectedFileNames,
-		long[] removeFileEntryIds, ServiceContext serviceContext)
 		throws PortalException;
 
 	public void updateKBArticlesPriorities(long groupId,

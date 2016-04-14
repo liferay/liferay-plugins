@@ -63,19 +63,13 @@ public interface KBTemplateService extends BaseService, InvokableService {
 	public KBTemplate deleteKBTemplate(long kbTemplateId)
 		throws PortalException;
 
-	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KBTemplate> getGroupKBTemplates(long groupId, int start,
-		int end, OrderByComparator<KBTemplate> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupKBTemplatesCount(long groupId);
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public KBTemplate getKBTemplate(long kbTemplateId)
 		throws PortalException;
+
+	public KBTemplate updateKBTemplate(long kbTemplateId,
+		java.lang.String title, java.lang.String content,
+		ServiceContext serviceContext) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public KBTemplateSearchDisplay getKBTemplateSearchDisplay(long groupId,
@@ -84,6 +78,14 @@ public interface KBTemplateService extends BaseService, InvokableService {
 		int delta, OrderByComparator<KBTemplate> orderByComparator)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupKBTemplatesCount(long groupId);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -91,12 +93,10 @@ public interface KBTemplateService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KBTemplate> getGroupKBTemplates(long groupId, int start,
+		int end, OrderByComparator<KBTemplate> orderByComparator);
 
-	public KBTemplate updateKBTemplate(long kbTemplateId,
-		java.lang.String title, java.lang.String content,
-		ServiceContext serviceContext) throws PortalException;
+	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)
+		throws PortalException;
 }

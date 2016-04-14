@@ -33,6 +33,38 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		_definitionLocalService = definitionLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _definitionLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _definitionLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _definitionLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _definitionLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _definitionLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Adds the definition to the database. Also notifies the appropriate model listeners.
 	*
@@ -83,19 +115,64 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		return _definitionLocalService.deleteDefinition(definitionId);
 	}
 
+	@Override
+	public com.liferay.samplealloymvc.model.Definition fetchDefinition(
+		long definitionId) {
+		return _definitionLocalService.fetchDefinition(definitionId);
+	}
+
 	/**
-	* @throws PortalException
+	* Returns the definition with the primary key.
+	*
+	* @param definitionId the primary key of the definition
+	* @return the definition
+	* @throws PortalException if a definition with the primary key could not be found
 	*/
 	@Override
-	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+	public com.liferay.samplealloymvc.model.Definition getDefinition(
+		long definitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.deletePersistedModel(persistedModel);
+		return _definitionLocalService.getDefinition(definitionId);
+	}
+
+	/**
+	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param definition the definition
+	* @return the definition that was updated
+	*/
+	@Override
+	public com.liferay.samplealloymvc.model.Definition updateDefinition(
+		com.liferay.samplealloymvc.model.Definition definition) {
+		return _definitionLocalService.updateDefinition(definition);
+	}
+
+	/**
+	* Returns the number of definitions.
+	*
+	* @return the number of definitions
+	*/
+	@Override
+	public int getDefinitionsCount() {
+		return _definitionLocalService.getDefinitionsCount();
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _definitionLocalService.dynamicQuery();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _definitionLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _definitionLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -152,6 +229,23 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 	}
 
 	/**
+	* Returns a range of all the definitions.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplealloymvc.model.impl.DefinitionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of definitions
+	* @param end the upper bound of the range of definitions (not inclusive)
+	* @return the range of definitions
+	*/
+	@Override
+	public java.util.List<com.liferay.samplealloymvc.model.Definition> getDefinitions(
+		int start, int end) {
+		return _definitionLocalService.getDefinitions(start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -176,100 +270,6 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _definitionLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Definition fetchDefinition(
-		long definitionId) {
-		return _definitionLocalService.fetchDefinition(definitionId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _definitionLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the definition with the primary key.
-	*
-	* @param definitionId the primary key of the definition
-	* @return the definition
-	* @throws PortalException if a definition with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.samplealloymvc.model.Definition getDefinition(
-		long definitionId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.getDefinition(definitionId);
-	}
-
-	/**
-	* Returns a range of all the definitions.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplealloymvc.model.impl.DefinitionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of definitions
-	* @param end the upper bound of the range of definitions (not inclusive)
-	* @return the range of definitions
-	*/
-	@Override
-	public java.util.List<com.liferay.samplealloymvc.model.Definition> getDefinitions(
-		int start, int end) {
-		return _definitionLocalService.getDefinitions(start, end);
-	}
-
-	/**
-	* Returns the number of definitions.
-	*
-	* @return the number of definitions
-	*/
-	@Override
-	public int getDefinitionsCount() {
-		return _definitionLocalService.getDefinitionsCount();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _definitionLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _definitionLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _definitionLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _definitionLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	/**
-	* Updates the definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param definition the definition
-	* @return the definition that was updated
-	*/
-	@Override
-	public com.liferay.samplealloymvc.model.Definition updateDefinition(
-		com.liferay.samplealloymvc.model.Definition definition) {
-		return _definitionLocalService.updateDefinition(definition);
 	}
 
 	@Override

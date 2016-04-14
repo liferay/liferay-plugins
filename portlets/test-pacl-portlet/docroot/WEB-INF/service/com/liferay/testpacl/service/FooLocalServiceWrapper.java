@@ -32,6 +32,102 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		_fooLocalService = fooLocalService;
 	}
 
+	@Override
+	public boolean getPortalServiceUtil_TestHasClassName() {
+		return _fooLocalService.getPortalServiceUtil_TestHasClassName();
+	}
+
+	@Override
+	public boolean getPortalService_TestHasClassName() {
+		return _fooLocalService.getPortalService_TestHasClassName();
+	}
+
+	@Override
+	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
+		long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getEntryLocalServiceUtil_GetEntry(entryId);
+	}
+
+	@Override
+	public com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
+		long statusId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getStatusLocalServiceUtil_GetStatus(statusId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _fooLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _fooLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _fooLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Company getCompanyPersistence_FindByPrimaryKey(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getCompanyPersistence_FindByPrimaryKey(companyId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Company getCompanyUtil_FindByPrimaryKey(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getCompanyUtil_FindByPrimaryKey(companyId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Group getGroupPersistence_FindByPrimaryKey(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getGroupPersistence_FindByPrimaryKey(groupId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.Group getGroupUtil_FindByPrimaryKey(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getGroupUtil_FindByPrimaryKey(groupId);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.User getUserPersistence_FindByPrimaryKey(
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getUserPersistence_FindByPrimaryKey(userId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.User getUserUtil_FindByPrimaryKey(
+		long userId) throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.getUserUtil_FindByPrimaryKey(userId);
+	}
+
 	/**
 	* Adds the foo to the database. Also notifies the appropriate model listeners.
 	*
@@ -80,19 +176,86 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		return _fooLocalService.deleteFoo(fooId);
 	}
 
+	@Override
+	public com.liferay.testpacl.model.Foo fetchFoo(long fooId) {
+		return _fooLocalService.fetchFoo(fooId);
+	}
+
 	/**
-	* @throws PortalException
+	* Returns the foo with the primary key.
+	*
+	* @param fooId the primary key of the foo
+	* @return the foo
+	* @throws PortalException if a foo with the primary key could not be found
 	*/
 	@Override
-	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+	public com.liferay.testpacl.model.Foo getFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.deletePersistedModel(persistedModel);
+		return _fooLocalService.getFoo(fooId);
+	}
+
+	/**
+	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param foo the foo
+	* @return the foo that was updated
+	*/
+	@Override
+	public com.liferay.testpacl.model.Foo updateFoo(
+		com.liferay.testpacl.model.Foo foo) {
+		return _fooLocalService.updateFoo(foo);
+	}
+
+	/**
+	* Returns the number of foos.
+	*
+	* @return the number of foos
+	*/
+	@Override
+	public int getFoosCount() {
+		return _fooLocalService.getFoosCount();
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _fooLocalService.dynamicQuery();
+	public int getPortalServiceUtil_GetBuildNumber() {
+		return _fooLocalService.getPortalServiceUtil_GetBuildNumber();
+	}
+
+	@Override
+	public int getPortalServiceUtil_TestGetBuildNumber() {
+		return _fooLocalService.getPortalServiceUtil_TestGetBuildNumber();
+	}
+
+	@Override
+	public int getPortalService_GetBuildNumber() {
+		return _fooLocalService.getPortalService_GetBuildNumber();
+	}
+
+	@Override
+	public int getPortalService_TestGetBuildNumber() {
+		return _fooLocalService.getPortalService_TestGetBuildNumber();
+	}
+
+	@Override
+	public int getReleaseInfo_GetBuildNumber() {
+		return _fooLocalService.getReleaseInfo_GetBuildNumber();
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _fooLocalService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _fooLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -148,6 +311,35 @@ public class FooLocalServiceWrapper implements FooLocalService,
 			orderByComparator);
 	}
 
+	@Override
+	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
+		int start, int end) {
+		return _fooLocalService.getEntryLocalServiceUtil_GetEntries(start, end);
+	}
+
+	/**
+	* Returns a range of all the foos.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testpacl.model.impl.FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of foos
+	* @param end the upper bound of the range of foos (not inclusive)
+	* @return the range of foos
+	*/
+	@Override
+	public java.util.List<com.liferay.testpacl.model.Foo> getFoos(int start,
+		int end) {
+		return _fooLocalService.getFoos(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
+		int start, int end) {
+		return _fooLocalService.getStatusLocalServiceUtil_GetStatuses(start, end);
+	}
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*
@@ -172,198 +364,6 @@ public class FooLocalServiceWrapper implements FooLocalService,
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _fooLocalService.dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	@Override
-	public com.liferay.testpacl.model.Foo fetchFoo(long fooId) {
-		return _fooLocalService.fetchFoo(fooId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _fooLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.Company getCompanyPersistence_FindByPrimaryKey(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getCompanyPersistence_FindByPrimaryKey(companyId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.Company getCompanyUtil_FindByPrimaryKey(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getCompanyUtil_FindByPrimaryKey(companyId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.chat.model.Entry> getEntryLocalServiceUtil_GetEntries(
-		int start, int end) {
-		return _fooLocalService.getEntryLocalServiceUtil_GetEntries(start, end);
-	}
-
-	@Override
-	public com.liferay.chat.model.Entry getEntryLocalServiceUtil_GetEntry(
-		long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getEntryLocalServiceUtil_GetEntry(entryId);
-	}
-
-	/**
-	* Returns the foo with the primary key.
-	*
-	* @param fooId the primary key of the foo
-	* @return the foo
-	* @throws PortalException if a foo with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.testpacl.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getFoo(fooId);
-	}
-
-	/**
-	* Returns a range of all the foos.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testpacl.model.impl.FooModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of foos
-	* @param end the upper bound of the range of foos (not inclusive)
-	* @return the range of foos
-	*/
-	@Override
-	public java.util.List<com.liferay.testpacl.model.Foo> getFoos(int start,
-		int end) {
-		return _fooLocalService.getFoos(start, end);
-	}
-
-	/**
-	* Returns the number of foos.
-	*
-	* @return the number of foos
-	*/
-	@Override
-	public int getFoosCount() {
-		return _fooLocalService.getFoosCount();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.Group getGroupPersistence_FindByPrimaryKey(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getGroupPersistence_FindByPrimaryKey(groupId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.Group getGroupUtil_FindByPrimaryKey(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getGroupUtil_FindByPrimaryKey(groupId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _fooLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _fooLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public int getPortalServiceUtil_GetBuildNumber() {
-		return _fooLocalService.getPortalServiceUtil_GetBuildNumber();
-	}
-
-	@Override
-	public int getPortalServiceUtil_TestGetBuildNumber() {
-		return _fooLocalService.getPortalServiceUtil_TestGetBuildNumber();
-	}
-
-	@Override
-	public boolean getPortalServiceUtil_TestHasClassName() {
-		return _fooLocalService.getPortalServiceUtil_TestHasClassName();
-	}
-
-	@Override
-	public int getPortalService_GetBuildNumber() {
-		return _fooLocalService.getPortalService_GetBuildNumber();
-	}
-
-	@Override
-	public int getPortalService_TestGetBuildNumber() {
-		return _fooLocalService.getPortalService_TestGetBuildNumber();
-	}
-
-	@Override
-	public boolean getPortalService_TestHasClassName() {
-		return _fooLocalService.getPortalService_TestHasClassName();
-	}
-
-	@Override
-	public int getReleaseInfo_GetBuildNumber() {
-		return _fooLocalService.getReleaseInfo_GetBuildNumber();
-	}
-
-	@Override
-	public com.liferay.chat.model.Status getStatusLocalServiceUtil_GetStatus(
-		long statusId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getStatusLocalServiceUtil_GetStatus(statusId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.chat.model.Status> getStatusLocalServiceUtil_GetStatuses(
-		int start, int end) {
-		return _fooLocalService.getStatusLocalServiceUtil_GetStatuses(start, end);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.User getUserPersistence_FindByPrimaryKey(
-		long userId) throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getUserPersistence_FindByPrimaryKey(userId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.User getUserUtil_FindByPrimaryKey(
-		long userId) throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooLocalService.getUserUtil_FindByPrimaryKey(userId);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _fooLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the foo in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param foo the foo
-	* @return the foo that was updated
-	*/
-	@Override
-	public com.liferay.testpacl.model.Foo updateFoo(
-		com.liferay.testpacl.model.Foo foo) {
-		return _fooLocalService.updateFoo(foo);
 	}
 
 	@Override

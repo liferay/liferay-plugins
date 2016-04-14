@@ -49,8 +49,13 @@ public interface SyncPreferencesLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncPreferencesLocalServiceUtil} to access the sync preferences local service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncPreferencesLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public void enableOAuth(long companyId, ServiceContext serviceContext)
-		throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isOAuthApplicationAvailable(long oAuthApplicationId);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -63,11 +68,6 @@ public interface SyncPreferencesLocalService extends BaseLocalService,
 	public PortletPreferences getPortletPreferences(long companyId)
 		throws PortalException;
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isOAuthApplicationAvailable(long oAuthApplicationId);
+	public void enableOAuth(long companyId, ServiceContext serviceContext)
+		throws PortalException;
 }

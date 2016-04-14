@@ -64,6 +64,29 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncDeviceLocalServiceUtil} to access the sync device local service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDeviceLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Adds the sync device to the database. Also notifies the appropriate model listeners.
@@ -86,13 +109,6 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	public SyncDevice createSyncDevice(long syncDeviceId);
 
 	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
-
-	/**
 	* Deletes the sync device from the database. Also notifies the appropriate model listeners.
 	*
 	* @param syncDevice the sync device
@@ -112,7 +128,75 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	public SyncDevice deleteSyncDevice(long syncDeviceId)
 		throws PortalException;
 
-	public DynamicQuery dynamicQuery();
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SyncDevice fetchSyncDevice(long syncDeviceId);
+
+	/**
+	* Returns the sync device with the matching UUID and company.
+	*
+	* @param uuid the sync device's UUID
+	* @param companyId the primary key of the company
+	* @return the matching sync device, or <code>null</code> if a matching sync device could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SyncDevice fetchSyncDeviceByUuidAndCompanyId(java.lang.String uuid,
+		long companyId);
+
+	/**
+	* Returns the sync device with the primary key.
+	*
+	* @param syncDeviceId the primary key of the sync device
+	* @return the sync device
+	* @throws PortalException if a sync device with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SyncDevice getSyncDevice(long syncDeviceId)
+		throws PortalException;
+
+	/**
+	* Returns the sync device with the matching UUID and company.
+	*
+	* @param uuid the sync device's UUID
+	* @param companyId the primary key of the company
+	* @return the matching sync device
+	* @throws PortalException if a matching sync device could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SyncDevice getSyncDeviceByUuidAndCompanyId(java.lang.String uuid,
+		long companyId) throws PortalException;
+
+	/**
+	* Updates the sync device in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param syncDevice the sync device
+	* @return the sync device that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDevice updateSyncDevice(SyncDevice syncDevice);
+
+	public SyncDevice updateSyncDevice(long syncDeviceId,
+		java.lang.String type, int buildNumber, int featureSet, int status)
+		throws PortalException;
+
+	/**
+	* Returns the number of sync devices.
+	*
+	* @return the number of sync devices
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSyncDevicesCount();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -154,6 +238,24 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
+	* Returns a range of all the sync devices.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of sync devices
+	* @param end the upper bound of the range of sync devices (not inclusive)
+	* @return the range of sync devices
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SyncDevice> getSyncDevices(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SyncDevice> search(long companyId, java.lang.String keywords,
+		int start, int end, OrderByComparator<SyncDevice> orderByComparator);
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -171,109 +273,6 @@ public interface SyncDeviceLocalService extends BaseLocalService,
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDevice fetchSyncDevice(long syncDeviceId);
-
-	/**
-	* Returns the sync device with the matching UUID and company.
-	*
-	* @param uuid the sync device's UUID
-	* @param companyId the primary key of the company
-	* @return the matching sync device, or <code>null</code> if a matching sync device could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDevice fetchSyncDeviceByUuidAndCompanyId(java.lang.String uuid,
-		long companyId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		PortletDataContext portletDataContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	/**
-	* Returns the sync device with the primary key.
-	*
-	* @param syncDeviceId the primary key of the sync device
-	* @return the sync device
-	* @throws PortalException if a sync device with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDevice getSyncDevice(long syncDeviceId)
-		throws PortalException;
-
-	/**
-	* Returns the sync device with the matching UUID and company.
-	*
-	* @param uuid the sync device's UUID
-	* @param companyId the primary key of the company
-	* @return the matching sync device
-	* @throws PortalException if a matching sync device could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDevice getSyncDeviceByUuidAndCompanyId(java.lang.String uuid,
-		long companyId) throws PortalException;
-
-	/**
-	* Returns a range of all the sync devices.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDeviceModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of sync devices
-	* @param end the upper bound of the range of sync devices (not inclusive)
-	* @return the range of sync devices
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SyncDevice> getSyncDevices(int start, int end);
-
-	/**
-	* Returns the number of sync devices.
-	*
-	* @return the number of sync devices
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSyncDevicesCount();
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SyncDevice> search(long companyId, java.lang.String keywords,
-		int start, int end, OrderByComparator<SyncDevice> orderByComparator);
-
 	public void updateStatus(long syncDeviceId, int status)
-		throws PortalException;
-
-	/**
-	* Updates the sync device in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param syncDevice the sync device
-	* @return the sync device that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public SyncDevice updateSyncDevice(SyncDevice syncDevice);
-
-	public SyncDevice updateSyncDevice(long syncDeviceId,
-		java.lang.String type, int buildNumber, int featureSet, int status)
 		throws PortalException;
 }

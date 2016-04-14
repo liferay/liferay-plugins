@@ -132,8 +132,38 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new WSRPConsumerPortletWrapper((WSRPConsumerPortlet)_wsrpConsumerPortlet.clone());
+	public boolean isCachedModel() {
+		return _wsrpConsumerPortlet.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _wsrpConsumerPortlet.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _wsrpConsumerPortlet.isNew();
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _wsrpConsumerPortlet.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.wsrp.model.WSRPConsumerPortlet> toCacheModel() {
+		return _wsrpConsumerPortlet.toCacheModel();
+	}
+
+	@Override
+	public com.liferay.wsrp.model.WSRPConsumerPortlet toEscapedModel() {
+		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.wsrp.model.WSRPConsumerPortlet toUnescapedModel() {
+		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toUnescapedModel());
 	}
 
 	@Override
@@ -142,49 +172,19 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 		return _wsrpConsumerPortlet.compareTo(wsrpConsumerPortlet);
 	}
 
-	/**
-	* Returns the company ID of this w s r p consumer portlet.
-	*
-	* @return the company ID of this w s r p consumer portlet
-	*/
 	@Override
-	public long getCompanyId() {
-		return _wsrpConsumerPortlet.getCompanyId();
-	}
-
-	/**
-	* Returns the create date of this w s r p consumer portlet.
-	*
-	* @return the create date of this w s r p consumer portlet
-	*/
-	@Override
-	public Date getCreateDate() {
-		return _wsrpConsumerPortlet.getCreateDate();
+	public int hashCode() {
+		return _wsrpConsumerPortlet.hashCode();
 	}
 
 	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _wsrpConsumerPortlet.getExpandoBridge();
+	public Serializable getPrimaryKeyObj() {
+		return _wsrpConsumerPortlet.getPrimaryKeyObj();
 	}
 
-	/**
-	* Returns the last publish date of this w s r p consumer portlet.
-	*
-	* @return the last publish date of this w s r p consumer portlet
-	*/
 	@Override
-	public Date getLastPublishDate() {
-		return _wsrpConsumerPortlet.getLastPublishDate();
-	}
-
-	/**
-	* Returns the modified date of this w s r p consumer portlet.
-	*
-	* @return the modified date of this w s r p consumer portlet
-	*/
-	@Override
-	public Date getModifiedDate() {
-		return _wsrpConsumerPortlet.getModifiedDate();
+	public java.lang.Object clone() {
+		return new WSRPConsumerPortletWrapper((WSRPConsumerPortlet)_wsrpConsumerPortlet.clone());
 	}
 
 	/**
@@ -208,21 +208,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	/**
-	* Returns the primary key of this w s r p consumer portlet.
-	*
-	* @return the primary key of this w s r p consumer portlet
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _wsrpConsumerPortlet.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _wsrpConsumerPortlet.getPrimaryKeyObj();
-	}
-
-	/**
 	* Returns the uuid of this w s r p consumer portlet.
 	*
 	* @return the uuid of this w s r p consumer portlet
@@ -230,6 +215,66 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	@Override
 	public java.lang.String getUuid() {
 		return _wsrpConsumerPortlet.getUuid();
+	}
+
+	@Override
+	public java.lang.String toString() {
+		return _wsrpConsumerPortlet.toString();
+	}
+
+	@Override
+	public java.lang.String toXmlString() {
+		return _wsrpConsumerPortlet.toXmlString();
+	}
+
+	/**
+	* Returns the create date of this w s r p consumer portlet.
+	*
+	* @return the create date of this w s r p consumer portlet
+	*/
+	@Override
+	public Date getCreateDate() {
+		return _wsrpConsumerPortlet.getCreateDate();
+	}
+
+	/**
+	* Returns the last publish date of this w s r p consumer portlet.
+	*
+	* @return the last publish date of this w s r p consumer portlet
+	*/
+	@Override
+	public Date getLastPublishDate() {
+		return _wsrpConsumerPortlet.getLastPublishDate();
+	}
+
+	/**
+	* Returns the modified date of this w s r p consumer portlet.
+	*
+	* @return the modified date of this w s r p consumer portlet
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _wsrpConsumerPortlet.getModifiedDate();
+	}
+
+	/**
+	* Returns the company ID of this w s r p consumer portlet.
+	*
+	* @return the company ID of this w s r p consumer portlet
+	*/
+	@Override
+	public long getCompanyId() {
+		return _wsrpConsumerPortlet.getCompanyId();
+	}
+
+	/**
+	* Returns the primary key of this w s r p consumer portlet.
+	*
+	* @return the primary key of this w s r p consumer portlet
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _wsrpConsumerPortlet.getPrimaryKey();
 	}
 
 	/**
@@ -250,26 +295,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	@Override
 	public long getWsrpConsumerPortletId() {
 		return _wsrpConsumerPortlet.getWsrpConsumerPortletId();
-	}
-
-	@Override
-	public int hashCode() {
-		return _wsrpConsumerPortlet.hashCode();
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _wsrpConsumerPortlet.isCachedModel();
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _wsrpConsumerPortlet.isEscapedModel();
-	}
-
-	@Override
-	public boolean isNew() {
-		return _wsrpConsumerPortlet.isNew();
 	}
 
 	@Override
@@ -303,14 +328,14 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_wsrpConsumerPortlet.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_wsrpConsumerPortlet.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_wsrpConsumerPortlet.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_wsrpConsumerPortlet.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -406,31 +431,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	@Override
 	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId) {
 		_wsrpConsumerPortlet.setWsrpConsumerPortletId(wsrpConsumerPortletId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.wsrp.model.WSRPConsumerPortlet> toCacheModel() {
-		return _wsrpConsumerPortlet.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.wsrp.model.WSRPConsumerPortlet toEscapedModel() {
-		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _wsrpConsumerPortlet.toString();
-	}
-
-	@Override
-	public com.liferay.wsrp.model.WSRPConsumerPortlet toUnescapedModel() {
-		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _wsrpConsumerPortlet.toXmlString();
 	}
 
 	@Override

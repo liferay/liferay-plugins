@@ -110,7 +110,49 @@ public interface AccountLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public Account deleteAccount(long accountId) throws PortalException;
 
-	public void deleteAccounts(long userId) throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Account fetchAccount(long accountId);
+
+	/**
+	* Returns the account with the primary key.
+	*
+	* @param accountId the primary key of the account
+	* @return the account
+	* @throws PortalException if a account with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Account getAccount(long accountId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Account getAccount(long userId, java.lang.String address)
+		throws PortalException;
+
+	/**
+	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param account the account
+	* @return the account that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public Account updateAccount(Account account);
+
+	public Account updateAccount(long accountId, java.lang.String personalName,
+		java.lang.String password, boolean savePassword,
+		java.lang.String signature, boolean useSignature,
+		java.lang.String folderPrefix, boolean defaultSender)
+		throws PortalException;
+
+	public Account updateFolders(long accountId, long inboxFolderId,
+		long draftFolderId, long sentFolderId, long trashFolderId)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* @throws PortalException
@@ -119,7 +161,30 @@ public interface AccountLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public DynamicQuery dynamicQuery();
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
+	* Returns the number of accounts.
+	*
+	* @return the number of accounts
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAccountsCount();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -161,41 +226,6 @@ public interface AccountLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Account fetchAccount(long accountId);
-
-	/**
-	* Returns the account with the primary key.
-	*
-	* @param accountId the primary key of the account
-	* @return the account
-	* @throws PortalException if a account with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Account getAccount(long accountId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Account getAccount(long userId, java.lang.String address)
-		throws PortalException;
-
-	/**
 	* Returns a range of all the accounts.
 	*
 	* <p>
@@ -213,52 +243,22 @@ public interface AccountLocalService extends BaseLocalService,
 	public List<Account> getAccounts(long userId);
 
 	/**
-	* Returns the number of accounts.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of accounts
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAccountsCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
-	* Returns the OSGi service identifier.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the OSGi service identifier
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	/**
-	* Updates the account in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param account the account
-	* @return the account that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public Account updateAccount(Account account);
-
-	public Account updateAccount(long accountId, java.lang.String personalName,
-		java.lang.String password, boolean savePassword,
-		java.lang.String signature, boolean useSignature,
-		java.lang.String folderPrefix, boolean defaultSender)
-		throws PortalException;
-
-	public Account updateFolders(long accountId, long inboxFolderId,
-		long draftFolderId, long sentFolderId, long trashFolderId)
-		throws PortalException;
+	public void deleteAccounts(long userId) throws PortalException;
 }

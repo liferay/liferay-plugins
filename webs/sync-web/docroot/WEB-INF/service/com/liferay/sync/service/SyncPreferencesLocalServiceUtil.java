@@ -41,10 +41,14 @@ public class SyncPreferencesLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.sync.service.impl.SyncPreferencesLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static void enableOAuth(long companyId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().enableOAuth(companyId, serviceContext);
+	public static boolean isOAuthApplicationAvailable(long oAuthApplicationId) {
+		return getService().isOAuthApplicationAvailable(oAuthApplicationId);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -62,14 +66,10 @@ public class SyncPreferencesLocalServiceUtil {
 		return getService().getPortletPreferences(companyId);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static boolean isOAuthApplicationAvailable(long oAuthApplicationId) {
-		return getService().isOAuthApplicationAvailable(oAuthApplicationId);
+	public static void enableOAuth(long companyId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().enableOAuth(companyId, serviceContext);
 	}
 
 	public static void clearService() {

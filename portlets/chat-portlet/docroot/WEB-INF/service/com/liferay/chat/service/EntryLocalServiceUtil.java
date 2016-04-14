@@ -41,10 +41,6 @@ public class EntryLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.chat.service.impl.EntryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static com.liferay.chat.model.Entry addEntry(long createDate,
-		long fromUserId, long toUserId, java.lang.String content) {
-		return getService().addEntry(createDate, fromUserId, toUserId, content);
-	}
 
 	/**
 	* Adds the entry to the database. Also notifies the appropriate model listeners.
@@ -55,6 +51,11 @@ public class EntryLocalServiceUtil {
 	public static com.liferay.chat.model.Entry addEntry(
 		com.liferay.chat.model.Entry entry) {
 		return getService().addEntry(entry);
+	}
+
+	public static com.liferay.chat.model.Entry addEntry(long createDate,
+		long fromUserId, long toUserId, java.lang.String content) {
+		return getService().addEntry(createDate, fromUserId, toUserId, content);
 	}
 
 	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
@@ -70,10 +71,6 @@ public class EntryLocalServiceUtil {
 	*/
 	public static com.liferay.chat.model.Entry createEntry(long entryId) {
 		return getService().createEntry(entryId);
-	}
-
-	public static void deleteEntries(long userId) {
-		getService().deleteEntries(userId);
 	}
 
 	/**
@@ -99,6 +96,45 @@ public class EntryLocalServiceUtil {
 		return getService().deleteEntry(entryId);
 	}
 
+	public static com.liferay.chat.model.Entry fetchEntry(long entryId) {
+		return getService().fetchEntry(entryId);
+	}
+
+	/**
+	* Returns the entry with the primary key.
+	*
+	* @param entryId the primary key of the entry
+	* @return the entry
+	* @throws PortalException if a entry with the primary key could not be found
+	*/
+	public static com.liferay.chat.model.Entry getEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getEntry(entryId);
+	}
+
+	/**
+	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was updated
+	*/
+	public static com.liferay.chat.model.Entry updateEntry(
+		com.liferay.chat.model.Entry entry) {
+		return getService().updateEntry(entry);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* @throws PortalException
 	*/
@@ -108,8 +144,34 @@ public class EntryLocalServiceUtil {
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the number of entries.
+	*
+	* @return the number of entries
+	*/
+	public static int getEntriesCount() {
+		return getService().getEntriesCount();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -163,6 +225,32 @@ public class EntryLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the entries.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @return the range of entries
+	*/
+	public static java.util.List<com.liferay.chat.model.Entry> getEntries(
+		int start, int end) {
+		return getService().getEntries(start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
+		long userId, long createDate, int start, int end) {
+		return getService().getNewEntries(userId, createDate, start, end);
+	}
+
+	public static java.util.List<com.liferay.chat.model.Entry> getOldEntries(
+		long createDate, int start, int end) {
+		return getService().getOldEntries(createDate, start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -186,95 +274,8 @@ public class EntryLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.chat.model.Entry fetchEntry(long entryId) {
-		return getService().fetchEntry(entryId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* Returns a range of all the entries.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.chat.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of entries
-	* @param end the upper bound of the range of entries (not inclusive)
-	* @return the range of entries
-	*/
-	public static java.util.List<com.liferay.chat.model.Entry> getEntries(
-		int start, int end) {
-		return getService().getEntries(start, end);
-	}
-
-	/**
-	* Returns the number of entries.
-	*
-	* @return the number of entries
-	*/
-	public static int getEntriesCount() {
-		return getService().getEntriesCount();
-	}
-
-	/**
-	* Returns the entry with the primary key.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry
-	* @throws PortalException if a entry with the primary key could not be found
-	*/
-	public static com.liferay.chat.model.Entry getEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getEntry(entryId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	public static java.util.List<com.liferay.chat.model.Entry> getNewEntries(
-		long userId, long createDate, int start, int end) {
-		return getService().getNewEntries(userId, createDate, start, end);
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static java.util.List<com.liferay.chat.model.Entry> getOldEntries(
-		long createDate, int start, int end) {
-		return getService().getOldEntries(createDate, start, end);
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param entry the entry
-	* @return the entry that was updated
-	*/
-	public static com.liferay.chat.model.Entry updateEntry(
-		com.liferay.chat.model.Entry entry) {
-		return getService().updateEntry(entry);
+	public static void deleteEntries(long userId) {
+		getService().deleteEntries(userId);
 	}
 
 	public static void clearService() {

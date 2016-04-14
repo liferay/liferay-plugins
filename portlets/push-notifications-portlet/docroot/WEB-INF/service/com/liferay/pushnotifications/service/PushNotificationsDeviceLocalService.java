@@ -63,6 +63,25 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link PushNotificationsDeviceLocalServiceUtil} to access the push notifications device local service. Add custom service methods to {@link com.liferay.pushnotifications.service.impl.PushNotificationsDeviceLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Adds the push notifications device to the database. Also notifies the appropriate model listeners.
@@ -87,13 +106,6 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 		long pushNotificationsDeviceId);
 
 	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
-
-	/**
 	* Deletes the push notifications device from the database. Also notifies the appropriate model listeners.
 	*
 	* @param pushNotificationsDevice the push notifications device
@@ -102,6 +114,9 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public PushNotificationsDevice deletePushNotificationsDevice(
 		PushNotificationsDevice pushNotificationsDevice);
+
+	public PushNotificationsDevice deletePushNotificationsDevice(
+		java.lang.String token) throws PortalException;
 
 	/**
 	* Deletes the push notifications device with the primary key from the database. Also notifies the appropriate model listeners.
@@ -114,10 +129,50 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	public PushNotificationsDevice deletePushNotificationsDevice(
 		long pushNotificationsDeviceId) throws PortalException;
 
-	public PushNotificationsDevice deletePushNotificationsDevice(
-		java.lang.String token) throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PushNotificationsDevice fetchPushNotificationsDevice(
+		long pushNotificationsDeviceId);
 
-	public DynamicQuery dynamicQuery();
+	/**
+	* Returns the push notifications device with the primary key.
+	*
+	* @param pushNotificationsDeviceId the primary key of the push notifications device
+	* @return the push notifications device
+	* @throws PortalException if a push notifications device with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PushNotificationsDevice getPushNotificationsDevice(
+		long pushNotificationsDeviceId) throws PortalException;
+
+	/**
+	* Updates the push notifications device in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param pushNotificationsDevice the push notifications device
+	* @return the push notifications device that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public PushNotificationsDevice updatePushNotificationsDevice(
+		PushNotificationsDevice pushNotificationsDevice);
+
+	/**
+	* Returns the number of push notifications devices.
+	*
+	* @return the number of push notifications devices
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getPushNotificationsDevicesCount();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -159,57 +214,6 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PushNotificationsDevice fetchPushNotificationsDevice(
-		long pushNotificationsDeviceId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	/**
-	* Returns the push notifications device with the primary key.
-	*
-	* @param pushNotificationsDeviceId the primary key of the push notifications device
-	* @return the push notifications device
-	* @throws PortalException if a push notifications device with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PushNotificationsDevice getPushNotificationsDevice(
-		long pushNotificationsDeviceId) throws PortalException;
-
-	/**
 	* Returns a range of all the push notifications devices.
 	*
 	* <p>
@@ -229,17 +233,22 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 		int start, int end, OrderByComparator orderByComparator);
 
 	/**
-	* Returns the number of push notifications devices.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of push notifications devices
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getPushNotificationsDevicesCount();
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	/**
+	* Returns the number of rows matching the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
+	*/
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
 	public void resetPushNotificationSenders();
 
@@ -254,16 +263,6 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 
 	public void sendPushNotification(long[] toUserIds,
 		JSONObject payloadJSONObject) throws PortalException;
-
-	/**
-	* Updates the push notifications device in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param pushNotificationsDevice the push notifications device
-	* @return the push notifications device that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public PushNotificationsDevice updatePushNotificationsDevice(
-		PushNotificationsDevice pushNotificationsDevice);
 
 	public void updateToken(java.lang.String oldToken, java.lang.String newToken)
 		throws PortalException;

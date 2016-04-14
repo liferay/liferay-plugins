@@ -54,8 +54,10 @@ public interface GadgetService extends BaseService, InvokableService {
 		java.lang.String portletCategoryNames, ServiceContext serviceContext)
 		throws PortalException;
 
-	public void deleteGadget(long gadgetId, ServiceContext serviceContext)
-		throws PortalException;
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -64,10 +66,8 @@ public interface GadgetService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	public void deleteGadget(long gadgetId, ServiceContext serviceContext)
+		throws PortalException;
 
 	public void updateGadget(long gadgetId,
 		java.lang.String portletCategoryNames, ServiceContext serviceContext)

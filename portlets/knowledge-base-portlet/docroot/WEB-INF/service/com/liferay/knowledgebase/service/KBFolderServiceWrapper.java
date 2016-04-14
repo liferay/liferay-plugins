@@ -72,17 +72,25 @@ public class KBFolderServiceWrapper implements KBFolderService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
-		long groupId, long parentKBFolderId, int start, int end)
+	public com.liferay.knowledgebase.model.KBFolder updateKBFolder(
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		long kbFolderId, java.lang.String name, java.lang.String description)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbFolderService.getKBFolders(groupId, parentKBFolderId, start,
-			end);
+		return _kbFolderService.updateKBFolder(parentResourceClassNameId,
+			parentResourcePrimKey, kbFolderId, name, description);
 	}
 
 	@Override
 	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbFolderService.getKBFoldersCount(groupId, parentKBFolderId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _kbFolderService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -96,25 +104,17 @@ public class KBFolderServiceWrapper implements KBFolderService,
 	}
 
 	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _kbFolderService.invokeMethod(name, parameterTypes, arguments);
+	public java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbFolderService.getKBFolders(groupId, parentKBFolderId, start,
+			end);
 	}
 
 	@Override
 	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_kbFolderService.moveKBFolder(kbFolderId, parentKBFolderId);
-	}
-
-	@Override
-	public com.liferay.knowledgebase.model.KBFolder updateKBFolder(
-		long parentResourceClassNameId, long parentResourcePrimKey,
-		long kbFolderId, java.lang.String name, java.lang.String description)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbFolderService.updateKBFolder(parentResourceClassNameId,
-			parentResourcePrimKey, kbFolderId, name, description);
 	}
 
 	@Override

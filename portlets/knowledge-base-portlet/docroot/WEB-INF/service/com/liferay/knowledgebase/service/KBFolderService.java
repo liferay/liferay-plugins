@@ -72,13 +72,18 @@ public interface KBFolderService extends BaseService, InvokableService {
 	public KBFolder getKBFolderByUrlTitle(long groupId, long parentKbFolderId,
 		java.lang.String urlTitle) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KBFolder> getKBFolders(long groupId, long parentKBFolderId,
-		int start, int end) throws PortalException;
+	public KBFolder updateKBFolder(long parentResourceClassNameId,
+		long parentResourcePrimKey, long kbFolderId, java.lang.String name,
+		java.lang.String description) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKBFoldersCount(long groupId, long parentKBFolderId)
 		throws PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -87,15 +92,10 @@ public interface KBFolderService extends BaseService, InvokableService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KBFolder> getKBFolders(long groupId, long parentKBFolderId,
+		int start, int end) throws PortalException;
 
 	public void moveKBFolder(long kbFolderId, long parentKBFolderId)
 		throws PortalException;
-
-	public KBFolder updateKBFolder(long parentResourceClassNameId,
-		long parentResourcePrimKey, long kbFolderId, java.lang.String name,
-		java.lang.String description) throws PortalException;
 }

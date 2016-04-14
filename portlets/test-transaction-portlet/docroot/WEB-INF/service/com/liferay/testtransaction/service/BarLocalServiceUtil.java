@@ -41,6 +41,40 @@ public class BarLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.testtransaction.service.impl.BarLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static boolean hasBar(java.lang.String text) {
+		return getService().hasBar(text);
+	}
+
+	public static boolean hasClassName() {
+		return getService().hasClassName();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
 
 	/**
 	* Adds the bar to the database. Also notifies the appropriate model listeners.
@@ -51,18 +85,6 @@ public class BarLocalServiceUtil {
 	public static com.liferay.testtransaction.model.Bar addBar(
 		com.liferay.testtransaction.model.Bar bar) {
 		return getService().addBar(bar);
-	}
-
-	public static void addBarAndClassName_PortalRollback(java.lang.String text) {
-		getService().addBarAndClassName_PortalRollback(text);
-	}
-
-	public static void addBarAndClassName_PortletRollback(java.lang.String text) {
-		getService().addBarAndClassName_PortletRollback(text);
-	}
-
-	public static void addBar_Rollback(java.lang.String text) {
-		getService().addBar_Rollback(text);
 	}
 
 	public static com.liferay.testtransaction.model.Bar addBar_Success(
@@ -103,23 +125,61 @@ public class BarLocalServiceUtil {
 		return getService().deleteBar(barId);
 	}
 
-	public static void deleteBarAndClassName(
-		com.liferay.testtransaction.model.Bar bar)
+	public static com.liferay.testtransaction.model.Bar fetchBar(long barId) {
+		return getService().fetchBar(barId);
+	}
+
+	public static com.liferay.testtransaction.model.Bar getBar(
+		java.lang.String text)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteBarAndClassName(bar);
+		return getService().getBar(text);
 	}
 
 	/**
-	* @throws PortalException
+	* Returns the bar with the primary key.
+	*
+	* @param barId the primary key of the bar
+	* @return the bar
+	* @throws PortalException if a bar with the primary key could not be found
 	*/
-	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+	public static com.liferay.testtransaction.model.Bar getBar(long barId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+		return getService().getBar(barId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	/**
+	* Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param bar the bar
+	* @return the bar that was updated
+	*/
+	public static com.liferay.testtransaction.model.Bar updateBar(
+		com.liferay.testtransaction.model.Bar bar) {
+		return getService().updateBar(bar);
+	}
+
+	/**
+	* Returns the number of bars.
+	*
+	* @return the number of bars
+	*/
+	public static int getBarsCount() {
+		return getService().getBarsCount();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -173,6 +233,22 @@ public class BarLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the bars.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testtransaction.model.impl.BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of bars
+	* @param end the upper bound of the range of bars (not inclusive)
+	* @return the range of bars
+	*/
+	public static java.util.List<com.liferay.testtransaction.model.Bar> getBars(
+		int start, int end) {
+		return getService().getBars(start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -196,103 +272,26 @@ public class BarLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.testtransaction.model.Bar fetchBar(long barId) {
-		return getService().fetchBar(barId);
+	public static void addBarAndClassName_PortalRollback(java.lang.String text) {
+		getService().addBarAndClassName_PortalRollback(text);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
+	public static void addBarAndClassName_PortletRollback(java.lang.String text) {
+		getService().addBarAndClassName_PortletRollback(text);
 	}
 
-	/**
-	* Returns the bar with the primary key.
-	*
-	* @param barId the primary key of the bar
-	* @return the bar
-	* @throws PortalException if a bar with the primary key could not be found
-	*/
-	public static com.liferay.testtransaction.model.Bar getBar(long barId)
+	public static void addBar_Rollback(java.lang.String text) {
+		getService().addBar_Rollback(text);
+	}
+
+	public static void deleteBarAndClassName(
+		com.liferay.testtransaction.model.Bar bar)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getBar(barId);
-	}
-
-	public static com.liferay.testtransaction.model.Bar getBar(
-		java.lang.String text)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getBar(text);
-	}
-
-	/**
-	* Returns a range of all the bars.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.testtransaction.model.impl.BarModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of bars
-	* @param end the upper bound of the range of bars (not inclusive)
-	* @return the range of bars
-	*/
-	public static java.util.List<com.liferay.testtransaction.model.Bar> getBars(
-		int start, int end) {
-		return getService().getBars(start, end);
-	}
-
-	/**
-	* Returns the number of bars.
-	*
-	* @return the number of bars
-	*/
-	public static int getBarsCount() {
-		return getService().getBarsCount();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static boolean hasBar(java.lang.String text) {
-		return getService().hasBar(text);
-	}
-
-	public static boolean hasClassName() {
-		return getService().hasClassName();
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+		getService().deleteBarAndClassName(bar);
 	}
 
 	public static void testAddClassNameAndBar_Success(java.lang.String text) {
 		getService().testAddClassNameAndBar_Success(text);
-	}
-
-	/**
-	* Updates the bar in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param bar the bar
-	* @return the bar that was updated
-	*/
-	public static com.liferay.testtransaction.model.Bar updateBar(
-		com.liferay.testtransaction.model.Bar bar) {
-		return getService().updateBar(bar);
 	}
 
 	public static void clearService() {

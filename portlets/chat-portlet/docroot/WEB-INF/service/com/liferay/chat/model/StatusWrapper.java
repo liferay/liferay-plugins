@@ -119,26 +119,6 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 		}
 	}
 
-	@Override
-	public java.lang.Object clone() {
-		return new StatusWrapper((Status)_status.clone());
-	}
-
-	@Override
-	public int compareTo(com.liferay.chat.model.Status status) {
-		return _status.compareTo(status);
-	}
-
-	/**
-	* Returns the active panel IDs of this status.
-	*
-	* @return the active panel IDs of this status
-	*/
-	@Override
-	public java.lang.String getActivePanelIds() {
-		return _status.getActivePanelIds();
-	}
-
 	/**
 	* Returns the awake of this status.
 	*
@@ -147,31 +127,6 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	@Override
 	public boolean getAwake() {
 		return _status.getAwake();
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _status.getExpandoBridge();
-	}
-
-	/**
-	* Returns the message of this status.
-	*
-	* @return the message of this status
-	*/
-	@Override
-	public java.lang.String getMessage() {
-		return _status.getMessage();
-	}
-
-	/**
-	* Returns the modified date of this status.
-	*
-	* @return the modified date of this status
-	*/
-	@Override
-	public long getModifiedDate() {
-		return _status.getModifiedDate();
 	}
 
 	/**
@@ -192,56 +147,6 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	@Override
 	public boolean getPlaySound() {
 		return _status.getPlaySound();
-	}
-
-	/**
-	* Returns the primary key of this status.
-	*
-	* @return the primary key of this status
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _status.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _status.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the status ID of this status.
-	*
-	* @return the status ID of this status
-	*/
-	@Override
-	public long getStatusId() {
-		return _status.getStatusId();
-	}
-
-	/**
-	* Returns the user ID of this status.
-	*
-	* @return the user ID of this status
-	*/
-	@Override
-	public long getUserId() {
-		return _status.getUserId();
-	}
-
-	/**
-	* Returns the user uuid of this status.
-	*
-	* @return the user uuid of this status
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _status.getUserUuid();
-	}
-
-	@Override
-	public int hashCode() {
-		return _status.hashCode();
 	}
 
 	/**
@@ -290,6 +195,126 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	}
 
 	@Override
+	public com.liferay.chat.model.Status toEscapedModel() {
+		return new StatusWrapper(_status.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.chat.model.Status toUnescapedModel() {
+		return new StatusWrapper(_status.toUnescapedModel());
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _status.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.chat.model.Status> toCacheModel() {
+		return _status.toCacheModel();
+	}
+
+	@Override
+	public int compareTo(com.liferay.chat.model.Status status) {
+		return _status.compareTo(status);
+	}
+
+	@Override
+	public int hashCode() {
+		return _status.hashCode();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _status.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new StatusWrapper((Status)_status.clone());
+	}
+
+	/**
+	* Returns the active panel IDs of this status.
+	*
+	* @return the active panel IDs of this status
+	*/
+	@Override
+	public java.lang.String getActivePanelIds() {
+		return _status.getActivePanelIds();
+	}
+
+	/**
+	* Returns the message of this status.
+	*
+	* @return the message of this status
+	*/
+	@Override
+	public java.lang.String getMessage() {
+		return _status.getMessage();
+	}
+
+	/**
+	* Returns the user uuid of this status.
+	*
+	* @return the user uuid of this status
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _status.getUserUuid();
+	}
+
+	@Override
+	public java.lang.String toString() {
+		return _status.toString();
+	}
+
+	@Override
+	public java.lang.String toXmlString() {
+		return _status.toXmlString();
+	}
+
+	/**
+	* Returns the modified date of this status.
+	*
+	* @return the modified date of this status
+	*/
+	@Override
+	public long getModifiedDate() {
+		return _status.getModifiedDate();
+	}
+
+	/**
+	* Returns the primary key of this status.
+	*
+	* @return the primary key of this status
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _status.getPrimaryKey();
+	}
+
+	/**
+	* Returns the status ID of this status.
+	*
+	* @return the status ID of this status
+	*/
+	@Override
+	public long getStatusId() {
+		return _status.getStatusId();
+	}
+
+	/**
+	* Returns the user ID of this status.
+	*
+	* @return the user ID of this status
+	*/
+	@Override
+	public long getUserId() {
+		return _status.getUserId();
+	}
+
+	@Override
 	public void persist() {
 		_status.persist();
 	}
@@ -320,14 +345,14 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_status.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_status.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_status.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_status.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -423,31 +448,6 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_status.setUserUuid(userUuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.chat.model.Status> toCacheModel() {
-		return _status.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.chat.model.Status toEscapedModel() {
-		return new StatusWrapper(_status.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _status.toString();
-	}
-
-	@Override
-	public com.liferay.chat.model.Status toUnescapedModel() {
-		return new StatusWrapper(_status.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _status.toXmlString();
 	}
 
 	@Override

@@ -85,71 +85,6 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new TypeWrapper((Type)_type.clone());
-	}
-
-	@Override
-	public int compareTo(com.liferay.samplealloymvc.model.Type type) {
-		return _type.compareTo(type);
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _type.getExpandoBridge();
-	}
-
-	/**
-	* Returns the group ID of this type.
-	*
-	* @return the group ID of this type
-	*/
-	@Override
-	public long getGroupId() {
-		return _type.getGroupId();
-	}
-
-	/**
-	* Returns the name of this type.
-	*
-	* @return the name of this type
-	*/
-	@Override
-	public java.lang.String getName() {
-		return _type.getName();
-	}
-
-	/**
-	* Returns the primary key of this type.
-	*
-	* @return the primary key of this type
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _type.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _type.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the type ID of this type.
-	*
-	* @return the type ID of this type
-	*/
-	@Override
-	public long getTypeId() {
-		return _type.getTypeId();
-	}
-
-	@Override
-	public int hashCode() {
-		return _type.hashCode();
-	}
-
-	@Override
 	public boolean isCachedModel() {
 		return _type.isCachedModel();
 	}
@@ -165,6 +100,96 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _type.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Type> toCacheModel() {
+		return _type.toCacheModel();
+	}
+
+	@Override
+	public com.liferay.samplealloymvc.model.Type toEscapedModel() {
+		return new TypeWrapper(_type.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.samplealloymvc.model.Type toUnescapedModel() {
+		return new TypeWrapper(_type.toUnescapedModel());
+	}
+
+	@Override
+	public int compareTo(com.liferay.samplealloymvc.model.Type type) {
+		return _type.compareTo(type);
+	}
+
+	@Override
+	public int hashCode() {
+		return _type.hashCode();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _type.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new TypeWrapper((Type)_type.clone());
+	}
+
+	/**
+	* Returns the name of this type.
+	*
+	* @return the name of this type
+	*/
+	@Override
+	public java.lang.String getName() {
+		return _type.getName();
+	}
+
+	@Override
+	public java.lang.String toString() {
+		return _type.toString();
+	}
+
+	@Override
+	public java.lang.String toXmlString() {
+		return _type.toXmlString();
+	}
+
+	/**
+	* Returns the group ID of this type.
+	*
+	* @return the group ID of this type
+	*/
+	@Override
+	public long getGroupId() {
+		return _type.getGroupId();
+	}
+
+	/**
+	* Returns the primary key of this type.
+	*
+	* @return the primary key of this type
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _type.getPrimaryKey();
+	}
+
+	/**
+	* Returns the type ID of this type.
+	*
+	* @return the type ID of this type
+	*/
+	@Override
+	public long getTypeId() {
+		return _type.getTypeId();
+	}
+
+	@Override
 	public void persist() {
 		_type.persist();
 	}
@@ -175,14 +200,14 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_type.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_type.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_type.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_type.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -238,31 +263,6 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	@Override
 	public void setTypeId(long typeId) {
 		_type.setTypeId(typeId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Type> toCacheModel() {
-		return _type.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Type toEscapedModel() {
-		return new TypeWrapper(_type.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _type.toString();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Type toUnescapedModel() {
-		return new TypeWrapper(_type.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _type.toXmlString();
 	}
 
 	@Override

@@ -34,6 +34,44 @@ public class SampleLARBookingLocalServiceWrapper
 		_sampleLARBookingLocalService = sampleLARBookingLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _sampleLARBookingLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _sampleLARBookingLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
+		return _sampleLARBookingLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _sampleLARBookingLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sampleLARBookingLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sampleLARBookingLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Adds the sample l a r booking to the database. Also notifies the appropriate model listeners.
 	*
@@ -68,16 +106,6 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	/**
-	* @throws PortalException
-	*/
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sampleLARBookingLocalService.deletePersistedModel(persistedModel);
-	}
-
-	/**
 	* Deletes the sample l a r booking from the database. Also notifies the appropriate model listeners.
 	*
 	* @param sampleLARBooking the sample l a r booking
@@ -104,13 +132,107 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	@Override
-	public void deleteSampleLARBookings(long groupId) {
-		_sampleLARBookingLocalService.deleteSampleLARBookings(groupId);
+	public com.liferay.samplelar.model.SampleLARBooking fetchSampleLARBooking(
+		long sampleLARBookingId) {
+		return _sampleLARBookingLocalService.fetchSampleLARBooking(sampleLARBookingId);
+	}
+
+	/**
+	* Returns the sample l a r booking matching the UUID and group.
+	*
+	* @param uuid the sample l a r booking's UUID
+	* @param groupId the primary key of the group
+	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
+	*/
+	@Override
+	public com.liferay.samplelar.model.SampleLARBooking fetchSampleLARBookingByUuidAndGroupId(
+		java.lang.String uuid, long groupId) {
+		return _sampleLARBookingLocalService.fetchSampleLARBookingByUuidAndGroupId(uuid,
+			groupId);
+	}
+
+	/**
+	* Returns the sample l a r booking with the primary key.
+	*
+	* @param sampleLARBookingId the primary key of the sample l a r booking
+	* @return the sample l a r booking
+	* @throws PortalException if a sample l a r booking with the primary key could not be found
+	*/
+	@Override
+	public com.liferay.samplelar.model.SampleLARBooking getSampleLARBooking(
+		long sampleLARBookingId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sampleLARBookingLocalService.getSampleLARBooking(sampleLARBookingId);
+	}
+
+	/**
+	* Returns the sample l a r booking matching the UUID and group.
+	*
+	* @param uuid the sample l a r booking's UUID
+	* @param groupId the primary key of the group
+	* @return the matching sample l a r booking
+	* @throws PortalException if a matching sample l a r booking could not be found
+	*/
+	@Override
+	public com.liferay.samplelar.model.SampleLARBooking getSampleLARBookingByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sampleLARBookingLocalService.getSampleLARBookingByUuidAndGroupId(uuid,
+			groupId);
+	}
+
+	/**
+	* Updates the sample l a r booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param sampleLARBooking the sample l a r booking
+	* @return the sample l a r booking that was updated
+	*/
+	@Override
+	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
+		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking) {
+		return _sampleLARBookingLocalService.updateSampleLARBooking(sampleLARBooking);
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _sampleLARBookingLocalService.dynamicQuery();
+	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
+		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _sampleLARBookingLocalService.updateSampleLARBooking(userId,
+			sampleLARBookingId, bookingNumber, serviceContext);
+	}
+
+	/**
+	* Returns the number of sample l a r bookings.
+	*
+	* @return the number of sample l a r bookings
+	*/
+	@Override
+	public int getSampleLARBookingsCount() {
+		return _sampleLARBookingLocalService.getSampleLARBookingsCount();
+	}
+
+	@Override
+	public int getSampleLARBookingsCount(long groupId) {
+		return _sampleLARBookingLocalService.getSampleLARBookingsCount(groupId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _sampleLARBookingLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _sampleLARBookingLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -168,123 +290,6 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	@Override
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-		return _sampleLARBookingLocalService.dynamicQueryCount(dynamicQuery);
-	}
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	@Override
-	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection) {
-		return _sampleLARBookingLocalService.dynamicQueryCount(dynamicQuery,
-			projection);
-	}
-
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking fetchSampleLARBooking(
-		long sampleLARBookingId) {
-		return _sampleLARBookingLocalService.fetchSampleLARBooking(sampleLARBookingId);
-	}
-
-	/**
-	* Returns the sample l a r booking matching the UUID and group.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param groupId the primary key of the group
-	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	*/
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking fetchSampleLARBookingByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
-		return _sampleLARBookingLocalService.fetchSampleLARBookingByUuidAndGroupId(uuid,
-			groupId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _sampleLARBookingLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
-		return _sampleLARBookingLocalService.getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _sampleLARBookingLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _sampleLARBookingLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sampleLARBookingLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	/**
-	* Returns the sample l a r booking with the primary key.
-	*
-	* @param sampleLARBookingId the primary key of the sample l a r booking
-	* @return the sample l a r booking
-	* @throws PortalException if a sample l a r booking with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking getSampleLARBooking(
-		long sampleLARBookingId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sampleLARBookingLocalService.getSampleLARBooking(sampleLARBookingId);
-	}
-
-	/**
-	* Returns the sample l a r booking matching the UUID and group.
-	*
-	* @param uuid the sample l a r booking's UUID
-	* @param groupId the primary key of the group
-	* @return the matching sample l a r booking
-	* @throws PortalException if a matching sample l a r booking could not be found
-	*/
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking getSampleLARBookingByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sampleLARBookingLocalService.getSampleLARBookingByUuidAndGroupId(uuid,
-			groupId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
-		long groupId, int start, int end) {
-		return _sampleLARBookingLocalService.getSampleLARBookings(groupId,
-			start, end);
-	}
-
-	/**
 	* Returns a range of all the sample l a r bookings.
 	*
 	* <p>
@@ -299,6 +304,13 @@ public class SampleLARBookingLocalServiceWrapper
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
 		int start, int end) {
 		return _sampleLARBookingLocalService.getSampleLARBookings(start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
+		long groupId, int start, int end) {
+		return _sampleLARBookingLocalService.getSampleLARBookings(groupId,
+			start, end);
 	}
 
 	/**
@@ -334,47 +346,35 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	/**
-	* Returns the number of sample l a r bookings.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of sample l a r bookings
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
-	public int getSampleLARBookingsCount() {
-		return _sampleLARBookingLocalService.getSampleLARBookingsCount();
-	}
-
-	@Override
-	public int getSampleLARBookingsCount(long groupId) {
-		return _sampleLARBookingLocalService.getSampleLARBookingsCount(groupId);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _sampleLARBookingLocalService.invokeMethod(name, parameterTypes,
-			arguments);
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+		return _sampleLARBookingLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
 	/**
-	* Updates the sample l a r booking in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @param sampleLARBooking the sample l a r booking
-	* @return the sample l a r booking that was updated
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
 	*/
 	@Override
-	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
-		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking) {
-		return _sampleLARBookingLocalService.updateSampleLARBooking(sampleLARBooking);
+	public long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
+		return _sampleLARBookingLocalService.dynamicQueryCount(dynamicQuery,
+			projection);
 	}
 
 	@Override
-	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
-		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _sampleLARBookingLocalService.updateSampleLARBooking(userId,
-			sampleLARBookingId, bookingNumber, serviceContext);
+	public void deleteSampleLARBookings(long groupId) {
+		_sampleLARBookingLocalService.deleteSampleLARBookings(groupId);
 	}
 
 	@Override

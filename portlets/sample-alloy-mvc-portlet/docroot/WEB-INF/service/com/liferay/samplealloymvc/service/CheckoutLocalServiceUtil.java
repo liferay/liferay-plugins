@@ -41,6 +41,32 @@ public class CheckoutLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.samplealloymvc.service.impl.CheckoutLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
 
 	/**
 	* Adds the checkout to the database. Also notifies the appropriate model listeners.
@@ -88,17 +114,57 @@ public class CheckoutLocalServiceUtil {
 		return getService().deleteCheckout(checkoutId);
 	}
 
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static com.liferay.samplealloymvc.model.Checkout fetchCheckout(
+		long checkoutId) {
+		return getService().fetchCheckout(checkoutId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	/**
+	* Returns the checkout with the primary key.
+	*
+	* @param checkoutId the primary key of the checkout
+	* @return the checkout
+	* @throws PortalException if a checkout with the primary key could not be found
+	*/
+	public static com.liferay.samplealloymvc.model.Checkout getCheckout(
+		long checkoutId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getCheckout(checkoutId);
+	}
+
+	/**
+	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param checkout the checkout
+	* @return the checkout that was updated
+	*/
+	public static com.liferay.samplealloymvc.model.Checkout updateCheckout(
+		com.liferay.samplealloymvc.model.Checkout checkout) {
+		return getService().updateCheckout(checkout);
+	}
+
+	/**
+	* Returns the number of checkouts.
+	*
+	* @return the number of checkouts
+	*/
+	public static int getCheckoutsCount() {
+		return getService().getCheckoutsCount();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -152,6 +218,22 @@ public class CheckoutLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the checkouts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplealloymvc.model.impl.CheckoutModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of checkouts
+	* @param end the upper bound of the range of checkouts (not inclusive)
+	* @return the range of checkouts
+	*/
+	public static java.util.List<com.liferay.samplealloymvc.model.Checkout> getCheckouts(
+		int start, int end) {
+		return getService().getCheckouts(start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -173,89 +255,6 @@ public class CheckoutLocalServiceUtil {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static com.liferay.samplealloymvc.model.Checkout fetchCheckout(
-		long checkoutId) {
-		return getService().fetchCheckout(checkoutId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the checkout with the primary key.
-	*
-	* @param checkoutId the primary key of the checkout
-	* @return the checkout
-	* @throws PortalException if a checkout with the primary key could not be found
-	*/
-	public static com.liferay.samplealloymvc.model.Checkout getCheckout(
-		long checkoutId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getCheckout(checkoutId);
-	}
-
-	/**
-	* Returns a range of all the checkouts.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplealloymvc.model.impl.CheckoutModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of checkouts
-	* @param end the upper bound of the range of checkouts (not inclusive)
-	* @return the range of checkouts
-	*/
-	public static java.util.List<com.liferay.samplealloymvc.model.Checkout> getCheckouts(
-		int start, int end) {
-		return getService().getCheckouts(start, end);
-	}
-
-	/**
-	* Returns the number of checkouts.
-	*
-	* @return the number of checkouts
-	*/
-	public static int getCheckoutsCount() {
-		return getService().getCheckoutsCount();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the checkout in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param checkout the checkout
-	* @return the checkout that was updated
-	*/
-	public static com.liferay.samplealloymvc.model.Checkout updateCheckout(
-		com.liferay.samplealloymvc.model.Checkout checkout) {
-		return getService().updateCheckout(checkout);
 	}
 
 	public static void clearService() {

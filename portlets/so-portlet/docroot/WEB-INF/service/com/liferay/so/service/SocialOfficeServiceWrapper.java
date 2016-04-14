@@ -32,6 +32,19 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 		_socialOfficeService = socialOfficeService;
 	}
 
+	@Override
+	public boolean isSocialOfficeGroup(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _socialOfficeService.isSocialOfficeGroup(groupId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _socialOfficeService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -46,19 +59,6 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	public long[] getUserSocialOfficeGroupIds()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _socialOfficeService.getUserSocialOfficeGroupIds();
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _socialOfficeService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	@Override
-	public boolean isSocialOfficeGroup(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _socialOfficeService.isSocialOfficeGroup(groupId);
 	}
 
 	@Override

@@ -61,17 +61,17 @@ public interface PushNotificationsDeviceService extends BaseService,
 	public PushNotificationsDevice deletePushNotificationsDevice(
 		java.lang.String token) throws PortalException;
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
 	/**
 	* Returns the OSGi service identifier.
 	*
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
 
 	public void sendPushNotification(java.lang.String platform,
 		List<java.lang.String> tokens, java.lang.String payload)

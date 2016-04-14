@@ -93,6 +93,53 @@ public class EntryLocalServiceUtil {
 		return getService().deleteEntry(entryId);
 	}
 
+	public static com.liferay.contacts.model.Entry fetchEntry(long entryId) {
+		return getService().fetchEntry(entryId);
+	}
+
+	/**
+	* Returns the entry with the primary key.
+	*
+	* @param entryId the primary key of the entry
+	* @return the entry
+	* @throws PortalException if a entry with the primary key could not be found
+	*/
+	public static com.liferay.contacts.model.Entry getEntry(long entryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getEntry(entryId);
+	}
+
+	/**
+	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param entry the entry
+	* @return the entry that was updated
+	*/
+	public static com.liferay.contacts.model.Entry updateEntry(
+		com.liferay.contacts.model.Entry entry) {
+		return getService().updateEntry(entry);
+	}
+
+	public static com.liferay.contacts.model.Entry updateEntry(long entryId,
+		java.lang.String fullName, java.lang.String emailAddress,
+		java.lang.String comments)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateEntry(entryId, fullName, emailAddress, comments);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* @throws PortalException
 	*/
@@ -102,8 +149,48 @@ public class EntryLocalServiceUtil {
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the number of entries.
+	*
+	* @return the number of entries
+	*/
+	public static int getEntriesCount() {
+		return getService().getEntriesCount();
+	}
+
+	public static int getEntriesCount(long userId) {
+		return getService().getEntriesCount(userId);
+	}
+
+	public static int searchCount(long userId, java.lang.String keywords) {
+		return getService().searchCount(userId, keywords);
+	}
+
+	public static int searchUsersAndContactsCount(long companyId, long userId,
+		java.lang.String keywords) {
+		return getService()
+				   .searchUsersAndContactsCount(companyId, userId, keywords);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -157,6 +244,40 @@ public class EntryLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the entries.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.contacts.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of entries
+	* @param end the upper bound of the range of entries (not inclusive)
+	* @return the range of entries
+	*/
+	public static java.util.List<com.liferay.contacts.model.Entry> getEntries(
+		int start, int end) {
+		return getService().getEntries(start, end);
+	}
+
+	public static java.util.List<com.liferay.contacts.model.Entry> getEntries(
+		long userId, int start, int end) {
+		return getService().getEntries(userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.contacts.model.Entry> search(
+		long userId, java.lang.String keywords, int start, int end) {
+		return getService().search(userId, keywords, start, end);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.BaseModel<?>> searchUsersAndContacts(
+		long companyId, long userId, java.lang.String keywords, int start,
+		int end) {
+		return getService()
+				   .searchUsersAndContacts(companyId, userId, keywords, start,
+			end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -178,127 +299,6 @@ public class EntryLocalServiceUtil {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static com.liferay.contacts.model.Entry fetchEntry(long entryId) {
-		return getService().fetchEntry(entryId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	/**
-	* Returns a range of all the entries.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.contacts.model.impl.EntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of entries
-	* @param end the upper bound of the range of entries (not inclusive)
-	* @return the range of entries
-	*/
-	public static java.util.List<com.liferay.contacts.model.Entry> getEntries(
-		int start, int end) {
-		return getService().getEntries(start, end);
-	}
-
-	public static java.util.List<com.liferay.contacts.model.Entry> getEntries(
-		long userId, int start, int end) {
-		return getService().getEntries(userId, start, end);
-	}
-
-	/**
-	* Returns the number of entries.
-	*
-	* @return the number of entries
-	*/
-	public static int getEntriesCount() {
-		return getService().getEntriesCount();
-	}
-
-	public static int getEntriesCount(long userId) {
-		return getService().getEntriesCount(userId);
-	}
-
-	/**
-	* Returns the entry with the primary key.
-	*
-	* @param entryId the primary key of the entry
-	* @return the entry
-	* @throws PortalException if a entry with the primary key could not be found
-	*/
-	public static com.liferay.contacts.model.Entry getEntry(long entryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getEntry(entryId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	public static java.util.List<com.liferay.contacts.model.Entry> search(
-		long userId, java.lang.String keywords, int start, int end) {
-		return getService().search(userId, keywords, start, end);
-	}
-
-	public static int searchCount(long userId, java.lang.String keywords) {
-		return getService().searchCount(userId, keywords);
-	}
-
-	public static java.util.List<com.liferay.portal.kernel.model.BaseModel<?>> searchUsersAndContacts(
-		long companyId, long userId, java.lang.String keywords, int start,
-		int end) {
-		return getService()
-				   .searchUsersAndContacts(companyId, userId, keywords, start,
-			end);
-	}
-
-	public static int searchUsersAndContactsCount(long companyId, long userId,
-		java.lang.String keywords) {
-		return getService()
-				   .searchUsersAndContactsCount(companyId, userId, keywords);
-	}
-
-	/**
-	* Updates the entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param entry the entry
-	* @return the entry that was updated
-	*/
-	public static com.liferay.contacts.model.Entry updateEntry(
-		com.liferay.contacts.model.Entry entry) {
-		return getService().updateEntry(entry);
-	}
-
-	public static com.liferay.contacts.model.Entry updateEntry(long entryId,
-		java.lang.String fullName, java.lang.String emailAddress,
-		java.lang.String comments)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updateEntry(entryId, fullName, emailAddress, comments);
 	}
 
 	public static void clearService() {

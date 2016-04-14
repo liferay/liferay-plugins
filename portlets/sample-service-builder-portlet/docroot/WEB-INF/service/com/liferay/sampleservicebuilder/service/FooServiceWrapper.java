@@ -32,6 +32,19 @@ public class FooServiceWrapper implements FooService,
 		_fooService = fooService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.model.User getUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooService.getUser(userId);
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _fooService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -43,22 +56,9 @@ public class FooServiceWrapper implements FooService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.model.User getUser(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _fooService.getUser(userId);
-	}
-
-	@Override
 	public java.util.List<com.liferay.portal.kernel.model.Group> getUserSitesGroups()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooService.getUserSitesGroups();
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _fooService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	@Override

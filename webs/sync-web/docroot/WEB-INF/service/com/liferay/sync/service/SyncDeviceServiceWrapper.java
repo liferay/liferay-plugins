@@ -32,14 +32,13 @@ public class SyncDeviceServiceWrapper implements SyncDeviceService,
 		_syncDeviceService = syncDeviceService;
 	}
 
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _syncDeviceService.getOSGiServiceIdentifier();
+	public com.liferay.sync.model.SyncDevice registerSyncDevice(
+		java.lang.String type, int buildNumber, int featureSet,
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _syncDeviceService.registerSyncDevice(type, buildNumber,
+			featureSet, uuid);
 	}
 
 	@Override
@@ -49,13 +48,14 @@ public class SyncDeviceServiceWrapper implements SyncDeviceService,
 		return _syncDeviceService.invokeMethod(name, parameterTypes, arguments);
 	}
 
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
 	@Override
-	public com.liferay.sync.model.SyncDevice registerSyncDevice(
-		java.lang.String type, int buildNumber, int featureSet,
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _syncDeviceService.registerSyncDevice(type, buildNumber,
-			featureSet, uuid);
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _syncDeviceService.getOSGiServiceIdentifier();
 	}
 
 	@Override

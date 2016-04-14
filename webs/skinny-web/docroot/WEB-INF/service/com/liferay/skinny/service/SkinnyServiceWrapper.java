@@ -32,6 +32,13 @@ public class SkinnyServiceWrapper implements SkinnyService,
 		_skinnyService = skinnyService;
 	}
 
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _skinnyService.invokeMethod(name, parameterTypes, arguments);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -54,13 +61,6 @@ public class SkinnyServiceWrapper implements SkinnyService,
 		java.lang.String locale) throws java.lang.Exception {
 		return _skinnyService.getSkinnyJournalArticles(companyId, groupName,
 			ddmStructureId, locale);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _skinnyService.invokeMethod(name, parameterTypes, arguments);
 	}
 
 	@Override

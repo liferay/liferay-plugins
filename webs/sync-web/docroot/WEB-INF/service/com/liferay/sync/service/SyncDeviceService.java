@@ -49,6 +49,14 @@ public interface SyncDeviceService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncDeviceServiceUtil} to access the sync device remote service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDeviceServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public SyncDevice registerSyncDevice(java.lang.String type,
+		int buildNumber, int featureSet, java.lang.String uuid)
+		throws PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -56,15 +64,6 @@ public interface SyncDeviceService extends BaseService, InvokableService {
 	* @return the OSGi service identifier
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public SyncDevice registerSyncDevice(java.lang.String type,
-		int buildNumber, int featureSet, java.lang.String uuid)
-		throws PortalException;
 
 	public void unregisterSyncDevice(java.lang.String uuid)
 		throws PortalException;

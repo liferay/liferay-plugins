@@ -32,6 +32,38 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		_feedLocalService = feedLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _feedLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _feedLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _feedLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _feedLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _feedLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Adds the feed to the database. Also notifies the appropriate model listeners.
 	*
@@ -80,19 +112,61 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		return _feedLocalService.deleteFeed(feedId);
 	}
 
+	@Override
+	public com.liferay.twitter.model.Feed fetchFeed(long feedId) {
+		return _feedLocalService.fetchFeed(feedId);
+	}
+
 	/**
-	* @throws PortalException
+	* Returns the feed with the primary key.
+	*
+	* @param feedId the primary key of the feed
+	* @return the feed
+	* @throws PortalException if a feed with the primary key could not be found
 	*/
 	@Override
-	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+	public com.liferay.twitter.model.Feed getFeed(long feedId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _feedLocalService.deletePersistedModel(persistedModel);
+		return _feedLocalService.getFeed(feedId);
+	}
+
+	/**
+	* Updates the feed in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param feed the feed
+	* @return the feed that was updated
+	*/
+	@Override
+	public com.liferay.twitter.model.Feed updateFeed(
+		com.liferay.twitter.model.Feed feed) {
+		return _feedLocalService.updateFeed(feed);
+	}
+
+	/**
+	* Returns the number of feeds.
+	*
+	* @return the number of feeds
+	*/
+	@Override
+	public int getFeedsCount() {
+		return _feedLocalService.getFeedsCount();
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _feedLocalService.dynamicQuery();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _feedLocalService.invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _feedLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -149,6 +223,23 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	}
 
 	/**
+	* Returns a range of all the feeds.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.twitter.model.impl.FeedModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of feeds
+	* @param end the upper bound of the range of feeds (not inclusive)
+	* @return the range of feeds
+	*/
+	@Override
+	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,
+		int end) {
+		return _feedLocalService.getFeeds(start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -172,97 +263,6 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _feedLocalService.dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	@Override
-	public com.liferay.twitter.model.Feed fetchFeed(long feedId) {
-		return _feedLocalService.fetchFeed(feedId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _feedLocalService.getActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the feed with the primary key.
-	*
-	* @param feedId the primary key of the feed
-	* @return the feed
-	* @throws PortalException if a feed with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.twitter.model.Feed getFeed(long feedId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _feedLocalService.getFeed(feedId);
-	}
-
-	/**
-	* Returns a range of all the feeds.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.twitter.model.impl.FeedModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of feeds
-	* @param end the upper bound of the range of feeds (not inclusive)
-	* @return the range of feeds
-	*/
-	@Override
-	public java.util.List<com.liferay.twitter.model.Feed> getFeeds(int start,
-		int end) {
-		return _feedLocalService.getFeeds(start, end);
-	}
-
-	/**
-	* Returns the number of feeds.
-	*
-	* @return the number of feeds
-	*/
-	@Override
-	public int getFeedsCount() {
-		return _feedLocalService.getFeedsCount();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _feedLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _feedLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _feedLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _feedLocalService.invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the feed in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param feed the feed
-	* @return the feed that was updated
-	*/
-	@Override
-	public com.liferay.twitter.model.Feed updateFeed(
-		com.liferay.twitter.model.Feed feed) {
-		return _feedLocalService.updateFeed(feed);
 	}
 
 	@Override

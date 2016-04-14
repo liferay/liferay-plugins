@@ -56,25 +56,25 @@ public interface TasksEntryService extends BaseService, InvokableService {
 		int dueDateHour, int dueDateMinute, boolean neverDue,
 		ServiceContext serviceContext) throws PortalException;
 
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public TasksEntry getTasksEntry(long tasksEntryId)
 		throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
 
 	public TasksEntry updateTasksEntry(long tasksEntryId,
 		java.lang.String title, int priority, long assigneeUserId,
 		long resolverUserId, int dueDateMonth, int dueDateDay, int dueDateYear,
 		int dueDateHour, int dueDateMinute, boolean neverDue, int status,
 		ServiceContext serviceContext) throws PortalException;
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 }

@@ -27,19 +27,26 @@ public class SkinnyServiceClp implements SkinnyService {
 	public SkinnyServiceClp(InvokableService invokableService) {
 		_invokableService = invokableService;
 
-		_methodName0 = "getOSGiServiceIdentifier";
+		_methodName1 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes0 = new String[] {  };
+		_methodParameterTypes1 = new String[] {  };
 
-		_methodName1 = "getSkinnyDDLRecords";
+		_methodName2 = "getSkinnyDDLRecords";
 
-		_methodParameterTypes1 = new String[] { "long" };
+		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName2 = "getSkinnyJournalArticles";
+		_methodName3 = "getSkinnyJournalArticles";
 
-		_methodParameterTypes2 = new String[] {
+		_methodParameterTypes3 = new String[] {
 				"long", "java.lang.String", "long", "java.lang.String"
 			};
+	}
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -47,8 +54,8 @@ public class SkinnyServiceClp implements SkinnyService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName0,
-					_methodParameterTypes0, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName1,
+					_methodParameterTypes1, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -71,8 +78,8 @@ public class SkinnyServiceClp implements SkinnyService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { ddlRecordSetId });
+			returnObj = _invokableService.invokeMethod(_methodName2,
+					_methodParameterTypes2, new Object[] { ddlRecordSetId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -100,8 +107,8 @@ public class SkinnyServiceClp implements SkinnyService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName2,
-					_methodParameterTypes2,
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
 					new Object[] {
 						companyId,
 						
@@ -131,18 +138,11 @@ public class SkinnyServiceClp implements SkinnyService {
 		return (java.util.List<com.liferay.skinny.model.SkinnyJournalArticle>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
-	}
-
 	private InvokableService _invokableService;
-	private String _methodName0;
-	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
 	private String _methodName2;
 	private String[] _methodParameterTypes2;
+	private String _methodName3;
+	private String[] _methodParameterTypes3;
 }

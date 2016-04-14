@@ -62,6 +62,28 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link MemberRequestLocalServiceUtil} to access the member request local service. Add custom service methods to {@link com.liferay.so.service.impl.MemberRequestLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasPendingMemberRequest(long groupId, long receiverUserId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Adds the member request to the database. Also notifies the appropriate model listeners.
@@ -76,15 +98,6 @@ public interface MemberRequestLocalService extends BaseLocalService,
 		long receiverUserId, java.lang.String receiverEmailAddress,
 		long invitedRoleId, long invitedTeamId, ServiceContext serviceContext)
 		throws PortalException;
-
-	public void addMemberRequests(long userId, long groupId,
-		java.lang.String[] emailAddresses, long invitedRoleId,
-		long invitedTeamId, ServiceContext serviceContext)
-		throws PortalException;
-
-	public void addMemberRequests(long userId, long groupId,
-		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
-		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Creates a new member request with the primary key. Does not add the member request to the database.
@@ -114,14 +127,65 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	public MemberRequest deleteMemberRequest(long memberRequestId)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public MemberRequest fetchMemberRequest(long memberRequestId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public MemberRequest getMemberRequest(long groupId, long receiverUserId,
+		int status) throws PortalException;
+
 	/**
-	* @throws PortalException
+	* Returns the member request with the primary key.
+	*
+	* @param memberRequestId the primary key of the member request
+	* @return the member request
+	* @throws PortalException if a member request with the primary key could not be found
 	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public MemberRequest getMemberRequest(long memberRequestId)
 		throws PortalException;
 
-	public DynamicQuery dynamicQuery();
+	/**
+	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request
+	* @return the member request that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public MemberRequest updateMemberRequest(MemberRequest memberRequest);
+
+	public MemberRequest updateMemberRequest(java.lang.String key,
+		long receiverUserId) throws PortalException;
+
+	public MemberRequest updateMemberRequest(long userId, long memberRequestId,
+		int status) throws java.lang.Exception;
+
+	/**
+	* Returns the number of member requests.
+	*
+	* @return the number of member requests
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getMemberRequestsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getReceiverMemberRequestCount(long receiverUserId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getReceiverStatusMemberRequestCount(long receiverUserId,
+		int status);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -163,6 +227,28 @@ public interface MemberRequestLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
+	* Returns a range of all the member requests.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.MemberRequestModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of member requests
+	* @param end the upper bound of the range of member requests (not inclusive)
+	* @return the range of member requests
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<MemberRequest> getMemberRequests(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<MemberRequest> getReceiverMemberRequest(long receiverUserId,
+		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<MemberRequest> getReceiverStatusMemberRequest(
+		long receiverUserId, int status, int start, int end);
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -180,99 +266,12 @@ public interface MemberRequestLocalService extends BaseLocalService,
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public MemberRequest fetchMemberRequest(long memberRequestId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public MemberRequest getMemberRequest(long groupId, long receiverUserId,
-		int status) throws PortalException;
-
-	/**
-	* Returns the member request with the primary key.
-	*
-	* @param memberRequestId the primary key of the member request
-	* @return the member request
-	* @throws PortalException if a member request with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public MemberRequest getMemberRequest(long memberRequestId)
+	public void addMemberRequests(long userId, long groupId,
+		java.lang.String[] emailAddresses, long invitedRoleId,
+		long invitedTeamId, ServiceContext serviceContext)
 		throws PortalException;
 
-	/**
-	* Returns a range of all the member requests.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.so.model.impl.MemberRequestModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of member requests
-	* @param end the upper bound of the range of member requests (not inclusive)
-	* @return the range of member requests
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MemberRequest> getMemberRequests(int start, int end);
-
-	/**
-	* Returns the number of member requests.
-	*
-	* @return the number of member requests
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getMemberRequestsCount();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MemberRequest> getReceiverMemberRequest(long receiverUserId,
-		int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getReceiverMemberRequestCount(long receiverUserId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MemberRequest> getReceiverStatusMemberRequest(
-		long receiverUserId, int status, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getReceiverStatusMemberRequestCount(long receiverUserId,
-		int status);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasPendingMemberRequest(long groupId, long receiverUserId);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public MemberRequest updateMemberRequest(java.lang.String key,
-		long receiverUserId) throws PortalException;
-
-	/**
-	* Updates the member request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param memberRequest the member request
-	* @return the member request that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public MemberRequest updateMemberRequest(MemberRequest memberRequest);
-
-	public MemberRequest updateMemberRequest(long userId, long memberRequestId,
-		int status) throws java.lang.Exception;
+	public void addMemberRequests(long userId, long groupId,
+		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
+		ServiceContext serviceContext) throws PortalException;
 }

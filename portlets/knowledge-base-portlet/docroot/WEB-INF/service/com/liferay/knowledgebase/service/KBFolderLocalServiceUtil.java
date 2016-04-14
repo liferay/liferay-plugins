@@ -99,6 +99,107 @@ public class KBFolderLocalServiceUtil {
 		return getService().deleteKBFolder(kbFolderId);
 	}
 
+	public static com.liferay.knowledgebase.model.KBFolder fetchFirstChildKBFolder(
+		long groupId, long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().fetchFirstChildKBFolder(groupId, kbFolderId);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
+		long kbFolderId) {
+		return getService().fetchKBFolder(kbFolderId);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .fetchKBFolderByUrlTitle(groupId, parentKbFolderId, urlTitle);
+	}
+
+	/**
+	* Returns the k b folder matching the UUID and group.
+	*
+	* @param uuid the k b folder's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUuidAndGroupId(
+		java.lang.String uuid, long groupId) {
+		return getService().fetchKBFolderByUuidAndGroupId(uuid, groupId);
+	}
+
+	/**
+	* Returns the k b folder with the primary key.
+	*
+	* @param kbFolderId the primary key of the k b folder
+	* @return the k b folder
+	* @throws PortalException if a k b folder with the primary key could not be found
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder getKBFolder(
+		long kbFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBFolder(kbFolderId);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder getKBFolderByUrlTitle(
+		long groupId, long parentKbFolderId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getKBFolderByUrlTitle(groupId, parentKbFolderId, urlTitle);
+	}
+
+	/**
+	* Returns the k b folder matching the UUID and group.
+	*
+	* @param uuid the k b folder's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b folder
+	* @throws PortalException if a matching k b folder could not be found
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder getKBFolderByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBFolderByUuidAndGroupId(uuid, groupId);
+	}
+
+	/**
+	* Updates the k b folder in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kbFolder the k b folder
+	* @return the k b folder that was updated
+	*/
+	public static com.liferay.knowledgebase.model.KBFolder updateKBFolder(
+		com.liferay.knowledgebase.model.KBFolder kbFolder) {
+		return getService().updateKBFolder(kbFolder);
+	}
+
+	public static com.liferay.knowledgebase.model.KBFolder updateKBFolder(
+		long parentResourceClassNameId, long parentResourcePrimKey,
+		long kbFolderId, java.lang.String name, java.lang.String description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateKBFolder(parentResourceClassNameId,
+			parentResourcePrimKey, kbFolderId, name, description);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
 	/**
 	* @throws PortalException
 	*/
@@ -108,8 +209,39 @@ public class KBFolderLocalServiceUtil {
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the number of k b folders.
+	*
+	* @return the number of k b folders
+	*/
+	public static int getKBFoldersCount() {
+		return getService().getKBFoldersCount();
+	}
+
+	public static int getKBFoldersCount(long groupId, long parentKBFolderId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBFoldersCount(groupId, parentKBFolderId);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -163,113 +295,6 @@ public class KBFolderLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-		return getService().dynamicQueryCount(dynamicQuery);
-	}
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection) {
-		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static com.liferay.knowledgebase.model.KBFolder fetchFirstChildKBFolder(
-		long groupId, long kbFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().fetchFirstChildKBFolder(groupId, kbFolderId);
-	}
-
-	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolder(
-		long kbFolderId) {
-		return getService().fetchKBFolder(kbFolderId);
-	}
-
-	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUrlTitle(
-		long groupId, long parentKbFolderId, java.lang.String urlTitle)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .fetchKBFolderByUrlTitle(groupId, parentKbFolderId, urlTitle);
-	}
-
-	/**
-	* Returns the k b folder matching the UUID and group.
-	*
-	* @param uuid the k b folder's UUID
-	* @param groupId the primary key of the group
-	* @return the matching k b folder, or <code>null</code> if a matching k b folder could not be found
-	*/
-	public static com.liferay.knowledgebase.model.KBFolder fetchKBFolderByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
-		return getService().fetchKBFolderByUuidAndGroupId(uuid, groupId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
-		return getService().getExportActionableDynamicQuery(portletDataContext);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the k b folder with the primary key.
-	*
-	* @param kbFolderId the primary key of the k b folder
-	* @return the k b folder
-	* @throws PortalException if a k b folder with the primary key could not be found
-	*/
-	public static com.liferay.knowledgebase.model.KBFolder getKBFolder(
-		long kbFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBFolder(kbFolderId);
-	}
-
-	public static com.liferay.knowledgebase.model.KBFolder getKBFolderByUrlTitle(
-		long groupId, long parentKbFolderId, java.lang.String urlTitle)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getKBFolderByUrlTitle(groupId, parentKbFolderId, urlTitle);
-	}
-
-	/**
-	* Returns the k b folder matching the UUID and group.
-	*
-	* @param uuid the k b folder's UUID
-	* @param groupId the primary key of the group
-	* @return the matching k b folder
-	* @throws PortalException if a matching k b folder could not be found
-	*/
-	public static com.liferay.knowledgebase.model.KBFolder getKBFolderByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBFolderByUuidAndGroupId(uuid, groupId);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
-		long groupId, long parentKBFolderId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBFolders(groupId, parentKBFolderId, start, end);
-	}
-
-	/**
 	* Returns a range of all the k b folders.
 	*
 	* <p>
@@ -283,6 +308,12 @@ public class KBFolderLocalServiceUtil {
 	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
 		int start, int end) {
 		return getService().getKBFolders(start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBFolder> getKBFolders(
+		long groupId, long parentKBFolderId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBFolders(groupId, parentKBFolderId, start, end);
 	}
 
 	/**
@@ -316,63 +347,32 @@ public class KBFolderLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of k b folders.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of k b folders
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	public static int getKBFoldersCount() {
-		return getService().getKBFoldersCount();
-	}
-
-	public static int getKBFoldersCount(long groupId, long parentKBFolderId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBFoldersCount(groupId, parentKBFolderId);
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
 	/**
-	* Returns the OSGi service identifier.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the OSGi service identifier
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
+		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static void moveKBFolder(long kbFolderId, long parentKBFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().moveKBFolder(kbFolderId, parentKBFolderId);
-	}
-
-	/**
-	* Updates the k b folder in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kbFolder the k b folder
-	* @return the k b folder that was updated
-	*/
-	public static com.liferay.knowledgebase.model.KBFolder updateKBFolder(
-		com.liferay.knowledgebase.model.KBFolder kbFolder) {
-		return getService().updateKBFolder(kbFolder);
-	}
-
-	public static com.liferay.knowledgebase.model.KBFolder updateKBFolder(
-		long parentResourceClassNameId, long parentResourcePrimKey,
-		long kbFolderId, java.lang.String name, java.lang.String description)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updateKBFolder(parentResourceClassNameId,
-			parentResourcePrimKey, kbFolderId, name, description);
 	}
 
 	public static void clearService() {

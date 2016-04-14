@@ -100,10 +100,44 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	public AkismetData deleteAkismetData(long akismetDataId)
 		throws PortalException;
 
-	public void deleteAkismetData(java.lang.String className, long classPK)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public AkismetData fetchAkismetData(java.lang.String className, long classPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public AkismetData fetchAkismetData(long akismetDataId);
+
+	/**
+	* Returns the akismet data with the primary key.
+	*
+	* @param akismetDataId the primary key of the akismet data
+	* @return the akismet data
+	* @throws PortalException if a akismet data with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public AkismetData getAkismetData(long akismetDataId)
 		throws PortalException;
 
-	public void deleteAkismetData(Date modifiedDate);
+	/**
+	* Updates the akismet data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param akismetData the akismet data
+	* @return the akismet data that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public AkismetData updateAkismetData(AkismetData akismetData);
+
+	public AkismetData updateAkismetData(java.lang.String className,
+		long classPK, java.lang.String type, java.lang.String permalink,
+		java.lang.String referrer, java.lang.String userAgent,
+		java.lang.String userIP, java.lang.String userURL);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* @throws PortalException
@@ -112,7 +146,30 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public DynamicQuery dynamicQuery();
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
+	* Returns the number of akismet datas.
+	*
+	* @return the number of akismet datas
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAkismetDatasCount();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -154,6 +211,20 @@ public interface AkismetDataLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
+	* Returns a range of all the akismet datas.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.akismet.model.impl.AkismetDataModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of akismet datas
+	* @param end the upper bound of the range of akismet datas (not inclusive)
+	* @return the range of akismet datas
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<AkismetData> getAkismetDatas(int start, int end);
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -171,79 +242,8 @@ public interface AkismetDataLocalService extends BaseLocalService,
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public AkismetData fetchAkismetData(long akismetDataId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public AkismetData fetchAkismetData(java.lang.String className, long classPK);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	/**
-	* Returns the akismet data with the primary key.
-	*
-	* @param akismetDataId the primary key of the akismet data
-	* @return the akismet data
-	* @throws PortalException if a akismet data with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public AkismetData getAkismetData(long akismetDataId)
+	public void deleteAkismetData(java.lang.String className, long classPK)
 		throws PortalException;
 
-	/**
-	* Returns a range of all the akismet datas.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.akismet.model.impl.AkismetDataModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of akismet datas
-	* @param end the upper bound of the range of akismet datas (not inclusive)
-	* @return the range of akismet datas
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<AkismetData> getAkismetDatas(int start, int end);
-
-	/**
-	* Returns the number of akismet datas.
-	*
-	* @return the number of akismet datas
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAkismetDatasCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	/**
-	* Updates the akismet data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param akismetData the akismet data
-	* @return the akismet data that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public AkismetData updateAkismetData(AkismetData akismetData);
-
-	public AkismetData updateAkismetData(java.lang.String className,
-		long classPK, java.lang.String type, java.lang.String permalink,
-		java.lang.String referrer, java.lang.String userAgent,
-		java.lang.String userIP, java.lang.String userURL);
+	public void deleteAkismetData(Date modifiedDate);
 }

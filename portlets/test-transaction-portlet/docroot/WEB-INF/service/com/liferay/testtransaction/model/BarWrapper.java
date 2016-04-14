@@ -78,23 +78,18 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new BarWrapper((Bar)_bar.clone());
+	public boolean isCachedModel() {
+		return _bar.isCachedModel();
 	}
 
 	@Override
-	public int compareTo(com.liferay.testtransaction.model.Bar bar) {
-		return _bar.compareTo(bar);
+	public boolean isEscapedModel() {
+		return _bar.isEscapedModel();
 	}
 
-	/**
-	* Returns the bar ID of this bar.
-	*
-	* @return the bar ID of this bar
-	*/
 	@Override
-	public long getBarId() {
-		return _bar.getBarId();
+	public boolean isNew() {
+		return _bar.isNew();
 	}
 
 	@Override
@@ -102,19 +97,39 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 		return _bar.getExpandoBridge();
 	}
 
-	/**
-	* Returns the primary key of this bar.
-	*
-	* @return the primary key of this bar
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _bar.getPrimaryKey();
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
+		return _bar.toCacheModel();
+	}
+
+	@Override
+	public com.liferay.testtransaction.model.Bar toEscapedModel() {
+		return new BarWrapper(_bar.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.testtransaction.model.Bar toUnescapedModel() {
+		return new BarWrapper(_bar.toUnescapedModel());
+	}
+
+	@Override
+	public int compareTo(com.liferay.testtransaction.model.Bar bar) {
+		return _bar.compareTo(bar);
+	}
+
+	@Override
+	public int hashCode() {
+		return _bar.hashCode();
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _bar.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new BarWrapper((Bar)_bar.clone());
 	}
 
 	/**
@@ -128,23 +143,33 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	}
 
 	@Override
-	public int hashCode() {
-		return _bar.hashCode();
+	public java.lang.String toString() {
+		return _bar.toString();
 	}
 
 	@Override
-	public boolean isCachedModel() {
-		return _bar.isCachedModel();
+	public java.lang.String toXmlString() {
+		return _bar.toXmlString();
 	}
 
+	/**
+	* Returns the bar ID of this bar.
+	*
+	* @return the bar ID of this bar
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _bar.isEscapedModel();
+	public long getBarId() {
+		return _bar.getBarId();
 	}
 
+	/**
+	* Returns the primary key of this bar.
+	*
+	* @return the primary key of this bar
+	*/
 	@Override
-	public boolean isNew() {
-		return _bar.isNew();
+	public long getPrimaryKey() {
+		return _bar.getPrimaryKey();
 	}
 
 	@Override
@@ -168,14 +193,14 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_bar.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_bar.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_bar.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_bar.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -211,31 +236,6 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	@Override
 	public void setText(java.lang.String text) {
 		_bar.setText(text);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.testtransaction.model.Bar> toCacheModel() {
-		return _bar.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.testtransaction.model.Bar toEscapedModel() {
-		return new BarWrapper(_bar.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _bar.toString();
-	}
-
-	@Override
-	public com.liferay.testtransaction.model.Bar toUnescapedModel() {
-		return new BarWrapper(_bar.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _bar.toXmlString();
 	}
 
 	@Override

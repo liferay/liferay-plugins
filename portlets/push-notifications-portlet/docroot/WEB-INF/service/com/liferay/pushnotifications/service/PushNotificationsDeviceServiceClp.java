@@ -38,9 +38,9 @@ public class PushNotificationsDeviceServiceClp
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName2 = "getOSGiServiceIdentifier";
+		_methodName3 = "getOSGiServiceIdentifier";
 
-		_methodParameterTypes2 = new String[] {  };
+		_methodParameterTypes3 = new String[] {  };
 
 		_methodName4 = "sendPushNotification";
 
@@ -118,12 +118,19 @@ public class PushNotificationsDeviceServiceClp
 	}
 
 	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public java.lang.String getOSGiServiceIdentifier() {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] {  });
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -138,13 +145,6 @@ public class PushNotificationsDeviceServiceClp
 		}
 
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -213,8 +213,8 @@ public class PushNotificationsDeviceServiceClp
 	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
-	private String _methodName2;
-	private String[] _methodParameterTypes2;
+	private String _methodName3;
+	private String[] _methodParameterTypes3;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
 	private String _methodName5;

@@ -41,6 +41,32 @@ public class TypeLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.samplealloymvc.service.impl.TypeLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
 
 	/**
 	* Adds the type to the database. Also notifies the appropriate model listeners.
@@ -61,15 +87,6 @@ public class TypeLocalServiceUtil {
 	*/
 	public static com.liferay.samplealloymvc.model.Type createType(long typeId) {
 		return getService().createType(typeId);
-	}
-
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
 	}
 
 	/**
@@ -95,8 +112,55 @@ public class TypeLocalServiceUtil {
 		return getService().deleteType(typeId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.samplealloymvc.model.Type fetchType(long typeId) {
+		return getService().fetchType(typeId);
+	}
+
+	/**
+	* Returns the type with the primary key.
+	*
+	* @param typeId the primary key of the type
+	* @return the type
+	* @throws PortalException if a type with the primary key could not be found
+	*/
+	public static com.liferay.samplealloymvc.model.Type getType(long typeId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getType(typeId);
+	}
+
+	/**
+	* Updates the type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param type the type
+	* @return the type that was updated
+	*/
+	public static com.liferay.samplealloymvc.model.Type updateType(
+		com.liferay.samplealloymvc.model.Type type) {
+		return getService().updateType(type);
+	}
+
+	/**
+	* Returns the number of types.
+	*
+	* @return the number of types
+	*/
+	public static int getTypesCount() {
+		return getService().getTypesCount();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -150,6 +214,22 @@ public class TypeLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the types.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplealloymvc.model.impl.TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of types
+	* @param end the upper bound of the range of types (not inclusive)
+	* @return the range of types
+	*/
+	public static java.util.List<com.liferay.samplealloymvc.model.Type> getTypes(
+		int start, int end) {
+		return getService().getTypes(start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -171,87 +251,6 @@ public class TypeLocalServiceUtil {
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static com.liferay.samplealloymvc.model.Type fetchType(long typeId) {
-		return getService().fetchType(typeId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	/**
-	* Returns the type with the primary key.
-	*
-	* @param typeId the primary key of the type
-	* @return the type
-	* @throws PortalException if a type with the primary key could not be found
-	*/
-	public static com.liferay.samplealloymvc.model.Type getType(long typeId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getType(typeId);
-	}
-
-	/**
-	* Returns a range of all the types.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.samplealloymvc.model.impl.TypeModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of types
-	* @param end the upper bound of the range of types (not inclusive)
-	* @return the range of types
-	*/
-	public static java.util.List<com.liferay.samplealloymvc.model.Type> getTypes(
-		int start, int end) {
-		return getService().getTypes(start, end);
-	}
-
-	/**
-	* Returns the number of types.
-	*
-	* @return the number of types
-	*/
-	public static int getTypesCount() {
-		return getService().getTypesCount();
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param type the type
-	* @return the type that was updated
-	*/
-	public static com.liferay.samplealloymvc.model.Type updateType(
-		com.liferay.samplealloymvc.model.Type type) {
-		return getService().updateType(type);
 	}
 
 	public static void clearService() {

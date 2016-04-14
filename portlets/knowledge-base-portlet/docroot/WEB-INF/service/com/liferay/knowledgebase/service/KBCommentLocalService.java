@@ -116,8 +116,77 @@ public interface KBCommentLocalService extends BaseLocalService,
 	public KBComment deleteKBComment(long kbCommentId)
 		throws PortalException;
 
-	public void deleteKBComments(java.lang.String className, long classPK)
-		throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBComment fetchKBComment(long kbCommentId);
+
+	/**
+	* Returns the k b comment matching the UUID and group.
+	*
+	* @param uuid the k b comment's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBComment fetchKBCommentByUuidAndGroupId(java.lang.String uuid,
+		long groupId);
+
+	/**
+	* Returns the k b comment with the primary key.
+	*
+	* @param kbCommentId the primary key of the k b comment
+	* @return the k b comment
+	* @throws PortalException if a k b comment with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBComment getKBComment(long kbCommentId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBComment getKBComment(long userId, java.lang.String className,
+		long classPK) throws PortalException;
+
+	/**
+	* Returns the k b comment matching the UUID and group.
+	*
+	* @param uuid the k b comment's UUID
+	* @param groupId the primary key of the group
+	* @return the matching k b comment
+	* @throws PortalException if a matching k b comment could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KBComment getKBCommentByUuidAndGroupId(java.lang.String uuid,
+		long groupId) throws PortalException;
+
+	/**
+	* Updates the k b comment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kbComment the k b comment
+	* @return the k b comment that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public KBComment updateKBComment(KBComment kbComment);
+
+	public KBComment updateKBComment(long kbCommentId, long classNameId,
+		long classPK, java.lang.String content, int status,
+		ServiceContext serviceContext) throws PortalException;
+
+	public KBComment updateKBComment(long kbCommentId, long classNameId,
+		long classPK, java.lang.String content, int userRating, int status,
+		ServiceContext serviceContext) throws PortalException;
+
+	public KBComment updateStatus(long userId, long kbCommentId, int status,
+		ServiceContext serviceContext) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* @throws PortalException
@@ -126,7 +195,48 @@ public interface KBCommentLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public DynamicQuery dynamicQuery();
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
+	* Returns the number of k b comments.
+	*
+	* @return the number of k b comments
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(java.lang.String className, long classPK);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(java.lang.String className, long classPK,
+		int[] status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(long groupId, int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBCommentsCount(long userId, java.lang.String className,
+		long classPK);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -168,90 +278,6 @@ public interface KBCommentLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBComment fetchKBComment(long kbCommentId);
-
-	/**
-	* Returns the k b comment matching the UUID and group.
-	*
-	* @param uuid the k b comment's UUID
-	* @param groupId the primary key of the group
-	* @return the matching k b comment, or <code>null</code> if a matching k b comment could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBComment fetchKBCommentByUuidAndGroupId(java.lang.String uuid,
-		long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		PortletDataContext portletDataContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the k b comment with the primary key.
-	*
-	* @param kbCommentId the primary key of the k b comment
-	* @return the k b comment
-	* @throws PortalException if a k b comment with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBComment getKBComment(long kbCommentId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBComment getKBComment(long userId, java.lang.String className,
-		long classPK) throws PortalException;
-
-	/**
-	* Returns the k b comment matching the UUID and group.
-	*
-	* @param uuid the k b comment's UUID
-	* @param groupId the primary key of the group
-	* @return the matching k b comment
-	* @throws PortalException if a matching k b comment could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KBComment getKBCommentByUuidAndGroupId(java.lang.String uuid,
-		long groupId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KBComment> getKBComments(java.lang.String className,
-		long classPK, int start, int end, OrderByComparator orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KBComment> getKBComments(java.lang.String className,
-		long classPK, int[] status, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KBComment> getKBComments(java.lang.String className,
-		long classPK, int status, int start, int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KBComment> getKBComments(long groupId, int status, int start,
-		int end);
-
-	/**
 	* Returns a range of all the k b comments.
 	*
 	* <p>
@@ -264,6 +290,22 @@ public interface KBCommentLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KBComment> getKBComments(java.lang.String className,
+		long classPK, int start, int end, OrderByComparator orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KBComment> getKBComments(java.lang.String className,
+		long classPK, int status, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KBComment> getKBComments(java.lang.String className,
+		long classPK, int[] status, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KBComment> getKBComments(long groupId, int status, int start,
+		int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KBComment> getKBComments(long userId,
@@ -297,65 +339,23 @@ public interface KBCommentLocalService extends BaseLocalService,
 		OrderByComparator<KBComment> orderByComparator);
 
 	/**
-	* Returns the number of k b comments.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of k b comments
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBCommentsCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBCommentsCount(java.lang.String className, long classPK);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBCommentsCount(java.lang.String className, long classPK,
-		int status);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBCommentsCount(java.lang.String className, long classPK,
-		int[] status);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBCommentsCount(long groupId, int status);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKBCommentsCount(long userId, java.lang.String className,
-		long classPK);
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
-	* Returns the OSGi service identifier.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the OSGi service identifier
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
 
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+	public void deleteKBComments(java.lang.String className, long classPK)
 		throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	/**
-	* Updates the k b comment in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kbComment the k b comment
-	* @return the k b comment that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public KBComment updateKBComment(KBComment kbComment);
-
-	public KBComment updateKBComment(long kbCommentId, long classNameId,
-		long classPK, java.lang.String content, int status,
-		ServiceContext serviceContext) throws PortalException;
-
-	public KBComment updateKBComment(long kbCommentId, long classNameId,
-		long classPK, java.lang.String content, int userRating, int status,
-		ServiceContext serviceContext) throws PortalException;
-
-	public KBComment updateStatus(long userId, long kbCommentId, int status,
-		ServiceContext serviceContext) throws PortalException;
 }

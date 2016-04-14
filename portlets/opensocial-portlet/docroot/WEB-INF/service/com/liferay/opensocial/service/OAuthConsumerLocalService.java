@@ -61,10 +61,6 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link OAuthConsumerLocalServiceUtil} to access the o auth consumer local service. Add custom service methods to {@link com.liferay.opensocial.service.impl.OAuthConsumerLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public OAuthConsumer addOAuthConsumer(long companyId,
-		java.lang.String gadgetKey, java.lang.String serviceName,
-		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType);
 
 	/**
 	* Adds the o auth consumer to the database. Also notifies the appropriate model listeners.
@@ -74,6 +70,11 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.REINDEX)
 	public OAuthConsumer addOAuthConsumer(OAuthConsumer oAuthConsumer);
+
+	public OAuthConsumer addOAuthConsumer(long companyId,
+		java.lang.String gadgetKey, java.lang.String serviceName,
+		java.lang.String consumerKey, java.lang.String consumerSecret,
+		java.lang.String keyType);
 
 	/**
 	* Creates a new o auth consumer with the primary key. Does not add the o auth consumer to the database.
@@ -103,7 +104,49 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	public OAuthConsumer deleteOAuthConsumer(long oAuthConsumerId)
 		throws PortalException;
 
-	public void deleteOAuthConsumers(java.lang.String gadgetKey);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public OAuthConsumer fetchOAuthConsumer(java.lang.String gadgetKey,
+		java.lang.String serviceName);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public OAuthConsumer fetchOAuthConsumer(long oAuthConsumerId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public OAuthConsumer getOAuthConsumer(java.lang.String gadgetKey,
+		java.lang.String serviceName) throws PortalException;
+
+	/**
+	* Returns the o auth consumer with the primary key.
+	*
+	* @param oAuthConsumerId the primary key of the o auth consumer
+	* @return the o auth consumer
+	* @throws PortalException if a o auth consumer with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public OAuthConsumer getOAuthConsumer(long oAuthConsumerId)
+		throws PortalException;
+
+	/**
+	* Updates the o auth consumer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthConsumer the o auth consumer
+	* @return the o auth consumer that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public OAuthConsumer updateOAuthConsumer(OAuthConsumer oAuthConsumer);
+
+	public OAuthConsumer updateOAuthConsumer(long oAuthConsumerId,
+		java.lang.String consumerKey, java.lang.String consumerSecret,
+		java.lang.String keyType, java.lang.String keyName,
+		java.lang.String callbackURL) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	* @throws PortalException
@@ -112,7 +155,33 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	public DynamicQuery dynamicQuery();
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
+	* Returns the number of o auth consumers.
+	*
+	* @return the number of o auth consumers
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getOAuthConsumersCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getOAuthConsumersCount(java.lang.String gadgetKey);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -154,6 +223,27 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
+	* Returns a range of all the o auth consumers.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of o auth consumers
+	* @param end the upper bound of the range of o auth consumers (not inclusive)
+	* @return the range of o auth consumers
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<OAuthConsumer> getOAuthConsumers(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<OAuthConsumer> getOAuthConsumers(java.lang.String gadgetKey);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<OAuthConsumer> getOAuthConsumers(java.lang.String gadgetKey,
+		int start, int end);
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -171,94 +261,5 @@ public interface OAuthConsumerLocalService extends BaseLocalService,
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public OAuthConsumer fetchOAuthConsumer(java.lang.String gadgetKey,
-		java.lang.String serviceName);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public OAuthConsumer fetchOAuthConsumer(long oAuthConsumerId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public OAuthConsumer getOAuthConsumer(java.lang.String gadgetKey,
-		java.lang.String serviceName) throws PortalException;
-
-	/**
-	* Returns the o auth consumer with the primary key.
-	*
-	* @param oAuthConsumerId the primary key of the o auth consumer
-	* @return the o auth consumer
-	* @throws PortalException if a o auth consumer with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public OAuthConsumer getOAuthConsumer(long oAuthConsumerId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<OAuthConsumer> getOAuthConsumers(java.lang.String gadgetKey);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<OAuthConsumer> getOAuthConsumers(java.lang.String gadgetKey,
-		int start, int end);
-
-	/**
-	* Returns a range of all the o auth consumers.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of o auth consumers
-	* @param end the upper bound of the range of o auth consumers (not inclusive)
-	* @return the range of o auth consumers
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<OAuthConsumer> getOAuthConsumers(int start, int end);
-
-	/**
-	* Returns the number of o auth consumers.
-	*
-	* @return the number of o auth consumers
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getOAuthConsumersCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getOAuthConsumersCount(java.lang.String gadgetKey);
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	/**
-	* Updates the o auth consumer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthConsumer the o auth consumer
-	* @return the o auth consumer that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public OAuthConsumer updateOAuthConsumer(OAuthConsumer oAuthConsumer);
-
-	public OAuthConsumer updateOAuthConsumer(long oAuthConsumerId,
-		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType, java.lang.String keyName,
-		java.lang.String callbackURL) throws PortalException;
+	public void deleteOAuthConsumers(java.lang.String gadgetKey);
 }

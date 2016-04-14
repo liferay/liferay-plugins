@@ -134,16 +134,6 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 		}
 	}
 
-	@Override
-	public java.lang.Object clone() {
-		return new AssetWrapper((Asset)_asset.clone());
-	}
-
-	@Override
-	public int compareTo(com.liferay.samplealloymvc.model.Asset asset) {
-		return _asset.compareTo(asset);
-	}
-
 	/**
 	* Returns the active of this asset.
 	*
@@ -152,131 +142,6 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	@Override
 	public boolean getActive() {
 		return _asset.getActive();
-	}
-
-	/**
-	* Returns the asset ID of this asset.
-	*
-	* @return the asset ID of this asset
-	*/
-	@Override
-	public long getAssetId() {
-		return _asset.getAssetId();
-	}
-
-	/**
-	* Returns the company ID of this asset.
-	*
-	* @return the company ID of this asset
-	*/
-	@Override
-	public long getCompanyId() {
-		return _asset.getCompanyId();
-	}
-
-	/**
-	* Returns the create date of this asset.
-	*
-	* @return the create date of this asset
-	*/
-	@Override
-	public Date getCreateDate() {
-		return _asset.getCreateDate();
-	}
-
-	/**
-	* Returns the definition ID of this asset.
-	*
-	* @return the definition ID of this asset
-	*/
-	@Override
-	public long getDefinitionId() {
-		return _asset.getDefinitionId();
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _asset.getExpandoBridge();
-	}
-
-	/**
-	* Returns the inactive date of this asset.
-	*
-	* @return the inactive date of this asset
-	*/
-	@Override
-	public Date getInactiveDate() {
-		return _asset.getInactiveDate();
-	}
-
-	/**
-	* Returns the modified date of this asset.
-	*
-	* @return the modified date of this asset
-	*/
-	@Override
-	public Date getModifiedDate() {
-		return _asset.getModifiedDate();
-	}
-
-	/**
-	* Returns the primary key of this asset.
-	*
-	* @return the primary key of this asset
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _asset.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _asset.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the serial number of this asset.
-	*
-	* @return the serial number of this asset
-	*/
-	@Override
-	public java.lang.String getSerialNumber() {
-		return _asset.getSerialNumber();
-	}
-
-	/**
-	* Returns the user ID of this asset.
-	*
-	* @return the user ID of this asset
-	*/
-	@Override
-	public long getUserId() {
-		return _asset.getUserId();
-	}
-
-	/**
-	* Returns the user name of this asset.
-	*
-	* @return the user name of this asset
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _asset.getUserName();
-	}
-
-	/**
-	* Returns the user uuid of this asset.
-	*
-	* @return the user uuid of this asset
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _asset.getUserUuid();
-	}
-
-	@Override
-	public int hashCode() {
-		return _asset.hashCode();
 	}
 
 	/**
@@ -302,6 +167,166 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	@Override
 	public boolean isNew() {
 		return _asset.isNew();
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _asset.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Asset> toCacheModel() {
+		return _asset.toCacheModel();
+	}
+
+	@Override
+	public com.liferay.samplealloymvc.model.Asset toEscapedModel() {
+		return new AssetWrapper(_asset.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.samplealloymvc.model.Asset toUnescapedModel() {
+		return new AssetWrapper(_asset.toUnescapedModel());
+	}
+
+	@Override
+	public int compareTo(com.liferay.samplealloymvc.model.Asset asset) {
+		return _asset.compareTo(asset);
+	}
+
+	@Override
+	public int hashCode() {
+		return _asset.hashCode();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _asset.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new AssetWrapper((Asset)_asset.clone());
+	}
+
+	/**
+	* Returns the serial number of this asset.
+	*
+	* @return the serial number of this asset
+	*/
+	@Override
+	public java.lang.String getSerialNumber() {
+		return _asset.getSerialNumber();
+	}
+
+	/**
+	* Returns the user name of this asset.
+	*
+	* @return the user name of this asset
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _asset.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this asset.
+	*
+	* @return the user uuid of this asset
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _asset.getUserUuid();
+	}
+
+	@Override
+	public java.lang.String toString() {
+		return _asset.toString();
+	}
+
+	@Override
+	public java.lang.String toXmlString() {
+		return _asset.toXmlString();
+	}
+
+	/**
+	* Returns the create date of this asset.
+	*
+	* @return the create date of this asset
+	*/
+	@Override
+	public Date getCreateDate() {
+		return _asset.getCreateDate();
+	}
+
+	/**
+	* Returns the inactive date of this asset.
+	*
+	* @return the inactive date of this asset
+	*/
+	@Override
+	public Date getInactiveDate() {
+		return _asset.getInactiveDate();
+	}
+
+	/**
+	* Returns the modified date of this asset.
+	*
+	* @return the modified date of this asset
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _asset.getModifiedDate();
+	}
+
+	/**
+	* Returns the asset ID of this asset.
+	*
+	* @return the asset ID of this asset
+	*/
+	@Override
+	public long getAssetId() {
+		return _asset.getAssetId();
+	}
+
+	/**
+	* Returns the company ID of this asset.
+	*
+	* @return the company ID of this asset
+	*/
+	@Override
+	public long getCompanyId() {
+		return _asset.getCompanyId();
+	}
+
+	/**
+	* Returns the definition ID of this asset.
+	*
+	* @return the definition ID of this asset
+	*/
+	@Override
+	public long getDefinitionId() {
+		return _asset.getDefinitionId();
+	}
+
+	/**
+	* Returns the primary key of this asset.
+	*
+	* @return the primary key of this asset
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _asset.getPrimaryKey();
+	}
+
+	/**
+	* Returns the user ID of this asset.
+	*
+	* @return the user ID of this asset
+	*/
+	@Override
+	public long getUserId() {
+		return _asset.getUserId();
 	}
 
 	@Override
@@ -365,14 +390,14 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_asset.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_asset.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_asset.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_asset.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -458,31 +483,6 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_asset.setUserUuid(userUuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Asset> toCacheModel() {
-		return _asset.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Asset toEscapedModel() {
-		return new AssetWrapper(_asset.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _asset.toString();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Asset toUnescapedModel() {
-		return new AssetWrapper(_asset.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _asset.toXmlString();
 	}
 
 	@Override

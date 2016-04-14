@@ -41,6 +41,32 @@ public class PushNotificationsDeviceLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.pushnotifications.service.impl.PushNotificationsDeviceLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
 
 	/**
 	* Adds the push notifications device to the database. Also notifies the appropriate model listeners.
@@ -71,15 +97,6 @@ public class PushNotificationsDeviceLocalServiceUtil {
 	}
 
 	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
-	}
-
-	/**
 	* Deletes the push notifications device from the database. Also notifies the appropriate model listeners.
 	*
 	* @param pushNotificationsDevice the push notifications device
@@ -89,6 +106,12 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
 		return getService()
 				   .deletePushNotificationsDevice(pushNotificationsDevice);
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
+		java.lang.String token)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePushNotificationsDevice(token);
 	}
 
 	/**
@@ -105,14 +128,59 @@ public class PushNotificationsDeviceLocalServiceUtil {
 				   .deletePushNotificationsDevice(pushNotificationsDeviceId);
 	}
 
-	public static com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
-		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePushNotificationsDevice(token);
+	public static com.liferay.pushnotifications.model.PushNotificationsDevice fetchPushNotificationsDevice(
+		long pushNotificationsDeviceId) {
+		return getService()
+				   .fetchPushNotificationsDevice(pushNotificationsDeviceId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	/**
+	* Returns the push notifications device with the primary key.
+	*
+	* @param pushNotificationsDeviceId the primary key of the push notifications device
+	* @return the push notifications device
+	* @throws PortalException if a push notifications device with the primary key could not be found
+	*/
+	public static com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevice(
+		long pushNotificationsDeviceId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPushNotificationsDevice(pushNotificationsDeviceId);
+	}
+
+	/**
+	* Updates the push notifications device in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param pushNotificationsDevice the push notifications device
+	* @return the push notifications device that was updated
+	*/
+	public static com.liferay.pushnotifications.model.PushNotificationsDevice updatePushNotificationsDevice(
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
+		return getService()
+				   .updatePushNotificationsDevice(pushNotificationsDevice);
+	}
+
+	/**
+	* Returns the number of push notifications devices.
+	*
+	* @return the number of push notifications devices
+	*/
+	public static int getPushNotificationsDevicesCount() {
+		return getService().getPushNotificationsDevicesCount();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -166,72 +234,6 @@ public class PushNotificationsDeviceLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-		return getService().dynamicQueryCount(dynamicQuery);
-	}
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection) {
-		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static com.liferay.pushnotifications.model.PushNotificationsDevice fetchPushNotificationsDevice(
-		long pushNotificationsDeviceId) {
-		return getService()
-				   .fetchPushNotificationsDevice(pushNotificationsDeviceId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	/**
-	* Returns the push notifications device with the primary key.
-	*
-	* @param pushNotificationsDeviceId the primary key of the push notifications device
-	* @return the push notifications device
-	* @throws PortalException if a push notifications device with the primary key could not be found
-	*/
-	public static com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevice(
-		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPushNotificationsDevice(pushNotificationsDeviceId);
-	}
-
-	/**
 	* Returns a range of all the push notifications devices.
 	*
 	* <p>
@@ -255,18 +257,27 @@ public class PushNotificationsDeviceLocalServiceUtil {
 	}
 
 	/**
-	* Returns the number of push notifications devices.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @return the number of push notifications devices
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
 	*/
-	public static int getPushNotificationsDevicesCount() {
-		return getService().getPushNotificationsDevicesCount();
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	/**
+	* Returns the number of rows matching the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
+	*/
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
+		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static void resetPushNotificationSenders() {
@@ -294,18 +305,6 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		com.liferay.portal.kernel.json.JSONObject payloadJSONObject)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().sendPushNotification(toUserIds, payloadJSONObject);
-	}
-
-	/**
-	* Updates the push notifications device in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param pushNotificationsDevice the push notifications device
-	* @return the push notifications device that was updated
-	*/
-	public static com.liferay.pushnotifications.model.PushNotificationsDevice updatePushNotificationsDevice(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
-		return getService()
-				   .updatePushNotificationsDevice(pushNotificationsDevice);
 	}
 
 	public static void updateToken(java.lang.String oldToken,

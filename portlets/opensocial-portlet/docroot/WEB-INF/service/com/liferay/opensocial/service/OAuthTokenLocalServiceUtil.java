@@ -99,18 +99,62 @@ public class OAuthTokenLocalServiceUtil {
 		return getService().deleteOAuthToken(oAuthTokenId);
 	}
 
-	public static void deleteOAuthToken(long userId,
-		java.lang.String gadgetKey, java.lang.String serviceName,
-		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.deleteOAuthToken(userId, gadgetKey, serviceName, moduleId,
+	public static com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
+		long oAuthTokenId) {
+		return getService().fetchOAuthToken(oAuthTokenId);
+	}
+
+	public static com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
+		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
+		long moduleId, java.lang.String tokenName) {
+		return getService()
+				   .fetchOAuthToken(userId, gadgetKey, serviceName, moduleId,
 			tokenName);
 	}
 
-	public static void deleteOAuthTokens(java.lang.String gadgetKey,
-		java.lang.String serviceName) {
-		getService().deleteOAuthTokens(gadgetKey, serviceName);
+	/**
+	* Returns the o auth token with the primary key.
+	*
+	* @param oAuthTokenId the primary key of the o auth token
+	* @return the o auth token
+	* @throws PortalException if a o auth token with the primary key could not be found
+	*/
+	public static com.liferay.opensocial.model.OAuthToken getOAuthToken(
+		long oAuthTokenId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOAuthToken(oAuthTokenId);
+	}
+
+	public static com.liferay.opensocial.model.OAuthToken getOAuthToken(
+		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
+		long moduleId, java.lang.String tokenName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getOAuthToken(userId, gadgetKey, serviceName, moduleId,
+			tokenName);
+	}
+
+	/**
+	* Updates the o auth token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param oAuthToken the o auth token
+	* @return the o auth token that was updated
+	*/
+	public static com.liferay.opensocial.model.OAuthToken updateOAuthToken(
+		com.liferay.opensocial.model.OAuthToken oAuthToken) {
+		return getService().updateOAuthToken(oAuthToken);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
 	}
 
 	/**
@@ -122,8 +166,34 @@ public class OAuthTokenLocalServiceUtil {
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	/**
+	* Returns the number of o auth tokens.
+	*
+	* @return the number of o auth tokens
+	*/
+	public static int getOAuthTokensCount() {
+		return getService().getOAuthTokensCount();
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -177,6 +247,27 @@ public class OAuthTokenLocalServiceUtil {
 	}
 
 	/**
+	* Returns a range of all the o auth tokens.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthTokenModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of o auth tokens
+	* @param end the upper bound of the range of o auth tokens (not inclusive)
+	* @return the range of o auth tokens
+	*/
+	public static java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
+		int start, int end) {
+		return getService().getOAuthTokens(start, end);
+	}
+
+	public static java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
+		java.lang.String gadgetKey, java.lang.String serviceName) {
+		return getService().getOAuthTokens(gadgetKey, serviceName);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -200,109 +291,18 @@ public class OAuthTokenLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
-		long oAuthTokenId) {
-		return getService().fetchOAuthToken(oAuthTokenId);
-	}
-
-	public static com.liferay.opensocial.model.OAuthToken fetchOAuthToken(
-		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
-		long moduleId, java.lang.String tokenName) {
-		return getService()
-				   .fetchOAuthToken(userId, gadgetKey, serviceName, moduleId,
-			tokenName);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the o auth token with the primary key.
-	*
-	* @param oAuthTokenId the primary key of the o auth token
-	* @return the o auth token
-	* @throws PortalException if a o auth token with the primary key could not be found
-	*/
-	public static com.liferay.opensocial.model.OAuthToken getOAuthToken(
-		long oAuthTokenId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getOAuthToken(oAuthTokenId);
-	}
-
-	public static com.liferay.opensocial.model.OAuthToken getOAuthToken(
-		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
+	public static void deleteOAuthToken(long userId,
+		java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getOAuthToken(userId, gadgetKey, serviceName, moduleId,
+		getService()
+			.deleteOAuthToken(userId, gadgetKey, serviceName, moduleId,
 			tokenName);
 	}
 
-	public static java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
-		java.lang.String gadgetKey, java.lang.String serviceName) {
-		return getService().getOAuthTokens(gadgetKey, serviceName);
-	}
-
-	/**
-	* Returns a range of all the o auth tokens.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.opensocial.model.impl.OAuthTokenModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of o auth tokens
-	* @param end the upper bound of the range of o auth tokens (not inclusive)
-	* @return the range of o auth tokens
-	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(
-		int start, int end) {
-		return getService().getOAuthTokens(start, end);
-	}
-
-	/**
-	* Returns the number of o auth tokens.
-	*
-	* @return the number of o auth tokens
-	*/
-	public static int getOAuthTokensCount() {
-		return getService().getOAuthTokensCount();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
-	/**
-	* Updates the o auth token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param oAuthToken the o auth token
-	* @return the o auth token that was updated
-	*/
-	public static com.liferay.opensocial.model.OAuthToken updateOAuthToken(
-		com.liferay.opensocial.model.OAuthToken oAuthToken) {
-		return getService().updateOAuthToken(oAuthToken);
+	public static void deleteOAuthTokens(java.lang.String gadgetKey,
+		java.lang.String serviceName) {
+		getService().deleteOAuthTokens(gadgetKey, serviceName);
 	}
 
 	public static void clearService() {

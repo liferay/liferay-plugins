@@ -62,6 +62,35 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SyncDLObjectLocalServiceUtil} to access the sync d l object local service. Add custom service methods to {@link com.liferay.sync.service.impl.SyncDLObjectLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
+	* Adds the sync d l object to the database. Also notifies the appropriate model listeners.
+	*
+	* @param syncDLObject the sync d l object
+	* @return the sync d l object that was added
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDLObject addSyncDLObject(SyncDLObject syncDLObject);
+
 	public SyncDLObject addSyncDLObject(long companyId, long userId,
 		java.lang.String userName, long modifiedTime, long repositoryId,
 		long parentFolderId, java.lang.String treePath, java.lang.String name,
@@ -74,28 +103,12 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		java.lang.String typeUuid) throws PortalException;
 
 	/**
-	* Adds the sync d l object to the database. Also notifies the appropriate model listeners.
-	*
-	* @param syncDLObject the sync d l object
-	* @return the sync d l object that was added
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public SyncDLObject addSyncDLObject(SyncDLObject syncDLObject);
-
-	/**
 	* Creates a new sync d l object with the primary key. Does not add the sync d l object to the database.
 	*
 	* @param syncDLObjectId the primary key for the new sync d l object
 	* @return the new sync d l object
 	*/
 	public SyncDLObject createSyncDLObject(long syncDLObjectId);
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
 
 	/**
 	* Deletes the sync d l object from the database. Also notifies the appropriate model listeners.
@@ -117,10 +130,51 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 	public SyncDLObject deleteSyncDLObject(long syncDLObjectId)
 		throws PortalException;
 
-	public void deleteSyncDLObjects(java.lang.String version,
-		java.lang.String type);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SyncDLObject fetchSyncDLObject(java.lang.String type, long typePK);
 
-	public DynamicQuery dynamicQuery();
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SyncDLObject fetchSyncDLObject(long syncDLObjectId);
+
+	/**
+	* Returns the sync d l object with the primary key.
+	*
+	* @param syncDLObjectId the primary key of the sync d l object
+	* @return the sync d l object
+	* @throws PortalException if a sync d l object with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SyncDLObject getSyncDLObject(long syncDLObjectId)
+		throws PortalException;
+
+	/**
+	* Updates the sync d l object in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param syncDLObject the sync d l object
+	* @return the sync d l object that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public SyncDLObject updateSyncDLObject(SyncDLObject syncDLObject);
+
+	/**
+	* Returns the number of sync d l objects.
+	*
+	* @return the number of sync d l objects
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSyncDLObjectsCount();
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -162,6 +216,24 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
+	* Returns a range of all the sync d l objects.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of sync d l objects
+	* @param end the upper bound of the range of sync d l objects (not inclusive)
+	* @return the range of sync d l objects
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SyncDLObject> getSyncDLObjects(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SyncDLObject> getSyncDLObjects(long repositoryId,
+		long parentFolderId);
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -180,73 +252,10 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDLObject fetchSyncDLObject(long syncDLObjectId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDLObject fetchSyncDLObject(java.lang.String type, long typePK);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getLatestModifiedTime();
 
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	/**
-	* Returns the sync d l object with the primary key.
-	*
-	* @param syncDLObjectId the primary key of the sync d l object
-	* @return the sync d l object
-	* @throws PortalException if a sync d l object with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public SyncDLObject getSyncDLObject(long syncDLObjectId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SyncDLObject> getSyncDLObjects(long repositoryId,
-		long parentFolderId);
-
-	/**
-	* Returns a range of all the sync d l objects.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.sync.model.impl.SyncDLObjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of sync d l objects
-	* @param end the upper bound of the range of sync d l objects (not inclusive)
-	* @return the range of sync d l objects
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SyncDLObject> getSyncDLObjects(int start, int end);
-
-	/**
-	* Returns the number of sync d l objects.
-	*
-	* @return the number of sync d l objects
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSyncDLObjectsCount();
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
+	public void deleteSyncDLObjects(java.lang.String version,
+		java.lang.String type);
 
 	public void moveSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
@@ -256,13 +265,4 @@ public interface SyncDLObjectLocalService extends BaseLocalService,
 
 	public void trashSyncDLObjects(SyncDLObject parentSyncDLObject)
 		throws PortalException;
-
-	/**
-	* Updates the sync d l object in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param syncDLObject the sync d l object
-	* @return the sync d l object that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public SyncDLObject updateSyncDLObject(SyncDLObject syncDLObject);
 }

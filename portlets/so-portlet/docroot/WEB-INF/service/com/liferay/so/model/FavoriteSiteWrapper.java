@@ -93,13 +93,78 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new FavoriteSiteWrapper((FavoriteSite)_favoriteSite.clone());
+	public boolean isCachedModel() {
+		return _favoriteSite.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _favoriteSite.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _favoriteSite.isNew();
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _favoriteSite.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.so.model.FavoriteSite> toCacheModel() {
+		return _favoriteSite.toCacheModel();
+	}
+
+	@Override
+	public com.liferay.so.model.FavoriteSite toEscapedModel() {
+		return new FavoriteSiteWrapper(_favoriteSite.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.so.model.FavoriteSite toUnescapedModel() {
+		return new FavoriteSiteWrapper(_favoriteSite.toUnescapedModel());
 	}
 
 	@Override
 	public int compareTo(com.liferay.so.model.FavoriteSite favoriteSite) {
 		return _favoriteSite.compareTo(favoriteSite);
+	}
+
+	@Override
+	public int hashCode() {
+		return _favoriteSite.hashCode();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _favoriteSite.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new FavoriteSiteWrapper((FavoriteSite)_favoriteSite.clone());
+	}
+
+	/**
+	* Returns the user uuid of this favorite site.
+	*
+	* @return the user uuid of this favorite site
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _favoriteSite.getUserUuid();
+	}
+
+	@Override
+	public java.lang.String toString() {
+		return _favoriteSite.toString();
+	}
+
+	@Override
+	public java.lang.String toXmlString() {
+		return _favoriteSite.toXmlString();
 	}
 
 	/**
@@ -110,11 +175,6 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	@Override
 	public long getCompanyId() {
 		return _favoriteSite.getCompanyId();
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _favoriteSite.getExpandoBridge();
 	}
 
 	/**
@@ -147,11 +207,6 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 		return _favoriteSite.getPrimaryKey();
 	}
 
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _favoriteSite.getPrimaryKeyObj();
-	}
-
 	/**
 	* Returns the user ID of this favorite site.
 	*
@@ -160,36 +215,6 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	@Override
 	public long getUserId() {
 		return _favoriteSite.getUserId();
-	}
-
-	/**
-	* Returns the user uuid of this favorite site.
-	*
-	* @return the user uuid of this favorite site
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _favoriteSite.getUserUuid();
-	}
-
-	@Override
-	public int hashCode() {
-		return _favoriteSite.hashCode();
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _favoriteSite.isCachedModel();
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _favoriteSite.isEscapedModel();
-	}
-
-	@Override
-	public boolean isNew() {
-		return _favoriteSite.isNew();
 	}
 
 	@Override
@@ -213,14 +238,14 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_favoriteSite.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_favoriteSite.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_favoriteSite.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_favoriteSite.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -286,31 +311,6 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_favoriteSite.setUserUuid(userUuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.so.model.FavoriteSite> toCacheModel() {
-		return _favoriteSite.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.so.model.FavoriteSite toEscapedModel() {
-		return new FavoriteSiteWrapper(_favoriteSite.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _favoriteSite.toString();
-	}
-
-	@Override
-	public com.liferay.so.model.FavoriteSite toUnescapedModel() {
-		return new FavoriteSiteWrapper(_favoriteSite.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _favoriteSite.toXmlString();
 	}
 
 	@Override

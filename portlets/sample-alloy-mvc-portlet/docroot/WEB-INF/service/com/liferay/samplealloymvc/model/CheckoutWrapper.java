@@ -135,73 +135,18 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new CheckoutWrapper((Checkout)_checkout.clone());
+	public boolean isCachedModel() {
+		return _checkout.isCachedModel();
 	}
 
 	@Override
-	public int compareTo(com.liferay.samplealloymvc.model.Checkout checkout) {
-		return _checkout.compareTo(checkout);
+	public boolean isEscapedModel() {
+		return _checkout.isEscapedModel();
 	}
 
-	/**
-	* Returns the actual check in date of this checkout.
-	*
-	* @return the actual check in date of this checkout
-	*/
 	@Override
-	public Date getActualCheckInDate() {
-		return _checkout.getActualCheckInDate();
-	}
-
-	/**
-	* Returns the asset ID of this checkout.
-	*
-	* @return the asset ID of this checkout
-	*/
-	@Override
-	public long getAssetId() {
-		return _checkout.getAssetId();
-	}
-
-	/**
-	* Returns the check out date of this checkout.
-	*
-	* @return the check out date of this checkout
-	*/
-	@Override
-	public Date getCheckOutDate() {
-		return _checkout.getCheckOutDate();
-	}
-
-	/**
-	* Returns the checkout ID of this checkout.
-	*
-	* @return the checkout ID of this checkout
-	*/
-	@Override
-	public long getCheckoutId() {
-		return _checkout.getCheckoutId();
-	}
-
-	/**
-	* Returns the company ID of this checkout.
-	*
-	* @return the company ID of this checkout
-	*/
-	@Override
-	public long getCompanyId() {
-		return _checkout.getCompanyId();
-	}
-
-	/**
-	* Returns the create date of this checkout.
-	*
-	* @return the create date of this checkout
-	*/
-	@Override
-	public Date getCreateDate() {
-		return _checkout.getCreateDate();
+	public boolean isNew() {
+		return _checkout.isNew();
 	}
 
 	@Override
@@ -209,34 +154,29 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return _checkout.getExpandoBridge();
 	}
 
-	/**
-	* Returns the expected check in date of this checkout.
-	*
-	* @return the expected check in date of this checkout
-	*/
 	@Override
-	public Date getExpectedCheckInDate() {
-		return _checkout.getExpectedCheckInDate();
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Checkout> toCacheModel() {
+		return _checkout.toCacheModel();
 	}
 
-	/**
-	* Returns the modified date of this checkout.
-	*
-	* @return the modified date of this checkout
-	*/
 	@Override
-	public Date getModifiedDate() {
-		return _checkout.getModifiedDate();
+	public com.liferay.samplealloymvc.model.Checkout toEscapedModel() {
+		return new CheckoutWrapper(_checkout.toEscapedModel());
 	}
 
-	/**
-	* Returns the primary key of this checkout.
-	*
-	* @return the primary key of this checkout
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _checkout.getPrimaryKey();
+	public com.liferay.samplealloymvc.model.Checkout toUnescapedModel() {
+		return new CheckoutWrapper(_checkout.toUnescapedModel());
+	}
+
+	@Override
+	public int compareTo(com.liferay.samplealloymvc.model.Checkout checkout) {
+		return _checkout.compareTo(checkout);
+	}
+
+	@Override
+	public int hashCode() {
+		return _checkout.hashCode();
 	}
 
 	@Override
@@ -244,14 +184,9 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 		return _checkout.getPrimaryKeyObj();
 	}
 
-	/**
-	* Returns the user ID of this checkout.
-	*
-	* @return the user ID of this checkout
-	*/
 	@Override
-	public long getUserId() {
-		return _checkout.getUserId();
+	public java.lang.Object clone() {
+		return new CheckoutWrapper((Checkout)_checkout.clone());
 	}
 
 	/**
@@ -275,23 +210,113 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	}
 
 	@Override
-	public int hashCode() {
-		return _checkout.hashCode();
+	public java.lang.String toString() {
+		return _checkout.toString();
 	}
 
 	@Override
-	public boolean isCachedModel() {
-		return _checkout.isCachedModel();
+	public java.lang.String toXmlString() {
+		return _checkout.toXmlString();
 	}
 
+	/**
+	* Returns the actual check in date of this checkout.
+	*
+	* @return the actual check in date of this checkout
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _checkout.isEscapedModel();
+	public Date getActualCheckInDate() {
+		return _checkout.getActualCheckInDate();
 	}
 
+	/**
+	* Returns the check out date of this checkout.
+	*
+	* @return the check out date of this checkout
+	*/
 	@Override
-	public boolean isNew() {
-		return _checkout.isNew();
+	public Date getCheckOutDate() {
+		return _checkout.getCheckOutDate();
+	}
+
+	/**
+	* Returns the create date of this checkout.
+	*
+	* @return the create date of this checkout
+	*/
+	@Override
+	public Date getCreateDate() {
+		return _checkout.getCreateDate();
+	}
+
+	/**
+	* Returns the expected check in date of this checkout.
+	*
+	* @return the expected check in date of this checkout
+	*/
+	@Override
+	public Date getExpectedCheckInDate() {
+		return _checkout.getExpectedCheckInDate();
+	}
+
+	/**
+	* Returns the modified date of this checkout.
+	*
+	* @return the modified date of this checkout
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _checkout.getModifiedDate();
+	}
+
+	/**
+	* Returns the asset ID of this checkout.
+	*
+	* @return the asset ID of this checkout
+	*/
+	@Override
+	public long getAssetId() {
+		return _checkout.getAssetId();
+	}
+
+	/**
+	* Returns the checkout ID of this checkout.
+	*
+	* @return the checkout ID of this checkout
+	*/
+	@Override
+	public long getCheckoutId() {
+		return _checkout.getCheckoutId();
+	}
+
+	/**
+	* Returns the company ID of this checkout.
+	*
+	* @return the company ID of this checkout
+	*/
+	@Override
+	public long getCompanyId() {
+		return _checkout.getCompanyId();
+	}
+
+	/**
+	* Returns the primary key of this checkout.
+	*
+	* @return the primary key of this checkout
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _checkout.getPrimaryKey();
+	}
+
+	/**
+	* Returns the user ID of this checkout.
+	*
+	* @return the user ID of this checkout
+	*/
+	@Override
+	public long getUserId() {
+		return _checkout.getUserId();
 	}
 
 	@Override
@@ -365,14 +390,14 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_checkout.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_checkout.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_checkout.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_checkout.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -448,31 +473,6 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_checkout.setUserUuid(userUuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplealloymvc.model.Checkout> toCacheModel() {
-		return _checkout.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Checkout toEscapedModel() {
-		return new CheckoutWrapper(_checkout.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _checkout.toString();
-	}
-
-	@Override
-	public com.liferay.samplealloymvc.model.Checkout toUnescapedModel() {
-		return new CheckoutWrapper(_checkout.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _checkout.toXmlString();
 	}
 
 	@Override

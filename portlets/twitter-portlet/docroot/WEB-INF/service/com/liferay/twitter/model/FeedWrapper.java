@@ -128,33 +128,18 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new FeedWrapper((Feed)_feed.clone());
+	public boolean isCachedModel() {
+		return _feed.isCachedModel();
 	}
 
 	@Override
-	public int compareTo(com.liferay.twitter.model.Feed feed) {
-		return _feed.compareTo(feed);
+	public boolean isEscapedModel() {
+		return _feed.isEscapedModel();
 	}
 
-	/**
-	* Returns the company ID of this feed.
-	*
-	* @return the company ID of this feed
-	*/
 	@Override
-	public long getCompanyId() {
-		return _feed.getCompanyId();
-	}
-
-	/**
-	* Returns the create date of this feed.
-	*
-	* @return the create date of this feed
-	*/
-	@Override
-	public Date getCreateDate() {
-		return _feed.getCreateDate();
+	public boolean isNew() {
+		return _feed.isNew();
 	}
 
 	@Override
@@ -162,49 +147,39 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		return _feed.getExpandoBridge();
 	}
 
-	/**
-	* Returns the feed ID of this feed.
-	*
-	* @return the feed ID of this feed
-	*/
 	@Override
-	public long getFeedId() {
-		return _feed.getFeedId();
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.twitter.model.Feed> toCacheModel() {
+		return _feed.toCacheModel();
 	}
 
-	/**
-	* Returns the last status ID of this feed.
-	*
-	* @return the last status ID of this feed
-	*/
 	@Override
-	public long getLastStatusId() {
-		return _feed.getLastStatusId();
+	public com.liferay.twitter.model.Feed toEscapedModel() {
+		return new FeedWrapper(_feed.toEscapedModel());
 	}
 
-	/**
-	* Returns the modified date of this feed.
-	*
-	* @return the modified date of this feed
-	*/
 	@Override
-	public Date getModifiedDate() {
-		return _feed.getModifiedDate();
+	public com.liferay.twitter.model.Feed toUnescapedModel() {
+		return new FeedWrapper(_feed.toUnescapedModel());
 	}
 
-	/**
-	* Returns the primary key of this feed.
-	*
-	* @return the primary key of this feed
-	*/
 	@Override
-	public long getPrimaryKey() {
-		return _feed.getPrimaryKey();
+	public int compareTo(com.liferay.twitter.model.Feed feed) {
+		return _feed.compareTo(feed);
+	}
+
+	@Override
+	public int hashCode() {
+		return _feed.hashCode();
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _feed.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new FeedWrapper((Feed)_feed.clone());
 	}
 
 	/**
@@ -218,16 +193,6 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	/**
-	* Returns the twitter user ID of this feed.
-	*
-	* @return the twitter user ID of this feed
-	*/
-	@Override
-	public long getTwitterUserId() {
-		return _feed.getTwitterUserId();
-	}
-
-	/**
 	* Returns the twitter user uuid of this feed.
 	*
 	* @return the twitter user uuid of this feed
@@ -235,16 +200,6 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	@Override
 	public java.lang.String getTwitterUserUuid() {
 		return _feed.getTwitterUserUuid();
-	}
-
-	/**
-	* Returns the user ID of this feed.
-	*
-	* @return the user ID of this feed
-	*/
-	@Override
-	public long getUserId() {
-		return _feed.getUserId();
 	}
 
 	/**
@@ -268,23 +223,93 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	@Override
-	public int hashCode() {
-		return _feed.hashCode();
+	public java.lang.String toString() {
+		return _feed.toString();
 	}
 
 	@Override
-	public boolean isCachedModel() {
-		return _feed.isCachedModel();
+	public java.lang.String toXmlString() {
+		return _feed.toXmlString();
 	}
 
+	/**
+	* Returns the create date of this feed.
+	*
+	* @return the create date of this feed
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _feed.isEscapedModel();
+	public Date getCreateDate() {
+		return _feed.getCreateDate();
 	}
 
+	/**
+	* Returns the modified date of this feed.
+	*
+	* @return the modified date of this feed
+	*/
 	@Override
-	public boolean isNew() {
-		return _feed.isNew();
+	public Date getModifiedDate() {
+		return _feed.getModifiedDate();
+	}
+
+	/**
+	* Returns the company ID of this feed.
+	*
+	* @return the company ID of this feed
+	*/
+	@Override
+	public long getCompanyId() {
+		return _feed.getCompanyId();
+	}
+
+	/**
+	* Returns the feed ID of this feed.
+	*
+	* @return the feed ID of this feed
+	*/
+	@Override
+	public long getFeedId() {
+		return _feed.getFeedId();
+	}
+
+	/**
+	* Returns the last status ID of this feed.
+	*
+	* @return the last status ID of this feed
+	*/
+	@Override
+	public long getLastStatusId() {
+		return _feed.getLastStatusId();
+	}
+
+	/**
+	* Returns the primary key of this feed.
+	*
+	* @return the primary key of this feed
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _feed.getPrimaryKey();
+	}
+
+	/**
+	* Returns the twitter user ID of this feed.
+	*
+	* @return the twitter user ID of this feed
+	*/
+	@Override
+	public long getTwitterUserId() {
+		return _feed.getTwitterUserId();
+	}
+
+	/**
+	* Returns the user ID of this feed.
+	*
+	* @return the user ID of this feed
+	*/
+	@Override
+	public long getUserId() {
+		return _feed.getUserId();
 	}
 
 	@Override
@@ -318,14 +343,14 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_feed.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_feed.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_feed.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_feed.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -441,31 +466,6 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_feed.setUserUuid(userUuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.twitter.model.Feed> toCacheModel() {
-		return _feed.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.twitter.model.Feed toEscapedModel() {
-		return new FeedWrapper(_feed.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _feed.toString();
-	}
-
-	@Override
-	public com.liferay.twitter.model.Feed toUnescapedModel() {
-		return new FeedWrapper(_feed.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _feed.toXmlString();
 	}
 
 	@Override

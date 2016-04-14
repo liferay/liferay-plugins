@@ -68,11 +68,29 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPConsumerLocalServiceUtil} to access the w s r p consumer local service. Add custom service methods to {@link com.liferay.wsrp.service.impl.WSRPConsumerLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public WSRPConsumer addWSRPConsumer(long companyId,
-		java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String forwardHeaders, java.lang.String markupCharacterSets,
-		ServiceContext serviceContext) throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	public DynamicQuery dynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		PortletDataContext portletDataContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
 
 	/**
 	* Adds the w s r p consumer to the database. Also notifies the appropriate model listeners.
@@ -83,6 +101,12 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public WSRPConsumer addWSRPConsumer(WSRPConsumer wsrpConsumer);
 
+	public WSRPConsumer addWSRPConsumer(long companyId,
+		java.lang.String adminPortletId, java.lang.String name,
+		java.lang.String url, java.lang.String forwardCookies,
+		java.lang.String forwardHeaders, java.lang.String markupCharacterSets,
+		ServiceContext serviceContext) throws PortalException;
+
 	/**
 	* Creates a new w s r p consumer with the primary key. Does not add the w s r p consumer to the database.
 	*
@@ -90,13 +114,6 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	* @return the new w s r p consumer
 	*/
 	public WSRPConsumer createWSRPConsumer(long wsrpConsumerId);
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
 
 	/**
 	* Deletes the w s r p consumer from the database. Also notifies the appropriate model listeners.
@@ -121,9 +138,89 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	public WSRPConsumer deleteWSRPConsumer(long wsrpConsumerId)
 		throws PortalException;
 
-	public void deleteWSRPConsumers(long companyId) throws PortalException;
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public WSRPConsumer fetchWSRPConsumer(long wsrpConsumerId);
 
-	public DynamicQuery dynamicQuery();
+	/**
+	* Returns the w s r p consumer with the matching UUID and company.
+	*
+	* @param uuid the w s r p consumer's UUID
+	* @param companyId the primary key of the company
+	* @return the matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public WSRPConsumer fetchWSRPConsumerByUuidAndCompanyId(
+		java.lang.String uuid, long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public WSRPConsumer getWSRPConsumer(java.lang.String wsrpConsumerUuid)
+		throws PortalException;
+
+	/**
+	* Returns the w s r p consumer with the primary key.
+	*
+	* @param wsrpConsumerId the primary key of the w s r p consumer
+	* @return the w s r p consumer
+	* @throws PortalException if a w s r p consumer with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public WSRPConsumer getWSRPConsumer(long wsrpConsumerId)
+		throws PortalException;
+
+	/**
+	* Returns the w s r p consumer with the matching UUID and company.
+	*
+	* @param uuid the w s r p consumer's UUID
+	* @param companyId the primary key of the company
+	* @return the matching w s r p consumer
+	* @throws PortalException if a matching w s r p consumer could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public WSRPConsumer getWSRPConsumerByUuidAndCompanyId(
+		java.lang.String uuid, long companyId) throws PortalException;
+
+	public WSRPConsumer registerWSRPConsumer(long wsrpConsumerId,
+		java.lang.String adminPortletId,
+		UnicodeProperties registrationProperties,
+		java.lang.String registrationHandle) throws PortalException;
+
+	/**
+	* Updates the w s r p consumer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumer the w s r p consumer
+	* @return the w s r p consumer that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public WSRPConsumer updateWSRPConsumer(WSRPConsumer wsrpConsumer);
+
+	public WSRPConsumer updateWSRPConsumer(long wsrpConsumerId,
+		java.lang.String adminPortletId, java.lang.String name,
+		java.lang.String url, java.lang.String forwardCookies,
+		java.lang.String forwardHeaders, java.lang.String markupCharacterSets)
+		throws PortalException;
+
+	/**
+	* Returns the number of w s r p consumers.
+	*
+	* @return the number of w s r p consumers
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getWSRPConsumersCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getWSRPConsumersCount(long companyId);
+
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -165,6 +262,24 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
+	* Returns a range of all the w s r p consumers.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.wsrp.model.impl.WSRPConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of w s r p consumers
+	* @param end the upper bound of the range of w s r p consumers (not inclusive)
+	* @return the range of w s r p consumers
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<WSRPConsumer> getWSRPConsumers(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<WSRPConsumer> getWSRPConsumers(long companyId, int start,
+		int end);
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -182,126 +297,11 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer fetchWSRPConsumer(long wsrpConsumerId);
-
-	/**
-	* Returns the w s r p consumer with the matching UUID and company.
-	*
-	* @param uuid the w s r p consumer's UUID
-	* @param companyId the primary key of the company
-	* @return the matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer fetchWSRPConsumerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		PortletDataContext portletDataContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
-
-	/**
-	* Returns the w s r p consumer with the primary key.
-	*
-	* @param wsrpConsumerId the primary key of the w s r p consumer
-	* @return the w s r p consumer
-	* @throws PortalException if a w s r p consumer with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer getWSRPConsumer(long wsrpConsumerId)
-		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer getWSRPConsumer(java.lang.String wsrpConsumerUuid)
-		throws PortalException;
-
-	/**
-	* Returns the w s r p consumer with the matching UUID and company.
-	*
-	* @param uuid the w s r p consumer's UUID
-	* @param companyId the primary key of the company
-	* @return the matching w s r p consumer
-	* @throws PortalException if a matching w s r p consumer could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer getWSRPConsumerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<WSRPConsumer> getWSRPConsumers(long companyId, int start,
-		int end);
-
-	/**
-	* Returns a range of all the w s r p consumers.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.wsrp.model.impl.WSRPConsumerModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of w s r p consumers
-	* @param end the upper bound of the range of w s r p consumers (not inclusive)
-	* @return the range of w s r p consumers
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<WSRPConsumer> getWSRPConsumers(int start, int end);
-
-	/**
-	* Returns the number of w s r p consumers.
-	*
-	* @return the number of w s r p consumers
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getWSRPConsumersCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getWSRPConsumersCount(long companyId);
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
-
-	public WSRPConsumer registerWSRPConsumer(long wsrpConsumerId,
-		java.lang.String adminPortletId,
-		UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle) throws PortalException;
+	public void deleteWSRPConsumers(long companyId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void restartConsumer(long wsrpConsumerId) throws PortalException;
 
 	public void updateServiceDescription(long wsrpConsumerId)
-		throws PortalException;
-
-	/**
-	* Updates the w s r p consumer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param wsrpConsumer the w s r p consumer
-	* @return the w s r p consumer that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public WSRPConsumer updateWSRPConsumer(WSRPConsumer wsrpConsumer);
-
-	public WSRPConsumer updateWSRPConsumer(long wsrpConsumerId,
-		java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String forwardHeaders, java.lang.String markupCharacterSets)
 		throws PortalException;
 }

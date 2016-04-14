@@ -59,48 +59,6 @@ public class KBCommentServiceUtil {
 		return getService().getKBComment(kbCommentId);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
-		long groupId, java.lang.String className, long classPK, int status,
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getKBComments(groupId, className, classPK, status, start,
-			end);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
-		long groupId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBComments(groupId, status, start, end);
-	}
-
-	public static int getKBCommentsCount(long groupId,
-		java.lang.String className, long classPK, int status)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getKBCommentsCount(groupId, className, classPK, status);
-	}
-
-	public static int getKBCommentsCount(long groupId, int status)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKBCommentsCount(groupId, status);
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
-	}
-
 	public static com.liferay.knowledgebase.model.KBComment updateKBComment(
 		long kbCommentId, long classNameId, long classPK,
 		java.lang.String content,
@@ -126,6 +84,48 @@ public class KBCommentServiceUtil {
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateStatus(kbCommentId, status, serviceContext);
+	}
+
+	public static int getKBCommentsCount(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBCommentsCount(groupId, status);
+	}
+
+	public static int getKBCommentsCount(long groupId,
+		java.lang.String className, long classPK, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getKBCommentsCount(groupId, className, classPK, status);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long groupId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKBComments(groupId, status, start, end);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBComment> getKBComments(
+		long groupId, java.lang.String className, long classPK, int status,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getKBComments(groupId, className, classPK, status, start,
+			end);
 	}
 
 	public static void clearService() {

@@ -33,6 +33,38 @@ public class JIRAProjectLocalServiceWrapper implements JIRAProjectLocalService,
 		_jiraProjectLocalService = jiraProjectLocalService;
 	}
 
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _jiraProjectLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return _jiraProjectLocalService.dynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return _jiraProjectLocalService.getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _jiraProjectLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _jiraProjectLocalService.getPersistedModel(primaryKeyObj);
+	}
+
 	/**
 	* Adds the j i r a project to the database. Also notifies the appropriate model listeners.
 	*
@@ -83,19 +115,64 @@ public class JIRAProjectLocalServiceWrapper implements JIRAProjectLocalService,
 		return _jiraProjectLocalService.deleteJIRAProject(jiraProjectId);
 	}
 
+	@Override
+	public com.liferay.socialcoding.model.JIRAProject fetchJIRAProject(
+		long jiraProjectId) {
+		return _jiraProjectLocalService.fetchJIRAProject(jiraProjectId);
+	}
+
 	/**
-	* @throws PortalException
+	* Returns the j i r a project with the primary key.
+	*
+	* @param jiraProjectId the primary key of the j i r a project
+	* @return the j i r a project
+	* @throws PortalException if a j i r a project with the primary key could not be found
 	*/
 	@Override
-	public com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+	public com.liferay.socialcoding.model.JIRAProject getJIRAProject(
+		long jiraProjectId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _jiraProjectLocalService.deletePersistedModel(persistedModel);
+		return _jiraProjectLocalService.getJIRAProject(jiraProjectId);
+	}
+
+	/**
+	* Updates the j i r a project in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param jiraProject the j i r a project
+	* @return the j i r a project that was updated
+	*/
+	@Override
+	public com.liferay.socialcoding.model.JIRAProject updateJIRAProject(
+		com.liferay.socialcoding.model.JIRAProject jiraProject) {
+		return _jiraProjectLocalService.updateJIRAProject(jiraProject);
+	}
+
+	/**
+	* Returns the number of j i r a projects.
+	*
+	* @return the number of j i r a projects
+	*/
+	@Override
+	public int getJIRAProjectsCount() {
+		return _jiraProjectLocalService.getJIRAProjectsCount();
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return _jiraProjectLocalService.dynamicQuery();
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return _jiraProjectLocalService.invokeMethod(name, parameterTypes,
+			arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _jiraProjectLocalService.getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -152,6 +229,23 @@ public class JIRAProjectLocalServiceWrapper implements JIRAProjectLocalService,
 	}
 
 	/**
+	* Returns a range of all the j i r a projects.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAProjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of j i r a projects
+	* @param end the upper bound of the range of j i r a projects (not inclusive)
+	* @return the range of j i r a projects
+	*/
+	@Override
+	public java.util.List<com.liferay.socialcoding.model.JIRAProject> getJIRAProjects(
+		int start, int end) {
+		return _jiraProjectLocalService.getJIRAProjects(start, end);
+	}
+
+	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -176,100 +270,6 @@ public class JIRAProjectLocalServiceWrapper implements JIRAProjectLocalService,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _jiraProjectLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
-	}
-
-	@Override
-	public com.liferay.socialcoding.model.JIRAProject fetchJIRAProject(
-		long jiraProjectId) {
-		return _jiraProjectLocalService.fetchJIRAProject(jiraProjectId);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _jiraProjectLocalService.getActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return _jiraProjectLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the j i r a project with the primary key.
-	*
-	* @param jiraProjectId the primary key of the j i r a project
-	* @return the j i r a project
-	* @throws PortalException if a j i r a project with the primary key could not be found
-	*/
-	@Override
-	public com.liferay.socialcoding.model.JIRAProject getJIRAProject(
-		long jiraProjectId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _jiraProjectLocalService.getJIRAProject(jiraProjectId);
-	}
-
-	/**
-	* Returns a range of all the j i r a projects.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.socialcoding.model.impl.JIRAProjectModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of j i r a projects
-	* @param end the upper bound of the range of j i r a projects (not inclusive)
-	* @return the range of j i r a projects
-	*/
-	@Override
-	public java.util.List<com.liferay.socialcoding.model.JIRAProject> getJIRAProjects(
-		int start, int end) {
-		return _jiraProjectLocalService.getJIRAProjects(start, end);
-	}
-
-	/**
-	* Returns the number of j i r a projects.
-	*
-	* @return the number of j i r a projects
-	*/
-	@Override
-	public int getJIRAProjectsCount() {
-		return _jiraProjectLocalService.getJIRAProjectsCount();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _jiraProjectLocalService.getOSGiServiceIdentifier();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _jiraProjectLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return _jiraProjectLocalService.invokeMethod(name, parameterTypes,
-			arguments);
-	}
-
-	/**
-	* Updates the j i r a project in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param jiraProject the j i r a project
-	* @return the j i r a project that was updated
-	*/
-	@Override
-	public com.liferay.socialcoding.model.JIRAProject updateJIRAProject(
-		com.liferay.socialcoding.model.JIRAProject jiraProject) {
-		return _jiraProjectLocalService.updateJIRAProject(jiraProject);
 	}
 
 	@Override

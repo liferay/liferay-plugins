@@ -53,6 +53,10 @@ public interface SkinnyService extends BaseService, InvokableService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SkinnyServiceUtil} to access the skinny remote service. Add custom service methods to {@link com.liferay.skinny.service.impl.SkinnyServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Override
+	public java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable;
 
 	/**
 	* Returns the OSGi service identifier.
@@ -71,9 +75,4 @@ public interface SkinnyService extends BaseService, InvokableService {
 	public List<SkinnyJournalArticle> getSkinnyJournalArticles(long companyId,
 		java.lang.String groupName, long ddmStructureId, java.lang.String locale)
 		throws java.lang.Exception;
-
-	@Override
-	public java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable;
 }

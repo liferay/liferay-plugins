@@ -41,6 +41,32 @@ public class JIRAIssueLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
+		return getService().dynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
+		return getService().getIndexableActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.kernel.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getPersistedModel(primaryKeyObj);
+	}
 
 	/**
 	* Adds the j i r a issue to the database. Also notifies the appropriate model listeners.
@@ -88,17 +114,131 @@ public class JIRAIssueLocalServiceUtil {
 		return getService().deleteJIRAIssue(jiraIssueId);
 	}
 
-	/**
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.kernel.model.PersistedModel deletePersistedModel(
-		com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deletePersistedModel(persistedModel);
+	public static com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
+		long jiraIssueId) {
+		return getService().fetchJIRAIssue(jiraIssueId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
-		return getService().dynamicQuery();
+	public static com.liferay.socialcoding.model.JIRAIssue getFirstAssigneeJIRAIssue(
+		long projectId, java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getFirstAssigneeJIRAIssue(projectId, assigneeJiraUserId);
+	}
+
+	public static com.liferay.socialcoding.model.JIRAIssue getFirstReporterJIRAIssue(
+		long projectId, java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getFirstReporterJIRAIssue(projectId, reporterJiraUserId);
+	}
+
+	public static com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
+		java.lang.String key)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getJIRAIssue(key);
+	}
+
+	/**
+	* Returns the j i r a issue with the primary key.
+	*
+	* @param jiraIssueId the primary key of the j i r a issue
+	* @return the j i r a issue
+	* @throws PortalException if a j i r a issue with the primary key could not be found
+	*/
+	public static com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
+		long jiraIssueId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getJIRAIssue(jiraIssueId);
+	}
+
+	public static com.liferay.socialcoding.model.JIRAIssue getLastAssigneeJIRAIssue(
+		long projectId, java.lang.String assigneeJiraUserId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getLastAssigneeJIRAIssue(projectId, assigneeJiraUserId);
+	}
+
+	public static com.liferay.socialcoding.model.JIRAIssue getLastreporterJIRAIssue(
+		long projectId, java.lang.String reporterJiraUserId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getLastreporterJIRAIssue(projectId, reporterJiraUserId);
+	}
+
+	/**
+	* Updates the j i r a issue in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param jiraIssue the j i r a issue
+	* @return the j i r a issue that was updated
+	*/
+	public static com.liferay.socialcoding.model.JIRAIssue updateJIRAIssue(
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
+		return getService().updateJIRAIssue(jiraIssue);
+	}
+
+	public static int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
+		long projectId, java.lang.String assigneeJiraUserId) {
+		return getService()
+				   .getAssigneeJIRAIssuesCount(modifiedDate, projectId,
+			assigneeJiraUserId);
+	}
+
+	public static int getAssigneeJIRAIssuesCount(long projectId,
+		java.lang.String assigneeJiraUserId) {
+		return getService()
+				   .getAssigneeJIRAIssuesCount(projectId, assigneeJiraUserId);
+	}
+
+	public static int getAssigneeJIRAIssuesCount(long projectId,
+		java.lang.String assigneeJiraUserId, java.lang.String status) {
+		return getService()
+				   .getAssigneeJIRAIssuesCount(projectId, assigneeJiraUserId,
+			status);
+	}
+
+	/**
+	* Returns the number of j i r a issues.
+	*
+	* @return the number of j i r a issues
+	*/
+	public static int getJIRAIssuesCount() {
+		return getService().getJIRAIssuesCount();
+	}
+
+	public static int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
+		long projectId, java.lang.String reporterJiraUserId) {
+		return getService()
+				   .getReporterJIRAIssuesCount(modifiedDate, projectId,
+			reporterJiraUserId);
+	}
+
+	public static int getReporterJIRAIssuesCount(long projectId,
+		java.lang.String reporterJiraUserId) {
+		return getService()
+				   .getReporterJIRAIssuesCount(projectId, reporterJiraUserId);
+	}
+
+	public static int getReporterJIRAIssuesCount(long projectId,
+		java.lang.String reporterJiraUserId, java.lang.String status) {
+		return getService()
+				   .getReporterJIRAIssuesCount(projectId, reporterJiraUserId,
+			status);
+	}
+
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	/**
@@ -151,39 +291,6 @@ public class JIRAIssueLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-		return getService().dynamicQueryCount(dynamicQuery);
-	}
-
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection) {
-		return getService().dynamicQueryCount(dynamicQuery, projection);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
-		long jiraIssueId) {
-		return getService().fetchJIRAIssue(jiraIssueId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return getService().getActionableDynamicQuery();
-	}
-
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		java.util.Date modifiedDate, long projectId,
 		java.lang.String assigneeJiraUserId, int start, int end) {
@@ -207,63 +314,6 @@ public class JIRAIssueLocalServiceUtil {
 			status, start, end);
 	}
 
-	public static int getAssigneeJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String assigneeJiraUserId) {
-		return getService()
-				   .getAssigneeJIRAIssuesCount(modifiedDate, projectId,
-			assigneeJiraUserId);
-	}
-
-	public static int getAssigneeJIRAIssuesCount(long projectId,
-		java.lang.String assigneeJiraUserId) {
-		return getService()
-				   .getAssigneeJIRAIssuesCount(projectId, assigneeJiraUserId);
-	}
-
-	public static int getAssigneeJIRAIssuesCount(long projectId,
-		java.lang.String assigneeJiraUserId, java.lang.String status) {
-		return getService()
-				   .getAssigneeJIRAIssuesCount(projectId, assigneeJiraUserId,
-			status);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue getFirstAssigneeJIRAIssue(
-		long projectId, java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getFirstAssigneeJIRAIssue(projectId, assigneeJiraUserId);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue getFirstReporterJIRAIssue(
-		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getFirstReporterJIRAIssue(projectId, reporterJiraUserId);
-	}
-
-	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the j i r a issue with the primary key.
-	*
-	* @param jiraIssueId the primary key of the j i r a issue
-	* @return the j i r a issue
-	* @throws PortalException if a j i r a issue with the primary key could not be found
-	*/
-	public static com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
-		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getJIRAIssue(jiraIssueId);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
-		java.lang.String key)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getJIRAIssue(key);
-	}
-
 	/**
 	* Returns a range of all the j i r a issues.
 	*
@@ -278,44 +328,6 @@ public class JIRAIssueLocalServiceUtil {
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> getJIRAIssues(
 		int start, int end) {
 		return getService().getJIRAIssues(start, end);
-	}
-
-	/**
-	* Returns the number of j i r a issues.
-	*
-	* @return the number of j i r a issues
-	*/
-	public static int getJIRAIssuesCount() {
-		return getService().getJIRAIssuesCount();
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue getLastAssigneeJIRAIssue(
-		long projectId, java.lang.String assigneeJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getLastAssigneeJIRAIssue(projectId, assigneeJiraUserId);
-	}
-
-	public static com.liferay.socialcoding.model.JIRAIssue getLastreporterJIRAIssue(
-		long projectId, java.lang.String reporterJiraUserId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .getLastreporterJIRAIssue(projectId, reporterJiraUserId);
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
-	}
-
-	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getPersistedModel(primaryKeyObj);
 	}
 
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> getReporterJIRAIssues(
@@ -341,41 +353,28 @@ public class JIRAIssueLocalServiceUtil {
 			status, start, end);
 	}
 
-	public static int getReporterJIRAIssuesCount(java.util.Date modifiedDate,
-		long projectId, java.lang.String reporterJiraUserId) {
-		return getService()
-				   .getReporterJIRAIssuesCount(modifiedDate, projectId,
-			reporterJiraUserId);
-	}
-
-	public static int getReporterJIRAIssuesCount(long projectId,
-		java.lang.String reporterJiraUserId) {
-		return getService()
-				   .getReporterJIRAIssuesCount(projectId, reporterJiraUserId);
-	}
-
-	public static int getReporterJIRAIssuesCount(long projectId,
-		java.lang.String reporterJiraUserId, java.lang.String status) {
-		return getService()
-				   .getReporterJIRAIssuesCount(projectId, reporterJiraUserId,
-			status);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
+	/**
+	* Returns the number of rows matching the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
+	*/
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
+		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
 	/**
-	* Updates the j i r a issue in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	* Returns the number of rows matching the dynamic query.
 	*
-	* @param jiraIssue the j i r a issue
-	* @return the j i r a issue that was updated
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
 	*/
-	public static com.liferay.socialcoding.model.JIRAIssue updateJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
-		return getService().updateJIRAIssue(jiraIssue);
+	public static long dynamicQueryCount(
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
+		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static void updateJIRAIssues(long projectId)

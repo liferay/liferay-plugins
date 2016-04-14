@@ -138,14 +138,59 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	}
 
 	@Override
-	public java.lang.Object clone() {
-		return new SampleLARBookingWrapper((SampleLARBooking)_sampleLARBooking.clone());
+	public boolean isCachedModel() {
+		return _sampleLARBooking.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _sampleLARBooking.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _sampleLARBooking.isNew();
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _sampleLARBooking.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplelar.model.SampleLARBooking> toCacheModel() {
+		return _sampleLARBooking.toCacheModel();
+	}
+
+	@Override
+	public com.liferay.samplelar.model.SampleLARBooking toEscapedModel() {
+		return new SampleLARBookingWrapper(_sampleLARBooking.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.samplelar.model.SampleLARBooking toUnescapedModel() {
+		return new SampleLARBookingWrapper(_sampleLARBooking.toUnescapedModel());
 	}
 
 	@Override
 	public int compareTo(
 		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking) {
 		return _sampleLARBooking.compareTo(sampleLARBooking);
+	}
+
+	@Override
+	public int hashCode() {
+		return _sampleLARBooking.hashCode();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _sampleLARBooking.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new SampleLARBookingWrapper((SampleLARBooking)_sampleLARBooking.clone());
 	}
 
 	/**
@@ -156,96 +201,6 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	@Override
 	public java.lang.String getBookingNumber() {
 		return _sampleLARBooking.getBookingNumber();
-	}
-
-	/**
-	* Returns the company ID of this sample l a r booking.
-	*
-	* @return the company ID of this sample l a r booking
-	*/
-	@Override
-	public long getCompanyId() {
-		return _sampleLARBooking.getCompanyId();
-	}
-
-	/**
-	* Returns the create date of this sample l a r booking.
-	*
-	* @return the create date of this sample l a r booking
-	*/
-	@Override
-	public Date getCreateDate() {
-		return _sampleLARBooking.getCreateDate();
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _sampleLARBooking.getExpandoBridge();
-	}
-
-	/**
-	* Returns the group ID of this sample l a r booking.
-	*
-	* @return the group ID of this sample l a r booking
-	*/
-	@Override
-	public long getGroupId() {
-		return _sampleLARBooking.getGroupId();
-	}
-
-	/**
-	* Returns the last publish date of this sample l a r booking.
-	*
-	* @return the last publish date of this sample l a r booking
-	*/
-	@Override
-	public Date getLastPublishDate() {
-		return _sampleLARBooking.getLastPublishDate();
-	}
-
-	/**
-	* Returns the modified date of this sample l a r booking.
-	*
-	* @return the modified date of this sample l a r booking
-	*/
-	@Override
-	public Date getModifiedDate() {
-		return _sampleLARBooking.getModifiedDate();
-	}
-
-	/**
-	* Returns the primary key of this sample l a r booking.
-	*
-	* @return the primary key of this sample l a r booking
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _sampleLARBooking.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _sampleLARBooking.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the sample l a r booking ID of this sample l a r booking.
-	*
-	* @return the sample l a r booking ID of this sample l a r booking
-	*/
-	@Override
-	public long getSampleLARBookingId() {
-		return _sampleLARBooking.getSampleLARBookingId();
-	}
-
-	/**
-	* Returns the user ID of this sample l a r booking.
-	*
-	* @return the user ID of this sample l a r booking
-	*/
-	@Override
-	public long getUserId() {
-		return _sampleLARBooking.getUserId();
 	}
 
 	/**
@@ -279,23 +234,93 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	}
 
 	@Override
-	public int hashCode() {
-		return _sampleLARBooking.hashCode();
+	public java.lang.String toString() {
+		return _sampleLARBooking.toString();
 	}
 
 	@Override
-	public boolean isCachedModel() {
-		return _sampleLARBooking.isCachedModel();
+	public java.lang.String toXmlString() {
+		return _sampleLARBooking.toXmlString();
 	}
 
+	/**
+	* Returns the create date of this sample l a r booking.
+	*
+	* @return the create date of this sample l a r booking
+	*/
 	@Override
-	public boolean isEscapedModel() {
-		return _sampleLARBooking.isEscapedModel();
+	public Date getCreateDate() {
+		return _sampleLARBooking.getCreateDate();
 	}
 
+	/**
+	* Returns the last publish date of this sample l a r booking.
+	*
+	* @return the last publish date of this sample l a r booking
+	*/
 	@Override
-	public boolean isNew() {
-		return _sampleLARBooking.isNew();
+	public Date getLastPublishDate() {
+		return _sampleLARBooking.getLastPublishDate();
+	}
+
+	/**
+	* Returns the modified date of this sample l a r booking.
+	*
+	* @return the modified date of this sample l a r booking
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _sampleLARBooking.getModifiedDate();
+	}
+
+	/**
+	* Returns the company ID of this sample l a r booking.
+	*
+	* @return the company ID of this sample l a r booking
+	*/
+	@Override
+	public long getCompanyId() {
+		return _sampleLARBooking.getCompanyId();
+	}
+
+	/**
+	* Returns the group ID of this sample l a r booking.
+	*
+	* @return the group ID of this sample l a r booking
+	*/
+	@Override
+	public long getGroupId() {
+		return _sampleLARBooking.getGroupId();
+	}
+
+	/**
+	* Returns the primary key of this sample l a r booking.
+	*
+	* @return the primary key of this sample l a r booking
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _sampleLARBooking.getPrimaryKey();
+	}
+
+	/**
+	* Returns the sample l a r booking ID of this sample l a r booking.
+	*
+	* @return the sample l a r booking ID of this sample l a r booking
+	*/
+	@Override
+	public long getSampleLARBookingId() {
+		return _sampleLARBooking.getSampleLARBookingId();
+	}
+
+	/**
+	* Returns the user ID of this sample l a r booking.
+	*
+	* @return the user ID of this sample l a r booking
+	*/
+	@Override
+	public long getUserId() {
+		return _sampleLARBooking.getUserId();
 	}
 
 	@Override
@@ -339,14 +364,14 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_sampleLARBooking.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_sampleLARBooking.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_sampleLARBooking.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_sampleLARBooking.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -452,31 +477,6 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	@Override
 	public void setUuid(java.lang.String uuid) {
 		_sampleLARBooking.setUuid(uuid);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.samplelar.model.SampleLARBooking> toCacheModel() {
-		return _sampleLARBooking.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking toEscapedModel() {
-		return new SampleLARBookingWrapper(_sampleLARBooking.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _sampleLARBooking.toString();
-	}
-
-	@Override
-	public com.liferay.samplelar.model.SampleLARBooking toUnescapedModel() {
-		return new SampleLARBookingWrapper(_sampleLARBooking.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _sampleLARBooking.toXmlString();
 	}
 
 	@Override

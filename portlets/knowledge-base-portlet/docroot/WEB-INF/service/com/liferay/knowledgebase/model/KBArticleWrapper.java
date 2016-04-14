@@ -272,129 +272,6 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 		}
 	}
 
-	@Override
-	public java.lang.Object clone() {
-		return new KBArticleWrapper((KBArticle)_kbArticle.clone());
-	}
-
-	@Override
-	public int compareTo(com.liferay.knowledgebase.model.KBArticle kbArticle) {
-		return _kbArticle.compareTo(kbArticle);
-	}
-
-	@Override
-	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticle.getAncestorResourcePrimaryKeys();
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getAttachmentsFileEntries()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticle.getAttachmentsFileEntries();
-	}
-
-	@Override
-	public long getAttachmentsFolderId()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticle.getAttachmentsFolderId();
-	}
-
-	@Override
-	public long getClassNameId() {
-		return _kbArticle.getClassNameId();
-	}
-
-	@Override
-	public long getClassPK() {
-		return _kbArticle.getClassPK();
-	}
-
-	/**
-	* Returns the company ID of this k b article.
-	*
-	* @return the company ID of this k b article
-	*/
-	@Override
-	public long getCompanyId() {
-		return _kbArticle.getCompanyId();
-	}
-
-	/**
-	* Returns the content of this k b article.
-	*
-	* @return the content of this k b article
-	*/
-	@Override
-	public java.lang.String getContent() {
-		return _kbArticle.getContent();
-	}
-
-	/**
-	* Returns the create date of this k b article.
-	*
-	* @return the create date of this k b article
-	*/
-	@Override
-	public Date getCreateDate() {
-		return _kbArticle.getCreateDate();
-	}
-
-	/**
-	* Returns the description of this k b article.
-	*
-	* @return the description of this k b article
-	*/
-	@Override
-	public java.lang.String getDescription() {
-		return _kbArticle.getDescription();
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _kbArticle.getExpandoBridge();
-	}
-
-	/**
-	* Returns the group ID of this k b article.
-	*
-	* @return the group ID of this k b article
-	*/
-	@Override
-	public long getGroupId() {
-		return _kbArticle.getGroupId();
-	}
-
-	/**
-	* Returns the kb article ID of this k b article.
-	*
-	* @return the kb article ID of this k b article
-	*/
-	@Override
-	public long getKbArticleId() {
-		return _kbArticle.getKbArticleId();
-	}
-
-	/**
-	* Returns the kb folder ID of this k b article.
-	*
-	* @return the kb folder ID of this k b article
-	*/
-	@Override
-	public long getKbFolderId() {
-		return _kbArticle.getKbFolderId();
-	}
-
-	/**
-	* Returns the last publish date of this k b article.
-	*
-	* @return the last publish date of this k b article
-	*/
-	@Override
-	public Date getLastPublishDate() {
-		return _kbArticle.getLastPublishDate();
-	}
-
 	/**
 	* Returns the latest of this k b article.
 	*
@@ -413,248 +290,6 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	@Override
 	public boolean getMain() {
 		return _kbArticle.getMain();
-	}
-
-	/**
-	* Returns the modified date of this k b article.
-	*
-	* @return the modified date of this k b article
-	*/
-	@Override
-	public Date getModifiedDate() {
-		return _kbArticle.getModifiedDate();
-	}
-
-	@Override
-	public com.liferay.knowledgebase.model.KBArticle getParentKBArticle()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticle.getParentKBArticle();
-	}
-
-	/**
-	* Returns the parent resource class name ID of this k b article.
-	*
-	* @return the parent resource class name ID of this k b article
-	*/
-	@Override
-	public long getParentResourceClassNameId() {
-		return _kbArticle.getParentResourceClassNameId();
-	}
-
-	/**
-	* Returns the parent resource prim key of this k b article.
-	*
-	* @return the parent resource prim key of this k b article
-	*/
-	@Override
-	public long getParentResourcePrimKey() {
-		return _kbArticle.getParentResourcePrimKey();
-	}
-
-	@Override
-	public java.lang.String getParentTitle(java.util.Locale locale, int status)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kbArticle.getParentTitle(locale, status);
-	}
-
-	/**
-	* Returns the primary key of this k b article.
-	*
-	* @return the primary key of this k b article
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _kbArticle.getPrimaryKey();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _kbArticle.getPrimaryKeyObj();
-	}
-
-	/**
-	* Returns the priority of this k b article.
-	*
-	* @return the priority of this k b article
-	*/
-	@Override
-	public double getPriority() {
-		return _kbArticle.getPriority();
-	}
-
-	/**
-	* Returns the resource prim key of this k b article.
-	*
-	* @return the resource prim key of this k b article
-	*/
-	@Override
-	public long getResourcePrimKey() {
-		return _kbArticle.getResourcePrimKey();
-	}
-
-	/**
-	* Returns the root resource prim key of this k b article.
-	*
-	* @return the root resource prim key of this k b article
-	*/
-	@Override
-	public long getRootResourcePrimKey() {
-		return _kbArticle.getRootResourcePrimKey();
-	}
-
-	/**
-	* Returns the sections of this k b article.
-	*
-	* @return the sections of this k b article
-	*/
-	@Override
-	public java.lang.String getSections() {
-		return _kbArticle.getSections();
-	}
-
-	/**
-	* Returns the source u r l of this k b article.
-	*
-	* @return the source u r l of this k b article
-	*/
-	@Override
-	public java.lang.String getSourceURL() {
-		return _kbArticle.getSourceURL();
-	}
-
-	/**
-	* Returns the status of this k b article.
-	*
-	* @return the status of this k b article
-	*/
-	@Override
-	public int getStatus() {
-		return _kbArticle.getStatus();
-	}
-
-	/**
-	* Returns the status by user ID of this k b article.
-	*
-	* @return the status by user ID of this k b article
-	*/
-	@Override
-	public long getStatusByUserId() {
-		return _kbArticle.getStatusByUserId();
-	}
-
-	/**
-	* Returns the status by user name of this k b article.
-	*
-	* @return the status by user name of this k b article
-	*/
-	@Override
-	public java.lang.String getStatusByUserName() {
-		return _kbArticle.getStatusByUserName();
-	}
-
-	/**
-	* Returns the status by user uuid of this k b article.
-	*
-	* @return the status by user uuid of this k b article
-	*/
-	@Override
-	public java.lang.String getStatusByUserUuid() {
-		return _kbArticle.getStatusByUserUuid();
-	}
-
-	/**
-	* Returns the status date of this k b article.
-	*
-	* @return the status date of this k b article
-	*/
-	@Override
-	public Date getStatusDate() {
-		return _kbArticle.getStatusDate();
-	}
-
-	/**
-	* Returns the title of this k b article.
-	*
-	* @return the title of this k b article
-	*/
-	@Override
-	public java.lang.String getTitle() {
-		return _kbArticle.getTitle();
-	}
-
-	/**
-	* Returns the url title of this k b article.
-	*
-	* @return the url title of this k b article
-	*/
-	@Override
-	public java.lang.String getUrlTitle() {
-		return _kbArticle.getUrlTitle();
-	}
-
-	/**
-	* Returns the user ID of this k b article.
-	*
-	* @return the user ID of this k b article
-	*/
-	@Override
-	public long getUserId() {
-		return _kbArticle.getUserId();
-	}
-
-	/**
-	* Returns the user name of this k b article.
-	*
-	* @return the user name of this k b article
-	*/
-	@Override
-	public java.lang.String getUserName() {
-		return _kbArticle.getUserName();
-	}
-
-	/**
-	* Returns the user uuid of this k b article.
-	*
-	* @return the user uuid of this k b article
-	*/
-	@Override
-	public java.lang.String getUserUuid() {
-		return _kbArticle.getUserUuid();
-	}
-
-	/**
-	* Returns the uuid of this k b article.
-	*
-	* @return the uuid of this k b article
-	*/
-	@Override
-	public java.lang.String getUuid() {
-		return _kbArticle.getUuid();
-	}
-
-	/**
-	* Returns the version of this k b article.
-	*
-	* @return the version of this k b article
-	*/
-	@Override
-	public int getVersion() {
-		return _kbArticle.getVersion();
-	}
-
-	/**
-	* Returns the view count of this k b article.
-	*
-	* @return the view count of this k b article
-	*/
-	@Override
-	public int getViewCount() {
-		return _kbArticle.getViewCount();
-	}
-
-	@Override
-	public int hashCode() {
-		return _kbArticle.hashCode();
 	}
 
 	/**
@@ -788,6 +423,396 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _kbArticle.getExpandoBridge();
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle getParentKBArticle()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticle.getParentKBArticle();
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle toEscapedModel() {
+		return new KBArticleWrapper(_kbArticle.toEscapedModel());
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle toUnescapedModel() {
+		return new KBArticleWrapper(_kbArticle.toUnescapedModel());
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<com.liferay.knowledgebase.model.KBArticle> toCacheModel() {
+		return _kbArticle.toCacheModel();
+	}
+
+	/**
+	* Returns the priority of this k b article.
+	*
+	* @return the priority of this k b article
+	*/
+	@Override
+	public double getPriority() {
+		return _kbArticle.getPriority();
+	}
+
+	@Override
+	public int compareTo(com.liferay.knowledgebase.model.KBArticle kbArticle) {
+		return _kbArticle.compareTo(kbArticle);
+	}
+
+	/**
+	* Returns the status of this k b article.
+	*
+	* @return the status of this k b article
+	*/
+	@Override
+	public int getStatus() {
+		return _kbArticle.getStatus();
+	}
+
+	/**
+	* Returns the version of this k b article.
+	*
+	* @return the version of this k b article
+	*/
+	@Override
+	public int getVersion() {
+		return _kbArticle.getVersion();
+	}
+
+	/**
+	* Returns the view count of this k b article.
+	*
+	* @return the view count of this k b article
+	*/
+	@Override
+	public int getViewCount() {
+		return _kbArticle.getViewCount();
+	}
+
+	@Override
+	public int hashCode() {
+		return _kbArticle.hashCode();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _kbArticle.getPrimaryKeyObj();
+	}
+
+	@Override
+	public java.lang.Object clone() {
+		return new KBArticleWrapper((KBArticle)_kbArticle.clone());
+	}
+
+	/**
+	* Returns the content of this k b article.
+	*
+	* @return the content of this k b article
+	*/
+	@Override
+	public java.lang.String getContent() {
+		return _kbArticle.getContent();
+	}
+
+	/**
+	* Returns the description of this k b article.
+	*
+	* @return the description of this k b article
+	*/
+	@Override
+	public java.lang.String getDescription() {
+		return _kbArticle.getDescription();
+	}
+
+	@Override
+	public java.lang.String getParentTitle(java.util.Locale locale, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticle.getParentTitle(locale, status);
+	}
+
+	/**
+	* Returns the sections of this k b article.
+	*
+	* @return the sections of this k b article
+	*/
+	@Override
+	public java.lang.String getSections() {
+		return _kbArticle.getSections();
+	}
+
+	/**
+	* Returns the source u r l of this k b article.
+	*
+	* @return the source u r l of this k b article
+	*/
+	@Override
+	public java.lang.String getSourceURL() {
+		return _kbArticle.getSourceURL();
+	}
+
+	/**
+	* Returns the status by user name of this k b article.
+	*
+	* @return the status by user name of this k b article
+	*/
+	@Override
+	public java.lang.String getStatusByUserName() {
+		return _kbArticle.getStatusByUserName();
+	}
+
+	/**
+	* Returns the status by user uuid of this k b article.
+	*
+	* @return the status by user uuid of this k b article
+	*/
+	@Override
+	public java.lang.String getStatusByUserUuid() {
+		return _kbArticle.getStatusByUserUuid();
+	}
+
+	/**
+	* Returns the title of this k b article.
+	*
+	* @return the title of this k b article
+	*/
+	@Override
+	public java.lang.String getTitle() {
+		return _kbArticle.getTitle();
+	}
+
+	/**
+	* Returns the url title of this k b article.
+	*
+	* @return the url title of this k b article
+	*/
+	@Override
+	public java.lang.String getUrlTitle() {
+		return _kbArticle.getUrlTitle();
+	}
+
+	/**
+	* Returns the user name of this k b article.
+	*
+	* @return the user name of this k b article
+	*/
+	@Override
+	public java.lang.String getUserName() {
+		return _kbArticle.getUserName();
+	}
+
+	/**
+	* Returns the user uuid of this k b article.
+	*
+	* @return the user uuid of this k b article
+	*/
+	@Override
+	public java.lang.String getUserUuid() {
+		return _kbArticle.getUserUuid();
+	}
+
+	/**
+	* Returns the uuid of this k b article.
+	*
+	* @return the uuid of this k b article
+	*/
+	@Override
+	public java.lang.String getUuid() {
+		return _kbArticle.getUuid();
+	}
+
+	@Override
+	public java.lang.String toString() {
+		return _kbArticle.toString();
+	}
+
+	@Override
+	public java.lang.String toXmlString() {
+		return _kbArticle.toXmlString();
+	}
+
+	/**
+	* Returns the create date of this k b article.
+	*
+	* @return the create date of this k b article
+	*/
+	@Override
+	public Date getCreateDate() {
+		return _kbArticle.getCreateDate();
+	}
+
+	/**
+	* Returns the last publish date of this k b article.
+	*
+	* @return the last publish date of this k b article
+	*/
+	@Override
+	public Date getLastPublishDate() {
+		return _kbArticle.getLastPublishDate();
+	}
+
+	/**
+	* Returns the modified date of this k b article.
+	*
+	* @return the modified date of this k b article
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _kbArticle.getModifiedDate();
+	}
+
+	/**
+	* Returns the status date of this k b article.
+	*
+	* @return the status date of this k b article
+	*/
+	@Override
+	public Date getStatusDate() {
+		return _kbArticle.getStatusDate();
+	}
+
+	@Override
+	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticle.getAncestorResourcePrimaryKeys();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getAttachmentsFileEntries()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticle.getAttachmentsFileEntries();
+	}
+
+	@Override
+	public long getAttachmentsFolderId()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticle.getAttachmentsFolderId();
+	}
+
+	@Override
+	public long getClassNameId() {
+		return _kbArticle.getClassNameId();
+	}
+
+	@Override
+	public long getClassPK() {
+		return _kbArticle.getClassPK();
+	}
+
+	/**
+	* Returns the company ID of this k b article.
+	*
+	* @return the company ID of this k b article
+	*/
+	@Override
+	public long getCompanyId() {
+		return _kbArticle.getCompanyId();
+	}
+
+	/**
+	* Returns the group ID of this k b article.
+	*
+	* @return the group ID of this k b article
+	*/
+	@Override
+	public long getGroupId() {
+		return _kbArticle.getGroupId();
+	}
+
+	/**
+	* Returns the kb article ID of this k b article.
+	*
+	* @return the kb article ID of this k b article
+	*/
+	@Override
+	public long getKbArticleId() {
+		return _kbArticle.getKbArticleId();
+	}
+
+	/**
+	* Returns the kb folder ID of this k b article.
+	*
+	* @return the kb folder ID of this k b article
+	*/
+	@Override
+	public long getKbFolderId() {
+		return _kbArticle.getKbFolderId();
+	}
+
+	/**
+	* Returns the parent resource class name ID of this k b article.
+	*
+	* @return the parent resource class name ID of this k b article
+	*/
+	@Override
+	public long getParentResourceClassNameId() {
+		return _kbArticle.getParentResourceClassNameId();
+	}
+
+	/**
+	* Returns the parent resource prim key of this k b article.
+	*
+	* @return the parent resource prim key of this k b article
+	*/
+	@Override
+	public long getParentResourcePrimKey() {
+		return _kbArticle.getParentResourcePrimKey();
+	}
+
+	/**
+	* Returns the primary key of this k b article.
+	*
+	* @return the primary key of this k b article
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _kbArticle.getPrimaryKey();
+	}
+
+	/**
+	* Returns the resource prim key of this k b article.
+	*
+	* @return the resource prim key of this k b article
+	*/
+	@Override
+	public long getResourcePrimKey() {
+		return _kbArticle.getResourcePrimKey();
+	}
+
+	/**
+	* Returns the root resource prim key of this k b article.
+	*
+	* @return the root resource prim key of this k b article
+	*/
+	@Override
+	public long getRootResourcePrimKey() {
+		return _kbArticle.getRootResourcePrimKey();
+	}
+
+	/**
+	* Returns the status by user ID of this k b article.
+	*
+	* @return the status by user ID of this k b article
+	*/
+	@Override
+	public long getStatusByUserId() {
+		return _kbArticle.getStatusByUserId();
+	}
+
+	/**
+	* Returns the user ID of this k b article.
+	*
+	* @return the user ID of this k b article
+	*/
+	@Override
+	public long getUserId() {
+		return _kbArticle.getUserId();
+	}
+
+	@Override
 	public void persist() {
 		_kbArticle.persist();
 	}
@@ -838,14 +863,14 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(
-		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
-		_kbArticle.setExpandoBridgeAttributes(baseModel);
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kbArticle.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kbArticle.setExpandoBridgeAttributes(expandoBridge);
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
+		_kbArticle.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -1141,31 +1166,6 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	@Override
 	public void setViewCount(int viewCount) {
 		_kbArticle.setViewCount(viewCount);
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<com.liferay.knowledgebase.model.KBArticle> toCacheModel() {
-		return _kbArticle.toCacheModel();
-	}
-
-	@Override
-	public com.liferay.knowledgebase.model.KBArticle toEscapedModel() {
-		return new KBArticleWrapper(_kbArticle.toEscapedModel());
-	}
-
-	@Override
-	public java.lang.String toString() {
-		return _kbArticle.toString();
-	}
-
-	@Override
-	public com.liferay.knowledgebase.model.KBArticle toUnescapedModel() {
-		return new KBArticleWrapper(_kbArticle.toUnescapedModel());
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _kbArticle.toXmlString();
 	}
 
 	@Override

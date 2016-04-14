@@ -41,9 +41,10 @@ public class WordsServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.words.service.impl.WordsServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static java.util.List<java.lang.String> checkSpelling(
-		java.lang.String text) throws java.lang.Exception {
-		return getService().checkSpelling(text);
+	public static java.lang.Object invokeMethod(java.lang.String name,
+		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+		throws java.lang.Throwable {
+		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	/**
@@ -55,15 +56,14 @@ public class WordsServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static java.util.List<java.lang.String> checkSpelling(
+		java.lang.String text) throws java.lang.Exception {
+		return getService().checkSpelling(text);
+	}
+
 	public static java.util.List<java.lang.String> getSuggestions(
 		java.lang.String word) throws java.lang.Exception {
 		return getService().getSuggestions(word);
-	}
-
-	public static java.lang.Object invokeMethod(java.lang.String name,
-		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
-		throws java.lang.Throwable {
-		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
 	public static void clearService() {
