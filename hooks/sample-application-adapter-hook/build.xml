@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="sample-application-adapter-hook" basedir="." default="deploy">
-	<import file="../build-common-hook.xml" />
-</project>
