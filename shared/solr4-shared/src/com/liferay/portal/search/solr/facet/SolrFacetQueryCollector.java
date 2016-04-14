@@ -17,6 +17,7 @@ package com.liferay.portal.search.solr.facet;
 import com.liferay.portal.kernel.search.facet.collector.DefaultTermCollector;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.collector.TermCollector;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,13 +49,8 @@ public class SolrFacetQueryCollector implements FacetCollector {
 
 	@Override
 	public TermCollector getTermCollector(String term) {
-		int count = 0;
-
-		if (_counts.containsKey(term)) {
-			count = _counts.get(term);
-		}
-
-		return new DefaultTermCollector(term, count);
+		return new DefaultTermCollector(
+			term, GetterUtil.getInteger(_counts.get(term), 0));
 	}
 
 	@Override
