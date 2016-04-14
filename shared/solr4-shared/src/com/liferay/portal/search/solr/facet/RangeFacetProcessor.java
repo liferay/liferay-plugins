@@ -16,9 +16,12 @@ package com.liferay.portal.search.solr.facet;
 
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import org.apache.solr.client.solrj.SolrQuery;
 
@@ -36,6 +39,8 @@ public class RangeFacetProcessor implements FacetProcessor<SolrQuery> {
 		solrQuery.addFacetField(facetConfiguration.getFieldName());
 
 		addConfigurationRanges(facetConfiguration, solrQuery);
+
+		addCustomRange(facet, solrQuery);
 	}
 
 	protected void addConfigurationRanges(
@@ -59,6 +64,24 @@ public class RangeFacetProcessor implements FacetProcessor<SolrQuery> {
 
 			solrQuery.addFacetQuery(facetQuery);
 		}
+	}
+
+	protected void addCustomRange(Facet facet, SolrQuery solrQuery) {
+		SearchContext searchContext = facet.getSearchContext();
+
+		String range = GetterUtil.getString(
+			searchContext.getAttribute(facet.getFieldId()));
+
+		if (Validator.isNull(range)) {
+			return;
+		}
+
+		FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
+
+		String facetQuery =
+			facetConfiguration.getFieldName() + StringPool.COLON + range;
+
+		solrQuery.addFacetQuery(facetQuery);
 	}
 
 }
