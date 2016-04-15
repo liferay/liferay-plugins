@@ -227,7 +227,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.FolderLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(folderLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Folder.class);
 
@@ -240,7 +240,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.FolderLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(folderLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Folder.class);
 
@@ -251,7 +251,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.FolderLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(folderLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Folder.class);
 

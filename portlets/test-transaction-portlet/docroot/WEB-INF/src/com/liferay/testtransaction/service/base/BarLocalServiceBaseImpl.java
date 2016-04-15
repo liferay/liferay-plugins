@@ -223,7 +223,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.testtransaction.service.BarLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(barLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Bar.class);
 
@@ -236,7 +236,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.testtransaction.service.BarLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(barLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Bar.class);
 
@@ -247,7 +247,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.testtransaction.service.BarLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(barLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Bar.class);
 

@@ -232,7 +232,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(pushNotificationsDeviceLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(PushNotificationsDevice.class);
 
@@ -246,7 +246,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(pushNotificationsDeviceLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(PushNotificationsDevice.class);
 
@@ -258,7 +258,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(pushNotificationsDeviceLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(PushNotificationsDevice.class);
 

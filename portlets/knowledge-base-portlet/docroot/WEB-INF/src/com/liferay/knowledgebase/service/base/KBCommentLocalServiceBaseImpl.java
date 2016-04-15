@@ -258,7 +258,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBCommentLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(kbCommentLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(KBComment.class);
 
@@ -271,7 +271,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBCommentLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(kbCommentLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(KBComment.class);
 
@@ -282,7 +282,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBCommentLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(kbCommentLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(KBComment.class);
 

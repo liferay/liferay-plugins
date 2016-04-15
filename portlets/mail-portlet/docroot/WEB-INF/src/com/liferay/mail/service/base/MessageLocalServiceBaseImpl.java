@@ -227,7 +227,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.MessageLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(messageLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Message.class);
 
@@ -240,7 +240,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.MessageLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(messageLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Message.class);
 
@@ -251,7 +251,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.MessageLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(messageLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Message.class);
 

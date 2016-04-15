@@ -274,7 +274,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBArticleLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(kbArticleLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(KBArticle.class);
 
@@ -287,7 +287,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBArticleLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(kbArticleLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(KBArticle.class);
 
@@ -298,7 +298,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBArticleLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(kbArticleLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(KBArticle.class);
 

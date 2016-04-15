@@ -226,7 +226,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.chat.service.StatusLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(statusLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Status.class);
 
@@ -239,7 +239,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.chat.service.StatusLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(statusLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Status.class);
 
@@ -250,7 +250,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.chat.service.StatusLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(statusLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Status.class);
 

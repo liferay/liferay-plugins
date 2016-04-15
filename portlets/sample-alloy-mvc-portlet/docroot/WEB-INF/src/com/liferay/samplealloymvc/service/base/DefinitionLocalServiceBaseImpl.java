@@ -231,7 +231,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.DefinitionLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(definitionLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Definition.class);
 
@@ -244,7 +244,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.DefinitionLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(definitionLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Definition.class);
 
@@ -256,7 +256,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.DefinitionLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(definitionLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Definition.class);
 

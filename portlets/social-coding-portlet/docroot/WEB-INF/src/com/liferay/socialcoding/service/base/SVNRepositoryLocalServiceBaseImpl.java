@@ -237,7 +237,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(svnRepositoryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SVNRepository.class);
 
@@ -250,7 +250,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(svnRepositoryLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(SVNRepository.class);
 
@@ -262,7 +262,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(svnRepositoryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SVNRepository.class);
 

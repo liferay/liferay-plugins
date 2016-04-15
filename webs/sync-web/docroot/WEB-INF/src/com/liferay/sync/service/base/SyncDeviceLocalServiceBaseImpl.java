@@ -251,7 +251,7 @@ public abstract class SyncDeviceLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDeviceLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(syncDeviceLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SyncDevice.class);
 
@@ -264,7 +264,7 @@ public abstract class SyncDeviceLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDeviceLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(syncDeviceLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(SyncDevice.class);
 
@@ -276,7 +276,7 @@ public abstract class SyncDeviceLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDeviceLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(syncDeviceLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SyncDevice.class);
 

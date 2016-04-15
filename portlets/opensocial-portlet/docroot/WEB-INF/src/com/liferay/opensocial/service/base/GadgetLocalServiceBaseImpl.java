@@ -244,7 +244,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.GadgetLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(gadgetLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Gadget.class);
 
@@ -257,7 +257,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.GadgetLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(gadgetLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Gadget.class);
 
@@ -268,7 +268,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.GadgetLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(gadgetLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Gadget.class);
 

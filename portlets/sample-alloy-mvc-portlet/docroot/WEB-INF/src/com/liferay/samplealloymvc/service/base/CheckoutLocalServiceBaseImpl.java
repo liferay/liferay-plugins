@@ -227,7 +227,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.CheckoutLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(checkoutLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Checkout.class);
 
@@ -240,7 +240,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.CheckoutLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(checkoutLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Checkout.class);
 
@@ -251,7 +251,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.CheckoutLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(checkoutLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Checkout.class);
 

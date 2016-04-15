@@ -231,7 +231,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.ProjectsEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(projectsEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(ProjectsEntry.class);
 
@@ -244,7 +244,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.so.service.ProjectsEntryLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(projectsEntryLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(ProjectsEntry.class);
 
@@ -256,7 +256,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.ProjectsEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(projectsEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(ProjectsEntry.class);
 

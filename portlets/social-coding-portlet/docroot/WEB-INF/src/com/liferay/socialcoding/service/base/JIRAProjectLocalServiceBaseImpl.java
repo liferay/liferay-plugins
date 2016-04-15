@@ -237,7 +237,7 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.socialcoding.service.JIRAProjectLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(jiraProjectLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(JIRAProject.class);
 
@@ -250,7 +250,7 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.socialcoding.service.JIRAProjectLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(jiraProjectLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(JIRAProject.class);
 
@@ -262,7 +262,7 @@ public abstract class JIRAProjectLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.socialcoding.service.JIRAProjectLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(jiraProjectLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(JIRAProject.class);
 

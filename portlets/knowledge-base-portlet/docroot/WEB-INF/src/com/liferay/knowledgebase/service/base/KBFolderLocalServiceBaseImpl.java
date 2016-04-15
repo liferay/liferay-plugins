@@ -247,7 +247,7 @@ public abstract class KBFolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBFolderLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(kbFolderLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(KBFolder.class);
 
@@ -260,7 +260,7 @@ public abstract class KBFolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBFolderLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(kbFolderLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(KBFolder.class);
 
@@ -271,7 +271,7 @@ public abstract class KBFolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBFolderLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(kbFolderLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(KBFolder.class);
 

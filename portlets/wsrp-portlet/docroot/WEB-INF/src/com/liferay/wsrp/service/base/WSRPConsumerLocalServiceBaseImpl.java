@@ -252,7 +252,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(wsrpConsumerLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(WSRPConsumer.class);
 
@@ -265,7 +265,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(wsrpConsumerLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(WSRPConsumer.class);
 
@@ -277,7 +277,7 @@ public abstract class WSRPConsumerLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(wsrpConsumerLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(WSRPConsumer.class);
 

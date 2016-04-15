@@ -230,7 +230,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.OAuthTokenLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(oAuthTokenLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(OAuthToken.class);
 
@@ -243,7 +243,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.OAuthTokenLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(oAuthTokenLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(OAuthToken.class);
 
@@ -255,7 +255,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.OAuthTokenLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(oAuthTokenLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(OAuthToken.class);
 

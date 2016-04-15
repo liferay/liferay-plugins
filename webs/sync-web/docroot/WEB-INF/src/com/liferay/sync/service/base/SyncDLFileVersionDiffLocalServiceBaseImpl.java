@@ -237,7 +237,7 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(syncDLFileVersionDiffLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SyncDLFileVersionDiff.class);
 
@@ -251,7 +251,7 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(syncDLFileVersionDiffLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(SyncDLFileVersionDiff.class);
 
@@ -263,7 +263,7 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(syncDLFileVersionDiffLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SyncDLFileVersionDiff.class);
 

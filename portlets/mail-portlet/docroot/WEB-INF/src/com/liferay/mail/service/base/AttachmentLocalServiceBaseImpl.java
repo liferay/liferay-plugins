@@ -231,7 +231,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.AttachmentLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(attachmentLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Attachment.class);
 
@@ -244,7 +244,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.AttachmentLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(attachmentLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Attachment.class);
 
@@ -256,7 +256,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.AttachmentLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(attachmentLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Attachment.class);
 

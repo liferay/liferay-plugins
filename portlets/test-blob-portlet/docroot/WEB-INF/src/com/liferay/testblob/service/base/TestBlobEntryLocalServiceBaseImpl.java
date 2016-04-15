@@ -230,7 +230,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.testblob.service.TestBlobEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(testBlobEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(TestBlobEntry.class);
 
@@ -243,7 +243,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.testblob.service.TestBlobEntryLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(testBlobEntryLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(TestBlobEntry.class);
 
@@ -255,7 +255,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.testblob.service.TestBlobEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(testBlobEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(TestBlobEntry.class);
 

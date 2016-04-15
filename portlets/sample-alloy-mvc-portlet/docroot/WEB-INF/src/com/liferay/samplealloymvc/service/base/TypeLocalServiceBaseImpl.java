@@ -226,7 +226,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.TypeLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(typeLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Type.class);
 
@@ -239,7 +239,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.TypeLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(typeLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(Type.class);
 
@@ -250,7 +250,7 @@ public abstract class TypeLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplealloymvc.service.TypeLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(typeLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(Type.class);
 

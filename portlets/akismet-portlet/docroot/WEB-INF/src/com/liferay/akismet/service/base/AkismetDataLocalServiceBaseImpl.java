@@ -228,7 +228,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.akismet.service.AkismetDataLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(akismetDataLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(AkismetData.class);
 
@@ -241,7 +241,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.akismet.service.AkismetDataLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(akismetDataLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(AkismetData.class);
 
@@ -253,7 +253,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.akismet.service.AkismetDataLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(akismetDataLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(AkismetData.class);
 

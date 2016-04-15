@@ -237,7 +237,7 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDLObjectLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(syncDLObjectLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SyncDLObject.class);
 
@@ -250,7 +250,7 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDLObjectLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(syncDLObjectLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(SyncDLObject.class);
 
@@ -262,7 +262,7 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.sync.service.SyncDLObjectLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(syncDLObjectLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SyncDLObject.class);
 

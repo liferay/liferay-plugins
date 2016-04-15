@@ -250,7 +250,7 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(sampleLARBookingLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SampleLARBooking.class);
 
@@ -263,7 +263,7 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(sampleLARBookingLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(SampleLARBooking.class);
 
@@ -275,7 +275,7 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(sampleLARBookingLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SampleLARBooking.class);
 

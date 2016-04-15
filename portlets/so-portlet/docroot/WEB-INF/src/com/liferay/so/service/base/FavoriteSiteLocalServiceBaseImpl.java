@@ -233,7 +233,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.FavoriteSiteLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(favoriteSiteLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(FavoriteSite.class);
 
@@ -246,7 +246,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
 
-		indexableActionableDynamicQuery.setBaseLocalService(com.liferay.so.service.FavoriteSiteLocalServiceUtil.getService());
+		indexableActionableDynamicQuery.setBaseLocalService(favoriteSiteLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(FavoriteSite.class);
 
@@ -258,7 +258,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.FavoriteSiteLocalServiceUtil.getService());
+		actionableDynamicQuery.setBaseLocalService(favoriteSiteLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(FavoriteSite.class);
 
