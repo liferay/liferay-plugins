@@ -337,16 +337,16 @@ public class ScreensAssetEntryServiceImpl
 	protected JSONObject getUserJSONObject(AssetEntry assetEntry)
 		throws PortalException, SystemException {
 
-			User user = userService.getUserById(assetEntry.getClassPK());
+		User user = userService.getUserById(assetEntry.getClassPK());
 
-			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
-			userJSONObject.put(
-				"user",
-				JSONFactoryUtil.createJSONObject(
-					JSONFactoryUtil.looseSerialize(user)));
+		userJSONObject.put(
+			"user",
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(user)));
 
-			return userJSONObject;
+		return userJSONObject;
 	}
 
 	protected JSONArray toJSONArray(
