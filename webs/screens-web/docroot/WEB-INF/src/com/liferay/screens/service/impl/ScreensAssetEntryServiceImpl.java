@@ -47,6 +47,7 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
+import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.dynamicdatalists.model.DDLRecord;
@@ -210,7 +211,10 @@ public class ScreensAssetEntryServiceImpl
 
 		String className = assetEntry.getClassName();
 
-		if (className.equals(DDLRecord.class.getName())) {
+		if (className.equals(BlogsEntry.class.getName())) {
+			return getBlogsEntryJSONObject(assetEntry);
+		}
+		else if (className.equals(DDLRecord.class.getName())) {
 			return screensDDLRecordService.getDDLRecord(
 				assetEntry.getClassPK(), locale);
 		}
@@ -222,6 +226,22 @@ public class ScreensAssetEntryServiceImpl
 		}
 
 		return JSONFactoryUtil.createJSONObject();
+	}
+
+	protected JSONObject getBlogsEntryJSONObject(AssetEntry assetEntry)
+		throws PortalException, SystemException {
+
+		BlogsEntry blogsEntry = blogsEntryService.getEntry(
+			assetEntry.getClassPK());
+
+		JSONObject blogsEntryJSONObject = JSONFactoryUtil.createJSONObject();
+
+		blogsEntryJSONObject.put(
+			"blogsEntry",
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(blogsEntry)));
+
+		return blogsEntryJSONObject;
 	}
 
 	protected JSONObject getFileEntryJSONObject(AssetEntry assetEntry)
