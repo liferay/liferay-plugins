@@ -30,6 +30,7 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.io.delta.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/com.liferay.sync.security.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/google-collections.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/gson.jar" />
