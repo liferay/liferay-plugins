@@ -1,31 +1,5 @@
 <plugins-summary>
 	<plugin>
-		<artifact-id><![CDATA[antisamy-hook]]></artifact-id>
-		<name><![CDATA[AntiSamy]]></name>
-		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[antisamy, html, sanitize, sanitizer]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay's AntiSamy application protects against malicious code that users may pass intentionally or unintentionally to your portal via their content. The app filters on specific HTML/CSS code and removes suspect JavaScript from it. The application leverages the powerful OWASP AntiSamy library to enforce a content policy that's been proven effective for the online auction site eBay. The app's hook plugin adds an OWASP AntiSamy implementation to your portal's list of existing sanitizer implementations. Liferay Portal uses the AntiSamy sanitizer and any existing configured sanitizers to scrub user input to blogs entries, calendar events, message boards posts, wiki pages, and web content articles.<br /><br />This app uses OWASP AntiSamy 1.4.4 and is enabled upon the portal's redeployment.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Security]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[hooks/antisamy-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[hooks/antisamy-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[deploy-listener-hook]]></artifact-id>
 		<name><![CDATA[Power Deploy]]></name>
 		<type><![CDATA[hook]]></type>
@@ -67,7 +41,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -98,30 +72,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[google-login-hook]]></artifact-id>
-		<name><![CDATA[Google Login]]></name>
-		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Security]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[google-mail-groups-hook]]></artifact-id>
 		<name><![CDATA[Google Mail Groups]]></name>
 		<type><![CDATA[hook]]></type>
@@ -139,7 +89,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -163,7 +113,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -188,7 +138,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/localization-ja-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -217,7 +167,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -242,35 +192,11 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[hooks/mongodb-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/mongodb-hook/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[sample-application-adapter-hook]]></artifact-id>
-		<name><![CDATA[Sample Application Adapter]]></name>
-		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -281,30 +207,6 @@
 		<type><![CDATA[hook]]></type>
 		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[sample-expando-hook]]></artifact-id>
-		<name><![CDATA[Sample Expando]]></name>
-		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[This hook shows how to use Liferay's Expando to automatically create custom fields.]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
@@ -486,7 +388,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[hooks/social-bookmarks-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[hooks/social-bookmarks-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -514,7 +416,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/1-2-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -541,7 +443,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/1-3-1-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -568,7 +470,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/1-3-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -595,7 +497,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/2-1-2-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -622,7 +524,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[layouttpl/3-2-3-columns-layouttpl/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -649,34 +551,10 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/akismet-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/akismet-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/akismet-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[ams-portlet]]></artifact-id>
-		<name><![CDATA[Asset Management System]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -748,7 +626,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/chat-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/chat-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -847,7 +725,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/flash-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/flash-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -874,7 +752,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/google-adsense-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/google-adsense-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -901,7 +779,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/google-maps-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/google-maps-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -952,7 +830,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/ip-geocoder-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -1003,7 +881,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/knowledge-base-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -1032,7 +910,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -1057,7 +935,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/mail-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -1084,7 +962,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/mb-subscription-manager-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/mb-subscription-manager-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/mb-subscription-manager-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -1159,7 +1037,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/my-subscriptions-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/my-subscriptions-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
@@ -1185,38 +1063,10 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/netvibes-widget-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[notifications-portlet]]></artifact-id>
-		<name><![CDATA[Notifications]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[notifications, social]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay's Notifications app provides a convenient way for users to see notifications of important events on any page. It appears at the top of every page inside the user's dockbar. Notifications also allow users to quickly respond through configurable action buttons.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Communication]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1240,36 +1090,12 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/opensocial-portlet/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[private-messaging-portlet]]></artifact-id>
-		<name><![CDATA[Private Messaging]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[AGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1293,7 +1119,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/push-notifications-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/push-notifications-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/push-notifications-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -1375,11 +1201,11 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[sample-dao-portlet]]></artifact-id>
-		<name><![CDATA[Sample DAO]]></name>
+		<artifact-id><![CDATA[sample-alloy-mvc-portlet]]></artifact-id>
+		<name><![CDATA[Sample Alloy MVC]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[sample]]></tags>
-		<short-description><![CDATA[This plugin shows how to use DAO in Liferay.]]></short-description>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
@@ -1399,11 +1225,11 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[sample-drools-portlet]]></artifact-id>
-		<name><![CDATA[Sample Drools]]></name>
+		<artifact-id><![CDATA[sample-dao-portlet]]></artifact-id>
+		<name><![CDATA[Sample DAO]]></name>
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[sample]]></tags>
-		<short-description><![CDATA[This plugin shows how to use Drools in Liferay.]]></short-description>
+		<short-description><![CDATA[This plugin shows how to use DAO in Liferay.]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
@@ -1596,30 +1422,6 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[sample]]></tags>
 		<short-description><![CDATA[This plugin shows how to use the permission service from a portlet.]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[sample-php-portlet]]></artifact-id>
-		<name><![CDATA[Sample PHP]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[sample]]></tags>
-		<short-description><![CDATA[This plugin shows how to create PHP portlets in Liferay.]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
@@ -1969,7 +1771,7 @@
 			<dependent-apps><![CDATA[calendar-portlet, chat-portlet, contacts-portlet, deploy-listener-hook, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-activities-hook, so-announcements-portlet, so-configurations-portlet, so-hook, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet]]></dependent-apps>
 			<icon><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -2024,7 +1826,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/stocks-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/stocks-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -2073,7 +1875,7 @@
 			<category><![CDATA[]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
+			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
@@ -2585,6 +2387,54 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id><![CDATA[test-runtime-action-portlet]]></artifact-id>
+		<name><![CDATA[Test Runtime Action]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[test]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[test-runtime-parent-portlet]]></artifact-id>
+		<name><![CDATA[Test Runtime Parent]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[test]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[test-transaction-portlet]]></artifact-id>
 		<name><![CDATA[Test Transaction]]></name>
 		<type><![CDATA[portlet]]></type>
@@ -2675,7 +2525,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/twitter-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/twitter-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
@@ -2701,7 +2551,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/vimeo-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/vimeo-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -2729,7 +2579,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/weather-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/weather-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
@@ -2755,7 +2605,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/web-form-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/web-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -2789,33 +2639,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[wiki-navigation-portlet]]></artifact-id>
-		<name><![CDATA[Wiki Navigation]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[navigation, wiki, wiki display]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides additional ways to visualize the structure of wiki contents. It provides two different views into a wiki, including a "Page" view and a "Tree" view. The Page View visually lays out the structure of a single wiki page, allowing users to quickly access different sections of a specific wiki page based on the header levels and other authoring capabilities of a wiki page. Each section is individual collapsible. The Tree View presents a hierarchical, expandable and collapsible view of the entire set of Wiki pages. Pages are shown below their "Parent" pages, and the depth of this view can be controlled through the configuration screen of the portlet.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[portlets/wiki-navigation-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[wsrp-portlet]]></artifact-id>
 		<name><![CDATA[WSRP]]></name>
 		<type><![CDATA[portlet]]></type>
@@ -2834,7 +2657,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/wsrp-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/wsrp-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -2863,7 +2686,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/wysiwyg-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/wysiwyg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
@@ -2889,7 +2712,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[portlets/youtube-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/youtube-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3132,7 +2955,7 @@
 			<dependent-apps><![CDATA[1-3-1-columns-layouttpl, resources-importer-web]]></dependent-apps>
 			<icon><![CDATA[themes/zoe-brochure-theme/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[themes/zoe-brochure-theme/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[themes/zoe-brochure-theme/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3161,7 +2984,7 @@
 			<dependent-apps><![CDATA[resources-importer-web, web-form-portlet]]></dependent-apps>
 			<icon><![CDATA[themes/zoe-healthcare-theme/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[themes/zoe-healthcare-theme/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[themes/zoe-healthcare-theme/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3191,7 +3014,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[resources-importer-web]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -3216,7 +3039,7 @@
 			<dependent-apps><![CDATA[resources-importer-web]]></dependent-apps>
 			<icon><![CDATA[themes/zoe-resort-theme/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[themes/zoe-resort-theme/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[themes/zoe-resort-theme/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3244,7 +3067,7 @@
 			<dependent-apps><![CDATA[1-3-1-columns-layouttpl, resources-importer-web]]></dependent-apps>
 			<icon><![CDATA[themes/zoe-tech-theme/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[themes/zoe-tech-theme/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[themes/zoe-tech-theme/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3276,37 +3099,10 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/cas-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/cas-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/cas-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[deployment-helper-web]]></artifact-id>
-		<name><![CDATA[Cluster Deployment Helper]]></name>
-		<type><![CDATA[web]]></type>
-		<tags><![CDATA[cluster, deployment, enterprise, ha, high availability, replication]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[Liferay Portal is designed to power the simplest to most complex web sites, easily scaling to the size you need. Liferay works well in clusters of multiple machines (horizontal cluster) or in clusters of multiple VMs on a single machine (vertical cluster), or any mixture of the two. Once you have Liferay installed in more than one application server node, there are several optimizations that need to be made. When deploying apps to a Liferay cluster, each cluster must receive a copy of the app before the app's functionality will work across the cluster.<br /><br />This app helps deploy other apps within a cluster using the native application server deployment mechanisms.<br /><br />This app installs as a Liferay service.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -3330,35 +3126,11 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[scripting-executor-web]]></artifact-id>
-		<name><![CDATA[Scripting Executor]]></name>
-		<type><![CDATA[web]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[7.0.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -3382,7 +3154,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/server-manager-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3411,7 +3183,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/skinny-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3427,7 +3199,7 @@
 		<type><![CDATA[web]]></type>
 		<tags><![CDATA[document library, sync]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This plugin provides the portal services required by Liferay Sync desktop and mobile clients.<br /><br />Please visit https://www.liferay.com/products/liferay-sync/features for more information on downloading the Liferay Sync desktop and mobile clients. Liferay Sync is compatible with both desktop and mobile environments including Windows, Mac OS, iOS, and Android.]]></long-description>
+		<long-description><![CDATA[The Sync Connector app lets users connect to their portals from the Liferay Sync desktop and mobile clients. It also lets administrators control how these clients interact with their portal. Once installed, the Sync Connector app provides the portal services required by the clients. No additional portal configuration is required. However, portal administrators can use the Sync Admin portlet installed with this app to control what sites are available for Sync. They can also use this portlet to disable Sync across the portal.<br /><br />After installing, the Sync Admin portlet is available in the Control Panel’s Configuration section.<br /><br />Please visit http://www.liferay.com/products/liferay-sync/features for more information on downloading the Liferay Sync desktop and mobile clients. Liferay Sync is compatible with Windows, Mac OS, iOS, and Android. The Sync Connector app requires version 3.0+ of the Sync desktop or mobile client.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -3437,12 +3209,15 @@
 			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
+			<dependent-apps><![CDATA[sync-admin-portlet]]></dependent-apps>
 			<icon><![CDATA[webs/sync-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/sync-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/sync-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/sync-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<screenshot><![CDATA[webs/sync-web/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -3466,7 +3241,7 @@
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/theme-loader-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/theme-loader-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3494,7 +3269,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
