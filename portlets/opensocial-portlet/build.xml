@@ -52,6 +52,15 @@
 			/>
 		</replace>
 
+		<!-- Replace Servlet -->
+
+		<replace file="tmp/WEB-INF/web.xml">
+			<replacefilter
+				token="org.apache.shindig.gadgets.servlet.JsServlet"
+				value="com.liferay.opensocial.shindig.servlet.LiferayJsServlet"
+			/>
+		</replace>
+
 		<!-- Remove system.properties -->
 
 		<replaceregexp
