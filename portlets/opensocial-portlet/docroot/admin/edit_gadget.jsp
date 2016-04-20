@@ -106,7 +106,7 @@ if (Validator.isNotNull(editorGadgetURL)) {
 		submitForm(document.<portlet:namespace />fm);
 	}
 
-	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
+	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />url);
 </aui:script>
 
 <aui:script use="aui-tree-view">
