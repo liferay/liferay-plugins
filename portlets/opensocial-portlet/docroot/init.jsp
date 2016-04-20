@@ -74,9 +74,9 @@ page import="org.apache.shindig.gadgets.spec.ModulePrefs" %><%@
 page import="org.apache.shindig.gadgets.spec.OAuthService" %><%@
 page import="org.apache.shindig.gadgets.spec.UserPref" %>
 
-<portlet:defineObjects />
-
 <liferay-theme:defineObjects />
+
+<portlet:defineObjects />
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);

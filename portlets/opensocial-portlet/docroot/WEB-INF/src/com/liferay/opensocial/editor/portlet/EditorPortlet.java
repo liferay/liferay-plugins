@@ -273,7 +273,10 @@ public class EditorPortlet extends AdminPortlet {
 		JSONObject jsonError = JSONFactoryUtil.createJSONObject();
 
 		jsonError.put("message", exception.getLocalizedMessage());
-		jsonError.put("name", exception.getClass().getSimpleName());
+
+		Class clazz = exception.getClass();
+
+		jsonError.put("name", clazz.getSimpleName());
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
