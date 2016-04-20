@@ -249,6 +249,11 @@
 			<replacefilter token="shindig.signing.viewer-access-tokens-enabled=false" value="shindig.signing.viewer-access-tokens-enabled=true" />
 		</replace>
 
+		<!-- Delete Xerces -->
+
+		<delete file="tmp/WEB-INF/lib/xercesImpl-2.9.1.jar" />
+		<delete file="tmp/WEB-INF/lib/xml-apis-1.3.04.jar" />
+
 		<!-- Fix canonicaldb.json -->
 
 		<tstamp>

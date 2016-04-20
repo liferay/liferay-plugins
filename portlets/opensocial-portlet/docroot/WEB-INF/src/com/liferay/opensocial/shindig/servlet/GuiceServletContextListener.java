@@ -25,35 +25,36 @@ import javax.servlet.ServletContextListener;
 public class GuiceServletContextListener
 	extends BasePortalLifecycle implements ServletContextListener {
 
-	public static ServletContextEvent getInitializedServletContextEvent() {
-		return _initializedServletContextEvent;
-	}
-
 	@Override
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		_destroyedServletContextEvent = servletContextEvent;
+
+		portalDestroy();
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		setInitializedServletContextEvent(servletContextEvent);
+		_initializedServletContextEvent = servletContextEvent;
 
 		registerPortalLifecycle();
 	}
 
 	@Override
 	protected void doPortalDestroy() throws Exception {
+		_guiceServletContextListener.contextDestroyed(
+			_destroyedServletContextEvent);
 	}
 
 	@Override
 	protected void doPortalInit() throws Exception {
-	}
-
-	protected void setInitializedServletContextEvent(
-		ServletContextEvent servletContextEvent) {
-
-		_initializedServletContextEvent = servletContextEvent;
+		_guiceServletContextListener.contextInitialized(
+			_initializedServletContextEvent);
 	}
 
 	private static ServletContextEvent _initializedServletContextEvent;
+
+	private ServletContextEvent _destroyedServletContextEvent;
+	private ServletContextListener _guiceServletContextListener =
+		new org.apache.shindig.common.servlet.GuiceServletContextListener();
 
 }
