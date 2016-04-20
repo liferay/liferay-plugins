@@ -156,8 +156,8 @@
 
 		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
 			<replacefilter token="${SERVER_HOST}:${SERVER_PORT}" value="%host%" />
-			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
-			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
+			<replacefilter token="/gadgets/" value="/o/opensocial-portlet/gadgets/" />
+			<replacefilter token="/rpc" value="/o/opensocial-portlet/rpc" />
 		</replace>
 
 		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
@@ -165,7 +165,7 @@
 			<replacevalue><![CDATA[
 				"home" : {
 					"isOnlyVisible" : true,
-					"urlTemplate" : "http://%host%/opensocial-portlet/gadgets/home{var}"
+					"urlTemplate" : "http://%host%/o/opensocial-portlet/gadgets/home{var}"
 				},
 				"profile" : {]]>
 			</replacevalue>
@@ -192,7 +192,7 @@
 		</replace>
 
 		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
-			<replacetoken>"gadgets.uri.js.path" : "/opensocial-portlet/gadgets/js",</replacetoken>
+			<replacetoken>"gadgets.uri.js.path" : "/o/opensocial-portlet/gadgets/js",</replacetoken>
 			<replacevalue></replacevalue>
 		</replace>
 
@@ -210,7 +210,7 @@
 		</antcall>
 
 		<replace file="tmp/WEB-INF/classes/config/oauth.json">
-			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
+			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/o/opensocial-portlet/" />
 		</replace>
 
 		<!-- Configure shindig.properties -->
@@ -245,7 +245,7 @@
 		/>
 
 		<replace file="tmp/WEB-INF/classes/shindig.properties">
-			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
+			<replacefilter token="/gadgets/" value="/o/opensocial-portlet/gadgets/" />
 			<replacefilter token="shindig.signing.viewer-access-tokens-enabled=false" value="shindig.signing.viewer-access-tokens-enabled=true" />
 		</replace>
 
