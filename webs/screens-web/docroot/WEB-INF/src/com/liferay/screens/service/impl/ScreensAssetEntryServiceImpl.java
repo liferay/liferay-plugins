@@ -359,6 +359,7 @@ public class ScreensAssetEntryServiceImpl
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.looseSerialize(assetEntry));
 
+			jsonObject.put("className", assetEntry.getClassName());
 			jsonObject.put("description", assetEntry.getDescription(locale));
 			jsonObject.put("locale", String.valueOf(locale));
 			jsonObject.put(
