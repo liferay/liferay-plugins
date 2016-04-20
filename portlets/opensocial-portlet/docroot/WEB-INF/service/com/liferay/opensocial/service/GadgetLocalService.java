@@ -95,10 +95,11 @@ public interface GadgetLocalService extends BaseLocalService,
 	*
 	* @param gadget the gadget
 	* @return the gadget that was removed
+	* @throws PortalException
 	*/
 	@Indexable(type = IndexableType.DELETE)
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
-	public Gadget deleteGadget(Gadget gadget);
+	public Gadget deleteGadget(Gadget gadget) throws PortalException;
 
 	/**
 	* Deletes the gadget with the primary key from the database. Also notifies the appropriate model listeners.
@@ -290,7 +291,7 @@ public interface GadgetLocalService extends BaseLocalService,
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
 
-	public void deleteGadgets(long companyId);
+	public void deleteGadgets(long companyId) throws PortalException;
 
 	@Clusterable
 	public void destroyGadget(java.lang.String uuid, long companyId);

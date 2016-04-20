@@ -123,10 +123,11 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param gadget the gadget
 	 * @return the gadget that was removed
+	 * @throws PortalException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Gadget deleteGadget(Gadget gadget) {
+	public Gadget deleteGadget(Gadget gadget) throws PortalException {
 		return gadgetPersistence.remove(gadget);
 	}
 

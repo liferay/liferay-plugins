@@ -69,10 +69,12 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @param gadget the gadget
 	* @return the gadget that was removed
+	* @throws PortalException
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(
-		com.liferay.opensocial.model.Gadget gadget) {
+		com.liferay.opensocial.model.Gadget gadget)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetLocalService.deleteGadget(gadget);
 	}
 
@@ -347,7 +349,8 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	}
 
 	@Override
-	public void deleteGadgets(long companyId) {
+	public void deleteGadgets(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_gadgetLocalService.deleteGadgets(companyId);
 	}
 

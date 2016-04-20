@@ -79,9 +79,11 @@ public class GadgetLocalServiceUtil {
 	*
 	* @param gadget the gadget
 	* @return the gadget that was removed
+	* @throws PortalException
 	*/
 	public static com.liferay.opensocial.model.Gadget deleteGadget(
-		com.liferay.opensocial.model.Gadget gadget) {
+		com.liferay.opensocial.model.Gadget gadget)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteGadget(gadget);
 	}
 
@@ -329,7 +331,8 @@ public class GadgetLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static void deleteGadgets(long companyId) {
+	public static void deleteGadgets(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteGadgets(companyId);
 	}
 
