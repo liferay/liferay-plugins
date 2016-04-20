@@ -45,7 +45,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	@Override
 	public String getJspPath(HttpServletRequest request) {
-		return "/gadget/configuration.jsp";
+		return "/adhoc_gadget/configuration.jsp";
 	}
 
 	@Override
