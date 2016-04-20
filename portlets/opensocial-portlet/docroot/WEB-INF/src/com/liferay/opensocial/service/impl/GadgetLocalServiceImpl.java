@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.PortletApp;
 import com.liferay.portal.kernel.model.PortletInfo;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.portlet.InvokerPortlet;
 import com.liferay.portal.kernel.portlet.PortletBag;
@@ -99,6 +100,11 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadgetPersistence.update(gadget);
 
+		resourceLocalService.addResources(
+			companyId, 0, 0, Gadget.class.getName(), gadgetId, false,
+			serviceContext.isAddGroupPermissions(),
+			serviceContext.isAddGuestPermissions());
+
 		gadgetLocalService.initGadget(
 			gadget.getUuid(), companyId, gadgetId, gadget.getName(),
 			gadget.getPortletCategoryNames());
@@ -108,7 +114,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
-	public Gadget deleteGadget(Gadget gadget) {
+	public Gadget deleteGadget(Gadget gadget) throws PortalException {
 
 		// Gadget
 
@@ -124,6 +130,12 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		oAuthConsumerLocalService.deleteOAuthConsumers(gadgetKey);
 
+		// Resources
+
+		resourceLocalService.deleteResource(
+			gadget.getCompanyId(), Gadget.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL, gadget.getGadgetId());
+
 		return gadget;
 	}
 
@@ -135,7 +147,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteGadgets(long companyId) {
+	public void deleteGadgets(long companyId) throws PortalException {
 		List<Gadget> gadgets = gadgetPersistence.findByCompanyId(companyId);
 
 		for (Gadget gadget : gadgets) {
