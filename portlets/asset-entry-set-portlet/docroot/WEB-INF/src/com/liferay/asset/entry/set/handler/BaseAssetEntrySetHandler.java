@@ -192,21 +192,23 @@ public class BaseAssetEntrySetHandler implements AssetEntrySetHandler {
 		JSONObject geolocationJSONObject = payloadJSONObject.getJSONObject(
 			"geolocation");
 
-		if (Validator.isNotNull(PortletPropsValues.GEONAMES_USERNAME)) {
-			if (geolocationJSONObject == null) {
-				geolocationJSONObject = JSONFactoryUtil.createJSONObject();
-			}
-			else {
-				double latitude = geolocationJSONObject.getDouble("latitude");
-				double longitude = geolocationJSONObject.getDouble("longitude");
+		if (Validator.isNull(PortletPropsValues.GEONAMES_USERNAME)) {
+			return geolocationJSONObject;
+		}
 
-				geolocationJSONObject.put(
-					"locationName",
-					GeoNamesUtil.getLocationName(latitude, longitude));
+		if (geolocationJSONObject == null) {
+			geolocationJSONObject = JSONFactoryUtil.createJSONObject();
+		}
+		else {
+			double latitude = geolocationJSONObject.getDouble("latitude");
+			double longitude = geolocationJSONObject.getDouble("longitude");
 
-				geolocationJSONObject.remove("latitude");
-				geolocationJSONObject.remove("longitude");
-			}
+			geolocationJSONObject.put(
+				"locationName",
+				GeoNamesUtil.getLocationName(latitude, longitude));
+
+			geolocationJSONObject.remove("latitude");
+			geolocationJSONObject.remove("longitude");
 		}
 
 		return geolocationJSONObject;
