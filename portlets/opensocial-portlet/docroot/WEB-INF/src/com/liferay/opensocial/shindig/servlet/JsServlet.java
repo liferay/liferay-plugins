@@ -28,12 +28,10 @@ import java.net.URLConnection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shindig.gadgets.servlet.JsServlet;
-
 /**
  * @author Dennis Ju
  */
-public class LiferayJsServlet extends JsServlet {
+public class JsServlet extends org.apache.shindig.gadgets.servlet.JsServlet {
 
 	@Override
 	protected void doGet(

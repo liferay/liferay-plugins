@@ -57,7 +57,7 @@
 		<replace file="tmp/WEB-INF/web.xml">
 			<replacefilter
 				token="org.apache.shindig.gadgets.servlet.JsServlet"
-				value="com.liferay.opensocial.shindig.servlet.LiferayJsServlet"
+				value="com.liferay.opensocial.shindig.servlet.JsServlet"
 			/>
 		</replace>
 
