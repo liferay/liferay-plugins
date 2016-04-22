@@ -50,7 +50,7 @@ public class SolrFacetQueryCollector implements FacetCollector {
 	@Override
 	public TermCollector getTermCollector(String term) {
 		return new DefaultTermCollector(
-			term, GetterUtil.getInteger(_counts.get(term), 0));
+			term, GetterUtil.getInteger(_counts.get(term)));
 	}
 
 	@Override
