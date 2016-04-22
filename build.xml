@@ -41,6 +41,8 @@
 				</else>
 			</if>
 
+			<var name="plugins.sdk.name" value="${plugins.sdk.name}-${lp.version}" />
+
 			<mkdir dir="dist" />
 
 			<delete file="dist/${plugins.sdk.name}.zip" />
