@@ -24,6 +24,27 @@
 
 	<pathconvert pathsep="," property="plugins.includes.path" refid="plugins.includes.path" targetos="unix" />
 
+	<macrodef name="extract-plugins-sdk">
+		<sequential>
+			<mkdir dir="dist" />
+
+			<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
+
+			<zip destfile="dist/liferay-plugins-sdk-${lp.version}.zip">
+				<zipfileset
+					dir="."
+					excludes="*.iml,.bnd/**,.git/**,.ivy/**,build.*.properties,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,hooks/*-hook/**,lib/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**"
+					prefix="liferay-plugins-sdk-${lp.version}"
+				/>
+				<zipfileset
+					dir="."
+					includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
+					prefix="liferay-plugins-sdk-${lp.version}"
+				/>
+			</zip>
+		</sequential>
+	</macrodef>
+
 	<target name="all">
 		<antcall target="clean" />
 		<antcall target="deploy" />
@@ -179,22 +200,7 @@
 	</target>
 
 	<target name="extract-plugins-sdk">
-		<mkdir dir="dist" />
-
-		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
-
-		<zip destfile="dist/liferay-plugins-sdk-${lp.version}.zip">
-			<zipfileset
-				dir="."
-				excludes="*.iml,.bnd/**,.git/**,.ivy/**,build.*.properties,dependencies/**/ivy.xml.MD5,dependencies/**/lib/**,dist/**,ext/*-ext/**,hooks/*-hook/**,lib/**,ivy.xml.MD5,layouttpl/*-layouttpl/**,portlets/*-portlet/**,private-plugins.txt,shared/*-shared/**,source_formatter_*,suites/**,summary.*,themes/*-theme/**,tmp/**,tools/node-*/**,webs/*-web/**"
-				prefix="liferay-plugins-sdk-${lp.version}"
-			/>
-			<zipfileset
-				dir="."
-				includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
-				prefix="liferay-plugins-sdk-${lp.version}"
-			/>
-		</zip>
+		<extract-plugins-sdk />
 	</target>
 
 	<target name="format-javadoc">
