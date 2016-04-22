@@ -191,12 +191,6 @@
 			/>
 			<zipfileset
 				dir="."
-				excludes="**/releng/**"
-				includes="webs/resources-importer-web/**"
-				prefix="liferay-plugins-sdk-${lp.version}"
-			/>
-			<zipfileset
-				dir="."
 				includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
 				prefix="liferay-plugins-sdk-${lp.version}"
 			/>
