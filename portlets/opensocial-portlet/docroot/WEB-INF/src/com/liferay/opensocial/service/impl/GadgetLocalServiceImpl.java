@@ -123,18 +123,18 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadgetPersistence.remove(gadget);
 
+		// Resources
+
+		resourceLocalService.deleteResource(
+			gadget.getCompanyId(), Gadget.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL, gadget.getGadgetId());
+
 		// OAuth consumer
 
 		String gadgetKey = GadgetConstants.toPublishedGadgetKey(
 			gadget.getGadgetId());
 
 		oAuthConsumerLocalService.deleteOAuthConsumers(gadgetKey);
-
-		// Resources
-
-		resourceLocalService.deleteResource(
-			gadget.getCompanyId(), Gadget.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL, gadget.getGadgetId());
 
 		return gadget;
 	}
