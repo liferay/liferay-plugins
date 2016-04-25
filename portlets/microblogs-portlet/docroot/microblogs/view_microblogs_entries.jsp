@@ -85,11 +85,13 @@ if (microblogsEntries != null) {
 				<div class="content">
 
 					<%
-					String content = MicroblogsUtil.getTaggedContent(microblogsEntry, ServiceContextFactory.getInstance(request));
+					String content = HtmlUtil.replaceNewLine(MicroblogsUtil.getTaggedContent(microblogsEntry, ServiceContextFactory.getInstance(request)));
 					%>
 
 					<span>
-						<%= content %>
+						<p>
+							<%= content %>
+						</p>
 					</span>
 				</div>
 
