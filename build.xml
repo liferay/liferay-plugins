@@ -261,7 +261,7 @@
 
 		<artifact:pom artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
 
-		<artifact:writepom pomRefId="plugins.sdk.pom" file="dist/plugins.sdk.pom"/>
+		<artifact:writepom pomRefId="plugins.sdk.pom" file="dist/plugins.sdk.pom" />
 
 		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}${snapshot.version.suffix}.zip">
 			<pom file="dist/plugins.sdk.pom" />
@@ -275,16 +275,16 @@
 
 	<target name="publish-sdk-release">
 		<antcall target="publish-sdk">
-			<param name="lp.version" value="${lp.version}"/>
-			<param name="publish.sdk" value="true"/>
+			<param name="lp.version" value="${lp.version}" />
+			<param name="publish.sdk" value="true" />
 		</antcall>
 	</target>
 
 	<target name="publish-sdk-snapshot">
 		<antcall target="publish-sdk">
-			<param name="lp.version" value="${lp.version}"/>
-			<param name="publish.sdk" value="true"/>
-			<param name="snapshot" value="true"/>
+			<param name="lp.version" value="${lp.version}" />
+			<param name="publish.sdk" value="true" />
+			<param name="snapshot" value="true" />
 		</antcall>
 	</target>
 
