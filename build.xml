@@ -233,6 +233,14 @@
 	</target>
 
 	<target name="publish-sdk" depends="extract-plugins-sdk-with-dependencies">
+		<fail message="Please run either publish-sdk-release or publish-sdk-snapshot instead of this target.">
+			<condition>
+				<not>
+					<istrue value="${publish.sdk}" />
+				</not>
+			</condition>
+		</fail>
+
 		<condition property="remote.repository.password" value="${sonatype.snapshot.password}" else="${sonatype.release.password}">
 			<istrue value="${snapshot}" />
 		</condition>
@@ -268,12 +276,14 @@
 	<target name="publish-sdk-release">
 		<antcall target="publish-sdk">
 			<param name="lp.version" value="${lp.version}"/>
+			<param name="publish.sdk" value="true"/>
 		</antcall>
 	</target>
 
 	<target name="publish-sdk-snapshot">
 		<antcall target="publish-sdk">
 			<param name="lp.version" value="${lp.version}"/>
+			<param name="publish.sdk" value="true"/>
 			<param name="snapshot" value="true"/>
 		</antcall>
 	</target>
