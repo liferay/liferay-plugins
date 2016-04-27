@@ -163,6 +163,8 @@
 					<if>
 						<available file="@{ivy.xml.dir}/ivy.xml" />
 						<then>
+							<fixcrlf eol="lf" fixlast="false" file="@{ivy.xml.dir}/ivy.xml" />
+
 							<checksum file="@{ivy.xml.dir}/ivy.xml" verifyproperty="ivy.xml.unmodified" />
 
 							<if>
