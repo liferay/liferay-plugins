@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 	<import file="build-common.xml" />
 
 	<condition property="plugins.includes.path" value="">
@@ -230,6 +230,21 @@
 		<ant dir="portlets" target="format-javadoc" inheritAll="false" />
 		<ant dir="themes" target="format-javadoc" inheritAll="false" />
 		<ant dir="webs" target="format-javadoc" inheritAll="false" />
+	</target>
+
+	<target name="publish-sdk" depends="extract-plugins-sdk-with-dependencies">
+		<artifact:pom id="plugins.sdk.pom" artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay" version="${lp.version}" />
+
+		<artifact:writepom pomRefId="plugins.sdk.pom" file="dist/plugins.sdk.pom"/>
+
+		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}.zip">
+			<pom file="dist/plugins.sdk.pom" />
+			<remoteRepository url="https://repository.liferay.com/nexus/content/repositories/liferay-releases-ce">
+				<authentication password="${sonatype.release.password}" username="${sonatype.release.username}" />
+			</remoteRepository>
+		</artifact:deploy>
+
+		<delete file="dist/plugins.sdk.pom" />
 	</target>
 
 	<target name="setup-eclipse">
