@@ -713,6 +713,21 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 
 	<process-ivy />
 
+	<target name="publish-sdk" depends="extract-plugins-sdk-with-dependencies">
+		<artifact:pom id="plugins.sdk.pom" artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay" version="${lp.version}" />
+
+		<artifact:writepom pomRefId="plugins.sdk.pom" file="dist/plugins.sdk.pom"/>
+
+		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}.zip">
+			<pom file="dist/plugins.sdk.pom" />
+			<remoteRepository url="https://repository.liferay.com/nexus/content/repositories/liferay-releases-ce">
+				<authentication password="${sonatype.release.password}" username="${sonatype.release.username}" />
+			</remoteRepository>
+		</artifact:deploy>
+
+		<delete file="dist/plugins.sdk.pom" />
+	</target>
+
 	<target name="publish">
 		<ivy:settings file="${sdk.dir}/ivy-settings-publisher.xml" />
 
