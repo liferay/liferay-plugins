@@ -76,6 +76,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		addSearchTerm(searchQuery, searchContext, "creatorName", true);
 		addSearchTerm(searchQuery, searchContext, "message", true);
+		addSearchTerm(searchQuery, searchContext, "title", true);
 	}
 
 	@Override
@@ -108,6 +109,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 			"parentAssetEntrySetId", assetEntrySet.getParentAssetEntrySetId());
 		document.addKeyword(
 			"privateAssetEntrySet", assetEntrySet.getPrivateAssetEntrySet());
+		document.addText("title", payloadJSONObject.getString("title"));
 
 		return document;
 	}
