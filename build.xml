@@ -259,7 +259,7 @@
 
 		<move file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}.zip" tofile="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}${snapshot.version.suffix}.zip" />
 
-		<artifact:pom artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
+		<artifact:pom artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay.portal" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
 
 		<artifact:writepom pomRefId="plugins.sdk.pom" file="dist/plugins.sdk.pom" />
 
