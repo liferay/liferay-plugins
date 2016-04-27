@@ -265,6 +265,19 @@
 		<delete file="dist/plugins.sdk.pom" />
 	</target>
 
+	<target name="publish-sdk-release">
+		<antcall target="publish-sdk">
+			<param name="lp.version" value="${lp.version}"/>
+		</antcall>
+	</target>
+
+	<target name="publish-sdk-snapshot">
+		<antcall target="publish-sdk">
+			<param name="lp.version" value="${lp.version}"/>
+			<param name="snapshot" value="true"/>
+		</antcall>
+	</target>
+
 	<target name="setup-eclipse">
 		<loop-macrodef-or-target
 			module.dirs="${plugins.includes.path}"
