@@ -36,12 +36,12 @@ for (int i = 0; i < testSuiteJSONArray.length(); i++) {
 
 	<h3><%= testCaseJSONObject.getString("name") %></h3>
 
-<%
+	<%
 	JSONArray testResultsJSONArray = testCaseJSONObject.getJSONArray("testResults");
 
 	for (int j = 0; j < testResultsJSONArray.length(); j++) {
 		JSONObject testResultsJSONObject = testResultsJSONArray.getJSONObject(j);
-%>
+	%>
 
 		<p>
 			<%= testResultsJSONObject.getString("name") %> <%= testResultsJSONObject.getString("status") %> <%= testResultsJSONObject.getString("exceptionMessage") %>
