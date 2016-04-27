@@ -233,14 +233,32 @@
 	</target>
 
 	<target name="publish-sdk" depends="extract-plugins-sdk-with-dependencies">
-		<artifact:pom id="plugins.sdk.pom" artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay" version="${lp.version}" />
+		<condition property="remote.repository.password" value="${sonatype.snapshot.password}" else="${sonatype.release.password}">
+			<istrue value="${snapshot}" />
+		</condition>
+
+		<condition property="remote.repository.url" value="${sonatype.snapshot.url}" else="${sonatype.release.url}">
+			<istrue value="${snapshot}" />
+		</condition>
+
+		<condition property="remote.repository.username" value="${sonatype.snapshot.username}" else="${sonatype.release.username}">
+			<istrue value="${snapshot}" />
+		</condition>
+
+		<condition property="snapshot.version.suffix" value="-SNAPSHOT" else="">
+			<istrue value="${snapshot}" />
+		</condition>
+
+		<move file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}.zip" tofile="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}${snapshot.version.suffix}.zip" />
+
+		<artifact:pom artifactId="com.liferay.portal.plugins.sdk.with.dependencies" groupId="com.liferay" id="plugins.sdk.pom" packaging="zip" version="${lp.version}${snapshot.version.suffix}" />
 
 		<artifact:writepom pomRefId="plugins.sdk.pom" file="dist/plugins.sdk.pom"/>
 
-		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}.zip">
+		<artifact:deploy file="dist/com.liferay.portal.plugins.sdk.with.dependencies-${lp.version}${snapshot.version.suffix}.zip">
 			<pom file="dist/plugins.sdk.pom" />
-			<remoteRepository url="https://repository.liferay.com/nexus/content/repositories/liferay-releases-ce">
-				<authentication password="${sonatype.release.password}" username="${sonatype.release.username}" />
+			<remoteRepository url="${remote.repository.url}">
+				<authentication password="${remote.repository.password}" username="${remote.repository.username}" />
 			</remoteRepository>
 		</artifact:deploy>
 
