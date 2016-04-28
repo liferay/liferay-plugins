@@ -13,6 +13,7 @@
 	<dependencies defaultconf="default">
 		<dependency name="aws-java-sdk" org="com.amazonaws" rev="1.7.9" />
 		<dependency name="bcprov-jdk16" org="org.bouncycastle" rev="1.46" />
+		<dependency name="com.liferay.petra.json.web.service.client" org="com.liferay" rev="1.0.1" />
 		<dependency name="httpclient" org="org.apache.httpcomponents" rev="4.3.3" />
 		<dependency name="httpcore" org="org.apache.httpcomponents" rev="4.3.2" />
 		<dependency name="jcl-over-slf4j" org="org.slf4j" rev="1.7.5" />
