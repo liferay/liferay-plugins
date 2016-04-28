@@ -1,10 +1,2 @@
 /lib/json-web-service-client-shared.jar
-/lib/commons-codec.jar
-/lib/commons-logging.jar
-/lib/httpclient.jar
-/lib/httpcore.jar
-/lib/jackson-annotations.jar
-/lib/jackson-core.jar
-/lib/jackson-databind.jar
 /lib/portal-compat-shared.jar
-/lib/slf4j-api.jar

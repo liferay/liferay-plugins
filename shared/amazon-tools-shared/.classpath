@@ -13,7 +13,7 @@
 	<classpathentry kind="lib" path="/portal-master/lib/portal/bnd.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
-	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
+	<classpathentry kind="lib" path="/portal-master/portal-kernel/portal-kernel.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
@@ -21,6 +21,7 @@
 	<classpathentry kind="lib" path="lib/bcpkix-jdk15on.jar" />
 	<classpathentry kind="lib" path="lib/bcprov-jdk15on.jar" />
 	<classpathentry kind="lib" path="lib/bcprov-jdk16.jar" />
+	<classpathentry kind="lib" path="lib/com.liferay.petra.json.web.service.client.jar" />
 	<classpathentry kind="lib" path="lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="lib/httpclient.jar" />
 	<classpathentry kind="lib" path="lib/httpcore.jar" />
@@ -29,7 +30,6 @@
 	<classpathentry kind="lib" path="lib/jackson-databind.jar" />
 	<classpathentry kind="lib" path="lib/jcl-over-slf4j.jar" />
 	<classpathentry kind="lib" path="lib/joda-time.jar" />
-	<classpathentry kind="lib" path="lib/json-web-service-client-shared.jar" />
 	<classpathentry kind="lib" path="lib/json.jar" />
 	<classpathentry kind="lib" path="lib/jzlib.jar" />
 	<classpathentry kind="lib" path="lib/net.sf.jargs.jar" />
