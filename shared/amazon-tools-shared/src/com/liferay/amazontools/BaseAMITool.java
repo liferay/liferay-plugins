@@ -26,8 +26,8 @@ import com.amazonaws.services.ec2.model.Image;
 import com.amazonaws.services.identitymanagement.AmazonIdentityManagementClient;
 import com.amazonaws.services.s3.AmazonS3Client;
 
-import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
-import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
+import com.liferay.petra.json.web.service.client.JSONWebServiceClient;
+import com.liferay.petra.json.web.service.client.JSONWebServiceClientImpl;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

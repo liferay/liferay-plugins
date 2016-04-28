@@ -21,7 +21,7 @@ import com.amazonaws.services.ec2.model.AssociateAddressRequest;
 import com.amazonaws.services.ec2.model.CreateTagsRequest;
 import com.amazonaws.services.ec2.model.Tag;
 
-import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
+import com.liferay.petra.json.web.service.client.JSONWebServiceClient;
 
 import jargs.gnu.CmdLineParser;
 
