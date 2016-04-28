@@ -23,7 +23,6 @@ import com.liferay.document.library.kernel.model.DLFileEntryType;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.service.DLFileEntryTypeLocalServiceUtil;
 import com.liferay.journal.model.JournalFolder;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.message.boards.kernel.model.MBCategory;
 import com.liferay.message.boards.kernel.model.MBMessage;
 import com.liferay.message.boards.kernel.model.MBThread;
@@ -44,6 +43,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -86,7 +86,7 @@ public class MySubscriptionsUtil {
 
 		if (className.equals(_KNOWLEDGE_BASE_MODEL_CLASSNAME)) {
 			return PortalUtil.getLayoutFullURL(
-				classPK, PortletKeys.KNOWLEDGE_BASE_DISPLAY);
+				classPK, _KNOWLEDGE_BASE_DISPLAY_PORTLET_ID);
 		}
 
 		if (className.equals(Layout.class.getName())) {
@@ -238,6 +238,9 @@ public class MySubscriptionsUtil {
 
 		return assetRendererFactory.getAssetRenderer(classPK);
 	}
+
+	private static final String _KNOWLEDGE_BASE_DISPLAY_PORTLET_ID =
+		"com_liferay_knowledge_base_web_portlet_DisplayPortlet";
 
 	private static final String _KNOWLEDGE_BASE_MODEL_CLASSNAME =
 		"com.liferay.knowledgebase.model.KBArticle";

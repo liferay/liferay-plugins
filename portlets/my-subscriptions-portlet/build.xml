@@ -2,7 +2,5 @@
 <!DOCTYPE project>
 
 <project name="my-subscriptions-portlet" basedir="." default="deploy">
-	<property name="import.shared" value="knowledge-base-shared" />
-
 	<import file="../build-common-portlet.xml" />
 </project>
