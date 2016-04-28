@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="knowledge-base-shared" basedir="." default="deploy">
-	<property name="plugin.version" value="1" />
-
-	<import file="../build-common-shared.xml" />
-</project>
