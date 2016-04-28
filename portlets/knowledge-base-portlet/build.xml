@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="knowledge-base-portlet" basedir="." default="deploy">
-	<property name="import.shared" value="knowledge-base-shared" />
-
-	<import file="../build-common-portlet.xml" />
-</project>
