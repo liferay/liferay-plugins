@@ -243,6 +243,6 @@ public class MySubscriptionsUtil {
 		"com_liferay_knowledge_base_web_portlet_DisplayPortlet";
 
 	private static final String _KNOWLEDGE_BASE_MODEL_CLASSNAME =
-		"com.liferay.knowledgebase.model.KBArticle";
+		"com.liferay.knowledge.base.model.KBArticle";
 
 }
