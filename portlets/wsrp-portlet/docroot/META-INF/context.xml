@@ -1,9 +1,0 @@
-<Context path="/wsrp-portlet">
-
-	<!--
-	The following Manager element will disable session persistence across Tomcat
-	restarts.
-	-->
-
-	<Manager pathname="" />
-</Context>

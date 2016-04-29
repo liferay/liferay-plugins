@@ -1,6 +1,0 @@
-https://www.oasis-open.org/standards#wsrpv1.0
-
-http://www.oasis-open.org/committees/wsrp/specifications/version1/wsrp_service.wsdl
-http://www.oasis-open.org/committees/wsrp/specifications/version1/wsrp_v1_bindings.wsdl
-http://www.oasis-open.org/committees/wsrp/specifications/version1/wsrp_v1_interfaces.wsdl
-http://www.oasis-open.org/committees/wsrp/specifications/version1/wsrp_v1_types.xsd

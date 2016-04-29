@@ -1,7 +1,0 @@
-https://www.oasis-open.org/standards#wsrpv2.0
-
-http://docs.oasis-open.org/wsrp/v2/wsrp-2.0-bindings-os-01.wsdl
-http://docs.oasis-open.org/wsrp/v2/wsrp-2.0-extra-os-01.xsd
-http://docs.oasis-open.org/wsrp/v2/wsrp-2.0-interfaces-os-01.wsdl
-http://docs.oasis-open.org/wsrp/v2/wsrp-2.0-service-os-01.wsdl
-http://docs.oasis-open.org/wsrp/v2/wsrp-2.0-types-os-01.xsd
