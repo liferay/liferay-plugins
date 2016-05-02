@@ -1057,6 +1057,16 @@ Error-Prone was automatically installed. Please rerun your task.
 										/>
 									</then>
 								</elseif>
+								<elseif>
+									<available file="@{module.dir}/../@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar" />
+									<then>
+										<copy
+											file="@{module.dir}/../@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
+											todir="@{module.dir}/docroot/WEB-INF/lib"
+											overwrite="true"
+										/>
+									</then>
+								</elseif>
 							</if>
 						</sequential>
 					</for>
