@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="sync-admin-portlet" basedir="." default="deploy">
-	<property name="import.shared" value="sync-shared" />
-
-	<import file="../build-common-portlet.xml" />
-</project>
