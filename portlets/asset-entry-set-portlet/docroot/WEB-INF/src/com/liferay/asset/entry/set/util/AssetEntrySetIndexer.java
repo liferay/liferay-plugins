@@ -98,6 +98,7 @@ public class AssetEntrySetIndexer extends BaseIndexer {
 
 		document.addKeyword(Field.TYPE, payloadJSONObject.getString("type"));
 
+		document.addKeyword("createTime", assetEntrySet.getCreateTime());
 		document.addText(
 			"creatorName",
 			AssetEntrySetParticipantInfoUtil.getParticipantName(
