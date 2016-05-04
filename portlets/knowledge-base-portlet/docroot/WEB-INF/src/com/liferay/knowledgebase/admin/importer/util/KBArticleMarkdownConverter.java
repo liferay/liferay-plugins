@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.zip.ZipReader;
+import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 import java.io.IOException;
@@ -267,6 +268,15 @@ public class KBArticleMarkdownConverter {
 
 		if (!urlTitle.startsWith(StringPool.SLASH)) {
 			urlTitle = StringPool.SLASH + urlTitle;
+		}
+
+		int urlTitleMaxSize = ModelHintsUtil.getMaxLength(
+			KBArticle.class.getName(), "urlTitle");
+
+		if (urlTitle.length() > urlTitleMaxSize) {
+			int pos = urlTitle.lastIndexOf(StringPool.DASH);
+
+			urlTitle = urlTitle.substring(0, pos);
 		}
 
 		return urlTitle;
