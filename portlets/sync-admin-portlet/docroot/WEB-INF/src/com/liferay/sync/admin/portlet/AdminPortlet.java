@@ -115,6 +115,17 @@ public class AdminPortlet extends MVCPortlet {
 		boolean oAuthEnabled = ParamUtil.getBoolean(
 			actionRequest, "oAuthEnabled");
 
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_OAUTH_ENABLED, String.valueOf(oAuthEnabled));
+
+		int pollInterval = ParamUtil.getInteger(actionRequest, "pollInterval");
+
+		portletPreferences.setValue(
+			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
+			String.valueOf(pollInterval));
+
+		portletPreferences.store();
+
 		if (oAuthEnabled) {
 			PluginPackage oAuthPortletPluginPackage =
 				DeployManagerUtil.getInstalledPluginPackage("oauth-portlet");
@@ -132,17 +143,6 @@ public class AdminPortlet extends MVCPortlet {
 			SyncPreferencesLocalServiceUtil.enableOAuth(
 				CompanyThreadLocal.getCompanyId(), serviceContext);
 		}
-
-		portletPreferences.setValue(
-			PortletPropsKeys.SYNC_OAUTH_ENABLED, String.valueOf(oAuthEnabled));
-
-		int pollInterval = ParamUtil.getInteger(actionRequest, "pollInterval");
-
-		portletPreferences.setValue(
-			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
-			String.valueOf(pollInterval));
-
-		portletPreferences.store();
 	}
 
 }
