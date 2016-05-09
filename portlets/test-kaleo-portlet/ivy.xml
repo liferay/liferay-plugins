@@ -11,6 +11,6 @@
 	</info>
 
 	<dependencies defaultconf="default">
-		<dependency org="junit" name="junit" rev="4.11" />
+		<dependency name="junit" org="junit" rev="4.11" />
 	</dependencies>
 </ivy-module>

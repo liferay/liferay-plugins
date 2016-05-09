@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="test-kaleo-portlet" basedir="." default="deploy">
+<project basedir="." default="deploy" name="test-kaleo-portlet">
 	<import file="../build-common-portlet.xml" />
 </project>
