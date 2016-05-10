@@ -27,8 +27,20 @@
 		<attribute default="false" name="verbose" />
 
 		<sequential>
+			<local name="src" />
+
+			<property name="src" value="@{src}" />
+
 			<propertyregex
-				input="@{src}"
+				input="${src}"
+				override="true"
+				property="src"
+				regexp="http://mirrors/"
+				replace="http://mirrors.lax.liferay.com/"
+			/>
+
+			<propertyregex
+				input="${src}"
 				override="true"
 				property="mirrors.cache.artifact.subdir"
 				regexp="https?://(.+/).+"
@@ -38,7 +50,7 @@
 			<property name="mirrors.cache.artifact.dir" value="${mirrors.cache.dir}/${mirrors.cache.artifact.subdir}" />
 
 			<propertyregex
-				input="@{src}"
+				input="${src}"
 				override="true"
 				property="mirrors.cache.artifact.file.name"
 				regexp=".+/(.+)"
@@ -53,7 +65,7 @@
 					<mkdir dir="${mirrors.cache.artifact.dir}" />
 
 					<propertyregex
-						input="@{src}"
+						input="${src}"
 						override="true"
 						property="mirrors.src"
 						regexp="http://"
@@ -76,7 +88,7 @@
 									<get
 										dest="${mirrors.cache.artifact.dir}"
 										ignoreerrors="@{ignoreerrors}"
-										src="@{src}"
+										src="${src}"
 										verbose="@{verbose}"
 									/>
 								</catch>
@@ -86,7 +98,7 @@
 							<get
 								dest="${mirrors.cache.artifact.dir}"
 								ignoreerrors="@{ignoreerrors}"
-								src="@{src}"
+								src="${src}"
 								verbose="@{verbose}"
 							/>
 						</else>
