@@ -30,21 +30,10 @@
 				</else>
 			</if>
 
-			<if>
-				<available file="bnd.bnd" />
-				<then>
-					<var name="service.osgi.module" value="true" />
-					<var name="service.props.util" value="${plugin.name}.util.ServiceProps" />
-					<var name="service.plugin.name" value="" />
-					<var name="service.spring.namespaces" value="beans" />
-				</then>
-				<else>
-					<var name="service.osgi.module" value="false" />
-					<var name="service.props.util" value="com.liferay.util.service.ServiceProps" />
-					<var name="service.plugin.name" value="${plugin.name}" />
-					<var name="service.spring.namespaces" value="beans" />
-				</else>
-			</if>
+			<var name="service.osgi.module" value="false" />
+			<var name="service.props.util" value="com.liferay.util.service.ServiceProps" />
+			<var name="service.plugin.name" value="${plugin.name}" />
+			<var name="service.spring.namespaces" value="beans" />
 
 			<mkdir dir="@{service.api.dir}" />
 			<mkdir dir="@{service.sql.dir}" />
@@ -603,39 +592,6 @@
 				<fail>WSDD Builder generated exceptions.</fail>
 			</then>
 		</if>
-
-		<if>
-			<available file="bnd.bnd" />
-			<then>
-				<property file="bnd.bnd" prefix="bnd." />
-
-				<echo file="${plugin.name}-wsdd.bnd">Bundle-SymbolicName: ${bnd.Bundle-SymbolicName}.wsdd
-Bundle-Name: ${bnd.Bundle-Name} WSDD descriptors
-Bundle-Version: ${bnd.Bundle-Version}
-Fragment-Host: ${bnd.Bundle-SymbolicName}
-Import-Package: javax.servlet,javax.servlet.http
-Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
-				</echo>
-
-				<manifest-helper />
-
-				<bndexpand propertyfile="${sdk.dir}/common.bnd" />
-
-				<bnd eclipse="false" exceptions="true" failok="false" inherit="true" output="${plugin.wsdd.file}">
-					<bndfiles>
-						<fileset dir="${basedir}">
-							<include name="${plugin.name}-wsdd.bnd" />
-						</fileset>
-					</bndfiles>
-					<classpath>
-						<pathelement location="${plugin.classes.dir}" />
-					</classpath>
-					<property name="-sourcepath" value="${basedir}" />
-				</bnd>
-
-				<delete file="${basedir}/${plugin.name}-wsdd.bnd" failonerror="false" />
-			</then>
-		</if>
 	</target>
 
 	<target name="compile-import-shared">
@@ -669,38 +625,6 @@ Include-Resource: WEB-INF/=server-config.wsdd,classes;filter:=*.wsdd
 							compile.jsp.docroot.dir="${compile.jsp.docroot.dir}"
 						/>
 					</then>
-					<elseif>
-						<available file="bnd.bnd" type="file" />
-						<then>
-							<antcall target="jar">
-								<param name="plugins.includes.path" value="${basedir}" />
-							</antcall>
-
-							<tstamp>
-								<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-							</tstamp>
-
-							<unzip dest="${tstamp.value}" src="${plugin.file}" />
-
-							<if>
-								<available file="${tstamp.value}/META-INF/resources" type="dir" />
-								<then>
-									<compile-jsp
-										compile.jsp.docroot.dir="${tstamp.value}/META-INF/resources"
-										compile.jsp.temp.dir="${tstamp.value}"
-									/>
-								</then>
-								<else>
-									<compile-jsp
-										compile.jsp.docroot.dir="${tstamp.value}"
-										compile.jsp.temp.dir="${tstamp.value}"
-									/>
-								</else>
-							</if>
-
-							<delete dir="${tstamp.value}" />
-						</then>
-					</elseif>
 					<else>
 						<loop-macrodef-or-target
 							module.dirs="${basedir}"

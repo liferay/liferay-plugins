@@ -183,21 +183,7 @@
 								<isfalse value="${ivy.xml.unmodified}" />
 								<then>
 									<var name="plugin.ivy.resolve.transitive.dependencies" unset="true" />
-
-									<if>
-										<and>
-											<available file="@{ivy.xml.dir}/bnd.bnd" />
-											<available file="@{ivy.xml.dir}/build.xml" />
-										</and>
-										<then>
-											<set-module-properties
-												module.dir="@{ivy.xml.dir}"
-											/>
-										</then>
-										<else>
-											<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
-										</else>
-									</if>
+									<var name="plugin.ivy.resolve.transitive.dependencies" value="${ivy.resolve.transitive.dependencies}" />
 
 									<ivy:settings file="${ivy.custom.settings.file}" />
 
@@ -265,94 +251,7 @@
 		</sequential>
 	</macrodef>
 
-	<macrodef name="record-git-commit-snapshot">
-		<sequential>
-			<loadfile srcfile="maven.deploy.log" property="maven.deploy.log.content" />
-
-			<propertyregex
-				input="${maven.deploy.log.content}"
-				override="true"
-				property="snapshot.tstamp"
-				regexp="${plugin.name}-${plugin.full.version}-([\d.-]+)\.jar"
-				select="\1"
-			/>
-
-			<property file="bnd.bnd" prefix="bnd." />
-
-			<git-head-hash
-				path="${basedir}"
-				property="module.snapshot.git.hash"
-			/>
-
-			<propertyregex
-				input="${sonatype.url}"
-				property="cdn.sonatype.url"
-				regexp="https://"
-				replace="http://cdn."
-			/>
-
-			<echo file="snapshot.properties">
-module.snapshot.git.hash=${module.snapshot.git.hash}
-module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/${bnd.Bundle-Version}-SNAPSHOT/${bnd.Bundle-SymbolicName}-${bnd.Bundle-Version}-${snapshot.tstamp}.jar
-			</echo>
-
-			<var name="maven.deploy.log.content" unset="true" />
-			<var name="module.snapshot.git.hash" unset="true" />
-			<var name="snapshot.tstamp" unset="true" />
-		</sequential>
-	</macrodef>
-
 	<macrodef name="set-build-xml-var">
-		<attribute name="bnd.property.key" default="" />
-		<attribute name="build.xml.var.name" />
-		<attribute name="module.dir" />
-
-		<sequential>
-			<if>
-				<and>
-					<available file="@{module.dir}/bnd.bnd" />
-					<not>
-						<equals arg1="@{bnd.property.key}" arg2="" />
-					</not>
-				</and>
-				<then>
-					<var name="module.bnd.@{bnd.property.key}" unset="true" />
-
-					<loadproperties prefix="module.bnd.">
-						<file file="@{module.dir}/bnd.bnd" />
-					</loadproperties>
-
-					<propertycopy
-						from="module.bnd.@{bnd.property.key}"
-						name="module.bnd.property.value"
-						override="true"
-						silent="true"
-					/>
-
-					<if>
-						<isset property="module.bnd.property.value" />
-						<then>
-							<var name="set-build-xml-var.return" value="${module.bnd.property.value}" />
-						</then>
-						<else>
-							<set-build-xml-var-from-build-xml
-								build.xml.var.name="@{build.xml.var.name}"
-								module.dir="@{module.dir}"
-							/>
-						</else>
-					</if>
-				</then>
-				<else>
-					<set-build-xml-var-from-build-xml
-						build.xml.var.name="@{build.xml.var.name}"
-						module.dir="@{module.dir}"
-					/>
-				</else>
-			</if>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="set-build-xml-var-from-build-xml">
 		<attribute name="build.xml.var.name" />
 		<attribute name="module.dir" />
 
@@ -503,19 +402,6 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 							<var name="plugin.version" value="1" />
 						</else>
 					</if>
-
-					<set-build-xml-var
-						bnd.property.key="Bundle-Version"
-						build.xml.var.name="plugin.full.version"
-						module.dir="@{module.dir}"
-					/>
-
-					<if>
-						<isset property="set-build-xml-var.return" />
-						<then>
-							<var name="plugin.full.version" value="${set-build-xml-var.return}" />
-						</then>
-					</if>
 				</else>
 			</if>
 
@@ -528,32 +414,18 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 				</then>
 			</if>
 
-			<set-build-xml-var
-				bnd.property.key="Bundle-SymbolicName"
-				build.xml.var.name="plugin.name"
-				module.dir="@{module.dir}"
-			/>
-
 			<if>
-				<isset property="set-build-xml-var.return" />
+				<equals arg1="@{module.dir}" arg2="." />
 				<then>
-					<var name="plugin.name" value="${set-build-xml-var.return}" />
+					<var name="plugin.name" value="${ant.project.name}" />
 				</then>
 				<else>
-					<if>
-						<equals arg1="@{module.dir}" arg2="." />
-						<then>
-							<var name="plugin.name" value="${ant.project.name}" />
-						</then>
-						<else>
-							<antelope:grep
-								group="1"
-								in="@{module.dir}"
-								property="plugin.name"
-								regex="(?:.*[/\\])(.*)"
-							/>
-						</else>
-					</if>
+					<antelope:grep
+						group="1"
+						in="@{module.dir}"
+						property="plugin.name"
+						regex="(?:.*[/\\])(.*)"
+					/>
 				</else>
 			</if>
 
@@ -783,13 +655,6 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 			</then>
 			<else>
 				<if>
-					<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
-					<then>
-						<record action="start" name="${basedir}/maven.deploy.log" />
-					</then>
-				</if>
-
-				<if>
 					<and>
 						<available file="${plugin.javadoc.file}" />
 						<available file="${plugin.source.file}" />
@@ -836,17 +701,6 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 							</remoteRepository>
 						</artifact:deploy>
 					</else>
-				</if>
-
-				<if>
-					<equals arg1="${plugin.release.qualifier}" arg2="-SNAPSHOT" />
-					<then>
-						<record action="stop" name="${basedir}/maven.deploy.log" />
-
-						<record-git-commit-snapshot />
-
-						<delete file="maven.deploy.log" />
-					</then>
 				</if>
 			</else>
 		</if>
