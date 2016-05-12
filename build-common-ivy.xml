@@ -597,12 +597,6 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 						<antelope:endswith string="${plugin.name}" with="-theme" />
 						<antelope:endswith string="${plugin.name}" with="-web" />
 					</or>
-					<not>
-						<resourcecontains
-							resource="${module.dir.unix}/build.xml"
-							substring="/build-common-osgi-plugin.xml&quot;"
-						/>
-					</not>
 				</and>
 				<then>
 					<var name="plugin.packaging" value="war" />
@@ -664,29 +658,6 @@ module.snapshot.url=${cdn.sonatype.url}/com/liferay/${bnd.Bundle-SymbolicName}/$
 						</else>
 					</if>
 				</else>
-			</if>
-
-			<if>
-				<resourcecontains
-					resource="${module.dir.unix}/build.xml"
-					substring="/build-common-osgi-plugin.xml&quot;"
-				/>
-				<then>
-					<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
-
-					<set-build-xml-var
-						build.xml.var.name="ignore.osgi.portal.classpath"
-						module.dir="@{module.dir}"
-					/>
-
-					<path id="plugin-lib.classpath">
-						<fileset dir="@{module.dir}/lib" erroronmissingdir="false" includes="*.jar" />
-						<pathelement path="${plugin-lib.classpath.path}" />
-						<path refid="portal.classpath" />
-					</path>
-
-					<var name="plugin-lib.classpath.path" unset="true" />
-				</then>
 			</if>
 
 			<set-build-xml-var
