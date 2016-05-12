@@ -6,7 +6,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
 >
-	<info module="com.liferay.sdk.dependencies.com.liferay.ant.bnd" organisation="com.liferay">
+	<info module="com.liferay.sdk.dependencies.com.liferay.alloy.taglib" organisation="com.liferay">
 		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
 	</info>
 
