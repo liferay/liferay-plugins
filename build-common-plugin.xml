@@ -30,7 +30,6 @@
 				</else>
 			</if>
 
-			<var name="service.osgi.module" value="false" />
 			<var name="service.props.util" value="com.liferay.util.service.ServiceProps" />
 			<var name="service.plugin.name" value="${plugin.name}" />
 			<var name="service.spring.namespaces" value="beans" />
@@ -94,7 +93,7 @@
 				<arg value="service.impl.dir=${basedir}/${service.base.dir}/src" />
 				<arg value="service.input.file=${service.input.file}" />
 				<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/@{service.model.hints.file.name}" />
-				<arg value="service.osgi.module=${service.osgi.module}" />
+				<arg value="service.osgi.module=false" />
 				<arg value="service.plugin.name=${service.plugin.name}" />
 				<arg value="service.props.util=${service.props.util}" />
 				<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
@@ -240,39 +239,11 @@
 			<if>
 				<available file="@{compile.jsp.docroot.dir}" />
 				<then>
-					<var name="compile.jsp.dependencies.classpath" />
-
-					<if>
-						<isset property="osgi.compile.jsp.wab.dependencies" />
-						<then>
-							<for list="${osgi.compile.jsp.wab.dependencies}" param="osgi.compile.jsp.wab.dependency">
-								<sequential>
-									<var name="compile.jsp.dependency.dir" value="${basedir}/../@{osgi.compile.jsp.wab.dependency}" />
-
-									<compile module.dir="${compile.jsp.dependency.dir}" />
-
-									<if>
-										<equals arg1="${compile.jsp.dependencies.classpath}" arg2="" />
-										<then>
-											<var name="compile.jsp.dependencies.classpath" value="${compile.jsp.dependency.dir}/docroot/WEB-INF/classes" />
-										</then>
-										<else>
-											<var name="compile.jsp.dependencies.classpath" value="${compile.jsp.dependencies.classpath}:${compile.jsp.dependency.dir}/docroot/WEB-INF/classes" />
-										</else>
-									</if>
-
-									<var name="compile.jsp.dependency.dir" unset="true" />
-								</sequential>
-							</for>
-						</then>
-					</if>
-
 					<path id="jspc.classpath.common">
 						<pathelement location="${env.JAVA_HOME}/jre/lib/rt.jar" />
 						<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 						<fileset dir="${sdk.dir}/dependencies/com.liferay.jasper.jspc/lib" includes="*.jar" />
 						<pathelement location="${app.server.lib.portal.dir}/ant.jar" />
-						<pathelement path="${compile.jsp.dependencies.classpath}" />
 						<fileset dir="${basedir}" includes="lib/*.jar" />
 						<fileset dir="${basedir}" includes="docroot/WEB-INF/lib/*.jar" />
 						<fileset dir="@{compile.jsp.docroot.dir}" includes="WEB-INF/lib/*.jar" />

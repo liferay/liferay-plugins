@@ -37,8 +37,6 @@
 		<dependency name="log4j" org="log4j" rev="1.2.16" />
 		<dependency name="mail" org="javax.mail" rev="1.4" />
 		<dependency name="net.sf.jargs" org="com.liferay" rev="1.0" />
-		<dependency name="org.osgi.compendium" org="org.osgi" rev="5.0.0" />
-		<dependency name="org.osgi.core" org="org.osgi" rev="5.0.0" />
 		<dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12.1" />
 		<dependency name="serializer" org="xalan" rev="2.7.1" />
 		<dependency name="xalan" org="xalan" rev="2.7.1" />
