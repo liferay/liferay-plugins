@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE project>
-
-<project name="modules-admin-portlet" basedir="." default="compile">
-	<property name="osgi.ide.dependencies" value="bnd.jar" />
-
-	<import file="../../build-common-osgi-plugin.xml" />
-</project>
