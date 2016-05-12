@@ -2766,42 +2766,6 @@ for (String path : paths) {
 		/>
 	</target>
 
-	<target name="direct-deploy-ext-cmd">
-		<deploy
-			module.dir="${plugins.includes.path}"
-		/>
-	</target>
-
-	<target name="direct-deploy-hook-cmd">
-		<deploy
-			module.dir="${plugins.includes.path}"
-		/>
-	</target>
-
-	<target name="direct-deploy-layouttpl-cmd">
-		<deploy
-			module.dir="${plugins.includes.path}"
-		/>
-	</target>
-
-	<target name="direct-deploy-portlet-cmd">
-		<deploy
-			module.dir="${plugins.includes.path}"
-		/>
-	</target>
-
-	<target name="direct-deploy-theme-cmd">
-		<deploy
-			module.dir="${plugins.includes.path}"
-		/>
-	</target>
-
-	<target name="direct-deploy-web-cmd">
-		<deploy
-			module.dir="${plugins.includes.path}"
-		/>
-	</target>
-
 	<target name="format-javadoc">
 		<path id="javadoc.formatter.classpath">
 			<fileset dir="${sdk.dir}/dependencies/com.liferay.javadoc.formatter/lib" includes="*.jar" />
